@@ -1,0 +1,196 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	//var tables = LoadTables();
+    //ConfigureTableMappings(tables);
+	WithService = true;
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile("I" + ServiceName + "Service.cs");
+  	}
+#>
+#region IServices
+// https://www.codeproject.com/Articles/262164/Using-WCF-Service-with-Silverlight
+// https://msdn.microsoft.com/ru-ru/library/cc197940(v=vs.95).aspx
+// http://www.c-sharpcorner.com/UploadFile/788083/creating-silverlight-application-to-consume-the-wcf-service/
+namespace <#=Namespace #>
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.ServiceModel;
+	using DAL;
+
+	public partial interface I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		ServiceResponse <#=tbl.ClassName #>Get(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1);
+		ServiceResponse <#=tbl.ClassName #>GetById(int id);
+		ServiceResponse <#=tbl.ClassName #>DeleteById(int id);
+		ServiceResponse <#=tbl.ClassName #>Add(<#=tbl.ClassName #> rec);
+		ServiceResponse <#=tbl.ClassName #>Update(<#=tbl.ClassName #> rec);
+<#}#>
+	}
+}
+#endregion IServices
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(ServiceName + "Service.cs");
+  	}
+#>
+#region Services
+// http://www.topwcftutorials.net/2012/09/wcf-faqs-part2.html
+// https://www.infoq.com/articles/WCF-Code-Sharing ???
+// https://www.codeproject.com/Articles/262164/Using-WCF-Service-with-Silverlight
+// https://msdn.microsoft.com/ru-ru/library/cc197940(v=vs.95).aspx
+// http://www.c-sharpcorner.com/UploadFile/788083/creating-silverlight-application-to-consume-the-wcf-service/
+namespace <#=Namespace #>
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.ServiceModel;
+	using DAL;
+	using System.ServiceModel.Activation;
+
+	[AspNetCompatibilityRequirements
+		(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+	[ServiceContract]
+	public partial class <#=ServiceName #>Service : I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		[OperationContract]
+		public ServiceResponse <#=tbl.ClassName #>Get(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.Result = <#=tbl.ClassName #>Repository.Get(this.connectionString, where, param, sort, page, pagesize);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		[OperationContract]
+		public ServiceResponse <#=tbl.ClassName #>GetById(int id)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.Result = <#=tbl.ClassName #>Repository.GetById(this.connectionString, id);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		[OperationContract]
+		public ServiceResponse <#=tbl.ClassName #>DeleteById(int id)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				<#=tbl.ClassName #>Repository.Delete(this.connectionString, id);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		[OperationContract]
+		public ServiceResponse <#=tbl.ClassName #>Add(<#=tbl.ClassName #> rec)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.Result = <#=tbl.ClassName #>Repository.Add(this.connectionString, rec);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		[OperationContract]
+		public ServiceResponse <#=tbl.ClassName #>Update(<#=tbl.ClassName #> rec)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				<#=tbl.ClassName #>Repository.Update(this.connectionString, rec);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+<#}#>
+	}
+}
+#endregion Services
+<#+
+
+//UseService=true;
+
+#>

@@ -1,0 +1,163 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+//	var tables = LoadTables();
+//    ConfigureTableMappings(tables);
+	WithDALSP = true;
+#>
+// <#=FilePos() #>
+#region DALSP
+// https://www.codeproject.com/Articles/889668/SQL-Server-Dapper
+namespace <#=Namespace #>.DAL
+{
+	using System;
+	using System.Data;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Data.SqlClient;
+	using System.Configuration;
+	using Dapper;
+	using System.Text;
+
+<#if (!WithDAL) {#>	
+	public static class Extentions
+	{
+		public static string ToSqlParameter(this string name)
+		{
+			return "[" + name + "]=@" + name;
+		}
+	}
+
+	public abstract class RepositoryBase
+	{
+		protected IDbTransaction Transaction { get; private set; }
+		protected IDbConnection Connection { get { return Transaction.Connection; } }
+
+		public RepositoryBase(IDbTransaction transaction)
+		{
+			Transaction = transaction;
+		}
+	}
+
+<#}#>	
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+<#if (!WithDAL) {#>	
+	public partial interface I<#=tbl.ClassName #>Repository
+	{
+		IEnumerable<<#=tbl.ClassName #>> Get(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1);
+		<#=tbl.ClassName #> GetById(int id);
+		int Add(<#=tbl.ClassName #> entity);
+		void Delete(<#=tbl.ClassName #> entity);
+		void Delete(int id);
+		void Delete(string where = null, object param = null);
+		void Update(<#=tbl.ClassName #> entity);
+	}
+
+<#}#>	
+	public partial class <#=tbl.ClassName #>Repository : RepositoryBase, I<#=tbl.ClassName #>Repository
+	{
+<#if (!WithDAL) {#>	
+		public <#=tbl.ClassName #>Repository(IDbTransaction transaction) : base(transaction)
+		{
+		}
+		
+<#}#>	
+		public static void Delete<#if (WithDAL) {#>SP<#}#>(string connectionString, string where = null, DynamicParameters param = null)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("DELETE FROM<#=SchemaNameGenerated #>[<#=tbl.Name #>]"); 
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute("spDelete<#=tbl.Name #>", p, commandType: CommandType.StoredProcedure);
+				sqlConnection.Close();
+			}
+		}
+
+		public static void Update<#if (WithDAL) {#>SP<#}#>(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			var p = new DynamicParameters();
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c) {
+#>
+			p.Add("@<#=col.PropertyName #>", entity.<#=col.PropertyName #>, dbType: DbType.<#=col.PropertyDbType #>);
+<#}#>
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute("spUPDATE<#=tbl.Name #>", p, commandType: CommandType.StoredProcedure);
+				sqlConnection.Close();
+			}
+		}
+	}
+<#}#>
+#region Stored Procedures
+/*
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+
+-- ==================================================================================
+-- Description: Update record in <#=SchemaNameGenerated #>[<#=tbl.Name #>] table.
+--              Record selection based on Id (primary key) field
+-- Author/Tool: Vlad's generator
+-- Updated date: <#=DateTime.Now #>
+-- ==================================================================================
+--Create Procedure <#=SchemaNameGenerated #>[spUpdate<#=tbl.Name #>]
+Alter Procedure <#=SchemaNameGenerated #>[spUpdate<#=tbl.Name #>]
+
+<#}#>
+*/
+#endregion Stored Procedures
+}
+#endregion DALSP
+<#+
+
+//string ConnectionStringName = "";
+
+
+#>

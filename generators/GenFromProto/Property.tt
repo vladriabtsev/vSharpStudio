@@ -1,0 +1,42 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<# if (field.IsRepeated) { #>
+public ObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
+<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+public <#= field.MessageType.Name.ToNameCs() #> <#= field.Name.ToNameCs() #> { get; set; }
+<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
+public <#= message.Name #>.Types.<#= field.Name.ToNameCs() #> <#= field.Name.ToNameCs() #>
+{ 
+	set
+	{
+		if (_dto.<#= field.Name.ToNameCs() #> != value)
+		{
+			_dto.<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _dto.<#= field.Name.ToNameCs() #>; }
+}
+partial void On<#= field.Name.ToNameCs() #>Changed();
+<# } else { #>
+public <#= field.FieldType.ToTypeCs() #> <#= field.Name.ToNameCs() #>
+{ 
+	<# if (field.Name == "guid") { #>private <# } #>set
+	{
+		if (_dto.<#= field.Name.ToNameCs() #> != value)
+		{
+			_dto.<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _dto.<#= field.Name.ToNameCs() #>; }
+}
+partial void On<#= field.Name.ToNameCs() #>Changed();
+<# } #>

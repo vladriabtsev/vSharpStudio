@@ -1,0 +1,3 @@
+https://github.com/MarcinJuraszek/CloneExtensions
+https://github.com/mijay/NClone
+https://github.com/mccj/CloneExtensionsEx

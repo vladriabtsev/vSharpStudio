@@ -1,0 +1,63 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	//var tables = LoadTables();
+    //ConfigureTableMappings(tables);
+#>
+// <#=FilePos() #>
+#region ServiceStack DTOs
+namespace <#=Namespace #>
+{
+	using System;
+	//using System.ComponentModel.DataAnnotations;
+	//using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	//using System.ServiceModel;
+
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	/// <summary>
+	/// A class which represents the <#=tbl.Name#> <#=(tbl.IsView)?"view":"table"#>.
+	/// </summary>
+	public partial class <#=tbl.ClassName#>
+	{
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+<#}#>
+	}
+
+<#}#>
+}
+#endregion ServiceStack DTOs

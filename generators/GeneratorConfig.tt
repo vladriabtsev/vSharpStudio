@@ -1,0 +1,68 @@
+<#@ template hostspecific="True" #>
+<#@ assembly name="$(ProjectDir)\..\Generator\CodeForTT.dll" #>
+<#
+/*
+This is the configuration file for GenericModelGenerator.tt
+*/
+	// Settings
+	ConfigPath = @""; //Looks in current project for web.config or app.config by default. You can override it to point to a different config file.
+    ConnectionStringName = "ExchangeDB"; // Uses the last connection string in the config if not specified
+    Namespace = "WcfServiceLibrary";
+	ClassPrefix = "";
+	ClassSuffix = "";
+    IncludeViews = true;
+	IgnoreColumnDefaultValues = true; // when set to false, the generated properties mapped to columns having default values will be refreshed with the database assigned values on insert.
+	ExcludeTablePrefixes = new string[]{"ELMAH", "AspNet_", "HangFire."};
+    IgnoreTablesByDefault = true;
+	ServiceName = "Regression";
+	SchemaName="dbo";
+	SchemaNameGenerated="[dbo].";
+	ServiceAsmPath = @"bin\Debug\WcfServiceLibrary.dll";
+	IsUseHiLoForKey=true;
+
+
+	IsUseObservableCollection = false;
+	UILibrary = UILib.SilverlightTelerik;
+
+	FileManager = TemplateFileManager.Create(this);
+#>
+<#@ include file="..\Generator\BaseGenerator.tt" #>
+<#@ include file="..\Generator\FileManager.ttinclude" #>
+<#@ include file="..\Generator\ViewModelGenerator.tt" #>
+<#@ include file="..\Generator\DALGenerator.tt" #>
+<#@ include file="..\Generator\UnitOfWorkGenerator.tt" #>
+<#@ include file="..\Generator\DapperModelGenerator.tt" #>
+<#
+	if (FileManager != null)
+	{
+		FileManager.Process();
+  	}
+	//AppDomain.Unload(AppDomain.CurrentDomain);
+#>
+<#+
+	void ConfigureTableMappings(Tables tables){
+//			tables["ViewTestRunResults"].Include = true;					
+//			tables["ViewInboxReceivers"].Include = true;					
+			tables["ViewOutboxReceivers"].Include = true;					
+//			tables["ViewInboxSenders"].Include = true;					
+			tables["ViewOutboxSenders"].Include = true;					
+			tables["ViewTrTypes"].Include = true;					
+			tables["tblCodeBlocks"].Include = true;
+			tables["Company"].Include = true;
+			tables["CompanyISA"].Include = true;
+			tables["GroupGS"].Include = true;
+			tables["HubDocument"].Include = true;
+			tables["CustHubDocument"].Include = true;
+			tables["CustomerHub"].Include = true;
+			tables["SefDocument"].Include = true;
+			tables["ClientLog"].Include = true;
+		/*
+			// Tweak Schema
+			tables["tablename"].Include = true;							// To include a table when IgnoreTablesByDefault=true
+			tables["tablename"].Ignore = true;							// To ignore a table
+			tables["tablename"].ClassName = "newname";					// To change the class name of a table
+			tables["tablename"]["columnname"].Ignore = true;			// To ignore a column
+			tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
+		*/
+	}
+#>

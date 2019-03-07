@@ -1,0 +1,1522 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	var tables = LoadTables();
+    ConfigureTableMappings(tables);
+#>
+// <#=FilePos() #>
+#if SERVER
+namespace <#=Namespace #>.Server
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.ServiceModel;
+	using DapperRepositories;
+
+	public static class Extentions
+	{
+		public static string ToSqlParameter(this string name)
+		{
+			return "[" + name + "]=@" + name;
+		}
+	}
+
+#region Entities
+
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	/// <summary>
+	/// A class which represents the <#=tbl.Name#> <#=(tbl.IsView)?"view":"table"#>.
+	/// </summary>
+	[DataContract]
+	[Table("<#=tbl.Name#>")]
+	public partial class <#=tbl.ClassName#>
+	{
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		[DataMember(EmitDefaultValue = false)]
+	<# if (col.IsPK) { #>
+		[Key]
+	<#}
+	if(col.IsComputed) { #>
+		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+	<#}
+	else if(col.IsAutoIncrement) { #>
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	<#}
+	else if(col.HasDefaultValue && !IgnoreColumnDefaultValues) { #>
+		[Dapper.FastCrud.DatabaseGeneratedDefaultValue]
+	<#}
+	else if(col.IsPK && col.HasDefaultValue && col.IsGeneratedUniqueIdentifier) { #>
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	<#}
+	if (IncludeRelationships) {
+		var tableKey = (from key in tbl.OuterKeys where col.PropertyName==tbl[key.ReferencingTableColumnName].PropertyName select key).FirstOrDefault();
+		if(tableKey != null){#>    [ForeignKey("<#=tables[tableKey.ReferencedTableName].ClassName#>")]
+    <#}
+	}#>		public virtual <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+<#}#>
+<# if (IncludeRelationships) { #>
+<#foreach(var tableKey in from k in tbl.OuterKeys group k by k.ReferencedTableName into gk select new {ReferencedTableName=gk.Key, Keys=gk})
+{#>
+		public virtual <#=tables[tableKey.ReferencedTableName].ClassName #> <#=tables[tableKey.ReferencedTableName].ClassName #> { get; set; }
+<#}#>
+<#foreach(var tableKey in from k in tbl.InnerKeys group k by k.ReferencingTableName into gk select new {ReferencingTableName=gk.Key, Keys=gk})
+{#>
+		public virtual IEnumerable<<#=tables[tableKey.ReferencingTableName].ClassName #>> <#=Pluralize(tables[tableKey.ReferencingTableName].CleanName) #> { get; set; }
+<#}#>
+<#}#>
+		#region Fields definition
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		public static readonly string F_<#=col.PropertyName.ToUpper() #> = "<#=col.Name #>";
+<#}#>
+		#endregion Fields definition
+	}
+
+<#}#>
+#endregion Entities
+
+#region Services
+
+	[ServiceContract]
+	public partial interface I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		[OperationContract]
+		IEnumerable<<#=tbl.ClassName #>> Get<#=tbl.ClassName #>(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1);
+		[OperationContract]
+		void Delete<#=tbl.ClassName #>ById(int id);
+		[OperationContract]
+		int Add<#=tbl.ClassName #>(<#=tbl.ClassName #> rec);
+		[OperationContract]
+		void Update<#=tbl.ClassName #>(<#=tbl.ClassName #> rec);
+<#}#>
+	}
+
+	public partial class <#=ServiceName #>Service : I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		public IEnumerable<<#=tbl.ClassName #>> Get<#=tbl.ClassName #>(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1)
+		{
+			using (UnitOfWork u = new UnitOfWork())
+			{
+				var res = u.<#=tbl.ClassName #>Repository.Get(where, param, sort, page, pagesize);
+				return res;
+			}
+		}
+
+		public void Delete<#=tbl.ClassName #>ById(int id)
+		{
+			using (UnitOfWork u = new UnitOfWork())
+			{
+				u.<#=tbl.ClassName #>Repository.Delete(id);
+			}
+		}
+
+		public int Add<#=tbl.ClassName #>(<#=tbl.ClassName #> rec)
+		{
+			using (UnitOfWork u = new UnitOfWork())
+			{
+				var res = u.<#=tbl.ClassName #>Repository.Add(rec);
+				return res;
+			}
+		}
+		public void Update<#=tbl.ClassName #>(<#=tbl.ClassName #> rec)
+		{
+			using (UnitOfWork u = new UnitOfWork())
+			{
+				u.<#=tbl.ClassName #>Repository.Update(rec);
+			}
+		}
+<#}#>
+	}
+
+#endregion Services
+}
+
+namespace <#=Namespace #>.DapperRepositories
+{
+	using System;
+	using System.Data;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Data.SqlClient;
+	using System.Configuration;
+	using Dapper;
+	using System.Text;
+
+#region Repositories
+
+	public abstract class RepositoryBase
+	{
+		protected IDbTransaction Transaction { get; private set; }
+		protected IDbConnection Connection { get { return Transaction.Connection; } }
+
+		public RepositoryBase(IDbTransaction transaction)
+		{
+			Transaction = transaction;
+		}
+	}
+
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	public interface I<#=tbl.ClassName #>Repository
+	{
+		IEnumerable<<#=tbl.ClassName #>> Get(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1);
+		<#=tbl.ClassName #> GetById(int id);
+		int Add(<#=tbl.ClassName #> entity);
+		void Delete(<#=tbl.ClassName #> entity);
+		void Delete(int id);
+		void Delete(string where = null, object param = null);
+		void Update(<#=tbl.ClassName #> entity);
+	}
+
+	public partial class <#=tbl.ClassName #>Repository : RepositoryBase, I<#=tbl.ClassName #>Repository
+	{
+		public <#=tbl.ClassName #>Repository(IDbTransaction transaction) : base(transaction)
+		{
+		}
+		
+		public IEnumerable<<#=tbl.ClassName #>> Get(string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			if (sort != null)
+			{
+				sb.Append(" ORDER BY ");
+				sb.Append(sort);
+			}
+			if (page != null && pagesize != 0)
+			{
+				sb.Append(" OFFSET ");
+				sb.Append((page-1)*pagesize);
+				sb.Append(" ROWS FETCH NEXT ");
+				sb.Append(pagesize);
+				sb.Append(" ROWS ONLY");
+			}
+			if (param==null)
+				return Connection.Query<<#=tbl.ClassName #>>(
+					sb.ToString(),
+					transaction: Transaction
+				);
+			return Connection.Query<<#=tbl.ClassName #>>(
+				sb.ToString(),
+				param,
+				transaction: Transaction
+			);
+		}
+
+		public static IEnumerable<<#=tbl.ClassName #>> Get(string connectionString, string where = null, object param = null, string sort = null, int? page = null, int pagesize = 1)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			if (sort != null)
+			{
+				sb.Append(" ORDER BY ");
+				sb.Append(sort);
+			}
+			if (page != null && pagesize != 0)
+			{
+				sb.Append(" OFFSET ");
+				sb.Append((page-1)*pagesize);
+				sb.Append(" ROWS FETCH NEXT ");
+				sb.Append(pagesize);
+				sb.Append(" ROWS ONLY");
+			}
+			IEnumerable<<#=tbl.ClassName #>> res = null;
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				if (param==null)
+				{
+					res = sqlConnection.Query<<#=tbl.ClassName #>>(
+						sb.ToString()
+					);
+				}
+				else
+				{
+					res = sqlConnection.Query<<#=tbl.ClassName #>>(
+						sb.ToString(),
+						param
+					);
+				}
+				sqlConnection.Close();
+			}
+			return res;
+		}
+
+		public <#=tbl.ClassName #> GetById(int id)
+		{
+			return Connection.Query<<#=tbl.ClassName #>>(
+					"SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+					param: new { pid = id },
+					transaction: Transaction
+				).FirstOrDefault();
+		}
+
+		public static <#=tbl.ClassName #> GetById(string connectionString, int id)
+		{
+			<#=tbl.ClassName #> res=null;
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				res = sqlConnection.Query<<#=tbl.ClassName #>>(
+					"SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+					param: new { pid = id }
+				).FirstOrDefault();
+				sqlConnection.Close();
+			}
+			return res;
+		}
+
+		public int Add(<#=tbl.ClassName #> entity)
+		{
+			entity.Id = Connection.ExecuteScalar<int>(
+					"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#bool first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+					") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+					"); SELECT SCOPE_IDENTITY()",
+					param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+					},
+					transaction: Transaction
+				);
+			return entity.Id;
+		}
+
+		public static int Add(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				entity.Id = sqlConnection.ExecuteScalar<int>(
+					"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+					") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+					"); SELECT SCOPE_IDENTITY()",
+					param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+						<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+					}
+				);
+				sqlConnection.Close();
+			}
+			return entity.Id;
+		}
+
+		public void Delete(<#=tbl.ClassName #> entity)
+		{
+			Delete(entity.Id);
+		}
+
+		public static void Delete(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			Delete(connectionString, entity.Id);
+		}
+
+		public void Delete(int id)
+		{
+			Connection.Execute(
+                "DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+                param: new { pid = id },
+                transaction: Transaction
+            );
+		}
+
+		public static void Delete(string connectionString, int id)
+		{
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute(
+					"DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+					param: new { pid = id }
+				);
+				sqlConnection.Close();
+			}
+		}
+
+		public void Delete(string where = null, object param = null)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			Connection.Execute(
+                sb.ToString(),
+                param: param,
+                transaction: Transaction
+            );
+		}
+
+<#if (UseSP) {#>
+		public static void Delete(string connectionString, string where = null, DynamicParameters param = null)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("DELETE FROM<#=SchemaNameGenerated #>[<#=tbl.Name #>]"); ???
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute("spDelete<#=tbl.Name #>", p, commandType: CommandType.StoredProcedure);
+				sqlConnection.Close();
+			}
+		}
+<#} else {#>
+		public static void Delete(string connectionString, string where = null, object param = null)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("DELETE FROM<#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute(
+	                sb.ToString(),
+					param: param
+				);
+				sqlConnection.Close();
+			}
+		}
+<#}#>
+
+		public void Update(<#=tbl.ClassName #> entity)
+		{
+			Connection.Execute("UPDATE <#=SchemaNameGenerated #>[<#=tbl.Name #>] SET "+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+					"<#=(first ? "": ",")#>[<#=col.PropertyName #>] = @<#=col.PropertyName #>"+
+<#first = false; }#>
+				" WHERE [Id] = @Id",
+				param: new {
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{
+#>
+					<#=col.PropertyName #> = entity.<#=col.PropertyName #>,
+<#}#>
+				},
+				transaction: Transaction
+			);
+		}
+<#if (UseSP) {#>
+		public static void Update(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			var p = new DynamicParameters();
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c) {
+#>
+			p.Add("@<#=col.PropertyName #>", entity.<#=col.PropertyName #>, dbType: DbType.<#=col.PropertyDbType #>);
+<#}#>
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute("spUPDATE<#=tbl.Name #>", p, commandType: CommandType.StoredProcedure);
+				sqlConnection.Close();
+			}
+		}
+<#} else {#>
+		public static void Update(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				sqlConnection.Execute("UPDATE <#=SchemaNameGenerated #>[<#=tbl.Name #>] SET "+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+					"<#=(first ? "": ",")#>[<#=col.PropertyName #>] = @<#=col.PropertyName #>"+
+<#first = false; }#>
+					" WHERE [Id] = @Id",
+					param: new {
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{
+#>
+						<#=col.PropertyName #> = entity.<#=col.PropertyName #>,
+<#}#>
+					}
+				);
+				sqlConnection.Close();
+			}
+		}
+<#}#>
+	}
+
+<#}#>
+
+#endregion Repositories
+
+<#if (UseSP) {#>
+#region Stored Procedures
+/*
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+
+-- ==================================================================================
+-- Description: Update record in <#=SchemaNameGenerated #>[<#=tbl.Name #>] table.
+--              Record selection based on Id (primary key) field
+-- Author/Tool: Vlad's generator
+-- Updated date: <#=DateTime.Now #>
+-- ==================================================================================
+--Create Procedure <#=SchemaNameGenerated #>[spUpdate<#=tbl.Name #>]
+Alter Procedure <#=SchemaNameGenerated #>[spUpdate<#=tbl.Name #>]
+
+<#}#>
+*/
+#endregion Stored Procedures
+<#}#>
+
+#region UnitOfWork
+
+	public interface IUnitOfWork : IDisposable
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		I<#=tbl.ClassName #>Repository <#=tbl.ClassName #>Repository { get; }
+<#}#>
+		void Commit();
+		void Rollback();
+	}
+
+	public partial class UnitOfWork : IUnitOfWork
+	{
+		private IDbConnection _connection;
+		private IDbTransaction _transaction;
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		private I<#=tbl.ClassName #>Repository _<#=tbl.ClassName #>Repository;
+<#}#>
+		private bool _disposed;
+
+		public UnitOfWork(string connectionStringName)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+			_connection = new SqlConnection(connectionString);
+			_connection.Open();
+			_transaction = _connection.BeginTransaction();
+		}
+
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		public I<#=tbl.ClassName #>Repository <#=tbl.ClassName #>Repository
+		{
+			get { return _<#=tbl.ClassName #>Repository ?? (_<#=tbl.ClassName #>Repository = new <#=tbl.ClassName #>Repository(_transaction)); }
+		}
+
+<#}#>
+		public void Commit()
+		{
+			try
+			{
+				_transaction.Commit();
+			}
+			catch
+			{
+				_transaction.Rollback();
+				throw;
+			}
+			finally
+			{
+				_transaction.Dispose();
+				_transaction = _connection.BeginTransaction();
+				resetRepositories();
+			}
+		}
+
+		public void Rollback()
+		{
+			_transaction.Rollback();
+		}
+
+		private void resetRepositories()
+		{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+			_<#=tbl.ClassName #>Repository = null;
+<#}#>
+		}
+
+		public void Dispose()
+		{
+			dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		private void dispose(bool disposing)
+		{
+			if (!_disposed)
+			{
+				if(disposing)
+				{
+					if (_transaction != null)
+					{
+						_transaction.Dispose();
+						_transaction = null;
+					}
+					if(_connection != null)
+					{
+						_connection.Dispose();
+						_connection = null;
+					}
+				}
+				_disposed = true;
+			}
+		}
+
+		~UnitOfWork()
+		{
+			dispose(false);
+		}
+	}
+
+#endregion UnitOfWork
+}
+#endif
+<#+
+
+string ConnectionStringName = "";
+string ConfigPath = "";
+string Namespace = "";
+string ClassPrefix = "";
+string ClassSuffix = "";
+string SchemaName = null;
+string SchemaNameGenerated = null;
+bool IncludeViews;
+bool IncludeRelationships = false;
+bool IgnoreColumnDefaultValues = true;
+string[] ExcludeTablePrefixes = new string[]{};
+bool IgnoreTablesByDefault = false;
+string ServiceName = "Web";
+bool UseSP = false;
+
+public class Table
+{
+    public List<Column> Columns;	
+	public List<Key> InnerKeys = new List<Key>();
+    public List<Key> OuterKeys = new List<Key>(); 
+    public string Name;
+	public string Schema;
+	public bool IsView;
+    public string CleanName;
+    public string ClassName;
+	public string SequenceName;
+	public bool Ignore;
+	public bool Include;
+
+	public Column GetColumn(string columnName)
+	{
+		return Columns.Single(x=>string.Compare(x.Name, columnName, true)==0);
+	}
+
+	public Column this[string columnName]
+	{
+		get
+		{
+			return GetColumn(columnName);
+		}
+	}
+
+}
+
+public class Column
+{
+    public string Name;
+    public string PropertyName;
+    public string PropertyType;
+    public string PropertyDbType;
+    public bool IsPK;
+	public bool HasDefaultValue;
+    public bool IsNullable;
+	public bool IsAutoIncrement;
+	public bool IsComputed;
+	public bool Ignore;
+	public bool IsGeneratedUniqueIdentifier;
+}
+
+public class Key
+{
+    public string Name;
+    public string ReferencedTableName;
+    public string ReferencedTableColumnName;
+    public string ReferencingTableName;
+    public string ReferencingTableColumnName;
+}
+
+public class Tables : List<Table>
+{
+	public Tables()
+	{
+	}
+	
+	public Table GetTable(string tableName)
+	{
+		return this.Single(x=>string.Compare(x.Name, tableName, true)==0);
+	}
+
+	public Table this[string tableName]
+	{
+		get
+		{
+			return GetTable(tableName);
+		}
+	}
+
+}
+
+static Regex rxCleanUp = new Regex(@"[^\w\d_]", RegexOptions.Compiled);
+
+static string[] cs_keywords = { "abstract", "event", "new", "struct", "as", "explicit", "null", 
+	"switch", "base", "extern", "object", "this", "bool", "false", "operator", "throw", 
+	"break", "finally", "out", "true", "byte", "fixed", "override", "try", "case", "float", 
+	"params", "typeof", "catch", "for", "private", "uint", "char", "foreach", "protected", 
+	"ulong", "checked", "goto", "public", "unchecked", "class", "if", "readonly", "unsafe", 
+	"const", "implicit", "ref", "ushort", "continue", "in", "return", "using", "decimal", 
+	"int", "sbyte", "virtual", "default", "interface", "sealed", "volatile", "delegate", 
+	"internal", "short", "void", "do", "is", "sizeof", "while", "double", "lock", 
+	"stackalloc", "else", "long", "static", "enum", "namespace", "string" };
+
+static Func<string, string> CleanUp = (str) =>
+{
+	str = rxCleanUp.Replace(str, "_");
+
+	if (char.IsDigit(str[0]) || cs_keywords.Contains(str))
+		str = "@" + str;
+	
+    return str;
+};
+
+string CheckNullable(Column col)
+{
+    string result="";
+    if(col.IsNullable && 
+		col.PropertyType !="byte[]" && 
+		col.PropertyType !="string" &&
+		col.PropertyType !="Microsoft.SqlServer.Types.SqlGeography" &&
+		col.PropertyType !="Microsoft.SqlServer.Types.SqlGeometry"
+		)
+        result="?";
+    return result;
+}
+
+string GetConnectionString(ref string connectionStringName, out string providerName)
+{
+    var _CurrentProject = GetCurrentProject();
+
+	providerName=null;
+    
+    string result="";
+    ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+    configFile.ExeConfigFilename = GetConfigPath();
+
+    if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
+        throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
+    
+    
+    var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+    var connSection=config.ConnectionStrings;
+
+    //if the connectionString is empty - which is the defauls
+    //look for count-1 - this is the last connection string
+    //and takes into account AppServices and LocalSqlServer
+    if(string.IsNullOrEmpty(connectionStringName))
+    {
+        if(connSection.ConnectionStrings.Count>1)
+        {
+			connectionStringName = connSection.ConnectionStrings[connSection.ConnectionStrings.Count-1].Name;
+            result=connSection.ConnectionStrings[connSection.ConnectionStrings.Count-1].ConnectionString;
+            providerName=connSection.ConnectionStrings[connSection.ConnectionStrings.Count-1].ProviderName;
+        }            
+    }
+    else
+    {
+        try
+        {
+            result=connSection.ConnectionStrings[connectionStringName].ConnectionString;
+            providerName=connSection.ConnectionStrings[connectionStringName].ProviderName;
+        }
+        catch
+        {
+            result="There is no connection string name called '"+connectionStringName+"'";
+        }
+    }
+
+//	if (String.IsNullOrEmpty(providerName))
+//		providerName="System.Data.SqlClient";
+    
+    return result;
+}
+
+string _connectionString="";
+string _providerName="";
+
+void InitConnectionString()
+{
+    if(String.IsNullOrEmpty(_connectionString))
+    {
+        _connectionString=GetConnectionString(ref ConnectionStringName, out _providerName);
+
+		if(_connectionString.Contains("|DataDirectory|"))
+		{
+			//have to replace it
+			string dataFilePath=GetDataDirectory();
+			_connectionString=_connectionString.Replace("|DataDirectory|",dataFilePath);
+		}    
+	}
+}
+
+public string ConnectionString
+{
+    get 
+    {
+		InitConnectionString();
+        return _connectionString;
+    }
+}
+
+public string ProviderName
+{
+    get 
+    {
+		InitConnectionString();
+        return _providerName;
+    }
+}
+
+public EnvDTE.Project GetCurrentProject()  {
+
+    IServiceProvider _ServiceProvider = (IServiceProvider)Host;
+    if (_ServiceProvider == null)
+        throw new Exception("Host property returned unexpected value (null)");
+	
+    EnvDTE.DTE dte = (EnvDTE.DTE)_ServiceProvider.GetService(typeof(EnvDTE.DTE));
+    if (dte == null)
+        throw new Exception("Unable to retrieve EnvDTE.DTE");
+	
+    Array activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+    if (activeSolutionProjects == null)
+        throw new Exception("DTE.ActiveSolutionProjects returned null");
+	
+    EnvDTE.Project dteProject = (EnvDTE.Project)activeSolutionProjects.GetValue(0);
+    if (dteProject == null)
+        throw new Exception("DTE.ActiveSolutionProjects[0] returned null");
+	
+    return dteProject;
+
+}
+
+private string GetProjectPath()
+{
+    EnvDTE.Project project = GetCurrentProject();
+    System.IO.FileInfo info = new System.IO.FileInfo(project.FullName);
+    return info.Directory.FullName;
+}
+
+private string GetConfigPath()
+{
+	if(ConfigPath !="")
+		return Host.ResolvePath(ConfigPath);
+
+    EnvDTE.Project project = GetCurrentProject();
+    foreach (EnvDTE.ProjectItem item in project.ProjectItems)
+    {
+        // if it is the app.config file, then open it up
+        if (item.Name.Equals("App.config",StringComparison.InvariantCultureIgnoreCase) || item.Name.Equals("Web.config",StringComparison.InvariantCultureIgnoreCase))
+			return GetProjectPath() + "\\" + item.Name;
+    }
+    return String.Empty;
+}
+
+public string GetDataDirectory()
+{
+    EnvDTE.Project project=GetCurrentProject();
+    return System.IO.Path.GetDirectoryName(project.FileName)+"\\App_Data\\";
+}
+
+static string zap_password(string connectionString)
+{
+	var rx = new Regex("Password=.*;", RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+	return rx.Replace(connectionString, "Password=******;");
+}
+
+static string Singularize(string word)
+{
+	var singularword = System.Data.Entity.Design.PluralizationServices.PluralizationService.CreateService(System.Globalization.CultureInfo.GetCultureInfo("en-us")).Singularize(word);
+	return singularword;
+}
+
+static string Pluralize(string word)
+{
+	var pluralWord = System.Data.Entity.Design.PluralizationServices.PluralizationService.CreateService(System.Globalization.CultureInfo.GetCultureInfo("en-us")).Pluralize(word);
+	return pluralWord;
+}
+		
+static string RemoveTablePrefixes(string word)
+{
+	var cleanword = word;
+	if(cleanword.StartsWith("tbl_")) cleanword = cleanword.Replace("tbl_",""); 
+	if(cleanword.StartsWith("tbl")) cleanword = cleanword.Replace("tbl",""); 
+	cleanword = cleanword.Replace("_","");
+	return cleanword;
+}
+
+static bool IsExcluded(string schemaname, string tablename, string[] ExcludeTablePrefixes)
+{
+	for (int i = 0; i < ExcludeTablePrefixes.Length; i++)
+	{
+		string s = ExcludeTablePrefixes[i];
+		if(tablename.StartsWith(s)) return true;
+		if((schemaname+"."+tablename).StartsWith(s)) return true;
+	}
+	return false;
+}
+
+Tables LoadTables()
+{
+	InitConnectionString();
+
+	WriteLine("// This file was automatically generated by the Dapper.FastCRUD T4 Template");
+	WriteLine("// Do not make changes directly to this file - edit the template configuration instead");
+	WriteLine("// ");
+	WriteLine("// The following connection settings were used to generate this file");
+	WriteLine("// ");
+	WriteLine("//     Connection String Name: `{0}`", ConnectionStringName);
+	WriteLine("//     Provider:               `{0}`", ProviderName);
+	WriteLine("//     Connection String:      `{0}`", zap_password(ConnectionString));
+	WriteLine("//     Include Views:          `{0}`", IncludeViews);
+	WriteLine("");
+
+	DbProviderFactory _factory;
+	try
+	{
+		_factory = DbProviderFactories.GetFactory(ProviderName);
+	}
+	catch (Exception x)
+	{
+		var error=x.Message.Replace("\r\n", "\n").Replace("\n", " ");
+		Warning(string.Format("Failed to load provider `{0}` - {1}", ProviderName, error));
+		WriteLine("");
+		WriteLine("// -----------------------------------------------------------------------------------------");
+		WriteLine("// Failed to load provider `{0}` - {1}", ProviderName, error);
+		WriteLine("// -----------------------------------------------------------------------------------------");
+		WriteLine("");
+		return new Tables();
+	}
+
+	try
+	{
+		Tables result;
+		using(var conn=_factory.CreateConnection())
+		{
+			conn.ConnectionString=ConnectionString;         
+			conn.Open();
+        
+			SchemaReader reader=null;
+        
+			// Assume SQL Server
+			reader=new SqlServerSchemaReader();
+			
+			reader.outer=this;
+			result=reader.ReadSchema(conn, _factory);
+
+			// Remove unrequired tables/views
+			for (int i=result.Count-1; i>=0; i--)
+			{
+				if (SchemaName!=null && string.Compare(result[i].Schema, SchemaName, true)!=0)
+				{
+					result.RemoveAt(i);
+					continue;
+				}
+				if (!IncludeViews && result[i].IsView)
+				{
+					result.RemoveAt(i);
+					continue;
+				}
+			}
+
+			conn.Close();
+
+
+			var rxClean = new Regex("^(Equals|GetHashCode|GetType|ToString|repo|Save|IsNew|Insert|Update|Delete|Exists|SingleOrDefault|Single|First|FirstOrDefault|Fetch|Page|Query)$");
+			foreach (var t in result)
+			{
+				t.ClassName = ClassPrefix + t.ClassName + ClassSuffix;
+				foreach (var c in t.Columns)
+				{
+					c.PropertyName = rxClean.Replace(c.PropertyName, "_$1");
+
+					// Make sure property name doesn't clash with class name
+					if (c.PropertyName == t.ClassName)
+						c.PropertyName = "_" + c.PropertyName;
+				}
+			}
+
+		    return result;
+		}
+	}
+	catch (Exception x)
+	{
+		var error=x.Message.Replace("\r\n", "\n").Replace("\n", " ");
+		Warning(string.Format("Failed to read database schema - {0}", error));
+		WriteLine("");
+		WriteLine("// -----------------------------------------------------------------------------------------");
+		WriteLine("// Failed to read database schema - {0}", error);
+		WriteLine("// -----------------------------------------------------------------------------------------");
+		WriteLine("");
+		return new Tables();
+	}
+
+        
+}
+
+abstract class SchemaReader
+{
+	public abstract Tables ReadSchema(DbConnection connection, DbProviderFactory factory);
+	public GeneratedTextTransformation outer;
+	public void WriteLine(string o)
+	{
+		outer.WriteLine(o);
+	}
+
+}
+
+class SqlServerSchemaReader : SchemaReader
+{
+	// SchemaReader.ReadSchema
+	public override Tables ReadSchema(DbConnection connection, DbProviderFactory factory)
+	{
+		var result=new Tables();
+		
+		_connection=connection;
+		_factory=factory;
+
+		var cmd=_factory.CreateCommand();
+		cmd.Connection=connection;
+		cmd.CommandText=TABLE_SQL;
+
+		//pull the tables in a reader
+		using(cmd)
+		{
+
+			using (var rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					Table tbl=new Table();
+					tbl.Name=rdr["TABLE_NAME"].ToString();
+					tbl.Schema=rdr["TABLE_SCHEMA"].ToString();
+					tbl.IsView=string.Compare(rdr["TABLE_TYPE"].ToString(), "View", true)==0;
+					tbl.CleanName=CleanUp(tbl.Name);
+					if(tbl.CleanName.StartsWith("tbl_")) tbl.CleanName = tbl.CleanName.Replace("tbl_",""); 
+					if(tbl.CleanName.StartsWith("tbl")) tbl.CleanName = tbl.CleanName.Replace("tbl",""); 
+					tbl.CleanName = tbl.CleanName.Replace("_","");
+					tbl.ClassName=Singularize(RemoveTablePrefixes(tbl.CleanName));
+
+					result.Add(tbl);
+				}
+			}
+		}
+
+		foreach (var tbl in result)
+		{
+			tbl.Columns=LoadColumns(tbl);
+		            
+			// Mark the primary keys
+			var primaryKeys=GetPKs(tbl.Name).Select(pk => pk.ToLower().Trim());
+			foreach(var pkColumn in tbl.Columns.Where( tblCol => primaryKeys.Any(pk => pk == tblCol.Name.ToLower().Trim()))){
+				pkColumn.IsPK = true;	
+			}
+
+			// Mark the columns with default columns
+			var defaultCols=GetColumnsWithDefaultValues(tbl.Name).Select(pk => pk.ToLower().Trim());
+			foreach(var pkColumn in tbl.Columns.Where( tblCol => defaultCols.Any(pk => pk == tblCol.Name.ToLower().Trim()))){
+				pkColumn.HasDefaultValue = true;	
+			}
+
+			try
+		    {
+		        tbl.OuterKeys = LoadOuterKeys(tbl);
+		        tbl.InnerKeys = LoadInnerKeys(tbl);
+		    }
+		    catch (Exception x)
+		    {
+		        var error=x.Message.Replace("\r\n", "\n").Replace("\n", " ");
+				WriteLine("");
+				WriteLine("// -----------------------------------------------------------------------------------------");
+				WriteLine(String.Format("// Failed to get relationships for `{0}` - {1}", tbl.Name, error));
+				WriteLine("// -----------------------------------------------------------------------------------------");
+				WriteLine("");
+		    }
+		}
+	    
+
+		return result;
+	}
+	
+	DbConnection _connection;
+	DbProviderFactory _factory;
+	
+
+	List<Column> LoadColumns(Table tbl)
+	{
+	
+		using (var cmd=_factory.CreateCommand())
+		{
+			cmd.Connection=_connection;
+			cmd.CommandText=COLUMN_SQL;
+
+			var p = cmd.CreateParameter();
+			p.ParameterName = "@tableName";
+			p.Value=tbl.Name;
+			cmd.Parameters.Add(p);
+
+			p = cmd.CreateParameter();
+			p.ParameterName = "@schemaName";
+			p.Value=tbl.Schema;
+			cmd.Parameters.Add(p);
+
+			var result=new List<Column>();
+			using (IDataReader rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					Column col=new Column();
+					col.Name=rdr["ColumnName"].ToString();
+					col.IsComputed=((int)rdr["IsComputed"])==1;
+					col.PropertyName=CleanUp(col.Name);
+					col.PropertyType=GetPropertyType(rdr["DataType"].ToString());
+					col.PropertyDbType=GetPropertyDbType(rdr["DataType"].ToString());
+					col.IsNullable=rdr["IsNullable"].ToString()=="YES";
+					col.IsAutoIncrement=((int)rdr["IsIdentity"])==1;
+					col.IsGeneratedUniqueIdentifier = rdr["DefaultSetting"].ToString().ToLower().Trim(' ','(',')')=="newid";
+					result.Add(col);
+					Trace.WriteLine(rdr["DataType"]);
+				}
+			}
+
+			return result;
+		}
+	}
+
+	List<Key> LoadOuterKeys(Table tbl)
+	{
+		using (var cmd=_factory.CreateCommand())
+		{
+			cmd.Connection=_connection;
+			cmd.CommandText=OUTER_KEYS_SQL;
+
+			var p = cmd.CreateParameter();
+			p.ParameterName = "@tableName";
+			p.Value=tbl.Name;
+			cmd.Parameters.Add(p);
+
+			var result=new List<Key>();
+			using (IDataReader rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					var key=new Key();
+					key.Name=rdr["FK"].ToString();
+				    key.ReferencedTableName = rdr["Referenced_tbl"].ToString();
+				    key.ReferencedTableColumnName = rdr["Referenced_col"].ToString();
+				    key.ReferencingTableColumnName = rdr["Referencing_col"].ToString();
+					result.Add(key);
+				}
+			}
+
+			return result;
+		}
+	}
+
+	List<Key> LoadInnerKeys(Table tbl)
+	{
+		using (var cmd=_factory.CreateCommand())
+		{
+			cmd.Connection=_connection;
+			cmd.CommandText=INNER_KEYS_SQL;
+
+			var p = cmd.CreateParameter();
+			p.ParameterName = "@tableName";
+			p.Value=tbl.Name;
+			cmd.Parameters.Add(p);
+
+			var result=new List<Key>();
+			using (IDataReader rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					var key=new Key();
+					key.Name=rdr["FK"].ToString();
+				    key.ReferencingTableName = rdr["Referencing_tbl"].ToString();
+				    key.ReferencedTableColumnName = rdr["Referenced_col"].ToString();
+				    key.ReferencingTableColumnName = rdr["Referencing_col"].ToString();
+					result.Add(key);
+				}
+			}
+
+			return result;
+		}
+	}
+
+	List<string> GetPKs(string table){
+		
+		string sql=@"SELECT c.name AS ColumnName
+                FROM sys.indexes AS i 
+                INNER JOIN sys.index_columns AS ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id 
+                INNER JOIN sys.objects AS o ON i.object_id = o.object_id 
+                LEFT OUTER JOIN sys.columns AS c ON ic.object_id = c.object_id AND c.column_id = ic.column_id
+                WHERE (i.type = 1) AND (o.name = @tableName)";
+
+		var pks=new List<string>();
+
+		using (var cmd=_factory.CreateCommand())
+		{
+			cmd.Connection=_connection;
+			cmd.CommandText=sql;
+
+			var p = cmd.CreateParameter();
+			p.ParameterName = "@tableName";
+			p.Value=table;
+			cmd.Parameters.Add(p);
+
+			using (IDataReader rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					pks.Add(rdr["ColumnName"].ToString());
+				}
+			}
+		}	         
+		
+		return pks;
+	}
+
+	List<string> GetColumnsWithDefaultValues(string table){
+		
+		string sql=@"SELECT d.ColumnName FROM
+						(SELECT c.name as ColumnName, object_definition(c.default_object_id) AS DefaultDefinition
+						FROM   sys.columns as c
+						INNER JOIN sys.objects as o ON o.object_id = c.object_id
+						WHERE o.name=@tableName) as d
+					WHERE d.DefaultDefinition IS NOT NULL";
+
+		var defaultCols=new List<string>();
+
+		using (var cmd=_factory.CreateCommand())
+		{
+			cmd.Connection=_connection;
+			cmd.CommandText=sql;
+
+			var p = cmd.CreateParameter();
+			p.ParameterName = "@tableName";
+			p.Value=table;
+			cmd.Parameters.Add(p);
+
+			using (IDataReader rdr=cmd.ExecuteReader())
+			{
+				while(rdr.Read())
+				{
+					defaultCols.Add(rdr["ColumnName"].ToString());
+				}
+			}
+		}	         
+		
+		return defaultCols;
+	}
+
+	
+	string GetPropertyType(string sqlType)
+	{
+		string sysType="string";
+		switch (sqlType) 
+		{
+			case "bigint":
+				sysType = "long";
+				break;
+			case "smallint":
+				sysType= "short";
+				break;
+			case "int":
+				sysType= "int";
+				break;
+			case "uniqueidentifier":
+				sysType=  "Guid";
+				 break;
+			case "smalldatetime":
+			case "datetime":
+			case "datetime2":
+			case "date":
+			case "time":
+				sysType=  "DateTime";
+				  break;
+			case "float":
+				sysType="double";
+				break;
+			case "real":
+				sysType="float";
+				break;
+			case "numeric":
+			case "smallmoney":
+			case "decimal":
+			case "money":
+				sysType=  "decimal";
+				 break;
+			case "tinyint":
+				sysType = "byte";
+				break;
+			case "bit":
+				sysType=  "bool";
+				   break;
+			case "image":
+			case "binary":
+			case "varbinary":
+			case "timestamp":
+				sysType=  "byte[]";
+				 break;
+			case "geography":
+				sysType = "Microsoft.SqlServer.Types.SqlGeography";
+				break;
+			case "geometry":
+				sysType = "Microsoft.SqlServer.Types.SqlGeometry";
+				break;
+		}
+		return sysType;
+	}
+
+	string GetPropertyDbType(string sqlType)
+	{
+		string sysType="String";
+		switch (sqlType) 
+		{
+			case "bigint":
+				sysType = "Int64";
+				break;
+			case "smallint":
+				sysType= "Int16";
+				break;
+			case "int":
+				sysType= "Int32";
+				break;
+			case "uniqueidentifier":
+				sysType=  "Guid";
+				 break;
+			case "smalldatetime":
+			case "datetime2":
+				sysType=  "DateTime2";
+				  break;
+			case "datetime":
+				sysType=  "DateTime";
+				  break;
+			case "date":
+				sysType=  "Date";
+				  break;
+			case "time":
+				sysType=  "Time";
+				  break;
+			case "float":
+				sysType="Double";
+				break;
+			case "real":
+				sysType="Single";
+				break;
+			case "numeric":
+				sysType=  "VarNumeric";
+				 break;
+			case "smallmoney":
+			case "decimal":
+				sysType=  "Decimal";
+				 break;
+			case "money":
+				sysType=  "Currency";
+				 break;
+			case "tinyint":
+				sysType = "Byte";
+				break;
+			case "bit":
+				sysType=  "Boolean";
+				   break;
+			case "image":
+			case "binary":
+				sysType=  "Binary";
+				 break;
+			case "varbinary":
+			case "timestamp":
+				sysType=  "byte[]";
+				 break;
+			case "geography":
+				sysType = "Microsoft.SqlServer.Types.SqlGeography";
+				break;
+			case "geometry":
+				sysType = "Microsoft.SqlServer.Types.SqlGeometry";
+				break;
+		}
+		return sysType;
+	}
+
+
+	const string TABLE_SQL=@"SELECT *
+		FROM  INFORMATION_SCHEMA.TABLES
+		WHERE TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW'";
+
+	const string COLUMN_SQL=@"SELECT 
+			TABLE_CATALOG AS [Database],
+			TABLE_SCHEMA AS Owner, 
+			TABLE_NAME AS TableName, 
+			COLUMN_NAME AS ColumnName, 
+			ORDINAL_POSITION AS OrdinalPosition, 
+			COLUMN_DEFAULT AS DefaultSetting, 
+			IS_NULLABLE AS IsNullable, DATA_TYPE AS DataType, 
+			CHARACTER_MAXIMUM_LENGTH AS MaxLength, 
+			DATETIME_PRECISION AS DatePrecision,
+			COLUMNPROPERTY(object_id('[' + TABLE_SCHEMA + '].[' + TABLE_NAME + ']'), COLUMN_NAME, 'IsIdentity') AS IsIdentity,
+			COLUMNPROPERTY(object_id('[' + TABLE_SCHEMA + '].[' + TABLE_NAME + ']'), COLUMN_NAME, 'IsComputed') as IsComputed
+		FROM  INFORMATION_SCHEMA.COLUMNS
+		WHERE TABLE_NAME=@tableName AND TABLE_SCHEMA=@schemaName
+		ORDER BY OrdinalPosition ASC";
+
+	const string OUTER_KEYS_SQL = @"SELECT 
+			FK = OBJECT_NAME(pt.constraint_object_id),
+			Referenced_tbl = OBJECT_NAME(pt.referenced_object_id),
+			Referencing_col = pc.name, 
+			Referenced_col = rc.name
+		FROM sys.foreign_key_columns AS pt
+		INNER JOIN sys.columns AS pc
+		ON pt.parent_object_id = pc.[object_id]
+		AND pt.parent_column_id = pc.column_id
+		INNER JOIN sys.columns AS rc
+		ON pt.referenced_column_id = rc.column_id
+		AND pt.referenced_object_id = rc.[object_id]
+		WHERE pt.parent_object_id = OBJECT_ID(@tableName);";
+
+    const string INNER_KEYS_SQL = @"SELECT 
+			[Schema] = OBJECT_SCHEMA_NAME(pt.parent_object_id),
+			Referencing_tbl = OBJECT_NAME(pt.parent_object_id),
+			FK = OBJECT_NAME(pt.constraint_object_id),
+			Referencing_col = pc.name, 
+			Referenced_col = rc.name
+		FROM sys.foreign_key_columns AS pt
+		INNER JOIN sys.columns AS pc
+		ON pt.parent_object_id = pc.[object_id]
+		AND pt.parent_column_id = pc.column_id
+		INNER JOIN sys.columns AS rc
+		ON pt.referenced_column_id = rc.column_id
+		AND pt.referenced_object_id = rc.[object_id]
+		WHERE pt.referenced_object_id = OBJECT_ID(@tableName);";
+	  
+}
+
+#>

@@ -1,0 +1,56 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ Assembly Name="System.Windows.Forms.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Reflection" #> 
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<# 
+// Generator of POCO object for RIA service
+
+string AsmPath=GetMainFolderPath(this.Host.ResolvePath("."))+@"EDIClasses\bin\Debug\EDIClasses.dll";
+string NameSpace="";
+string[] EntList = {"EntOrderAddress", "EntOrderAllowancesCharges", "EntOrderLineAllowancesCharges", "EntCustomerOrder", 
+    "EntCustomerOrderLine","EntCustomerOrderSubLine", "EntOrderStoreQTY", "RowCustomerOrder", "RowPurchaseOrder",
+	"EntPurchaseOrderCoAck", "EntPurchaseOrderAckLine", "EntPurchaseOrderChange865", "EntPurchaseOrderChangeLine", //"EntPurchaseOrderChange",
+  "EntInvoice", "EntInvoiceLine", "EntInvoiceSubLine", "EntAllowancesChargesLine", "EntAllowancesChargesSummary",
+  "EntPurchaseOrder", "EntPurchaseOrderLine", //"EntCustomerOrderDC", "EntCustomerOrderStore",
+  "EntDSDStatement882", "EntDSDStatement882Detail",
+  "EntMotorCarrierLoadTender", "EntMotorCarrierLoadTenderOrderRefs", "EntMotorCarrierLoadTenderOrders", "EntMotorCarrierLoadTenderStopOffs", "EntMotorCarrierLoadTenderStopOffsRefs",
+  "EntLoadTenderResponse", "EntCarrierShipmentStatus", "EntMotorCarrierLoadInvoice", "EntMotorCarrierLoadInvoiceDetails","EntMotorCarrierLoadInvoiceRefs",
+  "EntOrderStatusReport", "EntOrderStatusReportDetail", "RowOrderStatusReport"
+};
+
+List<Type> cLst = GetTypes(AsmPath, NameSpace, EntList); 
+
+GenPocoClasses(cLst, "RiaCO.Web");
+GenRepositories(cLst, "RiaCO.Web");
+
+string[] EntList2 = {"EntOrderAddress", "EntOrderAllowancesCharges", "EntOrderLineAllowancesCharges", "EntCustomerOrder", 
+    "EntCustomerOrderLine", "EntCustomerOrderSubLine", "EntOrderStoreQTY",
+	"EntPurchaseOrderCoAck", "EntPurchaseOrderAckLine", "EntPurchaseOrderChange865", "EntPurchaseOrderChangeLine",
+    "EntInvoice", "EntInvoiceLine", "EntInvoiceSubLine", "EntAllowancesChargesLine", "EntAllowancesChargesSummary",
+    "EntPurchaseOrder", "EntPurchaseOrderLine", //"EntCustomerOrderDC", "EntCustomerOrderStore",
+    "EntDSDStatement882", "EntDSDStatement882Detail",
+  "EntMotorCarrierLoadTender", "EntMotorCarrierLoadTenderOrderRefs", "EntMotorCarrierLoadTenderOrders", "EntMotorCarrierLoadTenderStopOffsRefs", 
+  "EntMotorCarrierLoadTenderStopOffs", "EntLoadTenderResponse", "EntCarrierShipmentStatus", "EntMotorCarrierLoadInvoice", "EntMotorCarrierLoadInvoiceDetails","EntMotorCarrierLoadInvoiceRefs",
+  "EntOrderStatusReport", "EntOrderStatusReportDetail"
+};
+
+List<Type> rLst = GetTypes(AsmPath, NameSpace, EntList2); 
+
+GenDomainService(cLst, rLst, "RiaCO.Web", "EntRiaCOInvoicePODomainService");
+#>     
+<#@ include file="..\..\Server\ExchangeProShell.Web\Generators\PocoModel.ttinclude" #>
+<#@ include file="..\..\Server\ExchangeProShell.Web\Generators\Repository.ttinclude" #>
+<#@ include file="..\..\Server\ExchangeProShell.Web\Generators\EntDomainService.ttinclude" #>
+<#@ include file="..\..\Server\ExchangeProShell.Web\Generators\Utils.ttinclude" #>
+<#+ 
+
+#>

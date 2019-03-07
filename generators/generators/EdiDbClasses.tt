@@ -1,0 +1,123 @@
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"ViewModelRepository.cs");
+  	}*/
+#>
+// <#=FilePos() #>
+namespace <#=Namespace #>
+{
+	using Core;
+	using System.Reflection;
+	using System.Collections.Generic;
+
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+
+	#region Ent<#=tbl.ClassName #> 	
+	public partial class Ent<#=tbl.ClassName #> : EntAbstract
+	{
+		public static readonly Ent<#=tbl.ClassName #> NULL = new Ent<#=tbl.ClassName #>();
+		public override string SqlName { get { return T_NAME; } }
+		protected override List<PropertyInfo> PropertyList { get { return MLIST; } }
+		private static List<PropertyInfo> MLIST = new List<PropertyInfo>();
+
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{ if (col.PropertyName=="Id" || col.PropertyName=="Version") continue; #>
+		public <#=TypeToEdiType(col.PropertyType, col.PropertyName) #> <#=col.PropertyName #> { get; private set; }
+<#}#>
+
+		partial void OnCreated();
+
+		public Ent<#=tbl.ClassName #>() : this(null) { }
+		public Ent<#=tbl.ClassName #>(Transaction tx) : base(tx)
+		{
+			this.TransactionOrder = 800;
+
+			this.OnCreated();
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{ if (col.PropertyName=="Id" || col.PropertyName=="Version") continue; #>
+			this.<#=col.PropertyName #> = new <#=TypeToEdiType(col.PropertyType, col.PropertyName) #>(F_<#=PropNameToConst(col.PropertyName) #>);
+<#}#>
+		}
+			
+		public const string T_NAME = "<#=tbl.Name #>";
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{ if (col.PropertyName=="Id" || col.PropertyName=="Version") continue; #>
+		public const string F_<#=PropNameToConst(col.PropertyName) #> = "<#=col.PropertyName #>";
+<#}#>
+	}
+	#endregion <#=tbl.ClassName #>
+<#}#>
+}
+<#+
+string PropNameToConst(string propname)
+{
+	var ar = propname.ToCharArray();
+	List<char> lc = new List<char>();
+	foreach(var t in ar)
+	{
+		if (char.IsUpper(t))
+		{
+			if (lc.Count > 0)
+				lc.Add('_');
+			lc.Add(t);
+		}
+		else
+			lc.Add(char.ToUpper(t));
+	}
+	ar = lc.ToArray();
+	string res = new string(ar);
+	return res;
+}
+string TypeToEdiType(string type, string propname)
+{
+	switch(type)
+	{
+		case "string":
+			return "MemberString";
+		case "int":
+			if (propname=="Id")
+				return "EntityIdInt";
+			else if (propname.StartsWith("Ref"))
+				return "EntityIdInt";
+			return "MemberInt";
+		case "bool":
+			return "MemberBool";
+		case "decimal":
+			return "MemberDecimal";
+		case "double":
+			return "MemberDouble";
+		case "DateTime":
+			return "MemberDateTime";
+		case "byte[]":
+			if (propname=="Version")
+				return "MemberTimeStamp";
+			return type;
+	}
+	return type;
+}
+#>

@@ -1,0 +1,7 @@
+﻿https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Building-High-Performance-Extensions-Part-1
+https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Building-High-Performance-Extensions-Part-2
+
+https://github.com/Microsoft/VisualStudio-TestHost
+
+https://docs.microsoft.com/en-us/dotnet/framework/deployment/how-the-runtime-locates-assemblies
+https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions

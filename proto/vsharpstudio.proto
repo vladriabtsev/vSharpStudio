@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package Proto.Config;
+
+// use 'proto_' prefix for all messages !!!
+
+// Configuration config
+message proto_config {
+	// Unique Guid for configuration (for comparison)
+	string guid = 1;
+	string version = 2;
+	string name = 3;
+
+	proto_constants constants = 100;
+	proto_enumerations enumerators = 101;
+	proto_catalogs catalogs = 102;
+}
+message proto_property {
+	string guid = 1;
+	string name = 2;
+	proto_data_type data_type = 3;
+}
+message proto_data_type {
+	enum EnumDataType {
+		STRING = 0;
+		INT = 1;
+		LONG = 2;
+		FLOAT = 3;
+		DOUBLE = 4;
+		BOOL = 5;
+
+		CONSTANT = 7;
+		ENUM = 8;
+		CATALOG = 9;
+
+		Any = 15;
+	}
+	EnumDataType enum_data_type = 1; 
+	int32 length = 2; 
+	int32 accuracy = 3; 
+	bool is_positive = 4; 
+}
+message proto_properties {
+	string name = 1;
+	repeated proto_property list_properties = 2;
+}
+message proto_constant {
+	string guid = 1;
+	string name = 2;
+	proto_property constant_type = 3;
+}
+message proto_constants {
+	string group_name = 1;
+	repeated proto_constant list_constants = 2;
+}
+message proto_enumeration {
+	string guid = 1;
+	string name = 2;
+}
+message proto_enumerations {
+	string name = 1;
+	repeated proto_enumeration list_enumerations = 2;
+}
+message proto_catalog {
+	string guid = 1;
+	string name = 2;
+	proto_properties properties = 3;
+}
+message proto_catalogs {
+	string name = 1;
+	repeated proto_property list_shared_properties = 2;
+	repeated proto_catalog list_catalogs = 3;
+}
+message proto_document {
+	string guid = 1;
+	string name = 2;
+	repeated proto_properties properties = 3;
+}
+message proto_documents {
+	string group_name = 1;
+	repeated proto_property list_shared_properties = 2;
+	repeated proto_document list_documents = 3;
+}
+/*
+message proto_journal {
+	string guid = 1;
+	string name = 2;
+	repeated proto_properties properties = 3;
+}
+message proto_journals {
+	string group_name = 1;
+	repeated proto_property list_shared_properties = 2;
+	repeated proto_document list_documents = 3;
+}
+*/

@@ -1,0 +1,48 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+
+// http://getakka.net/  - Net Standard, DotNetty, protobuf !!!
+// https://github.com/Azure/DotNetty
+// https://auth0.com/blog/beating-json-performance-with-protobuf/
+// https://developers.google.com/protocol-buffers/docs/proto3
+// https://developers.google.com/protocol-buffers/docs/reference/csharp-generated
+// https://stackoverflow.com/questions/4763875/does-protobuf-net-support-nullable-types	
+// https://www.codeproject.com/Articles/642677/Protobuf-net-the-unofficial-manual
+// https://github.com/mgravell/protobuf-net
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"ProtoDotNetty.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if SERVER
+#region ProtoDotNetty
+namespace <#=Namespace #>.Server.DAL
+{
+}
+#endregion ProtoDotNetty
+#endif
+<#+
+
+//string ConnectionStringName = "";
+
+
+#>

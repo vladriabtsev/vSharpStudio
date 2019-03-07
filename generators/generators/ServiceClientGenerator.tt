@@ -1,0 +1,1033 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	//var tables = LoadTables();
+    //ConfigureTableMappings(tables);
+	WithService = true;
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"I" + ServiceName + "Service.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if SILVERLIGHT || CLIENT
+#region IServices
+// http://www.topwcftutorials.net/2012/09/wcf-faqs-part2.html
+// https://www.infoq.com/articles/WCF-Code-Sharing ???
+// https://www.codeproject.com/Articles/262164/Using-WCF-Service-with-Silverlight
+// https://msdn.microsoft.com/ru-ru/library/cc197940(v=vs.95).aspx
+// http://www.c-sharpcorner.com/UploadFile/788083/creating-silverlight-application-to-consume-the-wcf-service/
+namespace <#=Namespace #>.Service
+{
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.Collections.ObjectModel;
+	using ServiceClientBase;
+
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+	//[System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IRegressionService")]
+	[System.ServiceModel.ServiceContractAttribute()]	
+	public partial interface I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		[System.ServiceModel.ServiceKnownTypeAttribute(typeof(<#=Namespace #>.Service.ServiceResponse))]
+		[System.ServiceModel.ServiceKnownTypeAttribute(typeof(<#=Namespace #>.Service.<#=tbl.ClassName #>))]
+		[System.ServiceModel.ServiceKnownTypeAttribute(typeof(ServiceSqlParameter))]
+		[System.ServiceModel.OperationContract(AsyncPattern = true)]
+		System.IAsyncResult Begin<#=tbl.ClassName #>Get(string where, ServiceSqlParameter[] param, string[] sort, int page, int pagesize, System.AsyncCallback callback, object asyncState);
+		<#=Namespace #>.Service.ServiceResponse End<#=tbl.ClassName #>Get(System.IAsyncResult result);
+<#if (!tbl.IsView) {#>
+		[System.ServiceModel.ServiceKnownTypeAttribute(typeof(<#=Namespace #>.Service.ServiceResponse))]
+		[System.ServiceModel.ServiceKnownTypeAttribute(typeof(<#=Namespace #>.Service.<#=tbl.ClassName #>))]
+		[System.ServiceModel.OperationContract(AsyncPattern = true)]
+		System.IAsyncResult Begin<#=tbl.ClassName #>GetById(int id, System.AsyncCallback callback, object asyncState);
+		<#=Namespace #>.Service.ServiceResponse End<#=tbl.ClassName #>GetById(System.IAsyncResult result);
+		[System.ServiceModel.OperationContract(AsyncPattern = true)]
+		System.IAsyncResult Begin<#=tbl.ClassName #>DeleteById(int id, System.AsyncCallback callback, object asyncState);
+		<#=Namespace #>.Service.ServiceResponse End<#=tbl.ClassName #>DeleteById(System.IAsyncResult result);
+		[System.ServiceModel.OperationContract(AsyncPattern = true)]
+		System.IAsyncResult Begin<#=tbl.ClassName #>Add(<#=tbl.ClassName #> rec, System.AsyncCallback callback, object asyncState);
+		<#=Namespace #>.Service.ServiceResponse End<#=tbl.ClassName #>Add(System.IAsyncResult result);
+		[System.ServiceModel.OperationContract(AsyncPattern = true)]
+		System.IAsyncResult Begin<#=tbl.ClassName #>Update(<#=tbl.ClassName #> rec, System.AsyncCallback callback, object asyncState);
+		<#=Namespace #>.Service.ServiceResponse End<#=tbl.ClassName #>Update(System.IAsyncResult result);
+<#}#>
+<#}#>
+	}
+}
+#endregion IServices
+#endif
+#if SERVER
+#region IServices
+// https://www.codeproject.com/Articles/262164/Using-WCF-Service-with-Silverlight
+// https://msdn.microsoft.com/ru-ru/library/cc197940(v=vs.95).aspx
+// http://www.c-sharpcorner.com/UploadFile/788083/creating-silverlight-application-to-consume-the-wcf-service/
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.ServiceModel;
+	using DAL;
+	using ServiceClientBase;
+
+<#if (IsGenerateCommonCode) {#>	
+	[AttributeUsageAttribute(AttributeTargets.Method, AllowMultiple = false)]
+	public sealed class ResponseTypeAttribute : Attribute
+	{
+		public Type Type { get; set; }
+		public ResponseTypeAttribute(Type type)
+		{
+			Type = type;
+		}
+	}
+
+<#}#>	
+	[System.ServiceModel.ServiceContractAttribute()]
+	public partial interface I<#=ServiceName #>Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		[System.ServiceModel.OperationContractAttribute()]
+		[ResponseTypeAttribute(typeof(IEnumerable<<#=tbl.ClassName #>>))]
+		ServiceResponse <#=tbl.ClassName #>Get(string where = null, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0);
+<#if (!tbl.IsView) {#>
+		[System.ServiceModel.OperationContractAttribute()]
+		[ResponseTypeAttribute(typeof(<#=tbl.ClassName #>))]
+		ServiceResponse <#=tbl.ClassName #>GetById(int id);
+		[System.ServiceModel.OperationContractAttribute()]
+		[ResponseTypeAttribute(typeof(void))]
+		ServiceResponse <#=tbl.ClassName #>DeleteById(int id);
+		[System.ServiceModel.OperationContractAttribute()]
+		[ResponseTypeAttribute(typeof(int))]
+		ServiceResponse <#=tbl.ClassName #>Add(<#=tbl.ClassName #> rec);
+		[System.ServiceModel.OperationContractAttribute()]
+		[ResponseTypeAttribute(typeof(void))]
+		ServiceResponse <#=tbl.ClassName #>Update(<#=tbl.ClassName #> rec);
+<#}#>
+<#}#>
+	}
+}
+#endregion IServices
+#endif
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+ServiceName + "Service.cs");
+  	}
+#>
+// <#=FilePos() #>
+#region Services
+#if SERVER
+// http://www.topwcftutorials.net/2012/09/wcf-faqs-part2.html
+// https://www.infoq.com/articles/WCF-Code-Sharing ???
+// https://www.codeproject.com/Articles/262164/Using-WCF-Service-with-Silverlight
+// https://msdn.microsoft.com/ru-ru/library/cc197940(v=vs.95).aspx
+// http://www.c-sharpcorner.com/UploadFile/788083/creating-silverlight-application-to-consume-the-wcf-service/
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using System.ServiceModel;
+	using DAL;
+	using System.ServiceModel.Activation;
+	using System.ServiceModel.Description;
+	using System.ServiceModel.Channels;
+	using ServiceClientBase;
+
+	public static class ServiceConfig
+	{
+		public static Binding DefaultBinding
+		{
+			get
+			{
+				var binding = new BasicHttpBinding();
+				Configure(binding);
+				return binding;
+			}
+		}
+		public static void Configure(HttpBindingBase binding)
+		{
+			if (binding == null)
+			{
+				throw new ArgumentException("Argument 'binding' cannot be null. Cannot configure binding.");
+			}
+
+			binding.SendTimeout = new TimeSpan(0, 0, 30, 0); // 30 minute timeout
+			binding.MaxBufferSize = Int32.MaxValue;
+			binding.MaxBufferPoolSize = 2147483647;
+			binding.MaxReceivedMessageSize = Int32.MaxValue;
+			binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
+			binding.ReaderQuotas.MaxBytesPerRead = Int32.MaxValue;
+			binding.ReaderQuotas.MaxDepth = Int32.MaxValue;
+			binding.ReaderQuotas.MaxNameTableCharCount = Int32.MaxValue;
+			binding.ReaderQuotas.MaxStringContentLength = Int32.MaxValue;
+		}
+		public static ServiceMetadataBehavior ServiceMetadataBehavior
+		{
+			get
+			{
+				return new ServiceMetadataBehavior
+				{
+					HttpGetEnabled = true,
+					MetadataExporter = { PolicyVersion = PolicyVersion.Policy15 }
+				};
+			}
+		}
+		public static ServiceDebugBehavior ServiceDebugBehavior
+		{
+			get
+			{
+				var smb = new ServiceDebugBehavior();
+				Configure(smb);
+				return smb;
+			}
+		}
+		public static void Configure(ServiceDebugBehavior behavior)
+		{
+			if (behavior == null)
+			{
+				throw new ArgumentException("Argument 'behavior' cannot be null. Cannot configure debug behavior.");
+			}
+
+			behavior.IncludeExceptionDetailInFaults = true;
+		}
+	}
+
+    public enum ServiceInCodeConfigType { None, Basic, Silverlight }
+
+	[AspNetCompatibilityRequirements
+		(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+	//[ServiceContract]
+	public partial class <#=ServiceName #>Service : I<#=ServiceName #>Service
+	{
+		public static ServiceInCodeConfigType configType;
+		public static string ConnectionStringName;
+		private string connectionString;
+
+		public static ServiceHost SelfHostHttpOpen(string uri = "http://localhost/TestService")
+		{
+			var endpoint = new Uri(uri);
+			// Create the service-host.
+			var host = new ServiceHost(typeof(<#=ServiceName #>Service), endpoint);
+			// Configure the binding    
+			host.AddServiceEndpoint(typeof(I<#=ServiceName #>Service), ServiceConfig.DefaultBinding, endpoint);
+			host.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+			// Configure metadata behavior
+			host.Description.Behaviors.Add(ServiceConfig.ServiceMetadataBehavior);
+			// Configure debgug behavior
+			ServiceConfig.Configure((ServiceDebugBehavior)host.Description.Behaviors[typeof(ServiceDebugBehavior)]);
+			// Start listening to the service
+			host.Open();
+			return host;
+		}
+		public static ServiceHost SelfHostTcpOpen(string uri = "http://localhost/TestService")
+		{
+			var endpoint = new Uri(uri);
+			// Create the service-host.
+			var host = new ServiceHost(typeof(<#=ServiceName #>Service), endpoint);
+			// Configure the binding
+			NetTcpBinding tcpb = new NetTcpBinding();    
+			host.AddServiceEndpoint(typeof(I<#=ServiceName #>Service), tcpb, endpoint);
+			host.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+			// Configure metadata behavior
+			host.Description.Behaviors.Add(ServiceConfig.ServiceMetadataBehavior);
+			// Configure debgug behavior
+			ServiceConfig.Configure((ServiceDebugBehavior)host.Description.Behaviors[typeof(ServiceDebugBehavior)]);
+			// Start listening to the service
+			host.Open();
+			return host;
+		}
+
+		// https://blogs.msdn.microsoft.com/carlosfigueira/2011/03/14/wcf-extensibility/
+		// http://geekswithblogs.net/martinsj/archive/2012/10/14/hosting-and-consuming-wcf-services-without-configuration-files.aspx
+		// http://www.topwcftutorials.net/2014/07/2-simple-ways-configure-wcf-binding.html
+		// https://www.codeproject.com/Articles/642444/Creating-and-consuming-a-simple-WCF-Service-withou
+		public static void Configure(ServiceConfiguration config)
+		{
+			ServiceEndpoint se = null;
+			switch(configType)
+			{
+				case ServiceInCodeConfigType.None:
+					config.LoadFromConfiguration();
+					return;
+				case ServiceInCodeConfigType.Basic:
+					se = new ServiceEndpoint(new ContractDescription("I<#=ServiceName #>Service"), new BasicHttpBinding(), new EndpointAddress("basic"));
+					//se.Behaviors.Add(new MyEndpointBehavior());
+					config.AddServiceEndpoint(se);
+					break;
+				case ServiceInCodeConfigType.Silverlight:
+					// https://stackoverflow.com/questions/1410757/programmatic-configuration-of-silverlight-wcf-client
+					// https://msdn.microsoft.com/fr-fr/library/cc197941(v=vs.95).aspx
+					// https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/standard-endpoints#application-endpoints
+
+					// create the binding elements
+					BinaryMessageEncodingBindingElement binaryMessageEncoding = new BinaryMessageEncodingBindingElement();
+					HttpTransportBindingElement httpTransport = new HttpTransportBindingElement() { MaxBufferSize = int.MaxValue, MaxReceivedMessageSize = int.MaxValue };
+
+					// add the binding elements into a Custom Binding
+					CustomBinding customBinding = new CustomBinding(binaryMessageEncoding, httpTransport);
+
+					// create the Endpoint URL (I'll use a configured URL later - all web services will then move as one)
+					EndpointAddress endpointAddress = new EndpointAddress("http://localhost:1628/<#=ServiceName #>Service.svc");
+
+					se = new ServiceEndpoint(ContractDescription.GetContract(typeof(I<#=ServiceName #>Service), typeof(<#=ServiceName #>Service)), customBinding, endpointAddress); //new EndpointAddress("basic"));
+					//se.Behaviors.Add(new MyEndpointBehavior());
+					config.AddServiceEndpoint(se);
+					//config.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+					break;
+			}
+			config.Description.Behaviors.Add(new ServiceMetadataBehavior { HttpGetEnabled = true });
+			config.Description.Behaviors.Add(new ServiceDebugBehavior { IncludeExceptionDetailInFaults = true });
+		}
+		
+		public <#=ServiceName #>Service()
+		{
+			if (string.IsNullOrEmpty(<#=ServiceName #>Service.ConnectionStringName))
+				throw new Exception("Connection string Name is not specified");
+			this.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[<#=ServiceName #>Service.ConnectionStringName].ConnectionString;
+		}
+		public <#=ServiceName #>Service(string connectionStringName)
+		{
+			this.connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+		}
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		public ServiceResponse <#=tbl.ClassName #>Get(string where = null, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.ResultCollection = <#=tbl.ClassName #>Repository.Get(this.connectionString, where, param, sort, page, pagesize);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				//response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+<#if (!tbl.IsView) {#>
+		public ServiceResponse <#=tbl.ClassName #>GetById(int id)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.Result = <#=tbl.ClassName #>Repository.GetById(this.connectionString, id);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				//response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		public ServiceResponse <#=tbl.ClassName #>DeleteById(int id)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				<#=tbl.ClassName #>Repository.Delete(this.connectionString, id);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				//response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		public ServiceResponse <#=tbl.ClassName #>Add(<#=tbl.ClassName #> rec)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				response.Result = <#=tbl.ClassName #>Repository.Add(this.connectionString, rec);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				//response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+		public ServiceResponse <#=tbl.ClassName #>Update(<#=tbl.ClassName #> rec)
+		{
+			var response = new ServiceResponse();
+			try
+			{
+				<#=tbl.ClassName #>Repository.Update(this.connectionString, rec);
+				response.IsSuccess = true;
+			}
+			catch (Exception exception)
+			{
+				//response.ServiceException = exception;
+				response.IsSuccess = false;
+				response.ErrorMessage = exception.Message;
+			}
+			return response;
+		}
+<#} //if (!tbl.IsView) {#>
+<#}#>
+	}
+}
+#endif
+#endregion Services
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"Client.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if CLIENT || SILVERLIGHT
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.ServiceModel;
+	using System.ServiceModel.Channels;
+	using ServiceClientBase;
+
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+	public interface I<#=ServiceName #>ServiceChannel : <#=Namespace #>.Service.I<#=ServiceName #>Service, System.ServiceModel.IClientChannel
+	{
+	}
+
+#region CompletedEventArgs Classes
+<#foreach(ServiceMethod method in services){#>
+
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+	public partial class <#=method.Name #>CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+	{
+		private object[] results;
+		public <#=method.Name #>CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
+						base(exception, cancelled, userState)
+		{
+			this.results = results;
+		}
+		public <#=method.ReturnType #> Result
+		{
+			get
+			{
+				base.RaiseExceptionIfNecessary();
+				return ((<#=method.ReturnType #>)(this.results[0]));
+			}
+		}	
+	}
+<#}#>
+#endregion CompletedEventArgs Classes
+
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+	public partial class <#=ServiceName #>ServiceClient : System.ServiceModel.ClientBase<<#=Namespace #>.Service.I<#=ServiceName #>Service>, <#=Namespace #>.Service.I<#=ServiceName #>Service
+	{
+
+		#region CTORs
+		public <#=ServiceName #>ServiceClient()
+		{
+		}
+		public <#=ServiceName #>ServiceClient(string endpointConfigurationName) :
+						base(endpointConfigurationName)
+		{
+		}
+		public <#=ServiceName #>ServiceClient(string endpointConfigurationName, string remoteAddress) :
+						base(endpointConfigurationName, remoteAddress)
+		{
+		}
+		public <#=ServiceName #>ServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+						base(endpointConfigurationName, remoteAddress)
+		{
+		}
+		public <#=ServiceName #>ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+						base(binding, remoteAddress)
+		{
+		}
+		#endregion CTORs
+
+		#region Async methods
+
+<#foreach(ServiceMethod method in services){#>
+		#region service <#=method.Name #>
+
+		public event System.EventHandler<<#=method.Name #>CompletedEventArgs> <#=method.Name #>Completed;
+		public void <#=method.Name #>Async(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#comma=", ";}#>)
+		{
+			this.<#=method.Name #>Async(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#><#=comma #> null);
+		}
+
+		public void <#=method.Name #>Async(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#comma=", ";}#><#=comma #> object userState)
+		{
+			if ((this.onBegin<#=method.Name #>Delegate == null))
+			{
+				this.onBegin<#=method.Name #>Delegate = new BeginOperationDelegate(this.OnBegin<#=method.Name #>);
+			}
+			if ((this.onEnd<#=method.Name #>Delegate == null))
+			{
+				this.onEnd<#=method.Name #>Delegate = new EndOperationDelegate(this.OnEnd<#=method.Name #>);
+			}
+			if ((this.on<#=method.Name #>CompletedDelegate == null))
+			{
+				this.on<#=method.Name #>CompletedDelegate = new System.Threading.SendOrPostCallback(this.On<#=method.Name #>Completed);
+			}
+			base.InvokeAsync(this.onBegin<#=method.Name #>Delegate, new object[] {
+				<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>
+				}, this.onEnd<#=method.Name #>Delegate, this.on<#=method.Name #>CompletedDelegate, userState);
+		}
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+		System.IAsyncResult <#=Namespace #>.Service.I<#=ServiceName #>Service.Begin<#=method.Name #>(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#comma=", ";}#><#=comma #> System.AsyncCallback callback, object asyncState)
+		{
+			return base.Channel.Begin<#=method.Name #>(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#><#=comma #> callback, asyncState);
+		}
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+		<#=method.ReturnType #> <#=Namespace #>.Service.I<#=ServiceName #>Service.End<#=method.Name #>(System.IAsyncResult result)
+		{
+			return base.Channel.End<#=method.Name #>(result);
+		}
+		private System.IAsyncResult OnBegin<#=method.Name #>(object[] inValues, System.AsyncCallback callback, object asyncState)
+		{
+<#for(int i=0; i<method.Parameters.Count(); i++){var p=method.Parameters[i];#>
+			<#=p.TypeName #> <#=p.Name #> = ((<#=p.TypeName #>)(inValues[<#=i #>]));
+<#}#>
+			return ((<#=Namespace #>.Service.I<#=ServiceName #>Service)(this)).Begin<#=method.Name #>(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#><#=comma #> callback, asyncState);
+		}
+		private object[] OnEnd<#=method.Name #>(System.IAsyncResult result)
+		{
+			<#=method.ReturnType #> retVal = ((<#=Namespace #>.Service.I<#=ServiceName #>Service)(this)).End<#=method.Name #>(result);
+			return new object[] {retVal};
+		}
+		private void On<#=method.Name #>Completed(object state)
+		{
+			if ((this.<#=method.Name #>Completed != null))
+			{
+				InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+				this.<#=method.Name #>Completed(this, new <#=method.Name #>CompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+			}
+		}
+		private BeginOperationDelegate onBegin<#=method.Name #>Delegate;
+		private EndOperationDelegate onEnd<#=method.Name #>Delegate;
+		private System.Threading.SendOrPostCallback on<#=method.Name #>CompletedDelegate;
+		#endregion service <#=method.Name #>
+<#}#>
+		#endregion Async methods
+
+		#region General
+		private BeginOperationDelegate onBeginOpenDelegate;
+		private EndOperationDelegate onEndOpenDelegate;
+		private System.Threading.SendOrPostCallback onOpenCompletedDelegate;
+		private BeginOperationDelegate onBeginCloseDelegate;
+		private EndOperationDelegate onEndCloseDelegate;
+		private System.Threading.SendOrPostCallback onCloseCompletedDelegate;
+
+		public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
+		public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
+		public System.Net.CookieContainer CookieContainer
+		{
+			get
+			{
+				System.ServiceModel.Channels.IHttpCookieContainerManager httpCookieContainerManager = this.InnerChannel.GetProperty<System.ServiceModel.Channels.IHttpCookieContainerManager>();
+				if ((httpCookieContainerManager != null))
+				{
+					return httpCookieContainerManager.CookieContainer;
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				System.ServiceModel.Channels.IHttpCookieContainerManager httpCookieContainerManager = this.InnerChannel.GetProperty<System.ServiceModel.Channels.IHttpCookieContainerManager>();
+				if ((httpCookieContainerManager != null))
+				{
+					httpCookieContainerManager.CookieContainer = value;
+				}
+				else
+				{
+					throw new System.InvalidOperationException("Unable to set the CookieContainer. Please make sure the binding contains an HttpC" +
+									"ookieContainerBindingElement.");
+				}
+			}
+		}
+		private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState)
+		{
+			return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
+		}
+		private object[] OnEndOpen(System.IAsyncResult result)
+		{
+			((System.ServiceModel.ICommunicationObject)(this)).EndOpen(result);
+			return null;
+		}
+		private void OnOpenCompleted(object state)
+		{
+			if ((this.OpenCompleted != null))
+			{
+				InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+				this.OpenCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+			}
+		}
+		public void OpenAsync()
+		{
+			this.OpenAsync(null);
+		}
+		public void OpenAsync(object userState)
+		{
+			if ((this.onBeginOpenDelegate == null))
+			{
+				this.onBeginOpenDelegate = new BeginOperationDelegate(this.OnBeginOpen);
+			}
+			if ((this.onEndOpenDelegate == null))
+			{
+				this.onEndOpenDelegate = new EndOperationDelegate(this.OnEndOpen);
+			}
+			if ((this.onOpenCompletedDelegate == null))
+			{
+				this.onOpenCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnOpenCompleted);
+			}
+			base.InvokeAsync(this.onBeginOpenDelegate, null, this.onEndOpenDelegate, this.onOpenCompletedDelegate, userState);
+		}
+		private System.IAsyncResult OnBeginClose(object[] inValues, System.AsyncCallback callback, object asyncState)
+		{
+			return ((System.ServiceModel.ICommunicationObject)(this)).BeginClose(callback, asyncState);
+		}
+		private object[] OnEndClose(System.IAsyncResult result)
+		{
+			((System.ServiceModel.ICommunicationObject)(this)).EndClose(result);
+			return null;
+		}
+		private void OnCloseCompleted(object state)
+		{
+			if ((this.CloseCompleted != null))
+			{
+				InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+				this.CloseCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+			}
+		}
+		public void CloseAsync()
+		{
+			this.CloseAsync(null);
+		}
+		public void CloseAsync(object userState)
+		{
+			if ((this.onBeginCloseDelegate == null))
+			{
+				this.onBeginCloseDelegate = new BeginOperationDelegate(this.OnBeginClose);
+			}
+			if ((this.onEndCloseDelegate == null))
+			{
+				this.onEndCloseDelegate = new EndOperationDelegate(this.OnEndClose);
+			}
+			if ((this.onCloseCompletedDelegate == null))
+			{
+				this.onCloseCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCloseCompleted);
+			}
+			base.InvokeAsync(this.onBeginCloseDelegate, null, this.onEndCloseDelegate, this.onCloseCompletedDelegate, userState);
+		}
+		protected override <#=Namespace #>.Service.I<#=ServiceName #>Service CreateChannel()
+		{
+			return new <#=ServiceName #>ServiceClientChannel(this);
+		}
+		private class <#=ServiceName #>ServiceClientChannel : ChannelBase<<#=Namespace #>.Service.I<#=ServiceName #>Service>, <#=Namespace #>.Service.IRegressionService
+		{
+
+			public <#=ServiceName #>ServiceClientChannel(System.ServiceModel.ClientBase<<#=Namespace #>.Service.I<#=ServiceName #>Service> client) :
+							base(client)
+			{
+			}
+			#region Begins and Ends
+<#foreach(ServiceMethod method in services){#>
+
+			public System.IAsyncResult Begin<#=method.Name #>(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#comma=", ";}#><#=comma #> System.AsyncCallback callback, object asyncState)
+			{
+				object[] _args = new object[<#=method.Parameters.Count() #>];
+<#for(int i=0; i<method.Parameters.Count(); i++){var p=method.Parameters[i];#>
+				_args[<#=i #>] = <#=p.Name #>;
+<#}#>
+				System.IAsyncResult _result = base.BeginInvoke("<#=method.Name #>", _args, callback, asyncState);
+				return _result;
+			}
+			public <#=method.ReturnType #> End<#=method.Name #>(System.IAsyncResult result)
+			{
+				object[] _args = new object[0];
+				<#=method.ReturnType #> _result = ((<#=method.ReturnType #>)(base.EndInvoke("<#=method.Name #>", _args, result)));
+				return _result;
+			}
+<#}#>
+			#endregion Begins and Ends
+		}
+		#endregion General
+	}
+ 	public class InformationClient : ClientBase<I<#=ServiceName #>Service> //, I<#=ServiceName #>Service
+	{
+
+/*					
+https://stackoverflow.com/questions/1410757/programmatic-configuration-of-silverlight-wcf-client
+https://msdn.microsoft.com/fr-fr/library/cc197941(v=vs.95).aspx
+					// create the binding elements
+					BinaryMessageEncodingBindingElement binaryMessageEncoding = new BinaryMessageEncodingBindingElement();
+					HttpTransportBindingElement httpTransport = new HttpTransportBindingElement() { MaxBufferSize = int.MaxValue, MaxReceivedMessageSize = int.MaxValue };
+
+					// add the binding elements into a Custom Binding
+					CustomBinding customBinding = new CustomBinding(binaryMessageEncoding,httpTransport);
+
+					// create the Endpoint URL (I'll use a configured URL later - all web services will then move as one)
+					EndpointAddress endpointAddress = new EndpointAddress("http://localhost:50072/API/WCF/Silverlight/SilverlightHelper.svc");
+
+					// create an interface for the WCF service
+					ISilverlightHelper silverlightHelper= new ChannelFactory<ISilverlightHelper>(customBinding, endpointAddress).CreateChannel();
+
+					// set-up the asynchronous callback
+					AsyncCallback asyncCallback = delegate(IAsyncResult result)
+					{
+						ISilverlightHelper asyncSilverlightHelper = (ISilverlightHelper)result.AsyncState;
+						string[] files=asyncSilverlightHelper.EndGetPlugInXapNames(result).ToArray();
+					};
+
+					// execute the call
+					silverlightHelper.BeginGetPlugInXapNames(asyncCallback, silverlightHelper);
+*/
+		private I<#=ServiceName #>Service m_MockSerivce;
+		public InformationClient(I<#=ServiceName #>Service mockService)
+			: base(new BasicHttpBinding(), new EndpointAddress("http://fakeAddress.com"))
+		{
+			m_MockSerivce = mockService;
+		}
+		public new I<#=ServiceName #>Service Channel
+		{
+			get { return m_MockSerivce ?? base.Channel; }
+		}
+		protected override I<#=ServiceName #>Service CreateChannel()
+		{
+			return m_MockSerivce ?? base.CreateChannel();
+		}
+//#if !SILVERLIGHT && !NETFX_CORE
+//		public new void Open()
+//		{
+//			if (m_MockSerivce == null)
+//				base.Open();
+//		}
+//#endif
+		public InformationClient()
+		{
+		}
+		public InformationClient(string endpointConfigurationName) :
+			base(endpointConfigurationName)
+		{
+		}
+		public InformationClient(string endpointConfigurationName, string remoteAddress) :
+			base(endpointConfigurationName, remoteAddress)
+		{
+		}
+		public InformationClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
+			base(endpointConfigurationName, remoteAddress)
+		{
+		}
+		public InformationClient(Binding binding, EndpointAddress remoteAddress) :
+			base(binding, remoteAddress)
+		{
+		}
+	}
+}
+#endif
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"ClientTasks.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if CLIENT || SILVERLIGHT
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using System.Collections.ObjectModel;
+	using System.Collections.Generic;
+	using Telerik.Windows.Data;
+	using ServiceClientBase;
+
+	// https://blogs.msdn.microsoft.com/pfxteam/2012/04/12/asyncawait-faq/
+	public static partial class <#=ServiceName #>ServiceTasks
+	{
+<#foreach(ServiceMethod method in services){#>
+
+		// <#=method.Name #>
+<#if (!string.IsNullOrEmpty(method.ModelType) && (from p in tables where p.ClassName==method.ModelType select p).FirstOrDefault()!=null) {#>
+<#if (method.ResponseType.StartsWith("IEnumerable")) {#>
+		/// <summary>
+		/// Gets List of <#=method.ModelType #>ViewModel
+		/// </summary>
+<#foreach(var p in method.Parameters){#>
+		/// <param name="<#=p.Name #>">Type: <#=p.TypeName #>, Default: <#=p.Default #></param>
+<#}#>
+		/// <returns>List of <#=method.ModelType #>ViewModel</returns>
+		//async public static void <#=method.Name #>Async(this I<#=ServiceName #>Service client, <#=method.ModelType #>_GridViewModel radvm, 
+		//<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		//{
+			//radvm.IsBusy = true;
+			//List<<#=method.ModelType #>ViewModel> result = await client.<#=method.Name #>_ListViewModels(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+			//radvm.Collection.Clear();
+<#if (UILibrary == UILib.SilverlightTelerik && !IsUseObservableCollection) {#>
+			//radvm.Collection.AddRange(result);
+<#} else {#>
+			//radvm.Collection = new ObservableCollection<<#=method.ModelType #>ViewModel>(result);
+<#}#>
+			//radvm.IsBusy = false;
+		//}
+		async public static void <#=method.Name #>Async(this I<#=ServiceName #>Service client, Action<IEnumerable<<#=method.ModelType #>>> onload, 
+			<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		{
+			IEnumerable<<#=method.ModelType #>> result = await client.<#=method.Name #>_TaskWithRetry(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+			onload(result);
+		}
+		/// <summary>
+		/// Gets List of <#=method.ModelType #>ViewModel
+		/// </summary>
+<#foreach(var p in method.Parameters){#>
+		/// <param name="<#=p.Name #>">Type: <#=p.TypeName #>, Default: <#=p.Default #></param>
+<#}#>
+		/// <returns>List of <#=method.ModelType #>ViewModel</returns>
+		async private static Task<List<<#=method.ModelType #>ViewModel>> <#=method.Name #>_ListViewModels(this I<#=ServiceName #>Service client, 
+			<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		{
+			IEnumerable<<#=method.ModelType #>> result = await client.<#=method.Name #>_TaskWithRetry(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+			List<<#=method.ModelType #>ViewModel> lst = new List<<#=method.ModelType #>ViewModel>();
+			foreach(var t in result)
+			{
+				lst.Add(new <#=method.ModelType #>ViewModel(t, <#=method.ModelType #>Validator.Instance));
+			}
+			return lst;
+		}
+<#} else {#>
+		async internal static Task<<#=method.ModelType #>ViewModel> <#=method.Name #>_ViewModel(this I<#=ServiceName #>Service client, 
+			<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		{
+			<#=method.ModelType #> result = await client.<#=method.Name #>_TaskWithRetry(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+			return new <#=method.ModelType #>ViewModel(result, <#=method.ModelType #>Validator.Instance);
+		}
+<#}#>
+<#}#>
+<#if (method.ResponseType=="Void") {#>
+		async public static Task <#=method.Name #>_TaskWithRetry(this I<#=ServiceName #>Service client, 
+<#} else {#>
+		async public static Task<<#=method.ResponseType #>> <#=method.Name #>_TaskWithRetry(this I<#=ServiceName #>Service client, 
+<#}#>
+			<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		{
+<#if (method.ReturnType == Namespace+".Service.ServiceResponse") {#>
+			int i=0;
+#if DEBUG
+			int imax=1; // attempts
+#else
+			int imax=3; // attempts
+#endif
+			do
+			{
+				i++;
+				<#=method.ReturnType #> result = await client.<#=method.Name #>_Task(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+				if (result.IsSuccess || i >= imax)
+				{
+					if (!result.IsSuccess)
+					{	
+						throw new Exception("Service Method: <#=method.Name #> Error: "+result.ErrorMessage);
+					}
+<#if (method.ResponseType.StartsWith("IEnumerable")) {#>
+					List<<#=method.ModelType #>> res = new List<<#=method.ModelType #>>();
+					foreach(var t in result.ResultCollection)
+					{
+						res.Add((<#=method.ModelType #>)t);
+					}
+					return res;
+<#} else if (method.ResponseType=="ServiceResponse") {#>
+					return result;
+<#} else if (method.ResponseType!="Void") {#>
+					return (<#=method.ResponseType #>)result.Result;
+<#} else {#>
+					return;
+<#}#>
+				}
+				else
+					Thread.Sleep(i * 3000);
+			} while(true);
+<#} else {#>
+			<#=method.ReturnType #> result = await client.<#=method.Name #>Task(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#>);
+			return result;
+<#}#>
+		}
+		public static Task<<#=method.ReturnType #>> <#=method.Name #>_Task(this I<#=ServiceName #>Service client,
+			<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.TypeName #> <#=p.Name #><#=p.Default #><#comma=", ";}#><#=comma #> AsyncCallback callback = null, object asyncState = null)
+		{
+			return Task.Factory.FromAsync<<#=method.ReturnType #>>(client.Begin<#=method.Name #>(<#comma=""; foreach(var p in method.Parameters){#><#=comma #><#=p.Name #><#comma=", ";}#><#=comma #> callback, asyncState), client.End<#=method.Name #>);
+		}
+<#}#>
+	}
+}
+#endif
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"ClientModels.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if CLIENT || SILVERLIGHT
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+
+#if !(CLIENT && SERVER)
+	// https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/collection-types-in-data-contracts
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	[System.Runtime.Serialization.KnownTypeAttribute(typeof(<#=Namespace #>.Service.<#=tbl.ClassName#>))]
+<#}#>
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public class ServiceResponse
+	{
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public string ErrorMessage { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public object Result { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public IEnumerable<object> ResultCollection { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public bool IsSuccess { get; set; }
+		//[DataMember]
+		//public Exception ServiceException { get; set; }
+	}
+#endif
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+
+	/// <summary>
+	/// A DTO class which represents the <#=tbl.Name#> <#=(tbl.IsView)?"view":"table"#>.
+	/// </summary>
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public partial class <#=tbl.ClassName#>
+	{
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+<#}#>
+		#region Fields definition
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		public static readonly string F_<#=col.PropertyName.ToUpper() #> = "<#=col.Name #>";
+<#}#>
+		#endregion Fields definition
+	}
+<#}#>
+}
+#endif
+<#
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"ServerModels.cs");
+  	}
+#>
+// <#=FilePos() #>
+#if SERVER 
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+
+	// https://msdn.microsoft.com/en-us/magazine/gg598929.aspx
+	// http://www.c-sharpcorner.com/uploadfile/dhananjaycoder/collection-in-wcf/
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	[System.Runtime.Serialization.KnownTypeAttribute(typeof(<#=tbl.ClassName#>))]
+<#}#>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public class ServiceResponse
+	{
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public string ErrorMessage { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public object Result { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public IEnumerable<object> ResultCollection { get; set; }
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+		public bool IsSuccess { get; set; }
+		//[DataMember]
+		//public Exception ServiceException { get; set; }
+	}
+}
+#endif
+<#+
+
+//UseService=true;
+
+#>

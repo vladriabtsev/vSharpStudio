@@ -1,0 +1,207 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+//	var tables = LoadTables();
+//    ConfigureTableMappings(tables);
+	WithDAL = true;
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"UnitOfWork.cs");
+  	}
+#>
+// <#=FilePos() #>
+//#if SERVER
+#region UnitOfWork
+// https://blog.sqlxdetails.com/commandtimeout-how-to-handle-it-properly/
+// http://www.codecompiled.com/sql/error-handling-in-sql-server/
+// https://www.sqlshack.com/how-to-implement-error-handling-in-sql-server/
+// https://technet.microsoft.com/en-us/library/aa175920(v=sql.80).aspx
+// http://www.sommarskog.se/error-handling-I.html
+
+namespace <#=Namespace #>.Server.DAL
+{
+	using System;
+	using System.Data;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Data.SqlClient;
+	using System.Configuration;
+	using Dapper;
+	using System.Text;
+	using <#=Namespace #>.DAL;
+
+<#if (IsGenerateCommonCode) {#>	
+	public interface IUnitOfWork : IDisposable
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		I<#=tbl.ClassName #>Repository <#=tbl.ClassName #>Repository { get; }
+<#}#>
+		void Commit();
+		void Rollback(); // only for logical rollback, in commit already implemented for exceptions
+	}
+
+<#}#>	
+	public partial class UnitOfWork : IUnitOfWork
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		private I<#=tbl.ClassName #>Repository _<#=tbl.ClassName #>Repository;
+<#}#>
+<#if (IsGenerateCommonCode) {#>	
+		private bool _disposed;
+		private IDbConnection _connection;
+		private IDbTransaction _transaction;
+
+		public enum EnumConnectionStringType { Real, NameInConfig };
+
+		public UnitOfWork(string connectionStringName, EnumConnectionStringType typ)
+		{
+			string connectionString = null;
+			if (typ == EnumConnectionStringType.NameInConfig)
+				connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+			else
+				connectionString = connectionStringName;
+			_connection = new SqlConnection(connectionString);
+			_connection.Open();
+			_transaction = _connection.BeginTransaction();
+		}
+
+		public void Commit()
+		{
+			try
+			{
+					_transaction.Commit();
+			}
+			catch
+			{
+				RepositoryBase.WhenRollback(_transaction);
+				_transaction.Rollback();
+				throw;
+			}
+			finally
+			{
+				_transaction.Dispose();
+				_transaction = _connection.BeginTransaction();
+				resetRepositories();
+			}
+		}
+
+		public void Rollback()
+		{
+			RepositoryBase.WhenRollback(_transaction);
+			_transaction.Rollback();
+		}
+
+
+		public void Dispose()
+		{
+			if (_connection.State != ConnectionState.Closed)
+				_connection.Close();
+			dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		private void dispose(bool disposing)
+		{
+			if (!_disposed)
+			{
+				if(disposing)
+				{
+					if (_transaction != null)
+					{
+						_transaction.Dispose();
+						_transaction = null;
+					}
+					if(_connection != null)
+					{
+						_connection.Dispose();
+						_connection = null;
+					}
+				}
+				_disposed = true;
+			}
+		}
+
+		~UnitOfWork()
+		{
+			dispose(false);
+		}
+
+		private void resetRepositories1()
+		{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+			_<#=tbl.ClassName #>Repository = null;
+<#}#>
+		}
+<#} else {#>	
+		private void resetRepositories2()
+		{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+			_<#=tbl.ClassName #>Repository = null;
+<#}#>
+		}
+<#}#>	
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+#>
+		public I<#=tbl.ClassName #>Repository <#=tbl.ClassName #>Repository
+		{
+			get { return _<#=tbl.ClassName #>Repository ?? (_<#=tbl.ClassName #>Repository = new <#=tbl.ClassName #>Repository(_transaction)); }
+		}
+
+<#}#>
+	}
+}
+#endregion UnitOfWork
+//#endif
+<#+
+
+//string ConnectionStringName = "";
+
+
+#>

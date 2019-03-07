@@ -1,0 +1,101 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	//var tables = LoadTables();
+    //ConfigureTableMappings(tables);
+#>
+// <#=FilePos() #>
+#region ServiceStack Services
+namespace <#=Namespace #>
+{
+	using System;
+	//using System.ComponentModel.DataAnnotations;
+	//using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+	using ServiceStack;
+	//using ServiceModel;
+	using System.Configuration;
+	using DAL;
+
+#region ServiceStack Requests Responces
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	public class <#=tbl.ClassName#>Response
+	{
+		public <#=tbl.ClassName#> Result { get; set; }
+		public ResponseStatus ResponseStatus { get; set; }
+	}
+	public class <#=tbl.ClassName#>GetById : IReturn<<#=tbl.ClassName#>Response>
+	{
+		public int Id { get; set; }
+	}
+	public class <#=tbl.ClassName#>GetPage : IReturn<List<<#=tbl.ClassName#>>>
+	{
+		public int? Page { get; set; }
+		public int? PageSize { get; set; }
+		public List<string> SortBy { get; set; }
+	}
+<#}#>
+#endregion ServiceStack Requests Responces
+
+	public partial class MyServices : Service
+	{
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+		public <#=tbl.ClassName#>Response Get(<#=tbl.ClassName#>GetById request)
+		{
+			<#=tbl.ClassName#> res = <#=tbl.ClassName#>Repository.GetById(this.connectionString, request.Id);
+			return new <#=tbl.ClassName#>Response() { Result = res };
+		}
+		public List<<#=tbl.ClassName#>> Get(<#=tbl.ClassName#>GetPage request)
+		{
+			List<<#=tbl.ClassName#>> res = new List<<#=tbl.ClassName#>>();
+			return res;
+		}
+		public int Post(<#=tbl.ClassName#> poco)
+		{
+			return <#=tbl.ClassName#>Repository.Add(this.connectionString, poco);
+		}
+		public void Patch(<#=tbl.ClassName#> poco)
+		{
+			<#=tbl.ClassName#>Repository.Update(this.connectionString, poco);
+		}
+<#}#>
+	}
+}
+#endregion ServiceStack Services

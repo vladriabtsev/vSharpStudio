@@ -1,0 +1,164 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+	//var tables = LoadTables();
+    //ConfigureTableMappings(tables);
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"RepositoryModel.cs");
+  	}
+#>
+// <#=FilePos() #>
+//#if SERVER
+#region Dapper Models
+namespace <#=Namespace #>.Service
+{
+	using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Runtime.Serialization;
+
+#region Entities
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	/// <summary>
+	/// A class which represents the <#=tbl.Name#> <#=(tbl.IsView)?"view":"table"#>.
+	/// </summary>
+<# if (WithService) { #>
+	[System.Runtime.Serialization.DataContractAttribute()]
+<#}#>
+	[Dapper.Contrib.Extensions.Table("<#=tbl.Name#>")]
+	public partial class <#=tbl.ClassName#>
+	{
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+<# if (WithService) { #>
+		[System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue = false)]
+<#}#>
+	<# if (col.IsPK) { #>
+	[Key]
+	<#}
+	if(col.IsComputed) { #>
+	[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+	<#}
+	else if(col.IsAutoIncrement) { #>
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	<#}
+	else if(col.HasDefaultValue && !IgnoreColumnDefaultValues) { #>
+	[Dapper.FastCrud.DatabaseGeneratedDefaultValue]
+	<#}
+	else if(col.IsPK && col.HasDefaultValue && col.IsGeneratedUniqueIdentifier) { #>
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	<#}
+	if (IncludeRelationships) {
+		var tableKey = (from key in tbl.OuterKeys where col.PropertyName==tbl[key.ReferencingTableColumnName].PropertyName select key).FirstOrDefault();
+		if(tableKey != null){#>    [ForeignKey("<#=tables[tableKey.ReferencedTableName].ClassName#>")]
+	<#}
+	}#>	public virtual <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #> { get; set; }
+<#}#>
+<# if (IncludeRelationships) { #>
+<#foreach(var tableKey in from k in tbl.OuterKeys group k by k.ReferencedTableName into gk select new {ReferencedTableName=gk.Key, Keys=gk})
+{#>
+		public virtual <#=tables[tableKey.ReferencedTableName].ClassName #> <#=tables[tableKey.ReferencedTableName].ClassName #> { get; set; }
+<#}#>
+<#foreach(var tableKey in from k in tbl.InnerKeys group k by k.ReferencingTableName into gk select new {ReferencingTableName=gk.Key, Keys=gk})
+{#>
+		public virtual IEnumerable<<#=tables[tableKey.ReferencingTableName].ClassName #>> <#=Pluralize(tables[tableKey.ReferencingTableName].CleanName) #> { get; set; }
+<#}#>
+<#}#>
+
+		public void CopyFrom(<#=tbl.ClassName#> from)
+		{
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{ if (col.IsPK) continue; #>
+			this.<#=col.PropertyName #> = from.<#=col.PropertyName #>;
+<#}#>
+		}
+<# if (WithDAL) { #>
+		#region Fields definition
+		public const string T_NAME = "<#=tbl.Name #>";
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{#>
+		public const string F_<#=col.PropertyName.ToUpper() #> = "<#=col.Name #>";
+<#}#>
+		#endregion Fields definition
+<#}#>
+	}
+
+<#}#>
+#endregion Entities
+
+<#if (IsGenerateCommonCode) {#>	
+	public class ServiceSqlParameter
+	{
+		public string Name { get; set; }
+		public object Value { get; set; }
+	}
+	public static class Extentions
+	{
+		public static string ToSql(this string name)
+		{
+			return "[" + name + "]";
+		}
+		public static string ToSqlSort(this string name)
+		{
+			return "[" + name + "]";
+		}
+		public static string ToSqlSortDesc(this string name)
+		{
+			return "[" + name + "] desc";
+		}
+		public static string ToSqlAssignParameter(this string name)
+		{
+			return "[" + name + "]=@" + name;
+		}
+		public static ServiceSqlParameter ToSqlParameter(this string name, object val)
+		{
+			return new ServiceSqlParameter() { Name = name, Value = val };
+		}
+		public static List<T> ToList<T>(this List<object> lst)
+		{
+			List<T> res = new List<T>();
+			foreach(var t in lst)
+			{
+				T p = (T)t;
+				res.Add(p);
+			}
+			return res;
+		}
+	}
+<#}#>	
+}
+#endregion Dapper Models
+//#endif

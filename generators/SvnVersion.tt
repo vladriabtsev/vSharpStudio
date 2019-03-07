@@ -1,0 +1,80 @@
+<#@ template language="C#" hostSpecific="true" #>
+<#@ assembly name="%ProgramFiles%\AnkhSVN 2\SharpSvn.dll"#> 
+
+<# 
+	// replace MyCompany Inc. with your company name
+	string companyName = "Commport Communications International Inc.";
+	// major, minor and build version information
+	int major = 1;
+	int minor = 0;
+	int build = 0;
+	// revision is extracted from SVN
+	string revision = GetTortoiseSvnRevision() ?? GetAnkhSvnRevision() ?? "0"; 
+#>
+
+using System.Reflection;
+
+[assembly: AssemblyCompany("<#= companyName #>")]
+[assembly: AssemblyCopyright("Copyright © <#= companyName #>, 2009 - <#= DateTime.Today.Year #>")]
+[assembly: AssemblyVersion("<#= major #>.<#= minor #>.<#= revision #>.<#= build #>")]
+[assembly: AssemblyFileVersion("<#= major #>.<#= minor #>.<#= revision #>.<#= build #>")] 
+#if DEBUG
+[assembly: AssemblyProduct("InternetEdiTools Debug version")]
+[assembly: AssemblyTitle("InternetEdiTools Debug version")]
+#else
+[assembly: AssemblyProduct("InternetEdiTools")]
+[assembly: AssemblyTitle("InternetEdiTools")]
+#endif
+
+<#+ 
+/// <summary>
+/// Tries to get current revision from a Tortoise Svn client
+/// using the svnversion command registered in the PATH variable.
+/// </summary>
+string GetTortoiseSvnRevision()
+{
+    try 
+    {	        
+		// run svnversion command
+		var p = new System.Diagnostics.Process();
+		p.StartInfo.Arguments = "-n -q";
+		p.StartInfo.FileName = "svnversion";
+		p.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(Host.ResolvePath(Host.TemplateFile));
+		p.StartInfo.UseShellExecute = false;
+		p.StartInfo.RedirectStandardOutput = true;
+		p.StartInfo.CreateNoWindow = true;
+		p.Start();
+
+		// wait for result and parse version information
+		p.WaitForExit();
+		var match = System.Text.RegularExpressions.Regex.Match(p.StandardOutput.ReadToEnd(), @"\d+", System.Text.RegularExpressions.RegexOptions.RightToLeft);
+		return match.Success ? match.Groups[0].Value : null;
+    }
+    catch
+    {
+		// version information could not be retrieved
+		// e.g. tortoise svn is not installed, svnversion command is not registered in PATH variable, ...
+		return null;
+    }
+}
+
+/// <summary>
+/// Tries to get current revision from an AnkhSVN client
+/// using the API of SharpSvn.dll.
+/// </summary>
+string GetAnkhSvnRevision()
+{
+    try 
+    {	        
+		var svnClient = new SharpSvn.SvnWorkingCopyClient();
+		SharpSvn.SvnWorkingCopyVersion svnVersion;
+		svnClient.GetVersion(System.IO.Path.GetDirectoryName(Host.ResolvePath(Host.TemplateFile)), out svnVersion);
+		return svnVersion.End.ToString();	
+    }
+    catch
+    {
+		// there was an error retrieving version information
+		return null;
+    }
+}
+#>

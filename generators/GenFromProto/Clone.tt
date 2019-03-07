@@ -1,0 +1,51 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+public <#= message.Name.ToNameCs() #> Clone()
+{
+	<#= message.Name.ToNameCs() #> res = new <#= message.Name.ToNameCs() #>();
+<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+if (t.IsRepeated) {#>
+	res.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
+	foreach (var t in this.<#= t.Name.ToNameCs() #>)
+	{
+		res.<#= t.Name.ToNameCs() #>.Add(t.Clone());
+	}
+<# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>.Clone();
+<#	} else if (t.IsMap) { #>
+	map???
+<# } else { #>
+	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
+<# } #>
+<# } #>
+	return res;
+}
+#region IEditable
+protected override <#= message.Name.ToNameCs() #> Backup()
+{
+	<#= message.Name.ToNameCs() #> res = new <#= message.Name.ToNameCs() #>();
+<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+if (t.IsRepeated) {#>
+<# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+<#	} else if (t.IsMap) { #>
+<# } else { #>
+	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
+<# } #>
+<# } #>
+	return res;
+}
+protected override void Restore(<#= message.Name.ToNameCs() #> from)
+{
+<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+if (t.IsRepeated) {#>
+<# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+<#	} else if (t.IsMap) { #>
+<# } else { #>
+	this.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;
+<# } #>
+<# } #>
+}
+#endregion IEditable

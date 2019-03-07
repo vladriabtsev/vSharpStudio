@@ -1,0 +1,761 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data.Common" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Windows.Forms" #>
+<#
+/*
+This code is based on the work of the guys and girls behind the Dapper.SimpleCRUD and PetaPoco projects.
+ -----------------------------------------------------------------------------------------
+ This template can read minimal schema information from the following databases:
+
+	* SQL Server
+ -----------------------------------------------------------------------------------------
+*/
+    // Read schema
+//	var tables = LoadTables();
+//    ConfigureTableMappings(tables);
+	WithDAL = true;
+	if (FileManager != null)
+	{
+		FileManager.StartNewFile(FilePrefix+"Repository.cs");
+  	}
+	bool first = false;
+#>
+// <#=FilePos() #>
+//#if SERVER
+#region DAL
+// https://www.codeproject.com/Articles/889668/%2fArticles%2f889668%2fSQL-Server-Dapper
+
+// https://dapper-tutorial.net/dapper
+// https://www.codeproject.com/Articles/889668/SQL-Server-Dapper
+// https://www.codeproject.com/Articles/1260540/Tutorial-on-Handling-Multiple-Resultsets-and-Multi
+// https://www.red-gate.com/simple-talk/sql/database-administration/handling-deadlocks-in-sql-server/
+// https://www.sqlshack.com/what-is-a-sql-server-deadlock/
+namespace <#=Namespace #>.DAL
+{
+	using System;
+	using System.Data;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Data.SqlClient;
+	using System.Configuration;
+	using Dapper;
+	using Polly;
+	using System.Text;
+	using ServiceClientBase;
+	using <#=Namespace #>.Service;
+
+<#if (!WithDALSP) {#>	
+<#if (IsGenerateCommonCode) {#>	
+	public abstract class RepositoryBase
+	{
+		static public List<int> TransientErrorNumbers =  
+			new List<int> { 4060, 40197, 40501, 40613,  
+			49918, 49919, 49920, 11001 };  
+		public static int? CommandTimeout = 100; // seconds
+		public static Policy RetryPolicyWithTransaction = Policy
+			.Handle<SqlException>(ex => ex.Number == 1205 || ex.Number == -2 || TransientErrorNumbers.Contains(ex.Number)) // deadlock only
+			// timeout excluded  || ex.Number == -2
+			// https://docs.microsoft.com/en-ca/sql/connect/ado-net/step-4-connect-resiliently-to-sql-with-ado-net?view=sql-server-2017
+			// https://docs.microsoft.com/en-us/azure/sql-database/sql-database-develop-error-messages
+			// https://blog.sqlxdetails.com/commandtimeout-how-to-handle-it-properly/
+			// https://docs.microsoft.com/en-us/sql/relational-databases/errors-events/database-engine-error-severities?view=sql-server-2014
+			// https://stackoverflow.com/questions/24041062/know-when-to-retry-or-fail-when-calling-sql-server-from-c
+			// https://www.codeproject.com/Articles/42547/SQL-SERVER-How-To-Handle-Deadlock
+			.WaitAndRetry(new[]
+			{
+				TimeSpan.FromSeconds(5),
+				TimeSpan.FromSeconds(10),
+				TimeSpan.FromSeconds(20)
+			}, (exception, timeSpan) => {
+				System.Diagnostics.Trace.WriteLine(exception);
+				if (exception.InnerException != null)
+					System.Diagnostics.Trace.WriteLine(exception.InnerException);
+			});
+		public static Policy RetryPolicyWithoutTransaction = Policy
+			.Handle<SqlException>(ex => ex.Number == 1205 || ex.Number == -2 || TransientErrorNumbers.Contains(ex.Number)) // deadlock or timeout
+			.WaitAndRetry(new[]
+			{
+				TimeSpan.FromSeconds(5),
+				TimeSpan.FromSeconds(10),
+				TimeSpan.FromSeconds(20)
+			}, (exception, timeSpan) => {
+				System.Diagnostics.Trace.WriteLine(exception);
+				if (exception.InnerException != null)
+					System.Diagnostics.Trace.WriteLine(exception.InnerException);
+			});
+		protected IDbTransaction Transaction { get; private set; }
+		protected IDbConnection Connection { get { return Transaction.Connection; } }
+
+		public RepositoryBase(IDbTransaction transaction)
+		{
+			Transaction = transaction;
+		}
+		// HiLo Id
+		/*
+		CREATE PROCEDURE[dbo].[sp_id_range] (@table varchar(100), @range int, @id INT OUTPUT)
+		AS
+		BEGIN
+		  DECLARE @prev_id int
+		  SELECT @prev_id = NextId FROM IdGenerator WHERE TableName = @table
+		  IF @prev_id IS NULL
+		  BEGIN
+		    DECLARE @sql nvarchar(1000)
+		    SET @sql = 'SELECT @id = Max(Id) + 1 FROM ' + @table
+		    EXEC sp_executesql @sql, N'@id int output', @prev_id output
+		    IF @prev_id IS NULL SET @prev_id = 1
+		    INSERT INTO IdGenerator(TableName, NextId) VALUES(@table, @prev_id)
+		  END
+		  SET @id = @prev_id + @range
+		  UPDATE IdGenerator SET NextId = @id WHERE TableName=@table AND NextId=@prev_id
+		  -- check for overlap with another transaction
+		  WHILE @@ROWCOUNT=0 
+		  BEGIN
+		    SELECT @prev_id = NextId FROM IdGenerator WHERE TableName = @table
+		    SET @id = @prev_id + @range
+		    UPDATE IdGenerator SET NextId = @id WHERE TableName=@table AND NextId=@prev_id
+		  END
+		  SET @id = @id - 1
+		END
+		*/
+		public static void WhenRollback(IDbTransaction transaction)
+		{
+			lock (RepositoryBase.idMap)
+			{
+				Dictionary<string, IdItem> dic;
+				if (RepositoryBase.idMap.TryGetValue(transaction.Connection.ConnectionString, out dic))
+				{
+					dic.Clear();
+				}
+			}
+		}
+		public static int GetNextHiLoId(IDbTransaction transaction, string connStr, string tableName, int range)
+		{
+			string connectionStr=null;
+			if (transaction!=null)
+				connectionStr = transaction.Connection.ConnectionString;
+				//connectionStr = transaction.Connection.InitialCatalog + "-" + transaction.Connection.DataSorce;
+			else
+				connectionStr = connStr;
+			int id = 0;
+			lock (RepositoryBase.idMap)
+			{
+				Dictionary<string, IdItem> dic;
+				if (!RepositoryBase.idMap.TryGetValue(connectionStr, out dic))
+				{
+					dic = new Dictionary<string, IdItem>();
+					RepositoryBase.idMap.Add(connectionStr, dic);
+				}
+				IdItem id_gen;
+				if (!dic.TryGetValue(tableName, out id_gen))
+				{
+					id_gen = new IdItem(tableName);
+					dic.Add(tableName, id_gen);
+				}
+				id = id_gen.NextId(transaction, connectionStr, tableName, range);
+			}
+			return id;
+		}
+		// connStr, table name, IdItem
+		private static Dictionary<string, Dictionary<string, IdItem>> idMap = new Dictionary<string, Dictionary<string, IdItem>>();
+		class IdItem
+		{
+			public string TableName { get; private set; }
+			
+			public int lastId;
+			public int counter;
+			
+			public IdItem(string tableName)
+			{
+				this.TableName = tableName;
+				this.lastId = 0;
+				this.counter = 0;
+			}
+			
+			public int NextId(IDbTransaction transaction, string connectionString, string tableName, int range)
+			{
+				if (this.counter == 0)
+				{
+					// init generator
+					// https://stackoverflow.com/questions/5962117/is-there-a-way-to-call-a-stored-procedure-with-dapper
+					var p = new DynamicParameters();
+					p.Add("@table", tableName);
+					p.Add("@range", range);
+					p.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+						
+					if (transaction != null)
+					{
+						// SP is not ready
+						//RepositoryBase.RetryPolicyWithTransaction.Execute(() =>
+						//{
+							transaction.Connection.Execute("sp_id_range", p,
+								transaction: transaction,
+								commandTimeout: CommandTimeout,
+								commandType: CommandType.StoredProcedure
+							);
+						//});
+					}
+					else
+					{
+						// SP is not ready
+						//RepositoryBase.RetryPolicyWithoutTransaction.Execute(() =>
+						//{
+							using (SqlConnection cn =  new SqlConnection(connectionString)) {
+								cn.Open();
+								cn.Execute("sp_id_range", p,
+									commandTimeout: CommandTimeout,
+									commandType: CommandType.StoredProcedure
+								);
+							}
+						//});
+					}
+					this.lastId = p.Get<int>("@id");
+					this.counter = range;
+				}
+				this.counter--;
+				return this.lastId - this.counter;
+			}
+		}
+	}
+
+<#}#>
+<#}#>
+<#
+foreach(Table tbl in tables.Where(t=> !t.Ignore)){
+		if(IsExcluded(tbl.Schema, tbl.Name, ExcludeTablePrefixes)) continue;
+		if(IgnoreTablesByDefault && !tbl.Include) continue;
+
+#>
+	#region <#=tbl.ClassName #> Repository	
+<#if (!WithDALSP) {#>	
+	public partial interface I<#=tbl.ClassName #>Repository
+	{
+		IEnumerable<<#=tbl.ClassName #>> Get(string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0);
+		List<<#=tbl.ClassName #>> GetList(string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0);
+<#if (!tbl.IsView) {#>
+<#if (IsUseHiLoForKey) {#>	
+		<#=tbl.ClassName #> Create(int range = 1);
+<#}#>	
+		<#=tbl.ClassName #> GetById(int id);
+		int Add(<#=tbl.ClassName #> entity);
+		void Delete(<#=tbl.ClassName #> entity);
+		void Delete(int id);
+		void Delete(string where = null, ServiceSqlParameter[] param = null);
+		void Update(<#=tbl.ClassName #> entity);
+<#}#>
+	}
+<#}#>	
+	public partial class <#=tbl.ClassName #>Repository : RepositoryBase, I<#=tbl.ClassName #>Repository
+	{
+<#if (!WithDALSP) {#>	
+		public <#=tbl.ClassName #>Repository(IDbTransaction transaction) : base(transaction)
+		{
+		}
+<#}#>	
+		private static void CreateSelect<#=tbl.Name #>(StringBuilder sb, string where = null, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			sb.Append("SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			if (pagesize > 0 && sort == null)
+				throw new Exception("To use paging sort parameter has to be provided");
+			if (sort != null)
+			{
+				sb.Append(" ORDER BY ");
+				string sep="";
+				foreach(var t in sort)
+				{
+					sb.Append(sep);
+					sep=", ";
+					sb.Append(t);
+				}
+			}
+			if (page > 0 && pagesize > 0)
+			{
+				sb.Append(" OFFSET ");
+				sb.Append((page-1)*pagesize);
+				sb.Append(" ROWS FETCH NEXT ");
+				sb.Append(pagesize);
+				sb.Append(" ROWS ONLY");
+			}
+		}
+		public IEnumerable<<#=tbl.ClassName #>> Get(string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			StringBuilder sb = new StringBuilder();
+			CreateSelect<#=tbl.Name #>(sb, where, param, sort, page, pagesize);
+			if (param==null)
+			{
+				return Connection.Query<<#=tbl.ClassName #>>(
+					sb.ToString(),
+					transaction: Transaction,
+					commandTimeout: CommandTimeout
+				);
+			}
+			Dictionary<string, object> p = new Dictionary<string, object>();
+			foreach (var t in param)
+			{
+				p[t.Name] = t.Value;
+			}
+			return Connection.Query<<#=tbl.ClassName #>>(
+				sb.ToString(),
+				p,
+				transaction: Transaction,
+				commandTimeout: CommandTimeout
+			);
+		}
+		public List<<#=tbl.ClassName #>> GetList(string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			IEnumerable<<#=tbl.ClassName #>> lst = Get(where, param, sort, page, pagesize);
+			List<<#=tbl.ClassName #>> res = new List<<#=tbl.ClassName #>>();
+			foreach(var t in lst)
+			{
+				res.Add(t);
+			}
+			return res;
+		}
+		public static IEnumerable<<#=tbl.ClassName #>> Get(string connectionString, string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			IEnumerable<<#=tbl.ClassName #>> res = null;
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				StringBuilder sb = new StringBuilder();
+				CreateSelect<#=tbl.Name #>(sb, where, param, sort, page, pagesize);
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					if (param==null)
+					{
+						res = sqlConnection.Query<<#=tbl.ClassName #>>(
+							sb.ToString(),
+							commandTimeout: CommandTimeout
+						);
+					}
+					else
+					{
+						Dictionary<string, object> p = new Dictionary<string, object>();
+						foreach (var t in param)
+						{
+							p[t.Name] = t.Value;
+						}
+						res = sqlConnection.Query<<#=tbl.ClassName #>>(
+							sb.ToString(),
+							p,
+							commandTimeout: CommandTimeout
+						);
+					}
+					sqlConnection.Close();
+				}
+			});
+			return res;
+		}
+		public static List<<#=tbl.ClassName #>> GetList(string connectionString, string where, ServiceSqlParameter[] param = null, string[] sort = null, int page = 0, int pagesize = 0)
+		{
+			List<<#=tbl.ClassName #>> res = new List<<#=tbl.ClassName #>>();
+			IEnumerable<<#=tbl.ClassName #>> lst = Get(connectionString, where, param, sort, page, pagesize);
+			foreach(var t in lst)
+			{
+				res.Add(t);
+			}
+			return res;
+		}
+		public static int Count(string connectionString, string where, ServiceSqlParameter[] param = null)
+		{
+			int res=0;
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				StringBuilder sb = new StringBuilder();
+				sb.Append("SELECT Count(*) FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+				if (where != null)
+				{
+					sb.Append(" WHERE ");
+					sb.Append(where);
+				}
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					if (param==null)
+					{
+						res = sqlConnection.ExecuteScalar<int>(
+							sb.ToString(),
+							commandTimeout: CommandTimeout
+						);
+					}
+					else
+					{
+						Dictionary<string, object> p = new Dictionary<string, object>();
+						foreach (var t in param)
+						{
+							p[t.Name] = t.Value;
+						}
+						res = sqlConnection.ExecuteScalar<int>(
+							sb.ToString(),
+							p,
+							commandTimeout: CommandTimeout
+						);
+					}
+					sqlConnection.Close();
+				}
+			});
+			return res;
+		}
+<#if (!tbl.IsView) {#>
+		public <#=tbl.ClassName #> GetById(int id)
+		{
+			<#=tbl.ClassName #> res=null;
+			res = Connection.Query<<#=tbl.ClassName #>>(
+				"SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+				param: new { pid = id },
+				transaction: Transaction,
+				commandTimeout: CommandTimeout
+			).First();
+			return res;
+		}
+		public static <#=tbl.ClassName #> GetById(string connectionString, int id)
+		{
+			<#=tbl.ClassName #> res=null;
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					res = sqlConnection.Query<<#=tbl.ClassName #>>(
+						"SELECT * FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+						param: new { pid = id },
+						commandTimeout: CommandTimeout
+					).First();
+					sqlConnection.Close();
+				}
+			});
+			return res;
+		}
+<#if (IsUseHiLoForKey) {#>
+		public static <#=tbl.ClassName #> Create(string connectionString, int range=1)
+		{
+			<#=tbl.ClassName #> res = new <#=tbl.ClassName #>();
+			// to work properly SP has to be prepared for Exceptions
+			//RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				res.Id = IdGenerator.NextId(connectionString, <#=tbl.ClassName #>.T_NAME, range);
+			//});
+			return res;
+		}
+		public <#=tbl.ClassName #> Create(int range = 1)
+		{
+			<#=tbl.ClassName #> res = new <#=tbl.ClassName #>();
+			// retry is not implemented because SP is not ready for retry
+			res.Id = RepositoryBase.GetNextHiLoId(this.Transaction, null, <#=tbl.ClassName #>.T_NAME, range);
+			return res;
+		}
+		public int Add(<#=tbl.ClassName #> entity)
+		{
+			Connection.Execute(
+				"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+					"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+				") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+					"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+				")",
+				param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+					<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+				},
+				transaction: Transaction,
+				commandTimeout: CommandTimeout
+			);
+			return entity.Id;
+		}
+		public static int Add(string connectionString, <#=tbl.ClassName #> entity)
+		{
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					sqlConnection.Execute(
+						"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+							"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+						") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+							"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+						")",
+						param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+if (col.IsPK && !IsUseHiLoForKey) continue;
+#>
+							<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+						},
+						commandTimeout: CommandTimeout
+					);
+					sqlConnection.Close();
+				}
+			});
+			return entity.Id;
+		}
+<#} else {#>
+		public int Add(<#=tbl.ClassName #> entity)
+		{
+			entity.Id = Connection.ExecuteScalar<int>(
+				"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+					"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+				") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+					"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+				"); SELECT SCOPE_IDENTITY()",
+				param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK) continue;
+#>
+					<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+				},
+				transaction: Transaction,
+				commandTimeout: CommandTimeout
+			);
+			return entity.Id;
+		}
+		public static int Add(string connectionString, <#=tbl.ClassName #> entity)
+		{
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					entity.Id = sqlConnection.ExecuteScalar<int>(
+						"INSERT INTO <#=SchemaNameGenerated #>[<#=tbl.Name #>] ("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK || col.IsTimeStamp) continue;
+#>
+							"<#=(first ? "": ",")#>[<#=col.PropertyName #>]"+
+<#first = false; }#>
+						") VALUES("+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK || col.IsTimeStamp) continue;
+#>
+							"<#=(first ? "": ",")#>@<#=col.PropertyName #>"+
+<#first = false; }#>
+						"); SELECT SCOPE_IDENTITY()",
+						param: new { 
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK || col.IsTimeStamp) continue;
+#>
+							<#=col.PropertyName #> = entity.<#=col.PropertyName #>, 
+<#}#>
+						},
+						commandTimeout: CommandTimeout
+					);
+					sqlConnection.Close();
+				}
+			});
+			return entity.Id;
+		}
+<#}#>
+		public void Delete(<#=tbl.ClassName #> entity)
+		{
+			Delete(entity.Id);
+		}
+		public static void Delete(string connectionString, <#=tbl.ClassName #> entity)
+		{
+			Delete(connectionString, entity.Id);
+		}
+		public void Delete(int id)
+		{
+			Connection.Execute(
+				"DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+                param: new { pid = id },
+	            transaction: Transaction,
+				commandTimeout: CommandTimeout
+			);
+		}
+		public static void Delete(string connectionString, int id)
+		{
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					sqlConnection.Execute(
+						"DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>] WHERE [Id] = @pid",
+						param: new { pid = id },
+						commandTimeout: CommandTimeout
+					);
+					sqlConnection.Close();
+				}
+			});
+		}
+		public void Delete(string where = null, ServiceSqlParameter[] param = null)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+			if (where != null)
+			{
+				sb.Append(" WHERE ");
+				sb.Append(where);
+			}
+			if (param != null)
+			{
+				Dictionary<string, object> p = new Dictionary<string, object>();
+				foreach (var t in param)
+				{
+					p[t.Name] = t.Value;
+				}
+				Connection.Execute(
+		            sb.ToString(),
+			        param: p,
+				    transaction: Transaction,
+					commandTimeout: CommandTimeout
+				);
+			}
+			else
+			{
+				Connection.Execute(
+		            sb.ToString(),
+			        transaction: Transaction,
+					commandTimeout: CommandTimeout
+				);
+			}
+		}
+		public static void Delete(string connectionString, string where = null, ServiceSqlParameter[] param = null)
+		{
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				StringBuilder sb = new StringBuilder();
+				sb.Append("DELETE FROM <#=SchemaNameGenerated #>[<#=tbl.Name #>]");
+				if (where != null)
+				{
+					sb.Append(" WHERE ");
+					sb.Append(where);
+				}
+				if (param != null)
+				{
+					Dictionary<string, object> p = new Dictionary<string, object>();
+					foreach (var t in param)
+					{
+						p[t.Name] = t.Value;
+					}
+					using (var sqlConnection = new SqlConnection(connectionString))
+					{
+						sqlConnection.Open();
+						sqlConnection.Execute(
+						    sb.ToString(),
+					        param: p,
+							commandTimeout: CommandTimeout
+						);
+						sqlConnection.Close();
+					}
+				}
+				else
+				{
+					using (var sqlConnection = new SqlConnection(connectionString))
+					{
+						sqlConnection.Open();
+						sqlConnection.Execute(
+						    sb.ToString(),
+							commandTimeout: CommandTimeout
+						);
+						sqlConnection.Close();
+					}
+				}
+			});
+		}
+		public void Update(<#=tbl.ClassName #> entity)
+		{
+			Connection.Execute("UPDATE <#=SchemaNameGenerated #>[<#=tbl.Name #>] SET "+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK || col.IsTimeStamp) continue;
+#>
+				"<#=(first ? "": ",")#>[<#=col.PropertyName #>] = @<#=col.PropertyName #>"+
+<#first = false; }#>
+				" WHERE [Id] = @Id",
+				param: new {
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+#>
+				<#=col.PropertyName #> = entity.<#=col.PropertyName #>,
+<#}#>
+				},
+				transaction: Transaction,
+				commandTimeout: CommandTimeout
+			);
+		}
+		public static void Update(string connectionString, <#=tbl.ClassName #> entity)
+		{
+		    RepositoryBase.RetryPolicyWithoutTransaction.Execute(() => {
+				using (var sqlConnection = new SqlConnection(connectionString))
+				{
+					sqlConnection.Open();
+					sqlConnection.Execute("UPDATE <#=SchemaNameGenerated #>[<#=tbl.Name #>] SET "+
+<#first = true; foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsPK || col.IsTimeStamp) continue;
+#>
+						"<#=(first ? "": ",")#>[<#=col.PropertyName #>] = @<#=col.PropertyName #>"+
+<#first = false; }#>
+						" WHERE [Id] = @Id",
+						param: new {
+<#foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
+{if (col.IsTimeStamp) continue;
+#>
+							<#=col.PropertyName #> = entity.<#=col.PropertyName #>,
+<#}#>
+						},
+						commandTimeout: CommandTimeout
+					);
+					sqlConnection.Close();
+				}
+			});
+		}
+<#} //if (!tbl.IsView) {#>
+	}
+	#endregion <#=tbl.ClassName #> Repository	
+<#}#>
+}
+#endregion DAL
+//#endif
+<#+
+
+//string ConnectionStringName = "";
+
+
+#>

@@ -1,0 +1,265 @@
+﻿<#+
+// Generator of POCO object for services
+void GenPocoClasses(List<Type> sLst, string nameSpace, string classNameSuffics="", bool isUseValidation=true) 
+{
+#>
+//////////////////////////////////////////////////////////////////
+// This code was generated automatically by PocoModel.ttinclude //
+//////////////////////////////////////////////////////////////////
+namespace <#= nameSpace #> {
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Runtime.Serialization;
+	using System.ComponentModel.DataAnnotations;
+	using Common.Web;
+	using Commport.Exchange.Entity.Document;
+	using Commport.Exchange.Entity.Common;
+	using Commport.Exchange.Core;
+	using <#= nameSpace #>.Validation;
+	using Commport.Exchange.Entity.Core;
+
+	// List of generated POCO classes
+	//
+<#+
+	//System.Diagnostics.Debugger.Launch();
+	List<Association> asLst = new List<Association>();
+	foreach(Type type in sLst)
+	{
+		List<PropertyInfo> pLst = GetProperties(type);
+        // Navigation properties
+		foreach (PropertyInfo property in pLst)
+        {
+			string pfield = property.Name.ToLower();
+           	Type memType = property.PropertyType;
+			if (this.IsForeignKeyProperty(property))
+			{
+				string foreignType = this.GetForeignKeyType(property);
+				Association asc = new Association();
+				asc.OneClass=foreignType;
+				asc.ManyClass=type.Name;
+				asLst.Add(asc);
+			}
+		}
+		
+#>
+	// Poco<#= type.Name #><#= classNameSuffics #>
+<#+
+	}
+
+#>
+    public static partial class WebHelper
+	{
+<#+
+	
+	foreach(Type type in sLst)
+	{
+		    List<PropertyInfo> pLst = GetProperties(type);
+#>
+        public static void CopyFrom(this Poco<#= type.Name #><#= classNameSuffics #> pent, <#= type.Namespace #>.<#= type.Name #> ent)
+		{
+			if (Commport.Exchange.Entity.Common.CodeBlock.IsCodeBlockEnabled(EnumCodeBlock.AmazonInvoiceDiscount))
+			{
+<#+
+        	foreach (PropertyInfo property in pLst)
+        	{
+//				if (!this.IsKeyProperty(property) && property.Name != "IdInt")
+//				{
+					if (!this.IsPropertyExcluded(property) && property.CanWrite)
+					{
+						string pfield = property.Name.ToLower();
+   	       				Type memType = property.PropertyType;
+                        if (this.GetterMethodEnd(memType) == "")
+                        {
+#>
+            pent.<#= property.Name #> = ent.<#= property.Name #><#= this.GetterMethodStart(memType) #>;
+<#+
+						} else {
+#>
+            pent.<#= property.Name #> = ent.<#= property.Name #><#= this.GetterMethodStart(memType) #><#= this.GetterMethodEnd(memType) #>;
+<#+
+						}
+					}
+//				}
+			}
+#>
+			} else {
+<#+
+        	foreach (PropertyInfo property in pLst)
+        	{
+//				if (!this.IsKeyProperty(property) && property.Name != "IdInt")
+//				{
+					if (!this.IsPropertyExcluded(property) && property.CanWrite)
+					{
+						string pfield = property.Name.ToLower();
+   	       				Type memType = property.PropertyType;
+#>
+            pent.<#= property.Name #> = ent.<#= property.Name #><#= this.AccessMethod(memType) #>;
+<#+
+					}
+//				}
+			}
+
+#>
+		}
+	}
+<#+
+		if (type.Name=="EntPurchaseOrderChange" || type.Name=="EntPurchaseOrderChangeLine" || type.Name=="EntPurchaseOrder" || type.Name=="EntPurchaseOrderLine")
+		{
+#>
+//      public static void CopyFromTo(Poco<#= type.Name #><#= classNameSuffics #> pfrom, <#= type.Namespace #>.<#= type.Name #> to)
+//		{
+<#+
+		    List<PropertyInfo> pLst11 = GetProperties(type);
+        	foreach (PropertyInfo property in pLst11)
+        	{
+				if (!this.IsKeyProperty(property) && property.Name != "IdInt")
+				{
+					if (!this.IsPropertyExcluded(property) && property.CanWrite)
+					{
+						string pfield = property.Name.ToLower();
+   	       				Type memType = property.PropertyType;
+#>
+//			if (pfrom.<#= property.Name #> != null)
+//				to.<#= property.Name #> = pfrom.<#= property.Name #>;
+<#+
+					}
+				}
+			}
+#>
+//        }
+<#+
+#>
+//      public static void CopyFromTo(<#= type.Name #><#= classNameSuffics #> pfrom, <#= type.Namespace #>.<#= type.Name #> to)
+//		{
+<#+
+		    List<PropertyInfo> pLst22 = GetProperties(type);
+        	foreach (PropertyInfo property in pLst22)
+        	{
+				if (!this.IsKeyProperty(property) && property.Name != "IdInt")
+				{
+					if (!this.IsPropertyExcluded(property) && property.CanWrite)
+					{
+						string pfield = property.Name.ToLower();
+   	       				Type memType = property.PropertyType;
+#>
+//			if (!pfrom.<#= property.Name #>.IsNull)
+//				to.<#= property.Name #>.Value = pfrom.<#= property.Name #>.Value;
+<#+
+					}
+				}
+			}
+#>
+//        }
+<#+
+		}
+    }
+#>
+    }
+<#+
+
+    //System.Diagnostics.Debugger.Launch();
+
+	// Poco
+	foreach(Type type in sLst)
+	{
+        List<ValidatorSet> validators = GetValidators(type);
+#>
+	[DataContract]
+	public partial class Poco<#= type.Name #><#= classNameSuffics #> : <#= IsRow(type) ? "PocoRowBase" : "PocoBase" #>
+	{
+<#+
+		// Create short list of properties
+		List<PropertyInfo> pLst = GetProperties(type);
+		
+		//System.Diagnostics.Debugger.Launch();
+		
+        // Properties
+		foreach (PropertyInfo property in pLst)
+        {
+			string pfield = property.Name.ToLower();
+           	Type memType = property.PropertyType;
+			if (memType.Name=="MemberTimeStamp")
+				continue;
+			if (!this.IsPropertyExcluded(property))
+			{
+				if (this.IsKeyProperty(property))
+				{
+					if (IsRow(type))
+					{
+#>
+		[Key]
+<#+
+					}
+				}
+				if (IsRow(type) || property.Name != "IdInt") // in base class already
+				{
+                        foreach(ValidatorSet v in validators)
+                            {
+                            if (v.PropertyType == "all" || this.TypeForSvc(memType) == v.PropertyType)
+                                {
+								  if (isUseValidation)
+									{
+#>
+		[CustomValidation(typeof(<#= v.ValidatorName #>), "<#= v.ValidatorMethodName #>")]
+<#+
+									}
+                                }
+                            }
+#>
+		[DataMember]
+		public <#= this.TypeForSvc(memType) #> <#= property.Name #> { get; set; }	// <#= memType.Name #>
+<#+
+				}
+			}
+		}
+
+	//System.Diagnostics.Debugger.Launch();
+        // Navigation properties
+		foreach (PropertyInfo property in pLst)
+        {
+			string pfield = property.Name.ToLower();
+           	Type memType = property.PropertyType;
+			if (this.IsForeignKeyProperty(property))
+			{
+				string foreignType = this.GetForeignKeyType(property);
+				if (IsTypeInList(foreignType, sLst))
+				{
+#>
+
+		public Poco<#= foreignType #><#= classNameSuffics #>  Parent<#= property.Name #> { get; private set; }
+<#+
+				}
+			}
+		}
+		// Associations
+		foreach (Association asc in asLst)
+        {
+			if (asc.OneClass != type.Name)
+				continue;
+			if (IsTypeInList(asc.ManyClass, sLst))
+			{
+#>
+		
+		public List<Poco<#= asc.ManyClass #><#= classNameSuffics #>> ChildrenPoco<#= asc.ManyClass #>  { get; set; }
+<#+
+			}
+		}
+
+		// Methods
+#>
+        partial void Init();
+
+		public Poco<#= type.Name #><#= classNameSuffics #>() 
+        {	
+            this.Init();
+        }
+	}
+<#+
+	}
+#>
+}
+<#+ 
+}
+#>
+
