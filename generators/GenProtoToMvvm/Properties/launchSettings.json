@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "GenProtoToMvvm": {
-      "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\..\\vSharpStudio.proto\\bin\\Debug\\netstandard2.0\\vSharpStudio.proto.dll Proto.Config ..\\..\\..\\..\\..\\vSharpStudio.vm\\ViewModels\\ProtoViewModels.cs"
-    }
-  }
-}

@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/06/2019 01:30:59
+// Auto generated on UTC 03/07/2019 23:32:57
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -43,6 +43,8 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.Version = this.Version;
 			res.Name = this.Name;
+			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
+			res.ConnectionStringName = this.ConnectionStringName;
 			res.Constants = this.Constants.Clone();
 			res.Enumerators = this.Enumerators.Clone();
 			res.Catalogs = this.Catalogs.Clone();
@@ -55,6 +57,8 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.Version = this.Version;
 			res.Name = this.Name;
+			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
+			res.ConnectionStringName = this.ConnectionStringName;
 			return res;
 		}
 		protected override void Restore(Config from)
@@ -62,6 +66,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.Guid = from.Guid;
 			this.Version = from.Version;
 			this.Name = from.Name;
+			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
+			this.ConnectionStringName = from.ConnectionStringName;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -118,6 +124,36 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		public string PathToProjectWithConnectionString
+		{ 
+			set
+			{
+				if (_dto.PathToProjectWithConnectionString != value)
+				{
+					_dto.PathToProjectWithConnectionString = value;
+					OnPathToProjectWithConnectionStringChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.PathToProjectWithConnectionString; }
+		}
+		partial void OnPathToProjectWithConnectionStringChanged();
+		public string ConnectionStringName
+		{ 
+			set
+			{
+				if (_dto.ConnectionStringName != value)
+				{
+					_dto.ConnectionStringName = value;
+					OnConnectionStringNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.ConnectionStringName; }
+		}
+		partial void OnConnectionStringNameChanged();
 		public Constants Constants { get; set; }
 		public Enumerations Enumerators { get; set; }
 		public Catalogs Catalogs { get; set; }
