@@ -1,0 +1,3 @@
+[submodule "submodules/OpenDBDiff"]
+	path = submodules/OpenDBDiff
+	url = https://github.com/OpenDBDiff/OpenDBDiff.git
