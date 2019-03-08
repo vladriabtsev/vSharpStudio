@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using vSharpStudio.Migration;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
@@ -10,9 +11,13 @@ namespace vSharpStudio.xUnit
     [Fact]
     public void MsSql001GuidInit()
     {
+      var cfg = new Config();
+      cfg.ConnectionStringName = "MsSql";
+      cfg.PathToProjectWithConnectionString = Directory.GetCurrentDirectory()+@"..\..\app.config";
       var v = new MsSqlServerSchemaReader();
       //MsSqlModel v = new MsSqlModel();
       Assert.True(false);
+    }
     }
   }
 }
