@@ -1,3 +1,4 @@
+using OpenDBDiff.Front;
 using System;
 using System.IO;
 using vSharpStudio.Migration;
@@ -11,6 +12,7 @@ namespace vSharpStudio.xUnit
     [Fact]
     public void MsSql001GuidInit()
     {
+      //IDatabaseComparer
       var cfg = new Config();
       cfg.ConnectionStringName = "MsSql";
       cfg.PathToProjectWithConnectionString = Directory.GetCurrentDirectory()+@"..\..\app.config";
