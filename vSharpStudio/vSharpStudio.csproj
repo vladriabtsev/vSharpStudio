@@ -165,6 +165,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\submodules\OpenDBDiff\OpenDBDiff.Front\OpenDBDiff.Front.csproj">
+      <Project>{e82cfc94-de8c-4edd-aa0c-f78abae03768}</Project>
+      <Name>OpenDBDiff.Front</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj">
       <Project>{0467e0e8-8886-46fe-bf70-e33ff53fc39f}</Project>
       <Name>vSharpStudio.vm</Name>
