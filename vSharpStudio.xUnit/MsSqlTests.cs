@@ -1,5 +1,4 @@
-using OpenDBDiff.Front;
-using System;
+﻿using System;
 using System.IO;
 using vSharpStudio.Migration;
 using vSharpStudio.vm.ViewModels;
@@ -19,7 +18,6 @@ namespace vSharpStudio.xUnit
       var v = new MsSqlServerSchemaReader();
       //MsSqlModel v = new MsSqlModel();
       Assert.True(false);
-    }
     }
   }
 }

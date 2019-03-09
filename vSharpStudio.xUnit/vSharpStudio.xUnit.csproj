@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\submodules\OpenDBDiff\OpenDBDiff.Front\OpenDBDiff.Front.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
     <ProjectReference Include="..\vSharpStudio\vSharpStudio.csproj" />
   </ItemGroup>
