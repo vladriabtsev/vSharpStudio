@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/07/2019 23:32:57
+// Auto generated on UTC 03/10/2019 03:02:11
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -276,6 +276,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
+			res.Guid = this.Guid;
 			return res;
 		}
 		#region IEditable
@@ -286,6 +287,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
+			res.Guid = this.Guid;
 			return res;
 		}
 		protected override void Restore(DataType from)
@@ -294,6 +296,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.Length = from.Length;
 			this.Accuracy = from.Accuracy;
 			this.IsPositive = from.IsPositive;
+			this.Guid = from.Guid;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -362,6 +365,21 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsPositive; }
 		}
 		partial void OnIsPositiveChanged();
+		public string Guid
+		{ 
+			private set
+			{
+				if (_dto.Guid != value)
+				{
+					_dto.Guid = value;
+					OnGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.Guid; }
+		}
+		partial void OnGuidChanged();
 		#endregion Properties
 	}
 	public partial class Properties : ViewModelValidatable<Properties, Properties.PropertiesValidator>

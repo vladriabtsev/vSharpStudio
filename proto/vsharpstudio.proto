@@ -36,15 +36,15 @@ message proto_property {
 message proto_data_type {
 	enum EnumDataType {
 		STRING = 0;
-		INT = 1;
-		LONG = 2;
-		FLOAT = 3;
-		DOUBLE = 4;
+		NUMERICAL = 1;
 		BOOL = 5;
 
 		CONSTANT = 7;
 		ENUM = 8;
 		CATALOG = 9;
+		CATALOGS = 10;
+		DOCUMENT = 11;
+		DOCUMENTS = 12;
 
 		Any = 15;
 	}
@@ -52,6 +52,7 @@ message proto_data_type {
 	int32 length = 2; 
 	int32 accuracy = 3; 
 	bool is_positive = 4; 
+    string guid = 5;
 }
 message proto_properties {
 	string name = 1;

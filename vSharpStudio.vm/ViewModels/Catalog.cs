@@ -4,11 +4,15 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public partial class Catalog : IEntityObject
-  {
-    partial void OnInit()
+    public partial class Catalog : IEntityObject
     {
-      this.Guid = System.Guid.NewGuid().ToString();
+        partial void OnInit()
+        {
+            this.Guid = System.Guid.NewGuid().ToString();
+        }
+        public Catalog(string name) : base(CatalogValidator.Validator)
+        {
+            this.Name = name;
+        }
     }
-  }
 }
