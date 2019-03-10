@@ -25,8 +25,6 @@ namespace Microsoft.EntityFrameworkCore.Migrations
     ///         Database providers must inherit from this class to implement provider-specific functionality.
     ///     </para>
     /// </summary>
-    // TODO: Leverage query pipeline for GetAppliedMigrations
-    // TODO: Leverage update pipeline for GetInsertScript & GetDeleteScript
     public abstract class HistoryRepository //: IHistoryRepository
     {
         /// <summary>
