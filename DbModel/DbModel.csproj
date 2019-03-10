@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\Properties\AbstractionsStrings.Designer.cs" Link="internals\AbstractionsStrings.Designer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Metadata\ISequence.cs" Link="internals\ISequence.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\ReferentialAction.cs" Link="model\ReferentialAction.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\IDatabaseModelFactory.cs" Link="model\IDatabaseModelFactory.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseColumn.cs" Link="model\DatabaseColumn.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseForeignKey.cs" Link="model\DatabaseForeignKey.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseIndex.cs" Link="model\DatabaseIndex.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseModel.cs" Link="model\DatabaseModel.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabasePrimaryKey.cs" Link="model\DatabasePrimaryKey.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseSequence.cs" Link="model\DatabaseSequence.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseTable.cs" Link="model\DatabaseTable.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseUniqueConstraint.cs" Link="model\DatabaseUniqueConstraint.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\Internal\ScaffoldingAnnotationNames.cs" Link="model\ScaffoldingAnnotationNames.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\DbLoggerCategory.cs" Link="internals\DbLoggerCategory.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\CoreEventId.cs" Link="internals\CoreEventId.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventData.cs" Link="internals\EventData.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition.cs" Link="internals\EventDefinition.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinitionBase.cs" Link="internals\EventDefinitionBase.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition`.cs" Link="internals\EventDefinition`.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition``.cs" Link="internals\EventDefinition``.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition```.cs" Link="internals\EventDefinition```.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition````.cs" Link="internals\EventDefinition````.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition`````.cs" Link="internals\EventDefinition`````.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventDefinition``````.cs" Link="internals\EventDefinition``````.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\FallbackEventDefinition.cs" Link="internals\FallbackEventDefinition.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\IDiagnosticsLogger.cs" Link="internals\IDiagnosticsLogger.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\ILoggingOptions.cs" Link="internals\ILoggingOptions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\LoggerCategory.cs" Link="internals\LoggerCategory.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\WarningsConfiguration.cs" Link="internals\WarningsConfiguration.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\Annotatable.cs" Link="model\Annotatable.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\Annotation.cs" Link="model\Annotation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IAnnotatable.cs" Link="model\IAnnotatable.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IAnnotation.cs" Link="model\IAnnotation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptions.cs" Link="internals\IDbContextOptions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptionsExtension.cs" Link="internals\IDbContextOptionsExtension.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptionsExtensionWithDebugInfo.cs" Link="internals\IDbContextOptionsExtensionWithDebugInfo.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\ISingletonOptions.cs" Link="internals\ISingletonOptions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Internal\LazyRef.cs" Link="internals\LazyRef.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IModel.cs" Link="internals\IModel.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IMutableAnnotatable.cs" Link="model\IMutableAnnotatable.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\ValueGenerated.cs" Link="model\ValueGenerated.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Properties\CoreStrings.Designer.cs" Link="internals\CoreStrings.Designer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\WarningBehavior.cs" Link="internals\WarningBehavior.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\Check.cs" Link="internals\Check.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\DictionaryExtensions.cs" Link="internals\DictionaryExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\StringBuilderExtensions.cs" Link="internals\StringBuilderExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\Properties\AbstractionsStrings.resx" Link="internals\AbstractionsStrings.resx" />
+    <EmbeddedResource Include="..\submodules\EntityFrameworkCore\src\EFCore\Properties\CoreStrings.resx" Link="internals\CoreStrings.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>
