@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Text;
-using Microsoft.EntityFrameworkCore.Utilities;
 using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.Migration

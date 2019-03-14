@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/10/2019 21:01:26
+// Auto generated on UTC 03/14/2019 17:35:38
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -45,6 +45,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Name = this.Name;
 			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
+			res.DbSchema = this.DbSchema;
 			res.Constants = this.Constants.Clone();
 			res.Enumerators = this.Enumerators.Clone();
 			res.Catalogs = this.Catalogs.Clone();
@@ -59,6 +60,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Name = this.Name;
 			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
+			res.DbSchema = this.DbSchema;
 			return res;
 		}
 		protected override void Restore(Config from)
@@ -68,6 +70,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.Name = from.Name;
 			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 			this.ConnectionStringName = from.ConnectionStringName;
+			this.DbSchema = from.DbSchema;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -154,6 +157,21 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.ConnectionStringName; }
 		}
 		partial void OnConnectionStringNameChanged();
+		public string DbSchema
+		{ 
+			set
+			{
+				if (_dto.DbSchema != value)
+				{
+					_dto.DbSchema = value;
+					OnDbSchemaChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbSchema; }
+		}
+		partial void OnDbSchemaChanged();
 		public Constants Constants { get; set; }
 		public Enumerations Enumerators { get; set; }
 		public Catalogs Catalogs { get; set; }

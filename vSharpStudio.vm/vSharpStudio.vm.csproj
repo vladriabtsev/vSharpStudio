@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\Check.cs" Link="Check.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.7.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
@@ -24,6 +20,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
   </ItemGroup>
 

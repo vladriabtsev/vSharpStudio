@@ -18,6 +18,8 @@ namespace vSharpStudio.ViewModels
         {
             var res = new List<EntityObjectProblem>();
             var sr = new DbShemaReader(PathToProjectWithConnectionString, ConnectionStringName);
+
+            // https://docs.microsoft.com/en-us/ef/core/providers/
             switch (sr.ProviderName)
             {
                 case DbShemaReader.PROVIDERNAMESQL:

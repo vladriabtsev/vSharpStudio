@@ -5,10 +5,10 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.routeguide";
-option java_outer_classname = "RouteGuideProto";
-option objc_class_prefix = "RTG";
+//option java_multiple_files = true;
+//option java_package = "io.grpc.examples.routeguide";
+//option java_outer_classname = "RouteGuideProto";
+//option objc_class_prefix = "RTG";
 
 package Proto.Config;
 
@@ -23,6 +23,7 @@ message proto_config {
 	// path to project with config file containing connection string
 	string path_to_project_with_connection_string = 11;
 	string connection_string_name = 12;
+	string db_schema = 13;
 
 	proto_constants constants = 100;
 	proto_enumerations enumerators = 101;

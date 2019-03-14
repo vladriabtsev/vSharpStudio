@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Guid = System.Guid.NewGuid().ToString();
+            if (string.IsNullOrWhiteSpace(this.DbSchema))
+                this.DbSchema = "v";
         }
         public Config(string configJson) : base(ConfigValidator.Validator)
         {
@@ -32,13 +34,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<EntityObjectProblem>();
 
-            //var databaseModelFactory = new SqlServerDatabaseModelFactory(
-            //    new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
-            //        Fixture.ListLoggerFactory,
-            //        new LoggingOptions(),
-            //        new DiagnosticListener("Fake")));
+//            var databaseModelFactory = new SqlServerDatabaseModelFactory(
+//                new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
+////                    (ListLoggerFactory)ServiceProvider.GetRequiredService<ILoggerFactory>(),
+//                    Fixture.ListLoggerFactory,
+//                    new LoggingOptions(),
+//                    new DiagnosticListener("Fake")));
 
-            //var databaseModel = databaseModelFactory.Create(Fixture.TestStore.ConnectionString, new List<string>(), new List<string>() { "v" });
+            //var databaseModel = databaseModelFactory.Create(connectionString, new List<string>(), new List<string>() { this.DbSchema });
 
             return res;
         }
