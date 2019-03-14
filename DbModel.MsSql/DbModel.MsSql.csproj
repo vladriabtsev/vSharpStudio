@@ -9,6 +9,7 @@
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Diagnostics\SqlServerEventId.cs" Link="SqlServerEventId.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Infrastructure\Internal\ISqlServerOptions.cs" Link="ISqlServerOptions.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Metadata\Internal\SqlServerAnnotationNames.cs" Link="SqlServerAnnotationNames.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Migrations\SqlServerMigrationsSqlGenerator.cs" Link="SqlServerMigrationsSqlGenerator.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Properties\SqlServerStrings.Designer.cs" Link="SqlServerStrings.Designer.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Scaffolding\Internal\SqlDataReaderExtension.cs" Link="SqlDataReaderExtension.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Scaffolding\Internal\SqlServerDatabaseModelFactory.cs" Link="SqlServerDatabaseModelFactory.cs" />
@@ -23,10 +24,6 @@
     <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DbModel\DbModel.csproj" />
   </ItemGroup>
 
 </Project>

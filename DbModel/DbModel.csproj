@@ -7,7 +7,47 @@
 
   <ItemGroup>
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\Properties\AbstractionsStrings.Designer.cs" Link="internals\AbstractionsStrings.Designer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Metadata\Internal\TableMapping.cs" Link="migration\TableMapping.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Metadata\IRelationalPropertyAnnotations.cs" Link="internals\IRelationalPropertyAnnotations.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Metadata\ISequence.cs" Link="internals\ISequence.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\IMigrationsSqlGenerator.cs" Link="migration\IMigrationsSqlGenerator.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\MigrationCommand.cs" Link="migration\MigrationCommand.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\MigrationCommandListBuilder.cs" Link="migration\MigrationCommandListBuilder.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\MigrationsSqlGenerator.cs" Link="migration\MigrationsSqlGenerator.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\MigrationsSqlGeneratorDependencies.cs" Link="migration\MigrationsSqlGeneratorDependencies.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AddColumnOperation.cs" Link="migration\Operations\AddColumnOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AddForeignKeyOperation.cs" Link="migration\Operations\AddForeignKeyOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AddPrimaryKeyOperation.cs" Link="migration\Operations\AddPrimaryKeyOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AddUniqueConstraintOperation.cs" Link="migration\Operations\AddUniqueConstraintOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AlterColumnOperation.cs" Link="migration\Operations\AlterColumnOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AlterDatabaseOperation.cs" Link="migration\Operations\AlterDatabaseOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AlterSequenceOperation.cs" Link="migration\Operations\AlterSequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\AlterTableOperation.cs" Link="migration\Operations\AlterTableOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\ColumnOperation.cs" Link="migration\Operations\ColumnOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\CreateIndexOperation.cs" Link="migration\Operations\CreateIndexOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\CreateSequenceOperation.cs" Link="migration\Operations\CreateSequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\CreateTableOperation.cs" Link="migration\Operations\CreateTableOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DeleteDataOperation.cs" Link="migration\Operations\DeleteDataOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropColumnOperation.cs" Link="migration\Operations\DropColumnOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropForeignKeyOperation.cs" Link="migration\Operations\DropForeignKeyOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropIndexOperation.cs" Link="migration\Operations\DropIndexOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropPrimaryKeyOperation.cs" Link="migration\Operations\DropPrimaryKeyOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropSchemaOperation.cs" Link="migration\Operations\DropSchemaOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropSequenceOperation.cs" Link="migration\Operations\DropSequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropTableOperation.cs" Link="migration\Operations\DropTableOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\DropUniqueConstraintOperation.cs" Link="migration\Operations\DropUniqueConstraintOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\EnsureSchemaOperation.cs" Link="migration\Operations\EnsureSchemaOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\IAlterMigrationOperation.cs" Link="migration\Operations\IAlterMigrationOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\InsertDataOperation.cs" Link="migration\Operations\InsertDataOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\MigrationOperation.cs" Link="migration\Operations\MigrationOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\RenameColumnOperation.cs" Link="migration\Operations\RenameColumnOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\RenameIndexOperation.cs" Link="migration\Operations\RenameIndexOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\RenameSequenceOperation.cs" Link="migration\Operations\RenameSequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\RenameTableOperation.cs" Link="migration\Operations\RenameTableOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\RestartSequenceOperation.cs" Link="migration\Operations\RestartSequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\SequenceOperation.cs" Link="migration\Operations\SequenceOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\SqlOperation.cs" Link="migration\Operations\SqlOperation.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\Operations\UpdateDataOperation.cs" Link="migration\Operations\UpdateDataOperation.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Migrations\ReferentialAction.cs" Link="model\ReferentialAction.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\IDatabaseModelFactory.cs" Link="model\IDatabaseModelFactory.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseColumn.cs" Link="model\DatabaseColumn.cs" />
@@ -19,6 +59,22 @@
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseTable.cs" Link="model\DatabaseTable.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\DatabaseUniqueConstraint.cs" Link="model\DatabaseUniqueConstraint.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Scaffolding\Metadata\Internal\ScaffoldingAnnotationNames.cs" Link="model\ScaffoldingAnnotationNames.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalCommand.cs" Link="migration\IRelationalCommand.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalCommandBuilder.cs" Link="migration\IRelationalCommandBuilder.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalCommandBuilderFactory.cs" Link="migration\IRelationalCommandBuilderFactory.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalParameter.cs" Link="internals\IRelationalParameter.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalParameterBuilder.cs" Link="internals\IRelationalParameterBuilder.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalTypeMapper.cs" Link="migration\IRelationalTypeMapper.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\IRelationalTypeMappingSource.cs" Link="migration\IRelationalTypeMappingSource.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\ISqlGenerationHelper.cs" Link="migration\ISqlGenerationHelper.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Storage\RelationalTypeMapping.cs" Link="internals\RelationalTypeMapping.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\ColumnModification.cs" Link="migration\ColumnModification.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\Internal\ISingletonUpdateSqlGenerator.cs" Link="migration\ISingletonUpdateSqlGenerator.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\Internal\ModificationCommandComparer.cs" Link="migration\ModificationCommandComparer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\IUpdateSqlGenerator.cs" Link="migration\IUpdateSqlGenerator.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\ModificationCommand.cs" Link="migration\ModificationCommand.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\ModificationCommandBatch.cs" Link="migration\ModificationCommandBatch.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\Update\ResultSetMapping.cs" Link="internals\ResultSetMapping.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\DbLoggerCategory.cs" Link="internals\DbLoggerCategory.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\CoreEventId.cs" Link="internals\CoreEventId.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Diagnostics\EventData.cs" Link="internals\EventData.cs" />
@@ -40,14 +96,34 @@
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IAnnotatable.cs" Link="model\IAnnotatable.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IAnnotation.cs" Link="model\IAnnotation.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptions.cs" Link="internals\IDbContextOptions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptionsBuilderInfrastructure.cs" Link="internals\IDbContextOptionsBuilderInfrastructure.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptionsExtension.cs" Link="internals\IDbContextOptionsExtension.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IDbContextOptionsExtensionWithDebugInfo.cs" Link="internals\IDbContextOptionsExtensionWithDebugInfo.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\IInfrastructure.cs" Link="internals\IInfrastructure.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Infrastructure\ISingletonOptions.cs" Link="internals\ISingletonOptions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Internal\IndentedStringBuilder.cs" Link="internals\IndentedStringBuilder.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Internal\LazyRef.cs" Link="internals\LazyRef.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Conventions\Internal\IForeignKeyAddedConvention.cs" Link="internals\IForeignKeyAddedConvention.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Conventions\Internal\IForeignKeyOwnershipChangedConvention.cs" Link="internals\IForeignKeyOwnershipChangedConvention.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Conventions\Internal\IForeignKeyRemovedConvention.cs" Link="internals\IForeignKeyRemovedConvention.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Conventions\Internal\IForeignKeyRequirednessChangedConvention.cs" Link="internals\IForeignKeyRequirednessChangedConvention.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Conventions\Internal\IForeignKeyUniquenessChangedConvention.cs" Link="internals\IForeignKeyUniquenessChangedConvention.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IForeignKey.cs" Link="internals\IForeignKey.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IModel.cs" Link="internals\IModel.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IMutableAnnotatable.cs" Link="model\IMutableAnnotatable.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Internal\EntityTypeExtensions.cs" Link="internals\EntityTypeExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\Internal\ForeignKey.cs" Link="internals\ForeignKey.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IProperty.cs" Link="internals\IProperty.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\IPropertyBase.cs" Link="internals\IPropertyBase.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\ITypeBase.cs" Link="internals\ITypeBase.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Metadata\ValueGenerated.cs" Link="model\ValueGenerated.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Properties\CoreStrings.Designer.cs" Link="internals\CoreStrings.Designer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Storage\CoreTypeMapping.cs" Link="internals\CoreTypeMapping.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Storage\ITypeMapper.cs" Link="internals\ITypeMapper.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Storage\ITypeMappingSource.cs" Link="internals\ITypeMappingSource.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Storage\ITypeMappingSourcePlugin.cs" Link="internals\ITypeMappingSourcePlugin.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Storage\ValueBuffer.cs" Link="internals\ValueBuffer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\Update\IUpdateEntry.cs" Link="internals\IUpdateEntry.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore\WarningBehavior.cs" Link="internals\WarningBehavior.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\Check.cs" Link="internals\Check.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\DictionaryExtensions.cs" Link="internals\DictionaryExtensions.cs" />
@@ -61,10 +137,15 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="migration\Operations\" />
   </ItemGroup>
 
 </Project>

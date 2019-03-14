@@ -14,5 +14,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = name;
         }
+        public Catalog(string name, List<Property> listProperties ) : base(CatalogValidator.Validator)
+        {
+            this.Name = name;
+            foreach (var t in listProperties)
+            {
+                this.Properties.ListProperties.Add(t);
+            }
+        }
     }
 }
