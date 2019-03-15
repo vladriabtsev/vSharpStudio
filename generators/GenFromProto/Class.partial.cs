@@ -8,14 +8,18 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-  public partial class Class
-  {
-    FileDescriptor root;
-    MessageDescriptor message;
-    public Class(FileDescriptor root, MessageDescriptor message)
+    public partial class Class
     {
-      this.root = root;
-      this.message = message;
+        FileDescriptor root;
+        MessageDescriptor message;
+        public Class(FileDescriptor root, MessageDescriptor message)
+        {
+            this.root = root;
+            this.message = message;
+            //foreach (var t in message.Fields.InDeclarationOrder())
+            //{
+            //    t.Declaration.ToLeadingDetachedComments("");
+            //}
+        }
     }
-  }
 }

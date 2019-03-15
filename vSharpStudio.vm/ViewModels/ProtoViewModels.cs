@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/14/2019 17:35:38
+// Auto generated on UTC 03/15/2019 18:49:19
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -8,8 +8,10 @@ using System.Collections.Generic;
 
 namespace vSharpStudio.vm.ViewModels
 {
+	
 	public partial class Config : ViewModelValidatable<Config, Config.ConfigValidator>
 	{
+	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
@@ -82,6 +84,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -97,6 +100,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Version
 		{ 
 			set
@@ -112,6 +118,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Version; }
 		}
 		partial void OnVersionChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -127,6 +136,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public string PathToProjectWithConnectionString
 		{ 
 			set
@@ -142,6 +154,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.PathToProjectWithConnectionString; }
 		}
 		partial void OnPathToProjectWithConnectionStringChanged();
+		
+		
+		
 		public string ConnectionStringName
 		{ 
 			set
@@ -157,6 +172,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.ConnectionStringName; }
 		}
 		partial void OnConnectionStringNameChanged();
+		
+		
+		
 		public string DbSchema
 		{ 
 			set
@@ -172,13 +190,26 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.DbSchema; }
 		}
 		partial void OnDbSchemaChanged();
+		
+		
+		
 		public Constants Constants { get; set; }
+		
+		
+		
 		public Enumerations Enumerators { get; set; }
+		
+		
+		
 		public Catalogs Catalogs { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Property : ViewModelValidatable<Property, Property.PropertyValidator>
 	{
+	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
 		public Property() : base(PropertyValidator.Validator)
@@ -231,6 +262,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -246,6 +278,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -261,11 +296,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public DataType DataType { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class DataType : ViewModelValidatable<DataType, DataType.DataTypeValidator>
 	{
+	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
 		public DataType() : base(DataTypeValidator.Validator)
@@ -323,6 +365,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public proto_data_type.Types.EnumDataType EnumDataType
 		{ 
 			set
@@ -338,6 +381,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.EnumDataType; }
 		}
 		partial void OnEnumDataTypeChanged();
+		
+		
+		
 		public int Length
 		{ 
 			set
@@ -353,6 +399,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Length; }
 		}
 		partial void OnLengthChanged();
+		
+		
+		
 		public int Accuracy
 		{ 
 			set
@@ -368,6 +417,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Accuracy; }
 		}
 		partial void OnAccuracyChanged();
+		
+		
+		
 		public bool IsPositive
 		{ 
 			set
@@ -383,6 +435,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsPositive; }
 		}
 		partial void OnIsPositiveChanged();
+		
+		
+		
 		public string Guid
 		{ 
 			private set
@@ -398,10 +453,14 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Properties : ViewModelValidatable<Properties, Properties.PropertiesValidator>
 	{
+	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
 		#region CTOR
 		public Properties() : base(PropertiesValidator.Validator)
@@ -487,6 +546,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Name
 		{ 
 			set
@@ -502,11 +562,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public ObservableCollection<Property> ListProperties { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Constant : ViewModelValidatable<Constant, Constant.ConstantValidator>
 	{
+	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
 		public Constant() : base(ConstantValidator.Validator)
@@ -559,6 +626,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -574,6 +642,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -589,11 +660,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public Property ConstantType { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Constants : ViewModelValidatable<Constants, Constants.ConstantsValidator>
 	{
+	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
 		#region CTOR
 		public Constants() : base(ConstantsValidator.Validator)
@@ -679,6 +757,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string GroupName
 		{ 
 			set
@@ -694,11 +773,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.GroupName; }
 		}
 		partial void OnGroupNameChanged();
+		
+		
+		
 		public ObservableCollection<Constant> ListConstants { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Enumeration : ViewModelValidatable<Enumeration, Enumeration.EnumerationValidator>
 	{
+	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
 		public Enumeration() : base(EnumerationValidator.Validator)
@@ -747,6 +833,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -762,6 +849,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -777,10 +867,14 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Enumerations : ViewModelValidatable<Enumerations, Enumerations.EnumerationsValidator>
 	{
+	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
 		#region CTOR
 		public Enumerations() : base(EnumerationsValidator.Validator)
@@ -866,6 +960,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Name
 		{ 
 			set
@@ -881,11 +976,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public ObservableCollection<Enumeration> ListEnumerations { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Catalog : ViewModelValidatable<Catalog, Catalog.CatalogValidator>
 	{
+	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
@@ -938,6 +1040,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -953,6 +1056,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -968,11 +1074,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public Properties Properties { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Catalogs : ViewModelValidatable<Catalogs, Catalogs.CatalogsValidator>
 	{
+	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
 		#region CTOR
 		public Catalogs() : base(CatalogsValidator.Validator)
@@ -1098,6 +1211,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Name
 		{ 
 			set
@@ -1113,12 +1227,22 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
+		
+		
+		
 		public ObservableCollection<Catalog> ListCatalogs { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Document : ViewModelValidatable<Document, Document.DocumentValidator>
 	{
+	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
 		public Document() : base(DocumentValidator.Validator)
@@ -1207,6 +1331,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string Guid
 		{ 
 			private set
@@ -1222,6 +1347,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
 		public string Name
 		{ 
 			set
@@ -1237,11 +1365,18 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
+		
+		
+		
 		public ObservableCollection<Properties> Properties { get; set; }
+		
+		
 		#endregion Properties
 	}
+	
 	public partial class Documents : ViewModelValidatable<Documents, Documents.DocumentsValidator>
 	{
+	
 		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
 		#region CTOR
 		public Documents() : base(DocumentsValidator.Validator)
@@ -1367,6 +1502,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		public string GroupName
 		{ 
 			set
@@ -1382,8 +1518,16 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.GroupName; }
 		}
 		partial void OnGroupNameChanged();
+		
+		
+		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
+		
+		
+		
 		public ObservableCollection<Document> ListDocuments { get; set; }
+		
+		
 		#endregion Properties
 	}
 	

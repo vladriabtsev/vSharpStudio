@@ -3,6 +3,8 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.proto" #>
+<#= field.Declaration.ToLeadingComments() #>
 <# if (field.IsRepeated) { #>
 public ObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
@@ -40,3 +42,5 @@ public <#= field.FieldType.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 }
 partial void On<#= field.Name.ToNameCs() #>Changed();
 <# } #>
+<#= field.Declaration.ToTrailingComments("") #>
+

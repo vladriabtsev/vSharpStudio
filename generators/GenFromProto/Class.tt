@@ -3,8 +3,11 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.proto" #>
+<#= message.Declaration.ToLeadingComments() #>
 public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>.<#= message.Name.ToNameCs() #>Validator>
 {
+<#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
 	#region CTOR
 	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
