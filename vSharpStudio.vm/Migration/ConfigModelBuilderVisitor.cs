@@ -47,7 +47,8 @@ namespace vSharpStudio.vm.Migration
 
         void IVisitorConfig.Visit(Catalog m)
         {
-            var c = _modelBuilder.Entity(m.Name, x=> {
+            var c = _modelBuilder.Entity(m.Name, x =>
+            {
                 foreach (var t in m.Properties.ListProperties)
                 {
                     switch (t.DataType.EnumDataType)
@@ -55,19 +56,18 @@ namespace vSharpStudio.vm.Migration
                         case Proto.Config.proto_data_type.Types.EnumDataType.Any: // any document, catalog
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+                            x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs: // any catalog
                             break;
-                        case Proto.Config.proto_data_type.Types.EnumDataType.Constant:
-                            break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+                            x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
+                            x.Property(t.ClrType, t.Name);
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
                             break;
-                        //case Proto.Config.proto_data_type.Types.EnumDataType.Enums:
-                        //    break;
                         default:
                             x.Property(t.ClrType, t.Name);
                             break;

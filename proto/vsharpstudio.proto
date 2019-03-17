@@ -56,6 +56,7 @@ message proto_data_type {
     string guid = 5;
     string min_value_string = 6;
     string max_value_string = 7;
+    string object_name = 8;
 }
 message proto_properties {
 	string name = 1;

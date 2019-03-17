@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/17/2019 00:11:38
+// Auto generated on UTC 03/17/2019 00:35:04
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -339,6 +339,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.MinValueString = this.MinValueString;
 			res.MaxValueString = this.MaxValueString;
+			res.ObjectName = this.ObjectName;
 			return res;
 		}
 		#region IEditable
@@ -352,6 +353,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.MinValueString = this.MinValueString;
 			res.MaxValueString = this.MaxValueString;
+			res.ObjectName = this.ObjectName;
 			return res;
 		}
 		protected override void Restore(DataType from)
@@ -363,6 +365,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.Guid = from.Guid;
 			this.MinValueString = from.MinValueString;
 			this.MaxValueString = from.MaxValueString;
+			this.ObjectName = from.ObjectName;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -495,6 +498,24 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.MaxValueString; }
 		}
 		partial void OnMaxValueStringChanged();
+		
+		
+		
+		public string ObjectName
+		{ 
+			set
+			{
+				if (_dto.ObjectName != value)
+				{
+					_dto.ObjectName = value;
+					OnObjectNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.ObjectName; }
+		}
+		partial void OnObjectNameChanged();
 		
 		
 		#endregion Properties
