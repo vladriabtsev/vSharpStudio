@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
+using FluentValidation;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public partial class DataType
     {
-        public DataType(EnumDataType type, int? length = null, int? accuracy = null) : base(DataTypeValidator.Validator)
+        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : base(DataTypeValidator.Validator)
         {
             this.EnumDataType = type;
-            switch(this.EnumDataType)
+            switch (this.EnumDataType)
             {
                 case EnumDataType.Any:
                     break;
@@ -50,6 +52,71 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 default:
                     throw new ArgumentException();
+            }
+        }
+        public BigInteger MinValue
+        {
+            set
+            {
+                if (_MinValue != value)
+                {
+                    _MinValue = value;
+                    _dto.MinValueString = _MinValue.ToString();
+                    NotifyPropertyChanged();
+                    ValidateProperty();
+                }
+            }
+            get
+            {
+                if (_MinValue == null)
+                {
+                    BigInteger v;
+                    if (BigInteger.TryParse(_dto.MinValueString, out v))
+                        _MinValue = v;
+                }
+                return _MinValue;
+            }
+        }
+        private BigInteger _MinValue;
+        public BigInteger MaxValue
+        {
+            set
+            {
+                if (_MaxValue != value)
+                {
+                    _MaxValue = value;
+                    _dto.MaxValueString = _MaxValue.ToString();
+                    NotifyPropertyChanged();
+                    ValidateProperty();
+                }
+            }
+            get
+            {
+                if (_MaxValue == null)
+                {
+                    BigInteger v;
+                    if (BigInteger.TryParse(_dto.MaxValueString, out v))
+                        _MaxValue = v;
+                }
+                return _MaxValue;
+            }
+        }
+        private BigInteger _MaxValue;
+        public partial class DataTypeValidator
+        {
+            public DataTypeValidator()
+            {
+                RuleFor(x => x.MinValueString).NotEmpty().WithMessage("Please provide minimum value");
+                RuleFor(x => x.MaxValueString).NotEmpty().WithMessage("Please provide maximum value");
+                RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
+                RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
+                RuleFor(x => x.Length).GreaterThan(0u);
+                RuleFor(x => x.Accuracy).LessThan(x => x.Length);
+            }
+            private bool ParsableToBigInteger(string val)
+            {
+                BigInteger v;
+                return BigInteger.TryParse(val, out v);
             }
         }
     }

@@ -50,10 +50,12 @@ message proto_data_type {
 		Any = 15;
 	}
 	EnumDataType enum_data_type = 1; 
-	int32 length = 2; 
-	int32 accuracy = 3; 
+	uint32 length = 2; 
+	uint32 accuracy = 3; 
 	bool is_positive = 4; 
     string guid = 5;
+    string min_value_string = 6;
+    string max_value_string = 7;
 }
 message proto_properties {
 	string name = 1;

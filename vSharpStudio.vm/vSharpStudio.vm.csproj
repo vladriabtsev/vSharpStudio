@@ -13,19 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.7.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="NLog" Version="4.5.11" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj" />
+    <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/15/2019 18:49:19
+// Auto generated on UTC 03/17/2019 00:11:38
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -337,6 +337,8 @@ namespace vSharpStudio.vm.ViewModels
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
 			res.Guid = this.Guid;
+			res.MinValueString = this.MinValueString;
+			res.MaxValueString = this.MaxValueString;
 			return res;
 		}
 		#region IEditable
@@ -348,6 +350,8 @@ namespace vSharpStudio.vm.ViewModels
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
 			res.Guid = this.Guid;
+			res.MinValueString = this.MinValueString;
+			res.MaxValueString = this.MaxValueString;
 			return res;
 		}
 		protected override void Restore(DataType from)
@@ -357,6 +361,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.Accuracy = from.Accuracy;
 			this.IsPositive = from.IsPositive;
 			this.Guid = from.Guid;
+			this.MinValueString = from.MinValueString;
+			this.MaxValueString = from.MaxValueString;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -384,7 +390,7 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public int Length
+		public uint Length
 		{ 
 			set
 			{
@@ -402,7 +408,7 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public int Accuracy
+		public uint Accuracy
 		{ 
 			set
 			{
@@ -453,6 +459,42 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Guid; }
 		}
 		partial void OnGuidChanged();
+		
+		
+		
+		public string MinValueString
+		{ 
+			set
+			{
+				if (_dto.MinValueString != value)
+				{
+					_dto.MinValueString = value;
+					OnMinValueStringChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.MinValueString; }
+		}
+		partial void OnMinValueStringChanged();
+		
+		
+		
+		public string MaxValueString
+		{ 
+			set
+			{
+				if (_dto.MaxValueString != value)
+				{
+					_dto.MaxValueString = value;
+					OnMaxValueStringChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.MaxValueString; }
+		}
+		partial void OnMaxValueStringChanged();
 		
 		
 		#endregion Properties
