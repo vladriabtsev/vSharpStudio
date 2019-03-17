@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace vSharpStudio.Utils
+namespace vSharpStudio.vm
 {
     public class Logger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger<DbLoggerCategory.Scaffolding>
     {
@@ -51,12 +51,12 @@ namespace vSharpStudio.Utils
 
         public WarningsConfiguration WarningsConfiguration => throw new NotImplementedException();
 
-        public void Initialize([NotNull] IDbContextOptions options)
+        public void Initialize(IDbContextOptions options)
         {
             throw new NotImplementedException();
         }
 
-        public void Validate([NotNull] IDbContextOptions options)
+        public void Validate(IDbContextOptions options)
         {
             throw new NotImplementedException();
         }

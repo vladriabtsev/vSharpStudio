@@ -4,6 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Text;
 using vSharpStudio.vm.Migration;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Migration
 {

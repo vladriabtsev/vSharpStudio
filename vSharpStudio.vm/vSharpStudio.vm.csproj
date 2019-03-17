@@ -13,12 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
     <PackageReference Include="NLog" Version="4.5.11" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj" />
-    <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj" />
   </ItemGroup>

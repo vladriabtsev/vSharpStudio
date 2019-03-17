@@ -6,7 +6,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.Migration
 {
-    class ConfigModelBuilderVisitor : IVisitorConfig
+    public class ConfigModelBuilderVisitor : IVisitorConfig
     {
         private ModelBuilder _modelBuilder = null;
         //public ConfigModelBuilderVisitor(ModelBuilder modelBuilder)
