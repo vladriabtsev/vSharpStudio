@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using Microsoft.Extensions.Logging;
+using vSharpStudio.std;
 using vSharpStudio.vm;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 
-namespace DbModel.Sqlite
+namespace DbModel.MySql
 {
-    public class SqliteMigration : IMigration
+    public class MySqlMigration : IMigration
     {
+        public static ILogger Logger = ApplicationLogging.CreateLogger<MySqlMigration>();
         Config _config = null;
-
-        public SqliteMigration(Config config)
+        public MySqlMigration(Config config)
         {
             this._config = config;
         }
@@ -34,14 +36,15 @@ namespace DbModel.Sqlite
             IVisitorConfig source = new ConfigModelBuilderVisitor();
             source.Visit(this._config);
 
+
             return res;
         }
         DatabaseModel IMigration.GetDatabaseModel()
         {
             DatabaseModel res = null;
-            // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
-            // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
-            //var mf = new SqliteDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
+            // https://github.com/mysql/mysql-connector-net
+            // https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
+            //var mf = new MySqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
             //res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }

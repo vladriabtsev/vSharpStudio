@@ -6,6 +6,7 @@ using System.Text;
 using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.vm.Migration;
@@ -36,8 +37,25 @@ namespace vSharpStudio.vm.ViewModels
         {
             return _migration.GetUpdateDbProblems();
         }
-
         public void UpdateDb()
+        {
+            throw new NotImplementedException();
+        }
+        public virtual void InitMigration()
+        {
+            throw new NotImplementedException();
+        }
+        public DatabaseModel GetDatabaseModel()
+        {
+            return _migration.GetDatabaseModel();
+        }
+
+        public bool DatabaseExist()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CreateDatabase()
         {
             throw new NotImplementedException();
         }

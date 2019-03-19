@@ -12,12 +12,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Guid = System.Guid.NewGuid().ToString();
         }
-        public Property(string name, EnumDataType type, string guidOfType) : base(PropertyValidator.Validator)
+        public Property(string name, EnumDataType type, string guidOfType) : this()
         {
             this.Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
-        public Property(string name, EnumDataType type, uint? length = null, uint? accuracy = null) : base(PropertyValidator.Validator)
+        public Property(string name, EnumDataType type, uint? length = null, uint? accuracy = null) : this()
         {
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);

@@ -7,9 +7,10 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     public partial class DataType
     {
-        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : base(DataTypeValidator.Validator)
+        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : this()
         {
             this.EnumDataType = type;
             switch (this.EnumDataType)
@@ -36,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
-        public DataType(EnumDataType type, string guidOfType) : base(DataTypeValidator.Validator)
+        public DataType(EnumDataType type, string guidOfType) : this()
         {
             this.EnumDataType = type;
             this.Guid = guidOfType;

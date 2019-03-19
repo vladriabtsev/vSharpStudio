@@ -30,8 +30,8 @@ namespace ViewModelBase
 #if DEBUG
         public ViewModelBindable()
         {
-            if (this.GetType().Name != typeof(T).Name)
-                throw new Exception("Unexpected class as a generic type: " + typeof(T).Name + " Expected:" + this.GetType().Name);
+            //if (this.GetType().Name != typeof(T).Name)
+            //    throw new Exception("Unexpected class as a generic type: " + typeof(T).Name + " Expected:" + this.GetType().Name);
         }
 #endif
         protected virtual void NotifyPropertyChanged<TResult>

@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Scaffolding.Internal;
+using Microsoft.Extensions.Logging;
+using vSharpStudio.std;
 using vSharpStudio.vm;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 
-namespace DbModel.Sqlite
+namespace DbModel.Postgre
 {
-    public class SqliteMigration : IMigration
+    // http://www.npgsql.org/doc/api/Npgsql.html
+    // https://github.com/npgsql/npgsql
+    public class NpgsqlMigration : IMigration
     {
+        public static ILogger Logger = ApplicationLogging.CreateLogger<NpgsqlMigration>();
         Config _config = null;
-
-        public SqliteMigration(Config config)
+        public NpgsqlMigration(Config config)
         {
             this._config = config;
         }
@@ -34,6 +38,7 @@ namespace DbModel.Sqlite
             IVisitorConfig source = new ConfigModelBuilderVisitor();
             source.Visit(this._config);
 
+
             return res;
         }
         DatabaseModel IMigration.GetDatabaseModel()
@@ -41,7 +46,7 @@ namespace DbModel.Sqlite
             DatabaseModel res = null;
             // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
             // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
-            //var mf = new SqliteDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
+            //var mf = new NpgsqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
             //res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }

@@ -56,6 +56,12 @@
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
@@ -64,6 +70,9 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Extensions.Logging.1.4.0\lib\net461\NLog.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
@@ -143,13 +152,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migration\DbSchemaReader.cs" />
     <Compile Include="Migration\MsSqlServerSchemaReader.cs" />
     <Compile Include="Migration\SchemaReader.cs" />
     <Compile Include="Templates\Catalog.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Catalog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\DAL\Dal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dal.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\Document.cs">
       <AutoGen>True</AutoGen>
@@ -233,6 +246,14 @@
       <Project>{22b3498c-a464-4041-80fb-6dc5228d5042}</Project>
       <Name>DbModel.MsSql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DbModel.MySql\DbModel.MySql.csproj">
+      <Project>{31ff72d1-87d2-433c-9c4b-2b30a37e7d64}</Project>
+      <Name>DbModel.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbModel.Postgre\DbModel.Postgre.csproj">
+      <Project>{eca9baae-1722-4119-b88b-adb71d7c869a}</Project>
+      <Name>DbModel.Postgre</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj">
       <Project>{4169e629-b123-45bf-a64d-7e8f0c5662cc}</Project>
       <Name>DbModel.Sqlite</Name>
@@ -257,6 +278,10 @@
     <Content Include="Templates\Catalog.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Catalog.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\DAL\Dal.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Dal.cs</LastGenOutput>
     </Content>
     <Content Include="Templates\Document.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -289,6 +314,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

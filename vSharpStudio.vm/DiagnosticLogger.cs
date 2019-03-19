@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,27 +8,22 @@ using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Logging;
+using vSharpStudio.std;
 
 namespace vSharpStudio.vm
 {
-    public class Logger : Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger<DbLoggerCategory.Scaffolding>
+    public class DiagnosticLogger<TCategory> : IDiagnosticsLogger<TCategory>
+            where TCategory : LoggerCategory<TCategory>, new()
     {
-        public ILoggingOptions Options
-        {
-            get
-            {
-                if (_options == null)
-                    _options = new LoggingOptions();
-                return _options;
-            }
-        }
-        private ILoggingOptions _options;
+        public ILoggingOptions Options => _iLoggingOptions;
+        private ILoggingOptions _iLoggingOptions = new LoggingOptions();
+        public DiagnosticSource DiagnosticSource => throw new NotImplementedException();
 
-        public System.Diagnostics.DiagnosticSource DiagnosticSource => throw new NotImplementedException();
+        ILogger IDiagnosticsLogger<TCategory>.Logger => _ilogger;
+        private ILogger _ilogger = ApplicationLogging.CreateLogger<TCategory>();
 
-        Microsoft.Extensions.Logging.ILogger IDiagnosticsLogger<DbLoggerCategory.Scaffolding>.Logger => throw new NotImplementedException();
-
-        public WarningBehavior GetLogBehavior(Microsoft.Extensions.Logging.EventId eventId, Microsoft.Extensions.Logging.LogLevel logLevel)
+        public WarningBehavior GetLogBehavior(EventId eventId, LogLevel logLevel)
         {
             return WarningBehavior.Log;
         }

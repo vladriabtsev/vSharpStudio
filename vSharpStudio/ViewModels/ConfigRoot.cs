@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using vSharpStudio.Migration;
+using vSharpStudio.std;
 using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.ViewModels
@@ -13,26 +15,48 @@ namespace vSharpStudio.ViewModels
     //TODO report based on FlowDocument https://github.com/rodrigovedovato/FlowDocumentReporting
     public class ConfigRoot : Config
     {
+        public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
+        public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
+        public const string PROVIDER_NAME_MYSQL = "MySql.Data";
+        public const string PROVIDER_NAME_NPGSQL = "Npgsql";
+        public static ILogger Logger = ApplicationLogging.CreateLogger<ConfigRoot>();
         public ConfigRoot()
         {
+            // https://msdn.microsoft.com/en-us/magazine/mt694089.aspx
+            Logger.LogInformation("");
+        }
+        public ConfigRoot(string pathToProjectWithConnectionString, string connectionStringName)
+        {
+            this.PathToProjectWithConnectionString = pathToProjectWithConnectionString;
+            this.ConnectionStringName = connectionStringName;
+            //InitMigration();
+        }
+        public ConfigRoot(string configJson) : base(configJson)
+        {
+            //InitMigration();
+        }
+        public override void InitMigration()
+        {
             // https://docs.microsoft.com/en-us/ef/core/providers/
+            // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/obtaining-a-dbproviderfactory ???
             switch (this.ProviderName)
             {
-                case DbShemaReader.PROVIDERNAMESQL:
+                case ConfigRoot.PROVIDER_NAME_SQL:
                     _migration = new DbModel.MsSql.SqlServerMigration(this);
                     break;
-                case DbShemaReader.PROVIDERNAMESQLITE:
+                case ConfigRoot.PROVIDER_NAME_SQLITE:
                     _migration = new DbModel.Sqlite.SqliteMigration(this);
+                    break;
+                case ConfigRoot.PROVIDER_NAME_MYSQL:
+                    _migration = new DbModel.MySql.MySqlMigration(this);
+                    break;
+                case ConfigRoot.PROVIDER_NAME_NPGSQL:
+                    _migration = new DbModel.Postgre.NpgsqlMigration(this);
                     break;
                 default:
                     throw new ArgumentException("Unsupported ProviderName in connection string: " + this.ProviderName);
             }
         }
-        public ConfigRoot(bool dummy, string connectionStringName)
-        {
-            this.ConnectionStringName = connectionStringName;
-        }
-        public ConfigRoot(string configJson) : base(configJson) { }
 
         #region ConnectionString
         //string GetConnectionString(ref string connectionStringName, out string providerName)
@@ -117,15 +141,15 @@ namespace vSharpStudio.ViewModels
             var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
             var connSection = config.ConnectionStrings;
 
-                try
-                {
-                    result = connSection.ConnectionStrings[this.ConnectionStringName].ConnectionString;
-                    providerName = connSection.ConnectionStrings[this.ConnectionStringName].ProviderName;
-                }
-                catch
-                {
-                    result = "There is no connection string name called '" + this.ConnectionStringName + "'";
-                }
+            try
+            {
+                result = connSection.ConnectionStrings[this.ConnectionStringName].ConnectionString;
+                providerName = connSection.ConnectionStrings[this.ConnectionStringName].ProviderName;
+            }
+            catch
+            {
+                result = "There is no connection string name called '" + this.ConnectionStringName + "'";
+            }
 
             //	if (String.IsNullOrEmpty(providerName))
             //		providerName="System.Data.SqlClient";
