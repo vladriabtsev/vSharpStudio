@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 using vSharpStudio.std;
 using vSharpStudio.vm;
 using vSharpStudio.vm.Migration;
@@ -44,8 +44,8 @@ namespace DbModel.MySql
             DatabaseModel res = null;
             // https://github.com/mysql/mysql-connector-net
             // https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
-            //var mf = new MySqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
-            //res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
+            var mf = new MySqlDatabaseModelFactory(ApplicationLogging.LoggerFactory);
+            res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }
 

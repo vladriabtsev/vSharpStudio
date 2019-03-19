@@ -1,10 +1,9 @@
-#[submodule "submodules/EntityFrameworkCore"]
-#	path = submodules/EntityFrameworkCore
-#	url = https://github.com/aspnet/EntityFrameworkCore.git
-#[submodule "submodules/Pomelo.EntityFrameworkCore.MySql"]
-#	path = submodules/Pomelo.EntityFrameworkCore.MySql
-#	url = https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql.git
+[submodule "submodules/EntityFrameworkCore"]
+	path = submodules/EntityFrameworkCore
+	url = https://github.com/aspnet/EntityFrameworkCore.git
+[submodule "submodules/Pomelo.EntityFrameworkCore.MySql"]
+	path = submodules/Pomelo.EntityFrameworkCore.MySql
+	url = https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql.git
 [submodule "submodules/Npgsql.EntityFrameworkCore.PostgreSQL"]
 	path = submodules/Npgsql.EntityFrameworkCore.PostgreSQL
 	url = https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL.git
-

@@ -6,13 +6,31 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Diagnostics\SqlServerEventId.cs" Link="ef\SqlServerEventId.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Internal\SqlServerLoggerExtensions.cs" Link="ef\SqlServerLoggerExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Metadata\Internal\SqlServerAnnotationNames.cs" Link="ef\SqlServerAnnotationNames.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Properties\SqlServerStrings.Designer.cs" Link="ef\SqlServerStrings.Designer.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Scaffolding\Internal\SqlDataReaderExtension.cs" Link="ef\SqlDataReaderExtension.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Scaffolding\Internal\SqlServerDatabaseModelFactory.cs" Link="ef\SqlServerDatabaseModelFactory.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\Shared\Check.cs" Link="ef\Check.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Properties\SqlServerStrings.resx" Link="ef\SqlServerStrings.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ef\" />
   </ItemGroup>
 
 </Project>

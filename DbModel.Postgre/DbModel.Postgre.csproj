@@ -2,16 +2,56 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Diagnostics\NpgsqlEventId.cs" Link="ef\NpgsqlEventId.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Extensions\NpgsqlMetadataExtensions.cs" Link="ef\NpgsqlMetadataExtensions.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Internal\NpgsqlLoggerExtensions.cs" Link="ef\NpgsqlLoggerExtensions.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\CockroachDbInterleaveInParent.cs" Link="ef\CockroachDbInterleaveInParent.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\INpgsqlEntityTypeAnnotations.cs" Link="ef\INpgsqlEntityTypeAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\INpgsqlIndexAnnotations.cs" Link="ef\INpgsqlIndexAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\INpgsqlModelAnnotations.cs" Link="ef\INpgsqlModelAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\INpgsqlPropertyAnnotations.cs" Link="ef\INpgsqlPropertyAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\Internal\CockroachDbAnnotationNames.cs" Link="ef\CockroachDbAnnotationNames.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\Internal\NpgsqlAnnotationNames.cs" Link="ef\NpgsqlAnnotationNames.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlAlterDatabaseOperationAnnotations.cs" Link="ef\NpgsqlAlterDatabaseOperationAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlDatabaseModelAnnotations.cs" Link="ef\NpgsqlDatabaseModelAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlEntityTypeAnnotations.cs" Link="ef\NpgsqlEntityTypeAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlIndexAnnotations.cs" Link="ef\NpgsqlIndexAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlModelAnnotations.cs" Link="ef\NpgsqlModelAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlPropertyAnnotations.cs" Link="ef\NpgsqlPropertyAnnotations.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NpgsqlValueGenerationStrategy.cs" Link="ef\NpgsqlValueGenerationStrategy.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\NullSortOrder.cs" Link="ef\NullSortOrder.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\PostgresEnum.cs" Link="ef\PostgresEnum.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\PostgresExtension.cs" Link="ef\PostgresExtension.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\PostgresRange.cs" Link="ef\PostgresRange.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Metadata\SortOrder.cs" Link="ef\SortOrder.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Properties\NpgsqlStrings.Designer.cs" Link="ef\NpgsqlStrings.Designer.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Scaffolding\Internal\DbDataReaderExtension.cs" Link="ef\DbDataReaderExtension.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Scaffolding\Internal\NpgsqlDatabaseModelFactory.cs" Link="ef\NpgsqlDatabaseModelFactory.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Utilities\Check.cs" Link="ef\Check.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Utilities\SharedTypeExtensions.cs" Link="ef\SharedTypeExtensions.cs" />
+    <Compile Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Utilities\SortOrderHelper.cs" Link="ef\SortOrderHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\submodules\Npgsql.EntityFrameworkCore.PostgreSQL\src\EFCore.PG\Properties\NpgsqlStrings.resx" Link="ef\NpgsqlStrings.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Npgsql" Version="4.0.5" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ef\" />
   </ItemGroup>
 
 </Project>

@@ -46,8 +46,8 @@ namespace DbModel.Postgre
             DatabaseModel res = null;
             // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
             // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
-            //var mf = new NpgsqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
-            //res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
+            var mf = new NpgsqlDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
+            res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }
 
