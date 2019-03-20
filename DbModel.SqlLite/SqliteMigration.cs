@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
+using Microsoft.EntityFrameworkCore.Sqlite.Storage.Internal;
 using vSharpStudio.vm;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
@@ -41,7 +42,7 @@ namespace DbModel.Sqlite
             DatabaseModel res = null;
             // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
             // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
-            //var mf = new SqliteDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
+            //var mf = new SqliteDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>(), new SqliteTypeMappingSource());
             //res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }
