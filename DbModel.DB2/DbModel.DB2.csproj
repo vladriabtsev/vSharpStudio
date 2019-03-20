@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IBM.Data.DB2.Core" Version="1.3.0.100" />
+    <PackageReference Include="IBM.EntityFrameworkCore" Version="1.3.0.100" />
+  </ItemGroup>
+
+</Project>
