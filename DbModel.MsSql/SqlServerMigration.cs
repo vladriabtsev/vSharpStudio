@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.SqlServer.Scaffolding.Internal;
+using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.std;
 using vSharpStudio.vm;
@@ -14,21 +20,17 @@ namespace DbModel.MsSql
     // https://github.com/aspnet/EntityFrameworkCore
     public class SqlServerMigration : IMigration
     {
+        private static string _logger_category = typeof(SqlServerMigration).FullName;
+        private static DiagnosticSource _logger = new DiagnosticListener(_logger_category);
+
         public static ILogger Logger = ApplicationLogging.CreateLogger<SqlServerMigration>();
+
         Config _config = null;
         public SqlServerMigration(Config config)
         {
             this._config = config;
-        }
-
-        public void InitMigration()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateDb()
-        {
-            throw new NotImplementedException();
+            if (_logger.IsEnabled(_logger_category))
+                _logger.Write("Created", null);
         }
 
         List<EntityObjectProblem> IMigration.GetUpdateDbProblems()
@@ -54,20 +56,44 @@ namespace DbModel.MsSql
         {
             throw new NotImplementedException();
         }
-
-        bool IMigration.DatabaseExist()
+        bool IMigration.IsDatabaseServiceOn()
+        {
+            //SqlServerConnection conn = new SqlServerConnection()
+            //    Row
+            //SqlServerDatabaseCreator cr = new SqlServerDatabaseCreator(CreateDependencies());
+            throw new NotImplementedException();
+        }
+        bool IMigration.IsDatabaseExist()
         {
             throw new NotImplementedException();
         }
-
         bool IMigration.CreateDatabase()
         {
             throw new NotImplementedException();
         }
-
         void IMigration.UpdateDb()
         {
             throw new NotImplementedException();
+        }
+        public static RelationalConnectionDependencies CreateDependencies(DbContextOptions options = null)
+        {
+            options = options
+                      ?? new DbContextOptionsBuilder()
+                          .UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=SqlServerConnectionTest")
+                          .Options;
+
+            return new RelationalConnectionDependencies(
+                options,
+                new DiagnosticsLogger<DbLoggerCategory.Database.Transaction>(
+                    new LoggerFactory(),
+                    new LoggingOptions(),
+                    new DiagnosticListener("FakeDiagnosticListener")),
+                new DiagnosticsLogger<DbLoggerCategory.Database.Connection>(
+                    new LoggerFactory(),
+                    new LoggingOptions(),
+                    new DiagnosticListener("FakeDiagnosticListener")),
+                new NamedConnectionStringResolver(options),
+                new RelationalTransactionFactory(new RelationalTransactionFactoryDependencies()));
         }
     }
 }

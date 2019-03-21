@@ -9,7 +9,8 @@ namespace vSharpStudio.vm.Migration
     public interface IMigration
     {
         void InitMigration();
-        bool DatabaseExist();
+        bool IsDatabaseServiceOn();
+        bool IsDatabaseExist();
         bool CreateDatabase();
         DatabaseModel GetDatabaseModel();
         List<EntityObjectProblem> GetUpdateDbProblems();

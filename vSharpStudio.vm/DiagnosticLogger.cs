@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.std;
 
@@ -33,28 +34,28 @@ namespace vSharpStudio.vm
             return true;
         }
     }
-    public class LoggingOptions : ILoggingOptions
-    {
-        public LoggingOptions(bool isSensitiveDataLoggingEnabled = false, bool isSensitiveDataLoggingWarned = true)
-        {
-            this.IsSensitiveDataLoggingEnabled = isSensitiveDataLoggingEnabled;
-            this.IsSensitiveDataLoggingWarned = isSensitiveDataLoggingWarned;
-            //this.WarningsConfiguration = new WarningsConfiguration();
-        }
-        public bool IsSensitiveDataLoggingEnabled { get; }
+    //public class LoggingOptions : ILoggingOptions
+    //{
+    //    public LoggingOptions(bool isSensitiveDataLoggingEnabled = false, bool isSensitiveDataLoggingWarned = true)
+    //    {
+    //        this.IsSensitiveDataLoggingEnabled = isSensitiveDataLoggingEnabled;
+    //        this.IsSensitiveDataLoggingWarned = isSensitiveDataLoggingWarned;
+    //        //this.WarningsConfiguration = new WarningsConfiguration();
+    //    }
+    //    public bool IsSensitiveDataLoggingEnabled { get; }
 
-        public bool IsSensitiveDataLoggingWarned { get; set; }
+    //    public bool IsSensitiveDataLoggingWarned { get; set; }
 
-        public WarningsConfiguration WarningsConfiguration => throw new NotImplementedException();
+    //    public WarningsConfiguration WarningsConfiguration => throw new NotImplementedException();
 
-        public void Initialize(IDbContextOptions options)
-        {
-            throw new NotImplementedException();
-        }
+    //    public void Initialize(IDbContextOptions options)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public void Validate(IDbContextOptions options)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public void Validate(IDbContextOptions options)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }

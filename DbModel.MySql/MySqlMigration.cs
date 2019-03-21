@@ -19,17 +19,6 @@ namespace DbModel.MySql
         {
             this._config = config;
         }
-
-        public void InitMigration()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateDb()
-        {
-            throw new NotImplementedException();
-        }
-
         List<EntityObjectProblem> IMigration.GetUpdateDbProblems()
         {
             var res = new List<EntityObjectProblem>();
@@ -48,22 +37,22 @@ namespace DbModel.MySql
             res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
             return res;
         }
-
         void IMigration.InitMigration()
         {
             throw new NotImplementedException();
         }
-
-        bool IMigration.DatabaseExist()
+        bool IMigration.IsDatabaseServiceOn()
         {
             throw new NotImplementedException();
         }
-
+        bool IMigration.IsDatabaseExist()
+        {
+            throw new NotImplementedException();
+        }
         bool IMigration.CreateDatabase()
         {
             throw new NotImplementedException();
         }
-
         void IMigration.UpdateDb()
         {
             throw new NotImplementedException();

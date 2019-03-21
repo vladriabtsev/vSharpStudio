@@ -11,7 +11,6 @@ namespace ViewModelBase
 {
   public class ObservableCollectionExt<T> : ObservableCollection<T>
   {
-    private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
     public new event NotifyCollectionChangedEventHandler CollectionChanged;
     public new event PropertyChangedEventHandler PropertyChanged;

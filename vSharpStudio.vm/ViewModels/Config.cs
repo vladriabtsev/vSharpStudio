@@ -45,19 +45,21 @@ namespace vSharpStudio.vm.ViewModels
         {
             throw new NotImplementedException();
         }
-        public DatabaseModel GetDatabaseModel()
+        public bool IsDatabaseServiceOn()
         {
-            return _migration.GetDatabaseModel();
+            return _migration.IsDatabaseServiceOn();
         }
-
-        public bool DatabaseExist()
+        public bool IsDatabaseExist()
         {
             throw new NotImplementedException();
         }
-
         public bool CreateDatabase()
         {
             throw new NotImplementedException();
+        }
+        public DatabaseModel GetDatabaseModel()
+        {
+            return _migration.GetDatabaseModel();
         }
     }
 }

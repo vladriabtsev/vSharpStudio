@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.TraceSource" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -21,6 +25,7 @@
     <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj" />
     <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
+    <ProjectReference Include="..\vSharpStudio\vSharpStudio.csproj" />
   </ItemGroup>
 
   <ItemGroup>

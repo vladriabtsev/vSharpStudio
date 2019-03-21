@@ -22,6 +22,7 @@ namespace vSharpStudio.ViewModels
         public static ILogger Logger = ApplicationLogging.CreateLogger<ConfigRoot>();
         public ConfigRoot()
         {
+            // https://msdn.microsoft.com/en-us/magazine/mt830355.aspx
             // https://msdn.microsoft.com/en-us/magazine/mt694089.aspx
             Logger.LogInformation("");
         }

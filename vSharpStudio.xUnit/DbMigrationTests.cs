@@ -3,21 +3,52 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using Microsoft.Extensions.Logging;
 using vSharpStudio.Migration;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
+using Xunit.Abstractions;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {
     public class DbMigrationTests
     {
+        public DbMigrationTests(ITestOutputHelper output)
+        {
+            ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory
+                .AddDebug();
+//                .AddSerilog(dispose: true);
+//                .AddProvider(new LoggerConfiguration().WriteTo.Xunit(output).CreateLogger());
+            ILogger logger = loggerFactory.CreateLogger<DbMigrationTests>();
+            logger.LogInformation("Start tests");
+        }
+
+        [Theory]
+        [InlineData("DummyMsSql")]
+        //[InlineData("Sqlite")]
+        public void Db001IsDatabaseServiceOff(string conName)
+        {
+            IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory() + @"\..\..\..", conName);
+            cfg.InitMigration();
+            Assert.False(cfg.IsDatabaseServiceOn());
+        }
         [Theory]
         [InlineData("MsSql")]
         //[InlineData("Sqlite")]
-        public void Db001CanRecognizeDbAbsence(string conName)
+        public void Db001IsDatabaseServiceOn(string conName)
+        {
+            IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory() + @"\..\..\..", conName);
+            cfg.InitMigration();
+            cfg.GetUpdateDbProblems();
+            Assert.True(false);
+        }
+        [Theory]
+        [InlineData("MsSql")]
+        //[InlineData("Sqlite")]
+        public void Db005CanRecognizeDbAbsence(string conName)
         {
             IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory()+ @"\..\..\..", conName);
             cfg.InitMigration();
