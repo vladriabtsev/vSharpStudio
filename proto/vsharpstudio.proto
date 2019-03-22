@@ -24,6 +24,14 @@ message proto_config {
 	string path_to_project_with_connection_string = 11;
 	string connection_string_name = 12;
 	string db_schema = 13;
+	string primary_key_name = 14;
+    // parameters
+    bool is_primary_key_clustered = 51; // MsSql
+    bool is_memory_optimized = 52; // MsSql
+    bool is_sequence_hi_lo = 53; // SequenceHiLo or IdentityColumn. MsSql
+    string hi_lo_sequence_name = 54; // MsSql
+    string hi_lo_schema = 55; // MsSql
+
 
 	proto_constants constants = 100;
 	proto_enumerations enumerators = 101;
@@ -82,7 +90,13 @@ message proto_enumerations {
 message proto_catalog {
 	string guid = 1;
 	string name = 2;
-	proto_properties properties = 3;
+    bool_nullable is_primary_key_clustered = 4; // MsSql
+    bool_nullable is_memory_optimized = 5; // MsSql
+    bool_nullable is_sequence_hi_lo = 6; // SequenceHiLo or IdentityColumn. MsSql
+    string hi_lo_sequence_name = 7; // MsSql
+    string hi_lo_schema = 8; // MsSql
+
+	proto_properties properties = 15;
 }
 message proto_catalogs {
 	string name = 1;
@@ -111,3 +125,9 @@ message proto_journals {
 	repeated proto_document list_documents = 3;
 }
 */
+
+// all simple nullable (generator check suffics '_nullable')
+message bool_nullable {
+	bool has_value = 1;
+	bool value = 2;
+}

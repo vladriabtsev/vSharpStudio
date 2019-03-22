@@ -13,6 +13,8 @@ if (t.IsRepeated) {#>
 	{
 		res.<#= t.Name.ToNameCs() #>.Add(t.Clone());
 	}
+<# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable")) {#>
+	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
 <# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
 	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>.Clone();
 <#	} else if (t.IsMap) { #>

@@ -14,6 +14,8 @@ public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= m
 	{
 		this._dto = new <#= message.Name #>();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+     if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable"))
+       continue;
 		if (t.IsRepeated) {#>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
@@ -68,6 +70,8 @@ public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= m
 			this.<#= t.Name.ToNameCs() #>.Add(new <#= t.MessageType.Name.ToNameCs() #>(t));
 		}
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
+<#      } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable")) {#>
+		this.<#= t.Name.ToNameCs() #> = _dto.<#= t.Name.ToNameCs() #>.HasValue ? _dto.<#= t.Name.ToNameCs() #>.Value : (<#= t.ToTypeCs() #>)null;
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
 		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(_dto.<#= t.Name.ToNameCs() #>);
 <#		} else if (t.IsMap) { #>

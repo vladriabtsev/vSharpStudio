@@ -59,6 +59,32 @@ namespace GenFromProto
             }
             return s;
         }
+        public static string ToTypeCs(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            if (from.FieldType == Google.Protobuf.Reflection.FieldType.Message)
+            {
+                switch (from.MessageType.Name)
+                {
+                    case "bool_nullable":
+                        return "bool?";
+                    case "double_nullable":
+                        return "double?";
+                    case "uint_nullable":
+                        return "uint?";
+                    case "ulong_nullable":
+                        return "ulong?";
+                    case "float_nullable":
+                        return "float?";
+                    case "int_nullable":
+                        return "int?";
+                    case "long_nullable":
+                        return "long?";
+                    default:
+                        return from.MessageType.Name.ToNameCs();
+                }
+            }
+            return from.FieldType.ToTypeCs();
+        }
         public static string ToTypeCs(this Google.Protobuf.Reflection.FieldType from)
         {
             switch (from)

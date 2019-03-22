@@ -18,6 +18,8 @@ namespace vSharpStudio.vm.ViewModels
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)
 	{
+        if (t.Name.EndsWith("_nullable"))
+           continue;
 		var cl = new Class(root, t);
 		this.Write(cl.TransformText());
 	}

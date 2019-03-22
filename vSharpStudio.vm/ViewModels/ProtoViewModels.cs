@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/19/2019 14:43:49
+// Auto generated on UTC 03/22/2019 01:54:36
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -48,6 +48,12 @@ namespace vSharpStudio.vm.ViewModels
 			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
 			res.DbSchema = this.DbSchema;
+			res.PrimaryKeyName = this.PrimaryKeyName;
+			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
+			res.IsMemoryOptimized = this.IsMemoryOptimized;
+			res.IsSequenceHiLo = this.IsSequenceHiLo;
+			res.HiLoSequenceName = this.HiLoSequenceName;
+			res.HiLoSchema = this.HiLoSchema;
 			res.Constants = this.Constants.Clone();
 			res.Enumerators = this.Enumerators.Clone();
 			res.Catalogs = this.Catalogs.Clone();
@@ -63,6 +69,12 @@ namespace vSharpStudio.vm.ViewModels
 			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
 			res.DbSchema = this.DbSchema;
+			res.PrimaryKeyName = this.PrimaryKeyName;
+			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
+			res.IsMemoryOptimized = this.IsMemoryOptimized;
+			res.IsSequenceHiLo = this.IsSequenceHiLo;
+			res.HiLoSequenceName = this.HiLoSequenceName;
+			res.HiLoSchema = this.HiLoSchema;
 			return res;
 		}
 		protected override void Restore(Config from)
@@ -73,6 +85,12 @@ namespace vSharpStudio.vm.ViewModels
 			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 			this.ConnectionStringName = from.ConnectionStringName;
 			this.DbSchema = from.DbSchema;
+			this.PrimaryKeyName = from.PrimaryKeyName;
+			this.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
+			this.IsMemoryOptimized = from.IsMemoryOptimized;
+			this.IsSequenceHiLo = from.IsSequenceHiLo;
+			this.HiLoSequenceName = from.HiLoSequenceName;
+			this.HiLoSchema = from.HiLoSchema;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -193,15 +211,123 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public Constants Constants { get; set; }
+		public string PrimaryKeyName
+		{ 
+			set
+			{
+				if (_dto.PrimaryKeyName != value)
+				{
+					_dto.PrimaryKeyName = value;
+					OnPrimaryKeyNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.PrimaryKeyName; }
+		}
+		partial void OnPrimaryKeyNameChanged();
 		
 		
 		
-		public Enumerations Enumerators { get; set; }
+		public bool IsPrimaryKeyClustered
+		{ 
+			set
+			{
+				if (_dto.IsPrimaryKeyClustered != value)
+				{
+					_dto.IsPrimaryKeyClustered = value;
+					OnIsPrimaryKeyClusteredChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsPrimaryKeyClustered; }
+		}
+		partial void OnIsPrimaryKeyClusteredChanged();
 		
 		
 		
-		public Catalogs Catalogs { get; set; }
+		public bool IsMemoryOptimized
+		{ 
+			set
+			{
+				if (_dto.IsMemoryOptimized != value)
+				{
+					_dto.IsMemoryOptimized = value;
+					OnIsMemoryOptimizedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsMemoryOptimized; }
+		}
+		partial void OnIsMemoryOptimizedChanged();
+		
+		
+		
+		public bool IsSequenceHiLo
+		{ 
+			set
+			{
+				if (_dto.IsSequenceHiLo != value)
+				{
+					_dto.IsSequenceHiLo = value;
+					OnIsSequenceHiLoChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsSequenceHiLo; }
+		}
+		partial void OnIsSequenceHiLoChanged();
+		
+		
+		
+		public string HiLoSequenceName
+		{ 
+			set
+			{
+				if (_dto.HiLoSequenceName != value)
+				{
+					_dto.HiLoSequenceName = value;
+					OnHiLoSequenceNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.HiLoSequenceName; }
+		}
+		partial void OnHiLoSequenceNameChanged();
+		
+		
+		
+		public string HiLoSchema
+		{ 
+			set
+			{
+				if (_dto.HiLoSchema != value)
+				{
+					_dto.HiLoSchema = value;
+					OnHiLoSchemaChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.HiLoSchema; }
+		}
+		partial void OnHiLoSchemaChanged();
+		
+		
+		
+		public Constants Constants { set; get; }
+		
+		
+		
+		public Enumerations Enumerators { set; get; }
+		
+		
+		
+		public Catalogs Catalogs { set; get; }
 		
 		
 		#endregion Properties
@@ -299,7 +425,7 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public DataType DataType { get; set; }
+		public DataType DataType { set; get; }
 		
 		
 		#endregion Properties
@@ -726,7 +852,7 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public Property ConstantType { get; set; }
+		public Property ConstantType { set; get; }
 		
 		
 		#endregion Properties
@@ -1067,6 +1193,9 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		private void initFromDto()
 		{
+			this.IsPrimaryKeyClustered = _dto.IsPrimaryKeyClustered.HasValue ? _dto.IsPrimaryKeyClustered.Value : (bool?)null;
+			this.IsMemoryOptimized = _dto.IsMemoryOptimized.HasValue ? _dto.IsMemoryOptimized.Value : (bool?)null;
+			this.IsSequenceHiLo = _dto.IsSequenceHiLo.HasValue ? _dto.IsSequenceHiLo.Value : (bool?)null;
 			this.Properties = new Properties(_dto.Properties);
 		}
 		private proto_catalog _dto;
@@ -1079,6 +1208,11 @@ namespace vSharpStudio.vm.ViewModels
 			Catalog res = new Catalog();
 			res.Guid = this.Guid;
 			res.Name = this.Name;
+			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
+			res.IsMemoryOptimized = this.IsMemoryOptimized;
+			res.IsSequenceHiLo = this.IsSequenceHiLo;
+			res.HiLoSequenceName = this.HiLoSequenceName;
+			res.HiLoSchema = this.HiLoSchema;
 			res.Properties = this.Properties.Clone();
 			return res;
 		}
@@ -1088,12 +1222,16 @@ namespace vSharpStudio.vm.ViewModels
 			Catalog res = new Catalog();
 			res.Guid = this.Guid;
 			res.Name = this.Name;
+			res.HiLoSequenceName = this.HiLoSequenceName;
+			res.HiLoSchema = this.HiLoSchema;
 			return res;
 		}
 		protected override void Restore(Catalog from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+			this.HiLoSequenceName = from.HiLoSequenceName;
+			this.HiLoSchema = from.HiLoSchema;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1140,7 +1278,100 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public Properties Properties { get; set; }
+		public bool? IsPrimaryKeyClustered
+		{ 
+			set
+			{
+				if (_dto.IsPrimaryKeyClustered.HasValue != value.HasValue || (value.HasValue && _dto.IsPrimaryKeyClustered.Value != value.Value))
+				{
+					_dto.IsPrimaryKeyClustered.HasValue = value.HasValue;
+					_dto.IsPrimaryKeyClustered.Value = value.Value;
+					OnIsPrimaryKeyClusteredChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsPrimaryKeyClustered.HasValue ? _dto.IsPrimaryKeyClustered.Value : (bool?)null; }
+		}
+		partial void OnIsPrimaryKeyClusteredChanged();
+		
+		
+		
+		public bool? IsMemoryOptimized
+		{ 
+			set
+			{
+				if (_dto.IsMemoryOptimized.HasValue != value.HasValue || (value.HasValue && _dto.IsMemoryOptimized.Value != value.Value))
+				{
+					_dto.IsMemoryOptimized.HasValue = value.HasValue;
+					_dto.IsMemoryOptimized.Value = value.Value;
+					OnIsMemoryOptimizedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsMemoryOptimized.HasValue ? _dto.IsMemoryOptimized.Value : (bool?)null; }
+		}
+		partial void OnIsMemoryOptimizedChanged();
+		
+		
+		
+		public bool? IsSequenceHiLo
+		{ 
+			set
+			{
+				if (_dto.IsSequenceHiLo.HasValue != value.HasValue || (value.HasValue && _dto.IsSequenceHiLo.Value != value.Value))
+				{
+					_dto.IsSequenceHiLo.HasValue = value.HasValue;
+					_dto.IsSequenceHiLo.Value = value.Value;
+					OnIsSequenceHiLoChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsSequenceHiLo.HasValue ? _dto.IsSequenceHiLo.Value : (bool?)null; }
+		}
+		partial void OnIsSequenceHiLoChanged();
+		
+		
+		
+		public string HiLoSequenceName
+		{ 
+			set
+			{
+				if (_dto.HiLoSequenceName != value)
+				{
+					_dto.HiLoSequenceName = value;
+					OnHiLoSequenceNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.HiLoSequenceName; }
+		}
+		partial void OnHiLoSequenceNameChanged();
+		
+		
+		
+		public string HiLoSchema
+		{ 
+			set
+			{
+				if (_dto.HiLoSchema != value)
+				{
+					_dto.HiLoSchema = value;
+					OnHiLoSchemaChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.HiLoSchema; }
+		}
+		partial void OnHiLoSchemaChanged();
+		
+		
+		
+		public Properties Properties { set; get; }
 		
 		
 		#endregion Properties

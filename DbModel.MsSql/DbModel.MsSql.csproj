@@ -7,10 +7,16 @@
 
   <ItemGroup>
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Diagnostics\SqlServerEventId.cs" Link="ef\SqlServerEventId.cs" />
-    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerDbContextOptionsBuilderExtensions.cs" Link="ef\SqlServerDbContextOptionsBuilderExtensions.cs" />
-    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerIndexBuilderExtensions.cs" Link="ef\SqlServerIndexBuilderExtensions.cs" />
-    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerMetadataExtensions.cs" Link="ef\SqlServerMetadataExtensions.cs" />
-    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerPropertyBuilderExtensions.cs" Link="ef\SqlServerPropertyBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerCollectionOwnershipBuilderExtensions.cs" Link="ef\builder_ext\SqlServerCollectionOwnershipBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerDatabaseFacadeExtensions.cs" Link="ef\builder_ext\SqlServerDatabaseFacadeExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerDbContextOptionsBuilderExtensions.cs" Link="ef\builder_ext\SqlServerDbContextOptionsBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerEntityTypeBuilderExtensions.cs" Link="ef\builder_ext\SqlServerEntityTypeBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerIndexBuilderExtensions.cs" Link="ef\builder_ext\SqlServerIndexBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerKeyBuilderExtensions.cs" Link="ef\builder_ext\SqlServerKeyBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerMetadataExtensions.cs" Link="ef\builder_ext\SqlServerMetadataExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerModelBuilderExtensions.cs" Link="ef\builder_ext\SqlServerModelBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerPropertyBuilderExtensions.cs" Link="ef\builder_ext\SqlServerPropertyBuilderExtensions.cs" />
+    <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Extensions\SqlServerReferenceOwnershipBuilderExtensions.cs" Link="ef\builder_ext\SqlServerReferenceOwnershipBuilderExtensions.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Infrastructure\Internal\SqlServerOptionsExtension.cs" Link="ef\SqlServerOptionsExtension.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Infrastructure\SqlServerDbContextOptionsBuilder.cs" Link="ef\SqlServerDbContextOptionsBuilder.cs" />
     <Compile Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\Internal\SqlServerLoggerExtensions.cs" Link="ef\SqlServerLoggerExtensions.cs" />
@@ -69,6 +75,7 @@
   <ItemGroup>
     <Folder Include="ef\metadata\internal\" />
     <Folder Include="ef\migration\" />
+    <Folder Include="ef\builder_ext\" />
     <Folder Include="ef\update\" />
   </ItemGroup>
 

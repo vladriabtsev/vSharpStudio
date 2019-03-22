@@ -6,7 +6,10 @@
 
 public interface IVisitorConfig
 {
-<# foreach (var message in root.MessageTypes)	{ #>
+<# foreach (var message in root.MessageTypes) { 
+     if (message.Name.EndsWith("_nullable"))
+       continue;
+#>
 	void Visit(<#= message.Name.ToNameCs() #> m);
 <# } #>
 }
