@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/23/2019 23:29:03
+// Auto generated on UTC 03/23/2019 23:34:36
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -125,24 +125,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
 		
 		public string Version
 		{ 
@@ -540,24 +522,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
-		
 		public string Name
 		{ 
 			set
@@ -615,7 +579,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
-			res.Guid = this.Guid;
+			res.TypeGuid = this.TypeGuid;
 			res.MinValueString = this.MinValueString;
 			res.MaxValueString = this.MaxValueString;
 			res.ObjectName = this.ObjectName;
@@ -629,7 +593,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
-			res.Guid = this.Guid;
+			res.TypeGuid = this.TypeGuid;
 			res.MinValueString = this.MinValueString;
 			res.MaxValueString = this.MaxValueString;
 			res.ObjectName = this.ObjectName;
@@ -641,7 +605,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.Length = from.Length;
 			this.Accuracy = from.Accuracy;
 			this.IsPositive = from.IsPositive;
-			this.Guid = from.Guid;
+			this.TypeGuid = from.TypeGuid;
 			this.MinValueString = from.MinValueString;
 			this.MaxValueString = from.MaxValueString;
 			this.ObjectName = from.ObjectName;
@@ -726,21 +690,21 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public string Guid
+		public string TypeGuid
 		{ 
-			private set
+			set
 			{
-				if (_dto.Guid != value)
+				if (_dto.TypeGuid != value)
 				{
-					_dto.Guid = value;
-					OnGuidChanged();
+					_dto.TypeGuid = value;
+					OnTypeGuidChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.Guid; }
+			get { return _dto.TypeGuid; }
 		}
-		partial void OnGuidChanged();
+		partial void OnTypeGuidChanged();
 		
 		
 		
@@ -973,24 +937,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
-		
 		public string Name
 		{ 
 			set
@@ -1183,24 +1129,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
 		
 		public string Name
 		{ 
@@ -1406,24 +1334,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
 		
 		public string Name
 		{ 
@@ -1794,24 +1704,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Guid
-		{ 
-			private set
-			{
-				if (_dto.Guid != value)
-				{
-					_dto.Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _dto.Guid; }
-		}
-		partial void OnGuidChanged();
-		
-		
 		
 		public string Name
 		{ 

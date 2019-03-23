@@ -84,7 +84,7 @@ message proto_data_type {
 	uint32 length = 2; 
 	uint32 accuracy = 3; 
 	bool is_positive = 4; 
-    string guid = 5;
+    string type_guid = 5;
     string min_value_string = 6;
     string max_value_string = 7;
     string object_name = 8;

@@ -420,7 +420,7 @@ namespace GenFromProto
 	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
-        if (t.Name == "Guid") continue;
+        if (t.Name == "guid") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}
