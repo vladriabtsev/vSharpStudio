@@ -42,28 +42,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" : ViewModelValidatable<");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", ");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Validator>\r\n{\r\n");
+            this.Write("\r\n{\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Declaration.ToTrailingComments("\t")));
@@ -264,17 +243,18 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" dto) : base(");
+            this.Write(" dto, SortableObservableCollection<ValidationMessage> validationCollection = null" +
+                    ") \r\n        : base(");
             
-            #line 58 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 59 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("Validator.Validator)\r\n\t{\r\n\t\tthis._dto = dto;\r\n\t\tthis.initFromDto();\r\n\t\tOnInitFrom" +
-                    "Dto();\r\n\t}\r\n\tprivate void initFromDto()\r\n\t{\r\n");
+            this.Write("Validator.Validator, validationCollection)\r\n\t{\r\n\t\tthis._dto = dto;\r\n\t\tthis.initFr" +
+                    "omDto();\r\n\t\tOnInitFromDto();\r\n\t}\r\n\tprivate void initFromDto()\r\n\t{\r\n");
             
-            #line 66 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 67 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder())	{ 
 		if (t.IsRepeated) {
             
@@ -282,139 +262,139 @@ namespace GenFromProto
             #line hidden
             this.Write("\t\tthis.");
             
-            #line 68 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 69 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new ObservableCollection<");
             
-            #line 68 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 69 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(">();\r\n\t\tforeach (var t in _dto.");
             
-            #line 69 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 70 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(")\r\n\t\t{\r\n\t\t\tthis.");
             
-            #line 71 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 72 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".Add(new ");
             
-            #line 71 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 72 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("(t));\r\n\t\t}\r\n\t\tthis.");
             
-            #line 73 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 74 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".CollectionChanged += ");
             
-            #line 73 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 74 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("_CollectionChanged;\r\n");
             
-            #line 74 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 75 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
       } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable")) {
             
             #line default
             #line hidden
             this.Write("\t\tthis.");
             
-            #line 75 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 76 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = _dto.");
             
-            #line 75 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 76 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".HasValue ? _dto.");
             
-            #line 75 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 76 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".Value : (");
             
-            #line 75 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 76 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(")null;\r\n");
             
-            #line 76 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
             
             #line default
             #line hidden
             this.Write("\t\tthis.");
             
-            #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 78 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 78 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("(_dto.");
             
-            #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 78 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(");\r\n");
             
-            #line 78 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 79 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 		} else if (t.IsMap) { 
             
             #line default
             #line hidden
             this.Write("\t\tmap???\r\n");
             
-            #line 80 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 81 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 		} 
             
             #line default
             #line hidden
             
-            #line 81 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 82 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t}\r\n\tprivate ");
             
-            #line 83 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 84 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
             
             #line default
@@ -422,7 +402,7 @@ namespace GenFromProto
             this.Write(" _dto;\r\n\tpartial void OnInit();\r\n\tpartial void OnInitFromDto();\r\n\t#endregion CTOR" +
                     "\r\n\t#region Procedures\r\n");
             
-            #line 88 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 89 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	
 	this.PushIndent("\t");
 	var cloner = new Clone(root, message);
@@ -436,10 +416,11 @@ namespace GenFromProto
             #line hidden
             this.Write("\t#endregion Procedures\r\n\t#region Properties\r\n");
             
-            #line 98 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 99 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
+        if (t.Name == "Guid") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}

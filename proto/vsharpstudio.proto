@@ -99,7 +99,7 @@ message proto_constant {
 	proto_property constant_type = 3;
 }
 message proto_constants {
-	string group_name = 1;
+	string name = 1;
 	repeated proto_constant list_constants = 2;
 }
 message proto_enumeration {
@@ -132,7 +132,7 @@ message proto_document {
 	repeated proto_properties properties = 3;
 }
 message proto_documents {
-	string group_name = 1;
+	string name = 1;
 	repeated proto_property list_shared_properties = 2;
 	repeated proto_document list_documents = 3;
 }

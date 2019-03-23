@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/23/2019 20:35:35
+// Auto generated on UTC 03/23/2019 22:17:07
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace vSharpStudio.vm.ViewModels
 {
 	
-	public partial class Config : ViewModelValidatable<Config, Config.ConfigValidator>
+	public partial class Config
 	{
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
@@ -23,7 +23,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.Catalogs = new Catalogs();
 			OnInit();
 		}
-		public Config(proto_config dto) : base(ConfigValidator.Validator)
+		public Config(proto_config dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConfigValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -481,7 +482,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Property : ViewModelValidatable<Property, Property.PropertyValidator>
+	public partial class Property
 	{
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
@@ -493,7 +494,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.DataType = new DataType();
 			OnInit();
 		}
-		public Property(proto_property dto) : base(PropertyValidator.Validator)
+		public Property(proto_property dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -580,7 +582,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class DataType : ViewModelValidatable<DataType, DataType.DataTypeValidator>
+	public partial class DataType
 	{
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
@@ -591,7 +593,8 @@ namespace vSharpStudio.vm.ViewModels
 			this._dto = new proto_data_type();
 			OnInit();
 		}
-		public DataType(proto_data_type dto) : base(DataTypeValidator.Validator)
+		public DataType(proto_data_type dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DataTypeValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -797,7 +800,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Properties : ViewModelValidatable<Properties, Properties.PropertiesValidator>
+	public partial class Properties
 	{
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
@@ -835,7 +838,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Properties(proto_properties dto) : base(PropertiesValidator.Validator)
+		public Properties(proto_properties dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertiesValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -911,7 +915,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constant : ViewModelValidatable<Constant, Constant.ConstantValidator>
+	public partial class Constant
 	{
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
@@ -923,7 +927,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.ConstantType = new Property();
 			OnInit();
 		}
-		public Constant(proto_constant dto) : base(ConstantValidator.Validator)
+		public Constant(proto_constant dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1010,7 +1015,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constants : ViewModelValidatable<Constants, Constants.ConstantsValidator>
+	public partial class Constants
 	{
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
@@ -1048,7 +1053,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Constants(proto_constants dto) : base(ConstantsValidator.Validator)
+		public Constants(proto_constants dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1071,7 +1077,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Constants Clone()
 		{
 			Constants res = new Constants();
-			res.GroupName = this.GroupName;
+			res.Name = this.Name;
 			res.ListConstants = new ObservableCollection<Constant>();
 			foreach (var t in this.ListConstants)
 			{
@@ -1083,12 +1089,12 @@ namespace vSharpStudio.vm.ViewModels
 		protected override Constants Backup()
 		{
 			Constants res = new Constants();
-			res.GroupName = this.GroupName;
+			res.Name = this.Name;
 			return res;
 		}
 		protected override void Restore(Constants from)
 		{
-			this.GroupName = from.GroupName;
+			this.Name = from.Name;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1100,21 +1106,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string GroupName
+		public string Name
 		{ 
 			set
 			{
-				if (_dto.GroupName != value)
+				if (_dto.Name != value)
 				{
-					_dto.GroupName = value;
-					OnGroupNameChanged();
+					_dto.Name = value;
+					OnNameChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.GroupName; }
+			get { return _dto.Name; }
 		}
-		partial void OnGroupNameChanged();
+		partial void OnNameChanged();
 		
 		
 		
@@ -1124,7 +1130,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumeration : ViewModelValidatable<Enumeration, Enumeration.EnumerationValidator>
+	public partial class Enumeration
 	{
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
@@ -1135,7 +1141,8 @@ namespace vSharpStudio.vm.ViewModels
 			this._dto = new proto_enumeration();
 			OnInit();
 		}
-		public Enumeration(proto_enumeration dto) : base(EnumerationValidator.Validator)
+		public Enumeration(proto_enumeration dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1215,7 +1222,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumerations : ViewModelValidatable<Enumerations, Enumerations.EnumerationsValidator>
+	public partial class Enumerations
 	{
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
@@ -1253,7 +1260,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Enumerations(proto_enumerations dto) : base(EnumerationsValidator.Validator)
+		public Enumerations(proto_enumerations dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1329,7 +1337,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalog : ViewModelValidatable<Catalog, Catalog.CatalogValidator>
+	public partial class Catalog
 	{
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
@@ -1341,7 +1349,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.Properties = new Properties();
 			OnInit();
 		}
-		public Catalog(proto_catalog dto) : base(CatalogValidator.Validator)
+		public Catalog(proto_catalog dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1533,7 +1542,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalogs : ViewModelValidatable<Catalogs, Catalogs.CatalogsValidator>
+	public partial class Catalogs
 	{
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
@@ -1598,7 +1607,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Catalogs(proto_catalogs dto) : base(CatalogsValidator.Validator)
+		public Catalogs(proto_catalogs dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1691,7 +1701,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Document : ViewModelValidatable<Document, Document.DocumentValidator>
+	public partial class Document
 	{
 	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
@@ -1729,7 +1739,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Document(proto_document dto) : base(DocumentValidator.Validator)
+		public Document(proto_document dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DocumentValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1826,7 +1837,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Documents : ViewModelValidatable<Documents, Documents.DocumentsValidator>
+	public partial class Documents
 	{
 	
 		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
@@ -1891,7 +1902,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Documents(proto_documents dto) : base(DocumentsValidator.Validator)
+		public Documents(proto_documents dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DocumentsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
 			this.initFromDto();
@@ -1920,7 +1932,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Documents Clone()
 		{
 			Documents res = new Documents();
-			res.GroupName = this.GroupName;
+			res.Name = this.Name;
 			res.ListSharedProperties = new ObservableCollection<Property>();
 			foreach (var t in this.ListSharedProperties)
 			{
@@ -1937,12 +1949,12 @@ namespace vSharpStudio.vm.ViewModels
 		protected override Documents Backup()
 		{
 			Documents res = new Documents();
-			res.GroupName = this.GroupName;
+			res.Name = this.Name;
 			return res;
 		}
 		protected override void Restore(Documents from)
 		{
-			this.GroupName = from.GroupName;
+			this.Name = from.Name;
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1956,21 +1968,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string GroupName
+		public string Name
 		{ 
 			set
 			{
-				if (_dto.GroupName != value)
+				if (_dto.Name != value)
 				{
-					_dto.GroupName = value;
-					OnGroupNameChanged();
+					_dto.Name = value;
+					OnNameChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.GroupName; }
+			get { return _dto.Name; }
 		}
-		partial void OnGroupNameChanged();
+		partial void OnNameChanged();
 		
 		
 		

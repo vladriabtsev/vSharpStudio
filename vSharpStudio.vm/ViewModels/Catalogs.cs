@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public partial class Catalogs
-  {
+  public partial class Catalogs : EntityObjectBase<Catalogs, Catalogs.CatalogsValidator>, IEntityObject
+    {
   }
 }

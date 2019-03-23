@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ViewModelBase;
 using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : IMigration
+    public partial class Config : EntityObjectBase<Config, Config.ConfigValidator>, IEntityObject, IMigration
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -23,7 +24,8 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
-        public Config(string configJson) : base(ConfigValidator.Validator)
+        public Config(string configJson, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+            : base(ConfigValidator.Validator, validationCollection)
         {
             this._dto = Proto.Config.proto_config.Parser.ParseJson(configJson);
             this.initFromDto();

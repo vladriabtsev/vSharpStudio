@@ -1,6 +1,7 @@
 ﻿using System;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
+using ViewModelBase;
 
 namespace vSharpStudio.xUnit
 {
@@ -31,14 +32,14 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
         {
-            var cfg = new Config();
+            var cfg = new Config(new SortableObservableCollection<ValidationMessage>());
             cfg.IsDbFromConnectionString = true;
             cfg.Validate();
             Assert.False(cfg.HasErrors);
             Assert.True(cfg.HasWarnings);
             Assert.False(cfg.HasInfos);
             Assert.True(cfg.ValidationCollection.Count == 1);
-            Assert.True(cfg.ValidationCollection[0].SortingValue >= 1 << ViewModelBase.ValidationMessage.MultiplierShift);
+            Assert.True(cfg.ValidationCollection[0].SortingValue >= 1 << ValidationMessage.MultiplierShift);
         }
         #endregion Config
         #region Constant

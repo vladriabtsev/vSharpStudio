@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.proto" #>
 <#= message.Declaration.ToLeadingComments() #>
-public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>.<#= message.Name.ToNameCs() #>Validator>
+public partial class <#= message.Name.ToNameCs() #>
 {
 <#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
@@ -55,7 +55,8 @@ public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= m
 		}
 	}
 <# } #>
-	public <#= message.Name.ToNameCs() #>(<#= message.Name #> dto) : base(<#= message.Name.ToNameCs() #>Validator.Validator)
+	public <#= message.Name.ToNameCs() #>(<#= message.Name #> dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
 	{
 		this._dto = dto;
 		this.initFromDto();
@@ -98,6 +99,7 @@ public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= m
 <#	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
+        if (t.Name == "Guid") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}
