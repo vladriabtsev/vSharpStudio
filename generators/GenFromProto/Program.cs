@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,32 +12,45 @@ namespace GenFromProto
     {
         static void Main(string[] args)
         {
-            if (args.Count() != 3)
+            if (args.Count() != 2)
             {
                 if (args.Count() == 0)
                 {
-                    args = new string[3];
-                    args[0] = @"..\..\..\..\vSharpStudio.proto\bin\Debug\netstandard2.0\vSharpStudio.proto.dll";
-                    args[2] = @"..\..\..\..\vSharpStudio.vm\ViewModels\ProtoViewModels.cs";
+                    args = new string[2];
+                    args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\ProtoViewModels.cs";
                     args[1] = @"vSharpStudio.vm.ViewModels";
                 }
                 else
-                    throw new ArgumentException("Usage: GenProtoToMvvm dllPath namespace outFile");
+                    throw new ArgumentException("Usage: GenProtoToMvvm outFile namespace");
             }
-            if (!File.Exists(args[0]))
-                throw new ArgumentException("Couldn't find file '" + args[0] + "'");
-            var ext = Path.GetExtension(args[2]);
+            //if (!File.Exists(args[0]))
+            //{
+            //    string s = "Couldn't find file '" + args[0] + "'";
+            //    Trace.WriteLine(s);
+            //    Trace.WriteLine("Full path: " + Path.GetFullPath(args[0]));
+            //    throw new ArgumentException(s);
+            //}
+            var ext = Path.GetExtension(args[0]);
             if (ext.ToLower() != ".cs")
-                throw new ArgumentException("Destination file extention is not 'cs'");
-            var dir = Path.GetDirectoryName(args[2]);
+            {
+                string s = "Destination file extention is not 'cs'";
+                Trace.WriteLine(s);
+                throw new ArgumentException(s);
+            }
+            var dir = Path.GetDirectoryName(args[0]);
             if (!Directory.Exists(dir))
-                throw new ArgumentException("Couldn't find folder '" + dir + "'");
+            {
+                string s = "Couldn't find folder '" + dir + "'";
+                Trace.WriteLine(s);
+                Trace.WriteLine("Full path: " + Path.GetFullPath(dir));
+                throw new ArgumentException(s);
+            }
 
             //var lst = GetProtoClassDescs(args[0], args[1]);
             //string res = GenMvvm(lst);
             NameSpace ns = new NameSpace(Proto.Config.VsharpstudioReflection.Descriptor);
             string res = ns.TransformText();
-            using (var fs = File.Open(args[2], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
+            using (var fs = File.Open(args[0], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
             {
                 var bytes = Encoding.UTF8.GetBytes(res);
                 fs.Write(bytes, 0, bytes.Count());

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio", "vSharpStudio\vSharpStudio.csproj", "{D591315D-E1AF-417C-A224-CBAA5238A862}"
 EndProject
@@ -10,6 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.xUnit", "vSharpStudio.xUnit\vSharpStudio.xUnit.csproj", "{4691301C-7E12-4D46-A549-5667A189AF1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{0467E0E8-8886-46FE-BF70-E33FF53FC39F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
@@ -55,7 +58,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbModel.MySql", "DbModel.My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbModel.Cosmos", "DbModel.Cosmos\DbModel.Cosmos.csproj", "{70C5711F-7A1D-4357-90B1-069C91A948DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModel.DB2", "DbModel.DB2\DbModel.DB2.csproj", "{CBED0D6B-E7AE-49B5-B473-9E85E45E27E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbModel.DB2", "DbModel.DB2\DbModel.DB2.csproj", "{CBED0D6B-E7AE-49B5-B473-9E85E45E27E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbModels", "DbModels", "{C1E6982B-3545-4FAD-8DA0-47D43686A67A}"
 EndProject
