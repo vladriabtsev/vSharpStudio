@@ -12,8 +12,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : this()
         {
-            this.EnumDataType = type;
-            switch (this.EnumDataType)
+            this.DataTypeEnum = type;
+            switch (this.DataTypeEnum)
             {
                 case EnumDataType.Any:
                     break;
@@ -39,9 +39,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public DataType(EnumDataType type, string guidOfType) : this()
         {
-            this.EnumDataType = type;
+            this.DataTypeEnum = type;
             this.Guid = guidOfType;
-            switch (this.EnumDataType)
+            switch (this.DataTypeEnum)
             {
                 case EnumDataType.Catalog:
                     break;
@@ -113,8 +113,8 @@ namespace vSharpStudio.vm.ViewModels
                 RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
                 RuleFor(x => x.Length).GreaterThan(0u);
                 RuleFor(x => x.Accuracy).LessThan(x => x.Length);
-                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.EnumDataType == EnumDataType.Catalog).WithMessage("Please select catalog name");
-                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.EnumDataType == EnumDataType.Document).WithMessage("Please select document name");
+                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
+                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
             }
             private bool ParsableToBigInteger(string val)
             {

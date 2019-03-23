@@ -10,7 +10,8 @@ public partial class <#= message.Name.ToNameCs() #> : ViewModelValidatable<<#= m
 <#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
 	#region CTOR
-	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
+	public <#= message.Name.ToNameCs() #>(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
 	{
 		this._dto = new <#= message.Name #>();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 

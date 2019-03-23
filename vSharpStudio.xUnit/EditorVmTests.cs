@@ -28,6 +28,18 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg2.Constants.ListConstants.Count == 1);
             Assert.True(cfg2.Constants.ListConstants[0].Name == typeof(Constant).Name + 1);
         }
+        [Fact]
+        public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
+        {
+            var cfg = new Config();
+            cfg.IsDbFromConnectionString = true;
+            cfg.Validate();
+            Assert.False(cfg.HasErrors);
+            Assert.True(cfg.HasWarnings);
+            Assert.False(cfg.HasInfos);
+            Assert.True(cfg.ValidationCollection.Count == 1);
+            Assert.True(cfg.ValidationCollection[0].SortingValue >= 1 << ViewModelBase.ValidationMessage.MultiplierShift);
+        }
         #endregion Config
         #region Constant
         [Fact]

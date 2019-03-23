@@ -74,7 +74,7 @@ if (field.IsRepeated) {
             this.Write(".Types.");
             
             #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden

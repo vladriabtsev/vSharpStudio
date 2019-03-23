@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.Migration
             {
                 foreach (var t in m.Properties.ListProperties)
                 {
-                    switch (t.DataType.EnumDataType)
+                    switch (t.DataType.DataTypeEnum)
                     {
                         case Proto.Config.proto_data_type.Types.EnumDataType.Any: // any document, catalog
                             break;

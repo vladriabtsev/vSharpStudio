@@ -16,26 +16,49 @@ package Proto.Config;
 
 // Configuration config
 message proto_config {
+	enum EnumDbType {
+		MS_SQL_SERVER = 0;
+		MS_SQL_FILE = 1;
+	}
 	// Unique Guid for configuration (for comparison)
 	string guid = 1;
 	string version = 2;
 	string name = 3;
-	// path to project with config file containing connection string
-	string path_to_project_with_connection_string = 11;
+
+    // CONNECTION STRING SECTION
+
+    // if yes: 
+    //    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
+    // if no:
+    //    1. Find DB type from 
+    //    2. Create connection string from db_server, db_database_name, db_user
+    bool is_db_from_connection_string = 11; 
 	string connection_string_name = 12;
-	string db_schema = 13;
-	string primary_key_name = 14;
-    // parameters
-    bool is_primary_key_clustered = 51; // MsSql
-    bool is_memory_optimized = 52; // MsSql
-    bool is_sequence_hi_lo = 53; // SequenceHiLo or IdentityColumn. MsSql
-    string hi_lo_sequence_name = 54; // MsSql
-    string hi_lo_schema = 55; // MsSql
+    EnumDbType db_type_enum = 13;
+	string db_server = 14;
+	string db_database_name = 15;
+    bool is_db_windows_authentication = 16; 
+	string db_user = 17;
+	string db_passwork = 18;
+	// path to project with config file containing connection string. Usefull for UNIT tests.
+    // it will override previous settings
+	string path_to_project_with_connection_string = 19;
 
+    // GENERAL DB SETTINGS
 
-	proto_constants constants = 100;
-	proto_enumerations enumerators = 101;
-	proto_catalogs catalogs = 102;
+	string db_schema = 31;
+	string primary_key_name = 32;
+    bool is_primary_key_clustered = 33; // MsSql
+    bool is_memory_optimized = 34; // MsSql
+    bool is_sequence_hi_lo = 35; // SequenceHiLo or IdentityColumn. MsSql
+    string hi_lo_sequence_name = 36; // MsSql
+    string hi_lo_schema = 37; // MsSql
+
+    // CONFIG OBJECTS
+
+	proto_constants constants = 101;
+	proto_enumerations enumerators = 102;
+	proto_catalogs catalogs = 103;
 }
 message proto_property {
 	string guid = 1;
@@ -57,7 +80,7 @@ message proto_data_type {
 
 		Any = 15;
 	}
-	EnumDataType enum_data_type = 1; 
+	EnumDataType data_type_enum = 1; 
 	uint32 length = 2; 
 	uint32 accuracy = 3; 
 	bool is_positive = 4; 

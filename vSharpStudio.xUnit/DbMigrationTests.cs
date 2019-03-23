@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 using vSharpStudio.Migration;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.Migration;
@@ -18,10 +19,8 @@ namespace vSharpStudio.xUnit
     {
         public DbMigrationTests(ITestOutputHelper output)
         {
-            ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory
-                .AddDebug();
-//                .AddSerilog(dispose: true);
-//                .AddProvider(new LoggerConfiguration().WriteTo.Xunit(output).CreateLogger());
+            ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            loggerFactory.AddProvider(new DebugLoggerProvider());
             ILogger logger = loggerFactory.CreateLogger<DbMigrationTests>();
             logger.LogInformation("Start tests");
         }

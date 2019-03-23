@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/22/2019 01:54:36
+// Auto generated on UTC 03/23/2019 20:35:35
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -14,7 +14,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
-		public Config() : base(ConfigValidator.Validator)
+		public Config(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConfigValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_config();
 			this.Constants = new Constants();
@@ -45,8 +46,15 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.Version = this.Version;
 			res.Name = this.Name;
-			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
+			res.IsDbFromConnectionString = this.IsDbFromConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
+			res.DbTypeEnum = this.DbTypeEnum;
+			res.DbServer = this.DbServer;
+			res.DbDatabaseName = this.DbDatabaseName;
+			res.IsDbWindowsAuthentication = this.IsDbWindowsAuthentication;
+			res.DbUser = this.DbUser;
+			res.DbPasswork = this.DbPasswork;
+			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.DbSchema = this.DbSchema;
 			res.PrimaryKeyName = this.PrimaryKeyName;
 			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
@@ -66,8 +74,15 @@ namespace vSharpStudio.vm.ViewModels
 			res.Guid = this.Guid;
 			res.Version = this.Version;
 			res.Name = this.Name;
-			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
+			res.IsDbFromConnectionString = this.IsDbFromConnectionString;
 			res.ConnectionStringName = this.ConnectionStringName;
+			res.DbTypeEnum = this.DbTypeEnum;
+			res.DbServer = this.DbServer;
+			res.DbDatabaseName = this.DbDatabaseName;
+			res.IsDbWindowsAuthentication = this.IsDbWindowsAuthentication;
+			res.DbUser = this.DbUser;
+			res.DbPasswork = this.DbPasswork;
+			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.DbSchema = this.DbSchema;
 			res.PrimaryKeyName = this.PrimaryKeyName;
 			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
@@ -82,8 +97,15 @@ namespace vSharpStudio.vm.ViewModels
 			this.Guid = from.Guid;
 			this.Version = from.Version;
 			this.Name = from.Name;
-			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
+			this.IsDbFromConnectionString = from.IsDbFromConnectionString;
 			this.ConnectionStringName = from.ConnectionStringName;
+			this.DbTypeEnum = from.DbTypeEnum;
+			this.DbServer = from.DbServer;
+			this.DbDatabaseName = from.DbDatabaseName;
+			this.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
+			this.DbUser = from.DbUser;
+			this.DbPasswork = from.DbPasswork;
+			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 			this.DbSchema = from.DbSchema;
 			this.PrimaryKeyName = from.PrimaryKeyName;
 			this.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
@@ -157,21 +179,21 @@ namespace vSharpStudio.vm.ViewModels
 		
 		
 		
-		public string PathToProjectWithConnectionString
+		public bool IsDbFromConnectionString
 		{ 
 			set
 			{
-				if (_dto.PathToProjectWithConnectionString != value)
+				if (_dto.IsDbFromConnectionString != value)
 				{
-					_dto.PathToProjectWithConnectionString = value;
-					OnPathToProjectWithConnectionStringChanged();
+					_dto.IsDbFromConnectionString = value;
+					OnIsDbFromConnectionStringChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.PathToProjectWithConnectionString; }
+			get { return _dto.IsDbFromConnectionString; }
 		}
-		partial void OnPathToProjectWithConnectionStringChanged();
+		partial void OnIsDbFromConnectionStringChanged();
 		
 		
 		
@@ -190,6 +212,132 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.ConnectionStringName; }
 		}
 		partial void OnConnectionStringNameChanged();
+		
+		
+		
+		public proto_config.Types.EnumDbType DbTypeEnum
+		{ 
+			set
+			{
+				if (_dto.DbTypeEnum != value)
+				{
+					_dto.DbTypeEnum = value;
+					OnDbTypeEnumChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbTypeEnum; }
+		}
+		partial void OnDbTypeEnumChanged();
+		
+		
+		
+		public string DbServer
+		{ 
+			set
+			{
+				if (_dto.DbServer != value)
+				{
+					_dto.DbServer = value;
+					OnDbServerChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbServer; }
+		}
+		partial void OnDbServerChanged();
+		
+		
+		
+		public string DbDatabaseName
+		{ 
+			set
+			{
+				if (_dto.DbDatabaseName != value)
+				{
+					_dto.DbDatabaseName = value;
+					OnDbDatabaseNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbDatabaseName; }
+		}
+		partial void OnDbDatabaseNameChanged();
+		
+		
+		
+		public bool IsDbWindowsAuthentication
+		{ 
+			set
+			{
+				if (_dto.IsDbWindowsAuthentication != value)
+				{
+					_dto.IsDbWindowsAuthentication = value;
+					OnIsDbWindowsAuthenticationChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.IsDbWindowsAuthentication; }
+		}
+		partial void OnIsDbWindowsAuthenticationChanged();
+		
+		
+		
+		public string DbUser
+		{ 
+			set
+			{
+				if (_dto.DbUser != value)
+				{
+					_dto.DbUser = value;
+					OnDbUserChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbUser; }
+		}
+		partial void OnDbUserChanged();
+		
+		
+		
+		public string DbPasswork
+		{ 
+			set
+			{
+				if (_dto.DbPasswork != value)
+				{
+					_dto.DbPasswork = value;
+					OnDbPassworkChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.DbPasswork; }
+		}
+		partial void OnDbPassworkChanged();
+		
+		
+		
+		public string PathToProjectWithConnectionString
+		{ 
+			set
+			{
+				if (_dto.PathToProjectWithConnectionString != value)
+				{
+					_dto.PathToProjectWithConnectionString = value;
+					OnPathToProjectWithConnectionStringChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _dto.PathToProjectWithConnectionString; }
+		}
+		partial void OnPathToProjectWithConnectionStringChanged();
 		
 		
 		
@@ -338,7 +486,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
-		public Property() : base(PropertyValidator.Validator)
+		public Property(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_property();
 			this.DataType = new DataType();
@@ -436,7 +585,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
-		public DataType() : base(DataTypeValidator.Validator)
+		public DataType(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DataTypeValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_data_type();
 			OnInit();
@@ -458,7 +608,7 @@ namespace vSharpStudio.vm.ViewModels
 		public DataType Clone()
 		{
 			DataType res = new DataType();
-			res.EnumDataType = this.EnumDataType;
+			res.DataTypeEnum = this.DataTypeEnum;
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
@@ -472,7 +622,7 @@ namespace vSharpStudio.vm.ViewModels
 		protected override DataType Backup()
 		{
 			DataType res = new DataType();
-			res.EnumDataType = this.EnumDataType;
+			res.DataTypeEnum = this.DataTypeEnum;
 			res.Length = this.Length;
 			res.Accuracy = this.Accuracy;
 			res.IsPositive = this.IsPositive;
@@ -484,7 +634,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		protected override void Restore(DataType from)
 		{
-			this.EnumDataType = from.EnumDataType;
+			this.DataTypeEnum = from.DataTypeEnum;
 			this.Length = from.Length;
 			this.Accuracy = from.Accuracy;
 			this.IsPositive = from.IsPositive;
@@ -501,21 +651,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public proto_data_type.Types.EnumDataType EnumDataType
+		public proto_data_type.Types.EnumDataType DataTypeEnum
 		{ 
 			set
 			{
-				if (_dto.EnumDataType != value)
+				if (_dto.DataTypeEnum != value)
 				{
-					_dto.EnumDataType = value;
-					OnEnumDataTypeChanged();
+					_dto.DataTypeEnum = value;
+					OnDataTypeEnumChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.EnumDataType; }
+			get { return _dto.DataTypeEnum; }
 		}
-		partial void OnEnumDataTypeChanged();
+		partial void OnDataTypeEnumChanged();
 		
 		
 		
@@ -652,7 +802,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
 		#region CTOR
-		public Properties() : base(PropertiesValidator.Validator)
+		public Properties(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertiesValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_properties();
 			this.ListProperties = new ObservableCollection<Property>();
@@ -765,7 +916,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
-		public Constant() : base(ConstantValidator.Validator)
+		public Constant(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_constant();
 			this.ConstantType = new Property();
@@ -863,7 +1015,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
 		#region CTOR
-		public Constants() : base(ConstantsValidator.Validator)
+		public Constants(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_constants();
 			this.ListConstants = new ObservableCollection<Constant>();
@@ -976,7 +1129,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
-		public Enumeration() : base(EnumerationValidator.Validator)
+		public Enumeration(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_enumeration();
 			OnInit();
@@ -1066,7 +1220,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
 		#region CTOR
-		public Enumerations() : base(EnumerationsValidator.Validator)
+		public Enumerations(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_enumerations();
 			this.ListEnumerations = new ObservableCollection<Enumeration>();
@@ -1179,7 +1334,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
-		public Catalog() : base(CatalogValidator.Validator)
+		public Catalog(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_catalog();
 			this.Properties = new Properties();
@@ -1382,7 +1538,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
 		#region CTOR
-		public Catalogs() : base(CatalogsValidator.Validator)
+		public Catalogs(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_catalogs();
 			this.ListSharedProperties = new ObservableCollection<Property>();
@@ -1539,7 +1696,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
-		public Document() : base(DocumentValidator.Validator)
+		public Document(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DocumentValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_document();
 			this.Properties = new ObservableCollection<Properties>();
@@ -1673,7 +1831,8 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
 		#region CTOR
-		public Documents() : base(DocumentsValidator.Validator)
+		public Documents(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DocumentsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_documents();
 			this.ListSharedProperties = new ObservableCollection<Property>();

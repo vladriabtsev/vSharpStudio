@@ -58,7 +58,17 @@ namespace DbModel.MsSql
         }
         bool IMigration.IsDatabaseServiceOn()
         {
-            //SqlServerConnection conn = new SqlServerConnection()
+            //using (var connection = new SqlServerConnection(CreateDependencies()))
+            //{
+            //    using (var master = connection.CreateMasterConnection())
+            //    {
+            //        Assert.Equal(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master", master.ConnectionString);
+            //        Assert.Equal(60, master.CommandTimeout);
+            //    }
+            //}
+
+            //SqlServerConnection conn = new SqlServerConnection(CreateDependencies());
+            //conn.
             //    Row
             //SqlServerDatabaseCreator cr = new SqlServerDatabaseCreator(CreateDependencies());
             throw new NotImplementedException();

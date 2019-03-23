@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
-                switch (this.DataType.EnumDataType)
+                switch (this.DataType.DataTypeEnum)
                 {
                     case EnumDataType.Bool:
                         return typeof(bool);
@@ -84,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 // https://developers.google.com/protocol-buffers/docs/proto3#scalar
-                switch (this.DataType.EnumDataType)
+                switch (this.DataType.DataTypeEnum)
                 {
                     case EnumDataType.Bool:
                         return "bool";

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -27,6 +29,14 @@ namespace ViewModelBase
     public class ViewModelBindable<T> : ViewModelBindable
       where T : ViewModelBindable<T>
     {
+        //private SortableObservableCollection<ISortingValue> _validationCollection=null;
+        //public SortableObservableCollection<ISortingValue> ApplicatonValidationCollection { get { return _validationCollection; } }
+        //public void SetApplicatonValidationCollection(SortableObservableCollection<ISortingValue> collection)
+        //{
+        //    if (_validationCollection != null)
+        //        throw new InvalidOperationException("Application level collection for validation results is already selected.");
+        //    _validationCollection = collection;
+        //}
 #if DEBUG
         public ViewModelBindable()
         {

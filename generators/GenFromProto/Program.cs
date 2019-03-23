@@ -83,6 +83,11 @@ namespace GenFromProto
                         return from.MessageType.Name.ToNameCs();
                 }
             }
+            else if (from.FieldType == Google.Protobuf.Reflection.FieldType.Enum)
+            {
+                return from.EnumType.Name;
+            }
+
             return from.FieldType.ToTypeCs();
         }
         public static string ToTypeCs(this Google.Protobuf.Reflection.FieldType from)
