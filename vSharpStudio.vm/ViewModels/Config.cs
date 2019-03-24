@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
-        public Config(string configJson, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+        public Config(string configJson, SortedObservableCollection<ValidationMessage> validationCollection = null) 
             : base(ConfigValidator.Validator, validationCollection)
         {
             this._dto = Proto.Config.proto_config.Parser.ParseJson(configJson);

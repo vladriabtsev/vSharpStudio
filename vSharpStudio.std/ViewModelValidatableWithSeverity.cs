@@ -8,17 +8,18 @@ using System.Linq.Expressions;
 
 namespace ViewModelBase
 {
-    public class ViewModelValidatableWithSeverity<T, TValidator> : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatable
+    public abstract class ViewModelValidatableWithSeverity<T, TValidator>
+        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatable, IComparable
       where TValidator : AbstractValidator<T>
-      where T : ViewModelValidatableWithSeverity<T, TValidator>
+      where T : ViewModelValidatableWithSeverity<T, TValidator>, IComparable
     {
-        public ViewModelValidatableWithSeverity(TValidator validator, SortableObservableCollection<ValidationMessage> validationCollection = null)
+        public ViewModelValidatableWithSeverity(TValidator validator, SortedObservableCollection<ValidationMessage> validationCollection = null)
         {
             this._validator = validator;
             this.ValidationCollection = validationCollection;
         }
         protected readonly IValidator _validator;
-        public SortableObservableCollection<ValidationMessage> ValidationCollection { get; private set; }
+        public SortedObservableCollection<ValidationMessage> ValidationCollection { get; private set; }
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
             ClearAllErrors();
@@ -135,31 +136,41 @@ namespace ViewModelBase
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, List<string>> _warnings = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, List<string>> _infos = new Dictionary<string, List<string>>();
-        public void SetError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        // than higher weight than higher importance of the message
+        public void SetError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
             if (!_errors.ContainsKey(propertyName))
                 _errors.Add(propertyName, new List<string> { errorMessage });
+            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Error, weight, errorMessage);
+            ValidationCollection.Add(msg);
             RaiseErrorsChanged(propertyName);
             NotifyPropertyChanged(m => m.HasErrors);
         }
-        public void SetWarning(string warningMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        // than higher weight than higher importance of the message
+        public void SetWarning(string warningMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
             if (!_warnings.ContainsKey(propertyName))
                 _warnings.Add(propertyName, new List<string> { warningMessage });
+            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Warning, weight, warningMessage);
+            ValidationCollection.Add(msg);
             RaiseErrorsChanged(propertyName);
             NotifyPropertyChanged(m => m.HasWarnings);
         }
-        public void SetInfo(string infoMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        // than higher weight than higher importance of the message
+        public void SetInfo(string infoMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
             if (!_infos.ContainsKey(propertyName))
                 _infos.Add(propertyName, new List<string> { infoMessage });
+            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Info, weight, infoMessage);
+            ValidationCollection.Add(msg);
             RaiseErrorsChanged(propertyName);
             NotifyPropertyChanged(m => m.HasInfos);
         }
-        public void SetOneError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        // than higher weight than higher importance of the message
+        public void SetOneError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
             ClearError(propertyName);
-            SetError(errorMessage, propertyName);
+            SetError(errorMessage, weight, propertyName);
         }
         protected void ClearError(string propertyName)
         {
@@ -231,6 +242,15 @@ namespace ViewModelBase
                 ? _infos[propertyName]
                 : null;
         }
+
+        public abstract int CompareToById(T other);
+        public int CompareTo(object obj)
+        {
+            int res = obj.GetType().Name.CompareTo(typeof(T).Name);
+            if (res != 0) return res;
+            return CompareToById((T)obj);
+        }
+
         public bool HasErrors
         {
             get { return _errors.Count > 0; }

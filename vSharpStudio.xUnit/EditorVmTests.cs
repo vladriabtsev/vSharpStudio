@@ -32,7 +32,7 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
         {
-            var cfg = new Config(new SortableObservableCollection<ValidationMessage>());
+            var cfg = new Config(new SortedObservableCollection<ValidationMessage>());
             cfg.IsDbFromConnectionString = true;
             cfg.Validate();
             Assert.False(cfg.HasErrors);

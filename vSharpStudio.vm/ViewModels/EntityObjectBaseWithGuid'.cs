@@ -6,22 +6,18 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class EntityObjectBaseWithGuid<T, TValidator> : EntityObjectBase<T, TValidator>, IGuid, IComparable
+    public class EntityObjectBaseWithGuid<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IGuid
       where TValidator : AbstractValidator<T>
       where T : EntityObjectBaseWithGuid<T, TValidator>
     {
-        public EntityObjectBaseWithGuid(TValidator validator, SortableObservableCollection<ValidationMessage> validationCollection )
+        public EntityObjectBaseWithGuid(TValidator validator, SortedObservableCollection<ValidationMessage> validationCollection )
             : base(validator, validationCollection)
         {
         }
         public string Guid { get; protected set; }
-        public int CompareTo(object obj)
+        public override int CompareToById(T other)
         {
-            if (obj.GetType().FullName != typeof(T).FullName)
-                return 1;
-            if (((T)obj).Guid != this.Guid)
-                return 1;
-            return 0;
+            return this.Guid.CompareTo(other.Guid);
         }
     }
 }

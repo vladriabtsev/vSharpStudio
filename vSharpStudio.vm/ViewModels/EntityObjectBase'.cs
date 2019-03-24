@@ -10,9 +10,13 @@ namespace vSharpStudio.vm.ViewModels
       where TValidator : AbstractValidator<T>
       where T : EntityObjectBase<T, TValidator>
     {
-        public EntityObjectBase(TValidator validator, SortableObservableCollection<ValidationMessage> validationCollection )
+        public EntityObjectBase(TValidator validator, SortedObservableCollection<ValidationMessage> validationCollection )
             : base(validator, validationCollection)
         {
+        }
+        public override int CompareToById(T other)
+        {
+            throw new Exception();
         }
     }
 }

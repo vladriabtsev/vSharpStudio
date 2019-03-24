@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
-		public Config(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Config(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConfigValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_config();
@@ -23,7 +23,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.Catalogs = new Catalogs();
 			OnInit();
 		}
-		public Config(proto_config dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Config(proto_config dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConfigValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -469,14 +469,14 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
-		public Property(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Property(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(PropertyValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_property();
 			this.DataType = new DataType();
 			OnInit();
 		}
-		public Property(proto_property dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Property(proto_property dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(PropertyValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -551,13 +551,13 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
-		public DataType(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public DataType(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DataTypeValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_data_type();
 			OnInit();
 		}
-		public DataType(proto_data_type dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public DataType(proto_data_type dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DataTypeValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -769,7 +769,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
 		#region CTOR
-		public Properties(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Properties(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(PropertiesValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_properties();
@@ -802,7 +802,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Properties(proto_properties dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Properties(proto_properties dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(PropertiesValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -884,14 +884,14 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
-		public Constant(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Constant(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConstantValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_constant();
 			this.ConstantType = new Property();
 			OnInit();
 		}
-		public Constant(proto_constant dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Constant(proto_constant dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConstantValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -966,7 +966,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
 		#region CTOR
-		public Constants(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Constants(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConstantsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_constants();
@@ -999,7 +999,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Constants(proto_constants dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Constants(proto_constants dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConstantsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1081,13 +1081,13 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
-		public Enumeration(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Enumeration(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(EnumerationValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_enumeration();
 			OnInit();
 		}
-		public Enumeration(proto_enumeration dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Enumeration(proto_enumeration dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(EnumerationValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1155,7 +1155,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
 		#region CTOR
-		public Enumerations(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Enumerations(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(EnumerationsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_enumerations();
@@ -1188,7 +1188,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Enumerations(proto_enumerations dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Enumerations(proto_enumerations dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(EnumerationsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1270,14 +1270,14 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
-		public Catalog(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Catalog(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(CatalogValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_catalog();
 			this.Properties = new Properties();
 			OnInit();
 		}
-		public Catalog(proto_catalog dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Catalog(proto_catalog dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(CatalogValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1457,7 +1457,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
 		#region CTOR
-		public Catalogs(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Catalogs(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(CatalogsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_catalogs();
@@ -1517,7 +1517,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Catalogs(proto_catalogs dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Catalogs(proto_catalogs dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(CatalogsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1616,7 +1616,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
-		public Document(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Document(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DocumentValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_document();
@@ -1649,7 +1649,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Document(proto_document dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Document(proto_document dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DocumentValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
@@ -1734,7 +1734,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
 		#region CTOR
-		public Documents(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Documents(SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DocumentsValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_documents();
@@ -1794,7 +1794,7 @@ namespace vSharpStudio.vm.ViewModels
 				}
 			}
 		}
-		public Documents(proto_documents dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+		public Documents(proto_documents dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DocumentsValidator.Validator, validationCollection)
 		{
 			this._dto = dto;
