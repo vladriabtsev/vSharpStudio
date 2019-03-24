@@ -25,21 +25,7 @@ if (t.IsRepeated) {#>
 <# } #>
 	return res;
 }
-#region IEditable
-protected override <#= message.Name.ToNameCs() #> Backup()
-{
-	<#= message.Name.ToNameCs() #> res = new <#= message.Name.ToNameCs() #>();
-<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-if (t.IsRepeated) {#>
-<# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-<#	} else if (t.IsMap) { #>
-<# } else { #>
-	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
-<# } #>
-<# } #>
-	return res;
-}
-protected override void Restore(<#= message.Name.ToNameCs() #> from)
+public void UpdateFrom(<#= message.Name.ToNameCs() #> from)
 {
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
 if (t.IsRepeated) {#>
@@ -49,5 +35,14 @@ if (t.IsRepeated) {#>
 	this.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;
 <# } #>
 <# } #>
+}
+#region IEditable
+public override <#= message.Name.ToNameCs() #> Backup()
+{
+	return this.Clone();
+}
+public override void Restore(<#= message.Name.ToNameCs() #> from)
+{
+    this.UpdateFrom(from);
 }
 #endregion IEditable

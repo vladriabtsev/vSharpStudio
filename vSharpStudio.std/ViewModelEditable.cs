@@ -18,8 +18,8 @@ namespace ViewModelBase
         //    this.Restore(_dtoBackup);
         //	IsChanged = false;
         //}
-        protected virtual void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
-        protected virtual T Backup() { throw new NotImplementedException("Please override Backup method"); }
+        public virtual void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
+        public virtual T Backup() { throw new NotImplementedException("Please override Backup method"); }
 
         #region IEditableObject
         private T _dtoBackupTmp;

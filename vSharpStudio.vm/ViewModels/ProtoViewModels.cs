@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/24/2019 13:14:15
+// Auto generated on UTC 03/24/2019 22:39:01
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
 	        : base(ConfigValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_config();
-			this.Constants = new Constants();
-			this.Enumerators = new Enumerations();
-			this.Catalogs = new Catalogs();
+			this.Constants = new Constants(this._dto);
+			this.Enumerators = new Enumerations(this._dto);
+			this.Catalogs = new Catalogs(this._dto);
 			OnInit();
 		}
 		public Config(proto_config dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
@@ -68,32 +68,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.Catalogs = this.Catalogs.Clone();
 			return res;
 		}
-		#region IEditable
-		protected override Config Backup()
-		{
-			Config res = new Config();
-			res.Guid = this.Guid;
-			res.Version = this.Version;
-			res.Name = this.Name;
-			res.IsDbFromConnectionString = this.IsDbFromConnectionString;
-			res.ConnectionStringName = this.ConnectionStringName;
-			res.DbTypeEnum = this.DbTypeEnum;
-			res.DbServer = this.DbServer;
-			res.DbDatabaseName = this.DbDatabaseName;
-			res.IsDbWindowsAuthentication = this.IsDbWindowsAuthentication;
-			res.DbUser = this.DbUser;
-			res.DbPasswork = this.DbPasswork;
-			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
-			res.DbSchema = this.DbSchema;
-			res.PrimaryKeyName = this.PrimaryKeyName;
-			res.IsPrimaryKeyClustered = this.IsPrimaryKeyClustered;
-			res.IsMemoryOptimized = this.IsMemoryOptimized;
-			res.IsSequenceHiLo = this.IsSequenceHiLo;
-			res.HiLoSequenceName = this.HiLoSequenceName;
-			res.HiLoSchema = this.HiLoSchema;
-			return res;
-		}
-		protected override void Restore(Config from)
+		public void UpdateFrom(Config from)
 		{
 			this.Guid = from.Guid;
 			this.Version = from.Version;
@@ -114,6 +89,15 @@ namespace vSharpStudio.vm.ViewModels
 			this.IsSequenceHiLo = from.IsSequenceHiLo;
 			this.HiLoSequenceName = from.HiLoSequenceName;
 			this.HiLoSchema = from.HiLoSchema;
+		}
+		#region IEditable
+		public override Config Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Config from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -142,8 +126,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnVersionChanged();
 		
-		
-		
 		public string Name
 		{ 
 			set
@@ -159,8 +141,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
-		
-		
 		
 		public bool IsDbFromConnectionString
 		{ 
@@ -178,8 +158,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnIsDbFromConnectionStringChanged();
 		
-		
-		
 		public string ConnectionStringName
 		{ 
 			set
@@ -195,8 +173,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.ConnectionStringName; }
 		}
 		partial void OnConnectionStringNameChanged();
-		
-		
 		
 		public proto_config.Types.EnumDbType DbTypeEnum
 		{ 
@@ -214,8 +190,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnDbTypeEnumChanged();
 		
-		
-		
 		public string DbServer
 		{ 
 			set
@@ -231,8 +205,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.DbServer; }
 		}
 		partial void OnDbServerChanged();
-		
-		
 		
 		public string DbDatabaseName
 		{ 
@@ -250,8 +222,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnDbDatabaseNameChanged();
 		
-		
-		
 		public bool IsDbWindowsAuthentication
 		{ 
 			set
@@ -267,8 +237,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsDbWindowsAuthentication; }
 		}
 		partial void OnIsDbWindowsAuthenticationChanged();
-		
-		
 		
 		public string DbUser
 		{ 
@@ -286,8 +254,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnDbUserChanged();
 		
-		
-		
 		public string DbPasswork
 		{ 
 			set
@@ -303,8 +269,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.DbPasswork; }
 		}
 		partial void OnDbPassworkChanged();
-		
-		
 		
 		public string PathToProjectWithConnectionString
 		{ 
@@ -322,8 +286,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnPathToProjectWithConnectionStringChanged();
 		
-		
-		
 		public string DbSchema
 		{ 
 			set
@@ -339,8 +301,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.DbSchema; }
 		}
 		partial void OnDbSchemaChanged();
-		
-		
 		
 		public string PrimaryKeyName
 		{ 
@@ -358,8 +318,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnPrimaryKeyNameChanged();
 		
-		
-		
 		public bool IsPrimaryKeyClustered
 		{ 
 			set
@@ -375,8 +333,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsPrimaryKeyClustered; }
 		}
 		partial void OnIsPrimaryKeyClusteredChanged();
-		
-		
 		
 		public bool IsMemoryOptimized
 		{ 
@@ -394,8 +350,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnIsMemoryOptimizedChanged();
 		
-		
-		
 		public bool IsSequenceHiLo
 		{ 
 			set
@@ -411,8 +365,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsSequenceHiLo; }
 		}
 		partial void OnIsSequenceHiLoChanged();
-		
-		
 		
 		public string HiLoSequenceName
 		{ 
@@ -430,8 +382,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnHiLoSequenceNameChanged();
 		
-		
-		
 		public string HiLoSchema
 		{ 
 			set
@@ -448,19 +398,11 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnHiLoSchemaChanged();
 		
-		
-		
 		public Constants Constants { set; get; }
-		
-		
 		
 		public Enumerations Enumerators { set; get; }
 		
-		
-		
 		public Catalogs Catalogs { set; get; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -473,8 +415,36 @@ namespace vSharpStudio.vm.ViewModels
 	        : base(PropertyValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_property();
-			this.DataType = new DataType();
+			this.DataType = new DataType(this._dto);
 			OnInit();
+		}
+		public Property(proto_properties dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_property();
+			dto.ListProperties.Add(this._dto);
+			this.DataType = new DataType(this._dto);
+		}
+		public Property(proto_constant dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_property();
+			dto.ConstantType = this._dto;
+			this.DataType = new DataType(this._dto);
+		}
+		public Property(proto_catalogs dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_property();
+			dto.ListSharedProperties.Add(this._dto);
+			this.DataType = new DataType(this._dto);
+		}
+		public Property(proto_documents dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertyValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_property();
+			dto.ListSharedProperties.Add(this._dto);
+			this.DataType = new DataType(this._dto);
 		}
 		public Property(proto_property dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(PropertyValidator.Validator, validationCollection)
@@ -500,18 +470,19 @@ namespace vSharpStudio.vm.ViewModels
 			res.DataType = this.DataType.Clone();
 			return res;
 		}
-		#region IEditable
-		protected override Property Backup()
-		{
-			Property res = new Property();
-			res.Guid = this.Guid;
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Property from)
+		public void UpdateFrom(Property from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Property Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Property from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -538,11 +509,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public DataType DataType { set; get; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -556,6 +523,12 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this._dto = new proto_data_type();
 			OnInit();
+		}
+		public DataType(proto_property dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DataTypeValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_data_type();
+			dto.DataType = this._dto;
 		}
 		public DataType(proto_data_type dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(DataTypeValidator.Validator, validationCollection)
@@ -585,21 +558,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.ObjectName = this.ObjectName;
 			return res;
 		}
-		#region IEditable
-		protected override DataType Backup()
-		{
-			DataType res = new DataType();
-			res.DataTypeEnum = this.DataTypeEnum;
-			res.Length = this.Length;
-			res.Accuracy = this.Accuracy;
-			res.IsPositive = this.IsPositive;
-			res.TypeGuid = this.TypeGuid;
-			res.MinValueString = this.MinValueString;
-			res.MaxValueString = this.MaxValueString;
-			res.ObjectName = this.ObjectName;
-			return res;
-		}
-		protected override void Restore(DataType from)
+		public void UpdateFrom(DataType from)
 		{
 			this.DataTypeEnum = from.DataTypeEnum;
 			this.Length = from.Length;
@@ -609,6 +568,15 @@ namespace vSharpStudio.vm.ViewModels
 			this.MinValueString = from.MinValueString;
 			this.MaxValueString = from.MaxValueString;
 			this.ObjectName = from.ObjectName;
+		}
+		#region IEditable
+		public override DataType Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(DataType from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -634,8 +602,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnDataTypeEnumChanged();
 		
-		
-		
 		public uint Length
 		{ 
 			set
@@ -651,8 +617,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Length; }
 		}
 		partial void OnLengthChanged();
-		
-		
 		
 		public uint Accuracy
 		{ 
@@ -670,8 +634,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnAccuracyChanged();
 		
-		
-		
 		public bool IsPositive
 		{ 
 			set
@@ -687,8 +649,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsPositive; }
 		}
 		partial void OnIsPositiveChanged();
-		
-		
 		
 		public string TypeGuid
 		{ 
@@ -706,8 +666,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnTypeGuidChanged();
 		
-		
-		
 		public string MinValueString
 		{ 
 			set
@@ -723,8 +681,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.MinValueString; }
 		}
 		partial void OnMinValueStringChanged();
-		
-		
 		
 		public string MaxValueString
 		{ 
@@ -742,8 +698,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnMaxValueStringChanged();
 		
-		
-		
 		public string ObjectName
 		{ 
 			set
@@ -759,8 +713,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.ObjectName; }
 		}
 		partial void OnObjectNameChanged();
-		
-		
 		#endregion Properties
 	}
 	
@@ -776,6 +728,22 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListProperties = new ObservableCollection<Property>();
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
+		}
+		public Properties(proto_catalog dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertiesValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_properties();
+			dto.Properties = this._dto;
+			this.ListProperties = new ObservableCollection<Property>();
+			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+		}
+		public Properties(proto_document dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(PropertiesValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_properties();
+			dto.Properties.Add(this._dto);
+			this.ListProperties = new ObservableCollection<Property>();
+			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 		}
 		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -834,16 +802,18 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Properties Backup()
-		{
-			Properties res = new Properties();
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Properties from)
+		public void UpdateFrom(Properties from)
 		{
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Properties Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Properties from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -871,11 +841,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Property> ListProperties { get; set; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -888,8 +854,15 @@ namespace vSharpStudio.vm.ViewModels
 	        : base(ConstantValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_constant();
-			this.ConstantType = new Property();
+			this.ConstantType = new Property(this._dto);
 			OnInit();
+		}
+		public Constant(proto_constants dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_constant();
+			dto.ListConstants.Add(this._dto);
+			this.ConstantType = new Property(this._dto);
 		}
 		public Constant(proto_constant dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(ConstantValidator.Validator, validationCollection)
@@ -915,18 +888,19 @@ namespace vSharpStudio.vm.ViewModels
 			res.ConstantType = this.ConstantType.Clone();
 			return res;
 		}
-		#region IEditable
-		protected override Constant Backup()
-		{
-			Constant res = new Constant();
-			res.Guid = this.Guid;
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Constant from)
+		public void UpdateFrom(Constant from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Constant Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Constant from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -953,11 +927,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public Property ConstantType { set; get; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -973,6 +943,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListConstants = new ObservableCollection<Constant>();
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
+		}
+		public Constants(proto_config dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(ConstantsValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_constants();
+			dto.Constants = this._dto;
+			this.ListConstants = new ObservableCollection<Constant>();
+			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 		}
 		private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1031,16 +1009,18 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Constants Backup()
-		{
-			Constants res = new Constants();
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Constants from)
+		public void UpdateFrom(Constants from)
 		{
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Constants Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Constants from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1068,11 +1048,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Constant> ListConstants { get; set; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -1086,6 +1062,12 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this._dto = new proto_enumeration();
 			OnInit();
+		}
+		public Enumeration(proto_enumerations dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_enumeration();
+			dto.ListEnumerations.Add(this._dto);
 		}
 		public Enumeration(proto_enumeration dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(EnumerationValidator.Validator, validationCollection)
@@ -1109,18 +1091,19 @@ namespace vSharpStudio.vm.ViewModels
 			res.Name = this.Name;
 			return res;
 		}
-		#region IEditable
-		protected override Enumeration Backup()
-		{
-			Enumeration res = new Enumeration();
-			res.Guid = this.Guid;
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Enumeration from)
+		public void UpdateFrom(Enumeration from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Enumeration Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Enumeration from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1145,8 +1128,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.Name; }
 		}
 		partial void OnNameChanged();
-		
-		
 		#endregion Properties
 	}
 	
@@ -1162,6 +1143,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListEnumerations = new ObservableCollection<Enumeration>();
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
+		}
+		public Enumerations(proto_config dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(EnumerationsValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_enumerations();
+			dto.Enumerators = this._dto;
+			this.ListEnumerations = new ObservableCollection<Enumeration>();
+			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 		}
 		private void ListEnumerations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1220,16 +1209,18 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Enumerations Backup()
-		{
-			Enumerations res = new Enumerations();
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Enumerations from)
+		public void UpdateFrom(Enumerations from)
 		{
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Enumerations Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Enumerations from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1257,11 +1248,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Enumeration> ListEnumerations { get; set; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -1274,8 +1261,18 @@ namespace vSharpStudio.vm.ViewModels
 	        : base(CatalogValidator.Validator, validationCollection)
 		{
 			this._dto = new proto_catalog();
-			this.Properties = new Properties();
+			this._dto.IsPrimaryKeyClustered = new bool_nullable();
+			this._dto.IsMemoryOptimized = new bool_nullable();
+			this._dto.IsSequenceHiLo = new bool_nullable();
+			this.Properties = new Properties(this._dto);
 			OnInit();
+		}
+		public Catalog(proto_catalogs dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_catalog();
+			dto.ListCatalogs.Add(this._dto);
+			this.Properties = new Properties(this._dto);
 		}
 		public Catalog(proto_catalog dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
 	        : base(CatalogValidator.Validator, validationCollection)
@@ -1309,22 +1306,21 @@ namespace vSharpStudio.vm.ViewModels
 			res.Properties = this.Properties.Clone();
 			return res;
 		}
-		#region IEditable
-		protected override Catalog Backup()
-		{
-			Catalog res = new Catalog();
-			res.Guid = this.Guid;
-			res.Name = this.Name;
-			res.HiLoSequenceName = this.HiLoSequenceName;
-			res.HiLoSchema = this.HiLoSchema;
-			return res;
-		}
-		protected override void Restore(Catalog from)
+		public void UpdateFrom(Catalog from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
 			this.HiLoSequenceName = from.HiLoSequenceName;
 			this.HiLoSchema = from.HiLoSchema;
+		}
+		#region IEditable
+		public override Catalog Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Catalog from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1351,8 +1347,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public bool? IsPrimaryKeyClustered
 		{ 
 			set
@@ -1369,8 +1363,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.IsPrimaryKeyClustered.HasValue ? _dto.IsPrimaryKeyClustered.Value : (bool?)null; }
 		}
 		partial void OnIsPrimaryKeyClusteredChanged();
-		
-		
 		
 		public bool? IsMemoryOptimized
 		{ 
@@ -1389,8 +1381,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnIsMemoryOptimizedChanged();
 		
-		
-		
 		public bool? IsSequenceHiLo
 		{ 
 			set
@@ -1408,8 +1398,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnIsSequenceHiLoChanged();
 		
-		
-		
 		public string HiLoSequenceName
 		{ 
 			set
@@ -1425,8 +1413,6 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _dto.HiLoSequenceName; }
 		}
 		partial void OnHiLoSequenceNameChanged();
-		
-		
 		
 		public string HiLoSchema
 		{ 
@@ -1444,11 +1430,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnHiLoSchemaChanged();
 		
-		
-		
 		public Properties Properties { set; get; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -1466,6 +1448,16 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListCatalogs = new ObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
+		}
+		public Catalogs(proto_config dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(CatalogsValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_catalogs();
+			dto.Catalogs = this._dto;
+			this.ListSharedProperties = new ObservableCollection<Property>();
+			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
+			this.ListCatalogs = new ObservableCollection<Catalog>();
+			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 		}
 		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1560,16 +1552,18 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Catalogs Backup()
-		{
-			Catalogs res = new Catalogs();
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Catalogs from)
+		public void UpdateFrom(Catalogs from)
 		{
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Catalogs Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Catalogs from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1599,15 +1593,9 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
 		
-		
-		
 		public ObservableCollection<Catalog> ListCatalogs { get; set; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -1623,6 +1611,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.Properties = new ObservableCollection<Properties>();
 			this.Properties.CollectionChanged += Properties_CollectionChanged;
 			OnInit();
+		}
+		public Document(proto_documents dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+	        : base(DocumentValidator.Validator, validationCollection)
+		{
+			this._dto = new proto_document();
+			dto.ListDocuments.Add(this._dto);
+			this.Properties = new ObservableCollection<Properties>();
+			this.Properties.CollectionChanged += Properties_CollectionChanged;
 		}
 		private void Properties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1682,18 +1678,19 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Document Backup()
-		{
-			Document res = new Document();
-			res.Guid = this.Guid;
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Document from)
+		public void UpdateFrom(Document from)
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Document Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Document from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1721,11 +1718,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Properties> Properties { get; set; }
-		
-		
 		#endregion Properties
 	}
 	
@@ -1837,16 +1830,18 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			return res;
 		}
-		#region IEditable
-		protected override Documents Backup()
-		{
-			Documents res = new Documents();
-			res.Name = this.Name;
-			return res;
-		}
-		protected override void Restore(Documents from)
+		public void UpdateFrom(Documents from)
 		{
 			this.Name = from.Name;
+		}
+		#region IEditable
+		public override Documents Backup()
+		{
+			return this.Clone();
+		}
+		public override void Restore(Documents from)
+		{
+		    this.UpdateFrom(from);
 		}
 		#endregion IEditable
 		public void Accept(IVisitorConfig visitor) 
@@ -1876,15 +1871,9 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnNameChanged();
 		
-		
-		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
 		
-		
-		
 		public ObservableCollection<Document> ListDocuments { get; set; }
-		
-		
 		#endregion Properties
 	}
 	

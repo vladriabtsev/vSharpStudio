@@ -30,6 +30,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.proto", "vSharpStudio.proto\vSharpStudio.proto.csproj", "{EC5B8D66-BBC5-4183-8381-1D6B6181734E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeForTT.xUnit", "generators\CodeForTT.xUnit\CodeForTT.xUnit.csproj", "{C0FBA001-51D9-47F5-BF0B-40B419C96B40}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D591315D-E1AF-417C-A224-CBAA5238A862} = {D591315D-E1AF-417C-A224-CBAA5238A862}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C0E0B3FB-AC8D-4459-A712-23C2F7CF5441}"
 	ProjectSection(SolutionItems) = preProject

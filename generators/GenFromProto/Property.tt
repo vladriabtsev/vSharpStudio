@@ -5,8 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.proto" #>
 <#= field.Declaration.ToLeadingComments() #>
-<# 
-if (field.IsRepeated) { #>
+<# if (field.IsRepeated) { #>
 public ObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
 public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
@@ -61,4 +60,3 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 <# } #>
 <#= field.Declaration.ToTrailingComments("") #>
-

@@ -131,8 +131,8 @@ namespace ViewModelBase
                 }
             }
         }
-        protected override T Backup() { return base.Backup(); }
-        protected override void Restore(T from) { base.Restore(from); }
+        public override void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
+        public override T Backup() { throw new NotImplementedException("Please override Backup method"); }
 
         #region INotifyDataErrorInfo methods and helpers
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();

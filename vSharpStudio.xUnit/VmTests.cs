@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
+using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {
@@ -26,6 +27,28 @@ namespace vSharpStudio.xUnit
         }
         public List<string> TestPublicListPropery { get; set; }
         public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
+        public override TestEditable Backup()
+        {
+            var tmp = new TestEditable();
+            tmp.TestPublicPropery = this.TestPublicPropery;
+            tmp.TestPublicObservableCollectionPropery = new ObservableCollection<string>();
+            foreach(var t in this.TestPublicObservableCollectionPropery)
+            {
+                tmp.TestPublicObservableCollectionPropery.Add(t);
+            }
+            tmp.TestPublicListPropery = new List<string>();
+            foreach (var t in this.TestPublicListPropery)
+            {
+                tmp.TestPublicListPropery.Add(t);
+            }
+            return tmp;
+        }
+        public override void Restore(TestEditable from)
+        {
+            this.TestPublicPropery = from.TestPublicPropery;
+            this.TestPublicObservableCollectionPropery = from.TestPublicObservableCollectionPropery;
+            this.TestPublicListPropery = from.TestPublicListPropery;
+        }
     }
     public class TestValidator : ValidatorBase<TestValidatable, TestValidator>
     {
@@ -50,13 +73,13 @@ namespace vSharpStudio.xUnit
         }
         public List<string> TestPublicListPropery { get; set; }
         public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
-        protected override TestValidatable Backup()
+        public override TestValidatable Backup()
         {
             var tmp = new TestValidatable();
             tmp.TestPublicPropery = this.TestPublicPropery;
             return tmp;
         }
-        protected override void Restore(TestValidatable from)
+        public override void Restore(TestValidatable from)
         {
             this.TestPublicPropery = from.TestPublicPropery;
         }
@@ -74,16 +97,16 @@ namespace vSharpStudio.xUnit
             vm.CancelEdit();
             Assert.Equal("1", vm.TestPublicPropery);
         }
-        [Fact]
-        public void Editable002CanCancelEditPrivateField()
-        {
-            TestEditable vm = new TestEditable();
-            vm.SetPrivateField("1");
-            vm.BeginEdit();
-            vm.SetPrivateField("2");
-            vm.CancelEdit();
-            Assert.Equal("1", vm.GetPrivateField());
-        }
+        //[Fact]
+        //public void Editable002CanCancelEditPrivateField()
+        //{
+        //    TestEditable vm = new TestEditable();
+        //    vm.SetPrivateField("1");
+        //    vm.BeginEdit();
+        //    vm.SetPrivateField("2");
+        //    vm.CancelEdit();
+        //    Assert.Equal("1", vm.GetPrivateField());
+        //}
         [Fact]
         public void Editable003CanCancelEditPublicListProperty()
         {
@@ -149,6 +172,17 @@ namespace vSharpStudio.xUnit
             Assert.Equal(2, vm.TestPublicObservableCollectionPropery.Count);
             Assert.Equal("1", vm.TestPublicObservableCollectionPropery[0]);
             Assert.Equal("2", vm.TestPublicObservableCollectionPropery[1]);
+        }
+        [Fact]
+        public void Editable009CanCancelEndEditCatalog()
+        {
+            Catalog vm = new Catalog();
+            vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.BeginEdit();
+            vm.Properties.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.CancelEdit();
+            Assert.Single(vm.Properties.ListProperties);
+            Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
         }
     }
 }

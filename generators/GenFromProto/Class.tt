@@ -15,20 +15,60 @@ public partial class <#= message.Name.ToNameCs() #>
 	{
 		this._dto = new <#= message.Name #>();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-     if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable"))
-       continue;
+       if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
+         continue;
+       if (t.MessageType.Name.EndsWith("_nullable")) { #>
+		this._dto.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name #>();
+<#
+         continue;
+       }
 		if (t.IsRepeated) {#>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>();
+		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this._dto);
 <#		} else if (t.IsMap) { #>
 		map???
 <#		} #>
 <# } #>
 		OnInit();
 	}
-<# foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; #>
+<# if (dicParents.ContainsKey(message.Name)) {
+       foreach(var parent in dicParents[message.Name]) { #>
+	public <#= message.Name.ToNameCs() #>(<#= parent.Name #> dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
+	{
+		this._dto = new <#= message.Name #>();
+<# foreach (var t in parent.Fields.InDeclarationOrder())	{ 
+     if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
+       continue;
+     if (t.MessageType.Name != message.Name)
+       continue;
+		if (t.IsRepeated) {#>
+		dto.<#= t.Name.ToNameCs() #>.Add(this._dto);
+<#		} else if (t.IsMap) { #>
+		map???
+<#		} else { #>
+		dto.<#= t.Name.ToNameCs() #> = this._dto;
+<#		} #>
+<# } #>
+<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+     if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable"))
+       continue;
+		if (t.IsRepeated) {#>
+		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
+		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
+<#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this._dto);
+<#		} else if (t.IsMap) { #>
+		map???
+<#		} #>
+<# } #>
+	}
+<#
+       } 
+   }
+   foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; #>
 	private void <#= t.Name.ToNameCs() #>_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 	{
 		if (e.NewItems.Count > 0)
