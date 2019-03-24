@@ -10,7 +10,7 @@ public partial class <#= message.Name.ToNameCs() #>
 <#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
 	#region CTOR
-	public <#= message.Name.ToNameCs() #>(SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	public <#= message.Name.ToNameCs() #>(SortedObservableCollection<ValidationMessage> validationCollection = null) 
         : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
 	{
 		this._dto = new <#= message.Name #>();
@@ -55,7 +55,7 @@ public partial class <#= message.Name.ToNameCs() #>
 		}
 	}
 <# } #>
-	public <#= message.Name.ToNameCs() #>(<#= message.Name #> dto, SortableObservableCollection<ValidationMessage> validationCollection = null) 
+	public <#= message.Name.ToNameCs() #>(<#= message.Name #> dto, SortedObservableCollection<ValidationMessage> validationCollection = null) 
         : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
 	{
 		this._dto = dto;
