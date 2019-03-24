@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace ViewModelBase
 {
-    public abstract class ViewModelValidatableWithSeverity<T, TValidator>
+    public class ViewModelValidatableWithSeverity<T, TValidator>
         : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatable, IComparable
       where TValidator : AbstractValidator<T>
       where T : ViewModelValidatableWithSeverity<T, TValidator>, IComparable
@@ -131,6 +131,8 @@ namespace ViewModelBase
                 }
             }
         }
+        protected override T Backup() { return base.Backup(); }
+        protected override void Restore(T from) { base.Restore(from); }
 
         #region INotifyDataErrorInfo methods and helpers
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
@@ -243,7 +245,7 @@ namespace ViewModelBase
                 : null;
         }
 
-        public abstract int CompareToById(T other);
+        public virtual int CompareToById(T other) { throw new NotImplementedException("Please override CompareToById method"); }
         public int CompareTo(object obj)
         {
             int res = obj.GetType().Name.CompareTo(typeof(T).Name);
