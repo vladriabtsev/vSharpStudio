@@ -6,7 +6,7 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : EntityObjectBase<Property, Property.PropertyValidator>, IEntityObject
+    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject
     {
         partial void OnInit()
         {

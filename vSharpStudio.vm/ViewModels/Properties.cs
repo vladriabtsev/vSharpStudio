@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Properties : EntityObjectBase<Properties, Properties.PropertiesValidator>, IEntityObject
+    public partial class Properties : EntityObjectBaseWithGuid<Properties, Properties.PropertiesValidator>, IEntityObject
     {
     }
 }

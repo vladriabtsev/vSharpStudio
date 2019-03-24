@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public partial class Constant : EntityObjectBase<Constant, Constant.ConstantValidator>, IEntityObject
+  public partial class Constant : EntityObjectBaseWithGuid<Constant, Constant.ConstantValidator>, IEntityObject
     {
     partial void OnInit()
     {

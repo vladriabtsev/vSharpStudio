@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public partial class Enumeration : EntityObjectBase<Enumeration, Enumeration.EnumerationValidator>, IEntityObject
+  public partial class Enumeration : EntityObjectBaseWithGuid<Enumeration, Enumeration.EnumerationValidator>, IEntityObject
     {
     partial void OnInit()
     {

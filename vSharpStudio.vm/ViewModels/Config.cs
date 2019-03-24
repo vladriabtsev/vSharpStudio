@@ -14,7 +14,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : EntityObjectBase<Config, Config.ConfigValidator>, IEntityObject, IMigration
+    public partial class Config : EntityObjectBaseWithGuid<Config, Config.ConfigValidator>, IEntityObject, IMigration
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public partial class Document : EntityObjectBase<Document, Document.DocumentValidator>, IEntityObject
+  public partial class Document : EntityObjectBaseWithGuid<Document, Document.DocumentValidator>, IEntityObject
     {
     partial void OnInit()
     {
