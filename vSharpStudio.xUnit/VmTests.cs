@@ -32,7 +32,7 @@ namespace vSharpStudio.xUnit
             var tmp = new TestEditable();
             tmp.TestPublicPropery = this.TestPublicPropery;
             tmp.TestPublicObservableCollectionPropery = new ObservableCollection<string>();
-            foreach(var t in this.TestPublicObservableCollectionPropery)
+            foreach (var t in this.TestPublicObservableCollectionPropery)
             {
                 tmp.TestPublicObservableCollectionPropery.Add(t);
             }
@@ -174,7 +174,64 @@ namespace vSharpStudio.xUnit
             Assert.Equal("2", vm.TestPublicObservableCollectionPropery[1]);
         }
         [Fact]
-        public void Editable009CanCancelEndEditCatalog()
+        public void Editable011CanCancelSameLevelSimpleProperty()
+        {
+            Catalog vm = new Catalog();
+            vm.Name = "test1";
+            vm.HiLoSchema = "schema1";
+            vm.BeginEdit();
+            vm.Name = "test2";
+            vm.HiLoSchema = "schema2";
+            vm.CancelEdit();
+            Assert.True(vm.Name == "test1");
+            Assert.True(vm.HiLoSchema == "schema1");
+        }
+        [Fact]
+        public void Editable012CanCancelSameLevelNullable()
+        {
+            Catalog vm = new Catalog();
+            vm.IsPrimaryKeyClustered = true;
+            vm.BeginEdit();
+            vm.IsPrimaryKeyClustered = false;
+            vm.CancelEdit();
+            Assert.True(vm.IsPrimaryKeyClustered);
+        }
+        [Fact]
+        public void Editable013CanCancelSecondLevelSimpleProperty()
+        {
+            Catalog vm = new Catalog();
+            vm.Properties.Name = "test1";
+            vm.BeginEdit();
+            vm.Properties.Name = "test2";
+            vm.CancelEdit();
+            Assert.True(vm.Properties.Name == "test1");
+        }
+        [Fact]
+        public void Editable014CanCancelSecondLevelCollection()
+        {
+            Catalog vm = new Catalog();
+            var prop = new Property();
+            prop.Name = "test1";
+            vm.Properties.ListProperties.Add(prop);
+            vm.BeginEdit();
+            vm.Properties.ListProperties[0].Name = "test2";
+            vm.CancelEdit();
+            Assert.True(vm.Properties.ListProperties[0].Name == "test1");
+            vm.BeginEdit();
+            prop = new Property() { Name = "test3" };
+            vm.Properties.ListProperties.Add(prop);
+            Assert.True(vm.Properties.ListProperties.Count == 2);
+            vm.CancelEdit();
+            Assert.True(vm.Properties.ListProperties.Count == 1);
+            Assert.True(vm.Properties.ListProperties[0].Name == "test1");
+        }
+
+
+
+
+
+        [Fact]
+        public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
             vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));

@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/24/2019 22:39:01
+// Auto generated on UTC 03/25/2019 00:50:08
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -89,6 +89,9 @@ namespace vSharpStudio.vm.ViewModels
 			this.IsSequenceHiLo = from.IsSequenceHiLo;
 			this.HiLoSequenceName = from.HiLoSequenceName;
 			this.HiLoSchema = from.HiLoSchema;
+			this.Constants = from.Constants;
+			this.Enumerators = from.Enumerators;
+			this.Catalogs = from.Catalogs;
 		}
 		#region IEditable
 		public override Config Backup()
@@ -474,6 +477,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+			this.DataType = from.DataType;
 		}
 		#region IEditable
 		public override Property Backup()
@@ -765,6 +769,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Property).Name = bname + i;
 				}
@@ -892,6 +898,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+			this.ConstantType = from.ConstantType;
 		}
 		#region IEditable
 		public override Constant Backup()
@@ -972,6 +979,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Constant).Name = bname + i;
 				}
@@ -1172,6 +1181,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Enumeration).Name = bname + i;
 				}
@@ -1310,8 +1321,12 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this.Guid = from.Guid;
 			this.Name = from.Name;
+			this.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
+			this.IsMemoryOptimized = from.IsMemoryOptimized;
+			this.IsSequenceHiLo = from.IsSequenceHiLo;
 			this.HiLoSequenceName = from.HiLoSequenceName;
 			this.HiLoSchema = from.HiLoSchema;
+			this.Properties = from.Properties;
 		}
 		#region IEditable
 		public override Catalog Backup()
@@ -1479,6 +1494,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Property).Name = bname + i;
 				}
@@ -1504,6 +1521,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Catalog).Name = bname + i;
 				}
@@ -1640,6 +1659,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Properties).Name = bname + i;
 				}
@@ -1757,6 +1778,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Property).Name = bname + i;
 				}
@@ -1782,6 +1805,8 @@ namespace vSharpStudio.vm.ViewModels
 				}
 				foreach (var t in e.NewItems)
 				{
+	                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+	                    continue;
 					i++;
 					(t as Document).Name = bname + i;
 				}

@@ -30,6 +30,7 @@ public void UpdateFrom(<#= message.Name.ToNameCs() #> from)
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
 if (t.IsRepeated) {#>
 <# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+	this.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;
 <#	} else if (t.IsMap) { #>
 <# } else { #>
 	this.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;

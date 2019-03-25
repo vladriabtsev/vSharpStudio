@@ -89,6 +89,8 @@ public partial class <#= message.Name.ToNameCs() #>
 			}
 			foreach (var t in e.NewItems)
 			{
+                if (!string.IsNullOrWhiteSpace((t as Property).Name))
+                    continue;
 				i++;
 				(t as <#= t.MessageType.Name.ToNameCs() #>).Name = bname + i;
 			}
