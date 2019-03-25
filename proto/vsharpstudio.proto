@@ -39,7 +39,7 @@ message proto_config {
 	string db_database_name = 15;
     bool is_db_windows_authentication = 16; 
 	string db_user = 17;
-	string db_passwork = 18;
+	string db_password = 18;
 	// path to project with config file containing connection string. Usefull for UNIT tests.
     // it will override previous settings
 	string path_to_project_with_connection_string = 19;

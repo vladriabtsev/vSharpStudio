@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/25/2019 00:50:08
+// Auto generated on UTC 03/25/2019 01:18:55
 using System;
 using ViewModelBase;
 using FluentValidation;
@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
 			res.DbDatabaseName = this.DbDatabaseName;
 			res.IsDbWindowsAuthentication = this.IsDbWindowsAuthentication;
 			res.DbUser = this.DbUser;
-			res.DbPasswork = this.DbPasswork;
+			res.DbPassword = this.DbPassword;
 			res.PathToProjectWithConnectionString = this.PathToProjectWithConnectionString;
 			res.DbSchema = this.DbSchema;
 			res.PrimaryKeyName = this.PrimaryKeyName;
@@ -80,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.DbDatabaseName = from.DbDatabaseName;
 			this.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
 			this.DbUser = from.DbUser;
-			this.DbPasswork = from.DbPasswork;
+			this.DbPassword = from.DbPassword;
 			this.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 			this.DbSchema = from.DbSchema;
 			this.PrimaryKeyName = from.PrimaryKeyName;
@@ -257,21 +257,21 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnDbUserChanged();
 		
-		public string DbPasswork
+		public string DbPassword
 		{ 
 			set
 			{
-				if (_dto.DbPasswork != value)
+				if (_dto.DbPassword != value)
 				{
-					_dto.DbPasswork = value;
-					OnDbPassworkChanged();
+					_dto.DbPassword = value;
+					OnDbPasswordChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _dto.DbPasswork; }
+			get { return _dto.DbPassword; }
 		}
-		partial void OnDbPassworkChanged();
+		partial void OnDbPasswordChanged();
 		
 		public string PathToProjectWithConnectionString
 		{ 

@@ -234,9 +234,18 @@ namespace vSharpStudio.xUnit
         public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
+            vm.BeginEdit();
+            vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.CancelEdit();
+            Assert.True(vm.Properties.ListProperties.Count == 0);
             vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.BeginEdit();
             vm.Properties.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.CancelEdit();
+            Assert.Single(vm.Properties.ListProperties);
+            Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            vm.BeginEdit();
+            vm.Properties.ListProperties.Clear();
             vm.CancelEdit();
             Assert.Single(vm.Properties.ListProperties);
             Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
