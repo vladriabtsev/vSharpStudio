@@ -44,6 +44,17 @@ public partial class <#= message.Name.ToNameCs() #>
 			    int i = 0;
     			foreach (var tt in this.<#= t.Name.ToNameCs() #>)
 	    		{
+                    bool isfound = false;
+                    foreach (var t in e.NewItems)
+                    {
+                        if (t == tt)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (isfound)
+                        continue;
 		    		if (tt.Name.StartsWith(bname))
 			    	{
 					    string s = tt.Name.Remove(0, bname.Length);

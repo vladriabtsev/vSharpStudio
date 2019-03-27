@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/27/2019 19:00:02
+// Auto generated on UTC 03/27/2019 19:10:34
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -956,6 +956,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListProperties)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -1242,6 +1253,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListConstants)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -1520,6 +1542,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListValues)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -1719,6 +1752,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListEnumerations)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -2125,6 +2169,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListSharedProperties)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -2162,6 +2217,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListCatalogs)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -2500,6 +2566,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListSharedProperties)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
@@ -2537,6 +2614,17 @@ namespace vSharpStudio.vm.ViewModels
 				    int i = 0;
 	    			foreach (var tt in this.ListDocuments)
 		    		{
+	                    bool isfound = false;
+	                    foreach (var t in e.NewItems)
+	                    {
+	                        if (t == tt)
+	                        {
+	                            isfound = true;
+	                            break;
+	                        }
+	                    }
+	                    if (isfound)
+	                        continue;
 			    		if (tt.Name.StartsWith(bname))
 				    	{
 						    string s = tt.Name.Remove(0, bname.Length);
