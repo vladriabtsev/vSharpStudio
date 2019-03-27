@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/27/2019 19:10:34
+// Auto generated on UTC 03/27/2019 21:46:46
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -112,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Version = m.Version;
 		    vm.Name = m.Name;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
-		    vm.ConnectionStringName = m.ConnectionStringName;
+		    vm.ConnectionStringName = m.ConnectionStringName.HasValue ? m.ConnectionStringName.Value : "";
 		    vm.DbTypeEnum = m.DbTypeEnum;
 		    vm.DbServer = m.DbServer;
 		    vm.DbDatabaseName = m.DbDatabaseName;
@@ -141,7 +141,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Version = vm.Version;
 		    m.Name = vm.Name;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
-		    m.ConnectionStringName = vm.ConnectionStringName;
+		    m.ConnectionStringName.Value = string.IsNullOrEmpty(vm.ConnectionStringName) ? "" : vm.ConnectionStringName;
+		    m.ConnectionStringName.HasValue = !string.IsNullOrEmpty(vm.ConnectionStringName);
 		    m.DbTypeEnum = vm.DbTypeEnum;
 		    m.DbServer = vm.DbServer;
 		    m.DbDatabaseName = vm.DbDatabaseName;
@@ -235,7 +236,7 @@ namespace vSharpStudio.vm.ViewModels
 				if (_ConnectionStringName != value)
 				{
 					OnConnectionStringNameChanging();
-					_ConnectionStringName = value;
+		            _ConnectionStringName = value;
 					OnConnectionStringNameChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();

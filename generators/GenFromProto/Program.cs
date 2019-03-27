@@ -93,6 +93,8 @@ namespace GenFromProto
                         return "int?";
                     case "long_nullable":
                         return "long?";
+                    case "string_nullable":
+                        return "string";
                     default:
                         return from.MessageType.Name.ToNameCs();
                 }

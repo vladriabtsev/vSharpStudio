@@ -36,7 +36,7 @@ message proto_config {
     //    1. Find DB type from 
     //    2. Create connection string from db_server, db_database_name, db_user
     bool is_db_from_connection_string = 11; 
-	string connection_string_name = 12;
+	string_nullable connection_string_name = 12;
     EnumDbType db_type_enum = 13;
 	string db_server = 14;
 	string db_database_name = 15;
@@ -169,4 +169,8 @@ message proto_journals {
 message bool_nullable {
 	bool has_value = 1;
 	bool value = 2;
+}
+message string_nullable {
+	bool has_value = 1;
+	string value = 2;
 }
