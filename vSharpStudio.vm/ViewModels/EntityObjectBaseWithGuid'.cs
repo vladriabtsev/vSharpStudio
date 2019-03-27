@@ -27,8 +27,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             protected set
             {
-                if (_Guid != null)
-                    throw new InvalidOperationException("Guid already assigned");
                 _Guid = value;
                 NotifyPropertyChanged();
             }

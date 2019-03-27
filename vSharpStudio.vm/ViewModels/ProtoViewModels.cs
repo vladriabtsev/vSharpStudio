@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/27/2019 18:49:42
+// Auto generated on UTC 03/27/2019 19:00:02
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -946,6 +946,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Property";
@@ -1228,6 +1232,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Constant";
@@ -1502,6 +1510,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "EnumerationPair";
@@ -1697,6 +1709,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Enumeration";
@@ -2099,6 +2115,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Property";
@@ -2132,6 +2152,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Catalog";
@@ -2466,6 +2490,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Property";
@@ -2499,6 +2527,10 @@ namespace vSharpStudio.vm.ViewModels
 		{
 	        switch(e.Action)
 	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	                #region Default Name
 			    	string bname = "Document";
