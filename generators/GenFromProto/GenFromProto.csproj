@@ -51,18 +51,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Class.tt</DependentUpon>
     </Compile>
-    <Compile Include="VisitorAcceptProto.partial.cs" />
-    <Compile Include="VisitorAcceptProto.cs">
-      <DependentUpon>VisitorAcceptProto.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="ProtoToVM.partial.cs" />
-    <Compile Include="ProtoToVM.cs">
-      <DependentUpon>ProtoToVM.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="IVisitorProto.partial.cs" />
     <Compile Include="IVisitorProto.cs">
       <DependentUpon>IVisitorProto.tt</DependentUpon>
@@ -132,14 +120,6 @@
     <Content Include="Property.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Property.cs</LastGenOutput>
-    </Content>
-    <Content Include="VisitorAcceptProto.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>VisitorAcceptProto.cs</LastGenOutput>
-    </Content>
-    <Content Include="ProtoToVM.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ProtoToVM.cs</LastGenOutput>
     </Content>
     <Content Include="IVisitorProto.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

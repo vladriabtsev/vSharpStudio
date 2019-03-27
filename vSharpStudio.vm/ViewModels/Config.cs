@@ -32,11 +32,11 @@ namespace vSharpStudio.vm.ViewModels
             : base(ConfigValidator.Validator, validationCollection)
         {
             var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
-            ProtoToVM.ConvertToVM(pconfig, validationCollection, this);
+            Config.ConvertToVM(pconfig, validationCollection, this);
         }
         public string ExportToJson()
         {
-            var pconfig = ProtoToVM.ConvertToProto(this);
+            var pconfig = Config.ConvertToProto(this);
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
         }

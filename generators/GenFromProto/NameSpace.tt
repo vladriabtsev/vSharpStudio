@@ -6,6 +6,7 @@
 <#@ import namespace="Google.Protobuf.Reflection" #>
 // Auto generated on UTC <#= DateTime.Now.ToUniversalTime() #>
 using System;
+using System.Linq;
 using ViewModelBase;
 using FluentValidation;
 using Proto.Config;
@@ -30,10 +31,6 @@ namespace vSharpStudio.vm.ViewModels
 	this.Write(v.TransformText());
 	var vp = new IVisitorProto(root);
 	this.Write(vp.TransformText());
-//	var vap = new VisitorAcceptProto(root);
-//	this.Write(vap.TransformText());
-	var vtovm = new ProtoToVM(root, messages);
-	this.Write(vtovm.TransformText());
 	this.PopIndent();
 #>
 }

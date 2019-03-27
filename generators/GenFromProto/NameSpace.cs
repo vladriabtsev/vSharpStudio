@@ -38,6 +38,7 @@ namespace GenFromProto
             #line hidden
             this.Write(@"
 using System;
+using System.Linq;
 using ViewModelBase;
 using FluentValidation;
 using Proto.Config;
@@ -51,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 ");
             
-            #line 20 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+            #line 21 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)
@@ -65,10 +66,6 @@ namespace vSharpStudio.vm.ViewModels
 	this.Write(v.TransformText());
 	var vp = new IVisitorProto(root);
 	this.Write(vp.TransformText());
-//	var vap = new VisitorAcceptProto(root);
-//	this.Write(vap.TransformText());
-	var vtovm = new ProtoToVM(root, messages);
-	this.Write(vtovm.TransformText());
 	this.PopIndent();
 
             

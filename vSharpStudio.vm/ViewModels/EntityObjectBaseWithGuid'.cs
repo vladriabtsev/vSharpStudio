@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return _Guid;
             }
-            set
+            protected set
             {
                 if (_Guid != null)
                     throw new InvalidOperationException("Guid already assigned");
