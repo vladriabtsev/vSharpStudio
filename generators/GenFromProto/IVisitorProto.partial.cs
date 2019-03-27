@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-  public partial class Visitor
+  public partial class IVisitorProto
   {
     FileDescriptor root;
-    public Visitor(FileDescriptor root)
+    public IVisitorProto(FileDescriptor root)
     {
       this.root = root;
     }

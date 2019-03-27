@@ -28,14 +28,21 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("public ");
+            this.Write("public static ");
             
             #line 6 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" Clone()\r\n{\r\n\t");
+            this.Write(" Clone(");
+            
+            #line 6 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" from)\r\n{\r\n\t");
             
             #line 8 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -71,7 +78,7 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(">();\r\n\tforeach (var t in this.");
+            this.Write(">();\r\n\tforeach (var t in from.");
             
             #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -85,7 +92,14 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(".Add(t.Clone());\r\n\t}\r\n");
+            this.Write(".Add(vSharpStudio.vm.ViewModels.");
+            
+            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".Clone(t));\r\n\t}\r\n");
             
             #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
  } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable")) {
@@ -99,7 +113,7 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(" = this.");
+            this.Write(" = from.");
             
             #line 17 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -120,14 +134,21 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(" = this.");
+            this.Write(" = vSharpStudio.vm.ViewModels.");
+            
+            #line 19 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".Clone(from.");
             
             #line 19 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".Clone();\r\n");
+            this.Write(");\r\n");
             
             #line 20 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
 	} else if (t.IsMap) { 
@@ -148,7 +169,7 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(" = this.");
+            this.Write(" = from.");
             
             #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -250,7 +271,14 @@ if (t.IsRepeated) {
             
             #line default
             #line hidden
-            this.Write(" Backup()\r\n{\r\n\treturn this.Clone();\r\n}\r\npublic override void Restore(");
+            this.Write(" Backup()\r\n{\r\n\treturn vSharpStudio.vm.ViewModels.");
+            
+            #line 43 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".Clone(this);\r\n}\r\npublic override void Restore(");
             
             #line 45 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

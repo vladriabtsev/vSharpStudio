@@ -12,16 +12,15 @@ namespace GenFromProto
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using vSharpStudio.proto;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
+    #line 1 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
-    public partial class Class : ClassBase
+    public partial class VisitorAcceptProto : VisitorAcceptProtoBase
     {
 #line hidden
         /// <summary>
@@ -29,244 +28,83 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("public static class VisitorProtoAcceptor\r\n{\r\n    public static void Accept(proto_" +
+                    "config dto, IVisitorProto visitor) \r\n    { \r\n        VisitorProtoAcceptor.Accept" +
+                    "Internal(dto, visitor);\r\n    }\r\n");
             
-            #line 7 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Declaration.ToLeadingComments()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\npublic partial class ");
-            
-            #line 8 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n{\r\n");
-            
-            #line 10 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Declaration.ToTrailingComments("\t")));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\tpublic partial class ");
-            
-            #line 11 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Validator : ValidatorBase<");
-            
-            #line 11 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", ");
-            
-            #line 11 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Validator> { }\r\n\t#region CTOR\r\n\tpublic ");
-            
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("(SortedObservableCollection<ValidationMessage> validationCollection = null) \r\n   " +
-                    "     : base(");
-            
-            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Validator.Validator, validationCollection)\r\n\t{\r\n");
-            
-            #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
- foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
-         continue;
-       if (t.MessageType.Name.EndsWith("_nullable"))
-         continue;
-		if (t.IsRepeated) {
-            
-            #line default
-            #line hidden
-            this.Write("\t\tthis.");
-            
-            #line 22 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" = new ObservableCollection<");
-            
-            #line 22 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(">();\r\n\t\tthis.");
-            
-            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".CollectionChanged += ");
-            
-            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("_CollectionChanged;\r\n");
-            
-            #line 24 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tthis.");
-            
-            #line 25 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" = new ");
-            
-            #line 25 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("(validationCollection);\r\n");
-            
-            #line 26 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-		} else if (t.IsMap) { 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tmap???\r\n");
-            
-            #line 28 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-		} 
-            
-            #line default
-            #line hidden
-            
-            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\t\tOnInit();\r\n\t}\r\n");
-            
-            #line 32 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
- foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; 
-            
-            #line default
-            #line hidden
-            this.Write("\tprivate void ");
-            
-            #line 33 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(@"_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-	{
-        switch(e.Action)
-        {
-            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                #region Default Name
-		    	string bname = """);
-            
-            #line 39 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("\";\r\n\t\t\t    int i = 0;\r\n    \t\t\tforeach (var tt in this.");
-            
-            #line 41 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(@")
-	    		{
-		    		if (tt.Name.StartsWith(bname))
-			    	{
-					    string s = tt.Name.Remove(0, bname.Length);
-				    	int ii;
-    					if (int.TryParse(s, out ii))
-	    				{
-		    				if (ii > i) i = ii;
-			    		}
-				    }
-    			}
-	    		foreach (var t in e.NewItems)
-		    	{
-                    if (!string.IsNullOrWhiteSpace((t as ");
-            
-            #line 55 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(").Name))\r\n                        continue;\r\n    \t\t\t\ti++;\r\n\t    \t\t\t(t as ");
-            
-            #line 58 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(").Name = bname + i;\r\n\t\t    \t}\r\n                #endregion Default Name\r\n         " +
-                    "       break;\r\n            default:\r\n                throw new Exception();\r\n\t\t}" +
-                    "\r\n\t}\r\n");
-            
-            #line 66 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\tpartial void OnInit();\r\n\t#endregion CTOR\r\n\t#region Procedures\r\n");
-            
-            #line 70 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-	
-	this.PushIndent("\t");
-	var cloner = new Clone(root, message);
-	this.Write(cloner.TransformText());
-
-	var va = new VisitorAccept(root, message);
-	this.Write(va.TransformText());
-	this.PopIndent(); 
-            
-            #line default
-            #line hidden
-            this.Write("\t#endregion Procedures\r\n\t#region Properties\r\n");
-            
-            #line 80 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
-	this.PushIndent("\t");
-	foreach (var t in message.Fields.InDeclarationOrder())
-	{
-        if (t.Name == "guid") continue;
-		var p = new Property(root, message, t);
-		this.Write(p.TransformText());
-	}
-	this.PopIndent();
+            #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ foreach (var message in root.MessageTypes) { 
+     if (message.Name.EndsWith("_nullable"))
+       continue;
 
             
             #line default
             #line hidden
-            this.Write("\t#endregion Properties\r\n}\r\n");
+            this.Write("    private static void AcceptInternal(");
+            
+            #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" dto, IVisitorProto visitor) \r\n    { \r\n\t    visitor.Visit(dto);\r\n");
+            
+            #line 19 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ foreach (var field in message.Fields.InDeclarationOrder()) { 
+     if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
+       continue;
+
+            
+            #line default
+            #line hidden
+            
+            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ if (field.IsRepeated) { 
+            
+            #line default
+            #line hidden
+            this.Write("\t    foreach(var t in dto.");
+            
+            #line 24 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n\t\t    VisitorProtoAcceptor.AcceptInternal(t, visitor);\r\n");
+            
+            #line 26 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
+            
+            #line default
+            #line hidden
+            this.Write("\t    VisitorProtoAcceptor.AcceptInternal(dto.");
+            
+            #line 27 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(", visitor);\r\n");
+            
+            #line 28 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    }\r\n");
+            
+            #line 31 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAcceptProto.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -278,7 +116,7 @@ namespace GenFromProto
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
-    public class ClassBase
+    public class VisitorAcceptProtoBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

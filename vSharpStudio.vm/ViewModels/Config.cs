@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FluentValidation;
 using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -20,19 +21,23 @@ namespace vSharpStudio.vm.ViewModels
         public string ConnectionString = null;
         partial void OnInit()
         {
-            this.Guid = System.Guid.NewGuid().ToString();
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
-        public Config(string configJson, SortedObservableCollection<ValidationMessage> validationCollection = null) 
+        public void OnInitFromDto()
+        {
+            RecreateSubNodes();
+        }
+        public Config(string configJson, SortedObservableCollection<ValidationMessage> validationCollection = null)
             : base(ConfigValidator.Validator, validationCollection)
         {
-            this._dto = Proto.Config.proto_config.Parser.ParseJson(configJson);
-            this.initFromDto();
+            var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
+            ProtoToVM.ConvertToVM(pconfig, validationCollection, this);
         }
         public string ExportToJson()
         {
-            var res = JsonFormatter.Default.Format(this._dto);
+            var pconfig = ProtoToVM.ConvertToProto(this);
+            var res = JsonFormatter.Default.Format(pconfig);
             return res;
         }
         public List<EntityObjectProblem> GetUpdateDbProblems()
@@ -63,5 +68,54 @@ namespace vSharpStudio.vm.ViewModels
         {
             return _migration.GetDatabaseModel();
         }
+        #region ITreeNode
+        public ITreeNode Parent => null;
+
+        public IEnumerable<ITreeNode> SubNodes
+        {
+            get { return this._SubNodes; }
+            set
+            {
+                this._SubNodes = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private IEnumerable<ITreeNode> _SubNodes;
+        void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Constants, this.Enumerators, this.Catalogs }; }
+        partial void OnConstantsChanged() { RecreateSubNodes(); }
+        partial void OnCatalogsChanged() { RecreateSubNodes(); }
+        partial void OnEnumeratorsChanged() { RecreateSubNodes(); }
+
+        #region ITreeNodeWithValidation
+        public int ValidationQty
+        {
+            set
+            {
+                if (_ValidationQty != value)
+                {
+                    _ValidationQty = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _ValidationQty; }
+        }
+        private int _ValidationQty;
+
+        public Severity ValidationSeverity
+        {
+            set
+            {
+                if (_ValidationSeverity != value)
+                {
+                    _ValidationSeverity = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _ValidationSeverity; }
+        }
+
+        private Severity _ValidationSeverity;
+        #endregion ITreeNodeWithValidation
+        #endregion ITreeNode
     }
 }

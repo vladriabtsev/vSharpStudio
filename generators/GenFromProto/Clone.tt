@@ -3,24 +3,24 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-public <#= message.Name.ToNameCs() #> Clone()
+public static <#= message.Name.ToNameCs() #> Clone(<#= message.Name.ToNameCs() #> from)
 {
 	<#= message.Name.ToNameCs() #> res = new <#= message.Name.ToNameCs() #>();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
 if (t.IsRepeated) {#>
 	res.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
-	foreach (var t in this.<#= t.Name.ToNameCs() #>)
+	foreach (var t in from.<#= t.Name.ToNameCs() #>)
 	{
-		res.<#= t.Name.ToNameCs() #>.Add(t.Clone());
+		res.<#= t.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= t.ToTypeCs() #>.Clone(t));
 	}
 <# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message && t.MessageType.Name.EndsWith("_nullable")) {#>
-	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
+	res.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;
 <# } else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>.Clone();
+	res.<#= t.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= t.ToTypeCs() #>.Clone(from.<#= t.Name.ToNameCs() #>);
 <#	} else if (t.IsMap) { #>
 	map???
 <# } else { #>
-	res.<#= t.Name.ToNameCs() #> = this.<#= t.Name.ToNameCs() #>;
+	res.<#= t.Name.ToNameCs() #> = from.<#= t.Name.ToNameCs() #>;
 <# } #>
 <# } #>
 	return res;
@@ -40,7 +40,7 @@ if (t.IsRepeated) {#>
 #region IEditable
 public override <#= message.Name.ToNameCs() #> Backup()
 {
-	return this.Clone();
+	return vSharpStudio.vm.ViewModels.<#= message.Name.ToNameCs() #>.Clone(this);
 }
 public override void Restore(<#= message.Name.ToNameCs() #> from)
 {

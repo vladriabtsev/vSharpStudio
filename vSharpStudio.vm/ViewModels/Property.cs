@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Numerics;
 using System.Text;
+using FluentValidation;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject
+    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject, ITreeNode
     {
         partial void OnInit()
         {
-            this.Guid = System.Guid.NewGuid().ToString();
+        }
+        public void OnInitFromDto()
+        {
         }
         public Property(string name, EnumDataType type, string guidOfType) : this()
         {
@@ -126,5 +130,47 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+
+        #region ITreeNode
+        public ITreeNode Parent => throw new NotImplementedException();
+
+        public IEnumerable<ITreeNode> SubNodes => this._SubNodes;
+        private IEnumerable<ITreeNode> _SubNodes = new ITreeNode[] { };
+        //partial void OnPropertiesChanged()
+        //{
+        //    _SubNodes = new ObservableCollection<ITreeNode>() { this.Properties };
+        //}
+
+        #region ITreeNodeWithValidation
+        public int ValidationQty
+        {
+            set
+            {
+                if (_ValidationQty != value)
+                {
+                    _ValidationQty = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _ValidationQty; }
+        }
+        private int _ValidationQty;
+
+        public Severity ValidationSeverity
+        {
+            set
+            {
+                if (_ValidationSeverity != value)
+                {
+                    _ValidationSeverity = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _ValidationSeverity; }
+        }
+
+        private Severity _ValidationSeverity;
+        #endregion ITreeNodeWithValidation
+        #endregion ITreeNode
     }
 }

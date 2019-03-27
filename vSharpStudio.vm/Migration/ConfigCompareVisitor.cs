@@ -66,5 +66,10 @@ namespace vSharpStudio.vm.Migration
     {
       throw new NotImplementedException();
     }
-  }
+
+        void IVisitorConfig.Visit(EnumerationPair m)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

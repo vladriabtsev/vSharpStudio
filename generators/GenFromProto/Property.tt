@@ -12,51 +12,53 @@ public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs
 { 
 	set
 	{
-		if (_dto.<#= field.Name.ToNameCs() #> != value)
+		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			_dto.<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
 			ValidateProperty();
 		}
 	}
-	get { return _dto.<#= field.Name.ToNameCs() #>; }
+	get { return _<#= field.Name.ToNameCs() #>; }
 }
-partial void On<#= field.Name.ToNameCs() #>Changed();
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) {#>
+private <#= message.Name #>.Types.<#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
+<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 
-	<# if (field.Name == "guid") { #>private <# } #>set
+	set
 	{
-		if (_dto.<#= field.Name.ToNameCs() #>.HasValue != value.HasValue || (value.HasValue && _dto.<#= field.Name.ToNameCs() #>.Value != value.Value))
+		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			_dto.<#= field.Name.ToNameCs() #>.HasValue = value.HasValue;
-			_dto.<#= field.Name.ToNameCs() #>.Value = value.Value;
+			On<#= field.Name.ToNameCs() #>Changing();
+            _<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
 			ValidateProperty();
 		}
 	}
-	get { return _dto.<#= field.Name.ToNameCs() #>.HasValue ? _dto.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; }
+	get { return _<#= field.Name.ToNameCs() #>; }
 }
-partial void On<#= field.Name.ToNameCs() #>Changed();
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) {#>
-public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { set; get; }
+private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 <# } else { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 
-	<# if (field.Name == "guid") { #>private <# } #>set
+	set
 	{
-		if (_dto.<#= field.Name.ToNameCs() #> != value)
+		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			_dto.<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
 			ValidateProperty();
 		}
 	}
-	get { return _dto.<#= field.Name.ToNameCs() #>; }
+	get { return _<#= field.Name.ToNameCs() #>; }
 }
-partial void On<#= field.Name.ToNameCs() #>Changed();
+private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 <# } #>
+partial void On<#= field.Name.ToNameCs() #>Changing();
+partial void On<#= field.Name.ToNameCs() #>Changed();
 <#= field.Declaration.ToTrailingComments("") #>

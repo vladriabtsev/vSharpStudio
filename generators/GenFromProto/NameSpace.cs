@@ -36,11 +36,22 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\nusing System;\r\nusing ViewModelBase;\r\nusing FluentValidation;\r\nusing Proto.Confi" +
-                    "g;\r\nusing System.Collections.ObjectModel;\r\nusing System.Collections.Generic;\r\n\r\n" +
-                    "namespace vSharpStudio.vm.ViewModels\r\n{\r\n");
+            this.Write(@"
+using System;
+using ViewModelBase;
+using FluentValidation;
+using Proto.Config;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+
+namespace vSharpStudio.vm.ViewModels
+{
+    // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
+    // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
+    // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
+");
             
-            #line 17 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+            #line 20 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)
@@ -50,8 +61,14 @@ namespace GenFromProto
 		var cl = new Class(root, t, dicParents);
 		this.Write(cl.TransformText());
 	}
-	var v = new Visitor(root);
+	var v = new IVisitor(root);
 	this.Write(v.TransformText());
+	var vp = new IVisitorProto(root);
+	this.Write(vp.TransformText());
+//	var vap = new VisitorAcceptProto(root);
+//	this.Write(vap.TransformText());
+	var vtovm = new ProtoToVM(root, messages);
+	this.Write(vtovm.TransformText());
 	this.PopIndent();
 
             

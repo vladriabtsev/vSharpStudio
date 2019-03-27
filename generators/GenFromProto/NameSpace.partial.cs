@@ -11,6 +11,7 @@ namespace GenFromProto
     public partial class NameSpace
     {
         FileDescriptor root;
+        List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
         public NameSpace(FileDescriptor root)
         {
@@ -19,6 +20,7 @@ namespace GenFromProto
             {
                 if (t.Name.EndsWith("_nullable"))
                     continue;
+                messages.Add(t);
                 foreach (var tt in t.Fields.InDeclarationOrder())
                 {
                     if (tt.FieldType != Google.Protobuf.Reflection.FieldType.Message)

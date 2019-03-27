@@ -11,6 +11,9 @@ namespace vSharpStudio.vm.ViewModels
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     public partial class DataType : EntityObjectBase<DataType, DataType.DataTypeValidator>
     {
+        public void OnInitFromDto()
+        {
+        }
         public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : this()
         {
             this.DataTypeEnum = type;
@@ -63,9 +66,9 @@ namespace vSharpStudio.vm.ViewModels
                 if (_MinValue != value)
                 {
                     _MinValue = value;
-                    _dto.MinValueString = _MinValue.ToString();
                     NotifyPropertyChanged();
                     ValidateProperty();
+                    this.MinValueString = _MinValue.ToString();
                 }
             }
             get
@@ -73,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (_MinValue == null)
                 {
                     BigInteger v;
-                    if (BigInteger.TryParse(_dto.MinValueString, out v))
+                    if (BigInteger.TryParse(this.MinValueString, out v))
                         _MinValue = v;
                 }
                 return _MinValue;
@@ -87,9 +90,9 @@ namespace vSharpStudio.vm.ViewModels
                 if (_MaxValue != value)
                 {
                     _MaxValue = value;
-                    _dto.MaxValueString = _MaxValue.ToString();
                     NotifyPropertyChanged();
                     ValidateProperty();
+                    this.MaxValueString = _MaxValue.ToString();
                 }
             }
             get
@@ -97,31 +100,12 @@ namespace vSharpStudio.vm.ViewModels
                 if (_MaxValue == null)
                 {
                     BigInteger v;
-                    if (BigInteger.TryParse(_dto.MaxValueString, out v))
+                    if (BigInteger.TryParse(this.MaxValueString, out v))
                         _MaxValue = v;
                 }
                 return _MaxValue;
             }
         }
         private BigInteger _MaxValue;
-        public partial class DataTypeValidator
-        {
-            public DataTypeValidator()
-            {
-                RuleFor(x => x.MinValueString).NotEmpty().WithMessage("Please provide minimum value");
-                RuleFor(x => x.MaxValueString).NotEmpty().WithMessage("Please provide maximum value");
-                RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-                RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-                RuleFor(x => x.Length).GreaterThan(0u);
-                RuleFor(x => x.Accuracy).LessThan(x => x.Length);
-                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
-                RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
-            }
-            private bool ParsableToBigInteger(string val)
-            {
-                BigInteger v;
-                return BigInteger.TryParse(val, out v);
-            }
-        }
     }
 }

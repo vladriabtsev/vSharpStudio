@@ -5,23 +5,19 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constant : EntityObjectBaseWithGuid<Constant, Constant.ConstantValidator>, IEntityObject, ITreeNode
+    public partial class EnumerationPair : EntityObjectBaseWithGuid<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IEntityObject, ITreeNode
     {
-        partial void OnInit()
-        {
-        }
         public void OnInitFromDto()
         {
-            //RecreateSubNodes();
         }
         #region ITreeNode
         public ITreeNode Parent => throw new NotImplementedException();
 
-        public IEnumerable<ITreeNode> SubNodes => null; // this._SubNodes;
-        //private IEnumerable<ITreeNode> _SubNodes;
+        public IEnumerable<ITreeNode> SubNodes => this._SubNodes;
+        private IEnumerable<ITreeNode> _SubNodes = new ITreeNode[] { };
         //partial void OnPropertiesChanged()
         //{
-        //    _SubNodes = new ITreeNode[] { this.Properties };
+        //    _SubNodes = new ObservableCollection<ITreeNode>() { this.Properties };
         //}
 
         #region ITreeNodeWithValidation

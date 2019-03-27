@@ -25,6 +25,9 @@ message proto_config {
 	string version = 2;
 	string name = 3;
 
+    // VM
+    //string vm_namespace = 10;
+
     // CONNECTION STRING SECTION
 
     // if yes: 
@@ -102,9 +105,22 @@ message proto_constants {
 	string name = 1;
 	repeated proto_constant list_constants = 2;
 }
+message proto_enumeration_pair {
+    string name = 1;
+    // TODO struct for different types, at least INTEGER
+    string value = 2;
+}
 message proto_enumeration {
+	enum EnumEnumerationType {
+		STRING = 0;
+		//BYTE = 1;
+		//SHORT = 2;
+		INTEGER = 3;
+	}
 	string guid = 1;
 	string name = 2;
+	EnumEnumerationType data_type_enum = 3; 
+	repeated proto_enumeration_pair list_values = 4;
 }
 message proto_enumerations {
 	string name = 1;
@@ -129,7 +145,7 @@ message proto_catalogs {
 message proto_document {
 	string guid = 1;
 	string name = 2;
-	repeated proto_properties properties = 3;
+	proto_properties properties = 3;
 }
 message proto_documents {
 	string name = 1;

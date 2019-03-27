@@ -114,5 +114,10 @@ namespace DbModel.MsSql
         {
             throw new NotImplementedException();
         }
+
+        void IVisitorConfig.Visit(EnumerationPair m)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

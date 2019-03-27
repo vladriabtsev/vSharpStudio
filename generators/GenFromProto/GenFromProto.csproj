@@ -51,9 +51,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Class.tt</DependentUpon>
     </Compile>
+    <Compile Include="VisitorAcceptProto.partial.cs" />
+    <Compile Include="VisitorAcceptProto.cs">
+      <DependentUpon>VisitorAcceptProto.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ProtoToVM.partial.cs" />
+    <Compile Include="ProtoToVM.cs">
+      <DependentUpon>ProtoToVM.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IVisitorProto.partial.cs" />
+    <Compile Include="IVisitorProto.cs">
+      <DependentUpon>IVisitorProto.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="VisitorAccept.partial.cs" />
     <Compile Include="Clone.partial.cs" />
-    <Compile Include="Visitor.partial.cs" />
+    <Compile Include="IVisitor.partial.cs" />
     <Compile Include="Property.partial.cs" />
     <Compile Include="Clone.cs">
       <AutoGen>True</AutoGen>
@@ -79,10 +97,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Property.tt</DependentUpon>
     </Compile>
-    <Compile Include="Visitor.cs">
+    <Compile Include="IVisitor.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Visitor.tt</DependentUpon>
+      <DependentUpon>IVisitor.tt</DependentUpon>
     </Compile>
     <Compile Include="VisitorAccept.cs">
       <AutoGen>True</AutoGen>
@@ -115,9 +133,21 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Property.cs</LastGenOutput>
     </Content>
-    <Content Include="Visitor.tt">
+    <Content Include="VisitorAcceptProto.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Visitor.cs</LastGenOutput>
+      <LastGenOutput>VisitorAcceptProto.cs</LastGenOutput>
+    </Content>
+    <Content Include="ProtoToVM.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProtoToVM.cs</LastGenOutput>
+    </Content>
+    <Content Include="IVisitorProto.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IVisitorProto.cs</LastGenOutput>
+    </Content>
+    <Content Include="IVisitor.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>IVisitor.cs</LastGenOutput>
     </Content>
     <Content Include="VisitorAccept.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
