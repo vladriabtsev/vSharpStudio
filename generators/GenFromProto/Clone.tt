@@ -59,7 +59,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             }
             if (!isfound)
             {
-                var p = new <#= field.ToTypeCs() #>(to.ValidationCollection);
+                var p = new <#= field.ToTypeCs() #>();
                 <#= field.ToTypeCs() #>.Update(p, tt, isDeep);
                 to.<#= field.Name.ToNameCs() #>.Add(p);
             }
@@ -95,10 +95,10 @@ public override void Restore(<#= message.Name.ToNameCs() #> from)
 partial void OnRestoreObjectStarting(ref bool isDeep);
 #endregion IEditable
 // Conversion from '<#= message.Name #>' to '<#= message.Name.ToNameCs() #>'
-public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, SortedObservableCollection<ValidationMessage> validationCollection = null, <#= message.Name.ToNameCs() #> vm = null)
+public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, <#= message.Name.ToNameCs() #> vm = null)
 {
     if (vm == null)
-        vm = new <#= message.Name.ToNameCs() #>(validationCollection);
+        vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>();

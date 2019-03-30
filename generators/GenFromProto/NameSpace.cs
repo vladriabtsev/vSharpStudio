@@ -44,6 +44,7 @@ using FluentValidation;
 using Proto.Config;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -52,7 +53,7 @@ namespace vSharpStudio.vm.ViewModels
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 ");
             
-            #line 21 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+            #line 22 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)

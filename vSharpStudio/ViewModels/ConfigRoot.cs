@@ -4,8 +4,10 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using ViewModelBase;
 using vSharpStudio.Migration;
 using vSharpStudio.std;
 using vSharpStudio.vm.ViewModels;
@@ -36,7 +38,7 @@ namespace vSharpStudio.ViewModels
         {
             //InitMigration();
         }
-        public override void InitMigration()
+        public void InitMigration()
         {
             // https://docs.microsoft.com/en-us/ef/core/providers/
             // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/obtaining-a-dbproviderfactory ???
@@ -45,6 +47,7 @@ namespace vSharpStudio.ViewModels
                 case ConfigRoot.PROVIDER_NAME_SQL:
                     _migration = new DbModel.MsSql.SqlServerMigration(this);
                     break;
+#if DEBUG
                 case ConfigRoot.PROVIDER_NAME_SQLITE:
                     _migration = new DbModel.Sqlite.SqliteMigration(this);
                     break;
@@ -54,10 +57,93 @@ namespace vSharpStudio.ViewModels
                 case ConfigRoot.PROVIDER_NAME_NPGSQL:
                     _migration = new DbModel.Postgre.NpgsqlMigration(this);
                     break;
+#endif
                 default:
                     throw new ArgumentException("Unsupported ProviderName in connection string: " + this.ProviderName);
             }
         }
+
+        #region Full Validation
+
+        //async public Task ValidateSubTreeFromNode(IAccept node)
+        //{
+        //    if (cancellationSourceForValidatingFullConfig != null)
+        //    {
+        //        cancellationSourceForValidatingFullConfig.Cancel();
+        //    }
+        //    this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
+        //    var token = cancellationSourceForValidatingFullConfig.Token;
+        //    // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+        //    // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+        //    // https://devblogs.microsoft.com/pfxteam/asynclazyt/
+        //    // https://github.com/StephenCleary/AsyncEx
+        //    // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+        //    try
+        //    {
+        //        var res = await ValidateSubTreeFromNode(node, token).ConfigureAwait(continueOnCapturedContext: false);
+        //        if (!token.IsCancellationRequested)
+        //            ListValidationMessages = res;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+        //Task<SortedObservableCollection<ValidationMessage>> ValidateSubTreeFromNode(IAccept node, CancellationToken cancellationToken = default)
+        //{
+        //    var task = new Task<SortedObservableCollection<ValidationMessage>>(() =>
+        //    {
+        //        var visitor = new TreeNodeValidatorVisitor(cancellationToken);
+        //        node.Accept(visitor);
+        //        return visitor.Result;
+        //    });
+        //    return task;
+        //}
+
+        private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
+        public Task ValidateSubTreeFromNodeAsync(ITreeNode node)
+        {
+            // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+            // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+            // https://devblogs.microsoft.com/pfxteam/asynclazyt/
+            // https://github.com/StephenCleary/AsyncEx
+            // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+            Task task = Task.Run(() =>
+            {
+                 ValidateSubTreeFromNode(node);
+            });
+            return task;
+        }
+        public void ValidateSubTreeFromNode(ITreeNode node)
+        {
+            if (cancellationSourceForValidatingFullConfig != null)
+            {
+                cancellationSourceForValidatingFullConfig.Cancel();
+            }
+            this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
+            var token = cancellationSourceForValidatingFullConfig.Token;
+
+            var visitor = new TreeNodeValidatorVisitor(token, node);
+            this.Accept(visitor);
+            if (!token.IsCancellationRequested)
+                ListValidationMessages = visitor.Result;
+        }
+
+
+        public SortedObservableCollection<ValidationMessage> ListValidationMessages
+        {
+            set
+            {
+                if (_ListValidationMessages != null)
+                    _ListValidationMessages.Clear();
+                _ListValidationMessages = value;
+                NotifyPropertyChanged();
+            }
+            get { return _ListValidationMessages; }
+        }
+        private SortedObservableCollection<ValidationMessage> _ListValidationMessages = null;
+
+        #endregion Full Validation
 
         #region ConnectionString
         //string GetConnectionString(ref string connectionStringName, out string providerName)

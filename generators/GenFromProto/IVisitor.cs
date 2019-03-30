@@ -28,9 +28,9 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\npublic interface IVisitorConfig\r\n{\r\n");
+            this.Write("\r\npublic interface IVisitorConfig\r\n{\r\n    CancellationToken Token { get; }\r\n");
             
-            #line 9 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
+            #line 10 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
  foreach (var message in root.MessageTypes) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -40,14 +40,21 @@ namespace GenFromProto
             #line hidden
             this.Write("\tvoid Visit(");
             
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
+            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" m);\r\n\tvoid VisitEnd(");
+            
+            #line 15 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" m);\r\n");
             
-            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
+            #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
  } 
             
             #line default

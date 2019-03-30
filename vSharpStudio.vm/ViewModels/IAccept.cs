@@ -4,8 +4,8 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public interface IGuid : IComparable
+    public interface IAccept
     {
-        string Guid { get; }
+        void Accept(IVisitorConfig visitor);
     }
 }

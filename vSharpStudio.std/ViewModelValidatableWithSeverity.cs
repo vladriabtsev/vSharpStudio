@@ -5,20 +5,60 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace ViewModelBase
 {
     public class ViewModelValidatableWithSeverity<T, TValidator>
-        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatable, IComparable
+        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatableWithSeverity, IComparable
       where TValidator : AbstractValidator<T>
       where T : ViewModelValidatableWithSeverity<T, TValidator>, IComparable
     {
-        public ViewModelValidatableWithSeverity(TValidator validator, SortedObservableCollection<ValidationMessage> validationCollection = null)
+        public ViewModelValidatableWithSeverity(TValidator validator)
         {
             this._validator = validator;
-            this.ValidationCollection = validationCollection;
+            this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
         }
         protected readonly IValidator _validator;
+        public int CountErrors
+        {
+            get { return _CountErrors; }
+            set
+            {
+                if (_CountErrors != value)
+                {
+                    _CountErrors = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private int _CountErrors;
+        public int CountWarnings
+        {
+            get { return _CountWarnings; }
+            set
+            {
+                if (_CountWarnings != value)
+                {
+                    _CountWarnings = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private int _CountWarnings;
+        public int CountInfos
+        {
+            get { return _CountInfos; }
+            set
+            {
+                if (_CountInfos != value)
+                {
+                    _CountInfos = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private int _CountInfos;
         public SortedObservableCollection<ValidationMessage> ValidationCollection { get; private set; }
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {

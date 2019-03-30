@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/27/2019 21:46:46
+// Auto generated on UTC 03/30/2019 16:01:40
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -6,6 +6,7 @@ using FluentValidation;
 using Proto.Config;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -13,17 +14,17 @@ namespace vSharpStudio.vm.ViewModels
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 	
-	public partial class Config
+	public partial class Config : IAccept
 	{
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
-		public Config(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(ConfigValidator.Validator, validationCollection)
+		public Config() 
+	        : base(ConfigValidator.Validator)
 		{
-			this.Constants = new Constants(validationCollection);
-			this.Enumerators = new Enumerations(validationCollection);
-			this.Catalogs = new Catalogs(validationCollection);
+			this.Constants = new Constants();
+			this.Enumerators = new Enumerations();
+			this.Catalogs = new Catalogs();
 			OnInit();
 		}
 		partial void OnInit();
@@ -104,15 +105,15 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_config' to 'Config'
-		public static Config ConvertToVM(proto_config m, SortedObservableCollection<ValidationMessage> validationCollection = null, Config vm = null)
+		public static Config ConvertToVM(proto_config m, Config vm = null)
 		{
 		    if (vm == null)
-		        vm = new Config(validationCollection);
+		        vm = new Config();
 		    vm.Guid = m.Guid;
 		    vm.Version = m.Version;
 		    vm.Name = m.Name;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
-		    vm.ConnectionStringName = m.ConnectionStringName.HasValue ? m.ConnectionStringName.Value : "";
+		    vm.ConnectionStringName = m.ConnectionStringName;
 		    vm.DbTypeEnum = m.DbTypeEnum;
 		    vm.DbServer = m.DbServer;
 		    vm.DbDatabaseName = m.DbDatabaseName;
@@ -141,8 +142,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Version = vm.Version;
 		    m.Name = vm.Name;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
-		    m.ConnectionStringName.Value = string.IsNullOrEmpty(vm.ConnectionStringName) ? "" : vm.ConnectionStringName;
-		    m.ConnectionStringName.HasValue = !string.IsNullOrEmpty(vm.ConnectionStringName);
+		    m.ConnectionStringName = vm.ConnectionStringName;
 		    m.DbTypeEnum = vm.DbTypeEnum;
 		    m.DbServer = vm.DbServer;
 		    m.DbDatabaseName = vm.DbDatabaseName;
@@ -163,11 +163,14 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			visitor.Visit(this.Constants);
 			visitor.Visit(this.Enumerators);
 			visitor.Visit(this.Catalogs);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -187,7 +190,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Version; }
 		}
-		private string _Version;
+		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
 		
@@ -206,7 +209,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -236,7 +239,7 @@ namespace vSharpStudio.vm.ViewModels
 				if (_ConnectionStringName != value)
 				{
 					OnConnectionStringNameChanging();
-		            _ConnectionStringName = value;
+					_ConnectionStringName = value;
 					OnConnectionStringNameChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
@@ -244,7 +247,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ConnectionStringName; }
 		}
-		private string _ConnectionStringName;
+		private string _ConnectionStringName = "";
 		partial void OnConnectionStringNameChanging();
 		partial void OnConnectionStringNameChanged();
 		
@@ -282,7 +285,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DbServer; }
 		}
-		private string _DbServer;
+		private string _DbServer = "";
 		partial void OnDbServerChanging();
 		partial void OnDbServerChanged();
 		
@@ -301,7 +304,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DbDatabaseName; }
 		}
-		private string _DbDatabaseName;
+		private string _DbDatabaseName = "";
 		partial void OnDbDatabaseNameChanging();
 		partial void OnDbDatabaseNameChanged();
 		
@@ -339,7 +342,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DbUser; }
 		}
-		private string _DbUser;
+		private string _DbUser = "";
 		partial void OnDbUserChanging();
 		partial void OnDbUserChanged();
 		
@@ -358,7 +361,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DbPassword; }
 		}
-		private string _DbPassword;
+		private string _DbPassword = "";
 		partial void OnDbPasswordChanging();
 		partial void OnDbPasswordChanged();
 		
@@ -377,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _PathToProjectWithConnectionString; }
 		}
-		private string _PathToProjectWithConnectionString;
+		private string _PathToProjectWithConnectionString = "";
 		partial void OnPathToProjectWithConnectionStringChanging();
 		partial void OnPathToProjectWithConnectionStringChanged();
 		
@@ -396,7 +399,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DbSchema; }
 		}
-		private string _DbSchema;
+		private string _DbSchema = "";
 		partial void OnDbSchemaChanging();
 		partial void OnDbSchemaChanged();
 		
@@ -415,7 +418,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _PrimaryKeyName; }
 		}
-		private string _PrimaryKeyName;
+		private string _PrimaryKeyName = "";
 		partial void OnPrimaryKeyNameChanging();
 		partial void OnPrimaryKeyNameChanged();
 		
@@ -491,7 +494,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _HiLoSequenceName; }
 		}
-		private string _HiLoSequenceName;
+		private string _HiLoSequenceName = "";
 		partial void OnHiLoSequenceNameChanging();
 		partial void OnHiLoSequenceNameChanged();
 		
@@ -510,7 +513,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _HiLoSchema; }
 		}
-		private string _HiLoSchema;
+		private string _HiLoSchema = "";
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
@@ -573,15 +576,15 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Property
+	public partial class Property : IAccept
 	{
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
-		public Property(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(PropertyValidator.Validator, validationCollection)
+		public Property() 
+	        : base(PropertyValidator.Validator)
 		{
-			this.DataType = new DataType(validationCollection);
+			this.DataType = new DataType();
 			OnInit();
 		}
 		partial void OnInit();
@@ -620,10 +623,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_property' to 'Property'
-		public static Property ConvertToVM(proto_property m, SortedObservableCollection<ValidationMessage> validationCollection = null, Property vm = null)
+		public static Property ConvertToVM(proto_property m, Property vm = null)
 		{
 		    if (vm == null)
-		        vm = new Property(validationCollection);
+		        vm = new Property();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.DataType = DataType.ConvertToVM(m.DataType);
@@ -640,9 +643,12 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			visitor.Visit(this.DataType);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -662,7 +668,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -687,13 +693,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class DataType
+	public partial class DataType : IAccept
 	{
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
-		public DataType(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(DataTypeValidator.Validator, validationCollection)
+		public DataType() 
+	        : base(DataTypeValidator.Validator)
 		{
 			OnInit();
 		}
@@ -741,10 +747,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_data_type' to 'DataType'
-		public static DataType ConvertToVM(proto_data_type m, SortedObservableCollection<ValidationMessage> validationCollection = null, DataType vm = null)
+		public static DataType ConvertToVM(proto_data_type m, DataType vm = null)
 		{
 		    if (vm == null)
-		        vm = new DataType(validationCollection);
+		        vm = new DataType();
 		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.Length = m.Length;
 		    vm.Accuracy = m.Accuracy;
@@ -771,8 +777,11 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -868,7 +877,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _TypeGuid; }
 		}
-		private string _TypeGuid;
+		private string _TypeGuid = "";
 		partial void OnTypeGuidChanging();
 		partial void OnTypeGuidChanged();
 		
@@ -887,7 +896,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _MinValueString; }
 		}
-		private string _MinValueString;
+		private string _MinValueString = "";
 		partial void OnMinValueStringChanging();
 		partial void OnMinValueStringChanged();
 		
@@ -906,7 +915,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _MaxValueString; }
 		}
-		private string _MaxValueString;
+		private string _MaxValueString = "";
 		partial void OnMaxValueStringChanging();
 		partial void OnMaxValueStringChanged();
 		
@@ -925,19 +934,19 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ObjectName; }
 		}
-		private string _ObjectName;
+		private string _ObjectName = "";
 		partial void OnObjectNameChanging();
 		partial void OnObjectNameChanged();
 		#endregion Properties
 	}
 	
-	public partial class Properties
+	public partial class Properties : IAccept
 	{
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
 		#region CTOR
-		public Properties(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(PropertiesValidator.Validator, validationCollection)
+		public Properties() 
+	        : base(PropertiesValidator.Validator)
 		{
 			this.ListProperties = new ObservableCollection<Property>();
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
@@ -1036,7 +1045,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Property(to.ValidationCollection);
+		                var p = new Property();
 		                Property.Update(p, tt, isDeep);
 		                to.ListProperties.Add(p);
 		            }
@@ -1060,10 +1069,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_properties' to 'Properties'
-		public static Properties ConvertToVM(proto_properties m, SortedObservableCollection<ValidationMessage> validationCollection = null, Properties vm = null)
+		public static Properties ConvertToVM(proto_properties m, Properties vm = null)
 		{
 		    if (vm == null)
-		        vm = new Properties(validationCollection);
+		        vm = new Properties();
 		    vm.Name = m.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
@@ -1081,10 +1090,13 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListProperties)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1104,7 +1116,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1114,15 +1126,15 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constant
+	public partial class Constant : IAccept
 	{
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
-		public Constant(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(ConstantValidator.Validator, validationCollection)
+		public Constant() 
+	        : base(ConstantValidator.Validator)
 		{
-			this.ConstantType = new Property(validationCollection);
+			this.ConstantType = new Property();
 			OnInit();
 		}
 		partial void OnInit();
@@ -1161,10 +1173,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_constant' to 'Constant'
-		public static Constant ConvertToVM(proto_constant m, SortedObservableCollection<ValidationMessage> validationCollection = null, Constant vm = null)
+		public static Constant ConvertToVM(proto_constant m, Constant vm = null)
 		{
 		    if (vm == null)
-		        vm = new Constant(validationCollection);
+		        vm = new Constant();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.ConstantType = Property.ConvertToVM(m.ConstantType);
@@ -1181,9 +1193,12 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			visitor.Visit(this.ConstantType);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1203,7 +1218,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1228,13 +1243,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constants
+	public partial class Constants : IAccept
 	{
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
 		#region CTOR
-		public Constants(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(ConstantsValidator.Validator, validationCollection)
+		public Constants() 
+	        : base(ConstantsValidator.Validator)
 		{
 			this.ListConstants = new ObservableCollection<Constant>();
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
@@ -1333,7 +1348,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Constant(to.ValidationCollection);
+		                var p = new Constant();
 		                Constant.Update(p, tt, isDeep);
 		                to.ListConstants.Add(p);
 		            }
@@ -1357,10 +1372,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_constants' to 'Constants'
-		public static Constants ConvertToVM(proto_constants m, SortedObservableCollection<ValidationMessage> validationCollection = null, Constants vm = null)
+		public static Constants ConvertToVM(proto_constants m, Constants vm = null)
 		{
 		    if (vm == null)
-		        vm = new Constants(validationCollection);
+		        vm = new Constants();
 		    vm.Name = m.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
@@ -1378,10 +1393,13 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListConstants)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1401,7 +1419,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1411,13 +1429,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class EnumerationPair
+	public partial class EnumerationPair : IAccept
 	{
 	
 		public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { }
 		#region CTOR
-		public EnumerationPair(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(EnumerationPairValidator.Validator, validationCollection)
+		public EnumerationPair() 
+	        : base(EnumerationPairValidator.Validator)
 		{
 			OnInit();
 		}
@@ -1453,10 +1471,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_enumeration_pair' to 'EnumerationPair'
-		public static EnumerationPair ConvertToVM(proto_enumeration_pair m, SortedObservableCollection<ValidationMessage> validationCollection = null, EnumerationPair vm = null)
+		public static EnumerationPair ConvertToVM(proto_enumeration_pair m, EnumerationPair vm = null)
 		{
 		    if (vm == null)
-		        vm = new EnumerationPair(validationCollection);
+		        vm = new EnumerationPair();
 		    vm.Name = m.Name;
 		    vm.Value = m.Value;
 		    vm.OnInitFromDto();
@@ -1471,8 +1489,11 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1492,7 +1513,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1511,19 +1532,19 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Value; }
 		}
-		private string _Value;
+		private string _Value = "";
 		partial void OnValueChanging();
 		partial void OnValueChanged();
 		#endregion Properties
 	}
 	
-	public partial class Enumeration
+	public partial class Enumeration : IAccept
 	{
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
-		public Enumeration(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(EnumerationValidator.Validator, validationCollection)
+		public Enumeration() 
+	        : base(EnumerationValidator.Validator)
 		{
 			this.ListValues = new ObservableCollection<EnumerationPair>();
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
@@ -1626,7 +1647,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new EnumerationPair(to.ValidationCollection);
+		                var p = new EnumerationPair();
 		                EnumerationPair.Update(p, tt, isDeep);
 		                to.ListValues.Add(p);
 		            }
@@ -1650,10 +1671,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_enumeration' to 'Enumeration'
-		public static Enumeration ConvertToVM(proto_enumeration m, SortedObservableCollection<ValidationMessage> validationCollection = null, Enumeration vm = null)
+		public static Enumeration ConvertToVM(proto_enumeration m, Enumeration vm = null)
 		{
 		    if (vm == null)
-		        vm = new Enumeration(validationCollection);
+		        vm = new Enumeration();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.DataTypeEnum = m.DataTypeEnum;
@@ -1675,10 +1696,13 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListValues)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1698,7 +1722,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1727,13 +1751,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumerations
+	public partial class Enumerations : IAccept
 	{
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
 		#region CTOR
-		public Enumerations(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(EnumerationsValidator.Validator, validationCollection)
+		public Enumerations() 
+	        : base(EnumerationsValidator.Validator)
 		{
 			this.ListEnumerations = new ObservableCollection<Enumeration>();
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
@@ -1832,7 +1856,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Enumeration(to.ValidationCollection);
+		                var p = new Enumeration();
 		                Enumeration.Update(p, tt, isDeep);
 		                to.ListEnumerations.Add(p);
 		            }
@@ -1856,10 +1880,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_enumerations' to 'Enumerations'
-		public static Enumerations ConvertToVM(proto_enumerations m, SortedObservableCollection<ValidationMessage> validationCollection = null, Enumerations vm = null)
+		public static Enumerations ConvertToVM(proto_enumerations m, Enumerations vm = null)
 		{
 		    if (vm == null)
-		        vm = new Enumerations(validationCollection);
+		        vm = new Enumerations();
 		    vm.Name = m.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
@@ -1877,10 +1901,13 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListEnumerations)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -1900,7 +1927,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -1910,15 +1937,15 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalog
+	public partial class Catalog : IAccept
 	{
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
-		public Catalog(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(CatalogValidator.Validator, validationCollection)
+		public Catalog() 
+	        : base(CatalogValidator.Validator)
 		{
-			this.Properties = new Properties(validationCollection);
+			this.Properties = new Properties();
 			OnInit();
 		}
 		partial void OnInit();
@@ -1967,10 +1994,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_catalog' to 'Catalog'
-		public static Catalog ConvertToVM(proto_catalog m, SortedObservableCollection<ValidationMessage> validationCollection = null, Catalog vm = null)
+		public static Catalog ConvertToVM(proto_catalog m, Catalog vm = null)
 		{
 		    if (vm == null)
-		        vm = new Catalog(validationCollection);
+		        vm = new Catalog();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
@@ -2000,9 +2027,12 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			visitor.Visit(this.Properties);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -2022,7 +2052,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -2098,7 +2128,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _HiLoSequenceName; }
 		}
-		private string _HiLoSequenceName;
+		private string _HiLoSequenceName = "";
 		partial void OnHiLoSequenceNameChanging();
 		partial void OnHiLoSequenceNameChanged();
 		
@@ -2117,7 +2147,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _HiLoSchema; }
 		}
-		private string _HiLoSchema;
+		private string _HiLoSchema = "";
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
@@ -2142,13 +2172,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalogs
+	public partial class Catalogs : IAccept
 	{
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
 		#region CTOR
-		public Catalogs(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(CatalogsValidator.Validator, validationCollection)
+		public Catalogs() 
+	        : base(CatalogsValidator.Validator)
 		{
 			this.ListSharedProperties = new ObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
@@ -2300,7 +2330,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Property(to.ValidationCollection);
+		                var p = new Property();
 		                Property.Update(p, tt, isDeep);
 		                to.ListSharedProperties.Add(p);
 		            }
@@ -2336,7 +2366,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Catalog(to.ValidationCollection);
+		                var p = new Catalog();
 		                Catalog.Update(p, tt, isDeep);
 		                to.ListCatalogs.Add(p);
 		            }
@@ -2360,10 +2390,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_catalogs' to 'Catalogs'
-		public static Catalogs ConvertToVM(proto_catalogs m, SortedObservableCollection<ValidationMessage> validationCollection = null, Catalogs vm = null)
+		public static Catalogs ConvertToVM(proto_catalogs m, Catalogs vm = null)
 		{
 		    if (vm == null)
-		        vm = new Catalogs(validationCollection);
+		        vm = new Catalogs();
 		    vm.Name = m.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
@@ -2386,12 +2416,15 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListSharedProperties)
 				visitor.Visit(t);
 			foreach(var t in this.ListCatalogs)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -2411,7 +2444,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -2425,15 +2458,15 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Document
+	public partial class Document : IAccept
 	{
 	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
-		public Document(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(DocumentValidator.Validator, validationCollection)
+		public Document() 
+	        : base(DocumentValidator.Validator)
 		{
-			this.Properties = new Properties(validationCollection);
+			this.Properties = new Properties();
 			OnInit();
 		}
 		partial void OnInit();
@@ -2472,10 +2505,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_document' to 'Document'
-		public static Document ConvertToVM(proto_document m, SortedObservableCollection<ValidationMessage> validationCollection = null, Document vm = null)
+		public static Document ConvertToVM(proto_document m, Document vm = null)
 		{
 		    if (vm == null)
-		        vm = new Document(validationCollection);
+		        vm = new Document();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.Properties = Properties.ConvertToVM(m.Properties);
@@ -2492,9 +2525,12 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			visitor.Visit(this.Properties);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -2514,7 +2550,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -2539,13 +2575,13 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Documents
+	public partial class Documents : IAccept
 	{
 	
 		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
 		#region CTOR
-		public Documents(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-	        : base(DocumentsValidator.Validator, validationCollection)
+		public Documents() 
+	        : base(DocumentsValidator.Validator)
 		{
 			this.ListSharedProperties = new ObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
@@ -2697,7 +2733,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Property(to.ValidationCollection);
+		                var p = new Property();
 		                Property.Update(p, tt, isDeep);
 		                to.ListSharedProperties.Add(p);
 		            }
@@ -2733,7 +2769,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Document(to.ValidationCollection);
+		                var p = new Document();
 		                Document.Update(p, tt, isDeep);
 		                to.ListDocuments.Add(p);
 		            }
@@ -2757,10 +2793,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_documents' to 'Documents'
-		public static Documents ConvertToVM(proto_documents m, SortedObservableCollection<ValidationMessage> validationCollection = null, Documents vm = null)
+		public static Documents ConvertToVM(proto_documents m, Documents vm = null)
 		{
 		    if (vm == null)
-		        vm = new Documents(validationCollection);
+		        vm = new Documents();
 		    vm.Name = m.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
@@ -2783,12 +2819,15 @@ namespace vSharpStudio.vm.ViewModels
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
-		{ 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListSharedProperties)
 				visitor.Visit(t);
 			foreach(var t in this.ListDocuments)
 				visitor.Visit(t);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
@@ -2808,7 +2847,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Name; }
 		}
-		private string _Name;
+		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
@@ -2824,19 +2863,33 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorConfig
 	{
+	    CancellationToken Token { get; }
 		void Visit(Config m);
+		void VisitEnd(Config m);
 		void Visit(Property m);
+		void VisitEnd(Property m);
 		void Visit(DataType m);
+		void VisitEnd(DataType m);
 		void Visit(Properties m);
+		void VisitEnd(Properties m);
 		void Visit(Constant m);
+		void VisitEnd(Constant m);
 		void Visit(Constants m);
+		void VisitEnd(Constants m);
 		void Visit(EnumerationPair m);
+		void VisitEnd(EnumerationPair m);
 		void Visit(Enumeration m);
+		void VisitEnd(Enumeration m);
 		void Visit(Enumerations m);
+		void VisitEnd(Enumerations m);
 		void Visit(Catalog m);
+		void VisitEnd(Catalog m);
 		void Visit(Catalogs m);
+		void VisitEnd(Catalogs m);
 		void Visit(Document m);
+		void VisitEnd(Document m);
 		void Visit(Documents m);
+		void VisitEnd(Documents m);
 	}
 	
 	public interface IVisitorProto

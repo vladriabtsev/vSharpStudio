@@ -6,10 +6,12 @@
 
 public interface IVisitorConfig
 {
+    CancellationToken Token { get; }
 <# foreach (var message in root.MessageTypes) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
 	void Visit(<#= message.Name.ToNameCs() #> m);
+	void VisitEnd(<#= message.Name.ToNameCs() #> m);
 <# } #>
 }

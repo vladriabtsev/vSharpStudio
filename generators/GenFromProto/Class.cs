@@ -42,7 +42,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n");
+            this.Write(" : IAccept\r\n{\r\n");
             
             #line 10 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Declaration.ToTrailingComments("\t")));
@@ -77,15 +77,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(SortedObservableCollection<ValidationMessage> validationCollection = null) \r\n   " +
-                    "     : base(");
+            this.Write("() \r\n        : base(");
             
             #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("Validator.Validator, validationCollection)\r\n\t{\r\n");
+            this.Write("Validator.Validator)\r\n\t{\r\n");
             
             #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder())	{ 
@@ -146,7 +145,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(validationCollection);\r\n");
+            this.Write("();\r\n");
             
             #line 26 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
 		} else if (t.IsMap) { 

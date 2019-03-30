@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
@@ -31,34 +33,41 @@ namespace DbModel.MsSql
             this._config = config;
             if (_logger.IsEnabled(_logger_category))
                 _logger.Write("Created", null);
-        }
 
-        List<EntityObjectProblem> IMigration.GetUpdateDbProblems()
-        {
-            var res = new List<EntityObjectProblem>();
-            IVisitorConfig source = new ConfigModelBuilderVisitor();
-            source.Visit(this._config);
-
-
-            return res;
+            DbContextOptions options = new DbContextOptionsBuilder()
+                              .UseSqlServer(config.ConnectionString)
+                              .Options;
+            _dependencies = new RelationalConnectionDependencies(
+                    options,
+                    new DiagnosticsLogger<DbLoggerCategory.Database.Transaction>(
+                        new LoggerFactory(),
+                        new LoggingOptions(),
+                        new DiagnosticListener("FakeDiagnosticListener")),
+                    new DiagnosticsLogger<DbLoggerCategory.Database.Connection>(
+                        new LoggerFactory(),
+                        new LoggingOptions(),
+                        new DiagnosticListener("FakeDiagnosticListener")),
+                    new NamedConnectionStringResolver(options),
+                    new RelationalTransactionFactory(new RelationalTransactionFactoryDependencies()));
         }
-        DatabaseModel IMigration.GetDatabaseModel()
-        {
-            DatabaseModel res = null;
-            // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
-            // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
-            var mf = new SqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
-            res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
-            return res;
-        }
+        private RelationalConnectionDependencies _dependencies = null;
+        //DatabaseModel IMigration.GetDatabaseModel()
+        //{
+        //    DatabaseModel res = null;
+        //    // https://joshuachini.com/2017/03/08/adding-diagnostics-in-entity-framework-core/
+        //    // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
+        //    var mf = new SqlServerDatabaseModelFactory(new DiagnosticLogger<Microsoft.EntityFrameworkCore.DbLoggerCategory.Scaffolding>());
+        //    res = mf.Create(this._config.ConnectionString, new List<string>(), new List<string>() { this._config.DbSchema });
+        //    return res;
+        //}
 
-        void IMigration.InitMigration()
-        {
-            throw new NotImplementedException();
-        }
+        //void IMigration.InitMigration()
+        //{
+        //    throw new NotImplementedException();
+        //}
         bool IMigration.IsDatabaseServiceOn()
         {
-            //using (var connection = new SqlServerConnection(CreateDependencies()))
+            //using (var connection = new SqlServerConnection(_dependencies))
             //{
             //    using (var master = connection.CreateMasterConnection())
             //    {
@@ -73,37 +82,51 @@ namespace DbModel.MsSql
             //SqlServerDatabaseCreator cr = new SqlServerDatabaseCreator(CreateDependencies());
             throw new NotImplementedException();
         }
-        bool IMigration.IsDatabaseExist()
+        Task<bool> IMigration.IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
-        bool IMigration.CreateDatabase()
+        bool IMigration.IsDatabaseExists()
         {
             throw new NotImplementedException();
         }
-        void IMigration.UpdateDb()
+        Task<bool> IMigration.IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
-        public static RelationalConnectionDependencies CreateDependencies(DbContextOptions options = null)
+        void IMigration.CreateDatabase()
         {
-            options = options
-                      ?? new DbContextOptionsBuilder()
-                          .UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=SqlServerConnectionTest")
-                          .Options;
+            throw new NotImplementedException();
+        }
+        Task IMigration.CreateDatabaseAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+        void IMigration.DropDatabase()
+        {
+            throw new NotImplementedException();
+            //ClearAllPools();
 
-            return new RelationalConnectionDependencies(
-                options,
-                new DiagnosticsLogger<DbLoggerCategory.Database.Transaction>(
-                    new LoggerFactory(),
-                    new LoggingOptions(),
-                    new DiagnosticListener("FakeDiagnosticListener")),
-                new DiagnosticsLogger<DbLoggerCategory.Database.Connection>(
-                    new LoggerFactory(),
-                    new LoggingOptions(),
-                    new DiagnosticListener("FakeDiagnosticListener")),
-                new NamedConnectionStringResolver(options),
-                new RelationalTransactionFactory(new RelationalTransactionFactoryDependencies()));
+            //using (var masterConnection = _connection.CreateMasterConnection())
+            //{
+            //    Dependencies.MigrationCommandExecutor
+            //        .ExecuteNonQuery(CreateDropCommands(), masterConnection);
+            //}
         }
+        Task IMigration.DropDatabaseAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+            //ClearAllPools();
+
+            //using (var masterConnection = _connection.CreateMasterConnection())
+            //{
+            //    await Dependencies.MigrationCommandExecutor
+            //        .ExecuteNonQueryAsync(CreateDropCommands(), masterConnection, cancellationToken);
+            //}
+        }
+        //void IMigration.UpdateDb()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

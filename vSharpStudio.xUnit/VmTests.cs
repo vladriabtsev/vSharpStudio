@@ -1,178 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using ViewModelBase;
+using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {
-    public class TestEditable : ViewModelEditable<TestEditable>
-    {
-        public TestEditable()
-        {
-            TestPublicListPropery = new List<string>();
-            TestPublicObservableCollectionPropery = new ObservableCollection<string>();
-        }
-        public string TestPublicPropery { get; set; }
-        private string testPrivateField;
-        public void SetPrivateField(string s)
-        {
-            testPrivateField = s;
-        }
-        public string GetPrivateField()
-        {
-            return testPrivateField;
-        }
-        public List<string> TestPublicListPropery { get; set; }
-        public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
-        public override TestEditable Backup()
-        {
-            var tmp = new TestEditable();
-            tmp.TestPublicPropery = this.TestPublicPropery;
-            tmp.TestPublicObservableCollectionPropery = new ObservableCollection<string>();
-            foreach (var t in this.TestPublicObservableCollectionPropery)
-            {
-                tmp.TestPublicObservableCollectionPropery.Add(t);
-            }
-            tmp.TestPublicListPropery = new List<string>();
-            foreach (var t in this.TestPublicListPropery)
-            {
-                tmp.TestPublicListPropery.Add(t);
-            }
-            return tmp;
-        }
-        public override void Restore(TestEditable from)
-        {
-            this.TestPublicPropery = from.TestPublicPropery;
-            this.TestPublicObservableCollectionPropery = from.TestPublicObservableCollectionPropery;
-            this.TestPublicListPropery = from.TestPublicListPropery;
-        }
-    }
-    public class TestValidator : ValidatorBase<TestValidatable, TestValidator>
-    {
-
-    }
-    public class TestValidatable : ViewModelValidatable<TestValidatable, TestValidator>
-    {
-        public TestValidatable() : base(TestValidator.Validator)
-        {
-            TestPublicListPropery = new List<string>();
-            TestPublicObservableCollectionPropery = new ObservableCollection<string>();
-        }
-        public string TestPublicPropery { get; set; }
-        private string testPrivateField;
-        public void SetPrivateField(string s)
-        {
-            testPrivateField = s;
-        }
-        public string GetPrivateField()
-        {
-            return testPrivateField;
-        }
-        public List<string> TestPublicListPropery { get; set; }
-        public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
-        public override TestValidatable Backup()
-        {
-            var tmp = new TestValidatable();
-            tmp.TestPublicPropery = this.TestPublicPropery;
-            return tmp;
-        }
-        public override void Restore(TestValidatable from)
-        {
-            this.TestPublicPropery = from.TestPublicPropery;
-        }
-    }
-
     public class VmTests
     {
-        [Fact]
-        public void Editable001CanCancelEditPublicProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicPropery = "1";
-            vm.BeginEdit();
-            vm.TestPublicPropery = "2";
-            vm.CancelEdit();
-            Assert.Equal("1", vm.TestPublicPropery);
-        }
-        //[Fact]
-        //public void Editable002CanCancelEditPrivateField()
-        //{
-        //    TestEditable vm = new TestEditable();
-        //    vm.SetPrivateField("1");
-        //    vm.BeginEdit();
-        //    vm.SetPrivateField("2");
-        //    vm.CancelEdit();
-        //    Assert.Equal("1", vm.GetPrivateField());
-        //}
-        [Fact]
-        public void Editable003CanCancelEditPublicListProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicListPropery.Add("1");
-            vm.BeginEdit();
-            vm.TestPublicListPropery.Add("2");
-            vm.CancelEdit();
-            Assert.Single(vm.TestPublicListPropery);
-            Assert.Equal("1", vm.TestPublicListPropery[0]);
-        }
-        [Fact]
-        public void Editable004CanCancelEditPublicObservableProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicObservableCollectionPropery.Add("1");
-            vm.BeginEdit();
-            vm.TestPublicObservableCollectionPropery.Add("2");
-            vm.CancelEdit();
-            Assert.Single(vm.TestPublicObservableCollectionPropery);
-            Assert.Equal("1", vm.TestPublicObservableCollectionPropery[0]);
-        }
-        [Fact]
-        public void Editable005CanEndEditPublicProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicPropery = "1";
-            vm.BeginEdit();
-            vm.TestPublicPropery = "2";
-            vm.EndEdit();
-            Assert.Equal("2", vm.TestPublicPropery);
-        }
-        [Fact]
-        public void Editable006CanEndEditPrivateField()
-        {
-            TestEditable vm = new TestEditable();
-            vm.SetPrivateField("1");
-            vm.BeginEdit();
-            vm.SetPrivateField("2");
-            vm.EndEdit();
-            Assert.Equal("2", vm.GetPrivateField());
-        }
-        [Fact]
-        public void Editable007CanEndEditPublicListProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicListPropery.Add("1");
-            vm.BeginEdit();
-            vm.TestPublicListPropery.Add("2");
-            vm.EndEdit();
-            Assert.Equal(2, vm.TestPublicListPropery.Count);
-            Assert.Equal("1", vm.TestPublicListPropery[0]);
-            Assert.Equal("2", vm.TestPublicListPropery[1]);
-        }
-        [Fact]
-        public void Editable008CanEndEditPublicObservableProperty()
-        {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicObservableCollectionPropery.Add("1");
-            vm.BeginEdit();
-            vm.TestPublicObservableCollectionPropery.Add("2");
-            vm.EndEdit();
-            Assert.Equal(2, vm.TestPublicObservableCollectionPropery.Count);
-            Assert.Equal("1", vm.TestPublicObservableCollectionPropery[0]);
-            Assert.Equal("2", vm.TestPublicObservableCollectionPropery[1]);
-        }
+        #region Editable
+
         [Fact]
         public void Editable011CanCancelSameLevelSimpleProperty()
         {
@@ -225,11 +66,6 @@ namespace vSharpStudio.xUnit
             Assert.True(vm.Properties.ListProperties.Count == 1);
             Assert.True(vm.Properties.ListProperties[0].Name == "test1");
         }
-
-
-
-
-
         [Fact]
         public void Editable021CanCancelCatalogPropertiy()
         {
@@ -250,5 +86,141 @@ namespace vSharpStudio.xUnit
             Assert.Single(vm.Properties.ListProperties);
             Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
         }
+        #endregion Editable
+
+        #region Async
+        [Fact]
+        public void Async001_CanHandleException()
+        {
+            var t = AsyncWithOneException();
+            t.Wait();
+            if (t.IsFaulted)
+            {
+
+            }
+        }
+        Task AsyncWithOneException()
+        {
+            Task task = Task.Run(() =>
+             {
+                 throw new Exception("test 1");
+             });
+            return task;
+        }
+        #endregion Async
+
+        #region Validatable
+        [Fact]
+        public void Validation001_ValidationCollectionEmptyAfterInit()
+        {
+            var cfg = new ConfigRoot();
+            Assert.True(cfg.ValidationCollection != null);
+            Assert.True(cfg.ValidationCollection.Count == 0);
+        }
+        [Fact]
+        public void Validation002_ValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        {
+            var cfg = new ConfigRoot();
+            var c = new Catalog();
+            cfg.Catalogs.ListCatalogs.Add(c);
+
+            string mes1 = "test error message";
+            string mes2 = "test warning message";
+            string mes3 = "test info message";
+
+            c.SetInfo(mes3);
+            c.SetWarning(mes2);
+            c.SetError(mes1);
+
+            cfg.ValidateSubTreeFromNode(c); //.ConfigureAwait(continueOnCapturedContext: false);
+
+            Assert.True(cfg.ValidationCollection.Count == 3);
+            var p = cfg.ValidationCollection[0];
+            Assert.True(p.Severity == FluentValidation.Severity.Error);
+            Assert.True(p.Message == mes1);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[1];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[2];
+            Assert.True(p.Severity == FluentValidation.Severity.Info);
+            Assert.True(p.Message == mes3);
+            Assert.True(p.Model == c);
+
+            var c2 = new Catalog();
+            cfg.Catalogs.ListCatalogs.Add(c2);
+            c2.SetWarning(mes2, 10);
+
+            cfg.ValidateSubTreeFromNode(c);
+
+            Assert.True(cfg.ValidationCollection.Count == 3);
+            p = cfg.ValidationCollection[0];
+            Assert.True(p.Severity == FluentValidation.Severity.Error);
+            Assert.True(p.Message == mes1);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[1];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[2];
+            Assert.True(p.Severity == FluentValidation.Severity.Info);
+            Assert.True(p.Message == mes3);
+            Assert.True(p.Model == c);
+
+            cfg.ValidateSubTreeFromNode(c2);
+
+            Assert.True(cfg.ValidationCollection.Count == 1);
+            p = cfg.ValidationCollection[0];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == c2);
+
+            cfg.ValidateSubTreeFromNode(cfg);
+
+            Assert.True(cfg.ValidationCollection.Count == 4);
+            p = cfg.ValidationCollection[0];
+            Assert.True(p.Severity == FluentValidation.Severity.Error);
+            Assert.True(p.Message == mes1);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[1];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == c2);
+            p = cfg.ValidationCollection[2];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == c);
+            p = cfg.ValidationCollection[3];
+            Assert.True(p.Severity == FluentValidation.Severity.Info);
+            Assert.True(p.Message == mes3);
+            Assert.True(p.Model == c);
+
+        }
+        [Fact]
+        public void Validation003_TreeNodesContainQtyAndLevelForValidationMessages()
+        {
+            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
+            //Assert.True(cfg.ValidationCollection != null);
+            //Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(false);
+        }
+        [Fact]
+        public void Validation004_EditingDataChangeListValidationMessagesInTheParentNodes()
+        {
+            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
+            //Assert.True(cfg.ValidationCollection != null);
+            //Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(false);
+        }
+        [Fact]
+        public void Validation005_SecondValidationOnEntityLevelIsRemovingLegacyMessages()
+        {
+            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
+            //Assert.True(cfg.ValidationCollection != null);
+            //Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(false);
+        }
+        #endregion Validatable
     }
 }

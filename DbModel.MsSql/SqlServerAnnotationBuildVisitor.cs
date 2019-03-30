@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
 namespace DbModel.MsSql
@@ -9,6 +11,9 @@ namespace DbModel.MsSql
     public class SqlServerAnnotationBuildVisitor : IVisitorConfig
     {
         public SqlServerModelAnnotations Annotations { get; set; }
+
+        CancellationToken IVisitorConfig.Token => throw new NotImplementedException();
+
         void IVisitorConfig.Visit(Config m)
         {
             //IModel
@@ -71,6 +76,71 @@ namespace DbModel.MsSql
         }
 
         void IVisitorConfig.Visit(EnumerationPair m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Config m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Property m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(DataType m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Properties m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Constant m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Constants m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(EnumerationPair m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Enumeration m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Enumerations m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Catalog m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Catalogs m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Document m)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Documents m)
         {
             throw new NotImplementedException();
         }

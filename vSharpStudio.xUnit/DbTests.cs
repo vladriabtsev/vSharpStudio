@@ -15,13 +15,13 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {
-    public class DbMigrationTests
+    public class DbTests
     {
-        public DbMigrationTests(ITestOutputHelper output)
+        public DbTests(ITestOutputHelper output)
         {
             ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
             loggerFactory.AddProvider(new DebugLoggerProvider());
-            ILogger logger = loggerFactory.CreateLogger<DbMigrationTests>();
+            ILogger logger = loggerFactory.CreateLogger<DbTests>();
             logger.LogInformation("Start tests");
         }
 
@@ -31,7 +31,7 @@ namespace vSharpStudio.xUnit
         public void Db001IsDatabaseServiceOff(string conName)
         {
             IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory() + @"\..\..\..", conName);
-            cfg.InitMigration();
+            (cfg as ConfigRoot).InitMigration();
             Assert.False(cfg.IsDatabaseServiceOn());
         }
         [Theory]
@@ -40,8 +40,8 @@ namespace vSharpStudio.xUnit
         public void Db001IsDatabaseServiceOn(string conName)
         {
             IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory() + @"\..\..\..", conName);
-            cfg.InitMigration();
-            cfg.GetUpdateDbProblems();
+            (cfg as ConfigRoot).InitMigration();
+            //cfg.GetUpdateDbProblems();
             Assert.True(false);
         }
         [Theory]
@@ -50,8 +50,8 @@ namespace vSharpStudio.xUnit
         public void Db005CanRecognizeDbAbsence(string conName)
         {
             IMigration cfg = new ConfigRoot(Directory.GetCurrentDirectory()+ @"\..\..\..", conName);
-            cfg.InitMigration();
-            cfg.GetUpdateDbProblems();
+            (cfg as ConfigRoot).InitMigration();
+            //cfg.GetUpdateDbProblems();
             Assert.True(false);
         }
         [Theory]
@@ -71,13 +71,13 @@ namespace vSharpStudio.xUnit
             //TODO for Numerical test all cases: int, long, uint, ulong, ...
             cfg.Catalogs.ListCatalogs.Add(c);
 
-            var res = cfg.GetUpdateDbProblems();
-            Assert.True(res.Count == 0);
+            //var res = cfg.GetUpdateDbProblems();
+            //Assert.True(res.Count == 0);
 
-            cfg.UpdateDb();
-            c.Properties.ListProperties[0].DataType.Length = 3;
-            res = cfg.GetUpdateDbProblems();
-            Assert.True(res.Count == 1);
+            //cfg.UpdateDb();
+            //c.Properties.ListProperties[0].DataType.Length = 3;
+            //res = cfg.GetUpdateDbProblems();
+            //Assert.True(res.Count == 1);
 
             Assert.True(false);
         }

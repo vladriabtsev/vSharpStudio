@@ -301,7 +301,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(to.ValidationCollection);\r\n                ");
+            this.Write("();\r\n                ");
             
             #line 63 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -489,7 +489,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" m, SortedObservableCollection<ValidationMessage> validationCollection = null, ");
+            this.Write(" m, ");
             
             #line 98 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -503,7 +503,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(validationCollection);\r\n");
+            this.Write("();\r\n");
             
             #line 102 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 

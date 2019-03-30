@@ -4,8 +4,8 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  public interface IEntityObject : IGuid, IComparable
-  {
-    string Name { get; set; }
+    public interface IEntityObject : IGuid, IComparable
+    {
+        string Name { get; set; }
     }
 }

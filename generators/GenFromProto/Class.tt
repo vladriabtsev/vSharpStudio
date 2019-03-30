@@ -5,13 +5,13 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.proto" #>
 <#= message.Declaration.ToLeadingComments() #>
-public partial class <#= message.Name.ToNameCs() #>
+public partial class <#= message.Name.ToNameCs() #> : IAccept
 {
 <#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
 	#region CTOR
-	public <#= message.Name.ToNameCs() #>(SortedObservableCollection<ValidationMessage> validationCollection = null) 
-        : base(<#= message.Name.ToNameCs() #>Validator.Validator, validationCollection)
+	public <#= message.Name.ToNameCs() #>() 
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator)
 	{
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
        if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
@@ -22,7 +22,7 @@ public partial class <#= message.Name.ToNameCs() #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(validationCollection);
+		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>();
 <#		} else if (t.IsMap) { #>
 		map???
 <#		} #>

@@ -57,7 +57,7 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
-private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
+private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string") { #> = ""<# } #>;
 <# } #>
 partial void On<#= field.Name.ToNameCs() #>Changing();
 partial void On<#= field.Name.ToNameCs() #>Changed();

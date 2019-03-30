@@ -10,8 +10,8 @@ namespace vSharpStudio.vm.ViewModels
       where TValidator : AbstractValidator<T>
       where T : EntityObjectBaseWithGuid<T, TValidator>
     {
-        public EntityObjectBaseWithGuid(TValidator validator, SortedObservableCollection<ValidationMessage> validationCollection)
-            : base(validator, validationCollection)
+        public EntityObjectBaseWithGuid(TValidator validator)
+            : base(validator)
         {
         }
         public string Guid

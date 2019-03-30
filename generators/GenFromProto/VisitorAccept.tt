@@ -4,7 +4,9 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 public void Accept(IVisitorConfig visitor) 
-{ 
+{
+    if (visitor.Token.IsCancellationRequested)
+        return;
 	visitor.Visit(this);
 <# foreach (var field in message.Fields.InDeclarationOrder()) { 
      if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
@@ -17,4 +19,5 @@ public void Accept(IVisitorConfig visitor)
 	visitor.Visit(this.<#= field.Name.ToNameCs() #>);
 <# } #>
 <# } #>
+	visitor.VisitEnd(this);
 }

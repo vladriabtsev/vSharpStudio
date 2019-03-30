@@ -29,18 +29,19 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg2.Constants.ListConstants.Count == 1);
             Assert.True(cfg2.Constants.ListConstants[0].Name == typeof(Constant).Name + 1);
         }
-        [Fact]
-        public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
-        {
-            var cfg = new Config(new SortedObservableCollection<ValidationMessage>());
-            cfg.IsDbFromConnectionString = true;
-            cfg.Validate();
-            Assert.False(cfg.HasErrors);
-            Assert.True(cfg.HasWarnings);
-            Assert.False(cfg.HasInfos);
-            Assert.True(cfg.ValidationCollection.Count == 1);
-            Assert.True(cfg.ValidationCollection[0].SortingValue >= 1 << ValidationMessage.MultiplierShift);
-        }
+        // TODO business validation tests
+        //[Fact]
+        //public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
+        //{
+        //    var cfg = new Config(new SortedObservableCollection<ValidationMessage>());
+        //    cfg.IsDbFromConnectionString = true;
+        //    cfg.Validate();
+        //    Assert.False(cfg.HasErrors);
+        //    Assert.True(cfg.HasWarnings);
+        //    Assert.False(cfg.HasInfos);
+        //    Assert.True(cfg.ValidationCollection.Count == 1);
+        //    Assert.True(cfg.ValidationCollection[0].SortingValue >= 1 << ValidationMessage.MultiplierShift);
+        //}
         #endregion Config
         #region Constant
         [Fact]
@@ -94,17 +95,16 @@ namespace vSharpStudio.xUnit
         }
         #endregion Document
         #region Diff
-        [Fact]
-        public void DiffConstant001Added()
-        {
-            var cfg = new Config();
-            Assert.True(cfg.Guid.Length > 0);
-        }
-        [Fact]
-        public void DiffConfig001CanDiffwithDb()
-        {
-            Assert.True(false);
-        }
+        //[Fact]
+        //public void DiffConstant001Added()
+        //{
+        //    Assert.True(false);
+        //}
+        //[Fact]
+        //public void DiffConfig001CanDiffwithDb()
+        //{
+        //    Assert.True(false);
+        //}
         #endregion Diff
     }
 }

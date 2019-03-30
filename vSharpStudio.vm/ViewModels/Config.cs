@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentValidation;
 using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : EntityObjectBaseWithGuid<Config, Config.ConfigValidator>, IEntityObject, IMigration
+    public partial class Config : EntityObjectBaseWithGuid<Config, Config.ConfigValidator>, IEntityObject, IMigration, ITreeNode
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -28,11 +30,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             RecreateSubNodes();
         }
-        public Config(string configJson, SortedObservableCollection<ValidationMessage> validationCollection = null)
-            : base(ConfigValidator.Validator, validationCollection)
+        public Config(string configJson)
+            : base(ConfigValidator.Validator)
         {
             var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
-            Config.ConvertToVM(pconfig, validationCollection, this);
+            Config.ConvertToVM(pconfig, this);
         }
         public string ExportToJson()
         {
@@ -40,35 +42,51 @@ namespace vSharpStudio.vm.ViewModels
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
         }
-        public List<EntityObjectProblem> GetUpdateDbProblems()
-        {
-            return _migration.GetUpdateDbProblems();
-        }
-        public void UpdateDb()
-        {
-            throw new NotImplementedException();
-        }
-        public virtual void InitMigration()
-        {
-            throw new NotImplementedException();
-        }
-        public bool IsDatabaseServiceOn()
+
+        #region IMigration
+
+        //public virtual void InitMigration()
+        //{
+        //    // overriden in ConfigRoot class
+        //    throw new NotImplementedException();
+        //}
+        bool IMigration.IsDatabaseServiceOn()
         {
             return _migration.IsDatabaseServiceOn();
         }
-        public bool IsDatabaseExist()
+        Task<bool> IMigration.IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
-        public bool CreateDatabase()
+        bool IMigration.IsDatabaseExists()
         {
-            throw new NotImplementedException();
+            return _migration.IsDatabaseExists();
         }
-        public DatabaseModel GetDatabaseModel()
+        Task<bool> IMigration.IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
-            return _migration.GetDatabaseModel();
+            return _migration.IsDatabaseExistsAsync(cancellationToken);
         }
+        void IMigration.CreateDatabase()
+        {
+            _migration.CreateDatabase();
+        }
+        Task IMigration.CreateDatabaseAsync(CancellationToken cancellationToken)
+        {
+            return _migration.CreateDatabaseAsync(cancellationToken);
+        }
+        void IMigration.DropDatabase()
+        {
+            _migration.DropDatabase();
+        }
+        Task IMigration.DropDatabaseAsync(CancellationToken cancellationToken)
+        {
+            return _migration.DropDatabaseAsync(cancellationToken);
+        }
+
+        #endregion IMigration
+
         #region ITreeNode
+
         public ITreeNode Parent => null;
 
         public IEnumerable<ITreeNode> SubNodes
