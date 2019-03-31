@@ -11,40 +11,9 @@ namespace vSharpStudio.vm.ViewModels
         {
         }
         #region ITreeNode
-        public ITreeNode Parent => throw new NotImplementedException();
-
+        public ITreeNode Parent { get; internal set; }
         public IEnumerable<ITreeNode> SubNodes => this.ListDocuments;
 
-        #region ITreeNodeWithValidation
-        public int ValidationQty
-        {
-            set
-            {
-                if (_ValidationQty != value)
-                {
-                    _ValidationQty = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationQty; }
-        }
-        private int _ValidationQty;
-
-        public Severity ValidationSeverity
-        {
-            set
-            {
-                if (_ValidationSeverity != value)
-                {
-                    _ValidationSeverity = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationSeverity; }
-        }
-
-        private Severity _ValidationSeverity;
-        #endregion ITreeNodeWithValidation
         #endregion ITreeNode
     }
 }

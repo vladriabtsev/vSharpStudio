@@ -15,8 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             RecreateSubNodes();
         }
         #region ITreeNode
-        public ITreeNode Parent => throw new NotImplementedException();
-
+        public ITreeNode Parent { get; internal set; }
         public IEnumerable<ITreeNode> SubNodes
         {
             get { return this._SubNodes; }
@@ -30,36 +29,6 @@ namespace vSharpStudio.vm.ViewModels
         void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Properties }; }
         partial void OnPropertiesChanged() { RecreateSubNodes(); }
 
-        #region ITreeNodeWithValidation
-        public int ValidationQty
-        {
-            set
-            {
-                if (_ValidationQty != value)
-                {
-                    _ValidationQty = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationQty; }
-        }
-        private int _ValidationQty;
-
-        public Severity ValidationSeverity
-        {
-            set
-            {
-                if (_ValidationSeverity != value)
-                {
-                    _ValidationSeverity = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationSeverity; }
-        }
-
-        private Severity _ValidationSeverity;
-        #endregion ITreeNodeWithValidation
         #endregion ITreeNode
     }
 }

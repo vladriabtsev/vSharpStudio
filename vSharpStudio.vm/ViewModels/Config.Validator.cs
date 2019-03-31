@@ -4,7 +4,10 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigValidator
+    public partial class Config
     {
+        public partial class ConfigValidator
+        {
+        }
     }
 }

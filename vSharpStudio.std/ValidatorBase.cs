@@ -5,18 +5,22 @@ using System.Text;
 
 namespace ViewModelBase
 {
-  public class ValidatorBase<T, TValidator> : AbstractValidator<T>
-    where TValidator : ValidatorBase<T, TValidator>, new()
-  {
-      private static TValidator _validator = default(TValidator);
-      public static TValidator Validator
-      {
-        get
+    public class ValidatorBase<T, TValidator> : AbstractValidator<T>
+      where TValidator : ValidatorBase<T, TValidator>, new()
+    {
+        private static TValidator _validator = default(TValidator);
+        public static TValidator Validator
         {
-          if (_validator == null)
-            _validator = new TValidator();
-          return _validator;
+            get
+            {
+                if (_validator == null)
+                    _validator = new TValidator();
+                return _validator;
+            }
         }
-      }
-  }
+        public static void Reset()
+        {
+            _validator = default(TValidator);
+        }
+    }
 }

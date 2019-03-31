@@ -67,24 +67,29 @@ namespace ViewModelBase
             {
                 foreach (var t in res.Errors)
                 {
+                    ValidationMessage msg = null;
                     switch (t.Severity)
                     {
                         case Severity.Error:
                             if (!_errors.ContainsKey(t.PropertyName))
                                 _errors[t.PropertyName] = new List<string>();
                             _errors[t.PropertyName].Add(t.ErrorMessage);
+                            msg = new ValidationMessage<T>((T)this, t.PropertyName, FluentValidation.Severity.Error, t.CustomState == null ? SeverityWeight.Normal : (SeverityWeight)t.CustomState, t.ErrorMessage);
                             break;
                         case Severity.Warning:
                             if (!_warnings.ContainsKey(t.PropertyName))
                                 _warnings[t.PropertyName] = new List<string>();
                             _warnings[t.PropertyName].Add(t.ErrorMessage);
+                            msg = new ValidationMessage<T>((T)this, t.PropertyName, FluentValidation.Severity.Warning, t.CustomState == null ? SeverityWeight.Normal : (SeverityWeight)t.CustomState, t.ErrorMessage);
                             break;
                         case Severity.Info:
                             if (!_infos.ContainsKey(t.PropertyName))
                                 _infos[t.PropertyName] = new List<string>();
                             _infos[t.PropertyName].Add(t.ErrorMessage);
+                            msg = new ValidationMessage<T>((T)this, t.PropertyName, FluentValidation.Severity.Info, t.CustomState == null ? SeverityWeight.Normal : (SeverityWeight)t.CustomState, t.ErrorMessage);
                             break;
                     }
+                    ValidationCollection.Add(msg);
                 }
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 foreach (var t in _errors)
@@ -179,41 +184,41 @@ namespace ViewModelBase
         private readonly Dictionary<string, List<string>> _warnings = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, List<string>> _infos = new Dictionary<string, List<string>>();
         // than higher weight than higher importance of the message
-        public void SetError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            if (!_errors.ContainsKey(propertyName))
-                _errors.Add(propertyName, new List<string> { errorMessage });
-            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Error, weight, errorMessage);
-            ValidationCollection.Add(msg);
-            RaiseErrorsChanged(propertyName);
-            NotifyPropertyChanged(m => m.HasErrors);
-        }
+        //public void SetError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        //{
+        //    if (!_errors.ContainsKey(propertyName))
+        //        _errors.Add(propertyName, new List<string> { errorMessage });
+        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Error, weight, errorMessage);
+        //    ValidationCollection.Add(msg);
+        //    RaiseErrorsChanged(propertyName);
+        //    NotifyPropertyChanged(m => m.HasErrors);
+        //}
+        //// than higher weight than higher importance of the message
+        //public void SetWarning(string warningMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        //{
+        //    if (!_warnings.ContainsKey(propertyName))
+        //        _warnings.Add(propertyName, new List<string> { warningMessage });
+        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Warning, weight, warningMessage);
+        //    ValidationCollection.Add(msg);
+        //    RaiseErrorsChanged(propertyName);
+        //    NotifyPropertyChanged(m => m.HasWarnings);
+        //}
+        //// than higher weight than higher importance of the message
+        //public void SetInfo(string infoMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        //{
+        //    if (!_infos.ContainsKey(propertyName))
+        //        _infos.Add(propertyName, new List<string> { infoMessage });
+        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Info, weight, infoMessage);
+        //    ValidationCollection.Add(msg);
+        //    RaiseErrorsChanged(propertyName);
+        //    NotifyPropertyChanged(m => m.HasInfos);
+        //}
         // than higher weight than higher importance of the message
-        public void SetWarning(string warningMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            if (!_warnings.ContainsKey(propertyName))
-                _warnings.Add(propertyName, new List<string> { warningMessage });
-            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Warning, weight, warningMessage);
-            ValidationCollection.Add(msg);
-            RaiseErrorsChanged(propertyName);
-            NotifyPropertyChanged(m => m.HasWarnings);
-        }
-        // than higher weight than higher importance of the message
-        public void SetInfo(string infoMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            if (!_infos.ContainsKey(propertyName))
-                _infos.Add(propertyName, new List<string> { infoMessage });
-            var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Info, weight, infoMessage);
-            ValidationCollection.Add(msg);
-            RaiseErrorsChanged(propertyName);
-            NotifyPropertyChanged(m => m.HasInfos);
-        }
-        // than higher weight than higher importance of the message
-        public void SetOneError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            ClearError(propertyName);
-            SetError(errorMessage, weight, propertyName);
-        }
+        //public void SetOneError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        //{
+        //    ClearError(propertyName);
+        //    SetError(errorMessage, weight, propertyName);
+        //}
         protected void ClearError(string propertyName)
         {
             if (_errors.ContainsKey(propertyName))
@@ -254,6 +259,7 @@ namespace ViewModelBase
             var properties = dic.Select(error => error.Key).ToList();
             foreach (var propertyName in properties)
                 ClearError(propertyName);
+            ValidationCollection.Clear();
         }
         public void RaiseErrorsChanged(string propertyName)
         {

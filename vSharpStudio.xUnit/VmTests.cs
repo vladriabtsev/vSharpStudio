@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using FluentValidation;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 using ViewModelBase;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
+using Xunit.Abstractions;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {
     public class VmTests
     {
+        ILogger _logger = null;
+        public VmTests(ITestOutputHelper output)
+        {
+            ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            loggerFactory.AddProvider(new DebugLoggerProvider());
+            _logger = loggerFactory.CreateLogger<VmTests>();
+            _logger.LogInformation("======================  Start VmTests tests ===============================");
+        }
+
         #region Editable
 
         [Fact]
@@ -113,6 +126,7 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new ConfigRoot();
             Assert.True(cfg.ValidationCollection != null);
             Assert.True(cfg.ValidationCollection.Count == 0);
@@ -120,90 +134,55 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation002_ValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
+            Config.ConfigValidator.Reset();
+            Catalog.CatalogValidator.Reset();
             var cfg = new ConfigRoot();
             var c = new Catalog();
             cfg.Catalogs.ListCatalogs.Add(c);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
+            string mes22 = "test warning2 message";
             string mes3 = "test info message";
 
-            c.SetInfo(mes3);
-            c.SetWarning(mes2);
-            c.SetError(mes1);
+            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes22).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryHigh);
+            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.VeryLow);
+            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes3).WithSeverity(Severity.Info).WithState(x => SeverityWeight.VeryHigh);
+            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryLow);
 
-            cfg.ValidateSubTreeFromNode(c); //.ConfigureAwait(continueOnCapturedContext: false);
+            cfg.Validate();
 
-            Assert.True(cfg.ValidationCollection.Count == 3);
-            var p = cfg.ValidationCollection[0];
+            cfg.ValidateSubTreeFromNode(c, _logger); //.ConfigureAwait(continueOnCapturedContext: false);
+
+            Assert.True(cfg.ListAllValidationMessages.Count == 4);
+            var p = cfg.ListAllValidationMessages[0];
             Assert.True(p.Severity == FluentValidation.Severity.Error);
             Assert.True(p.Message == mes1);
             Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[1];
+            p = cfg.ListAllValidationMessages[1];
+            Assert.True(p.Severity == FluentValidation.Severity.Warning);
+            Assert.True(p.Message == mes22);
+            Assert.True(p.Model == c);
+            p = cfg.ListAllValidationMessages[2];
             Assert.True(p.Severity == FluentValidation.Severity.Warning);
             Assert.True(p.Message == mes2);
             Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[2];
+            p = cfg.ListAllValidationMessages[3];
             Assert.True(p.Severity == FluentValidation.Severity.Info);
             Assert.True(p.Message == mes3);
             Assert.True(p.Model == c);
 
-            var c2 = new Catalog();
-            cfg.Catalogs.ListCatalogs.Add(c2);
-            c2.SetWarning(mes2, 10);
+            Assert.Equal(1, c.CountErrors);
+            Assert.Equal(2, c.CountWarnings);
+            Assert.Equal(1, c.CountInfos);
 
-            cfg.ValidateSubTreeFromNode(c);
+            Assert.Equal(1, cfg.Catalogs.CountErrors);
+            Assert.Equal(2, cfg.Catalogs.CountWarnings);
+            Assert.Equal(1, cfg.Catalogs.CountInfos);
 
-            Assert.True(cfg.ValidationCollection.Count == 3);
-            p = cfg.ValidationCollection[0];
-            Assert.True(p.Severity == FluentValidation.Severity.Error);
-            Assert.True(p.Message == mes1);
-            Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[1];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[2];
-            Assert.True(p.Severity == FluentValidation.Severity.Info);
-            Assert.True(p.Message == mes3);
-            Assert.True(p.Model == c);
-
-            cfg.ValidateSubTreeFromNode(c2);
-
-            Assert.True(cfg.ValidationCollection.Count == 1);
-            p = cfg.ValidationCollection[0];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == c2);
-
-            cfg.ValidateSubTreeFromNode(cfg);
-
-            Assert.True(cfg.ValidationCollection.Count == 4);
-            p = cfg.ValidationCollection[0];
-            Assert.True(p.Severity == FluentValidation.Severity.Error);
-            Assert.True(p.Message == mes1);
-            Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[1];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == c2);
-            p = cfg.ValidationCollection[2];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == c);
-            p = cfg.ValidationCollection[3];
-            Assert.True(p.Severity == FluentValidation.Severity.Info);
-            Assert.True(p.Message == mes3);
-            Assert.True(p.Model == c);
-
-        }
-        [Fact]
-        public void Validation003_TreeNodesContainQtyAndLevelForValidationMessages()
-        {
-            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
-            //Assert.True(cfg.ValidationCollection != null);
-            //Assert.True(cfg.ValidationCollection.Count == 0);
-            Assert.True(false);
+            Assert.Equal(1, cfg.CountErrors);
+            Assert.Equal(2, cfg.CountWarnings);
+            Assert.Equal(1, cfg.CountInfos);
         }
         [Fact]
         public void Validation004_EditingDataChangeListValidationMessagesInTheParentNodes()

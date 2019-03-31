@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    public partial class DataType : EntityObjectBase<DataType, DataType.DataTypeValidator>
+    public partial class DataType : EntityObjectBase<DataType, DataType.DataTypeValidator>, ITreeNode
     {
         public void OnInitFromDto()
         {
@@ -107,5 +107,21 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger _MaxValue;
+
+        #region ITreeNode
+        public ITreeNode Parent { get; internal set; }
+        public IEnumerable<ITreeNode> SubNodes
+        {
+            get { return this._SubNodes; }
+            set
+            {
+                this._SubNodes = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private IEnumerable<ITreeNode> _SubNodes;
+        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        #endregion ITreeNode
     }
 }

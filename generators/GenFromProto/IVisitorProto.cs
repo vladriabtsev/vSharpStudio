@@ -45,7 +45,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" m);\r\n");
+            this.Write(" p);\r\n");
             
             #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
  } 

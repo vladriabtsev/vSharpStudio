@@ -3,21 +3,21 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-public static <#= message.Name.ToNameCs() #> Clone(<#= message.Name.ToNameCs() #> from, bool isDeep = true)
+public static <#= message.Name.ToNameCs() #> Clone(ITreeNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>();
     foreach(var t in from.<#= field.Name.ToNameCs() #>)
-        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(vm, t, isDeep));
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
     if (isDeep)
-        vm.<#= field.Name.ToNameCs() #> = <#= field.ToTypeCs() #>.Clone(from.<#= field.Name.ToNameCs() #>, isDeep);
+        vm.<#= field.Name.ToNameCs() #> = <#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } 
@@ -83,7 +83,7 @@ public override <#= message.Name.ToNameCs() #> Backup()
 {
     bool isDeep = true;
     OnBackupObjectStarting(ref isDeep);
-	return <#= message.Name.ToNameCs() #>.Clone(this);
+	return <#= message.Name.ToNameCs() #>.Clone(null, this);
 }
 partial void OnBackupObjectStarting(ref bool isDeep);
 public override void Restore(<#= message.Name.ToNameCs() #> from)

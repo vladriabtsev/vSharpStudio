@@ -10,6 +10,6 @@ public interface IVisitorProto
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
-	void Visit(<#= message.Name #> m);
+	void Visit(<#= message.Name #> p);
 <# } #>
 }

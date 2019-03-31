@@ -35,7 +35,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" Clone(");
+            this.Write(" Clone(ITreeNode parent, ");
             
             #line 6 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -104,7 +104,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".Clone(t, isDeep));\r\n");
+            this.Write(".Clone(vm, t, isDeep));\r\n");
             
             #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
       } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { 
@@ -181,7 +181,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".Clone(from.");
+            this.Write(".Clone(vm, from.");
             
             #line 20 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -444,8 +444,8 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".Clone(this);\r\n}\r\npartial void OnBackupObjectStarting(ref bool isDeep);\r\npublic o" +
-                    "verride void Restore(");
+            this.Write(".Clone(null, this);\r\n}\r\npartial void OnBackupObjectStarting(ref bool isDeep);\r\npu" +
+                    "blic override void Restore(");
             
             #line 89 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

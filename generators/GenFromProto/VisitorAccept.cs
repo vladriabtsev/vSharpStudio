@@ -52,21 +52,21 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tvisitor.Visit(t);\r\n");
+            this.Write(")\r\n\t\tt.Accept(visitor);\r\n");
             
             #line 18 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAccept.tt"
  } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
             
             #line default
             #line hidden
-            this.Write("\tvisitor.Visit(this.");
+            this.Write("\tthis.");
             
             #line 19 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAccept.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(");\r\n");
+            this.Write(".Accept(visitor);\r\n");
             
             #line 20 "C:\dev\vsharpstudio\generators\GenFromProto\VisitorAccept.tt"
  } 

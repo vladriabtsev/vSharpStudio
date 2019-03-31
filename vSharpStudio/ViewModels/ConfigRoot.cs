@@ -110,38 +110,43 @@ namespace vSharpStudio.ViewModels
             // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
             Task task = Task.Run(() =>
             {
-                 ValidateSubTreeFromNode(node);
+                ValidateSubTreeFromNode(node);
             });
             return task;
         }
-        public void ValidateSubTreeFromNode(ITreeNode node)
+        public void ValidateSubTreeFromNode(ITreeNode node, ILogger logger = null)
         {
             if (cancellationSourceForValidatingFullConfig != null)
             {
                 cancellationSourceForValidatingFullConfig.Cancel();
+                logger.LogInformation("=== Cancellation request ===");
             }
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new TreeNodeValidatorVisitor(token, node);
+            var visitor = new TreeNodeValidatorVisitor(token, node, logger);
             this.Accept(visitor);
             if (!token.IsCancellationRequested)
-                ListValidationMessages = visitor.Result;
+            {
+                this.ListAllValidationMessages = visitor.Result;
+            }
+            else
+            {
+                logger.LogInformation("=== Cancelled ===");
+            }
         }
-
-
-        public SortedObservableCollection<ValidationMessage> ListValidationMessages
+        public SortedObservableCollection<ValidationMessage> ListAllValidationMessages
         {
             set
             {
-                if (_ListValidationMessages != null)
-                    _ListValidationMessages.Clear();
-                _ListValidationMessages = value;
+                if (_ListAllValidationMessages != null)
+                    _ListAllValidationMessages.Clear();
+                _ListAllValidationMessages = value;
                 NotifyPropertyChanged();
             }
-            get { return _ListValidationMessages; }
+            get { return _ListAllValidationMessages; }
         }
-        private SortedObservableCollection<ValidationMessage> _ListValidationMessages = null;
+        private SortedObservableCollection<ValidationMessage> _ListAllValidationMessages = null;
 
         #endregion Full Validation
 

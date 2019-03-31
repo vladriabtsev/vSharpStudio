@@ -22,13 +22,17 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>();
+		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this);
 <#		} else if (t.IsMap) { #>
 		map???
 <#		} #>
 <# } #>
 		OnInit();
 	}
+	public <#= message.Name.ToNameCs() #>(ITreeNode parent) : this()
+    {
+        this.Parent = parent;
+    }
 <# foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; #>
 	private void <#= t.Name.ToNameCs() #>_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 	{
@@ -39,6 +43,8 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
             case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                 break;
             case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	    		foreach (var t in e.NewItems)
+	    			(t as <#= t.MessageType.Name.ToNameCs() #>).Parent = this;
                 #region Default Name
 		    	string bname = "<#= t.MessageType.Name.ToNameCs() #>";
 			    int i = 0;

@@ -4,6 +4,7 @@ using Xunit;
 using ViewModelBase;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using FluentValidation;
 
 namespace vSharpStudio.xUnit
 {
@@ -102,6 +103,7 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             Assert.True(cfg.ValidationCollection != null);
             Assert.True(cfg.ValidationCollection.Count == 0);
@@ -109,9 +111,11 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation002_CanSetErrror()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             string mes = "test error message";
-            cfg.SetError(mes);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Error);
+            cfg.Validate();
             Assert.True(cfg.ValidationCollection.Count == 1);
             var p = cfg.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Error);
@@ -121,9 +125,11 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation003_CanSetWarning()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             string mes = "test warning message";
-            cfg.SetWarning(mes);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Warning);
+            cfg.Validate();
             Assert.True(cfg.ValidationCollection.Count == 1);
             var p = cfg.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Warning);
@@ -133,9 +139,11 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation004_CanSetInfo()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             string mes = "test info message";
-            cfg.SetInfo(mes);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Info);
+            cfg.Validate();
             Assert.True(cfg.ValidationCollection.Count == 1);
             var p = cfg.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Info);
@@ -145,52 +153,20 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation005_CanSortBySeverity()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             string mes1 = "test error message";
             string mes2 = "test warning message";
             string mes3 = "test info message";
 
-            cfg.SetInfo(mes3);
-            cfg.SetWarning(mes2);
-            cfg.SetError(mes1);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Warning);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes3).WithSeverity(Severity.Info);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error);
+
+            cfg.Validate();
+
             Assert.True(cfg.ValidationCollection.Count == 3);
             var p = cfg.ValidationCollection[0];
-            Assert.True(p.Severity == FluentValidation.Severity.Error);
-            Assert.True(p.Message == mes1);
-            Assert.True(p.Model == cfg);
-            p = cfg.ValidationCollection[1];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == cfg);
-            p = cfg.ValidationCollection[2];
-            Assert.True(p.Severity == FluentValidation.Severity.Info);
-            Assert.True(p.Message == mes3);
-            Assert.True(p.Model == cfg);
-
-            cfg.ValidationCollection.Clear();
-            cfg.SetWarning(mes2);
-            cfg.SetError(mes1);
-            cfg.SetInfo(mes3);
-            Assert.True(cfg.ValidationCollection.Count == 3);
-            p = cfg.ValidationCollection[0];
-            Assert.True(p.Severity == FluentValidation.Severity.Error);
-            Assert.True(p.Message == mes1);
-            Assert.True(p.Model == cfg);
-            p = cfg.ValidationCollection[1];
-            Assert.True(p.Severity == FluentValidation.Severity.Warning);
-            Assert.True(p.Message == mes2);
-            Assert.True(p.Model == cfg);
-            p = cfg.ValidationCollection[2];
-            Assert.True(p.Severity == FluentValidation.Severity.Info);
-            Assert.True(p.Message == mes3);
-            Assert.True(p.Model == cfg);
-
-            cfg.ValidationCollection.Clear();
-            cfg.SetInfo(mes3);
-            cfg.SetError(mes1);
-            cfg.SetWarning(mes2);
-            Assert.True(cfg.ValidationCollection.Count == 3);
-            p = cfg.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Error);
             Assert.True(p.Message == mes1);
             Assert.True(p.Model == cfg);
@@ -206,12 +182,39 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Validation006_CanSortByWeight()
         {
+            Config.ConfigValidator.Reset();
             var cfg = new Config();
             string mes1 = "test error message";
             string mes2 = "test error message2";
 
-            cfg.SetError(mes2);
-            cfg.SetError(mes1, 10);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
+
+            cfg.Validate();
+
+            Assert.Equal(2, cfg.ValidationCollection.Count);
+            var p = cfg.ValidationCollection[0];
+            Assert.Equal(FluentValidation.Severity.Error, p.Severity);
+            Assert.True(p.Message == mes1);
+            Assert.True(p.Model == cfg);
+            p = cfg.ValidationCollection[1];
+            Assert.True(p.Severity == FluentValidation.Severity.Error);
+            Assert.True(p.Message == mes2);
+            Assert.True(p.Model == cfg);
+        }
+        [Fact]
+        public void Validation006_CanSortByWeight2()
+        {
+            Config.ConfigValidator.Reset();
+            var cfg = new Config();
+            string mes1 = "test error message";
+            string mes2 = "test error message2";
+
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
+            Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
+
+            cfg.Validate();
+
             Assert.True(cfg.ValidationCollection.Count == 2);
             var p = cfg.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Error);

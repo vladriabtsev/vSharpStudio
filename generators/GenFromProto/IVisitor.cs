@@ -45,14 +45,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" m);\r\n\tvoid VisitEnd(");
+            this.Write(" p);\r\n\tvoid VisitEnd(");
             
             #line 15 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" m);\r\n");
+            this.Write(" p);\r\n");
             
             #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitor.tt"
  } 

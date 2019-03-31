@@ -87,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        public ITreeNode Parent => null;
+        public ITreeNode Parent { get; private set; }
 
         public IEnumerable<ITreeNode> SubNodes
         {
@@ -104,36 +104,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCatalogsChanged() { RecreateSubNodes(); }
         partial void OnEnumeratorsChanged() { RecreateSubNodes(); }
 
-        #region ITreeNodeWithValidation
-        public int ValidationQty
-        {
-            set
-            {
-                if (_ValidationQty != value)
-                {
-                    _ValidationQty = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationQty; }
-        }
-        private int _ValidationQty;
-
-        public Severity ValidationSeverity
-        {
-            set
-            {
-                if (_ValidationSeverity != value)
-                {
-                    _ValidationSeverity = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _ValidationSeverity; }
-        }
-
-        private Severity _ValidationSeverity;
-        #endregion ITreeNodeWithValidation
         #endregion ITreeNode
     }
 }

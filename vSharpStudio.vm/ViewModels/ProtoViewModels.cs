@@ -1,4 +1,4 @@
-// Auto generated on UTC 03/30/2019 16:01:40
+// Auto generated on UTC 03/31/2019 20:05:04
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -22,15 +22,19 @@ namespace vSharpStudio.vm.ViewModels
 		public Config() 
 	        : base(ConfigValidator.Validator)
 		{
-			this.Constants = new Constants();
-			this.Enumerators = new Enumerations();
-			this.Catalogs = new Catalogs();
+			this.Constants = new Constants(this);
+			this.Enumerators = new Enumerations(this);
+			this.Catalogs = new Catalogs(this);
 			OnInit();
 		}
+		public Config(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Config Clone(Config from, bool isDeep = true)
+		public static Config Clone(ITreeNode parent, Config from, bool isDeep = true)
 		{
 		    Config vm = new Config();
 		    vm.Guid = from.Guid;
@@ -53,11 +57,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Constants = Constants.Clone(from.Constants, isDeep);
+		        vm.Constants = Constants.Clone(vm, from.Constants, isDeep);
 		    if (isDeep)
-		        vm.Enumerators = Enumerations.Clone(from.Enumerators, isDeep);
+		        vm.Enumerators = Enumerations.Clone(vm, from.Enumerators, isDeep);
 		    if (isDeep)
-		        vm.Catalogs = Catalogs.Clone(from.Catalogs, isDeep);
+		        vm.Catalogs = Catalogs.Clone(vm, from.Catalogs, isDeep);
 		    return vm;
 		}
 		public static void Update(Config to, Config from, bool isDeep = true)
@@ -93,7 +97,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Config.Clone(this);
+			return Config.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Config from)
@@ -167,9 +171,9 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			visitor.Visit(this.Constants);
-			visitor.Visit(this.Enumerators);
-			visitor.Visit(this.Catalogs);
+			this.Constants.Accept(visitor);
+			this.Enumerators.Accept(visitor);
+			this.Catalogs.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -584,19 +588,23 @@ namespace vSharpStudio.vm.ViewModels
 		public Property() 
 	        : base(PropertyValidator.Validator)
 		{
-			this.DataType = new DataType();
+			this.DataType = new DataType(this);
 			OnInit();
 		}
+		public Property(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Property Clone(Property from, bool isDeep = true)
+		public static Property Clone(ITreeNode parent, Property from, bool isDeep = true)
 		{
 		    Property vm = new Property();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    if (isDeep)
-		        vm.DataType = DataType.Clone(from.DataType, isDeep);
+		        vm.DataType = DataType.Clone(vm, from.DataType, isDeep);
 		    return vm;
 		}
 		public static void Update(Property to, Property from, bool isDeep = true)
@@ -611,7 +619,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Property.Clone(this);
+			return Property.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Property from)
@@ -647,7 +655,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			visitor.Visit(this.DataType);
+			this.DataType.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -703,10 +711,14 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
+		public DataType(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static DataType Clone(DataType from, bool isDeep = true)
+		public static DataType Clone(ITreeNode parent, DataType from, bool isDeep = true)
 		{
 		    DataType vm = new DataType();
 		    vm.DataTypeEnum = from.DataTypeEnum;
@@ -735,7 +747,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return DataType.Clone(this);
+			return DataType.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(DataType from)
@@ -952,6 +964,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
 		}
+		public Properties(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -961,6 +977,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
 	                #region Default Name
 			    	string bname = "Property";
 				    int i = 0;
@@ -1003,13 +1021,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Properties Clone(Properties from, bool isDeep = true)
+		public static Properties Clone(ITreeNode parent, Properties from, bool isDeep = true)
 		{
 		    Properties vm = new Properties();
 		    vm.Name = from.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
-		        vm.ListProperties.Add(Property.Clone(t, isDeep));
+		        vm.ListProperties.Add(Property.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Properties to, Properties from, bool isDeep = true)
@@ -1057,7 +1075,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Properties.Clone(this);
+			return Properties.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Properties from)
@@ -1095,7 +1113,7 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListProperties)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1134,19 +1152,23 @@ namespace vSharpStudio.vm.ViewModels
 		public Constant() 
 	        : base(ConstantValidator.Validator)
 		{
-			this.ConstantType = new Property();
+			this.ConstantType = new Property(this);
 			OnInit();
 		}
+		public Constant(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Constant Clone(Constant from, bool isDeep = true)
+		public static Constant Clone(ITreeNode parent, Constant from, bool isDeep = true)
 		{
 		    Constant vm = new Constant();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    if (isDeep)
-		        vm.ConstantType = Property.Clone(from.ConstantType, isDeep);
+		        vm.ConstantType = Property.Clone(vm, from.ConstantType, isDeep);
 		    return vm;
 		}
 		public static void Update(Constant to, Constant from, bool isDeep = true)
@@ -1161,7 +1183,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Constant.Clone(this);
+			return Constant.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Constant from)
@@ -1197,7 +1219,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			visitor.Visit(this.ConstantType);
+			this.ConstantType.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1255,6 +1277,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
 		}
+		public Constants(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1264,6 +1290,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Constant).Parent = this;
 	                #region Default Name
 			    	string bname = "Constant";
 				    int i = 0;
@@ -1306,13 +1334,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Constants Clone(Constants from, bool isDeep = true)
+		public static Constants Clone(ITreeNode parent, Constants from, bool isDeep = true)
 		{
 		    Constants vm = new Constants();
 		    vm.Name = from.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
-		        vm.ListConstants.Add(Constant.Clone(t, isDeep));
+		        vm.ListConstants.Add(Constant.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Constants to, Constants from, bool isDeep = true)
@@ -1360,7 +1388,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Constants.Clone(this);
+			return Constants.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Constants from)
@@ -1398,7 +1426,7 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListConstants)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1439,10 +1467,14 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
+		public EnumerationPair(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static EnumerationPair Clone(EnumerationPair from, bool isDeep = true)
+		public static EnumerationPair Clone(ITreeNode parent, EnumerationPair from, bool isDeep = true)
 		{
 		    EnumerationPair vm = new EnumerationPair();
 		    vm.Name = from.Name;
@@ -1459,7 +1491,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return EnumerationPair.Clone(this);
+			return EnumerationPair.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(EnumerationPair from)
@@ -1550,6 +1582,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
 			OnInit();
 		}
+		public Enumeration(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListValues_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1559,6 +1595,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as EnumerationPair).Parent = this;
 	                #region Default Name
 			    	string bname = "EnumerationPair";
 				    int i = 0;
@@ -1601,7 +1639,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Enumeration Clone(Enumeration from, bool isDeep = true)
+		public static Enumeration Clone(ITreeNode parent, Enumeration from, bool isDeep = true)
 		{
 		    Enumeration vm = new Enumeration();
 		    vm.Guid = from.Guid;
@@ -1609,7 +1647,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.ListValues = new ObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListValues)
-		        vm.ListValues.Add(EnumerationPair.Clone(t, isDeep));
+		        vm.ListValues.Add(EnumerationPair.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Enumeration to, Enumeration from, bool isDeep = true)
@@ -1659,7 +1697,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Enumeration.Clone(this);
+			return Enumeration.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Enumeration from)
@@ -1701,7 +1739,7 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListValues)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1763,6 +1801,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
 		}
+		public Enumerations(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListEnumerations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1772,6 +1814,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Enumeration).Parent = this;
 	                #region Default Name
 			    	string bname = "Enumeration";
 				    int i = 0;
@@ -1814,13 +1858,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Enumerations Clone(Enumerations from, bool isDeep = true)
+		public static Enumerations Clone(ITreeNode parent, Enumerations from, bool isDeep = true)
 		{
 		    Enumerations vm = new Enumerations();
 		    vm.Name = from.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
-		        vm.ListEnumerations.Add(Enumeration.Clone(t, isDeep));
+		        vm.ListEnumerations.Add(Enumeration.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Enumerations to, Enumerations from, bool isDeep = true)
@@ -1868,7 +1912,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Enumerations.Clone(this);
+			return Enumerations.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Enumerations from)
@@ -1906,7 +1950,7 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListEnumerations)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1945,13 +1989,17 @@ namespace vSharpStudio.vm.ViewModels
 		public Catalog() 
 	        : base(CatalogValidator.Validator)
 		{
-			this.Properties = new Properties();
+			this.Properties = new Properties(this);
 			OnInit();
 		}
+		public Catalog(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Catalog Clone(Catalog from, bool isDeep = true)
+		public static Catalog Clone(ITreeNode parent, Catalog from, bool isDeep = true)
 		{
 		    Catalog vm = new Catalog();
 		    vm.Guid = from.Guid;
@@ -1962,7 +2010,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Properties = Properties.Clone(from.Properties, isDeep);
+		        vm.Properties = Properties.Clone(vm, from.Properties, isDeep);
 		    return vm;
 		}
 		public static void Update(Catalog to, Catalog from, bool isDeep = true)
@@ -1982,7 +2030,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Catalog.Clone(this);
+			return Catalog.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Catalog from)
@@ -2031,7 +2079,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			visitor.Visit(this.Properties);
+			this.Properties.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2186,6 +2234,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}
+		public Catalogs(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -2195,6 +2247,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
 	                #region Default Name
 			    	string bname = "Property";
 				    int i = 0;
@@ -2243,6 +2297,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Catalog).Parent = this;
 	                #region Default Name
 			    	string bname = "Catalog";
 				    int i = 0;
@@ -2285,16 +2341,16 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Catalogs Clone(Catalogs from, bool isDeep = true)
+		public static Catalogs Clone(ITreeNode parent, Catalogs from, bool isDeep = true)
 		{
 		    Catalogs vm = new Catalogs();
 		    vm.Name = from.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.Clone(t, isDeep));
+		        vm.ListSharedProperties.Add(Property.Clone(vm, t, isDeep));
 		    vm.ListCatalogs = new ObservableCollection<Catalog>();
 		    foreach(var t in from.ListCatalogs)
-		        vm.ListCatalogs.Add(Catalog.Clone(t, isDeep));
+		        vm.ListCatalogs.Add(Catalog.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Catalogs to, Catalogs from, bool isDeep = true)
@@ -2378,7 +2434,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Catalogs.Clone(this);
+			return Catalogs.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Catalogs from)
@@ -2421,9 +2477,9 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListSharedProperties)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			foreach(var t in this.ListCatalogs)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2466,19 +2522,23 @@ namespace vSharpStudio.vm.ViewModels
 		public Document() 
 	        : base(DocumentValidator.Validator)
 		{
-			this.Properties = new Properties();
+			this.Properties = new Properties(this);
 			OnInit();
 		}
+		public Document(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Document Clone(Document from, bool isDeep = true)
+		public static Document Clone(ITreeNode parent, Document from, bool isDeep = true)
 		{
 		    Document vm = new Document();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    if (isDeep)
-		        vm.Properties = Properties.Clone(from.Properties, isDeep);
+		        vm.Properties = Properties.Clone(vm, from.Properties, isDeep);
 		    return vm;
 		}
 		public static void Update(Document to, Document from, bool isDeep = true)
@@ -2493,7 +2553,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Document.Clone(this);
+			return Document.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Document from)
@@ -2529,7 +2589,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			visitor.Visit(this.Properties);
+			this.Properties.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2589,6 +2649,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
 			OnInit();
 		}
+		public Documents(ITreeNode parent) : this()
+	    {
+	        this.Parent = parent;
+	    }
 		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -2598,6 +2662,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
 	                #region Default Name
 			    	string bname = "Property";
 				    int i = 0;
@@ -2646,6 +2712,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Document).Parent = this;
 	                #region Default Name
 			    	string bname = "Document";
 				    int i = 0;
@@ -2688,16 +2756,16 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Documents Clone(Documents from, bool isDeep = true)
+		public static Documents Clone(ITreeNode parent, Documents from, bool isDeep = true)
 		{
 		    Documents vm = new Documents();
 		    vm.Name = from.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.Clone(t, isDeep));
+		        vm.ListSharedProperties.Add(Property.Clone(vm, t, isDeep));
 		    vm.ListDocuments = new ObservableCollection<Document>();
 		    foreach(var t in from.ListDocuments)
-		        vm.ListDocuments.Add(Document.Clone(t, isDeep));
+		        vm.ListDocuments.Add(Document.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Documents to, Documents from, bool isDeep = true)
@@ -2781,7 +2849,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Documents.Clone(this);
+			return Documents.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Documents from)
@@ -2824,9 +2892,9 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListSharedProperties)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			foreach(var t in this.ListDocuments)
-				visitor.Visit(t);
+				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2864,48 +2932,48 @@ namespace vSharpStudio.vm.ViewModels
 	public interface IVisitorConfig
 	{
 	    CancellationToken Token { get; }
-		void Visit(Config m);
-		void VisitEnd(Config m);
-		void Visit(Property m);
-		void VisitEnd(Property m);
-		void Visit(DataType m);
-		void VisitEnd(DataType m);
-		void Visit(Properties m);
-		void VisitEnd(Properties m);
-		void Visit(Constant m);
-		void VisitEnd(Constant m);
-		void Visit(Constants m);
-		void VisitEnd(Constants m);
-		void Visit(EnumerationPair m);
-		void VisitEnd(EnumerationPair m);
-		void Visit(Enumeration m);
-		void VisitEnd(Enumeration m);
-		void Visit(Enumerations m);
-		void VisitEnd(Enumerations m);
-		void Visit(Catalog m);
-		void VisitEnd(Catalog m);
-		void Visit(Catalogs m);
-		void VisitEnd(Catalogs m);
-		void Visit(Document m);
-		void VisitEnd(Document m);
-		void Visit(Documents m);
-		void VisitEnd(Documents m);
+		void Visit(Config p);
+		void VisitEnd(Config p);
+		void Visit(Property p);
+		void VisitEnd(Property p);
+		void Visit(DataType p);
+		void VisitEnd(DataType p);
+		void Visit(Properties p);
+		void VisitEnd(Properties p);
+		void Visit(Constant p);
+		void VisitEnd(Constant p);
+		void Visit(Constants p);
+		void VisitEnd(Constants p);
+		void Visit(EnumerationPair p);
+		void VisitEnd(EnumerationPair p);
+		void Visit(Enumeration p);
+		void VisitEnd(Enumeration p);
+		void Visit(Enumerations p);
+		void VisitEnd(Enumerations p);
+		void Visit(Catalog p);
+		void VisitEnd(Catalog p);
+		void Visit(Catalogs p);
+		void VisitEnd(Catalogs p);
+		void Visit(Document p);
+		void VisitEnd(Document p);
+		void Visit(Documents p);
+		void VisitEnd(Documents p);
 	}
 	
 	public interface IVisitorProto
 	{
-		void Visit(proto_config m);
-		void Visit(proto_property m);
-		void Visit(proto_data_type m);
-		void Visit(proto_properties m);
-		void Visit(proto_constant m);
-		void Visit(proto_constants m);
-		void Visit(proto_enumeration_pair m);
-		void Visit(proto_enumeration m);
-		void Visit(proto_enumerations m);
-		void Visit(proto_catalog m);
-		void Visit(proto_catalogs m);
-		void Visit(proto_document m);
-		void Visit(proto_documents m);
+		void Visit(proto_config p);
+		void Visit(proto_property p);
+		void Visit(proto_data_type p);
+		void Visit(proto_properties p);
+		void Visit(proto_constant p);
+		void Visit(proto_constants p);
+		void Visit(proto_enumeration_pair p);
+		void Visit(proto_enumeration p);
+		void Visit(proto_enumerations p);
+		void Visit(proto_catalog p);
+		void Visit(proto_catalogs p);
+		void Visit(proto_document p);
+		void Visit(proto_documents p);
 	}
 }

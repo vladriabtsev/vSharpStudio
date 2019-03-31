@@ -208,13 +208,15 @@ namespace ViewModelBase
             get { return ViewModelBindable._AppDispatcher; }
             set
             {
+#if !DEBUG
                 if (ViewModelBindable._AppDispatcher != null)
                     throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is already initialized");
+#endif
                 ViewModelBindable._AppDispatcher = value;
             }
         }
         private static IDispatcher _AppDispatcher = null;
-        #endregion INotifyPropertyChanged
+#endregion INotifyPropertyChanged
 
         protected void ExecuteOnUIThread(Action action)
         {
