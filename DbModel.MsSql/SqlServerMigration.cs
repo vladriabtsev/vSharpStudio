@@ -67,14 +67,14 @@ namespace DbModel.MsSql
         //}
         bool IMigration.IsDatabaseServiceOn()
         {
-            //using (var connection = new SqlServerConnection(_dependencies))
-            //{
-            //    using (var master = connection.CreateMasterConnection())
-            //    {
-            //        Assert.Equal(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master", master.ConnectionString);
-            //        Assert.Equal(60, master.CommandTimeout);
-            //    }
-            //}
+            using (var connection = new SqlServerConnection(_dependencies))
+            {
+                using (var master = connection.CreateMasterConnection())
+                {
+                    //Assert.Equal(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master", master.ConnectionString);
+                    //Assert.Equal(60, master.CommandTimeout);
+                }
+            }
 
             //SqlServerConnection conn = new SqlServerConnection(CreateDependencies());
             //conn.

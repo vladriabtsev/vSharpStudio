@@ -211,6 +211,19 @@
     </Compile>
     <Compile Include="ViewModels\ConfigRoot.cs" />
     <Compile Include="ViewModels\ConfigRootValidator.cs" />
+    <Compile Include="ViewModels\MainPageVM.cs" />
+    <Compile Include="Views\ConfigTree.xaml.cs">
+      <DependentUpon>ConfigTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertiesList.xaml.cs">
+      <DependentUpon>PropertiesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ValidationListForSelectedNode.xaml.cs">
+      <DependentUpon>ValidationListForSelectedNode.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -223,6 +236,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ConfigTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertiesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ValidationListForSelectedNode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
