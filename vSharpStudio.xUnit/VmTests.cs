@@ -105,18 +105,13 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Async001_CanHandleException()
         {
-            var t = AsyncWithOneException();
-            t.Wait();
-            if (t.IsFaulted)
-            {
-
-            }
+            Assert.ThrowsAsync<ArgumentException>(() => AsyncWithOneException());
         }
         Task AsyncWithOneException()
         {
             Task task = Task.Run(() =>
              {
-                 throw new Exception("test 1");
+                 throw new ArgumentException("test 1");
              });
             return task;
         }
@@ -183,22 +178,6 @@ namespace vSharpStudio.xUnit
             Assert.Equal(1, cfg.CountErrors);
             Assert.Equal(2, cfg.CountWarnings);
             Assert.Equal(1, cfg.CountInfos);
-        }
-        [Fact]
-        public void Validation004_EditingDataChangeListValidationMessagesInTheParentNodes()
-        {
-            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
-            //Assert.True(cfg.ValidationCollection != null);
-            //Assert.True(cfg.ValidationCollection.Count == 0);
-            Assert.True(false);
-        }
-        [Fact]
-        public void Validation005_SecondValidationOnEntityLevelIsRemovingLegacyMessages()
-        {
-            //var cfg = new RootConfig(new SortedObservableCollection<ValidationMessage>());
-            //Assert.True(cfg.ValidationCollection != null);
-            //Assert.True(cfg.ValidationCollection.Count == 0);
-            Assert.True(false);
         }
         #endregion Validatable
     }
