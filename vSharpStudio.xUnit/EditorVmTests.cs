@@ -7,6 +7,10 @@ namespace vSharpStudio.xUnit
 {
     public class EditorVmTests
     {
+        public EditorVmTests()
+        {
+            ViewModelBindable.isUnitTests = true;
+        }
         #region Config
         [Fact]
         public void Config001GuidInit()

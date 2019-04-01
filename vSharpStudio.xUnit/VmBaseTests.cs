@@ -10,6 +10,11 @@ namespace vSharpStudio.xUnit
 {
     public class VmBaseTests
     {
+        public VmBaseTests()
+        {
+            ViewModelBindable.isUnitTests = true;
+        }
+
         #region IEditable
         [Fact]
         public void Editable001CanCancelEditPublicProperty()

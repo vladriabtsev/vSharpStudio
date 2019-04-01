@@ -12,29 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using vSharpStudio.ViewModels;
 
 namespace vSharpStudio.Views
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for Editors.xaml
     /// </summary>
-    public partial class MainPage : UserControl
+    public partial class Editors : UserControl
     {
-        private MainPageVM _model = null;
-        public MainPage()
+        public Editors()
         {
             InitializeComponent();
-#if DEBUG
-            _model = new MainPageVM();
-            this.DataContext = _model;
-#else
-            Task task = Task.Run(() =>
-            {
-                _model = new MainPageVM();
-                this.DataContext = _model;
-            });
-#endif
         }
     }
 }

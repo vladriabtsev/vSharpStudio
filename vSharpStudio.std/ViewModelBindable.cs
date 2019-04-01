@@ -65,12 +65,13 @@ namespace ViewModelBase
     }
     public class ViewModelBindable : INotifyPropertyChanged
     {
+        public static bool isUnitTests;
         public ViewModelBindable()
         {
-            if (this.Dispatcher == null)
+            if (ViewModelBindable._AppDispatcher == null && isUnitTests)
                 ViewModelBindable.AppDispatcher = new DispatcherDummy();
-            //if (this.Dispatcher == null)
-            //  throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is not initialized. Use 'ViewModelBindable.AppDispatcher = UIDispatcher.Current;' before first usage ViewModel");
+            if (this.Dispatcher == null)
+                throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is not initialized. Use 'ViewModelBindable.AppDispatcher = UIDispatcher.Current;' before first usage ViewModel");
         }
         public bool IsChanged { get { return _IsChanged; } set { SetValue<bool>(ref _IsChanged, value); } }
         private bool _IsChanged;
@@ -208,15 +209,13 @@ namespace ViewModelBase
             get { return ViewModelBindable._AppDispatcher; }
             set
             {
-#if !DEBUG
                 if (ViewModelBindable._AppDispatcher != null)
                     throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is already initialized");
-#endif
                 ViewModelBindable._AppDispatcher = value;
             }
         }
         private static IDispatcher _AppDispatcher = null;
-#endregion INotifyPropertyChanged
+        #endregion INotifyPropertyChanged
 
         protected void ExecuteOnUIThread(Action action)
         {

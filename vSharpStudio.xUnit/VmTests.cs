@@ -19,6 +19,7 @@ namespace vSharpStudio.xUnit
         ILogger _logger = null;
         public VmTests(ITestOutputHelper output)
         {
+            ViewModelBindable.isUnitTests = true;
             ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
             loggerFactory.AddProvider(new DebugLoggerProvider());
             _logger = loggerFactory.CreateLogger<VmTests>();

@@ -212,8 +212,12 @@
     <Compile Include="ViewModels\ConfigRoot.cs" />
     <Compile Include="ViewModels\ConfigRootValidator.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
+    <Compile Include="ViewModels\MainPageVMValidator.cs" />
     <Compile Include="Views\ConfigTree.xaml.cs">
       <DependentUpon>ConfigTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editors.xaml.cs">
+      <DependentUpon>Editors.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -237,6 +241,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ConfigTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Editors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
