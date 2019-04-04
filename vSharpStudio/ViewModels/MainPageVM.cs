@@ -13,6 +13,9 @@ namespace vSharpStudio.ViewModels
         public MainPageVM()
             : base(MainPageVMValidator.Validator)
         {
+            Catalog c = new Catalog();
+            this.Model = new ConfigRoot();
+            this.Model.Catalogs.ListCatalogs.Add(c);
         }
         public ConfigRoot Model
         {

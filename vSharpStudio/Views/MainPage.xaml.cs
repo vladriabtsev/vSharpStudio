@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModelBase;
 using vSharpStudio.ViewModels;
 
 namespace vSharpStudio.Views
@@ -24,6 +25,8 @@ namespace vSharpStudio.Views
         private MainPageVM _model = null;
         public MainPage()
         {
+            // https://www.abhishekshukla.com/wpf/advanced-wpf-part-4-threading-in-windows-presentation-foundation/
+            ViewModelBindable.AppDispatcher = UIDispatcher.Current;
             InitializeComponent();
 #if DEBUG
             _model = new MainPageVM();

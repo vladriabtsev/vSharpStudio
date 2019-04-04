@@ -28,6 +28,26 @@ namespace vSharpStudio.vm.ViewModels
         private IEnumerable<ITreeNode> _SubNodes;
         void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Properties }; }
         partial void OnPropertiesChanged() { RecreateSubNodes(); }
+        public bool IsSelected
+        {
+            get { return this._IsSelected; }
+            set
+            {
+                this._IsSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private bool _IsSelected;
+        public bool IsExpended
+        {
+            get { return this._IsExpended; }
+            set
+            {
+                this._IsExpended = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private bool _IsExpended;
 
         #endregion ITreeNode
     }

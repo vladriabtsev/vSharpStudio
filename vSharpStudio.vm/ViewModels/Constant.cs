@@ -23,6 +23,26 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    _SubNodes = new ITreeNode[] { this.Properties };
         //}
+        public bool IsSelected
+        {
+            get { return this._IsSelected; }
+            set
+            {
+                this._IsSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private bool _IsSelected;
+        public bool IsExpended
+        {
+            get { return this._IsExpended; }
+            set
+            {
+                this._IsExpended = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private bool _IsExpended;
 
         #endregion ITreeNode
     }

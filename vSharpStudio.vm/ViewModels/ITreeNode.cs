@@ -12,5 +12,7 @@ namespace vSharpStudio.vm.ViewModels
         IEnumerable<ITreeNode> SubNodes { get; }
         //string Guid { get; }
         string Name { get; set; }
+        bool IsSelected { get; set; }
+        bool IsExpended { get; set; }
     }
 }

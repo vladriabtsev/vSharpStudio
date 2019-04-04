@@ -103,6 +103,8 @@ namespace vSharpStudio.xUnit
         #endregion Editable
 
         #region Async
+        // https://blog.stephencleary.com/2012/02/async-and-await.html
+        // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
         [Fact]
         public void Async001_CanHandleException()
         {
@@ -116,6 +118,11 @@ namespace vSharpStudio.xUnit
              });
             return task;
         }
+        //[Fact]
+        //async public void Async002_TestAsync()
+        //{
+        //    await AsyncWithOneException();
+        //}
         #endregion Async
 
         #region Validatable

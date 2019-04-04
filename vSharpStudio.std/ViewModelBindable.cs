@@ -70,8 +70,8 @@ namespace ViewModelBase
         {
             if (ViewModelBindable._AppDispatcher == null && isUnitTests)
                 ViewModelBindable.AppDispatcher = new DispatcherDummy();
-            if (this.Dispatcher == null)
-                throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is not initialized. Use 'ViewModelBindable.AppDispatcher = UIDispatcher.Current;' before first usage ViewModel");
+            //if (this.Dispatcher == null)
+            //    throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is not initialized. Use 'ViewModelBindable.AppDispatcher = UIDispatcher.Current;' before first usage ViewModel");
         }
         public bool IsChanged { get { return _IsChanged; } set { SetValue<bool>(ref _IsChanged, value); } }
         private bool _IsChanged;

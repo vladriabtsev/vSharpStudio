@@ -5,8 +5,6 @@ using System.IO;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
-using vSharpStudio.Migration;
-using vSharpStudio.ViewModels;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using Xunit;

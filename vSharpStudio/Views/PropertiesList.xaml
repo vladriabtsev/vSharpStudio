@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:vSharpStudio.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="vSharpStudio.Views.PropertiesList"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <xctk:PropertyGrid/>

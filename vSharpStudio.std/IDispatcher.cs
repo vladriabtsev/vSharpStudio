@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Threading;
 
 namespace ViewModelBase
 {
@@ -6,5 +7,5 @@ namespace ViewModelBase
 	{
 		bool CheckAccess();
 		void BeginInvoke(Action action);
-	}
+    }
 }

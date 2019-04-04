@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:vSharpStudio.Views"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TextBlock Text="Editors" />
