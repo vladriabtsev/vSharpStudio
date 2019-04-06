@@ -19,8 +19,10 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Editable001CanCancelEditPublicProperty()
         {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicPropery = "1";
+            TestEditable vm = new TestEditable
+            {
+                TestPublicPropery = "1"
+            };
             vm.BeginEdit();
             vm.TestPublicPropery = "2";
             vm.CancelEdit();
@@ -61,8 +63,10 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Editable005CanEndEditPublicProperty()
         {
-            TestEditable vm = new TestEditable();
-            vm.TestPublicPropery = "1";
+            TestEditable vm = new TestEditable
+            {
+                TestPublicPropery = "1"
+            };
             vm.BeginEdit();
             vm.TestPublicPropery = "2";
             vm.EndEdit();
@@ -253,9 +257,11 @@ namespace vSharpStudio.xUnit
         public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
         public override TestEditable Backup()
         {
-            var tmp = new TestEditable();
-            tmp.TestPublicPropery = this.TestPublicPropery;
-            tmp.TestPublicObservableCollectionPropery = new ObservableCollection<string>();
+            var tmp = new TestEditable
+            {
+                TestPublicPropery = this.TestPublicPropery,
+                TestPublicObservableCollectionPropery = new ObservableCollection<string>()
+            };
             foreach (var t in this.TestPublicObservableCollectionPropery)
             {
                 tmp.TestPublicObservableCollectionPropery.Add(t);
@@ -299,8 +305,10 @@ namespace vSharpStudio.xUnit
         public ObservableCollection<string> TestPublicObservableCollectionPropery { get; set; }
         public override TestValidatable Backup()
         {
-            var tmp = new TestValidatable();
-            tmp.TestPublicPropery = this.TestPublicPropery;
+            var tmp = new TestValidatable
+            {
+                TestPublicPropery = this.TestPublicPropery
+            };
             return tmp;
         }
         public override void Restore(TestValidatable from)

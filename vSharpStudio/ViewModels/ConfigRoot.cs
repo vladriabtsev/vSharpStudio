@@ -101,7 +101,7 @@ namespace vSharpStudio.ViewModels
         //}
 
         private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
-        async public Task ValidateSubTreeFromNodeAsync(ITreeNode node)
+        public async Task ValidateSubTreeFromNodeAsync(ITreeNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
             // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap

@@ -75,8 +75,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_MinValue == null)
                 {
-                    BigInteger v;
-                    if (BigInteger.TryParse(this.MinValueString, out v))
+                    if (BigInteger.TryParse(this.MinValueString, out var v))
                         _MinValue = v;
                 }
                 return _MinValue;
@@ -99,8 +98,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_MaxValue == null)
                 {
-                    BigInteger v;
-                    if (BigInteger.TryParse(this.MaxValueString, out v))
+                    if (BigInteger.TryParse(this.MaxValueString, out var v))
                         _MaxValue = v;
                 }
                 return _MaxValue;

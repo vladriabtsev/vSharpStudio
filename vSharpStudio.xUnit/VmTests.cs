@@ -31,9 +31,11 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Editable011CanCancelSameLevelSimpleProperty()
         {
-            Catalog vm = new Catalog();
-            vm.Name = "test1";
-            vm.HiLoSchema = "schema1";
+            Catalog vm = new Catalog
+            {
+                Name = "test1",
+                HiLoSchema = "schema1"
+            };
             vm.BeginEdit();
             vm.Name = "test2";
             vm.HiLoSchema = "schema2";
@@ -44,8 +46,10 @@ namespace vSharpStudio.xUnit
         [Fact]
         public void Editable012CanCancelSameLevelNullable()
         {
-            Catalog vm = new Catalog();
-            vm.IsPrimaryKeyClustered = true;
+            Catalog vm = new Catalog
+            {
+                IsPrimaryKeyClustered = true
+            };
             vm.BeginEdit();
             vm.IsPrimaryKeyClustered = false;
             vm.CancelEdit();
@@ -65,8 +69,10 @@ namespace vSharpStudio.xUnit
         public void Editable014CanCancelSecondLevelCollection()
         {
             Catalog vm = new Catalog();
-            var prop = new Property();
-            prop.Name = "test1";
+            var prop = new Property
+            {
+                Name = "test1"
+            };
             vm.Properties.ListProperties.Add(prop);
             vm.BeginEdit();
             vm.Properties.ListProperties[0].Name = "test2";
