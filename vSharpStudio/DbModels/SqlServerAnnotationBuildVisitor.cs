@@ -8,7 +8,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.DbModels
 {
-    public class SqlServerAnnotationBuildVisitor : IVisitorConfig
+    public partial class SqlServerAnnotationBuildVisitor : IVisitorConfig
     {
         public SqlServerModelAnnotations Annotations { get; set; }
 
@@ -66,6 +66,26 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.Visit(vm.ViewModels.Properties p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Document p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Documents p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Journal p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Journals p)
         {
             throw new NotImplementedException();
         }

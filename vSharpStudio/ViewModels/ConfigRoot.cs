@@ -48,15 +48,15 @@ namespace vSharpStudio.ViewModels
                     _migration = new SqlServerMigration(this);
                     break;
 #if DEBUG
-                case ConfigRoot.PROVIDER_NAME_SQLITE:
-                    _migration = new DbModel.Sqlite.SqliteMigration(this);
-                    break;
-                case ConfigRoot.PROVIDER_NAME_MYSQL:
-                    _migration = new DbModel.MySql.MySqlMigration(this);
-                    break;
-                case ConfigRoot.PROVIDER_NAME_NPGSQL:
-                    _migration = new DbModel.Postgre.NpgsqlMigration(this);
-                    break;
+                //case ConfigRoot.PROVIDER_NAME_SQLITE:
+                //    _migration = new DbModel.Sqlite.SqliteMigration(this);
+                //    break;
+                //case ConfigRoot.PROVIDER_NAME_MYSQL:
+                //    _migration = new DbModel.MySql.MySqlMigration(this);
+                //    break;
+                //case ConfigRoot.PROVIDER_NAME_NPGSQL:
+                //    _migration = new DbModel.Postgre.NpgsqlMigration(this);
+                //    break;
 #endif
                 default:
                     throw new ArgumentException("Unsupported ProviderName in connection string: " + this.ProviderName);

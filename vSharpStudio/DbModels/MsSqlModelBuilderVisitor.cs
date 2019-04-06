@@ -8,7 +8,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.DbModels
 {
-    public class MsSqlModelBuilderVisitor : IVisitorConfig
+    public partial class MsSqlModelBuilderVisitor : IVisitorConfig
     {
         private ModelBuilder _modelBuilder = null;
         private Config _config = null;
