@@ -17,7 +17,7 @@ namespace GenFromProto
                 if (args.Count() == 0)
                 {
                     args = new string[2];
-                    args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\ProtoViewModels.cs";
+                    args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
                     args[1] = @"vSharpStudio.vm.ViewModels";
                 }
                 else
@@ -45,11 +45,12 @@ namespace GenFromProto
                 Trace.WriteLine("Full path: " + Path.GetFullPath(dir));
                 throw new ArgumentException(s);
             }
-
-            //var lst = GetProtoClassDescs(args[0], args[1]);
-            //string res = GenMvvm(lst);
             NameSpace ns = new NameSpace(Proto.Config.VsharpstudioReflection.Descriptor);
             string res = ns.TransformText();
+            if (!File.Exists(args[0]))
+            {
+                File.CreateText(args[0]);
+            }
             using (var fs = File.Open(args[0], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
             {
                 var bytes = Encoding.UTF8.GetBytes(res);
@@ -57,7 +58,7 @@ namespace GenFromProto
             }
         }
     }
-    public static class Utils
+    public static partial class Utils
     {
         public static string ToNameCs(this string from)
         {

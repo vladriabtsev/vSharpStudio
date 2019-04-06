@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/02/2019 18:23:15
+// Auto generated on UTC 04/06/2019 14:08:28
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -19,8 +19,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
-		public Config() 
-	        : base(ConfigValidator.Validator)
+		public Config() : base(ConfigValidator.Validator)
 		{
 			this.Constants = new Constants(this);
 			this.Enumerators = new Enumerations(this);
@@ -57,11 +56,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Constants = Constants.Clone(vm, from.Constants, isDeep);
+		        vm.Constants = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.Constants, isDeep);
 		    if (isDeep)
-		        vm.Enumerators = Enumerations.Clone(vm, from.Enumerators, isDeep);
+		        vm.Enumerators = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.Enumerators, isDeep);
 		    if (isDeep)
-		        vm.Catalogs = Catalogs.Clone(vm, from.Catalogs, isDeep);
+		        vm.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.Catalogs, isDeep);
 		    return vm;
 		}
 		public static void Update(Config to, Config from, bool isDeep = true)
@@ -132,9 +131,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.Constants = Constants.ConvertToVM(m.Constants);
-		    vm.Enumerators = Enumerations.ConvertToVM(m.Enumerators);
-		    vm.Catalogs = Catalogs.ConvertToVM(m.Catalogs);
+		    vm.Constants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.Constants);
+		    vm.Enumerators = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.Enumerators);
+		    vm.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.Catalogs);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -161,9 +160,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo = vm.IsSequenceHiLo;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.Constants = Constants.ConvertToProto(vm.Constants);
-		    m.Enumerators = Enumerations.ConvertToProto(vm.Enumerators);
-		    m.Catalogs = Catalogs.ConvertToProto(vm.Catalogs);
+		    m.Constants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.Constants);
+		    m.Enumerators = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.Enumerators);
+		    m.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.Catalogs);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -585,8 +584,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
-		public Property() 
-	        : base(PropertyValidator.Validator)
+		public Property() : base(PropertyValidator.Validator)
 		{
 			this.DataType = new DataType(this);
 			OnInit();
@@ -604,7 +602,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    if (isDeep)
-		        vm.DataType = DataType.Clone(vm, from.DataType, isDeep);
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    return vm;
 		}
 		public static void Update(Property to, Property from, bool isDeep = true)
@@ -637,7 +635,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Property();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
-		    vm.DataType = DataType.ConvertToVM(m.DataType);
+		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -647,7 +645,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_property m = new proto_property();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
-		    m.DataType = DataType.ConvertToProto(vm.DataType);
+		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -706,8 +704,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
-		public DataType() 
-	        : base(DataTypeValidator.Validator)
+		public DataType() : base(DataTypeValidator.Validator)
 		{
 			OnInit();
 		}
@@ -957,8 +954,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
 		#region CTOR
-		public Properties() 
-	        : base(PropertiesValidator.Validator)
+		public Properties() : base(PropertiesValidator.Validator)
 		{
 			this.ListProperties = new ObservableCollection<Property>();
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
@@ -1027,7 +1023,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
-		        vm.ListProperties.Add(Property.Clone(vm, t, isDeep));
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Properties to, Properties from, bool isDeep = true)
@@ -1043,7 +1039,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    Property.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -1064,7 +1060,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new Property();
-		                Property.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
 		                to.ListProperties.Add(p);
 		            }
 		        }
@@ -1094,7 +1090,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
-		        vm.ListProperties.Add(Property.ConvertToVM(t));
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1104,7 +1100,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_properties m = new proto_properties();
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListProperties)
-		        m.ListProperties.Add(Property.ConvertToProto(t));
+		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1149,8 +1145,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
-		public Constant() 
-	        : base(ConstantValidator.Validator)
+		public Constant() : base(ConstantValidator.Validator)
 		{
 			this.ConstantType = new Property(this);
 			OnInit();
@@ -1168,7 +1163,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    if (isDeep)
-		        vm.ConstantType = Property.Clone(vm, from.ConstantType, isDeep);
+		        vm.ConstantType = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.ConstantType, isDeep);
 		    return vm;
 		}
 		public static void Update(Constant to, Constant from, bool isDeep = true)
@@ -1201,7 +1196,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Constant();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
-		    vm.ConstantType = Property.ConvertToVM(m.ConstantType);
+		    vm.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.ConstantType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1211,7 +1206,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_constant m = new proto_constant();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
-		    m.ConstantType = Property.ConvertToProto(vm.ConstantType);
+		    m.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToProto(vm.ConstantType);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1270,8 +1265,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
 		#region CTOR
-		public Constants() 
-	        : base(ConstantsValidator.Validator)
+		public Constants() : base(ConstantsValidator.Validator)
 		{
 			this.ListConstants = new ObservableCollection<Constant>();
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
@@ -1340,7 +1334,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
-		        vm.ListConstants.Add(Constant.Clone(vm, t, isDeep));
+		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Constants to, Constants from, bool isDeep = true)
@@ -1356,7 +1350,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    Constant.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Constant.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -1377,7 +1371,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new Constant();
-		                Constant.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.Constant.Update(p, tt, isDeep);
 		                to.ListConstants.Add(p);
 		            }
 		        }
@@ -1407,7 +1401,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
-		        vm.ListConstants.Add(Constant.ConvertToVM(t));
+		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1417,7 +1411,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_constants m = new proto_constants();
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListConstants)
-		        m.ListConstants.Add(Constant.ConvertToProto(t));
+		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1462,8 +1456,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { }
 		#region CTOR
-		public EnumerationPair() 
-	        : base(EnumerationPairValidator.Validator)
+		public EnumerationPair() : base(EnumerationPairValidator.Validator)
 		{
 			OnInit();
 		}
@@ -1575,8 +1568,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
-		public Enumeration() 
-	        : base(EnumerationValidator.Validator)
+		public Enumeration() : base(EnumerationValidator.Validator)
 		{
 			this.ListValues = new ObservableCollection<EnumerationPair>();
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
@@ -1647,7 +1639,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.ListValues = new ObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListValues)
-		        vm.ListValues.Add(EnumerationPair.Clone(vm, t, isDeep));
+		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Enumeration to, Enumeration from, bool isDeep = true)
@@ -1665,7 +1657,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    EnumerationPair.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.EnumerationPair.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -1686,7 +1678,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new EnumerationPair();
-		                EnumerationPair.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.EnumerationPair.Update(p, tt, isDeep);
 		                to.ListValues.Add(p);
 		            }
 		        }
@@ -1718,7 +1710,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.ListValues = new ObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListValues)
-		        vm.ListValues.Add(EnumerationPair.ConvertToVM(t));
+		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1730,7 +1722,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Name = vm.Name;
 		    m.DataTypeEnum = vm.DataTypeEnum;
 		    foreach(var t in vm.ListValues)
-		        m.ListValues.Add(EnumerationPair.ConvertToProto(t));
+		        m.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1794,8 +1786,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
 		#region CTOR
-		public Enumerations() 
-	        : base(EnumerationsValidator.Validator)
+		public Enumerations() : base(EnumerationsValidator.Validator)
 		{
 			this.ListEnumerations = new ObservableCollection<Enumeration>();
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
@@ -1864,7 +1855,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
-		        vm.ListEnumerations.Add(Enumeration.Clone(vm, t, isDeep));
+		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Enumerations to, Enumerations from, bool isDeep = true)
@@ -1880,7 +1871,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    Enumeration.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Enumeration.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -1901,7 +1892,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new Enumeration();
-		                Enumeration.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.Enumeration.Update(p, tt, isDeep);
 		                to.ListEnumerations.Add(p);
 		            }
 		        }
@@ -1931,7 +1922,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
-		        vm.ListEnumerations.Add(Enumeration.ConvertToVM(t));
+		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1941,7 +1932,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_enumerations m = new proto_enumerations();
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListEnumerations)
-		        m.ListEnumerations.Add(Enumeration.ConvertToProto(t));
+		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1986,8 +1977,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
-		public Catalog() 
-	        : base(CatalogValidator.Validator)
+		public Catalog() : base(CatalogValidator.Validator)
 		{
 			this.Properties = new Properties(this);
 			OnInit();
@@ -2010,7 +2000,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Properties = Properties.Clone(vm, from.Properties, isDeep);
+		        vm.Properties = vSharpStudio.vm.ViewModels.Properties.Clone(vm, from.Properties, isDeep);
 		    return vm;
 		}
 		public static void Update(Catalog to, Catalog from, bool isDeep = true)
@@ -2053,7 +2043,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.Properties = Properties.ConvertToVM(m.Properties);
+		    vm.Properties = vSharpStudio.vm.ViewModels.Properties.ConvertToVM(m.Properties);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2071,7 +2061,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.Properties = Properties.ConvertToProto(vm.Properties);
+		    m.Properties = vSharpStudio.vm.ViewModels.Properties.ConvertToProto(vm.Properties);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -2225,8 +2215,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
 		#region CTOR
-		public Catalogs() 
-	        : base(CatalogsValidator.Validator)
+		public Catalogs() : base(CatalogsValidator.Validator)
 		{
 			this.ListSharedProperties = new ObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
@@ -2347,10 +2336,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.Clone(vm, t, isDeep));
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
 		    vm.ListCatalogs = new ObservableCollection<Catalog>();
 		    foreach(var t in from.ListCatalogs)
-		        vm.ListCatalogs.Add(Catalog.Clone(vm, t, isDeep));
+		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
 		    return vm;
 		}
 		public static void Update(Catalogs to, Catalogs from, bool isDeep = true)
@@ -2366,7 +2355,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    Property.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -2387,7 +2376,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new Property();
-		                Property.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
 		                to.ListSharedProperties.Add(p);
 		            }
 		        }
@@ -2402,7 +2391,7 @@ namespace vSharpStudio.vm.ViewModels
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    Catalog.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Catalog.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
@@ -2423,7 +2412,7 @@ namespace vSharpStudio.vm.ViewModels
 		            if (!isfound)
 		            {
 		                var p = new Catalog();
-		                Catalog.Update(p, tt, isDeep);
+		                vSharpStudio.vm.ViewModels.Catalog.Update(p, tt, isDeep);
 		                to.ListCatalogs.Add(p);
 		            }
 		        }
@@ -2453,10 +2442,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.ConvertToVM(t));
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
 		    vm.ListCatalogs = new ObservableCollection<Catalog>();
 		    foreach(var t in m.ListCatalogs)
-		        vm.ListCatalogs.Add(Catalog.ConvertToVM(t));
+		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2466,9 +2455,9 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_catalogs m = new proto_catalogs();
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListSharedProperties)
-		        m.ListSharedProperties.Add(Property.ConvertToProto(t));
+		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    foreach(var t in vm.ListCatalogs)
-		        m.ListCatalogs.Add(Catalog.ConvertToProto(t));
+		        m.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -2514,421 +2503,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Document : IAccept
-	{
-	
-		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
-		#region CTOR
-		public Document() 
-	        : base(DocumentValidator.Validator)
-		{
-			this.Properties = new Properties(this);
-			OnInit();
-		}
-		public Document(ITreeNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public static Document Clone(ITreeNode parent, Document from, bool isDeep = true)
-		{
-		    Document vm = new Document();
-		    vm.Guid = from.Guid;
-		    vm.Name = from.Name;
-		    if (isDeep)
-		        vm.Properties = Properties.Clone(vm, from.Properties, isDeep);
-		    return vm;
-		}
-		public static void Update(Document to, Document from, bool isDeep = true)
-		{
-		    to.Guid = from.Guid;
-		    to.Name = from.Name;
-		    if (isDeep)
-		        Properties.Update(to.Properties, from.Properties, isDeep);
-		}
-		#region IEditable
-		public override Document Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return Document.Clone(null, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Document from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    Document.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_document' to 'Document'
-		public static Document ConvertToVM(proto_document m, Document vm = null)
-		{
-		    if (vm == null)
-		        vm = new Document();
-		    vm.Guid = m.Guid;
-		    vm.Name = m.Name;
-		    vm.Properties = Properties.ConvertToVM(m.Properties);
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'Document' to 'proto_document'
-		public static proto_document ConvertToProto(Document vm)
-		{
-		    proto_document m = new proto_document();
-		    m.Guid = vm.Guid;
-		    m.Name = vm.Name;
-		    m.Properties = Properties.ConvertToProto(vm.Properties);
-		    return m;
-		}
-		public void Accept(IVisitorConfig visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			this.Properties.Accept(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
-		public Properties Properties
-		{ 
-			set
-			{
-				if (_Properties != value)
-				{
-					OnPropertiesChanging();
-		            _Properties = value;
-					OnPropertiesChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Properties; }
-		}
-		private Properties _Properties;
-		partial void OnPropertiesChanging();
-		partial void OnPropertiesChanged();
-		#endregion Properties
-	}
-	
-	public partial class Documents : IAccept
-	{
-	
-		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
-		#region CTOR
-		public Documents() 
-	        : base(DocumentsValidator.Validator)
-		{
-			this.ListSharedProperties = new ObservableCollection<Property>();
-			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
-			this.ListDocuments = new ObservableCollection<Document>();
-			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
-			OnInit();
-		}
-		public Documents(ITreeNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
-		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Property).Parent = this;
-	                #region Default Name
-			    	string bname = "Property";
-				    int i = 0;
-	    			foreach (var tt in this.ListSharedProperties)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Property).Name))
-	                        continue;
-	    				i++;
-		    			(t as Property).Name = bname + i;
-			    	}
-	                #endregion Default Name
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
-		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Document).Parent = this;
-	                #region Default Name
-			    	string bname = "Document";
-				    int i = 0;
-	    			foreach (var tt in this.ListDocuments)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Document).Name))
-	                        continue;
-	    				i++;
-		    			(t as Document).Name = bname + i;
-			    	}
-	                #endregion Default Name
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public static Documents Clone(ITreeNode parent, Documents from, bool isDeep = true)
-		{
-		    Documents vm = new Documents();
-		    vm.Name = from.Name;
-		    vm.ListSharedProperties = new ObservableCollection<Property>();
-		    foreach(var t in from.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.Clone(vm, t, isDeep));
-		    vm.ListDocuments = new ObservableCollection<Document>();
-		    foreach(var t in from.ListDocuments)
-		        vm.ListDocuments.Add(Document.Clone(vm, t, isDeep));
-		    return vm;
-		}
-		public static void Update(Documents to, Documents from, bool isDeep = true)
-		{
-		    to.Name = from.Name;
-		    if (isDeep)
-		    {
-		        foreach(var t in to.ListSharedProperties.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListSharedProperties)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    Property.Update(t, tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListSharedProperties.Remove(t);
-		        }
-		        foreach(var tt in from.ListSharedProperties)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListSharedProperties.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new Property();
-		                Property.Update(p, tt, isDeep);
-		                to.ListSharedProperties.Add(p);
-		            }
-		        }
-		    }
-		    if (isDeep)
-		    {
-		        foreach(var t in to.ListDocuments.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListDocuments)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    Document.Update(t, tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListDocuments.Remove(t);
-		        }
-		        foreach(var tt in from.ListDocuments)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListDocuments.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new Document();
-		                Document.Update(p, tt, isDeep);
-		                to.ListDocuments.Add(p);
-		            }
-		        }
-		    }
-		}
-		#region IEditable
-		public override Documents Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return Documents.Clone(null, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Documents from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    Documents.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_documents' to 'Documents'
-		public static Documents ConvertToVM(proto_documents m, Documents vm = null)
-		{
-		    if (vm == null)
-		        vm = new Documents();
-		    vm.Name = m.Name;
-		    vm.ListSharedProperties = new ObservableCollection<Property>();
-		    foreach(var t in m.ListSharedProperties)
-		        vm.ListSharedProperties.Add(Property.ConvertToVM(t));
-		    vm.ListDocuments = new ObservableCollection<Document>();
-		    foreach(var t in m.ListDocuments)
-		        vm.ListDocuments.Add(Document.ConvertToVM(t));
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'Documents' to 'proto_documents'
-		public static proto_documents ConvertToProto(Documents vm)
-		{
-		    proto_documents m = new proto_documents();
-		    m.Name = vm.Name;
-		    foreach(var t in vm.ListSharedProperties)
-		        m.ListSharedProperties.Add(Property.ConvertToProto(t));
-		    foreach(var t in vm.ListDocuments)
-		        m.ListDocuments.Add(Document.ConvertToProto(t));
-		    return m;
-		}
-		public void Accept(IVisitorConfig visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			foreach(var t in this.ListSharedProperties)
-				t.Accept(visitor);
-			foreach(var t in this.ListDocuments)
-				t.Accept(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
-		public ObservableCollection<Property> ListSharedProperties { get; set; }
-		partial void OnListSharedPropertiesChanging();
-		partial void OnListSharedPropertiesChanged();
-		
-		public ObservableCollection<Document> ListDocuments { get; set; }
-		partial void OnListDocumentsChanging();
-		partial void OnListDocumentsChanged();
-		#endregion Properties
-	}
-	
 	public interface IVisitorConfig
 	{
 	    CancellationToken Token { get; }
@@ -2954,10 +2528,6 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(Catalog p);
 		void Visit(Catalogs p);
 		void VisitEnd(Catalogs p);
-		void Visit(Document p);
-		void VisitEnd(Document p);
-		void Visit(Documents p);
-		void VisitEnd(Documents p);
 	}
 	
 	public interface IVisitorProto
@@ -2973,7 +2543,5 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_enumerations p);
 		void Visit(proto_catalog p);
 		void Visit(proto_catalogs p);
-		void Visit(proto_document p);
-		void Visit(proto_documents p);
 	}
 }

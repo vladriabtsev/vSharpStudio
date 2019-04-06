@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -17,21 +17,6 @@
     <ProtoBuf Include="..\proto\vsharpstudio.proto" GrpcServices="Client">
       <Link>proto\vsharpstudio.proto</Link>
     </ProtoBuf>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="MvvmProto.cs">
-      <DependentUpon>MvvmProto.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="MvvmProto.tt">
-      <LastGenOutput>MvvmProto.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

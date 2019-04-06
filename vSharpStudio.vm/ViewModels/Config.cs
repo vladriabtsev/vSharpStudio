@@ -9,7 +9,6 @@ using FluentValidation;
 using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
@@ -113,16 +112,17 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private bool _IsSelected;
-        public bool IsExpended
+        public bool IsExpanded
         {
-            get { return this._IsExpended; }
+            get { return this._IsExpanded; }
             set
             {
-                this._IsExpended = value;
+                this._IsExpanded = value;
                 NotifyPropertyChanged();
             }
         }
-        private bool _IsExpended;
+        private bool _IsExpanded;
+        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
     }

@@ -8,7 +8,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.Migration
 {
-    public class ConfigModelBuilderVisitor : IVisitorConfig
+    public partial class ConfigModelBuilderVisitor : IVisitorConfig
     {
         private ModelBuilder _modelBuilder = null;
 
@@ -85,14 +85,6 @@ namespace vSharpStudio.vm.Migration
         {
         }
 
-        void IVisitorConfig.Visit(Document m)
-        {
-        }
-
-        void IVisitorConfig.Visit(Documents m)
-        {
-        }
-
         void IVisitorConfig.Visit(EnumerationPair m)
         {
             throw new NotImplementedException();
@@ -153,14 +145,5 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Document m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Documents m)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

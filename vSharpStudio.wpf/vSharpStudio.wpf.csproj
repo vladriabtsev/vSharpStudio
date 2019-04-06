@@ -75,14 +75,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UserControl1.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\vDialog.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Page Include="Controls\vField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\vFieldPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\vTreeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\vTreeListTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\vTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Controls\vDialog.xaml.cs">
+      <DependentUpon>vDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\vField.xaml.cs">
+      <DependentUpon>vField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vFieldPanel.xaml.cs">
+      <DependentUpon>vFieldPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vTreeList.xaml.cs">
+      <DependentUpon>vTreeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vTreeListTwo.xaml.cs">
+      <DependentUpon>vTreeListTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vTreeView.xaml.cs">
+      <DependentUpon>vTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ConverterBoolToCollapsed.cs" />
+    <Compile Include="Converters\ConverterBoolToVisible.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

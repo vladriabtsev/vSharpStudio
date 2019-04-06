@@ -7,7 +7,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.Migration
 {
-    class ConfigCompareVisitor : IVisitorConfig
+    partial class ConfigCompareVisitor : IVisitorConfig
     {
         CancellationToken IVisitorConfig.Token => throw new NotImplementedException();
 
@@ -57,16 +57,6 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.Visit(Catalogs m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Document m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Documents m)
         {
             throw new NotImplementedException();
         }
@@ -131,14 +121,5 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Document m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Documents m)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -16,6 +16,11 @@ namespace GenFromProto
         public NameSpace(FileDescriptor root)
         {
             this.root = root;
+            CollectMessages(root);
+        }
+
+        private void CollectMessages(FileDescriptor root)
+        {
             foreach (var t in root.MessageTypes)
             {
                 if (t.Name.EndsWith("_nullable"))

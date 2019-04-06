@@ -10,10 +10,10 @@ import "google/protobuf/empty.proto";
 //option java_outer_classname = "RouteGuideProto";
 //option objc_class_prefix = "RTG";
 
-package Proto.Config;
+package proto_config;
+option csharp_namespace = "Proto.Config";
 
 // use 'proto_' prefix for all messages !!!
-
 // Configuration config
 message proto_config {
 	enum EnumDbType {
@@ -142,29 +142,6 @@ message proto_catalogs {
 	repeated proto_property list_shared_properties = 2;
 	repeated proto_catalog list_catalogs = 3;
 }
-message proto_document {
-	string guid = 1;
-	string name = 2;
-	proto_properties properties = 3;
-}
-message proto_documents {
-	string name = 1;
-	repeated proto_property list_shared_properties = 2;
-	repeated proto_document list_documents = 3;
-}
-/*
-message proto_journal {
-	string guid = 1;
-	string name = 2;
-	repeated proto_properties properties = 3;
-}
-message proto_journals {
-	string group_name = 1;
-	repeated proto_property list_shared_properties = 2;
-	repeated proto_document list_documents = 3;
-}
-*/
-
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {
 	bool has_value = 1;

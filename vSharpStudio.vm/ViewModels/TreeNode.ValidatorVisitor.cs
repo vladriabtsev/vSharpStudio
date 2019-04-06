@@ -9,7 +9,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class TreeNodeValidatorVisitor : IVisitorConfig
+    public partial class TreeNodeValidatorVisitor : IVisitorConfig
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         CancellationToken IVisitorConfig.Token => _cancellationToken;
@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
             _level++;
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.Name);
+                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
             }
             if (_startNode == p)
                 _isCollectMessages = true;
@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
                 _isCollectMessages = false;
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.Name);
+                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
             }
             _level--;
         }
@@ -143,16 +143,6 @@ namespace vSharpStudio.vm.ViewModels
         void IVisitorConfig.Visit(Catalogs p)
         {
             OnVisit(p);
-        }
-
-        void IVisitorConfig.Visit(Document p)
-        {
-            OnVisit(p);
-        }
-
-        void IVisitorConfig.Visit(Documents m)
-        {
-            OnVisit(m);
         }
 
         void IVisitorConfig.Visit(EnumerationPair m)
@@ -215,14 +205,5 @@ namespace vSharpStudio.vm.ViewModels
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(Document m)
-        {
-            OnVisitEnd(m);
-        }
-
-        void IVisitorConfig.VisitEnd(Documents m)
-        {
-            OnVisitEnd(m);
-        }
     }
 }

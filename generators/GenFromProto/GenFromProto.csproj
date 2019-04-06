@@ -145,6 +145,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\generators\GenFromProto\bin\Debug\GenFromProto.exe $(SolutionDir)\vSharpStudio.vm\ViewModels\ProtoViewModels.cs Proto.Config</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)\generators\GenFromProto\bin\Debug\GenFromProto.exe $(SolutionDir)\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs Proto.Config</PostBuildEvent>
   </PropertyGroup>
 </Project>

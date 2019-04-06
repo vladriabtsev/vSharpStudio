@@ -90,14 +90,6 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.Guid.Length > 0);
         }
         #endregion Catalog
-        #region Document
-        [Fact]
-        public void Document001GuidInit()
-        {
-            var cfg = new Document();
-            Assert.True(cfg.Guid.Length > 0);
-        }
-        #endregion Document
         #region Diff
         //[Fact]
         //public void DiffConstant001Added()

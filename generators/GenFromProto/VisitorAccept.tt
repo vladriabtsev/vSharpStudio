@@ -8,7 +8,7 @@ public void Accept(IVisitorConfig visitor)
     if (visitor.Token.IsCancellationRequested)
         return;
 	visitor.Visit(this);
-<# foreach (var field in message.Fields.InDeclarationOrder()) { 
+<# foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
        continue;
 #>

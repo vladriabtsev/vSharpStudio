@@ -65,16 +65,6 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Document m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Documents m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(EnumerationPair m)
         {
             throw new NotImplementedException();
@@ -135,14 +125,5 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Document m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Documents m)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

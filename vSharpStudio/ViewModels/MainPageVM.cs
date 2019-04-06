@@ -10,13 +10,26 @@ namespace vSharpStudio.ViewModels
 {
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>
     {
-        public MainPageVM()
-            : base(MainPageVMValidator.Validator)
+        public MainPageVM() : base(MainPageVMValidator.Validator)
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                //Catalog c = new Catalog();
+                //this.Model = new ConfigRoot();
+                //this.Model.Catalogs.ListCatalogs.Add(c);
+                return;
+            }
             Catalog c = new Catalog();
             this.Model = new ConfigRoot();
             this.Model.Catalogs.ListCatalogs.Add(c);
         }
+
+        private ITreeNode SelectedNode;
+        internal void OnSelectedItemChanged(object oldValue, object newValue)
+        {
+            this.SelectedNode = (ITreeNode)newValue;
+        }
+
         public ConfigRoot Model
         {
             set

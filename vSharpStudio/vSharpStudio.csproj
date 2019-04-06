@@ -40,7 +40,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.8.2.0\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.8.2.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2019.1.1\lib\net20\JetBrains.Annotations.dll</HintPath>
@@ -334,6 +334,10 @@
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj">
       <Project>{0467e0e8-8886-46fe-bf70-e33ff53fc39f}</Project>
       <Name>vSharpStudio.vm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vSharpStudio.wpf\vSharpStudio.wpf.csproj">
+      <Project>{871161a9-567d-476e-9d3e-aa44400fb63a}</Project>
+      <Name>vSharpStudio.wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

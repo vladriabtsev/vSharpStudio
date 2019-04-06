@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using vSharpStudio.ViewModels;
 
-namespace vSharpStudio.Views
+namespace vSharpStudio.wpf.Controls
 {
     /// <summary>
-    /// Interaction logic for ConfigTree.xaml
+    /// Interaction logic for vTreeList.xaml
     /// </summary>
-    public partial class ConfigTree : UserControl
+    public partial class vTreeList : UserControl
     {
-        public ConfigTree()
+        public vTreeList()
         {
             InitializeComponent();
-        }
-
-        private void ConfigTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            (DataContext as MainPageVM).OnSelectedItemChanged(e.OldValue, e.NewValue);
         }
     }
 }

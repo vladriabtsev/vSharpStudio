@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
@@ -27,16 +28,17 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private bool _IsSelected;
-        public bool IsExpended
+        public bool IsExpanded
         {
-            get { return this._IsExpended; }
+            get { return this._IsExpanded; }
             set
             {
-                this._IsExpended = value;
+                this._IsExpanded = value;
                 NotifyPropertyChanged();
             }
         }
-        private bool _IsExpended;
+        private bool _IsExpanded;
+        public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
 
         #endregion ITreeNode
     }
