@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
-namespace DbModel.MsSql
+namespace vSharpStudio.DbModels
 {
     public class SqlServerAnnotationBuildVisitor : IVisitorConfig
     {
@@ -26,11 +26,6 @@ namespace DbModel.MsSql
         }
 
         void IVisitorConfig.Visit(DataType m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Properties m)
         {
             throw new NotImplementedException();
         }
@@ -70,6 +65,11 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.Visit(vm.ViewModels.Properties p)
+        {
+            throw new NotImplementedException();
+        }
+
         void IVisitorConfig.VisitEnd(Config m)
         {
             throw new NotImplementedException();
@@ -81,11 +81,6 @@ namespace DbModel.MsSql
         }
 
         void IVisitorConfig.VisitEnd(DataType m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Properties m)
         {
             throw new NotImplementedException();
         }
@@ -125,5 +120,9 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.VisitEnd(vm.ViewModels.Properties p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

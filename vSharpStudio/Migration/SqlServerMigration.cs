@@ -17,7 +17,7 @@ using vSharpStudio.vm;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 
-namespace DbModel.MsSql
+namespace vSharpStudio.Migration
 {
     // https://github.com/aspnet/EntityFrameworkCore
     public class SqlServerMigration : IMigration

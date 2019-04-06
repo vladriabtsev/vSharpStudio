@@ -64,6 +64,7 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
@@ -73,10 +74,6 @@
     <Folder Include="ef\migration\" />
     <Folder Include="ef\builder_ext\" />
     <Folder Include="ef\update\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
   </ItemGroup>
 
 </Project>

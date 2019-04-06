@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
-namespace DbModel.MsSql
+namespace vSharpStudio.DbModels
 {
     public class MsSqlModelBuilderVisitor : IVisitorConfig
     {
@@ -43,11 +43,6 @@ namespace DbModel.MsSql
         }
 
         void IVisitorConfig.Visit(DataType m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Properties m)
         {
             throw new NotImplementedException();
         }
@@ -130,11 +125,6 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Properties m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(Constant m)
         {
             throw new NotImplementedException();
@@ -170,5 +160,14 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.Visit(vm.ViewModels.Properties p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(vm.ViewModels.Properties p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

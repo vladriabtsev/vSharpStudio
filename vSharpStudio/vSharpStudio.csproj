@@ -180,8 +180,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DbModels\MsSqlModelBuilderVisitor.cs" />
     <Compile Include="Migration\MsSqlServerSchemaReader.cs" />
     <Compile Include="Migration\SchemaReader.cs" />
+    <Compile Include="DbModels\SqlServerAnnotationBuildVisitor.cs" />
+    <Compile Include="Migration\SqlServerMigration.cs" />
     <Compile Include="Templates\Catalog.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
