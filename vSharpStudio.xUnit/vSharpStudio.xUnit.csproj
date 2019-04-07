@@ -25,6 +25,7 @@
     <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj" />
     <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
+    <ProjectReference Include="..\vSharpStudio\vSharpStudio.csproj" />
   </ItemGroup>
 
   <ItemGroup>

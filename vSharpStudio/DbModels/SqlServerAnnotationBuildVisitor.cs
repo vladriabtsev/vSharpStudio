@@ -70,26 +70,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Document p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Documents p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Journal p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(Journals p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(Config m)
         {
             throw new NotImplementedException();
