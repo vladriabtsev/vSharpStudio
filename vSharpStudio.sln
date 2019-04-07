@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbModel.MsSql", "DbModel.Ms
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbModels", "DbModels", "{C1E6982B-3545-4FAD-8DA0-47D43686A67A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{8AF928D9-39F9-4787-8806-A24BE9DA252F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
