@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ViewModelBase;
 using vSharpStudio.ViewModels;
+using vSharpStudio.wpf;
 
 namespace vSharpStudio.Views
 {

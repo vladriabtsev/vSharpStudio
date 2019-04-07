@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
-    <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj" />
   </ItemGroup>
 
   <ItemGroup>

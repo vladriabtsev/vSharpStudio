@@ -310,25 +310,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj">
-      <Project>{22b3498c-a464-4041-80fb-6dc5228d5042}</Project>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj">
+      <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
+      <Name>vSharpStudio.std</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj">
+      <Project>{871161a9-567d-476e-9d3e-aa44400fb63a}</Project>
+      <Name>vSharpStudio.wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dbmodels\DbModel.MsSql\DbModel.MsSql.csproj">
+      <Project>{d4b30117-adae-4d8e-a37c-931846998ec0}</Project>
       <Name>DbModel.MsSql</Name>
     </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj">
       <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
       <Name>vSharpStudio.proto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj">
-      <Project>{3fe289eb-ff4e-4584-bdc4-ae6b46565acf}</Project>
-      <Name>vSharpStudio.std</Name>
-    </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj">
       <Project>{0467e0e8-8886-46fe-bf70-e33ff53fc39f}</Project>
       <Name>vSharpStudio.vm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\vSharpStudio.wpf\vSharpStudio.wpf.csproj">
-      <Project>{871161a9-567d-476e-9d3e-aa44400fb63a}</Project>
-      <Name>vSharpStudio.wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
