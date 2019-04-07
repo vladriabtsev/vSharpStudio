@@ -40,7 +40,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.8.2.1\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.8.2.2\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2019.1.1\lib\net20\JetBrains.Annotations.dll</HintPath>
@@ -313,18 +313,6 @@
     <ProjectReference Include="..\DbModel.MsSql\DbModel.MsSql.csproj">
       <Project>{22b3498c-a464-4041-80fb-6dc5228d5042}</Project>
       <Name>DbModel.MsSql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DbModel.MySql\DbModel.MySql.csproj">
-      <Project>{31ff72d1-87d2-433c-9c4b-2b30a37e7d64}</Project>
-      <Name>DbModel.MySql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DbModel.Postgre\DbModel.Postgre.csproj">
-      <Project>{eca9baae-1722-4119-b88b-adb71d7c869a}</Project>
-      <Name>DbModel.Postgre</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DbModel.SqlLite\DbModel.Sqlite.csproj">
-      <Project>{4169e629-b123-45bf-a64d-7e8f0c5662cc}</Project>
-      <Name>DbModel.Sqlite</Name>
     </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj">
       <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
