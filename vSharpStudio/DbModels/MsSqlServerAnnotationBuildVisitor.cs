@@ -8,7 +8,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.DbModels
 {
-    public partial class SqlServerAnnotationBuildVisitor : IVisitorConfig
+    public partial class MsSqlServerAnnotationBuildVisitor : IVisitorConfig
     {
         public SqlServerModelAnnotations Annotations { get; set; }
 

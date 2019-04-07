@@ -45,7 +45,7 @@ namespace vSharpStudio.ViewModels
             switch (this.ProviderName)
             {
                 case ConfigRoot.PROVIDER_NAME_SQL:
-                    _migration = new SqlServerMigration(this);
+                    _migration = new MsSqlServerMigration(this);
                     break;
 #if DEBUG
                 //case ConfigRoot.PROVIDER_NAME_SQLITE:

@@ -20,15 +20,15 @@ using vSharpStudio.vm.ViewModels;
 namespace vSharpStudio.Migration
 {
     // https://github.com/aspnet/EntityFrameworkCore
-    public class SqlServerMigration : IMigration
+    public class MsSqlServerMigration : IMigration
     {
-        private static string _logger_category = typeof(SqlServerMigration).FullName;
+        private static string _logger_category = typeof(MsSqlServerMigration).FullName;
         private static DiagnosticSource _logger = new DiagnosticListener(_logger_category);
 
-        public static ILogger Logger = ApplicationLogging.CreateLogger<SqlServerMigration>();
+        public static ILogger Logger = ApplicationLogging.CreateLogger<MsSqlServerMigration>();
 
         Config _config = null;
-        public SqlServerMigration(Config config)
+        public MsSqlServerMigration(Config config)
         {
             this._config = config;
             if (_logger.IsEnabled(_logger_category))
