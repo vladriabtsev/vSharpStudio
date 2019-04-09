@@ -20,6 +20,9 @@ namespace ViewModelBase
             this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
         }
         protected readonly IValidator _validator;
+        protected virtual void OnCountErrorsChanged() { }
+        protected virtual void OnCountWarningsChanged() { }
+        protected virtual void OnCountInfosChanged() { }
         public int CountErrors
         {
             get { return _CountErrors; }
@@ -29,6 +32,7 @@ namespace ViewModelBase
                 {
                     _CountErrors = value;
                     NotifyPropertyChanged();
+                    OnCountErrorsChanged();
                 }
             }
         }
@@ -42,6 +46,7 @@ namespace ViewModelBase
                 {
                     _CountWarnings = value;
                     NotifyPropertyChanged();
+                    OnCountWarningsChanged();
                 }
             }
         }
@@ -55,6 +60,7 @@ namespace ViewModelBase
                 {
                     _CountInfos = value;
                     NotifyPropertyChanged();
+                    OnCountInfosChanged();
                 }
             }
         }

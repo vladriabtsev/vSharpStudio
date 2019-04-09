@@ -211,6 +211,8 @@ namespace vSharpStudio.ViewModels
         {
             providerName = null;
 
+            return null;
+
             string result = "";
             ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
             string configPath = this.PathToProjectWithConnectionString + @"\App.config";
