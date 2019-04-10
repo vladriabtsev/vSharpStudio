@@ -23,35 +23,59 @@
         <ToolBarPanel>
             <ToolBar>
                 <!--plus-->
-                <Button Content="{StaticResource iconAdd}"/>
+                <!--<Button Content="{StaticResource test}"/>
+                <Button Content="{StaticResource test}"/>-->
+                <Button ToolTip="Ins - insert new object after selected">
+                    <ContentControl Template="{StaticResource iconAdd}" />
+                </Button>
+                <Button ToolTip="Del - delete selected object">
+                    <ContentControl Template="{StaticResource iconCancel}" />
+                </Button>
+                <Button ToolTip="Ctrl+Ins - copy selected object into memory">
+                    <ContentControl Template="{StaticResource iconCopy}" />
+                </Button>
+                <Button ToolTip="Shift+Ins - insert object from memory after selected object">
+                    <ContentControl Template="{StaticResource iconPaste}" />
+                </Button>
+                <Button ToolTip="Ctrl+Down - move select node down">
+                    <ContentControl Template="{StaticResource iconGlyphDown}" />
+                </Button>
+                <Button ToolTip="Ctrl+Up - move select node upper">
+                    <ContentControl Template="{StaticResource iconGlyphUp}" />
+                </Button>
+                <Button ToolTip="Left - close current group and select parent node">
+                    <ContentControl Template="{StaticResource iconGlyphLeft}" />
+                </Button>
+                <Button ToolTip="Right - open current group and select first subnode">
+                    <ContentControl Template="{StaticResource iconGlyphRight}" />
+                </Button>
+                <Button ToolTip="Down - select next node on the same level">
+                    <ContentControl Template="{StaticResource iconGlyphDown}" />
+                </Button>
+                <Button ToolTip="Up - select previous node on the same level">
+                    <ContentControl Template="{StaticResource iconGlyphUp2}" />
+                </Button>
             </ToolBar>
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->
         <!--https://www.codeproject.com/Articles/1204663/Advanced-WPF-TreeViews-Part-of-n-2-->
         <TreeView Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.SubNodes}" SelectedItemChanged="ConfigTreeView_SelectedItemChanged">
-            <TreeView.ToolTip>
+            <!--<TreeView.ToolTip>
                 <StackPanel>
-                    <TextBlock Text="Keyboard commands:" />
-                    <TextBlock Text="Ins - insert new object after selected" />
-                    <TextBlock Text="Del - delete selected object" />
-                    <TextBlock Text="Ctrl+Ins - copy selected object into memory" />
-                    <TextBlock Text="Shift+Ins - insert object from memory after selected object" />
-                    <TextBlock Text="Ctrl+Left - close current group and select parent node" />
-                    <TextBlock Text="Ctrl+Up - move select node upper" />
-                    <TextBlock Text="Ctrl+Down - move select node down" />
+                    <TextBlock Text="" />
                 </StackPanel>
-            </TreeView.ToolTip>
+            </TreeView.ToolTip>-->
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                     <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                     <Setter Property="FontWeight" Value="Normal" />
                     <Setter Property="ItemsSource" Value="{Binding SubNodes}" />
-                    <!--<Style.Triggers>
+                    <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="FontWeight" Value="Bold" />
                         </Trigger>
-                    </Style.Triggers>-->
+                    </Style.Triggers>
                 </Style>
             </TreeView.ItemContainerStyle>
             <!--<TreeView.ItemTemplate>
@@ -63,31 +87,79 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>-->
             <TreeView.Resources>
-                <HierarchicalDataTemplate       DataType="{x:Type dat:Catalogs}">
+                <HierarchicalDataTemplate DataType="{x:Type dat:Constants}" ItemsSource="{Binding SubNodes}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                         <TextBlock Text="{Binding NodeText}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate       DataType="{x:Type dat:Catalog}">
+                <HierarchicalDataTemplate DataType="{x:Type dat:Constant}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{Binding StatusIcon, ConverterParameter=Catalog, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <ContentControl Template="{StaticResource iconProperty}" />
                         <TextBlock Text="{Binding NodeText}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type dat:Properties}">
+                <HierarchicalDataTemplate DataType="{x:Type dat:Enumerations}" ItemsSource="{Binding SubNodes}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                         <TextBlock Text="{Binding NodeText}" />
                     </StackPanel>
-                </DataTemplate>
-                <!--<DataTemplate DataType="{x:Type dat:Property}">
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding SubNodes}">
                     <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumeration, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:EnumerationPair}" ItemsSource="{Binding SubNodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource iconProperty}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:Catalogs}" ItemsSource="{Binding SubNodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:Catalog}" ItemsSource="{Binding SubNodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalog, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:Properties}" ItemsSource="{Binding SubNodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dat:Property}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource iconProperty}" />
+                        <TextBlock Text="{Binding NodeText}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+            <!--<TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="5" />
                         <ContentControl Content="{Binding StatusIcon, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                         <TextBlock Text="{Binding NodeText}" />
                     </StackPanel>
-                </DataTemplate>-->
-            </TreeView.Resources>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="6" />
+                                <ContentControl Content="{Binding StatusIcon, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                                <TextBlock Text="{Binding NodeText}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>-->
         </TreeView>
     </Grid>
 </UserControl>
