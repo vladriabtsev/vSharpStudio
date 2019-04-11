@@ -5,7 +5,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public struct EntityObjectProblem
+    public struct ConfigObjectProblem
     {
         public IValidatableWithSeverity EntityObject;
         public string Message;

@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    public partial class DataType : EntityObjectBase<DataType, DataType.DataTypeValidator>, ITreeNode
+    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, ITreeNode
     {
         public void OnInitFromDto()
         {

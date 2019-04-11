@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constant : EntityObjectBaseWithGuid<Constant, Constant.ConstantValidator>, IConfigObject, ITreeNode, IComparable<Constant>
+    public partial class Constant : ConfigObjectWithGuidBase<Constant, Constant.ConstantValidator>, IConfigObject, ITreeNode, IComparable<Constant>
     {
         partial void OnInit()
         {

@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constants : EntityObjectBase<Constants, Constants.ConstantsValidator>, ITreeNode
+    public partial class Constants : ConfigObjectBase<Constants, Constants.ConstantsValidator>, ITreeNode
     {
         partial void OnInit()
         {

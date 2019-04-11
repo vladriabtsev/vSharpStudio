@@ -6,11 +6,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class EntityObjectBaseWithGuid<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
+    public class ConfigObjectWithGuidBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : EntityObjectBaseWithGuid<T, TValidator>, IConfigObject
+      where T : ConfigObjectWithGuidBase<T, TValidator>, IConfigObject
     {
-        public EntityObjectBaseWithGuid(TValidator validator)
+        public ConfigObjectWithGuidBase(TValidator validator)
             : base(validator)
         {
         }

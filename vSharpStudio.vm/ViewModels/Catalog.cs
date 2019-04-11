@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalog : EntityObjectBaseWithGuid<Catalog, Catalog.CatalogValidator>, IConfigObject, ITreeNode, IComparable<Catalog>
+    public partial class Catalog : ConfigObjectWithGuidBase<Catalog, Catalog.CatalogValidator>, IConfigObject, ITreeNode, IComparable<Catalog>
     {
         partial void OnInit()
         {
