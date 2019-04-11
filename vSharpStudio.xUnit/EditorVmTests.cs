@@ -102,5 +102,95 @@ namespace vSharpStudio.xUnit
         //    Assert.True(false);
         //}
         #endregion Diff
+
+        #region SortingByNameAndValue
+        [Fact]
+        public void SortingByNameAndValue001_UpdateSortingValueWhenNameIsChanged()
+        {
+            var cfg = new Config();
+            var cnst = new Constant(cfg.Constants);
+            cfg.Constants.ListConstants.Add(cnst);
+            var curr = cnst.SortingValue;
+            cnst.Name = "abc1";
+            Assert.True(cnst.SortingValue != curr);
+            curr = cnst.SortingValue;
+            cnst.Name = "ABC1";
+            Assert.True(cnst.SortingValue == curr);
+
+            cnst.Name = "_0";
+            curr = cnst.SortingValue;
+            cnst.Name = "00";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "_";
+            curr = cnst.SortingValue;
+            cnst.Name = "0";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "0";
+            curr = cnst.SortingValue;
+            cnst.Name = "1";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "9";
+            curr = cnst.SortingValue;
+            cnst.Name = "A";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "A";
+            curr = cnst.SortingValue;
+            cnst.Name = "B";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "A";
+            curr = cnst.SortingValue;
+            cnst.Name = "a";
+            Assert.True(cnst.SortingValue == curr);
+
+            //cnst.Name = "__";
+            cnst.Name = "_z";
+            curr = cnst.SortingValue;
+            cnst.Name = "0_";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "ABC1";
+            curr = cnst.SortingValue;
+            cnst.Name = "BBC1";
+            Assert.True(cnst.SortingValue > curr);
+            cnst.Name = "ACC1";
+            Assert.True(cnst.SortingValue > curr);
+            cnst.Name = "ABD1";
+            Assert.True(cnst.SortingValue > curr);
+            cnst.Name = "ABC2";
+            Assert.True(cnst.SortingValue > curr);
+
+            cnst.Name = "ABC0";
+            Assert.True(cnst.SortingValue < curr);
+            cnst.Name = "ABB1";
+            Assert.True(cnst.SortingValue < curr);
+            cnst.Name = "AAC1";
+            Assert.True(cnst.SortingValue < curr);
+        }
+        [Fact]
+        public void SortingByNameAndValue002_RestoreSortingValueWhenObjectRestoredFromFile()
+        {
+            var cfg = new Config();
+            cfg.Constants.ListConstants.Add(new Constant());
+            string json = cfg.ExportToJson();
+            Assert.True(json.Length > 0);
+            var cfg2 = new Config(json);
+            Assert.True(cfg2.Constants.ListConstants.Count == 1);
+            Assert.True(cfg2.Constants.ListConstants[0].Name == typeof(Constant).Name + 1);
+            Assert.True(false);
+        }
+        [Fact]
+        public void SortingByNameAndValue003_ReSortedWhenSortingValueIsChanged()
+        {
+            //Config.ConfigValidator.Reset();
+            //var cfg = new ConfigRoot();
+            //Assert.True(cfg.ValidationCollection != null);
+            Assert.True(false);
+        }
+        #endregion SortingByNameAndValue
     }
 }

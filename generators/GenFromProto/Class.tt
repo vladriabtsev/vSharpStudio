@@ -18,7 +18,7 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
        if (t.MessageType.Name.EndsWith("_nullable"))
          continue;
 		if (t.IsRepeated) {#>
-		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>();
 		this.<#= t.Name.ToNameCs() #>.CollectionChanged += <#= t.Name.ToNameCs() #>_CollectionChanged;
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
 		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this);

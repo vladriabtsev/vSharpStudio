@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/11/2019 00:41:37
+// Auto generated on UTC 04/11/2019 20:59:42
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -39,6 +39,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Version = from.Version;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    vm.ConnectionStringName = from.ConnectionStringName;
 		    vm.DbTypeEnum = from.DbTypeEnum;
@@ -68,6 +69,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Version = from.Version;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    to.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    to.ConnectionStringName = from.ConnectionStringName;
 		    to.DbTypeEnum = from.DbTypeEnum;
@@ -115,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Version = m.Version;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
 		    vm.ConnectionStringName = m.ConnectionStringName;
 		    vm.DbTypeEnum = m.DbTypeEnum;
@@ -144,6 +147,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Version = vm.Version;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
 		    m.ConnectionStringName = vm.ConnectionStringName;
 		    m.DbTypeEnum = vm.DbTypeEnum;
@@ -215,6 +219,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
+		
+		public ulong SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private ulong _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public bool IsDbFromConnectionString
 		{ 
@@ -682,7 +705,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
-		public int SortingValue
+		public ulong SortingValue
 		{ 
 			set
 			{
@@ -697,7 +720,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _SortingValue; }
 		}
-		private int _SortingValue;
+		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
@@ -979,7 +1002,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Properties() : base(PropertiesValidator.Validator)
 		{
-			this.ListProperties = new ObservableCollection<Property>();
+			this.ListProperties = new SortedObservableCollection<Property>();
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
 		}
@@ -1266,7 +1289,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
-		public int SortingValue
+		public ulong SortingValue
 		{ 
 			set
 			{
@@ -1281,7 +1304,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _SortingValue; }
 		}
-		private int _SortingValue;
+		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
@@ -1313,7 +1336,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Constants() : base(ConstantsValidator.Validator)
 		{
-			this.ListConstants = new ObservableCollection<Constant>();
+			this.ListConstants = new SortedObservableCollection<Constant>();
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
 		}
@@ -1611,7 +1634,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnValueChanging();
 		partial void OnValueChanged();
 		
-		public int SortingValue
+		public ulong SortingValue
 		{ 
 			set
 			{
@@ -1626,7 +1649,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _SortingValue; }
 		}
-		private int _SortingValue;
+		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		#endregion Properties
@@ -1639,7 +1662,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Enumeration() : base(EnumerationValidator.Validator)
 		{
-			this.ListValues = new ObservableCollection<EnumerationPair>();
+			this.ListValues = new SortedObservableCollection<EnumerationPair>();
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
 			OnInit();
 		}
@@ -1829,7 +1852,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
-		public int SortingValue
+		public ulong SortingValue
 		{ 
 			set
 			{
@@ -1844,7 +1867,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _SortingValue; }
 		}
-		private int _SortingValue;
+		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
@@ -1880,7 +1903,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Enumerations() : base(EnumerationsValidator.Validator)
 		{
-			this.ListEnumerations = new ObservableCollection<Enumeration>();
+			this.ListEnumerations = new SortedObservableCollection<Enumeration>();
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
 		}
@@ -2190,7 +2213,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameChanging();
 		partial void OnNameChanged();
 		
-		public int SortingValue
+		public ulong SortingValue
 		{ 
 			set
 			{
@@ -2205,7 +2228,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _SortingValue; }
 		}
-		private int _SortingValue;
+		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
@@ -2332,9 +2355,9 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalogs() : base(CatalogsValidator.Validator)
 		{
-			this.ListSharedProperties = new ObservableCollection<Property>();
+			this.ListSharedProperties = new SortedObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
-			this.ListCatalogs = new ObservableCollection<Catalog>();
+			this.ListCatalogs = new SortedObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}

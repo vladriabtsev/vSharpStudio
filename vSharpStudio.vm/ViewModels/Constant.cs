@@ -18,15 +18,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public int CompareTo(Constant other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
-        #region IEntityObject
-        //void IEntityObject.Create()
-        //{
-        //    Constants vm = (Constants)this.Parent;
-        //    int icurr=vm.ListConstants.IndexOf(this);
-        //    vm.ListConstants.Add(new Constant(this.Parent));
-
-        //}
-        #endregion IEntityObject
+        #region IConfigObject
+        public void Create()
+        {
+            Constants vm = (Constants)this.Parent;
+            int icurr = vm.ListConstants.IndexOf(this);
+            vm.ListConstants.Add(new Constant(this.Parent));
+        }
+        #endregion IConfigObject
 
         #region ITreeNode
         public ITreeNode Parent { get; internal set; }

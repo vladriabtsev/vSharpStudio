@@ -194,5 +194,6 @@ namespace vSharpStudio.xUnit
             Assert.Equal(1, cfg.CountInfos);
         }
         #endregion Validatable
+
     }
 }

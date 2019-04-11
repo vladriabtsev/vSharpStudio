@@ -33,7 +33,7 @@ namespace ViewModelBase
             this.Severity = severity;
             this.SeverityWeight = weight;
             this.Message = message;
-            this.SortingValue = ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight;
+            this.SortingValue = (ulong)(ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight);
         }
         public object Model { get; protected set; }
         public string PropertyName { get; private set; }
@@ -42,7 +42,7 @@ namespace ViewModelBase
         public SeverityWeight SeverityWeight { get; private set; }
         public string SeverityWeightName { get { return Enum.GetName(typeof(SeverityWeight), (int)SeverityWeight); } }
         public string Message { get; private set; }
-        public int SortingValue { get; private set; }
+        public ulong SortingValue { get; set; }
         /// <summary>
         /// Raise severity level for message. SortingValue will be increased by shifting to left. 
         /// </summary>
@@ -54,7 +54,7 @@ namespace ViewModelBase
             int n = int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity);
             if (shiftLevel > n)
                 throw new ArgumentException("parameter 'shiftLevel' expected to be less or equal " + n);
-            SortingValue += ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel;
+            SortingValue += (ulong)(ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel);
         }
         public int CompareTo(ValidationMessage other)
         {

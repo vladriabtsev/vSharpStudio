@@ -103,7 +103,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = new ObservableCollection<");
+            this.Write(" = new SortedObservableCollection<");
             
             #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));

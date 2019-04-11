@@ -9,7 +9,7 @@ namespace ViewModelBase
 {
     public interface ISortingValue
     {
-        int SortingValue { get; }
+        ulong SortingValue { get; set; }
     }
     public class SortedObservableCollection<T> : ObservableCollection<T>
       where T : ISortingValue , IComparable<T>
@@ -69,7 +69,7 @@ namespace ViewModelBase
         }
         private void InternalSort()
         {
-            var comparer = Comparer<int>.Create((k1, k2) => k2.CompareTo(k1));
+            var comparer = Comparer<ulong>.Create((k1, k2) => k2.CompareTo(k1));
             InternalSort(Items.OrderBy(t=>t.SortingValue, comparer));
         }
         /// <summary>

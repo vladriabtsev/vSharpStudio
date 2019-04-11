@@ -101,6 +101,7 @@ namespace vSharpStudio.vm.ViewModels
         private IEnumerable<ITreeNode> _SubNodes;
         void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Properties }; }
         partial void OnPropertiesChanged() { RecreateSubNodes(); }
+
         public bool IsSelected
         {
             get { return this._IsSelected; }

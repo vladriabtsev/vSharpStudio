@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
         }
-        public int SortingValue => throw new NotImplementedException();
+
 
         #region IMigration
 
