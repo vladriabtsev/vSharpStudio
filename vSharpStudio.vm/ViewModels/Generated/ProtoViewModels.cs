@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/10/2019 15:48:42
+// Auto generated on UTC 04/11/2019 00:41:37
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -601,6 +601,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Property vm = new Property();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    if (isDeep)
 		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    return vm;
@@ -609,6 +610,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		        DataType.Update(to.DataType, from.DataType, isDeep);
 		}
@@ -635,6 +637,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Property();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
@@ -645,6 +648,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_property m = new proto_property();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
@@ -677,6 +681,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
+		
+		public int SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private int _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public DataType DataType
 		{ 
@@ -1162,6 +1185,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Constant vm = new Constant();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    if (isDeep)
 		        vm.ConstantType = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.ConstantType, isDeep);
 		    return vm;
@@ -1170,6 +1194,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		        Property.Update(to.ConstantType, from.ConstantType, isDeep);
 		}
@@ -1196,6 +1221,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Constant();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.ConstantType);
 		    vm.OnInitFromDto();
 		    return vm;
@@ -1206,6 +1232,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_constant m = new proto_constant();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    m.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToProto(vm.ConstantType);
 		    return m;
 		}
@@ -1238,6 +1265,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
+		
+		public int SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private int _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public Property ConstantType
 		{ 
@@ -1472,12 +1518,14 @@ namespace vSharpStudio.vm.ViewModels
 		    EnumerationPair vm = new EnumerationPair();
 		    vm.Name = from.Name;
 		    vm.Value = from.Value;
+		    vm.SortingValue = from.SortingValue;
 		    return vm;
 		}
 		public static void Update(EnumerationPair to, EnumerationPair from, bool isDeep = true)
 		{
 		    to.Name = from.Name;
 		    to.Value = from.Value;
+		    to.SortingValue = from.SortingValue;
 		}
 		#region IEditable
 		public override EnumerationPair Backup()
@@ -1502,6 +1550,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new EnumerationPair();
 		    vm.Name = m.Name;
 		    vm.Value = m.Value;
+		    vm.SortingValue = m.SortingValue;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1511,6 +1560,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_enumeration_pair m = new proto_enumeration_pair();
 		    m.Name = vm.Name;
 		    m.Value = vm.Value;
+		    m.SortingValue = vm.SortingValue;
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1560,6 +1610,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Value = "";
 		partial void OnValueChanging();
 		partial void OnValueChanged();
+		
+		public int SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private int _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		#endregion Properties
 	}
 	
@@ -1636,6 +1705,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Enumeration vm = new Enumeration();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.ListValues = new ObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListValues)
@@ -1646,6 +1716,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    to.DataTypeEnum = from.DataTypeEnum;
 		    if (isDeep)
 		    {
@@ -1707,6 +1778,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Enumeration();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.ListValues = new ObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListValues)
@@ -1720,6 +1792,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_enumeration m = new proto_enumeration();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    m.DataTypeEnum = vm.DataTypeEnum;
 		    foreach(var t in vm.ListValues)
 		        m.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
@@ -1755,6 +1828,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
+		
+		public int SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private int _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
 		{ 
@@ -1994,6 +2086,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Catalog vm = new Catalog();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
 		    vm.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
 		    vm.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
@@ -2007,6 +2100,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
 		    to.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
 		    to.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
@@ -2038,6 +2132,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Catalog();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
 		    vm.IsMemoryOptimized = m.IsMemoryOptimized.HasValue ? m.IsMemoryOptimized.Value : (bool?)null;
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
@@ -2053,6 +2148,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_catalog m = new proto_catalog();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
 		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
 		    m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
@@ -2093,6 +2189,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Name = "";
 		partial void OnNameChanging();
 		partial void OnNameChanged();
+		
+		public int SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private int _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public bool? IsPrimaryKeyClustered
 		{ 

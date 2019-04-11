@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constant : EntityObjectBaseWithGuid<Constant, Constant.ConstantValidator>, IEntityObject, ITreeNode
+    public partial class Constant : EntityObjectBaseWithGuid<Constant, Constant.ConstantValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<Constant>
     {
         partial void OnInit()
         {
@@ -15,6 +15,19 @@ namespace vSharpStudio.vm.ViewModels
         {
             //RecreateSubNodes();
         }
+
+        public int CompareTo(Constant other) { return this.SortingValue.CompareTo(other.SortingValue); }
+
+        #region IEntityObject
+        //void IEntityObject.Create()
+        //{
+        //    Constants vm = (Constants)this.Parent;
+        //    int icurr=vm.ListConstants.IndexOf(this);
+        //    vm.ListConstants.Add(new Constant(this.Parent));
+
+        //}
+        #endregion IEntityObject
+
         #region ITreeNode
         public ITreeNode Parent { get; internal set; }
 

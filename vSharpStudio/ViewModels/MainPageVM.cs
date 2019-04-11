@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
@@ -41,5 +42,15 @@ namespace vSharpStudio.ViewModels
             get { return _Model; }
         }
         private ConfigRoot _Model;
+
+        public ICommand CommandAdd { get; } = new RelayCommand((p) =>
+        {
+            MainPageVM vm = (MainPageVM)p;
+            return vm.SelectedNode != null && vm.SelectedNode is IEntityObject;
+        }, (o) => {
+            MainPageVM vm = (MainPageVM)o;
+            (vm.SelectedNode as IEntityObject).Create();
+        });
+
     }
 }

@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Enumeration : EntityObjectBaseWithGuid<Enumeration, Enumeration.EnumerationValidator>, IEntityObject, ITreeNode
+    public partial class Enumeration : EntityObjectBaseWithGuid<Enumeration, Enumeration.EnumerationValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<Enumeration>
     {
         partial void OnInit()
         {
@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
         public void OnInitFromDto()
         {
         }
+        public int CompareTo(Enumeration other) { return this.SortingValue.CompareTo(other.SortingValue); }
+
         #region ITreeNode
         #region status icon
         public string StatusIcon

@@ -66,7 +66,8 @@ message proto_config {
 message proto_property {
 	string guid = 1;
 	string name = 2;
-	proto_data_type data_type = 3;
+	int32 sorting_value = 3;
+	proto_data_type data_type = 4;
 }
 message proto_data_type {
 	enum EnumDataType {
@@ -99,7 +100,8 @@ message proto_properties {
 message proto_constant {
 	string guid = 1;
 	string name = 2;
-	proto_property constant_type = 3;
+	int32 sorting_value = 3;
+	proto_property constant_type = 4;
 }
 message proto_constants {
 	string name = 1;
@@ -109,6 +111,7 @@ message proto_enumeration_pair {
     string name = 1;
     // TODO struct for different types, at least INTEGER
     string value = 2;
+	int32 sorting_value = 3;
 }
 message proto_enumeration {
 	enum EnumEnumerationType {
@@ -119,8 +122,9 @@ message proto_enumeration {
 	}
 	string guid = 1;
 	string name = 2;
-	EnumEnumerationType data_type_enum = 3; 
-	repeated proto_enumeration_pair list_values = 4;
+	int32 sorting_value = 3;
+	EnumEnumerationType data_type_enum = 4; 
+	repeated proto_enumeration_pair list_values = 5;
 }
 message proto_enumerations {
 	string name = 1;
@@ -129,6 +133,7 @@ message proto_enumerations {
 message proto_catalog {
 	string guid = 1;
 	string name = 2;
+	int32 sorting_value = 3;
     bool_nullable is_primary_key_clustered = 4; // MsSql
     bool_nullable is_memory_optimized = 5; // MsSql
     bool_nullable is_sequence_hi_lo = 6; // SequenceHiLo or IdentityColumn. MsSql

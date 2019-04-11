@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalog : EntityObjectBaseWithGuid<Catalog, Catalog.CatalogValidator>, IEntityObject, ITreeNode
+    public partial class Catalog : EntityObjectBaseWithGuid<Catalog, Catalog.CatalogValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<Catalog>
     {
         partial void OnInit()
         {
@@ -28,6 +28,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.Properties.ListProperties.Add(t);
             }
         }
+        public int CompareTo(Catalog other) { return this.SortingValue.CompareTo(other.SortingValue); }
+
         #region ITreeNode
 
         #region status icon

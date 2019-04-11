@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject, ITreeNode
+    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<Property>
     {
         partial void OnInit()
         {
@@ -27,6 +27,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
+        public int CompareTo(Property other) { return this.SortingValue.CompareTo(other.SortingValue); }
         public Type ClrType
         {
             get

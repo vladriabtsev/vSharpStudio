@@ -6,11 +6,13 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : EntityObjectBaseWithGuid<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IEntityObject, ITreeNode
+    public partial class EnumerationPair : EntityObjectBaseWithGuid<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<EnumerationPair>
     {
         public void OnInitFromDto()
         {
         }
+        public int CompareTo(EnumerationPair other) { return this.SortingValue.CompareTo(other.SortingValue); }
+
         #region ITreeNode
         public ITreeNode Parent { get; internal set; }
 

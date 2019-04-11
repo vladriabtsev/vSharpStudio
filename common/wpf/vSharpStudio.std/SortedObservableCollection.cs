@@ -12,7 +12,7 @@ namespace ViewModelBase
         int SortingValue { get; }
     }
     public class SortedObservableCollection<T> : ObservableCollection<T>
-      where T : ISortingValue, IComparable
+      where T : ISortingValue , IComparable<int>
     {
         private object _lock = new object();
         public new void Add(T item)

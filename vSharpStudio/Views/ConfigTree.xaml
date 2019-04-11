@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:vSharpStudio.Views" 
              xmlns:dat="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
-             xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" x:Class="vSharpStudio.Views.ConfigTree"
+             xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
+    x:Class="vSharpStudio.Views.ConfigTree"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:MainPageVM}}"
              d:DesignHeight="450" d:DesignWidth="800">
