@@ -43,14 +43,13 @@ namespace vSharpStudio.ViewModels
         }
         private ConfigRoot _Model;
 
-        public ICommand CommandAdd { get; } = new RelayCommand((p) =>
-        {
-            MainPageVM vm = (MainPageVM)p;
-            return vm.SelectedNode != null && vm.SelectedNode is IEntityObject;
-        }, (o) => {
-            MainPageVM vm = (MainPageVM)o;
-            (vm.SelectedNode as IEntityObject).Create();
-        });
-
+        //public ICommand CommandAdd { get; } = new RelayCommand((p) =>
+        //{
+        //    MainPageVM vm = (MainPageVM)p;
+        //    return vm.SelectedNode != null && vm.SelectedNode is IConfigObject;
+        //}, (o) => {
+        //    MainPageVM vm = (MainPageVM)o;
+        //    (vm.SelectedNode as IConfigObject).Create();
+        //});
     }
 }

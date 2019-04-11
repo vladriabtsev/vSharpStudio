@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IEntityObject, ITreeNode, ISortingValue, IComparable<Property>
+    public partial class Property : EntityObjectBaseWithGuid<Property, Property.PropertyValidator>, IConfigObject, ITreeNode, IComparable<Property>
     {
         partial void OnInit()
         {

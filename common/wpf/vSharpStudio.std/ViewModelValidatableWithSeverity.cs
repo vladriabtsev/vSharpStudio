@@ -10,9 +10,9 @@ using System.Threading;
 namespace ViewModelBase
 {
     public class ViewModelValidatableWithSeverity<T, TValidator>
-        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatableWithSeverity, IComparable
+        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatableWithSeverity//, IComparable
       where TValidator : AbstractValidator<T>
-      where T : ViewModelValidatableWithSeverity<T, TValidator>, IComparable
+      where T : ViewModelValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
         public ViewModelValidatableWithSeverity(TValidator validator)
         {

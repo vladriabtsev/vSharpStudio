@@ -16,7 +16,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : EntityObjectBaseWithGuid<Config, Config.ConfigValidator>, IEntityObject, IMigration, ITreeNode
+    public partial class Config : EntityObjectBaseWithGuid<Config, Config.ConfigValidator>, IConfigObject, IMigration, ITreeNode, IComparable<Config>
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
         }
+        public int SortingValue => throw new NotImplementedException();
 
         #region IMigration
 
@@ -102,6 +103,12 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnConstantsChanged() { RecreateSubNodes(); }
         partial void OnCatalogsChanged() { RecreateSubNodes(); }
         partial void OnEnumeratorsChanged() { RecreateSubNodes(); }
+
+        int IComparable<Config>.CompareTo(Config other)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsSelected
         {
             get { return this._IsSelected; }

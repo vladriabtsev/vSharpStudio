@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Enumerations : EntityObjectBaseWithGuid<Enumerations, Enumerations.EnumerationsValidator>, IEntityObject, ITreeNode
+    public partial class Enumerations : EntityObjectBase<Enumerations, Enumerations.EnumerationsValidator>, ITreeNode
     {
         partial void OnInit()
         {

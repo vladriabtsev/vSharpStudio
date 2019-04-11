@@ -8,7 +8,7 @@ namespace ViewModelBase
 {
     [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
     public class ValidationMessage<T> : ValidationMessage
-      where T : IComparable
+      where T : class
     {
         // then higher weight than higher importance of the message
         public ValidationMessage(T model, string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
@@ -19,7 +19,7 @@ namespace ViewModelBase
         public string FullMessage { get; }
     }
     public enum SeverityWeight { VeryLow, Low, Normal, High, VeryHigh }
-    public abstract class ValidationMessage : ISortingValue, IComparable
+    public abstract class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
     {
         private static int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;
         private static int _lenSeverityWeight = Enum.GetNames(typeof(SeverityWeight)).Length;
@@ -35,7 +35,7 @@ namespace ViewModelBase
             this.Message = message;
             this.SortingValue = ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight;
         }
-        public IComparable Model { get; protected set; }
+        public object Model { get; protected set; }
         public string PropertyName { get; private set; }
         public FluentValidation.Severity Severity { get; private set; }
         public string SeverityName { get { return Enum.GetName(typeof(FluentValidation.Severity), (int)Severity); } }
@@ -56,9 +56,9 @@ namespace ViewModelBase
                 throw new ArgumentException("parameter 'shiftLevel' expected to be less or equal " + n);
             SortingValue += ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel;
         }
-        public int CompareTo(object obj)
+        public int CompareTo(ValidationMessage other)
         {
-            return SortingValue - (obj as ISortingValue).SortingValue;
+            return this.SortingValue.CompareTo(other.SortingValue);
         }
     }
 }

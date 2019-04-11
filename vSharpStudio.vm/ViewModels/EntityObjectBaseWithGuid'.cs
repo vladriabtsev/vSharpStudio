@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class EntityObjectBaseWithGuid<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : EntityObjectBaseWithGuid<T, TValidator>, IEntityObject
+      where T : EntityObjectBaseWithGuid<T, TValidator>, IConfigObject
     {
         public EntityObjectBaseWithGuid(TValidator validator)
             : base(validator)

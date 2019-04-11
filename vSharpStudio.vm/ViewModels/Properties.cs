@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Properties : EntityObjectBaseWithGuid<Properties, Properties.PropertiesValidator>, IEntityObject, ITreeNode
+    public partial class Properties : EntityObjectBase<Properties, Properties.PropertiesValidator>, ITreeNode
     {
         partial void OnInit()
         {

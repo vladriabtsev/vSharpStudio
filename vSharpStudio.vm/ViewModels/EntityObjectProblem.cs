@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public struct EntityObjectProblem
     {
-        public IEntityObject EntityObject;
+        public IValidatableWithSeverity EntityObject;
         public string Message;
     }
 }
