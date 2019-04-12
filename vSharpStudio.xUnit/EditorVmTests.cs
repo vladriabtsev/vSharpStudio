@@ -199,12 +199,16 @@ namespace vSharpStudio.xUnit
             cnst2.Name = "abc1";
 
             Assert.True(cnst.Guid != cnst2.Guid);
-            Assert.True(cfg.Constants.ListConstants[0].Guid == cnst.Guid);
-            Assert.True(cfg.Constants.ListConstants[1].Guid == cnst2.Guid);
 
             cnst2.Name = "abc0";
+            Assert.True(cfg.Constants.ListConstants[0].SortingValue < cfg.Constants.ListConstants[1].SortingValue);
             Assert.True(cfg.Constants.ListConstants[1].Guid == cnst.Guid);
             Assert.True(cfg.Constants.ListConstants[0].Guid == cnst2.Guid);
+
+            cnst2.Name = "abc2";
+            Assert.True(cfg.Constants.ListConstants[0].SortingValue < cfg.Constants.ListConstants[1].SortingValue);
+            Assert.True(cfg.Constants.ListConstants[0].Guid == cnst.Guid);
+            Assert.True(cfg.Constants.ListConstants[1].Guid == cnst2.Guid);
         }
         #endregion SortingByNameAndValue
     }

@@ -41,6 +41,8 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
                 break;
             case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                 break;
+            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                break;
             case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 	    		foreach (var t in e.NewItems)
 	    			(t as <#= t.MessageType.Name.ToNameCs() #>).Parent = this;

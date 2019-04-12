@@ -24,6 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             this._startNode = startNode;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
+            this.Result.SortDirection = SortDirection.Descending;
         }
         private void UpdateCounts(ITreeConfigNode p, ValidationMessage m)
         {

@@ -11,10 +11,12 @@ namespace ViewModelBase
     {
         ulong SortingValue { get; set; }
     }
+    public enum SortDirection { Ascending, Descending }
     public class SortedObservableCollection<T> : ObservableCollection<T>
-      where T : ISortingValue , IComparable<T>
+      where T : ISortingValue, IComparable<T>
     {
         private object _lock = new object();
+        public SortDirection SortDirection = SortDirection.Ascending;
         public new void Add(T item)
         {
             lock (_lock)
@@ -53,6 +55,11 @@ namespace ViewModelBase
         {
             InternalSort(Items.OrderByDescending(keySelector));
         }
+        public void SortDescending()
+        {
+            var comparer = Comparer<ulong>.Create((k1, k2) => k2.CompareTo(k1));
+            InternalSort(Items.OrderBy(t => t.SortingValue, comparer));
+        }
 
         /// <summary>
         /// Sorts the items of the collection in ascending order according to a key.
@@ -67,10 +74,17 @@ namespace ViewModelBase
                 InternalSort(Items.OrderBy(keySelector, comparer));
             }
         }
+        public void Sort()
+        {
+            InternalSort();
+        }
         private void InternalSort()
         {
-            var comparer = Comparer<ulong>.Create((k1, k2) => k2.CompareTo(k1));
-            InternalSort(Items.OrderBy(t=>t.SortingValue, comparer));
+            var comparer = Comparer<ulong>.Create((k1, k2) => k1.CompareTo(k2));
+            if (SortDirection == SortDirection.Ascending)
+                InternalSort(Items.OrderBy(t => t.SortingValue, comparer));
+            else
+                InternalSort(Items.OrderByDescending(t => t.SortingValue, comparer));
         }
         /// <summary>
         /// Moves the items of the collection so that their orders are the same as those of the items provided.

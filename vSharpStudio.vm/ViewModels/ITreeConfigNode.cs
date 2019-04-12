@@ -17,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         IEnumerable<ITreeConfigNode> SubNodes { get; }
-        //void Sort();
+        void Sort(Type type);
         //bool CanUp();
         //void Up();
         //bool CanDown();

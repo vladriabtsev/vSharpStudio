@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/12/2019 00:34:22
+// Auto generated on UTC 04/12/2019 18:32:12
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -33,6 +33,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static Config Clone(ITreeConfigNode parent, Config from, bool isDeep = true)
 		{
 		    Config vm = new Config();
@@ -600,6 +604,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static Property Clone(ITreeConfigNode parent, Property from, bool isDeep = true)
 		{
 		    Property vm = new Property();
@@ -723,6 +731,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true)
 		{
 		    DataType vm = new DataType();
@@ -980,6 +992,8 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Property).Parent = this;
@@ -1025,13 +1039,20 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListProperties.Sort();
+		    }
+		}
 		public static Properties Clone(ITreeConfigNode parent, Properties from, bool isDeep = true)
 		{
 		    Properties vm = new Properties();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    vm.ListProperties = new ObservableCollection<Property>();
+		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
 		    return vm;
@@ -1102,7 +1123,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.ListProperties = new ObservableCollection<Property>();
+		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
 		    vm.OnInitFromDto();
@@ -1150,7 +1171,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
-		public ObservableCollection<Property> ListProperties { get; set; }
+		public SortedObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
 		partial void OnListPropertiesChanged();
 		#endregion Properties
@@ -1173,6 +1194,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static Constant Clone(ITreeConfigNode parent, Constant from, bool isDeep = true)
 		{
 		    Constant vm = new Constant();
@@ -1303,6 +1328,8 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Constant).Parent = this;
@@ -1348,13 +1375,20 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    if (type == typeof(Constant))
+		    {
+		        this.ListConstants.Sort();
+		    }
+		}
 		public static Constants Clone(ITreeConfigNode parent, Constants from, bool isDeep = true)
 		{
 		    Constants vm = new Constants();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    vm.ListConstants = new ObservableCollection<Constant>();
+		    vm.ListConstants = new SortedObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
 		    return vm;
@@ -1425,7 +1459,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.ListConstants = new ObservableCollection<Constant>();
+		    vm.ListConstants = new SortedObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t));
 		    vm.OnInitFromDto();
@@ -1473,7 +1507,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
-		public ObservableCollection<Constant> ListConstants { get; set; }
+		public SortedObservableCollection<Constant> ListConstants { get; set; }
 		partial void OnListConstantsChanging();
 		partial void OnListConstantsChanged();
 		#endregion Properties
@@ -1495,6 +1529,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static EnumerationPair Clone(ITreeConfigNode parent, EnumerationPair from, bool isDeep = true)
 		{
 		    EnumerationPair vm = new EnumerationPair();
@@ -1622,6 +1660,8 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as EnumerationPair).Parent = this;
@@ -1667,6 +1707,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    if (type == typeof(EnumerationPair))
+		    {
+		        this.ListValues.Sort();
+		    }
+		}
 		public static Enumeration Clone(ITreeConfigNode parent, Enumeration from, bool isDeep = true)
 		{
 		    Enumeration vm = new Enumeration();
@@ -1674,7 +1721,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
 		    vm.DataTypeEnum = from.DataTypeEnum;
-		    vm.ListValues = new ObservableCollection<EnumerationPair>();
+		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListValues)
 		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, t, isDeep));
 		    return vm;
@@ -1747,7 +1794,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
 		    vm.DataTypeEnum = m.DataTypeEnum;
-		    vm.ListValues = new ObservableCollection<EnumerationPair>();
+		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListValues)
 		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t));
 		    vm.OnInitFromDto();
@@ -1815,7 +1862,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
 		
-		public ObservableCollection<EnumerationPair> ListValues { get; set; }
+		public SortedObservableCollection<EnumerationPair> ListValues { get; set; }
 		partial void OnListValuesChanging();
 		partial void OnListValuesChanged();
 		#endregion Properties
@@ -1843,6 +1890,8 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
@@ -1889,13 +1938,20 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    if (type == typeof(Enumeration))
+		    {
+		        this.ListEnumerations.Sort();
+		    }
+		}
 		public static Enumerations Clone(ITreeConfigNode parent, Enumerations from, bool isDeep = true)
 		{
 		    Enumerations vm = new Enumerations();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
+		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
 		    return vm;
@@ -1966,7 +2022,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
+		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t));
 		    vm.OnInitFromDto();
@@ -2014,7 +2070,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
-		public ObservableCollection<Enumeration> ListEnumerations { get; set; }
+		public SortedObservableCollection<Enumeration> ListEnumerations { get; set; }
 		partial void OnListEnumerationsChanging();
 		partial void OnListEnumerationsChanged();
 		#endregion Properties
@@ -2037,6 +2093,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
 		public static Catalog Clone(ITreeConfigNode parent, Catalog from, bool isDeep = true)
 		{
 		    Catalog vm = new Catalog();
@@ -2287,6 +2347,8 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Property).Parent = this;
@@ -2337,6 +2399,8 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
 	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Catalog).Parent = this;
@@ -2382,16 +2446,27 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
+		public void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListSharedProperties.Sort();
+		    }
+		    if (type == typeof(Catalog))
+		    {
+		        this.ListCatalogs.Sort();
+		    }
+		}
 		public static Catalogs Clone(ITreeConfigNode parent, Catalogs from, bool isDeep = true)
 		{
 		    Catalogs vm = new Catalogs();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    vm.ListSharedProperties = new ObservableCollection<Property>();
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
-		    vm.ListCatalogs = new ObservableCollection<Catalog>();
+		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in from.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
 		    return vm;
@@ -2498,10 +2573,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.ListSharedProperties = new ObservableCollection<Property>();
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
-		    vm.ListCatalogs = new ObservableCollection<Catalog>();
+		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in m.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t));
 		    vm.OnInitFromDto();
@@ -2553,11 +2628,11 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
 		
-		public ObservableCollection<Property> ListSharedProperties { get; set; }
+		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
 		partial void OnListSharedPropertiesChanging();
 		partial void OnListSharedPropertiesChanged();
 		
-		public ObservableCollection<Catalog> ListCatalogs { get; set; }
+		public SortedObservableCollection<Catalog> ListCatalogs { get; set; }
 		partial void OnListCatalogsChanging();
 		partial void OnListCatalogsChanged();
 		#endregion Properties

@@ -18,6 +18,7 @@ namespace ViewModelBase
         {
             this._validator = validator;
             this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
+            this.ValidationCollection.SortDirection = SortDirection.Descending;
         }
         protected readonly IValidator _validator;
         protected virtual void OnCountErrorsChanged() { }

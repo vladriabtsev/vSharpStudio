@@ -13,16 +13,17 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigObjectBase(TValidator validator)
             : base(validator)
         {
-//            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
+            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
-        //private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "Name")
-        //    {
-        //        IConfigObject p = (IConfigObject)this;
-        //        p.SortingValue = EncodeNameToUlong(p.Name);
-        //    }
-        //}
+        private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SortingValue")
+            {
+                ITreeConfigNode p = (ITreeConfigNode)this;
+                if (p.Parent != null)
+                    p.Parent.Sort(this.GetType());
+            }
+        }
         public string Guid
         {
             get
