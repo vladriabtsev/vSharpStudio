@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    public partial class DataType : ConfigObjectWithGuidBase<DataType, DataType.DataTypeValidator>, ITreeConfigNode
+    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, ITreeConfigNode
     {
         public void OnInitFromDto()
         {
@@ -118,26 +118,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private IEnumerable<ITreeConfigNode> _SubNodes;
-        public bool IsSelected
-        {
-            get { return this._IsSelected; }
-            set
-            {
-                this._IsSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsSelected;
-        public bool IsExpanded
-        {
-            get { return this._IsExpanded; }
-            set
-            {
-                this._IsExpanded = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsExpanded;
         public string NodeText { get { return this.Name; } }
 
         string ITreeConfigNode.Guid => throw new NotImplementedException();
@@ -152,6 +132,8 @@ namespace vSharpStudio.vm.ViewModels
         bool ITreeConfigNode.IsExpanded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         IEnumerable<ITreeConfigNode> ITreeConfigNode.SubNodes => throw new NotImplementedException();
+
+        ulong ISortingValue.SortingValue { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #endregion ITreeNode
     }

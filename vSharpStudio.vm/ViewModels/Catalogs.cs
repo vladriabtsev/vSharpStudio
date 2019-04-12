@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalogs : ConfigObjectWithGuidBase<Catalogs, Catalogs.CatalogsValidator>, ITreeConfigNode
+    public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>, ITreeConfigNode
     {
         partial void OnInit()
         {
@@ -75,27 +75,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion status icon
         public ITreeConfigNode Parent { get; internal set; }
         public IEnumerable<ITreeConfigNode> SubNodes => this.ListCatalogs;
-        public bool IsSelected
+        public override void OnIsExpandedChanged()
         {
-            get { return this._IsSelected; }
-            set
-            {
-                this._IsSelected = value;
-                NotifyPropertyChanged();
-            }
+            NotifyPropertyChanged(p => p.StatusIcon);
         }
-        private bool _IsSelected;
-        public bool IsExpanded
-        {
-            get { return this._IsExpanded; }
-            set
-            {
-                this._IsExpanded = value;
-                NotifyPropertyChanged();
-                NotifyPropertyChanged(p => p.StatusIcon);
-            }
-        }
-        private bool _IsExpanded;
         public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
 
         #endregion ITreeNode

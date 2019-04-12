@@ -97,7 +97,8 @@ message proto_data_type {
 message proto_properties {
 	string guid = 1;
 	string name = 2;
-	repeated proto_property list_properties = 3;
+	uint64 sorting_value = 3;
+	repeated proto_property list_properties = 4;
 }
 message proto_constant {
 	string guid = 1;
@@ -108,14 +109,15 @@ message proto_constant {
 message proto_constants {
 	string guid = 1;
 	string name = 2;
-	repeated proto_constant list_constants = 3;
+	uint64 sorting_value = 3;
+	repeated proto_constant list_constants = 4;
 }
 message proto_enumeration_pair {
 	string guid = 1;
     string name = 2;
+	uint64 sorting_value = 3;
     // TODO struct for different types, at least INTEGER
-    string value = 3;
-	uint64 sorting_value = 4;
+    string value = 4;
 }
 message proto_enumeration {
 	enum EnumEnumerationType {
@@ -133,7 +135,8 @@ message proto_enumeration {
 message proto_enumerations {
 	string guid = 1;
 	string name = 2;
-	repeated proto_enumeration list_enumerations = 3;
+	uint64 sorting_value = 3;
+	repeated proto_enumeration list_enumerations = 4;
 }
 message proto_catalog {
 	string guid = 1;
@@ -150,8 +153,9 @@ message proto_catalog {
 message proto_catalogs {
 	string guid = 1;
 	string name = 2;
-	repeated proto_property list_shared_properties = 3;
-	repeated proto_catalog list_catalogs = 4;
+	uint64 sorting_value = 3;
+	repeated proto_property list_shared_properties = 4;
+	repeated proto_catalog list_catalogs = 5;
 }
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {

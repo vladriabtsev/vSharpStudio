@@ -6,11 +6,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigObjectWithGuidBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
+    public class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectWithGuidBase<T, TValidator>, ITreeConfigNode
+      where T : ConfigObjectBase<T, TValidator>, ITreeConfigNode
     {
-        public ConfigObjectWithGuidBase(TValidator validator)
+        public ConfigObjectBase(TValidator validator)
             : base(validator)
         {
 //            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
@@ -49,39 +49,43 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _Name = value;
                     NotifyPropertyChanged();
-                    IConfigObject p = (IConfigObject)this;
+                    ITreeConfigNode p = (ITreeConfigNode)this;
                     p.SortingValue = EncodeNameToUlong(p.Name);
                 }
             }
             get { return _Name; }
         }
-        private string _Name = null;
-        //public bool IsSelected
-        //{
-        //    set
-        //    {
-        //        if (_IsSelected != value)
-        //        {
-        //            _IsSelected = value;
-        //            NotifyPropertyChanged();
-        //        }
-        //    }
-        //    get { return _IsSelected; }
-        //}
-        //private bool _IsSelected;
-        //public bool IsExpanded
-        //{
-        //    set
-        //    {
-        //        if (_IsExpanded != value)
-        //        {
-        //            _IsExpanded = value;
-        //            NotifyPropertyChanged();
-        //        }
-        //    }
-        //    get { return _IsExpanded; }
-        //}
-        //private bool _IsExpanded;
+        private string _Name = "";
+        public bool IsSelected
+        {
+            set
+            {
+                if (_IsSelected != value)
+                {
+                    _IsSelected = value;
+                    NotifyPropertyChanged();
+                    OnIsSelectedChanged();
+                }
+            }
+            get { return _IsSelected; }
+        }
+        private bool _IsSelected;
+        public virtual void OnIsSelectedChanged() { }
+        public bool IsExpanded
+        {
+            set
+            {
+                if (_IsExpanded != value)
+                {
+                    _IsExpanded = value;
+                    NotifyPropertyChanged();
+                    OnIsExpandedChanged();
+                }
+            }
+            get { return _IsExpanded; }
+        }
+        private bool _IsExpanded;
+        public virtual void OnIsExpandedChanged() { }
 
         private static int _maxlen = 0;
         protected ulong EncodeNameToUlong(string name)
@@ -114,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override int CompareToById(T other)
         {
-            IConfigObject p = (IConfigObject)this;
+            ITreeConfigNode p = (ITreeConfigNode)this;
             return p.Guid.CompareTo(other.Guid);
         }
         public override void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }

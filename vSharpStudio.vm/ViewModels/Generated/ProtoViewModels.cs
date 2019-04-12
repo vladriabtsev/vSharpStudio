@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/12/2019 00:13:25
+// Auto generated on UTC 04/12/2019 00:34:22
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1030,6 +1030,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Properties vm = new Properties();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -1039,6 +1040,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListProperties.ToList())
@@ -1099,6 +1101,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Properties();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -1111,6 +1114,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_properties m = new proto_properties();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
@@ -1126,6 +1130,25 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		public ulong SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private ulong _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public ObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
@@ -1330,6 +1353,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Constants vm = new Constants();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
@@ -1339,6 +1363,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListConstants.ToList())
@@ -1399,6 +1424,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Constants();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t));
@@ -1411,6 +1437,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_constants m = new proto_constants();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    foreach(var t in vm.ListConstants)
 		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
 		    return m;
@@ -1426,6 +1453,25 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		public ulong SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private ulong _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public ObservableCollection<Constant> ListConstants { get; set; }
 		partial void OnListConstantsChanging();
@@ -1454,16 +1500,16 @@ namespace vSharpStudio.vm.ViewModels
 		    EnumerationPair vm = new EnumerationPair();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
-		    vm.Value = from.Value;
 		    vm.SortingValue = from.SortingValue;
+		    vm.Value = from.Value;
 		    return vm;
 		}
 		public static void Update(EnumerationPair to, EnumerationPair from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
-		    to.Value = from.Value;
 		    to.SortingValue = from.SortingValue;
+		    to.Value = from.Value;
 		}
 		#region IEditable
 		public override EnumerationPair Backup()
@@ -1488,8 +1534,8 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new EnumerationPair();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
-		    vm.Value = m.Value;
 		    vm.SortingValue = m.SortingValue;
+		    vm.Value = m.Value;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1499,8 +1545,8 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_enumeration_pair m = new proto_enumeration_pair();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
-		    m.Value = vm.Value;
 		    m.SortingValue = vm.SortingValue;
+		    m.Value = vm.Value;
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1512,25 +1558,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Value
-		{ 
-			set
-			{
-				if (_Value != value)
-				{
-					OnValueChanging();
-					_Value = value;
-					OnValueChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Value; }
-		}
-		private string _Value = "";
-		partial void OnValueChanging();
-		partial void OnValueChanged();
 		
 		public ulong SortingValue
 		{ 
@@ -1550,6 +1577,25 @@ namespace vSharpStudio.vm.ViewModels
 		private ulong _SortingValue;
 		partial void OnSortingValueChanging();
 		partial void OnSortingValueChanged();
+		
+		public string Value
+		{ 
+			set
+			{
+				if (_Value != value)
+				{
+					OnValueChanging();
+					_Value = value;
+					OnValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Value; }
+		}
+		private string _Value = "";
+		partial void OnValueChanging();
+		partial void OnValueChanged();
 		#endregion Properties
 	}
 	
@@ -1848,6 +1894,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Enumerations vm = new Enumerations();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
@@ -1857,6 +1904,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListEnumerations.ToList())
@@ -1917,6 +1965,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Enumerations();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t));
@@ -1929,6 +1978,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_enumerations m = new proto_enumerations();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    foreach(var t in vm.ListEnumerations)
 		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
 		    return m;
@@ -1944,6 +1994,25 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		public ulong SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private ulong _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public ObservableCollection<Enumeration> ListEnumerations { get; set; }
 		partial void OnListEnumerationsChanging();
@@ -2318,6 +2387,7 @@ namespace vSharpStudio.vm.ViewModels
 		    Catalogs vm = new Catalogs();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -2330,6 +2400,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListSharedProperties.ToList())
@@ -2426,6 +2497,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Catalogs();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -2441,6 +2513,7 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_catalogs m = new proto_catalogs();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
 		    foreach(var t in vm.ListSharedProperties)
 		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    foreach(var t in vm.ListCatalogs)
@@ -2460,6 +2533,25 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		public ulong SortingValue
+		{ 
+			set
+			{
+				if (_SortingValue != value)
+				{
+					OnSortingValueChanging();
+					_SortingValue = value;
+					OnSortingValueChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SortingValue; }
+		}
+		private ulong _SortingValue;
+		partial void OnSortingValueChanging();
+		partial void OnSortingValueChanged();
 		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
 		partial void OnListSharedPropertiesChanging();

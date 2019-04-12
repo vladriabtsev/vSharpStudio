@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : ConfigObjectWithGuidBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IConfigObject, ITreeConfigNode, IComparable<EnumerationPair>
+    public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, ITreeConfigNode, IComparable<EnumerationPair>
     {
         public void OnInitFromDto()
         {
@@ -18,26 +18,6 @@ namespace vSharpStudio.vm.ViewModels
 
         public IEnumerable<ITreeConfigNode> SubNodes => this._SubNodes;
         private IEnumerable<ITreeConfigNode> _SubNodes = new ITreeConfigNode[] { };
-        public bool IsSelected
-        {
-            get { return this._IsSelected; }
-            set
-            {
-                this._IsSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsSelected;
-        public bool IsExpanded
-        {
-            get { return this._IsExpanded; }
-            set
-            {
-                this._IsExpanded = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsExpanded;
         public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode

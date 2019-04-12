@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public interface ITreeConfigNode : IValidatableWithSeverity
+    public interface ITreeConfigNode : IValidatableWithSeverity, ISortingValue
     {
         string Guid { get; }
         string Name { get; set; }

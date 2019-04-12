@@ -16,7 +16,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ConfigObjectWithGuidBase<Config, Config.ConfigValidator>, IConfigObject, IMigration, ITreeConfigNode, IComparable<Config>
+    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration, ITreeConfigNode, IComparable<Config>
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -108,27 +108,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             throw new NotImplementedException();
         }
-
-        public bool IsSelected
-        {
-            get { return this._IsSelected; }
-            set
-            {
-                this._IsSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsSelected;
-        public bool IsExpanded
-        {
-            get { return this._IsExpanded; }
-            set
-            {
-                this._IsExpanded = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsExpanded;
         public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode

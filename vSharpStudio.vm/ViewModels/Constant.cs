@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constant : ConfigObjectWithGuidBase<Constant, Constant.ConstantValidator>, IConfigObject, ITreeConfigNode, IComparable<Constant>
+    public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, ITreeConfigNode, IComparable<Constant>
     {
         partial void OnInit()
         {
@@ -36,26 +36,6 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    _SubNodes = new ITreeNode[] { this.Properties };
         //}
-        public bool IsSelected
-        {
-            get { return this._IsSelected; }
-            set
-            {
-                this._IsSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsSelected;
-        public bool IsExpanded
-        {
-            get { return this._IsExpanded; }
-            set
-            {
-                this._IsExpanded = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private bool _IsExpanded;
         public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
