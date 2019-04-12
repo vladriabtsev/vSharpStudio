@@ -9,6 +9,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public interface ITreeConfigNode : IValidatableWithSeverity
     {
+        string Guid { get; }
         string Name { get; set; }
 
         ITreeConfigNode Parent { get; }

@@ -6,23 +6,23 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigObjectWithGuidBase<T, TValidator> : ConfigObjectBase<T, TValidator>
+    public class ConfigObjectWithGuidBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectWithGuidBase<T, TValidator>, ITreeConfigNode
     {
         public ConfigObjectWithGuidBase(TValidator validator)
             : base(validator)
         {
-            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
+//            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
-        private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Name")
-            {
-                IConfigObject p = (IConfigObject)this;
-                p.SortingValue = EncodeNameToUlong(p.Name);
-            }
-        }
+        //private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "Name")
+        //    {
+        //        IConfigObject p = (IConfigObject)this;
+        //        p.SortingValue = EncodeNameToUlong(p.Name);
+        //    }
+        //}
         public string Guid
         {
             get
@@ -41,6 +41,48 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private string _Guid = null;
+        public string Name
+        {
+            set
+            {
+                if (_Name != value)
+                {
+                    _Name = value;
+                    NotifyPropertyChanged();
+                    IConfigObject p = (IConfigObject)this;
+                    p.SortingValue = EncodeNameToUlong(p.Name);
+                }
+            }
+            get { return _Name; }
+        }
+        private string _Name = null;
+        //public bool IsSelected
+        //{
+        //    set
+        //    {
+        //        if (_IsSelected != value)
+        //        {
+        //            _IsSelected = value;
+        //            NotifyPropertyChanged();
+        //        }
+        //    }
+        //    get { return _IsSelected; }
+        //}
+        //private bool _IsSelected;
+        //public bool IsExpanded
+        //{
+        //    set
+        //    {
+        //        if (_IsExpanded != value)
+        //        {
+        //            _IsExpanded = value;
+        //            NotifyPropertyChanged();
+        //        }
+        //    }
+        //    get { return _IsExpanded; }
+        //}
+        //private bool _IsExpanded;
+
         private static int _maxlen = 0;
         protected ulong EncodeNameToUlong(string name)
         {
