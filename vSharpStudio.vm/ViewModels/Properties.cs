@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, ITreeNode
+    public partial class Properties : ConfigObjectWithGuidBase<Properties, Properties.PropertiesValidator>, ITreeConfigNode
     {
         partial void OnInit()
         {
@@ -74,8 +74,8 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeNode Parent { get; internal set; }
-        public IEnumerable<ITreeNode> SubNodes => this.ListProperties;
+        public ITreeConfigNode Parent { get; internal set; }
+        public IEnumerable<ITreeConfigNode> SubNodes => this.ListProperties;
         public bool IsSelected
         {
             get { return this._IsSelected; }

@@ -35,7 +35,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" Clone(ITreeNode parent, ");
+            this.Write(" Clone(ITreeConfigNode parent, ");
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

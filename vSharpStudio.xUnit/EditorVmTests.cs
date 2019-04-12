@@ -175,21 +175,36 @@ namespace vSharpStudio.xUnit
         public void SortingByNameAndValue002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
             var cfg = new Config();
-            cfg.Constants.ListConstants.Add(new Constant());
+            var cnst = new Constant(cfg.Constants);
+            cfg.Constants.ListConstants.Add(cnst);
+            cnst.Name = "abc1";
+            var curr = cnst.SortingValue;
+
             string json = cfg.ExportToJson();
-            Assert.True(json.Length > 0);
             var cfg2 = new Config(json);
-            Assert.True(cfg2.Constants.ListConstants.Count == 1);
-            Assert.True(cfg2.Constants.ListConstants[0].Name == typeof(Constant).Name + 1);
-            Assert.True(false);
+
+            Assert.True(cfg2.Constants.ListConstants[0].Name == cnst.Name);
+            Assert.True(cfg2.Constants.ListConstants[0].SortingValue == cnst.SortingValue);
         }
         [Fact]
         public void SortingByNameAndValue003_ReSortedWhenSortingValueIsChanged()
         {
-            //Config.ConfigValidator.Reset();
-            //var cfg = new ConfigRoot();
-            //Assert.True(cfg.ValidationCollection != null);
-            Assert.True(false);
+            var cfg = new Config();
+            var cnst = new Constant(cfg.Constants);
+            cfg.Constants.ListConstants.Add(cnst);
+            cnst.Name = "abc1";
+
+            var cnst2 = new Constant(cfg.Constants);
+            cfg.Constants.ListConstants.Add(cnst2);
+            cnst2.Name = "abc1";
+
+            Assert.True(cnst.Guid != cnst2.Guid);
+            Assert.True(cfg.Constants.ListConstants[0].Guid == cnst.Guid);
+            Assert.True(cfg.Constants.ListConstants[1].Guid == cnst2.Guid);
+
+            cnst2.Name = "abc0";
+            Assert.True(cfg.Constants.ListConstants[1].Guid == cnst.Guid);
+            Assert.True(cfg.Constants.ListConstants[0].Guid == cnst2.Guid);
         }
         #endregion SortingByNameAndValue
     }

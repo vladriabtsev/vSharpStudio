@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalog : ConfigObjectWithGuidBase<Catalog, Catalog.CatalogValidator>, IConfigObject, ITreeNode, IComparable<Catalog>
+    public partial class Catalog : ConfigObjectWithGuidBase<Catalog, Catalog.CatalogValidator>, IConfigObject, ITreeConfigNode, IComparable<Catalog>
     {
         partial void OnInit()
         {
@@ -88,8 +88,8 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeNode Parent { get; internal set; }
-        public IEnumerable<ITreeNode> SubNodes
+        public ITreeConfigNode Parent { get; internal set; }
+        public IEnumerable<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }
             set
@@ -98,8 +98,8 @@ namespace vSharpStudio.vm.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        private IEnumerable<ITreeNode> _SubNodes;
-        void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Properties }; }
+        private IEnumerable<ITreeConfigNode> _SubNodes;
+        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Properties }; }
         partial void OnPropertiesChanged() { RecreateSubNodes(); }
 
         public bool IsSelected

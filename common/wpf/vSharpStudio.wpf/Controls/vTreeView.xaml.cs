@@ -25,13 +25,13 @@ namespace vSharpStudio.wpf.Controls
         {
             InitializeComponent();
         }
-        public ITreeNode SelectedItem
-        {
-            get { return (ITreeNode)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
-        }
-        public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(ITreeNode), typeof(vTreeView), new PropertyMetadata(null));
+        //public ITreeNode SelectedItem
+        //{
+        //    get { return (ITreeNode)GetValue(SelectedItemProperty); }
+        //    set { SetValue(SelectedItemProperty, value); }
+        //}
+        //public static readonly DependencyProperty SelectedItemProperty =
+        //    DependencyProperty.Register("SelectedItem", typeof(ITreeNode), typeof(vTreeView), new PropertyMetadata(null));
 
 
     }

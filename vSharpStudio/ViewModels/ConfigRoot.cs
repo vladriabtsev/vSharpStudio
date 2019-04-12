@@ -101,7 +101,7 @@ namespace vSharpStudio.ViewModels
         //}
 
         private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
-        public async Task ValidateSubTreeFromNodeAsync(ITreeNode node)
+        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
             // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
@@ -113,7 +113,7 @@ namespace vSharpStudio.ViewModels
                 ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
-        public void ValidateSubTreeFromNode(ITreeNode node, ILogger logger = null)
+        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
             if (cancellationSourceForValidatingFullConfig != null)
             {

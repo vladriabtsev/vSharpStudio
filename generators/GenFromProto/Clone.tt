@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-public static <#= message.Name.ToNameCs() #> Clone(ITreeNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
+public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>

@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : ConfigObjectWithGuidBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IConfigObject, ITreeNode, IComparable<EnumerationPair>
+    public partial class EnumerationPair : ConfigObjectWithGuidBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IConfigObject, ITreeConfigNode, IComparable<EnumerationPair>
     {
         public void OnInitFromDto()
         {
@@ -14,10 +14,10 @@ namespace vSharpStudio.vm.ViewModels
         public int CompareTo(EnumerationPair other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
         #region ITreeNode
-        public ITreeNode Parent { get; internal set; }
+        public ITreeConfigNode Parent { get; internal set; }
 
-        public IEnumerable<ITreeNode> SubNodes => this._SubNodes;
-        private IEnumerable<ITreeNode> _SubNodes = new ITreeNode[] { };
+        public IEnumerable<ITreeConfigNode> SubNodes => this._SubNodes;
+        private IEnumerable<ITreeConfigNode> _SubNodes = new ITreeConfigNode[] { };
         public bool IsSelected
         {
             get { return this._IsSelected; }

@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/11/2019 20:59:42
+// Auto generated on UTC 04/12/2019 00:03:45
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -26,14 +26,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.Catalogs = new Catalogs(this);
 			OnInit();
 		}
-		public Config(ITreeNode parent) : this()
+		public Config(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Config Clone(ITreeNode parent, Config from, bool isDeep = true)
+		public static Config Clone(ITreeConfigNode parent, Config from, bool isDeep = true)
 		{
 		    Config vm = new Config();
 		    vm.Guid = from.Guid;
@@ -200,25 +200,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
 		
 		public ulong SortingValue
 		{ 
@@ -612,14 +593,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.DataType = new DataType(this);
 			OnInit();
 		}
-		public Property(ITreeNode parent) : this()
+		public Property(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Property Clone(ITreeNode parent, Property from, bool isDeep = true)
+		public static Property Clone(ITreeConfigNode parent, Property from, bool isDeep = true)
 		{
 		    Property vm = new Property();
 		    vm.Guid = from.Guid;
@@ -686,25 +667,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ulong SortingValue
 		{ 
 			set
@@ -754,14 +716,14 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public DataType(ITreeNode parent) : this()
+		public DataType(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static DataType Clone(ITreeNode parent, DataType from, bool isDeep = true)
+		public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true)
 		{
 		    DataType vm = new DataType();
 		    vm.DataTypeEnum = from.DataTypeEnum;
@@ -1006,7 +968,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
 		}
-		public Properties(ITreeNode parent) : this()
+		public Properties(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
@@ -1063,9 +1025,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Properties Clone(ITreeNode parent, Properties from, bool isDeep = true)
+		public static Properties Clone(ITreeConfigNode parent, Properties from, bool isDeep = true)
 		{
 		    Properties vm = new Properties();
+		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
@@ -1074,6 +1037,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(Properties to, Properties from, bool isDeep = true)
 		{
+		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    if (isDeep)
 		    {
@@ -1133,6 +1097,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new Properties();
+		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.ListProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
@@ -1144,6 +1109,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_properties ConvertToProto(Properties vm)
 		{
 		    proto_properties m = new proto_properties();
+		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
@@ -1161,25 +1127,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
 		partial void OnListPropertiesChanged();
@@ -1196,14 +1143,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.ConstantType = new Property(this);
 			OnInit();
 		}
-		public Constant(ITreeNode parent) : this()
+		public Constant(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Constant Clone(ITreeNode parent, Constant from, bool isDeep = true)
+		public static Constant Clone(ITreeConfigNode parent, Constant from, bool isDeep = true)
 		{
 		    Constant vm = new Constant();
 		    vm.Guid = from.Guid;
@@ -1270,25 +1217,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ulong SortingValue
 		{ 
 			set
@@ -1340,7 +1268,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
 		}
-		public Constants(ITreeNode parent) : this()
+		public Constants(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
@@ -1397,9 +1325,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Constants Clone(ITreeNode parent, Constants from, bool isDeep = true)
+		public static Constants Clone(ITreeConfigNode parent, Constants from, bool isDeep = true)
 		{
 		    Constants vm = new Constants();
+		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
@@ -1408,6 +1337,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(Constants to, Constants from, bool isDeep = true)
 		{
+		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    if (isDeep)
 		    {
@@ -1467,6 +1397,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new Constants();
+		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.ListConstants = new ObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
@@ -1478,6 +1409,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_constants ConvertToProto(Constants vm)
 		{
 		    proto_constants m = new proto_constants();
+		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListConstants)
 		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
@@ -1495,25 +1427,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ObservableCollection<Constant> ListConstants { get; set; }
 		partial void OnListConstantsChanging();
 		partial void OnListConstantsChanged();
@@ -1529,16 +1442,17 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public EnumerationPair(ITreeNode parent) : this()
+		public EnumerationPair(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static EnumerationPair Clone(ITreeNode parent, EnumerationPair from, bool isDeep = true)
+		public static EnumerationPair Clone(ITreeConfigNode parent, EnumerationPair from, bool isDeep = true)
 		{
 		    EnumerationPair vm = new EnumerationPair();
+		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.Value = from.Value;
 		    vm.SortingValue = from.SortingValue;
@@ -1546,6 +1460,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(EnumerationPair to, EnumerationPair from, bool isDeep = true)
 		{
+		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.Value = from.Value;
 		    to.SortingValue = from.SortingValue;
@@ -1571,6 +1486,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new EnumerationPair();
+		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.Value = m.Value;
 		    vm.SortingValue = m.SortingValue;
@@ -1581,6 +1497,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_enumeration_pair ConvertToProto(EnumerationPair vm)
 		{
 		    proto_enumeration_pair m = new proto_enumeration_pair();
+		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.Value = vm.Value;
 		    m.SortingValue = vm.SortingValue;
@@ -1595,25 +1512,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
 		
 		public string Value
 		{ 
@@ -1666,7 +1564,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
 			OnInit();
 		}
-		public Enumeration(ITreeNode parent) : this()
+		public Enumeration(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
@@ -1723,7 +1621,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Enumeration Clone(ITreeNode parent, Enumeration from, bool isDeep = true)
+		public static Enumeration Clone(ITreeConfigNode parent, Enumeration from, bool isDeep = true)
 		{
 		    Enumeration vm = new Enumeration();
 		    vm.Guid = from.Guid;
@@ -1833,25 +1731,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ulong SortingValue
 		{ 
 			set
@@ -1907,7 +1786,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
 		}
-		public Enumerations(ITreeNode parent) : this()
+		public Enumerations(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
@@ -1964,9 +1843,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Enumerations Clone(ITreeNode parent, Enumerations from, bool isDeep = true)
+		public static Enumerations Clone(ITreeConfigNode parent, Enumerations from, bool isDeep = true)
 		{
 		    Enumerations vm = new Enumerations();
+		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
@@ -1975,6 +1855,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(Enumerations to, Enumerations from, bool isDeep = true)
 		{
+		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    if (isDeep)
 		    {
@@ -2034,6 +1915,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new Enumerations();
+		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.ListEnumerations = new ObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
@@ -2045,6 +1927,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_enumerations ConvertToProto(Enumerations vm)
 		{
 		    proto_enumerations m = new proto_enumerations();
+		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListEnumerations)
 		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
@@ -2062,25 +1945,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
-		
 		public ObservableCollection<Enumeration> ListEnumerations { get; set; }
 		partial void OnListEnumerationsChanging();
 		partial void OnListEnumerationsChanged();
@@ -2097,14 +1961,14 @@ namespace vSharpStudio.vm.ViewModels
 			this.Properties = new Properties(this);
 			OnInit();
 		}
-		public Catalog(ITreeNode parent) : this()
+		public Catalog(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Catalog Clone(ITreeNode parent, Catalog from, bool isDeep = true)
+		public static Catalog Clone(ITreeConfigNode parent, Catalog from, bool isDeep = true)
 		{
 		    Catalog vm = new Catalog();
 		    vm.Guid = from.Guid;
@@ -2193,25 +2057,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
 		
 		public ulong SortingValue
 		{ 
@@ -2361,7 +2206,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}
-		public Catalogs(ITreeNode parent) : this()
+		public Catalogs(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
 	    }
@@ -2468,9 +2313,10 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static Catalogs Clone(ITreeNode parent, Catalogs from, bool isDeep = true)
+		public static Catalogs Clone(ITreeConfigNode parent, Catalogs from, bool isDeep = true)
 		{
 		    Catalogs vm = new Catalogs();
+		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
@@ -2482,6 +2328,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(Catalogs to, Catalogs from, bool isDeep = true)
 		{
+		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    if (isDeep)
 		    {
@@ -2577,6 +2424,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new Catalogs();
+		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.ListSharedProperties = new ObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
@@ -2591,6 +2439,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_catalogs ConvertToProto(Catalogs vm)
 		{
 		    proto_catalogs m = new proto_catalogs();
+		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    foreach(var t in vm.ListSharedProperties)
 		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
@@ -2611,25 +2460,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public string Name
-		{ 
-			set
-			{
-				if (_Name != value)
-				{
-					OnNameChanging();
-					_Name = value;
-					OnNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Name; }
-		}
-		private string _Name = "";
-		partial void OnNameChanging();
-		partial void OnNameChanged();
 		
 		public ObservableCollection<Property> ListSharedProperties { get; set; }
 		partial void OnListSharedPropertiesChanging();

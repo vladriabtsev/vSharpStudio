@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Constant : ConfigObjectWithGuidBase<Constant, Constant.ConstantValidator>, IConfigObject, ITreeNode, IComparable<Constant>
+    public partial class Constant : ConfigObjectWithGuidBase<Constant, Constant.ConstantValidator>, IConfigObject, ITreeConfigNode, IComparable<Constant>
     {
         partial void OnInit()
         {
@@ -28,9 +28,9 @@ namespace vSharpStudio.vm.ViewModels
         #endregion IConfigObject
 
         #region ITreeNode
-        public ITreeNode Parent { get; internal set; }
+        public ITreeConfigNode Parent { get; internal set; }
 
-        public IEnumerable<ITreeNode> SubNodes => null; // this._SubNodes;
+        public IEnumerable<ITreeConfigNode> SubNodes => null; // this._SubNodes;
         //private IEnumerable<ITreeNode> _SubNodes;
         //partial void OnPropertiesChanged()
         //{

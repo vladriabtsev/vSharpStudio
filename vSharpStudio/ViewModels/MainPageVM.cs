@@ -25,10 +25,10 @@ namespace vSharpStudio.ViewModels
             this.Model.Catalogs.ListCatalogs.Add(c);
         }
 
-        private ITreeNode SelectedNode;
+        private ITreeConfigNode SelectedNode;
         internal void OnSelectedItemChanged(object oldValue, object newValue)
         {
-            this.SelectedNode = (ITreeNode)newValue;
+            this.SelectedNode = (ITreeConfigNode)newValue;
         }
 
         public ConfigRoot Model

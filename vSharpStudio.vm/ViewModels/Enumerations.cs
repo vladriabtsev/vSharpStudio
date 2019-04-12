@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>, ITreeNode
+    public partial class Enumerations : ConfigObjectWithGuidBase<Enumerations, Enumerations.EnumerationsValidator>, ITreeConfigNode
     {
         partial void OnInit()
         {
@@ -73,8 +73,8 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeNode Parent { get; internal set; }
-        public IEnumerable<ITreeNode> SubNodes => this.ListEnumerations;
+        public ITreeConfigNode Parent { get; internal set; }
+        public IEnumerable<ITreeConfigNode> SubNodes => this.ListEnumerations;
         public bool IsSelected
         {
             get { return this._IsSelected; }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ViewModelBase
 {
-    public interface ITreeNode : IValidatableWithSeverity
+    public interface ITreeNode2 : IValidatableWithSeverity
     {
-        ITreeNode Parent { get; }
+        ITreeNode2 Parent { get; }
         string NodeText { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
-        IEnumerable<ITreeNode> SubNodes { get; }
+        IEnumerable<ITreeNode2> SubNodes { get; }
     }
 }

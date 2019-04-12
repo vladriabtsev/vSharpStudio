@@ -172,7 +172,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(ITreeNode parent) : this()\r\n    {\r\n        this.Parent = parent;\r\n    }\r\n");
+            this.Write("(ITreeConfigNode parent) : this()\r\n    {\r\n        this.Parent = parent;\r\n    }\r\n");
             
             #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; 
@@ -286,6 +286,7 @@ namespace GenFromProto
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
         if (t.Name == "guid") continue;
+        if (t.Name == "name") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}

@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, ITreeNode
+    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, ITreeConfigNode
     {
         public void OnInitFromDto()
         {
@@ -107,8 +107,8 @@ namespace vSharpStudio.vm.ViewModels
         private BigInteger _MaxValue;
 
         #region ITreeNode
-        public ITreeNode Parent { get; internal set; }
-        public IEnumerable<ITreeNode> SubNodes
+        public ITreeConfigNode Parent { get; internal set; }
+        public IEnumerable<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }
             set
@@ -117,8 +117,7 @@ namespace vSharpStudio.vm.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        private IEnumerable<ITreeNode> _SubNodes;
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private IEnumerable<ITreeConfigNode> _SubNodes;
         public bool IsSelected
         {
             get { return this._IsSelected; }

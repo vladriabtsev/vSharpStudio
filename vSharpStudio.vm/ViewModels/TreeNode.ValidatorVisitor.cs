@@ -16,16 +16,16 @@ namespace vSharpStudio.vm.ViewModels
         private CancellationToken _cancellationToken;
         private int _level = -1;
         private bool _isCollectMessages = false;
-        private ITreeNode _startNode;
+        private ITreeConfigNode _startNode;
         private ILogger _logger = null;
-        public TreeNodeValidatorVisitor(CancellationToken cancellationToken, ITreeNode startNode, ILogger logger = null)
+        public TreeNodeValidatorVisitor(CancellationToken cancellationToken, ITreeConfigNode startNode, ILogger logger = null)
         {
             this._cancellationToken = cancellationToken;
             this._startNode = startNode;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
         }
-        private void UpdateCounts(ITreeNode p, ValidationMessage m)
+        private void UpdateCounts(ITreeConfigNode p, ValidationMessage m)
         {
             switch (m.Severity)
             {
@@ -58,7 +58,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
         }
-        private void UpdateValidation(ITreeNode p)
+        private void UpdateValidation(ITreeConfigNode p)
         {
             p.CountErrors = 0;
             p.CountWarnings = 0;
@@ -74,7 +74,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private void OnVisit(ITreeNode p)
+        private void OnVisit(ITreeConfigNode p)
         {
             _level++;
             if (_logger != null)
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
                 _isCollectMessages = true;
             UpdateValidation(p);
         }
-        private void OnVisitEnd(ITreeNode p)
+        private void OnVisitEnd(ITreeConfigNode p)
         {
             if (_startNode == p)
                 _isCollectMessages = false;

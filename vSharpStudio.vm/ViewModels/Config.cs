@@ -16,7 +16,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ConfigObjectWithGuidBase<Config, Config.ConfigValidator>, IConfigObject, IMigration, ITreeNode, IComparable<Config>
+    public partial class Config : ConfigObjectWithGuidBase<Config, Config.ConfigValidator>, IConfigObject, IMigration, ITreeConfigNode, IComparable<Config>
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -87,9 +87,9 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        public ITreeNode Parent { get; private set; }
+        public ITreeConfigNode Parent { get; private set; }
 
-        public IEnumerable<ITreeNode> SubNodes
+        public IEnumerable<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }
             set
@@ -98,8 +98,8 @@ namespace vSharpStudio.vm.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        private IEnumerable<ITreeNode> _SubNodes;
-        void RecreateSubNodes() { SubNodes = new ITreeNode[] { this.Constants, this.Enumerators, this.Catalogs }; }
+        private IEnumerable<ITreeConfigNode> _SubNodes;
+        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Constants, this.Enumerators, this.Catalogs }; }
         partial void OnConstantsChanged() { RecreateSubNodes(); }
         partial void OnCatalogsChanged() { RecreateSubNodes(); }
         partial void OnEnumeratorsChanged() { RecreateSubNodes(); }

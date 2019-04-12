@@ -9,7 +9,7 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : ConfigObjectWithGuidBase<Property, Property.PropertyValidator>, IConfigObject, ITreeNode, IComparable<Property>
+    public partial class Property : ConfigObjectWithGuidBase<Property, Property.PropertyValidator>, IConfigObject, ITreeConfigNode, IComparable<Property>
     {
         partial void OnInit()
         {
@@ -134,9 +134,9 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region ITreeNode
-        public ITreeNode Parent { get; internal set; }
-        public IEnumerable<ITreeNode> SubNodes => this._SubNodes;
-        private IEnumerable<ITreeNode> _SubNodes = new ITreeNode[] { };
+        public ITreeConfigNode Parent { get; internal set; }
+        public IEnumerable<ITreeConfigNode> SubNodes => this._SubNodes;
+        private IEnumerable<ITreeConfigNode> _SubNodes = new ITreeConfigNode[] { };
         public bool IsSelected
         {
             get { return this._IsSelected; }

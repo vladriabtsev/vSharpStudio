@@ -28,7 +28,7 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
 <# } #>
 		OnInit();
 	}
-	public <#= message.Name.ToNameCs() #>(ITreeNode parent) : this()
+	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this()
     {
         this.Parent = parent;
     }
@@ -101,6 +101,7 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
         if (t.Name == "guid") continue;
+        if (t.Name == "name") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}
