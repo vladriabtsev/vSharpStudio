@@ -61,7 +61,7 @@ message proto_config {
     // CONFIG OBJECTS
 
 	proto_constants constants = 101;
-	proto_enumerations enumerators = 102;
+	proto_enumerations enumerations = 102;
 	proto_catalogs catalogs = 103;
 }
 message proto_property {

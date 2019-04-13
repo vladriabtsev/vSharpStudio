@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, ITreeConfigNode, IComparable<Catalog>
+    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>
     {
         partial void OnInit()
         {
@@ -18,16 +18,64 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Catalog(string name) : this()
         {
-            this.Name = name;
+            (this as ITreeConfigNode).Name = name;
         }
         public Catalog(string name, List<Property> listProperties) : this()
         {
-            this.Name = name;
+            (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
                 this.Properties.ListProperties.Add(t);
             }
         }
+
+        #region ITreeConfigNode
+
+        protected override bool OnNodeCanMoveUp()
+        {
+            return (this.Parent as Catalogs).ListCatalogs.IndexOf(this) > 0;
+        }
+        protected override void OnNodeMoveUp()
+        {
+            var p = this.Parent as Catalogs;
+            var i = p.ListCatalogs.IndexOf(this);
+            if (i > 0)
+            {
+                this.SortingValue = p.ListCatalogs[i - 1].SortingValue - 1;
+            }
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return (this.Parent as Catalogs).ListCatalogs.IndexOf(this) < ((this.Parent as Catalogs).ListCatalogs.Count - 1);
+        }
+        protected override void OnNodeMoveDown()
+        {
+            var p = this.Parent as Catalogs;
+            var i = p.ListCatalogs.IndexOf(this);
+            if (i < p.ListCatalogs.Count - 1)
+            {
+                this.SortingValue = p.ListCatalogs[i + 1].SortingValue + 1;
+            }
+        }
+        protected override void OnNodeRemove()
+        {
+            (this.Parent as Catalogs).ListCatalogs.Remove(this);
+        }
+        protected override ITreeConfigNode OnNodeAddNew()
+        {
+            var res = new Catalog();
+            (this.Parent as Catalogs).ListCatalogs.Add(res);
+            return res;
+        }
+        protected override ITreeConfigNode OnNodeAddClone()
+        {
+            var res = Catalog.Clone(this.Parent, this, true, true);
+            (this.Parent as Catalogs).ListCatalogs.Add(res);
+            return res;
+        }
+
+        #endregion ITreeConfigNode
+
         public int CompareTo(Catalog other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
         #region ITreeNode
@@ -88,7 +136,6 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeConfigNode Parent { get; internal set; }
         public IEnumerable<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }
@@ -106,7 +153,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public string NodeText { get { return this.Name; } }
         #endregion ITreeNode
     }
 }

@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.Migration
 
         void IVisitorConfig.Visit(Catalog m)
         {
-            var c = _modelBuilder.Entity(m.Name, x =>
+            var c = _modelBuilder.Entity((m as ITreeConfigNode).Name, x =>
             {
                 foreach (var t in m.Properties.ListProperties)
                 {
@@ -69,12 +69,12 @@ namespace vSharpStudio.vm.Migration
                             x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
-                            x.Property(t.ClrType, t.Name);
+                            x.Property(t.ClrType, (t as ITreeConfigNode).Name);
                             break;
                         case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
                             break;
                         default:
-                            x.Property(t.ClrType, t.Name);
+                            x.Property(t.ClrType, (t as ITreeConfigNode).Name);
                             break;
                     }
                 }

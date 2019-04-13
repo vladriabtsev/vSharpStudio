@@ -103,9 +103,9 @@ namespace vSharpStudio.xUnit
         //}
         #endregion Diff
 
-        #region SortingByNameAndValue
+        #region ITreeConfigNode
         [Fact]
-        public void SortingByNameAndValue001_UpdateSortingValueWhenNameIsChanged()
+        public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
             var cfg = new Config();
             var cnst = new Constant(cfg.Constants);
@@ -172,7 +172,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.SortingValue < curr);
         }
         [Fact]
-        public void SortingByNameAndValue002_RestoreSortingValueWhenObjectRestoredFromFile()
+        public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
             var cfg = new Config();
             var cnst = new Constant(cfg.Constants);
@@ -187,7 +187,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg2.Constants.ListConstants[0].SortingValue == cnst.SortingValue);
         }
         [Fact]
-        public void SortingByNameAndValue003_ReSortedWhenSortingValueIsChanged()
+        public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
             var cfg = new Config();
             var cnst = new Constant(cfg.Constants);
@@ -210,6 +210,55 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.Constants.ListConstants[0].Guid == cnst.Guid);
             Assert.True(cfg.Constants.ListConstants[1].Guid == cnst2.Guid);
         }
-        #endregion SortingByNameAndValue
+        public void ITreeConfigNode003_CanLeftRight()
+        {
+            var cfg = new Config();
+
+            ITreeConfigNode cnst = cfg.Catalogs;
+            Assert.True(cnst.NodeCanLeft() == false);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+            var ctlg = new Catalog(cfg.Catalogs);
+            cnst = ctlg;
+            Assert.True(cnst.NodeCanLeft()==true);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+
+            cnst = cfg.Constants;
+            Assert.True(cnst.NodeCanLeft() == false);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+            cnst = new Constant(cfg.Constants);
+            Assert.True(cnst.NodeCanLeft() == true);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+
+            cnst = cfg.Enumerations;
+            Assert.True(cnst.NodeCanLeft() == false);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+            cnst = new Enumeration(cfg.Enumerations);
+            Assert.True(cnst.NodeCanLeft() == true);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+
+            cnst = ctlg.Properties;
+            Assert.True(cnst.NodeCanLeft() == false);
+            Assert.True(cnst.NodeCanRight() == true);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+            cnst = new Property(ctlg.Properties);
+            Assert.True(cnst.NodeCanLeft() == true);
+            Assert.True(cnst.NodeCanRight() == false);
+            Assert.True(cnst.NodeCanMoveUp() == false);
+            Assert.True(cnst.NodeCanMoveDown() == false);
+        }
+        #endregion ITreeConfigNode
     }
 }

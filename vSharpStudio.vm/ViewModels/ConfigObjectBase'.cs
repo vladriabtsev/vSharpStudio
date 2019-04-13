@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>
+    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, ITreeConfigNode
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, ITreeConfigNode
     {
@@ -24,69 +24,6 @@ namespace vSharpStudio.vm.ViewModels
                     p.Parent.Sort(this.GetType());
             }
         }
-        public string Guid
-        {
-            get
-            {
-                if (_Guid == null)
-                {
-                    _Guid = System.Guid.NewGuid().ToString();
-                    NotifyPropertyChanged(); // to recognize object was changed
-                }
-                return _Guid;
-            }
-            protected set
-            {
-                _Guid = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private string _Guid = null;
-        public string Name
-        {
-            set
-            {
-                if (_Name != value)
-                {
-                    _Name = value;
-                    NotifyPropertyChanged();
-                    ITreeConfigNode p = (ITreeConfigNode)this;
-                    p.SortingValue = EncodeNameToUlong(p.Name);
-                }
-            }
-            get { return _Name; }
-        }
-        private string _Name = "";
-        public bool IsSelected
-        {
-            set
-            {
-                if (_IsSelected != value)
-                {
-                    _IsSelected = value;
-                    NotifyPropertyChanged();
-                    OnIsSelectedChanged();
-                }
-            }
-            get { return _IsSelected; }
-        }
-        private bool _IsSelected;
-        public virtual void OnIsSelectedChanged() { }
-        public bool IsExpanded
-        {
-            set
-            {
-                if (_IsExpanded != value)
-                {
-                    _IsExpanded = value;
-                    NotifyPropertyChanged();
-                    OnIsExpandedChanged();
-                }
-            }
-            get { return _IsExpanded; }
-        }
-        private bool _IsExpanded;
-        public virtual void OnIsExpandedChanged() { }
 
         private static int _maxlen = 0;
         protected ulong EncodeNameToUlong(string name)
@@ -127,5 +64,226 @@ namespace vSharpStudio.vm.ViewModels
         protected override void OnCountErrorsChanged() { }
         protected override void OnCountWarningsChanged() { }
         protected override void OnCountInfosChanged() { }
+
+        #region ITreeConfigNode
+
+        public ulong SortingValue
+        {
+            set
+            {
+                if (_SortingValue != value)
+                {
+                    OnSortingValueChanging();
+                    _SortingValue = value;
+                    OnSortingValueChanged();
+                    NotifyPropertyChanged();
+                    ValidateProperty();
+                }
+            }
+            get { return _SortingValue; }
+        }
+        private ulong _SortingValue;
+        partial void OnSortingValueChanging();
+        partial void OnSortingValueChanged();
+
+        public string Guid
+        {
+            get
+            {
+                if (_Guid == null)
+                {
+                    SetNewGuid();
+                    NotifyPropertyChanged(); // to recognize object was changed
+                }
+                return _Guid;
+            }
+            protected set
+            {
+                _Guid = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private string _Guid = null;
+        protected void SetNewGuid()
+        {
+            _Guid = System.Guid.NewGuid().ToString();
+        }
+        public string Name
+        {
+            set
+            {
+                if (_Name != value)
+                {
+                    _Name = value;
+                    NotifyPropertyChanged();
+                    this.SortingValue = EncodeNameToUlong(this.Name);
+                }
+            }
+            get { return _Name; }
+        }
+        private string _Name = "";
+        public string NodeText { get { return this.Name; } }
+        public bool IsSelected
+        {
+            set
+            {
+                if (_IsSelected != value)
+                {
+                    _IsSelected = value;
+                    NotifyPropertyChanged();
+                    OnIsSelectedChanged();
+                }
+            }
+            get { return _IsSelected; }
+        }
+        private bool _IsSelected;
+        public virtual void OnIsSelectedChanged() { }
+        public bool IsExpanded
+        {
+            set
+            {
+                if (_IsExpanded != value)
+                {
+                    _IsExpanded = value;
+                    NotifyPropertyChanged();
+                    OnIsExpandedChanged();
+                }
+            }
+            get { return _IsExpanded; }
+        }
+        private bool _IsExpanded;
+        public virtual void OnIsExpandedChanged() { }
+        public ITreeConfigNode Parent { get; set; }
+        public IEnumerable<ITreeConfigNode> SubNodes => throw new NotImplementedException();
+        public virtual void Sort(Type type)
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanMoveUp()
+        {
+            return OnNodeCanMoveUp();
+        }
+        protected virtual bool OnNodeCanMoveUp()
+        {
+            throw new NotImplementedException();
+        }
+        public void NodeMoveUp()
+        {
+            OnNodeMoveUp();
+        }
+        protected virtual void OnNodeMoveUp()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanMoveDown()
+        {
+            return OnNodeCanMoveDown();
+        }
+        protected virtual bool OnNodeCanMoveDown()
+        {
+            throw new NotImplementedException();
+        }
+        public void NodeMoveDown()
+        {
+            OnNodeMoveDown();
+        }
+        protected virtual void OnNodeMoveDown()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanAdd()
+        {
+            return OnNodeCanAdd();
+        }
+        protected virtual bool OnNodeCanAdd()
+        {
+            return true;
+        }
+        public ITreeConfigNode NodeAddNew()
+        {
+            return OnNodeAddNew();
+        }
+        protected virtual ITreeConfigNode OnNodeAddNew()
+        {
+            throw new NotImplementedException();
+        }
+        public ITreeConfigNode NodeAddClone()
+        {
+            return OnNodeAddClone();
+        }
+        protected virtual ITreeConfigNode OnNodeAddClone()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanRemove()
+        {
+            return OnNodeCanRemove();
+        }
+        protected bool OnNodeCanRemove()
+        {
+            return true;
+        }
+        public void NodeRemove()
+        {
+            OnNodeRemove();
+        }
+        protected virtual void OnNodeRemove()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NodeCanLeft()
+        {
+            throw new NotImplementedException();
+        }
+        public void NodeLeft()
+        {
+            OnNodeCanLeft();
+        }
+        protected virtual bool OnNodeCanLeft()
+        {
+            return true;
+        }
+
+        public bool NodeCanRight()
+        {
+            return OnNodeCanRight();
+        }
+        protected virtual bool OnNodeCanRight()
+        {
+            return true;
+        }
+
+        public void NodeRight()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanUp()
+        {
+            return OnNodeCanUp();
+        }
+        protected virtual bool OnNodeCanUp()
+        {
+            return true;
+        }
+        public void NodeUp()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanDown()
+        {
+            return OnNodeCanDown();
+        }
+        protected virtual bool OnNodeCanDown()
+        {
+            return true;
+        }
+
+        public void NodeDown()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion ITreeConfigNode
     }
 }

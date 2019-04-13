@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-public void Sort(Type type)
+public override void Sort(Type type)
 {
 <#    int isort=0;
       foreach (var field in message.Fields.InDeclarationOrder()) {
@@ -19,7 +19,7 @@ public void Sort(Type type)
     //throw new Exception();
 <#    } #>
 }
-public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
+public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true, bool isNewGuid = false)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
@@ -39,6 +39,8 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
 <#      } 
      } 
      #>
+    if (isNewGuid)
+        vm.SetNewGuid();
     return vm;
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true)

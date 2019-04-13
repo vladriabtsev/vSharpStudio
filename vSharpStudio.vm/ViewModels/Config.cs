@@ -87,9 +87,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        public ITreeConfigNode Parent { get; private set; }
-
-        public IEnumerable<ITreeConfigNode> SubNodes
+        public new IEnumerable<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }
             set
@@ -99,16 +97,15 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private IEnumerable<ITreeConfigNode> _SubNodes;
-        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Constants, this.Enumerators, this.Catalogs }; }
+        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Constants, this.Enumerations, this.Catalogs }; }
         partial void OnConstantsChanged() { RecreateSubNodes(); }
         partial void OnCatalogsChanged() { RecreateSubNodes(); }
-        partial void OnEnumeratorsChanged() { RecreateSubNodes(); }
+        partial void OnEnumerationsChanged() { RecreateSubNodes(); }
 
         int IComparable<Config>.CompareTo(Config other)
         {
             throw new NotImplementedException();
         }
-        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
     }
