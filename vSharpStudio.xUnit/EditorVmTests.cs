@@ -221,7 +221,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanRight() == true);
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
+            Assert.True(cnst.NodeCanAddNew() == false);
             Assert.True(cnst.NodeCanAddNewSubNode() == true);
             var ctlg = new Catalog(cfg.CatalogGroup);
             Assert.True(cfg.SelectedNode == null);
@@ -231,7 +231,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
             Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
+            Assert.True(cnst.NodeCanAddNewSubNode() == false);
 
             #region Properties
 
@@ -241,7 +241,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
             Assert.True(cnst.NodeCanAddNew() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
+            Assert.True(cnst.NodeCanAddNew() == false);
             Assert.True(cnst.NodeCanAddNewSubNode() == true);
             cnst = cnst.NodeAddNewSubNode();
             Assert.True(cfg.SelectedNode != null);
@@ -264,8 +264,8 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.SelectedNode.Guid == cnst.Guid);
             Property cloned = (Property)cnst;
             // test cloned property parameters
-            Assert.True(cloned.DataType.MinValue == 5);
-            Assert.True(cloned.DataType.MaxValue == 6);
+            Assert.True(cloned.DataType.MinValueString == "5");
+            Assert.True(cloned.DataType.MaxValueString == "6");
 
             Assert.True(cnst.NodeCanLeft() == true);
             Assert.True(cnst.NodeCanRight() == false);
@@ -284,7 +284,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanRight() == true);
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
+            Assert.True(cnst.NodeCanAddNew() == false);
             Assert.True(cnst.NodeCanAddNewSubNode() == true);
             cnst = new Constant(cfg.ConstantGroup);
             Assert.True(cnst.NodeCanLeft() == true);
@@ -292,14 +292,14 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
             Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
+            Assert.True(cnst.NodeCanAddNewSubNode() == false);
 
             cnst = cfg.EnumerationGroup;
             Assert.True(cnst.NodeCanLeft() == false);
             Assert.True(cnst.NodeCanRight() == true);
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
+            Assert.True(cnst.NodeCanAddNew() == false);
             Assert.True(cnst.NodeCanAddNewSubNode() == true);
             cnst = new Enumeration(cfg.EnumerationGroup);
             Assert.True(cnst.NodeCanLeft() == true);
@@ -307,7 +307,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
             Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
+            Assert.True(cnst.NodeCanAddNewSubNode() == false);
         }
         #endregion ITreeConfigNode
     }

@@ -101,6 +101,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Catalog();
             this.ListCatalogs.Add(res);
+            (this.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override bool OnNodeCanMoveDown()

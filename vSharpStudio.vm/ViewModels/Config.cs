@@ -17,7 +17,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration, IComparable<Config>
+    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -90,6 +90,8 @@ namespace vSharpStudio.vm.ViewModels
 
         void RecreateSubNodes()
         {
+            if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
+                return;
             SubNodes.Clear();
             SubNodes.Add(this.ConstantGroup);
             SubNodes.Add(this.EnumerationGroup);
@@ -104,16 +106,25 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnConstantGroupChanged() { RecreateSubNodes(); }
         partial void OnCatalogGroupChanged() { RecreateSubNodes(); }
         partial void OnEnumerationGroupChanged() { RecreateSubNodes(); }
-
-        int IComparable<Config>.CompareTo(Config other)
-        {
-            throw new NotImplementedException();
-        }
         protected override bool OnNodeCanLeft()
         {
             return false;
         }
 
         #endregion ITreeNode
+
+        public ITreeConfigNode SelectedNode
+        {
+            set
+            {
+                if (_SelectedNode != value)
+                {
+                    _SelectedNode = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _SelectedNode; }
+        }
+        private ITreeConfigNode _SelectedNode;
     }
 }

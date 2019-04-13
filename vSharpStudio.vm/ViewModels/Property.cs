@@ -173,12 +173,20 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property();
             (this.Parent as Properties).ListProperties.Add(res);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Property.Clone(this.Parent, this, true, true);
             (this.Parent as Properties).ListProperties.Add(res);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = res;
             return res;
         }
 

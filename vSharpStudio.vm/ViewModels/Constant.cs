@@ -67,12 +67,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Constant();
             (this.Parent as Constants).ListConstants.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Constant.Clone(this.Parent, this, true, true);
             (this.Parent as Constants).ListConstants.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
 

@@ -108,12 +108,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Enumeration();
             (this.Parent as Enumerations).ListEnumerations.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Enumeration.Clone(this.Parent, this, true, true);
             (this.Parent as Enumerations).ListEnumerations.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
 

@@ -95,6 +95,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Enumeration();
             this.ListEnumerations.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override bool OnNodeCanMoveDown()

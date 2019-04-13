@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigObjectBase(TValidator validator)
             : base(validator)
         {
+            this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
             this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
         private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

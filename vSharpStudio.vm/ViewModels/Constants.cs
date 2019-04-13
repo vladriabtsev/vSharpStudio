@@ -96,6 +96,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Constant();
             this.ListConstants.Add(res);
+            (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override bool OnNodeCanMoveDown()

@@ -92,6 +92,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property();
             this.ListProperties.Add(res);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = res;
             return res;
         }
         protected override bool OnNodeCanMoveDown()
