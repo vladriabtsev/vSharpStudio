@@ -275,5 +275,19 @@ namespace vSharpStudio.ViewModels
         }
         string _providerName = "";
         #endregion
+
+        public ITreeConfigNode SelectedNode
+        {
+            set
+            {
+                if (_SelectedNode != value)
+                {
+                    _SelectedNode = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _SelectedNode; }
+        }
+        private ITreeConfigNode _SelectedNode;
     }
 }

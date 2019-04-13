@@ -6,11 +6,12 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>, ITreeConfigNode
+    public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>
     {
         partial void OnInit()
         {
             this.Name = "Enumerations";
+            this.SubNodes.AddRange(this.ListEnumerations);
         }
         public void OnInitFromDto()
         {
@@ -73,13 +74,45 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => this.ListEnumerations;
         public override void OnIsExpandedChanged()
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public string NodeText { get { return this.Name + " " + this.ListEnumerations.Count; } }
+        public new string NodeText { get { return this.Name + " " + this.ListEnumerations.Count; } }
+        protected override bool OnNodeCanLeft()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddNew()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddNewSubNode()
+        {
+            return true;
+        }
+        protected override ITreeConfigNode OnNodeAddNewSubNode()
+        {
+            var res = new Enumeration();
+            this.ListEnumerations.Add(res);
+            return res;
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanMoveUp()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddClone()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanRemove()
+        {
+            return false;
+        }
 
         #endregion ITreeNode
     }

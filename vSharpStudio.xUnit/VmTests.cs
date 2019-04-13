@@ -59,11 +59,11 @@ namespace vSharpStudio.xUnit
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
             Catalog vm = new Catalog();
-            vm.Properties.Name = "test1";
+            vm.PropertyGroup.Name = "test1";
             vm.BeginEdit();
-            vm.Properties.Name = "test2";
+            vm.PropertyGroup.Name = "test2";
             vm.CancelEdit();
-            Assert.True(vm.Properties.Name == "test1");
+            Assert.True(vm.PropertyGroup.Name == "test1");
         }
         [Fact]
         public void Editable014CanCancelSecondLevelCollection()
@@ -73,38 +73,38 @@ namespace vSharpStudio.xUnit
             {
                 Name = "test1"
             };
-            vm.Properties.ListProperties.Add(prop);
+            vm.PropertyGroup.ListProperties.Add(prop);
             vm.BeginEdit();
-            vm.Properties.ListProperties[0].Name = "test2";
+            vm.PropertyGroup.ListProperties[0].Name = "test2";
             vm.CancelEdit();
-            Assert.True(vm.Properties.ListProperties[0].Name == "test1");
+            Assert.True(vm.PropertyGroup.ListProperties[0].Name == "test1");
             vm.BeginEdit();
             prop = new Property() { Name = "test3" };
-            vm.Properties.ListProperties.Add(prop);
-            Assert.True(vm.Properties.ListProperties.Count == 2);
+            vm.PropertyGroup.ListProperties.Add(prop);
+            Assert.True(vm.PropertyGroup.ListProperties.Count == 2);
             vm.CancelEdit();
-            Assert.True(vm.Properties.ListProperties.Count == 1);
-            Assert.True(vm.Properties.ListProperties[0].Name == "test1");
+            Assert.True(vm.PropertyGroup.ListProperties.Count == 1);
+            Assert.True(vm.PropertyGroup.ListProperties[0].Name == "test1");
         }
         [Fact]
         public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
             vm.BeginEdit();
-            vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.PropertyGroup.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.CancelEdit();
-            Assert.True(vm.Properties.ListProperties.Count == 0);
-            vm.Properties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            Assert.True(vm.PropertyGroup.ListProperties.Count == 0);
+            vm.PropertyGroup.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.BeginEdit();
-            vm.Properties.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
             vm.CancelEdit();
-            Assert.Single(vm.Properties.ListProperties);
-            Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.PropertyGroup.ListProperties);
+            Assert.True(vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
             vm.BeginEdit();
-            vm.Properties.ListProperties.Clear();
+            vm.PropertyGroup.ListProperties.Clear();
             vm.CancelEdit();
-            Assert.Single(vm.Properties.ListProperties);
-            Assert.True(vm.Properties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.PropertyGroup.ListProperties);
+            Assert.True(vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
         }
         #endregion Editable
 
@@ -147,7 +147,7 @@ namespace vSharpStudio.xUnit
             Catalog.CatalogValidator.Reset();
             var cfg = new ConfigRoot();
             var c = new Catalog();
-            cfg.Catalogs.ListCatalogs.Add(c);
+            cfg.CatalogGroup.ListCatalogs.Add(c);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
@@ -185,9 +185,9 @@ namespace vSharpStudio.xUnit
             Assert.Equal(2, c.CountWarnings);
             Assert.Equal(1, c.CountInfos);
 
-            Assert.Equal(1, cfg.Catalogs.CountErrors);
-            Assert.Equal(2, cfg.Catalogs.CountWarnings);
-            Assert.Equal(1, cfg.Catalogs.CountInfos);
+            Assert.Equal(1, cfg.CatalogGroup.CountErrors);
+            Assert.Equal(2, cfg.CatalogGroup.CountWarnings);
+            Assert.Equal(1, cfg.CatalogGroup.CountInfos);
 
             Assert.Equal(1, cfg.CountErrors);
             Assert.Equal(2, cfg.CountWarnings);

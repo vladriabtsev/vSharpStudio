@@ -9,10 +9,11 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, ITreeConfigNode, IComparable<Property>
+    public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>
     {
         partial void OnInit()
         {
+            this.SubNodes = null;
         }
         public void OnInitFromDto()
         {
@@ -27,7 +28,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
-        public int CompareTo(Property other) { return this.SortingValue.CompareTo(other.SortingValue); }
         public Type ClrType
         {
             get
@@ -134,10 +134,53 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region ITreeNode
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => this._SubNodes;
-        private IEnumerable<ITreeConfigNode> _SubNodes = new ITreeConfigNode[] { };
-        public string NodeText { get { return this.Name; } }
+        //        public string NodeText { get { return this.Name; } }
+        protected override bool OnNodeCanRight()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanMoveUp()
+        {
+            return (this.Parent as Properties).ListProperties.IndexOf(this) > 0;
+        }
+        protected override void OnNodeMoveUp()
+        {
+            var p = this.Parent as Properties;
+            var i = p.ListProperties.IndexOf(this);
+            if (i > 0)
+            {
+                this.SortingValue = p.ListProperties[i - 1].SortingValue - 1;
+            }
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return (this.Parent as Properties).ListProperties.IndexOf(this) < ((this.Parent as Properties).ListProperties.Count - 1);
+        }
+        protected override void OnNodeMoveDown()
+        {
+            var p = this.Parent as Properties;
+            var i = p.ListProperties.IndexOf(this);
+            if (i < p.ListProperties.Count - 1)
+            {
+                this.SortingValue = p.ListProperties[i + 1].SortingValue + 1;
+            }
+        }
+        protected override void OnNodeRemove()
+        {
+            (this.Parent as Properties).ListProperties.Remove(this);
+        }
+        protected override ITreeConfigNode OnNodeAddNew()
+        {
+            var res = new Property();
+            (this.Parent as Properties).ListProperties.Add(res);
+            return res;
+        }
+        protected override ITreeConfigNode OnNodeAddClone()
+        {
+            var res = Property.Clone(this.Parent, this, true, true);
+            (this.Parent as Properties).ListProperties.Add(res);
+            return res;
+        }
 
         #endregion ITreeNode
     }

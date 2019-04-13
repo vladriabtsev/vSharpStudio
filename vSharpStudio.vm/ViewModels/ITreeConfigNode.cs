@@ -15,15 +15,18 @@ namespace vSharpStudio.vm.ViewModels
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         ITreeConfigNode Parent { get; }
-        IEnumerable<ITreeConfigNode> SubNodes { get; }
+        SortedObservableCollection<ITreeConfigNode> SubNodes { get; }
         void Sort(Type type);
         bool NodeCanMoveUp();
         void NodeMoveUp();
         bool NodeCanMoveDown();
         void NodeMoveDown();
-        bool NodeCanAdd();
+        bool NodeCanAddNew();
         ITreeConfigNode NodeAddNew();
+        bool NodeCanAddNewSubNode();
+        ITreeConfigNode NodeAddNewSubNode();
         // Clone selected. Name is same + suffix 'New'
+        bool NodeCanAddClone();
         ITreeConfigNode NodeAddClone();
         bool NodeCanRemove();
         void NodeRemove();

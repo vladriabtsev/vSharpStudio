@@ -60,9 +60,9 @@ message proto_config {
 
     // CONFIG OBJECTS
 
-	proto_constants constants = 101;
-	proto_enumerations enumerations = 102;
-	proto_catalogs catalogs = 103;
+	proto_constants constant_group = 101;
+	proto_enumerations enumeration_group = 102;
+	proto_catalogs catalog_group = 103;
 }
 message proto_property {
 	string guid = 1;
@@ -148,7 +148,7 @@ message proto_catalog {
     string hi_lo_sequence_name = 7; // MsSql
     string hi_lo_schema = 8; // MsSql
 
-	proto_properties properties = 15;
+	proto_properties property_group = 15;
 }
 message proto_catalogs {
 	string guid = 1;

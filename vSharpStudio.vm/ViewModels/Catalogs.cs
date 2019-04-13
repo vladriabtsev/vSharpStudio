@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>, ITreeConfigNode
+    public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>
     {
         partial void OnInit()
         {
@@ -73,14 +73,52 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => this.ListCatalogs;
+        public new IEnumerable<ITreeConfigNode> SubNodes => this.ListCatalogs;
         public override void OnIsExpandedChanged()
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
-
+        //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
+        protected override bool OnNodeCanLeft()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddNew()
+        {
+            return false;
+        }
+        //protected override ITreeConfigNode OnNodeAddNew()
+        //{
+        //    var res = new Catalogs();
+        //    (this.Parent as Config).ListCatalogsGroups.Add(res);
+        //    return res;
+        //}
+        protected override bool OnNodeCanAddNewSubNode()
+        {
+            return true;
+        }
+        protected override ITreeConfigNode OnNodeAddNewSubNode()
+        {
+            var res = new Catalog();
+            this.ListCatalogs.Add(res);
+            return res;
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanMoveUp()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddClone()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanRemove()
+        {
+            return false;
+        }
         #endregion ITreeNode
     }
 }

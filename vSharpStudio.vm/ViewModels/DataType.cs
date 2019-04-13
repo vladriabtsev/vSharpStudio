@@ -9,8 +9,12 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, ITreeConfigNode
+    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>
     {
+        partial void OnInit()
+        {
+            this.SubNodes = null;
+        }
         public void OnInitFromDto()
         {
         }
@@ -107,33 +111,7 @@ namespace vSharpStudio.vm.ViewModels
         private BigInteger _MaxValue;
 
         #region ITreeNode
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes
-        {
-            get { return this._SubNodes; }
-            set
-            {
-                this._SubNodes = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private IEnumerable<ITreeConfigNode> _SubNodes;
-        public string NodeText { get { return this.Name; } }
-
-        string ITreeConfigNode.Guid => throw new NotImplementedException();
-
-        string ITreeConfigNode.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        ITreeConfigNode ITreeConfigNode.Parent => throw new NotImplementedException();
-
-        string ITreeConfigNode.NodeText => throw new NotImplementedException();
-
-        bool ITreeConfigNode.IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        bool ITreeConfigNode.IsExpanded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        IEnumerable<ITreeConfigNode> ITreeConfigNode.SubNodes => throw new NotImplementedException();
-
-        ulong ISortingValue.SortingValue { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+//        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
     }

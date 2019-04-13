@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, ITreeConfigNode
+    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectBase<T, TValidator>, ITreeConfigNode
+      where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode
     {
         public ConfigObjectBase(TValidator validator)
             : base(validator)
@@ -30,7 +31,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
             if (_maxlen == 0)
-                _maxlen = (int)Math.Log(ulong.MaxValue, step);
+            {
+                _maxlen = (int)Math.Log(ulong.MaxValue, step) - 1;
+                ulong val = 1;
+                for (int i = 0; i < _maxlen; i++)
+                {
+                    val *= step;
+                }
+                ViewModelBindable.SetSortingWeightBase(val);
+                ViewModelBindable.SetMaxSortingWeight(ulong.MaxValue - val - 1);
+            }
             int len = Math.Min(_maxlen, name.Length);
             ulong res = 0;
             for (int i = 0; i < len; i++)
@@ -65,8 +75,11 @@ namespace vSharpStudio.vm.ViewModels
         protected override void OnCountWarningsChanged() { }
         protected override void OnCountInfosChanged() { }
 
+        public int CompareTo(T other) { return this.SortingValue.CompareTo(other.SortingValue); }
+
         #region ITreeConfigNode
 
+        public ulong SortingWeight { get; set; }
         public ulong SortingValue
         {
             set
@@ -116,7 +129,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _Name = value;
                     NotifyPropertyChanged();
-                    this.SortingValue = EncodeNameToUlong(this.Name);
+                    this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
+;
                 }
             }
             get { return _Name; }
@@ -154,7 +168,16 @@ namespace vSharpStudio.vm.ViewModels
         private bool _IsExpanded;
         public virtual void OnIsExpandedChanged() { }
         public ITreeConfigNode Parent { get; set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => throw new NotImplementedException();
+        public SortedObservableCollection<ITreeConfigNode> SubNodes
+        {
+            get { return this._SubNodes; }
+            set
+            {
+                this._SubNodes = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private SortedObservableCollection<ITreeConfigNode> _SubNodes;
         public virtual void Sort(Type type)
         {
             throw new NotImplementedException();
@@ -165,7 +188,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual bool OnNodeCanMoveUp()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
         public void NodeMoveUp()
         {
@@ -173,7 +196,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual void OnNodeMoveUp()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
         public bool NodeCanMoveDown()
         {
@@ -181,7 +204,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual bool OnNodeCanMoveDown()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
         public void NodeMoveDown()
         {
@@ -189,13 +212,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual void OnNodeMoveDown()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
-        public bool NodeCanAdd()
+        public bool NodeCanAddNew()
         {
-            return OnNodeCanAdd();
+            return OnNodeCanAddNew();
         }
-        protected virtual bool OnNodeCanAdd()
+        protected virtual bool OnNodeCanAddNew()
         {
             return true;
         }
@@ -205,7 +228,31 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual ITreeConfigNode OnNodeAddNew()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
+        }
+        public bool NodeCanAddNewSubNode()
+        {
+            return OnNodeCanAddNewSubNode();
+        }
+        protected virtual bool OnNodeCanAddNewSubNode()
+        {
+            return false;
+        }
+        public ITreeConfigNode NodeAddNewSubNode()
+        {
+            return OnNodeAddNewSubNode();
+        }
+        protected virtual ITreeConfigNode OnNodeAddNewSubNode()
+        {
+            throw new NotImplementedException("Has to be overriden");
+        }
+        public bool NodeCanAddClone()
+        {
+            return OnNodeCanAddClone();
+        }
+        protected virtual bool OnNodeCanAddClone()
+        {
+            return true;
         }
         public ITreeConfigNode NodeAddClone()
         {
@@ -213,13 +260,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual ITreeConfigNode OnNodeAddClone()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
         public bool NodeCanRemove()
         {
             return OnNodeCanRemove();
         }
-        protected bool OnNodeCanRemove()
+        protected virtual bool OnNodeCanRemove()
         {
             return true;
         }
@@ -229,22 +276,25 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual void OnNodeRemove()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Has to be overriden");
         }
 
         public bool NodeCanLeft()
         {
-            throw new NotImplementedException();
-        }
-        public void NodeLeft()
-        {
-            OnNodeCanLeft();
+            return OnNodeCanLeft();
         }
         protected virtual bool OnNodeCanLeft()
         {
             return true;
         }
-
+        public void NodeLeft()
+        {
+            OnNodeLeft();
+        }
+        protected virtual void OnNodeLeft()
+        {
+            throw new NotImplementedException();
+        }
         public bool NodeCanRight()
         {
             return OnNodeCanRight();

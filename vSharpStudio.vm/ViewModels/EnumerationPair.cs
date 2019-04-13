@@ -6,19 +6,22 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, ITreeConfigNode, IComparable<EnumerationPair>
+    public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>
     {
+        partial void OnInit()
+        {
+            this.SubNodes = null;
+        }
         public void OnInitFromDto()
         {
         }
-        public int CompareTo(EnumerationPair other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
         #region ITreeNode
-        public ITreeConfigNode Parent { get; internal set; }
-
-        public IEnumerable<ITreeConfigNode> SubNodes => this._SubNodes;
-        private IEnumerable<ITreeConfigNode> _SubNodes = new ITreeConfigNode[] { };
-        public string NodeText { get { return this.Name; } }
+        //        public string NodeText { get { return this.Name; } }
+        protected override bool OnNodeCanRight()
+        {
+            return false;
+        }
 
         #endregion ITreeNode
     }

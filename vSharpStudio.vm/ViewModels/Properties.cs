@@ -7,11 +7,12 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, ITreeConfigNode
+    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, IComparable<Properties>
     {
         partial void OnInit()
         {
             this.Name = "Properties";
+            this.SubNodes.AddRange(this.ListProperties);
         }
         public void OnInitFromDto()
         {
@@ -74,13 +75,41 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => this.ListProperties;
         public override void OnIsExpandedChanged()
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
+        public new string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
+        protected override bool OnNodeCanAddNew()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddNewSubNode()
+        {
+            return true;
+        }
+        protected override ITreeConfigNode OnNodeAddNewSubNode()
+        {
+            var res = new Property();
+            this.ListProperties.Add(res);
+            return res;
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanMoveUp()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanAddClone()
+        {
+            return false;
+        }
+        protected override bool OnNodeCanRemove()
+        {
+            return false;
+        }
 
         #endregion ITreeNode
     }

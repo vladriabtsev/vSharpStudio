@@ -43,6 +43,7 @@ namespace ViewModelBase
         public string SeverityWeightName { get { return Enum.GetName(typeof(SeverityWeight), (int)SeverityWeight); } }
         public string Message { get; private set; }
         public ulong SortingValue { get; set; }
+        public ulong SortingWeight { get; set; }
         /// <summary>
         /// Raise severity level for message. SortingValue will be increased by shifting to left. 
         /// </summary>

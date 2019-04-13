@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -16,7 +17,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration, ITreeConfigNode, IComparable<Config>
+    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration, IComparable<Config>
     {
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -87,24 +88,30 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        public new IEnumerable<ITreeConfigNode> SubNodes
+        void RecreateSubNodes()
         {
-            get { return this._SubNodes; }
-            set
-            {
-                this._SubNodes = value;
-                NotifyPropertyChanged();
-            }
+            SubNodes.Clear();
+            SubNodes.Add(this.ConstantGroup);
+            SubNodes.Add(this.EnumerationGroup);
+            SubNodes.Add(this.CatalogGroup);
+            //foreach (var t in this.ListConstantsGroups)
+            //    SubNodes.Add(t, 1);
+            //foreach (var t in this.ListEnumerationsGroups)
+            //    SubNodes.Add(t, 2);
+            //foreach (var t in this.ListCatalogsGroups)
+            //    SubNodes.Add(t, 3);
         }
-        private IEnumerable<ITreeConfigNode> _SubNodes;
-        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Constants, this.Enumerations, this.Catalogs }; }
-        partial void OnConstantsChanged() { RecreateSubNodes(); }
-        partial void OnCatalogsChanged() { RecreateSubNodes(); }
-        partial void OnEnumerationsChanged() { RecreateSubNodes(); }
+        partial void OnConstantGroupChanged() { RecreateSubNodes(); }
+        partial void OnCatalogGroupChanged() { RecreateSubNodes(); }
+        partial void OnEnumerationGroupChanged() { RecreateSubNodes(); }
 
         int IComparable<Config>.CompareTo(Config other)
         {
             throw new NotImplementedException();
+        }
+        protected override bool OnNodeCanLeft()
+        {
+            return false;
         }
 
         #endregion ITreeNode

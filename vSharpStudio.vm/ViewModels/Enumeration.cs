@@ -6,15 +6,15 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, ITreeConfigNode, IComparable<Enumeration>
+    public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>
     {
         partial void OnInit()
         {
+            this.SubNodes.AddRange(this.ListValues);
         }
         public void OnInitFromDto()
         {
         }
-        public int CompareTo(Enumeration other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
         #region ITreeNode
         #region status icon
@@ -73,9 +73,49 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public ITreeConfigNode Parent { get; internal set; }
-        public IEnumerable<ITreeConfigNode> SubNodes => this.ListValues;
-        public string NodeText { get { return this.Name; } }
+        //public string NodeText { get { return this.Name; } }
+        protected override bool OnNodeCanMoveUp()
+        {
+            return (this.Parent as Enumerations).ListEnumerations.IndexOf(this) > 0;
+        }
+        protected override void OnNodeMoveUp()
+        {
+            var p = this.Parent as Enumerations;
+            var i = p.ListEnumerations.IndexOf(this);
+            if (i > 0)
+            {
+                this.SortingValue = p.ListEnumerations[i - 1].SortingValue - 1;
+            }
+        }
+        protected override bool OnNodeCanMoveDown()
+        {
+            return (this.Parent as Enumerations).ListEnumerations.IndexOf(this) < ((this.Parent as Enumerations).ListEnumerations.Count - 1);
+        }
+        protected override void OnNodeMoveDown()
+        {
+            var p = this.Parent as Enumerations;
+            var i = p.ListEnumerations.IndexOf(this);
+            if (i < p.ListEnumerations.Count - 1)
+            {
+                this.SortingValue = p.ListEnumerations[i + 1].SortingValue + 1;
+            }
+        }
+        protected override void OnNodeRemove()
+        {
+            (this.Parent as Enumerations).ListEnumerations.Remove(this);
+        }
+        protected override ITreeConfigNode OnNodeAddNew()
+        {
+            var res = new Enumeration();
+            (this.Parent as Enumerations).ListEnumerations.Add(res);
+            return res;
+        }
+        protected override ITreeConfigNode OnNodeAddClone()
+        {
+            var res = Enumeration.Clone(this.Parent, this, true, true);
+            (this.Parent as Enumerations).ListEnumerations.Add(res);
+            return res;
+        }
 
         #endregion ITreeNode
     }

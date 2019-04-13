@@ -7,14 +7,14 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>
+    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>
     {
         partial void OnInit()
         {
         }
         public void OnInitFromDto()
         {
-            OnPropertiesChanged();
+            OnPropertyGroupChanged();
         }
         public Catalog(string name) : this()
         {
@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
-                this.Properties.ListProperties.Add(t);
+                this.PropertyGroup.ListProperties.Add(t);
             }
         }
 
@@ -75,8 +75,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion ITreeConfigNode
-
-        public int CompareTo(Catalog other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
         #region ITreeNode
 
@@ -136,18 +134,12 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public IEnumerable<ITreeConfigNode> SubNodes
+        void RecreateSubNodes()
         {
-            get { return this._SubNodes; }
-            set
-            {
-                this._SubNodes = value;
-                NotifyPropertyChanged();
-            }
+            SubNodes.Clear();
+            SubNodes.Add(this.PropertyGroup);
         }
-        private IEnumerable<ITreeConfigNode> _SubNodes;
-        void RecreateSubNodes() { SubNodes = new ITreeConfigNode[] { this.Properties }; }
-        partial void OnPropertiesChanged() { RecreateSubNodes(); }
+        partial void OnPropertyGroupChanged() { RecreateSubNodes(); }
 
         public override void OnIsExpandedChanged()
         {

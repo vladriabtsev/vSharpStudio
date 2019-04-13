@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/13/2019 01:10:44
+// Auto generated on UTC 04/13/2019 18:07:03
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -21,9 +21,9 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.Constants = new Constants(this);
-			this.Enumerations = new Enumerations(this);
-			this.Catalogs = new Catalogs(this);
+			this.ConstantGroup = new Constants(this);
+			this.EnumerationGroup = new Enumerations(this);
+			this.CatalogGroup = new Catalogs(this);
 			OnInit();
 		}
 		public Config(ITreeConfigNode parent) : this()
@@ -61,11 +61,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Constants = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.Constants, isDeep);
+		        vm.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.ConstantGroup, isDeep);
 		    if (isDeep)
-		        vm.Enumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.Enumerations, isDeep);
+		        vm.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.EnumerationGroup, isDeep);
 		    if (isDeep)
-		        vm.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.Catalogs, isDeep);
+		        vm.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.CatalogGroup, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -93,11 +93,11 @@ namespace vSharpStudio.vm.ViewModels
 		    to.HiLoSequenceName = from.HiLoSequenceName;
 		    to.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        Constants.Update(to.Constants, from.Constants, isDeep);
+		        Constants.Update(to.ConstantGroup, from.ConstantGroup, isDeep);
 		    if (isDeep)
-		        Enumerations.Update(to.Enumerations, from.Enumerations, isDeep);
+		        Enumerations.Update(to.EnumerationGroup, from.EnumerationGroup, isDeep);
 		    if (isDeep)
-		        Catalogs.Update(to.Catalogs, from.Catalogs, isDeep);
+		        Catalogs.Update(to.CatalogGroup, from.CatalogGroup, isDeep);
 		}
 		#region IEditable
 		public override Config Backup()
@@ -140,9 +140,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.Constants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.Constants);
-		    vm.Enumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.Enumerations);
-		    vm.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.Catalogs);
+		    vm.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.ConstantGroup);
+		    vm.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.EnumerationGroup);
+		    vm.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.CatalogGroup);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -170,9 +170,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo = vm.IsSequenceHiLo;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.Constants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.Constants);
-		    m.Enumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.Enumerations);
-		    m.Catalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.Catalogs);
+		    m.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.ConstantGroup);
+		    m.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.EnumerationGroup);
+		    m.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.CatalogGroup);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -180,9 +180,9 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Constants.Accept(visitor);
-			this.Enumerations.Accept(visitor);
-			this.Catalogs.Accept(visitor);
+			this.ConstantGroup.Accept(visitor);
+			this.EnumerationGroup.Accept(visitor);
+			this.CatalogGroup.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -511,62 +511,62 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
-		public Constants Constants
+		public Constants ConstantGroup
 		{ 
 			set
 			{
-				if (_Constants != value)
+				if (_ConstantGroup != value)
 				{
-					OnConstantsChanging();
-		            _Constants = value;
-					OnConstantsChanged();
+					OnConstantGroupChanging();
+		            _ConstantGroup = value;
+					OnConstantGroupChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Constants; }
+			get { return _ConstantGroup; }
 		}
-		private Constants _Constants;
-		partial void OnConstantsChanging();
-		partial void OnConstantsChanged();
+		private Constants _ConstantGroup;
+		partial void OnConstantGroupChanging();
+		partial void OnConstantGroupChanged();
 		
-		public Enumerations Enumerations
+		public Enumerations EnumerationGroup
 		{ 
 			set
 			{
-				if (_Enumerations != value)
+				if (_EnumerationGroup != value)
 				{
-					OnEnumerationsChanging();
-		            _Enumerations = value;
-					OnEnumerationsChanged();
+					OnEnumerationGroupChanging();
+		            _EnumerationGroup = value;
+					OnEnumerationGroupChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Enumerations; }
+			get { return _EnumerationGroup; }
 		}
-		private Enumerations _Enumerations;
-		partial void OnEnumerationsChanging();
-		partial void OnEnumerationsChanged();
+		private Enumerations _EnumerationGroup;
+		partial void OnEnumerationGroupChanging();
+		partial void OnEnumerationGroupChanged();
 		
-		public Catalogs Catalogs
+		public Catalogs CatalogGroup
 		{ 
 			set
 			{
-				if (_Catalogs != value)
+				if (_CatalogGroup != value)
 				{
-					OnCatalogsChanging();
-		            _Catalogs = value;
-					OnCatalogsChanged();
+					OnCatalogGroupChanging();
+		            _CatalogGroup = value;
+					OnCatalogGroupChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Catalogs; }
+			get { return _CatalogGroup; }
 		}
-		private Catalogs _Catalogs;
-		partial void OnCatalogsChanging();
-		partial void OnCatalogsChanged();
+		private Catalogs _CatalogGroup;
+		partial void OnCatalogGroupChanging();
+		partial void OnCatalogGroupChanged();
 		#endregion Properties
 	}
 	
@@ -1949,7 +1949,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
 		{
-			this.Properties = new Properties(this);
+			this.PropertyGroup = new Properties(this);
 			OnInit();
 		}
 		public Catalog(ITreeConfigNode parent) : this()
@@ -1975,7 +1975,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.Properties = vSharpStudio.vm.ViewModels.Properties.Clone(vm, from.Properties, isDeep);
+		        vm.PropertyGroup = vSharpStudio.vm.ViewModels.Properties.Clone(vm, from.PropertyGroup, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -1991,7 +1991,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.HiLoSequenceName = from.HiLoSequenceName;
 		    to.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        Properties.Update(to.Properties, from.Properties, isDeep);
+		        Properties.Update(to.PropertyGroup, from.PropertyGroup, isDeep);
 		}
 		#region IEditable
 		public override Catalog Backup()
@@ -2022,7 +2022,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.Properties = vSharpStudio.vm.ViewModels.Properties.ConvertToVM(m.Properties);
+		    vm.PropertyGroup = vSharpStudio.vm.ViewModels.Properties.ConvertToVM(m.PropertyGroup);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2041,7 +2041,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.Properties = vSharpStudio.vm.ViewModels.Properties.ConvertToProto(vm.Properties);
+		    m.PropertyGroup = vSharpStudio.vm.ViewModels.Properties.ConvertToProto(vm.PropertyGroup);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -2049,7 +2049,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Properties.Accept(visitor);
+			this.PropertyGroup.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2150,24 +2150,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
-		public Properties Properties
+		public Properties PropertyGroup
 		{ 
 			set
 			{
-				if (_Properties != value)
+				if (_PropertyGroup != value)
 				{
-					OnPropertiesChanging();
-		            _Properties = value;
-					OnPropertiesChanged();
+					OnPropertyGroupChanging();
+		            _PropertyGroup = value;
+					OnPropertyGroupChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Properties; }
+			get { return _PropertyGroup; }
 		}
-		private Properties _Properties;
-		partial void OnPropertiesChanging();
-		partial void OnPropertiesChanged();
+		private Properties _PropertyGroup;
+		partial void OnPropertyGroupChanging();
+		partial void OnPropertyGroupChanged();
 		#endregion Properties
 	}
 	

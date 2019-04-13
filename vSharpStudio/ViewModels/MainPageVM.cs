@@ -22,7 +22,7 @@ namespace vSharpStudio.ViewModels
             }
             Catalog c = new Catalog();
             this.Model = new ConfigRoot();
-            this.Model.Catalogs.ListCatalogs.Add(c);
+            this.Model.CatalogGroup.ListCatalogs.Add(c);
         }
 
         private ITreeConfigNode SelectedNode;

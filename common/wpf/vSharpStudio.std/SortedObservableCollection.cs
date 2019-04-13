@@ -10,15 +10,32 @@ namespace ViewModelBase
     public interface ISortingValue
     {
         ulong SortingValue { get; set; }
+        ulong SortingWeight { get; set; }
     }
     public enum SortDirection { Ascending, Descending }
     public class SortedObservableCollection<T> : ObservableCollection<T>
-      where T : ISortingValue, IComparable<T>
+      where T : ISortingValue
     {
         private object _lock = new object();
         public SortDirection SortDirection = SortDirection.Ascending;
+
         public new void Add(T item)
         {
+            this.Add(item, 0);
+        }
+        public void Add(T item, ulong sortingWeight)
+        {
+            if (sortingWeight > 0)
+            {
+                if (ViewModelBindable.SortingWeightBase == 0)
+                    throw new ArgumentException("ViewModelBindable.SortingWeightBase is not set up. Can't use sortingWeight > 0");
+                if (ViewModelBindable.MaxSortingWeight == 0)
+                    throw new ArgumentException("ViewModelBindable.MaxSortingWeight is not set up. Can't use sortingWeight > 0");
+                if (sortingWeight > ViewModelBindable.MaxSortingWeight)
+                    throw new ArgumentException("sortingWeight is too big. Expected less then " + ViewModelBindable.MaxSortingWeight);
+                item.SortingWeight = ViewModelBindable.MaxSortingWeight + sortingWeight;
+                item.SortingValue = item.SortingValue + item.SortingWeight;
+            }
             lock (_lock)
             {
                 base.Add(item);
@@ -34,13 +51,13 @@ namespace ViewModelBase
                 return res;
             }
         }
-        public void AddRange(IEnumerable<T> collection)
+        public void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
             lock (_lock)
             {
                 foreach (T itm in collection)
                 {
-                    this.Add(itm);
+                    this.Add(itm, sortingWeight);
                 }
                 InternalSort();
             }
