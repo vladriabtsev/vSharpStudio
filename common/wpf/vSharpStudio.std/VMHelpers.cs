@@ -17,6 +17,8 @@ namespace ViewModelBase
 		{
 			if (propertyChanged != null)
 			{
+                if (dispatcher == null)
+                    return;
 				PropertyChangedEventArgs arg = new PropertyChangedEventArgs(propertyName);
 				// Fire the event on the UI thread
 				if (dispatcher.CheckAccess())

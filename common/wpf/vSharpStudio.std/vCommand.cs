@@ -97,7 +97,8 @@ namespace ViewModelBase
         private event EventHandler CanExecuteChangedInternal;
         public void RaiseCanExecuteChanged()
         {
-            CanExecuteChangedInternal.Raise(this);
+            if (this.Dispatcher != null)
+                CanExecuteChangedInternal.Raise(this);
         }
     }
 }

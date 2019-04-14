@@ -61,7 +61,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandAddNew ?? (_CommandAddNew = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeAddNew(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNew(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNew(); }));
             }
         }
         private vCommand _CommandAddNew;
@@ -71,7 +71,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeAddNewSubNode(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
         private vCommand _CommandAddNewChild;
@@ -81,7 +81,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandAddClone ?? (_CommandAddClone = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeAddClone(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddClone(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddClone(); }));
             }
         }
         private vCommand _CommandAddClone;
@@ -91,7 +91,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandMoveDown ?? (_CommandMoveDown = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeMoveDown(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveDown(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveDown(); }));
             }
         }
         private vCommand _CommandMoveDown;
@@ -101,7 +101,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandMoveUp ?? (_CommandMoveUp = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeMoveUp(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveUp(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveUp(); }));
             }
         }
         private vCommand _CommandMoveUp;
@@ -111,7 +111,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandDelete ?? (_CommandDelete = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeRemove(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRemove(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRemove(); }));
             }
         }
         private vCommand _CommandDelete;
@@ -121,7 +121,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandSelectionLeft ?? (_CommandSelectionLeft = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeLeft(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanLeft(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanLeft(); }));
             }
         }
         private vCommand _CommandSelectionLeft;
@@ -131,7 +131,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandSelectionRight ?? (_CommandSelectionRight = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeRight(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRight(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRight(); }));
             }
         }
         private vCommand _CommandSelectionRight;
@@ -141,7 +141,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandSelectionDown ?? (_CommandSelectionDown = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeDown(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanDown(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanDown(); }));
             }
         }
         private vCommand _CommandSelectionDown;
@@ -151,7 +151,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandSelectionUp ?? (_CommandSelectionUp = vCommand.Create(
                 (o) => { this.Model.SelectedNode.NodeUp(); },
-                (o) => { return this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanUp(); }));
+                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanUp(); }));
             }
         }
         private vCommand _CommandSelectionUp;
