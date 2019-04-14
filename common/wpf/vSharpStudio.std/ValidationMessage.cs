@@ -39,8 +39,43 @@ namespace ViewModelBase
         public string PropertyName { get; private set; }
         public FluentValidation.Severity Severity { get; private set; }
         public string SeverityName { get { return Enum.GetName(typeof(FluentValidation.Severity), (int)Severity); } }
+        public string IconName
+        {
+            get
+            {
+                switch (Severity)
+                {
+                    case Severity.Error:
+                        return "iconStatusCriticalError";
+                    case Severity.Warning:
+                        return "iconStatusWarning";
+                    case Severity.Info:
+                        return "iconStatusInformation";
+                }
+                return "iconStatusInvalid";
+            }
+        }
         public SeverityWeight SeverityWeight { get; private set; }
-        public string SeverityWeightName { get { return Enum.GetName(typeof(SeverityWeight), (int)SeverityWeight); } }
+        public string SeverityWeightName
+        {
+            get
+            {
+                switch(SeverityWeight)
+                {
+                    case SeverityWeight.VeryHigh:
+                        return "!!";
+                    case SeverityWeight.High:
+                        return "!";
+                    case SeverityWeight.Normal:
+                        return "";
+                    case SeverityWeight.Low:
+                        return "?";
+                    case SeverityWeight.VeryLow:
+                        return "??";
+                }
+                return "";
+            }
+        }
         public string Message { get; private set; }
         public ulong SortingValue { get; set; }
         public ulong SortingWeight { get; set; }

@@ -53,7 +53,7 @@ namespace ViewModelBase
         }
         public bool CanExecute(object parameter)
         {
-            if (this.Dispatcher == null) // to made visible all controls
+            if (this.Dispatcher == null) // to made visible all controls binded to visibility
                 return true;
             if (_isexecuted)
                 return false;

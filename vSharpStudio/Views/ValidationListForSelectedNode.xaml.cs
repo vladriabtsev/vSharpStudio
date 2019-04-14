@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using vSharpStudio.ViewModels;
 
 namespace vSharpStudio.Views
 {
@@ -20,9 +21,11 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class ValidationListForSelectedNode : UserControl
     {
+        MainPageVM vm = null;
         public ValidationListForSelectedNode()
         {
             InitializeComponent();
+            vm = (MainPageVM)this.DataContext;
         }
     }
 }
