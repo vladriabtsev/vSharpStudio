@@ -15,6 +15,18 @@
         <Converters:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>
         <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Insert" Modifiers="" Command="{Binding CommandAddNew}"/>
+        <KeyBinding Key="Insert" Modifiers="" Command="{Binding CommandAddNewChild}"/>
+        <KeyBinding Key="Insert" Modifiers="Ctrl" Command="{Binding CommandAddClone}"/>
+        <KeyBinding Key="Down" Modifiers="Ctrl" Command="{Binding CommandMoveDown}"/>
+        <KeyBinding Key="Up" Modifiers="Ctrl" Command="{Binding CommandMoveUp}"/>
+        <KeyBinding Key="Delete" Modifiers="Ctrl" Command="{Binding CommandDelete}"/>
+        <KeyBinding Key="Left" Modifiers="Alt" Command="{Binding CommandSelectionLeft}"/>
+        <KeyBinding Key="Right" Modifiers="Alt" Command="{Binding CommandSelectionRight}"/>
+        <KeyBinding Key="Down" Modifiers="Alt" Command="{Binding CommandSelectionDown}"/>
+        <KeyBinding Key="Up" Modifiers="Alt" Command="{Binding CommandSelectionUp}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
