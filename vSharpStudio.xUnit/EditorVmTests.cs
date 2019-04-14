@@ -2,6 +2,7 @@
 using vSharpStudio.vm.ViewModels;
 using Xunit;
 using ViewModelBase;
+using System.Diagnostics;
 
 namespace vSharpStudio.xUnit
 {
@@ -11,6 +12,47 @@ namespace vSharpStudio.xUnit
         {
             ViewModelBindable.isUnitTests = true;
         }
+        #region SortedCollection
+        public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
+        [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
+        public class TestSortable : ConfigObjectBase<TestSortable, TestValidator>
+        {
+            public TestSortable() : base(TestValidator.Validator) { }
+        }
+        [Fact]
+        public void SortedCollection001CanSort()
+        {
+            var sc = new SortedObservableCollection<TestSortable>();
+            TestSortable t2 = new TestSortable();
+            t2.Name = "t2";
+            sc.Add(t2);
+            TestSortable t1 = new TestSortable();
+            t1.Name = "t1";
+            sc.Add(t1);
+            TestSortable t3 = new TestSortable();
+            t3.Name = "t3";
+            sc.Add(t3);
+
+            TestSortable t31 = new TestSortable();
+            t31.Name = "t3";
+            sc.Add(t31, 1);
+            TestSortable t22 = new TestSortable();
+            t22.Name = "t2";
+            sc.Add(t22, 2);
+
+            Assert.True(sc[0].Guid == t1.Guid);
+            Assert.True(sc[1].Guid == t2.Guid);
+            Assert.True(sc[2].Guid == t3.Guid);
+            Assert.True(sc[3].Guid == t31.Guid);
+            Assert.True(sc[4].Guid == t22.Guid);
+
+            Assert.True(sc[0].Name == t1.Name);
+            Assert.True(sc[1].Name == t2.Name);
+            Assert.True(sc[2].Name == t3.Name);
+            Assert.True(sc[3].Name == t31.Name);
+            Assert.True(sc[4].Name == t22.Name);
+        }
+        #endregion SortedCollection
         #region Config
         [Fact]
         public void Config001GuidInit()

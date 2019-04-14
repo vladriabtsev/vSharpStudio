@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
     public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>
     {
         partial void OnInit()

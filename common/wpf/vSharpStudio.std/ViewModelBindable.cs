@@ -66,11 +66,8 @@ namespace ViewModelBase
     public class ViewModelBindable : INotifyPropertyChanged
     {
         public static bool isUnitTests;
-        public static ulong MaxSortingWeight { get; private set; }
-        public static void SetMaxSortingWeight(ulong val) { MaxSortingWeight = val; }
-        public static ulong SortingWeightBase { get; private set; }
-        public static void SetSortingWeightBase(ulong val) { MaxSortingWeight = val; }
-
+        public static ushort MaxSortingWeight = 16;
+        public static ulong SortingWeightBase = ulong.MaxValue - MaxSortingWeight;
         public ViewModelBindable()
         {
             if (ViewModelBindable._AppDispatcher == null && isUnitTests)

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Group:{Name,nq} constants:{ListConstants.Count,nq}")]
     public partial class Constants : ConfigObjectBase<Constants, Constants.ConstantsValidator>
     {
         partial void OnInit()

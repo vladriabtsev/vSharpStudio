@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Constant:{Name,nq} Type:{Property.GetTypeDesc(ConstantType),nq}")]
     public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>
     {
         partial void OnInit()
@@ -16,7 +18,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             //RecreateSubNodes();
         }
-
 
         #region IConfigObject
         public void Create()

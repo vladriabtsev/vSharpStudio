@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Group:{Name,nq} enumerations:{ListEnumerations.Count,nq}")]
     public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>
     {
         partial void OnInit()

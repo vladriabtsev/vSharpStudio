@@ -93,9 +93,9 @@ namespace vSharpStudio.vm.ViewModels
             if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
                 return;
             SubNodes.Clear();
-            SubNodes.Add(this.ConstantGroup);
-            SubNodes.Add(this.EnumerationGroup);
-            SubNodes.Add(this.CatalogGroup);
+            SubNodes.Add(this.ConstantGroup, 1);
+            SubNodes.Add(this.EnumerationGroup, 2);
+            SubNodes.Add(this.CatalogGroup, 3);
             //foreach (var t in this.ListConstantsGroups)
             //    SubNodes.Add(t, 1);
             //foreach (var t in this.ListEnumerationsGroups)

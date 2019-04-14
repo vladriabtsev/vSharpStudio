@@ -33,14 +33,12 @@ namespace vSharpStudio.vm.ViewModels
             const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
             if (_maxlen == 0)
             {
-                _maxlen = (int)Math.Log(ulong.MaxValue, step) - 1;
+                _maxlen = (int)Math.Log(ViewModelBindable.SortingWeightBase, step);
                 ulong val = 1;
                 for (int i = 0; i < _maxlen; i++)
                 {
                     val *= step;
                 }
-                ViewModelBindable.SetSortingWeightBase(val);
-                ViewModelBindable.SetMaxSortingWeight(ulong.MaxValue - val - 1);
             }
             int len = Math.Min(_maxlen, name.Length);
             ulong res = 0;

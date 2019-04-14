@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using FluentValidation;
@@ -7,6 +8,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Group:{Name,nq} catalogs:{ListCatalogs.Count,nq}")]
     public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>
     {
         partial void OnInit()
