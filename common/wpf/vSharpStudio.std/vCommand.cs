@@ -53,6 +53,8 @@ namespace ViewModelBase
         }
         public bool CanExecute(object parameter)
         {
+            if (this.Dispatcher == null) // to made visible all controls
+                return true;
             if (_isexecuted)
                 return false;
             if (_canExecute == null)
@@ -97,7 +99,7 @@ namespace ViewModelBase
         private event EventHandler CanExecuteChangedInternal;
         public void RaiseCanExecuteChanged()
         {
-            if (this.Dispatcher != null)
+            if (this.Dispatcher != null) // to exclude errors in Design mode
                 CanExecuteChangedInternal.Raise(this);
         }
     }
