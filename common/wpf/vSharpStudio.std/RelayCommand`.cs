@@ -7,16 +7,16 @@ namespace ViewModelBase
 {
     // https://msdn.microsoft.com/en-us/magazine/dn237302.aspx
     // https://www.technical-recipes.com/2016/using-relaycommand-icommand-to-handle-events-in-wpf-and-mvvm/
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
-        public RelayCommand(Action<object> execute)
+        private readonly Predicate<T> _canExecute;
+        private readonly Action<T> _execute;
+        public RelayCommand(Action<T> execute)
            : this(execute, null)
         {
             _execute = execute;
         }
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
         {
             if (execute == null)
             {
@@ -27,14 +27,12 @@ namespace ViewModelBase
         }
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null || _canExecute(parameter);
+            return _canExecute == null || _canExecute((T)parameter);
         }
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            _execute((T)parameter);
         }
-        // Ensures WPF commanding infrastructure asks all RelayCommand objects whether their
-        // associated views should be enabled whenever a command is invoked 
         public event EventHandler CanExecuteChanged
         {
             add

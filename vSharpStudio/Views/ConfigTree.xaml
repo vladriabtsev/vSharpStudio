@@ -22,34 +22,34 @@
         </Grid.RowDefinitions>
         <ToolBarPanel>
             <ToolBar>
-                <Button ToolTip="Ins - insert new object after selected">
+                <Button Command="{Binding CommandAddNew}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ins - insert new object after selected">
                     <ContentControl Template="{StaticResource iconAdd}" />
                 </Button>
-                <Button ToolTip="Del - delete selected object">
-                    <ContentControl Template="{StaticResource iconCancel}" />
+                <Button Command="{Binding CommandAddNewChild}" Visibility="{Binding CommandAddNewChild.Visibility}" ToolTip="Ins - insert new child object">
+                    <ContentControl Template="{StaticResource iconAddChildNode}" />
                 </Button>
-                <Button ToolTip="Ctrl+Ins (Ctrl-c) - copy selected object into memory">
+                <Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
                     <ContentControl Template="{StaticResource iconCopy}" />
                 </Button>
-                <Button ToolTip="Shift+Ins (Ctrl-v) - insert object from memory after selected object">
-                    <ContentControl Template="{StaticResource iconPaste}" />
-                </Button>
-                <Button ToolTip="Ctrl+Down - move select node down">
+                <Button Command="{Binding CommandMoveDown}" ToolTip="Ctrl+Down - move select node down">
                     <ContentControl Template="{StaticResource iconGlyphDown2}" />
                 </Button>
-                <Button ToolTip="Ctrl+Up - move select node upper">
+                <Button Command="{Binding CommandMoveUp}" ToolTip="Ctrl+Up - move select node upper">
                     <ContentControl Template="{StaticResource iconGlyphUp2}" />
                 </Button>
-                <Button ToolTip="Left - close current group and select parent node">
+                <Button Command="{Binding CommandDelete}" ToolTip="Ctrl-Del - delete selected object">
+                    <ContentControl Template="{StaticResource iconCancel}" />
+                </Button>
+                <Button Command="{Binding CommandSelectionLeft}" ToolTip="Left - close current group and select parent node">
                     <ContentControl Template="{StaticResource iconGlyphLeft}" />
                 </Button>
-                <Button ToolTip="Right - open current group and select first subnode">
+                <Button Command="{Binding CommandSelectionRight}" ToolTip="Right - open current group and select first subnode">
                     <ContentControl Template="{StaticResource iconGlyphRight}" />
                 </Button>
-                <Button ToolTip="Down - select next node on the same level">
+                <Button Command="{Binding CommandSelectionDown}" ToolTip="Down - select next node on the same level">
                     <ContentControl Template="{StaticResource iconGlyphDown}" />
                 </Button>
-                <Button ToolTip="Up - select previous node on the same level">
+                <Button Command="{Binding CommandSelectionUp}" ToolTip="Up - select previous node on the same level">
                     <ContentControl Template="{StaticResource iconGlyphUp}" />
                 </Button>
             </ToolBar>

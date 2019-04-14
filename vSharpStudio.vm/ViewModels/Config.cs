@@ -121,10 +121,13 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _SelectedNode = value;
                     NotifyPropertyChanged();
+                    if (OnSelectedNodeChanged != null)
+                        OnSelectedNodeChanged();
                 }
             }
             get { return _SelectedNode; }
         }
         private ITreeConfigNode _SelectedNode;
+        public Action OnSelectedNodeChanged;
     }
 }
