@@ -165,22 +165,22 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\t\tOnInit();\r\n\t}\r\n\t//public ");
+            this.Write("\t\tOnInit();\r\n\t}\r\n\tpublic ");
             
             #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("(ITreeConfigNode parent) : this()\r\n    //{\r\n    //    this.Parent = parent;\r\n    " +
-                    "//    GetUniqueName(");
+            this.Write("(ITreeConfigNode parent) : this()\r\n    {\r\n        this.Parent = parent;\r\n        " +
+                    "//GetUniqueName(");
             
             #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".DefaultName, this, this.SubNodes);\r\n    //}\r\n");
+            this.Write(".DefaultName, this, this.SubNodes);\r\n    }\r\n");
             
             #line 36 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; 

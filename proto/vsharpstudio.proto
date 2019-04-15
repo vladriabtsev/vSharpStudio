@@ -98,12 +98,6 @@ message proto_data_type {
     string max_value_string = 7;
     string object_name = 8;
 }
-message proto_properties {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	repeated proto_property list_properties = 4;
-}
 message proto_constant {
 	string guid = 1;
 	string name = 2;
@@ -161,6 +155,12 @@ message proto_catalog {
 
 	repeated proto_property list_properties = 15;
 }
+message proto_properties {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_property list_properties = 4;
+}
 message proto_catalogs {
 	string guid = 1;
 	string name = 2;
@@ -177,5 +177,3 @@ message string_nullable {
 	bool has_value = 1;
 	string value = 2;
 }
-
-

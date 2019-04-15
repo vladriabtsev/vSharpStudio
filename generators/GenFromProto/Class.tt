@@ -28,11 +28,11 @@ public partial class <#= message.Name.ToNameCs() #> : IAccept
 <# } #>
 		OnInit();
 	}
-	//public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this()
-    //{
-    //    this.Parent = parent;
-    //    GetUniqueName(<#= message.Name.ToNameCs() #>.DefaultName, this, this.SubNodes);
-    //}
+	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this()
+    {
+        this.Parent = parent;
+        //GetUniqueName(<#= message.Name.ToNameCs() #>.DefaultName, this, this.SubNodes);
+    }
 <# foreach (var t in message.Fields.InDeclarationOrder()) { if (!t.IsRepeated) continue; #>
 	private void <#= t.Name.ToNameCs() #>_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 	{
