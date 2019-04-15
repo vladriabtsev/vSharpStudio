@@ -100,6 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Constant();
             this.ListConstants.Add(res);
+            GetUniqueName("Constant", res, this.ListConstants);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }

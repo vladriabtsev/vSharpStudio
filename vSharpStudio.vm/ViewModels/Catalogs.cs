@@ -104,6 +104,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Catalog();
             this.ListCatalogs.Add(res);
+            GetUniqueName("Catalog", res, this.ListCatalogs);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }

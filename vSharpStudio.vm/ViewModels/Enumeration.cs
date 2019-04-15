@@ -122,6 +122,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Enumeration();
             (this.Parent as Enumerations).ListEnumerations.Add(res);
+            GetUniqueName("Enumeration", res, (this.Parent as Enumerations).ListEnumerations);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
@@ -129,6 +130,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = Enumeration.Clone(this.Parent, this, true, true);
             (this.Parent as Enumerations).ListEnumerations.Add(res);
+            this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }

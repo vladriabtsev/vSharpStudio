@@ -99,6 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Enumeration();
             this.ListEnumerations.Add(res);
+            GetUniqueName("Enumeration", res, this.ListEnumerations);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }

@@ -68,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Catalog();
             (this.Parent as Catalogs).ListCatalogs.Add(res);
+            GetUniqueName("Catalog", res, (this.Parent as Catalogs).ListCatalogs);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
@@ -75,6 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = Catalog.Clone(this.Parent, this, true, true);
             (this.Parent as Catalogs).ListCatalogs.Add(res);
+            this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }

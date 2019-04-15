@@ -17,17 +17,17 @@ namespace vSharpStudio.vm.ViewModels
             : base(validator)
         {
             this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
-            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
+            //            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
-        private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "SortingValue")
-            {
-                ITreeConfigNode p = (ITreeConfigNode)this;
-                if (p.Parent != null)
-                    p.Parent.Sort(this.GetType());
-            }
-        }
+        //private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "SortingValue")
+        //    {
+        //        ITreeConfigNode p = (ITreeConfigNode)this;
+        //        if (p.Parent != null)
+        //            p.Parent.Sort(this.GetType());
+        //    }
+        //}
 
         private static int _maxlen = 0;
         protected ulong EncodeNameToUlong(string name)
@@ -64,6 +64,28 @@ namespace vSharpStudio.vm.ViewModels
                 res += (ulong)ci * pow;
             }
             return res;
+        }
+        protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
+        {
+            if (!string.IsNullOrWhiteSpace(configObject.Name))
+                throw new ArgumentException();
+            int i = 0;
+            foreach (var tt in lst)
+            {
+                if (tt == configObject)
+                    continue;
+                if (tt.Name.StartsWith(defName))
+                {
+                    string s = tt.Name.Remove(0, defName.Length);
+                    int ii;
+                    if (int.TryParse(s, out ii))
+                    {
+                        if (ii > i) i = ii;
+                    }
+                }
+            }
+            i++;
+            configObject.Name = defName + i;
         }
         public override int CompareToById(T other)
         {
@@ -134,7 +156,9 @@ namespace vSharpStudio.vm.ViewModels
                     _Name = value;
                     NotifyPropertyChanged();
                     this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
-;
+                    ITreeConfigNode p = (ITreeConfigNode)this;
+                    if (p.Parent != null)
+                        p.Parent.Sort(this.GetType());
                 }
             }
             get { return _Name; }

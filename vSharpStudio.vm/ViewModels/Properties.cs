@@ -96,6 +96,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property();
             this.ListProperties.Add(res);
+            GetUniqueName("Property", res, this.ListProperties);
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;

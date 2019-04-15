@@ -68,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Constant();
             (this.Parent as Constants).ListConstants.Add(res);
+            GetUniqueName("Constant", res, (this.Parent as Constants).ListConstants);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
@@ -75,6 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = Constant.Clone(this.Parent, this, true, true);
             (this.Parent as Constants).ListConstants.Add(res);
+            this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }

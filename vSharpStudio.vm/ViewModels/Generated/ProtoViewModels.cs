@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/14/2019 21:42:56
+// Auto generated on UTC 04/15/2019 00:57:12
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1057,40 +1057,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Property).Parent = this;
-	                #region Default Name
-			    	string bname = "Property";
-				    int i = 0;
-	    			foreach (var tt in this.ListProperties)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Property).Name))
-	                        continue;
-	    				i++;
-		    			(t as Property).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
@@ -1405,40 +1371,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Constant).Parent = this;
-	                #region Default Name
-			    	string bname = "Constant";
-				    int i = 0;
-	    			foreach (var tt in this.ListConstants)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Constant).Name))
-	                        continue;
-	    				i++;
-		    			(t as Constant).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
@@ -1703,40 +1635,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as EnumerationPair).Parent = this;
-	                #region Default Name
-			    	string bname = "EnumerationPair";
-				    int i = 0;
-	    			foreach (var tt in this.ListValues)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as EnumerationPair).Name))
-	                        continue;
-	    				i++;
-		    			(t as EnumerationPair).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
@@ -1963,40 +1861,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Enumeration).Parent = this;
-	                #region Default Name
-			    	string bname = "Enumeration";
-				    int i = 0;
-	    			foreach (var tt in this.ListEnumerations)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Enumeration).Name))
-	                        continue;
-	    				i++;
-		    			(t as Enumeration).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
@@ -2154,40 +2018,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Property).Parent = this;
-	                #region Default Name
-			    	string bname = "Property";
-				    int i = 0;
-	    			foreach (var tt in this.ListProperties)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Property).Name))
-	                        continue;
-	    				i++;
-		    			(t as Property).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
@@ -2510,40 +2340,6 @@ namespace vSharpStudio.vm.ViewModels
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
 		    			(t as Catalog).Parent = this;
-	                #region Default Name
-			    	string bname = "Catalog";
-				    int i = 0;
-	    			foreach (var tt in this.ListCatalogs)
-		    		{
-	                    bool isfound = false;
-	                    foreach (var t in e.NewItems)
-	                    {
-	                        if (t == tt)
-	                        {
-	                            isfound = true;
-	                            break;
-	                        }
-	                    }
-	                    if (isfound)
-	                        continue;
-			    		if (tt.Name.StartsWith(bname))
-				    	{
-						    string s = tt.Name.Remove(0, bname.Length);
-					    	int ii;
-	    					if (int.TryParse(s, out ii))
-		    				{
-			    				if (ii > i) i = ii;
-				    		}
-					    }
-	    			}
-		    		foreach (var t in e.NewItems)
-			    	{
-	                    if (!string.IsNullOrWhiteSpace((t as Catalog).Name))
-	                        continue;
-	    				i++;
-		    			(t as Catalog).Name = bname + i;
-			    	}
-	                #endregion Default Name
 	                break;
 	            default:
 	                throw new Exception();
