@@ -42,4 +42,10 @@
     <Folder Include="ViewModels\Generated\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\common\wpf\vSharpStudio.wpf\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

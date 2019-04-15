@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode
+      where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue //, ITreeConfigNode
     {
         public ConfigObjectBase(TValidator validator)
             : base(validator)
@@ -78,7 +80,9 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeConfigNode
 
+        [BrowsableAttribute(false)]
         public ulong SortingWeight { get; set; }
+        [BrowsableAttribute(false)]
         public ulong SortingValue
         {
             set
@@ -97,7 +101,7 @@ namespace vSharpStudio.vm.ViewModels
         private ulong _SortingValue;
         partial void OnSortingValueChanging();
         partial void OnSortingValueChanged();
-
+        [BrowsableAttribute(false)]
         public string Guid
         {
             get
@@ -120,6 +124,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             _Guid = System.Guid.NewGuid().ToString();
         }
+        [PropertyOrder(0)]
         public string Name
         {
             set
@@ -135,7 +140,9 @@ namespace vSharpStudio.vm.ViewModels
             get { return _Name; }
         }
         private string _Name = "";
+        [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
+        [BrowsableAttribute(false)]
         public bool IsSelected
         {
             set
@@ -151,6 +158,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool _IsSelected;
         public virtual void OnIsSelectedChanged() { }
+        [BrowsableAttribute(false)]
         public bool IsExpanded
         {
             set
@@ -166,7 +174,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool _IsExpanded;
         public virtual void OnIsExpandedChanged() { }
+        [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
+        [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> SubNodes
         {
             get { return this._SubNodes; }

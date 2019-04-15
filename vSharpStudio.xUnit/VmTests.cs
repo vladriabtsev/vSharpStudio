@@ -59,11 +59,11 @@ namespace vSharpStudio.xUnit
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
             Catalog vm = new Catalog();
-            vm.PropertyGroup.Name = "test1";
+            vm.Name = "test1";
             vm.BeginEdit();
-            vm.PropertyGroup.Name = "test2";
+            vm.Name = "test2";
             vm.CancelEdit();
-            Assert.True(vm.PropertyGroup.Name == "test1");
+            Assert.True(vm.Name == "test1");
         }
         [Fact]
         public void Editable014CanCancelSecondLevelCollection()
@@ -73,38 +73,38 @@ namespace vSharpStudio.xUnit
             {
                 Name = "test1"
             };
-            vm.PropertyGroup.ListProperties.Add(prop);
+            vm.ListProperties.Add(prop);
             vm.BeginEdit();
-            vm.PropertyGroup.ListProperties[0].Name = "test2";
+            vm.ListProperties[0].Name = "test2";
             vm.CancelEdit();
-            Assert.True(vm.PropertyGroup.ListProperties[0].Name == "test1");
+            Assert.True(vm.ListProperties[0].Name == "test1");
             vm.BeginEdit();
             prop = new Property() { Name = "test3" };
-            vm.PropertyGroup.ListProperties.Add(prop);
-            Assert.True(vm.PropertyGroup.ListProperties.Count == 2);
+            vm.ListProperties.Add(prop);
+            Assert.True(vm.ListProperties.Count == 2);
             vm.CancelEdit();
-            Assert.True(vm.PropertyGroup.ListProperties.Count == 1);
-            Assert.True(vm.PropertyGroup.ListProperties[0].Name == "test1");
+            Assert.True(vm.ListProperties.Count == 1);
+            Assert.True(vm.ListProperties[0].Name == "test1");
         }
         [Fact]
         public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
             vm.BeginEdit();
-            vm.PropertyGroup.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.CancelEdit();
-            Assert.True(vm.PropertyGroup.ListProperties.Count == 0);
-            vm.PropertyGroup.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            Assert.True(vm.ListProperties.Count == 0);
+            vm.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.BeginEdit();
-            vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
             vm.CancelEdit();
-            Assert.Single(vm.PropertyGroup.ListProperties);
-            Assert.True(vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.ListProperties);
+            Assert.True(vm.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
             vm.BeginEdit();
-            vm.PropertyGroup.ListProperties.Clear();
+            vm.ListProperties.Clear();
             vm.CancelEdit();
-            Assert.Single(vm.PropertyGroup.ListProperties);
-            Assert.True(vm.PropertyGroup.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.ListProperties);
+            Assert.True(vm.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
         }
         #endregion Editable
 

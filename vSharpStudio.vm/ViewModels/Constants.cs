@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
@@ -21,6 +22,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         #region status icon
+        [BrowsableAttribute(false)]
         public string StatusIcon
         {
             get
@@ -98,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Constant();
             this.ListConstants.Add(res);
-            (this.Parent.Parent as Config).SelectedNode = res;
+            (this.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override bool OnNodeCanMoveDown()

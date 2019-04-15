@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #region ITreeNode
         #region status icon
+        [BrowsableAttribute(false)]
         public string StatusIcon
         {
             get
@@ -75,7 +77,6 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        public new IEnumerable<ITreeConfigNode> SubNodes => this.ListCatalogs;
         public override void OnIsExpandedChanged()
         {
             NotifyPropertyChanged(p => p.StatusIcon);

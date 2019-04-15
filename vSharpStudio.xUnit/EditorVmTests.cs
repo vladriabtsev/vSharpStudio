@@ -277,13 +277,12 @@ namespace vSharpStudio.xUnit
 
             #region Properties
 
-            cnst = ctlg.PropertyGroup;
+            cnst = ctlg;
             Assert.True(cnst.NodeCanLeft() == true);
             Assert.True(cnst.NodeCanRight() == true);
             Assert.True(cnst.NodeCanMoveUp() == false);
             Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == false);
-            Assert.True(cnst.NodeCanAddNew() == false);
+            Assert.True(cnst.NodeCanAddNew() == true);
             Assert.True(cnst.NodeCanAddNewSubNode() == true);
             cnst = cnst.NodeAddNewSubNode();
             Assert.True(cfg.SelectedNode != null);

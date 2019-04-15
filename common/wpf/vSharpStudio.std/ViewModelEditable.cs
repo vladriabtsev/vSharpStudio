@@ -23,6 +23,7 @@ namespace ViewModelBase
 
         #region IEditableObject
         private T _dtoBackupTmp;
+        [BrowsableAttribute(false)]
         public bool IsInEdit { get; private set; }
         public void BeginEdit()
         {

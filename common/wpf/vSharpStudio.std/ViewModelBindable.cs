@@ -76,6 +76,7 @@ namespace ViewModelBase
             //if (this.Dispatcher == null)
             //    throw new InvalidOperationException("'ViewModelBindable.AppDispatcher' is not initialized. Use 'ViewModelBindable.AppDispatcher = UIDispatcher.Current;' before first usage ViewModel");
         }
+        [BrowsableAttribute(false)]
         public bool IsChanged { get { return _IsChanged; } set { SetValue<bool>(ref _IsChanged, value); } }
         private bool _IsChanged;
 

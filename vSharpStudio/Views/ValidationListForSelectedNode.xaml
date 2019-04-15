@@ -28,7 +28,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding SeverityWeightName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Level"/>
-                <DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message"/>
+                <DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

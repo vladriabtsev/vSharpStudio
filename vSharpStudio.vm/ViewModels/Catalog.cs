@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
@@ -16,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnInitFromDto()
         {
-            OnPropertyGroupChanged();
+//            OnPropertyGroupChanged();
         }
         public Catalog(string name) : this()
         {
@@ -27,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
-                this.PropertyGroup.ListProperties.Add(t);
+                this.ListProperties.Add(t);
             }
         }
 
@@ -83,6 +84,7 @@ namespace vSharpStudio.vm.ViewModels
         #region ITreeNode
 
         #region status icon
+        [BrowsableAttribute(false)]
         public string StatusIcon
         {
             get
@@ -138,12 +140,12 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         #endregion status icon
-        void RecreateSubNodes()
-        {
-            SubNodes.Clear();
-            SubNodes.Add(this.PropertyGroup);
-        }
-        partial void OnPropertyGroupChanged() { RecreateSubNodes(); }
+        //void RecreateSubNodes()
+        //{
+        //    SubNodes.Clear();
+        //    SubNodes.Add(this.PropertyGroup);
+        //}
+        //partial void OnPropertyGroupChanged() { RecreateSubNodes(); }
 
         public override void OnIsExpandedChanged()
         {

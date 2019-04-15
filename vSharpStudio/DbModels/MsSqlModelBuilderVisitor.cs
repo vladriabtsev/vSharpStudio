@@ -73,7 +73,7 @@ namespace vSharpStudio.DbModels
                {
                    x.HasKey(new string[] { this._config.PrimaryKeyName }).ForSqlServerIsClustered(m.IsPrimaryKeyClustered ?? this._config.IsPrimaryKeyClustered);
                    x.ForSqlServerIsMemoryOptimized(m.IsMemoryOptimized ?? this._config.IsMemoryOptimized);
-                   foreach (var t in m.PropertyGroup.ListProperties)
+                   foreach (var t in m.ListProperties)
                    {
                        switch (t.DataType.DataTypeEnum)
                        {

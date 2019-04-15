@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
@@ -22,6 +23,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         #region status icon
+        [BrowsableAttribute(false)]
         public string StatusIcon
         {
             get

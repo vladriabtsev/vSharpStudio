@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.Migration
         {
             var c = _modelBuilder.Entity((m as ITreeConfigNode).Name, x =>
             {
-                foreach (var t in m.PropertyGroup.ListProperties)
+                foreach (var t in m.ListProperties)
                 {
                     switch (t.DataType.DataTypeEnum)
                     {
