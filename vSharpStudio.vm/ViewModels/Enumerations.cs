@@ -98,8 +98,9 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Enumeration();
+            res.Parent = this.Parent;
             this.ListEnumerations.Add(res);
-            GetUniqueName("Enumeration", res, this.ListEnumerations);
+            GetUniqueName(Enumeration.DefaultName, res, this.ListEnumerations);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }

@@ -100,12 +100,10 @@ namespace vSharpStudio.xUnit
         public void Constant001AddedDefaultName()
         {
             var cfg = new Config();
-            var cnst = new Constant();
-            cfg.ConstantGroup.ListConstants.Add(cnst);
-            Assert.Equal("Constant1", cnst.Name);
-            var cnst2 = new Constant();
-            cfg.ConstantGroup.ListConstants.Add(cnst2);
-            Assert.Equal("Constant2", cnst2.Name);
+            cfg.ConstantGroup.NodeAddNewSubNode();
+            Assert.Equal(Constant.DefaultName + "1", cfg.ConstantGroup.ListConstants[0].Name);
+            cfg.ConstantGroup.ListConstants[0].NodeAddNew();
+            Assert.Equal(Constant.DefaultName + "2", cfg.ConstantGroup.ListConstants[1].Name);
         }
         #endregion Constant
         #region Enum
@@ -150,7 +148,7 @@ namespace vSharpStudio.xUnit
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
             var cfg = new Config();
-            var cnst = new Constant(cfg.ConstantGroup);
+            var cnst = new Constant() { Parent = cfg.ConstantGroup };
             cfg.ConstantGroup.ListConstants.Add(cnst);
             var curr = cnst.SortingValue;
             cnst.Name = "abc1";
@@ -217,7 +215,7 @@ namespace vSharpStudio.xUnit
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
             var cfg = new Config();
-            var cnst = new Constant(cfg.ConstantGroup);
+            var cnst = new Constant() { Parent = cfg.ConstantGroup };
             cfg.ConstantGroup.ListConstants.Add(cnst);
             cnst.Name = "abc1";
             var curr = cnst.SortingValue;
@@ -232,11 +230,11 @@ namespace vSharpStudio.xUnit
         public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
             var cfg = new Config();
-            var cnst = new Constant(cfg.ConstantGroup);
+            var cnst = new Constant() { Parent = cfg.ConstantGroup };
             cfg.ConstantGroup.ListConstants.Add(cnst);
             cnst.Name = "abc1";
 
-            var cnst2 = new Constant(cfg.ConstantGroup);
+            var cnst2 = new Constant() { Parent = cfg.ConstantGroup };
             cfg.ConstantGroup.ListConstants.Add(cnst2);
             cnst2.Name = "abc1";
 
@@ -257,98 +255,157 @@ namespace vSharpStudio.xUnit
         {
             var cfg = new ViewModels.ConfigRoot();
 
-            #region Catalog
-            ITreeConfigNode cnst = cfg.CatalogGroup;
-            Assert.True(cnst.NodeCanLeft() == false);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == false);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
-            var ctlg = new Catalog(cfg.CatalogGroup);
+            #region Constants
+
+            Assert.True(cfg.ConstantGroup.NodeCanLeft() == false);
+            Assert.True(cfg.ConstantGroup.NodeCanRight() == true);
+            Assert.True(cfg.ConstantGroup.NodeCanMoveUp() == false);
+            Assert.True(cfg.ConstantGroup.NodeCanMoveDown() == false);
+            Assert.True(cfg.ConstantGroup.NodeCanAddNew() == false);
+            Assert.True(cfg.ConstantGroup.NodeCanAddNewSubNode() == true);
             Assert.True(cfg.SelectedNode == null);
-            cnst = ctlg;
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == false);
+            cfg.ConstantGroup.NodeAddNewSubNode();
+            Assert.True(cfg.SelectedNode != null);
+            Assert.True(cfg.SelectedNode == cfg.ConstantGroup.ListConstants[0]);
+            Assert.True(cfg.SelectedNode.Guid == cfg.ConstantGroup.ListConstants[0].Guid);
+
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanLeft() == true);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanRight() == false);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanMoveDown() == false);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanAddNew() == true);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanAddNewSubNode() == false);
+
+            cfg.ConstantGroup.NodeAddNewSubNode();
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.ConstantGroup.ListConstants[0].NodeCanMoveDown() == true);
+            Assert.True(cfg.ConstantGroup.ListConstants[1].NodeCanMoveUp() == true);
+            Assert.True(cfg.ConstantGroup.ListConstants[1].NodeCanMoveDown() == false);
+
+            #endregion Constants
+
+            #region Enumerations
+
+            Assert.True(cfg.EnumerationGroup.NodeCanLeft() == false);
+            Assert.True(cfg.EnumerationGroup.NodeCanRight() == true);
+            Assert.True(cfg.EnumerationGroup.NodeCanMoveUp() == false);
+            Assert.True(cfg.EnumerationGroup.NodeCanMoveDown() == false);
+            Assert.True(cfg.EnumerationGroup.NodeCanAddNew() == false);
+            Assert.True(cfg.EnumerationGroup.NodeCanAddNewSubNode() == true);
+            cfg.EnumerationGroup.NodeAddNewSubNode();
+            Assert.True(cfg.SelectedNode != null);
+            Assert.True(cfg.SelectedNode == cfg.EnumerationGroup.ListEnumerations[0]);
+            Assert.True(cfg.SelectedNode.Guid == cfg.EnumerationGroup.ListEnumerations[0].Guid);
+
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanLeft() == true);
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanRight() == true);
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanMoveDown() == false);
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanAddNew() == true);
+            Assert.True(cfg.EnumerationGroup.ListEnumerations[0].NodeCanAddNewSubNode() == false);
+
+            //#region Properties
+
+            //cfg.CatalogGroup.ListCatalogs[0].NodeAddNewSubNode();
+            //Assert.True(cfg.SelectedNode != null);
+            //Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanLeft() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanRight() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanMoveUp() == false);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanMoveDown() == false);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanAddNew() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanAddNewSubNode() == true);
+
+            //cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeAddNew();
+            //Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1]);
+            //Assert.True(cfg.SelectedNode.Guid == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].Guid);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanLeft() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanRight() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanMoveUp() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanMoveDown() == false);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanAddNew() == true);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanAddNewSubNode() == true);
+
+            //var p = cfg.CatalogGroup.ListCatalogs[0].ListProperties[1];
+            //p.NodeMoveUp();
+            //Assert.True(p == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+            //Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+
+            //// change property parameters
+            //p.DataType.MinValue = 5;
+            //p.DataType.MaxValue = 6;
+
+            //p.NodeAddClone();
+            //Assert.True(p == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+            //Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].Name == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].Name + "2");
+            //Assert.True(5 == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].DataType.MinValue);
+            //Assert.True(6 == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].DataType.MaxValue);
+
+            //#endregion Properties
+
+            #endregion Enumerations
+
+            #region Catalogs
+
+            Assert.True(cfg.CatalogGroup.NodeCanLeft() == false);
+            Assert.True(cfg.CatalogGroup.NodeCanRight() == true);
+            Assert.True(cfg.CatalogGroup.NodeCanMoveUp() == false);
+            Assert.True(cfg.CatalogGroup.NodeCanMoveDown() == false);
+            Assert.True(cfg.CatalogGroup.NodeCanAddNew() == false);
+            Assert.True(cfg.CatalogGroup.NodeCanAddNewSubNode() == true);
+            cfg.CatalogGroup.NodeAddNewSubNode();
+            Assert.True(cfg.SelectedNode != null);
+            Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0]);
+            Assert.True(cfg.SelectedNode.Guid == cfg.CatalogGroup.ListCatalogs[0].Guid);
+
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanLeft() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanRight() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanMoveDown() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanAddNew() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].NodeCanAddNewSubNode() == true);
 
             #region Properties
 
-            cnst = ctlg;
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
-            cnst = cnst.NodeAddNewSubNode();
+            cfg.CatalogGroup.ListCatalogs[0].NodeAddNewSubNode();
             Assert.True(cfg.SelectedNode != null);
-            Assert.True(cfg.SelectedNode.Guid == cnst.Guid);
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == false);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddClone() == true);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == false);
-            Property prev = (Property)cnst;
+            Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanLeft() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanRight() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanMoveDown() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanAddNew() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeCanAddNewSubNode() == false);
+
+            cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].NodeAddNew();
+            Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1]);
+            Assert.True(cfg.SelectedNode.Guid == cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].Guid);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanLeft() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanRight() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanMoveUp() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanMoveDown() == false);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanAddNew() == true);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[1].NodeCanAddNewSubNode() == false);
+
+            var p = cfg.CatalogGroup.ListCatalogs[0].ListProperties[1];
+            p.NodeMoveUp();
+            Assert.True(p == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+            Assert.True(cfg.SelectedNode == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0]);
+
             // change property parameters
-            prev.DataType.MinValue = 5;
-            prev.DataType.MaxValue = 6;
+            p.DataType.MinValue = 5;
+            p.DataType.MaxValue = 6;
 
-            cnst = cnst.NodeAddClone();
-            Assert.True(cfg.SelectedNode != null);
-            Assert.True(cfg.SelectedNode.Guid == cnst.Guid);
-            Property cloned = (Property)cnst;
-            // test cloned property parameters
-            Assert.True(cloned.DataType.MinValueString == "5");
-            Assert.True(cloned.DataType.MaxValueString == "6");
-
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == false);
-            Assert.True(cnst.NodeCanMoveUp() == true);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            cnst.NodeMoveUp();
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == true);
+            p.NodeAddClone();
+            Assert.True(p == cfg.CatalogGroup.ListCatalogs[0].ListProperties[2]);
+            Assert.True(cfg.CatalogGroup.ListCatalogs[0].ListProperties[2].Name == cfg.CatalogGroup.ListCatalogs[0].ListProperties[0].Name + "2");
+            Assert.True(5 == cfg.CatalogGroup.ListCatalogs[0].ListProperties[2].DataType.MinValue);
+            Assert.True(6 == cfg.CatalogGroup.ListCatalogs[0].ListProperties[2].DataType.MaxValue);
 
             #endregion Properties
 
-            #endregion Catalog
+            #endregion Catalogs
 
-            cnst = cfg.ConstantGroup;
-            Assert.True(cnst.NodeCanLeft() == false);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == false);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
-            cnst = new Constant(cfg.ConstantGroup);
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == false);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == false);
-
-            cnst = cfg.EnumerationGroup;
-            Assert.True(cnst.NodeCanLeft() == false);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == false);
-            Assert.True(cnst.NodeCanAddNewSubNode() == true);
-            cnst = new Enumeration(cfg.EnumerationGroup);
-            Assert.True(cnst.NodeCanLeft() == true);
-            Assert.True(cnst.NodeCanRight() == true);
-            Assert.True(cnst.NodeCanMoveUp() == false);
-            Assert.True(cnst.NodeCanMoveDown() == false);
-            Assert.True(cnst.NodeCanAddNew() == true);
-            Assert.True(cnst.NodeCanAddNewSubNode() == false);
         }
         #endregion ITreeConfigNode
     }

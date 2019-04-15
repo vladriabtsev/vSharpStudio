@@ -10,14 +10,15 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>
+    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IListProperties
     {
+        public static readonly string DefaultName = "Catalog";
         partial void OnInit()
         {
         }
         public void OnInitFromDto()
         {
-//            OnPropertyGroupChanged();
+            //            OnPropertyGroupChanged();
         }
         public Catalog(string name) : this()
         {
@@ -67,16 +68,31 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNew()
         {
             var res = new Catalog();
+            res.Parent = this.Parent;
             (this.Parent as Catalogs).ListCatalogs.Add(res);
-            GetUniqueName("Catalog", res, (this.Parent as Catalogs).ListCatalogs);
+            GetUniqueName(Catalog.DefaultName, res, (this.Parent as Catalogs).ListCatalogs);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Catalog.Clone(this.Parent, this, true, true);
+            res.Parent = this.Parent;
             (this.Parent as Catalogs).ListCatalogs.Add(res);
             this.Name = this.Name + "2";
+            (this.Parent.Parent as Config).SelectedNode = res;
+            return res;
+        }
+        protected override bool OnNodeCanAddNewSubNode()
+        {
+            return true;
+        }
+        protected override ITreeConfigNode OnNodeAddNewSubNode()
+        {
+            var res = new Property();
+            res.Parent = this.Parent;
+            this.ListProperties.Add(res);
+            GetUniqueName(Property.DefaultName, res, this.ListProperties);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }

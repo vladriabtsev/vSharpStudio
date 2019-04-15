@@ -19,6 +19,8 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration
     {
+        public static readonly string DefaultName = "Config";
+
         protected IMigration _migration = null;
         public string ConnectionString = null;
         partial void OnInit()

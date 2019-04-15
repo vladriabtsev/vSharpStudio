@@ -10,6 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Constant:{Name,nq} Type:{Property.GetTypeDesc(ConstantType),nq}")]
     public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>
     {
+        public static readonly string DefaultName = "Constant";
         partial void OnInit()
         {
             this.SubNodes = null;
@@ -24,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Constants vm = (Constants)this.Parent;
             int icurr = vm.ListConstants.IndexOf(this);
-            vm.ListConstants.Add(new Constant(this.Parent));
+            vm.ListConstants.Add(new Constant() { Parent = this.Parent });
         }
         #endregion IConfigObject
 
@@ -67,14 +68,16 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNew()
         {
             var res = new Constant();
+            res.Parent = this.Parent;
             (this.Parent as Constants).ListConstants.Add(res);
-            GetUniqueName("Constant", res, (this.Parent as Constants).ListConstants);
+            GetUniqueName(Constant.DefaultName, res, (this.Parent as Constants).ListConstants);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Constant.Clone(this.Parent, this, true, true);
+            res.Parent = this.Parent;
             (this.Parent as Constants).ListConstants.Add(res);
             this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;

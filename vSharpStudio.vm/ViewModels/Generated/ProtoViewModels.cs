@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/15/2019 00:57:12
+// Auto generated on UTC 04/15/2019 20:28:30
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -21,15 +21,16 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.ConstantGroup = new Constants(this);
-			this.EnumerationGroup = new Enumerations(this);
-			this.CatalogGroup = new Catalogs(this);
+			this.ConstantGroup = new Constants() { Parent = this };
+			this.EnumerationGroup = new Enumerations() { Parent = this };
+			this.CatalogGroup = new Catalogs() { Parent = this };
 			OnInit();
 		}
-		public Config(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Config(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Config.DefaultName, this, this.SubNodes);
+	    //}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -623,13 +624,14 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Property() : base(PropertyValidator.Validator)
 		{
-			this.DataType = new DataType(this);
+			this.DataType = new DataType() { Parent = this };
 			OnInit();
 		}
-		public Property(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Property(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Property.DefaultName, this, this.SubNodes);
+	    //}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -782,10 +784,11 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public DataType(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public DataType(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(DataType.DefaultName, this, this.SubNodes);
+	    //}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1040,10 +1043,11 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
 		}
-		public Properties(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Properties(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Properties.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1193,13 +1197,14 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Constant() : base(ConstantValidator.Validator)
 		{
-			this.ConstantType = new Property(this);
+			this.ConstantType = new Property() { Parent = this };
 			OnInit();
 		}
-		public Constant(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Constant(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Constant.DefaultName, this, this.SubNodes);
+	    //}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1354,10 +1359,11 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
 		}
-		public Constants(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Constants(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Constants.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1509,10 +1515,11 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public EnumerationPair(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public EnumerationPair(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(EnumerationPair.DefaultName, this, this.SubNodes);
+	    //}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1618,10 +1625,11 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
 			OnInit();
 		}
-		public Enumeration(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Enumeration(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Enumeration.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListValues_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -1844,10 +1852,11 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
 		}
-		public Enumerations(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Enumerations(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Enumerations.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListEnumerations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -2001,10 +2010,11 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
 		}
-		public Catalog(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Catalog(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Catalog.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
@@ -2318,15 +2328,16 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalogs() : base(CatalogsValidator.Validator)
 		{
-			this.SharedProperties = new Properties(this);
+			this.SharedProperties = new Properties() { Parent = this };
 			this.ListCatalogs = new SortedObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}
-		public Catalogs(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	    }
+		//public Catalogs(ITreeConfigNode parent) : this()
+	    //{
+	    //    this.Parent = parent;
+	    //    GetUniqueName(Catalogs.DefaultName, this, this.SubNodes);
+	    //}
 		private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)

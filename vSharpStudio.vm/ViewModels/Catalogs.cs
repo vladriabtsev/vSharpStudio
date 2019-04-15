@@ -103,8 +103,9 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Catalog();
+            res.Parent = this.Parent;
             this.ListCatalogs.Add(res);
-            GetUniqueName("Catalog", res, this.ListCatalogs);
+            GetUniqueName(Catalog.DefaultName, res, this.ListCatalogs);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }

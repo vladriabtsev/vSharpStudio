@@ -10,7 +10,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
-    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, IComparable<Properties>
+    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, IComparable<Properties>, IListProperties
     {
         partial void OnInit()
         {
@@ -95,8 +95,9 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Property();
+            res.Parent = this.Parent;
             this.ListProperties.Add(res);
-            GetUniqueName("Property", res, this.ListProperties);
+            GetUniqueName(Property.DefaultName, res, this.ListProperties);
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;

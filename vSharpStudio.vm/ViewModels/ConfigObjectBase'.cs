@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
         {
             if (!string.IsNullOrWhiteSpace(configObject.Name))
-                throw new ArgumentException();
+                return;
             int i = 0;
             foreach (var tt in lst)
             {
@@ -115,7 +115,10 @@ namespace vSharpStudio.vm.ViewModels
                     _SortingValue = value;
                     OnSortingValueChanged();
                     NotifyPropertyChanged();
-                    ValidateProperty();
+                    //ValidateProperty();
+                    ITreeConfigNode p = (ITreeConfigNode)this;
+                    if (p.Parent != null)
+                        p.Parent.Sort(this.GetType());
                 }
             }
             get { return _SortingValue; }

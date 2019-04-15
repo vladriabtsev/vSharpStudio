@@ -10,6 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
     public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>
     {
+        public static readonly string DefaultName = "Enumeration";
         partial void OnInit()
         {
             this.SubNodes.AddRange(this.ListValues);
@@ -121,14 +122,16 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNew()
         {
             var res = new Enumeration();
+            res.Parent = this.Parent;
             (this.Parent as Enumerations).ListEnumerations.Add(res);
-            GetUniqueName("Enumeration", res, (this.Parent as Enumerations).ListEnumerations);
+            GetUniqueName(Enumeration.DefaultName, res, (this.Parent as Enumerations).ListEnumerations);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
             var res = Enumeration.Clone(this.Parent, this, true, true);
+            res.Parent = this.Parent;
             (this.Parent as Enumerations).ListEnumerations.Add(res);
             this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;

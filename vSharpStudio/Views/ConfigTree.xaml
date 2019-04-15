@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl xmlns:Controls="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf" 
     x:Class="vSharpStudio.Views.ConfigTree"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -16,16 +16,16 @@
         <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
     </UserControl.Resources>
     <UserControl.InputBindings>
-        <KeyBinding Key="Insert" Modifiers="" Command="{Binding CommandAddNew}"/>
-        <KeyBinding Key="Insert" Modifiers="" Command="{Binding CommandAddNewChild}"/>
-        <KeyBinding Key="Insert" Modifiers="Ctrl" Command="{Binding CommandAddClone}"/>
-        <KeyBinding Key="Down" Modifiers="Ctrl" Command="{Binding CommandMoveDown}"/>
-        <KeyBinding Key="Up" Modifiers="Ctrl" Command="{Binding CommandMoveUp}"/>
-        <KeyBinding Key="Delete" Modifiers="Ctrl" Command="{Binding CommandDelete}"/>
-        <KeyBinding Key="Left" Modifiers="Alt" Command="{Binding CommandSelectionLeft}"/>
-        <KeyBinding Key="Right" Modifiers="Alt" Command="{Binding CommandSelectionRight}"/>
-        <KeyBinding Key="Down" Modifiers="Alt" Command="{Binding CommandSelectionDown}"/>
-        <KeyBinding Key="Up" Modifiers="Alt" Command="{Binding CommandSelectionUp}"/>
+        <KeyBinding Modifiers="" Key="Insert" Command="{Binding CommandAddNew}"/>
+        <KeyBinding Modifiers="Alt" Key="Insert" Command="{Binding CommandAddNewChild}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Insert" Command="{Binding CommandAddClone}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding CommandMoveDown}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding CommandMoveUp}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Delete" Command="{Binding CommandDelete}"/>
+        <KeyBinding Modifiers="Alt" Key="Left" Command="{Binding CommandSelectionLeft}"/>
+        <KeyBinding Modifiers="Alt" Key="Right" Command="{Binding CommandSelectionRight}"/>
+        <KeyBinding Modifiers="Alt" Key="Down" Command="{Binding CommandSelectionDown}"/>
+        <KeyBinding Modifiers="Alt" Key="Up" Command="{Binding CommandSelectionUp}"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
                 <Button Command="{Binding CommandAddNew}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ins - insert new object after selected">
                     <ContentControl Template="{StaticResource iconAdd}" />
                 </Button>
-                <Button Command="{Binding CommandAddNewChild}" Visibility="{Binding CommandAddNewChild.Visibility}" ToolTip="Ins - insert new child object">
+                <Button Command="{Binding CommandAddNewChild}" Visibility="{Binding CommandAddNewChild.Visibility}" ToolTip="Alt+Ins - insert new child object">
                     <ContentControl Template="{StaticResource iconAddChildNode}" />
                 </Button>
                 <Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
@@ -68,18 +68,12 @@
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->
         <!--https://www.codeproject.com/Articles/1204663/Advanced-WPF-TreeViews-Part-of-n-2-->
-        <TreeView Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.SubNodes}" SelectedItemChanged="ConfigTreeView_SelectedItemChanged">
-            <!--<TreeView.ToolTip>
-                <StackPanel>
-                    <TextBlock Text="" />
-                </StackPanel>
-            </TreeView.ToolTip>-->
+        <Controls:TreeViewEx Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.SubNodes}" SelectedItem="{Binding Model.SelectedNode}">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                     <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                     <Setter Property="FontWeight" Value="Normal" />
-                    <!--<Setter Property="ItemsSource" Value="{Binding SubNodes}" />-->
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="FontWeight" Value="Bold" />
@@ -95,6 +89,28 @@
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </TreeView.Resources>
-        </TreeView>
+        </Controls:TreeViewEx>
+        <!--<TreeView Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.SubNodes}" SelectedItemChanged="ConfigTreeView_SelectedItemChanged">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="ConfigTreeDataTemplateDictionary.xaml" />
+                        <ResourceDictionary Source="ConfigTreeDataTemplateDictionary2.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </TreeView.Resources>
+        </TreeView>-->
     </Grid>
 </UserControl>

@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TreeViewExt.cs" />
     <Compile Include="Controls\vField.cs" />
     <Compile Include="Controls\vFieldPanel.cs" />
     <Compile Include="Controls\vTreeView.xaml.cs">

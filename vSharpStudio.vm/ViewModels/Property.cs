@@ -13,6 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{Property.GetTypeDesc(this),nq}")]
     public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>
     {
+        public static readonly string DefaultName = "Property";
         partial void OnInit()
         {
             this.SubNodes = null;
@@ -180,39 +181,42 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override bool OnNodeCanMoveUp()
         {
-            return (this.Parent as Properties).ListProperties.IndexOf(this) > 0;
+            return (this.Parent as IListProperties).ListProperties.IndexOf(this) > 0;
         }
         protected override void OnNodeMoveUp()
         {
-            var p = this.Parent as Properties;
-            var i = p.ListProperties.IndexOf(this);
+            var pp = this.Parent as IListProperties;
+            var i = pp.ListProperties.IndexOf(this);
             if (i > 0)
             {
-                this.SortingValue = p.ListProperties[i - 1].SortingValue - 1;
+                this.SortingValue = pp.ListProperties[i - 1].SortingValue - 1;
             }
         }
         protected override bool OnNodeCanMoveDown()
         {
-            return (this.Parent as Properties).ListProperties.IndexOf(this) < ((this.Parent as Properties).ListProperties.Count - 1);
+            var pp = this.Parent as IListProperties;
+            return pp.ListProperties.IndexOf(this) < (pp.ListProperties.Count - 1);
         }
         protected override void OnNodeMoveDown()
         {
-            var p = this.Parent as Properties;
-            var i = p.ListProperties.IndexOf(this);
-            if (i < p.ListProperties.Count - 1)
+            var pp = this.Parent as IListProperties;
+            var i = pp.ListProperties.IndexOf(this);
+            if (i < pp.ListProperties.Count - 1)
             {
-                this.SortingValue = p.ListProperties[i + 1].SortingValue + 1;
+                this.SortingValue = pp.ListProperties[i + 1].SortingValue + 1;
             }
         }
         protected override void OnNodeRemove()
         {
-            (this.Parent as Properties).ListProperties.Remove(this);
+            (this.Parent as IListProperties).ListProperties.Remove(this);
         }
         protected override ITreeConfigNode OnNodeAddNew()
         {
+            var pp = this.Parent as IListProperties;
             var res = new Property();
-            (this.Parent as Properties).ListProperties.Add(res);
-            GetUniqueName("Property", res, (this.Parent as Properties).ListProperties);
+            res.Parent = this.Parent;
+            pp.ListProperties.Add(res);
+            GetUniqueName(Property.DefaultName, res, pp.ListProperties);
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;
@@ -221,8 +225,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override ITreeConfigNode OnNodeAddClone()
         {
+            var pp = this.Parent as IListProperties;
             var res = Property.Clone(this.Parent, this, true, true);
-            (this.Parent as Properties).ListProperties.Add(res);
+            res.Parent = this.Parent;
+            pp.ListProperties.Add(res);
             this.Name = this.Name + "2";
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)

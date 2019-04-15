@@ -20,9 +20,7 @@ namespace vSharpStudio.ViewModels
                 //this.Model.Catalogs.ListCatalogs.Add(c);
                 return;
             }
-            Catalog c = new Catalog();
             this.Model = new ConfigRoot();
-            this.Model.CatalogGroup.ListCatalogs.Add(c);
         }
 
         internal void OnSelectedItemChanged(object oldValue, object newValue)

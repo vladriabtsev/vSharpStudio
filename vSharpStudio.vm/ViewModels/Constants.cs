@@ -99,8 +99,9 @@ namespace vSharpStudio.vm.ViewModels
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Constant();
+            res.Parent = this.Parent;
             this.ListConstants.Add(res);
-            GetUniqueName("Constant", res, this.ListConstants);
+            GetUniqueName(Constant.DefaultName, res, this.ListConstants);
             (this.Parent as Config).SelectedNode = res;
             return res;
         }
