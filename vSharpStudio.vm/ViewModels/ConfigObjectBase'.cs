@@ -16,7 +16,6 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigObjectBase(TValidator validator)
             : base(validator)
         {
-            this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
             //            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
         //private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -203,17 +202,6 @@ namespace vSharpStudio.vm.ViewModels
         public virtual void OnIsExpandedChanged() { }
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
-        [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> SubNodes
-        {
-            get { return this._SubNodes; }
-            set
-            {
-                this._SubNodes = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private SortedObservableCollection<ITreeConfigNode> _SubNodes;
         public virtual void Sort(Type type)
         {
             throw new NotImplementedException();

@@ -15,7 +15,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Properties";
-            this.SubNodes.AddRange(this.ListProperties);
         }
         public void OnInitFromDto()
         {

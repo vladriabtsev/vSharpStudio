@@ -10,7 +10,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-            this.SubNodes = null;
         }
         public void OnInitFromDto()
         {

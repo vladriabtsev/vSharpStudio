@@ -13,7 +13,6 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Enumeration";
         partial void OnInit()
         {
-            this.SubNodes.AddRange(this.ListValues);
         }
         public void OnInitFromDto()
         {

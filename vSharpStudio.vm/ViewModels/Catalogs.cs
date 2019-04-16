@@ -19,6 +19,18 @@ namespace vSharpStudio.vm.ViewModels
         public void OnInitFromDto()
         {
         }
+        //[BrowsableAttribute(false)]
+        //public SortedObservableCollection<ITreeConfigNode> SubNodes
+        //{
+        //    get { return this._SubNodes; }
+        //    set
+        //    {
+        //        this._SubNodes = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
+        //private SortedObservableCollection<ITreeConfigNode> _SubNodes;
+
         #region ITreeNode
         #region status icon
         [BrowsableAttribute(false)]

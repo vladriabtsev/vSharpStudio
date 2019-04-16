@@ -165,7 +165,7 @@ message proto_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	proto_properties shared_properties = 4;
+	proto_properties shared_properties_group = 4;
 	repeated proto_catalog list_catalogs = 5;
 }
 // all simple nullable (generator check suffics '_nullable')

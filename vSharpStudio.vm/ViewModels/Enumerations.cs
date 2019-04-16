@@ -14,7 +14,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Enumerations";
-            this.SubNodes.AddRange(this.ListEnumerations);
         }
         public void OnInitFromDto()
         {
@@ -82,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public new string NodeText { get { return this.Name + " " + this.ListEnumerations.Count; } }
+        public new string NodeText { get { return this.Name; } }
         protected override bool OnNodeCanLeft()
         {
             return false;

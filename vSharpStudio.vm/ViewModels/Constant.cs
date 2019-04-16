@@ -13,7 +13,6 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Constant";
         partial void OnInit()
         {
-            this.SubNodes = null;
         }
         public void OnInitFromDto()
         {

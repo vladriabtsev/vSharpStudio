@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -25,6 +26,19 @@ namespace vSharpStudio.vm.ViewModels
         public string ConnectionString = null;
         partial void OnInit()
         {
+            this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
+            //if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
+            //    return;
+            //SubNodes.Clear();
+            SubNodes.Add(this.ConstantGroup, 1);
+            SubNodes.Add(this.EnumerationGroup, 2);
+            SubNodes.Add(this.CatalogGroup, 3);
+            //foreach (var t in this.ListConstantsGroups)
+            //    SubNodes.Add(t, 1);
+            //foreach (var t in this.ListEnumerationsGroups)
+            //    SubNodes.Add(t, 2);
+            //foreach (var t in this.ListCatalogsGroups)
+            //    SubNodes.Add(t, 3);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
@@ -90,20 +104,20 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ITreeConfigNode> SubNodes
+        {
+            get { return this._SubNodes; }
+            set
+            {
+                this._SubNodes = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private SortedObservableCollection<ITreeConfigNode> _SubNodes;
+
         void RecreateSubNodes()
         {
-            if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
-                return;
-            SubNodes.Clear();
-            SubNodes.Add(this.ConstantGroup, 1);
-            SubNodes.Add(this.EnumerationGroup, 2);
-            SubNodes.Add(this.CatalogGroup, 3);
-            //foreach (var t in this.ListConstantsGroups)
-            //    SubNodes.Add(t, 1);
-            //foreach (var t in this.ListEnumerationsGroups)
-            //    SubNodes.Add(t, 2);
-            //foreach (var t in this.ListCatalogsGroups)
-            //    SubNodes.Add(t, 3);
         }
         partial void OnConstantGroupChanged() { RecreateSubNodes(); }
         partial void OnCatalogGroupChanged() { RecreateSubNodes(); }

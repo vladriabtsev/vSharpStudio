@@ -14,7 +14,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Constants";
-            this.SubNodes.AddRange(this.ListConstants);
         }
         public void OnInitFromDto()
         {
@@ -83,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
-        public new string NodeText { get { return this.Name + " " + this.ListConstants.Count; } }
+        public new string NodeText { get { return this.Name; } }
         protected override bool OnNodeCanLeft()
         {
             return false;
