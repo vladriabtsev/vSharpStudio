@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/16/2019 00:19:21
+// Auto generated on UTC 04/16/2019 00:53:05
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -2328,7 +2328,6 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalogs() : base(CatalogsValidator.Validator)
 		{
-			this.SharedPropertiesGroup = new Properties(this);
 			this.ListCatalogs = new SortedObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
@@ -2372,8 +2371,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        vm.SharedPropertiesGroup = vSharpStudio.vm.ViewModels.Properties.Clone(vm, from.SharedPropertiesGroup, isDeep);
 		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in from.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
@@ -2386,8 +2383,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        Properties.Update(to.SharedPropertiesGroup, from.SharedPropertiesGroup, isDeep);
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListCatalogs.ToList())
@@ -2449,7 +2444,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.SharedPropertiesGroup = vSharpStudio.vm.ViewModels.Properties.ConvertToVM(m.SharedPropertiesGroup);
 		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in m.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t));
@@ -2463,7 +2457,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
-		    m.SharedPropertiesGroup = vSharpStudio.vm.ViewModels.Properties.ConvertToProto(vm.SharedPropertiesGroup);
 		    foreach(var t in vm.ListCatalogs)
 		        m.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
 		    return m;
@@ -2473,32 +2466,12 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.SharedPropertiesGroup.Accept(visitor);
 			foreach(var t in this.ListCatalogs)
 				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
-		
-		public Properties SharedPropertiesGroup
-		{ 
-			set
-			{
-				if (_SharedPropertiesGroup != value)
-				{
-					OnSharedPropertiesGroupChanging();
-		            _SharedPropertiesGroup = value;
-					OnSharedPropertiesGroupChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _SharedPropertiesGroup; }
-		}
-		private Properties _SharedPropertiesGroup;
-		partial void OnSharedPropertiesGroupChanging();
-		partial void OnSharedPropertiesGroupChanged();
 		
 		public SortedObservableCollection<Catalog> ListCatalogs { get; set; }
 		partial void OnListCatalogsChanging();
