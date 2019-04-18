@@ -147,7 +147,7 @@ namespace vSharpStudio.xUnit
             Catalog.CatalogValidator.Reset();
             var cfg = new ConfigRoot();
             var c = new Catalog();
-            cfg.CatalogGroup.ListCatalogs.Add(c);
+            cfg.GroupCatalogs.ListCatalogs.Add(c);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
@@ -163,20 +163,21 @@ namespace vSharpStudio.xUnit
 
             cfg.ValidateSubTreeFromNode(c, _logger); //.ConfigureAwait(continueOnCapturedContext: false);
 
-            Assert.True(cfg.ListAllValidationMessages.Count == 4);
-            var p = cfg.ListAllValidationMessages[0];
+            Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(c.ValidationCollection.Count == 4);
+            var p = c.ValidationCollection[0];
             Assert.True(p.Severity == FluentValidation.Severity.Error);
             Assert.True(p.Message == mes1);
             Assert.True(p.Model == c);
-            p = cfg.ListAllValidationMessages[1];
+            p = c.ValidationCollection[1];
             Assert.True(p.Severity == FluentValidation.Severity.Warning);
             Assert.True(p.Message == mes22);
             Assert.True(p.Model == c);
-            p = cfg.ListAllValidationMessages[2];
+            p = c.ValidationCollection[2];
             Assert.True(p.Severity == FluentValidation.Severity.Warning);
             Assert.True(p.Message == mes2);
             Assert.True(p.Model == c);
-            p = cfg.ListAllValidationMessages[3];
+            p = c.ValidationCollection[3];
             Assert.True(p.Severity == FluentValidation.Severity.Info);
             Assert.True(p.Message == mes3);
             Assert.True(p.Model == c);
@@ -185,13 +186,16 @@ namespace vSharpStudio.xUnit
             Assert.Equal(2, c.CountWarnings);
             Assert.Equal(1, c.CountInfos);
 
-            Assert.Equal(1, cfg.CatalogGroup.CountErrors);
-            Assert.Equal(2, cfg.CatalogGroup.CountWarnings);
-            Assert.Equal(1, cfg.CatalogGroup.CountInfos);
+            Assert.Equal(1, cfg.GroupCatalogs.CountErrors);
+            Assert.Equal(2, cfg.GroupCatalogs.CountWarnings);
+            Assert.Equal(1, cfg.GroupCatalogs.CountInfos);
 
             Assert.Equal(1, cfg.CountErrors);
             Assert.Equal(2, cfg.CountWarnings);
             Assert.Equal(1, cfg.CountInfos);
+
+            cfg.ValidateSubTreeFromNode(cfg, _logger); //.ConfigureAwait(continueOnCapturedContext: false);
+            Assert.True(cfg.ValidationCollection.Count == 4);
         }
         #endregion Validatable
 

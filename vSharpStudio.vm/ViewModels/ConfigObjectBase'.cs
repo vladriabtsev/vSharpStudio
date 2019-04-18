@@ -148,14 +148,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             _Guid = System.Guid.NewGuid().ToString();
         }
-        [PropertyOrder(0)]
+        [BrowsableAttribute(false)]
         public string Name
         {
             set
             {
                 if (_Name != value)
                 {
-                    _Name = value;
                     NotifyPropertyChanged();
                     this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
                     ITreeConfigNode p = (ITreeConfigNode)this;
@@ -166,6 +165,20 @@ namespace vSharpStudio.vm.ViewModels
             get { return _Name; }
         }
         private string _Name = "";
+        [PropertyOrder(0)]
+        public string NameToBind
+        {
+            set
+            {
+                if (_Name != value)
+                {
+                    ???
+                    _Name = value.Trim();
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _Name; }
+        }
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]

@@ -9,6 +9,6 @@ namespace ViewModelBase
         int CountErrors { get; set; }
         int CountWarnings { get; set; }
         int CountInfos { get; set; }
-        SortedObservableCollection<ValidationMessage> ValidationCollection { get; }
+        SortedObservableCollection<ValidationMessage> ValidationCollection { get; set; }
     }
 }

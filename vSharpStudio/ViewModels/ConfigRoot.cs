@@ -15,7 +15,7 @@ using vSharpStudio.vm.ViewModels;
 namespace vSharpStudio.ViewModels
 {
     //TODO report based on FlowDocument https://github.com/rodrigovedovato/FlowDocumentReporting
-    public class ConfigRoot : Config
+    public partial class ConfigRoot : Config
     {
         public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
         public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
@@ -118,35 +118,38 @@ namespace vSharpStudio.ViewModels
             if (cancellationSourceForValidatingFullConfig != null)
             {
                 cancellationSourceForValidatingFullConfig.Cancel();
-                logger.LogInformation("=== Cancellation request ===");
+                //                if (logger != null && logger.IsEnabled)
+                if (logger != null)
+                    logger.LogInformation("=== Cancellation request ===");
             }
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new TreeNodeValidatorVisitor(token, node, logger);
+            var visitor = new TreeNodeValidatorVisitor(token, logger);
             this.Accept(visitor);
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
-                this.ListAllValidationMessages = visitor.Result; 
+                node.ValidationCollection.Clear();
+                node.ValidationCollection = visitor.Result;
             }
             else
             {
                 logger.LogInformation("=== Cancelled ===");
             }
         }
-        public SortedObservableCollection<ValidationMessage> ListAllValidationMessages
-        {
-            set
-            {
-                if (_ListAllValidationMessages != null)
-                    _ListAllValidationMessages.Clear();
-                _ListAllValidationMessages = value;
-                NotifyPropertyChanged();
-            }
-            get { return _ListAllValidationMessages; }
-        }
-        private SortedObservableCollection<ValidationMessage> _ListAllValidationMessages = null;
+        //public SortedObservableCollection<ValidationMessage> ListAllValidationMessages
+        //{
+        //    set
+        //    {
+        //        if (_ListAllValidationMessages != null)
+        //            _ListAllValidationMessages.Clear();
+        //        _ListAllValidationMessages = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //    get { return _ListAllValidationMessages; }
+        //}
+        //private SortedObservableCollection<ValidationMessage> _ListAllValidationMessages = null;
 
         #endregion Full Validation
 

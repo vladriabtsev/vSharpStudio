@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/16/2019 00:53:05
+// Auto generated on UTC 04/18/2019 20:28:18
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -21,9 +21,9 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.ConstantGroup = new Constants(this);
-			this.EnumerationGroup = new Enumerations(this);
-			this.CatalogGroup = new Catalogs(this);
+			this.GroupConstants = new Constants(this);
+			this.GroupEnumerations = new Enumerations(this);
+			this.GroupCatalogs = new Catalogs(this);
 			OnInit();
 		}
 		public Config(ITreeConfigNode parent) : this()
@@ -64,11 +64,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.ConstantGroup, isDeep);
+		        vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.GroupConstants, isDeep);
 		    if (isDeep)
-		        vm.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.EnumerationGroup, isDeep);
+		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.GroupEnumerations, isDeep);
 		    if (isDeep)
-		        vm.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.CatalogGroup, isDeep);
+		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.GroupCatalogs, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -98,11 +98,11 @@ namespace vSharpStudio.vm.ViewModels
 		    to.HiLoSequenceName = from.HiLoSequenceName;
 		    to.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        Constants.Update(to.ConstantGroup, from.ConstantGroup, isDeep);
+		        Constants.Update(to.GroupConstants, from.GroupConstants, isDeep);
 		    if (isDeep)
-		        Enumerations.Update(to.EnumerationGroup, from.EnumerationGroup, isDeep);
+		        Enumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
 		    if (isDeep)
-		        Catalogs.Update(to.CatalogGroup, from.CatalogGroup, isDeep);
+		        Catalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
 		}
 		#region IEditable
 		public override Config Backup()
@@ -147,9 +147,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.ConstantGroup);
-		    vm.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.EnumerationGroup);
-		    vm.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.CatalogGroup);
+		    vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.GroupConstants);
+		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
+		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.GroupCatalogs);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -179,9 +179,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo = vm.IsSequenceHiLo;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.ConstantGroup = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.ConstantGroup);
-		    m.EnumerationGroup = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.EnumerationGroup);
-		    m.CatalogGroup = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.CatalogGroup);
+		    m.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.GroupConstants);
+		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
+		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.GroupCatalogs);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -189,9 +189,9 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.ConstantGroup.Accept(visitor);
-			this.EnumerationGroup.Accept(visitor);
-			this.CatalogGroup.Accept(visitor);
+			this.GroupConstants.Accept(visitor);
+			this.GroupEnumerations.Accept(visitor);
+			this.GroupCatalogs.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -205,9 +205,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnVersionChanging();
 					_Version = value;
-					OnVersionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnVersionChanged();
 				}
 			}
 			get { return _Version; }
@@ -224,9 +224,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnNameUiChanging();
 					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnNameUiChanged();
 				}
 			}
 			get { return _NameUi; }
@@ -243,9 +243,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDescriptionChanging();
 					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDescriptionChanged();
 				}
 			}
 			get { return _Description; }
@@ -262,9 +262,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsDbFromConnectionStringChanging();
 					_IsDbFromConnectionString = value;
-					OnIsDbFromConnectionStringChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsDbFromConnectionStringChanged();
 				}
 			}
 			get { return _IsDbFromConnectionString; }
@@ -281,9 +281,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnConnectionStringNameChanging();
 					_ConnectionStringName = value;
-					OnConnectionStringNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnConnectionStringNameChanged();
 				}
 			}
 			get { return _ConnectionStringName; }
@@ -300,9 +300,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbTypeEnumChanging();
 					_DbTypeEnum = value;
-					OnDbTypeEnumChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbTypeEnumChanged();
 				}
 			}
 			get { return _DbTypeEnum; }
@@ -319,9 +319,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbServerChanging();
 					_DbServer = value;
-					OnDbServerChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbServerChanged();
 				}
 			}
 			get { return _DbServer; }
@@ -338,9 +338,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbDatabaseNameChanging();
 					_DbDatabaseName = value;
-					OnDbDatabaseNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbDatabaseNameChanged();
 				}
 			}
 			get { return _DbDatabaseName; }
@@ -357,9 +357,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsDbWindowsAuthenticationChanging();
 					_IsDbWindowsAuthentication = value;
-					OnIsDbWindowsAuthenticationChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsDbWindowsAuthenticationChanged();
 				}
 			}
 			get { return _IsDbWindowsAuthentication; }
@@ -376,9 +376,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbUserChanging();
 					_DbUser = value;
-					OnDbUserChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbUserChanged();
 				}
 			}
 			get { return _DbUser; }
@@ -395,9 +395,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbPasswordChanging();
 					_DbPassword = value;
-					OnDbPasswordChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbPasswordChanged();
 				}
 			}
 			get { return _DbPassword; }
@@ -414,9 +414,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnPathToProjectWithConnectionStringChanging();
 					_PathToProjectWithConnectionString = value;
-					OnPathToProjectWithConnectionStringChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnPathToProjectWithConnectionStringChanged();
 				}
 			}
 			get { return _PathToProjectWithConnectionString; }
@@ -433,9 +433,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDbSchemaChanging();
 					_DbSchema = value;
-					OnDbSchemaChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDbSchemaChanged();
 				}
 			}
 			get { return _DbSchema; }
@@ -452,9 +452,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnPrimaryKeyNameChanging();
 					_PrimaryKeyName = value;
-					OnPrimaryKeyNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnPrimaryKeyNameChanged();
 				}
 			}
 			get { return _PrimaryKeyName; }
@@ -471,9 +471,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsPrimaryKeyClusteredChanging();
 					_IsPrimaryKeyClustered = value;
-					OnIsPrimaryKeyClusteredChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsPrimaryKeyClusteredChanged();
 				}
 			}
 			get { return _IsPrimaryKeyClustered; }
@@ -490,9 +490,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsMemoryOptimizedChanging();
 					_IsMemoryOptimized = value;
-					OnIsMemoryOptimizedChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsMemoryOptimizedChanged();
 				}
 			}
 			get { return _IsMemoryOptimized; }
@@ -509,9 +509,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsSequenceHiLoChanging();
 					_IsSequenceHiLo = value;
-					OnIsSequenceHiLoChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsSequenceHiLoChanged();
 				}
 			}
 			get { return _IsSequenceHiLo; }
@@ -528,9 +528,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnHiLoSequenceNameChanging();
 					_HiLoSequenceName = value;
-					OnHiLoSequenceNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnHiLoSequenceNameChanged();
 				}
 			}
 			get { return _HiLoSequenceName; }
@@ -547,9 +547,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnHiLoSchemaChanging();
 					_HiLoSchema = value;
-					OnHiLoSchemaChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnHiLoSchemaChanged();
 				}
 			}
 			get { return _HiLoSchema; }
@@ -558,62 +558,62 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
-		public Constants ConstantGroup
+		public Constants GroupConstants
 		{ 
 			set
 			{
-				if (_ConstantGroup != value)
+				if (_GroupConstants != value)
 				{
-					OnConstantGroupChanging();
-		            _ConstantGroup = value;
-					OnConstantGroupChanged();
-					NotifyPropertyChanged();
+					OnGroupConstantsChanging();
+		            _GroupConstants = value;
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnGroupConstantsChanged();
 				}
 			}
-			get { return _ConstantGroup; }
+			get { return _GroupConstants; }
 		}
-		private Constants _ConstantGroup;
-		partial void OnConstantGroupChanging();
-		partial void OnConstantGroupChanged();
+		private Constants _GroupConstants;
+		partial void OnGroupConstantsChanging();
+		partial void OnGroupConstantsChanged();
 		
-		public Enumerations EnumerationGroup
+		public Enumerations GroupEnumerations
 		{ 
 			set
 			{
-				if (_EnumerationGroup != value)
+				if (_GroupEnumerations != value)
 				{
-					OnEnumerationGroupChanging();
-		            _EnumerationGroup = value;
-					OnEnumerationGroupChanged();
-					NotifyPropertyChanged();
+					OnGroupEnumerationsChanging();
+		            _GroupEnumerations = value;
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnGroupEnumerationsChanged();
 				}
 			}
-			get { return _EnumerationGroup; }
+			get { return _GroupEnumerations; }
 		}
-		private Enumerations _EnumerationGroup;
-		partial void OnEnumerationGroupChanging();
-		partial void OnEnumerationGroupChanged();
+		private Enumerations _GroupEnumerations;
+		partial void OnGroupEnumerationsChanging();
+		partial void OnGroupEnumerationsChanged();
 		
-		public Catalogs CatalogGroup
+		public Catalogs GroupCatalogs
 		{ 
 			set
 			{
-				if (_CatalogGroup != value)
+				if (_GroupCatalogs != value)
 				{
-					OnCatalogGroupChanging();
-		            _CatalogGroup = value;
-					OnCatalogGroupChanged();
-					NotifyPropertyChanged();
+					OnGroupCatalogsChanging();
+		            _GroupCatalogs = value;
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnGroupCatalogsChanged();
 				}
 			}
-			get { return _CatalogGroup; }
+			get { return _GroupCatalogs; }
 		}
-		private Catalogs _CatalogGroup;
-		partial void OnCatalogGroupChanging();
-		partial void OnCatalogGroupChanged();
+		private Catalogs _GroupCatalogs;
+		partial void OnGroupCatalogsChanging();
+		partial void OnGroupCatalogsChanged();
 		#endregion Properties
 	}
 	
@@ -724,9 +724,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDataTypeChanging();
 		            _DataType = value;
-					OnDataTypeChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDataTypeChanged();
 				}
 			}
 			get { return _DataType; }
@@ -743,9 +743,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnNameUiChanging();
 					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnNameUiChanged();
 				}
 			}
 			get { return _NameUi; }
@@ -762,9 +762,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDescriptionChanging();
 					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDescriptionChanged();
 				}
 			}
 			get { return _Description; }
@@ -886,9 +886,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDataTypeEnumChanging();
 					_DataTypeEnum = value;
-					OnDataTypeEnumChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDataTypeEnumChanged();
 				}
 			}
 			get { return _DataTypeEnum; }
@@ -905,9 +905,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnLengthChanging();
 					_Length = value;
-					OnLengthChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnLengthChanged();
 				}
 			}
 			get { return _Length; }
@@ -924,9 +924,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnAccuracyChanging();
 					_Accuracy = value;
-					OnAccuracyChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnAccuracyChanged();
 				}
 			}
 			get { return _Accuracy; }
@@ -943,9 +943,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsPositiveChanging();
 					_IsPositive = value;
-					OnIsPositiveChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsPositiveChanged();
 				}
 			}
 			get { return _IsPositive; }
@@ -962,9 +962,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnTypeGuidChanging();
 					_TypeGuid = value;
-					OnTypeGuidChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnTypeGuidChanged();
 				}
 			}
 			get { return _TypeGuid; }
@@ -981,9 +981,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnMinValueStringChanging();
 					_MinValueString = value;
-					OnMinValueStringChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnMinValueStringChanged();
 				}
 			}
 			get { return _MinValueString; }
@@ -1000,9 +1000,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnMaxValueStringChanging();
 					_MaxValueString = value;
-					OnMaxValueStringChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnMaxValueStringChanged();
 				}
 			}
 			get { return _MaxValueString; }
@@ -1019,9 +1019,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnObjectNameChanging();
 					_ObjectName = value;
-					OnObjectNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnObjectNameChanged();
 				}
 			}
 			get { return _ObjectName; }
@@ -1039,7 +1039,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Constant() : base(ConstantValidator.Validator)
 		{
-			this.ConstantType = new Property(this);
+			this.DataType = new DataType(this);
 			OnInit();
 		}
 		public Constant(ITreeConfigNode parent) : this()
@@ -1061,7 +1061,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
 		    if (isDeep)
-		        vm.ConstantType = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.ConstantType, isDeep);
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isNewGuid)
@@ -1074,7 +1074,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
 		    if (isDeep)
-		        Property.Update(to.ConstantType, from.ConstantType, isDeep);
+		        DataType.Update(to.DataType, from.DataType, isDeep);
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
 		}
@@ -1102,7 +1102,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.ConstantType);
+		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vm.OnInitFromDto();
@@ -1115,7 +1115,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
-		    m.ConstantType = vSharpStudio.vm.ViewModels.Property.ConvertToProto(vm.ConstantType);
+		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    return m;
@@ -1125,30 +1125,30 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.ConstantType.Accept(visitor);
+			this.DataType.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public Property ConstantType
+		public DataType DataType
 		{ 
 			set
 			{
-				if (_ConstantType != value)
+				if (_DataType != value)
 				{
-					OnConstantTypeChanging();
-		            _ConstantType = value;
-					OnConstantTypeChanged();
-					NotifyPropertyChanged();
+					OnDataTypeChanging();
+		            _DataType = value;
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDataTypeChanged();
 				}
 			}
-			get { return _ConstantType; }
+			get { return _DataType; }
 		}
-		private Property _ConstantType;
-		partial void OnConstantTypeChanging();
-		partial void OnConstantTypeChanged();
+		private DataType _DataType;
+		partial void OnDataTypeChanging();
+		partial void OnDataTypeChanged();
 		
 		public string NameUi
 		{ 
@@ -1158,9 +1158,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnNameUiChanging();
 					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnNameUiChanged();
 				}
 			}
 			get { return _NameUi; }
@@ -1177,9 +1177,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDescriptionChanging();
 					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDescriptionChanged();
 				}
 			}
 			get { return _Description; }
@@ -1443,9 +1443,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnValueChanging();
 					_Value = value;
-					OnValueChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnValueChanged();
 				}
 			}
 			get { return _Value; }
@@ -1628,9 +1628,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDataTypeEnumChanging();
 					_DataTypeEnum = value;
-					OnDataTypeEnumChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDataTypeEnumChanged();
 				}
 			}
 			get { return _DataTypeEnum; }
@@ -1647,9 +1647,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnNameUiChanging();
 					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnNameUiChanged();
 				}
 			}
 			get { return _NameUi; }
@@ -1666,9 +1666,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDescriptionChanging();
 					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDescriptionChanged();
 				}
 			}
 			get { return _Description; }
@@ -2032,9 +2032,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnNameUiChanging();
 					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnNameUiChanged();
 				}
 			}
 			get { return _NameUi; }
@@ -2051,9 +2051,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnDescriptionChanging();
 					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnDescriptionChanged();
 				}
 			}
 			get { return _Description; }
@@ -2070,9 +2070,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsPrimaryKeyClusteredChanging();
 		            _IsPrimaryKeyClustered = value;
-					OnIsPrimaryKeyClusteredChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsPrimaryKeyClusteredChanged();
 				}
 			}
 			get { return _IsPrimaryKeyClustered; }
@@ -2089,9 +2089,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsMemoryOptimizedChanging();
 		            _IsMemoryOptimized = value;
-					OnIsMemoryOptimizedChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsMemoryOptimizedChanged();
 				}
 			}
 			get { return _IsMemoryOptimized; }
@@ -2108,9 +2108,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnIsSequenceHiLoChanging();
 		            _IsSequenceHiLo = value;
-					OnIsSequenceHiLoChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnIsSequenceHiLoChanged();
 				}
 			}
 			get { return _IsSequenceHiLo; }
@@ -2127,9 +2127,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnHiLoSequenceNameChanging();
 					_HiLoSequenceName = value;
-					OnHiLoSequenceNameChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnHiLoSequenceNameChanged();
 				}
 			}
 			get { return _HiLoSequenceName; }
@@ -2146,9 +2146,9 @@ namespace vSharpStudio.vm.ViewModels
 				{
 					OnHiLoSchemaChanging();
 					_HiLoSchema = value;
-					OnHiLoSchemaChanged();
-					NotifyPropertyChanged();
 					ValidateProperty();
+					NotifyPropertyChanged();
+					OnHiLoSchemaChanged();
 				}
 			}
 			get { return _HiLoSchema; }

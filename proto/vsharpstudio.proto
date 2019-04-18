@@ -62,9 +62,9 @@ message proto_config {
 
     // CONFIG OBJECTS
 
-	proto_constants constant_group = 101;
-	proto_enumerations enumeration_group = 102;
-	proto_catalogs catalog_group = 103;
+	proto_constants group_constants = 101;
+	proto_enumerations group_enumerations = 102;
+	proto_catalogs group_catalogs = 103;
 }
 message proto_property {
 	string guid = 1;
@@ -102,7 +102,7 @@ message proto_constant {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	proto_property constant_type = 4;
+	proto_data_type data_type = 4;
 	string name_ui = 5;
 	string description = 6;
 }
@@ -165,7 +165,7 @@ message proto_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	//proto_properties shared_properties_group = 4;
+	//proto_properties group_shared_properties = 4;
 	repeated proto_catalog list_catalogs = 5;
 }
 // all simple nullable (generator check suffics '_nullable')
@@ -177,3 +177,4 @@ message string_nullable {
 	bool has_value = 1;
 	string value = 2;
 }
+

@@ -15,13 +15,10 @@ namespace vSharpStudio.vm.ViewModels
         CancellationToken IVisitorConfig.Token => _cancellationToken;
         private CancellationToken _cancellationToken;
         private int _level = -1;
-        private bool _isCollectMessages = false;
-        private ITreeConfigNode _startNode;
         private ILogger _logger = null;
-        public TreeNodeValidatorVisitor(CancellationToken cancellationToken, ITreeConfigNode startNode, ILogger logger = null)
+        public TreeNodeValidatorVisitor(CancellationToken cancellationToken, ILogger logger = null)
         {
             this._cancellationToken = cancellationToken;
-            this._startNode = startNode;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
             this.Result.SortDirection = SortDirection.Descending;
@@ -68,11 +65,17 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in p.ValidationCollection)
             {
                 UpdateCounts(p, t);
-                if (_isCollectMessages)
+                t.RaiseSeverityLevel(_level);
+                ulong weight = 0;
+                ITreeConfigNode nnode = p;
+                while (nnode.Parent != null)
                 {
-                    t.RaiseSeverityLevel(_level);
-                    Result.Add(t);
+                    weight++;
+                    nnode = nnode.Parent;
                 }
+                if (weight > ViewModelBindable.MaxSortingWeight)
+                    throw new Exception();
+                Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
             }
         }
         private void OnVisit(ITreeConfigNode p)
@@ -82,14 +85,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
             }
-            if (_startNode == p)
-                _isCollectMessages = true;
             UpdateValidation(p);
         }
         private void OnVisitEnd(ITreeConfigNode p)
         {
-            if (_startNode == p)
-                _isCollectMessages = false;
             if (_logger != null)
             {
                 _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);

@@ -70,7 +70,7 @@ namespace ViewModelBase
         }
         private int _CountInfos;
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ValidationMessage> ValidationCollection { get; private set; }
+        public SortedObservableCollection<ValidationMessage> ValidationCollection { get; set; }
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
             ClearAllErrors();

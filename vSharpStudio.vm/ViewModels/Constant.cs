@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Constant:{Name,nq} Type:{Property.GetTypeDesc(ConstantType),nq}")]
+    [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>
     {
         public static readonly string DefaultName = "Constant";

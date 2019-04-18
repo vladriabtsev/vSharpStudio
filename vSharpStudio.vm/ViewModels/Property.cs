@@ -10,7 +10,7 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Property:{Name,nq} Type:{Property.GetTypeDesc(this),nq}")]
+    [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>
     {
         public static readonly string DefaultName = "Property";
@@ -29,43 +29,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
-        }
-        public static string GetTypeDesc(Property p)
-        {
-            string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataType.DataTypeEnum);
-            switch (p.DataType.DataTypeEnum)
-            {
-                case Proto.Config.proto_data_type.Types.EnumDataType.Any:
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Bool:
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
-                    res += " "+ p.DataType.ObjectName;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Constant:
-                    res += " " + p.DataType.ObjectName;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                    res += " " + p.DataType.ObjectName;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
-                    res += " " + p.DataType.ObjectName;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
-                    res += " Length:" + p.DataType.Length + " Accuracy:" + p.DataType.Accuracy + " Min:" + p.DataType.MinValueString + " Max:" + p.DataType.MaxValueString;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.String:
-                    res += " Length:" + p.DataType.Length + " Min:" + p.DataType.MinValueString;
-                    break;
-                default:
-                    res += " - Not supported";
-                    break;
-            }
-            return res;
         }
         public Type ClrType
         {

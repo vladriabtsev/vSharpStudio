@@ -30,9 +30,9 @@ namespace vSharpStudio.vm.ViewModels
             //if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
             //    return;
             //SubNodes.Clear();
-            SubNodes.Add(this.ConstantGroup, 1);
-            SubNodes.Add(this.EnumerationGroup, 2);
-            SubNodes.Add(this.CatalogGroup, 3);
+            SubNodes.Add(this.GroupConstants, 1);
+            SubNodes.Add(this.GroupEnumerations, 2);
+            SubNodes.Add(this.GroupCatalogs, 3);
             //foreach (var t in this.ListConstantsGroups)
             //    SubNodes.Add(t, 1);
             //foreach (var t in this.ListEnumerationsGroups)
@@ -119,9 +119,9 @@ namespace vSharpStudio.vm.ViewModels
         void RecreateSubNodes()
         {
         }
-        partial void OnConstantGroupChanged() { RecreateSubNodes(); }
-        partial void OnCatalogGroupChanged() { RecreateSubNodes(); }
-        partial void OnEnumerationGroupChanged() { RecreateSubNodes(); }
+        partial void OnGroupConstantsChanged() { RecreateSubNodes(); }
+        partial void OnGroupCatalogsChanged() { RecreateSubNodes(); }
+        partial void OnGroupEnumerationsChanged() { RecreateSubNodes(); }
         protected override bool OnNodeCanLeft()
         {
             return false;

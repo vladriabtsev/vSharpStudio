@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
@@ -9,6 +10,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
+    [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq}")]
     public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>
     {
         partial void OnInit()
@@ -61,6 +63,43 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new ArgumentException();
             }
+        }
+        public static string GetTypeDesc(DataType p)
+        {
+            string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataTypeEnum);
+            switch (p.DataTypeEnum)
+            {
+                case Proto.Config.proto_data_type.Types.EnumDataType.Any:
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Bool:
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+                    res += " " + p.ObjectName;
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Constant:
+                    res += " " + p.ObjectName;
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+                    res += " " + p.ObjectName;
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
+                    res += " " + p.ObjectName;
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
+                    res += " Length:" + p.Length + " Accuracy:" + p.Accuracy + " Min:" + p.MinValueString + " Max:" + p.MaxValueString;
+                    break;
+                case Proto.Config.proto_data_type.Types.EnumDataType.String:
+                    res += " Length:" + p.Length + " Min:" + p.MinValueString;
+                    break;
+                default:
+                    res += " - Not supported";
+                    break;
+            }
+            return res;
         }
         public BigInteger MinValue
         {
