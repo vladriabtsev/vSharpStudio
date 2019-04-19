@@ -185,16 +185,6 @@ namespace vSharpStudio.vm.ViewModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Journals p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Journals p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
@@ -251,6 +241,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupJournals p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupJournals p)
         {
             throw new NotImplementedException();
         }

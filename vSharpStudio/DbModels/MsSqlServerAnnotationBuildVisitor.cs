@@ -60,11 +60,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Journals p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
@@ -91,6 +86,11 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.Visit(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupJournals p)
         {
             throw new NotImplementedException();
         }
@@ -140,11 +140,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Journals p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
@@ -171,6 +166,11 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupJournals p)
         {
             throw new NotImplementedException();
         }
