@@ -90,7 +90,7 @@ namespace vSharpStudio.DbModels
                            case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
                                x.Property(t.ClrType, t.Name);
                                break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
+                           case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
                                break;
                            default:
                                x.Property(t.ClrType, t.Name);

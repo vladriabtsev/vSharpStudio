@@ -4,6 +4,8 @@ using Xunit;
 using ViewModelBase;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Dummy;
 
 namespace vSharpStudio.xUnit
 {
@@ -422,13 +424,115 @@ namespace vSharpStudio.xUnit
             cfg.GroupConstants.NodeAddNewSubNode();
             cfg.GroupConstants.ListConstants[0].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Bool;
             cfg.GroupConstants.NodeAddNewSubNode();
-            cfg.GroupConstants.ListConstants[1].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enum;
+            cfg.GroupConstants.ListConstants[1].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enumeration;
             cfg.GroupConstants.ListConstants[1].DataType.ObjectName = cfg.GroupEnumerations.ListEnumerations[0].Name;
 
             return cfg;
         }
         [Fact]
-        public void Rules001_NameIdentifier()
+        public void Rules001_DataType()
+        {
+            var dt = new DataType();
+
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.ValidationCollection.Count == 0);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Any;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.ValidationCollection.Count == 0);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Bool;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.ValidationCollection.Count == 0);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Catalog;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.HasErrors);
+            Assert.True(dt.ValidationCollection.Count == 1);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CATALOG_NAME);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Visible);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Catalogs;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.ValidationCollection.Count == 0);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Constant;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.HasErrors);
+            Assert.True(dt.ValidationCollection.Count == 1);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CONSTANT_NAME);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Visible);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enumeration;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.HasErrors);
+            Assert.True(dt.ValidationCollection.Count == 1);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_ENUMERATION_NAME);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Collapsed);
+            Assert.True(dt.VisibilityObjectName == Visibility.Visible);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Numerical;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.HasErrors);
+            Assert.True(dt.ValidationCollection.Count == 1);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Visible);
+            Assert.True(dt.VisibilityLength == Visibility.Visible);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.String;
+            dt.Validate();
+            Assert.True(dt.CountErrors == 0);
+            Assert.True(dt.CountInfos == 0);
+            Assert.True(dt.CountWarnings == 0);
+            Assert.True(dt.ValidationCollection.Count == 0);
+            Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
+            Assert.True(dt.VisibilityLength == Visibility.Visible);
+            Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);
+        }
+        [Fact]
+        public void Rules002_Enumeration()
         {
             var cfg = createTree();
 
@@ -455,12 +559,22 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.GroupEnumerations.CountWarnings == 0);
 
             // ValidateSubTreeFromNode(node). node contains full list of validations
-            Assert.True(cfg.CountErrors == 1);
+            Assert.True(cfg.CountErrors == 2);
             Assert.True(cfg.CountInfos == 0);
             Assert.True(cfg.CountWarnings == 0);
-            Assert.True(cfg.ValidationCollection.Count == 1);
+            Assert.True(cfg.ValidationCollection.Count == 2);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+            Assert.True(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
+            if (cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT)
+            {
+                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+            }
+            else
+            {
+                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+            }
 
             cfg.GroupEnumerations.ListEnumerations[0].Name = " ab";
             Assert.True(cfg.GroupEnumerations.ListEnumerations[0].Name == "ab");
@@ -473,6 +587,7 @@ namespace vSharpStudio.xUnit
             Assert.False(cfg.GroupEnumerations.ListEnumerations[0].HasErrors);
 
             cfg.GroupEnumerations.ListEnumerations[0].Name = "a b";
+            cfg.GroupConstants.ListConstants[1].DataType.ObjectName = "a b";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.True(cfg.ValidationCollection.Count == 1);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
@@ -481,6 +596,7 @@ namespace vSharpStudio.xUnit
             cfg.GroupEnumerations.NodeAddNewSubNode();
             cfg.GroupEnumerations.ListEnumerations[0].Name = "ab";
             cfg.GroupEnumerations.ListEnumerations[1].Name = "ab";
+            cfg.GroupConstants.ListConstants[1].DataType.ObjectName = "ab";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.True(cfg.ValidationCollection.Count == 2);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
@@ -494,6 +610,88 @@ namespace vSharpStudio.xUnit
             Assert.True(errenum.MoveNext() == true);
             Assert.True((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             Assert.True(errenum.MoveNext() == false);
+        }
+        [Fact]
+        public void Rules003_Constant()
+        {
+            var cfg = createTree();
+
+            cfg.ValidateSubTreeFromNode(cfg);
+            Assert.True(cfg.CountErrors == 0);
+            Assert.True(cfg.CountInfos == 0);
+            Assert.True(cfg.CountWarnings == 0);
+            Assert.True(cfg.ValidationCollection.Count == 0);
+
+            //string prev = cfg.GroupConstants.ListConstants[0].DataType.ObjectName;
+            //cfg.GroupConstants.ListConstants[0].DataType.ObjectName = "123";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.True(cfg.CountErrors == 1);
+            //Assert.True(cfg.CountInfos == 0);
+            //Assert.True(cfg.CountWarnings == 0);
+            //Assert.True(cfg.ValidationCollection.Count == 1);
+            //Assert.True(cfg.GroupConstants.ListConstants[0].CountErrors == 1);
+            //Assert.True(cfg.GroupConstants.ListConstants[0].CountInfos == 0);
+            //Assert.True(cfg.GroupConstants.ListConstants[0].CountWarnings == 0);
+            //Assert.True(cfg.GroupConstants.ListConstants[0].DataType.ValidationCollection.Count == 1);
+
+
+            //cfg.GroupConstants.ListConstants[0].DataType.ObjectName = prev;
+            //cfg.GroupEnumerations.ListEnumerations[0].Name = "1a";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].CountErrors == 1);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].CountInfos == 0);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].CountWarnings == 0);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].HasErrors);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].ValidationCollection.Count == 1);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+
+            //// intermediate node contains only validation count
+            //Assert.True(cfg.GroupEnumerations.ValidationCollection.Count == 0);
+            //Assert.True(cfg.GroupEnumerations.CountErrors == 1);
+            //Assert.True(cfg.GroupEnumerations.CountInfos == 0);
+            //Assert.True(cfg.GroupEnumerations.CountWarnings == 0);
+
+            //// ValidateSubTreeFromNode(node). node contains full list of validations
+            //Assert.True(cfg.CountErrors == 1);
+            //Assert.True(cfg.CountInfos == 0);
+            //Assert.True(cfg.CountWarnings == 0);
+            //Assert.True(cfg.ValidationCollection.Count == 1);
+            //Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+
+            //cfg.GroupEnumerations.ListEnumerations[0].Name = " ab";
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].Name == "ab");
+            //cfg.GroupEnumerations.ListEnumerations[0].Validate();
+            //Assert.False(cfg.GroupEnumerations.ListEnumerations[0].HasErrors);
+
+            //cfg.GroupEnumerations.ListEnumerations[0].Name = "ab ";
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[0].Name == "ab");
+            //cfg.GroupEnumerations.ListEnumerations[0].Validate();
+            //Assert.False(cfg.GroupEnumerations.ListEnumerations[0].HasErrors);
+
+            //cfg.GroupEnumerations.ListEnumerations[0].Name = "a b";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.True(cfg.ValidationCollection.Count == 1);
+            //Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
+
+            //cfg.GroupEnumerations.NodeAddNewSubNode();
+            //cfg.GroupEnumerations.ListEnumerations[0].Name = "ab";
+            //cfg.GroupEnumerations.ListEnumerations[1].Name = "ab";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.True(cfg.ValidationCollection.Count == 2);
+            //Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.True(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
+            //Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[1].ValidationCollection.Count == 1);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[1].ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.True(cfg.GroupEnumerations.ListEnumerations[1].HasErrors == true);
+            //var errenum = cfg.GroupEnumerations.ListEnumerations[1].GetErrors("Name").GetEnumerator();
+            //Assert.True(errenum.MoveNext() == true);
+            //Assert.True((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.True(errenum.MoveNext() == false);
         }
         [Fact]
         public void Compare001_CanNothingChanged()

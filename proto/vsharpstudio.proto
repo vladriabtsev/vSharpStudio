@@ -81,7 +81,7 @@ message proto_data_type {
 		BOOL = 5;
 
 		CONSTANT = 7;
-		ENUM = 8;
+		ENUMERATION = 8;
 		CATALOG = 9;
 		CATALOGS = 10;
 		DOCUMENT = 11;

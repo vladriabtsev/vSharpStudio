@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.Migration
                         case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
                             x.Property(t.ClrType, (t as ITreeConfigNode).Name);
                             break;
-                        case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
+                        case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
                             break;
                         default:
                             x.Property(t.ClrType, (t as ITreeConfigNode).Name);

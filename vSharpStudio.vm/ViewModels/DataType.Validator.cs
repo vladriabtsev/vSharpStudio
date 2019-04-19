@@ -29,6 +29,8 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
                 RuleFor(p => p.Length).Must((p, y) =>
                 {
+                    if (p.Length == 0)
+                        return true;
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y <= p.Accuracy)
                         return false;
                     return true;
@@ -53,17 +55,19 @@ namespace vSharpStudio.vm.ViewModels
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_MAXLENGTH_GREATER_LENGTH);
-                RuleFor(p => p.MaxValueString).Must((p, y) =>
-                {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical)
-                        return false;
-                    return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_MIN_EMPTY).WithSeverity(Severity.Warning);
+                //RuleFor(p => p.MaxValueString).Must((p, y) =>
+                //{
+                //    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical)
+                //        return false;
+                //    return true;
+                //}).WithMessage(Config.ValidationMessages.TYPE_MIN_EMPTY).WithSeverity(Severity.Warning);
                 #endregion MaxValueString
 
                 #region Accuracy
                 RuleFor(p => p.Accuracy).Must((p, y) =>
                 {
+                    if (p.Length == 0)
+                        return true;
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y >= p.Length)
                         return false;
                     return true;
@@ -77,18 +81,87 @@ namespace vSharpStudio.vm.ViewModels
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CONSTANT_NAME);
-                //RuleFor(p => p.ObjectName).Must((p, y) =>
-                //{
-                //    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enum)
-                //        return false;
-                //    return true;
-                //}).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION_NAME);
+                RuleFor(p => p.ObjectName).Must((p, y) =>
+                {
+                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enumeration && string.IsNullOrWhiteSpace(p.ObjectName))
+                        return false;
+                    return true;
+                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION_NAME);
                 RuleFor(p => p.ObjectName).Must((p, y) =>
                 {
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Catalog && string.IsNullOrWhiteSpace(p.ObjectName))
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG_NAME);
+                RuleFor(p => p.ObjectName).Must((p, y) =>
+                {
+                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Constant)
+                        return true;
+                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    while (true)
+                    {
+                        if (n.Parent != null)
+                        {
+                            n = n.Parent;
+                            if (n is Config)
+                                break;
+                        }
+                        else
+                            return true;
+                    }
+                    foreach (var t in (n as Config).GroupConstants.ListConstants)
+                    {
+                        if (t.Name == y)
+                            return true;
+                    }
+                    return false;
+                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                RuleFor(p => p.ObjectName).Must((p, y) =>
+                {
+                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Enumeration)
+                        return true;
+                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    while (true)
+                    {
+                        if (n.Parent != null)
+                        {
+                            n = n.Parent;
+                            if (n is Config)
+                                break;
+                        }
+                        else
+                            return true;
+                    }
+                    foreach (var t in (n as Config).GroupEnumerations.ListEnumerations)
+                    {
+                        if (t.Name == y)
+                            return true;
+                    }
+                    return false;
+                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                RuleFor(p => p.ObjectName).Must((p, y) =>
+                {
+                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Catalog)
+                        return true;
+                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    while (true)
+                    {
+                        if (n.Parent != null)
+                        {
+                            n = n.Parent;
+                            if (n is Config)
+                                break;
+                        }
+                        else
+                            return true;
+                    }
+                    foreach (var t in (n as Config).GroupCatalogs.ListCatalogs)
+                    {
+                        if (t.Name == y)
+                            return true;
+                    }
+                    return false;
+                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
                 #endregion ObjectName
 
                 //RuleFor(x => x.MinValueString).NotEmpty().WithMessage(Config.ValidationMessages.TYPE_MIN_EMPTY).WithSeverity(Severity.Warning);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
+using System.Windows;
+using System.Windows.Dummy;
 using FluentValidation;
 using ViewModelBase;
 using static Proto.Config.proto_data_type.Types;
@@ -37,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.Length = length ?? 16;
                     this.Accuracy = accuracy ?? 2;
                     break;
-                case EnumDataType.Enum:
+                case EnumDataType.Enumeration:
                     break;
                 case EnumDataType.String:
                     this.Length = length ?? 30;
@@ -58,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.Document:
                     break;
-                case EnumDataType.Enum:
+                case EnumDataType.Enumeration:
                     break;
                 default:
                     throw new ArgumentException();
@@ -86,7 +88,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Enum:
+                case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
                     res += " " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
@@ -148,8 +150,81 @@ namespace vSharpStudio.vm.ViewModels
         }
         private BigInteger _MaxValue;
 
+        #region Visibility
+
+        partial void OnDataTypeEnumChanged()
+        {
+            switch(this.DataTypeEnum)
+            {
+                case EnumDataType.Any:
+                case EnumDataType.Bool:
+                case EnumDataType.Catalogs:
+                case EnumDataType.Documents:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    break;
+                case EnumDataType.Catalog:
+                case EnumDataType.Constant:
+                case EnumDataType.Document:
+                case EnumDataType.Enumeration:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Visible;
+                    break;
+                case EnumDataType.Numerical:
+                    this.VisibilityAccuracy = Visibility.Visible;
+                    this.VisibilityLength = Visibility.Visible;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    break;
+                case EnumDataType.String:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Visible;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    break;
+            }
+        }
+        public Visibility VisibilityLength
+        {
+            set
+            {
+                if (_VisibilityLength == value)
+                    return;
+                _VisibilityLength = value;
+                NotifyPropertyChanged();
+            }
+            get { return _VisibilityLength; }
+        }
+        private Visibility _VisibilityLength= Visibility.Collapsed;
+        public Visibility VisibilityAccuracy
+        {
+            set
+            {
+                if (_VisibilityAccuracy == value)
+                    return;
+                _VisibilityAccuracy = value;
+                NotifyPropertyChanged();
+            }
+            get { return _VisibilityAccuracy; }
+        }
+        private Visibility _VisibilityAccuracy = Visibility.Collapsed;
+        public Visibility VisibilityObjectName
+        {
+            set
+            {
+                if (_VisibilityObjectName == value)
+                    return;
+                _VisibilityObjectName = value;
+                NotifyPropertyChanged();
+            }
+            get { return _VisibilityObjectName; }
+        }
+        private Visibility _VisibilityObjectName = Visibility.Collapsed;
+
+        #endregion Visibility
+
         #region ITreeNode
-//        public string NodeText { get { return this.Name; } }
+        //        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
     }
