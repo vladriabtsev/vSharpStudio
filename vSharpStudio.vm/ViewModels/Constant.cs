@@ -8,15 +8,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>
+    public partial class Constant
     {
         public static readonly string DefaultName = "Constant";
         partial void OnInit()
         {
-        }
-        public void OnInitFromDto()
-        {
-            //RecreateSubNodes();
         }
 
         #region IConfigObject

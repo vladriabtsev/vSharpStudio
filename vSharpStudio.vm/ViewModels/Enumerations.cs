@@ -9,14 +9,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} enumerations:{ListEnumerations.Count,nq}")]
-    public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>
+    public partial class Enumerations
     {
         partial void OnInit()
         {
             this.Name = "Enumerations";
-        }
-        public void OnInitFromDto()
-        {
         }
 
         #region ITreeNode

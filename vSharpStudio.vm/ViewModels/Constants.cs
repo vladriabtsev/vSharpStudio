@@ -9,14 +9,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} constants:{ListConstants.Count,nq}")]
-    public partial class Constants : ConfigObjectBase<Constants, Constants.ConstantsValidator>
+    public partial class Constants
     {
         partial void OnInit()
         {
             this.Name = "Constants";
-        }
-        public void OnInitFromDto()
-        {
         }
 
         #region ITreeNode

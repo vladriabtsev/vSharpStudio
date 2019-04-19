@@ -10,14 +10,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} catalogs:{ListCatalogs.Count,nq}")]
-    public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>
+    public partial class Catalogs
     {
         partial void OnInit()
         {
             this.Name = "Catalogs";
-        }
-        public void OnInitFromDto()
-        {
         }
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> SubNodes

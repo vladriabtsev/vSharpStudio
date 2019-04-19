@@ -18,7 +18,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IMigration
+    public partial class Config : IMigration
     {
         public static readonly string DefaultName = "Config";
 
@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
-        public void OnInitFromDto()
+        protected override void OnInitFromDto()
         {
             RecreateSubNodes();
         }

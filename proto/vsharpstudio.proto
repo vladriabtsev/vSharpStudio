@@ -65,6 +65,8 @@ message proto_config {
 	proto_constants group_constants = 101;
 	proto_enumerations group_enumerations = 102;
 	proto_catalogs group_catalogs = 103;
+	proto_documents group_documents = 104;
+	proto_journals group_journals = 105;
 }
 message proto_property {
 	string guid = 1;
@@ -122,8 +124,8 @@ message proto_enumeration_pair {
 message proto_enumeration {
 	enum EnumEnumerationType {
 		STRING = 0;
-		//BYTE = 1;
-		//SHORT = 2;
+		BYTE = 1;
+		SHORT = 2;
 		INTEGER = 3;
 	}
 	string guid = 1;
@@ -161,6 +163,13 @@ message proto_properties {
 	uint64 sorting_value = 3;
 	repeated proto_property list_properties = 4;
 }
+message proto_properties_tree_group {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_property list_properties = 4;
+    repeated proto_properties_tree_group list_sub_properties_groups = 5;
+}
 message proto_catalogs {
 	string guid = 1;
 	string name = 2;
@@ -168,6 +177,34 @@ message proto_catalogs {
 	//proto_properties group_shared_properties = 4;
 	repeated proto_catalog list_catalogs = 5;
 }
+message proto_document {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_property list_properties = 4;
+	repeated proto_properties list_properties_groups = 5;
+}
+message proto_documents {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_property list_shared_properties = 4;
+	repeated proto_document list_documents = 5;
+}
+message proto_journal {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_properties properties = 4;
+}
+message proto_journals {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	repeated proto_property list_shared_properties = 4;
+	repeated proto_document list_documents = 5;
+}
+
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {
 	bool has_value = 1;
@@ -177,3 +214,4 @@ message string_nullable {
 	bool has_value = 1;
 	string value = 2;
 }
+

@@ -13,12 +13,9 @@ namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq}")]
-    public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>
+    public partial class DataType
     {
         partial void OnInit()
-        {
-        }
-        public void OnInitFromDto()
         {
         }
         public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : this()

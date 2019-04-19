@@ -11,13 +11,10 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>
+    public partial class Property
     {
         public static readonly string DefaultName = "Property";
         partial void OnInit()
-        {
-        }
-        public void OnInitFromDto()
         {
         }
         public Property(string name, EnumDataType type, string guidOfType) : this()

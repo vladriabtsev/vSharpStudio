@@ -27,6 +27,9 @@ namespace vSharpStudio.vm.ViewModels
         //            p.Parent.Sort(this.GetType());
         //    }
         //}
+        protected virtual void OnInitFromDto()
+        {
+        }
 
         private static int _maxlen = 0;
         protected ulong EncodeNameToUlong(string name)

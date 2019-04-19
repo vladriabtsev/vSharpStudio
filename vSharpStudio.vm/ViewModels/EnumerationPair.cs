@@ -6,12 +6,9 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>
+    public partial class EnumerationPair
     {
         partial void OnInit()
-        {
-        }
-        public void OnInitFromDto()
         {
         }
 

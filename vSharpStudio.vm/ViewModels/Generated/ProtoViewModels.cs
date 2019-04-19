@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 13:54:20
+// Auto generated on UTC 04/19/2019 16:57:32
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 	
-	public partial class Config : IAccept
+	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept
 	{
 	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
@@ -24,6 +24,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupConstants = new Constants(this);
 			this.GroupEnumerations = new Enumerations(this);
 			this.GroupCatalogs = new Catalogs(this);
+			this.GroupDocuments = new Documents(this);
+			this.GroupJournals = new Journals(this);
 			OnInit();
 		}
 		public Config(ITreeConfigNode parent) : this()
@@ -69,6 +71,10 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.GroupEnumerations, isDeep);
 		    if (isDeep)
 		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.GroupCatalogs, isDeep);
+		    if (isDeep)
+		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.Clone(vm, from.GroupDocuments, isDeep);
+		    if (isDeep)
+		        vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.Clone(vm, from.GroupJournals, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -103,6 +109,10 @@ namespace vSharpStudio.vm.ViewModels
 		        Enumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
 		    if (isDeep)
 		        Catalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
+		    if (isDeep)
+		        Documents.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
+		    if (isDeep)
+		        Journals.Update(to.GroupJournals, from.GroupJournals, isDeep);
 		}
 		#region IEditable
 		public override Config Backup()
@@ -150,6 +160,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.GroupConstants);
 		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
 		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.GroupCatalogs);
+		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToVM(m.GroupDocuments);
+		    vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToVM(m.GroupJournals);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -182,6 +194,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
 		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.GroupCatalogs);
+		    m.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToProto(vm.GroupDocuments);
+		    m.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToProto(vm.GroupJournals);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -192,6 +206,8 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupConstants.Accept(visitor);
 			this.GroupEnumerations.Accept(visitor);
 			this.GroupCatalogs.Accept(visitor);
+			this.GroupDocuments.Accept(visitor);
+			this.GroupJournals.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -614,10 +630,48 @@ namespace vSharpStudio.vm.ViewModels
 		private Catalogs _GroupCatalogs;
 		partial void OnGroupCatalogsChanging();
 		partial void OnGroupCatalogsChanged();
+		
+		public Documents GroupDocuments
+		{ 
+			set
+			{
+				if (_GroupDocuments != value)
+				{
+					OnGroupDocumentsChanging();
+		            _GroupDocuments = value;
+					OnGroupDocumentsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupDocuments; }
+		}
+		private Documents _GroupDocuments;
+		partial void OnGroupDocumentsChanging();
+		partial void OnGroupDocumentsChanged();
+		
+		public Journals GroupJournals
+		{ 
+			set
+			{
+				if (_GroupJournals != value)
+				{
+					OnGroupJournalsChanging();
+		            _GroupJournals = value;
+					OnGroupJournalsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupJournals; }
+		}
+		private Journals _GroupJournals;
+		partial void OnGroupJournalsChanging();
+		partial void OnGroupJournalsChanged();
 		#endregion Properties
 	}
 	
-	public partial class Property : IAccept
+	public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>, IAccept
 	{
 	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
@@ -775,7 +829,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class DataType : IAccept
+	public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, IComparable<DataType>, IAccept
 	{
 	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
@@ -1032,7 +1086,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constant : IAccept
+	public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IAccept
 	{
 	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
@@ -1190,7 +1244,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constants : IAccept
+	public partial class Constants : ConfigObjectBase<Constants, Constants.ConstantsValidator>, IComparable<Constants>, IAccept
 	{
 	
 		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
@@ -1348,7 +1402,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class EnumerationPair : IAccept
+	public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IAccept
 	{
 	
 		public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { }
@@ -1456,7 +1510,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumeration : IAccept
+	public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IAccept
 	{
 	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
@@ -1683,7 +1737,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumerations : IAccept
+	public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>, IComparable<Enumerations>, IAccept
 	{
 	
 		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
@@ -1841,7 +1895,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalog : IAccept
+	public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IAccept
 	{
 	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
@@ -2163,7 +2217,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Properties : IAccept
+	public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, IComparable<Properties>, IAccept
 	{
 	
 		public partial class PropertiesValidator : ValidatorBase<Properties, PropertiesValidator> { }
@@ -2321,7 +2375,239 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalogs : IAccept
+	public partial class PropertiesTreeGroup : ConfigObjectBase<PropertiesTreeGroup, PropertiesTreeGroup.PropertiesTreeGroupValidator>, IComparable<PropertiesTreeGroup>, IAccept
+	{
+	
+		public partial class PropertiesTreeGroupValidator : ValidatorBase<PropertiesTreeGroup, PropertiesTreeGroupValidator> { }
+		#region CTOR
+		public PropertiesTreeGroup() : base(PropertiesTreeGroupValidator.Validator)
+		{
+			this.ListProperties = new SortedObservableCollection<Property>();
+			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+			this.ListSubPropertiesGroups = new SortedObservableCollection<PropertiesTreeGroup>();
+			this.ListSubPropertiesGroups.CollectionChanged += ListSubPropertiesGroups_CollectionChanged;
+			OnInit();
+		}
+		public PropertiesTreeGroup(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(PropertiesTreeGroup.DefaultName, this, this.SubNodes);
+	    }
+		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		private void ListSubPropertiesGroups_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as PropertiesTreeGroup).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListProperties.Sort();
+		    }
+		    if (type == typeof(PropertiesTreeGroup))
+		    {
+		        this.ListSubPropertiesGroups.Sort();
+		    }
+		}
+		public static PropertiesTreeGroup Clone(ITreeConfigNode parent, PropertiesTreeGroup from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    PropertiesTreeGroup vm = new PropertiesTreeGroup();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in from.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
+		    vm.ListSubPropertiesGroups = new SortedObservableCollection<PropertiesTreeGroup>();
+		    foreach(var t in from.ListSubPropertiesGroups)
+		        vm.ListSubPropertiesGroups.Add(vSharpStudio.vm.ViewModels.PropertiesTreeGroup.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(PropertiesTreeGroup to, PropertiesTreeGroup from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListProperties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListProperties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListProperties.Remove(t);
+		        }
+		        foreach(var tt in from.ListProperties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListProperties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Property();
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
+		                to.ListProperties.Add(p);
+		            }
+		        }
+		    }
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListSubPropertiesGroups.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListSubPropertiesGroups)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.PropertiesTreeGroup.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListSubPropertiesGroups.Remove(t);
+		        }
+		        foreach(var tt in from.ListSubPropertiesGroups)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListSubPropertiesGroups.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new PropertiesTreeGroup();
+		                vSharpStudio.vm.ViewModels.PropertiesTreeGroup.Update(p, tt, isDeep);
+		                to.ListSubPropertiesGroups.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override PropertiesTreeGroup Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return PropertiesTreeGroup.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(PropertiesTreeGroup from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    PropertiesTreeGroup.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_properties_tree_group' to 'PropertiesTreeGroup'
+		public static PropertiesTreeGroup ConvertToVM(proto_properties_tree_group m, PropertiesTreeGroup vm = null)
+		{
+		    if (vm == null)
+		        vm = new PropertiesTreeGroup();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in m.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    vm.ListSubPropertiesGroups = new SortedObservableCollection<PropertiesTreeGroup>();
+		    foreach(var t in m.ListSubPropertiesGroups)
+		        vm.ListSubPropertiesGroups.Add(vSharpStudio.vm.ViewModels.PropertiesTreeGroup.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'PropertiesTreeGroup' to 'proto_properties_tree_group'
+		public static proto_properties_tree_group ConvertToProto(PropertiesTreeGroup vm)
+		{
+		    proto_properties_tree_group m = new proto_properties_tree_group();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListProperties)
+		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
+		    foreach(var t in vm.ListSubPropertiesGroups)
+		        m.ListSubPropertiesGroups.Add(vSharpStudio.vm.ViewModels.PropertiesTreeGroup.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListProperties)
+				t.Accept(visitor);
+			foreach(var t in this.ListSubPropertiesGroups)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public SortedObservableCollection<Property> ListProperties { get; set; }
+		partial void OnListPropertiesChanging();
+		partial void OnListPropertiesChanged();
+		
+		public SortedObservableCollection<PropertiesTreeGroup> ListSubPropertiesGroups { get; set; }
+		partial void OnListSubPropertiesGroupsChanging();
+		partial void OnListSubPropertiesGroupsChanged();
+		#endregion Properties
+	}
+	
+	public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>, IComparable<Catalogs>, IAccept
 	{
 	
 		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
@@ -2479,6 +2765,860 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
+	public partial class Document : ConfigObjectBase<Document, Document.DocumentValidator>, IComparable<Document>, IAccept
+	{
+	
+		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
+		#region CTOR
+		public Document() : base(DocumentValidator.Validator)
+		{
+			this.ListProperties = new SortedObservableCollection<Property>();
+			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+			this.ListPropertiesGroups = new SortedObservableCollection<Properties>();
+			this.ListPropertiesGroups.CollectionChanged += ListPropertiesGroups_CollectionChanged;
+			OnInit();
+		}
+		public Document(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(Document.DefaultName, this, this.SubNodes);
+	    }
+		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		private void ListPropertiesGroups_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Properties).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListProperties.Sort();
+		    }
+		    if (type == typeof(Properties))
+		    {
+		        this.ListPropertiesGroups.Sort();
+		    }
+		}
+		public static Document Clone(ITreeConfigNode parent, Document from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Document vm = new Document();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in from.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
+		    vm.ListPropertiesGroups = new SortedObservableCollection<Properties>();
+		    foreach(var t in from.ListPropertiesGroups)
+		        vm.ListPropertiesGroups.Add(vSharpStudio.vm.ViewModels.Properties.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Document to, Document from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListProperties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListProperties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListProperties.Remove(t);
+		        }
+		        foreach(var tt in from.ListProperties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListProperties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Property();
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
+		                to.ListProperties.Add(p);
+		            }
+		        }
+		    }
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPropertiesGroups.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPropertiesGroups)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Properties.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPropertiesGroups.Remove(t);
+		        }
+		        foreach(var tt in from.ListPropertiesGroups)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPropertiesGroups.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Properties();
+		                vSharpStudio.vm.ViewModels.Properties.Update(p, tt, isDeep);
+		                to.ListPropertiesGroups.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override Document Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Document.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Document from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Document.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_document' to 'Document'
+		public static Document ConvertToVM(proto_document m, Document vm = null)
+		{
+		    if (vm == null)
+		        vm = new Document();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in m.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    vm.ListPropertiesGroups = new SortedObservableCollection<Properties>();
+		    foreach(var t in m.ListPropertiesGroups)
+		        vm.ListPropertiesGroups.Add(vSharpStudio.vm.ViewModels.Properties.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Document' to 'proto_document'
+		public static proto_document ConvertToProto(Document vm)
+		{
+		    proto_document m = new proto_document();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListProperties)
+		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
+		    foreach(var t in vm.ListPropertiesGroups)
+		        m.ListPropertiesGroups.Add(vSharpStudio.vm.ViewModels.Properties.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListProperties)
+				t.Accept(visitor);
+			foreach(var t in this.ListPropertiesGroups)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public SortedObservableCollection<Property> ListProperties { get; set; }
+		partial void OnListPropertiesChanging();
+		partial void OnListPropertiesChanged();
+		
+		public SortedObservableCollection<Properties> ListPropertiesGroups { get; set; }
+		partial void OnListPropertiesGroupsChanging();
+		partial void OnListPropertiesGroupsChanged();
+		#endregion Properties
+	}
+	
+	public partial class Documents : ConfigObjectBase<Documents, Documents.DocumentsValidator>, IComparable<Documents>, IAccept
+	{
+	
+		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
+		#region CTOR
+		public Documents() : base(DocumentsValidator.Validator)
+		{
+			this.ListSharedProperties = new SortedObservableCollection<Property>();
+			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
+			this.ListDocuments = new SortedObservableCollection<Document>();
+			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+			OnInit();
+		}
+		public Documents(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(Documents.DefaultName, this, this.SubNodes);
+	    }
+		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Document).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListSharedProperties.Sort();
+		    }
+		    if (type == typeof(Document))
+		    {
+		        this.ListDocuments.Sort();
+		    }
+		}
+		public static Documents Clone(ITreeConfigNode parent, Documents from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Documents vm = new Documents();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in from.ListSharedProperties)
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
+		    vm.ListDocuments = new SortedObservableCollection<Document>();
+		    foreach(var t in from.ListDocuments)
+		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Documents to, Documents from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListSharedProperties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListSharedProperties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListSharedProperties.Remove(t);
+		        }
+		        foreach(var tt in from.ListSharedProperties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListSharedProperties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Property();
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
+		                to.ListSharedProperties.Add(p);
+		            }
+		        }
+		    }
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListDocuments.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListDocuments)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Document.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListDocuments.Remove(t);
+		        }
+		        foreach(var tt in from.ListDocuments)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListDocuments.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Document();
+		                vSharpStudio.vm.ViewModels.Document.Update(p, tt, isDeep);
+		                to.ListDocuments.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override Documents Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Documents.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Documents from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Documents.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_documents' to 'Documents'
+		public static Documents ConvertToVM(proto_documents m, Documents vm = null)
+		{
+		    if (vm == null)
+		        vm = new Documents();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in m.ListSharedProperties)
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    vm.ListDocuments = new SortedObservableCollection<Document>();
+		    foreach(var t in m.ListDocuments)
+		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Documents' to 'proto_documents'
+		public static proto_documents ConvertToProto(Documents vm)
+		{
+		    proto_documents m = new proto_documents();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListSharedProperties)
+		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
+		    foreach(var t in vm.ListDocuments)
+		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListSharedProperties)
+				t.Accept(visitor);
+			foreach(var t in this.ListDocuments)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
+		partial void OnListSharedPropertiesChanging();
+		partial void OnListSharedPropertiesChanged();
+		
+		public SortedObservableCollection<Document> ListDocuments { get; set; }
+		partial void OnListDocumentsChanging();
+		partial void OnListDocumentsChanged();
+		#endregion Properties
+	}
+	
+	public partial class Journal : ConfigObjectBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IAccept
+	{
+	
+		public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { }
+		#region CTOR
+		public Journal() : base(JournalValidator.Validator)
+		{
+			this.Properties = new SortedObservableCollection<Properties>();
+			this.Properties.CollectionChanged += Properties_CollectionChanged;
+			OnInit();
+		}
+		public Journal(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(Journal.DefaultName, this, this.SubNodes);
+	    }
+		private void Properties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Properties).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Properties))
+		    {
+		        this.Properties.Sort();
+		    }
+		}
+		public static Journal Clone(ITreeConfigNode parent, Journal from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Journal vm = new Journal();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.Properties = new SortedObservableCollection<Properties>();
+		    foreach(var t in from.Properties)
+		        vm.Properties.Add(vSharpStudio.vm.ViewModels.Properties.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Journal to, Journal from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.Properties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.Properties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Properties.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.Properties.Remove(t);
+		        }
+		        foreach(var tt in from.Properties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.Properties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Properties();
+		                vSharpStudio.vm.ViewModels.Properties.Update(p, tt, isDeep);
+		                to.Properties.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override Journal Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Journal.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Journal from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Journal.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_journal' to 'Journal'
+		public static Journal ConvertToVM(proto_journal m, Journal vm = null)
+		{
+		    if (vm == null)
+		        vm = new Journal();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.Properties = new SortedObservableCollection<Properties>();
+		    foreach(var t in m.Properties)
+		        vm.Properties.Add(vSharpStudio.vm.ViewModels.Properties.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Journal' to 'proto_journal'
+		public static proto_journal ConvertToProto(Journal vm)
+		{
+		    proto_journal m = new proto_journal();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.Properties)
+		        m.Properties.Add(vSharpStudio.vm.ViewModels.Properties.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.Properties)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public SortedObservableCollection<Properties> Properties { get; set; }
+		partial void OnPropertiesChanging();
+		partial void OnPropertiesChanged();
+		#endregion Properties
+	}
+	
+	public partial class Journals : ConfigObjectBase<Journals, Journals.JournalsValidator>, IComparable<Journals>, IAccept
+	{
+	
+		public partial class JournalsValidator : ValidatorBase<Journals, JournalsValidator> { }
+		#region CTOR
+		public Journals() : base(JournalsValidator.Validator)
+		{
+			this.ListSharedProperties = new SortedObservableCollection<Property>();
+			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
+			this.ListDocuments = new SortedObservableCollection<Document>();
+			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+			OnInit();
+		}
+		public Journals(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(Journals.DefaultName, this, this.SubNodes);
+	    }
+		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Document).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListSharedProperties.Sort();
+		    }
+		    if (type == typeof(Document))
+		    {
+		        this.ListDocuments.Sort();
+		    }
+		}
+		public static Journals Clone(ITreeConfigNode parent, Journals from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Journals vm = new Journals();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in from.ListSharedProperties)
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
+		    vm.ListDocuments = new SortedObservableCollection<Document>();
+		    foreach(var t in from.ListDocuments)
+		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Journals to, Journals from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListSharedProperties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListSharedProperties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListSharedProperties.Remove(t);
+		        }
+		        foreach(var tt in from.ListSharedProperties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListSharedProperties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Property();
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
+		                to.ListSharedProperties.Add(p);
+		            }
+		        }
+		    }
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListDocuments.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListDocuments)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Document.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListDocuments.Remove(t);
+		        }
+		        foreach(var tt in from.ListDocuments)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListDocuments.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Document();
+		                vSharpStudio.vm.ViewModels.Document.Update(p, tt, isDeep);
+		                to.ListDocuments.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override Journals Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Journals.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Journals from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Journals.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_journals' to 'Journals'
+		public static Journals ConvertToVM(proto_journals m, Journals vm = null)
+		{
+		    if (vm == null)
+		        vm = new Journals();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in m.ListSharedProperties)
+		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    vm.ListDocuments = new SortedObservableCollection<Document>();
+		    foreach(var t in m.ListDocuments)
+		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Journals' to 'proto_journals'
+		public static proto_journals ConvertToProto(Journals vm)
+		{
+		    proto_journals m = new proto_journals();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListSharedProperties)
+		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
+		    foreach(var t in vm.ListDocuments)
+		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListSharedProperties)
+				t.Accept(visitor);
+			foreach(var t in this.ListDocuments)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
+		partial void OnListSharedPropertiesChanging();
+		partial void OnListSharedPropertiesChanged();
+		
+		public SortedObservableCollection<Document> ListDocuments { get; set; }
+		partial void OnListDocumentsChanging();
+		partial void OnListDocumentsChanged();
+		#endregion Properties
+	}
+	
 	public interface IVisitorConfig
 	{
 	    CancellationToken Token { get; }
@@ -2502,8 +3642,18 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(Catalog p);
 		void Visit(Properties p);
 		void VisitEnd(Properties p);
+		void Visit(PropertiesTreeGroup p);
+		void VisitEnd(PropertiesTreeGroup p);
 		void Visit(Catalogs p);
 		void VisitEnd(Catalogs p);
+		void Visit(Document p);
+		void VisitEnd(Document p);
+		void Visit(Documents p);
+		void VisitEnd(Documents p);
+		void Visit(Journal p);
+		void VisitEnd(Journal p);
+		void Visit(Journals p);
+		void VisitEnd(Journals p);
 	}
 	
 	public interface IVisitorProto
@@ -2518,6 +3668,11 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_enumerations p);
 		void Visit(proto_catalog p);
 		void Visit(proto_properties p);
+		void Visit(proto_properties_tree_group p);
 		void Visit(proto_catalogs p);
+		void Visit(proto_document p);
+		void Visit(proto_documents p);
+		void Visit(proto_journal p);
+		void Visit(proto_journals p);
 	}
 }

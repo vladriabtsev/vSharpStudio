@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.proto" #>
 <#= message.Declaration.ToLeadingComments() #>
-public partial class <#= message.Name.ToNameCs() #> : IAccept
+public partial class <#= message.Name.ToNameCs() #> : ConfigObjectBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>.<#= message.Name.ToNameCs() #>Validator>, IComparable<<#= message.Name.ToNameCs() #>>, IAccept
 {
 <#= message.Declaration.ToTrailingComments("\t") #>
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }

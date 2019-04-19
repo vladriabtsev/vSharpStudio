@@ -10,14 +10,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
-    public partial class Properties : ConfigObjectBase<Properties, Properties.PropertiesValidator>, IComparable<Properties>, IListProperties
+    public partial class Properties : IListProperties
     {
         partial void OnInit()
         {
             this.Name = "Properties";
-        }
-        public void OnInitFromDto()
-        {
         }
 
         #region ITreeNode

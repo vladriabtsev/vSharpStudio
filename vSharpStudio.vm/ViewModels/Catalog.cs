@@ -10,15 +10,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IListProperties
+    public partial class Catalog : IListProperties
     {
         public static readonly string DefaultName = "Catalog";
         partial void OnInit()
         {
-        }
-        public void OnInitFromDto()
-        {
-            //            OnPropertyGroupChanged();
         }
         public Catalog(string name) : this()
         {

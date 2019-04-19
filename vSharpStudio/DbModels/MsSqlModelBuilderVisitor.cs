@@ -169,5 +169,55 @@ namespace vSharpStudio.DbModels
         {
             throw new NotImplementedException();
         }
+
+        void IVisitorConfig.Visit(PropertiesTreeGroup p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(PropertiesTreeGroup p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Document p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Document p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Documents p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Documents p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Journal p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Journal p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Journals p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Journals p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

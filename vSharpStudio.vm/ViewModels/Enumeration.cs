@@ -8,13 +8,10 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>
+    public partial class Enumeration
     {
         public static readonly string DefaultName = "Enumeration";
         partial void OnInit()
-        {
-        }
-        public void OnInitFromDto()
         {
         }
         public static string GetTypeDesc(Enumeration p)
