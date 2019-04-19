@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 17:00:52
+// Auto generated on UTC 04/19/2019 17:06:19
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -23,7 +23,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this.GroupConstants = new Constants(this);
 			this.GroupEnumerations = new Enumerations(this);
-			this.GroupCatalogs = new Catalogs(this);
+			this.GroupCatalogs = new GroupCatalogs(this);
 			this.GroupDocuments = new Documents(this);
 			this.GroupJournals = new Journals(this);
 			OnInit();
@@ -70,7 +70,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.GroupEnumerations, isDeep);
 		    if (isDeep)
-		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.Clone(vm, from.GroupCatalogs, isDeep);
+		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
 		    if (isDeep)
 		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.Clone(vm, from.GroupDocuments, isDeep);
 		    if (isDeep)
@@ -108,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        Enumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
 		    if (isDeep)
-		        Catalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
+		        GroupCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
 		    if (isDeep)
 		        Documents.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
 		    if (isDeep)
@@ -159,7 +159,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSchema = m.HiLoSchema;
 		    vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.GroupConstants);
 		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
-		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToVM(m.GroupCatalogs);
+		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToVM(m.GroupCatalogs);
 		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToVM(m.GroupDocuments);
 		    vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToVM(m.GroupJournals);
 		    vm.OnInitFromDto();
@@ -193,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.HiLoSchema = vm.HiLoSchema;
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
-		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.Catalogs.ConvertToProto(vm.GroupCatalogs);
+		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToProto(vm.GroupCatalogs);
 		    m.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToProto(vm.GroupDocuments);
 		    m.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToProto(vm.GroupJournals);
 		    return m;
@@ -612,7 +612,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupEnumerationsChanging();
 		partial void OnGroupEnumerationsChanged();
 		
-		public Catalogs GroupCatalogs
+		public GroupCatalogs GroupCatalogs
 		{ 
 			set
 			{
@@ -627,7 +627,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupCatalogs; }
 		}
-		private Catalogs _GroupCatalogs;
+		private GroupCatalogs _GroupCatalogs;
 		partial void OnGroupCatalogsChanging();
 		partial void OnGroupCatalogsChanged();
 		
@@ -2607,21 +2607,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Catalogs : ConfigObjectBase<Catalogs, Catalogs.CatalogsValidator>, IComparable<Catalogs>, IAccept
+	public partial class GroupCatalogs : ConfigObjectBase<GroupCatalogs, GroupCatalogs.GroupCatalogsValidator>, IComparable<GroupCatalogs>, IAccept
 	{
 	
-		public partial class CatalogsValidator : ValidatorBase<Catalogs, CatalogsValidator> { }
+		public partial class GroupCatalogsValidator : ValidatorBase<GroupCatalogs, GroupCatalogsValidator> { }
 		#region CTOR
-		public Catalogs() : base(CatalogsValidator.Validator)
+		public GroupCatalogs() : base(GroupCatalogsValidator.Validator)
 		{
 			this.ListCatalogs = new SortedObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}
-		public Catalogs(ITreeConfigNode parent) : this()
+		public GroupCatalogs(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(Catalogs.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupCatalogs.DefaultName, this, this.SubNodes);
 	    }
 		private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -2651,9 +2651,9 @@ namespace vSharpStudio.vm.ViewModels
 		        this.ListCatalogs.Sort();
 		    }
 		}
-		public static Catalogs Clone(ITreeConfigNode parent, Catalogs from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupCatalogs Clone(ITreeConfigNode parent, GroupCatalogs from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    Catalogs vm = new Catalogs();
+		    GroupCatalogs vm = new GroupCatalogs();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
@@ -2664,7 +2664,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(Catalogs to, Catalogs from, bool isDeep = true)
+		public static void Update(GroupCatalogs to, GroupCatalogs from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
@@ -2707,26 +2707,26 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		}
 		#region IEditable
-		public override Catalogs Backup()
+		public override GroupCatalogs Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Catalogs.Clone(null, this);
+			return GroupCatalogs.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Catalogs from)
+		public override void Restore(GroupCatalogs from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    Catalogs.Update(this, from, isDeep);
+		    GroupCatalogs.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_catalogs' to 'Catalogs'
-		public static Catalogs ConvertToVM(proto_catalogs m, Catalogs vm = null)
+		// Conversion from 'proto_group_catalogs' to 'GroupCatalogs'
+		public static GroupCatalogs ConvertToVM(proto_group_catalogs m, GroupCatalogs vm = null)
 		{
 		    if (vm == null)
-		        vm = new Catalogs();
+		        vm = new GroupCatalogs();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
@@ -2736,10 +2736,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'Catalogs' to 'proto_catalogs'
-		public static proto_catalogs ConvertToProto(Catalogs vm)
+		// Conversion from 'GroupCatalogs' to 'proto_group_catalogs'
+		public static proto_group_catalogs ConvertToProto(GroupCatalogs vm)
 		{
-		    proto_catalogs m = new proto_catalogs();
+		    proto_group_catalogs m = new proto_group_catalogs();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
@@ -3644,8 +3644,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(Properties p);
 		void Visit(GroupPropertiesTree p);
 		void VisitEnd(GroupPropertiesTree p);
-		void Visit(Catalogs p);
-		void VisitEnd(Catalogs p);
+		void Visit(GroupCatalogs p);
+		void VisitEnd(GroupCatalogs p);
 		void Visit(Document p);
 		void VisitEnd(Document p);
 		void Visit(Documents p);
@@ -3669,7 +3669,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_catalog p);
 		void Visit(proto_properties p);
 		void Visit(proto_group_properties_tree p);
-		void Visit(proto_catalogs p);
+		void Visit(proto_group_catalogs p);
 		void Visit(proto_document p);
 		void Visit(proto_documents p);
 		void Visit(proto_journal p);

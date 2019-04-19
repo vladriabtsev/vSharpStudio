@@ -64,7 +64,7 @@ message proto_config {
 
 	proto_constants group_constants = 101;
 	proto_enumerations group_enumerations = 102;
-	proto_catalogs group_catalogs = 103;
+	proto_group_catalogs group_catalogs = 103;
 	proto_documents group_documents = 104;
 	proto_journals group_journals = 105;
 }
@@ -170,7 +170,7 @@ message proto_group_properties_tree {
 	repeated proto_property list_properties = 4;
     repeated proto_group_properties_tree list_sub_properties_groups = 5;
 }
-message proto_catalogs {
+message proto_group_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;

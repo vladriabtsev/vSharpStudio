@@ -10,7 +10,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} catalogs:{ListCatalogs.Count,nq}")]
-    public partial class Catalogs
+    public partial class GroupCatalogs
     {
         partial void OnInit()
         {
