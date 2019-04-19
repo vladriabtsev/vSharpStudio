@@ -33,6 +33,8 @@ namespace vSharpStudio.vm.ViewModels
             SubNodes.Add(this.GroupConstants, 1);
             SubNodes.Add(this.GroupEnumerations, 2);
             SubNodes.Add(this.GroupCatalogs, 3);
+            SubNodes.Add(this.GroupDocuments, 4);
+            SubNodes.Add(this.GroupJournals, 4);
             //foreach (var t in this.ListConstantsGroups)
             //    SubNodes.Add(t, 1);
             //foreach (var t in this.ListEnumerationsGroups)

@@ -201,7 +201,7 @@ message proto_group_journals {
 	string name = 2;
 	uint64 sorting_value = 3;
 	repeated proto_property list_shared_properties = 4;
-	repeated proto_document list_documents = 5;
+	repeated proto_journal list_journals = 5;
 }
 
 // all simple nullable (generator check suffics '_nullable')

@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 18:00:01
+// Auto generated on UTC 04/19/2019 19:46:05
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3322,8 +3322,8 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			this.ListSharedProperties = new SortedObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
-			this.ListDocuments = new SortedObservableCollection<Document>();
-			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+			this.ListJournals = new SortedObservableCollection<Journal>();
+			this.ListJournals.CollectionChanged += ListJournals_CollectionChanged;
 			OnInit();
 		}
 		public GroupJournals(ITreeConfigNode parent) : this()
@@ -3349,7 +3349,7 @@ namespace vSharpStudio.vm.ViewModels
 	                throw new Exception();
 			}
 		}
-		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		private void ListJournals_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 	        switch(e.Action)
 	        {
@@ -3361,7 +3361,7 @@ namespace vSharpStudio.vm.ViewModels
 	                break;
 	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
 		    		foreach (var t in e.NewItems)
-		    			(t as Document).Parent = this;
+		    			(t as Journal).Parent = this;
 	                break;
 	            default:
 	                throw new Exception();
@@ -3376,9 +3376,9 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        this.ListSharedProperties.Sort();
 		    }
-		    if (type == typeof(Document))
+		    if (type == typeof(Journal))
 		    {
-		        this.ListDocuments.Sort();
+		        this.ListJournals.Sort();
 		    }
 		}
 		public static GroupJournals Clone(ITreeConfigNode parent, GroupJournals from, bool isDeep = true, bool isNewGuid = false)
@@ -3390,9 +3390,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in from.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
+		    vm.ListJournals = new SortedObservableCollection<Journal>();
+		    foreach(var t in from.ListJournals)
+		        vm.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3440,25 +3440,25 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListDocuments.ToList())
+		        foreach(var t in to.ListJournals.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListDocuments)
+		            foreach(var tt in from.ListJournals)
 		            {
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    vSharpStudio.vm.ViewModels.Document.Update(t, tt, isDeep);
+		                    vSharpStudio.vm.ViewModels.Journal.Update(t, tt, isDeep);
 		                    break;
 		                }
 		            }
 		            if (!isfound)
-		                to.ListDocuments.Remove(t);
+		                to.ListJournals.Remove(t);
 		        }
-		        foreach(var tt in from.ListDocuments)
+		        foreach(var tt in from.ListJournals)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListDocuments.ToList())
+		            foreach(var t in to.ListJournals.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -3468,9 +3468,9 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		            if (!isfound)
 		            {
-		                var p = new Document();
-		                vSharpStudio.vm.ViewModels.Document.Update(p, tt, isDeep);
-		                to.ListDocuments.Add(p);
+		                var p = new Journal();
+		                vSharpStudio.vm.ViewModels.Journal.Update(p, tt, isDeep);
+		                to.ListJournals.Add(p);
 		            }
 		        }
 		    }
@@ -3502,9 +3502,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in m.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
+		    vm.ListJournals = new SortedObservableCollection<Journal>();
+		    foreach(var t in m.ListJournals)
+		        vm.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToVM(t));
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3517,8 +3517,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    foreach(var t in vm.ListSharedProperties)
 		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
-		    foreach(var t in vm.ListDocuments)
-		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
+		    foreach(var t in vm.ListJournals)
+		        m.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToProto(t));
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -3528,7 +3528,7 @@ namespace vSharpStudio.vm.ViewModels
 			visitor.Visit(this);
 			foreach(var t in this.ListSharedProperties)
 				t.Accept(visitor);
-			foreach(var t in this.ListDocuments)
+			foreach(var t in this.ListJournals)
 				t.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -3539,9 +3539,9 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnListSharedPropertiesChanging();
 		partial void OnListSharedPropertiesChanged();
 		
-		public SortedObservableCollection<Document> ListDocuments { get; set; }
-		partial void OnListDocumentsChanging();
-		partial void OnListDocumentsChanged();
+		public SortedObservableCollection<Journal> ListJournals { get; set; }
+		partial void OnListJournalsChanging();
+		partial void OnListJournalsChanged();
 		#endregion Properties
 	}
 	
