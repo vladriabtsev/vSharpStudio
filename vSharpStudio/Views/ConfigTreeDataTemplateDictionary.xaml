@@ -48,6 +48,18 @@
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding ListDocuments}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Documents, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:Document}" ItemsSource="{Binding ListPropertiesGroups}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Document, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupProperties}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

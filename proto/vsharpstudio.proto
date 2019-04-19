@@ -181,8 +181,7 @@ message proto_document {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_property list_properties = 4;
-	repeated proto_group_properties list_properties_groups = 5;
+	repeated proto_group_properties list_properties_groups = 4;
 }
 message proto_group_documents {
 	string guid = 1;
