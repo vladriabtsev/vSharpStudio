@@ -6,6 +6,8 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Document
     {
+        public static readonly string DefaultName = "Document";
+
         #region ITreeNode
         //public string NodeText { get { return this.Name; } }
         protected override bool OnNodeCanMoveUp()

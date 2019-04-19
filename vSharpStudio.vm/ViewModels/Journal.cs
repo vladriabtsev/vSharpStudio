@@ -6,6 +6,8 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Journal
     {
+        public static readonly string DefaultName = "Journal";
+
         #region ITreeNode
         //public string NodeText { get { return this.Name; } }
         protected override bool OnNodeCanMoveUp()
