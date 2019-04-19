@@ -81,6 +81,7 @@
     <Compile Include="Controls\vTreeView.xaml.cs">
       <DependentUpon>vTreeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ConverterCountToWidth.cs" />
     <Compile Include="Converters\ConverterIconNameToResource.cs" />
     <Compile Include="UIDispatcher.cs" />
     <Page Include="Controls\vDialog.xaml">

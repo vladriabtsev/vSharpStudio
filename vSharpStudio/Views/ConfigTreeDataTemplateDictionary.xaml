@@ -5,53 +5,94 @@
                     xmlns:local="clr-namespace:vSharpStudio.Views">
 
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
+    <Converters:ConverterCountToWidth x:Key="ConverterCountToWidth"/>
 
     <HierarchicalDataTemplate DataType="{x:Type dat:Property}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{StaticResource iconProperty}" />
-            <TextBlock Text="{Binding NodeText}" />
+            <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupProperties}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Constant}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{StaticResource iconProperty}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupConstants}" ItemsSource="{Binding ListConstants}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding ListValues}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumeration, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupEnumerations}" ItemsSource="{Binding ListEnumerations}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:EnumerationPair}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{StaticResource iconProperty}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Catalog}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalog, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupCatalogs}" ItemsSource="{Binding ListCatalogs}">
@@ -64,24 +105,44 @@
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Document, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding ListDocuments}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Documents, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Journal}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Journal, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupJournals}" ItemsSource="{Binding ListJournals}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Journals, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErros, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
 </ResourceDictionary>
