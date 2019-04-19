@@ -6,6 +6,10 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class GroupDocuments
     {
+        partial void OnInit()
+        {
+            this.Name = "Documens";
+        }
         #region ITreeNode
         //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
         protected override bool OnNodeCanLeft()

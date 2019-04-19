@@ -6,57 +6,9 @@
 
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
 
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConstants}" ItemsSource="{Binding ListConstants}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Constant}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Property}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{StaticResource iconProperty}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupEnumerations}" ItemsSource="{Binding ListEnumerations}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding ListValues}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumeration, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:EnumerationPair}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{StaticResource iconProperty}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupCatalogs}" ItemsSource="{Binding ListCatalogs}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Catalog}" ItemsSource="{Binding ListProperties}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalog, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding ListDocuments}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Documents, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
-            <TextBlock Text="{Binding NodeText}" />
-        </StackPanel>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Document}" ItemsSource="{Binding ListPropertiesGroups}">
-        <StackPanel Orientation="Horizontal">
-            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Document, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
@@ -66,9 +18,69 @@
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Property}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Constant}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{StaticResource iconProperty}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConstants}" ItemsSource="{Binding ListConstants}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding ListValues}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumeration, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupEnumerations}" ItemsSource="{Binding ListEnumerations}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:EnumerationPair}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{StaticResource iconProperty}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:Catalog}" ItemsSource="{Binding ListProperties}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalog, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupCatalogs}" ItemsSource="{Binding ListCatalogs}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:Document}" ItemsSource="{Binding ListPropertiesTreeGroups}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Document, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding ListDocuments}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Documents, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:Journal}" ItemsSource="{Binding ListProperties}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Journal, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+            <TextBlock Text="{Binding NodeText}" />
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupJournals}" ItemsSource="{Binding ListJournals}">
+        <StackPanel Orientation="Horizontal">
+            <ContentControl Template="{Binding StatusIcon, ConverterParameter=Journals, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
