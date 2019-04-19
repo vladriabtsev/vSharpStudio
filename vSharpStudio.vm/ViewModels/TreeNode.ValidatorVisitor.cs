@@ -167,92 +167,92 @@ namespace vSharpStudio.vm.ViewModels
 
         void IVisitorConfig.Visit(Document p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(Document p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(Journal p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(Journal p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupPropertiesTree p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupPropertiesTree p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupCatalogs p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupCatalogs p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupProperties p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupProperties p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupDocuments p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupDocuments p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupConstants p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupConstants p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupEnumerations p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupEnumerations p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupJournals p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupJournals p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
     }
 }
