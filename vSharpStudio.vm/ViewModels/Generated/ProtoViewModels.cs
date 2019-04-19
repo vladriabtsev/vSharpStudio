@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 17:14:20
+// Auto generated on UTC 04/19/2019 17:21:37
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupConstants = new Constants(this);
 			this.GroupEnumerations = new Enumerations(this);
 			this.GroupCatalogs = new GroupCatalogs(this);
-			this.GroupDocuments = new Documents(this);
+			this.GroupDocuments = new GroupDocuments(this);
 			this.GroupJournals = new Journals(this);
 			OnInit();
 		}
@@ -72,7 +72,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
 		    if (isDeep)
-		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.Clone(vm, from.GroupDocuments, isDeep);
+		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
 		    if (isDeep)
 		        vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.Clone(vm, from.GroupJournals, isDeep);
 		    if (isNewGuid)
@@ -110,7 +110,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        GroupCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
 		    if (isDeep)
-		        Documents.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
+		        GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
 		    if (isDeep)
 		        Journals.Update(to.GroupJournals, from.GroupJournals, isDeep);
 		}
@@ -160,7 +160,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.GroupConstants);
 		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
 		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToVM(m.GroupCatalogs);
-		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToVM(m.GroupDocuments);
+		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments);
 		    vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToVM(m.GroupJournals);
 		    vm.OnInitFromDto();
 		    return vm;
@@ -194,7 +194,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
 		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToProto(vm.GroupCatalogs);
-		    m.GroupDocuments = vSharpStudio.vm.ViewModels.Documents.ConvertToProto(vm.GroupDocuments);
+		    m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto(vm.GroupDocuments);
 		    m.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToProto(vm.GroupJournals);
 		    return m;
 		}
@@ -631,7 +631,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupCatalogsChanging();
 		partial void OnGroupCatalogsChanged();
 		
-		public Documents GroupDocuments
+		public GroupDocuments GroupDocuments
 		{ 
 			set
 			{
@@ -646,7 +646,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupDocuments; }
 		}
-		private Documents _GroupDocuments;
+		private GroupDocuments _GroupDocuments;
 		partial void OnGroupDocumentsChanging();
 		partial void OnGroupDocumentsChanged();
 		
@@ -2997,12 +2997,12 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Documents : ConfigObjectBase<Documents, Documents.DocumentsValidator>, IComparable<Documents>, IAccept
+	public partial class GroupDocuments : ConfigObjectBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IAccept
 	{
 	
-		public partial class DocumentsValidator : ValidatorBase<Documents, DocumentsValidator> { }
+		public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { }
 		#region CTOR
-		public Documents() : base(DocumentsValidator.Validator)
+		public GroupDocuments() : base(GroupDocumentsValidator.Validator)
 		{
 			this.ListSharedProperties = new SortedObservableCollection<Property>();
 			this.ListSharedProperties.CollectionChanged += ListSharedProperties_CollectionChanged;
@@ -3010,10 +3010,10 @@ namespace vSharpStudio.vm.ViewModels
 			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
 			OnInit();
 		}
-		public Documents(ITreeConfigNode parent) : this()
+		public GroupDocuments(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(Documents.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupDocuments.DefaultName, this, this.SubNodes);
 	    }
 		private void ListSharedProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -3065,9 +3065,9 @@ namespace vSharpStudio.vm.ViewModels
 		        this.ListDocuments.Sort();
 		    }
 		}
-		public static Documents Clone(ITreeConfigNode parent, Documents from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupDocuments Clone(ITreeConfigNode parent, GroupDocuments from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    Documents vm = new Documents();
+		    GroupDocuments vm = new GroupDocuments();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
@@ -3081,7 +3081,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(Documents to, Documents from, bool isDeep = true)
+		public static void Update(GroupDocuments to, GroupDocuments from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
@@ -3160,26 +3160,26 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		}
 		#region IEditable
-		public override Documents Backup()
+		public override GroupDocuments Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Documents.Clone(null, this);
+			return GroupDocuments.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Documents from)
+		public override void Restore(GroupDocuments from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    Documents.Update(this, from, isDeep);
+		    GroupDocuments.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_documents' to 'Documents'
-		public static Documents ConvertToVM(proto_documents m, Documents vm = null)
+		// Conversion from 'proto_group_documents' to 'GroupDocuments'
+		public static GroupDocuments ConvertToVM(proto_group_documents m, GroupDocuments vm = null)
 		{
 		    if (vm == null)
-		        vm = new Documents();
+		        vm = new GroupDocuments();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
@@ -3192,10 +3192,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'Documents' to 'proto_documents'
-		public static proto_documents ConvertToProto(Documents vm)
+		// Conversion from 'GroupDocuments' to 'proto_group_documents'
+		public static proto_group_documents ConvertToProto(GroupDocuments vm)
 		{
-		    proto_documents m = new proto_documents();
+		    proto_group_documents m = new proto_group_documents();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
@@ -3648,8 +3648,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(GroupCatalogs p);
 		void Visit(Document p);
 		void VisitEnd(Document p);
-		void Visit(Documents p);
-		void VisitEnd(Documents p);
+		void Visit(GroupDocuments p);
+		void VisitEnd(GroupDocuments p);
 		void Visit(Journal p);
 		void VisitEnd(Journal p);
 		void Visit(Journals p);
@@ -3671,7 +3671,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_group_properties_tree p);
 		void Visit(proto_group_catalogs p);
 		void Visit(proto_document p);
-		void Visit(proto_documents p);
+		void Visit(proto_group_documents p);
 		void Visit(proto_journal p);
 		void Visit(proto_journals p);
 	}
