@@ -120,11 +120,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(Enumerations p)
-        {
-            OnVisit(p);
-        }
-
         void IVisitorConfig.Visit(Catalog p)
         {
             OnVisit(p);
@@ -161,11 +156,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(Enumeration m)
-        {
-            OnVisitEnd(m);
-        }
-
-        void IVisitorConfig.VisitEnd(Enumerations m)
         {
             OnVisitEnd(m);
         }
@@ -251,6 +241,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(GroupConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupEnumerations p)
         {
             throw new NotImplementedException();
         }

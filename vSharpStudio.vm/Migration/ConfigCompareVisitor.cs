@@ -36,11 +36,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Enumerations m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Catalog m)
         {
             throw new NotImplementedException();
@@ -91,6 +86,11 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.Visit(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
         void IVisitorConfig.VisitEnd(Config m)
         {
             throw new NotImplementedException();
@@ -117,11 +117,6 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(Enumeration m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Enumerations m)
         {
             throw new NotImplementedException();
         }
@@ -167,6 +162,11 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(GroupConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupEnumerations p)
         {
             throw new NotImplementedException();
         }

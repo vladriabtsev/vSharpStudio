@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 17:26:46
+// Auto generated on UTC 04/19/2019 17:34:06
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Config() : base(ConfigValidator.Validator)
 		{
 			this.GroupConstants = new GroupConstants(this);
-			this.GroupEnumerations = new Enumerations(this);
+			this.GroupEnumerations = new GroupEnumerations(this);
 			this.GroupCatalogs = new GroupCatalogs(this);
 			this.GroupDocuments = new GroupDocuments(this);
 			this.GroupJournals = new Journals(this);
@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.Clone(vm, from.GroupConstants, isDeep);
 		    if (isDeep)
-		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.GroupEnumerations, isDeep);
+		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupEnumerations.Clone(vm, from.GroupEnumerations, isDeep);
 		    if (isDeep)
 		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
 		    if (isDeep)
@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        GroupConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
 		    if (isDeep)
-		        Enumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
+		        GroupEnumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
 		    if (isDeep)
 		        GroupCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
 		    if (isDeep)
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
 		    vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.ConvertToVM(m.GroupConstants);
-		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
+		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupEnumerations.ConvertToVM(m.GroupEnumerations);
 		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToVM(m.GroupCatalogs);
 		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments);
 		    vm.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToVM(m.GroupJournals);
@@ -192,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.ConvertToProto(vm.GroupConstants);
-		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
+		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupEnumerations.ConvertToProto(vm.GroupEnumerations);
 		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToProto(vm.GroupCatalogs);
 		    m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto(vm.GroupDocuments);
 		    m.GroupJournals = vSharpStudio.vm.ViewModels.Journals.ConvertToProto(vm.GroupJournals);
@@ -593,7 +593,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupConstantsChanging();
 		partial void OnGroupConstantsChanged();
 		
-		public Enumerations GroupEnumerations
+		public GroupEnumerations GroupEnumerations
 		{ 
 			set
 			{
@@ -608,7 +608,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupEnumerations; }
 		}
-		private Enumerations _GroupEnumerations;
+		private GroupEnumerations _GroupEnumerations;
 		partial void OnGroupEnumerationsChanging();
 		partial void OnGroupEnumerationsChanged();
 		
@@ -1737,21 +1737,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Enumerations : ConfigObjectBase<Enumerations, Enumerations.EnumerationsValidator>, IComparable<Enumerations>, IAccept
+	public partial class GroupEnumerations : ConfigObjectBase<GroupEnumerations, GroupEnumerations.GroupEnumerationsValidator>, IComparable<GroupEnumerations>, IAccept
 	{
 	
-		public partial class EnumerationsValidator : ValidatorBase<Enumerations, EnumerationsValidator> { }
+		public partial class GroupEnumerationsValidator : ValidatorBase<GroupEnumerations, GroupEnumerationsValidator> { }
 		#region CTOR
-		public Enumerations() : base(EnumerationsValidator.Validator)
+		public GroupEnumerations() : base(GroupEnumerationsValidator.Validator)
 		{
 			this.ListEnumerations = new SortedObservableCollection<Enumeration>();
 			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
 			OnInit();
 		}
-		public Enumerations(ITreeConfigNode parent) : this()
+		public GroupEnumerations(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(Enumerations.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupEnumerations.DefaultName, this, this.SubNodes);
 	    }
 		private void ListEnumerations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1781,9 +1781,9 @@ namespace vSharpStudio.vm.ViewModels
 		        this.ListEnumerations.Sort();
 		    }
 		}
-		public static Enumerations Clone(ITreeConfigNode parent, Enumerations from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupEnumerations Clone(ITreeConfigNode parent, GroupEnumerations from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    Enumerations vm = new Enumerations();
+		    GroupEnumerations vm = new GroupEnumerations();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
@@ -1794,7 +1794,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(Enumerations to, Enumerations from, bool isDeep = true)
+		public static void Update(GroupEnumerations to, GroupEnumerations from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
@@ -1837,26 +1837,26 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		}
 		#region IEditable
-		public override Enumerations Backup()
+		public override GroupEnumerations Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Enumerations.Clone(null, this);
+			return GroupEnumerations.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Enumerations from)
+		public override void Restore(GroupEnumerations from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    Enumerations.Update(this, from, isDeep);
+		    GroupEnumerations.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_enumerations' to 'Enumerations'
-		public static Enumerations ConvertToVM(proto_enumerations m, Enumerations vm = null)
+		// Conversion from 'proto_group_enumerations' to 'GroupEnumerations'
+		public static GroupEnumerations ConvertToVM(proto_group_enumerations m, GroupEnumerations vm = null)
 		{
 		    if (vm == null)
-		        vm = new Enumerations();
+		        vm = new GroupEnumerations();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
@@ -1866,10 +1866,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'Enumerations' to 'proto_enumerations'
-		public static proto_enumerations ConvertToProto(Enumerations vm)
+		// Conversion from 'GroupEnumerations' to 'proto_group_enumerations'
+		public static proto_group_enumerations ConvertToProto(GroupEnumerations vm)
 		{
-		    proto_enumerations m = new proto_enumerations();
+		    proto_group_enumerations m = new proto_group_enumerations();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
@@ -3636,8 +3636,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(EnumerationPair p);
 		void Visit(Enumeration p);
 		void VisitEnd(Enumeration p);
-		void Visit(Enumerations p);
-		void VisitEnd(Enumerations p);
+		void Visit(GroupEnumerations p);
+		void VisitEnd(GroupEnumerations p);
 		void Visit(Catalog p);
 		void VisitEnd(Catalog p);
 		void Visit(GroupProperties p);
@@ -3665,7 +3665,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_group_constants p);
 		void Visit(proto_enumeration_pair p);
 		void Visit(proto_enumeration p);
-		void Visit(proto_enumerations p);
+		void Visit(proto_group_enumerations p);
 		void Visit(proto_catalog p);
 		void Visit(proto_group_properties p);
 		void Visit(proto_group_properties_tree p);

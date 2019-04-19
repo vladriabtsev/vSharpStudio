@@ -87,11 +87,11 @@ namespace vSharpStudio.vm.ViewModels
         //public string NodeText { get { return this.Name; } }
         protected override bool OnNodeCanMoveUp()
         {
-            return (this.Parent as Enumerations).ListEnumerations.IndexOf(this) > 0;
+            return (this.Parent as GroupEnumerations).ListEnumerations.IndexOf(this) > 0;
         }
         protected override void OnNodeMoveUp()
         {
-            var p = this.Parent as Enumerations;
+            var p = this.Parent as GroupEnumerations;
             var i = p.ListEnumerations.IndexOf(this);
             if (i > 0)
             {
@@ -100,11 +100,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override bool OnNodeCanMoveDown()
         {
-            return (this.Parent as Enumerations).ListEnumerations.IndexOf(this) < ((this.Parent as Enumerations).ListEnumerations.Count - 1);
+            return (this.Parent as GroupEnumerations).ListEnumerations.IndexOf(this) < ((this.Parent as GroupEnumerations).ListEnumerations.Count - 1);
         }
         protected override void OnNodeMoveDown()
         {
-            var p = this.Parent as Enumerations;
+            var p = this.Parent as GroupEnumerations;
             var i = p.ListEnumerations.IndexOf(this);
             if (i < p.ListEnumerations.Count - 1)
             {
@@ -113,14 +113,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnNodeRemove()
         {
-            (this.Parent as Enumerations).ListEnumerations.Remove(this);
+            (this.Parent as GroupEnumerations).ListEnumerations.Remove(this);
         }
         protected override ITreeConfigNode OnNodeAddNew()
         {
             var res = new Enumeration();
             res.Parent = this.Parent;
-            (this.Parent as Enumerations).ListEnumerations.Add(res);
-            GetUniqueName(Enumeration.DefaultName, res, (this.Parent as Enumerations).ListEnumerations);
+            (this.Parent as GroupEnumerations).ListEnumerations.Add(res);
+            GetUniqueName(Enumeration.DefaultName, res, (this.Parent as GroupEnumerations).ListEnumerations);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
@@ -128,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = Enumeration.Clone(this.Parent, this, true, true);
             res.Parent = this.Parent;
-            (this.Parent as Enumerations).ListEnumerations.Add(res);
+            (this.Parent as GroupEnumerations).ListEnumerations.Add(res);
             this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;

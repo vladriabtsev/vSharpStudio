@@ -57,11 +57,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Enumerations m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Catalog m)
         {
             this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
@@ -126,11 +121,6 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(Enumeration m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Enumerations m)
         {
             throw new NotImplementedException();
         }
@@ -216,6 +206,16 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(GroupConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupEnumerations p)
         {
             throw new NotImplementedException();
         }

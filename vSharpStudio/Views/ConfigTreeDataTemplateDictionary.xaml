@@ -18,7 +18,7 @@
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Enumerations}" ItemsSource="{Binding ListEnumerations}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupEnumerations}" ItemsSource="{Binding ListEnumerations}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
