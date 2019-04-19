@@ -170,16 +170,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(PropertiesTreeGroup p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(PropertiesTreeGroup p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Document p)
         {
             throw new NotImplementedException();
@@ -216,6 +206,16 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(Journals p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupPropertiesTree p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
         }

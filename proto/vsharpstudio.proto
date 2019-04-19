@@ -163,12 +163,12 @@ message proto_properties {
 	uint64 sorting_value = 3;
 	repeated proto_property list_properties = 4;
 }
-message proto_properties_tree_group {
+message proto_group_properties_tree {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	repeated proto_property list_properties = 4;
-    repeated proto_properties_tree_group list_sub_properties_groups = 5;
+    repeated proto_group_properties_tree list_sub_properties_groups = 5;
 }
 message proto_catalogs {
 	string guid = 1;
