@@ -6,7 +6,7 @@
 
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
 
-    <HierarchicalDataTemplate DataType="{x:Type dat:Constants}" ItemsSource="{Binding ListConstants}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConstants}" ItemsSource="{Binding ListConstants}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />

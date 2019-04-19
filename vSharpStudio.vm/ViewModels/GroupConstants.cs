@@ -9,7 +9,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} constants:{ListConstants.Count,nq}")]
-    public partial class Constants
+    public partial class GroupConstants
     {
         partial void OnInit()
         {

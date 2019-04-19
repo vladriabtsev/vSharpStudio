@@ -62,7 +62,7 @@ message proto_config {
 
     // CONFIG OBJECTS
 
-	proto_constants group_constants = 101;
+	proto_group_constants group_constants = 101;
 	proto_enumerations group_enumerations = 102;
 	proto_group_catalogs group_catalogs = 103;
 	proto_group_documents group_documents = 104;
@@ -108,7 +108,7 @@ message proto_constant {
 	string name_ui = 5;
 	string description = 6;
 }
-message proto_constants {
+message proto_group_constants {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;

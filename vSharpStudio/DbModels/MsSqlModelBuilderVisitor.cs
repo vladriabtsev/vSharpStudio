@@ -52,11 +52,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Constants m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Enumeration m)
         {
             throw new NotImplementedException();
@@ -121,11 +116,6 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(Constant m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Constants m)
         {
             throw new NotImplementedException();
         }
@@ -216,6 +206,16 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(GroupDocuments p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupConstants p)
         {
             throw new NotImplementedException();
         }

@@ -115,11 +115,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisit(m);
         }
 
-        void IVisitorConfig.Visit(Constants p)
-        {
-            OnVisit(p);
-        }
-
         void IVisitorConfig.Visit(Enumeration p)
         {
             OnVisit(p);
@@ -156,11 +151,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(Constant m)
-        {
-            OnVisitEnd(m);
-        }
-
-        void IVisitorConfig.VisitEnd(Constants m)
         {
             OnVisitEnd(m);
         }
@@ -251,6 +241,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(GroupDocuments p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupConstants p)
         {
             throw new NotImplementedException();
         }

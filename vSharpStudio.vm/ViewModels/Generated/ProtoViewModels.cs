@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 17:21:37
+// Auto generated on UTC 04/19/2019 17:26:46
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.GroupConstants = new Constants(this);
+			this.GroupConstants = new GroupConstants(this);
 			this.GroupEnumerations = new Enumerations(this);
 			this.GroupCatalogs = new GroupCatalogs(this);
 			this.GroupDocuments = new GroupDocuments(this);
@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = from.HiLoSequenceName;
 		    vm.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.Clone(vm, from.GroupConstants, isDeep);
+		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.Clone(vm, from.GroupConstants, isDeep);
 		    if (isDeep)
 		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.Clone(vm, from.GroupEnumerations, isDeep);
 		    if (isDeep)
@@ -104,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.HiLoSequenceName = from.HiLoSequenceName;
 		    to.HiLoSchema = from.HiLoSchema;
 		    if (isDeep)
-		        Constants.Update(to.GroupConstants, from.GroupConstants, isDeep);
+		        GroupConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
 		    if (isDeep)
 		        Enumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
 		    if (isDeep)
@@ -157,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo;
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
-		    vm.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToVM(m.GroupConstants);
+		    vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.ConvertToVM(m.GroupConstants);
 		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToVM(m.GroupEnumerations);
 		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToVM(m.GroupCatalogs);
 		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments);
@@ -191,7 +191,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsSequenceHiLo = vm.IsSequenceHiLo;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
-		    m.GroupConstants = vSharpStudio.vm.ViewModels.Constants.ConvertToProto(vm.GroupConstants);
+		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupConstants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.Enumerations.ConvertToProto(vm.GroupEnumerations);
 		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToProto(vm.GroupCatalogs);
 		    m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto(vm.GroupDocuments);
@@ -574,7 +574,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
 		
-		public Constants GroupConstants
+		public GroupConstants GroupConstants
 		{ 
 			set
 			{
@@ -589,7 +589,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupConstants; }
 		}
-		private Constants _GroupConstants;
+		private GroupConstants _GroupConstants;
 		partial void OnGroupConstantsChanging();
 		partial void OnGroupConstantsChanged();
 		
@@ -1244,21 +1244,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class Constants : ConfigObjectBase<Constants, Constants.ConstantsValidator>, IComparable<Constants>, IAccept
+	public partial class GroupConstants : ConfigObjectBase<GroupConstants, GroupConstants.GroupConstantsValidator>, IComparable<GroupConstants>, IAccept
 	{
 	
-		public partial class ConstantsValidator : ValidatorBase<Constants, ConstantsValidator> { }
+		public partial class GroupConstantsValidator : ValidatorBase<GroupConstants, GroupConstantsValidator> { }
 		#region CTOR
-		public Constants() : base(ConstantsValidator.Validator)
+		public GroupConstants() : base(GroupConstantsValidator.Validator)
 		{
 			this.ListConstants = new SortedObservableCollection<Constant>();
 			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
 			OnInit();
 		}
-		public Constants(ITreeConfigNode parent) : this()
+		public GroupConstants(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(Constants.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupConstants.DefaultName, this, this.SubNodes);
 	    }
 		private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -1288,9 +1288,9 @@ namespace vSharpStudio.vm.ViewModels
 		        this.ListConstants.Sort();
 		    }
 		}
-		public static Constants Clone(ITreeConfigNode parent, Constants from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupConstants Clone(ITreeConfigNode parent, GroupConstants from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    Constants vm = new Constants();
+		    GroupConstants vm = new GroupConstants();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
@@ -1301,7 +1301,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(Constants to, Constants from, bool isDeep = true)
+		public static void Update(GroupConstants to, GroupConstants from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
@@ -1344,26 +1344,26 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		}
 		#region IEditable
-		public override Constants Backup()
+		public override GroupConstants Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Constants.Clone(null, this);
+			return GroupConstants.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Constants from)
+		public override void Restore(GroupConstants from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    Constants.Update(this, from, isDeep);
+		    GroupConstants.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_constants' to 'Constants'
-		public static Constants ConvertToVM(proto_constants m, Constants vm = null)
+		// Conversion from 'proto_group_constants' to 'GroupConstants'
+		public static GroupConstants ConvertToVM(proto_group_constants m, GroupConstants vm = null)
 		{
 		    if (vm == null)
-		        vm = new Constants();
+		        vm = new GroupConstants();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
@@ -1373,10 +1373,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'Constants' to 'proto_constants'
-		public static proto_constants ConvertToProto(Constants vm)
+		// Conversion from 'GroupConstants' to 'proto_group_constants'
+		public static proto_group_constants ConvertToProto(GroupConstants vm)
 		{
-		    proto_constants m = new proto_constants();
+		    proto_group_constants m = new proto_group_constants();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
@@ -3630,8 +3630,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(DataType p);
 		void Visit(Constant p);
 		void VisitEnd(Constant p);
-		void Visit(Constants p);
-		void VisitEnd(Constants p);
+		void Visit(GroupConstants p);
+		void VisitEnd(GroupConstants p);
 		void Visit(EnumerationPair p);
 		void VisitEnd(EnumerationPair p);
 		void Visit(Enumeration p);
@@ -3662,7 +3662,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_property p);
 		void Visit(proto_data_type p);
 		void Visit(proto_constant p);
-		void Visit(proto_constants p);
+		void Visit(proto_group_constants p);
 		void Visit(proto_enumeration_pair p);
 		void Visit(proto_enumeration p);
 		void Visit(proto_enumerations p);
