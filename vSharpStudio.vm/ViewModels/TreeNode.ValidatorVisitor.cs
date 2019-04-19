@@ -110,11 +110,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(Properties p)
-        {
-            OnVisit(p);
-        }
-
         void IVisitorConfig.Visit(Constant m)
         {
             OnVisit(m);
@@ -156,11 +151,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(DataType m)
-        {
-            OnVisitEnd(m);
-        }
-
-        void IVisitorConfig.VisitEnd(Properties m)
         {
             OnVisitEnd(m);
         }
@@ -251,6 +241,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(GroupCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupProperties p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupProperties p)
         {
             throw new NotImplementedException();
         }

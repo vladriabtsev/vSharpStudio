@@ -36,7 +36,7 @@
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Catalogs}" ItemsSource="{Binding ListCatalogs}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupCatalogs}" ItemsSource="{Binding ListCatalogs}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />
@@ -48,7 +48,7 @@
             <TextBlock Text="{Binding NodeText}" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Properties}" ItemsSource="{Binding ListProperties}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupProperties}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" />

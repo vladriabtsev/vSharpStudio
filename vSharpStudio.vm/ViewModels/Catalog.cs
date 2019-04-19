@@ -33,11 +33,11 @@ namespace vSharpStudio.vm.ViewModels
 
         protected override bool OnNodeCanMoveUp()
         {
-            return (this.Parent as Catalogs).ListCatalogs.IndexOf(this) > 0;
+            return (this.Parent as GroupCatalogs).ListCatalogs.IndexOf(this) > 0;
         }
         protected override void OnNodeMoveUp()
         {
-            var p = this.Parent as Catalogs;
+            var p = this.Parent as GroupCatalogs;
             var i = p.ListCatalogs.IndexOf(this);
             if (i > 0)
             {
@@ -46,11 +46,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override bool OnNodeCanMoveDown()
         {
-            return (this.Parent as Catalogs).ListCatalogs.IndexOf(this) < ((this.Parent as Catalogs).ListCatalogs.Count - 1);
+            return (this.Parent as GroupCatalogs).ListCatalogs.IndexOf(this) < ((this.Parent as GroupCatalogs).ListCatalogs.Count - 1);
         }
         protected override void OnNodeMoveDown()
         {
-            var p = this.Parent as Catalogs;
+            var p = this.Parent as GroupCatalogs;
             var i = p.ListCatalogs.IndexOf(this);
             if (i < p.ListCatalogs.Count - 1)
             {
@@ -59,14 +59,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnNodeRemove()
         {
-            (this.Parent as Catalogs).ListCatalogs.Remove(this);
+            (this.Parent as GroupCatalogs).ListCatalogs.Remove(this);
         }
         protected override ITreeConfigNode OnNodeAddNew()
         {
             var res = new Catalog();
             res.Parent = this.Parent;
-            (this.Parent as Catalogs).ListCatalogs.Add(res);
-            GetUniqueName(Catalog.DefaultName, res, (this.Parent as Catalogs).ListCatalogs);
+            (this.Parent as GroupCatalogs).ListCatalogs.Add(res);
+            GetUniqueName(Catalog.DefaultName, res, (this.Parent as GroupCatalogs).ListCatalogs);
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
@@ -74,7 +74,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = Catalog.Clone(this.Parent, this, true, true);
             res.Parent = this.Parent;
-            (this.Parent as Catalogs).ListCatalogs.Add(res);
+            (this.Parent as GroupCatalogs).ListCatalogs.Add(res);
             this.Name = this.Name + "2";
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;

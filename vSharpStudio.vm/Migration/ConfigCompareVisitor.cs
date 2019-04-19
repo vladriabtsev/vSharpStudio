@@ -26,11 +26,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Properties m)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Constant m)
         {
             throw new NotImplementedException();
@@ -91,6 +86,11 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.Visit(GroupProperties p)
+        {
+            throw new NotImplementedException();
+        }
+
         void IVisitorConfig.VisitEnd(Config m)
         {
             throw new NotImplementedException();
@@ -102,11 +102,6 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(DataType m)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(Properties m)
         {
             throw new NotImplementedException();
         }
@@ -167,6 +162,11 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(GroupCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupProperties p)
         {
             throw new NotImplementedException();
         }

@@ -157,7 +157,7 @@ message proto_catalog {
 
 	repeated proto_property list_properties = 15;
 }
-message proto_properties {
+message proto_group_properties {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
@@ -174,7 +174,7 @@ message proto_group_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	//proto_properties group_shared_properties = 4;
+	//proto_group_properties group_shared_properties = 4;
 	repeated proto_catalog list_catalogs = 5;
 }
 message proto_document {
@@ -182,7 +182,7 @@ message proto_document {
 	string name = 2;
 	uint64 sorting_value = 3;
 	repeated proto_property list_properties = 4;
-	repeated proto_properties list_properties_groups = 5;
+	repeated proto_group_properties list_properties_groups = 5;
 }
 message proto_documents {
 	string guid = 1;
@@ -195,7 +195,7 @@ message proto_journal {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_properties properties = 4;
+	repeated proto_group_properties properties = 4;
 }
 message proto_journals {
 	string guid = 1;
