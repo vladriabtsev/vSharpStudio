@@ -16,9 +16,9 @@ public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs
 		{
 			On<#= field.Name.ToNameCs() #>Changing();
 			_<#= field.Name.ToNameCs() #> = value;
-			ValidateProperty();
-			NotifyPropertyChanged();
 			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -33,9 +33,9 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 		{
 			On<#= field.Name.ToNameCs() #>Changing();
             _<#= field.Name.ToNameCs() #> = value;
-			ValidateProperty();
-			NotifyPropertyChanged();
 			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -50,9 +50,9 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 		{
 			On<#= field.Name.ToNameCs() #>Changing();
 			_<#= field.Name.ToNameCs() #> = value;
-			ValidateProperty();
-			NotifyPropertyChanged();
 			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }

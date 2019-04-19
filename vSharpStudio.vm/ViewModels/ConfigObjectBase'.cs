@@ -148,37 +148,27 @@ namespace vSharpStudio.vm.ViewModels
         {
             _Guid = System.Guid.NewGuid().ToString();
         }
-        [BrowsableAttribute(false)]
+        [PropertyOrder(0)]
         public string Name
         {
             set
             {
                 if (_Name != value)
                 {
+                    _Name = value.Trim();
                     NotifyPropertyChanged();
-                    this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
-                    ITreeConfigNode p = (ITreeConfigNode)this;
-                    if (p.Parent != null)
-                        p.Parent.Sort(this.GetType());
+                    if (ValidateProperty())
+                    {
+                        this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
+                        ITreeConfigNode p = (ITreeConfigNode)this;
+                        if (p.Parent != null)
+                            p.Parent.Sort(this.GetType());
+                    }
                 }
             }
             get { return _Name; }
         }
         private string _Name = "";
-        [PropertyOrder(0)]
-        public string NameToBind
-        {
-            set
-            {
-                if (_Name != value)
-                {
-                    ???
-                    _Name = value.Trim();
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _Name; }
-        }
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]

@@ -39,7 +39,6 @@ namespace ViewModelBase
                 //return;
                 throw new Exception("Already not in EDIT mode");
             this.Restore(_dtoBackupTmp);
-            //this.Validate();
             IsInEdit = false;
         }
         public void EndEdit()

@@ -47,13 +47,9 @@ namespace ViewModelBase
             ValidationChange(res);
             NotifyPropertyChanged(m => m.HasErrors);
         }
-        protected void ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected override bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
-            OnValidateProperty(propertyName);
-        }
-        protected async override void OnValidateProperty(string propertyName)
-        {
-            var res = await this._validator.ValidateAsync(this);
+            var res = this._validator.Validate(this);
             if (!res.IsValid)
             {
                 bool found = false;
@@ -76,7 +72,34 @@ namespace ViewModelBase
                     RaiseErrorsChanged(propertyName);
                 }
             }
+            return res.IsValid;
         }
+        //protected async override void ValidatePropertyAsync(string propertyName)
+        //{
+        //    var res = await this._validator.ValidateAsync(this);
+        //    if (!res.IsValid)
+        //    {
+        //        bool found = false;
+        //        foreach (var t in res.Errors)
+        //        {
+        //            if (t.PropertyName != propertyName)
+        //                continue;
+        //            found = true;
+        //            if (!_errors.ContainsKey(t.PropertyName))
+        //                _errors[t.PropertyName] = new List<string>();
+        //            _errors[t.PropertyName].Add(t.ErrorMessage);
+        //        }
+        //        if (found)
+        //        {
+        //            RaiseErrorsChanged(propertyName);
+        //        }
+        //        else if (_errors.ContainsKey(propertyName))
+        //        {
+        //            _errors.Remove(propertyName);
+        //            RaiseErrorsChanged(propertyName);
+        //        }
+        //    }
+        //}
         public override void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
         public override T Backup() { throw new NotImplementedException("Please override Backup method"); }
 

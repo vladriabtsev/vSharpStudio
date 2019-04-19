@@ -492,9 +492,8 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.GroupEnumerations.ListEnumerations[1].HasErrors == true);
             var errenum = cfg.GroupEnumerations.ListEnumerations[1].GetErrors("Name").GetEnumerator();
             Assert.True(errenum.MoveNext() == true);
-            List<string> errs = (List<string>)errenum.Current;
-            Assert.True(errs.Count == 1);
-            Assert.True(errs[0] == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            Assert.True((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            Assert.True(errenum.MoveNext() == false);
         }
         [Fact]
         public void Compare001_CanNothingChanged()

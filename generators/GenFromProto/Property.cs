@@ -105,14 +105,15 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = value;\r\n\t\t\tValidateProperty();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tOn");
+            this.Write(" = value;\r\n\t\t\tOn");
             
-            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("Changed();\r\n\t\t}\r\n\t}\r\n\tget { return _");
+            this.Write("Changed();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tValidateProperty();\r\n\t\t}\r\n\t}\r\n\tget { " +
+                    "return _");
             
             #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -182,14 +183,15 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = value;\r\n\t\t\tValidateProperty();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tOn");
+            this.Write(" = value;\r\n\t\t\tOn");
             
-            #line 38 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 36 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("Changed();\r\n\t\t}\r\n\t}\r\n\tget { return _");
+            this.Write("Changed();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tValidateProperty();\r\n\t\t}\r\n\t}\r\n\tget { " +
+                    "return _");
             
             #line 41 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -252,14 +254,15 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = value;\r\n\t\t\tValidateProperty();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tOn");
+            this.Write(" = value;\r\n\t\t\tOn");
             
-            #line 55 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 53 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("Changed();\r\n\t\t}\r\n\t}\r\n\tget { return _");
+            this.Write("Changed();\r\n\t\t\tNotifyPropertyChanged();\r\n\t\t\tValidateProperty();\r\n\t\t}\r\n\t}\r\n\tget { " +
+                    "return _");
             
             #line 58 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

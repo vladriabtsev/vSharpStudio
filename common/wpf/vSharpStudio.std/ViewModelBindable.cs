@@ -188,16 +188,18 @@ namespace ViewModelBase
         {
             if (!EqualityComparer<Tprop>.Default.Equals(propField, newValue))
             {
+                Tprop prevValue = propField;
                 propField = newValue;
                 VMHelpers.InternalNotifyPropertyChanged(propName, this, this.PropertyChanged, this.Dispatcher);
                 onChanged?.Invoke();
                 IsChanged = true;
-                OnValidateProperty(propName);
+                if (!ValidateProperty(propName))
+                    propField = prevValue;
                 return true;
             }
             return false;
         }
-        protected virtual void OnValidateProperty(string propertyName) { }
+        protected virtual bool ValidateProperty(string propertyName) { return true; }
 
         public void RaisePropertyChanged(string propertyName)
         {

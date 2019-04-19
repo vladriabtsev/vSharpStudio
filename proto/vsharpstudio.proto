@@ -177,4 +177,3 @@ message string_nullable {
 	bool has_value = 1;
 	string value = 2;
 }
-
