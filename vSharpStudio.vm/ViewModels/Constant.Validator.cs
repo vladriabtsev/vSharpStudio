@@ -26,6 +26,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             private bool IsUnique(Constant val)
             {
+                if (val.Parent == null)
+                    return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 GroupConstants p = (GroupConstants)val.Parent;

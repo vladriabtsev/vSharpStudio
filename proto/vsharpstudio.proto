@@ -72,9 +72,9 @@ message proto_property {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	proto_data_type data_type = 4;
-	string name_ui = 5;
-	string description = 6;
+	string name_ui = 4;
+	string description = 5;
+	proto_data_type data_type = 6;
 }
 message proto_data_type {
 	enum EnumDataType {
@@ -104,22 +104,26 @@ message proto_constant {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	proto_data_type data_type = 4;
-	string name_ui = 5;
-	string description = 6;
+	string name_ui = 4;
+	string description = 5;
+	proto_data_type data_type = 6;
 }
 message proto_group_constants {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_constant list_constants = 4;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_constant list_constants = 6;
 }
 message proto_enumeration_pair {
 	string guid = 1;
     string name = 2;
 	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
     // TODO struct for different types, at least INTEGER
-    string value = 4;
+    string value = 6;
 }
 message proto_enumeration {
 	enum EnumEnumerationType {
@@ -131,16 +135,18 @@ message proto_enumeration {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	EnumEnumerationType data_type_enum = 4; 
-	string name_ui = 5;
-	string description = 6;
+	string name_ui = 4;
+	string description = 5;
+	EnumEnumerationType data_type_enum = 6; 
 	repeated proto_enumeration_pair list_values = 7;
 }
 message proto_group_enumerations {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_enumeration list_enumerations = 4;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_enumeration list_enumerations = 6;
 }
 message proto_catalog {
 	string guid = 1;
@@ -161,48 +167,62 @@ message proto_group_properties {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_property list_properties = 4;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_property list_properties = 6;
 }
 message proto_group_properties_tree {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_property list_properties = 4;
-    repeated proto_group_properties_tree list_sub_properties_groups = 5;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_property list_properties = 6;
+    repeated proto_group_properties_tree list_sub_properties_groups = 7;
 }
 message proto_group_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	//proto_group_properties group_shared_properties = 4;
-	repeated proto_catalog list_catalogs = 5;
+	string name_ui = 4;
+	string description = 5;
+	//proto_group_properties group_shared_properties = 6;
+	repeated proto_catalog list_catalogs = 7;
 }
 message proto_document {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_group_properties_tree list_properties_tree_groups = 4;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_group_properties_tree list_properties_tree_groups = 6;
 }
 message proto_group_documents {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_property list_shared_properties = 4;
-	repeated proto_document list_documents = 5;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_property list_shared_properties = 6;
+	repeated proto_document list_documents = 7;
 }
 message proto_journal {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	//repeated proto_group_properties list_properties = 4;
-	repeated proto_document list_documents = 5;
+	string name_ui = 4;
+	string description = 5;
+	//repeated proto_group_properties list_properties = 6;
+	repeated proto_document list_documents = 7;
 }
 message proto_group_journals {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	repeated proto_property list_shared_properties = 4;
-	repeated proto_journal list_journals = 5;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_property list_shared_properties = 6;
+	repeated proto_journal list_journals = 7;
 }
 
 // all simple nullable (generator check suffics '_nullable')

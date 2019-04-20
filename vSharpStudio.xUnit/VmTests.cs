@@ -146,7 +146,7 @@ namespace vSharpStudio.xUnit
             Config.ConfigValidator.Reset();
             Catalog.CatalogValidator.Reset();
             var cfg = new ConfigRoot();
-            var c = new Catalog();
+            var c = new Catalog() {  Name="test" };
             cfg.GroupCatalogs.ListCatalogs.Add(c);
 
             string mes1 = "test error message";

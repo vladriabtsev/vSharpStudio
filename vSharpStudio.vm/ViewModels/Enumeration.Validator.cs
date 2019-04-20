@@ -39,6 +39,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             private bool IsUnique(Enumeration val)
             {
+                if (val.Parent == null)
+                    return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 GroupEnumerations p = (GroupEnumerations)val.Parent;

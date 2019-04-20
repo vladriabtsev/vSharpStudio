@@ -76,13 +76,17 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
-            DataType t = new DataType();
+            GroupCatalogs t = new GroupCatalogs();
             StringBuilder sb = new StringBuilder();
             Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
-            //t.PropertyNameAction(p => p.DataTypeEnum, (m) =>
-            //{
-            //    res[m] = sb.Clear().Category("kuku").ToString();
-            //});
+            t.PropertyNameAction(p => p.NameUi, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();
+            });
+            t.PropertyNameAction(p => p.Description, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
+            });
             return res;
         }
     }

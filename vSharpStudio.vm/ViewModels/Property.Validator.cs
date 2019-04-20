@@ -26,6 +26,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             private bool IsUnique(Property val)
             {
+                if (val.Parent == null)
+                    return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 if (val.Parent is Catalog)

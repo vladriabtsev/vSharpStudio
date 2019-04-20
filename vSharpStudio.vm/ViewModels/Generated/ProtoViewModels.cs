@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/20/2019 20:04:36
+// Auto generated on UTC 04/20/2019 23:43:58
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -724,10 +724,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -737,10 +737,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        DataType.Update(to.DataType, from.DataType, isDeep);
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
+		    if (isDeep)
+		        DataType.Update(to.DataType, from.DataType, isDeep);
 		}
 		#region IEditable
 		public override Property Backup()
@@ -766,9 +766,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
+		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -779,9 +779,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
-		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
+		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -794,26 +794,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		[ExpandableObject()]
-		public DataType DataType
-		{ 
-			set
-			{
-				if (_DataType != value)
-				{
-					OnDataTypeChanging();
-		            _DataType = value;
-					OnDataTypeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DataType; }
-		}
-		private DataType _DataType;
-		partial void OnDataTypeChanging();
-		partial void OnDataTypeChanged();
 		
 		[PropertyOrder(2)]
 		public string NameUi
@@ -854,6 +834,26 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
+		[ExpandableObject()]
+		public DataType DataType
+		{ 
+			set
+			{
+				if (_DataType != value)
+				{
+					OnDataTypeChanging();
+		            _DataType = value;
+					OnDataTypeChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DataType; }
+		}
+		private DataType _DataType;
+		partial void OnDataTypeChanging();
+		partial void OnDataTypeChanged();
 		#endregion Properties
 	}
 	
@@ -1150,10 +1150,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -1163,10 +1163,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        DataType.Update(to.DataType, from.DataType, isDeep);
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
+		    if (isDeep)
+		        DataType.Update(to.DataType, from.DataType, isDeep);
 		}
 		#region IEditable
 		public override Constant Backup()
@@ -1192,9 +1192,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
+		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1205,9 +1205,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
-		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
+		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -1220,26 +1220,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		[ExpandableObject()]
-		public DataType DataType
-		{ 
-			set
-			{
-				if (_DataType != value)
-				{
-					OnDataTypeChanging();
-		            _DataType = value;
-					OnDataTypeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DataType; }
-		}
-		private DataType _DataType;
-		partial void OnDataTypeChanging();
-		partial void OnDataTypeChanged();
 		
 		[PropertyOrder(2)]
 		public string NameUi
@@ -1280,6 +1260,26 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
+		[ExpandableObject()]
+		public DataType DataType
+		{ 
+			set
+			{
+				if (_DataType != value)
+				{
+					OnDataTypeChanging();
+		            _DataType = value;
+					OnDataTypeChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DataType; }
+		}
+		private DataType _DataType;
+		partial void OnDataTypeChanging();
+		partial void OnDataTypeChanged();
 		#endregion Properties
 	}
 	
@@ -1333,6 +1333,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListConstants = new SortedObservableCollection<Constant>();
 		    foreach(var t in from.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
@@ -1345,6 +1347,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListConstants.ToList())
@@ -1406,6 +1410,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListConstants = new SortedObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
 		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t));
@@ -1419,6 +1425,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListConstants)
 		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
 		    return m;
@@ -1434,6 +1442,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Constant> ListConstants { get; set; }
@@ -1469,6 +1517,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.Value = from.Value;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
@@ -1479,6 +1529,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    to.Value = from.Value;
 		}
 		#region IEditable
@@ -1505,6 +1557,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.Value = m.Value;
 		    vm.OnInitFromDto();
 		    return vm;
@@ -1516,6 +1570,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    m.Value = vm.Value;
 		    return m;
 		}
@@ -1528,6 +1584,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public string Value
@@ -1601,9 +1697,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
-		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
+		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListValues)
 		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, t, isDeep));
@@ -1616,9 +1712,9 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
-		    to.DataTypeEnum = from.DataTypeEnum;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
+		    to.DataTypeEnum = from.DataTypeEnum;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListValues.ToList())
@@ -1680,9 +1776,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
-		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
+		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListValues)
 		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t));
@@ -1696,9 +1792,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
-		    m.DataTypeEnum = vm.DataTypeEnum;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
+		    m.DataTypeEnum = vm.DataTypeEnum;
 		    foreach(var t in vm.ListValues)
 		        m.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
 		    return m;
@@ -1714,26 +1810,6 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
-		
-		[PropertyOrder(4)]
-		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
-		{ 
-			set
-			{
-				if (_DataTypeEnum != value)
-				{
-					OnDataTypeEnumChanging();
-					_DataTypeEnum = value;
-					OnDataTypeEnumChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DataTypeEnum; }
-		}
-		private proto_enumeration.Types.EnumEnumerationType _DataTypeEnum;
-		partial void OnDataTypeEnumChanging();
-		partial void OnDataTypeEnumChanged();
 		
 		[PropertyOrder(2)]
 		public string NameUi
@@ -1774,6 +1850,26 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
+		[PropertyOrder(4)]
+		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
+		{ 
+			set
+			{
+				if (_DataTypeEnum != value)
+				{
+					OnDataTypeEnumChanging();
+					_DataTypeEnum = value;
+					OnDataTypeEnumChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DataTypeEnum; }
+		}
+		private proto_enumeration.Types.EnumEnumerationType _DataTypeEnum;
+		partial void OnDataTypeEnumChanging();
+		partial void OnDataTypeEnumChanged();
 		
 		
 		public SortedObservableCollection<EnumerationPair> ListValues { get; set; }
@@ -1832,6 +1928,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
 		    foreach(var t in from.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
@@ -1844,6 +1942,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListEnumerations.ToList())
@@ -1905,6 +2005,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
 		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t));
@@ -1918,6 +2020,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListEnumerations)
 		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
 		    return m;
@@ -1933,6 +2037,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Enumeration> ListEnumerations { get; set; }
@@ -2321,6 +2465,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -2333,6 +2479,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListProperties.ToList())
@@ -2394,6 +2542,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -2407,6 +2557,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
@@ -2422,6 +2574,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
@@ -2504,6 +2696,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -2519,6 +2713,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListProperties.ToList())
@@ -2616,6 +2812,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -2632,6 +2830,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    foreach(var t in vm.ListSubPropertiesGroups)
@@ -2651,6 +2851,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
@@ -2714,6 +2954,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in from.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
@@ -2726,6 +2968,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListCatalogs.ToList())
@@ -2787,6 +3031,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in m.ListCatalogs)
 		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t));
@@ -2800,6 +3046,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListCatalogs)
 		        m.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
 		    return m;
@@ -2815,6 +3063,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Catalog> ListCatalogs { get; set; }
@@ -2873,6 +3161,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>();
 		    foreach(var t in from.ListPropertiesTreeGroups)
 		        vm.ListPropertiesTreeGroups.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTree.Clone(vm, t, isDeep));
@@ -2885,6 +3175,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListPropertiesTreeGroups.ToList())
@@ -2946,6 +3238,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>();
 		    foreach(var t in m.ListPropertiesTreeGroups)
 		        vm.ListPropertiesTreeGroups.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(t));
@@ -2959,6 +3253,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListPropertiesTreeGroups)
 		        m.ListPropertiesTreeGroups.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToProto(t));
 		    return m;
@@ -2974,6 +3270,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<GroupPropertiesTree> ListPropertiesTreeGroups { get; set; }
@@ -3056,6 +3392,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -3071,6 +3409,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListSharedProperties.ToList())
@@ -3168,6 +3508,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -3184,6 +3526,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListSharedProperties)
 		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    foreach(var t in vm.ListDocuments)
@@ -3203,6 +3547,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
@@ -3266,6 +3650,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListDocuments = new SortedObservableCollection<Document>();
 		    foreach(var t in from.ListDocuments)
 		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
@@ -3278,6 +3664,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListDocuments.ToList())
@@ -3339,6 +3727,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListDocuments = new SortedObservableCollection<Document>();
 		    foreach(var t in m.ListDocuments)
 		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
@@ -3352,6 +3742,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListDocuments)
 		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
 		    return m;
@@ -3367,6 +3759,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Document> ListDocuments { get; set; }
@@ -3449,6 +3881,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -3464,6 +3898,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListSharedProperties.ToList())
@@ -3561,6 +3997,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListSharedProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListSharedProperties)
 		        vm.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -3577,6 +4015,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListSharedProperties)
 		        m.ListSharedProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    foreach(var t in vm.ListJournals)
@@ -3596,6 +4036,46 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Property> ListSharedProperties { get; set; }

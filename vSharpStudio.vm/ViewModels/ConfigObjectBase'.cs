@@ -218,7 +218,7 @@ namespace vSharpStudio.vm.ViewModels
                     NotifyPropertyChanged();
                     if (ValidateProperty())
                     {
-                        this.SortingValue = EncodeNameToUlong(this.Name) + this.SortingWeight;
+                        this.SortingValue = EncodeNameToUlong(this._Name) + this.SortingWeight;
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                             p.Parent.Sort(this.GetType());
