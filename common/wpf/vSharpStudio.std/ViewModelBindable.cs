@@ -50,6 +50,12 @@ namespace ViewModelBase
             string propertyName = ((MemberExpression)property.Body).Member.Name;
             RaisePropertyChanged(propertyName);
         }
+        protected virtual void PropertyNameAction<TResult>
+            (Expression<Func<T, TResult>> property, Action<string> action)
+        {
+            string propertyName = ((MemberExpression)property.Body).Member.Name;
+            action(propertyName);
+        }
     }
     public class DispatcherDummy : IDispatcher
     {

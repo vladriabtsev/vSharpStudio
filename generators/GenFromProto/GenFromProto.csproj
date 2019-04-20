@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="attr.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,12 +140,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj">
-      <Project>{EC5B8D66-BBC5-4183-8381-1D6B6181734E}</Project>
+      <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
       <Name>vSharpStudio.proto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\generators\GenFromProto\bin\Debug\GenFromProto.exe $(SolutionDir)\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs Proto.Config</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)generators\GenFromProto\bin\Debug\GenFromProto.exe 
+rem $(SolutionDir)vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs Proto.Config</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>$(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
   </PropertyGroup>
 </Project>

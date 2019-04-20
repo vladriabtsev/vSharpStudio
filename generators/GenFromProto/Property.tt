@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.proto" #>
 <#= field.Declaration.ToLeadingComments() #>
+<#= GetAttrs() #>
 <# if (field.IsRepeated) { #>
 public SortedObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>

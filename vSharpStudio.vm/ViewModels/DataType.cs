@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
@@ -151,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnDataTypeEnumChanged()
         {
-            switch(this.DataTypeEnum)
+            switch (this.DataTypeEnum)
             {
                 case EnumDataType.Any:
                 case EnumDataType.Bool:
@@ -192,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             get { return _VisibilityLength; }
         }
-        private Visibility _VisibilityLength= Visibility.Collapsed;
+        private Visibility _VisibilityLength = Visibility.Collapsed;
         public Visibility VisibilityAccuracy
         {
             set
@@ -224,5 +225,33 @@ namespace vSharpStudio.vm.ViewModels
         //        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
+
+        public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
+        {
+            DataType t = new DataType();
+            StringBuilder sb = new StringBuilder();
+            Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
+            t.PropertyNameAction(p => p.DataTypeEnum, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();
+            });
+            t.PropertyNameAction(p => p.Length, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
+            });
+            t.PropertyNameAction(p => p.Accuracy, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(4).ToString();
+            });
+            t.PropertyNameAction(p => p.IsPositive, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(5).ToString();
+            });
+            t.PropertyNameAction(p => p.ObjectName, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(6).ToString();
+            });
+            return res;
+        }
     }
 }

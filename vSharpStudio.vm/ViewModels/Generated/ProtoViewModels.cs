@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/19/2019 22:46:43
+// Auto generated on UTC 04/20/2019 20:04:36
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -7,6 +7,7 @@ using Proto.Config;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -213,6 +214,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public string Version
 		{ 
 			set
@@ -231,6 +233,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
+		
 		
 		public string NameUi
 		{ 
@@ -251,6 +254,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
+		
 		public string Description
 		{ 
 			set
@@ -269,6 +273,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
 		
 		public bool IsDbFromConnectionString
 		{ 
@@ -289,6 +294,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsDbFromConnectionStringChanging();
 		partial void OnIsDbFromConnectionStringChanged();
 		
+		
 		public string ConnectionStringName
 		{ 
 			set
@@ -307,6 +313,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ConnectionStringName = "";
 		partial void OnConnectionStringNameChanging();
 		partial void OnConnectionStringNameChanged();
+		
 		
 		public proto_config.Types.EnumDbType DbTypeEnum
 		{ 
@@ -327,6 +334,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDbTypeEnumChanging();
 		partial void OnDbTypeEnumChanged();
 		
+		
 		public string DbServer
 		{ 
 			set
@@ -345,6 +353,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _DbServer = "";
 		partial void OnDbServerChanging();
 		partial void OnDbServerChanged();
+		
 		
 		public string DbDatabaseName
 		{ 
@@ -365,6 +374,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDbDatabaseNameChanging();
 		partial void OnDbDatabaseNameChanged();
 		
+		
 		public bool IsDbWindowsAuthentication
 		{ 
 			set
@@ -383,6 +393,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsDbWindowsAuthentication;
 		partial void OnIsDbWindowsAuthenticationChanging();
 		partial void OnIsDbWindowsAuthenticationChanged();
+		
 		
 		public string DbUser
 		{ 
@@ -403,6 +414,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDbUserChanging();
 		partial void OnDbUserChanged();
 		
+		
 		public string DbPassword
 		{ 
 			set
@@ -421,6 +433,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _DbPassword = "";
 		partial void OnDbPasswordChanging();
 		partial void OnDbPasswordChanged();
+		
 		
 		public string PathToProjectWithConnectionString
 		{ 
@@ -441,6 +454,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnPathToProjectWithConnectionStringChanging();
 		partial void OnPathToProjectWithConnectionStringChanged();
 		
+		
 		public string DbSchema
 		{ 
 			set
@@ -459,6 +473,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _DbSchema = "";
 		partial void OnDbSchemaChanging();
 		partial void OnDbSchemaChanged();
+		
 		
 		public string PrimaryKeyName
 		{ 
@@ -479,6 +494,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnPrimaryKeyNameChanging();
 		partial void OnPrimaryKeyNameChanged();
 		
+		
 		public bool IsPrimaryKeyClustered
 		{ 
 			set
@@ -497,6 +513,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsPrimaryKeyClustered;
 		partial void OnIsPrimaryKeyClusteredChanging();
 		partial void OnIsPrimaryKeyClusteredChanged();
+		
 		
 		public bool IsMemoryOptimized
 		{ 
@@ -517,6 +534,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsMemoryOptimizedChanging();
 		partial void OnIsMemoryOptimizedChanged();
 		
+		
 		public bool IsSequenceHiLo
 		{ 
 			set
@@ -535,6 +553,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsSequenceHiLo;
 		partial void OnIsSequenceHiLoChanging();
 		partial void OnIsSequenceHiLoChanged();
+		
 		
 		public string HiLoSequenceName
 		{ 
@@ -555,6 +574,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSequenceNameChanging();
 		partial void OnHiLoSequenceNameChanged();
 		
+		
 		public string HiLoSchema
 		{ 
 			set
@@ -573,6 +593,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _HiLoSchema = "";
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
+		
 		
 		public GroupConstants GroupConstants
 		{ 
@@ -593,6 +614,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupConstantsChanging();
 		partial void OnGroupConstantsChanged();
 		
+		
 		public GroupEnumerations GroupEnumerations
 		{ 
 			set
@@ -611,6 +633,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupEnumerations _GroupEnumerations;
 		partial void OnGroupEnumerationsChanging();
 		partial void OnGroupEnumerationsChanged();
+		
 		
 		public GroupCatalogs GroupCatalogs
 		{ 
@@ -631,6 +654,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupCatalogsChanging();
 		partial void OnGroupCatalogsChanged();
 		
+		
 		public GroupDocuments GroupDocuments
 		{ 
 			set
@@ -649,6 +673,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupDocuments _GroupDocuments;
 		partial void OnGroupDocumentsChanging();
 		partial void OnGroupDocumentsChanged();
+		
 		
 		public GroupJournals GroupJournals
 		{ 
@@ -770,6 +795,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[ExpandableObject()]
 		public DataType DataType
 		{ 
 			set
@@ -789,6 +815,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeChanging();
 		partial void OnDataTypeChanged();
 		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -808,6 +835,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set
@@ -932,6 +960,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrder(2)]
 		public proto_data_type.Types.EnumDataType DataTypeEnum
 		{ 
 			set
@@ -951,6 +980,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
 		
+		[PropertyOrder(3)]
 		public uint Length
 		{ 
 			set
@@ -970,6 +1000,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnLengthChanging();
 		partial void OnLengthChanged();
 		
+		[PropertyOrder(4)]
 		public uint Accuracy
 		{ 
 			set
@@ -989,6 +1020,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnAccuracyChanging();
 		partial void OnAccuracyChanged();
 		
+		[PropertyOrder(5)]
 		public bool IsPositive
 		{ 
 			set
@@ -1007,6 +1039,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsPositive;
 		partial void OnIsPositiveChanging();
 		partial void OnIsPositiveChanged();
+		
 		
 		public string TypeGuid
 		{ 
@@ -1027,6 +1060,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnTypeGuidChanging();
 		partial void OnTypeGuidChanged();
 		
+		
 		public string MinValueString
 		{ 
 			set
@@ -1045,6 +1079,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _MinValueString = "";
 		partial void OnMinValueStringChanging();
 		partial void OnMinValueStringChanged();
+		
 		
 		public string MaxValueString
 		{ 
@@ -1065,6 +1100,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnMaxValueStringChanging();
 		partial void OnMaxValueStringChanged();
 		
+		[PropertyOrder(6)]
 		public string ObjectName
 		{ 
 			set
@@ -1185,6 +1221,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[ExpandableObject()]
 		public DataType DataType
 		{ 
 			set
@@ -1204,6 +1241,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeChanging();
 		partial void OnDataTypeChanged();
 		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -1223,6 +1261,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set
@@ -1396,6 +1435,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public SortedObservableCollection<Constant> ListConstants { get; set; }
 		partial void OnListConstantsChanging();
 		partial void OnListConstantsChanged();
@@ -1488,6 +1528,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		
 		public string Value
 		{ 
@@ -1674,6 +1715,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrder(4)]
 		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
 		{ 
 			set
@@ -1693,6 +1735,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
 		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -1712,6 +1755,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set
@@ -1730,6 +1774,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
 		
 		public SortedObservableCollection<EnumerationPair> ListValues { get; set; }
 		partial void OnListValuesChanging();
@@ -1888,6 +1933,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		
 		public SortedObservableCollection<Enumeration> ListEnumerations { get; set; }
 		partial void OnListEnumerationsChanging();
@@ -2078,6 +2124,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -2097,6 +2144,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set
@@ -2115,6 +2163,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
 		
 		public bool? IsPrimaryKeyClustered
 		{ 
@@ -2135,6 +2184,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsPrimaryKeyClusteredChanging();
 		partial void OnIsPrimaryKeyClusteredChanged();
 		
+		
 		public bool? IsMemoryOptimized
 		{ 
 			set
@@ -2153,6 +2203,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool? _IsMemoryOptimized;
 		partial void OnIsMemoryOptimizedChanging();
 		partial void OnIsMemoryOptimizedChanged();
+		
 		
 		public bool? IsSequenceHiLo
 		{ 
@@ -2173,6 +2224,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsSequenceHiLoChanging();
 		partial void OnIsSequenceHiLoChanged();
 		
+		
 		public string HiLoSequenceName
 		{ 
 			set
@@ -2192,6 +2244,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSequenceNameChanging();
 		partial void OnHiLoSequenceNameChanged();
 		
+		
 		public string HiLoSchema
 		{ 
 			set
@@ -2210,6 +2263,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _HiLoSchema = "";
 		partial void OnHiLoSchemaChanging();
 		partial void OnHiLoSchemaChanged();
+		
 		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
@@ -2368,6 +2422,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
@@ -2597,9 +2652,11 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
 		partial void OnListPropertiesChanging();
 		partial void OnListPropertiesChanged();
+		
 		
 		public SortedObservableCollection<GroupPropertiesTree> ListSubPropertiesGroups { get; set; }
 		partial void OnListSubPropertiesGroupsChanging();
@@ -2759,6 +2816,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public SortedObservableCollection<Catalog> ListCatalogs { get; set; }
 		partial void OnListCatalogsChanging();
 		partial void OnListCatalogsChanged();
@@ -2916,6 +2974,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		
 		public SortedObservableCollection<GroupPropertiesTree> ListPropertiesTreeGroups { get; set; }
 		partial void OnListPropertiesTreeGroupsChanging();
@@ -3145,9 +3204,11 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
 		partial void OnListSharedPropertiesChanging();
 		partial void OnListSharedPropertiesChanged();
+		
 		
 		public SortedObservableCollection<Document> ListDocuments { get; set; }
 		partial void OnListDocumentsChanging();
@@ -3306,6 +3367,7 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		#endregion Procedures
 		#region Properties
+		
 		
 		public SortedObservableCollection<Document> ListDocuments { get; set; }
 		partial void OnListDocumentsChanging();
@@ -3535,9 +3597,11 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		
 		public SortedObservableCollection<Property> ListSharedProperties { get; set; }
 		partial void OnListSharedPropertiesChanging();
 		partial void OnListSharedPropertiesChanged();
+		
 		
 		public SortedObservableCollection<Journal> ListJournals { get; set; }
 		partial void OnListJournalsChanging();

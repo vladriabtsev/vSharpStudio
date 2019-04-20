@@ -13,6 +13,7 @@ using Proto.Config;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {

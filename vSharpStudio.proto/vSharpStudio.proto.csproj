@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="..\proto\attr.proto" GrpcServices="Both">
+      <Link>proto\attr.proto</Link>
+    </Protobuf>
     <ProtoBuf Include="..\proto\vsharpstudio.proto" GrpcServices="Client">
       <Link>proto\vsharpstudio.proto</Link>
     </ProtoBuf>

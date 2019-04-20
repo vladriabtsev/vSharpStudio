@@ -12,50 +12,60 @@ namespace GenFromProto
     {
         static void Main(string[] args)
         {
-            if (args.Count() != 2)
+            //System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Directory.GetCurrentDirectory());
+            try
             {
-                if (args.Count() == 0)
+                if (args.Count() != 2)
                 {
-                    args = new string[2];
-                    args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
-                    args[1] = @"vSharpStudio.vm.ViewModels";
+                    if (args.Count() == 0)
+                    {
+                        args = new string[2];
+                        args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
+                        args[1] = @"vSharpStudio.vm.ViewModels";
+                    }
+                    else
+                        throw new ArgumentException("Usage: GenFromProto outFile namespace");
                 }
-                else
-                    throw new ArgumentException("Usage: GenProtoToMvvm outFile namespace");
+                //if (!File.Exists(args[0]))
+                //{
+                //    string s = "Couldn't find file '" + args[0] + "'";
+                //    Trace.WriteLine(s);
+                //    Trace.WriteLine("Full path: " + Path.GetFullPath(args[0]));
+                //    throw new ArgumentException(s);
+                //}
+                var ext = Path.GetExtension(args[0]);
+                if (ext.ToLower() != ".cs")
+                {
+                    string s = "Destination file extention is not 'cs'";
+                    Trace.WriteLine(s);
+                    throw new ArgumentException(s);
+                }
+                var dir = Path.GetDirectoryName(args[0]);
+                if (!Directory.Exists(dir))
+                {
+                    string s = "Couldn't find folder '" + dir + "'";
+                    Trace.WriteLine(s);
+                    Trace.WriteLine("Full path: " + Path.GetFullPath(dir));
+                    throw new ArgumentException(s);
+                }
+                NameSpace ns = new NameSpace(Proto.Config.VsharpstudioReflection.Descriptor);
+                string res = ns.TransformText();
+                if (!File.Exists(args[0]))
+                {
+                    File.CreateText(args[0]);
+                }
+                using (var fs = File.Open(args[0], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
+                {
+                    var bytes = Encoding.UTF8.GetBytes(res);
+                    fs.Write(bytes, 0, bytes.Count());
+                }
             }
-            //if (!File.Exists(args[0]))
-            //{
-            //    string s = "Couldn't find file '" + args[0] + "'";
-            //    Trace.WriteLine(s);
-            //    Trace.WriteLine("Full path: " + Path.GetFullPath(args[0]));
-            //    throw new ArgumentException(s);
-            //}
-            var ext = Path.GetExtension(args[0]);
-            if (ext.ToLower() != ".cs")
+            catch (Exception ex)
             {
-                string s = "Destination file extention is not 'cs'";
-                Trace.WriteLine(s);
-                throw new ArgumentException(s);
+                System.Diagnostics.Trace.WriteLine("##### GenFromProto: Exception:" + ex.Message);
+                throw;
             }
-            var dir = Path.GetDirectoryName(args[0]);
-            if (!Directory.Exists(dir))
-            {
-                string s = "Couldn't find folder '" + dir + "'";
-                Trace.WriteLine(s);
-                Trace.WriteLine("Full path: " + Path.GetFullPath(dir));
-                throw new ArgumentException(s);
-            }
-            NameSpace ns = new NameSpace(Proto.Config.VsharpstudioReflection.Descriptor);
-            string res = ns.TransformText();
-            if (!File.Exists(args[0]))
-            {
-                File.CreateText(args[0]);
-            }
-            using (var fs = File.Open(args[0], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
-            {
-                var bytes = Encoding.UTF8.GetBytes(res);
-                fs.Write(bytes, 0, bytes.Count());
-            }
+
         }
     }
     public static partial class Utils

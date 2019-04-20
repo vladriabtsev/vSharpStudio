@@ -197,5 +197,35 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion ITreeNode
+        public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
+        {
+            Property t = new Property();
+            StringBuilder sb = new StringBuilder();
+            Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
+            t.PropertyNameAction(p => p.NameUi, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();
+            });
+            t.PropertyNameAction(p => p.Description, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
+            });
+            t.PropertyNameAction(p => p.DataType, (m) =>
+            {
+                //res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(4).ToString();
+                res.DicByProperty[m] = sb.Clear().ExpandableObjectAttribute().ToString();
+            });
+//            t.PropertyNameAction(p => p.ClrType, (m) =>
+//            {
+////                res.DicByProperty[m] = sb.Clear().CategoryAttribute("Debug").ToString();
+//                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(11).ToString();
+//            });
+//            t.PropertyNameAction(p => p.ProtoType, (m) =>
+//            {
+////                res.DicByProperty[m] = sb.Clear().CategoryAttribute("Debug").ToString();
+//                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(12).ToString();
+//            });
+            return res;
+        }
     }
 }
