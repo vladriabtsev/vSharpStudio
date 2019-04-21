@@ -19,9 +19,10 @@ namespace vSharpStudio.vm.ViewModels
             Ext.res.DicByClass[typeof(Enumeration).Name] = Enumeration.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(EnumerationPair).Name] = EnumerationPair.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupCatalogs).Name] = GroupCatalogs.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupSubCatalogs).Name] = GroupSubCatalogs.GetDicPropertyAttributes();
+            Ext.res.DicByClass[typeof(GroupListCatalogs).Name] = GroupListCatalogs.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupConstants).Name] = GroupConstants.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupDocuments).Name] = GroupDocuments.GetDicPropertyAttributes();
+            Ext.res.DicByClass[typeof(GroupListDocuments).Name] = GroupListDocuments.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupEnumerations).Name] = GroupEnumerations.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupJournals).Name] = GroupJournals.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(GroupProperties).Name] = GroupProperties.GetDicPropertyAttributes();

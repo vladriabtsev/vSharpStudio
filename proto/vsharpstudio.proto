@@ -114,6 +114,28 @@ message proto_data_type {
     string object_name = 8;
 }
 // ####################################### P R O P E R T Y ##########################################
+message proto_object_shared_props {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+}
+
+message proto_group_property_tab {
+    proto_object_shared_props shared = 1;
+	repeated proto_property list_properties = 6;
+}
+message proto_group_property_tabs {
+    proto_object_shared_props shared = 1;
+	repeated proto_group_property_tabs_tree list_properties_tabs = 6;
+}
+message proto_group_property_tabs_tree {
+    proto_object_shared_props shared = 1;
+	proto_group_property_tab list_properties_tab = 6;
+	proto_group_property_tabs list_properties_sub_tabs = 7;
+}
+
 message proto_group_properties {
 	string guid = 1;
 	string name = 2;
@@ -212,11 +234,11 @@ message proto_catalog {
     string hi_lo_schema = 14; // MsSql
 
 	proto_group_properties group_properties = 15;
-	proto_group_sub_catalogs group_sub_catalogs = 16;
+	proto_group_list_catalogs group_sub_catalogs = 16;
 	proto_group_forms group_forms = 17;
 	proto_group_reports group_reports = 18;
 }
-message proto_group_sub_catalogs {
+message proto_group_list_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;

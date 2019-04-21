@@ -9,7 +9,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} sub_catalogs:{ListCatalogs.Count,nq}")]
-    public partial class GroupSubCatalogs : IListNodes<Catalog>
+    public partial class GroupListCatalogs : IListNodes<Catalog>
     {
         [BrowsableAttribute(false)]
         public SortedObservableCollection<Catalog> ListNodes { get; private set; }
@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
-            GroupSubCatalogs t = new GroupSubCatalogs();
+            GroupListCatalogs t = new GroupListCatalogs();
             StringBuilder sb = new StringBuilder();
             Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
             t.PropertyNameAction(p => p.NameUi, (m) =>

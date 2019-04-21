@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/21/2019 15:40:24
+// Auto generated on UTC 04/21/2019 16:38:20
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1404,6 +1404,646 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ObjectName = "";
 		partial void OnObjectNameChanging();
 		partial void OnObjectNameChanged();
+		#endregion Properties
+	}
+	
+	public partial class ObjectSharedProps : ConfigObjectBase<ObjectSharedProps, ObjectSharedProps.ObjectSharedPropsValidator>, IComparable<ObjectSharedProps>, IAccept
+	{
+	
+		public partial class ObjectSharedPropsValidator : ValidatorBase<ObjectSharedProps, ObjectSharedPropsValidator> { }
+		#region CTOR
+		public ObjectSharedProps() : base(ObjectSharedPropsValidator.Validator)
+		{
+			OnInit();
+		}
+		public ObjectSharedProps(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(ObjectSharedProps.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static ObjectSharedProps Clone(ITreeConfigNode parent, ObjectSharedProps from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    ObjectSharedProps vm = new ObjectSharedProps();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(ObjectSharedProps to, ObjectSharedProps from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		}
+		#region IEditable
+		public override ObjectSharedProps Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return ObjectSharedProps.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(ObjectSharedProps from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    ObjectSharedProps.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_object_shared_props' to 'ObjectSharedProps'
+		public static ObjectSharedProps ConvertToVM(proto_object_shared_props m, ObjectSharedProps vm = null)
+		{
+		    if (vm == null)
+		        vm = new ObjectSharedProps();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'ObjectSharedProps' to 'proto_object_shared_props'
+		public static proto_object_shared_props ConvertToProto(ObjectSharedProps vm)
+		{
+		    proto_object_shared_props m = new proto_object_shared_props();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		public string NameUi
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		#endregion Properties
+	}
+	
+	public partial class GroupPropertyTab : ConfigObjectBase<GroupPropertyTab, GroupPropertyTab.GroupPropertyTabValidator>, IComparable<GroupPropertyTab>, IAccept
+	{
+	
+		public partial class GroupPropertyTabValidator : ValidatorBase<GroupPropertyTab, GroupPropertyTabValidator> { }
+		#region CTOR
+		public GroupPropertyTab() : base(GroupPropertyTabValidator.Validator)
+		{
+			this.Shared = new ObjectSharedProps(this);
+			this.ListProperties = new SortedObservableCollection<Property>();
+			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+			OnInit();
+		}
+		public GroupPropertyTab(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(GroupPropertyTab.DefaultName, this, this.SubNodes);
+	    }
+		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as Property).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Property))
+		    {
+		        this.ListProperties.Sort();
+		    }
+		}
+		public static GroupPropertyTab Clone(ITreeConfigNode parent, GroupPropertyTab from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupPropertyTab vm = new GroupPropertyTab();
+		    if (isDeep)
+		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in from.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupPropertyTab to, GroupPropertyTab from, bool isDeep = true)
+		{
+		    if (isDeep)
+		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListProperties.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListProperties)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Property.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListProperties.Remove(t);
+		        }
+		        foreach(var tt in from.ListProperties)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListProperties.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Property();
+		                vSharpStudio.vm.ViewModels.Property.Update(p, tt, isDeep);
+		                to.ListProperties.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupPropertyTab Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupPropertyTab.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupPropertyTab from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupPropertyTab.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_property_tab' to 'GroupPropertyTab'
+		public static GroupPropertyTab ConvertToVM(proto_group_property_tab m, GroupPropertyTab vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupPropertyTab();
+		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.ListProperties = new SortedObservableCollection<Property>();
+		    foreach(var t in m.ListProperties)
+		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupPropertyTab' to 'proto_group_property_tab'
+		public static proto_group_property_tab ConvertToProto(GroupPropertyTab vm)
+		{
+		    proto_group_property_tab m = new proto_group_property_tab();
+		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    foreach(var t in vm.ListProperties)
+		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.Shared.Accept(visitor);
+			foreach(var t in this.ListProperties)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		public ObjectSharedProps Shared
+		{ 
+			set
+			{
+				if (_Shared != value)
+				{
+					OnSharedChanging();
+		            _Shared = value;
+					OnSharedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Shared; }
+		}
+		private ObjectSharedProps _Shared;
+		partial void OnSharedChanging();
+		partial void OnSharedChanged();
+		
+		
+		public SortedObservableCollection<Property> ListProperties { get; set; }
+		partial void OnListPropertiesChanging();
+		partial void OnListPropertiesChanged();
+		#endregion Properties
+	}
+	
+	public partial class GroupPropertyTabs : ConfigObjectBase<GroupPropertyTabs, GroupPropertyTabs.GroupPropertyTabsValidator>, IComparable<GroupPropertyTabs>, IAccept
+	{
+	
+		public partial class GroupPropertyTabsValidator : ValidatorBase<GroupPropertyTabs, GroupPropertyTabsValidator> { }
+		#region CTOR
+		public GroupPropertyTabs() : base(GroupPropertyTabsValidator.Validator)
+		{
+			this.Shared = new ObjectSharedProps(this);
+			this.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
+			this.ListPropertiesTabs.CollectionChanged += ListPropertiesTabs_CollectionChanged;
+			OnInit();
+		}
+		public GroupPropertyTabs(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(GroupPropertyTabs.DefaultName, this, this.SubNodes);
+	    }
+		private void ListPropertiesTabs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+	        switch(e.Action)
+	        {
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                break;
+	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+		    		foreach (var t in e.NewItems)
+		    			(t as GroupPropertyTabsTree).Parent = this;
+	                break;
+	            default:
+	                throw new Exception();
+			}
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(GroupPropertyTabsTree))
+		    {
+		        this.ListPropertiesTabs.Sort();
+		    }
+		}
+		public static GroupPropertyTabs Clone(ITreeConfigNode parent, GroupPropertyTabs from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupPropertyTabs vm = new GroupPropertyTabs();
+		    if (isDeep)
+		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    vm.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
+		    foreach(var t in from.ListPropertiesTabs)
+		        vm.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.Clone(vm, t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupPropertyTabs to, GroupPropertyTabs from, bool isDeep = true)
+		{
+		    if (isDeep)
+		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPropertiesTabs.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPropertiesTabs)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.Update(t, tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPropertiesTabs.Remove(t);
+		        }
+		        foreach(var tt in from.ListPropertiesTabs)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPropertiesTabs.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new GroupPropertyTabsTree();
+		                vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.Update(p, tt, isDeep);
+		                to.ListPropertiesTabs.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupPropertyTabs Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupPropertyTabs.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupPropertyTabs from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupPropertyTabs.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_property_tabs' to 'GroupPropertyTabs'
+		public static GroupPropertyTabs ConvertToVM(proto_group_property_tabs m, GroupPropertyTabs vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupPropertyTabs();
+		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
+		    foreach(var t in m.ListPropertiesTabs)
+		        vm.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToVM(t));
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupPropertyTabs' to 'proto_group_property_tabs'
+		public static proto_group_property_tabs ConvertToProto(GroupPropertyTabs vm)
+		{
+		    proto_group_property_tabs m = new proto_group_property_tabs();
+		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    foreach(var t in vm.ListPropertiesTabs)
+		        m.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToProto(t));
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.Shared.Accept(visitor);
+			foreach(var t in this.ListPropertiesTabs)
+				t.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		public ObjectSharedProps Shared
+		{ 
+			set
+			{
+				if (_Shared != value)
+				{
+					OnSharedChanging();
+		            _Shared = value;
+					OnSharedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Shared; }
+		}
+		private ObjectSharedProps _Shared;
+		partial void OnSharedChanging();
+		partial void OnSharedChanged();
+		
+		
+		public SortedObservableCollection<GroupPropertyTabsTree> ListPropertiesTabs { get; set; }
+		partial void OnListPropertiesTabsChanging();
+		partial void OnListPropertiesTabsChanged();
+		#endregion Properties
+	}
+	
+	public partial class GroupPropertyTabsTree : ConfigObjectBase<GroupPropertyTabsTree, GroupPropertyTabsTree.GroupPropertyTabsTreeValidator>, IComparable<GroupPropertyTabsTree>, IAccept
+	{
+	
+		public partial class GroupPropertyTabsTreeValidator : ValidatorBase<GroupPropertyTabsTree, GroupPropertyTabsTreeValidator> { }
+		#region CTOR
+		public GroupPropertyTabsTree() : base(GroupPropertyTabsTreeValidator.Validator)
+		{
+			this.Shared = new ObjectSharedProps(this);
+			this.ListPropertiesTab = new GroupPropertyTab(this);
+			this.ListPropertiesSubTabs = new GroupPropertyTabs(this);
+			OnInit();
+		}
+		public GroupPropertyTabsTree(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(GroupPropertyTabsTree.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static GroupPropertyTabsTree Clone(ITreeConfigNode parent, GroupPropertyTabsTree from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupPropertyTabsTree vm = new GroupPropertyTabsTree();
+		    if (isDeep)
+		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    if (isDeep)
+		        vm.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.Clone(vm, from.ListPropertiesTab, isDeep);
+		    if (isDeep)
+		        vm.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.Clone(vm, from.ListPropertiesSubTabs, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupPropertyTabsTree to, GroupPropertyTabsTree from, bool isDeep = true)
+		{
+		    if (isDeep)
+		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    if (isDeep)
+		        GroupPropertyTab.Update(to.ListPropertiesTab, from.ListPropertiesTab, isDeep);
+		    if (isDeep)
+		        GroupPropertyTabs.Update(to.ListPropertiesSubTabs, from.ListPropertiesSubTabs, isDeep);
+		}
+		#region IEditable
+		public override GroupPropertyTabsTree Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupPropertyTabsTree.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupPropertyTabsTree from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupPropertyTabsTree.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_property_tabs_tree' to 'GroupPropertyTabsTree'
+		public static GroupPropertyTabsTree ConvertToVM(proto_group_property_tabs_tree m, GroupPropertyTabsTree vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupPropertyTabsTree();
+		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToVM(m.ListPropertiesTab);
+		    vm.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToVM(m.ListPropertiesSubTabs);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupPropertyTabsTree' to 'proto_group_property_tabs_tree'
+		public static proto_group_property_tabs_tree ConvertToProto(GroupPropertyTabsTree vm)
+		{
+		    proto_group_property_tabs_tree m = new proto_group_property_tabs_tree();
+		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    m.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToProto(vm.ListPropertiesTab);
+		    m.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToProto(vm.ListPropertiesSubTabs);
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.Shared.Accept(visitor);
+			this.ListPropertiesTab.Accept(visitor);
+			this.ListPropertiesSubTabs.Accept(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		public ObjectSharedProps Shared
+		{ 
+			set
+			{
+				if (_Shared != value)
+				{
+					OnSharedChanging();
+		            _Shared = value;
+					OnSharedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Shared; }
+		}
+		private ObjectSharedProps _Shared;
+		partial void OnSharedChanging();
+		partial void OnSharedChanged();
+		
+		
+		public GroupPropertyTab ListPropertiesTab
+		{ 
+			set
+			{
+				if (_ListPropertiesTab != value)
+				{
+					OnListPropertiesTabChanging();
+		            _ListPropertiesTab = value;
+					OnListPropertiesTabChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPropertiesTab; }
+		}
+		private GroupPropertyTab _ListPropertiesTab;
+		partial void OnListPropertiesTabChanging();
+		partial void OnListPropertiesTabChanged();
+		
+		
+		public GroupPropertyTabs ListPropertiesSubTabs
+		{ 
+			set
+			{
+				if (_ListPropertiesSubTabs != value)
+				{
+					OnListPropertiesSubTabsChanging();
+		            _ListPropertiesSubTabs = value;
+					OnListPropertiesSubTabsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPropertiesSubTabs; }
+		}
+		private GroupPropertyTabs _ListPropertiesSubTabs;
+		partial void OnListPropertiesSubTabsChanging();
+		partial void OnListPropertiesSubTabsChanged();
 		#endregion Properties
 	}
 	
@@ -3188,7 +3828,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Catalog() : base(CatalogValidator.Validator)
 		{
 			this.GroupProperties = new GroupProperties(this);
-			this.GroupSubCatalogs = new GroupSubCatalogs(this);
+			this.GroupSubCatalogs = new GroupListCatalogs(this);
 			this.GroupForms = new GroupForms(this);
 			this.GroupReports = new GroupReports(this);
 			OnInit();
@@ -3221,7 +3861,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupProperties.Clone(vm, from.GroupProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupSubCatalogs.Clone(vm, from.GroupSubCatalogs, isDeep);
+		        vm.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupSubCatalogs, isDeep);
 		    if (isDeep)
 		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupForms.Clone(vm, from.GroupForms, isDeep);
 		    if (isDeep)
@@ -3245,7 +3885,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        GroupProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
-		        GroupSubCatalogs.Update(to.GroupSubCatalogs, from.GroupSubCatalogs, isDeep);
+		        GroupListCatalogs.Update(to.GroupSubCatalogs, from.GroupSubCatalogs, isDeep);
 		    if (isDeep)
 		        GroupForms.Update(to.GroupForms, from.GroupForms, isDeep);
 		    if (isDeep)
@@ -3283,7 +3923,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSequenceName = m.HiLoSequenceName;
 		    vm.HiLoSchema = m.HiLoSchema;
 		    vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupProperties.ConvertToVM(m.GroupProperties);
-		    vm.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupSubCatalogs.ConvertToVM(m.GroupSubCatalogs);
+		    vm.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupSubCatalogs);
 		    vm.GroupForms = vSharpStudio.vm.ViewModels.GroupForms.ConvertToVM(m.GroupForms);
 		    vm.GroupReports = vSharpStudio.vm.ViewModels.GroupReports.ConvertToVM(m.GroupReports);
 		    vm.OnInitFromDto();
@@ -3307,7 +3947,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupProperties.ConvertToProto(vm.GroupProperties);
-		    m.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupSubCatalogs.ConvertToProto(vm.GroupSubCatalogs);
+		    m.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto(vm.GroupSubCatalogs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupReports.ConvertToProto(vm.GroupReports);
 		    return m;
@@ -3487,7 +4127,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupPropertiesChanged();
 		
 		
-		public GroupSubCatalogs GroupSubCatalogs
+		public GroupListCatalogs GroupSubCatalogs
 		{ 
 			set
 			{
@@ -3502,7 +4142,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupSubCatalogs; }
 		}
-		private GroupSubCatalogs _GroupSubCatalogs;
+		private GroupListCatalogs _GroupSubCatalogs;
 		partial void OnGroupSubCatalogsChanging();
 		partial void OnGroupSubCatalogsChanged();
 		
@@ -3548,21 +4188,21 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class GroupSubCatalogs : ConfigObjectBase<GroupSubCatalogs, GroupSubCatalogs.GroupSubCatalogsValidator>, IComparable<GroupSubCatalogs>, IAccept
+	public partial class GroupListCatalogs : ConfigObjectBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IAccept
 	{
 	
-		public partial class GroupSubCatalogsValidator : ValidatorBase<GroupSubCatalogs, GroupSubCatalogsValidator> { }
+		public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { }
 		#region CTOR
-		public GroupSubCatalogs() : base(GroupSubCatalogsValidator.Validator)
+		public GroupListCatalogs() : base(GroupListCatalogsValidator.Validator)
 		{
 			this.ListCatalogs = new SortedObservableCollection<Catalog>();
 			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
 			OnInit();
 		}
-		public GroupSubCatalogs(ITreeConfigNode parent) : this()
+		public GroupListCatalogs(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(GroupSubCatalogs.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupListCatalogs.DefaultName, this, this.SubNodes);
 	    }
 		private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
@@ -3592,9 +4232,9 @@ namespace vSharpStudio.vm.ViewModels
 		        this.ListCatalogs.Sort();
 		    }
 		}
-		public static GroupSubCatalogs Clone(ITreeConfigNode parent, GroupSubCatalogs from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListCatalogs Clone(ITreeConfigNode parent, GroupListCatalogs from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    GroupSubCatalogs vm = new GroupSubCatalogs();
+		    GroupListCatalogs vm = new GroupListCatalogs();
 		    vm.Guid = from.Guid;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
@@ -3607,7 +4247,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(GroupSubCatalogs to, GroupSubCatalogs from, bool isDeep = true)
+		public static void Update(GroupListCatalogs to, GroupListCatalogs from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
 		    to.Name = from.Name;
@@ -3652,26 +4292,26 @@ namespace vSharpStudio.vm.ViewModels
 		    }
 		}
 		#region IEditable
-		public override GroupSubCatalogs Backup()
+		public override GroupListCatalogs Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupSubCatalogs.Clone(null, this);
+			return GroupListCatalogs.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(GroupSubCatalogs from)
+		public override void Restore(GroupListCatalogs from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    GroupSubCatalogs.Update(this, from, isDeep);
+		    GroupListCatalogs.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_group_sub_catalogs' to 'GroupSubCatalogs'
-		public static GroupSubCatalogs ConvertToVM(proto_group_sub_catalogs m, GroupSubCatalogs vm = null)
+		// Conversion from 'proto_group_list_catalogs' to 'GroupListCatalogs'
+		public static GroupListCatalogs ConvertToVM(proto_group_list_catalogs m, GroupListCatalogs vm = null)
 		{
 		    if (vm == null)
-		        vm = new GroupSubCatalogs();
+		        vm = new GroupListCatalogs();
 		    vm.Guid = m.Guid;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
@@ -3683,10 +4323,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'GroupSubCatalogs' to 'proto_group_sub_catalogs'
-		public static proto_group_sub_catalogs ConvertToProto(GroupSubCatalogs vm)
+		// Conversion from 'GroupListCatalogs' to 'proto_group_list_catalogs'
+		public static proto_group_list_catalogs ConvertToProto(GroupListCatalogs vm)
 		{
-		    proto_group_sub_catalogs m = new proto_group_sub_catalogs();
+		    proto_group_list_catalogs m = new proto_group_list_catalogs();
 		    m.Guid = vm.Guid;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
@@ -5473,6 +6113,14 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(ConfigTree p);
 		void Visit(DataType p);
 		void VisitEnd(DataType p);
+		void Visit(ObjectSharedProps p);
+		void VisitEnd(ObjectSharedProps p);
+		void Visit(GroupPropertyTab p);
+		void VisitEnd(GroupPropertyTab p);
+		void Visit(GroupPropertyTabs p);
+		void VisitEnd(GroupPropertyTabs p);
+		void Visit(GroupPropertyTabsTree p);
+		void VisitEnd(GroupPropertyTabsTree p);
 		void Visit(GroupProperties p);
 		void VisitEnd(GroupProperties p);
 		void Visit(Property p);
@@ -5493,8 +6141,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(GroupCatalogs p);
 		void Visit(Catalog p);
 		void VisitEnd(Catalog p);
-		void Visit(GroupSubCatalogs p);
-		void VisitEnd(GroupSubCatalogs p);
+		void Visit(GroupListCatalogs p);
+		void VisitEnd(GroupListCatalogs p);
 		void Visit(GroupDocuments p);
 		void VisitEnd(GroupDocuments p);
 		void Visit(Document p);
@@ -5521,6 +6169,10 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_config p);
 		void Visit(proto_config_tree p);
 		void Visit(proto_data_type p);
+		void Visit(proto_object_shared_props p);
+		void Visit(proto_group_property_tab p);
+		void Visit(proto_group_property_tabs p);
+		void Visit(proto_group_property_tabs_tree p);
 		void Visit(proto_group_properties p);
 		void Visit(proto_property p);
 		void Visit(proto_group_properties_tree p);
@@ -5531,7 +6183,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_enumeration_pair p);
 		void Visit(proto_group_catalogs p);
 		void Visit(proto_catalog p);
-		void Visit(proto_group_sub_catalogs p);
+		void Visit(proto_group_list_catalogs p);
 		void Visit(proto_group_documents p);
 		void Visit(proto_document p);
 		void Visit(proto_group_list_documents p);

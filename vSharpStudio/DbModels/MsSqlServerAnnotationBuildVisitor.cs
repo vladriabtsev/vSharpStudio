@@ -110,11 +110,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupSubCatalogs p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupForms p)
         {
             throw new NotImplementedException();
@@ -131,6 +126,11 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.Visit(Report p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListCatalogs p)
         {
             throw new NotImplementedException();
         }
@@ -230,11 +230,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupSubCatalogs p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(GroupForms p)
         {
             throw new NotImplementedException();
@@ -251,6 +246,11 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(Report p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListCatalogs p)
         {
             throw new NotImplementedException();
         }
