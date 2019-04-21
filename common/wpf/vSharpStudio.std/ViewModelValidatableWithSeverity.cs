@@ -134,6 +134,10 @@ namespace ViewModelBase
         }
         protected override bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+#if DEBUG
+            if (isNotValidateForUnitTests)
+                return true;
+#endif
             var res = this._validator.Validate(this);
             if (!res.IsValid)
             {

@@ -27,20 +27,14 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
-            //if (this.ConstantGroup == null || this.EnumerationGroup == null || this.CatalogGroup == null)
-            //    return;
-            //SubNodes.Clear();
-            SubNodes.Add(this.GroupConstants, 1);
-            SubNodes.Add(this.GroupEnumerations, 2);
-            SubNodes.Add(this.GroupCatalogs, 3);
-            SubNodes.Add(this.GroupDocuments, 4);
-            SubNodes.Add(this.GroupJournals, 4);
-            //foreach (var t in this.ListConstantsGroups)
-            //    SubNodes.Add(t, 1);
-            //foreach (var t in this.ListEnumerationsGroups)
-            //    SubNodes.Add(t, 2);
-            //foreach (var t in this.ListCatalogsGroups)
-            //    SubNodes.Add(t, 3);
+#if DEBUG
+            //SubNodes.Add(this.GroupConstants, 1);
+#endif
+            SubNodes.Add(this.GroupConstants, 7);
+            SubNodes.Add(this.GroupEnumerations, 8);
+            SubNodes.Add(this.GroupCatalogs, 9);
+            SubNodes.Add(this.GroupDocuments, 10);
+            SubNodes.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }

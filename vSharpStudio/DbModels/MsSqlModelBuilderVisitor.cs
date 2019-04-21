@@ -219,5 +219,35 @@ namespace vSharpStudio.DbModels
         {
             throw new NotImplementedException();
         }
+
+        void IVisitorConfig.Visit(ConfigTree p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(ConfigTree p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupConfigs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupConfigs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListDocuments p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListDocuments p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

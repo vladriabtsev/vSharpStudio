@@ -254,5 +254,35 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnVisitEnd(p);
         }
+
+        void IVisitorConfig.Visit(ConfigTree p)
+        {
+            OnVisit(p);
+        }
+
+        void IVisitorConfig.VisitEnd(ConfigTree p)
+        {
+            OnVisitEnd(p);
+        }
+
+        void IVisitorConfig.Visit(GroupConfigs p)
+        {
+            OnVisit(p);
+        }
+
+        void IVisitorConfig.VisitEnd(GroupConfigs p)
+        {
+            OnVisitEnd(p);
+        }
+
+        void IVisitorConfig.Visit(GroupListDocuments p)
+        {
+            OnVisit(p);
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListDocuments p)
+        {
+            OnVisitEnd(p);
+        }
     }
 }

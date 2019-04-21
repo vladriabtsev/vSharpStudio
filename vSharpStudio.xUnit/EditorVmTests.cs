@@ -151,6 +151,8 @@ namespace vSharpStudio.xUnit
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
             var cfg = new Config();
+            ViewModelBindable.isNotValidateForUnitTests = true;
+
             var cnst = new Constant() { Parent = cfg.GroupConstants };
             cfg.GroupConstants.ListConstants.Add(cnst);
             var curr = cnst.SortingValue;

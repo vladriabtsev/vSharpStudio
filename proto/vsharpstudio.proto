@@ -15,6 +15,24 @@ option csharp_namespace = "Proto.Config";
 
 // use 'proto_' prefix for all messages !!!
 // Configuration config
+message proto_config_tree {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+//	string name_ui = 4;
+	string description = 5;
+    proto_config config_node = 6;
+    repeated proto_config_tree list_configs = 7;
+}
+message proto_group_configs {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+//	string name_ui = 4;
+	string description = 5;
+    repeated proto_config_tree list_configs = 6;
+	string relative_config_path = 7;
+}
 message proto_config {
 	enum EnumDbType {
 		MS_SQL_SERVER = 0;
@@ -62,6 +80,7 @@ message proto_config {
 
     // CONFIG OBJECTS
 
+    proto_group_configs group_configs = 100;
 	proto_group_constants group_constants = 101;
 	proto_group_enumerations group_enumerations = 102;
 	proto_group_catalogs group_catalogs = 103;
@@ -177,8 +196,8 @@ message proto_group_properties_tree {
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	repeated proto_property list_properties = 6;
-    repeated proto_group_properties_tree list_sub_properties_groups = 7;
+    repeated proto_group_properties_tree list_properties_tree_groups = 6;
+	proto_group_properties group_properties = 7;
 }
 message proto_group_catalogs {
 	string guid = 1;
@@ -186,7 +205,6 @@ message proto_group_catalogs {
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	//proto_group_properties group_shared_properties = 6;
 	repeated proto_catalog list_catalogs = 7;
 }
 message proto_document {
@@ -197,14 +215,22 @@ message proto_document {
 	string description = 5;
 	repeated proto_group_properties_tree list_properties_tree_groups = 6;
 }
+message proto_group_list_documents {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_document list_documents = 6;
+}
 message proto_group_documents {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	repeated proto_property list_shared_properties = 6;
-	repeated proto_document list_documents = 7;
+	proto_group_properties group_shared_properties = 6;
+	repeated proto_group_list_documents list_documents = 7;
 }
 message proto_journal {
 	string guid = 1;
@@ -221,7 +247,7 @@ message proto_group_journals {
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	repeated proto_property list_shared_properties = 6;
+	//repeated proto_property list_shared_properties = 6;
 	repeated proto_journal list_journals = 7;
 }
 
@@ -234,4 +260,3 @@ message string_nullable {
 	bool has_value = 1;
 	string value = 2;
 }
-
