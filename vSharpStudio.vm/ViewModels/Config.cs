@@ -18,23 +18,25 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : IMigration
+    public partial class Config : IMigration, IListGroupNodes
     {
         public static readonly string DefaultName = "Config";
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
         partial void OnInit()
         {
-            this.SubNodes = new SortedObservableCollection<ITreeConfigNode>();
+            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            SubNodes.Add(this.GroupConstants, 7);
-            SubNodes.Add(this.GroupEnumerations, 8);
-            SubNodes.Add(this.GroupCatalogs, 9);
-            SubNodes.Add(this.GroupDocuments, 10);
-            SubNodes.Add(this.GroupJournals, 11);
+            ListNodes.Add(this.GroupConstants, 7);
+            ListNodes.Add(this.GroupEnumerations, 8);
+            ListNodes.Add(this.GroupCatalogs, 9);
+            ListNodes.Add(this.GroupDocuments, 10);
+            ListNodes.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
@@ -99,18 +101,6 @@ namespace vSharpStudio.vm.ViewModels
         #endregion IMigration
 
         #region ITreeNode
-
-        [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> SubNodes
-        {
-            get { return this._SubNodes; }
-            set
-            {
-                this._SubNodes = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private SortedObservableCollection<ITreeConfigNode> _SubNodes;
 
         void RecreateSubNodes()
         {

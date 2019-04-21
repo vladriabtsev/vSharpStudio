@@ -374,38 +374,38 @@ namespace vSharpStudio.xUnit
 
             cfg.GroupCatalogs.ListCatalogs[0].NodeAddNewSubNode();
             Assert.True(cfg.SelectedNode != null);
-            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0]);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanLeft() == true);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanRight() == false);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanMoveUp() == false);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanMoveDown() == false);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanAddNew() == true);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeCanAddNewSubNode() == false);
+            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0]);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanLeft() == true);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanRight() == false);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanMoveUp() == false);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanMoveDown() == false);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanAddNew() == true);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeCanAddNewSubNode() == false);
 
-            cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].NodeAddNew();
-            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1]);
-            Assert.True(cfg.SelectedNode.Guid == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].Guid);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanLeft() == true);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanRight() == false);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanMoveUp() == true);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanMoveDown() == false);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanAddNew() == true);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1].NodeCanAddNewSubNode() == false);
+            cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].NodeAddNew();
+            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1]);
+            Assert.True(cfg.SelectedNode.Guid == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].Guid);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanLeft() == true);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanRight() == false);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanMoveUp() == true);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanMoveDown() == false);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanAddNew() == true);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1].NodeCanAddNewSubNode() == false);
 
-            var p = cfg.GroupCatalogs.ListCatalogs[0].ListProperties[1];
+            var p = cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[1];
             p.NodeMoveUp();
-            Assert.True(p == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0]);
-            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0]);
+            Assert.True(p == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0]);
+            Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0]);
 
             // change property parameters
             p.DataType.MinValue = 5;
             p.DataType.MaxValue = 6;
 
             p.NodeAddClone();
-            Assert.True(p == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[2]);
-            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].ListProperties[2].Name == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[0].Name + "2");
-            Assert.True(5 == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[2].DataType.MinValue);
-            Assert.True(6 == cfg.GroupCatalogs.ListCatalogs[0].ListProperties[2].DataType.MaxValue);
+            Assert.True(p == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2]);
+            Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].Name == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].Name + "2");
+            Assert.True(5 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
+            Assert.True(6 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 
             #endregion Properties
 

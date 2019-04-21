@@ -10,11 +10,19 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : IListProperties
+    public partial class Catalog : IListGroupNodes
     {
         public static readonly string DefaultName = "Catalog";
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
         partial void OnInit()
         {
+            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
+#if DEBUG
+            //SubNodes.Add(this.GroupConstants, 1);
+#endif
+            ListNodes.Add(this.GroupProperties, 7);
+            ListNodes.Add(this.GroupSubCatalogs, 8);
         }
         public Catalog(string name) : this()
         {
@@ -25,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
-                this.ListProperties.Add(t);
+                this.GroupProperties.ListProperties.Add(t);
             }
         }
 
@@ -79,19 +87,15 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent.Parent as Config).SelectedNode = res;
             return res;
         }
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
-        }
-        protected override ITreeConfigNode OnNodeAddNewSubNode()
-        {
-            var res = new Property();
-            res.Parent = this.Parent;
-            this.ListProperties.Add(res);
-            GetUniqueName(Property.DefaultName, res, this.ListProperties);
-            (this.Parent.Parent as Config).SelectedNode = res;
-            return res;
-        }
+        //protected override ITreeConfigNode OnNodeAddNewSubNode()
+        //{
+        //    var res = new Property();
+        //    res.Parent = this.Parent;
+        //    this.ListProperties.Add(res);
+        //    GetUniqueName(Property.DefaultName, res, this.ListProperties);
+        //    (this.Parent.Parent as Config).SelectedNode = res;
+        //    return res;
+        //}
 
         #endregion ITreeConfigNode
 

@@ -284,5 +284,55 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnVisitEnd(p);
         }
+
+        void IVisitorConfig.Visit(GroupSubCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupSubCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Form p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Form p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Report p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Report p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

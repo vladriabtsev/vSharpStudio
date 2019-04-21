@@ -59,35 +59,35 @@ namespace vSharpStudio.DbModels
 
         void IVisitorConfig.Visit(Catalog m)
         {
-            this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
-               {
-                   x.HasKey(new string[] { this._config.PrimaryKeyName }).ForSqlServerIsClustered(m.IsPrimaryKeyClustered ?? this._config.IsPrimaryKeyClustered);
-                   x.ForSqlServerIsMemoryOptimized(m.IsMemoryOptimized ?? this._config.IsMemoryOptimized);
-                   foreach (var t in m.ListProperties)
-                   {
-                       switch (t.DataType.DataTypeEnum)
-                       {
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Any: // any document, catalog
-                               break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
-                               x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
-                               break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs: // any catalog
-                               break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                               x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
-                               break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
-                               x.Property(t.ClrType, t.Name);
-                               break;
-                           case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
-                               break;
-                           default:
-                               x.Property(t.ClrType, t.Name);
-                               break;
-                       }
-                   }
-               });
+            //this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
+            //   {
+            //       x.HasKey(new string[] { this._config.PrimaryKeyName }).ForSqlServerIsClustered(m.IsPrimaryKeyClustered ?? this._config.IsPrimaryKeyClustered);
+            //       x.ForSqlServerIsMemoryOptimized(m.IsMemoryOptimized ?? this._config.IsMemoryOptimized);
+            //       foreach (var t in m.ListProperties)
+            //       {
+            //           switch (t.DataType.DataTypeEnum)
+            //           {
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Any: // any document, catalog
+            //                   break;
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+            //                   x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
+            //                   break;
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs: // any catalog
+            //                   break;
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+            //                   x.Property(t.ClrType, "Ref" + t.DataType.ObjectName);
+            //                   break;
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Documents: // any document
+            //                   x.Property(t.ClrType, t.Name);
+            //                   break;
+            //               case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
+            //                   break;
+            //               default:
+            //                   x.Property(t.ClrType, t.Name);
+            //                   break;
+            //           }
+            //       }
+            //   });
         }
 
         void IVisitorConfig.Visit(EnumerationPair m)
@@ -246,6 +246,56 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(GroupListDocuments p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupSubCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupSubCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Form p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Form p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(Report p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(Report p)
         {
             throw new NotImplementedException();
         }

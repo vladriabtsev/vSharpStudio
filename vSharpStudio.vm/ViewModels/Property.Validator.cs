@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val.Parent is Catalog)
                 {
                     Catalog p = (Catalog)val.Parent;
-                    foreach (var t in p.ListProperties)
+                    foreach (var t in p.GroupProperties.ListProperties)
                     {
                         if ((val.Guid != t.Guid) && (val.Name == t.Name))
                             return false;

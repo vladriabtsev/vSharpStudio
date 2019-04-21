@@ -11,6 +11,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant
     {
         public static readonly string DefaultName = "Constant";
+
         partial void OnInit()
         {
         }

@@ -9,11 +9,13 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} enumerations:{ListEnumerations.Count,nq}")]
-    public partial class GroupEnumerations
+    public partial class GroupEnumerations : IListNodes<Enumeration>
     {
+        public SortedObservableCollection<Enumeration> ListNodes { get; private set; }
         partial void OnInit()
         {
             this.Name = "Enumerations";
+            this.ListNodes = this.ListEnumerations;
         }
 
         #region ITreeNode
@@ -21,14 +23,6 @@ namespace vSharpStudio.vm.ViewModels
         protected override bool OnNodeCanLeft()
         {
             return false;
-        }
-        protected override bool OnNodeCanAddNew()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
         }
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {

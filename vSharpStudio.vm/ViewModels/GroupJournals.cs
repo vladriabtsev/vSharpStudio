@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} journals:{ListJournals.Count,nq}")]
-    public partial class GroupJournals
+    public partial class GroupJournals : IListNodes<Journal>
     {
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<Journal> ListNodes { get; private set; }
         partial void OnInit()
         {
             this.Name = "Journals";
+            this.ListNodes = this.ListJournals;
         }
         #region ITreeNode
         //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
         protected override bool OnNodeCanLeft()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddNew()
         {
             return false;
         }
@@ -28,10 +29,6 @@ namespace vSharpStudio.vm.ViewModels
         //    (this.Parent as Config).ListCatalogsGroups.Add(res);
         //    return res;
         //}
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
-        }
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Journal();

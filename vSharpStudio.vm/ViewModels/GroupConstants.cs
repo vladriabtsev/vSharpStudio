@@ -9,11 +9,15 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} constants:{ListConstants.Count,nq}")]
-    public partial class GroupConstants
+    public partial class GroupConstants : IListNodes<Constant>
     {
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<Constant> ListNodes { get; private set; }
+
         partial void OnInit()
         {
             this.Name = "Constants";
+            this.ListNodes = this.ListConstants;
         }
 
         #region ITreeNode
@@ -22,14 +26,6 @@ namespace vSharpStudio.vm.ViewModels
         protected override bool OnNodeCanLeft()
         {
             return false;
-        }
-        protected override bool OnNodeCanAddNew()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
         }
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {

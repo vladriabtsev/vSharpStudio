@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 GroupDocuments p = (GroupDocuments)val.Parent;
-                foreach (var t in p.ListDocuments)
+                foreach (var t in p.GroupListDocuments.ListDocuments)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))
                         return false;

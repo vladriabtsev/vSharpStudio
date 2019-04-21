@@ -14,16 +14,7 @@ package proto_config;
 option csharp_namespace = "Proto.Config";
 
 // use 'proto_' prefix for all messages !!!
-// Configuration config
-message proto_config_tree {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-//	string name_ui = 4;
-	string description = 5;
-    proto_config config_node = 6;
-    repeated proto_config_tree list_configs = 7;
-}
+// ####################################### C O N F I G ##########################################
 message proto_group_configs {
 	string guid = 1;
 	string name = 2;
@@ -33,6 +24,7 @@ message proto_group_configs {
     repeated proto_config_tree list_configs = 6;
 	string relative_config_path = 7;
 }
+// Configuration config
 message proto_config {
 	enum EnumDbType {
 		MS_SQL_SERVER = 0;
@@ -87,14 +79,16 @@ message proto_config {
 	proto_group_documents group_documents = 104;
 	proto_group_journals group_journals = 105;
 }
-message proto_property {
+message proto_config_tree {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
-	string name_ui = 4;
+//	string name_ui = 4;
 	string description = 5;
-	proto_data_type data_type = 6;
+    proto_config config_node = 6;
+    repeated proto_config_tree list_configs = 7;
 }
+// ####################################### D A T A  T Y P E ##########################################
 message proto_data_type {
 	enum EnumDataType {
 		STRING = 0;
@@ -119,7 +113,16 @@ message proto_data_type {
     string max_value_string = 7;
     string object_name = 8;
 }
-message proto_constant {
+// ####################################### P R O P E R T Y ##########################################
+message proto_group_properties {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_property list_properties = 6;
+}
+message proto_property {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
@@ -127,6 +130,16 @@ message proto_constant {
 	string description = 5;
 	proto_data_type data_type = 6;
 }
+message proto_group_properties_tree {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+    repeated proto_group_properties_tree list_properties_tree_groups = 6;
+	proto_group_properties group_properties = 7;
+}
+// ####################################### C O N S T A N T ##########################################
 message proto_group_constants {
 	string guid = 1;
 	string name = 2;
@@ -135,14 +148,22 @@ message proto_group_constants {
 	string description = 5;
 	repeated proto_constant list_constants = 6;
 }
-message proto_enumeration_pair {
+message proto_constant {
 	string guid = 1;
-    string name = 2;
+	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-    // TODO struct for different types, at least INTEGER
-    string value = 6;
+	proto_data_type data_type = 6;
+}
+// ####################################### E N U M E R A T I O N ##########################################
+message proto_group_enumerations {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	repeated proto_enumeration list_enumerations = 6;
 }
 message proto_enumeration {
 	enum EnumEnumerationType {
@@ -159,13 +180,23 @@ message proto_enumeration {
 	EnumEnumerationType data_type_enum = 6; 
 	repeated proto_enumeration_pair list_values = 7;
 }
-message proto_group_enumerations {
+message proto_enumeration_pair {
+	string guid = 1;
+    string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+    // TODO struct for different types, at least INTEGER
+    string value = 6;
+}
+// ####################################### C A T A L O G ##########################################
+message proto_group_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	repeated proto_enumeration list_enumerations = 6;
+	repeated proto_catalog list_catalogs = 7;
 }
 message proto_catalog {
 	string guid = 1;
@@ -180,26 +211,12 @@ message proto_catalog {
     string hi_lo_sequence_name = 13; // MsSql
     string hi_lo_schema = 14; // MsSql
 
-	repeated proto_property list_properties = 15;
+	proto_group_properties group_properties = 15;
+	proto_group_sub_catalogs group_sub_catalogs = 16;
+	proto_group_forms group_forms = 17;
+	proto_group_reports group_reports = 18;
 }
-message proto_group_properties {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_property list_properties = 6;
-}
-message proto_group_properties_tree {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-    repeated proto_group_properties_tree list_properties_tree_groups = 6;
-	proto_group_properties group_properties = 7;
-}
-message proto_group_catalogs {
+message proto_group_sub_catalogs {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
@@ -207,13 +224,25 @@ message proto_group_catalogs {
 	string description = 5;
 	repeated proto_catalog list_catalogs = 7;
 }
+// ####################################### D O C U M E N T ##########################################
+message proto_group_documents {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	proto_group_properties group_shared_properties = 6;
+	proto_group_list_documents group_list_documents = 7;
+}
 message proto_document {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	repeated proto_group_properties_tree list_properties_tree_groups = 6;
+	proto_group_properties_tree group_properties_tree = 6;
+	proto_group_forms group_forms = 17;
+	proto_group_reports group_reports = 18;
 }
 message proto_group_list_documents {
 	string guid = 1;
@@ -223,14 +252,15 @@ message proto_group_list_documents {
 	string description = 5;
 	repeated proto_document list_documents = 6;
 }
-message proto_group_documents {
+// ####################################### J O U R N A L ##########################################
+message proto_group_journals {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
-	proto_group_properties group_shared_properties = 6;
-	repeated proto_group_list_documents list_documents = 7;
+	//repeated proto_property list_shared_properties = 6;
+	repeated proto_journal list_journals = 7;
 }
 message proto_journal {
 	string guid = 1;
@@ -241,16 +271,45 @@ message proto_journal {
 	//repeated proto_group_properties list_properties = 6;
 	repeated proto_document list_documents = 7;
 }
-message proto_group_journals {
+// ####################################### F O R M S ##########################################
+message proto_group_forms {
 	string guid = 1;
 	string name = 2;
 	uint64 sorting_value = 3;
 	string name_ui = 4;
 	string description = 5;
 	//repeated proto_property list_shared_properties = 6;
-	repeated proto_journal list_journals = 7;
+	repeated proto_form list_forms = 7;
 }
-
+message proto_form {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	//repeated proto_group_properties list_properties = 6;
+	//repeated proto_document list_forms = 7;
+}
+// ####################################### R E P O R T S ##########################################
+message proto_group_reports {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	//repeated proto_property list_shared_properties = 6;
+	repeated proto_report list_reports = 7;
+}
+message proto_report {
+	string guid = 1;
+	string name = 2;
+	uint64 sorting_value = 3;
+	string name_ui = 4;
+	string description = 5;
+	//repeated proto_group_properties list_properties = 6;
+	//repeated proto_document list_documents = 7;
+}
+// ####################################### N U L L A B L E ##########################################
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {
 	bool has_value = 1;

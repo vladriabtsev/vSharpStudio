@@ -68,7 +68,7 @@
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->
         <!--https://www.codeproject.com/Articles/1204663/Advanced-WPF-TreeViews-Part-of-n-2-->
-        <Controls:TreeViewEx Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.SubNodes}" SelectedItem="{Binding Model.SelectedNode}">
+        <Controls:TreeViewEx Grid.Row="1" x:Name="configTreeView" ItemsSource="{Binding Model.ListNodes}" SelectedItem="{Binding Model.SelectedNode}">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />

@@ -10,11 +10,14 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} catalogs:{ListCatalogs.Count,nq}")]
-    public partial class GroupCatalogs
+    public partial class GroupCatalogs : IListNodes<Catalog>
     {
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<Catalog> ListNodes { get; private set; }
         partial void OnInit()
         {
             this.Name = "Catalogs";
+            this.ListNodes = this.ListCatalogs;
         }
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> SubNodes
@@ -34,20 +37,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             return false;
         }
-        protected override bool OnNodeCanAddNew()
-        {
-            return false;
-        }
         //protected override ITreeConfigNode OnNodeAddNew()
         //{
         //    var res = new Catalogs();
         //    (this.Parent as Config).ListCatalogsGroups.Add(res);
         //    return res;
         //}
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
-        }
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Catalog();

@@ -3,48 +3,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
-    public partial class GroupDocuments : IListGroupNodes
+    public partial class GroupListDocuments : IListNodes<Document>
     {
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+        public SortedObservableCollection<Document> ListNodes { get; private set; }
+
         partial void OnInit()
         {
-            this.Name = "Documens";
-            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
-            ListNodes.Add(this.GroupSharedProperties, 7);
-            ListNodes.Add(this.GroupListDocuments, 8);
+            this.Name = "Documents";
+            this.ListNodes = this.ListDocuments;
         }
+
         #region ITreeNode
-        //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
+
+        public new string NodeText { get { return this.Name; } }
         //protected override bool OnNodeCanLeft()
         //{
         //    return false;
         //}
-        //protected override bool OnNodeCanAddNew()
-        //{
-        //    return false;
-        //}
-        ////protected override ITreeConfigNode OnNodeAddNew()
-        ////{
-        ////    var res = new Catalogs();
-        ////    (this.Parent as Config).ListCatalogsGroups.Add(res);
-        ////    return res;
-        ////}
-        //protected override bool OnNodeCanAddNewSubNode()
-        //{
-        //    return true;
-        //}
         //protected override ITreeConfigNode OnNodeAddNewSubNode()
         //{
-        //    var res = new Document();
+        //    var res = new Constant();
         //    res.Parent = this.Parent;
-        //    this.ListDocuments.Add(res);
-        //    GetUniqueName(Document.DefaultName, res, this.ListDocuments);
+        //    this.ListConstants.Add(res);
+        //    GetUniqueName(Constant.DefaultName, res, this.ListConstants);
         //    (this.Parent as Config).SelectedNode = res;
         //    return res;
         //}
@@ -64,10 +52,11 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    return false;
         //}
+
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
-            GroupDocuments t = new GroupDocuments();
+            GroupListDocuments t = new GroupListDocuments();
             StringBuilder sb = new StringBuilder();
             Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
             t.PropertyNameAction(p => p.NameUi, (m) =>

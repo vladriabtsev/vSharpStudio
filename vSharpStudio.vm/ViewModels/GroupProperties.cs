@@ -19,14 +19,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         public new string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
-        protected override bool OnNodeCanAddNew()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddNewSubNode()
-        {
-            return true;
-        }
         protected override ITreeConfigNode OnNodeAddNewSubNode()
         {
             var res = new Property();

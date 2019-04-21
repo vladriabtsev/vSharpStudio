@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document
+    public partial class Document : IListGroupNodes
     {
         public static readonly string DefaultName = "Document";
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+
+        partial void OnInit()
+        {
+            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
+#if DEBUG
+            //SubNodes.Add(this.GroupConstants, 1);
+#endif
+            ListNodes.Add(this.GroupPropertiesTree, 7);
+            ListNodes.Add(this.GroupForms, 8);
+            ListNodes.Add(this.GroupReports, 9);
+        }
 
         #region ITreeNode
+
         //public string NodeText { get { return this.Name; } }
         //protected override bool OnNodeCanMoveUp()
         //{

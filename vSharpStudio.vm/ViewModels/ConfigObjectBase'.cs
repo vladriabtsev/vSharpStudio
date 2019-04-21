@@ -301,11 +301,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddNew()
         {
-            return OnNodeCanAddNew();
-        }
-        protected virtual bool OnNodeCanAddNew()
-        {
-            return true;
+            if (this.Parent != null)
+            {
+                foreach (var t in this.Parent.GetType().GetInterfaces())
+                {
+                    if (t.Name.StartsWith("IListNodes`"))
+                        return true;
+                }
+            }
+            return false;
         }
         public ITreeConfigNode NodeAddNew()
         {
@@ -317,10 +321,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddNewSubNode()
         {
-            return OnNodeCanAddNewSubNode();
-        }
-        protected virtual bool OnNodeCanAddNewSubNode()
-        {
+            foreach(var t in this.GetType().GetInterfaces())
+            {
+                if (t.Name.StartsWith("IListNodes`"))
+                    return true;
+            }
             return false;
         }
         public ITreeConfigNode NodeAddNewSubNode()
