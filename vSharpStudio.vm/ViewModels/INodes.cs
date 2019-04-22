@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
     internal interface ICanAddSubNode
     {
     }
-    internal interface IListNodes
+    internal interface ISubCount
     {
-        IMoveUpDown ListNodes { get; }
+        int Count { get; }
     }
     internal interface IListGroupNodes
     {

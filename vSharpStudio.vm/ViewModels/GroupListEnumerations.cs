@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} journals:{ListJournals.Count,nq}")]
-    public partial class GroupJournals : IListNodes<Journal>
+    [DebuggerDisplay("Group:{Name,nq} enumerations:{ListEnumerations.Count,nq}")]
+    public partial class GroupListEnumerations : IListNodes<Enumeration>, ISubCount
     {
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<Journal> ListNodes { get; private set; }
+        public SortedObservableCollection<Enumeration> ListNodes { get; private set; }
+        [BrowsableAttribute(false)]
+        public int Count { get { return ListNodes.Count; } }
         partial void OnInit()
         {
-            this.Name = "Journals";
-            this.ListNodes = this.ListJournals;
+            this.Name = "Enumerations";
+            this.ListNodes = this.ListEnumerations;
         }
+
         #region ITreeNode
+        public new string NodeText { get { return this.Name; } }
+
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
-            GroupJournals t = new GroupJournals();
+            GroupListEnumerations t = new GroupListEnumerations();
             StringBuilder sb = new StringBuilder();
             Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
             t.PropertyNameAction(p => p.NameUi, (m) =>

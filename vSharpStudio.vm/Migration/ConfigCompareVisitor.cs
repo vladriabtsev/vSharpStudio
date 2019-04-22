@@ -61,32 +61,7 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupCatalogs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(GroupProperties p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupDocuments p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(GroupConstants p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(GroupEnumerations p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(GroupJournals p)
         {
             throw new NotImplementedException();
         }
@@ -106,17 +81,7 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupForms p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(Form p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(GroupReports p)
         {
             throw new NotImplementedException();
         }
@@ -147,6 +112,36 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.Visit(GroupListCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListProperties p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListJournals p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(GroupListReports p)
         {
             throw new NotImplementedException();
         }
@@ -201,32 +196,7 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupCatalogs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(GroupProperties p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(GroupDocuments p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(GroupConstants p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(GroupEnumerations p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(GroupJournals p)
         {
             throw new NotImplementedException();
         }
@@ -246,17 +216,7 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupForms p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.VisitEnd(Form p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(GroupReports p)
         {
             throw new NotImplementedException();
         }
@@ -287,6 +247,36 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(GroupListCatalogs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListProperties p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListConstants p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListEnumerations p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListJournals p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListForms p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(GroupListReports p)
         {
             throw new NotImplementedException();
         }

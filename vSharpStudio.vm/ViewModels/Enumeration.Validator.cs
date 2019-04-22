@@ -43,7 +43,7 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
-                GroupEnumerations p = (GroupEnumerations)val.Parent;
+                GroupListEnumerations p = (GroupListEnumerations)val.Parent;
                 foreach (var t in p.ListEnumerations)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))

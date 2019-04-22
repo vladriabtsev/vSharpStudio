@@ -19,7 +19,7 @@ namespace vSharpStudio.vm.ViewModels
         #region IConfigObject
         public void Create()
         {
-            GroupConstants vm = (GroupConstants)this.Parent;
+            GroupListConstants vm = (GroupListConstants)this.Parent;
             int icurr = vm.ListConstants.IndexOf(this);
             vm.ListConstants.Add(new Constant() { Parent = this.Parent });
         }

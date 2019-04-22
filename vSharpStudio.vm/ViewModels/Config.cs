@@ -127,6 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
+
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
             Config t = new Config();

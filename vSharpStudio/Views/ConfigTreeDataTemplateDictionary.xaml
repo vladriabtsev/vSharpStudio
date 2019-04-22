@@ -18,7 +18,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupProperties}" ItemsSource="{Binding ListProperties}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListProperties}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Properties, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />
@@ -40,7 +40,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConstants}" ItemsSource="{Binding ListConstants}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConstants}" ItemsSource="{Binding ListConstants}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />
@@ -62,7 +62,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupEnumerations}" ItemsSource="{Binding ListEnumerations}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListEnumerations}" ItemsSource="{Binding ListEnumerations}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Enumerations, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />
@@ -95,7 +95,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupCatalogs}" ItemsSource="{Binding ListCatalogs}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding ListCatalogs}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Catalogs, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />
@@ -134,7 +134,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupJournals}" ItemsSource="{Binding ListJournals}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListJournals}" ItemsSource="{Binding ListJournals}">
         <StackPanel Orientation="Horizontal">
             <ContentControl Template="{Binding StatusIcon, ConverterParameter=Journals, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
             <TextBlock Text="{Binding NodeText}" Margin="2,0,0,2" />

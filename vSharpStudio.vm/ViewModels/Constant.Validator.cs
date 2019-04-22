@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
-                GroupConstants p = (GroupConstants)val.Parent;
+                GroupListConstants p = (GroupListConstants)val.Parent;
                 foreach (var t in p.ListConstants)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))

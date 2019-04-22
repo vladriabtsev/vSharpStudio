@@ -277,6 +277,10 @@ namespace vSharpStudio.vm.ViewModels
                 (this.Parent as IListGroupNodes).ListNodes.MoveUp(this);
             if (this.Parent is IListNodes<T>)
                 (this.Parent as IListNodes<T>).ListNodes.MoveUp(this);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).OnSelectedNodeChanged();
         }
         public bool NodeCanMoveDown()
         {
@@ -288,6 +292,10 @@ namespace vSharpStudio.vm.ViewModels
                 (this.Parent as IListGroupNodes).ListNodes.MoveDown(this);
             if (this.Parent is IListNodes<T>)
                 (this.Parent as IListNodes<T>).ListNodes.MoveDown(this);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).OnSelectedNodeChanged();
         }
         public bool NodeCanAddNew()
         {
@@ -309,8 +317,8 @@ namespace vSharpStudio.vm.ViewModels
                 case "Catalog":
                     var catalog = new Catalog();
                     catalog.Parent = this.Parent;
-                    (this.Parent as GroupCatalogs).ListCatalogs.Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupCatalogs).ListCatalogs);
+                    (this.Parent as GroupListCatalogs).ListCatalogs.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupListCatalogs).ListCatalogs);
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Document":
@@ -323,8 +331,8 @@ namespace vSharpStudio.vm.ViewModels
                 case "Enumeration":
                     var enumeration = new Enumeration();
                     enumeration.Parent = this.Parent;
-                    (this.Parent as GroupEnumerations).ListEnumerations.Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupEnumerations).ListEnumerations);
+                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).ListEnumerations);
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Property":
@@ -341,15 +349,15 @@ namespace vSharpStudio.vm.ViewModels
                 case "Journal":
                     var journal = new Journal();
                     journal.Parent = this.Parent;
-                    (this.Parent as GroupJournals).ListJournals.Add(journal);
-                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupJournals).ListJournals);
+                    (this.Parent as GroupListJournals).ListJournals.Add(journal);
+                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).ListJournals);
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
                 case "Constant":
                     var res = new Constant();
                     res.Parent = this.Parent;
-                    (this.Parent as GroupConstants).ListConstants.Add(res);
-                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupConstants).ListConstants);
+                    (this.Parent as GroupListConstants).ListConstants.Add(res);
+                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).ListConstants);
                     (this.Parent.Parent as Config).SelectedNode = res;
                     return res;
             }
@@ -373,7 +381,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case "GroupCatalogs":
                     var catalog = new Catalog();
-                    var cp = (this as GroupCatalogs);
+                    var cp = (this as GroupListCatalogs);
                     catalog.Parent = this.Parent;
                     cp.ListCatalogs.Add(catalog);
                     GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
@@ -381,7 +389,7 @@ namespace vSharpStudio.vm.ViewModels
                     return catalog;
                 case "GroupConstants":
                     var constant = new Constant();
-                    var cnp = (this as GroupConstants);
+                    var cnp = (this as GroupListConstants);
                     constant.Parent = this.Parent;
                     cnp.ListConstants.Add(constant);
                     GetUniqueName(Constant.DefaultName, constant, cnp.ListConstants);
@@ -389,7 +397,7 @@ namespace vSharpStudio.vm.ViewModels
                     return constant;
                 case "GroupEnumerations":
                     var enumeration = new Enumeration();
-                    var cep = (this as GroupEnumerations);
+                    var cep = (this as GroupListEnumerations);
                     enumeration.Parent = this.Parent;
                     cep.ListEnumerations.Add(enumeration);
                     GetUniqueName(Enumeration.DefaultName, enumeration, cep.ListEnumerations);
@@ -397,7 +405,7 @@ namespace vSharpStudio.vm.ViewModels
                     return enumeration;
                 case "GroupJournals":
                     var journal = new Journal();
-                    var jp = (this as GroupJournals);
+                    var jp = (this as GroupListJournals);
                     journal.Parent = this.Parent;
                     jp.ListJournals.Add(journal);
                     GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
@@ -405,7 +413,7 @@ namespace vSharpStudio.vm.ViewModels
                     return journal;
                 case "GroupProperties":
                     var prop = new Property();
-                    var pp = (this as GroupProperties);
+                    var pp = (this as GroupListProperties);
                     prop.Parent = this.Parent;
                     pp.ListProperties.Add(prop);
                     GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
@@ -447,28 +455,28 @@ namespace vSharpStudio.vm.ViewModels
                 case "Catalog":
                     var catalog = Catalog.Clone(this.Parent, this as Catalog, true, true);
                     catalog.Parent = this.Parent;
-                    (this.Parent as GroupCatalogs).ListCatalogs.Add(catalog);
+                    (this.Parent as GroupListCatalogs).ListCatalogs.Add(catalog);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Constant":
                     var constant = Constant.Clone(this.Parent, this as Constant, true, true);
                     constant.Parent = this.Parent;
-                    (this.Parent as GroupConstants).ListConstants.Add(constant);
+                    (this.Parent as GroupListConstants).ListConstants.Add(constant);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = constant;
                     return constant;
                 case "Enumeration":
                     var enumeration = Enumeration.Clone(this.Parent, this as Enumeration, true, true);
                     enumeration.Parent = this.Parent;
-                    (this.Parent as GroupEnumerations).ListEnumerations.Add(enumeration);
+                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Journal":
                     var journal = Journal.Clone(this.Parent, this as Journal, true, true);
                     journal.Parent = this.Parent;
-                    (this.Parent as GroupJournals).ListJournals.Add(journal);
+                    (this.Parent as GroupListJournals).ListJournals.Add(journal);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
@@ -509,7 +517,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool NodeCanLeft()
         {
-            string tname = this.GetType().Name;
+            string tname = this.Parent.GetType().Name;
             switch (tname)
             {
                 case "ConfigRoot":
@@ -527,8 +535,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRight()
         {
-            var p = (this as IListGroupNodes);
-            if (p != null && p.ListNodes.Count > 0)
+            if ((this is IListGroupNodes) && (this as IListGroupNodes).ListNodes.Count > 0)
+                return true;
+            if ((this is ISubCount) && (this as ISubCount).Count > 0)
                 return true;
             return false;
         }

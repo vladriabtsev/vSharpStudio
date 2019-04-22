@@ -30,9 +30,9 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
-                if (val.Parent is GroupProperties)
+                if (val.Parent is GroupListProperties)
                 {
-                    GroupProperties p = (GroupProperties)val.Parent;
+                    GroupListProperties p = (GroupListProperties)val.Parent;
                     foreach (var t in p.ListProperties)
                     {
                         if ((val.Guid != t.Guid) && (val.Name == t.Name))

@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
-                GroupJournals p = (GroupJournals)val.Parent;
+                GroupListJournals p = (GroupListJournals)val.Parent;
                 foreach (var t in p.ListJournals)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))

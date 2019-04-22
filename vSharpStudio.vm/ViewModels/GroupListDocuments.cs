@@ -9,10 +9,12 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
-    public partial class GroupListDocuments : IListNodes<Document>
+    public partial class GroupListDocuments : IListNodes<Document>, ISubCount
     {
         [BrowsableAttribute(false)]
         public SortedObservableCollection<Document> ListNodes { get; private set; }
+        [BrowsableAttribute(false)]
+        public int Count { get { return ListNodes.Count; } }
 
         partial void OnInit()
         {

@@ -1,42 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
-using System.Windows;
 using FluentValidation;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} catalogs:{ListCatalogs.Count,nq}")]
-    public partial class GroupCatalogs : IListNodes<Catalog>
+    [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
+    public partial class GroupListProperties : IListProperties
     {
-        [BrowsableAttribute(false)]
-        public SortedObservableCollection<Catalog> ListNodes { get; private set; }
         partial void OnInit()
         {
-            this.Name = "Catalogs";
-            this.ListNodes = this.ListCatalogs;
+            this.Name = "Properties";
         }
-        //[BrowsableAttribute(false)]
-        //public SortedObservableCollection<ITreeConfigNode> SubNodes
-        //{
-        //    get { return this._SubNodes; }
-        //    set
-        //    {
-        //        this._SubNodes = value;
-        //        NotifyPropertyChanged();
-        //    }
-        //}
-        //private SortedObservableCollection<ITreeConfigNode> _SubNodes;
 
         #region ITreeNode
-        //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
+        public new string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
+
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
-            GroupCatalogs t = new GroupCatalogs();
+            GroupListProperties t = new GroupListProperties();
             StringBuilder sb = new StringBuilder();
             Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
             t.PropertyNameAction(p => p.NameUi, (m) =>
