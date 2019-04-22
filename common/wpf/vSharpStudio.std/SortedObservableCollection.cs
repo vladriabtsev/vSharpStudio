@@ -13,11 +13,78 @@ namespace ViewModelBase
         ulong SortingWeight { get; set; }
     }
     public enum SortDirection { Ascending, Descending }
-    public class SortedObservableCollection<T> : ObservableCollection<T>
+    public interface IMoveUpDown
+    {
+        bool CanUp(object current);
+        bool CanDown(object current);
+        object MoveUp(object current);
+        object MoveDown(object current);
+        object GetPrev(object current);
+        object GetNext(object current);
+    }
+    public class SortedObservableCollection<T> : ObservableCollection<T>, IMoveUpDown
       where T : ISortingValue
     {
         private object _lock = new object();
         public SortDirection SortDirection = SortDirection.Ascending;
+
+        #region IMoveUpDown
+
+        public bool CanUp(object current)
+        {
+            T p = (T)current;
+            if (this.IndexOf(p) > 0)
+                return true;
+            return false;
+        }
+        public bool CanDown(object current)
+        {
+            T p = (T)current;
+            if (this.IndexOf(p) < this.Count - 1)
+                return true;
+            return false;
+        }
+        public object MoveUp(object current)
+        {
+            T p = (T)current;
+            int i = this.IndexOf(p);
+            if (i > 0)
+            {
+                p.SortingValue = this[i - 1].SortingValue - 1;
+            }
+            return current;
+        }
+
+        public object MoveDown(object current)
+        {
+            T p = (T)current;
+            int i = this.IndexOf(p);
+            if (i < this.Count - 1)
+            {
+                p.SortingValue = this[i + 1].SortingValue + 1;
+            }
+            return current;
+        }
+
+        public object GetPrev(object current)
+        {
+            T p = (T)current;
+            int i = this.IndexOf(p);
+            if (i == 0)
+                return null;
+            return this[i - 1];
+        }
+
+        public object GetNext(object current)
+        {
+            T p = (T)current;
+            int i = this.IndexOf(p);
+            if (i < this.Count - 1)
+                return this[i + 1];
+            return null;
+        }
+
+        #endregion IMove
 
         public new void Add(T item)
         {
@@ -113,6 +180,7 @@ namespace ViewModelBase
             }
             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
         }
+
         #endregion Sort
     }
 }

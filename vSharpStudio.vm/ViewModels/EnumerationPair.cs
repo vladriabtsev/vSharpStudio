@@ -14,11 +14,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         //        public string NodeText { get { return this.Name; } }
-        protected override bool OnNodeCanRight()
-        {
-            return false;
-        }
-
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {

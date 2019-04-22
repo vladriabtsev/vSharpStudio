@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/21/2019 16:38:20
+// Auto generated on UTC 04/22/2019 00:05:17
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4348,7 +4348,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -4368,7 +4368,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
-		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set
@@ -4961,7 +4961,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		
+		[PropertyOrder(2)]
 		public string NameUi
 		{ 
 			set
@@ -4981,7 +4981,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
 		
-		
+		[PropertyOrder(3)]
 		public string Description
 		{ 
 			set

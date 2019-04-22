@@ -17,6 +17,10 @@ namespace vSharpStudio.vm.ViewModels
     internal interface ICanAddSubNode
     {
     }
+    internal interface IListNodes
+    {
+        IMoveUpDown ListNodes { get; }
+    }
     internal interface IListGroupNodes
     {
         SortedObservableCollection<ITreeConfigNode> ListNodes { get; }

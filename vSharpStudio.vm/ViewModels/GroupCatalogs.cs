@@ -33,41 +33,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
-        protected override bool OnNodeCanLeft()
-        {
-            return false;
-        }
-        //protected override ITreeConfigNode OnNodeAddNew()
-        //{
-        //    var res = new Catalogs();
-        //    (this.Parent as Config).ListCatalogsGroups.Add(res);
-        //    return res;
-        //}
-        protected override ITreeConfigNode OnNodeAddNewSubNode()
-        {
-            var res = new Catalog();
-            res.Parent = this.Parent;
-            this.ListCatalogs.Add(res);
-            GetUniqueName(Catalog.DefaultName, res, this.ListCatalogs);
-            (this.Parent as Config).SelectedNode = res;
-            return res;
-        }
-        protected override bool OnNodeCanMoveDown()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanMoveUp()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddClone()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanRemove()
-        {
-            return false;
-        }
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {

@@ -134,67 +134,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         //        public string NodeText { get { return this.Name; } }
-        protected override bool OnNodeCanRight()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanMoveUp()
-        {
-            return (this.Parent as IListProperties).ListProperties.IndexOf(this) > 0;
-        }
-        protected override void OnNodeMoveUp()
-        {
-            var pp = this.Parent as IListProperties;
-            var i = pp.ListProperties.IndexOf(this);
-            if (i > 0)
-            {
-                this.SortingValue = pp.ListProperties[i - 1].SortingValue - 1;
-            }
-        }
-        protected override bool OnNodeCanMoveDown()
-        {
-            var pp = this.Parent as IListProperties;
-            return pp.ListProperties.IndexOf(this) < (pp.ListProperties.Count - 1);
-        }
-        protected override void OnNodeMoveDown()
-        {
-            var pp = this.Parent as IListProperties;
-            var i = pp.ListProperties.IndexOf(this);
-            if (i < pp.ListProperties.Count - 1)
-            {
-                this.SortingValue = pp.ListProperties[i + 1].SortingValue + 1;
-            }
-        }
-        protected override void OnNodeRemove()
-        {
-            (this.Parent as IListProperties).ListProperties.Remove(this);
-        }
-        protected override ITreeConfigNode OnNodeAddNew()
-        {
-            var pp = this.Parent as IListProperties;
-            var res = new Property();
-            res.Parent = this.Parent;
-            pp.ListProperties.Add(res);
-            GetUniqueName(Property.DefaultName, res, pp.ListProperties);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = res;
-            return res;
-        }
-        protected override ITreeConfigNode OnNodeAddClone()
-        {
-            var pp = this.Parent as IListProperties;
-            var res = Property.Clone(this.Parent, this, true, true);
-            res.Parent = this.Parent;
-            pp.ListProperties.Add(res);
-            this.Name = this.Name + "2";
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = res;
-            return res;
-        }
 
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()

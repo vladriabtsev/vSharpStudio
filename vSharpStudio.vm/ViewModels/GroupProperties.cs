@@ -19,34 +19,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
         public new string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
-        protected override ITreeConfigNode OnNodeAddNewSubNode()
-        {
-            var res = new Property();
-            res.Parent = this.Parent;
-            this.ListProperties.Add(res);
-            GetUniqueName(Property.DefaultName, res, this.ListProperties);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = res;
-            return res;
-        }
-        protected override bool OnNodeCanMoveDown()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanMoveUp()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanAddClone()
-        {
-            return false;
-        }
-        protected override bool OnNodeCanRemove()
-        {
-            return false;
-        }
 
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()

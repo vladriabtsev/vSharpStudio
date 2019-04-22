@@ -269,35 +269,25 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanMoveUp()
         {
-            return OnNodeCanMoveUp();
-        }
-        protected virtual bool OnNodeCanMoveUp()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            return NodeCanUp();
         }
         public void NodeMoveUp()
         {
-            OnNodeMoveUp();
-        }
-        protected virtual void OnNodeMoveUp()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            if (this.Parent is IListGroupNodes)
+                (this.Parent as IListGroupNodes).ListNodes.MoveUp(this);
+            if (this.Parent is IListNodes<T>)
+                (this.Parent as IListNodes<T>).ListNodes.MoveUp(this);
         }
         public bool NodeCanMoveDown()
         {
-            return OnNodeCanMoveDown();
-        }
-        protected virtual bool OnNodeCanMoveDown()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            return NodeCanDown();
         }
         public void NodeMoveDown()
         {
-            OnNodeMoveDown();
-        }
-        protected virtual void OnNodeMoveDown()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            if (this.Parent is IListGroupNodes)
+                (this.Parent as IListGroupNodes).ListNodes.MoveDown(this);
+            if (this.Parent is IListNodes<T>)
+                (this.Parent as IListNodes<T>).ListNodes.MoveDown(this);
         }
         public bool NodeCanAddNew()
         {
@@ -313,115 +303,293 @@ namespace vSharpStudio.vm.ViewModels
         }
         public ITreeConfigNode NodeAddNew()
         {
-            return OnNodeAddNew();
-        }
-        protected virtual ITreeConfigNode OnNodeAddNew()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            string tname = this.GetType().Name;
+            switch (tname)
+            {
+                case "Catalog":
+                    var catalog = new Catalog();
+                    catalog.Parent = this.Parent;
+                    (this.Parent as GroupCatalogs).ListCatalogs.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupCatalogs).ListCatalogs);
+                    (this.Parent.Parent as Config).SelectedNode = catalog;
+                    return catalog;
+                case "Document":
+                    var doc = new Document();
+                    doc.Parent = this.Parent;
+                    (this.Parent as GroupListDocuments).ListDocuments.Add(doc);
+                    GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).ListDocuments);
+                    (this.Parent.Parent as Config).SelectedNode = doc;
+                    return doc;
+                case "Enumeration":
+                    var enumeration = new Enumeration();
+                    enumeration.Parent = this.Parent;
+                    (this.Parent as GroupEnumerations).ListEnumerations.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupEnumerations).ListEnumerations);
+                    (this.Parent.Parent as Config).SelectedNode = enumeration;
+                    return enumeration;
+                case "Property":
+                    var pp = this.Parent as IListProperties;
+                    var prop = new Property();
+                    prop.Parent = this.Parent;
+                    pp.ListProperties.Add(prop);
+                    GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
+                    ITreeConfigNode config = this.Parent;
+                    while (config.Parent != null)
+                        config = config.Parent;
+                    (config as Config).SelectedNode = prop;
+                    return prop;
+                case "Journal":
+                    var journal = new Journal();
+                    journal.Parent = this.Parent;
+                    (this.Parent as GroupJournals).ListJournals.Add(journal);
+                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupJournals).ListJournals);
+                    (this.Parent.Parent as Config).SelectedNode = journal;
+                    return journal;
+                case "Constant":
+                    var res = new Constant();
+                    res.Parent = this.Parent;
+                    (this.Parent as GroupConstants).ListConstants.Add(res);
+                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupConstants).ListConstants);
+                    (this.Parent.Parent as Config).SelectedNode = res;
+                    return res;
+            }
+            throw new Exception();
         }
         public bool NodeCanAddNewSubNode()
         {
-            foreach(var t in this.GetType().GetInterfaces())
+            foreach (var t in this.GetType().GetInterfaces())
             {
                 if (t.Name.StartsWith("IListNodes`"))
+                    return true;
+                if (t.Name.StartsWith("IListGroupNodes"))
                     return true;
             }
             return false;
         }
         public ITreeConfigNode NodeAddNewSubNode()
         {
-            return OnNodeAddNewSubNode();
-        }
-        protected virtual ITreeConfigNode OnNodeAddNewSubNode()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            string tname = this.GetType().Name;
+            switch (tname)
+            {
+                case "GroupCatalogs":
+                    var catalog = new Catalog();
+                    var cp = (this as GroupCatalogs);
+                    catalog.Parent = this.Parent;
+                    cp.ListCatalogs.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
+                    (this.Parent as Config).SelectedNode = catalog;
+                    return catalog;
+                case "GroupConstants":
+                    var constant = new Constant();
+                    var cnp = (this as GroupConstants);
+                    constant.Parent = this.Parent;
+                    cnp.ListConstants.Add(constant);
+                    GetUniqueName(Constant.DefaultName, constant, cnp.ListConstants);
+                    (this.Parent as Config).SelectedNode = constant;
+                    return constant;
+                case "GroupEnumerations":
+                    var enumeration = new Enumeration();
+                    var cep = (this as GroupEnumerations);
+                    enumeration.Parent = this.Parent;
+                    cep.ListEnumerations.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, cep.ListEnumerations);
+                    (this.Parent as Config).SelectedNode = enumeration;
+                    return enumeration;
+                case "GroupJournals":
+                    var journal = new Journal();
+                    var jp = (this as GroupJournals);
+                    journal.Parent = this.Parent;
+                    jp.ListJournals.Add(journal);
+                    GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
+                    (this.Parent as Config).SelectedNode = journal;
+                    return journal;
+                case "GroupProperties":
+                    var prop = new Property();
+                    var pp = (this as GroupProperties);
+                    prop.Parent = this.Parent;
+                    pp.ListProperties.Add(prop);
+                    GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
+                    ITreeConfigNode config = this.Parent;
+                    while (config.Parent != null)
+                        config = config.Parent;
+                    (config as Config).SelectedNode = prop;
+                    return prop;
+                case "Catalog":
+                    var prop2 = new Property();
+                    var ppc = (this as Catalog);
+                    prop2.Parent = this.Parent;
+                    ppc.GroupProperties.ListProperties.Add(prop2);
+                    GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.ListProperties);
+                    ITreeConfigNode config2 = this.Parent;
+                    while (config2.Parent != null)
+                        config2 = config2.Parent;
+                    (config2 as Config).SelectedNode = prop2;
+                    return prop2;
+            }
+            throw new Exception();
         }
         public bool NodeCanAddClone()
         {
-            return OnNodeCanAddClone();
-        }
-        protected virtual bool OnNodeCanAddClone()
-        {
+            foreach (var t in this.GetType().GetInterfaces())
+            {
+                if (t.Name.StartsWith("IListNodes`"))
+                    return false;
+                if (t.Name.StartsWith("IListGroupNodes"))
+                    return false;
+            }
             return true;
         }
         public ITreeConfigNode NodeAddClone()
         {
-            return OnNodeAddClone();
-        }
-        protected virtual ITreeConfigNode OnNodeAddClone()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            string tname = this.GetType().Name;
+            switch (tname)
+            {
+                case "Catalog":
+                    var catalog = Catalog.Clone(this.Parent, this as Catalog, true, true);
+                    catalog.Parent = this.Parent;
+                    (this.Parent as GroupCatalogs).ListCatalogs.Add(catalog);
+                    this.Name = this.Name + "2";
+                    (this.Parent.Parent as Config).SelectedNode = catalog;
+                    return catalog;
+                case "Constant":
+                    var constant = Constant.Clone(this.Parent, this as Constant, true, true);
+                    constant.Parent = this.Parent;
+                    (this.Parent as GroupConstants).ListConstants.Add(constant);
+                    this.Name = this.Name + "2";
+                    (this.Parent.Parent as Config).SelectedNode = constant;
+                    return constant;
+                case "Enumeration":
+                    var enumeration = Enumeration.Clone(this.Parent, this as Enumeration, true, true);
+                    enumeration.Parent = this.Parent;
+                    (this.Parent as GroupEnumerations).ListEnumerations.Add(enumeration);
+                    this.Name = this.Name + "2";
+                    (this.Parent.Parent as Config).SelectedNode = enumeration;
+                    return enumeration;
+                case "Journal":
+                    var journal = Journal.Clone(this.Parent, this as Journal, true, true);
+                    journal.Parent = this.Parent;
+                    (this.Parent as GroupJournals).ListJournals.Add(journal);
+                    this.Name = this.Name + "2";
+                    (this.Parent.Parent as Config).SelectedNode = journal;
+                    return journal;
+                case "Property":
+                    var pp = this.Parent as IListProperties;
+                    var prop = Property.Clone(this.Parent, this as Property, true, true);
+                    prop.Parent = this.Parent;
+                    pp.ListProperties.Add(prop);
+                    this.Name = this.Name + "2";
+                    ITreeConfigNode config = this.Parent;
+                    while (config.Parent != null)
+                        config = config.Parent;
+                    (config as Config).SelectedNode = prop;
+                    return prop;
+            }
+            throw new Exception();
         }
         public bool NodeCanRemove()
         {
-            return OnNodeCanRemove();
-        }
-        protected virtual bool OnNodeCanRemove()
-        {
+            foreach (var t in this.GetType().GetInterfaces())
+            {
+                if (t.Name.StartsWith("IListNodes`"))
+                    return false;
+                if (t.Name.StartsWith("IListGroupNodes"))
+                    return false;
+            }
             return true;
         }
         public void NodeRemove()
         {
-            OnNodeRemove();
-        }
-        protected virtual void OnNodeRemove()
-        {
-            throw new NotImplementedException("Has to be overriden");
+            (this.Parent as IListGroupNodes).ListNodes.Remove(this);
+            //(this.Parent as GroupCatalogs).ListCatalogs.Remove(this);
+            //(this.Parent as GroupConstants).ListConstants.Remove(this);
+            //(this.Parent as GroupEnumerations).ListEnumerations.Remove(this);
+            //(this.Parent as GroupJournals).ListJournals.Remove(this);
+            //(this.Parent as IListProperties).ListProperties.Remove(this);
         }
 
         public bool NodeCanLeft()
         {
-            return OnNodeCanLeft();
-        }
-        protected virtual bool OnNodeCanLeft()
-        {
+            string tname = this.GetType().Name;
+            switch (tname)
+            {
+                case "ConfigRoot":
+                case "Config":
+                    return false;
+            }
             return true;
         }
         public void NodeLeft()
         {
-            OnNodeLeft();
-        }
-        protected virtual void OnNodeLeft()
-        {
-            throw new NotImplementedException();
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = this.Parent;
         }
         public bool NodeCanRight()
         {
-            return OnNodeCanRight();
-        }
-        protected virtual bool OnNodeCanRight()
-        {
-            return true;
+            var p = (this as IListGroupNodes);
+            if (p != null && p.ListNodes.Count > 0)
+                return true;
+            return false;
         }
 
         public void NodeRight()
         {
-            throw new NotImplementedException();
+            var p = (this as IListGroupNodes).ListNodes[0];
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = p;
         }
         public bool NodeCanUp()
         {
-            return OnNodeCanUp();
-        }
-        protected virtual bool OnNodeCanUp()
-        {
-            return true;
+            if (NodeCanAddClone())
+            {
+                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanUp(this))
+                    return true;
+                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanUp(this))
+                    return true;
+            }
+            return false;
         }
         public void NodeUp()
         {
-            throw new NotImplementedException();
+            T prev = null;
+            if (this.Parent is IListGroupNodes)
+                prev = (this.Parent as IListGroupNodes).ListNodes.GetPrev(this) as T;
+            if (this.Parent is IListNodes<T>)
+                prev = (this.Parent as IListNodes<T>).ListNodes.GetPrev(this) as T;
+            if (prev == null)
+                return;
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = prev;
         }
         public bool NodeCanDown()
         {
-            return OnNodeCanDown();
+            if (NodeCanAddClone())
+            {
+                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanDown(this))
+                    return true;
+                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanDown(this))
+                    return true;
+            }
+            return false;
         }
-        protected virtual bool OnNodeCanDown()
-        {
-            return true;
-        }
-
         public void NodeDown()
         {
-            throw new NotImplementedException();
+            T next = null;
+            if (this.Parent is IListGroupNodes)
+                next = (this.Parent as IListGroupNodes).ListNodes.GetNext(this) as T;
+            if (this.Parent is IListNodes<T>)
+                next = (this.Parent as IListNodes<T>).ListNodes.GetNext(this) as T;
+            if (next == null)
+                return;
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = next;
         }
 
         #endregion ITreeConfigNode

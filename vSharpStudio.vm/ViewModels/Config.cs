@@ -108,10 +108,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupConstantsChanged() { RecreateSubNodes(); }
         partial void OnGroupCatalogsChanged() { RecreateSubNodes(); }
         partial void OnGroupEnumerationsChanged() { RecreateSubNodes(); }
-        protected override bool OnNodeCanLeft()
-        {
-            return false;
-        }
 
         #endregion ITreeNode
 

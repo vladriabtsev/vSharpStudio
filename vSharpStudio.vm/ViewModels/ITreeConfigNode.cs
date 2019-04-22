@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
         string NodeText { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
-        ITreeConfigNode Parent { get; }
+        ITreeConfigNode Parent { get; set; }
         //SortedObservableCollection<ITreeConfigNode> SubNodes { get; }
         void Sort(Type type);
         bool NodeCanMoveUp();
