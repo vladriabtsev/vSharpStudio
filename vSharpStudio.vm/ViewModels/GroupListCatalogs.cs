@@ -9,12 +9,10 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} sub_catalogs:{ListCatalogs.Count,nq}")]
-    public partial class GroupListCatalogs : IListNodes<Catalog>, ISubCount
+    public partial class GroupListCatalogs : IListNodes<Catalog>, IGroupListSubNodes
     {
         [BrowsableAttribute(false)]
         public SortedObservableCollection<Catalog> ListNodes { get; private set; }
-        [BrowsableAttribute(false)]
-        public int Count { get { return ListNodes.Count; } }
 
         partial void OnInit()
         {
@@ -24,8 +22,19 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
+        [BrowsableAttribute(false)]
         public new string NodeText { get { return this.Name; } }
+        [BrowsableAttribute(false)]
+        int IGroupListSubNodes.Count => ListNodes.Count;
+        int IGroupListSubNodes.IndexOf(ITreeConfigNode obj)
+        {
+            return this.ListCatalogs.IndexOf((Catalog)obj);
+        }
 
+        ITreeConfigNode IGroupListSubNodes.GetNode(int index)
+        {
+            return this.ListCatalogs[index];
+        }
         #endregion ITreeNode
         public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
         {
@@ -42,5 +51,6 @@ namespace vSharpStudio.vm.ViewModels
             });
             return res;
         }
+
     }
 }

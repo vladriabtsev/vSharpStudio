@@ -265,16 +265,6 @@ namespace vSharpStudio.vm.ViewModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(ObjectSharedProps p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(ObjectSharedProps p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupPropertyTab p)
         {
             throw new NotImplementedException();

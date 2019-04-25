@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/22/2019 01:59:09
+// Auto generated on UTC 04/25/2019 17:55:13
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupConfigs : ConfigObjectBase<GroupConfigs, GroupConfigs.GroupConfigsValidator>, IComparable<GroupConfigs>, IAccept
 	{
-	
 		public partial class GroupConfigsValidator : ValidatorBase<GroupConfigs, GroupConfigsValidator> { }
 		#region CTOR
 		public GroupConfigs() : base(GroupConfigsValidator.Validator)
@@ -224,7 +223,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept
 	{
-	
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
@@ -933,7 +931,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept
 	{
-	
 		public partial class ConfigTreeValidator : ValidatorBase<ConfigTree, ConfigTreeValidator> { }
 		#region CTOR
 		public ConfigTree() : base(ConfigTreeValidator.Validator)
@@ -1144,7 +1141,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, IComparable<DataType>, IAccept
 	{
-	
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
 		public DataType() : base(DataTypeValidator.Validator)
@@ -1407,147 +1403,12 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class ObjectSharedProps : ConfigObjectBase<ObjectSharedProps, ObjectSharedProps.ObjectSharedPropsValidator>, IComparable<ObjectSharedProps>, IAccept
-	{
-	
-		public partial class ObjectSharedPropsValidator : ValidatorBase<ObjectSharedProps, ObjectSharedPropsValidator> { }
-		#region CTOR
-		public ObjectSharedProps() : base(ObjectSharedPropsValidator.Validator)
-		{
-			OnInit();
-		}
-		public ObjectSharedProps(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(ObjectSharedProps.DefaultName, this, this.SubNodes);
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    //throw new Exception();
-		}
-		public static ObjectSharedProps Clone(ITreeConfigNode parent, ObjectSharedProps from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    ObjectSharedProps vm = new ObjectSharedProps();
-		    vm.Guid = from.Guid;
-		    vm.Name = from.Name;
-		    vm.SortingValue = from.SortingValue;
-		    vm.NameUi = from.NameUi;
-		    vm.Description = from.Description;
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(ObjectSharedProps to, ObjectSharedProps from, bool isDeep = true)
-		{
-		    to.Guid = from.Guid;
-		    to.Name = from.Name;
-		    to.SortingValue = from.SortingValue;
-		    to.NameUi = from.NameUi;
-		    to.Description = from.Description;
-		}
-		#region IEditable
-		public override ObjectSharedProps Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return ObjectSharedProps.Clone(null, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ObjectSharedProps from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    ObjectSharedProps.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_object_shared_props' to 'ObjectSharedProps'
-		public static ObjectSharedProps ConvertToVM(proto_object_shared_props m, ObjectSharedProps vm = null)
-		{
-		    if (vm == null)
-		        vm = new ObjectSharedProps();
-		    vm.Guid = m.Guid;
-		    vm.Name = m.Name;
-		    vm.SortingValue = m.SortingValue;
-		    vm.NameUi = m.NameUi;
-		    vm.Description = m.Description;
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'ObjectSharedProps' to 'proto_object_shared_props'
-		public static proto_object_shared_props ConvertToProto(ObjectSharedProps vm)
-		{
-		    proto_object_shared_props m = new proto_object_shared_props();
-		    m.Guid = vm.Guid;
-		    m.Name = vm.Name;
-		    m.SortingValue = vm.SortingValue;
-		    m.NameUi = vm.NameUi;
-		    m.Description = vm.Description;
-		    return m;
-		}
-		public void Accept(IVisitorConfig visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
-		
-		
-		public string Description
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging();
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging();
-		partial void OnDescriptionChanged();
-		#endregion Properties
-	}
-	
 	public partial class GroupPropertyTab : ConfigObjectBase<GroupPropertyTab, GroupPropertyTab.GroupPropertyTabValidator>, IComparable<GroupPropertyTab>, IAccept
 	{
-	
 		public partial class GroupPropertyTabValidator : ValidatorBase<GroupPropertyTab, GroupPropertyTabValidator> { }
 		#region CTOR
 		public GroupPropertyTab() : base(GroupPropertyTabValidator.Validator)
 		{
-			this.Shared = new ObjectSharedProps(this);
 			this.ListProperties = new SortedObservableCollection<Property>();
 			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
 			OnInit();
@@ -1588,8 +1449,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static GroupPropertyTab Clone(ITreeConfigNode parent, GroupPropertyTab from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupPropertyTab vm = new GroupPropertyTab();
-		    if (isDeep)
-		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, t, isDeep));
@@ -1599,8 +1463,11 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(GroupPropertyTab to, GroupPropertyTab from, bool isDeep = true)
 		{
-		    if (isDeep)
-		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListProperties.ToList())
@@ -1659,7 +1526,11 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new GroupPropertyTab();
-		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
@@ -1670,7 +1541,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_group_property_tab ConvertToProto(GroupPropertyTab vm)
 		{
 		    proto_group_property_tab m = new proto_group_property_tab();
-		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
@@ -1680,7 +1555,6 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Shared.Accept(visitor);
 			foreach(var t in this.ListProperties)
 				t.Accept(visitor);
 			visitor.VisitEnd(this);
@@ -1689,24 +1563,44 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		
-		public ObjectSharedProps Shared
+		public string NameUi
 		{ 
 			set
 			{
-				if (_Shared != value)
+				if (_NameUi != value)
 				{
-					OnSharedChanging();
-		            _Shared = value;
-					OnSharedChanged();
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Shared; }
+			get { return _NameUi; }
 		}
-		private ObjectSharedProps _Shared;
-		partial void OnSharedChanging();
-		partial void OnSharedChanged();
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<Property> ListProperties { get; set; }
@@ -1717,12 +1611,10 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupPropertyTabs : ConfigObjectBase<GroupPropertyTabs, GroupPropertyTabs.GroupPropertyTabsValidator>, IComparable<GroupPropertyTabs>, IAccept
 	{
-	
 		public partial class GroupPropertyTabsValidator : ValidatorBase<GroupPropertyTabs, GroupPropertyTabsValidator> { }
 		#region CTOR
 		public GroupPropertyTabs() : base(GroupPropertyTabsValidator.Validator)
 		{
-			this.Shared = new ObjectSharedProps(this);
 			this.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
 			this.ListPropertiesTabs.CollectionChanged += ListPropertiesTabs_CollectionChanged;
 			OnInit();
@@ -1763,8 +1655,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static GroupPropertyTabs Clone(ITreeConfigNode parent, GroupPropertyTabs from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupPropertyTabs vm = new GroupPropertyTabs();
-		    if (isDeep)
-		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    vm.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
 		    foreach(var t in from.ListPropertiesTabs)
 		        vm.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.Clone(vm, t, isDeep));
@@ -1774,8 +1669,11 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(GroupPropertyTabs to, GroupPropertyTabs from, bool isDeep = true)
 		{
-		    if (isDeep)
-		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListPropertiesTabs.ToList())
@@ -1834,7 +1732,11 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new GroupPropertyTabs();
-		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
 		    foreach(var t in m.ListPropertiesTabs)
 		        vm.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToVM(t));
@@ -1845,7 +1747,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_group_property_tabs ConvertToProto(GroupPropertyTabs vm)
 		{
 		    proto_group_property_tabs m = new proto_group_property_tabs();
-		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    foreach(var t in vm.ListPropertiesTabs)
 		        m.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToProto(t));
 		    return m;
@@ -1855,7 +1761,6 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Shared.Accept(visitor);
 			foreach(var t in this.ListPropertiesTabs)
 				t.Accept(visitor);
 			visitor.VisitEnd(this);
@@ -1864,24 +1769,44 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		
-		public ObjectSharedProps Shared
+		public string NameUi
 		{ 
 			set
 			{
-				if (_Shared != value)
+				if (_NameUi != value)
 				{
-					OnSharedChanging();
-		            _Shared = value;
-					OnSharedChanged();
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Shared; }
+			get { return _NameUi; }
 		}
-		private ObjectSharedProps _Shared;
-		partial void OnSharedChanging();
-		partial void OnSharedChanged();
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public SortedObservableCollection<GroupPropertyTabsTree> ListPropertiesTabs { get; set; }
@@ -1892,12 +1817,10 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupPropertyTabsTree : ConfigObjectBase<GroupPropertyTabsTree, GroupPropertyTabsTree.GroupPropertyTabsTreeValidator>, IComparable<GroupPropertyTabsTree>, IAccept
 	{
-	
 		public partial class GroupPropertyTabsTreeValidator : ValidatorBase<GroupPropertyTabsTree, GroupPropertyTabsTreeValidator> { }
 		#region CTOR
 		public GroupPropertyTabsTree() : base(GroupPropertyTabsTreeValidator.Validator)
 		{
-			this.Shared = new ObjectSharedProps(this);
 			this.ListPropertiesTab = new GroupPropertyTab(this);
 			this.ListPropertiesSubTabs = new GroupPropertyTabs(this);
 			OnInit();
@@ -1917,8 +1840,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static GroupPropertyTabsTree Clone(ITreeConfigNode parent, GroupPropertyTabsTree from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupPropertyTabsTree vm = new GroupPropertyTabsTree();
-		    if (isDeep)
-		        vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.Clone(vm, from.Shared, isDeep);
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
 		    if (isDeep)
 		        vm.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.Clone(vm, from.ListPropertiesTab, isDeep);
 		    if (isDeep)
@@ -1929,8 +1855,11 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		public static void Update(GroupPropertyTabsTree to, GroupPropertyTabsTree from, bool isDeep = true)
 		{
-		    if (isDeep)
-		        ObjectSharedProps.Update(to.Shared, from.Shared, isDeep);
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
 		    if (isDeep)
 		        GroupPropertyTab.Update(to.ListPropertiesTab, from.ListPropertiesTab, isDeep);
 		    if (isDeep)
@@ -1957,7 +1886,11 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new GroupPropertyTabsTree();
-		    vm.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToVM(m.Shared);
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
 		    vm.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToVM(m.ListPropertiesTab);
 		    vm.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToVM(m.ListPropertiesSubTabs);
 		    vm.OnInitFromDto();
@@ -1967,7 +1900,11 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_group_property_tabs_tree ConvertToProto(GroupPropertyTabsTree vm)
 		{
 		    proto_group_property_tabs_tree m = new proto_group_property_tabs_tree();
-		    m.Shared = vSharpStudio.vm.ViewModels.ObjectSharedProps.ConvertToProto(vm.Shared);
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
 		    m.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToProto(vm.ListPropertiesTab);
 		    m.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToProto(vm.ListPropertiesSubTabs);
 		    return m;
@@ -1977,7 +1914,6 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Shared.Accept(visitor);
 			this.ListPropertiesTab.Accept(visitor);
 			this.ListPropertiesSubTabs.Accept(visitor);
 			visitor.VisitEnd(this);
@@ -1986,24 +1922,44 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		
-		public ObjectSharedProps Shared
+		public string NameUi
 		{ 
 			set
 			{
-				if (_Shared != value)
+				if (_NameUi != value)
 				{
-					OnSharedChanging();
-		            _Shared = value;
-					OnSharedChanged();
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Shared; }
+			get { return _NameUi; }
 		}
-		private ObjectSharedProps _Shared;
-		partial void OnSharedChanging();
-		partial void OnSharedChanged();
+		private string _NameUi = "";
+		partial void OnNameUiChanging();
+		partial void OnNameUiChanged();
+		
+		
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
 		
 		
 		public GroupPropertyTab ListPropertiesTab
@@ -2049,7 +2005,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListProperties : ConfigObjectBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IAccept
 	{
-	
 		public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { }
 		#region CTOR
 		public GroupListProperties() : base(GroupListPropertiesValidator.Validator)
@@ -2256,7 +2211,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>, IAccept
 	{
-	
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
 		public Property() : base(PropertyValidator.Validator)
@@ -2417,7 +2371,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupPropertiesTree : ConfigObjectBase<GroupPropertiesTree, GroupPropertiesTree.GroupPropertiesTreeValidator>, IComparable<GroupPropertiesTree>, IAccept
 	{
-	
 		public partial class GroupPropertiesTreeValidator : ValidatorBase<GroupPropertiesTree, GroupPropertiesTreeValidator> { }
 		#region CTOR
 		public GroupPropertiesTree() : base(GroupPropertiesTreeValidator.Validator)
@@ -2652,7 +2605,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListConstants : ConfigObjectBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IAccept
 	{
-	
 		public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { }
 		#region CTOR
 		public GroupListConstants() : base(GroupListConstantsValidator.Validator)
@@ -2859,7 +2811,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IAccept
 	{
-	
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
 		public Constant() : base(ConstantValidator.Validator)
@@ -3020,7 +2971,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListEnumerations : ConfigObjectBase<GroupListEnumerations, GroupListEnumerations.GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IAccept
 	{
-	
 		public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { }
 		#region CTOR
 		public GroupListEnumerations() : base(GroupListEnumerationsValidator.Validator)
@@ -3227,7 +3177,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IAccept
 	{
-	
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
 		public Enumeration() : base(EnumerationValidator.Validator)
@@ -3458,7 +3407,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IAccept
 	{
-	
 		public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { }
 		#region CTOR
 		public EnumerationPair() : base(EnumerationPairValidator.Validator)
@@ -3615,7 +3563,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IAccept
 	{
-	
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
@@ -3983,7 +3930,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListCatalogs : ConfigObjectBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IAccept
 	{
-	
 		public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { }
 		#region CTOR
 		public GroupListCatalogs() : base(GroupListCatalogsValidator.Validator)
@@ -4190,7 +4136,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupDocuments : ConfigObjectBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IAccept
 	{
-	
 		public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { }
 		#region CTOR
 		public GroupDocuments() : base(GroupDocumentsValidator.Validator)
@@ -4379,7 +4324,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Document : ConfigObjectBase<Document, Document.DocumentValidator>, IComparable<Document>, IAccept
 	{
-	
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
 		public Document() : base(DocumentValidator.Validator)
@@ -4596,7 +4540,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListDocuments : ConfigObjectBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IAccept
 	{
-	
 		public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { }
 		#region CTOR
 		public GroupListDocuments() : base(GroupListDocumentsValidator.Validator)
@@ -4803,7 +4746,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListJournals : ConfigObjectBase<GroupListJournals, GroupListJournals.GroupListJournalsValidator>, IComparable<GroupListJournals>, IAccept
 	{
-	
 		public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { }
 		#region CTOR
 		public GroupListJournals() : base(GroupListJournalsValidator.Validator)
@@ -5010,7 +4952,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Journal : ConfigObjectBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IAccept
 	{
-	
 		public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { }
 		#region CTOR
 		public Journal() : base(JournalValidator.Validator)
@@ -5217,7 +5158,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListForms : ConfigObjectBase<GroupListForms, GroupListForms.GroupListFormsValidator>, IComparable<GroupListForms>, IAccept
 	{
-	
 		public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { }
 		#region CTOR
 		public GroupListForms() : base(GroupListFormsValidator.Validator)
@@ -5424,7 +5364,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Form : ConfigObjectBase<Form, Form.FormValidator>, IComparable<Form>, IAccept
 	{
-	
 		public partial class FormValidator : ValidatorBase<Form, FormValidator> { }
 		#region CTOR
 		public Form() : base(FormValidator.Validator)
@@ -5557,7 +5496,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class GroupListReports : ConfigObjectBase<GroupListReports, GroupListReports.GroupListReportsValidator>, IComparable<GroupListReports>, IAccept
 	{
-	
 		public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { }
 		#region CTOR
 		public GroupListReports() : base(GroupListReportsValidator.Validator)
@@ -5764,7 +5702,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class Report : ConfigObjectBase<Report, Report.ReportValidator>, IComparable<Report>, IAccept
 	{
-	
 		public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { }
 		#region CTOR
 		public Report() : base(ReportValidator.Validator)
@@ -5906,8 +5843,6 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(ConfigTree p);
 		void Visit(DataType p);
 		void VisitEnd(DataType p);
-		void Visit(ObjectSharedProps p);
-		void VisitEnd(ObjectSharedProps p);
 		void Visit(GroupPropertyTab p);
 		void VisitEnd(GroupPropertyTab p);
 		void Visit(GroupPropertyTabs p);
@@ -5960,7 +5895,6 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_config p);
 		void Visit(proto_config_tree p);
 		void Visit(proto_data_type p);
-		void Visit(proto_object_shared_props p);
 		void Visit(proto_group_property_tab p);
 		void Visit(proto_group_property_tabs p);
 		void Visit(proto_group_property_tabs_tree p);

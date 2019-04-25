@@ -91,11 +91,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(ObjectSharedProps p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfig.Visit(GroupPropertyTab p)
         {
             throw new NotImplementedException();
@@ -222,11 +217,6 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(Report p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(ObjectSharedProps p)
         {
             throw new NotImplementedException();
         }

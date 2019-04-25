@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rem $(SolutionDir)\generators\GenProtoToMvvm\bin\Debug\netcoreapp2.1\GenProtoToMvvm.dll $(TargetPath) Proto.Config $(SolutionDir)\vSharpStudio.vm\ViewModels\ProtoViewModels.cs&#xD;&#xA;rem $(SolutionDir)\generators\GenFromProto\bin\Debug\GenFromProto.exe $(TargetPath) Proto.Config $(SolutionDir)\vSharpStudio.vm\ViewModels\ProtoViewModels.cs" />
+    <Exec Command="rem $(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --csharp_out=$(SolutionDir)generators/GenFromProto $(SolutionDir)proto/vsharpstudio.proto" />
   </Target>
 
 </Project>

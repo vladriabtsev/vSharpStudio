@@ -73,11 +73,11 @@ namespace GenFromProto
             this.Write(">, IAccept\r\n{\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Declaration.ToTrailingComments("\t")));
+ //message.Declaration.ToTrailingComments("\t") 
             
             #line default
             #line hidden
-            this.Write("\r\n\tpublic partial class ");
+            this.Write("\tpublic partial class ");
             
             #line 11 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

@@ -16,27 +16,23 @@ option csharp_namespace = "Proto.Config";
 // use 'proto_' prefix for all messages !!!
 // ####################################### C O N F I G ##########################################
 message proto_group_configs {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-//	string name_ui = 4;
-	string description = 5;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
     repeated proto_config_tree list_configs = 6;
-	string relative_config_path = 7;
+    string relative_config_path = 7;
 }
 // Configuration config
 message proto_config {
-	enum EnumDbType {
-		MS_SQL_SERVER = 0;
-		MS_SQL_FILE = 1;
-	}
-	// Unique Guid for configuration (for comparison)
-	string guid = 1;
-	string version = 2;
-	string name = 3;
-	uint64 sorting_value = 4;
-	string name_ui = 5;
-	string description = 6;
+    // Unique Guid for configuration (for comparison)
+    string guid = 1;
+    string version = 2;
+    string name = 3;
+    uint64 sorting_value = 4;
+    string name_ui = 5;
+    string description = 6;
 
     // VM
     //string vm_namespace = 10;
@@ -49,21 +45,27 @@ message proto_config {
     //    1. Find DB type from 
     //    2. Create connection string from db_server, db_database_name, db_user
     bool is_db_from_connection_string = 11; 
-	string connection_string_name = 12;
+    string connection_string_name = 12;
+
+    enum EnumDbType {
+        MS_SQL_SERVER = 0;
+        MS_SQL_FILE = 1;
+    }
+
     EnumDbType db_type_enum = 13;
-	string db_server = 14;
-	string db_database_name = 15;
+    string db_server = 14;
+    string db_database_name = 15;
     bool is_db_windows_authentication = 16; 
-	string db_user = 17;
-	string db_password = 18;
-	// path to project with config file containing connection string. Usefull for UNIT tests.
+    string db_user = 17;
+    string db_password = 18;
+    // path to project with config file containing connection string. Usefull for UNIT tests.
     // it will override previous settings
-	string path_to_project_with_connection_string = 19;
+    string path_to_project_with_connection_string = 19;
 
     // GENERAL DB SETTINGS
 
-	string db_schema = 31;
-	string primary_key_name = 32;
+    string db_schema = 31;
+    string primary_key_name = 32;
     bool is_primary_key_clustered = 33; // MsSql
     bool is_memory_optimized = 34; // MsSql
     bool is_sequence_hi_lo = 35; // SequenceHiLo or IdentityColumn. MsSql
@@ -73,151 +75,169 @@ message proto_config {
     // CONFIG OBJECTS
 
     proto_group_configs group_configs = 100;
-	proto_group_list_constants group_constants = 101;
-	proto_group_list_enumerations group_enumerations = 102;
-	proto_group_list_catalogs group_catalogs = 103;
-	proto_group_documents group_documents = 104;
-	proto_group_list_journals group_journals = 105;
+    proto_group_list_constants group_constants = 101;
+    proto_group_list_enumerations group_enumerations = 102;
+    proto_group_list_catalogs group_catalogs = 103;
+    proto_group_documents group_documents = 104;
+    proto_group_list_journals group_journals = 105;
 }
 message proto_config_tree {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-//	string name_ui = 4;
-	string description = 5;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
     proto_config config_node = 6;
     repeated proto_config_tree list_configs = 7;
 }
 // ####################################### D A T A  T Y P E ##########################################
 message proto_data_type {
-	enum EnumDataType {
-		STRING = 0;
-		NUMERICAL = 1;
-		BOOL = 5;
+    enum EnumDataType {
+        STRING = 0;
+        NUMERICAL = 1;
+        BOOL = 5;
 
-		CONSTANT = 7;
-		ENUMERATION = 8;
-		CATALOG = 9;
-		CATALOGS = 10;
-		DOCUMENT = 11;
-		DOCUMENTS = 12;
+        CONSTANT = 7;
+        ENUMERATION = 8;
+        CATALOG = 9;
+        CATALOGS = 10;
+        DOCUMENT = 11;
+        DOCUMENTS = 12;
 
-		Any = 15;
-	}
-	EnumDataType data_type_enum = 1; 
-	uint32 length = 2; 
-	uint32 accuracy = 3; 
-	bool is_positive = 4; 
+        Any = 15;
+    }
+    EnumDataType data_type_enum = 1; 
+    uint32 length = 2; 
+    uint32 accuracy = 3; 
+    bool is_positive = 4; 
     string type_guid = 5;
     string min_value_string = 6;
     string max_value_string = 7;
     string object_name = 8;
 }
 // ####################################### P R O P E R T Y ##########################################
+/*
 message proto_object_shared_props {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-}
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+}*/
 
 message proto_group_property_tab {
-    proto_object_shared_props shared = 1;
-	repeated proto_property list_properties = 6;
+//    proto_object_shared_props shared = 1;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_property list_properties = 6;
 }
 message proto_group_property_tabs {
-    proto_object_shared_props shared = 1;
-	repeated proto_group_property_tabs_tree list_properties_tabs = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_group_property_tabs_tree list_properties_tabs = 6;
 }
 message proto_group_property_tabs_tree {
-    proto_object_shared_props shared = 1;
-	proto_group_property_tab list_properties_tab = 6;
-	proto_group_property_tabs list_properties_sub_tabs = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    proto_group_property_tab list_properties_tab = 6;
+    proto_group_property_tabs list_properties_sub_tabs = 7;
 }
 
 message proto_group_list_properties {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_property list_properties = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_property list_properties = 6;
 }
 message proto_property {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	proto_data_type data_type = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    proto_data_type data_type = 6;
 }
 message proto_group_properties_tree {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
     repeated proto_group_properties_tree list_properties_tree_groups = 6;
-	proto_group_list_properties group_properties = 7;
+    proto_group_list_properties group_properties = 7;
 }
 // ####################################### C O N S T A N T ##########################################
 message proto_group_list_constants {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_constant list_constants = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_constant list_constants = 6;
 }
+//
+// Constant application wise value
+//#[test-class]
 message proto_constant {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	proto_data_type data_type = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//#[test-nameui]
+    string name_ui = 4;
+    string description = 5;
+    proto_data_type data_type = 6;
 }
 // ####################################### E N U M E R A T I O N ##########################################
 message proto_group_list_enumerations {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_enumeration list_enumerations = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_enumeration list_enumerations = 6;
 }
 message proto_enumeration {
-	enum EnumEnumerationType {
-		STRING = 0;
-		BYTE = 1;
-		SHORT = 2;
-		INTEGER = 3;
-	}
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	EnumEnumerationType data_type_enum = 6; 
-	repeated proto_enumeration_pair list_values = 7;
+    enum EnumEnumerationType {
+        STRING = 0;
+        BYTE = 1;
+        SHORT = 2;
+        INTEGER = 3;
+    }
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    EnumEnumerationType data_type_enum = 6; 
+    repeated proto_enumeration_pair list_values = 7;
 }
 message proto_enumeration_pair {
-	string guid = 1;
+    string guid = 1;
     string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
     // TODO struct for different types, at least INTEGER
     string value = 6;
 }
 // ####################################### C A T A L O G ##########################################
 message proto_catalog {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
 
     bool_nullable is_primary_key_clustered = 10; // MsSql
     bool_nullable is_memory_optimized = 11; // MsSql
@@ -225,111 +245,111 @@ message proto_catalog {
     string hi_lo_sequence_name = 13; // MsSql
     string hi_lo_schema = 14; // MsSql
 
-	proto_group_list_properties group_properties = 15;
-	proto_group_list_forms group_forms = 17;
-	proto_group_list_reports group_reports = 18;
-	proto_group_list_catalogs group_sub_catalogs = 19;
+    proto_group_list_properties group_properties = 15;
+    proto_group_list_forms group_forms = 17;
+    proto_group_list_reports group_reports = 18;
+    proto_group_list_catalogs group_sub_catalogs = 19;
 }
 message proto_group_list_catalogs {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_catalog list_catalogs = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_catalog list_catalogs = 7;
 }
 // ####################################### D O C U M E N T ##########################################
 message proto_group_documents {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	proto_group_list_properties group_shared_properties = 6;
-	proto_group_list_documents group_list_documents = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    proto_group_list_properties group_shared_properties = 6;
+    proto_group_list_documents group_list_documents = 7;
 }
 message proto_document {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	proto_group_properties_tree group_properties_tree = 6;
-	proto_group_list_forms group_forms = 17;
-	proto_group_list_reports group_reports = 18;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    proto_group_properties_tree group_properties_tree = 6;
+    proto_group_list_forms group_forms = 17;
+    proto_group_list_reports group_reports = 18;
 }
 message proto_group_list_documents {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	repeated proto_document list_documents = 6;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    repeated proto_document list_documents = 6;
 }
 // ####################################### J O U R N A L ##########################################
 message proto_group_list_journals {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_property list_shared_properties = 6;
-	repeated proto_journal list_journals = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_property list_shared_properties = 6;
+    repeated proto_journal list_journals = 7;
 }
 message proto_journal {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_group_properties list_properties = 6;
-	repeated proto_document list_documents = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_group_properties list_properties = 6;
+    repeated proto_document list_documents = 7;
 }
 // ####################################### F O R M S ##########################################
 message proto_group_list_forms {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_property list_shared_properties = 6;
-	repeated proto_form list_forms = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_property list_shared_properties = 6;
+    repeated proto_form list_forms = 7;
 }
 message proto_form {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_group_properties list_properties = 6;
-	//repeated proto_document list_forms = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_group_properties list_properties = 6;
+    //repeated proto_document list_forms = 7;
 }
 // ####################################### R E P O R T S ##########################################
 message proto_group_list_reports {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_property list_shared_properties = 6;
-	repeated proto_report list_reports = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_property list_shared_properties = 6;
+    repeated proto_report list_reports = 7;
 }
 message proto_report {
-	string guid = 1;
-	string name = 2;
-	uint64 sorting_value = 3;
-	string name_ui = 4;
-	string description = 5;
-	//repeated proto_group_properties list_properties = 6;
-	//repeated proto_document list_documents = 7;
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string name_ui = 4;
+    string description = 5;
+    //repeated proto_group_properties list_properties = 6;
+    //repeated proto_document list_documents = 7;
 }
 // ####################################### N U L L A B L E ##########################################
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {
-	bool has_value = 1;
-	bool value = 2;
+    bool has_value = 1;
+    bool value = 2;
 }
 message string_nullable {
-	bool has_value = 1;
-	string value = 2;
+    bool has_value = 1;
+    string value = 2;
 }

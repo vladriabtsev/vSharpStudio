@@ -17,9 +17,12 @@ namespace vSharpStudio.vm.ViewModels
     internal interface ICanAddSubNode
     {
     }
-    internal interface ISubCount
+    internal interface IGroupListSubNodes
     {
         int Count { get; }
+        int IndexOf(ITreeConfigNode obj);
+        ITreeConfigNode GetNode(int index);
+//        void AddNew();
     }
     internal interface IListGroupNodes
     {
@@ -28,9 +31,5 @@ namespace vSharpStudio.vm.ViewModels
     internal interface IListNodes<T> where T : ISortingValue
     {
         SortedObservableCollection<T> ListNodes { get; }
-    }
-    interface IListProperties
-    {
-        SortedObservableCollection<Property> ListProperties { get; }
     }
 }

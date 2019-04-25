@@ -16,6 +16,7 @@ namespace GenFromProto
         public NameSpace(FileDescriptor root)
         {
             this.root = root;
+            //var kuku = root.FindTypeByName<MessageDescriptor>("CommentMessage");
             CollectMessages(root);
         }
 
