@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         public DataType(EnumDataType type, string guidOfType) : this()
         {
             this.DataTypeEnum = type;
-            this.TypeGuid = guidOfType;
+            this.ObjectGuid = guidOfType;
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.Catalog:

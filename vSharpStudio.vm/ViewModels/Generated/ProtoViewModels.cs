@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/26/2019 00:39:02
+// Auto generated on UTC 04/26/2019 00:58:43
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1162,7 +1162,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Length = from.Length;
 		    vm.Accuracy = from.Accuracy;
 		    vm.IsPositive = from.IsPositive;
-		    vm.TypeGuid = from.TypeGuid;
+		    vm.ObjectGuid = from.ObjectGuid;
 		    vm.MinValueString = from.MinValueString;
 		    vm.MaxValueString = from.MaxValueString;
 		    vm.ObjectName = from.ObjectName;
@@ -1174,7 +1174,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Length = from.Length;
 		    to.Accuracy = from.Accuracy;
 		    to.IsPositive = from.IsPositive;
-		    to.TypeGuid = from.TypeGuid;
+		    to.ObjectGuid = from.ObjectGuid;
 		    to.MinValueString = from.MinValueString;
 		    to.MaxValueString = from.MaxValueString;
 		    to.ObjectName = from.ObjectName;
@@ -1204,7 +1204,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Length = m.Length;
 		    vm.Accuracy = m.Accuracy;
 		    vm.IsPositive = m.IsPositive;
-		    vm.TypeGuid = m.TypeGuid;
+		    vm.ObjectGuid = m.ObjectGuid;
 		    vm.MinValueString = m.MinValueString;
 		    vm.MaxValueString = m.MaxValueString;
 		    vm.ObjectName = m.ObjectName;
@@ -1218,7 +1218,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Length = vm.Length;
 		    m.Accuracy = vm.Accuracy;
 		    m.IsPositive = vm.IsPositive;
-		    m.TypeGuid = vm.TypeGuid;
+		    m.ObjectGuid = vm.ObjectGuid;
 		    m.MinValueString = vm.MinValueString;
 		    m.MaxValueString = vm.MaxValueString;
 		    m.ObjectName = vm.ObjectName;
@@ -1315,24 +1315,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsPositiveChanged();
 		
 		
-		public string TypeGuid
+		public string ObjectGuid
 		{ 
 			set
 			{
-				if (_TypeGuid != value)
+				if (_ObjectGuid != value)
 				{
-					OnTypeGuidChanging();
-					_TypeGuid = value;
-					OnTypeGuidChanged();
+					OnObjectGuidChanging();
+					_ObjectGuid = value;
+					OnObjectGuidChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _TypeGuid; }
+			get { return _ObjectGuid; }
 		}
-		private string _TypeGuid = "";
-		partial void OnTypeGuidChanging();
-		partial void OnTypeGuidChanged();
+		private string _ObjectGuid = "";
+		partial void OnObjectGuidChanging();
+		partial void OnObjectGuidChanged();
 		
 		
 		public string MinValueString
