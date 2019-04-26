@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/26/2019 00:58:43
+// Auto generated on UTC 04/26/2019 02:08:22
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -14,6 +14,201 @@ namespace vSharpStudio.vm.ViewModels
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
+	
+	public partial class IdDbGenerator : ConfigObjectBase<IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator>, IComparable<IdDbGenerator>, IAccept
+	{
+		public partial class IdDbGeneratorValidator : ValidatorBase<IdDbGenerator, IdDbGeneratorValidator> { }
+		#region CTOR
+		public IdDbGenerator() : base(IdDbGeneratorValidator.Validator)
+		{
+			OnInit();
+		}
+		public IdDbGenerator(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(IdDbGenerator.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static IdDbGenerator Clone(ITreeConfigNode parent, IdDbGenerator from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    IdDbGenerator vm = new IdDbGenerator();
+		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
+		    vm.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
+		    vm.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
+		    vm.HiLoSequenceName = from.HiLoSequenceName;
+		    vm.HiLoSchema = from.HiLoSchema;
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(IdDbGenerator to, IdDbGenerator from, bool isDeep = true)
+		{
+		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
+		    to.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
+		    to.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
+		    to.HiLoSequenceName = from.HiLoSequenceName;
+		    to.HiLoSchema = from.HiLoSchema;
+		}
+		#region IEditable
+		public override IdDbGenerator Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return IdDbGenerator.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(IdDbGenerator from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    IdDbGenerator.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'id_db_generator' to 'IdDbGenerator'
+		public static IdDbGenerator ConvertToVM(id_db_generator m, IdDbGenerator vm = null)
+		{
+		    if (vm == null)
+		        vm = new IdDbGenerator();
+		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
+		    vm.IsMemoryOptimized = m.IsMemoryOptimized.HasValue ? m.IsMemoryOptimized.Value : (bool?)null;
+		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
+		    vm.HiLoSequenceName = m.HiLoSequenceName;
+		    vm.HiLoSchema = m.HiLoSchema;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'IdDbGenerator' to 'id_db_generator'
+		public static id_db_generator ConvertToProto(IdDbGenerator vm)
+		{
+		    id_db_generator m = new id_db_generator();
+		    m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
+		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
+		    m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
+		    m.IsMemoryOptimized.HasValue = vm.IsMemoryOptimized.HasValue;
+		    m.IsSequenceHiLo.Value = vm.IsSequenceHiLo.Value;
+		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
+		    m.HiLoSequenceName = vm.HiLoSequenceName;
+		    m.HiLoSchema = vm.HiLoSchema;
+		    return m;
+		}
+		public void Accept(IVisitorConfig visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		public bool? IsPrimaryKeyClustered
+		{ 
+			set
+			{
+				if (_IsPrimaryKeyClustered != value)
+				{
+					OnIsPrimaryKeyClusteredChanging();
+		            _IsPrimaryKeyClustered = value;
+					OnIsPrimaryKeyClusteredChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsPrimaryKeyClustered; }
+		}
+		private bool? _IsPrimaryKeyClustered;
+		partial void OnIsPrimaryKeyClusteredChanging();
+		partial void OnIsPrimaryKeyClusteredChanged();
+		
+		
+		public bool? IsMemoryOptimized
+		{ 
+			set
+			{
+				if (_IsMemoryOptimized != value)
+				{
+					OnIsMemoryOptimizedChanging();
+		            _IsMemoryOptimized = value;
+					OnIsMemoryOptimizedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsMemoryOptimized; }
+		}
+		private bool? _IsMemoryOptimized;
+		partial void OnIsMemoryOptimizedChanging();
+		partial void OnIsMemoryOptimizedChanged();
+		
+		
+		public bool? IsSequenceHiLo
+		{ 
+			set
+			{
+				if (_IsSequenceHiLo != value)
+				{
+					OnIsSequenceHiLoChanging();
+		            _IsSequenceHiLo = value;
+					OnIsSequenceHiLoChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsSequenceHiLo; }
+		}
+		private bool? _IsSequenceHiLo;
+		partial void OnIsSequenceHiLoChanging();
+		partial void OnIsSequenceHiLoChanged();
+		
+		
+		public string HiLoSequenceName
+		{ 
+			set
+			{
+				if (_HiLoSequenceName != value)
+				{
+					OnHiLoSequenceNameChanging();
+					_HiLoSequenceName = value;
+					OnHiLoSequenceNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _HiLoSequenceName; }
+		}
+		private string _HiLoSequenceName = "";
+		partial void OnHiLoSequenceNameChanging();
+		partial void OnHiLoSequenceNameChanged();
+		
+		
+		public string HiLoSchema
+		{ 
+			set
+			{
+				if (_HiLoSchema != value)
+				{
+					OnHiLoSchemaChanging();
+					_HiLoSchema = value;
+					OnHiLoSchemaChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _HiLoSchema; }
+		}
+		private string _HiLoSchema = "";
+		partial void OnHiLoSchemaChanging();
+		partial void OnHiLoSchemaChanged();
+		#endregion Properties
+	}
 	
 	public partial class GroupConfigs : ConfigObjectBase<GroupConfigs, GroupConfigs.GroupConfigsValidator>, IComparable<GroupConfigs>, IAccept
 	{
@@ -227,6 +422,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
+			this.IdDbGenerator = new IdDbGenerator(this);
 			this.GroupConfigs = new GroupConfigs(this);
 			this.GroupConstants = new GroupListConstants(this);
 			this.GroupEnumerations = new GroupListEnumerations(this);
@@ -267,11 +463,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 		    vm.DbSchema = from.DbSchema;
 		    vm.PrimaryKeyName = from.PrimaryKeyName;
-		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
-		    vm.IsMemoryOptimized = from.IsMemoryOptimized;
-		    vm.IsSequenceHiLo = from.IsSequenceHiLo;
-		    vm.HiLoSequenceName = from.HiLoSequenceName;
-		    vm.HiLoSchema = from.HiLoSchema;
+		    if (isDeep)
+		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
 		    if (isDeep)
 		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.Clone(vm, from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -307,11 +500,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 		    to.DbSchema = from.DbSchema;
 		    to.PrimaryKeyName = from.PrimaryKeyName;
-		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
-		    to.IsMemoryOptimized = from.IsMemoryOptimized;
-		    to.IsSequenceHiLo = from.IsSequenceHiLo;
-		    to.HiLoSequenceName = from.HiLoSequenceName;
-		    to.HiLoSchema = from.HiLoSchema;
+		    if (isDeep)
+		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
 		    if (isDeep)
 		        GroupConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -363,11 +553,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString;
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered;
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized;
-		    vm.IsSequenceHiLo = m.IsSequenceHiLo;
-		    vm.HiLoSequenceName = m.HiLoSequenceName;
-		    vm.HiLoSchema = m.HiLoSchema;
+		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
 		    vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs);
 		    vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants);
 		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations);
@@ -398,11 +584,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString;
 		    m.DbSchema = vm.DbSchema;
 		    m.PrimaryKeyName = vm.PrimaryKeyName;
-		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered;
-		    m.IsMemoryOptimized = vm.IsMemoryOptimized;
-		    m.IsSequenceHiLo = vm.IsSequenceHiLo;
-		    m.HiLoSequenceName = vm.HiLoSequenceName;
-		    m.HiLoSchema = vm.HiLoSchema;
+		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToProto(vm.GroupConfigs);
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
@@ -416,6 +598,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
+			this.IdDbGenerator.Accept(visitor);
 			this.GroupConfigs.Accept(visitor);
 			this.GroupConstants.Accept(visitor);
 			this.GroupEnumerations.Accept(visitor);
@@ -707,105 +890,25 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnPrimaryKeyNameChanging();
 		partial void OnPrimaryKeyNameChanged();
 		
-		
-		public bool IsPrimaryKeyClustered
+		[ExpandableObject()]
+		public IdDbGenerator IdDbGenerator
 		{ 
 			set
 			{
-				if (_IsPrimaryKeyClustered != value)
+				if (_IdDbGenerator != value)
 				{
-					OnIsPrimaryKeyClusteredChanging();
-					_IsPrimaryKeyClustered = value;
-					OnIsPrimaryKeyClusteredChanged();
+					OnIdDbGeneratorChanging();
+		            _IdDbGenerator = value;
+					OnIdDbGeneratorChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _IsPrimaryKeyClustered; }
+			get { return _IdDbGenerator; }
 		}
-		private bool _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging();
-		partial void OnIsPrimaryKeyClusteredChanged();
-		
-		
-		public bool IsMemoryOptimized
-		{ 
-			set
-			{
-				if (_IsMemoryOptimized != value)
-				{
-					OnIsMemoryOptimizedChanging();
-					_IsMemoryOptimized = value;
-					OnIsMemoryOptimizedChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsMemoryOptimized; }
-		}
-		private bool _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging();
-		partial void OnIsMemoryOptimizedChanged();
-		
-		
-		public bool IsSequenceHiLo
-		{ 
-			set
-			{
-				if (_IsSequenceHiLo != value)
-				{
-					OnIsSequenceHiLoChanging();
-					_IsSequenceHiLo = value;
-					OnIsSequenceHiLoChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsSequenceHiLo; }
-		}
-		private bool _IsSequenceHiLo;
-		partial void OnIsSequenceHiLoChanging();
-		partial void OnIsSequenceHiLoChanged();
-		
-		
-		public string HiLoSequenceName
-		{ 
-			set
-			{
-				if (_HiLoSequenceName != value)
-				{
-					OnHiLoSequenceNameChanging();
-					_HiLoSequenceName = value;
-					OnHiLoSequenceNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSequenceName; }
-		}
-		private string _HiLoSequenceName = "";
-		partial void OnHiLoSequenceNameChanging();
-		partial void OnHiLoSequenceNameChanged();
-		
-		
-		public string HiLoSchema
-		{ 
-			set
-			{
-				if (_HiLoSchema != value)
-				{
-					OnHiLoSchemaChanging();
-					_HiLoSchema = value;
-					OnHiLoSchemaChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSchema; }
-		}
-		private string _HiLoSchema = "";
-		partial void OnHiLoSchemaChanging();
-		partial void OnHiLoSchemaChanged();
+		private IdDbGenerator _IdDbGenerator;
+		partial void OnIdDbGeneratorChanging();
+		partial void OnIdDbGeneratorChanged();
 		
 		
 		public GroupConfigs GroupConfigs
@@ -3560,6 +3663,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
 		{
+			this.IdDbGenerator = new IdDbGenerator(this);
 			this.GroupProperties = new GroupListProperties(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
@@ -3586,11 +3690,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
-		    vm.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
-		    vm.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
-		    vm.HiLoSequenceName = from.HiLoSequenceName;
-		    vm.HiLoSchema = from.HiLoSchema;
+		    if (isDeep)
+		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -3610,11 +3711,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
-		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
-		    to.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
-		    to.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
-		    to.HiLoSequenceName = from.HiLoSequenceName;
-		    to.HiLoSchema = from.HiLoSchema;
+		    if (isDeep)
+		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -3650,11 +3748,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized.HasValue ? m.IsMemoryOptimized.Value : (bool?)null;
-		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
-		    vm.HiLoSequenceName = m.HiLoSequenceName;
-		    vm.HiLoSchema = m.HiLoSchema;
+		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
 		    vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties);
 		    vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms);
 		    vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports);
@@ -3671,14 +3765,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
-		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
-		    m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
-		    m.IsMemoryOptimized.HasValue = vm.IsMemoryOptimized.HasValue;
-		    m.IsSequenceHiLo.Value = vm.IsSequenceHiLo.Value;
-		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
-		    m.HiLoSequenceName = vm.HiLoSequenceName;
-		    m.HiLoSchema = vm.HiLoSchema;
+		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
@@ -3690,6 +3777,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
+			this.IdDbGenerator.Accept(visitor);
 			this.GroupProperties.Accept(visitor);
 			this.GroupForms.Accept(visitor);
 			this.GroupReports.Accept(visitor);
@@ -3739,105 +3827,25 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		
-		
-		public bool? IsPrimaryKeyClustered
+		[ExpandableObject()]
+		public IdDbGenerator IdDbGenerator
 		{ 
 			set
 			{
-				if (_IsPrimaryKeyClustered != value)
+				if (_IdDbGenerator != value)
 				{
-					OnIsPrimaryKeyClusteredChanging();
-		            _IsPrimaryKeyClustered = value;
-					OnIsPrimaryKeyClusteredChanged();
+					OnIdDbGeneratorChanging();
+		            _IdDbGenerator = value;
+					OnIdDbGeneratorChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _IsPrimaryKeyClustered; }
+			get { return _IdDbGenerator; }
 		}
-		private bool? _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging();
-		partial void OnIsPrimaryKeyClusteredChanged();
-		
-		
-		public bool? IsMemoryOptimized
-		{ 
-			set
-			{
-				if (_IsMemoryOptimized != value)
-				{
-					OnIsMemoryOptimizedChanging();
-		            _IsMemoryOptimized = value;
-					OnIsMemoryOptimizedChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsMemoryOptimized; }
-		}
-		private bool? _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging();
-		partial void OnIsMemoryOptimizedChanged();
-		
-		
-		public bool? IsSequenceHiLo
-		{ 
-			set
-			{
-				if (_IsSequenceHiLo != value)
-				{
-					OnIsSequenceHiLoChanging();
-		            _IsSequenceHiLo = value;
-					OnIsSequenceHiLoChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsSequenceHiLo; }
-		}
-		private bool? _IsSequenceHiLo;
-		partial void OnIsSequenceHiLoChanging();
-		partial void OnIsSequenceHiLoChanged();
-		
-		
-		public string HiLoSequenceName
-		{ 
-			set
-			{
-				if (_HiLoSequenceName != value)
-				{
-					OnHiLoSequenceNameChanging();
-					_HiLoSequenceName = value;
-					OnHiLoSequenceNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSequenceName; }
-		}
-		private string _HiLoSequenceName = "";
-		partial void OnHiLoSequenceNameChanging();
-		partial void OnHiLoSequenceNameChanged();
-		
-		
-		public string HiLoSchema
-		{ 
-			set
-			{
-				if (_HiLoSchema != value)
-				{
-					OnHiLoSchemaChanging();
-					_HiLoSchema = value;
-					OnHiLoSchemaChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSchema; }
-		}
-		private string _HiLoSchema = "";
-		partial void OnHiLoSchemaChanging();
-		partial void OnHiLoSchemaChanged();
+		private IdDbGenerator _IdDbGenerator;
+		partial void OnIdDbGeneratorChanging();
+		partial void OnIdDbGeneratorChanged();
 		
 		
 		public GroupListProperties GroupProperties
@@ -4324,6 +4332,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTree = new GroupPropertiesTree(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
+			this.IdDbGenerator = new IdDbGenerator(this);
 			OnInit();
 		}
 		public Document(ITreeConfigNode parent) : this()
@@ -4352,6 +4361,8 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
 		    if (isDeep)
 		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
+		    if (isDeep)
+		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4369,6 +4380,8 @@ namespace vSharpStudio.vm.ViewModels
 		        GroupListForms.Update(to.GroupForms, from.GroupForms, isDeep);
 		    if (isDeep)
 		        GroupListReports.Update(to.GroupReports, from.GroupReports, isDeep);
+		    if (isDeep)
+		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
 		}
 		#region IEditable
 		public override Document Backup()
@@ -4399,6 +4412,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.GroupPropertiesTree = vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(m.GroupPropertiesTree);
 		    vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms);
 		    vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports);
+		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4414,6 +4428,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupPropertiesTree = vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToProto(vm.GroupPropertiesTree);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
+		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
 		    return m;
 		}
 		public void Accept(IVisitorConfig visitor) 
@@ -4424,6 +4439,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTree.Accept(visitor);
 			this.GroupForms.Accept(visitor);
 			this.GroupReports.Accept(visitor);
+			this.IdDbGenerator.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4528,6 +4544,26 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListReports _GroupReports;
 		partial void OnGroupReportsChanging();
 		partial void OnGroupReportsChanged();
+		
+		[ExpandableObject()]
+		public IdDbGenerator IdDbGenerator
+		{ 
+			set
+			{
+				if (_IdDbGenerator != value)
+				{
+					OnIdDbGeneratorChanging();
+		            _IdDbGenerator = value;
+					OnIdDbGeneratorChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IdDbGenerator; }
+		}
+		private IdDbGenerator _IdDbGenerator;
+		partial void OnIdDbGeneratorChanging();
+		partial void OnIdDbGeneratorChanged();
 		#endregion Properties
 	}
 	
@@ -5828,6 +5864,8 @@ namespace vSharpStudio.vm.ViewModels
 	public interface IVisitorConfig
 	{
 	    CancellationToken Token { get; }
+		void Visit(IdDbGenerator p);
+		void VisitEnd(IdDbGenerator p);
 		void Visit(GroupConfigs p);
 		void VisitEnd(GroupConfigs p);
 		void Visit(Config p);
@@ -5884,6 +5922,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
+		void Visit(id_db_generator p);
 		void Visit(proto_group_configs p);
 		void Visit(proto_config p);
 		void Visit(proto_config_tree p);

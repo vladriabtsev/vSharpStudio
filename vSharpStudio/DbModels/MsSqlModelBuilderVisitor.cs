@@ -31,8 +31,8 @@ namespace vSharpStudio.DbModels
         {
             this._model = null;
             this._config = m;
-            if (this._config.IsSequenceHiLo)
-                this._modelBuilder.ForSqlServerUseSequenceHiLo(this._config.HiLoSequenceName, this._config.HiLoSchema);
+            if (this._config.IdDbGenerator.IsSequenceHiLo ?? false)
+                this._modelBuilder.ForSqlServerUseSequenceHiLo(this._config.IdDbGenerator.HiLoSequenceName, this._config.IdDbGenerator.HiLoSchema);
             else
                 this._modelBuilder.ForSqlServerUseIdentityColumns();
         }
@@ -316,6 +316,16 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfig.VisitEnd(GroupListReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(IdDbGenerator p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(IdDbGenerator p)
         {
             throw new NotImplementedException();
         }

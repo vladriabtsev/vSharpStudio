@@ -34,26 +34,26 @@ namespace vSharpStudio.xUnit
             Catalog vm = new Catalog
             {
                 Name = "test1",
-                HiLoSchema = "schema1"
             };
+            vm.IdDbGenerator.HiLoSchema = "schema1";
             vm.BeginEdit();
             vm.Name = "test2";
-            vm.HiLoSchema = "schema2";
+            vm.IdDbGenerator.HiLoSchema = "schema2";
             vm.CancelEdit();
             Assert.True(vm.Name == "test1");
-            Assert.True(vm.HiLoSchema == "schema1");
+            Assert.True(vm.IdDbGenerator.HiLoSchema == "schema1");
         }
         [Fact]
         public void Editable012CanCancelSameLevelNullable()
         {
             Catalog vm = new Catalog
             {
-                IsPrimaryKeyClustered = true
             };
+            vm.IdDbGenerator.IsPrimaryKeyClustered = true;
             vm.BeginEdit();
-            vm.IsPrimaryKeyClustered = false;
+            vm.IdDbGenerator.IsPrimaryKeyClustered = false;
             vm.CancelEdit();
-            Assert.True(vm.IsPrimaryKeyClustered);
+            Assert.True(vm.IdDbGenerator.IsPrimaryKeyClustered);
         }
         [Fact]
         public void Editable013CanCancelSecondLevelSimpleProperty()

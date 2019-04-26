@@ -141,6 +141,11 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
+        void IVisitorConfig.Visit(IdDbGenerator p)
+        {
+            throw new NotImplementedException();
+        }
+
         void IVisitorConfig.VisitEnd(Config m)
         {
             throw new NotImplementedException();
@@ -267,6 +272,11 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfig.VisitEnd(GroupListReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(IdDbGenerator p)
         {
             throw new NotImplementedException();
         }

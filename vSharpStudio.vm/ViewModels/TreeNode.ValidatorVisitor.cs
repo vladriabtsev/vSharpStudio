@@ -354,5 +354,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        void IVisitorConfig.Visit(IdDbGenerator p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(IdDbGenerator p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

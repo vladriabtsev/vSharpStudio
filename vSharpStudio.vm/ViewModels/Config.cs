@@ -141,6 +141,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
             });
+            t.PropertyNameAction(p => p.IdDbGenerator, (m) =>
+            {
+                res.DicByProperty[m] = sb.Clear().ExpandableObjectAttribute().ToString();
+            });
             return res;
         }
     }
