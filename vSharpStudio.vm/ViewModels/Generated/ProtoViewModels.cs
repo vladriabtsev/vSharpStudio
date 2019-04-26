@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/25/2019 17:55:13
+// Auto generated on UTC 04/26/2019 00:39:02
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1139,7 +1139,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public partial class DataType : ConfigObjectBase<DataType, DataType.DataTypeValidator>, IComparable<DataType>, IAccept
+	public partial class DataType : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>
 	{
 		public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { }
 		#region CTOR
@@ -1155,11 +1155,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public override void Sort(Type type)
-		{
-		    //throw new Exception();
-		}
-		public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true, bool isNewGuid = false)
+		public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true)
 		{
 		    DataType vm = new DataType();
 		    vm.DataTypeEnum = from.DataTypeEnum;
@@ -1170,8 +1166,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.MinValueString = from.MinValueString;
 		    vm.MaxValueString = from.MaxValueString;
 		    vm.ObjectName = from.ObjectName;
-		    if (isNewGuid)
-		        vm.SetNewGuid();
 		    return vm;
 		}
 		public static void Update(DataType to, DataType from, bool isDeep = true)
@@ -1214,7 +1208,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.MinValueString = m.MinValueString;
 		    vm.MaxValueString = m.MaxValueString;
 		    vm.ObjectName = m.ObjectName;
-		    vm.OnInitFromDto();
 		    return vm;
 		}
 		// Conversion from 'DataType' to 'proto_data_type'

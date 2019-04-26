@@ -34,11 +34,11 @@ namespace vSharpStudio.vm.ViewModels
         #region ITreeNode
         //public string NodeText { get { return this.Name; } }
         #endregion ITreeNode
-        public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
+        public static Proto.Attr.ClassData GetDicPropertyAttributes()
         {
             Enumeration t = new Enumeration();
             StringBuilder sb = new StringBuilder();
-            Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
+            Proto.Attr.ClassData res = new Proto.Attr.ClassData();
             t.PropertyNameAction(p => p.NameUi, (m) =>
             {
                 res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();

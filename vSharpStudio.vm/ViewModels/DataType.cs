@@ -147,6 +147,8 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger _MaxValue;
+        [BrowsableAttribute(false)]
+        public ITreeConfigNode Parent { get; set; }
 
         #region Visibility
 
@@ -182,6 +184,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
+        [BrowsableAttribute(false)]
         public Visibility VisibilityLength
         {
             set
@@ -194,6 +197,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return _VisibilityLength; }
         }
         private Visibility _VisibilityLength = Visibility.Collapsed;
+        [BrowsableAttribute(false)]
         public Visibility VisibilityAccuracy
         {
             set
@@ -206,6 +210,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return _VisibilityAccuracy; }
         }
         private Visibility _VisibilityAccuracy = Visibility.Collapsed;
+        [BrowsableAttribute(false)]
         public Visibility VisibilityObjectName
         {
             set
@@ -226,11 +231,12 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion ITreeNode
 
-        public static Proto.Attr.DicPropAttrs GetDicPropertyAttributes()
+        public static Proto.Attr.ClassData GetDicPropertyAttributes()
         {
             DataType t = new DataType();
             StringBuilder sb = new StringBuilder();
-            Proto.Attr.DicPropAttrs res = new Proto.Attr.DicPropAttrs();
+            Proto.Attr.ClassData res = new Proto.Attr.ClassData();
+            res.BaseClass= "ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>";
             t.PropertyNameAction(p => p.DataTypeEnum, (m) =>
             {
                 res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();

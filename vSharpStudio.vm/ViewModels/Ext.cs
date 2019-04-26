@@ -6,11 +6,11 @@ namespace vSharpStudio.vm.ViewModels
 {
     public static class Ext
     {
-        public static Proto.Attr.DicClassPropAttrs GetDicAttributes()
+        public static Proto.Attr.ModelData GetDicAttributes()
         {
             if (Ext.res != null)
                 return Ext.res;
-            Ext.res = new Proto.Attr.DicClassPropAttrs();
+            Ext.res = new Proto.Attr.ModelData();
             Ext.res.DicByClass[typeof(Catalog).Name] = Catalog.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(Config).Name] = Config.GetDicPropertyAttributes();
             Ext.res.DicByClass[typeof(Constant).Name] = Constant.GetDicPropertyAttributes();
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
             Ext.res.DicByClass[typeof(Property).Name] = Property.GetDicPropertyAttributes();
             return Ext.res;
         }
-        private static Proto.Attr.DicClassPropAttrs res = null;
+        private static Proto.Attr.ModelData res = null;
 
 
         internal static StringBuilder BrowsableAttribute(this StringBuilder prev, bool flag)

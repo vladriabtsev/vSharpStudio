@@ -105,11 +105,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(DataType p)
-        {
-            OnVisit(p);
-        }
-
         void IVisitorConfig.Visit(Constant m)
         {
             OnVisit(m);
@@ -136,11 +131,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(Property m)
-        {
-            OnVisitEnd(m);
-        }
-
-        void IVisitorConfig.VisitEnd(DataType m)
         {
             OnVisitEnd(m);
         }
@@ -351,6 +341,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         void IVisitorConfig.VisitEnd(GroupListReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.Visit(DataType p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfig.VisitEnd(DataType p)
         {
             throw new NotImplementedException();
         }

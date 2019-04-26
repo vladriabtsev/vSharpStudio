@@ -42,35 +42,20 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" : ConfigObjectBase<");
+            this.Write(" : ");
             
             #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.baseClass));
             
             #line default
             #line hidden
-            this.Write(", ");
             
             #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.interfaces));
             
             #line default
             #line hidden
-            this.Write(".");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Validator>, IComparable<");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(">, IAccept\r\n{\r\n");
+            this.Write("\r\n{\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  //message.Declaration.ToTrailingComments("\t") 

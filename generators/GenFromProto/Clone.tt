@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<# if (!this.isNewBaseClass) { #>
 public override void Sort(Type type)
 {
 <#    int isort=0;
@@ -19,7 +20,8 @@ public override void Sort(Type type)
     //throw new Exception();
 <#    } #>
 }
-public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true, bool isNewGuid = false)
+<# } #>
+public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (!this.isNewBaseClass) { #>, bool isNewGuid = false<# } #>)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
@@ -38,9 +40,11 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } 
      } 
-     #>
+if (!this.isNewBaseClass) {
+#>
     if (isNewGuid)
         vm.SetNewGuid();
+<# } #>
     return vm;
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
@@ -133,7 +137,9 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 <#      } 
      } 
      #>
+<# if (!this.isNewBaseClass) { #>
     vm.OnInitFromDto();
+<# } #>
     return vm;
 }
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'
