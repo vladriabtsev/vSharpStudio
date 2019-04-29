@@ -524,12 +524,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeRemove()
         {
-            (this.Parent as IListGroupNodes).ListNodes.Remove(this);
-            //(this.Parent as GroupCatalogs).ListCatalogs.Remove(this);
-            //(this.Parent as GroupConstants).ListConstants.Remove(this);
-            //(this.Parent as GroupEnumerations).ListEnumerations.Remove(this);
-            //(this.Parent as GroupJournals).ListJournals.Remove(this);
-            //(this.Parent as IListProperties).ListProperties.Remove(this);
+            if (this.Parent is IListNodes<T>)
+                (this.Parent as IListNodes<T>).ListNodes.Remove((T)this);
+            else
+                throw new Exception();
         }
 
         public bool NodeCanLeft()
