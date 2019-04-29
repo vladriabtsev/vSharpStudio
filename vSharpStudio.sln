@@ -22,19 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generators", "generators", "{09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}"
-	ProjectSection(SolutionItems) = preProject
-		generators\BaseGeneratorFromDb.tt = generators\BaseGeneratorFromDb.tt
-		generators\BaseGeneratorFromNamespaces.tt = generators\BaseGeneratorFromNamespaces.tt
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeForTT", "generators\CodeForTT\CodeForTT.csproj", "{643F1C96-281C-4FB8-BCF9-02AA930541A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.proto", "vSharpStudio.proto\vSharpStudio.proto.csproj", "{EC5B8D66-BBC5-4183-8381-1D6B6181734E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeForTT.xUnit", "generators\CodeForTT.xUnit\CodeForTT.xUnit.csproj", "{C0FBA001-51D9-47F5-BF0B-40B419C96B40}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D591315D-E1AF-417C-A224-CBAA5238A862} = {D591315D-E1AF-417C-A224-CBAA5238A862}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C0E0B3FB-AC8D-4459-A712-23C2F7CF5441}"
 	ProjectSection(SolutionItems) = preProject
@@ -92,24 +81,12 @@ Global
 		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.DebugTest|Any CPU.ActiveCfg = DebugTest|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.DebugTest|Any CPU.Build.0 = DebugTest|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
@@ -145,8 +122,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{643F1C96-281C-4FB8-BCF9-02AA930541A3} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
-		{C0FBA001-51D9-47F5-BF0B-40B419C96B40} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
 		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
 		{D4B30117-ADAE-4D8E-A37C-931846998EC0} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
 		{E0EBA1FB-4B08-4546-BDD5-093C533713FE} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}

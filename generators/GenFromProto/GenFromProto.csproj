@@ -147,6 +147,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetDir)*.* $(ProjectDir)bin\
+cd $(ProjectDir)bin\
 $(ProjectDir)bin\$(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

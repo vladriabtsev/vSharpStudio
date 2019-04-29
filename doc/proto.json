@@ -229,7 +229,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -350,7 +350,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -662,7 +662,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -824,7 +824,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -925,7 +925,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1006,7 +1006,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1077,7 +1077,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1097,7 +1097,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1107,7 +1107,7 @@
             },
             {
               "name": "description",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;",
+              "description": "@attr [PropertyOrderAttribute(3)]\n\nrepeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1138,7 +1138,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1209,7 +1209,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1290,7 +1290,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1361,7 +1361,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1432,7 +1432,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1503,7 +1503,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1574,7 +1574,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1594,7 +1594,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1604,7 +1604,7 @@
             },
             {
               "name": "description",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1645,7 +1645,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1716,7 +1716,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1787,7 +1787,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1807,7 +1807,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1817,7 +1817,7 @@
             },
             {
               "name": "description",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1858,7 +1858,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1939,7 +1939,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1959,7 +1959,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1969,7 +1969,7 @@
             },
             {
               "name": "description",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2010,7 +2010,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2030,7 +2030,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2040,7 +2040,7 @@
             },
             {
               "name": "description",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2081,7 +2081,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2101,7 +2101,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2111,7 +2111,7 @@
             },
             {
               "name": "description",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2162,7 +2162,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2233,7 +2233,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2304,7 +2304,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2324,7 +2324,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2334,7 +2334,7 @@
             },
             {
               "name": "description",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;",
+              "description": "@attr [PropertyOrderAttribute(3)]\n\nrepeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;",
               "label": "",
               "type": "string",
               "longType": "string",

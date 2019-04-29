@@ -15,7 +15,19 @@
         </Grid.RowDefinitions>
         <!--Menu-->
         <Grid>
-            <TextBlock Text="Menu" />
+            <ToolBarPanel>
+                <ToolBar>
+                    <Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
+                        <ContentControl Template="{StaticResource iconSave}" />
+                    </Button>
+                    <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
+                        <ContentControl Template="{StaticResource iconSaveAll}" />
+                    </Button>-->
+                    <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Alt-S - save config as">
+                        <ContentControl Template="{StaticResource iconSaveAs}" />
+                    </Button>
+                </ToolBar>
+            </ToolBarPanel>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

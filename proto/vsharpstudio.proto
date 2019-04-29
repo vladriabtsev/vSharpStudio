@@ -33,6 +33,7 @@ message id_db_generator {
  */
 message proto_group_configs {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
 //  string name_ui = 4;
@@ -45,6 +46,7 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     string version = 2;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 3;
     uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(2)]
@@ -155,25 +157,34 @@ message proto_object_shared_props {
 message proto_group_property_tab {
 //    proto_object_shared_props shared = 1;
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     repeated proto_property list_properties = 6;
 }
 message proto_group_property_tabs {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     repeated proto_group_property_tabs_tree list_properties_tabs = 6;
 }
 message proto_group_property_tabs_tree {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     proto_group_property_tab list_properties_tab = 6;
     proto_group_property_tabs list_properties_sub_tabs = 7;
@@ -181,6 +192,7 @@ message proto_group_property_tabs_tree {
 
 message proto_group_list_properties {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -191,6 +203,7 @@ message proto_group_list_properties {
 }
 message proto_property {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -202,6 +215,7 @@ message proto_property {
 }
 message proto_group_properties_tree {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -217,6 +231,7 @@ message proto_group_properties_tree {
  */
 message proto_group_list_constants {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -230,6 +245,7 @@ message proto_group_list_constants {
 //#[test-class]
 message proto_constant {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -245,6 +261,7 @@ message proto_constant {
  */
   message proto_group_list_enumerations {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -261,6 +278,7 @@ message proto_enumeration {
         INTEGER = 3;
     }
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -273,6 +291,7 @@ message proto_enumeration {
 }
 message proto_enumeration_pair {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -288,6 +307,7 @@ message proto_enumeration_pair {
  */
 message proto_catalog {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -305,6 +325,7 @@ message proto_catalog {
 }
 message proto_group_list_catalogs {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -319,6 +340,7 @@ message proto_group_list_catalogs {
  */
 message proto_group_documents {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -330,6 +352,7 @@ message proto_group_documents {
 }
 message proto_document {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -344,6 +367,7 @@ message proto_document {
 }
 message proto_group_list_documents {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -358,6 +382,7 @@ message proto_group_list_documents {
  */
 message proto_group_list_journals {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -369,6 +394,7 @@ message proto_group_list_journals {
 }
 message proto_journal {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -384,18 +410,24 @@ message proto_journal {
  */
 message proto_group_list_forms {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
     repeated proto_form list_forms = 7;
 }
 message proto_form {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
@@ -406,18 +438,24 @@ message proto_form {
  */
 message proto_group_list_reports {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
     repeated proto_report list_reports = 7;
 }
 message proto_report {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;

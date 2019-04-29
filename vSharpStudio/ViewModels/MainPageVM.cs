@@ -54,6 +54,56 @@ namespace vSharpStudio.ViewModels
         }
         private ConfigRoot _Model;
 
+        #region Main
+
+        public vCommand CommandConfigSave
+        {
+            get
+            {
+                return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
+                (o) => { this.Model.Save(); },
+                (o) => { return this.Model != null && !string.IsNullOrEmpty(_FilePathSaveAs); }));
+            }
+        }
+        private vCommand _CommandConfigSave;
+        public vCommand CommandConfigSaveAs
+        {
+            get
+            {
+                return _CommandConfigSaveAs ?? (_CommandConfigSaveAs = vCommand.Create(
+                (o) => { this.Model.SaveAs(); },
+                (o) => { return this.Model != null; }));
+            }
+        }
+        private vCommand _CommandConfigSaveAs;
+        public string FilePathSaveAs
+        {
+            get { return _FilePathSaveAs; }
+            set
+            {
+                _FilePathSaveAs = value;
+                NotifyPropertyChanged();
+                SaveToolTip = _saveBaseToolTip + " as " + _FilePathSaveAs;
+                CommandConfigSave.RaiseCanExecuteChanged();
+            }
+        }
+        private string _FilePathSaveAs;
+        public string SaveToolTip
+        {
+            get { return _SaveToolTip; }
+            set
+            {
+                _SaveToolTip = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private string _SaveToolTip = _saveBaseToolTip;
+        private const string _saveBaseToolTip = "Ctrl-S - save config";
+
+        #endregion Main
+
+        #region ConfigTree
+
         public vCommand CommandAddNew
         {
             get
@@ -154,5 +204,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandSelectionUp;
+
+        #endregion ConfigTree
     }
 }

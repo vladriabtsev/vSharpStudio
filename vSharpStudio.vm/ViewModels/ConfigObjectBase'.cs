@@ -280,6 +280,7 @@ namespace vSharpStudio.vm.ViewModels
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;
+            (config as Config).SelectedNode = this;
             (config as Config).OnSelectedNodeChanged();
         }
         public bool NodeCanMoveDown()
@@ -295,6 +296,7 @@ namespace vSharpStudio.vm.ViewModels
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;
+            (config as Config).SelectedNode = this;
             (config as Config).OnSelectedNodeChanged();
         }
         public bool NodeCanAddNew()

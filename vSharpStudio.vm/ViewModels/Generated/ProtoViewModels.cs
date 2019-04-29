@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/29/2019 00:46:41
+// Auto generated on UTC 04/29/2019 23:45:57
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1607,6 +1607,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -1625,6 +1626,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _NameUi = "";
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -1807,6 +1809,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -1825,6 +1828,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _NameUi = "";
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -1954,6 +1958,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -1972,6 +1977,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _NameUi = "";
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -5206,6 +5212,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -5224,6 +5231,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _NameUi = "";
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -5341,6 +5349,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -5361,9 +5370,11 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanged();
 		
 		///////////////////////////////////////////////////
+		/// 
 		/// repeated proto_group_properties list_properties = 6;
 		/// repeated proto_document list_forms = 7;
 		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -5543,6 +5554,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -5561,6 +5573,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _NameUi = "";
 		partial void OnNameUiChanging();
 		partial void OnNameUiChanged();
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
@@ -5678,6 +5691,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
+		[PropertyOrderAttribute(2)]
 		public string NameUi
 		{ 
 			set
@@ -5698,9 +5712,11 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnNameUiChanged();
 		
 		///////////////////////////////////////////////////
+		/// 
 		/// repeated proto_group_properties list_properties = 6;
 		/// repeated proto_document list_documents = 7;
 		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
 			set
