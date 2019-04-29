@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\proto\attr.proto" GrpcServices="Both">
-      <Link>proto\attr.proto</Link>
+    <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
+      <Link>proto\proto_doc.proto</Link>
     </Protobuf>
     <ProtoBuf Include="..\proto\vsharpstudio.proto" GrpcServices="Client">
       <Link>proto\vsharpstudio.proto</Link>
@@ -27,7 +27,8 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rem $(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --csharp_out=$(SolutionDir)generators/GenFromProto $(SolutionDir)proto/vsharpstudio.proto" />
+    <!--https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.compiler.plugin-->
+    <Exec Command="$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=html,index.html $(SolutionDir)proto\vsharpstudio.proto  &#xD;&#xA;$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=json,proto.json $(SolutionDir)proto\vsharpstudio.proto  &#xD;&#xA;cd $(SolutionDir)generators\GenFromProto\bin\&#xD;&#xA;$(SolutionDir)generators\GenFromProto\bin\GenFromProto.exe&#xD;&#xA; rem docker run --rm -v $(SolutionDir)generators\GenFromProto:/out -v $(SolutionDir)proto:/protos pseudomuto/protoc-gen-doc --doc_opt=json,proto.json &#xD;&#xA;rem docker run --rm -v $(SolutionDir)doc:/out -v $(SolutionDir)proto:/protos pseudomuto/protoc-gen-doc" />
   </Target>
 
 </Project>

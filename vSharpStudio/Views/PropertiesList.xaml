@@ -22,9 +22,17 @@
                         <DataTemplate>
                             <Grid d:DataContext="{d:DesignInstance Type=vmtype:DataType, IsDesignTimeCreatable=True}">
                                 <StackPanel>
-                                    <ComboBox SelectedItem="{Binding DataTypeEnum}" />
-                                    <ComboBox SelectedItem="{Binding DataTypeEnum}" />
-                                    <ComboBox SelectedItem="{Binding DataTypeEnum}" />
+                                    <xctk:PropertyGridEditorComboBox SelectedItem="{Binding DataTypeEnum}" ItemsSource="{Binding DataTypeEnum}" />
+                                    <CheckBox IsChecked="{Binding IsPositive}" Content="Is positive" Visibility="{Binding VisibilityIsPositive}" />
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityLength}">
+                                        <TextBlock Text="Len:" />
+                                        <xctk:IntegerUpDown Value="{Binding Length}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityAccuracy}">
+                                        <TextBlock Text="Acc:" />
+                                        <xctk:IntegerUpDown Value="{Binding Accuracy}" />
+                                    </StackPanel>
+                                    <ComboBox SelectedValue="{Binding ObjectName}" Visibility="{Binding VisibilityObjectName}" />
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

@@ -5,18 +5,13 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
-//option java_multiple_files = true;
-//option java_package = "io.grpc.examples.routeguide";
-//option java_outer_classname = "RouteGuideProto";
-//option objc_class_prefix = "RTG";
-
+// kuku
 package proto_attr;
 option csharp_namespace = "Proto.Attr";
 
 message ModelData {
 	map<string, ClassData> dic_by_class = 1;
 }
-
 message ClassData {
 	map<string, string> dic_by_property = 1;
     string base_class = 2;

@@ -3,10 +3,8 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="vSharpStudio.proto" #>
-<#= field.Declaration.ToLeadingComments() #>
-<#= GetAttrs() #>
-<# if (field.IsRepeated) { #>
+
+<#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
 public SortedObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
 public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
@@ -62,4 +60,3 @@ private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToType
 <# } #>
 partial void On<#= field.Name.ToNameCs() #>Changing();
 partial void On<#= field.Name.ToNameCs() #>Changed();
-<#= field.Declaration.ToTrailingComments("") #>

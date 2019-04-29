@@ -7,14 +7,14 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public interface ITreeConfigNode : IValidatableWithSeverity, ISortingValue
+    public interface ITreeConfigNode : IParent, IValidatableWithSeverity, ISortingValue
     {
         string Guid { get; }
         string Name { get; set; }
         string NodeText { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
-        ITreeConfigNode Parent { get; set; }
+        //ITreeConfigNode Parent { get; set; }
         //SortedObservableCollection<ITreeConfigNode> SubNodes { get; }
         void Sort(Type type);
         bool NodeCanMoveUp();

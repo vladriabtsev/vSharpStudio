@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# if (!this.isNewBaseClass) { #>
+<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>
 public override void Sort(Type type)
 {
 <#    int isort=0;
@@ -21,7 +21,7 @@ public override void Sort(Type type)
 <#    } #>
 }
 <# } #>
-public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (!this.isNewBaseClass) { #>, bool isNewGuid = false<# } #>)
+public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
@@ -40,7 +40,7 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } 
      } 
-if (!this.isNewBaseClass) {
+if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
 #>
     if (isNewGuid)
         vm.SetNewGuid();
@@ -137,7 +137,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 <#      } 
      } 
      #>
-<# if (!this.isNewBaseClass) { #>
+<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>
     vm.OnInitFromDto();
 <# } #>
     return vm;

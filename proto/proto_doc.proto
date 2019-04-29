@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package proto_doc;
+option csharp_namespace = "Proto.Doc";
+
+message json_doc {
+	repeated file files = 1;
+	repeated scalarValueType scalarValueTypes = 2;
+}
+message file {
+	string name = 1;
+	string description = 2;
+	string package = 3;
+	bool hasEnums = 4;
+	bool hasExtensions = 5;
+	bool hasMessages = 6;
+	bool hasServices = 7;
+	repeated enums enums = 8;
+	repeated extension extensions = 9;
+	repeated message messages = 10;
+	repeated service services = 11;
+}
+message enums {
+	string name = 1;
+	string longName = 2;
+	string fullName = 3;
+	string description = 4;
+	repeated value values = 5;
+}
+message value {
+	string name = 1;
+	string number = 2;
+	string description = 3;
+}
+message extension {
+	string name = 1;
+	string longName = 2;
+	string fullName = 3;
+	string description = 4;
+}
+message message {
+	string name = 1;
+	string longName = 2;
+	string fullName = 3;
+	string description = 4;
+	bool hasExtensions = 5;
+	bool hasFields = 6;
+	repeated extension extensions = 7;
+	repeated field fields = 8;
+}
+message field {
+	string name = 1;
+	string description = 2;
+	string label = 3;
+	string type = 4;
+	string longType = 5;
+	string fullType = 6;
+	bool ismap = 7;
+	string defaultValue = 8;
+}
+message service {
+	string name = 1;
+	string longName = 2;
+	string fullName = 3;
+	string description = 4;
+}
+message scalarValueType {
+	string protoType = 1;
+	string notes = 2;
+	string cppType = 3;
+	string csType = 4;
+	string goType = 5;
+	string javaType = 6;
+	string phpType = 7;
+	string pythonType = 8;
+	string rubyType = 9;
+}

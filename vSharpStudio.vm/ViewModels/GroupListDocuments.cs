@@ -36,20 +36,5 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion ITreeNode
-        public static Proto.Attr.ClassData GetDicPropertyAttributes()
-        {
-            GroupListDocuments t = new GroupListDocuments();
-            StringBuilder sb = new StringBuilder();
-            Proto.Attr.ClassData res = new Proto.Attr.ClassData();
-            t.PropertyNameAction(p => p.NameUi, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();
-            });
-            t.PropertyNameAction(p => p.Description, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
-            });
-            return res;
-        }
     }
 }

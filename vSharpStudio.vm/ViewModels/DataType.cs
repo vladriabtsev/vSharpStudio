@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq}")]
-    public partial class DataType
+    public partial class DataType : IParent
     {
         partial void OnInit()
         {
@@ -163,27 +163,42 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
+                    this.VisibilityIsPositive = Visibility.Collapsed;
                     break;
                 case EnumDataType.Catalog:
                 case EnumDataType.Constant:
                 case EnumDataType.Document:
                 case EnumDataType.Enumeration:
+                    this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Visible;
                     break;
                 case EnumDataType.Numerical:
+                    if (this.Accuracy == 0)
+                        this.VisibilityIsPositive = Visibility.Visible;
+                    else
+                        this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     break;
                 case EnumDataType.String:
+                    this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     break;
             }
         }
+        partial void OnAccuracyChanged()
+        {
+            if (this.Accuracy == 0)
+                this.VisibilityIsPositive = Visibility.Visible;
+            else
+                this.VisibilityIsPositive = Visibility.Collapsed;
+        }
+
         [BrowsableAttribute(false)]
         public Visibility VisibilityLength
         {
@@ -211,6 +226,19 @@ namespace vSharpStudio.vm.ViewModels
         }
         private Visibility _VisibilityAccuracy = Visibility.Collapsed;
         [BrowsableAttribute(false)]
+        public Visibility VisibilityIsPositive
+        {
+            set
+            {
+                if (_VisibilityIsPositive == value)
+                    return;
+                _VisibilityIsPositive = value;
+                NotifyPropertyChanged();
+            }
+            get { return _VisibilityIsPositive; }
+        }
+        private Visibility _VisibilityIsPositive = Visibility.Collapsed;
+        [BrowsableAttribute(false)]
         public Visibility VisibilityObjectName
         {
             set
@@ -230,34 +258,5 @@ namespace vSharpStudio.vm.ViewModels
         //        public string NodeText { get { return this.Name; } }
 
         #endregion ITreeNode
-
-        public static Proto.Attr.ClassData GetDicPropertyAttributes()
-        {
-            DataType t = new DataType();
-            StringBuilder sb = new StringBuilder();
-            Proto.Attr.ClassData res = new Proto.Attr.ClassData();
-            res.BaseClass= "ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>";
-            t.PropertyNameAction(p => p.DataTypeEnum, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(2).ToString();
-            });
-            t.PropertyNameAction(p => p.Length, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(3).ToString();
-            });
-            t.PropertyNameAction(p => p.Accuracy, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(4).ToString();
-            });
-            t.PropertyNameAction(p => p.IsPositive, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(5).ToString();
-            });
-            t.PropertyNameAction(p => p.ObjectName, (m) =>
-            {
-                res.DicByProperty[m] = sb.Clear().PropertyOrderAttribute(6).ToString();
-            });
-            return res;
-        }
     }
 }

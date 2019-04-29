@@ -30,7 +30,7 @@ namespace GenFromProto
         {
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (!this.isNewBaseClass) { 
+ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
             
             #line default
             #line hidden
@@ -98,7 +98,7 @@ namespace GenFromProto
             this.Write(" from, bool isDeep = true");
             
             #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (!this.isNewBaseClass) { 
+ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
             
             #line default
             #line hidden
@@ -281,7 +281,7 @@ namespace GenFromProto
             #line 41 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
       } 
      } 
-if (!this.isNewBaseClass) {
+if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
 
             
             #line default
@@ -749,7 +749,7 @@ if (!this.isNewBaseClass) {
             #line hidden
             
             #line 140 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (!this.isNewBaseClass) { 
+ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
             
             #line default
             #line hidden

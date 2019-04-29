@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\vSharpStudio.proto\obj\Debug\netstandard2.0\ProtoDoc.cs">
+      <Link>ProtoDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\..\vSharpStudio.proto\obj\Debug\netstandard2.0\Vsharpstudio.cs">
+      <Link>Vsharpstudio.cs</Link>
+    </Compile>
     <Compile Include="Class.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,8 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="attr.json" />
     <None Include="packages.config" />
+    <None Include="proto.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Class.tt">
@@ -138,18 +144,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj">
-      <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
-      <Name>vSharpStudio.proto</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)generators\GenFromProto\bin\Debug\GenFromProto.exe 
-rem $(SolutionDir)vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs Proto.Config</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetDir)*.* $(ProjectDir)bin\
+$(ProjectDir)bin\$(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>$(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
+    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
   </PropertyGroup>
 </Project>

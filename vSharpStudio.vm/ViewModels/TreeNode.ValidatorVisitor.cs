@@ -227,7 +227,7 @@ namespace vSharpStudio.vm.ViewModels
 
         void IVisitorConfig.Visit(Form p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(Form p)
@@ -237,132 +237,112 @@ namespace vSharpStudio.vm.ViewModels
 
         void IVisitorConfig.Visit(Report p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(Report p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListCatalogs p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListCatalogs p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupPropertyTab p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupPropertyTab p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupPropertyTabs p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupPropertyTabs p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupPropertyTabsTree p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupPropertyTabsTree p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListProperties p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListProperties p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListConstants p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListConstants p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListEnumerations p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListEnumerations p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListJournals p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListJournals p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListForms p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListForms p)
         {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
 
         void IVisitorConfig.Visit(GroupListReports p)
         {
-            throw new NotImplementedException();
+            OnVisit(p);
         }
 
         void IVisitorConfig.VisitEnd(GroupListReports p)
         {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(DataType p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(DataType p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.Visit(IdDbGenerator p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfig.VisitEnd(IdDbGenerator p)
-        {
-            throw new NotImplementedException();
+            OnVisitEnd(p);
         }
     }
 }

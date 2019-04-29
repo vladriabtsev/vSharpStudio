@@ -97,7 +97,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Constant)
                         return true;
-                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    IParent n = (IParent)p;
                     while (true)
                     {
                         if (n.Parent != null)
@@ -120,7 +120,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Enumeration)
                         return true;
-                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    IParent n = (IParent)p;
                     while (true)
                     {
                         if (n.Parent != null)
@@ -143,7 +143,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Catalog)
                         return true;
-                    ITreeConfigNode n = (ITreeConfigNode)p;
+                    IParent n = (IParent)p;
                     while (true)
                     {
                         if (n.Parent != null)

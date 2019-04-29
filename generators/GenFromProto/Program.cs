@@ -20,7 +20,11 @@ namespace GenFromProto
                     if (args.Count() == 0)
                     {
                         args = new string[2];
-                        args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
+                        //System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Directory.GetCurrentDirectory());
+                        if (!Directory.GetCurrentDirectory().EndsWith("bin"))
+                            args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
+                        else
+                            args[0] = @"..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
                         args[1] = @"vSharpStudio.vm.ViewModels";
                     }
                     else
@@ -62,10 +66,12 @@ namespace GenFromProto
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Trace.WriteLine("##### GenFromProto: Exception:" + ex.Message);
                 throw;
             }
-
+            finally
+            {
+                System.Diagnostics.Trace.WriteLine("##### GenFromProto current dir: " + Directory.GetCurrentDirectory());
+            }
         }
     }
     public static partial class Utils

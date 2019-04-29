@@ -23,13 +23,13 @@ namespace GetLatestAttr
                     System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Path.GetFullPath(pathAttrDat) + " was created.");
                 }
                 string txt = File.ReadAllText(pathAttrDat);
-                var map = Ext.GetDicAttributes();
-                var json = JsonFormatter.Default.Format(map);
-                if (txt != json)
-                {
-                    File.WriteAllText(pathAttrDat, json);
-                    System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Path.GetFullPath(pathAttrDat) + " was updated.");
-                }
+//                var map = Ext.GetDicAttributes();
+//                var json = JsonFormatter.Default.Format(map);
+                //if (txt != json)
+                //{
+                //    File.WriteAllText(pathAttrDat, json);
+                //    System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Path.GetFullPath(pathAttrDat) + " was updated.");
+                //}
                 System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: no need to update.");
             }
             catch (Exception ex)

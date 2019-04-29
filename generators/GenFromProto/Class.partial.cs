@@ -12,9 +12,7 @@ namespace GenFromProto
     {
         FileDescriptor root;
         MessageDescriptor message;
-        string baseClass = "";
-        string interfaces = "";
-        bool isNewBaseClass = false;
+        MessageDoc Doc;
 
         Dictionary<string, List<MessageDescriptor>> dicParents;
         public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents)
@@ -22,24 +20,11 @@ namespace GenFromProto
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;
-            //foreach (var t in message.Fields.InDeclarationOrder())
-            //{
-            //    t.Declaration.ToLeadingDetachedComments("");
-            //}
-            this.baseClass = "ConfigObjectBase<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." + 
-                message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, IAccept";
-            if (NameSpace.modelData.DicByClass.ContainsKey(message.Name.ToNameCs()))
+            this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
+            if (this.Doc.BaseClass == "")
             {
-                var t = NameSpace.modelData.DicByClass[message.Name.ToNameCs()];
-                if (!string.IsNullOrWhiteSpace(t.BaseClass))
-                {
-                    this.baseClass = t.BaseClass;
-                    this.isNewBaseClass = true;
-                }
-                if (!string.IsNullOrWhiteSpace(t.Interfaces))
-                {
-                    this.interfaces = t.Interfaces;
-                }
+                this.Doc.BaseClass = " : ConfigObjectBase<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                    message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, IAccept";
             }
         }
     }

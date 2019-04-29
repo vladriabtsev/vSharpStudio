@@ -28,10 +28,16 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
+            
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
+            
+            #line default
+            #line hidden
             this.Write("public void Accept(IVisitorConfig visitor) \r\n{\r\n    if (visitor.Token.IsCancellat" +
                     "ionRequested)\r\n        return;\r\n\tvisitor.Visit(this);\r\n");
             
-            #line 11 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
        continue;
@@ -40,46 +46,52 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
  if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("\tforeach(var t in this.");
             
-            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(")\r\n\t\tt.Accept(visitor);\r\n");
             
-            #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+ } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass.StartsWith(" : ConfigObjectBase"))) { 
             
             #line default
             #line hidden
             this.Write("\tthis.");
             
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".Accept(visitor);\r\n");
             
-            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } 
-            
-            #line default
-            #line hidden
-            
             #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
  } 
             
             #line default
             #line hidden
+            
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+ } 
+            
+            #line default
+            #line hidden
             this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+ } 
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

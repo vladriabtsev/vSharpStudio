@@ -6,31 +6,31 @@ namespace vSharpStudio.vm.ViewModels
 {
     public static class Ext
     {
-        public static Proto.Attr.ModelData GetDicAttributes()
-        {
-            if (Ext.res != null)
-                return Ext.res;
-            Ext.res = new Proto.Attr.ModelData();
-            Ext.res.DicByClass[typeof(Catalog).Name] = Catalog.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Config).Name] = Config.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Constant).Name] = Constant.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(DataType).Name] = DataType.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Document).Name] = Document.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Enumeration).Name] = Enumeration.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(EnumerationPair).Name] = EnumerationPair.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListCatalogs).Name] = GroupListCatalogs.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListConstants).Name] = GroupListConstants.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupDocuments).Name] = GroupDocuments.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListDocuments).Name] = GroupListDocuments.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListEnumerations).Name] = GroupListEnumerations.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListJournals).Name] = GroupListJournals.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupListProperties).Name] = GroupListProperties.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(GroupPropertiesTree).Name] = GroupPropertiesTree.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Journal).Name] = Journal.GetDicPropertyAttributes();
-            Ext.res.DicByClass[typeof(Property).Name] = Property.GetDicPropertyAttributes();
-            return Ext.res;
-        }
-        private static Proto.Attr.ModelData res = null;
+        //public static Proto.Attr.ModelData GetDicAttributes()
+        //{
+        //    if (Ext.res != null)
+        //        return Ext.res;
+        //    Ext.res = new Proto.Attr.ModelData();
+        //    Ext.res.DicByClass[typeof(Catalog).Name] = Catalog.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Config).Name] = Config.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Constant).Name] = Constant.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(DataType).Name] = DataType.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Document).Name] = Document.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Enumeration).Name] = Enumeration.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(EnumerationPair).Name] = EnumerationPair.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListCatalogs).Name] = GroupListCatalogs.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListConstants).Name] = GroupListConstants.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupDocuments).Name] = GroupDocuments.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListDocuments).Name] = GroupListDocuments.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListEnumerations).Name] = GroupListEnumerations.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListJournals).Name] = GroupListJournals.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupListProperties).Name] = GroupListProperties.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(GroupPropertiesTree).Name] = GroupPropertiesTree.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Journal).Name] = Journal.GetDicPropertyAttributes();
+        //    Ext.res.DicByClass[typeof(Property).Name] = Property.GetDicPropertyAttributes();
+        //    return Ext.res;
+        //}
+        //private static Proto.Attr.ModelData res = null;
 
 
         internal static StringBuilder BrowsableAttribute(this StringBuilder prev, bool flag)

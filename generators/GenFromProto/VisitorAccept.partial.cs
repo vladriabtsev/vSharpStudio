@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-  public partial class VisitorAccept
-  {
-    FileDescriptor root;
-    MessageDescriptor message;
-    public VisitorAccept(FileDescriptor root, MessageDescriptor message)
+    public partial class VisitorAccept
     {
-      this.root = root;
-      this.message = message;
+        FileDescriptor root;
+        MessageDescriptor message;
+        MessageDoc Doc;
+        public VisitorAccept(FileDescriptor root, MessageDescriptor message)
+        {
+            this.root = root;
+            this.message = message;
+            this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
+        }
     }
-  }
 }

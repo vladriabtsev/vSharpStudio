@@ -7,7 +7,7 @@
 public interface IVisitorConfig
 {
     CancellationToken Token { get; }
-<# foreach (var message in root.MessageTypes) { 
+<# foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>

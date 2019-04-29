@@ -13,25 +13,13 @@ namespace GenFromProto
         FileDescriptor root;
         MessageDescriptor message;
         FieldDescriptor field;
+        FieldDoc Doc;
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {
             this.root = root;
             this.message = message;
             this.field = field;
-        }
-        public string GetAttrs()
-        {
-            string res = "";
-            if (NameSpace.modelData.DicByClass.ContainsKey(message.Name.ToNameCs()))
-            {
-                var t = NameSpace.modelData.DicByClass[message.Name.ToNameCs()];
-                if (t.DicByProperty.ContainsKey(field.Name.ToNameCs()))
-                {
-                    res = t.DicByProperty[field.Name.ToNameCs()];
-                    res = res.Substring(0, res.LastIndexOf("\r\n"));
-                }
-            }
-            return res;
+            this.Doc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];
         }
     }
 }
