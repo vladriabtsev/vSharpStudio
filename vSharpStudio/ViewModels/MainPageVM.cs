@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Google.Protobuf;
+using Microsoft.Win32;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
@@ -61,21 +63,36 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
-                (o) => { this.Model.Save(); },
+                (o) => { this.Save(); },
                 (o) => { return this.Model != null && !string.IsNullOrEmpty(_FilePathSaveAs); }));
             }
         }
         private vCommand _CommandConfigSave;
+        internal void Save()
+        {
+            var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+        }
         public vCommand CommandConfigSaveAs
         {
             get
             {
                 return _CommandConfigSaveAs ?? (_CommandConfigSaveAs = vCommand.Create(
-                (o) => { this.Model.SaveAs(); },
+                (o) => { this.SaveAs(); },
                 (o) => { return this.Model != null; }));
             }
         }
         private vCommand _CommandConfigSaveAs;
+        internal void SaveAs()
+        {
+            // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
+            //openFileDialog.InitialDirectory = @"c:\temp\";
+            //openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == true)
+                FilePathSaveAs = openFileDialog.FileName;
+        }
+
         public string FilePathSaveAs
         {
             get { return _FilePathSaveAs; }

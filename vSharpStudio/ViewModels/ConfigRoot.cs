@@ -63,16 +63,6 @@ namespace vSharpStudio.ViewModels
             }
         }
 
-        internal void SaveAs()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Save()
-        {
-            throw new NotImplementedException();
-        }
-
         #region Full Validation
 
         //async public Task ValidateSubTreeFromNode(IAccept node)
