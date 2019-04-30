@@ -23,9 +23,15 @@ namespace vSharpStudio.ViewModels
                 //this.Model.Catalogs.ListCatalogs.Add(c);
                 return;
             }
-            this.Model = new ConfigRoot();
+            if (File.Exists(CFG_PATH))
+            {
+                string json = File.ReadAllText(CFG_PATH);
+                this.Model = new ConfigRoot(json);
+            }
+            else
+                this.Model = new ConfigRoot();
         }
-
+        private const string CFG_PATH = @".\current.vcfg";
         internal void OnSelectedItemChanged(object oldValue, object newValue)
         {
             this.Model.SelectedNode = (ITreeConfigNode)newValue;
@@ -64,13 +70,14 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
                 (o) => { this.Save(); },
-                (o) => { return this.Model != null && !string.IsNullOrEmpty(_FilePathSaveAs); }));
+                (o) => { return this.Model != null; }));
             }
         }
         private vCommand _CommandConfigSave;
         internal void Save()
         {
             var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+            File.WriteAllText(CFG_PATH, json);
         }
         public vCommand CommandConfigSaveAs
         {
@@ -89,8 +96,16 @@ namespace vSharpStudio.ViewModels
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
             //openFileDialog.InitialDirectory = @"c:\temp\";
             //openFileDialog.Multiselect = true;
+            if (!string.IsNullOrEmpty(_FilePathSaveAs))
+            {
+                openFileDialog.InitialDirectory = Path.GetDirectoryName(_FilePathSaveAs);
+            }
             if (openFileDialog.ShowDialog() == true)
+            {
                 FilePathSaveAs = openFileDialog.FileName;
+                var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+                File.WriteAllText(FilePathSaveAs, json);
+            }
         }
 
         public string FilePathSaveAs
@@ -101,7 +116,6 @@ namespace vSharpStudio.ViewModels
                 _FilePathSaveAs = value;
                 NotifyPropertyChanged();
                 SaveToolTip = _saveBaseToolTip + " as " + _FilePathSaveAs;
-                CommandConfigSave.RaiseCanExecuteChanged();
             }
         }
         private string _FilePathSaveAs;

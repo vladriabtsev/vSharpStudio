@@ -131,7 +131,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-    vm.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>);
+    vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>;
 <#      } 
@@ -154,8 +154,10 @@ public static <#= message.Name #> ConvertToProto(<#= message.Name.ToNameCs() #> 
     m.<#= field.Name.ToNameCs() #>.Value = string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>) ? "" : vm.<#= field.Name.ToNameCs() #>;
     m.<#= field.Name.ToNameCs() #>.HasValue = !string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
-    m.<#= field.Name.ToNameCs() #>.Value = vm.<#= field.Name.ToNameCs() #>.Value;
+    m.<#= field.Name.ToNameCs() #> = new <#= field.MessageType.Name #>();
     m.<#= field.Name.ToNameCs() #>.HasValue = vm.<#= field.Name.ToNameCs() #>.HasValue;
+    if (vm.<#= field.Name.ToNameCs() #>.HasValue)
+        m.<#= field.Name.ToNameCs() #>.Value = vm.<#= field.Name.ToNameCs() #>.Value;
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
     m.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToProto(vm.<#= field.Name.ToNameCs() #>);
 <#      } else { #>

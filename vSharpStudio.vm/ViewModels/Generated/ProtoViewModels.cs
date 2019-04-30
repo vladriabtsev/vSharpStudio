@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/30/2019 00:32:08
+// Auto generated on UTC 04/30/2019 15:10:04
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -84,12 +84,18 @@ namespace vSharpStudio.vm.ViewModels
 		public static id_db_generator ConvertToProto(IdDbGenerator vm)
 		{
 		    id_db_generator m = new id_db_generator();
-		    m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
+		    m.IsPrimaryKeyClustered = new bool_nullable();
 		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
-		    m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
+		    if (vm.IsPrimaryKeyClustered.HasValue)
+		        m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
+		    m.IsMemoryOptimized = new bool_nullable();
 		    m.IsMemoryOptimized.HasValue = vm.IsMemoryOptimized.HasValue;
-		    m.IsSequenceHiLo.Value = vm.IsSequenceHiLo.Value;
+		    if (vm.IsMemoryOptimized.HasValue)
+		        m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
+		    m.IsSequenceHiLo = new bool_nullable();
 		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
+		    if (vm.IsSequenceHiLo.HasValue)
+		        m.IsSequenceHiLo.Value = vm.IsSequenceHiLo.Value;
 		    m.HiLoSequenceName = vm.HiLoSequenceName;
 		    m.HiLoSchema = vm.HiLoSchema;
 		    return m;
@@ -554,13 +560,13 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString;
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
-		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
-		    vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs);
-		    vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants);
-		    vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations);
-		    vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs);
-		    vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments);
-		    vm.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToVM(m.GroupJournals);
+		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
+		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
+		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
+		    vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs);
+		    vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments);
+		    vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1131,7 +1137,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
 		    vm.Description = m.Description;
-		    vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode);
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
 		    vm.ListConfigs = new SortedObservableCollection<ConfigTree>();
 		    foreach(var t in m.ListConfigs)
 		        vm.ListConfigs.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t));
@@ -1928,8 +1934,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListPropertiesTab = vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToVM(m.ListPropertiesTab);
-		    vm.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToVM(m.ListPropertiesSubTabs);
+		    vSharpStudio.vm.ViewModels.GroupPropertyTab.ConvertToVM(m.ListPropertiesTab, vm.ListPropertiesTab);
+		    vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToVM(m.ListPropertiesSubTabs, vm.ListPropertiesSubTabs);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2307,7 +2313,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
+		    vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, vm.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2528,7 +2534,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>();
 		    foreach(var t in m.ListPropertiesTreeGroups)
 		        vm.ListPropertiesTreeGroups.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(t));
-		    vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties);
+		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2898,7 +2904,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType);
+		    vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, vm.DataType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3658,11 +3664,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
-		    vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties);
-		    vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms);
-		    vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports);
-		    vm.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupSubCatalogs);
+		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
+		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
+		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
+		    vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupSubCatalogs, vm.GroupSubCatalogs);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4102,8 +4108,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupSharedProperties);
-		    vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments);
+		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties);
+		    vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, vm.GroupListDocuments);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4293,10 +4299,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.GroupPropertiesTree = vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(m.GroupPropertiesTree);
-		    vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms);
-		    vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports);
-		    vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(m.GroupPropertiesTree, vm.GroupPropertiesTree);
+		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
+		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
+		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
 		    vm.OnInitFromDto();
 		    return vm;
 		}

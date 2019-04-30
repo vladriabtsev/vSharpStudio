@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
             RecreateSubNodes();
         }
         public Config(string configJson)
-            : base(ConfigValidator.Validator)
+            : this()
         {
             var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
