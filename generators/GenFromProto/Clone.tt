@@ -125,7 +125,11 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 <#      if (field.IsRepeated) { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
     foreach(var t in m.<#= field.Name.ToNameCs() #>)
-        vm.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(t));
+    {
+        var tvm = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(t);
+        tvm.Parent = vm;
+        vm.<#= field.Name.ToNameCs() #>.Add(tvm);
+    }
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : "";
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>

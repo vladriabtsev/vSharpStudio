@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/30/2019 15:10:04
+// Auto generated on UTC 04/30/2019 15:17:50
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -344,7 +344,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListConfigs = new SortedObservableCollection<ConfigTree>();
 		    foreach(var t in m.ListConfigs)
-		        vm.ListConfigs.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListConfigs.Add(tvm);
+		    }
 		    vm.RelativeConfigPath = m.RelativeConfigPath;
 		    vm.OnInitFromDto();
 		    return vm;
@@ -1140,7 +1144,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
 		    vm.ListConfigs = new SortedObservableCollection<ConfigTree>();
 		    foreach(var t in m.ListConfigs)
-		        vm.ListConfigs.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListConfigs.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1584,7 +1592,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
-		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Property.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListProperties.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1786,7 +1798,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
 		    foreach(var t in m.ListPropertiesTabs)
-		        vm.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPropertiesTabs.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2170,7 +2186,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in m.ListProperties)
-		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Property.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListProperties.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2533,7 +2553,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>();
 		    foreach(var t in m.ListPropertiesTreeGroups)
-		        vm.ListPropertiesTreeGroups.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.GroupPropertiesTree.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPropertiesTreeGroups.Add(tvm);
+		    }
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vm.OnInitFromDto();
 		    return vm;
@@ -2756,7 +2780,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListConstants = new SortedObservableCollection<Constant>();
 		    foreach(var t in m.ListConstants)
-		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListConstants.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3120,7 +3148,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
 		    foreach(var t in m.ListEnumerations)
-		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListEnumerations.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3325,7 +3357,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DataTypeEnum = m.DataTypeEnum;
 		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListValues)
-		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListValues.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3960,7 +3996,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
 		    foreach(var t in m.ListCatalogs)
-		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListCatalogs.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4575,7 +4615,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListDocuments = new SortedObservableCollection<Document>();
 		    foreach(var t in m.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListDocuments.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4777,7 +4821,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListJournals = new SortedObservableCollection<Journal>();
 		    foreach(var t in m.ListJournals)
-		        vm.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Journal.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListJournals.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4983,7 +5031,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListDocuments = new SortedObservableCollection<Document>();
 		    foreach(var t in m.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListDocuments.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -5189,7 +5241,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListForms = new SortedObservableCollection<Form>();
 		    foreach(var t in m.ListForms)
-		        vm.ListForms.Add(vSharpStudio.vm.ViewModels.Form.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Form.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListForms.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -5531,7 +5587,11 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.ListReports = new SortedObservableCollection<Report>();
 		    foreach(var t in m.ListReports)
-		        vm.ListReports.Add(vSharpStudio.vm.ViewModels.Report.ConvertToVM(t));
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Report.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListReports.Add(tvm);
+		    }
 		    vm.OnInitFromDto();
 		    return vm;
 		}
