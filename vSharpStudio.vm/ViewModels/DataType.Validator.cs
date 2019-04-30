@@ -38,23 +38,23 @@ namespace vSharpStudio.vm.ViewModels
                 #endregion Length
 
                 #region MinValueString
-                RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage(Config.ValidationMessages.TYPE_MINMAX_CANT_PARSE);
-                RuleFor(p => p.MinValueString).Must((p, y) =>
-                {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.String && p.IsPositive && p.MinValue < 0)
-                        return false;
-                    return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_MAXLENGTH_GREATER_LENGTH);
+                //RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage(Config.ValidationMessages.TYPE_MINMAX_CANT_PARSE);
+                //RuleFor(p => p.MinValueString).Must((p, y) =>
+                //{
+                //    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.String && p.IsPositive && p.MinValue < 0)
+                //        return false;
+                //    return true;
+                //}).WithMessage(Config.ValidationMessages.TYPE_MAXLENGTH_GREATER_LENGTH);
                 #endregion MinValueString
 
                 #region MaxValueString
-                RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage(Config.ValidationMessages.TYPE_MINMAX_CANT_PARSE);
-                RuleFor(p => p.MaxValueString).Must((p, y) =>
-                {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.String && p.MaxValue > p.Length)
-                        return false;
-                    return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_MAXLENGTH_GREATER_LENGTH);
+                //RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage(Config.ValidationMessages.TYPE_MINMAX_CANT_PARSE);
+                //RuleFor(p => p.MaxValueString).Must((p, y) =>
+                //{
+                //    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.String && p.MaxValue > p.Length)
+                //        return false;
+                //    return true;
+                //}).WithMessage(Config.ValidationMessages.TYPE_MAXLENGTH_GREATER_LENGTH);
                 //RuleFor(p => p.MaxValueString).Must((p, y) =>
                 //{
                 //    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical)

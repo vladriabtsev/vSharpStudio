@@ -229,7 +229,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -350,7 +350,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -662,7 +662,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -723,7 +723,7 @@
           "fields": [
             {
               "name": "data_type_enum",
-              "description": "@attr [PropertyOrderAttribute(2)]",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "EnumDataType",
               "longType": "proto_data_type.EnumDataType",
@@ -743,7 +743,7 @@
             },
             {
               "name": "accuracy",
-              "description": "@attr [PropertyOrderAttribute(4)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -753,7 +753,7 @@
             },
             {
               "name": "is_positive",
-              "description": "@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(4)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -772,28 +772,8 @@
               "defaultValue": ""
             },
             {
-              "name": "min_value_string",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_value_string",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "object_name",
-              "description": "@attr [PropertyOrderAttribute(6)]",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -824,7 +804,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -925,7 +905,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1006,7 +986,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1077,7 +1057,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1138,7 +1118,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1209,7 +1189,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1290,7 +1270,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1361,7 +1341,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1432,7 +1412,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1503,7 +1483,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1574,7 +1554,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1645,7 +1625,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1716,7 +1696,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1787,7 +1767,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1858,7 +1838,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1939,7 +1919,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2010,7 +1990,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2081,7 +2061,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2162,7 +2142,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2233,7 +2213,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2304,7 +2284,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -32,63 +32,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         private static int _maxlen = 0;
-        protected ulong EncodeNameToUlong(string name)
-        {
-            const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
-            if (_maxlen == 0)
-            {
-                _maxlen = (int)Math.Log(ViewModelBindable.SortingWeightBase, step);
-                ulong val = 1;
-                for (int i = 0; i < _maxlen; i++)
-                {
-                    val *= step;
-                }
-            }
-            int len = Math.Min(_maxlen, name.Length);
-            ulong res = 0;
-            for (int i = 0; i < len; i++)
-            {
-                var c = char.ToUpper(name[i]);
-                int ci = 0;
-                if (char.IsDigit(c))
-                    ci = c - '0' + 1;
-                else if (c == '_')
-                    ci = 0;
-                else if (c >= 'A' && c <= 'Z')
-                    ci = c - 'A' + 11;
-                else
-                    throw new ArgumentException("Unexpected char value: '" + c + "'");
-                ulong pow = 1;
-                for (int j = 0; j < _maxlen - i - 1; j++)
-                {
-                    pow *= step;
-                }
-                res += (ulong)ci * pow;
-            }
-            return res;
-        }
-        protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
-        {
-            if (!string.IsNullOrWhiteSpace(configObject.Name))
-                return;
-            int i = 0;
-            foreach (var tt in lst)
-            {
-                if (tt == configObject)
-                    continue;
-                if (tt.Name.StartsWith(defName))
-                {
-                    string s = tt.Name.Remove(0, defName.Length);
-                    int ii;
-                    if (int.TryParse(s, out ii))
-                    {
-                        if (ii > i) i = ii;
-                    }
-                }
-            }
-            i++;
-            configObject.Name = defName + i;
-        }
         public override int CompareToById(T other)
         {
             ITreeConfigNode p = (ITreeConfigNode)this;
@@ -105,10 +48,6 @@ namespace vSharpStudio.vm.ViewModels
             NotifyPropertyChanged(p => p.StatusIcon);
         }
         protected override void OnCountInfosChanged()
-        {
-            NotifyPropertyChanged(p => p.StatusIcon);
-        }
-        public virtual void OnIsExpandedChanged()
         {
             NotifyPropertyChanged(p => p.StatusIcon);
         }
@@ -222,12 +161,78 @@ namespace vSharpStudio.vm.ViewModels
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                             p.Parent.Sort(this.GetType());
+                        if (this.Parent != null)
+                        {
+                            ITreeConfigNode config = this.Parent;
+                            while (config.Parent != null)
+                                config = config.Parent;
+                            (config as Config).SelectedNode = this;
+                        }
                     }
                 }
             }
             get { return _Name; }
         }
         private string _Name = "";
+        protected ulong EncodeNameToUlong(string name)
+        {
+            const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
+            if (_maxlen == 0)
+            {
+                _maxlen = (int)Math.Log(ViewModelBindable.SortingWeightBase, step);
+                ulong val = 1;
+                for (int i = 0; i < _maxlen; i++)
+                {
+                    val *= step;
+                }
+            }
+            int len = Math.Min(_maxlen, name.Length);
+            ulong res = 0;
+            for (int i = 0; i < len; i++)
+            {
+                var c = char.ToUpper(name[i]);
+                int ci = 0;
+                if (char.IsDigit(c))
+                    ci = c - '0' + 1;
+                else if (c == '_')
+                    ci = 0;
+                else if (c >= 'A' && c <= 'Z')
+                    ci = c - 'A' + 11;
+                else
+                    throw new ArgumentException("Unexpected char value: '" + c + "'");
+                ulong pow = 1;
+                for (int j = 0; j < _maxlen - i - 1; j++)
+                {
+                    pow *= step;
+                }
+                res += (ulong)ci * pow;
+            }
+            return res;
+        }
+        protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
+        {
+            if (!string.IsNullOrWhiteSpace(configObject.Name))
+                return;
+            int i = 0;
+            foreach (var tt in lst)
+            {
+                if (tt == configObject)
+                    continue;
+                if (tt.Name.StartsWith(defName))
+                {
+                    string s = tt.Name.Remove(0, defName.Length);
+                    int ii;
+                    if (int.TryParse(s, out ii))
+                    {
+                        if (ii > i) i = ii;
+                    }
+                }
+            }
+            i++;
+            configObject.Name = defName + i;
+        }
+        [BrowsableAttribute(false)]
+        public ITreeConfigNode Parent { get; set; }
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]
@@ -239,13 +244,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _IsSelected = value;
                     NotifyPropertyChanged();
-                    OnIsSelectedChanged();
                 }
             }
             get { return _IsSelected; }
         }
         private bool _IsSelected;
-        public virtual void OnIsSelectedChanged() { }
         [BrowsableAttribute(false)]
         public bool IsExpanded
         {
@@ -255,49 +258,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _IsExpanded = value;
                     NotifyPropertyChanged();
-                    OnIsExpandedChanged();
                 }
             }
             get { return _IsExpanded; }
         }
         private bool _IsExpanded;
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         public virtual void Sort(Type type)
         {
             throw new NotImplementedException();
-        }
-        public bool NodeCanMoveUp()
-        {
-            return NodeCanUp();
-        }
-        public void NodeMoveUp()
-        {
-            if (this.Parent is IListGroupNodes)
-                (this.Parent as IListGroupNodes).ListNodes.MoveUp(this);
-            if (this.Parent is IListNodes<T>)
-                (this.Parent as IListNodes<T>).ListNodes.MoveUp(this);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = this;
-            (config as Config).OnSelectedNodeChanged();
-        }
-        public bool NodeCanMoveDown()
-        {
-            return NodeCanDown();
-        }
-        public void NodeMoveDown()
-        {
-            if (this.Parent is IListGroupNodes)
-                (this.Parent as IListGroupNodes).ListNodes.MoveDown(this);
-            if (this.Parent is IListNodes<T>)
-                (this.Parent as IListNodes<T>).ListNodes.MoveDown(this);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = this;
-            (config as Config).OnSelectedNodeChanged();
         }
         public bool NodeCanAddNew()
         {
@@ -316,6 +284,20 @@ namespace vSharpStudio.vm.ViewModels
             string tname = this.GetType().Name;
             switch (tname)
             {
+                case "Constant":
+                    var res = new Constant();
+                    res.Parent = this.Parent;
+                    (this.Parent as GroupListConstants).ListConstants.Add(res);
+                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).ListConstants);
+                    (this.Parent.Parent as Config).SelectedNode = res;
+                    return res;
+                case "Enumeration":
+                    var enumeration = new Enumeration();
+                    enumeration.Parent = this.Parent;
+                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).ListEnumerations);
+                    (this.Parent.Parent as Config).SelectedNode = enumeration;
+                    return enumeration;
                 case "Catalog":
                     var catalog = new Catalog();
                     catalog.Parent = this.Parent;
@@ -330,13 +312,6 @@ namespace vSharpStudio.vm.ViewModels
                     GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).ListDocuments);
                     (this.Parent.Parent as Config).SelectedNode = doc;
                     return doc;
-                case "Enumeration":
-                    var enumeration = new Enumeration();
-                    enumeration.Parent = this.Parent;
-                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).ListEnumerations);
-                    (this.Parent.Parent as Config).SelectedNode = enumeration;
-                    return enumeration;
                 case "Property":
                     var prop = new Property();
                     prop.Parent = this.Parent;
@@ -367,13 +342,6 @@ namespace vSharpStudio.vm.ViewModels
                     GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).ListJournals);
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
-                case "Constant":
-                    var res = new Constant();
-                    res.Parent = this.Parent;
-                    (this.Parent as GroupListConstants).ListConstants.Add(res);
-                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).ListConstants);
-                    (this.Parent.Parent as Config).SelectedNode = res;
-                    return res;
             }
             throw new Exception();
         }
@@ -393,42 +361,26 @@ namespace vSharpStudio.vm.ViewModels
             string tname = this.GetType().Name;
             switch (tname)
             {
-                case "GroupListCatalogs":
-                    var catalog = new Catalog();
-                    var cp = (this as GroupListCatalogs);
-                    catalog.Parent = this.Parent;
-                    cp.ListCatalogs.Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
-                    (this.Parent as Config).SelectedNode = catalog;
-                    return catalog;
                 case "GroupListConstants":
                     var constant = new Constant();
+                    constant.Parent = this;
                     var cnp = (this as GroupListConstants);
-                    constant.Parent = this.Parent;
                     cnp.ListConstants.Add(constant);
                     GetUniqueName(Constant.DefaultName, constant, cnp.ListConstants);
                     (this.Parent as Config).SelectedNode = constant;
                     return constant;
                 case "GroupListEnumerations":
                     var enumeration = new Enumeration();
+                    enumeration.Parent = this;
                     var cep = (this as GroupListEnumerations);
-                    enumeration.Parent = this.Parent;
                     cep.ListEnumerations.Add(enumeration);
                     GetUniqueName(Enumeration.DefaultName, enumeration, cep.ListEnumerations);
                     (this.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
-                case "GroupListJournals":
-                    var journal = new Journal();
-                    var jp = (this as GroupListJournals);
-                    journal.Parent = this.Parent;
-                    jp.ListJournals.Add(journal);
-                    GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
-                    (this.Parent as Config).SelectedNode = journal;
-                    return journal;
                 case "GroupListProperties":
                     var prop = new Property();
+                    prop.Parent = this;
                     var pp = (this as GroupListProperties);
-                    prop.Parent = this.Parent;
                     pp.ListProperties.Add(prop);
                     GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
                     ITreeConfigNode config = this.Parent;
@@ -436,10 +388,18 @@ namespace vSharpStudio.vm.ViewModels
                         config = config.Parent;
                     (config as Config).SelectedNode = prop;
                     return prop;
+                case "GroupListCatalogs":
+                    var catalog = new Catalog();
+                    catalog.Parent = this;
+                    var cp = (this as GroupListCatalogs);
+                    cp.ListCatalogs.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
+                    (this.Parent as Config).SelectedNode = catalog;
+                    return catalog;
                 case "Catalog":
                     var prop2 = new Property();
+                    prop2.Parent = this;
                     var ppc = (this as Catalog);
-                    prop2.Parent = this.Parent;
                     ppc.GroupProperties.ListProperties.Add(prop2);
                     GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.ListProperties);
                     ITreeConfigNode config2 = this.Parent;
@@ -447,6 +407,14 @@ namespace vSharpStudio.vm.ViewModels
                         config2 = config2.Parent;
                     (config2 as Config).SelectedNode = prop2;
                     return prop2;
+                case "GroupListJournals":
+                    var journal = new Journal();
+                    journal.Parent = this;
+                    var jp = (this as GroupListJournals);
+                    jp.ListJournals.Add(journal);
+                    GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
+                    (this.Parent as Config).SelectedNode = journal;
+                    return journal;
             }
             throw new Exception();
         }
@@ -513,6 +481,36 @@ namespace vSharpStudio.vm.ViewModels
             }
             throw new Exception();
         }
+        public bool NodeCanMoveDown()
+        {
+            return NodeCanDown();
+        }
+        public void NodeMoveDown()
+        {
+            if (this.Parent is IListGroupNodes)
+                (this.Parent as IListGroupNodes).ListNodes.MoveDown(this);
+            if (this.Parent is IListNodes<T>)
+                (this.Parent as IListNodes<T>).ListNodes.MoveDown(this);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = this;
+        }
+        public bool NodeCanMoveUp()
+        {
+            return NodeCanUp();
+        }
+        public void NodeMoveUp()
+        {
+            if (this.Parent is IListGroupNodes)
+                (this.Parent as IListGroupNodes).ListNodes.MoveUp(this);
+            if (this.Parent is IListNodes<T>)
+                (this.Parent as IListNodes<T>).ListNodes.MoveUp(this);
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = this;
+        }
         public bool NodeCanRemove()
         {
             foreach (var t in this.GetType().GetInterfaces())
@@ -531,7 +529,6 @@ namespace vSharpStudio.vm.ViewModels
             else
                 throw new Exception();
         }
-
         public bool NodeCanLeft()
         {
             string tname = this.Parent.GetType().Name;
@@ -587,31 +584,6 @@ namespace vSharpStudio.vm.ViewModels
                 (config as Config).SelectedNode = p;
             }
         }
-        public bool NodeCanUp()
-        {
-            if (NodeCanAddClone())
-            {
-                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanUp(this))
-                    return true;
-                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanUp(this))
-                    return true;
-            }
-            return false;
-        }
-        public void NodeUp()
-        {
-            T prev = null;
-            if (this.Parent is IListGroupNodes)
-                prev = (this.Parent as IListGroupNodes).ListNodes.GetPrev(this) as T;
-            if (this.Parent is IListNodes<T>)
-                prev = (this.Parent as IListNodes<T>).ListNodes.GetPrev(this) as T;
-            if (prev == null)
-                return;
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = prev;
-        }
         public bool NodeCanDown()
         {
             if (NodeCanAddClone())
@@ -636,6 +608,31 @@ namespace vSharpStudio.vm.ViewModels
             while (config.Parent != null)
                 config = config.Parent;
             (config as Config).SelectedNode = next;
+        }
+        public bool NodeCanUp()
+        {
+            if (NodeCanAddClone())
+            {
+                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanUp(this))
+                    return true;
+                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanUp(this))
+                    return true;
+            }
+            return false;
+        }
+        public void NodeUp()
+        {
+            T prev = null;
+            if (this.Parent is IListGroupNodes)
+                prev = (this.Parent as IListGroupNodes).ListNodes.GetPrev(this) as T;
+            if (this.Parent is IListNodes<T>)
+                prev = (this.Parent as IListNodes<T>).ListNodes.GetPrev(this) as T;
+            if (prev == null)
+                return;
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = prev;
         }
 
         #endregion ITreeConfigNode

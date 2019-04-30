@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Dummy;
 using FluentValidation;
 using ViewModelBase;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
@@ -64,6 +65,10 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
+        public override string ToString()
+        {
+            return DataType.GetTypeDesc(this);
+        }
         public static string GetTypeDesc(DataType p)
         {
             string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataTypeEnum);
@@ -74,26 +79,26 @@ namespace vSharpStudio.vm.ViewModels
                 case Proto.Config.proto_data_type.Types.EnumDataType.Bool:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
-                    res += " " + p.ObjectName;
+                    res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Constant:
-                    res += " " + p.ObjectName;
+                    res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                    res += " " + p.ObjectName;
+                    res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
-                    res += " " + p.ObjectName;
+                    res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
-                    res += " Length:" + p.Length + " Accuracy:" + p.Accuracy + " Min:" + p.MinValueString + " Max:" + p.MaxValueString;
+                    res += ", " + (p.IsPositive ? "+" : "") + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : "") + " clr:" + p.ClrType + " proto:" + p.ProtoType;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.String:
-                    res += " Length:" + p.Length + " Min:" + p.MinValueString;
+                    res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
                     break;
                 default:
                     res += " - Not supported";
@@ -101,52 +106,177 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public BigInteger MinValue
+        //public BigInteger MinValue
+        //{
+        //    set
+        //    {
+        //        if (_MinValue != value)
+        //        {
+        //            _MinValue = value;
+        //            NotifyPropertyChanged();
+        //            ValidateProperty();
+        //            this.MinValueString = _MinValue.ToString();
+        //        }
+        //    }
+        //    get
+        //    {
+        //        if (_MinValue == null)
+        //        {
+        //            if (BigInteger.TryParse(this.MinValueString, out var v))
+        //                _MinValue = v;
+        //        }
+        //        return _MinValue;
+        //    }
+        //}
+        //private BigInteger _MinValue;
+        //public BigInteger MaxValue
+        //{
+        //    set
+        //    {
+        //        if (_MaxValue != value)
+        //        {
+        //            _MaxValue = value;
+        //            NotifyPropertyChanged();
+        //            ValidateProperty();
+        //            this.MaxValueString = _MaxValue.ToString();
+        //        }
+        //    }
+        //    get
+        //    {
+        //        if (_MaxValue == null)
+        //        {
+        //            if (BigInteger.TryParse(this.MaxValueString, out var v))
+        //                _MaxValue = v;
+        //        }
+        //        return _MaxValue;
+        //    }
+        //}
+        //private BigInteger _MaxValue;
+        [PropertyOrderAttribute(13)]
+        public BigInteger MaxNumericalValue
         {
-            set
-            {
-                if (_MinValue != value)
-                {
-                    _MinValue = value;
-                    NotifyPropertyChanged();
-                    ValidateProperty();
-                    this.MinValueString = _MinValue.ToString();
-                }
-            }
             get
             {
-                if (_MinValue == null)
+                if (_MaxNumericalValue == 0)
                 {
-                    if (BigInteger.TryParse(this.MinValueString, out var v))
-                        _MinValue = v;
+                    _MaxNumericalValue = 1;
+                    for (int i = 0; i < this.Length; i++)
+                        _MaxNumericalValue *= 10;
                 }
-                return _MinValue;
+                return _MaxNumericalValue;
             }
         }
-        private BigInteger _MinValue;
-        public BigInteger MaxValue
+        private BigInteger _MaxNumericalValue;
+        partial void OnLengthChanged()
         {
-            set
-            {
-                if (_MaxValue != value)
-                {
-                    _MaxValue = value;
-                    NotifyPropertyChanged();
-                    ValidateProperty();
-                    this.MaxValueString = _MaxValue.ToString();
-                }
-            }
+            _MaxNumericalValue = 0;
+        }
+        [PropertyOrderAttribute(11)]
+        public string ClrType
+        {
             get
             {
-                if (_MaxValue == null)
+                // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
+                switch (this.DataTypeEnum)
                 {
-                    if (BigInteger.TryParse(this.MaxValueString, out var v))
-                        _MaxValue = v;
+                    case EnumDataType.Bool:
+                        return "bool";
+                    case EnumDataType.String:
+                        return "string";
+                    case EnumDataType.Numerical:
+                        if (this.Accuracy == 0)
+                        {
+                            if (this.IsPositive)
+                            {
+                                if (this.MaxNumericalValue <= byte.MaxValue)
+                                    return "byte";
+                                if (this.MaxNumericalValue <= ushort.MaxValue)
+                                    return "ushort";
+                                if (this.MaxNumericalValue <= uint.MaxValue)
+                                    return "uint";
+                                if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
+                                    return "ulong";
+                                return "BigInteger";
+                            }
+                            else
+                            {
+                                if (this.MaxNumericalValue <= sbyte.MaxValue)
+                                    return "sbyte";
+                                if (this.MaxNumericalValue <= short.MaxValue)
+                                    return "short";
+                                if (this.MaxNumericalValue <= int.MaxValue)
+                                    return "int";
+                                if (this.MaxNumericalValue <= long.MaxValue)
+                                    return "long";
+                                return "BigInteger";
+                            }
+                        }
+                        else
+                        {
+                            // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                            // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                            // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                            if (this.Length <= 6)
+                                return "float";
+                            if (this.Length <= 15)
+                                return "double";
+                            if (this.Length < 29)
+                                return "decimal";
+                            return "BigDecimal";
+                        }
+                    default:
+                        throw new Exception("Not supported operation");
                 }
-                return _MaxValue;
             }
         }
-        private BigInteger _MaxValue;
+        [PropertyOrderAttribute(12)]
+        public string ProtoType
+        {
+            get
+            {
+                // https://developers.google.com/protocol-buffers/docs/proto3#scalar
+                switch (this.DataTypeEnum)
+                {
+                    case EnumDataType.Bool:
+                        return "bool";
+                    case EnumDataType.String:
+                        return "string";
+                    case EnumDataType.Numerical:
+                        if (this.Accuracy == 0)
+                        {
+                            if (this.IsPositive)
+                            {
+                                if (this.MaxNumericalValue <= uint.MaxValue)
+                                    return "uint32";
+                                if (this.MaxNumericalValue <= long.MaxValue) // long, not ulong
+                                    return "uint64";
+                                return "bytes"; // need conversions
+                            }
+                            else
+                            {
+                                if (this.MaxNumericalValue <= int.MaxValue)
+                                    return "int32";
+                                if (this.MaxNumericalValue <= long.MaxValue)
+                                    return "int64";
+                                return "bytes"; // need conversions
+                            }
+                        }
+                        else
+                        {
+                            // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                            // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                            // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                            if (this.Length <= 6)
+                                return "float";
+                            if (this.Length <= 15)
+                                return "double";
+                            return "bytes"; // need conversions
+                        }
+                    default:
+                        throw new Exception("Not supported operation");
+                }
+            }
+        }
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
 

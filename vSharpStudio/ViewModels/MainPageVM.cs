@@ -32,10 +32,10 @@ namespace vSharpStudio.ViewModels
                 this.Model = new ConfigRoot();
         }
         private const string CFG_PATH = @".\current.vcfg";
-        internal void OnSelectedItemChanged(object oldValue, object newValue)
-        {
-            this.Model.SelectedNode = (ITreeConfigNode)newValue;
-        }
+        //internal void OnSelectedItemChanged(object oldValue, object newValue)
+        //{
+        //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
+        //}
 
         public ConfigRoot Model
         {

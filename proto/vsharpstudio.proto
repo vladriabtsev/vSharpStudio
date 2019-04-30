@@ -33,7 +33,6 @@ message id_db_generator {
  */
 message proto_group_configs {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
 //  string name_ui = 4;
@@ -46,7 +45,6 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     string version = 2;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 3;
     uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(2)]
@@ -127,18 +125,16 @@ message proto_data_type {
 
         Any = 15;
     }
-    // @attr [PropertyOrderAttribute(2)]
+    // @attr [PropertyOrderAttribute(1)]
     EnumDataType data_type_enum = 1; 
     // @attr [PropertyOrderAttribute(3)]
     uint32 length = 2; 
-    // @attr [PropertyOrderAttribute(4)]
-    uint32 accuracy = 3; 
     // @attr [PropertyOrderAttribute(5)]
+    uint32 accuracy = 3; 
+    // @attr [PropertyOrderAttribute(4)]
     bool is_positive = 4; 
     string object_guid = 5;
-    string min_value_string = 6;
-    string max_value_string = 7;
-    // @attr [PropertyOrderAttribute(6)]
+    // @attr [PropertyOrderAttribute(2)]
     string object_name = 8;
 }
 /** 
@@ -157,7 +153,6 @@ message proto_object_shared_props {
 message proto_group_property_tab {
 //    proto_object_shared_props shared = 1;
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -168,7 +163,6 @@ message proto_group_property_tab {
 }
 message proto_group_property_tabs {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -179,7 +173,6 @@ message proto_group_property_tabs {
 }
 message proto_group_property_tabs_tree {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -192,7 +185,6 @@ message proto_group_property_tabs_tree {
 
 message proto_group_list_properties {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -203,7 +195,6 @@ message proto_group_list_properties {
 }
 message proto_property {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -215,7 +206,6 @@ message proto_property {
 }
 message proto_group_properties_tree {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -231,7 +221,6 @@ message proto_group_properties_tree {
  */
 message proto_group_list_constants {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -245,7 +234,6 @@ message proto_group_list_constants {
 //#[test-class]
 message proto_constant {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -261,7 +249,6 @@ message proto_constant {
  */
   message proto_group_list_enumerations {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -278,7 +265,6 @@ message proto_enumeration {
         INTEGER = 3;
     }
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -291,7 +277,6 @@ message proto_enumeration {
 }
 message proto_enumeration_pair {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -307,7 +292,6 @@ message proto_enumeration_pair {
  */
 message proto_catalog {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -325,7 +309,6 @@ message proto_catalog {
 }
 message proto_group_list_catalogs {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -340,7 +323,6 @@ message proto_group_list_catalogs {
  */
 message proto_group_documents {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -352,7 +334,6 @@ message proto_group_documents {
 }
 message proto_document {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -367,7 +348,6 @@ message proto_document {
 }
 message proto_group_list_documents {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -382,7 +362,6 @@ message proto_group_list_documents {
  */
 message proto_group_list_journals {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -394,7 +373,6 @@ message proto_group_list_journals {
 }
 message proto_journal {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -410,7 +388,6 @@ message proto_journal {
  */
 message proto_group_list_forms {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -422,7 +399,6 @@ message proto_group_list_forms {
 }
 message proto_form {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -438,7 +414,6 @@ message proto_form {
  */
 message proto_group_list_reports {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -450,7 +425,6 @@ message proto_group_list_reports {
 }
 message proto_report {
     string guid = 1;
-    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]

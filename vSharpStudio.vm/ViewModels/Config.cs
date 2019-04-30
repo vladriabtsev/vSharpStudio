@@ -119,9 +119,9 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _SelectedNode = value;
                     NotifyPropertyChanged();
-                    if (OnSelectedNodeChanged != null)
-                        OnSelectedNodeChanged();
                 }
+                if (OnSelectedNodeChanged != null)
+                    OnSelectedNodeChanged();
             }
             get { return _SelectedNode; }
         }

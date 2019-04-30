@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/30/2019 15:17:50
+// Auto generated on UTC 04/30/2019 21:02:45
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -1247,8 +1248,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Accuracy = from.Accuracy;
 		    vm.IsPositive = from.IsPositive;
 		    vm.ObjectGuid = from.ObjectGuid;
-		    vm.MinValueString = from.MinValueString;
-		    vm.MaxValueString = from.MaxValueString;
 		    vm.ObjectName = from.ObjectName;
 		    return vm;
 		}
@@ -1259,8 +1258,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Accuracy = from.Accuracy;
 		    to.IsPositive = from.IsPositive;
 		    to.ObjectGuid = from.ObjectGuid;
-		    to.MinValueString = from.MinValueString;
-		    to.MaxValueString = from.MaxValueString;
 		    to.ObjectName = from.ObjectName;
 		}
 		#region IEditable
@@ -1289,8 +1286,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Accuracy = m.Accuracy;
 		    vm.IsPositive = m.IsPositive;
 		    vm.ObjectGuid = m.ObjectGuid;
-		    vm.MinValueString = m.MinValueString;
-		    vm.MaxValueString = m.MaxValueString;
 		    vm.ObjectName = m.ObjectName;
 		    return vm;
 		}
@@ -1303,15 +1298,13 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Accuracy = vm.Accuracy;
 		    m.IsPositive = vm.IsPositive;
 		    m.ObjectGuid = vm.ObjectGuid;
-		    m.MinValueString = vm.MinValueString;
-		    m.MaxValueString = vm.MaxValueString;
 		    m.ObjectName = vm.ObjectName;
 		    return m;
 		}
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
+		[PropertyOrderAttribute(1)]
 		public proto_data_type.Types.EnumDataType DataTypeEnum
 		{ 
 			set
@@ -1349,7 +1342,7 @@ namespace vSharpStudio.vm.ViewModels
 		private uint _Length;
 		partial void OnLengthChanging();
 		partial void OnLengthChanged();
-		[PropertyOrderAttribute(4)]
+		[PropertyOrderAttribute(5)]
 		public uint Accuracy
 		{ 
 			set
@@ -1368,7 +1361,7 @@ namespace vSharpStudio.vm.ViewModels
 		private uint _Accuracy;
 		partial void OnAccuracyChanging();
 		partial void OnAccuracyChanged();
-		[PropertyOrderAttribute(5)]
+		[PropertyOrderAttribute(4)]
 		public bool IsPositive
 		{ 
 			set
@@ -1405,43 +1398,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ObjectGuid = "";
 		partial void OnObjectGuidChanging();
 		partial void OnObjectGuidChanged();
-		public string MinValueString
-		{ 
-			set
-			{
-				if (_MinValueString != value)
-				{
-					OnMinValueStringChanging();
-					_MinValueString = value;
-					OnMinValueStringChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _MinValueString; }
-		}
-		private string _MinValueString = "";
-		partial void OnMinValueStringChanging();
-		partial void OnMinValueStringChanged();
-		public string MaxValueString
-		{ 
-			set
-			{
-				if (_MaxValueString != value)
-				{
-					OnMaxValueStringChanging();
-					_MaxValueString = value;
-					OnMaxValueStringChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _MaxValueString; }
-		}
-		private string _MaxValueString = "";
-		partial void OnMaxValueStringChanging();
-		partial void OnMaxValueStringChanged();
-		[PropertyOrderAttribute(6)]
+		[PropertyOrderAttribute(2)]
 		public string ObjectName
 		{ 
 			set

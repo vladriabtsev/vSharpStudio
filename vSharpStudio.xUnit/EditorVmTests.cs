@@ -398,14 +398,14 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.SelectedNode == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0]);
 
             // change property parameters
-            p.DataType.MinValue = 5;
-            p.DataType.MaxValue = 6;
+            //p.DataType.MinValue = 5;
+            //p.DataType.MaxValue = 6;
 
             p.NodeAddClone();
             Assert.True(p == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2]);
             Assert.True(cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].Name == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[0].Name + "2");
-            Assert.True(5 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
-            Assert.True(6 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
+            //Assert.True(5 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
+            //Assert.True(6 == cfg.GroupCatalogs.ListCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 
             #endregion Properties
 
