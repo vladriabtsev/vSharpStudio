@@ -50,6 +50,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.std", "common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetLatestAttr", "generators\GetLatestAttr\GetLatestAttr.csproj", "{3D0D1F12-4300-4870-B588-504A792085C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,12 @@ Global
 		{3D0D1F12-4300-4870-B588-504A792085C2}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{3D0D1F12-4300-4870-B588-504A792085C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D0D1F12-4300-4870-B588-504A792085C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +136,7 @@ Global
 		{871161A9-567D-476E-9D3E-AA44400FB63A} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{3D0D1F12-4300-4870-B588-504A792085C2} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
+		{72E591D6-8F83-4D8C-8F67-9C325E623234} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

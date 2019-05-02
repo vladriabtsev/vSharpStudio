@@ -1,4 +1,4 @@
-// Auto generated on UTC 04/30/2019 21:02:45
+// Auto generated on UTC 05/02/2019 13:25:52
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -222,8 +222,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupConfigs() : base(GroupConfigsValidator.Validator)
 		{
-			this.ListConfigs = new SortedObservableCollection<ConfigTree>();
-			this.ListConfigs.CollectionChanged += ListConfigs_CollectionChanged;
+			this.ListConfigs = new SortedObservableCollection<ConfigTree>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as ConfigTree).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupConfigs(ITreeConfigNode parent) : this()
@@ -231,24 +247,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupConfigs.DefaultName, this, this.SubNodes);
 	    }
-		private void ListConfigs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as ConfigTree).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -610,7 +608,11 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupConfigs.Accept(visitor);
+			this.GroupConstants.Accept(visitor);
+			this.GroupEnumerations.Accept(visitor);
+			this.GroupCatalogs.Accept(visitor);
+			this.GroupDocuments.Accept(visitor);
+			this.GroupJournals.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1019,8 +1021,24 @@ namespace vSharpStudio.vm.ViewModels
 		public ConfigTree() : base(ConfigTreeValidator.Validator)
 		{
 			this.ConfigNode = new Config(this);
-			this.ListConfigs = new SortedObservableCollection<ConfigTree>();
-			this.ListConfigs.CollectionChanged += ListConfigs_CollectionChanged;
+			this.ListConfigs = new SortedObservableCollection<ConfigTree>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as ConfigTree).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public ConfigTree(ITreeConfigNode parent) : this()
@@ -1028,24 +1046,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(ConfigTree.DefaultName, this, this.SubNodes);
 	    }
-		private void ListConfigs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as ConfigTree).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1171,7 +1171,6 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.ConfigNode.Accept(visitor);
 			foreach(var t in this.ListConfigs)
 				t.Accept(visitor);
 			visitor.VisitEnd(this);
@@ -1425,8 +1424,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupPropertyTab() : base(GroupPropertyTabValidator.Validator)
 		{
-			this.ListProperties = new SortedObservableCollection<Property>();
-			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+			this.ListProperties = new SortedObservableCollection<Property>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Property).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupPropertyTab(ITreeConfigNode parent) : this()
@@ -1434,24 +1449,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupPropertyTab.DefaultName, this, this.SubNodes);
 	    }
-		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Property).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1631,8 +1628,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupPropertyTabs() : base(GroupPropertyTabsValidator.Validator)
 		{
-			this.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>();
-			this.ListPropertiesTabs.CollectionChanged += ListPropertiesTabs_CollectionChanged;
+			this.ListPropertiesTabs = new SortedObservableCollection<GroupPropertyTabsTree>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as GroupPropertyTabsTree).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupPropertyTabs(ITreeConfigNode parent) : this()
@@ -1640,24 +1653,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupPropertyTabs.DefaultName, this, this.SubNodes);
 	    }
-		private void ListPropertiesTabs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as GroupPropertyTabsTree).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1930,8 +1925,6 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.ListPropertiesTab.Accept(visitor);
-			this.ListPropertiesSubTabs.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2019,8 +2012,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListProperties() : base(GroupListPropertiesValidator.Validator)
 		{
-			this.ListProperties = new SortedObservableCollection<Property>();
-			this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+			this.ListProperties = new SortedObservableCollection<Property>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Property).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListProperties(ITreeConfigNode parent) : this()
@@ -2028,24 +2037,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListProperties.DefaultName, this, this.SubNodes);
 	    }
-		private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Property).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -2381,8 +2372,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupPropertiesTree() : base(GroupPropertiesTreeValidator.Validator)
 		{
-			this.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>();
-			this.ListPropertiesTreeGroups.CollectionChanged += ListPropertiesTreeGroups_CollectionChanged;
+			this.ListPropertiesTreeGroups = new SortedObservableCollection<GroupPropertiesTree>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as GroupPropertiesTree).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			this.GroupProperties = new GroupListProperties(this);
 			OnInit();
 		}
@@ -2391,24 +2398,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupPropertiesTree.DefaultName, this, this.SubNodes);
 	    }
-		private void ListPropertiesTreeGroups_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as GroupPropertiesTree).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -2540,7 +2529,6 @@ namespace vSharpStudio.vm.ViewModels
 			visitor.Visit(this);
 			foreach(var t in this.ListPropertiesTreeGroups)
 				t.Accept(visitor);
-			this.GroupProperties.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2613,8 +2601,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListConstants() : base(GroupListConstantsValidator.Validator)
 		{
-			this.ListConstants = new SortedObservableCollection<Constant>();
-			this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
+			this.ListConstants = new SortedObservableCollection<Constant>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Constant).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListConstants(ITreeConfigNode parent) : this()
@@ -2622,24 +2626,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListConstants.DefaultName, this, this.SubNodes);
 	    }
-		private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Constant).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -2816,7 +2802,6 @@ namespace vSharpStudio.vm.ViewModels
 	
 	///////////////////////////////////////////////////
 	/// Constant application wise value
-	/// #[test-class]
 	///////////////////////////////////////////////////
 	public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IAccept
 	{
@@ -2981,8 +2966,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListEnumerations() : base(GroupListEnumerationsValidator.Validator)
 		{
-			this.ListEnumerations = new SortedObservableCollection<Enumeration>();
-			this.ListEnumerations.CollectionChanged += ListEnumerations_CollectionChanged;
+			this.ListEnumerations = new SortedObservableCollection<Enumeration>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Enumeration).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListEnumerations(ITreeConfigNode parent) : this()
@@ -2990,24 +2991,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListEnumerations.DefaultName, this, this.SubNodes);
 	    }
-		private void ListEnumerations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Enumeration).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -3187,8 +3170,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Enumeration() : base(EnumerationValidator.Validator)
 		{
-			this.ListValues = new SortedObservableCollection<EnumerationPair>();
-			this.ListValues.CollectionChanged += ListValues_CollectionChanged;
+			this.ListValues = new SortedObservableCollection<EnumerationPair>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as EnumerationPair).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public Enumeration(ITreeConfigNode parent) : this()
@@ -3196,24 +3195,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(Enumeration.DefaultName, this, this.SubNodes);
 	    }
-		private void ListValues_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as EnumerationPair).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -3686,7 +3667,9 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupProperties.Accept(visitor);
+			this.GroupForms.Accept(visitor);
+			this.GroupReports.Accept(visitor);
+			this.GroupSubCatalogs.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -3829,8 +3812,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListCatalogs() : base(GroupListCatalogsValidator.Validator)
 		{
-			this.ListCatalogs = new SortedObservableCollection<Catalog>();
-			this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
+			this.ListCatalogs = new SortedObservableCollection<Catalog>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Catalog).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListCatalogs(ITreeConfigNode parent) : this()
@@ -3838,24 +3837,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListCatalogs.DefaultName, this, this.SubNodes);
 	    }
-		private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Catalog).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -4128,7 +4109,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupSharedProperties.Accept(visitor);
+			this.GroupListDocuments.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4323,7 +4304,8 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupPropertiesTree.Accept(visitor);
+			this.GroupForms.Accept(visitor);
+			this.GroupReports.Accept(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4448,8 +4430,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListDocuments() : base(GroupListDocumentsValidator.Validator)
 		{
-			this.ListDocuments = new SortedObservableCollection<Document>();
-			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+			this.ListDocuments = new SortedObservableCollection<Document>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Document).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListDocuments(ITreeConfigNode parent) : this()
@@ -4457,24 +4455,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListDocuments.DefaultName, this, this.SubNodes);
 	    }
-		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Document).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -4654,8 +4634,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListJournals() : base(GroupListJournalsValidator.Validator)
 		{
-			this.ListJournals = new SortedObservableCollection<Journal>();
-			this.ListJournals.CollectionChanged += ListJournals_CollectionChanged;
+			this.ListJournals = new SortedObservableCollection<Journal>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Journal).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListJournals(ITreeConfigNode parent) : this()
@@ -4663,24 +4659,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListJournals.DefaultName, this, this.SubNodes);
 	    }
-		private void ListJournals_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Journal).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -4864,8 +4842,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Journal() : base(JournalValidator.Validator)
 		{
-			this.ListDocuments = new SortedObservableCollection<Document>();
-			this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+			this.ListDocuments = new SortedObservableCollection<Document>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Document).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public Journal(ITreeConfigNode parent) : this()
@@ -4873,24 +4867,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(Journal.DefaultName, this, this.SubNodes);
 	    }
-		private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Document).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -5074,8 +5050,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListForms() : base(GroupListFormsValidator.Validator)
 		{
-			this.ListForms = new SortedObservableCollection<Form>();
-			this.ListForms.CollectionChanged += ListForms_CollectionChanged;
+			this.ListForms = new SortedObservableCollection<Form>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Form).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListForms(ITreeConfigNode parent) : this()
@@ -5083,24 +5075,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListForms.DefaultName, this, this.SubNodes);
 	    }
-		private void ListForms_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Form).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -5420,8 +5394,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public GroupListReports() : base(GroupListReportsValidator.Validator)
 		{
-			this.ListReports = new SortedObservableCollection<Report>();
-			this.ListReports.CollectionChanged += ListReports_CollectionChanged;
+			this.ListReports = new SortedObservableCollection<Report>(e =>
+	        {
+	            switch(e.Action)
+	            {
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+	                    break;
+	                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+	                    foreach (var t in e.NewItems)
+	                        (t as Report).Parent = this;
+	                    break;
+	                default:
+	                    throw new Exception();
+	            }
+	        });
 			OnInit();
 		}
 		public GroupListReports(ITreeConfigNode parent) : this()
@@ -5429,24 +5419,6 @@ namespace vSharpStudio.vm.ViewModels
 	        this.Parent = parent;
 	        //GetUniqueName(GroupListReports.DefaultName, this, this.SubNodes);
 	    }
-		private void ListReports_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-	        switch(e.Action)
-	        {
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-	                break;
-	            case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-		    		foreach (var t in e.NewItems)
-		    			(t as Report).Parent = this;
-	                break;
-	            default:
-	                throw new Exception();
-			}
-		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures

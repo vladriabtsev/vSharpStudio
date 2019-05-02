@@ -61,7 +61,7 @@ namespace GenFromProto
             this.Write(")\r\n\t\tt.Accept(visitor);\r\n");
             
             #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass.StartsWith(" : ConfigObjectBase"))) { 
+ } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
             
             #line default
             #line hidden

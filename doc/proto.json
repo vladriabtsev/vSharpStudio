@@ -645,7 +645,7 @@
           "name": "proto_constant",
           "longName": "proto_constant",
           "fullName": "proto_config.proto_constant",
-          "description": "Constant application wise value\n#[test-class]",
+          "description": "Constant application wise value",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

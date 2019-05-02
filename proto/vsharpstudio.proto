@@ -231,7 +231,7 @@ message proto_group_list_constants {
 }
 //
 // Constant application wise value
-//#[test-class]
+//
 message proto_constant {
     string guid = 1;
     string name = 2;
@@ -247,7 +247,7 @@ message proto_constant {
  * @exclude
  * ####################################### E N U M E R A T I O N ##########################################
  */
-  message proto_group_list_enumerations {
+message proto_group_list_enumerations {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;

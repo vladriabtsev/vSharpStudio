@@ -35,6 +35,8 @@ namespace vSharpStudio.xUnit
             {
                 Name = "test1",
             };
+            var cfg = new ConfigRoot();
+            cfg.GroupCatalogs.ListCatalogs.Add(vm);
             vm.IdDbGenerator.HiLoSchema = "schema1";
             vm.BeginEdit();
             vm.Name = "test2";
@@ -49,6 +51,8 @@ namespace vSharpStudio.xUnit
             Catalog vm = new Catalog
             {
             };
+            var cfg = new ConfigRoot();
+            cfg.GroupCatalogs.ListCatalogs.Add(vm);
             vm.IdDbGenerator.IsPrimaryKeyClustered = true;
             vm.BeginEdit();
             vm.IdDbGenerator.IsPrimaryKeyClustered = false;
@@ -59,6 +63,8 @@ namespace vSharpStudio.xUnit
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
             Catalog vm = new Catalog();
+            var cfg = new ConfigRoot();
+            cfg.GroupCatalogs.ListCatalogs.Add(vm);
             vm.Name = "test1";
             vm.BeginEdit();
             vm.Name = "test2";
@@ -73,6 +79,8 @@ namespace vSharpStudio.xUnit
             {
                 Name = "test1"
             };
+            var cfg = new ConfigRoot();
+            cfg.GroupCatalogs.ListCatalogs.Add(vm);
             vm.GroupProperties.ListProperties.Add(prop);
             vm.BeginEdit();
             vm.GroupProperties.ListProperties[0].Name = "test2";
@@ -90,6 +98,8 @@ namespace vSharpStudio.xUnit
         public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
+            var cfg = new ConfigRoot();
+            cfg.GroupCatalogs.ListCatalogs.Add(vm);
             vm.BeginEdit();
             vm.GroupProperties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.CancelEdit();
@@ -146,8 +156,11 @@ namespace vSharpStudio.xUnit
             Config.ConfigValidator.Reset();
             Catalog.CatalogValidator.Reset();
             var cfg = new ConfigRoot();
-            var c = new Catalog() {  Name="test" };
+            var c = new Catalog() { Name = "test" };
+
+            Assert.True(c.Parent == null);
             cfg.GroupCatalogs.ListCatalogs.Add(c);
+            Assert.True(c.Parent == cfg.GroupCatalogs);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";

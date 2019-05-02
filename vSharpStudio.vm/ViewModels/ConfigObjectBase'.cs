@@ -97,7 +97,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public int CompareTo(T other) { return this.SortingValue.CompareTo(other.SortingValue); }
 
-        #region ITreeConfigNode
+        #region Sort
 
         [BrowsableAttribute(false)]
         public ulong SortingWeight { get; set; }
@@ -121,8 +121,15 @@ namespace vSharpStudio.vm.ViewModels
             get { return _SortingValue; }
         }
         private ulong _SortingValue;
+        public virtual void Sort(Type type)
+        {
+            throw new NotImplementedException();
+        }
         partial void OnSortingValueChanging();
         partial void OnSortingValueChanged();
+
+        #endregion Sort
+
         [BrowsableAttribute(false)]
         public string Guid
         {
@@ -232,7 +239,8 @@ namespace vSharpStudio.vm.ViewModels
             configObject.Name = defName + i;
         }
         [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
+        public ITreeConfigNode Parent { get { return _Parent; } set { _Parent = value; } }
+        private ITreeConfigNode _Parent;
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]
@@ -263,10 +271,9 @@ namespace vSharpStudio.vm.ViewModels
             get { return _IsExpanded; }
         }
         private bool _IsExpanded;
-        public virtual void Sort(Type type)
-        {
-            throw new NotImplementedException();
-        }
+
+        #region Commands
+
         public bool NodeCanAddNew()
         {
             if (this.Parent != null)
@@ -286,47 +293,40 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case "Constant":
                     var res = new Constant();
-                    res.Parent = this.Parent;
+                    //res.Parent = this.Parent;
                     (this.Parent as GroupListConstants).ListConstants.Add(res);
                     GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).ListConstants);
                     (this.Parent.Parent as Config).SelectedNode = res;
                     return res;
                 case "Enumeration":
                     var enumeration = new Enumeration();
-                    enumeration.Parent = this.Parent;
+                    //enumeration.Parent = this.Parent;
                     (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
                     GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).ListEnumerations);
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Catalog":
                     var catalog = new Catalog();
-                    catalog.Parent = this.Parent;
+                    //catalog.Parent = this.Parent;
                     (this.Parent as GroupListCatalogs).ListCatalogs.Add(catalog);
                     GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupListCatalogs).ListCatalogs);
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Document":
                     var doc = new Document();
-                    doc.Parent = this.Parent;
+                    //doc.Parent = this.Parent;
                     (this.Parent as GroupListDocuments).ListDocuments.Add(doc);
                     GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).ListDocuments);
                     (this.Parent.Parent as Config).SelectedNode = doc;
                     return doc;
                 case "Property":
                     var prop = new Property();
-                    prop.Parent = this.Parent;
-                    if (this.Parent is Catalog)
+                    //prop.Parent = this.Parent;
+                    if (this.Parent is GroupListProperties)
                     {
-                        var pp = this.Parent as Catalog;
-                        pp.GroupProperties.ListProperties.Add(prop);
-                        GetUniqueName(Property.DefaultName, prop, pp.GroupProperties.ListProperties);
-                    }
-                    else if (this.Parent is Catalog)
-                    {
-                        throw new Exception();
-                        //var pp = this.Parent as Catalog;
-                        //pp.GroupProperties.ListProperties.Add(prop);
-                        //GetUniqueName(Property.DefaultName, prop, pp.GroupProperties.ListProperties);
+                        var pp = this.Parent as GroupListProperties;
+                        pp.ListProperties.Add(prop);
+                        GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
                     }
                     else
                         throw new Exception();
@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
                     return prop;
                 case "Journal":
                     var journal = new Journal();
-                    journal.Parent = this.Parent;
+                    //journal.Parent = this.Parent;
                     (this.Parent as GroupListJournals).ListJournals.Add(journal);
                     GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).ListJournals);
                     (this.Parent.Parent as Config).SelectedNode = journal;
@@ -363,7 +363,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case "GroupListConstants":
                     var constant = new Constant();
-                    constant.Parent = this;
+                    //constant.Parent = this;
                     var cnp = (this as GroupListConstants);
                     cnp.ListConstants.Add(constant);
                     GetUniqueName(Constant.DefaultName, constant, cnp.ListConstants);
@@ -371,7 +371,7 @@ namespace vSharpStudio.vm.ViewModels
                     return constant;
                 case "GroupListEnumerations":
                     var enumeration = new Enumeration();
-                    enumeration.Parent = this;
+                    //enumeration.Parent = this;
                     var cep = (this as GroupListEnumerations);
                     cep.ListEnumerations.Add(enumeration);
                     GetUniqueName(Enumeration.DefaultName, enumeration, cep.ListEnumerations);
@@ -379,7 +379,7 @@ namespace vSharpStudio.vm.ViewModels
                     return enumeration;
                 case "GroupListProperties":
                     var prop = new Property();
-                    prop.Parent = this;
+                    //prop.Parent = this;
                     var pp = (this as GroupListProperties);
                     pp.ListProperties.Add(prop);
                     GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
@@ -390,7 +390,7 @@ namespace vSharpStudio.vm.ViewModels
                     return prop;
                 case "GroupListCatalogs":
                     var catalog = new Catalog();
-                    catalog.Parent = this;
+                    //catalog.Parent = this;
                     var cp = (this as GroupListCatalogs);
                     cp.ListCatalogs.Add(catalog);
                     GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
@@ -398,7 +398,7 @@ namespace vSharpStudio.vm.ViewModels
                     return catalog;
                 case "Catalog":
                     var prop2 = new Property();
-                    prop2.Parent = this;
+                    //prop2.Parent = this;
                     var ppc = (this as Catalog);
                     ppc.GroupProperties.ListProperties.Add(prop2);
                     GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.ListProperties);
@@ -409,7 +409,7 @@ namespace vSharpStudio.vm.ViewModels
                     return prop2;
                 case "GroupListJournals":
                     var journal = new Journal();
-                    journal.Parent = this;
+                    //journal.Parent = this;
                     var jp = (this as GroupListJournals);
                     jp.ListJournals.Add(journal);
                     GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
@@ -635,6 +635,6 @@ namespace vSharpStudio.vm.ViewModels
             (config as Config).SelectedNode = prev;
         }
 
-        #endregion ITreeConfigNode
+        #endregion Commands
     }
 }
