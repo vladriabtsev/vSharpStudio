@@ -78,6 +78,19 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg2.GroupConstants.ListConstants.Count == 1);
             Assert.True(cfg2.GroupConstants.ListConstants[0].Name == typeof(Constant).Name + 1);
         }
+        [Fact]
+        public void Config003CanSaveAndRestoreSortingValue()
+        {
+            var cfg = new Config();
+            cfg.GroupConstants.NodeAddNewSubNode();
+            cfg.GroupConstants.NodeAddNewSubNode();
+            cfg.GroupConstants.ListConstants[1].NodeMoveUp();
+            string json = cfg.ExportToJson();
+            Assert.True(json.Length > 0);
+            var cfg2 = new Config(json);
+            Assert.True(cfg2.GroupConstants.ListConstants.Count == 2);
+            Assert.True(cfg2.GroupConstants.ListConstants[0].Name == typeof(Constant).Name + 2);
+        }
         // TODO business validation tests
         //[Fact]
         //public void Config003ValidationIsDbFromConnectionStringInfoConnectionStringName()
@@ -542,9 +555,6 @@ namespace vSharpStudio.xUnit
             Assert.True(dt.CountErrors == 0);
             Assert.True(dt.CountInfos == 0);
             Assert.True(dt.CountWarnings == 0);
-            Assert.True(dt.HasErrors);
-            Assert.True(dt.ValidationCollection.Count == 1);
-            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
             Assert.True(dt.VisibilityAccuracy == Visibility.Visible);
             Assert.True(dt.VisibilityLength == Visibility.Visible);
             Assert.True(dt.VisibilityObjectName == Visibility.Collapsed);

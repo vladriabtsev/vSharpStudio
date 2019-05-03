@@ -24,7 +24,7 @@ namespace ViewModelBase
         protected virtual void OnCountErrorsChanged() { }
         protected virtual void OnCountWarningsChanged() { }
         protected virtual void OnCountInfosChanged() { }
-        [BrowsableAttribute(false)]
+        //[BrowsableAttribute(false)]
         public int CountErrors
         {
             get { return _CountErrors; }
@@ -69,7 +69,7 @@ namespace ViewModelBase
             }
         }
         private int _CountInfos;
-        [BrowsableAttribute(false)]
+        //[BrowsableAttribute(false)]
         public SortedObservableCollection<ValidationMessage> ValidationCollection { get; set; }
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
@@ -132,6 +132,12 @@ namespace ViewModelBase
             NotifyPropertyChanged(m => m.HasWarnings);
             NotifyPropertyChanged(m => m.HasInfos);
         }
+        protected virtual void ValidateProperty<TResult>
+            (Expression<Func<T, TResult>> property)
+        {
+            string propertyName = ((MemberExpression)property.Body).Member.Name;
+            ValidateProperty(propertyName);
+        }
         protected override bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
 #if DEBUG
@@ -139,48 +145,48 @@ namespace ViewModelBase
                 return true;
 #endif
             var res = this._validator.Validate(this);
-            if (!res.IsValid)
+            bool found = false;
+            foreach (var t in res.Errors)
             {
-                bool found = false;
-                foreach (var t in res.Errors)
+                if (t.PropertyName != propertyName)
+                    continue;
+                found = true;
+                switch (t.Severity)
                 {
-                    if (t.PropertyName != propertyName)
-                        continue;
-                    found = true;
-                    switch (t.Severity)
-                    {
-                        case Severity.Error:
-                            if (!_errors.ContainsKey(t.PropertyName))
-                                _errors[t.PropertyName] = new List<string>();
-                            _errors[t.PropertyName].Add(t.ErrorMessage);
-                            break;
-                        case Severity.Warning:
-                            if (!_warnings.ContainsKey(t.PropertyName))
-                                _warnings[t.PropertyName] = new List<string>();
-                            _warnings[t.PropertyName].Add(t.ErrorMessage);
-                            break;
-                        case Severity.Info:
-                            if (!_infos.ContainsKey(t.PropertyName))
-                                _infos[t.PropertyName] = new List<string>();
-                            _infos[t.PropertyName].Add(t.ErrorMessage);
-                            break;
-                    }
+                    case Severity.Error:
+                        if (!_errors.ContainsKey(t.PropertyName))
+                            _errors[t.PropertyName] = new List<string>();
+                        _errors[t.PropertyName].Add(t.ErrorMessage);
+                        break;
+                    case Severity.Warning:
+                        if (!_warnings.ContainsKey(t.PropertyName))
+                            _warnings[t.PropertyName] = new List<string>();
+                        _warnings[t.PropertyName].Add(t.ErrorMessage);
+                        break;
+                    case Severity.Info:
+                        if (!_infos.ContainsKey(t.PropertyName))
+                            _infos[t.PropertyName] = new List<string>();
+                        _infos[t.PropertyName].Add(t.ErrorMessage);
+                        break;
                 }
-                if (found)
-                {
-                    RaiseErrorsChanged(propertyName);
-                }
-                else if (_errors.ContainsKey(propertyName))
+            }
+            if (found)
+            {
+                RaiseErrorsChanged(propertyName);
+            }
+            else
+            {
+                if (_errors.ContainsKey(propertyName))
                 {
                     _errors.Remove(propertyName);
                     RaiseErrorsChanged(propertyName);
                 }
-                else if (_warnings.ContainsKey(propertyName))
+                if (_warnings.ContainsKey(propertyName))
                 {
                     _warnings.Remove(propertyName);
                     RaiseErrorsChanged(propertyName);
                 }
-                else if (_infos.ContainsKey(propertyName))
+                if (_infos.ContainsKey(propertyName))
                 {
                     _infos.Remove(propertyName);
                     RaiseErrorsChanged(propertyName);

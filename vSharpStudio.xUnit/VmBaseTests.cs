@@ -5,6 +5,7 @@ using ViewModelBase;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FluentValidation;
+using vSharpStudio.ViewModels;
 
 namespace vSharpStudio.xUnit
 {
@@ -233,6 +234,44 @@ namespace vSharpStudio.xUnit
             Assert.True(p.Severity == FluentValidation.Severity.Error);
             Assert.True(p.Message == mes2);
             Assert.True(p.Model == cfg);
+        }
+        [Fact]
+        public void Validation007_Propagation()
+        {
+            Config.ConfigValidator.Reset();
+            var cfg = new ConfigRoot();
+            string mes1 = "test error message";
+            string mes2 = "test error message2";
+
+            cfg.GroupConstants.NodeAddNewSubNode();
+            Constant.ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
+            cfg.ValidateSubTreeFromNode(cfg.GroupConstants);
+            Assert.True(cfg.GroupConstants.ListConstants[0].ValidationCollection.Count == 1);
+            Assert.True(cfg.GroupConstants.ListConstants[0].CountErrors == 1);
+            Assert.True(cfg.GroupConstants.ValidationCollection.Count == 1);
+            Assert.True(cfg.GroupConstants.CountErrors == 1);
+            Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(cfg.CountErrors == 1);
+            Assert.True(cfg.CountInfos == 0);
+            Assert.True(cfg.CountWarnings == 0);
+
+            cfg.GroupEnumerations.NodeAddNewSubNode();
+            Enumeration.EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
+            cfg.ValidateSubTreeFromNode(cfg.GroupEnumerations);
+            Assert.True(cfg.GroupEnumerations.ListEnumerations[0].ValidationCollection.Count == 1);
+            Assert.True(cfg.GroupEnumerations.ListEnumerations[0].CountErrors == 1);
+            Assert.True(cfg.GroupEnumerations.ValidationCollection.Count == 1);
+            Assert.True(cfg.GroupEnumerations.CountErrors == 1);
+            Assert.True(cfg.ValidationCollection.Count == 0);
+            Assert.True(cfg.CountErrors == 2);
+            Assert.True(cfg.CountInfos == 0);
+            Assert.True(cfg.CountWarnings == 0);
+
+            cfg.ValidateSubTreeFromNode(cfg);
+            Assert.True(cfg.ValidationCollection.Count == 2);
+            Assert.True(cfg.CountErrors == 2);
+            Assert.True(cfg.CountInfos == 0);
+            Assert.True(cfg.CountWarnings == 0);
         }
         #endregion Validation
     }

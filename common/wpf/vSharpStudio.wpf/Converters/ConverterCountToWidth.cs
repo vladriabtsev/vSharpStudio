@@ -28,7 +28,7 @@ namespace vSharpStudio.wpf.Converters
         {
             int res = 0;
             int i = 1;
-            while(i < count)
+            while(i <= count)
             {
                 res++;
                 i <<= i;

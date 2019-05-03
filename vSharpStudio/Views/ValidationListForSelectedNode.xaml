@@ -4,11 +4,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+    xmlns:vmb="clr-namespace:ViewModelBase;assembly=vSharpStudio.std"
     xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
     xmlns:local="clr-namespace:vSharpStudio.Views"
     mc:Ignorable="d" 
     d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:MainPageVM}}"
-    d:DesignHeight="450" d:DesignWidth="800">
+    d:DesignHeight="250" d:DesignWidth="400">
     <UserControl.Resources>
         <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
     </UserControl.Resources>
@@ -18,8 +19,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="List All Validations"/>
-        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding Model.ValidationCollection}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
+        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="False">
+            <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y <= p.Accuracy)
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ACCURACY);
+                }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_LESS_THAN_ACCURACY);
                 #endregion Length
 
                 #region MinValueString
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y >= p.Length)
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ACCURACY);
+                }).WithMessage(Config.ValidationMessages.TYPE_ACCURACY_GREATER_THAN_LENGTH);
                 #endregion Accuracy
 
                 #region ObjectName

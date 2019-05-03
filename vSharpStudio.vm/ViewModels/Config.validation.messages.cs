@@ -26,8 +26,9 @@ namespace vSharpStudio.vm.ViewModels
             public const string TYPE_MAX_EMPTY = "Enter value for 'MaxValue'";
             public const string TYPE_LENGTH_POSITIVE = "Enter positive value for 'Length'";
             public const string TYPE_MAXLENGTH_GREATER_LENGTH = "'Max Length' has to be less or equal 'Length'";
-            public const string TYPE_LENGTH_GREATER_THAN_ACCURACY = "Enter value for 'Length' grater than 'Accuracy'";
-            public const string TYPE_LENGTH_GREATER_THAN_ZERO = "Enter value for 'Length' grater than zero";
+            public const string TYPE_LENGTH_LESS_THAN_ACCURACY = "'Length' has to be greater than 'Accuracy'";
+            public const string TYPE_LENGTH_GREATER_THAN_ZERO = "'Length' has to be greater than zero";
+            public const string TYPE_ACCURACY_GREATER_THAN_LENGTH = "'Accuracy' has to be less than 'Length'";
             public const string TYPE_MINMAX_CANT_PARSE = "Can't parse to integer";
             public const string TYPE_MIN_HAS_TO_BE_LESS_THAN_MAX = "'MinValue' has to be less than 'MaxValue'";
             public const string TYPE_EMPTY_CONSTANT_NAME = "Please select Constant name";

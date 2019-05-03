@@ -56,6 +56,8 @@ namespace vSharpStudio.ViewModels
                     CommandSelectionRight.RaiseCanExecuteChanged();
                     CommandSelectionDown.RaiseCanExecuteChanged();
                     CommandSelectionUp.RaiseCanExecuteChanged();
+                    //_Model.ValidateSubTreeFromNode(_Model.SelectedNode);
+                    _Model.ValidateSubTreeFromNode(_Model.SelectedNode);
                 };
             }
             get { return _Model; }

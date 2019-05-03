@@ -23,7 +23,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Result = new SortedObservableCollection<ValidationMessage>();
             this.Result.SortDirection = SortDirection.Descending;
         }
-        private void UpdateCounts(ITreeConfigNode p, ValidationMessage m)
+        private void UpdateAddCounts(ITreeConfigNode p, ValidationMessage m)
         {
             switch (m.Severity)
             {
@@ -54,17 +54,35 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new ArgumentException();
             }
-
         }
-        private void UpdateValidation(ITreeConfigNode p)
+        public void UpdateSubstructCounts(ITreeConfigNode p)
         {
+            var pp = p;
+            while (pp.Parent != null)
+            {
+                pp = pp.Parent;
+                pp.CountErrors-= p.CountErrors;
+                pp.CountWarnings -= p.CountWarnings;
+                pp.CountInfos -= p.CountInfos;
+            }
+        }
+        private void OnVisit(ITreeConfigNode p)
+        {
+            _level++;
+            if (_logger != null)
+            {
+                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
+            }
+            p.ValidationCollection.Clear();
             p.CountErrors = 0;
             p.CountWarnings = 0;
             p.CountInfos = 0;
+
             p.Validate();
+
             foreach (var t in p.ValidationCollection)
             {
-                UpdateCounts(p, t);
+                UpdateAddCounts(p, t);
                 t.RaiseSeverityLevel(_level);
                 ulong weight = 0;
                 ITreeConfigNode nnode = p;
@@ -77,15 +95,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception();
                 Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
             }
-        }
-        private void OnVisit(ITreeConfigNode p)
-        {
-            _level++;
-            if (_logger != null)
-            {
-                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
-            }
-            UpdateValidation(p);
         }
         private void OnVisitEnd(ITreeConfigNode p)
         {
@@ -344,5 +353,25 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnVisitEnd(p);
         }
+
+        //void IVisitorConfig.Visit(IdDbGenerator p)
+        //{
+        //    OnVisit(p);
+        //}
+
+        //void IVisitorConfig.VisitEnd(IdDbGenerator p)
+        //{
+        //    OnVisitEnd(p);
+        //}
+
+        //void IVisitorConfig.Visit(DataType p)
+        //{
+        //    OnVisit(p);
+        //}
+
+        //void IVisitorConfig.VisitEnd(DataType p)
+        //{
+        //    OnVisitEnd(p);
+        //}
     }
 }

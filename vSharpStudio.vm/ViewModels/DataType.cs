@@ -153,13 +153,58 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //private BigInteger _MaxValue;
         [PropertyOrderAttribute(13)]
+        public string MaxValue
+        {
+            get
+            {
+                switch (this.DataTypeEnum)
+                {
+                    case EnumDataType.Numerical:
+                        if (this.Length > this.Accuracy)
+                            return "".PadRight((int)(this.Length - this.Accuracy), '9');
+                        else if (this.Length == this.Accuracy)
+                            return "1";
+                        else if (this.Length == 0)
+                            return "unlimited";
+                        else
+                            return "";
+                    case EnumDataType.String:
+                        if (this.Length > 0)
+                            return "max length " + this.Length;
+                        else
+                            return "unlimited";
+                    default:
+                        return "";
+                }
+            }
+        }
+        [PropertyOrderAttribute(14)]
+        public string MinValue
+        {
+            get
+            {
+                switch (this.DataTypeEnum)
+                {
+                    case EnumDataType.Numerical:
+                        if (this.Accuracy > 0)
+                            return "0.".PadRight((int)(this.Accuracy + 1), '0') + "1";
+                        //if (this.Accuracy == 1)
+                        //    return "0.1";
+                        else
+                            return "0";
+                    default:
+                        return "";
+                }
+            }
+        }
+        [BrowsableAttribute(false)]
         public BigInteger MaxNumericalValue
         {
             get
             {
-                if (_MaxNumericalValue == 0)
+                _MaxNumericalValue = 1;
+                if (this.Length > 0)
                 {
-                    _MaxNumericalValue = 1;
                     for (int i = 0; i < this.Length; i++)
                         _MaxNumericalValue *= 10;
                 }
@@ -167,10 +212,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger _MaxNumericalValue;
-        partial void OnLengthChanged()
-        {
-            _MaxNumericalValue = 0;
-        }
         [PropertyOrderAttribute(11)]
         public string ClrType
         {
@@ -216,6 +257,8 @@ namespace vSharpStudio.vm.ViewModels
                             // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
                             // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
                             // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                            if (this.Length == 0)
+                                return "BigDecimal";
                             if (this.Length <= 6)
                                 return "float";
                             if (this.Length <= 15)
@@ -284,6 +327,8 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnDataTypeEnumChanged()
         {
+            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ProtoType);
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.Any:
@@ -294,6 +339,11 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Collapsed;
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = "";
+                    this.ObjectName = "";
                     break;
                 case EnumDataType.Catalog:
                 case EnumDataType.Constant:
@@ -303,6 +353,11 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Visible;
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = "";
+                    this.ObjectName = "";
                     break;
                 case EnumDataType.Numerical:
                     if (this.Accuracy == 0)
@@ -312,21 +367,52 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
+                    this.Length = 6;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = "";
+                    this.ObjectName = "";
                     break;
                 case EnumDataType.String:
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
+                    this.Length = 25;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = "";
+                    this.ObjectName = "";
                     break;
             }
         }
+        partial void OnLengthChanged()
+        {
+            _MaxNumericalValue = 0;
+            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ProtoType);
+            this.NotifyPropertyChanged(p => p.MaxValue);
+            this.NotifyPropertyChanged(p => p.MinValue);
+            this.ValidateProperty(p => p.Accuracy);
+        }
         partial void OnAccuracyChanged()
         {
+            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ProtoType);
+            this.ValidateProperty(p => p.Length);
+            this.NotifyPropertyChanged(p => p.MaxValue);
+            this.NotifyPropertyChanged(p => p.MinValue);
             if (this.Accuracy == 0)
                 this.VisibilityIsPositive = Visibility.Visible;
             else
                 this.VisibilityIsPositive = Visibility.Collapsed;
+        }
+        partial void OnIsPositiveChanged()
+        {
+            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ProtoType);
+            this.NotifyPropertyChanged(p => p.MaxValue);
+            this.NotifyPropertyChanged(p => p.MinValue);
         }
 
         [BrowsableAttribute(false)]

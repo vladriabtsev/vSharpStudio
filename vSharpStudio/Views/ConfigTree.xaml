@@ -34,10 +34,10 @@
         </Grid.RowDefinitions>
         <ToolBarPanel>
             <ToolBar>
-                <Button Command="{Binding CommandAddNew}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ins - insert new object after selected">
+                <Button Command="{Binding CommandAddNew}" ToolTip="Ins - insert new object after selected">
                     <ContentControl Template="{StaticResource iconAdd}" />
                 </Button>
-                <Button Command="{Binding CommandAddNewChild}" Visibility="{Binding CommandAddNewChild.Visibility}" ToolTip="Alt+Ins - insert new child object">
+                <Button Command="{Binding CommandAddNewChild}" ToolTip="Alt+Ins - insert new child object">
                     <ContentControl Template="{StaticResource iconAddChildNode}" />
                 </Button>
                 <Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
