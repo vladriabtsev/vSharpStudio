@@ -9,10 +9,10 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class TreeNodeValidatorVisitor : IVisitorConfig
+    public partial class TreeNodeValidatorVisitor : IVisitorConfigNode
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
-        CancellationToken IVisitorConfig.Token => _cancellationToken;
+        CancellationToken IVisitorConfigNode.Token => _cancellationToken;
         private CancellationToken _cancellationToken;
         private int _level = -1;
         private ILogger _logger = null;
@@ -104,272 +104,272 @@ namespace vSharpStudio.vm.ViewModels
             }
             _level--;
         }
-        void IVisitorConfig.Visit(Config p)
+        void IVisitorConfigNode.Visit(Config p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(Property p)
+        void IVisitorConfigNode.Visit(Property p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(Constant m)
+        void IVisitorConfigNode.Visit(Constant m)
         {
             OnVisit(m);
         }
 
-        void IVisitorConfig.Visit(Enumeration p)
+        void IVisitorConfigNode.Visit(Enumeration p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(Catalog p)
+        void IVisitorConfigNode.Visit(Catalog p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.Visit(EnumerationPair m)
+        void IVisitorConfigNode.Visit(EnumerationPair m)
         {
             OnVisit(m);
         }
 
-        void IVisitorConfig.VisitEnd(Config m)
+        void IVisitorConfigNode.VisitEnd(Config m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(Property m)
+        void IVisitorConfigNode.VisitEnd(Property m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(Constant m)
+        void IVisitorConfigNode.VisitEnd(Constant m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(EnumerationPair m)
+        void IVisitorConfigNode.VisitEnd(EnumerationPair m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(Enumeration m)
+        void IVisitorConfigNode.VisitEnd(Enumeration m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.VisitEnd(Catalog m)
+        void IVisitorConfigNode.VisitEnd(Catalog m)
         {
             OnVisitEnd(m);
         }
 
-        void IVisitorConfig.Visit(Document p)
+        void IVisitorConfigNode.Visit(Document p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(Document p)
+        void IVisitorConfigNode.VisitEnd(Document p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(Journal p)
+        void IVisitorConfigNode.Visit(Journal p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(Journal p)
+        void IVisitorConfigNode.VisitEnd(Journal p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupPropertiesTree p)
+        void IVisitorConfigNode.Visit(GroupPropertiesTree p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertiesTree p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertiesTree p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupDocuments p)
+        void IVisitorConfigNode.Visit(GroupDocuments p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupDocuments p)
+        void IVisitorConfigNode.VisitEnd(GroupDocuments p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(ConfigTree p)
+        void IVisitorConfigNode.Visit(ConfigTree p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(ConfigTree p)
+        void IVisitorConfigNode.VisitEnd(ConfigTree p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupConfigs p)
+        void IVisitorConfigNode.Visit(GroupConfigs p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupConfigs p)
+        void IVisitorConfigNode.VisitEnd(GroupConfigs p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListDocuments p)
+        void IVisitorConfigNode.Visit(GroupListDocuments p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListDocuments p)
+        void IVisitorConfigNode.VisitEnd(GroupListDocuments p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(Form p)
+        void IVisitorConfigNode.Visit(Form p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(Form p)
+        void IVisitorConfigNode.VisitEnd(Form p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Report p)
+        void IVisitorConfigNode.Visit(Report p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(Report p)
+        void IVisitorConfigNode.VisitEnd(Report p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListCatalogs p)
+        void IVisitorConfigNode.Visit(GroupListCatalogs p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListCatalogs p)
+        void IVisitorConfigNode.VisitEnd(GroupListCatalogs p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTab p)
+        void IVisitorConfigNode.Visit(GroupPropertyTab p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTab p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTab p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTabs p)
+        void IVisitorConfigNode.Visit(GroupPropertyTabs p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTabs p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTabs p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTabsTree p)
+        void IVisitorConfigNode.Visit(GroupPropertyTabsTree p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTabsTree p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTabsTree p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListProperties p)
+        void IVisitorConfigNode.Visit(GroupListProperties p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListProperties p)
+        void IVisitorConfigNode.VisitEnd(GroupListProperties p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListConstants p)
+        void IVisitorConfigNode.Visit(GroupListConstants p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListConstants p)
+        void IVisitorConfigNode.VisitEnd(GroupListConstants p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListEnumerations p)
+        void IVisitorConfigNode.Visit(GroupListEnumerations p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListEnumerations p)
+        void IVisitorConfigNode.VisitEnd(GroupListEnumerations p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListJournals p)
+        void IVisitorConfigNode.Visit(GroupListJournals p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListJournals p)
+        void IVisitorConfigNode.VisitEnd(GroupListJournals p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListForms p)
+        void IVisitorConfigNode.Visit(GroupListForms p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListForms p)
+        void IVisitorConfigNode.VisitEnd(GroupListForms p)
         {
             OnVisitEnd(p);
         }
 
-        void IVisitorConfig.Visit(GroupListReports p)
+        void IVisitorConfigNode.Visit(GroupListReports p)
         {
             OnVisit(p);
         }
 
-        void IVisitorConfig.VisitEnd(GroupListReports p)
+        void IVisitorConfigNode.VisitEnd(GroupListReports p)
         {
             OnVisitEnd(p);
         }
 
-        //void IVisitorConfig.Visit(IdDbGenerator p)
+        //void IVisitorConfigNode.Visit(IdDbGenerator p)
         //{
         //    OnVisit(p);
         //}
 
-        //void IVisitorConfig.VisitEnd(IdDbGenerator p)
+        //void IVisitorConfigNode.VisitEnd(IdDbGenerator p)
         //{
         //    OnVisitEnd(p);
         //}
 
-        //void IVisitorConfig.Visit(DataType p)
+        //void IVisitorConfigNode.Visit(DataType p)
         //{
         //    OnVisit(p);
         //}
 
-        //void IVisitorConfig.VisitEnd(DataType p)
+        //void IVisitorConfigNode.VisitEnd(DataType p)
         //{
         //    OnVisitEnd(p);
         //}

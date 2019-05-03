@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-public interface IVisitorConfig
+public interface IVisitorConfigNode
 {
     CancellationToken Token { get; }
 <# foreach (var message in messages) { 

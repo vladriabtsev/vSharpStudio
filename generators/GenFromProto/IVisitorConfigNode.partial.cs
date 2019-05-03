@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-    public partial class IVisitor
+    public partial class IVisitorConfigNode
     {
         FileDescriptor root;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
-        public IVisitor(FileDescriptor root)
+        public IVisitorConfigNode(FileDescriptor root)
         {
             this.root = root;
             CollectMessages(root);

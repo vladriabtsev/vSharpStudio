@@ -8,7 +8,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.DbModels
 {
-    public partial class MsSqlModelBuilderVisitor : IVisitorConfig
+    public partial class MsSqlModelBuilderVisitor : IVisitorConfigNode
     {
         private ModelBuilder _modelBuilder = null;
         private Config _config = null;
@@ -25,9 +25,9 @@ namespace vSharpStudio.DbModels
         }
         private Microsoft.EntityFrameworkCore.Metadata.IModel _model = null;
 
-        CancellationToken IVisitorConfig.Token => throw new NotImplementedException();
+        CancellationToken IVisitorConfigNode.Token => throw new NotImplementedException();
 
-        void IVisitorConfig.Visit(Config m)
+        void IVisitorConfigNode.Visit(Config m)
         {
             this._model = null;
             this._config = m;
@@ -37,22 +37,22 @@ namespace vSharpStudio.DbModels
                 this._modelBuilder.ForSqlServerUseIdentityColumns();
         }
 
-        void IVisitorConfig.Visit(Property m)
+        void IVisitorConfigNode.Visit(Property m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Constant m)
+        void IVisitorConfigNode.Visit(Constant m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Enumeration m)
+        void IVisitorConfigNode.Visit(Enumeration m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Catalog m)
+        void IVisitorConfigNode.Visit(Catalog m)
         {
             //this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
             //   {
@@ -85,227 +85,227 @@ namespace vSharpStudio.DbModels
             //   });
         }
 
-        void IVisitorConfig.Visit(EnumerationPair m)
+        void IVisitorConfigNode.Visit(EnumerationPair m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Config m)
+        void IVisitorConfigNode.VisitEnd(Config m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Property m)
+        void IVisitorConfigNode.VisitEnd(Property m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Constant m)
+        void IVisitorConfigNode.VisitEnd(Constant m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(EnumerationPair m)
+        void IVisitorConfigNode.VisitEnd(EnumerationPair m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Enumeration m)
+        void IVisitorConfigNode.VisitEnd(Enumeration m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Catalog m)
+        void IVisitorConfigNode.VisitEnd(Catalog m)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Document p)
+        void IVisitorConfigNode.Visit(Document p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Document p)
+        void IVisitorConfigNode.VisitEnd(Document p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Journal p)
+        void IVisitorConfigNode.Visit(Journal p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Journal p)
+        void IVisitorConfigNode.VisitEnd(Journal p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupPropertiesTree p)
+        void IVisitorConfigNode.Visit(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertiesTree p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertiesTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupDocuments p)
+        void IVisitorConfigNode.Visit(GroupDocuments p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupDocuments p)
+        void IVisitorConfigNode.VisitEnd(GroupDocuments p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(ConfigTree p)
+        void IVisitorConfigNode.Visit(ConfigTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(ConfigTree p)
+        void IVisitorConfigNode.VisitEnd(ConfigTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupConfigs p)
+        void IVisitorConfigNode.Visit(GroupConfigs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupConfigs p)
+        void IVisitorConfigNode.VisitEnd(GroupConfigs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListDocuments p)
+        void IVisitorConfigNode.Visit(GroupListDocuments p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListDocuments p)
+        void IVisitorConfigNode.VisitEnd(GroupListDocuments p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Form p)
+        void IVisitorConfigNode.Visit(Form p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Form p)
+        void IVisitorConfigNode.VisitEnd(Form p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(Report p)
+        void IVisitorConfigNode.Visit(Report p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(Report p)
+        void IVisitorConfigNode.VisitEnd(Report p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListCatalogs p)
+        void IVisitorConfigNode.Visit(GroupListCatalogs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListCatalogs p)
+        void IVisitorConfigNode.VisitEnd(GroupListCatalogs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTab p)
+        void IVisitorConfigNode.Visit(GroupPropertyTab p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTab p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTab p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTabs p)
+        void IVisitorConfigNode.Visit(GroupPropertyTabs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTabs p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTabs p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupPropertyTabsTree p)
+        void IVisitorConfigNode.Visit(GroupPropertyTabsTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupPropertyTabsTree p)
+        void IVisitorConfigNode.VisitEnd(GroupPropertyTabsTree p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListProperties p)
+        void IVisitorConfigNode.Visit(GroupListProperties p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListProperties p)
+        void IVisitorConfigNode.VisitEnd(GroupListProperties p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListConstants p)
+        void IVisitorConfigNode.Visit(GroupListConstants p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListConstants p)
+        void IVisitorConfigNode.VisitEnd(GroupListConstants p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListEnumerations p)
+        void IVisitorConfigNode.Visit(GroupListEnumerations p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListEnumerations p)
+        void IVisitorConfigNode.VisitEnd(GroupListEnumerations p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListJournals p)
+        void IVisitorConfigNode.Visit(GroupListJournals p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListJournals p)
+        void IVisitorConfigNode.VisitEnd(GroupListJournals p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListForms p)
+        void IVisitorConfigNode.Visit(GroupListForms p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListForms p)
+        void IVisitorConfigNode.VisitEnd(GroupListForms p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.Visit(GroupListReports p)
+        void IVisitorConfigNode.Visit(GroupListReports p)
         {
             throw new NotImplementedException();
         }
 
-        void IVisitorConfig.VisitEnd(GroupListReports p)
+        void IVisitorConfigNode.VisitEnd(GroupListReports p)
         {
             throw new NotImplementedException();
         }

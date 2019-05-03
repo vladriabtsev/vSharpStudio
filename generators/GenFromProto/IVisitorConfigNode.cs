@@ -18,9 +18,9 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public partial class VisitorAccept : VisitorAcceptBase
+    public partial class IVisitorConfigNode : IVisitorConfigNodeBase
     {
 #line hidden
         /// <summary>
@@ -28,70 +28,38 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\npublic interface IVisitorConfigNode\r\n{\r\n    CancellationToken Token { get; }\r\n");
             
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
-            
-            #line default
-            #line hidden
-            this.Write("public void Accept(IVisitorConfig visitor) \r\n{\r\n    if (visitor.Token.IsCancellat" +
-                    "ionRequested)\r\n        return;\r\n\tvisitor.Visit(this);\r\n");
-            
-            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
+            #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
+ foreach (var message in messages) { 
+     if (message.Name.EndsWith("_nullable"))
        continue;
 
             
             #line default
             #line hidden
+            this.Write("\tvoid Visit(");
             
-            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- if (field.IsRepeated) { 
-            
-            #line default
-            #line hidden
-            this.Write("\tforeach(var t in this.");
-            
-            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            #line 14 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tt.Accept(visitor);\r\n");
+            this.Write(" p);\r\n\tvoid VisitEnd(");
             
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
-            
-            #line default
-            #line hidden
-            this.Write("\tthis.");
-            
-            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".Accept(visitor);\r\n");
+            this.Write(" p);\r\n");
             
-            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
  } 
             
             #line default
             #line hidden
-            
-            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
-            
-            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\VisitorAccept.tt"
- } 
-            
-            #line default
-            #line hidden
+            this.Write("}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -103,7 +71,7 @@ namespace GenFromProto
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public class VisitorAcceptBase
+    public class IVisitorConfigNodeBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

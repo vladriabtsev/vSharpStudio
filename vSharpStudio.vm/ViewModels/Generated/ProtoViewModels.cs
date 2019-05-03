@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/03/2019 00:36:42
+// Auto generated on UTC 05/03/2019 02:01:19
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -365,13 +365,13 @@ namespace vSharpStudio.vm.ViewModels
 		    m.RelativeConfigPath = vm.RelativeConfigPath;
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListConfigs)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -603,16 +603,16 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto(vm.GroupJournals);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupConstants.Accept(visitor);
-			this.GroupEnumerations.Accept(visitor);
-			this.GroupCatalogs.Accept(visitor);
-			this.GroupDocuments.Accept(visitor);
-			this.GroupJournals.Accept(visitor);
+			this.GroupConstants.AcceptConfigNode(visitor);
+			this.GroupEnumerations.AcceptConfigNode(visitor);
+			this.GroupCatalogs.AcceptConfigNode(visitor);
+			this.GroupDocuments.AcceptConfigNode(visitor);
+			this.GroupJournals.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1166,13 +1166,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListConfigs.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListConfigs)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1567,13 +1567,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListProperties)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1771,13 +1771,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListPropertiesTabs.Add(vSharpStudio.vm.ViewModels.GroupPropertyTabsTree.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListPropertiesTabs)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -1920,7 +1920,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.ListPropertiesSubTabs = vSharpStudio.vm.ViewModels.GroupPropertyTabs.ConvertToProto(vm.ListPropertiesSubTabs);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -2155,13 +2155,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListProperties)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2297,7 +2297,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -2522,13 +2522,13 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListPropertiesTreeGroups)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2744,13 +2744,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListConstants)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -2890,7 +2890,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -3109,13 +3109,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListEnumerations)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -3317,13 +3317,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListValues)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -3475,7 +3475,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Value = vm.Value;
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -3662,14 +3662,14 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupSubCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto(vm.GroupSubCatalogs);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupForms.Accept(visitor);
-			this.GroupReports.Accept(visitor);
-			this.GroupSubCatalogs.Accept(visitor);
+			this.GroupForms.AcceptConfigNode(visitor);
+			this.GroupReports.AcceptConfigNode(visitor);
+			this.GroupSubCatalogs.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -3955,13 +3955,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListCatalogs)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4104,12 +4104,12 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto(vm.GroupListDocuments);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupListDocuments.Accept(visitor);
+			this.GroupListDocuments.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4299,13 +4299,13 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.GroupForms.Accept(visitor);
-			this.GroupReports.Accept(visitor);
+			this.GroupForms.AcceptConfigNode(visitor);
+			this.GroupReports.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4573,13 +4573,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListDocuments)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4777,13 +4777,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListJournals)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -4985,13 +4985,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListDocuments)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -5193,13 +5193,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListForms.Add(vSharpStudio.vm.ViewModels.Form.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListForms)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -5332,7 +5332,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -5537,13 +5537,13 @@ namespace vSharpStudio.vm.ViewModels
 		        m.ListReports.Add(vSharpStudio.vm.ViewModels.Report.ConvertToProto(t));
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
 			foreach(var t in this.ListReports)
-				t.Accept(visitor);
+				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -5676,7 +5676,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    return m;
 		}
-		public void Accept(IVisitorConfig visitor) 
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
 		{
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
@@ -5733,7 +5733,7 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Properties
 	}
 	
-	public interface IVisitorConfig
+	public interface IVisitorConfigNode
 	{
 	    CancellationToken Token { get; }
 		void Visit(GroupConfigs p);

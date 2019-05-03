@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>
-public void Accept(IVisitorConfig visitor) 
+public void AcceptConfigNode(IVisitorConfigNode visitor) 
 {
     if (visitor.Token.IsCancellationRequested)
         return;
@@ -15,9 +15,9 @@ public void Accept(IVisitorConfig visitor)
 #>
 <# if (field.IsRepeated) { #>
 	foreach(var t in this.<#= field.Name.ToNameCs() #>)
-		t.Accept(visitor);
+		t.AcceptConfigNode(visitor);
 <# } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { #>
-	this.<#= field.Name.ToNameCs() #>.Accept(visitor);
+	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
 <# } #>
 <# } #>
 	visitor.VisitEnd(this);

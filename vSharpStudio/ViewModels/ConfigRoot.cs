@@ -127,7 +127,7 @@ namespace vSharpStudio.ViewModels
 
             var visitor = new TreeNodeValidatorVisitor(token, logger);
             visitor.UpdateSubstructCounts(node);
-            (node as IAccept).Accept(visitor);
+            (node as IAccept).AcceptConfigNode(visitor);
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...

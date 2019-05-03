@@ -65,7 +65,7 @@ namespace vSharpStudio.vm.ViewModels
 		var cl = new Class(root, t, dicParents);
 		this.Write(cl.TransformText());
 	}
-	var v = new IVisitor(root);
+	var v = new IVisitorConfigNode(root);
 	this.Write(v.TransformText());
 	var vp = new IVisitorProto(root);
 	this.Write(vp.TransformText());

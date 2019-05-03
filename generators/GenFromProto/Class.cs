@@ -199,7 +199,7 @@ namespace GenFromProto
 	var cloner = new Clone(root, message);
 	this.Write(cloner.TransformText());
 
-	var va = new VisitorAccept(root, message);
+	var va = new VisitorAcceptConfigNode(root, message);
 	this.Write(va.TransformText());
 	this.PopIndent(); 
             

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-    public partial class VisitorAccept
+    public partial class VisitorAcceptConfigNode
     {
         FileDescriptor root;
         MessageDescriptor message;
         MessageDoc Doc;
-        public VisitorAccept(FileDescriptor root, MessageDescriptor message)
+        public VisitorAcceptConfigNode(FileDescriptor root, MessageDescriptor message)
         {
             this.root = root;
             this.message = message;

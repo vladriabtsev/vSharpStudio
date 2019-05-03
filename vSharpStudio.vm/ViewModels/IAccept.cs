@@ -6,6 +6,6 @@ namespace vSharpStudio.vm.ViewModels
 {
     public interface IAccept
     {
-        void Accept(IVisitorConfig visitor);
+        void AcceptConfigNode(IVisitorConfigNode visitor);
     }
 }
