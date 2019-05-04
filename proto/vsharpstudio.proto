@@ -37,7 +37,8 @@ message proto_group_configs {
     uint64 sorting_value = 3;
 //  string name_ui = 4;
     string description = 5;
-    repeated proto_config_tree list_configs = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_config_tree children = 6;
     string relative_config_path = 7;
 }
 // Configuration config
@@ -103,7 +104,8 @@ message proto_config_tree {
 //  string name_ui = 4;
     string description = 5;
     proto_config config_node = 6;
-    repeated proto_config_tree list_configs = 7;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_config_tree children = 7;
 }
 /** 
  * @exclude
@@ -159,7 +161,8 @@ message proto_group_property_tab {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_property list_properties = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_property children = 6;
 }
 message proto_group_property_tabs {
     string guid = 1;
@@ -169,7 +172,8 @@ message proto_group_property_tabs {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_group_property_tabs_tree list_properties_tabs = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_group_property_tabs_tree children = 6;
 }
 message proto_group_property_tabs_tree {
     string guid = 1;
@@ -191,7 +195,8 @@ message proto_group_list_properties {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_property list_properties = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_property children = 6;
 }
 message proto_property {
     string guid = 1;
@@ -212,7 +217,8 @@ message proto_group_properties_tree {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_group_properties_tree list_properties_tree_groups = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_group_properties_tree children = 6;
     proto_group_list_properties group_properties = 7;
 }
 /** 
@@ -227,6 +233,7 @@ message proto_group_list_constants {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_constant children = 6;
 }
 //
@@ -255,6 +262,7 @@ message proto_group_list_enumerations {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration children = 6;
 }
 message proto_enumeration {
@@ -273,6 +281,7 @@ message proto_enumeration {
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
     EnumEnumerationType data_type_enum = 6; 
+    // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration_pair children = 7;
 }
 message proto_enumeration_pair {
@@ -315,6 +324,7 @@ message proto_group_list_catalogs {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_catalog children = 7;
 }
 /** 
@@ -354,6 +364,7 @@ message proto_group_list_documents {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_document children = 6;
 }
 /** 
@@ -369,6 +380,7 @@ message proto_group_list_journals {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_journal children = 7;
 }
 message proto_journal {
@@ -380,6 +392,7 @@ message proto_journal {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_document children = 7;
 }
 /** 
@@ -395,6 +408,7 @@ message proto_group_list_forms {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_form children = 7;
 }
 message proto_form {
@@ -421,6 +435,7 @@ message proto_group_list_reports {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_report children = 7;
 }
 message proto_report {

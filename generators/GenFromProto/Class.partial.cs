@@ -24,7 +24,7 @@ namespace GenFromProto
             if (this.Doc.BaseClass == "")
             {
                 this.Doc.BaseClass = " : ConfigObjectBase<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
-                    message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, IAccept, IChildren";
+                    message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, IAccept";
             }
         }
     }

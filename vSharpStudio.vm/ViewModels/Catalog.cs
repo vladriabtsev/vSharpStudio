@@ -10,19 +10,19 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog
+    public partial class Catalog : IChildren
     {
         public static readonly string DefaultName = "Catalog";
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
-            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            ListNodes.Add(this.GroupProperties, 7);
-            ListNodes.Add(this.GroupSubCatalogs, 8);
+            Children.Add(this.GroupProperties, 7);
+            Children.Add(this.GroupSubCatalogs, 8);
         }
         public Catalog(string name) : this()
         {
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
-                this.GroupProperties.ListProperties.Add(t);
+                this.GroupProperties.Children.Add(t);
             }
         }
 

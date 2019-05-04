@@ -81,18 +81,18 @@ namespace vSharpStudio.xUnit
             };
             var cfg = new ConfigRoot();
             cfg.GroupCatalogs.Children.Add(vm);
-            vm.GroupProperties.ListProperties.Add(prop);
+            vm.GroupProperties.Children.Add(prop);
             vm.BeginEdit();
-            vm.GroupProperties.ListProperties[0].Name = "test2";
+            vm.GroupProperties[0].Name = "test2";
             vm.CancelEdit();
-            Assert.True(vm.GroupProperties.ListProperties[0].Name == "test1");
+            Assert.True(vm.GroupProperties[0].Name == "test1");
             vm.BeginEdit();
             prop = new Property() { Name = "test3" };
-            vm.GroupProperties.ListProperties.Add(prop);
-            Assert.True(vm.GroupProperties.ListProperties.Count == 2);
+            vm.GroupProperties.Children.Add(prop);
+            Assert.True(vm.GroupProperties.Children.Count == 2);
             vm.CancelEdit();
-            Assert.True(vm.GroupProperties.ListProperties.Count == 1);
-            Assert.True(vm.GroupProperties.ListProperties[0].Name == "test1");
+            Assert.True(vm.GroupProperties.Children.Count == 1);
+            Assert.True(vm.GroupProperties.Children[0].Name == "test1");
         }
         [Fact]
         public void Editable021CanCancelCatalogPropertiy()
@@ -101,20 +101,20 @@ namespace vSharpStudio.xUnit
             var cfg = new ConfigRoot();
             cfg.GroupCatalogs.Children.Add(vm);
             vm.BeginEdit();
-            vm.GroupProperties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.GroupProperties.Children.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.CancelEdit();
-            Assert.True(vm.GroupProperties.ListProperties.Count == 0);
-            vm.GroupProperties.ListProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            Assert.True(vm.GroupProperties.Children.Count == 0);
+            vm.GroupProperties.Children.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
             vm.BeginEdit();
-            vm.GroupProperties.ListProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.String;
             vm.CancelEdit();
-            Assert.Single(vm.GroupProperties.ListProperties);
-            Assert.True(vm.GroupProperties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.GroupProperties.Children);
+            Assert.True(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
             vm.BeginEdit();
-            vm.GroupProperties.ListProperties.Clear();
+            vm.GroupProperties.Children.Clear();
             vm.CancelEdit();
-            Assert.Single(vm.GroupProperties.ListProperties);
-            Assert.True(vm.GroupProperties.ListProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.Single(vm.GroupProperties.Children);
+            Assert.True(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
         }
         #endregion Editable
 

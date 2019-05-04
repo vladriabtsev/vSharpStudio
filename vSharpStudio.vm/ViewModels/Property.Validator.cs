@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val.Parent is GroupListProperties)
                 {
                     GroupListProperties p = (GroupListProperties)val.Parent;
-                    foreach (var t in p.ListProperties)
+                    foreach (var t in p.Children)
                     {
                         if ((val.Guid != t.Guid) && (val.Name == t.Name))
                             return false;

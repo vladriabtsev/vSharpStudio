@@ -9,7 +9,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
-    public partial class GroupListDocuments
+    public partial class GroupListDocuments : IChildren, ICanNotLeft
     {
         partial void OnInit()
         {

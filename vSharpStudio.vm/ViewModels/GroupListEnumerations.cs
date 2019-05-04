@@ -9,7 +9,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} enumerations:{ListEnumerations.Count,nq}")]
-    public partial class GroupListEnumerations
+    public partial class GroupListEnumerations : IChildren, ICanNotLeft
     {
         partial void OnInit()
         {

@@ -58,7 +58,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tt.AcceptConfigNode(visitor);\r\n");
+            this.Write(")\r\n\t\t(t as ");
+            
+            #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(").AcceptConfigNode(visitor);\r\n");
             
             #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 

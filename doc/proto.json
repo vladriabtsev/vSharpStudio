@@ -630,8 +630,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_configs",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_config_tree",
               "longType": "proto_config_tree",
@@ -955,7 +955,7 @@
             },
             {
               "name": "children",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_enumeration_pair",
               "longType": "proto_enumeration_pair",
@@ -1147,8 +1147,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_configs",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_config_tree",
               "longType": "proto_config_tree",
@@ -1310,7 +1310,7 @@
             },
             {
               "name": "children",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_catalog",
               "longType": "proto_catalog",
@@ -1381,7 +1381,7 @@
             },
             {
               "name": "children",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_constant",
               "longType": "proto_constant",
@@ -1452,7 +1452,7 @@
             },
             {
               "name": "children",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_document",
               "longType": "proto_document",
@@ -1523,7 +1523,7 @@
             },
             {
               "name": "children",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_enumeration",
               "longType": "proto_enumeration",
@@ -1594,7 +1594,7 @@
             },
             {
               "name": "children",
-              "description": "repeated proto_property list_shared_properties = 6;",
+              "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_form",
               "longType": "proto_form",
@@ -1665,7 +1665,7 @@
             },
             {
               "name": "children",
-              "description": "repeated proto_property list_shared_properties = 6;",
+              "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_journal",
               "longType": "proto_journal",
@@ -1735,8 +1735,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_properties",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_property",
               "longType": "proto_property",
@@ -1807,7 +1807,7 @@
             },
             {
               "name": "children",
-              "description": "repeated proto_property list_shared_properties = 6;",
+              "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_report",
               "longType": "proto_report",
@@ -1877,8 +1877,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_properties_tree_groups",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_group_properties_tree",
               "longType": "proto_group_properties_tree",
@@ -1958,8 +1958,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_properties",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_property",
               "longType": "proto_property",
@@ -2029,8 +2029,8 @@
               "defaultValue": ""
             },
             {
-              "name": "list_properties_tabs",
-              "description": "",
+              "name": "children",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_group_property_tabs_tree",
               "longType": "proto_group_property_tabs_tree",
@@ -2182,7 +2182,7 @@
             },
             {
               "name": "children",
-              "description": "repeated proto_group_properties list_properties = 6;",
+              "description": "repeated proto_group_properties list_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_document",
               "longType": "proto_document",

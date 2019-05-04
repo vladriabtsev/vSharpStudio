@@ -32,7 +32,6 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //private static Proto.Attr.ModelData res = null;
 
-
         internal static StringBuilder BrowsableAttribute(this StringBuilder prev, bool flag)
         {
             prev.Append("[BrowsableAttribute(");

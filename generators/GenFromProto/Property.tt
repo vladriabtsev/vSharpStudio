@@ -5,7 +5,16 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
+<# if (field.Name == "children") { #>
+public SortedObservableCollection<ITreeConfigNode> <#= field.Name.ToNameCs() #> { get; set; }
+public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.Children[index]; } }
+public void Add(<#= field.MessageType.Name.ToNameCs() #> item) { this.Children.Add(item); }
+public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) { this.Children.AddRange(items); }
+public int Count() { return this.Children.Count; }
+public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) { this.Children.Remove(item); }
+<# } else { #>
 public SortedObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
+<# } #>
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
 public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 

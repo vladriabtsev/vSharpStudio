@@ -234,7 +234,6 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get { return _Parent; } set { _Parent = value; } }
         private ITreeConfigNode _Parent;
-        public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get { return _Children; } private set { _Children = value; } }
         //private SortedObservableCollection<ITreeConfigNode> _Children;
@@ -274,15 +273,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool NodeCanAddNew()
         {
-            if (this.Parent != null)
-            {
-                foreach (var t in this.Parent.GetType().GetInterfaces())
-                {
-                    if (t.Name.StartsWith("IListNodes`"))
-                        return true;
-                }
-            }
-            return false;
+            if (this.Parent is ICanNotAdd)
+                return false;
+            return true;
         }
         public ITreeConfigNode NodeAddNew()
         {
@@ -323,8 +316,8 @@ namespace vSharpStudio.vm.ViewModels
                     if (this.Parent is GroupListProperties)
                     {
                         var pp = this.Parent as GroupListProperties;
-                        pp.ListProperties.Add(prop);
-                        GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
+                        pp.Children.Add(prop);
+                        GetUniqueName(Property.DefaultName, prop, pp.Children);
                     }
                     else
                         throw new Exception();
@@ -345,14 +338,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddNewSubNode()
         {
-            foreach (var t in this.GetType().GetInterfaces())
-            {
-                if (t.Name.StartsWith("IListNodes`"))
-                    return true;
-                if (t.Name.StartsWith("IListGroupNodes"))
-                    return true;
-            }
-            return false;
+            if (this is ICanNotAdd)
+                return false;
+            return true;
         }
         public ITreeConfigNode NodeAddNewSubNode()
         {
@@ -379,8 +367,8 @@ namespace vSharpStudio.vm.ViewModels
                     var prop = new Property();
                     //prop.Parent = this;
                     var pp = (this as GroupListProperties);
-                    pp.ListProperties.Add(prop);
-                    GetUniqueName(Property.DefaultName, prop, pp.ListProperties);
+                    pp.Children.Add(prop);
+                    GetUniqueName(Property.DefaultName, prop, pp.Children);
                     ITreeConfigNode config = this.Parent;
                     while (config.Parent != null)
                         config = config.Parent;
@@ -398,8 +386,8 @@ namespace vSharpStudio.vm.ViewModels
                     var prop2 = new Property();
                     //prop2.Parent = this;
                     var ppc = (this as Catalog);
-                    ppc.GroupProperties.ListProperties.Add(prop2);
-                    GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.ListProperties);
+                    ppc.GroupProperties.Children.Add(prop2);
+                    GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.Children);
                     ITreeConfigNode config2 = this.Parent;
                     while (config2.Parent != null)
                         config2 = config2.Parent;
@@ -418,13 +406,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddClone()
         {
-            foreach (var t in this.GetType().GetInterfaces())
-            {
-                if (t.Name.StartsWith("IListNodes`"))
-                    return false;
-                if (t.Name.StartsWith("IListGroupNodes"))
-                    return false;
-            }
+            if (this.Parent is ICanNotAdd)
+                return false;
             return true;
         }
         public ITreeConfigNode NodeAddClone()
@@ -466,7 +449,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (this.Parent is GroupListProperties)
                     {
                         var pp = this.Parent as GroupListProperties;
-                        pp.ListProperties.Add(prop);
+                        pp.Children.Add(prop);
                     }
                     else
                         throw new Exception();
@@ -481,6 +464,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanMoveDown()
         {
+            if (this.Parent is ICanNotAdd)
+                return false;
             return NodeCanDown();
         }
         public void NodeMoveDown()
@@ -494,6 +479,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanMoveUp()
         {
+            if (this.Parent is ICanNotAdd)
+                return false;
             return NodeCanUp();
         }
         public void NodeMoveUp()
@@ -507,13 +494,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRemove()
         {
-            foreach (var t in this.GetType().GetInterfaces())
-            {
-                if (t.Name.StartsWith("IListNodes`"))
-                    return false;
-                if (t.Name.StartsWith("IListGroupNodes"))
-                    return false;
-            }
+            if (this.Parent is ICanNotAdd)
+                return false;
             return true;
         }
         public void NodeRemove()
@@ -525,13 +507,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanLeft()
         {
-            string tname = this.Parent.GetType().Name;
-            switch (tname)
-            {
-                case "ConfigRoot":
-                case "Config":
-                    return false;
-            }
+            if (this.Parent is ICanNotLeft)
+                return false;
             return true;
         }
         public void NodeLeft()
@@ -543,9 +520,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRight()
         {
-            if ((this is IChildren) && (this as IChildren).Children.Count > 0)
-                return true;
-            return false;
+            if (this.Parent is ICanNotRight)
+                return false;
+            return true;
         }
         private bool IsIListNodesGen(object obj)
         {

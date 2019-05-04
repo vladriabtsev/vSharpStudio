@@ -18,25 +18,25 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : IMigration
+    public partial class Config : IMigration, ICanNotAdd
     {
         public static readonly string DefaultName = "Config";
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
         partial void OnInit()
         {
-            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            ListNodes.Add(this.GroupConstants, 7);
-            ListNodes.Add(this.GroupEnumerations, 8);
-            ListNodes.Add(this.GroupCatalogs, 9);
-            ListNodes.Add(this.GroupDocuments, 10);
-            ListNodes.Add(this.GroupJournals, 11);
+            this.Children.Add(this.GroupConstants, 7);
+            this.Children.Add(this.GroupEnumerations, 8);
+            this.Children.Add(this.GroupCatalogs, 9);
+            this.Children.Add(this.GroupDocuments, 10);
+            this.Children.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }

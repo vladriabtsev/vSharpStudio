@@ -8,16 +8,16 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
-    public partial class GroupDocuments
+    public partial class GroupDocuments : IChildren, ICanNotLeft
     {
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
             this.Name = "Documens";
-            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
-            ListNodes.Add(this.GroupSharedProperties, 7);
-            ListNodes.Add(this.GroupListDocuments, 8);
+            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            Children.Add(this.GroupSharedProperties, 7);
+            Children.Add(this.GroupListDocuments, 8);
         }
         #region ITreeNode
         //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }

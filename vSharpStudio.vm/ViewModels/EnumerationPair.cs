@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair
+    public partial class EnumerationPair : ICanNotRight
     {
         partial void OnInit()
         {

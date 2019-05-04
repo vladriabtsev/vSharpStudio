@@ -10,7 +10,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties
+    public partial class GroupListProperties : IChildren
     {
         partial void OnInit()
         {
@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
         #region ITreeNode
 
         [BrowsableAttribute(false)]
-        public new string NodeText { get { return this.Name + " " + this.ListProperties.Count; } }
+        public new string NodeText { get { return this.Name + " " + this.Children.Count; } }
 
         #endregion ITreeNode
     }

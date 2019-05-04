@@ -6,21 +6,21 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document
+    public partial class Document : IChildren
     {
         public static readonly string DefaultName = "Document";
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListNodes { get; private set; }
+        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         partial void OnInit()
         {
-            this.ListNodes = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            ListNodes.Add(this.GroupPropertiesTree, 7);
-            ListNodes.Add(this.GroupForms, 8);
-            ListNodes.Add(this.GroupReports, 9);
+            Children.Add(this.GroupPropertiesTree, 7);
+            Children.Add(this.GroupForms, 8);
+            Children.Add(this.GroupReports, 9);
         }
 
         #region ITreeNode

@@ -23,7 +23,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListProperties}" ItemsSource="{Binding ListProperties}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListProperties}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -55,7 +55,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConstants}" ItemsSource="{Binding ListConstants}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConstants}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -71,7 +71,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding ListValues}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Enumeration}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{StaticResource iconEnumerator}" />
@@ -88,7 +88,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListEnumerations}" ItemsSource="{Binding ListEnumerations}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListEnumerations}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -136,7 +136,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding ListCatalogs}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -163,7 +163,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding ListDocuments}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -179,7 +179,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Journal}" ItemsSource="{Binding ListProperties}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Journal}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{StaticResource iconCatalogProperty}" />
@@ -195,7 +195,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListJournals}" ItemsSource="{Binding ListJournals}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListJournals}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, ConverterParameter=Constants, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

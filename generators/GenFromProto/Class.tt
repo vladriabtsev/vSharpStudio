@@ -15,7 +15,7 @@
        if (t.MessageType.Name.EndsWith("_nullable"))
          continue;
 		if (t.IsRepeated) {#>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.MessageType.Name.ToNameCs() #>>(e =>
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>(e =>
         {
             switch(e.Action)
             {
