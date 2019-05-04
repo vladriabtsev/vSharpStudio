@@ -5,10 +5,10 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    internal interface ICanLeft
+    internal interface ICanGoLeft
     {
     }
-    internal interface ICanRight
+    internal interface ICanGoRight
     {
     }
     internal interface ICanAddNode

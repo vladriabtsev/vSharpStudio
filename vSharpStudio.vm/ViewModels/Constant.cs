@@ -8,7 +8,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : ICanNotRight
+    public partial class Constant : ICanGoLeft, ICanAddNode
     {
         public static readonly string DefaultName = "Constant";
 

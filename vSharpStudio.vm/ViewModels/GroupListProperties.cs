@@ -10,7 +10,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties : IChildren
+    public partial class GroupListProperties : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         partial void OnInit()
         {

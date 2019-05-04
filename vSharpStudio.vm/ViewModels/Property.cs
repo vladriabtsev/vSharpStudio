@@ -11,7 +11,7 @@ using static Proto.Config.proto_data_type.Types;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : ICanNotRight
+    public partial class Property : ICanAddNode, ICanGoLeft
     {
         public static readonly string DefaultName = "Property";
         partial void OnInit()

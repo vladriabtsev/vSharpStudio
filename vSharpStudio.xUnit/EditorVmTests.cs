@@ -299,7 +299,7 @@ namespace vSharpStudio.xUnit
             #region Constants
 
             Assert.True(cfg.GroupConstants.NodeCanLeft() == false);
-            Assert.True(cfg.GroupConstants.NodeCanRight() == false);
+            Assert.True(cfg.GroupConstants.NodeCanRight() == true);
             Assert.True(cfg.GroupConstants.NodeCanMoveUp() == false);
             Assert.True(cfg.GroupConstants.NodeCanMoveDown() == false);
             Assert.True(cfg.GroupConstants.NodeCanAddNew() == false);
@@ -329,7 +329,7 @@ namespace vSharpStudio.xUnit
             #region Enumerations
 
             Assert.True(cfg.GroupEnumerations.NodeCanLeft() == false);
-            Assert.True(cfg.GroupEnumerations.NodeCanRight() == false);
+            Assert.True(cfg.GroupEnumerations.NodeCanRight() == true);
             Assert.True(cfg.GroupEnumerations.NodeCanMoveUp() == false);
             Assert.True(cfg.GroupEnumerations.NodeCanMoveDown() == false);
             Assert.True(cfg.GroupEnumerations.NodeCanAddNew() == false);
@@ -341,11 +341,11 @@ namespace vSharpStudio.xUnit
 
             Assert.True(cfg.GroupEnumerations.NodeCanRight() == true);
             Assert.True(cfg.GroupEnumerations.Children[0].NodeCanLeft() == true);
-            Assert.True(cfg.GroupEnumerations.Children[0].NodeCanRight() == false);
+            Assert.True(cfg.GroupEnumerations.Children[0].NodeCanRight() == true);
             Assert.True(cfg.GroupEnumerations.Children[0].NodeCanMoveUp() == false);
             Assert.True(cfg.GroupEnumerations.Children[0].NodeCanMoveDown() == false);
             Assert.True(cfg.GroupEnumerations.Children[0].NodeCanAddNew() == true);
-            Assert.True(cfg.GroupEnumerations.Children[0].NodeCanAddNewSubNode() == true);
+            Assert.True(cfg.GroupEnumerations.Children[0].NodeCanAddNewSubNode() == false);
 
             //#region Properties
 
@@ -391,7 +391,7 @@ namespace vSharpStudio.xUnit
             #region Catalogs
 
             Assert.True(cfg.GroupCatalogs.NodeCanLeft() == false);
-            Assert.True(cfg.GroupCatalogs.NodeCanRight() == false);
+            Assert.True(cfg.GroupCatalogs.NodeCanRight() == true);
             Assert.True(cfg.GroupCatalogs.NodeCanMoveUp() == false);
             Assert.True(cfg.GroupCatalogs.NodeCanMoveDown() == false);
             Assert.True(cfg.GroupCatalogs.NodeCanAddNew() == false);
@@ -600,20 +600,19 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.CountErrors == 2);
             Assert.True(cfg.CountInfos == 0);
             Assert.True(cfg.CountWarnings == 0);
-            Assert.True(cfg.ValidationCollection.Count == 1);
+            Assert.True(cfg.ValidationCollection.Count == 2);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
-            //            Assert.True(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
-            //if (cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT)
-            //{
-            //    Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
-            //    Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
-            //}
-            //else
-            //{
-            //    Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
-            //    Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
-            //}
+            Assert.True(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
+            if (cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT)
+            {
+                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+            }
+            else
+            {
+                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+            }
 
             cfg.GroupEnumerations.Children[0].Name = " ab";
             Assert.True(cfg.GroupEnumerations.Children[0].Name == "ab");

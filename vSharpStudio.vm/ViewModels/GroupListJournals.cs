@@ -8,7 +8,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} journals:{ListJournals.Count,nq}")]
-    public partial class GroupListJournals : IChildren, ICanNotLeft
+    public partial class GroupListJournals : IChildren, ICanAddSubNode, ICanGoRight
     {
         partial void OnInit()
         {

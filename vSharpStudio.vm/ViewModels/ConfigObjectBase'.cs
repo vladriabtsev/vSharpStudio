@@ -273,9 +273,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool NodeCanAddNew()
         {
-            if (this.Parent is ICanNotAdd)
-                return false;
-            return true;
+            if (this is ICanAddNode)
+                return true;
+            return false;
         }
         public ITreeConfigNode NodeAddNew()
         {
@@ -338,9 +338,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddNewSubNode()
         {
-            if (this is ICanNotAdd)
-                return false;
-            return true;
+            if (this is ICanAddSubNode)
+                return true;
+            return false;
         }
         public ITreeConfigNode NodeAddNewSubNode()
         {
@@ -406,9 +406,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanAddClone()
         {
-            if (this.Parent is ICanNotAdd)
-                return false;
-            return true;
+            if (this is ICanAddNode)
+                return true;
+            return false;
         }
         public ITreeConfigNode NodeAddClone()
         {
@@ -464,7 +464,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanMoveDown()
         {
-            if (this.Parent is ICanNotAdd)
+            if (!(this is ICanAddNode))
                 return false;
             return NodeCanDown();
         }
@@ -479,7 +479,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanMoveUp()
         {
-            if (this.Parent is ICanNotAdd)
+            if (!(this is ICanAddNode))
                 return false;
             return NodeCanUp();
         }
@@ -494,9 +494,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRemove()
         {
-            if (this.Parent is ICanNotAdd)
-                return false;
-            return true;
+            if (this.Parent is ICanAddNode)
+                return true;
+            return false;
         }
         public void NodeRemove()
         {
@@ -507,9 +507,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanLeft()
         {
-            if (this.Parent is ICanNotLeft)
-                return false;
-            return true;
+            if (this is ICanGoLeft)
+                return true;
+            return false;
         }
         public void NodeLeft()
         {
@@ -520,9 +520,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRight()
         {
-            if (this.Parent is ICanNotRight)
-                return false;
-            return true;
+            if (this is ICanGoRight)
+                return true;
+            return false;
         }
         private bool IsIListNodesGen(object obj)
         {
