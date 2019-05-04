@@ -41,56 +41,49 @@ namespace vSharpStudio.vm.ViewModels
         public override T Backup() { throw new NotImplementedException("Please override Backup method"); }
         protected override void OnCountErrorsChanged()
         {
-            NotifyPropertyChanged(p => p.StatusIcon);
+            NotifyPropertyChanged(p => p.IconStatus);
         }
         protected override void OnCountWarningsChanged()
         {
-            NotifyPropertyChanged(p => p.StatusIcon);
+            NotifyPropertyChanged(p => p.IconStatus);
         }
         protected override void OnCountInfosChanged()
         {
-            NotifyPropertyChanged(p => p.StatusIcon);
+            NotifyPropertyChanged(p => p.IconStatus);
         }
         [BrowsableAttribute(false)]
-        public string StatusIcon
+        public string IconStatus
+        {
+            get
+            {
+                string iconName = null;
+                if (this.CountErrors > 0)
+                    iconName = "iconStatusCriticalError";
+                else
+                {
+                    if (this.CountWarnings > 0)
+                        iconName = "iconStatusWarning";
+                    else
+                    {
+                        if (this.CountInfos > 0)
+                            iconName = "iconStatusInformation";
+                        else
+                            iconName = "";
+                    }
+                }
+                return iconName;
+            }
+        }
+        [BrowsableAttribute(false)]
+        public string IconFolder
         {
             get
             {
                 string iconName = null;
                 if (this.IsExpanded)
-                {
-                    if (this.CountErrors > 0)
-                        iconName = "iconFolderOpenError";
-                    else
-                    {
-                        if (this.CountWarnings > 0)
-                            iconName = "iconFolderOpenWarning";
-                        else
-                        {
-                            if (this.CountInfos > 0)
-                                iconName = "iconFolderOpenInformation";
-                            else
-                                iconName = "iconFolderOpen";
-                        }
-                    }
-                }
+                    iconName = "iconFolderOpen";
                 else
-                {
-                    if (this.CountErrors > 0)
-                        iconName = "iconFolderError";
-                    else
-                    {
-                        if (this.CountWarnings > 0)
-                            iconName = "iconFolderWarning";
-                        else
-                        {
-                            if (this.CountInfos > 0)
-                                iconName = "iconFolderInformation";
-                            else
-                                iconName = "iconFolder";
-                        }
-                    }
-                }
+                    iconName = "iconFolder";
                 return iconName;
             }
         }
@@ -266,6 +259,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     _IsExpanded = value;
                     NotifyPropertyChanged();
+                    NotifyPropertyChanged(p => p.IconFolder);
                 }
             }
             get { return _IsExpanded; }

@@ -24,7 +24,7 @@ namespace ViewModelBase
         protected virtual void OnCountErrorsChanged() { }
         protected virtual void OnCountWarningsChanged() { }
         protected virtual void OnCountInfosChanged() { }
-        //[BrowsableAttribute(false)]
+        [BrowsableAttribute(false)]
         public int CountErrors
         {
             get { return _CountErrors; }
@@ -69,8 +69,20 @@ namespace ViewModelBase
             }
         }
         private int _CountInfos;
-        //[BrowsableAttribute(false)]
-        public SortedObservableCollection<ValidationMessage> ValidationCollection { get; set; }
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ValidationMessage> ValidationCollection
+        {
+            get { return _ValidationCollection; }
+            set
+            {
+                if (_ValidationCollection != value)
+                {
+                    _ValidationCollection = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private SortedObservableCollection<ValidationMessage> _ValidationCollection;
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
             ClearAllErrors();

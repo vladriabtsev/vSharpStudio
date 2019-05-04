@@ -196,18 +196,25 @@ namespace GenFromProto
             #line 52 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	
 	this.PushIndent("\t");
-	var cloner = new Clone(root, message);
+	
+    var cloner = new Clone(root, message);
 	this.Write(cloner.TransformText());
 
-	var va = new VisitorAcceptConfigNode(root, message);
+	var va = new AcceptConfigNode(root, message);
 	this.Write(va.TransformText());
+
+    /*if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
+	    var av = new AcceptValidator(root, message);
+	    this.Write(av.TransformText());
+    }*/
+
 	this.PopIndent(); 
             
             #line default
             #line hidden
             this.Write("\t#endregion Procedures\r\n\t#region Properties\r\n");
             
-            #line 62 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 69 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{

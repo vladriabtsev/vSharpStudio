@@ -82,20 +82,26 @@ namespace vSharpStudio.vm.ViewModels
 
             foreach (var t in p.ValidationCollection)
             {
-                UpdateAddCounts(p, t);
-                t.RaiseSeverityLevel(_level);
-                ulong weight = 0;
-                ITreeConfigNode nnode = p;
-                while (nnode.Parent != null)
-                {
-                    weight++;
-                    nnode = nnode.Parent;
-                }
-                if (weight > ViewModelBindable.MaxSortingWeight)
-                    throw new Exception();
-                Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
+                AddMessage(p, t);
             }
         }
+
+        private void AddMessage(ITreeConfigNode p, ValidationMessage t)
+        {
+            UpdateAddCounts(p, t);
+            t.RaiseSeverityLevel(_level);
+            ulong weight = 0;
+            ITreeConfigNode nnode = p;
+            while (nnode.Parent != null)
+            {
+                weight++;
+                nnode = nnode.Parent;
+            }
+            if (weight > ViewModelBindable.MaxSortingWeight)
+                throw new Exception();
+            Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
+        }
+
         private void OnVisitEnd(ITreeConfigNode p)
         {
             if (_logger != null)

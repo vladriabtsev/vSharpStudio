@@ -51,13 +51,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Class.tt</DependentUpon>
     </Compile>
+    <Compile Include="ValidationVisitor.cs">
+      <DependentUpon>ValidationVisitor.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ValidationVisitor.partial.cs" />
     <Compile Include="IVisitorProto.partial.cs" />
     <Compile Include="IVisitorProto.cs">
       <DependentUpon>IVisitorProto.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="VisitorAcceptConfigNode.partial.cs" />
+    <Compile Include="AcceptValidator.cs">
+      <DependentUpon>AcceptValidator.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AcceptValidator.partial.cs" />
+    <Compile Include="AcceptConfigNode.partial.cs" />
     <Compile Include="Clone.partial.cs" />
     <Compile Include="IVisitorConfigNode.partial.cs" />
     <Compile Include="Property.partial.cs" />
@@ -90,10 +102,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IVisitorConfigNode.tt</DependentUpon>
     </Compile>
-    <Compile Include="VisitorAcceptConfigNode.cs">
+    <Compile Include="AcceptConfigNode.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VisitorAcceptConfigNode.tt</DependentUpon>
+      <DependentUpon>AcceptConfigNode.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +126,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Comparison.cs</LastGenOutput>
     </Content>
+    <Content Include="ValidationVisitor.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ValidationVisitor.cs</LastGenOutput>
+    </Content>
     <Content Include="NameSpace.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>NameSpace.cs</LastGenOutput>
@@ -130,9 +146,13 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>IVisitorConfigNode.cs</LastGenOutput>
     </Content>
-    <Content Include="VisitorAcceptConfigNode.tt">
+    <Content Include="AcceptValidator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>VisitorAcceptConfigNode.cs</LastGenOutput>
+      <LastGenOutput>AcceptValidator.cs</LastGenOutput>
+    </Content>
+    <Content Include="AcceptConfigNode.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AcceptConfigNode.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

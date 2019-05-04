@@ -12,16 +12,15 @@ namespace GenFromProto
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using Google.Protobuf.Reflection;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public partial class NameSpace : NameSpaceBase
+    public partial class AcceptConfigNode : AcceptConfigNodeBase
     {
 #line hidden
         /// <summary>
@@ -29,58 +28,70 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("// Auto generated on UTC ");
             
-            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DateTime.Now.ToUniversalTime()));
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
             
             #line default
             #line hidden
-            this.Write(@"
-using System;
-using System.Linq;
-using ViewModelBase;
-using FluentValidation;
-using Proto.Config;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Threading;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
-
-namespace vSharpStudio.vm.ViewModels
-{
-    // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
-    // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
-    // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-");
+            this.Write("public void AcceptConfigNode(IVisitorConfigNode visitor) \r\n{\r\n    if (visitor.Tok" +
+                    "en.IsCancellationRequested)\r\n        return;\r\n\tvisitor.Visit(this);\r\n");
             
-            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-
-	this.PushIndent("\t");
-	foreach (var t in root.MessageTypes)
-	{
-        if (t.Name.EndsWith("_nullable"))
-           continue;
-		var cl = new Class(root, t, dicParents);
-		this.Write(cl.TransformText());
-	}
-
-	var v = new IVisitorConfigNode(root);
-	this.Write(v.TransformText());
-
-	var vp = new IVisitorProto(root);
-	this.Write(vp.TransformText());
-
-	var vv = new ValidationVisitor(root);
-	this.Write(vv.TransformText());
-
-	this.PopIndent();
+            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ foreach (var field in this.message.Fields.InDeclarationOrder()) { 
+     if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
+       continue;
 
             
             #line default
             #line hidden
-            this.Write("}");
+            
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ if (field.IsRepeated) { 
+            
+            #line default
+            #line hidden
+            this.Write("\tforeach(var t in this.");
+            
+            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n\t\tt.AcceptConfigNode(visitor);\r\n");
+            
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
+            
+            #line default
+            #line hidden
+            this.Write("\tthis.");
+            
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".AcceptConfigNode(visitor);\r\n");
+            
+            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } 
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -92,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public class NameSpaceBase
+    public class AcceptConfigNodeBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

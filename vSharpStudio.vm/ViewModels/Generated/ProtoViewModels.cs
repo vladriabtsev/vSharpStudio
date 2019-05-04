@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/03/2019 02:01:19
+// Auto generated on UTC 05/03/2019 16:48:40
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -5817,5 +5817,230 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_form p);
 		void Visit(proto_group_list_reports p);
 		void Visit(proto_report p);
+	}
+	
+	public partial class ValidationVisitor : IVisitorConfigNode
+	{
+		public void Visit(IdDbGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(IdDbGenerator p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupConfigs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupConfigs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Config p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	    }
+		public void VisitEnd(Config p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(ConfigTree p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConfigTree p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(DataType p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(DataType p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupPropertyTab p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupPropertyTab p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupPropertyTabs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupPropertyTabs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupPropertyTabsTree p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupPropertyTabsTree p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListProperties p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListProperties p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Property p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.DataType);
+	    }
+		public void VisitEnd(Property p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupPropertiesTree p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupPropertiesTree p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListConstants p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListConstants p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Constant p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.DataType);
+	    }
+		public void VisitEnd(Constant p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListEnumerations p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListEnumerations p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Enumeration p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Enumeration p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(EnumerationPair p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(EnumerationPair p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Catalog p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	    }
+		public void VisitEnd(Catalog p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListCatalogs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListCatalogs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupDocuments p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupDocuments p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Document p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	    }
+		public void VisitEnd(Document p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListDocuments p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListDocuments p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListJournals p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListJournals p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Journal p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Journal p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListForms p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListForms p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Form p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Form p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListReports p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListReports p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Report p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Report p)
+	    {
+	        OnVisitEnd(p);
+	    }
 	}
 }

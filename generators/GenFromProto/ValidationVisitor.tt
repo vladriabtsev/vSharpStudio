@@ -1,0 +1,33 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+public partial class ValidationVisitor : IVisitorConfigNode
+{
+<# foreach (var message in messages) { 
+     if (message.Name.EndsWith("_nullable"))
+       continue;
+#>
+	public void Visit(<#= message.Name.ToNameCs() #> p)
+    {
+        OnVisit(p);
+<# foreach (var field in message.Fields.InDeclarationOrder()) { 
+     if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
+       continue;
+     if (field.MessageType.Name.EndsWith("_nullable"))
+       continue;
+#>
+<# if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass.StartsWith(" : ConfigObjectBase")) { #>
+        ValidateSubAndCollectErrors(p, p.<#= field.Name.ToNameCs() #>);
+<# } else { #>
+<# } #>
+<# } #>
+    }
+	public void VisitEnd(<#= message.Name.ToNameCs() #> p)
+    {
+        OnVisitEnd(p);
+    }
+<# } #>
+}

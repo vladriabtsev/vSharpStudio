@@ -597,7 +597,7 @@ namespace vSharpStudio.xUnit
             Assert.True(cfg.GroupEnumerations.CountWarnings == 0);
 
             // ValidateSubTreeFromNode(node). node contains full list of validations
-            Assert.True(cfg.CountErrors == 1);
+            Assert.True(cfg.CountErrors == 2);
             Assert.True(cfg.CountInfos == 0);
             Assert.True(cfg.CountWarnings == 0);
             Assert.True(cfg.ValidationCollection.Count == 1);

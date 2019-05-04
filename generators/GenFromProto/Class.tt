@@ -51,11 +51,18 @@
 	#region Procedures
 <#	
 	this.PushIndent("\t");
-	var cloner = new Clone(root, message);
+	
+    var cloner = new Clone(root, message);
 	this.Write(cloner.TransformText());
 
-	var va = new VisitorAcceptConfigNode(root, message);
+	var va = new AcceptConfigNode(root, message);
 	this.Write(va.TransformText());
+
+    /*if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
+	    var av = new AcceptValidator(root, message);
+	    this.Write(av.TransformText());
+    }*/
+
 	this.PopIndent(); #>
 	#endregion Procedures
 	#region Properties

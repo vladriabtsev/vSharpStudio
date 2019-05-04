@@ -125,7 +125,7 @@ namespace vSharpStudio.ViewModels
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new TreeNodeValidatorVisitor(token, logger);
+            var visitor = new ValidationVisitor(token, logger);
             visitor.UpdateSubstructCounts(node);
             (node as IAccept).AcceptConfigNode(visitor);
             if (!token.IsCancellationRequested)

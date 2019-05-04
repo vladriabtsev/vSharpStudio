@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:vSharpStudio.wpf">
-    
+
     <!--https://docs.microsoft.com/en-us/dotnet/framework/wpf/graphics-multimedia/path-markup-syntax-->
     <!--http://blackwasp.co.uk/WPFPathMarkupSyntax.aspx-->
-    
+
     <!--C:\ext\icons\VS2017 Image Library\VS2017\Add-->
     <ControlTemplate x:Key="iconAdd">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -239,6 +239,27 @@
             </Rectangle>
         </Viewbox>
     </ControlTemplate>
+    <!--C:\ext\icons\VS2017 Image Library\VS2017\CatalogProperty-->
+    <ControlTemplate x:Key="iconCatalogProperty">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M15,0L15,15 10,15 5.722,15C5.375,15.595 4.737,16 4,16 3.264,16 2.625,15.595 2.279,15L1,15 1,11.269C0.688000000000001,10.74 0.5,10.139 0.5,9.5 0.5,8.857 0.683,8.245 1,7.715L1,5 1,0z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M2,1L2,2 3,2 3,3 2,3 2,4 3,4 3,5 2,5 2,6 3,6 3,6.09C3.028,6.086,3.058,6.086,3.086,6.082L4,5.682 4,2 13,2 13,13 6,13 6,14 14,14 14,1z M6,4L6,5 6,6 11,6 11,5 11,4z M6.5,9.5C6.5,10.525,5.883,11.403,5,11.789L5,14C5,14.553 4.553,15 4,15 3.448,15 3,14.553 3,14L3,11.789C2.118,11.402 1.5,10.524 1.5,9.5 1.5,8.476 2.118,7.598 3,7.211L3,10 5,10 5,7.211C5.883,7.597,6.5,8.475,6.5,9.5" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M11,5L11,6 6,6 6,5 6,4 11,4z M4,2L4,5.682 4,5.681 4,5.683 5.401,6.294C6.676,6.852 7.5,8.11 7.5,9.5 7.5,10.657 6.929,11.724 6,12.37L6,13 13,13 13,2z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\ConvertBranchToFolder-->
     <ControlTemplate x:Key="iconConvertBranchToFolder">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -253,6 +274,28 @@
                                     <GeometryDrawing Brush="#FF424242" Geometry="F1M6,5L2,5 2,2 6,2z M1,6L7,6 7,1 1,1z" />
                                     <GeometryDrawing Brush="#FFDBB679" Geometry="F1M7,9L7,8 9.989,8 10.489,9z M15,9.501C15,9.225,14.775,9,14.499,9.001L12,9.004 10.989,7 6.489,7C6.213,7,5.989,7.224,5.989,7.499L5.986,9.072 8.414,11.5 5.98,13.935 5.979,14.499C5.979,14.775,6.203,15,6.479,15L14.5,15C14.776,15,15,14.776,15,14.5z" />
                                     <GeometryDrawing Brush="#FF00529C" Geometry="F1M6.9946,11.4844L4.7586,13.7074 4.0376,12.9854 5.0406,11.9814 3.4886,11.9774 3.4886,11.9764C2.3986,11.9754,2.0006,11.0864,1.9996,10.4874L1.9996,7.0004 2.9926,7.0004 2.9926,10.4804C2.9986,10.7104,3.0896,10.9844,3.4896,10.9844L5.0406,10.9844 4.0376,9.9804 4.7586,9.2584z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--C:\ext\icons\VS2017 Image Library\VS2017\Constant-->
+    <ControlTemplate x:Key="iconConstant">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M2.8789,14L0.9999,12.121 0.9999,3.879 2.8789,2 13.1209,2 14.9999,3.879 14.9999,12.121 13.1209,14z" />
+                                    <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M11,7L5,7 5,6 11,6z M11,10L5,10 5,9 11,9z M12.293,4L3.707,4 3,4.707 3,11.293 3.707,12 12.293,12 13,11.293 13,4.707z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M3.707,12L12.293,12 13,11.293 13,4.707 12.293,4 3.707,4 3,4.707 3,11.293z M12.707,13L3.293,13 2,11.707 2,4.293 3.293,3 12.707,3 14,4.293 14,11.707z" />
+                                    <GeometryDrawing Brush="#FF00529C" Geometry="F1M11,9L5,9 5,10 11,10z M11,7L5,7 5,6 11,6z" />
                                 </DrawingGroup.Children>
                             </DrawingGroup>
                         </DrawingBrush.Drawing>
@@ -413,6 +456,34 @@
             </Rectangle>
         </Viewbox>
     </ControlTemplate>
+    <!--C:\ext\icons\VS2017 Image Library\VS2017\DiagnosticesFile-->
+    <ControlTemplate x:Key="iconDiagnosticesFile">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="32" Height="32">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M8,30C5.492,30,4.194,28.161,4.021,26.339L4,26.277 4,6C4,3.402,6.061,2,8,2L19.733,2 28,10.164 28,26C27.993,27.896,27,29.932,24,29.992L24,30z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M19,6L19,12 24,12 24,26 8,26 8,6z M18.912,4L8,4C8,4,6,4,6,6L6,26 6,26.277C6,26.277,6.32,28,8,28L24,28 24.111,28 24.051,27.993C25.993,27.955,26,26,26,26L26,11z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M11.5,13C10.671,13 10,13.671 10,14.5 10,15.329 10.671,16 11.5,16 12.329,16 13,15.329 13,14.5 13,13.671 12.329,13 11.5,13" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M14,15L21,15 21,14 14,14z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M14,19L21,19 21,18 14,18z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M14,23L21,23 21,22 14,22z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M11.5,23C11.224,23 11,22.776 11,22.5 11,22.224 11.224,22 11.5,22 11.776,22 12,22.224 12,22.5 12,22.776 11.776,23 11.5,23 M11.5,21C10.671,21 10,21.672 10,22.5 10,23.328 10.671,24 11.5,24 12.329,24 13,23.328 13,22.5 13,21.672 12.329,21 11.5,21" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M11.5,19C11.224,19 11,18.776 11,18.5 11,18.224 11.224,18 11.5,18 11.776,18 12,18.224 12,18.5 12,18.776 11.776,19 11.5,19 M11.5,17C10.671,17 10,17.672 10,18.5 10,19.328 10.671,20 11.5,20 12.329,20 13,19.328 13,18.5 13,17.672 12.329,17 11.5,17" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M11.5,23C11.224,23 11,22.776 11,22.5 11,22.224 11.224,22 11.5,22 11.776,22 12,22.224 12,22.5 12,22.776 11.776,23 11.5,23" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M11.5,19C11.224,19 11,18.776 11,18.5 11,18.224 11.224,18 11.5,18 11.776,18 12,18.224 12,18.5 12,18.776 11.776,19 11.5,19" />
+                                    <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M21,15L14,15 14,14 21,14z M21,19L14,19 14,18 21,18z M21,23L14,23 14,22 21,22z M11.5,24C10.671,24 10,23.328 10,22.5 10,21.672 10.671,21 11.5,21 12.329,21 13,21.672 13,22.5 13,23.328 12.329,24 11.5,24 M11.5,20C10.671,20 10,19.328 10,18.5 10,17.672 10.671,17 11.5,17 12.329,17 13,17.672 13,18.5 13,19.328 12.329,20 11.5,20 M11.5,16C10.671,16 10,15.329 10,14.5 10,13.671 10.671,13 11.5,13 12.329,13 13,13.671 13,14.5 13,15.329 12.329,16 11.5,16 M19,12L19,6 8,6 8,26 24,26 24,12z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\F1Help-->
     <ControlTemplate x:Key="iconF1Help">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -447,6 +518,48 @@
                                     <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M1.5,1L9.61,1 10.61,3 13.496,3C14.323,3,14.996,3.673,14.996,4.5L14.996,12.5C14.996,13.327,14.323,14,13.496,14L1.5,14C0.673,14,0,13.327,0,12.5L0,2.5C0,1.673,0.673,1,1.5,1" />
                                     <GeometryDrawing Brush="#FFDCB67A" Geometry="F1M2,3L8.374,3 8.874,4 2,4z M13.496,4L10,4 9.992,4 8.992,2 1.5,2C1.225,2,1,2.224,1,2.5L1,12.5C1,12.776,1.225,13,1.5,13L13.496,13C13.773,13,13.996,12.776,13.996,12.5L13.996,4.5C13.996,4.224,13.773,4,13.496,4" />
                                     <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M2,3L8.374,3 8.874,4 2,4z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--C:\ext\icons\VS2017 Image Library\VS2017\Enumerator-->
+    <ControlTemplate x:Key="iconEnumerator">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M7.5861,0.999700000000001L6.0001,2.5867 6.0001,5.9997 1.5861,5.9997 9.99999999997669E-05,7.5867 9.99999999997669E-05,13.4157 1.5861,14.9997 8.4141,14.9997 10.0001,13.4157 10.0001,9.9997 14.4141,9.9997 16.0001,8.4147 16.0001,2.5867 14.4141,0.999700000000001z" />
+                                    <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M13,5L9,5 9,4 13,4z M14,6L14,3 8,3 8,6 8.414,6 9,6.586 9,6 13,6 13,7 9.414,7 10,7.586 10,8 14,8z M3,11L7,11 7,12 3,12z M3,9L7,9 7,10 3,10z M2,13L8,13 8,11 8,8 2,8z" />
+                                    <GeometryDrawing Brush="#FFC17C1A" Geometry="F1M14,2.0005L8,2.0005 7,3.0005 7,6.0005 8,6.0005 8,3.0005 14,3.0005 14,6.0005 14,8.0005 10,8.0005 10,9.0005 14,9.0005 15,8.0005 15,3.0005z M9,5.0005L13,5.0005 13,4.0005 9,4.0005z M9,6.0005L10,7.0005 13,7.0005 13,6.0005z M8,8.0005L2,8.0005 2,13.0005 8,13.0005 8,11.0005z M9,8.0005L9,13.0005 8,14.0005 2,14.0005 1,13.0005 1,8.0005 2,7.0005 8,7.0005z M3,10.0005L7.001,10.0005 7.001,9.0005 3,9.0005z M3,11.0005L7.001,11.0005 7.001,12.0005 3,12.0005z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--C:\ext\icons\VS2017 Image Library\VS2017\EnumItem-->
+    <ControlTemplate x:Key="iconEnumItem">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M7.5852,0.999700000000001L6.0002,2.5867 6.0002,5.9997 0.000200000000000422,5.9997 0.000200000000000422,14.9997 10.0002,14.9997 10.0002,9.9997 14.4142,9.9997 16.0002,8.4147 16.0002,2.5867 14.4142,0.999700000000001z" />
+                                    <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M7,11L3,11 3,10 7,10z M2,13L8,13 8,8 2,8z M13,5L9,5 9,4 13,4z M8,3L8,6 9,6 10,6 13,6 13,7 10,7 10,8 14,8 14,6 14,3z" />
+                                    <GeometryDrawing Brush="#FF00529C" Geometry="F1M8,8L2,8 2,13 8,13z M9,14L1,14 1,7 9,7z M7,10L3,10 3,11 7,11z M14,2L8,2 7,3 7,6 8,6 8,3 14,3 14,6 14,8 10,8 10,9 14,9 15,8 15,3z M9,5L13,5 13,4 9,4z M10,6L13,6 13,7 10,7z" />
                                 </DrawingGroup.Children>
                             </DrawingGroup>
                         </DrawingBrush.Drawing>
