@@ -227,7 +227,7 @@ message proto_group_list_constants {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_constant list_constants = 6;
+    repeated proto_constant children = 6;
 }
 //
 // Constant application wise value
@@ -255,7 +255,7 @@ message proto_group_list_enumerations {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_enumeration list_enumerations = 6;
+    repeated proto_enumeration children = 6;
 }
 message proto_enumeration {
     enum EnumEnumerationType {
@@ -273,7 +273,7 @@ message proto_enumeration {
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
     EnumEnumerationType data_type_enum = 6; 
-    repeated proto_enumeration_pair list_values = 7;
+    repeated proto_enumeration_pair children = 7;
 }
 message proto_enumeration_pair {
     string guid = 1;
@@ -315,7 +315,7 @@ message proto_group_list_catalogs {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_catalog list_catalogs = 7;
+    repeated proto_catalog children = 7;
 }
 /** 
  * @exclude
@@ -354,7 +354,7 @@ message proto_group_list_documents {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    repeated proto_document list_documents = 6;
+    repeated proto_document children = 6;
 }
 /** 
  * @exclude
@@ -369,7 +369,7 @@ message proto_group_list_journals {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    repeated proto_journal list_journals = 7;
+    repeated proto_journal children = 7;
 }
 message proto_journal {
     string guid = 1;
@@ -380,7 +380,7 @@ message proto_journal {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
-    repeated proto_document list_documents = 7;
+    repeated proto_document children = 7;
 }
 /** 
  * @exclude
@@ -395,7 +395,7 @@ message proto_group_list_forms {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    repeated proto_form list_forms = 7;
+    repeated proto_form children = 7;
 }
 message proto_form {
     string guid = 1;
@@ -421,7 +421,7 @@ message proto_group_list_reports {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    repeated proto_report list_reports = 7;
+    repeated proto_report children = 7;
 }
 message proto_report {
     string guid = 1;

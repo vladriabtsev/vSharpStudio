@@ -6,7 +6,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document : IListGroupNodes
+    public partial class Document
     {
         public static readonly string DefaultName = "Document";
         [BrowsableAttribute(false)]

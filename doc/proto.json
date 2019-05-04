@@ -954,7 +954,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_values",
+              "name": "children",
               "description": "",
               "label": "repeated",
               "type": "proto_enumeration_pair",
@@ -1309,7 +1309,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_catalogs",
+              "name": "children",
               "description": "",
               "label": "repeated",
               "type": "proto_catalog",
@@ -1380,7 +1380,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_constants",
+              "name": "children",
               "description": "",
               "label": "repeated",
               "type": "proto_constant",
@@ -1451,7 +1451,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_documents",
+              "name": "children",
               "description": "",
               "label": "repeated",
               "type": "proto_document",
@@ -1522,7 +1522,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_enumerations",
+              "name": "children",
               "description": "",
               "label": "repeated",
               "type": "proto_enumeration",
@@ -1593,7 +1593,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_forms",
+              "name": "children",
               "description": "repeated proto_property list_shared_properties = 6;",
               "label": "repeated",
               "type": "proto_form",
@@ -1664,7 +1664,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_journals",
+              "name": "children",
               "description": "repeated proto_property list_shared_properties = 6;",
               "label": "repeated",
               "type": "proto_journal",
@@ -1806,7 +1806,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_reports",
+              "name": "children",
               "description": "repeated proto_property list_shared_properties = 6;",
               "label": "repeated",
               "type": "proto_report",
@@ -2181,7 +2181,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_documents",
+              "name": "children",
               "description": "repeated proto_group_properties list_properties = 6;",
               "label": "repeated",
               "type": "proto_document",

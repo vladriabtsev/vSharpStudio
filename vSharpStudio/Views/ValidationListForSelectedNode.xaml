@@ -19,7 +19,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="List All Validations"/>
-        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="false">
+        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
             <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -28,7 +28,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding SeverityWeightName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Level"/>
                 <DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

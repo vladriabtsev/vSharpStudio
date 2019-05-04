@@ -51,12 +51,9 @@ namespace vSharpStudio.wpf.Controls
             get { return this.GetValue(TreeViewEx.SelectedItemProperty); }
             set { this.SetValue(TreeViewEx.SelectedItemProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public new static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(TreeViewEx),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedItemProperty_Changed));
-
         static void SelectedItemProperty_Changed(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
             TreeViewEx targetObject = dependencyObject as TreeViewEx;
@@ -64,9 +61,24 @@ namespace vSharpStudio.wpf.Controls
             {
                 TreeViewItem tvi = targetObject.FindItemNode(targetObject.SelectedItem) as TreeViewItem;
                 if (tvi != null)
+                {
                     tvi.IsSelected = true;
+//                    targetObject.SubItems = tvi.Items;
+                }
+                //else
+                //{
+                //    targetObject.SubItems = null;
+                //}
             }
         }
+        //public ItemCollection SubItems
+        //{
+        //    get { return (ItemCollection)GetValue(ItemsPropertyProperty); }
+        //    set { SetValue(ItemsPropertyProperty, value); }
+        //}
+        //public static readonly DependencyProperty ItemsPropertyProperty =
+        //    DependencyProperty.Register("ItemsProperty", typeof(ItemCollection), typeof(TreeViewEx), new PropertyMetadata(null));
+
         #endregion SelectedItem   
 
         public TreeViewItem FindItemNode(object item)

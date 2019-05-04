@@ -10,7 +10,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : IListGroupNodes
+    public partial class Catalog
     {
         public static readonly string DefaultName = "Catalog";
         [BrowsableAttribute(false)]

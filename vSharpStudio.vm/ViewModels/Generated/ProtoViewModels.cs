@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/03/2019 16:48:40
+// Auto generated on UTC 05/04/2019 14:44:50
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -216,7 +216,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnHiLoSchemaChanged();
 		#endregion Properties
 	}
-	public partial class GroupConfigs : ConfigObjectBase<GroupConfigs, GroupConfigs.GroupConfigsValidator>, IComparable<GroupConfigs>, IAccept
+	public partial class GroupConfigs : ConfigObjectBase<GroupConfigs, GroupConfigs.GroupConfigsValidator>, IComparable<GroupConfigs>, IAccept, IChildren
 	{
 		public partial class GroupConfigsValidator : ValidatorBase<GroupConfigs, GroupConfigsValidator> { }
 		#region CTOR
@@ -426,7 +426,7 @@ namespace vSharpStudio.vm.ViewModels
 	///////////////////////////////////////////////////
 	/// Configuration config
 	///////////////////////////////////////////////////
-	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept
+	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept, IChildren
 	{
 		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
 		#region CTOR
@@ -1014,7 +1014,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupJournalsChanged();
 		#endregion Properties
 	}
-	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept
+	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept, IChildren
 	{
 		public partial class ConfigTreeValidator : ValidatorBase<ConfigTree, ConfigTreeValidator> { }
 		#region CTOR
@@ -1418,7 +1418,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnObjectNameChanged();
 		#endregion Properties
 	}
-	public partial class GroupPropertyTab : ConfigObjectBase<GroupPropertyTab, GroupPropertyTab.GroupPropertyTabValidator>, IComparable<GroupPropertyTab>, IAccept
+	public partial class GroupPropertyTab : ConfigObjectBase<GroupPropertyTab, GroupPropertyTab.GroupPropertyTabValidator>, IComparable<GroupPropertyTab>, IAccept, IChildren
 	{
 		public partial class GroupPropertyTabValidator : ValidatorBase<GroupPropertyTab, GroupPropertyTabValidator> { }
 		#region CTOR
@@ -1622,7 +1622,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnListPropertiesChanged();
 		#endregion Properties
 	}
-	public partial class GroupPropertyTabs : ConfigObjectBase<GroupPropertyTabs, GroupPropertyTabs.GroupPropertyTabsValidator>, IComparable<GroupPropertyTabs>, IAccept
+	public partial class GroupPropertyTabs : ConfigObjectBase<GroupPropertyTabs, GroupPropertyTabs.GroupPropertyTabsValidator>, IComparable<GroupPropertyTabs>, IAccept, IChildren
 	{
 		public partial class GroupPropertyTabsValidator : ValidatorBase<GroupPropertyTabs, GroupPropertyTabsValidator> { }
 		#region CTOR
@@ -1826,7 +1826,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnListPropertiesTabsChanged();
 		#endregion Properties
 	}
-	public partial class GroupPropertyTabsTree : ConfigObjectBase<GroupPropertyTabsTree, GroupPropertyTabsTree.GroupPropertyTabsTreeValidator>, IComparable<GroupPropertyTabsTree>, IAccept
+	public partial class GroupPropertyTabsTree : ConfigObjectBase<GroupPropertyTabsTree, GroupPropertyTabsTree.GroupPropertyTabsTreeValidator>, IComparable<GroupPropertyTabsTree>, IAccept, IChildren
 	{
 		public partial class GroupPropertyTabsTreeValidator : ValidatorBase<GroupPropertyTabsTree, GroupPropertyTabsTreeValidator> { }
 		#region CTOR
@@ -2006,7 +2006,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnListPropertiesSubTabsChanged();
 		#endregion Properties
 	}
-	public partial class GroupListProperties : ConfigObjectBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IAccept
+	public partial class GroupListProperties : ConfigObjectBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IAccept, IChildren
 	{
 		public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { }
 		#region CTOR
@@ -2210,7 +2210,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnListPropertiesChanged();
 		#endregion Properties
 	}
-	public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>, IAccept
+	public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>, IAccept, IChildren
 	{
 		public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { }
 		#region CTOR
@@ -2366,7 +2366,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeChanged();
 		#endregion Properties
 	}
-	public partial class GroupPropertiesTree : ConfigObjectBase<GroupPropertiesTree, GroupPropertiesTree.GroupPropertiesTreeValidator>, IComparable<GroupPropertiesTree>, IAccept
+	public partial class GroupPropertiesTree : ConfigObjectBase<GroupPropertiesTree, GroupPropertiesTree.GroupPropertiesTreeValidator>, IComparable<GroupPropertiesTree>, IAccept, IChildren
 	{
 		public partial class GroupPropertiesTreeValidator : ValidatorBase<GroupPropertiesTree, GroupPropertiesTreeValidator> { }
 		#region CTOR
@@ -2595,13 +2595,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupPropertiesChanged();
 		#endregion Properties
 	}
-	public partial class GroupListConstants : ConfigObjectBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IAccept
+	public partial class GroupListConstants : ConfigObjectBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IAccept, IChildren
 	{
 		public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { }
 		#region CTOR
 		public GroupListConstants() : base(GroupListConstantsValidator.Validator)
 		{
-			this.ListConstants = new SortedObservableCollection<Constant>(e =>
+			this.Children = new SortedObservableCollection<Constant>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -2633,7 +2633,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Constant))
 		    {
-		        this.ListConstants.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListConstants Clone(ITreeConfigNode parent, GroupListConstants from, bool isDeep = true, bool isNewGuid = false)
@@ -2644,9 +2644,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListConstants = new SortedObservableCollection<Constant>();
-		    foreach(var t in from.ListConstants)
-		        vm.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Constant>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2660,10 +2660,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListConstants.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListConstants)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -2673,12 +2673,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListConstants.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListConstants)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListConstants.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -2690,7 +2690,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Constant();
 		                vSharpStudio.vm.ViewModels.Constant.Update(p, tt, isDeep);
-		                to.ListConstants.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -2721,12 +2721,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListConstants = new SortedObservableCollection<Constant>();
-		    foreach(var t in m.ListConstants)
+		    vm.Children = new SortedObservableCollection<Constant>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListConstants.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -2740,8 +2740,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListConstants)
-		        m.ListConstants.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Constant.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -2749,7 +2749,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListConstants)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -2794,16 +2794,16 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		public SortedObservableCollection<Constant> ListConstants { get; set; }
-		partial void OnListConstantsChanging();
-		partial void OnListConstantsChanged();
+		public SortedObservableCollection<Constant> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
 	
 	///////////////////////////////////////////////////
 	/// Constant application wise value
 	///////////////////////////////////////////////////
-	public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IAccept
+	public partial class Constant : ConfigObjectBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IAccept, IChildren
 	{
 		public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { }
 		#region CTOR
@@ -2960,13 +2960,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeChanged();
 		#endregion Properties
 	}
-	public partial class GroupListEnumerations : ConfigObjectBase<GroupListEnumerations, GroupListEnumerations.GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IAccept
+	public partial class GroupListEnumerations : ConfigObjectBase<GroupListEnumerations, GroupListEnumerations.GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IAccept, IChildren
 	{
 		public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { }
 		#region CTOR
 		public GroupListEnumerations() : base(GroupListEnumerationsValidator.Validator)
 		{
-			this.ListEnumerations = new SortedObservableCollection<Enumeration>(e =>
+			this.Children = new SortedObservableCollection<Enumeration>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -2998,7 +2998,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Enumeration))
 		    {
-		        this.ListEnumerations.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListEnumerations Clone(ITreeConfigNode parent, GroupListEnumerations from, bool isDeep = true, bool isNewGuid = false)
@@ -3009,9 +3009,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
-		    foreach(var t in from.ListEnumerations)
-		        vm.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Enumeration>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3025,10 +3025,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListEnumerations.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListEnumerations)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -3038,12 +3038,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListEnumerations.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListEnumerations)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListEnumerations.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -3055,7 +3055,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Enumeration();
 		                vSharpStudio.vm.ViewModels.Enumeration.Update(p, tt, isDeep);
-		                to.ListEnumerations.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -3086,12 +3086,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListEnumerations = new SortedObservableCollection<Enumeration>();
-		    foreach(var t in m.ListEnumerations)
+		    vm.Children = new SortedObservableCollection<Enumeration>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListEnumerations.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -3105,8 +3105,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListEnumerations)
-		        m.ListEnumerations.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Enumeration.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -3114,7 +3114,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListEnumerations)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -3159,18 +3159,18 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		public SortedObservableCollection<Enumeration> ListEnumerations { get; set; }
-		partial void OnListEnumerationsChanging();
-		partial void OnListEnumerationsChanged();
+		public SortedObservableCollection<Enumeration> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IAccept
+	public partial class Enumeration : ConfigObjectBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IAccept, IChildren
 	{
 		public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { }
 		#region CTOR
 		public Enumeration() : base(EnumerationValidator.Validator)
 		{
-			this.ListValues = new SortedObservableCollection<EnumerationPair>(e =>
+			this.Children = new SortedObservableCollection<EnumerationPair>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -3202,7 +3202,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(EnumerationPair))
 		    {
-		        this.ListValues.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static Enumeration Clone(ITreeConfigNode parent, Enumeration from, bool isDeep = true, bool isNewGuid = false)
@@ -3214,9 +3214,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    vm.DataTypeEnum = from.DataTypeEnum;
-		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
-		    foreach(var t in from.ListValues)
-		        vm.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<EnumerationPair>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3231,10 +3231,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.DataTypeEnum = from.DataTypeEnum;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListValues.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListValues)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -3244,12 +3244,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListValues.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListValues)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListValues.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -3261,7 +3261,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new EnumerationPair();
 		                vSharpStudio.vm.ViewModels.EnumerationPair.Update(p, tt, isDeep);
-		                to.ListValues.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -3293,12 +3293,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vm.DataTypeEnum = m.DataTypeEnum;
-		    vm.ListValues = new SortedObservableCollection<EnumerationPair>();
-		    foreach(var t in m.ListValues)
+		    vm.Children = new SortedObservableCollection<EnumerationPair>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListValues.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -3313,8 +3313,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.DataTypeEnum = vm.DataTypeEnum;
-		    foreach(var t in vm.ListValues)
-		        m.ListValues.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -3322,7 +3322,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListValues)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -3386,12 +3386,12 @@ namespace vSharpStudio.vm.ViewModels
 		private proto_enumeration.Types.EnumEnumerationType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
-		public SortedObservableCollection<EnumerationPair> ListValues { get; set; }
-		partial void OnListValuesChanging();
-		partial void OnListValuesChanged();
+		public SortedObservableCollection<EnumerationPair> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IAccept
+	public partial class EnumerationPair : ConfigObjectBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IAccept, IChildren
 	{
 		public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { }
 		#region CTOR
@@ -3547,7 +3547,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnValueChanged();
 		#endregion Properties
 	}
-	public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IAccept
+	public partial class Catalog : ConfigObjectBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IAccept, IChildren
 	{
 		public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { }
 		#region CTOR
@@ -3806,13 +3806,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupSubCatalogsChanged();
 		#endregion Properties
 	}
-	public partial class GroupListCatalogs : ConfigObjectBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IAccept
+	public partial class GroupListCatalogs : ConfigObjectBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IAccept, IChildren
 	{
 		public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { }
 		#region CTOR
 		public GroupListCatalogs() : base(GroupListCatalogsValidator.Validator)
 		{
-			this.ListCatalogs = new SortedObservableCollection<Catalog>(e =>
+			this.Children = new SortedObservableCollection<Catalog>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -3844,7 +3844,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Catalog))
 		    {
-		        this.ListCatalogs.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListCatalogs Clone(ITreeConfigNode parent, GroupListCatalogs from, bool isDeep = true, bool isNewGuid = false)
@@ -3855,9 +3855,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
-		    foreach(var t in from.ListCatalogs)
-		        vm.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Catalog>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3871,10 +3871,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListCatalogs.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListCatalogs)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -3884,12 +3884,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListCatalogs.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListCatalogs)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListCatalogs.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -3901,7 +3901,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Catalog();
 		                vSharpStudio.vm.ViewModels.Catalog.Update(p, tt, isDeep);
-		                to.ListCatalogs.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -3932,12 +3932,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListCatalogs = new SortedObservableCollection<Catalog>();
-		    foreach(var t in m.ListCatalogs)
+		    vm.Children = new SortedObservableCollection<Catalog>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListCatalogs.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -3951,8 +3951,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListCatalogs)
-		        m.ListCatalogs.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Catalog.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -3960,7 +3960,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListCatalogs)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -4005,12 +4005,12 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		public SortedObservableCollection<Catalog> ListCatalogs { get; set; }
-		partial void OnListCatalogsChanging();
-		partial void OnListCatalogsChanged();
+		public SortedObservableCollection<Catalog> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class GroupDocuments : ConfigObjectBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IAccept
+	public partial class GroupDocuments : ConfigObjectBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IAccept, IChildren
 	{
 		public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { }
 		#region CTOR
@@ -4191,7 +4191,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupListDocumentsChanged();
 		#endregion Properties
 	}
-	public partial class Document : ConfigObjectBase<Document, Document.DocumentValidator>, IComparable<Document>, IAccept
+	public partial class Document : ConfigObjectBase<Document, Document.DocumentValidator>, IComparable<Document>, IAccept, IChildren
 	{
 		public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { }
 		#region CTOR
@@ -4424,13 +4424,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIdDbGeneratorChanged();
 		#endregion Properties
 	}
-	public partial class GroupListDocuments : ConfigObjectBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IAccept
+	public partial class GroupListDocuments : ConfigObjectBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IAccept, IChildren
 	{
 		public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { }
 		#region CTOR
 		public GroupListDocuments() : base(GroupListDocumentsValidator.Validator)
 		{
-			this.ListDocuments = new SortedObservableCollection<Document>(e =>
+			this.Children = new SortedObservableCollection<Document>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -4462,7 +4462,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Document))
 		    {
-		        this.ListDocuments.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListDocuments Clone(ITreeConfigNode parent, GroupListDocuments from, bool isDeep = true, bool isNewGuid = false)
@@ -4473,9 +4473,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in from.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Document>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4489,10 +4489,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListDocuments.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListDocuments)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -4502,12 +4502,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListDocuments.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListDocuments)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListDocuments.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -4519,7 +4519,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Document();
 		                vSharpStudio.vm.ViewModels.Document.Update(p, tt, isDeep);
-		                to.ListDocuments.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4550,12 +4550,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in m.ListDocuments)
+		    vm.Children = new SortedObservableCollection<Document>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListDocuments.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4569,8 +4569,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListDocuments)
-		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -4578,7 +4578,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListDocuments)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -4623,18 +4623,18 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		public SortedObservableCollection<Document> ListDocuments { get; set; }
-		partial void OnListDocumentsChanging();
-		partial void OnListDocumentsChanged();
+		public SortedObservableCollection<Document> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class GroupListJournals : ConfigObjectBase<GroupListJournals, GroupListJournals.GroupListJournalsValidator>, IComparable<GroupListJournals>, IAccept
+	public partial class GroupListJournals : ConfigObjectBase<GroupListJournals, GroupListJournals.GroupListJournalsValidator>, IComparable<GroupListJournals>, IAccept, IChildren
 	{
 		public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { }
 		#region CTOR
 		public GroupListJournals() : base(GroupListJournalsValidator.Validator)
 		{
-			this.ListJournals = new SortedObservableCollection<Journal>(e =>
+			this.Children = new SortedObservableCollection<Journal>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -4666,7 +4666,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Journal))
 		    {
-		        this.ListJournals.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListJournals Clone(ITreeConfigNode parent, GroupListJournals from, bool isDeep = true, bool isNewGuid = false)
@@ -4677,9 +4677,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListJournals = new SortedObservableCollection<Journal>();
-		    foreach(var t in from.ListJournals)
-		        vm.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Journal>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Journal.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4693,10 +4693,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListJournals.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListJournals)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -4706,12 +4706,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListJournals.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListJournals)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListJournals.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -4723,7 +4723,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Journal();
 		                vSharpStudio.vm.ViewModels.Journal.Update(p, tt, isDeep);
-		                to.ListJournals.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4754,12 +4754,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListJournals = new SortedObservableCollection<Journal>();
-		    foreach(var t in m.ListJournals)
+		    vm.Children = new SortedObservableCollection<Journal>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Journal.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListJournals.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4773,8 +4773,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListJournals)
-		        m.ListJournals.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Journal.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -4782,7 +4782,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListJournals)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -4831,18 +4831,18 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		public SortedObservableCollection<Journal> ListJournals { get; set; }
-		partial void OnListJournalsChanging();
-		partial void OnListJournalsChanged();
+		public SortedObservableCollection<Journal> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class Journal : ConfigObjectBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IAccept
+	public partial class Journal : ConfigObjectBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IAccept, IChildren
 	{
 		public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { }
 		#region CTOR
 		public Journal() : base(JournalValidator.Validator)
 		{
-			this.ListDocuments = new SortedObservableCollection<Document>(e =>
+			this.Children = new SortedObservableCollection<Document>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -4874,7 +4874,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Document))
 		    {
-		        this.ListDocuments.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static Journal Clone(ITreeConfigNode parent, Journal from, bool isDeep = true, bool isNewGuid = false)
@@ -4885,9 +4885,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in from.ListDocuments)
-		        vm.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Document>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4901,10 +4901,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListDocuments.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListDocuments)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -4914,12 +4914,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListDocuments.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListDocuments)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListDocuments.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -4931,7 +4931,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Document();
 		                vSharpStudio.vm.ViewModels.Document.Update(p, tt, isDeep);
-		                to.ListDocuments.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4962,12 +4962,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListDocuments = new SortedObservableCollection<Document>();
-		    foreach(var t in m.ListDocuments)
+		    vm.Children = new SortedObservableCollection<Document>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListDocuments.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4981,8 +4981,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListDocuments)
-		        m.ListDocuments.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Document.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -4990,7 +4990,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListDocuments)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -5039,18 +5039,18 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// repeated proto_group_properties list_properties = 6;
 		///////////////////////////////////////////////////
-		public SortedObservableCollection<Document> ListDocuments { get; set; }
-		partial void OnListDocumentsChanging();
-		partial void OnListDocumentsChanged();
+		public SortedObservableCollection<Document> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class GroupListForms : ConfigObjectBase<GroupListForms, GroupListForms.GroupListFormsValidator>, IComparable<GroupListForms>, IAccept
+	public partial class GroupListForms : ConfigObjectBase<GroupListForms, GroupListForms.GroupListFormsValidator>, IComparable<GroupListForms>, IAccept, IChildren
 	{
 		public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { }
 		#region CTOR
 		public GroupListForms() : base(GroupListFormsValidator.Validator)
 		{
-			this.ListForms = new SortedObservableCollection<Form>(e =>
+			this.Children = new SortedObservableCollection<Form>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -5082,7 +5082,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Form))
 		    {
-		        this.ListForms.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListForms Clone(ITreeConfigNode parent, GroupListForms from, bool isDeep = true, bool isNewGuid = false)
@@ -5093,9 +5093,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListForms = new SortedObservableCollection<Form>();
-		    foreach(var t in from.ListForms)
-		        vm.ListForms.Add(vSharpStudio.vm.ViewModels.Form.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Form>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Form.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -5109,10 +5109,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListForms.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListForms)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -5122,12 +5122,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListForms.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListForms)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListForms.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -5139,7 +5139,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Form();
 		                vSharpStudio.vm.ViewModels.Form.Update(p, tt, isDeep);
-		                to.ListForms.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -5170,12 +5170,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListForms = new SortedObservableCollection<Form>();
-		    foreach(var t in m.ListForms)
+		    vm.Children = new SortedObservableCollection<Form>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Form.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListForms.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -5189,8 +5189,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListForms)
-		        m.ListForms.Add(vSharpStudio.vm.ViewModels.Form.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Form.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -5198,7 +5198,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListForms)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -5247,12 +5247,12 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		public SortedObservableCollection<Form> ListForms { get; set; }
-		partial void OnListFormsChanging();
-		partial void OnListFormsChanged();
+		public SortedObservableCollection<Form> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class Form : ConfigObjectBase<Form, Form.FormValidator>, IComparable<Form>, IAccept
+	public partial class Form : ConfigObjectBase<Form, Form.FormValidator>, IComparable<Form>, IAccept, IChildren
 	{
 		public partial class FormValidator : ValidatorBase<Form, FormValidator> { }
 		#region CTOR
@@ -5388,13 +5388,13 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanged();
 		#endregion Properties
 	}
-	public partial class GroupListReports : ConfigObjectBase<GroupListReports, GroupListReports.GroupListReportsValidator>, IComparable<GroupListReports>, IAccept
+	public partial class GroupListReports : ConfigObjectBase<GroupListReports, GroupListReports.GroupListReportsValidator>, IComparable<GroupListReports>, IAccept, IChildren
 	{
 		public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { }
 		#region CTOR
 		public GroupListReports() : base(GroupListReportsValidator.Validator)
 		{
-			this.ListReports = new SortedObservableCollection<Report>(e =>
+			this.Children = new SortedObservableCollection<Report>(e =>
 	        {
 	            switch(e.Action)
 	            {
@@ -5426,7 +5426,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (type == typeof(Report))
 		    {
-		        this.ListReports.Sort();
+		        this.Children.Sort();
 		    }
 		}
 		public static GroupListReports Clone(ITreeConfigNode parent, GroupListReports from, bool isDeep = true, bool isNewGuid = false)
@@ -5437,9 +5437,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.ListReports = new SortedObservableCollection<Report>();
-		    foreach(var t in from.ListReports)
-		        vm.ListReports.Add(vSharpStudio.vm.ViewModels.Report.Clone(vm, t, isDeep));
+		    vm.Children = new SortedObservableCollection<Report>();
+		    foreach(var t in from.Children)
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Report.Clone(vm, t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -5453,10 +5453,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		    {
-		        foreach(var t in to.ListReports.ToList())
+		        foreach(var t in to.Children.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListReports)
+		            foreach(var tt in from.Children)
 		            {
 		                if (t == tt)
 		                {
@@ -5466,12 +5466,12 @@ namespace vSharpStudio.vm.ViewModels
 		                }
 		            }
 		            if (!isfound)
-		                to.ListReports.Remove(t);
+		                to.Children.Remove(t);
 		        }
-		        foreach(var tt in from.ListReports)
+		        foreach(var tt in from.Children)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListReports.ToList())
+		            foreach(var t in to.Children.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -5483,7 +5483,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Report();
 		                vSharpStudio.vm.ViewModels.Report.Update(p, tt, isDeep);
-		                to.ListReports.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -5514,12 +5514,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.ListReports = new SortedObservableCollection<Report>();
-		    foreach(var t in m.ListReports)
+		    vm.Children = new SortedObservableCollection<Report>();
+		    foreach(var t in m.Children)
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Report.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.ListReports.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -5533,8 +5533,8 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    foreach(var t in vm.ListReports)
-		        m.ListReports.Add(vSharpStudio.vm.ViewModels.Report.ConvertToProto(t));
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.Report.ConvertToProto(t));
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -5542,7 +5542,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListReports)
+			foreach(var t in this.Children)
 				t.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -5591,12 +5591,12 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		public SortedObservableCollection<Report> ListReports { get; set; }
-		partial void OnListReportsChanging();
-		partial void OnListReportsChanged();
+		public SortedObservableCollection<Report> Children { get; set; }
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
-	public partial class Report : ConfigObjectBase<Report, Report.ReportValidator>, IComparable<Report>, IAccept
+	public partial class Report : ConfigObjectBase<Report, Report.ReportValidator>, IComparable<Report>, IAccept, IChildren
 	{
 		public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { }
 		#region CTOR

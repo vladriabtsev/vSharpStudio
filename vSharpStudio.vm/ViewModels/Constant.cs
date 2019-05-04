@@ -20,8 +20,8 @@ namespace vSharpStudio.vm.ViewModels
         public void Create()
         {
             GroupListConstants vm = (GroupListConstants)this.Parent;
-            int icurr = vm.ListConstants.IndexOf(this);
-            vm.ListConstants.Add(new Constant() { Parent = this.Parent });
+            int icurr = vm.Children.IndexOf(this);
+            vm.Children.Add(new Constant() { Parent = this.Parent });
         }
         #endregion IConfigObject
 

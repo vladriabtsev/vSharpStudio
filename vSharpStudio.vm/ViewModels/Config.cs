@@ -18,7 +18,7 @@ using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : IMigration, IListGroupNodes
+    public partial class Config : IMigration
     {
         public static readonly string DefaultName = "Config";
         [BrowsableAttribute(false)]

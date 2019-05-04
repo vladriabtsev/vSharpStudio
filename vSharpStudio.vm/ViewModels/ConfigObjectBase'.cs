@@ -234,6 +234,10 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get { return _Parent; } set { _Parent = value; } }
         private ITreeConfigNode _Parent;
+        public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+        //[BrowsableAttribute(false)]
+        //public SortedObservableCollection<ITreeConfigNode> Children { get { return _Children; } private set { _Children = value; } }
+        //private SortedObservableCollection<ITreeConfigNode> _Children;
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]
@@ -288,29 +292,29 @@ namespace vSharpStudio.vm.ViewModels
                 case "Constant":
                     var res = new Constant();
                     //res.Parent = this.Parent;
-                    (this.Parent as GroupListConstants).ListConstants.Add(res);
-                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).ListConstants);
+                    (this.Parent as GroupListConstants).Children.Add(res);
+                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).Children);
                     (this.Parent.Parent as Config).SelectedNode = res;
                     return res;
                 case "Enumeration":
                     var enumeration = new Enumeration();
                     //enumeration.Parent = this.Parent;
-                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).ListEnumerations);
+                    (this.Parent as GroupListEnumerations).Children.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).Children);
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Catalog":
                     var catalog = new Catalog();
                     //catalog.Parent = this.Parent;
-                    (this.Parent as GroupListCatalogs).ListCatalogs.Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupListCatalogs).ListCatalogs);
+                    (this.Parent as GroupListCatalogs).Children.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupListCatalogs).Children);
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Document":
                     var doc = new Document();
                     //doc.Parent = this.Parent;
-                    (this.Parent as GroupListDocuments).ListDocuments.Add(doc);
-                    GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).ListDocuments);
+                    (this.Parent as GroupListDocuments).Children.Add(doc);
+                    GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).Children);
                     (this.Parent.Parent as Config).SelectedNode = doc;
                     return doc;
                 case "Property":
@@ -332,8 +336,8 @@ namespace vSharpStudio.vm.ViewModels
                 case "Journal":
                     var journal = new Journal();
                     //journal.Parent = this.Parent;
-                    (this.Parent as GroupListJournals).ListJournals.Add(journal);
-                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).ListJournals);
+                    (this.Parent as GroupListJournals).Children.Add(journal);
+                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).Children);
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
             }
@@ -359,16 +363,16 @@ namespace vSharpStudio.vm.ViewModels
                     var constant = new Constant();
                     //constant.Parent = this;
                     var cnp = (this as GroupListConstants);
-                    cnp.ListConstants.Add(constant);
-                    GetUniqueName(Constant.DefaultName, constant, cnp.ListConstants);
+                    cnp.Children.Add(constant);
+                    GetUniqueName(Constant.DefaultName, constant, cnp.Children);
                     (this.Parent as Config).SelectedNode = constant;
                     return constant;
                 case "GroupListEnumerations":
                     var enumeration = new Enumeration();
                     //enumeration.Parent = this;
                     var cep = (this as GroupListEnumerations);
-                    cep.ListEnumerations.Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, cep.ListEnumerations);
+                    cep.Children.Add(enumeration);
+                    GetUniqueName(Enumeration.DefaultName, enumeration, cep.Children);
                     (this.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "GroupListProperties":
@@ -386,8 +390,8 @@ namespace vSharpStudio.vm.ViewModels
                     var catalog = new Catalog();
                     //catalog.Parent = this;
                     var cp = (this as GroupListCatalogs);
-                    cp.ListCatalogs.Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, cp.ListCatalogs);
+                    cp.Children.Add(catalog);
+                    GetUniqueName(Catalog.DefaultName, catalog, cp.Children);
                     (this.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Catalog":
@@ -405,8 +409,8 @@ namespace vSharpStudio.vm.ViewModels
                     var journal = new Journal();
                     //journal.Parent = this;
                     var jp = (this as GroupListJournals);
-                    jp.ListJournals.Add(journal);
-                    GetUniqueName(Journal.DefaultName, journal, jp.ListJournals);
+                    jp.Children.Add(journal);
+                    GetUniqueName(Journal.DefaultName, journal, jp.Children);
                     (this.Parent as Config).SelectedNode = journal;
                     return journal;
             }
@@ -431,28 +435,28 @@ namespace vSharpStudio.vm.ViewModels
                 case "Catalog":
                     var catalog = Catalog.Clone(this.Parent, this as Catalog, true, true);
                     catalog.Parent = this.Parent;
-                    (this.Parent as GroupListCatalogs).ListCatalogs.Add(catalog);
+                    (this.Parent as GroupListCatalogs).Children.Add(catalog);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Constant":
                     var constant = Constant.Clone(this.Parent, this as Constant, true, true);
                     constant.Parent = this.Parent;
-                    (this.Parent as GroupListConstants).ListConstants.Add(constant);
+                    (this.Parent as GroupListConstants).Children.Add(constant);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = constant;
                     return constant;
                 case "Enumeration":
                     var enumeration = Enumeration.Clone(this.Parent, this as Enumeration, true, true);
                     enumeration.Parent = this.Parent;
-                    (this.Parent as GroupListEnumerations).ListEnumerations.Add(enumeration);
+                    (this.Parent as GroupListEnumerations).Children.Add(enumeration);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Journal":
                     var journal = Journal.Clone(this.Parent, this as Journal, true, true);
                     journal.Parent = this.Parent;
-                    (this.Parent as GroupListJournals).ListJournals.Add(journal);
+                    (this.Parent as GroupListJournals).Children.Add(journal);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
@@ -481,10 +485,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeMoveDown()
         {
-            if (this.Parent is IListGroupNodes)
-                (this.Parent as IListGroupNodes).ListNodes.MoveDown(this);
-            if (this.Parent is IListNodes<T>)
-                (this.Parent as IListNodes<T>).ListNodes.MoveDown(this);
+            if (this.Parent is IChildren)
+                (this.Parent as IChildren).Children.MoveDown(this);
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;
@@ -496,10 +498,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeMoveUp()
         {
-            if (this.Parent is IListGroupNodes)
-                (this.Parent as IListGroupNodes).ListNodes.MoveUp(this);
-            if (this.Parent is IListNodes<T>)
-                (this.Parent as IListNodes<T>).ListNodes.MoveUp(this);
+            if (this.Parent is IChildren)
+                (this.Parent as IChildren).Children.MoveUp(this);
             ITreeConfigNode config = this.Parent;
             while (config.Parent != null)
                 config = config.Parent;
@@ -518,8 +518,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeRemove()
         {
-            if (this.Parent is IListNodes<T>)
-                (this.Parent as IListNodes<T>).ListNodes.Remove((T)this);
+            if (this.Parent is IChildren)
+                (this.Parent as IChildren).Children.Remove((T)this);
             else
                 throw new Exception();
         }
@@ -543,9 +543,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRight()
         {
-            if ((this is IListGroupNodes) && (this as IListGroupNodes).ListNodes.Count > 0)
-                return true;
-            if ((this is IGroupListSubNodes) && (this as IGroupListSubNodes).Count > 0)
+            if ((this is IChildren) && (this as IChildren).Children.Count > 0)
                 return true;
             return false;
         }
@@ -561,17 +559,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeRight()
         {
-            if (this is IListGroupNodes)
+            if (this is IChildren)
             {
-                var p = (this as IListGroupNodes).ListNodes[0];
-                ITreeConfigNode config = this.Parent;
-                while (config.Parent != null)
-                    config = config.Parent;
-                (config as Config).SelectedNode = p;
-            }
-            else if (this is IGroupListSubNodes)
-            {
-                var p = (this as IGroupListSubNodes).GetNode(0);
+                var p = (this as IChildren).Children[0];
                 ITreeConfigNode config = this.Parent;
                 while (config.Parent != null)
                     config = config.Parent;
@@ -582,9 +572,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (NodeCanAddClone())
             {
-                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanDown(this))
-                    return true;
-                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanDown(this))
+                if ((this.Parent is IChildren) && (this.Parent as IChildren).Children.CanDown(this))
                     return true;
             }
             return false;
@@ -592,10 +580,8 @@ namespace vSharpStudio.vm.ViewModels
         public void NodeDown()
         {
             T next = null;
-            if (this.Parent is IListGroupNodes)
-                next = (this.Parent as IListGroupNodes).ListNodes.GetNext(this) as T;
-            if (this.Parent is IListNodes<T>)
-                next = (this.Parent as IListNodes<T>).ListNodes.GetNext(this) as T;
+            if (this.Parent is IChildren)
+                next = (this.Parent as IChildren).Children.GetNext(this) as T;
             if (next == null)
                 return;
             ITreeConfigNode config = this.Parent;
@@ -607,9 +593,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (NodeCanAddClone())
             {
-                if ((this.Parent is IListGroupNodes) && (this.Parent as IListGroupNodes).ListNodes.CanUp(this))
-                    return true;
-                if ((this.Parent is IListNodes<T>) && (this.Parent as IListNodes<T>).ListNodes.CanUp(this))
+                if ((this.Parent is IChildren) && (this.Parent as IChildren).Children.CanUp(this))
                     return true;
             }
             return false;
@@ -617,10 +601,8 @@ namespace vSharpStudio.vm.ViewModels
         public void NodeUp()
         {
             T prev = null;
-            if (this.Parent is IListGroupNodes)
-                prev = (this.Parent as IListGroupNodes).ListNodes.GetPrev(this) as T;
-            if (this.Parent is IListNodes<T>)
-                prev = (this.Parent as IListNodes<T>).ListNodes.GetPrev(this) as T;
+            if (this.Parent is IChildren)
+                prev = (this.Parent as IChildren).Children.GetPrev(this) as T;
             if (prev == null)
                 return;
             ITreeConfigNode config = this.Parent;

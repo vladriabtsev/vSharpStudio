@@ -9,14 +9,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : IListNodes<EnumerationPair>
+    public partial class Enumeration
     {
         public static readonly string DefaultName = "Enumeration";
-        [BrowsableAttribute(false)]
-        public SortedObservableCollection<EnumerationPair> ListNodes { get; private set; }
         partial void OnInit()
         {
-            this.ListNodes = this.ListValues;
         }
         public static string GetTypeDesc(Enumeration p)
         {
