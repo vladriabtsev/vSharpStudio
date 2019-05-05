@@ -81,14 +81,19 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void ValidateSubAndCollectErrors(ITreeConfigNode p, IValidatableWithSeverity sub)
         {
+            if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
+                node = p;
             sub.Validate();
             foreach (var t in sub.ValidationCollection)
             {
+                t.Model = node;
                 AddMessage(p, t);
             }
         }
         private void OnVisit(IValidatableWithSeverity p)
         {
+            //if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
+            //    node = p;
             _level++;
             if (!(p is ITreeConfigNode))
                 throw new ArgumentException();
@@ -106,9 +111,11 @@ namespace vSharpStudio.vm.ViewModels
 
             foreach (var t in p.ValidationCollection)
             {
+//                t.Model = node;
                 AddMessage(pp, t);
             }
         }
+        private object node = null;
         private void OnVisitEnd(IValidatableWithSeverity p)
         {
             if (!(p is ITreeConfigNode))

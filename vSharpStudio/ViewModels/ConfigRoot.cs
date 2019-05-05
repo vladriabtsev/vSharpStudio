@@ -115,6 +115,8 @@ namespace vSharpStudio.ViewModels
         }
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
+            if (node == null)
+                return;
             if (cancellationSourceForValidatingFullConfig != null)
             {
                 cancellationSourceForValidatingFullConfig.Cancel();

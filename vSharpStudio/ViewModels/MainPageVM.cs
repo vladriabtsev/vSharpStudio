@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
 using Microsoft.Win32;
@@ -239,5 +241,18 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandSelectionUp;
 
         #endregion ConfigTree
+        public CollectionView kuku2;
+        public ICollectionView kuku;
+        public vCommand CommandFromErrorToSelection
+        {
+            get
+            {
+                return _CommandFromErrorToSelection ?? (_CommandFromErrorToSelection = vCommand.Create(
+                (o) => { if (o == null) return; this.Model.SelectedNode = (ITreeConfigNode)(o as ValidationMessage).Model; },
+                (o) => { return this.Model != null; }));
+            }
+        }
+        private vCommand _CommandFromErrorToSelection;
+
     }
 }

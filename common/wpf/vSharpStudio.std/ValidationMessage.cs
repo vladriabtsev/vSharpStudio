@@ -35,7 +35,7 @@ namespace ViewModelBase
             this.Message = message;
             this.SortingValue = (ulong)(ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight);
         }
-        public object Model { get; protected set; }
+        public object Model { get; set; }
         public string PropertyName { get; private set; }
         public FluentValidation.Severity Severity { get; private set; }
         public string SeverityName { get { return Enum.GetName(typeof(FluentValidation.Severity), (int)Severity); } }

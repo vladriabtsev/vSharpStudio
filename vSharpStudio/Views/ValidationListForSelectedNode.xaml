@@ -19,7 +19,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="List All Validations"/>
-        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
+        <DataGrid Grid.Row="1" x:Name="dataGrid" IsSynchronizedWithCurrentItem="True" 
+                  ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
             <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -30,6 +31,11 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                    Command="{Binding CommandFromErrorToSelection}"
+                    CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"/>
+            </DataGrid.InputBindings>
         </DataGrid>
     </Grid>
 </UserControl>
