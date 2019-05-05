@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/05/2019 03:01:36
+// Auto generated on UTC 05/05/2019 15:20:16
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -643,25 +643,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
-		[PropertyOrderAttribute(2)]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -1594,26 +1575,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -1805,26 +1766,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -1959,26 +1900,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -2197,26 +2118,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -2344,26 +2245,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -2383,6 +2264,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[PropertyOrderAttribute(4)]
 		[ExpandableObjectAttribute()]
 		[DisplayName("Type")]
 		public DataType DataType
@@ -2573,26 +2455,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -2802,26 +2664,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -2953,26 +2795,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -3176,26 +2998,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -3391,26 +3193,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -3556,26 +3338,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -3747,26 +3509,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -4044,26 +3786,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -4199,26 +3921,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -4398,26 +4100,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -4676,26 +4358,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -4887,26 +4549,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -5102,26 +4744,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -5317,26 +4939,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -5461,26 +5063,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		
 		///////////////////////////////////////////////////
 		/// 
@@ -5669,26 +5251,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -5813,26 +5375,6 @@ namespace vSharpStudio.vm.ViewModels
 		#endregion Procedures
 		#region Properties
 		
-		[PropertyOrderAttribute(2)]
-		[DisplayName("UI name")]
-		public string NameUi
-		{ 
-			set
-			{
-				if (_NameUi != value)
-				{
-					OnNameUiChanging();
-					_NameUi = value;
-					OnNameUiChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _NameUi; }
-		}
-		private string _NameUi = "";
-		partial void OnNameUiChanging();
-		partial void OnNameUiChanged();
 		
 		///////////////////////////////////////////////////
 		/// 

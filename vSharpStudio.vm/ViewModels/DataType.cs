@@ -469,10 +469,5 @@ namespace vSharpStudio.vm.ViewModels
         private Visibility _VisibilityObjectName = Visibility.Collapsed;
 
         #endregion Visibility
-
-        #region ITreeNode
-        //        public string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }

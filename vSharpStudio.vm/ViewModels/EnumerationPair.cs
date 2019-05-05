@@ -11,9 +11,5 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
-
-        #region ITreeNode
-        //        public string NodeText { get { return this.Name; } }
-        #endregion ITreeNode
     }
 }

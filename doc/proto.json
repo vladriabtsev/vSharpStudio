@@ -2253,7 +2253,7 @@
             },
             {
               "name": "data_type",
-              "description": "@attr [ExpandableObjectAttribute()][DisplayName(\"Type\")]",
+              "description": "@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(\"Type\")]",
               "label": "",
               "type": "proto_data_type",
               "longType": "proto_data_type",

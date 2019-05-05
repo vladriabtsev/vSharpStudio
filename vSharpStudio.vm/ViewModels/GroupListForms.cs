@@ -9,11 +9,11 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
-    public partial class GroupListConstants : IChildren, ICanAddSubNode, ICanGoRight
+    public partial class GroupListForms : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         partial void OnInit()
         {
-            this.Name = "Constants";
+            this.Name = "Forms";
         }
     }
 }

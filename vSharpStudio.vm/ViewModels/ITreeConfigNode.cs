@@ -11,7 +11,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         string Guid { get; }
         string Name { get; set; }
-        string NodeText { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         //ITreeConfigNode Parent { get; set; }

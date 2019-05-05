@@ -8,18 +8,12 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
     public partial class GroupListDocuments : IChildren, ICanAddSubNode, ICanGoRight
     {
         partial void OnInit()
         {
             this.Name = "Documents";
         }
-
-        #region ITreeNode
-
-        public new string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }

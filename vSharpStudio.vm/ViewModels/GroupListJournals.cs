@@ -7,19 +7,12 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} journals:{ListJournals.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
     public partial class GroupListJournals : IChildren, ICanAddSubNode, ICanGoRight
     {
         partial void OnInit()
         {
             this.Name = "Journals";
         }
-        
-        #region ITreeNode
-
-        [BrowsableAttribute(false)]
-        public new string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }

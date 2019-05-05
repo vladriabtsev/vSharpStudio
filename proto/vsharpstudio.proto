@@ -206,7 +206,7 @@ message proto_property {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
+    // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
 }
 message proto_group_properties_tree {

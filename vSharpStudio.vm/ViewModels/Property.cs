@@ -29,10 +29,5 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string ClrType { get { return this.DataType.ClrType; } }
         public string ProtoType { get { return this.DataType.ProtoType; } }
-
-        #region ITreeNode
-        //        public string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }

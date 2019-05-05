@@ -29,9 +29,10 @@ namespace ViewModelBase
         private object _lock = new object();
         public SortDirection SortDirection = SortDirection.Ascending;
         Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
-
-        public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null)
+        bool isSort;
+        public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null, bool isSort = true)
         {
+            this.isSort = isSort;
             this.onCollectionChanged = onCollectionChanged;
             if (this.onCollectionChanged != null)
                 this.CollectionChanged += SortedObservableCollection_CollectionChanged;

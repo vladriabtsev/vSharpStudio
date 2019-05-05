@@ -27,9 +27,5 @@ namespace vSharpStudio.vm.ViewModels
             //}
             return res;
         }
-
-        #region ITreeNode
-        //public string NodeText { get { return this.Name; } }
-        #endregion ITreeNode
     }
 }

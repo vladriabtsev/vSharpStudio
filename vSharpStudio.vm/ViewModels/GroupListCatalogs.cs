@@ -8,19 +8,17 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} sub_catalogs:{ListCatalogs.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
     public partial class GroupListCatalogs : IChildren, ICanAddSubNode, ICanGoRight
     {
         partial void OnInit()
         {
             this.Name = "Catalogs";
         }
-
-        #region ITreeNode
-
-        [BrowsableAttribute(false)]
-        public new string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
+        protected override void OnInitFromDto()
+        {
+            if (this.Parent is Catalog)
+                this.NameUi = "Sub Catalogs";
+        }
     }
 }

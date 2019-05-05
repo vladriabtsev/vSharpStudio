@@ -9,18 +9,23 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
     public partial class GroupListProperties : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         partial void OnInit()
         {
-            this.Name = "Properties";
+        }
+
+        protected override void OnInitFromDto()
+        {
+            if (this.Parent is GroupDocuments)
+                this.NameUi = "Shared Properties";
+            else
+                this.NameUi = "Properties";
         }
 
         #region ITreeNode
 
-        [BrowsableAttribute(false)]
-        public new string NodeText { get { return this.Name + " " + this.Children.Count; } }
 
         #endregion ITreeNode
     }

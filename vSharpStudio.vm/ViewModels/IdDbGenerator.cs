@@ -21,10 +21,5 @@ namespace vSharpStudio.vm.ViewModels
         }
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
-
-        #region ITreeNode
-        //        public string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }

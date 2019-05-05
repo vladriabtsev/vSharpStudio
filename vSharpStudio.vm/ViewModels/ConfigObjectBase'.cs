@@ -174,6 +174,27 @@ namespace vSharpStudio.vm.ViewModels
             get { return _Name; }
         }
         private string _Name = "";
+        [PropertyOrder(1)]
+        [DisplayName("UI Name")]
+        public string NameUi
+        {
+            set
+            {
+                if (_NameUi != value)
+                {
+                    _NameUi = value.Trim();
+                    NotifyPropertyChanged();
+                    ValidateProperty();
+                }
+            }
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_NameUi) && !string.IsNullOrEmpty(_Name))
+                    return _Name;
+                return _NameUi;
+            }
+        }
+        private string _NameUi = "";
         protected ulong EncodeNameToUlong(string name)
         {
             const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
@@ -232,10 +253,17 @@ namespace vSharpStudio.vm.ViewModels
             configObject.Name = defName + i;
         }
         [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get { return _Parent; } set { _Parent = value; } }
+        public ITreeConfigNode Parent
+        {
+            get { return _Parent; }
+            set
+            {
+                _Parent = value;
+                OnParentChanged();
+            }
+        }
         private ITreeConfigNode _Parent;
-        [BrowsableAttribute(false)]
-        public string NodeText { get { return this.Name; } }
+        protected virtual void OnParentChanged() { }
         [BrowsableAttribute(false)]
         public bool IsSelected
         {
@@ -346,7 +374,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case "GroupListConstants":
                     var constant = new Constant();
-                    //constant.Parent = this;
                     var cnp = (this as GroupListConstants);
                     cnp.Children.Add(constant);
                     GetUniqueName(Constant.DefaultName, constant, cnp.Children);
@@ -354,7 +381,6 @@ namespace vSharpStudio.vm.ViewModels
                     return constant;
                 case "GroupListEnumerations":
                     var enumeration = new Enumeration();
-                    //enumeration.Parent = this;
                     var cep = (this as GroupListEnumerations);
                     cep.Children.Add(enumeration);
                     GetUniqueName(Enumeration.DefaultName, enumeration, cep.Children);
@@ -362,18 +388,12 @@ namespace vSharpStudio.vm.ViewModels
                     return enumeration;
                 case "GroupListProperties":
                     var prop = new Property();
-                    //prop.Parent = this;
                     var pp = (this as GroupListProperties);
                     pp.Children.Add(prop);
                     GetUniqueName(Property.DefaultName, prop, pp.Children);
-                    ITreeConfigNode config = this.Parent;
-                    while (config.Parent != null)
-                        config = config.Parent;
-                    (config as Config).SelectedNode = prop;
-                    return prop;
+                    return UpdateSelectedNode(prop);
                 case "GroupListCatalogs":
                     var catalog = new Catalog();
-                    //catalog.Parent = this;
                     var cp = (this as GroupListCatalogs);
                     cp.Children.Add(catalog);
                     GetUniqueName(Catalog.DefaultName, catalog, cp.Children);
@@ -381,18 +401,30 @@ namespace vSharpStudio.vm.ViewModels
                     return catalog;
                 case "Catalog":
                     var prop2 = new Property();
-                    //prop2.Parent = this;
                     var ppc = (this as Catalog);
                     ppc.GroupProperties.Children.Add(prop2);
                     GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.Children);
-                    ITreeConfigNode config2 = this.Parent;
-                    while (config2.Parent != null)
-                        config2 = config2.Parent;
-                    (config2 as Config).SelectedNode = prop2;
-                    return prop2;
+                    return UpdateSelectedNode(prop2);
+                case "GroupListForms":
+                    var form = new Form();
+                    var pform = (this as GroupListForms);
+                    pform.Children.Add(form);
+                    GetUniqueName(Form.DefaultName, form, pform.Children);
+                    return UpdateSelectedNode(form);
+                case "GroupListReports":
+                    var rpt = new Report();
+                    var prpt = (this as GroupListReports);
+                    prpt.Children.Add(rpt);
+                    GetUniqueName(Report.DefaultName, rpt, prpt.Children);
+                    return UpdateSelectedNode(rpt);
+                case "GroupListDocuments":
+                    var doc = new Document();
+                    var pdoc = (this as GroupListDocuments);
+                    pdoc.Children.Add(doc);
+                    GetUniqueName(Document.DefaultName, doc, pdoc.Children);
+                    return UpdateSelectedNode(doc);
                 case "GroupListJournals":
                     var journal = new Journal();
-                    //journal.Parent = this;
                     var jp = (this as GroupListJournals);
                     jp.Children.Add(journal);
                     GetUniqueName(Journal.DefaultName, journal, jp.Children);
@@ -400,6 +432,14 @@ namespace vSharpStudio.vm.ViewModels
                     return journal;
             }
             throw new Exception();
+        }
+        private ITreeConfigNode UpdateSelectedNode(ITreeConfigNode p)
+        {
+            ITreeConfigNode config = this.Parent;
+            while (config.Parent != null)
+                config = config.Parent;
+            (config as Config).SelectedNode = p;
+            return p;
         }
         public bool NodeCanAddClone()
         {

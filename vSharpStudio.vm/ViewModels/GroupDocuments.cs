@@ -16,54 +16,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Documens";
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.GroupSharedProperties.Parent = this;
             Children.Add(this.GroupSharedProperties, 7);
+            this.GroupListDocuments.Parent = this;
             Children.Add(this.GroupListDocuments, 8);
         }
-        #region ITreeNode
-        //public string NodeText { get { return this.Name+" "+this.ListCatalogs.Count; } }
-        //protected override bool OnNodeCanLeft()
-        //{
-        //    return false;
-        //}
-        //protected override bool OnNodeCanAddNew()
-        //{
-        //    return false;
-        //}
-        ////protected override ITreeConfigNode OnNodeAddNew()
-        ////{
-        ////    var res = new Catalogs();
-        ////    (this.Parent as Config).ListCatalogsGroups.Add(res);
-        ////    return res;
-        ////}
-        //protected override bool OnNodeCanAddNewSubNode()
-        //{
-        //    return true;
-        //}
-        //protected override ITreeConfigNode OnNodeAddNewSubNode()
-        //{
-        //    var res = new Document();
-        //    res.Parent = this.Parent;
-        //    this.ListDocuments.Add(res);
-        //    GetUniqueName(Document.DefaultName, res, this.ListDocuments);
-        //    (this.Parent as Config).SelectedNode = res;
-        //    return res;
-        //}
-        //protected override bool OnNodeCanMoveDown()
-        //{
-        //    return false;
-        //}
-        //protected override bool OnNodeCanMoveUp()
-        //{
-        //    return false;
-        //}
-        //protected override bool OnNodeCanAddClone()
-        //{
-        //    return false;
-        //}
-        //protected override bool OnNodeCanRemove()
-        //{
-        //    return false;
-        //}
-        #endregion ITreeNode
     }
 }

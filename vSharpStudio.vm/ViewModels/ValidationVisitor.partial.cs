@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
             var pp = p as ITreeConfigNode;
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.NodeText);
+                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.Name);
             }
             p.ValidationCollection.Clear();
             p.CountErrors = 0;
@@ -123,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
             var pp = p as ITreeConfigNode;
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.NodeText);
+                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.Name);
             }
             _level--;
         }

@@ -213,6 +213,7 @@ namespace GenFromProto
 	{
         if (t.Name == "guid") continue;
         if (t.Name == "name") continue;
+        if (t.Name == "name_ui") continue;
         if (t.Name == "sorting_value") continue;
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());

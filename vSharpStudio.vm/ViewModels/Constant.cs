@@ -24,10 +24,5 @@ namespace vSharpStudio.vm.ViewModels
             vm.Children.Add(new Constant() { Parent = this.Parent });
         }
         #endregion IConfigObject
-
-        #region ITreeNode
-        //        public string NodeText { get { return this.Name; } }
-
-        #endregion ITreeNode
     }
 }
