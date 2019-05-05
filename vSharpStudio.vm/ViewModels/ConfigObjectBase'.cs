@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (this.CountInfos > 0)
                             iconName = "iconStatusInformation";
                         else
-                            iconName = "";
+                            iconName = null;
                     }
                 }
                 return iconName;
@@ -234,9 +234,6 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get { return _Parent; } set { _Parent = value; } }
         private ITreeConfigNode _Parent;
-        //[BrowsableAttribute(false)]
-        //public SortedObservableCollection<ITreeConfigNode> Children { get { return _Children; } private set { _Children = value; } }
-        //private SortedObservableCollection<ITreeConfigNode> _Children;
         [BrowsableAttribute(false)]
         public string NodeText { get { return this.Name; } }
         [BrowsableAttribute(false)]

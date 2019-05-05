@@ -21,7 +21,9 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            Children.Add(this.GroupProperties, 7);
+            Children.Add(this.GroupProperties, 3);
+            Children.Add(this.GroupForms, 4);
+            Children.Add(this.GroupReports, 5);
             Children.Add(this.GroupSubCatalogs, 8);
         }
         public Catalog(string name) : this()

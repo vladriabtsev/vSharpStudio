@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/04/2019 17:18:34
+// Auto generated on UTC 05/05/2019 03:01:36
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1317,6 +1317,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(1)]
+		[DisplayName("Type")]
 		public proto_data_type.Types.EnumDataType DataTypeEnum
 		{ 
 			set
@@ -1374,6 +1375,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnAccuracyChanging();
 		partial void OnAccuracyChanged();
 		[PropertyOrderAttribute(4)]
+		[DisplayName("Is positive")]
 		public bool IsPositive
 		{ 
 			set
@@ -1593,6 +1595,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -1803,6 +1806,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -1956,6 +1960,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2193,6 +2198,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2339,6 +2345,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2377,6 +2384,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[ExpandableObjectAttribute()]
+		[DisplayName("Type")]
 		public DataType DataType
 		{ 
 			set
@@ -2566,6 +2574,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2794,6 +2803,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2944,6 +2954,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -2983,6 +2994,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanged();
 		[PropertyOrderAttribute(4)]
 		[ExpandableObjectAttribute()]
+		[DisplayName("Type")]
 		public DataType DataType
 		{ 
 			set
@@ -3165,6 +3177,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -3379,6 +3392,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -3417,6 +3431,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[PropertyOrderAttribute(4)]
+		[DisplayName("Type")]
 		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
 		{ 
 			set
@@ -3435,7 +3450,8 @@ namespace vSharpStudio.vm.ViewModels
 		private proto_enumeration.Types.EnumEnumerationType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
-		[BrowsableAttribute(false)]
+		[DisplayName("Elements")]
+		[NewItemTypes(typeof(EnumerationPair))]
 		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
 		public EnumerationPair this[int index] { get { return (EnumerationPair)this.Children[index]; } }
 		public void Add(EnumerationPair item) { this.Children.Add(item); }
@@ -3541,6 +3557,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -3731,6 +3748,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -3787,6 +3805,7 @@ namespace vSharpStudio.vm.ViewModels
 		private IdDbGenerator _IdDbGenerator;
 		partial void OnIdDbGeneratorChanging();
 		partial void OnIdDbGeneratorChanged();
+		[BrowsableAttribute(false)]
 		public GroupListProperties GroupProperties
 		{ 
 			set
@@ -3805,6 +3824,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListProperties _GroupProperties;
 		partial void OnGroupPropertiesChanging();
 		partial void OnGroupPropertiesChanged();
+		[BrowsableAttribute(false)]
 		public GroupListForms GroupForms
 		{ 
 			set
@@ -3823,6 +3843,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListForms _GroupForms;
 		partial void OnGroupFormsChanging();
 		partial void OnGroupFormsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListReports GroupReports
 		{ 
 			set
@@ -3841,6 +3862,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListReports _GroupReports;
 		partial void OnGroupReportsChanging();
 		partial void OnGroupReportsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListCatalogs GroupSubCatalogs
 		{ 
 			set
@@ -4023,6 +4045,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -4177,6 +4200,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -4214,6 +4238,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
 		public GroupListProperties GroupSharedProperties
 		{ 
 			set
@@ -4232,6 +4257,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListProperties _GroupSharedProperties;
 		partial void OnGroupSharedPropertiesChanging();
 		partial void OnGroupSharedPropertiesChanged();
+		[BrowsableAttribute(false)]
 		public GroupListDocuments GroupListDocuments
 		{ 
 			set
@@ -4373,6 +4399,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -4410,6 +4437,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
 		public GroupPropertiesTree GroupPropertiesTree
 		{ 
 			set
@@ -4428,6 +4456,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupPropertiesTree _GroupPropertiesTree;
 		partial void OnGroupPropertiesTreeChanging();
 		partial void OnGroupPropertiesTreeChanged();
+		[BrowsableAttribute(false)]
 		public GroupListForms GroupForms
 		{ 
 			set
@@ -4446,6 +4475,7 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListForms _GroupForms;
 		partial void OnGroupFormsChanging();
 		partial void OnGroupFormsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListReports GroupReports
 		{ 
 			set
@@ -4647,6 +4677,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -4857,6 +4888,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -5071,6 +5103,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -5285,6 +5318,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -5428,6 +5462,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -5635,6 +5670,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set
@@ -5778,6 +5814,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(2)]
+		[DisplayName("UI name")]
 		public string NameUi
 		{ 
 			set

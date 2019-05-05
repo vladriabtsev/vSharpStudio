@@ -241,8 +241,6 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandSelectionUp;
 
         #endregion ConfigTree
-        public CollectionView kuku2;
-        public ICollectionView kuku;
         public vCommand CommandFromErrorToSelection
         {
             get

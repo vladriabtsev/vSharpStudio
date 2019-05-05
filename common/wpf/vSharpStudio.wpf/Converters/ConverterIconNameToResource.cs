@@ -14,7 +14,9 @@ namespace vSharpStudio.wpf.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null || !(value is string))
+            if (value == null)
+                return null;
+            if (!(value is string))
                 Trace.WriteLine("##### ERROR ##### Converter '" + typeof(ConverterIconNameToResource).Name + "' is expecting to be used with object of type 'string'");
             string iconName = value as string;
             if (Application.Current.Resources.Contains(iconName))
