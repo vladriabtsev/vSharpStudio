@@ -27,8 +27,6 @@ namespace vSharpStudio.vm.ViewModels
             Children.Add(this.GroupForms, 4);
             this.GroupReports.Parent = this;
             Children.Add(this.GroupReports, 5);
-            this.GroupSubCatalogs.Parent = this;
-            Children.Add(this.GroupSubCatalogs, 8);
         }
         public Catalog(string name) : this()
         {

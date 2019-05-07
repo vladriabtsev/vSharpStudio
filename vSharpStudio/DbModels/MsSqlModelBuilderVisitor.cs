@@ -140,16 +140,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertiesTree p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertiesTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.Visit(GroupDocuments p)
         {
             throw new NotImplementedException();
@@ -220,36 +210,6 @@ namespace vSharpStudio.DbModels
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertyTab p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTab p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabsTree p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabsTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.Visit(GroupListProperties p)
         {
             throw new NotImplementedException();
@@ -306,6 +266,26 @@ namespace vSharpStudio.DbModels
         }
 
         void IVisitorConfigNode.VisitEnd(GroupListReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.Visit(GroupListPropertiesTabs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.VisitEnd(GroupListPropertiesTabs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.Visit(GroupPropertiesTab p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.VisitEnd(GroupPropertiesTab p)
         {
             throw new NotImplementedException();
         }

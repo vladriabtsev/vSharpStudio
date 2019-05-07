@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using System.Windows;
-using System.Windows.Dummy;
 using FluentValidation;
 using ViewModelBase;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -55,8 +54,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumDataType.Catalog:
                     break;
-                case EnumDataType.Constant:
-                    break;
                 case EnumDataType.Document:
                     break;
                 case EnumDataType.Enumeration:
@@ -82,9 +79,6 @@ namespace vSharpStudio.vm.ViewModels
                     res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Constant:
-                    res += ": " + p.ObjectName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Document:
                     res += ": " + p.ObjectName;
@@ -220,6 +214,16 @@ namespace vSharpStudio.vm.ViewModels
                 // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
                 switch (this.DataTypeEnum)
                 {
+                    case EnumDataType.Catalog:
+                        return "Catalog";
+                    case EnumDataType.Catalogs:
+                        return "Catalog";
+                    case EnumDataType.Document:
+                        return "Document";
+                    case EnumDataType.Documents:
+                        return "Documents";
+                    case EnumDataType.Enumeration:
+                        return "Enumeration";
                     case EnumDataType.Bool:
                         return "bool";
                     case EnumDataType.String:
@@ -280,6 +284,16 @@ namespace vSharpStudio.vm.ViewModels
                 // https://developers.google.com/protocol-buffers/docs/proto3#scalar
                 switch (this.DataTypeEnum)
                 {
+                    case EnumDataType.Catalog:
+                        return "catalog";
+                    case EnumDataType.Catalogs:
+                        return "catalogs";
+                    case EnumDataType.Document:
+                        return "document";
+                    case EnumDataType.Documents:
+                        return "documents";
+                    case EnumDataType.Enumeration:
+                        return "enumeration";
                     case EnumDataType.Bool:
                         return "bool";
                     case EnumDataType.String:
@@ -346,7 +360,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.ObjectName = "";
                     break;
                 case EnumDataType.Catalog:
-                case EnumDataType.Constant:
                 case EnumDataType.Document:
                 case EnumDataType.Enumeration:
                     this.VisibilityIsPositive = Visibility.Collapsed;

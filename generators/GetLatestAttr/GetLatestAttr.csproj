@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentValidation.8.2.3\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\..\packages\FluentValidation.8.3.0\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Google.Protobuf.3.7.0\lib\net45\Google.Protobuf.dll</HintPath>
@@ -139,10 +139,6 @@
     <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj">
       <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
       <Name>vSharpStudio.proto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\vSharpStudio.vm\vSharpStudio.vm.csproj">
-      <Project>{0467e0e8-8886-46fe-bf70-e33ff53fc39f}</Project>
-      <Name>vSharpStudio.vm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

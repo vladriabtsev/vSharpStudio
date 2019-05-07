@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 using vSharpStudio.vm.Migration;
@@ -79,8 +78,8 @@ namespace vSharpStudio.xUnit
 
         //    Assert.True(false);
         //}
-        private void Test(string createSql, IEnumerable<string> tables, IEnumerable<string> schemas, Action<DatabaseModel> asserter, string cleanupSql)
-        {
+        //private void Test(string createSql, IEnumerable<string> tables, IEnumerable<string> schemas, Action<DatabaseModel> asserter, string cleanupSql)
+        //{
             //Fixture.TestStore.ExecuteNonQuery(createSql);
 
             //try
@@ -102,6 +101,6 @@ namespace vSharpStudio.xUnit
             //        Fixture.TestStore.ExecuteNonQuery(cleanupSql);
             //    }
             //}
-        }
+        //}
     }
 }

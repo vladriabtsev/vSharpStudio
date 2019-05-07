@@ -263,7 +263,7 @@ namespace vSharpStudio.ViewModels
             {
                 this.ConnectionString = GetConnectionString(out _providerName);
                 // https://www.connectionstrings.com/sqlconnection/
-                if (this.ConnectionString.Contains("|DataDirectory|"))
+                if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
                 {
                     //have to replace it
                     string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";

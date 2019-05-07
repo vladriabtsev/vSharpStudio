@@ -8,6 +8,10 @@ using System.Collections.Specialized;
 
 namespace ViewModelBase
 {
+    public interface ISetParent
+    {
+        void SetParent(object parent);
+    }
     public interface ISortingValue
     {
         ulong SortingValue { get; set; }
@@ -30,18 +34,31 @@ namespace ViewModelBase
         public SortDirection SortDirection = SortDirection.Ascending;
         Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
         bool isSort;
-        public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null, bool isSort = true)
+        public SortedObservableCollection()
+        {
+            this.CollectionChanged += SortedObservableCollection_CollectionChanged;
+        }
+        public SortedObservableCollection(object parent, bool isSort = true) : this()
+        {
+            this.Parent = parent;
+        }
+        public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged, bool isSort = true) : this()
         {
             this.isSort = isSort;
             this.onCollectionChanged = onCollectionChanged;
-            if (this.onCollectionChanged != null)
-                this.CollectionChanged += SortedObservableCollection_CollectionChanged;
         }
-
         private void SortedObservableCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.onCollectionChanged(e);
+            if (this.onCollectionChanged != null)
+                this.onCollectionChanged(e);
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                foreach (var t in e.NewItems)
+                {
+                    if (t is ISetParent)
+                        (t as ISetParent).SetParent(this.Parent);
+                }
         }
+        public object Parent { get; set; }
 
         #region IMoveUpDown
 
@@ -101,10 +118,10 @@ namespace ViewModelBase
 
         #endregion IMove
 
-        public new void Add(T item)
-        {
-            this.Add(item, 0);
-        }
+        //public new void Add(T item)
+        //{
+        //    this.Add(item, 0);
+        //}
         public void Add(T item, ulong sortingWeight)
         {
             if (sortingWeight > 0)

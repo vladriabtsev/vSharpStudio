@@ -77,12 +77,6 @@ namespace vSharpStudio.vm.ViewModels
                 #region ObjectName
                 RuleFor(p => p.ObjectName).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Constant && string.IsNullOrWhiteSpace(p.ObjectName))
-                        return false;
-                    return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CONSTANT_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
-                {
                     if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enumeration && string.IsNullOrWhiteSpace(p.ObjectName))
                         return false;
                     return true;
@@ -95,27 +89,10 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG_NAME);
                 RuleFor(p => p.ObjectName).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Constant)
-                        return true;
-                    IParent n = (IParent)p;
-                    while (true)
-                    {
-                        if (n.Parent != null)
-                        {
-                            n = n.Parent;
-                            if (n is Config)
-                                break;
-                        }
-                        else
-                            return true;
-                    }
-                    foreach (var t in (n as Config).GroupConstants.Children)
-                    {
-                        if (t.Name == y)
-                            return true;
-                    }
-                    return false;
-                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Document && string.IsNullOrWhiteSpace(p.ObjectName))
+                        return false;
+                    return true;
+                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT_NAME);
                 RuleFor(p => p.ObjectName).Must((p, y) =>
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Enumeration)
@@ -156,6 +133,29 @@ namespace vSharpStudio.vm.ViewModels
                             return true;
                     }
                     foreach (var t in (n as Config).GroupCatalogs.Children)
+                    {
+                        if (t.Name == y)
+                            return true;
+                    }
+                    return false;
+                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                RuleFor(p => p.ObjectName).Must((p, y) =>
+                {
+                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Document)
+                        return true;
+                    IParent n = (IParent)p;
+                    while (true)
+                    {
+                        if (n.Parent != null)
+                        {
+                            n = n.Parent;
+                            if (n is Config)
+                                break;
+                        }
+                        else
+                            return true;
+                    }
+                    foreach (var t in (n as Config).GroupDocuments.Children)
                     {
                         if (t.Name == y)
                             return true;

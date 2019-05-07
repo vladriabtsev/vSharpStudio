@@ -16,17 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigObjectBase(TValidator validator)
             : base(validator)
         {
-            //            this.PropertyChanged += ConfigObjectWithGuidBase_PropertyChanged;
         }
-        //private void ConfigObjectWithGuidBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "SortingValue")
-        //    {
-        //        ITreeConfigNode p = (ITreeConfigNode)this;
-        //        if (p.Parent != null)
-        //            p.Parent.Sort(this.GetType());
-        //    }
-        //}
         protected virtual void OnInitFromDto()
         {
         }
@@ -392,6 +382,12 @@ namespace vSharpStudio.vm.ViewModels
                     pp.Children.Add(prop);
                     GetUniqueName(Property.DefaultName, prop, pp.Children);
                     return UpdateSelectedNode(prop);
+                case "GroupListPropertiesTabs":
+                    var propt = new GroupPropertiesTab();
+                    var ppropt = (this as GroupListPropertiesTabs);
+                    ppropt.Children.Add(propt);
+                    GetUniqueName(GroupPropertiesTab.DefaultName, propt, ppropt.Children);
+                    return UpdateSelectedNode(propt);
                 case "GroupListCatalogs":
                     var catalog = new Catalog();
                     var cp = (this as GroupListCatalogs);
@@ -531,7 +527,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool NodeCanRemove()
         {
-            if (this.Parent is ICanAddNode)
+            if (this is ICanAddNode)
                 return true;
             return false;
         }

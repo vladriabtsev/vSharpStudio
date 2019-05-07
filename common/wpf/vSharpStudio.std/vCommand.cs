@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Dummy;
 using System.Windows.Input;
 
 namespace ViewModelBase
@@ -21,19 +20,19 @@ namespace ViewModelBase
                 });
         }
         private bool _isexecuted = false;
-        public Visibility Visibility
-        {
-            set
-            {
-                if (_Visibility != value)
-                {
-                    _Visibility = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _Visibility; }
-        }
-        private Visibility _Visibility = Visibility.Visible;
+        //public Visibility Visibility
+        //{
+        //    set
+        //    {
+        //        if (_Visibility != value)
+        //        {
+        //            _Visibility = value;
+        //            NotifyPropertyChanged();
+        //        }
+        //    }
+        //    get { return _Visibility; }
+        //}
+        //private Visibility _Visibility = Visibility.Visible;
 
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
@@ -61,10 +60,10 @@ namespace ViewModelBase
                 return true;
             if (_canExecute(parameter))
             {
-                this.Visibility = Visibility.Visible;
+                //                this.Visibility = Visibility.Visible;
                 return true;
             }
-            this.Visibility = Visibility.Collapsed;
+            //          this.Visibility = Visibility.Collapsed;
             return false;
         }
         public void Execute(object parameter)

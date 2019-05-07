@@ -82,6 +82,9 @@ namespace vSharpStudio.ViewModels
         {
             var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
             File.WriteAllText(CFG_PATH, json);
+#if DEBUG
+            CompareSaved(json);
+#endif
         }
         public vCommand CommandConfigSaveAs
         {
@@ -109,6 +112,23 @@ namespace vSharpStudio.ViewModels
                 FilePathSaveAs = openFileDialog.FileName;
                 var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
                 File.WriteAllText(FilePathSaveAs, json);
+#if DEBUG
+                CompareSaved(json);
+#endif
+            }
+        }
+
+        private void CompareSaved(string json)
+        {
+            return;
+
+            KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
+            var model = new ConfigRoot(json);
+            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Model as Config, model as Config);
+            if (!result.AreEqual)
+            {
+                Console.WriteLine(result.DifferencesString);
+                throw new Exception();
             }
         }
 

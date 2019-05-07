@@ -8,7 +8,7 @@ using ViewModelBase;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
-    public partial class GroupDocuments : IChildren, ICanAddNode, ICanGoRight, ICanGoLeft
+    public partial class GroupDocuments : IChildren, ICanGoRight, ICanGoLeft
     {
         [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }

@@ -8,10 +8,26 @@
 <# if (field.Name == "children") { #>
 public SortedObservableCollection<ITreeConfigNode> <#= field.Name.ToNameCs() #> { get; set; }
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.Children[index]; } }
-public void Add(<#= field.MessageType.Name.ToNameCs() #> item) { this.Children.Add(item); }
-public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) { this.Children.AddRange(items); }
-public int Count() { return this.Children.Count; }
-public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) { this.Children.Remove(item); }
+public void Add(<#= field.MessageType.Name.ToNameCs() #> item) 
+{ 
+    this.Children.Add(item); 
+    item.Parent = this;
+}
+public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
+{ 
+    this.Children.AddRange(items); 
+    foreach(var t in items)
+        item.Parent = t;
+}
+public int Count() 
+{ 
+    return this.Children.Count; 
+}
+public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) 
+{
+    this.Children.Remove(item); 
+    item.Parent = null;
+}
 <# } else { #>
 public SortedObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } #>

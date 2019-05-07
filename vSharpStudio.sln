@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSharpStudio.vsix", "VSharp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.xUnit", "vSharpStudio.xUnit\vSharpStudio.xUnit.csproj", "{4691301C-7E12-4D46-A549-5667A189AF1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{0467E0E8-8886-46FE-BF70-E33FF53FC39F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
 		proto\attr.proto = proto\attr.proto
@@ -52,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetLatestAttr", "generators
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,12 +74,6 @@ Global
 		{4691301C-7E12-4D46-A549-5667A189AF1D}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{4691301C-7E12-4D46-A549-5667A189AF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4691301C-7E12-4D46-A549-5667A189AF1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0467E0E8-8886-46FE-BF70-E33FF53FC39F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
@@ -125,6 +116,12 @@ Global
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

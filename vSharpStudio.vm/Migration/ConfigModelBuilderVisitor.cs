@@ -80,11 +80,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertiesTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.Visit(GroupDocuments p)
         {
             throw new NotImplementedException();
@@ -120,21 +115,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertyTab p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabsTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.Visit(GroupListProperties p)
         {
             throw new NotImplementedException();
@@ -161,6 +141,16 @@ namespace vSharpStudio.vm.Migration
         }
 
         void IVisitorConfigNode.Visit(GroupListReports p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.Visit(GroupPropertiesTab p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.Visit(GroupListPropertiesTabs p)
         {
             throw new NotImplementedException();
         }
@@ -205,11 +195,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.VisitEnd(GroupPropertiesTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.VisitEnd(GroupDocuments p)
         {
             throw new NotImplementedException();
@@ -245,21 +230,6 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTab p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabs p)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabsTree p)
-        {
-            throw new NotImplementedException();
-        }
-
         void IVisitorConfigNode.VisitEnd(GroupListProperties p)
         {
             throw new NotImplementedException();
@@ -290,5 +260,14 @@ namespace vSharpStudio.vm.Migration
             throw new NotImplementedException();
         }
 
+        void IVisitorConfigNode.VisitEnd(GroupPropertiesTab p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.VisitEnd(GroupListPropertiesTabs p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

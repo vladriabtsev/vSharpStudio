@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             _level++;
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
+                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.Name);
             }
             p.ValidationCollection.Clear();
             p.CountErrors = 0;
@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.NodeText);
+                _logger.LogInformation("".PadRight(_level) + p.GetType().Name + ": " + p.Name);
             }
             _level--;
         }
@@ -190,16 +190,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisitEnd(p);
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertiesTree p)
-        {
-            OnVisit(p);
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertiesTree p)
-        {
-            OnVisitEnd(p);
-        }
-
         void IVisitorConfigNode.Visit(GroupDocuments p)
         {
             OnVisit(p);
@@ -270,36 +260,6 @@ namespace vSharpStudio.vm.ViewModels
             OnVisitEnd(p);
         }
 
-        void IVisitorConfigNode.Visit(GroupPropertyTab p)
-        {
-            OnVisit(p);
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTab p)
-        {
-            OnVisitEnd(p);
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabs p)
-        {
-            OnVisit(p);
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabs p)
-        {
-            OnVisitEnd(p);
-        }
-
-        void IVisitorConfigNode.Visit(GroupPropertyTabsTree p)
-        {
-            OnVisit(p);
-        }
-
-        void IVisitorConfigNode.VisitEnd(GroupPropertyTabsTree p)
-        {
-            OnVisitEnd(p);
-        }
-
         void IVisitorConfigNode.Visit(GroupListProperties p)
         {
             OnVisit(p);
@@ -358,6 +318,26 @@ namespace vSharpStudio.vm.ViewModels
         void IVisitorConfigNode.VisitEnd(GroupListReports p)
         {
             OnVisitEnd(p);
+        }
+
+        void IVisitorConfigNode.Visit(GroupListPropertiesTabs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.VisitEnd(GroupListPropertiesTabs p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.Visit(GroupPropertiesTab p)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IVisitorConfigNode.VisitEnd(GroupPropertiesTab p)
+        {
+            throw new NotImplementedException();
         }
 
         //void IVisitorConfigNode.Visit(IdDbGenerator p)

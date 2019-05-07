@@ -35,6 +35,7 @@ namespace vSharpStudio.vm.ViewModels
             public const string TYPE_EMPTY_ENUMERATION_NAME = "Please select Enumeration name";
             public const string TYPE_WRONG_OBJECT_NAME = "Wrong type name";
             public const string TYPE_EMPTY_CATALOG_NAME = "Please select Catalog name";
+            public const string TYPE_EMPTY_DOCUMENT_NAME = "Please select Document name";
         }
     }
 }

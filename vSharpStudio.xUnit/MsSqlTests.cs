@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
 using static Proto.Config.proto_data_type.Types;
@@ -48,8 +47,8 @@ namespace vSharpStudio.xUnit
 
         //            Assert.True(false);
         //        }
-        private void Test(string createSql, IEnumerable<string> tables, IEnumerable<string> schemas, Action<DatabaseModel> asserter, string cleanupSql)
-        {
+        //private void Test(string createSql, IEnumerable<string> tables, IEnumerable<string> schemas, Action<DatabaseModel> asserter, string cleanupSql)
+        //{
             //Fixture.TestStore.ExecuteNonQuery(createSql);
 
             //try
@@ -71,6 +70,6 @@ namespace vSharpStudio.xUnit
             //        Fixture.TestStore.ExecuteNonQuery(cleanupSql);
             //    }
             //}
-        }
+        //}
     }
 }

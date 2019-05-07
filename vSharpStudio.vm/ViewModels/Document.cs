@@ -18,8 +18,10 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.GroupPropertiesTree.Parent = this;
-            Children.Add(this.GroupPropertiesTree, 7);
+            this.GroupProperties.Parent = this;
+            Children.Add(this.GroupProperties, 6);
+            this.GroupPropertiesTabs.Parent = this;
+            Children.Add(this.GroupPropertiesTabs, 7);
             this.GroupForms.Parent = this;
             Children.Add(this.GroupForms, 8);
             this.GroupReports.Parent = this;

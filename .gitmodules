@@ -9,4 +9,4 @@
 	url = https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL.git
 [submodule "submodules/wpftoolkit"]
 	path = submodules/wpftoolkit
-	url = https://github.com/xceedsoftware/wpftoolkit.git
+	url = https://github.com/vladriabtsev/wpftoolkit.git

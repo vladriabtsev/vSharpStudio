@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Catalogs";
+            if (this.Parent is Catalog)
+                this.NameUi = "Sub Catalogs";
         }
         protected override void OnInitFromDto()
         {
