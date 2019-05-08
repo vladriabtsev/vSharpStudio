@@ -135,9 +135,8 @@ message proto_data_type {
     uint32 accuracy = 3; 
     // @attr [PropertyOrderAttribute(4)][DisplayName("Is positive")]
     bool is_positive = 4; 
-    string object_guid = 5;
     // @attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
-    string object_name = 8;
+    string object_guid = 5;
 }
 /** 
  * @exclude

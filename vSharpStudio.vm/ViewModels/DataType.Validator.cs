@@ -74,26 +74,26 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_ACCURACY_GREATER_THAN_LENGTH);
                 #endregion Accuracy
 
-                #region ObjectName
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                #region ObjectGuid
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enumeration && string.IsNullOrWhiteSpace(p.ObjectName))
+                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enumeration && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Catalog && string.IsNullOrWhiteSpace(p.ObjectName))
+                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Catalog && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Document && string.IsNullOrWhiteSpace(p.ObjectName))
+                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Document && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT);
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Enumeration)
                         return true;
@@ -111,12 +111,12 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     foreach (var t in (n as Config).GroupEnumerations.Children)
                     {
-                        if (t.Name == y)
+                        if (t.Guid == y)
                             return true;
                     }
                     return false;
-                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Catalog)
                         return true;
@@ -134,12 +134,12 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     foreach (var t in (n as Config).GroupCatalogs.Children)
                     {
-                        if (t.Name == y)
+                        if (t.Guid == y)
                             return true;
                     }
                     return false;
-                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
-                RuleFor(p => p.ObjectName).Must((p, y) =>
+                }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
+                RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
                     if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Document)
                         return true;
@@ -157,12 +157,12 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     foreach (var t in (n as Config).GroupDocuments.Children)
                     {
-                        if (t.Name == y)
+                        if (t.Guid == y)
                             return true;
                     }
                     return false;
-                }).WithMessage(Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
-                #endregion ObjectName
+                }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
+                #endregion ObjectGuid
 
                 //RuleFor(x => x.MinValueString).NotEmpty().WithMessage(Config.ValidationMessages.TYPE_MIN_EMPTY).WithSeverity(Severity.Warning);
                 //RuleFor(x => x.MaxValueString).NotEmpty().WithMessage(Config.ValidationMessages.TYPE_MAX_EMPTY).WithSeverity(Severity.Warning);

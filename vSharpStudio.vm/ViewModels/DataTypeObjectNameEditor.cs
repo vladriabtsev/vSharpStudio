@@ -23,6 +23,7 @@ namespace vSharpStudio.vm.ViewModels
             _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
             BindingOperations.SetBinding(cbx, ComboBox.TextProperty, _binding);
             cbx.DisplayMemberPath = "Name";
+            cbx.SelectedValuePath = "Guid";
             return cbx;
         }
 
@@ -40,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
                     lst = (config as Config).GroupCatalogs.Children;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                    lst = (config as Config).GroupDocuments.Children;
+                    lst = (config as Config).GroupDocuments.GroupListDocuments.Children;
                     break;
                 default:
                     break;

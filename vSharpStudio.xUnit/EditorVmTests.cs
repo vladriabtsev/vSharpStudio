@@ -465,7 +465,7 @@ namespace vSharpStudio.xUnit
             cfg.GroupConstants[0].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Bool;
             cfg.GroupConstants.NodeAddNewSubNode();
             cfg.GroupConstants[1].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enumeration;
-            cfg.GroupConstants[1].DataType.ObjectName = cfg.GroupEnumerations.Children[0].Name;
+            cfg.GroupConstants[1].DataType.ObjectGuid = cfg.GroupEnumerations.Children[0].Guid;
 
             return cfg;
         }
@@ -510,7 +510,7 @@ namespace vSharpStudio.xUnit
             Assert.True(dt.CountWarnings == 0);
             Assert.True(dt.HasErrors);
             Assert.True(dt.ValidationCollection.Count == 1);
-            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CATALOG_NAME);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CATALOG);
             //Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
             //Assert.True(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.True(dt.VisibilityObjectName == Visibility.Visible);
@@ -544,7 +544,7 @@ namespace vSharpStudio.xUnit
             Assert.True(dt.CountWarnings == 0);
             Assert.True(dt.HasErrors);
             Assert.True(dt.ValidationCollection.Count == 1);
-            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_ENUMERATION_NAME);
+            Assert.True(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
             //Assert.True(dt.VisibilityAccuracy == Visibility.Collapsed);
             //Assert.True(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.True(dt.VisibilityObjectName == Visibility.Visible);
@@ -605,12 +605,12 @@ namespace vSharpStudio.xUnit
             if (cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT)
             {
                 Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
-                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             }
             else
             {
                 Assert.True(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
-                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_WRONG_OBJECT_NAME);
+                Assert.True(cfg.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             }
 
             cfg.GroupEnumerations.Children[0].Name = " ab";
@@ -624,7 +624,7 @@ namespace vSharpStudio.xUnit
             Assert.False(cfg.GroupEnumerations[0].HasErrors);
 
             cfg.GroupEnumerations.Children[0].Name = "a b";
-            cfg.GroupConstants[1].DataType.ObjectName = "a b";
+            //cfg.GroupConstants[1].DataType.ObjectName = "a b";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.True(cfg.ValidationCollection.Count == 1);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
@@ -633,7 +633,7 @@ namespace vSharpStudio.xUnit
             cfg.GroupEnumerations.NodeAddNewSubNode();
             cfg.GroupEnumerations.Children[0].Name = "ab";
             cfg.GroupEnumerations.Children[1].Name = "ab";
-            cfg.GroupConstants[1].DataType.ObjectName = "ab";
+            //cfg.GroupConstants[1].DataType.ObjectName = "ab";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.True(cfg.ValidationCollection.Count == 2);
             Assert.True(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);

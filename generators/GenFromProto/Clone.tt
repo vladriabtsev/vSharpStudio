@@ -32,7 +32,7 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
 <# } #>
     foreach(var t in from.<#= field.Name.ToNameCs() #>)
-        vm.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+        vm.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
@@ -87,7 +87,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             {
                 var p = new <#= field.ToTypeCs() #>();
                 vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Update(p, (<#= field.ToTypeCs() #>)tt, isDeep);
-                to.<#= field.Name.ToNameCs() #>.Add(p);
+                to.Add(p);
             }
         }
     }
@@ -136,7 +136,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
     {
         var tvm = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(t);
         tvm.Parent = vm;
-        vm.<#= field.Name.ToNameCs() #>.Add(tvm);
+        vm.Add(tvm);
     }
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : "";

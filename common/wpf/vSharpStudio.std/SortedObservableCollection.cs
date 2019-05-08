@@ -36,29 +36,29 @@ namespace ViewModelBase
         bool isSort;
         public SortedObservableCollection()
         {
-            this.CollectionChanged += SortedObservableCollection_CollectionChanged;
+            //this.CollectionChanged += SortedObservableCollection_CollectionChanged;
         }
-        public SortedObservableCollection(object parent, bool isSort = true) : this()
-        {
-            this.Parent = parent;
-        }
-        public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged, bool isSort = true) : this()
-        {
-            this.isSort = isSort;
-            this.onCollectionChanged = onCollectionChanged;
-        }
-        private void SortedObservableCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (this.onCollectionChanged != null)
-                this.onCollectionChanged(e);
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-                foreach (var t in e.NewItems)
-                {
-                    if (t is ISetParent)
-                        (t as ISetParent).SetParent(this.Parent);
-                }
-        }
-        public object Parent { get; set; }
+        //public SortedObservableCollection(object parent, bool isSort = true) : this()
+        //{
+        //    this.Parent = parent;
+        //}
+        //public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged, bool isSort = true) : this()
+        //{
+        //    this.isSort = isSort;
+        //    this.onCollectionChanged = onCollectionChanged;
+        //}
+        //private void SortedObservableCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    if (this.onCollectionChanged != null)
+        //        this.onCollectionChanged(e);
+        //    if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+        //        foreach (var t in e.NewItems)
+        //        {
+        //            if (t is ISetParent)
+        //                (t as ISetParent).SetParent(this.Parent);
+        //        }
+        //}
+        //public object Parent { get; set; }
 
         #region IMoveUpDown
 
@@ -118,10 +118,10 @@ namespace ViewModelBase
 
         #endregion IMove
 
-        //public new void Add(T item)
-        //{
-        //    this.Add(item, 0);
-        //}
+        public new void Add(T item)
+        {
+            this.Add(item, 0);
+        }
         public void Add(T item, ulong sortingWeight)
         {
             if (sortingWeight > 0)

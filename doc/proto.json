@@ -748,16 +748,6 @@
             },
             {
               "name": "object_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "object_name",
               "description": "@attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
               "label": "",
               "type": "string",

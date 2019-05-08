@@ -32,10 +32,10 @@ namespace vSharpStudio.vm.ViewModels
             public const string TYPE_MINMAX_CANT_PARSE = "Can't parse to integer";
             public const string TYPE_MIN_HAS_TO_BE_LESS_THAN_MAX = "'MinValue' has to be less than 'MaxValue'";
             public const string TYPE_EMPTY_CONSTANT_NAME = "Please select Constant name";
-            public const string TYPE_EMPTY_ENUMERATION_NAME = "Please select Enumeration name";
-            public const string TYPE_WRONG_OBJECT_NAME = "Wrong type name";
-            public const string TYPE_EMPTY_CATALOG_NAME = "Please select Catalog name";
-            public const string TYPE_EMPTY_DOCUMENT_NAME = "Please select Document name";
+            public const string TYPE_OBJECT_IS_NOT_FOUND = "Object is not found";
+            public const string TYPE_EMPTY_ENUMERATION = "Please select Enumeration";
+            public const string TYPE_EMPTY_CATALOG = "Please select Catalog";
+            public const string TYPE_EMPTY_DOCUMENT = "Please select Document";
         }
     }
 }

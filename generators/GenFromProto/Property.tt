@@ -17,7 +17,7 @@ public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items
 { 
     this.Children.AddRange(items); 
     foreach(var t in items)
-        item.Parent = t;
+        t.Parent = this;
 }
 public int Count() 
 { 

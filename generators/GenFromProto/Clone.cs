@@ -184,14 +184,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n        vm.");
-            
-            #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".Add(vSharpStudio.vm.ViewModels.");
+            this.Write(")\r\n        vm.Add(vSharpStudio.vm.ViewModels.");
             
             #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -438,14 +431,7 @@ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
             
             #line default
             #line hidden
-            this.Write(")tt, isDeep);\r\n                to.");
-            
-            #line 90 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".Add(p);\r\n            }\r\n        }\r\n    }\r\n");
+            this.Write(")tt, isDeep);\r\n                to.Add(p);\r\n            }\r\n        }\r\n    }\r\n");
             
             #line 94 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
       } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { 
@@ -701,14 +687,7 @@ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
             
             #line default
             #line hidden
-            this.Write(".ConvertToVM(t);\r\n        tvm.Parent = vm;\r\n        vm.");
-            
-            #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".Add(tvm);\r\n    }\r\n");
+            this.Write(".ConvertToVM(t);\r\n        tvm.Parent = vm;\r\n        vm.Add(tvm);\r\n    }\r\n");
             
             #line 141 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
       } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { 

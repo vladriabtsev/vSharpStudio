@@ -15,24 +15,7 @@
        if (t.MessageType.Name.EndsWith("_nullable"))
          continue;
 		if (t.IsRepeated) {#>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>(e =>
-        {
-            switch(e.Action)
-            {
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset: // on .Clear()
-                    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
-                    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                    foreach (var t in e.NewItems)
-                        (t as <#= t.MessageType.Name.ToNameCs() #>).Parent = this;
-                    break;
-                default:
-                    throw new Exception();
-            }
-        });
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
 <#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
 		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this);
 <#		} else if (t.IsMap) { #>

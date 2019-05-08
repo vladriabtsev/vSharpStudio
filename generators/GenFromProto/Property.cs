@@ -90,7 +90,7 @@ namespace GenFromProto
             #line default
             #line hidden
             this.Write("> items) \r\n{ \r\n    this.Children.AddRange(items); \r\n    foreach(var t in items)\r\n" +
-                    "        item.Parent = t;\r\n}\r\npublic int Count() \r\n{ \r\n    return this.Children.C" +
+                    "        t.Parent = this;\r\n}\r\npublic int Count() \r\n{ \r\n    return this.Children.C" +
                     "ount; \r\n}\r\npublic void Remove(");
             
             #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
