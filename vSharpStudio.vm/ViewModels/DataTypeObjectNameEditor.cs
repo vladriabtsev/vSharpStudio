@@ -14,39 +14,21 @@ namespace vSharpStudio.vm.ViewModels
         {
             DataType dt = (DataType)propertyItem.Instance;
             ComboBox cbx = new ComboBox();
-            cbx.Tag = dt;
-            cbx.GotFocus += Cbx_GotFocus;
+            cbx.DisplayMemberPath = "Name";
+            cbx.SelectedValuePath = "Guid";
+            var _binding_lst = new Binding("ListObjects"); //bind to the Value property of the PropertyItem
+            _binding_lst.Source = dt;
+            _binding_lst.ValidatesOnExceptions = false;
+            _binding_lst.ValidatesOnDataErrors = false;
+            _binding_lst.Mode = BindingMode.OneWay;
+            BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
             var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;
             _binding.ValidatesOnDataErrors = true;
             _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
-            BindingOperations.SetBinding(cbx, ComboBox.TextProperty, _binding);
-            cbx.DisplayMemberPath = "Name";
-            cbx.SelectedValuePath = "Guid";
+            BindingOperations.SetBinding(cbx, ComboBox.SelectedValueProperty, _binding);
             return cbx;
-        }
-
-        private void Cbx_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ComboBox cbx = (ComboBox)sender;
-            DataType dt = (DataType)cbx.Tag;
-            ITreeConfigNode config = dt.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            SortedObservableCollection<ITreeConfigNode> lst = new SortedObservableCollection<ITreeConfigNode>();
-            switch (dt.DataTypeEnum)
-            {
-                case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
-                    lst = (config as Config).GroupCatalogs.Children;
-                    break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                    lst = (config as Config).GroupDocuments.GroupListDocuments.Children;
-                    break;
-                default:
-                    break;
-            }
-            cbx.ItemsSource = lst;
         }
     }
 }

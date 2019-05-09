@@ -42,6 +42,8 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDocuments, 10);
             this.GroupJournals.Parent = this;
             this.Children.Add(this.GroupJournals, 11);
+            this.GroupConfigs.Parent = this;
+            this.Children.Add(this.GroupConfigs, 6);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }

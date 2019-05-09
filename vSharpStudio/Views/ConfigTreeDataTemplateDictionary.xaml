@@ -7,6 +7,22 @@
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
     <Converters:ConverterCountToWidth x:Key="ConverterCountToWidth"/>
 
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConfigs}" ItemsSource="{Binding Children}">
+        <StackPanel Orientation="Horizontal">
+            <Grid>
+                <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                <Viewbox Height="8" Width="8" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                </Viewbox>
+            </Grid>
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
+            <StackPanel VerticalAlignment="Center">
+                <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+                <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
+                <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
+            </StackPanel>
+        </StackPanel>
+    </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Property}">
         <StackPanel Orientation="Horizontal">
             <Grid>
@@ -15,7 +31,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -31,7 +47,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -47,7 +63,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -63,7 +79,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -79,7 +95,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -95,7 +111,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -111,7 +127,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -127,7 +143,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -143,7 +159,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -159,7 +175,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -175,7 +191,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -191,7 +207,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -207,7 +223,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupListReports}" ItemsSource="{Binding Children}">
@@ -218,7 +234,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding Children}">
@@ -229,7 +245,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:Document}" ItemsSource="{Binding Children}">
@@ -240,7 +256,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -256,7 +272,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupDocuments}" ItemsSource="{Binding Children}">
@@ -267,7 +283,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -283,7 +299,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
@@ -299,7 +315,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding NameUi}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Center">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />

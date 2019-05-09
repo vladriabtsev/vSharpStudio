@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-                this.NameUi = "Tabs";
+                this.Name = "Tabs";
         }
 
         //protected override void OnParentChanged()

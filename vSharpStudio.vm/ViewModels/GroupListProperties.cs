@@ -15,24 +15,24 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             if (this.Parent is GroupDocuments)
-                this.NameUi = "Shared Properties";
+                this.Name = "Shared";
             else
-                this.NameUi = "Properties";
+                this.Name = "Properties";
         }
 
         protected override void OnParentChanged()
         {
             if (this.Parent is GroupDocuments)
-                this.NameUi = "Shared Properties";
+                this.Name = "Shared";
             else
-                this.NameUi = "Properties";
+                this.Name = "Properties";
         }
         protected override void OnInitFromDto()
         {
             if (this.Parent is GroupDocuments)
-                this.NameUi = "Shared Properties";
+                this.Name = "Shared";
             else
-                this.NameUi = "Properties";
+                this.Name = "Properties";
         }
 
         #region ITreeNode

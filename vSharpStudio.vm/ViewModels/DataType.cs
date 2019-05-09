@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataTypeEnum);
             string objName = "Not found";
             ITreeConfigNode config = p.Parent;
-            while (config.Parent != null)
+            while (config != null && config.Parent != null)
                 config = config.Parent;
             switch (p.DataTypeEnum)
             {
@@ -80,38 +80,47 @@ namespace vSharpStudio.vm.ViewModels
                 case Proto.Config.proto_data_type.Types.EnumDataType.Bool:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
-                    foreach (var t in (config as Config).GroupCatalogs.Children)
+                    if (config is Config)
                     {
-                        if (p.ObjectGuid == t.Guid)
+                        foreach (var t in (config as Config).GroupCatalogs.Children)
                         {
-                            objName = t.Name;
+                            if (p.ObjectGuid == t.Guid)
+                            {
+                                objName = t.Name;
+                            }
                         }
+                        res += ": " + objName;
                     }
-                    res += ": " + objName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Document:
-                    foreach (var t in (config as Config).GroupDocuments.GroupListDocuments.Children)
-                    {
-                        if (p.ObjectGuid == t.Guid)
+                    if (config is Config)
+                    { 
+                        foreach (var t in (config as Config).GroupDocuments.GroupListDocuments.Children)
                         {
-                            objName = t.Name;
+                            if (p.ObjectGuid == t.Guid)
+                            {
+                                objName = t.Name;
+                            }
                         }
-                    }
                     res += ": " + objName;
+            }
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
-                    foreach (var t in (config as Config).GroupEnumerations.Children)
+                    if (config is Config)
                     {
-                        if (p.ObjectGuid == t.Guid)
+                        foreach (var t in (config as Config).GroupEnumerations.Children)
                         {
-                            objName = t.Name;
+                            if (p.ObjectGuid == t.Guid)
+                            {
+                                objName = t.Name;
+                            }
                         }
+                        res += ": " + objName;
                     }
-                    res += ": " + objName;
                     break;
                 case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
                     res += ", " + (p.IsPositive ? "+" : "") + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : "") + " clr:" + p.ClrType + " proto:" + p.ProtoType;
@@ -364,6 +373,36 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Visibility
 
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<ITreeConfigNode> ListObjects
+        {
+            set
+            {
+                if (_ListObjects != value)
+                {
+                    _ListObjects = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get
+            {
+                if (_ListObjects == null || _ListObjects.Count == 0)
+                {
+                    switch (this.DataTypeEnum)
+                    {
+                        case EnumDataType.Catalog:
+                        case EnumDataType.Document:
+                        case EnumDataType.Enumeration:
+                            UpdateListObjects();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                return _ListObjects;
+            }
+        }
+        private SortedObservableCollection<ITreeConfigNode> _ListObjects;
         partial void OnDataTypeEnumChanged()
         {
             this.NotifyPropertyChanged(p => p.ClrType);
@@ -382,6 +421,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = "";
+                    this.ListObjects = null;
                     break;
                 case EnumDataType.Catalog:
                 case EnumDataType.Document:
@@ -394,6 +434,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = "";
+                    this.ListObjects = null;
+                    UpdateListObjects();
                     break;
                 case EnumDataType.Numerical:
                     if (this.Accuracy == 0)
@@ -407,6 +449,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = "";
+                    this.ListObjects = null;
                     break;
                 case EnumDataType.String:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -417,9 +460,35 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = "";
+                    this.ListObjects = null;
                     break;
             }
         }
+
+        private void UpdateListObjects()
+        {
+            ITreeConfigNode config = this.Parent;
+            while (config != null && config.Parent != null)
+                config = config.Parent;
+            if (config is Config)
+            {
+                switch (this.DataTypeEnum)
+                {
+                    case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
+                        this.ListObjects = (config as Config).GroupEnumerations.Children;
+                        break;
+                    case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+                        this.ListObjects = (config as Config).GroupCatalogs.Children;
+                        break;
+                    case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+                        this.ListObjects = (config as Config).GroupDocuments.GroupListDocuments.Children;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         partial void OnLengthChanged()
         {
             _MaxNumericalValue = 0;

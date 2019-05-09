@@ -156,7 +156,8 @@ namespace vSharpStudio.vm.ViewModels
                             ITreeConfigNode config = this.Parent;
                             while (config.Parent != null)
                                 config = config.Parent;
-                            (config as Config).SelectedNode = this;
+                            if (config is Config)
+                                (config as Config).SelectedNode = this;
                         }
                     }
                 }

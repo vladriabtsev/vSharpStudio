@@ -41,6 +41,16 @@ message proto_group_configs {
     repeated proto_config_tree children = 6;
     string relative_config_path = 7;
 }
+message proto_config_tree {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
+    proto_config config_node = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_config_tree children = 7;
+}
 // Configuration config
 message proto_config {
     // Unique Guid for configuration (for comparison)
@@ -96,16 +106,6 @@ message proto_config {
     proto_group_list_catalogs group_catalogs = 103;
     proto_group_documents group_documents = 104;
     proto_group_list_journals group_journals = 105;
-}
-message proto_config_tree {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-//  string name_ui = 4;
-    string description = 5;
-    proto_config config_node = 6;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_config_tree children = 7;
 }
 /** 
  * @exclude

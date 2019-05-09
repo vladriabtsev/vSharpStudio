@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/08/2019 00:42:23
+// Auto generated on UTC 05/09/2019 00:25:28
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -426,6 +426,221 @@ namespace vSharpStudio.vm.ViewModels
 		private string _RelativeConfigPath = "";
 		partial void OnRelativeConfigPathChanging();
 		partial void OnRelativeConfigPathChanged();
+		#endregion Properties
+	}
+	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept
+	{
+		public partial class ConfigTreeValidator : ValidatorBase<ConfigTree, ConfigTreeValidator> { }
+		#region CTOR
+		public ConfigTree() : base(ConfigTreeValidator.Validator)
+		{
+			this.ConfigNode = new Config(this);
+			this.Children = new SortedObservableCollection<ITreeConfigNode>();
+			OnInit();
+		}
+		public ConfigTree(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(ConfigTree.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(ConfigTree))
+		    {
+		        this.Children.Sort();
+		    }
+		}
+		public static ConfigTree Clone(ITreeConfigNode parent, ConfigTree from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    ConfigTree vm = new ConfigTree();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.ConfigNode, isDeep);
+		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
+		    foreach(var t in from.Children)
+		        vm.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone(vm, (ConfigTree)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(ConfigTree to, ConfigTree from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.Description = from.Description;
+		    if (isDeep)
+		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
+		    if (isDeep)
+		    {
+		        foreach(var t in to.Children.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.Children)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.ConfigTree.Update((ConfigTree)t, (ConfigTree)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.Children.Remove(t);
+		        }
+		        foreach(var tt in from.Children)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.Children.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new ConfigTree();
+		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
+		                to.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override ConfigTree Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return ConfigTree.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(ConfigTree from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    ConfigTree.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_config_tree' to 'ConfigTree'
+		public static ConfigTree ConvertToVM(proto_config_tree m, ConfigTree vm = null)
+		{
+		    if (vm == null)
+		        vm = new ConfigTree();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.Description = m.Description;
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
+		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
+		    foreach(var t in m.Children)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'ConfigTree' to 'proto_config_tree'
+		public static proto_config_tree ConvertToProto(ConfigTree vm)
+		{
+		    proto_config_tree m = new proto_config_tree();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.Description = vm.Description;
+		    m.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.ConfigNode);
+		    foreach(var t in vm.Children)
+		        m.Children.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToProto((ConfigTree)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.ConfigNode.AcceptConfigNode(visitor);
+			foreach(var t in this.Children)
+				(t as ConfigTree).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		///////////////////////////////////////////////////
+		/// string name_ui = 4;
+		///////////////////////////////////////////////////
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		public Config ConfigNode
+		{ 
+			set
+			{
+				if (_ConfigNode != value)
+				{
+					OnConfigNodeChanging();
+		            _ConfigNode = value;
+					OnConfigNodeChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ConfigNode; }
+		}
+		private Config _ConfigNode;
+		partial void OnConfigNodeChanging();
+		partial void OnConfigNodeChanged();
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public ConfigTree this[int index] { get { return (ConfigTree)this.Children[index]; } }
+		public void Add(ConfigTree item) 
+		{ 
+		    this.Children.Add(item); 
+		    item.Parent = this;
+		}
+		public void AddRange(IEnumerable<ConfigTree> items) 
+		{ 
+		    this.Children.AddRange(items); 
+		    foreach(var t in items)
+		        t.Parent = this;
+		}
+		public int Count() 
+		{ 
+		    return this.Children.Count; 
+		}
+		public void Remove(ConfigTree item) 
+		{
+		    this.Children.Remove(item); 
+		    item.Parent = null;
+		}
+		partial void OnChildrenChanging();
+		partial void OnChildrenChanged();
 		#endregion Properties
 	}
 	
@@ -999,220 +1214,6 @@ namespace vSharpStudio.vm.ViewModels
 		private GroupListJournals _GroupJournals;
 		partial void OnGroupJournalsChanging();
 		partial void OnGroupJournalsChanged();
-		#endregion Properties
-	}
-	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept
-	{
-		public partial class ConfigTreeValidator : ValidatorBase<ConfigTree, ConfigTreeValidator> { }
-		#region CTOR
-		public ConfigTree() : base(ConfigTreeValidator.Validator)
-		{
-			this.ConfigNode = new Config(this);
-			this.Children = new SortedObservableCollection<ITreeConfigNode>();
-			OnInit();
-		}
-		public ConfigTree(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(ConfigTree.DefaultName, this, this.SubNodes);
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    if (type == typeof(ConfigTree))
-		    {
-		        this.Children.Sort();
-		    }
-		}
-		public static ConfigTree Clone(ITreeConfigNode parent, ConfigTree from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    ConfigTree vm = new ConfigTree();
-		    vm.Guid = from.Guid;
-		    vm.Name = from.Name;
-		    vm.SortingValue = from.SortingValue;
-		    vm.Description = from.Description;
-		    if (isDeep)
-		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.ConfigNode, isDeep);
-		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
-		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone(vm, (ConfigTree)t, isDeep));
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(ConfigTree to, ConfigTree from, bool isDeep = true)
-		{
-		    to.Guid = from.Guid;
-		    to.Name = from.Name;
-		    to.SortingValue = from.SortingValue;
-		    to.Description = from.Description;
-		    if (isDeep)
-		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
-		    if (isDeep)
-		    {
-		        foreach(var t in to.Children.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.Children)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    vSharpStudio.vm.ViewModels.ConfigTree.Update((ConfigTree)t, (ConfigTree)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.Children.Remove(t);
-		        }
-		        foreach(var tt in from.Children)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.Children.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new ConfigTree();
-		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
-		                to.Add(p);
-		            }
-		        }
-		    }
-		}
-		#region IEditable
-		public override ConfigTree Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return ConfigTree.Clone(null, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ConfigTree from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    ConfigTree.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_config_tree' to 'ConfigTree'
-		public static ConfigTree ConvertToVM(proto_config_tree m, ConfigTree vm = null)
-		{
-		    if (vm == null)
-		        vm = new ConfigTree();
-		    vm.Guid = m.Guid;
-		    vm.Name = m.Name;
-		    vm.SortingValue = m.SortingValue;
-		    vm.Description = m.Description;
-		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
-		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
-		    foreach(var t in m.Children)
-		    {
-		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
-		        tvm.Parent = vm;
-		        vm.Add(tvm);
-		    }
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'ConfigTree' to 'proto_config_tree'
-		public static proto_config_tree ConvertToProto(ConfigTree vm)
-		{
-		    proto_config_tree m = new proto_config_tree();
-		    m.Guid = vm.Guid;
-		    m.Name = vm.Name;
-		    m.SortingValue = vm.SortingValue;
-		    m.Description = vm.Description;
-		    m.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.ConfigNode);
-		    foreach(var t in vm.Children)
-		        m.Children.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToProto((ConfigTree)t));
-		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			foreach(var t in this.Children)
-				(t as ConfigTree).AcceptConfigNode(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		
-		///////////////////////////////////////////////////
-		/// string name_ui = 4;
-		///////////////////////////////////////////////////
-		public string Description
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging();
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging();
-		partial void OnDescriptionChanged();
-		public Config ConfigNode
-		{ 
-			set
-			{
-				if (_ConfigNode != value)
-				{
-					OnConfigNodeChanging();
-		            _ConfigNode = value;
-					OnConfigNodeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ConfigNode; }
-		}
-		private Config _ConfigNode;
-		partial void OnConfigNodeChanging();
-		partial void OnConfigNodeChanged();
-		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
-		public ConfigTree this[int index] { get { return (ConfigTree)this.Children[index]; } }
-		public void Add(ConfigTree item) 
-		{ 
-		    this.Children.Add(item); 
-		    item.Parent = this;
-		}
-		public void AddRange(IEnumerable<ConfigTree> items) 
-		{ 
-		    this.Children.AddRange(items); 
-		    foreach(var t in items)
-		        t.Parent = this;
-		}
-		public int Count() 
-		{ 
-		    return this.Children.Count; 
-		}
-		public void Remove(ConfigTree item) 
-		{
-		    this.Children.Remove(item); 
-		    item.Parent = null;
-		}
-		partial void OnChildrenChanging();
-		partial void OnChildrenChanged();
 		#endregion Properties
 	}
 	public partial class DataType : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>
@@ -4969,10 +4970,10 @@ namespace vSharpStudio.vm.ViewModels
 	    CancellationToken Token { get; }
 		void Visit(GroupConfigs p);
 		void VisitEnd(GroupConfigs p);
-		void Visit(Config p);
-		void VisitEnd(Config p);
 		void Visit(ConfigTree p);
 		void VisitEnd(ConfigTree p);
+		void Visit(Config p);
+		void VisitEnd(Config p);
 		void Visit(GroupListPropertiesTabs p);
 		void VisitEnd(GroupListPropertiesTabs p);
 		void Visit(GroupPropertiesTab p);
@@ -5019,8 +5020,8 @@ namespace vSharpStudio.vm.ViewModels
 	{
 		void Visit(id_db_generator p);
 		void Visit(proto_group_configs p);
-		void Visit(proto_config p);
 		void Visit(proto_config_tree p);
+		void Visit(proto_config p);
 		void Visit(proto_data_type p);
 		void Visit(proto_group_list_properties_tabs p);
 		void Visit(proto_group_properties_tab p);
@@ -5062,20 +5063,20 @@ namespace vSharpStudio.vm.ViewModels
 	    {
 	        OnVisitEnd(p);
 	    }
+		public void Visit(ConfigTree p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConfigTree p)
+	    {
+	        OnVisitEnd(p);
+	    }
 		public void Visit(Config p)
 	    {
 	        OnVisit(p);
 	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
 	    }
 		public void VisitEnd(Config p)
-	    {
-	        OnVisitEnd(p);
-	    }
-		public void Visit(ConfigTree p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(ConfigTree p)
 	    {
 	        OnVisitEnd(p);
 	    }

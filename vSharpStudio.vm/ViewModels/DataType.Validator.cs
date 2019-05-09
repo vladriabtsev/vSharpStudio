@@ -155,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
                         else
                             return true;
                     }
-                    foreach (var t in (n as Config).GroupDocuments.Children)
+                    foreach (var t in (n as Config).GroupDocuments.GroupListDocuments.Children)
                     {
                         if (t.Guid == y)
                             return true;

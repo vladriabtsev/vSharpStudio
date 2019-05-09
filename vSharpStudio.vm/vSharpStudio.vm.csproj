@@ -171,6 +171,7 @@
     <Compile Include="ViewModels\Journal.cs" />
     <Compile Include="ViewModels\Journal.Validator.cs" />
     <Compile Include="ViewModels\Property.cs" />
+    <Compile Include="ViewModels\GroupPropertiesTab.Validator .cs" />
     <Compile Include="ViewModels\Property.Validator.cs" />
     <Compile Include="ViewModels\Report.cs" />
     <Compile Include="ViewModels\TreeNode.ValidatorVisitor.cs" />
