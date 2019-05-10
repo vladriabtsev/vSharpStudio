@@ -2,14 +2,52 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.Migration
 {
+    public class ChangesConstants
+    {
+        public List<Constant> ListAdded { get; set; }
+        public List<Constant> ListDeleted { get; set; }
+        public List<Constant> ListRenamed { get; set; }
+        public List<Constant> ListChanged { get; set; }
+    }
+    public class ChangesEnumerations
+    {
+        public List<Enumeration> ListAdded { get; set; }
+        public List<Enumeration> ListDeleted { get; set; }
+        public List<Enumeration> ListRenamed { get; set; }
+        public List<Enumeration> ListChanged { get; set; }
+    }
+    public class ChangesEnumerationPairs
+    {
+        public List<EnumerationPair> ListAdded { get; set; }
+        public List<EnumerationPair> ListDeleted { get; set; }
+        public List<EnumerationPair> ListRenamed { get; set; }
+        public List<EnumerationPair> ListChanged { get; set; }
+    }
+    public class ChangesProperties
+    {
+        public List<Property> ListAdded { get; set; }
+        public List<Property> ListDeleted { get; set; }
+        public List<Property> ListRenamed { get; set; }
+        public List<Property> ListChanged { get; set; }
+    }
+    public class ChangesCatalogs
+    {
+        public List<Catalog> ListAdded { get; set; }
+        public List<Catalog> ListDeleted { get; set; }
+        public List<Catalog> ListRenamed { get; set; }
+        public List<Catalog> ListChanged { get; set; }
+    }
     partial class ConfigCompareVisitor : IVisitorConfigNode
     {
         CancellationToken IVisitorConfigNode.Token => throw new NotImplementedException();
+
+        DatabaseModel dbModel;
 
         void IVisitorConfigNode.Visit(GroupConfigs p)
         {

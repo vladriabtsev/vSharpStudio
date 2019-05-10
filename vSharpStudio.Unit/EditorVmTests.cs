@@ -294,7 +294,7 @@ namespace vSharpStudio.xUnit
         [TestMethod]
         public void ITreeConfigNode003_CanConfigTreeCommands()
         {
-            var cfg = new ViewModels.ConfigRoot();
+            var cfg = new Config();
 
             #region Constants
 
@@ -454,9 +454,9 @@ namespace vSharpStudio.xUnit
         #endregion ITreeConfigNode
 
         #region Compare Tree
-        private ViewModels.ConfigRoot createTree()
+        private Config createTree()
         {
-            var cfg = new ViewModels.ConfigRoot();
+            var cfg = new Config();
 
             cfg.GroupEnumerations.NodeAddNewSubNode();
             cfg.GroupEnumerations[0].DataTypeEnum = Proto.Config.proto_enumeration.Types.EnumEnumerationType.Integer;

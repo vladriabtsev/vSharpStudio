@@ -15,26 +15,26 @@ using vSharpStudio.vm.ViewModels;
 namespace vSharpStudio.ViewModels
 {
     //TODO report based on FlowDocument https://github.com/rodrigovedovato/FlowDocumentReporting
-    public partial class ConfigRoot : Config
+    public partial class ConfigRoot2 : Config
     {
         public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
         public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
         public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         public const string PROVIDER_NAME_NPGSQL = "Npgsql";
-        public static ILogger Logger = ApplicationLogging.CreateLogger<ConfigRoot>();
-        public ConfigRoot()
+        public static ILogger Logger = ApplicationLogging.CreateLogger<ConfigRoot2>();
+        public ConfigRoot2()
         {
             // https://msdn.microsoft.com/en-us/magazine/mt830355.aspx
             // https://msdn.microsoft.com/en-us/magazine/mt694089.aspx
             Logger.LogInformation("");
         }
-        public ConfigRoot(string pathToProjectWithConnectionString, string connectionStringName)
+        public ConfigRoot2(string pathToProjectWithConnectionString, string connectionStringName)
         {
             this.PathToProjectWithConnectionString = pathToProjectWithConnectionString;
             this.ConnectionStringName = connectionStringName;
             //InitMigration();
         }
-        public ConfigRoot(string configJson) : base(configJson)
+        public ConfigRoot2(string configJson) : base(configJson)
         {
             //InitMigration();
         }
@@ -44,7 +44,7 @@ namespace vSharpStudio.ViewModels
             // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/obtaining-a-dbproviderfactory ???
             switch (this.ProviderName)
             {
-                case ConfigRoot.PROVIDER_NAME_SQL:
+                case ConfigRoot2.PROVIDER_NAME_SQL:
                     _migration = new MsSqlServerMigration(this);
                     break;
 #if DEBUG

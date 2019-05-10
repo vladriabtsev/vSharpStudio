@@ -172,6 +172,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DbModels\MsSqlModelBuilderVisitor.cs" />
+    <Compile Include="Migration\DbMigration.cs" />
+    <Compile Include="Migration\IDbMigrator.cs" />
     <Compile Include="Migration\MsSqlServerSchemaReader.cs" />
     <Compile Include="Migration\SchemaReader.cs" />
     <Compile Include="DbModels\MsSqlServerAnnotationBuildVisitor.cs" />

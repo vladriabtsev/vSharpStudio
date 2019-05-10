@@ -56,6 +56,11 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     string version = 2;
+    // current migration version, increased by one on each deployment
+    int32 version_migration_current = 7;
+    // min version supported by current version for migration
+    int32 version_migration_support_from_min = 8;
+
     string name = 3;
     uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(2)]

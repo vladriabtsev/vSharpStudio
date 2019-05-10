@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditorVmTests.cs" />
+    <Compile Include="DbCompareTests.cs" />
     <Compile Include="VmTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

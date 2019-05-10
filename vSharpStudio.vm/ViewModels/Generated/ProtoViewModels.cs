@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/09/2019 00:25:28
+// Auto generated on UTC 05/10/2019 01:28:25
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -679,6 +679,8 @@ namespace vSharpStudio.vm.ViewModels
 		    Config vm = new Config();
 		    vm.Guid = from.Guid;
 		    vm.Version = from.Version;
+		    vm.VersionMigrationCurrent = from.VersionMigrationCurrent;
+		    vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
@@ -716,6 +718,8 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Version = from.Version;
+		    to.VersionMigrationCurrent = from.VersionMigrationCurrent;
+		    to.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
@@ -769,6 +773,8 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Config();
 		    vm.Guid = m.Guid;
 		    vm.Version = m.Version;
+		    vm.VersionMigrationCurrent = m.VersionMigrationCurrent;
+		    vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
@@ -800,6 +806,8 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_config m = new proto_config();
 		    m.Guid = vm.Guid;
 		    m.Version = vm.Version;
+		    m.VersionMigrationCurrent = vm.VersionMigrationCurrent;
+		    m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
@@ -857,6 +865,50 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
+		
+		///////////////////////////////////////////////////
+		/// current migration version, increased by one on each deployment
+		///////////////////////////////////////////////////
+		public int VersionMigrationCurrent
+		{ 
+			set
+			{
+				if (_VersionMigrationCurrent != value)
+				{
+					OnVersionMigrationCurrentChanging();
+					_VersionMigrationCurrent = value;
+					OnVersionMigrationCurrentChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _VersionMigrationCurrent; }
+		}
+		private int _VersionMigrationCurrent;
+		partial void OnVersionMigrationCurrentChanging();
+		partial void OnVersionMigrationCurrentChanged();
+		
+		///////////////////////////////////////////////////
+		/// min version supported by current version for migration
+		///////////////////////////////////////////////////
+		public int VersionMigrationSupportFromMin
+		{ 
+			set
+			{
+				if (_VersionMigrationSupportFromMin != value)
+				{
+					OnVersionMigrationSupportFromMinChanging();
+					_VersionMigrationSupportFromMin = value;
+					OnVersionMigrationSupportFromMinChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _VersionMigrationSupportFromMin; }
+		}
+		private int _VersionMigrationSupportFromMin;
+		partial void OnVersionMigrationSupportFromMinChanging();
+		partial void OnVersionMigrationSupportFromMinChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 

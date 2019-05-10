@@ -33,7 +33,7 @@ namespace vSharpStudio.Unit
             {
                 Name = "test1",
             };
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.IdDbGenerator.HiLoSchema = "schema1";
             vm.BeginEdit();
@@ -49,7 +49,7 @@ namespace vSharpStudio.Unit
             Catalog vm = new Catalog
             {
             };
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.IdDbGenerator.IsPrimaryKeyClustered = true;
             vm.BeginEdit();
@@ -61,7 +61,7 @@ namespace vSharpStudio.Unit
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
             Catalog vm = new Catalog();
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.Name = "test1";
             vm.BeginEdit();
@@ -77,7 +77,7 @@ namespace vSharpStudio.Unit
             {
                 Name = "test1"
             };
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.GroupProperties.Add(prop);
             vm.BeginEdit();
@@ -96,7 +96,7 @@ namespace vSharpStudio.Unit
         public void Editable021CanCancelCatalogPropertiy()
         {
             Catalog vm = new Catalog();
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.BeginEdit();
             vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
@@ -121,7 +121,7 @@ namespace vSharpStudio.Unit
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
             Config.ConfigValidator.Reset();
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             Assert.IsTrue(cfg.ValidationCollection != null);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
         }
@@ -130,7 +130,7 @@ namespace vSharpStudio.Unit
         {
             Config.ConfigValidator.Reset();
             Catalog.CatalogValidator.Reset();
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             var c = new Catalog() { Name = "test" };
 
             Assert.IsTrue(c.Parent == null);
@@ -189,7 +189,7 @@ namespace vSharpStudio.Unit
         public void Validation007_Propagation()
         {
             Config.ConfigValidator.Reset();
-            var cfg = new ConfigRoot();
+            var cfg = new Config();
             string mes1 = "test error message";
             string mes2 = "test error message2";
 

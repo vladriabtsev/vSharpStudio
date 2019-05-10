@@ -334,6 +334,26 @@
               "defaultValue": ""
             },
             {
+              "name": "version_migration_current",
+              "description": "current migration version, increased by one on each deployment",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version_migration_support_from_min",
+              "description": "min version supported by current version for migration",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "name",
               "description": "",
               "label": "",

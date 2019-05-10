@@ -42,8 +42,8 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDocuments, 10);
             this.GroupJournals.Parent = this;
             this.Children.Add(this.GroupJournals, 11);
-            this.GroupConfigs.Parent = this;
-            this.Children.Add(this.GroupConfigs, 6);
+            //this.GroupConfigs.Parent = this;
+            //this.Children.Add(this.GroupConfigs, 12);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }
@@ -64,14 +64,55 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
 
+        #region Validation
+
+        private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
+        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
+        {
+            // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+            // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+            // https://devblogs.microsoft.com/pfxteam/asynclazyt/
+            // https://github.com/StephenCleary/AsyncEx
+            // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+            await Task.Run(() =>
+            {
+                ValidateSubTreeFromNode(node);
+            }).ConfigureAwait(false); // not keeping context because doing nothing after await
+        }
+        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
+        {
+            if (node == null)
+                return;
+            if (cancellationSourceForValidatingFullConfig != null)
+            {
+                cancellationSourceForValidatingFullConfig.Cancel();
+                //                if (logger != null && logger.IsEnabled)
+                if (logger != null)
+                    logger.LogInformation("=== Cancellation request ===");
+            }
+            this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
+            var token = cancellationSourceForValidatingFullConfig.Token;
+
+            var visitor = new ValidationVisitor(token, logger);
+            visitor.UpdateSubstructCounts(node);
+            (node as IAccept).AcceptConfigNode(visitor);
+            if (!token.IsCancellationRequested)
+            {
+                // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
+                node.ValidationCollection.Clear();
+                node.ValidationCollection = visitor.Result;
+            }
+            else
+            {
+                logger.LogInformation("=== Cancelled ===");
+            }
+        }
+
+        #endregion Validation
+
 
         #region IMigration
 
-        //public virtual void InitMigration()
-        //{
-        //    // overriden in ConfigRoot class
-        //    throw new NotImplementedException();
-        //}
         bool IMigration.IsDatabaseServiceOn()
         {
             return _migration.IsDatabaseServiceOn();

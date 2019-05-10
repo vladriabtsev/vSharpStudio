@@ -4,18 +4,22 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using ViewModelBase;
+using vSharpStudio.std;
 using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.ViewModels
 {
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>
     {
+        public static ILogger Logger = ApplicationLogging.CreateLogger<MainPageVM>();
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
@@ -28,22 +32,23 @@ namespace vSharpStudio.ViewModels
             if (File.Exists(CFG_PATH))
             {
                 string json = File.ReadAllText(CFG_PATH);
-                this.Model = new ConfigRoot(json);
+                this.Model = new Config(json);
             }
             else
-                this.Model = new ConfigRoot();
+                this.Model = new Config();
         }
         private const string CFG_PATH = @".\current.vcfg";
         //internal void OnSelectedItemChanged(object oldValue, object newValue)
         //{
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
         //}
-
-        public ConfigRoot Model
+        public static Config ConfigInstance;
+        public Config Model
         {
             set
             {
                 _Model = value;
+                MainPageVM.ConfigInstance = value;
                 NotifyPropertyChanged();
                 ValidateProperty();
                 _Model.OnSelectedNodeChanged = () =>
@@ -58,13 +63,12 @@ namespace vSharpStudio.ViewModels
                     CommandSelectionRight.RaiseCanExecuteChanged();
                     CommandSelectionDown.RaiseCanExecuteChanged();
                     CommandSelectionUp.RaiseCanExecuteChanged();
-                    //_Model.ValidateSubTreeFromNode(_Model.SelectedNode);
                     _Model.ValidateSubTreeFromNode(_Model.SelectedNode);
                 };
             }
             get { return _Model; }
         }
-        private ConfigRoot _Model;
+        private Config _Model;
 
         #region Main
 
@@ -123,7 +127,7 @@ namespace vSharpStudio.ViewModels
             return;
 
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
-            var model = new ConfigRoot(json);
+            var model = new Config(json);
             KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Model as Config, model as Config);
             if (!result.AreEqual)
             {
