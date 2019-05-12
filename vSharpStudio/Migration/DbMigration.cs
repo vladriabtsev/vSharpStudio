@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 
@@ -34,7 +35,7 @@ namespace vSharpStudio.Migration
             // backup DB and Config, and code???
 
             // get DB model
-            DatabaseModel model = _migrator.GetDbModel();
+            //DatabaseModel model = _migrator.GetDbModel();
             // get last migration version from DB
             int last_version = _migrator.GetMigrationVersion(); ;
 

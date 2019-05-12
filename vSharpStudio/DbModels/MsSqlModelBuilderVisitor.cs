@@ -31,10 +31,10 @@ namespace vSharpStudio.DbModels
         {
             this._model = null;
             this._config = m;
-            if (this._config.IdDbGenerator.IsSequenceHiLo ?? false)
-                this._modelBuilder.ForSqlServerUseSequenceHiLo(this._config.IdDbGenerator.HiLoSequenceName, this._config.IdDbGenerator.HiLoSchema);
-            else
-                this._modelBuilder.ForSqlServerUseIdentityColumns();
+            //if (this._config.IdDbGenerator.IsSequenceHiLo ?? false)
+            //    this._modelBuilder.ForSqlServerUseSequenceHiLo(this._config.IdDbGenerator.HiLoSequenceName, this._config.IdDbGenerator.HiLoSchema);
+            //else
+            //    this._modelBuilder.ForSqlServerUseIdentityColumns();
         }
 
         void IVisitorConfigNode.Visit(Property m)

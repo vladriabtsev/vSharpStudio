@@ -12,6 +12,7 @@ using Google.Protobuf;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using ViewModelBase;
+using vSharpStudio.common;
 using vSharpStudio.std;
 using vSharpStudio.vm.ViewModels;
 
@@ -43,6 +44,17 @@ namespace vSharpStudio.ViewModels
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
         //}
         public static Config ConfigInstance;
+        [System.ComponentModel.Composition.ImportMany(typeof(IDbMigrator))]
+        List<IDbMigrator> ListDbMigrators
+        {
+            get { return _ListDbMigrators; }
+            set
+            {
+                _ListDbMigrators = value;
+                NotifyPropertyChanged();
+            }
+        }
+        List<IDbMigrator> _ListDbMigrators;
         public Config Model
         {
             set
