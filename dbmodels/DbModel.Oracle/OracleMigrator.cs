@@ -10,17 +10,17 @@ using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Scaffolding.Internal;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal;
+using Oracle.EntityFrameworkCore.Scaffolding.Internal;
+using Oracle.EntityFrameworkCore.Storage.Internal;
 using vSharpStudio.common;
 
 // https://docs.microsoft.com/en-us/ef/core/providers/
-namespace DbModel.Npgsql
+namespace DbModel.Oracle
 {
-    [System.ComponentModel.Composition.ExportMetadata("Name", "Npgsql")]
-    public class NpgsqlMigrator : IDbMigrator
+    [System.ComponentModel.Composition.ExportMetadata("Name", "Oracle")]
+    public class OracleMigrator : IDbMigrator
     {
-        static DiagnosticSource SqlITEMigratorDiagnostic = new DiagnosticListener("DbModel.Npgsql.NpgsqlMigrator");
+        static DiagnosticSource OracleMigratorDiagnostic = new DiagnosticListener("DbModel.Oracle.OracleMigrator");
         public ILogger Logger;
         ILoggerFactory IDbMigrator.LoggerFactory
         {
@@ -28,7 +28,7 @@ namespace DbModel.Npgsql
             set
             {
                 _LoggerFactory = value;
-                Logger = _LoggerFactory.CreateLogger<NpgsqlMigrator>();
+                Logger = _LoggerFactory.CreateLogger<OracleMigrator>();
             }
         }
         private ILoggerFactory _LoggerFactory;
@@ -36,12 +36,21 @@ namespace DbModel.Npgsql
         {
             if (_LoggerFactory == null)
                 throw new Exception();
-            var dbModelFactory = new NpgsqlDatabaseModelFactory(
+            var dbModelFactory = new OracleDatabaseModelFactory(
                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
                                     _LoggerFactory,
                                     new LoggingOptions(),
-                                    SqlITEMigratorDiagnostic
+                                    OracleMigratorDiagnostic
                 ));
+                //new OracleTypeMappingSource(
+                //    new TypeMappingSourceDependencies(
+                //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
+                //        Array.Empty<ITypeMappingSourcePlugin>()
+                //    ),
+                //    new RelationalTypeMappingSourceDependencies(
+                //        Array.Empty<IRelationalTypeMappingSourcePlugin>()
+                //    )
+                //));
             var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
             return dbModel;
         }

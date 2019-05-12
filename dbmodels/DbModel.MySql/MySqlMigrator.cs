@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 using vSharpStudio.common;
 
+// https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.MySql
 {
     // https://github.com/mysql/mysql-connector-net

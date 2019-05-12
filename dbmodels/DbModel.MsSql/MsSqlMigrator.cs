@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.common;
 
+// https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.MsSql
 {
     [System.ComponentModel.Composition.ExportMetadata("Name", "MS SQL")]
