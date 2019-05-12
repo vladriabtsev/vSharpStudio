@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbModel.DB2
+namespace DbModel.SqlServerCompact4
 {
     public class Class1
     {
