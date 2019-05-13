@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.SqlServer.Scaffolding.Internal;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
@@ -40,7 +41,7 @@ namespace DbModel.MsSql
             throw new NotImplementedException();
         }
 
-        void IDbMigrator.UpdateToModel(IModel model)
+        void IDbMigrator.UpdateToModel(IModel modelTarget)
         {
             if (_LoggerFactory == null)
                 throw new Exception();
@@ -61,6 +62,14 @@ namespace DbModel.MsSql
             //);
 
             var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
+            RelationalScaffoldingModelFactory relFactory=null;
+            //public RelationalScaffoldingModelFactory(
+            //    [NotNull] IOperationReporter reporter,
+            //    [NotNull] ICandidateNamingService candidateNamingService,
+            //    [NotNull] IPluralizer pluralizer,
+            //    [NotNull] ICSharpUtilities cSharpUtilities,
+            //    [NotNull] IScaffoldingTypeMapper scaffoldingTypeMapper)
+            var modelSource = relFactory.Create(dbModel, true);
         }
     }
 }
