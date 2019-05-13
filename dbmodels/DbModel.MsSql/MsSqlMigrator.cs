@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.SqlServer.Scaffolding.Internal;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
@@ -31,10 +32,19 @@ namespace DbModel.MsSql
                 Logger = _LoggerFactory.CreateLogger<MsSqlMigrator>();
             }
         }
+        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+        private string _ConnectionString;
         private ILoggerFactory _LoggerFactory;
-        DatabaseModel IDbMigrator.GetDbModel(string connectionString, List<string> tables, List<string> schemas)
+        int IDbMigrator.GetMigrationVersion()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
+                throw new Exception();
+            if (_ConnectionString == null)
                 throw new Exception();
             var dbModelFactory = new SqlServerDatabaseModelFactory(
                                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
@@ -50,12 +60,7 @@ namespace DbModel.MsSql
             //    new RelationalTypeMappingSourceDependencies(Array.Empty<IRelationalTypeMappingSourcePlugin>())
             //);
 
-            var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
-            return dbModel;
-        }
-        int IDbMigrator.GetMigrationVersion()
-        {
-            throw new NotImplementedException();
+            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
         }
     }
 }

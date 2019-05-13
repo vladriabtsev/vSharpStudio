@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -32,7 +33,13 @@ namespace DbModel.Npgsql
             }
         }
         private ILoggerFactory _LoggerFactory;
-        DatabaseModel IDbMigrator.GetDbModel(string connectionString, List<string> tables, List<string> schemas)
+        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+        private string _ConnectionString;
+        int IDbMigrator.GetMigrationVersion()
+        {
+            throw new NotImplementedException();
+        }
+        void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
                 throw new Exception();
@@ -42,13 +49,7 @@ namespace DbModel.Npgsql
                                     new LoggingOptions(),
                                     SqlITEMigratorDiagnostic
                 ));
-            var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
-            return dbModel;
-        }
-
-        int IDbMigrator.GetMigrationVersion()
-        {
-            throw new NotImplementedException();
+            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
         }
     }
 }

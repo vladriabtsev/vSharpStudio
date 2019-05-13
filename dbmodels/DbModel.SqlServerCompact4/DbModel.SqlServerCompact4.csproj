@@ -135,7 +135,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
+    <PostBuildEvent>copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
+copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
+
     if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
     if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"

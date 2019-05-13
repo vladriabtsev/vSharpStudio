@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
 using Microsoft.EntityFrameworkCore.Sqlite.Storage.Internal;
@@ -32,9 +33,17 @@ namespace DbModel.Sqlite
             }
         }
         private ILoggerFactory _LoggerFactory;
-        DatabaseModel IDbMigrator.GetDbModel(string connectionString, List<string> tables, List<string> schemas)
+        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+        private string _ConnectionString;
+        int IDbMigrator.GetMigrationVersion()
+        {
+            throw new NotImplementedException();
+        }
+        void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
+                throw new Exception();
+            if (_ConnectionString == null)
                 throw new Exception();
             var dbModelFactory = new SqliteDatabaseModelFactory(
                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
@@ -51,13 +60,7 @@ namespace DbModel.Sqlite
                         Array.Empty<IRelationalTypeMappingSourcePlugin>()
                     )
                 ));
-            var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
-            return dbModel;
-        }
-
-        int IDbMigrator.GetMigrationVersion()
-        {
-            throw new NotImplementedException();
+            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
         }
     }
 }

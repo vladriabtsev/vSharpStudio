@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EFCore.SqlCe.Scaffolding.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -31,9 +32,17 @@ namespace DbModel.SqlServerCompact4
             }
         }
         private ILoggerFactory _LoggerFactory;
-        DatabaseModel IDbMigrator.GetDbModel(string connectionString, List<string> tables, List<string> schemas)
+        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+        private string _ConnectionString;
+        int IDbMigrator.GetMigrationVersion()
+        {
+            throw new NotImplementedException();
+        }
+        void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
+                throw new Exception();
+            if (_ConnectionString == null)
                 throw new Exception();
             var dbModelFactory = new SqlCeDatabaseModelFactory(
                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
@@ -41,22 +50,16 @@ namespace DbModel.SqlServerCompact4
                                     new LoggingOptions(),
                                     SqlServerCompact4MigratorDiagnostic
                 ));
-                //new SqliteTypeMappingSource(
-                //    new TypeMappingSourceDependencies(
-                //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
-                //        Array.Empty<ITypeMappingSourcePlugin>()
-                //    ),
-                //    new RelationalTypeMappingSourceDependencies(
-                //        Array.Empty<IRelationalTypeMappingSourcePlugin>()
-                //    )
-                //));
-            var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
-            return dbModel;
-        }
-
-        int IDbMigrator.GetMigrationVersion()
-        {
-            throw new NotImplementedException();
+            //new SqliteTypeMappingSource(
+            //    new TypeMappingSourceDependencies(
+            //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
+            //        Array.Empty<ITypeMappingSourcePlugin>()
+            //    ),
+            //    new RelationalTypeMappingSourceDependencies(
+            //        Array.Empty<IRelationalTypeMappingSourcePlugin>()
+            //    )
+            //));
+            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -32,9 +33,17 @@ namespace DbModel.Oracle
             }
         }
         private ILoggerFactory _LoggerFactory;
-        DatabaseModel IDbMigrator.GetDbModel(string connectionString, List<string> tables, List<string> schemas)
+        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+        private string _ConnectionString;
+        int IDbMigrator.GetMigrationVersion()
+        {
+            throw new NotImplementedException();
+        }
+        void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
+                throw new Exception();
+            if (_ConnectionString == null)
                 throw new Exception();
             var dbModelFactory = new OracleDatabaseModelFactory(
                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
@@ -42,22 +51,16 @@ namespace DbModel.Oracle
                                     new LoggingOptions(),
                                     OracleMigratorDiagnostic
                 ));
-                //new OracleTypeMappingSource(
-                //    new TypeMappingSourceDependencies(
-                //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
-                //        Array.Empty<ITypeMappingSourcePlugin>()
-                //    ),
-                //    new RelationalTypeMappingSourceDependencies(
-                //        Array.Empty<IRelationalTypeMappingSourcePlugin>()
-                //    )
-                //));
-            var dbModel = dbModelFactory.Create(connectionString, tables, schemas);
-            return dbModel;
-        }
-
-        int IDbMigrator.GetMigrationVersion()
-        {
-            throw new NotImplementedException();
+            //new OracleTypeMappingSource(
+            //    new TypeMappingSourceDependencies(
+            //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
+            //        Array.Empty<ITypeMappingSourcePlugin>()
+            //    ),
+            //    new RelationalTypeMappingSourceDependencies(
+            //        Array.Empty<IRelationalTypeMappingSourcePlugin>()
+            //    )
+            //));
+            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
         }
     }
 }

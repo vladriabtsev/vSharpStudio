@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
@@ -49,6 +50,7 @@ namespace vSharpStudio.Migration
             }
 
             // check if fields data types can be changed, if not than stop !!!
+            //UpdateToModel(modelOnlyAdd);
 
             // update field types. 
             // Simple updates by SQL without data lost. 
