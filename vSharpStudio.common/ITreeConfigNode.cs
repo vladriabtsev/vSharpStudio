@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModelBase;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.common
 {
     public interface ITreeConfigNode : IParent, IValidatableWithSeverity, ISortingValue
     {

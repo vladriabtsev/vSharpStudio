@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ViewModelBase;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.common
 {
     public interface IParent
     {

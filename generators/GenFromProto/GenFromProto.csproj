@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EmbeddedResource Include="gen.bat" />
     <None Include="packages.config" />
     <None Include="proto.json" />
   </ItemGroup>
@@ -166,9 +167,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)*.* $(ProjectDir)bin\
-cd $(ProjectDir)bin\
-$(ProjectDir)bin\$(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>$(ProjectDir)gen.bat $(TargetPath) $(SolutionDir)
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>

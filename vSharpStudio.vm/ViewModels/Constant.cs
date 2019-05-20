@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
+using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -14,6 +15,16 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
+        }
+        public Constant(string name, EnumDataType type, string guidOfType) : this()
+        {
+            this.Name = name;
+            this.DataType = new DataType(type, guidOfType);
+        }
+        public Constant(string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
+        {
+            this.Name = name;
+            this.DataType = new DataType(type, length, accuracy);
         }
 
         #region IConfigObject

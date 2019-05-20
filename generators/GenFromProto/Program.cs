@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.Reflection;
 
 namespace GenFromProto
 {
@@ -12,53 +14,32 @@ namespace GenFromProto
     {
         static void Main(string[] args)
         {
-            //System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Directory.GetCurrentDirectory());
             try
             {
-                if (args.Count() != 2)
-                {
-                    if (args.Count() == 0)
-                    {
-                        args = new string[2];
-                        //System.Diagnostics.Trace.WriteLine("##### GetLatestAttr: " + Directory.GetCurrentDirectory());
-                        if (!Directory.GetCurrentDirectory().EndsWith("bin"))
-                            args[0] = @"..\..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
-                        else
-                            args[0] = @"..\..\..\vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs";
-                        args[1] = @"vSharpStudio.vm.ViewModels";
-                    }
-                    else
-                        throw new ArgumentException("Usage: GenFromProto outFile namespace");
-                }
-                //if (!File.Exists(args[0]))
-                //{
-                //    string s = "Couldn't find file '" + args[0] + "'";
-                //    Trace.WriteLine(s);
-                //    Trace.WriteLine("Full path: " + Path.GetFullPath(args[0]));
-                //    throw new ArgumentException(s);
-                //}
-                var ext = Path.GetExtension(args[0]);
-                if (ext.ToLower() != ".cs")
-                {
-                    string s = "Destination file extention is not 'cs'";
-                    Trace.WriteLine(s);
-                    throw new ArgumentException(s);
-                }
-                var dir = Path.GetDirectoryName(args[0]);
-                if (!Directory.Exists(dir))
-                {
-                    string s = "Couldn't find folder '" + dir + "'";
-                    Trace.WriteLine(s);
-                    Trace.WriteLine("Full path: " + Path.GetFullPath(dir));
-                    throw new ArgumentException(s);
-                }
-                NameSpace ns = new NameSpace(Proto.Config.VsharpstudioReflection.Descriptor);
+                int ii = 0;
+                if (args.Count() > 3)
+                    ii = 1;
+                //Debugger.Launch();
+                string protofilename = args[0 + ii]; // args[0] proto file name (without extention)
+                string destfile = args[1 + ii]; // args[1] destination file
+                string destNS = args[2 + ii]; // args[2] destination namespace
+
+                var ncs = protofilename.ToNameCs();
+                string reflectionClass = ncs + "Reflection";
+                Type reflection = typeof(Proto.Config.VsharpstudioReflection).Assembly.GetType(destNS + "." + reflectionClass);
+                var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
+                object value = descr.GetValue(null, null);
+                FileDescriptor typedValue = (FileDescriptor)value;
+
+                NameSpace ns = new NameSpace(typedValue, protofilename, destNS);
                 string res = ns.TransformText();
-                if (!File.Exists(args[0]))
+
+                string filedest = destfile;
+                if (!File.Exists(filedest))
                 {
-                    File.CreateText(args[0]);
+                    File.CreateText(filedest);
                 }
-                using (var fs = File.Open(args[0], FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
+                using (var fs = File.Open(filedest, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
                 {
                     var bytes = Encoding.UTF8.GetBytes(res);
                     fs.Write(bytes, 0, bytes.Count());
@@ -70,7 +51,7 @@ namespace GenFromProto
             }
             finally
             {
-                System.Diagnostics.Trace.WriteLine("##### GenFromProto current dir: " + Directory.GetCurrentDirectory());
+                //System.Diagnostics.Trace.WriteLine("##### GenFromProto current dir: " + Directory.GetCurrentDirectory());
             }
         }
     }

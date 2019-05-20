@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

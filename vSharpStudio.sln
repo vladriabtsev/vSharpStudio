@@ -12,6 +12,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
 		proto\attr.proto = proto\attr.proto
+		proto\conn_db2.proto = proto\conn_db2.proto
+		proto\conn_mssql.proto = proto\conn_mssql.proto
+		proto\conn_mysql.proto = proto\conn_mysql.proto
+		proto\conn_npgsql.proto = proto\conn_npgsql.proto
+		proto\conn_oracle.proto = proto\conn_oracle.proto
+		proto\conn_sqlite.proto = proto\conn_sqlite.proto
+		proto\connections.proto = proto\connections.proto
 		proto\proto_doc.proto = proto\proto_doc.proto
 		proto\vsharpstudio.proto = proto\vsharpstudio.proto
 	EndProjectSection
@@ -26,6 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C0E0B3FB-A
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenFromProto", "generators\GenFromProto\GenFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF} = {9E97361E-C840-45F9-9086-1C55AD1E70CF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{25EA00D1-C466-4C20-8B49-9B82606CFD3E}"
 EndProject
@@ -40,8 +50,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.wpf", "common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj", "{871161A9-567D-476E-9D3E-AA44400FB63A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.std", "common\wpf\vSharpStudio.std\vSharpStudio.std.csproj", "{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetLatestAttr", "generators\GetLatestAttr\GetLatestAttr.csproj", "{3D0D1F12-4300-4870-B588-504A792085C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
 EndProject
@@ -66,6 +77,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModel.Cosmos", "dbmodels\DbModel.Cosmos\DbModel.Cosmos.csproj", "{8A7869D9-5526-4D87-938A-8F4A2A22BD6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModel.SqlServerCompact4", "dbmodels\DbModel.SqlServerCompact4\DbModel.SqlServerCompact4.csproj", "{0FF956BE-06FA-4A65-91E9-A0825EBFD255}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenTask", "generators\GenTask\GenTask.csproj", "{9E97361E-C840-45F9-9086-1C55AD1E70CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,12 +129,6 @@ Global
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D0D1F12-4300-4870-B588-504A792085C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72E591D6-8F83-4D8C-8F67-9C325E623234}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
@@ -194,6 +201,12 @@ Global
 		{0FF956BE-06FA-4A65-91E9-A0825EBFD255}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{0FF956BE-06FA-4A65-91E9-A0825EBFD255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF956BE-06FA-4A65-91E9-A0825EBFD255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,7 +216,6 @@ Global
 		{E0EBA1FB-4B08-4546-BDD5-093C533713FE} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
 		{871161A9-567D-476E-9D3E-AA44400FB63A} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
-		{3D0D1F12-4300-4870-B588-504A792085C2} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
 		{72E591D6-8F83-4D8C-8F67-9C325E623234} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{FF9F1AA6-D3E5-4B68-A3CE-381C9F833501} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
 		{4645596B-E747-4330-BD15-6E1E9A706194} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
@@ -213,6 +225,7 @@ Global
 		{7C0B0D8F-7432-4299-9B24-B23C738E97EB} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
 		{8A7869D9-5526-4D87-938A-8F4A2A22BD6A} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
 		{0FF956BE-06FA-4A65-91E9-A0825EBFD255} = {C1E6982B-3545-4FAD-8DA0-47D43686A67A}
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

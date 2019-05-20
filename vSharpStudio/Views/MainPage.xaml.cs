@@ -31,6 +31,7 @@ namespace vSharpStudio.Views
             InitializeComponent();
 #if DEBUG
             _model = new MainPageVM();
+            _model.Compose();
             this.DataContext = _model;
 #else
             Task task = Task.Run(() =>

@@ -131,7 +131,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NpgsqlMigrator.cs" />
   </ItemGroup>
@@ -146,9 +145,16 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ResultFiles Include="$(TargetPath)" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\" />
+  </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
-copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
+    <PostBuildEvent>rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
+rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
 </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

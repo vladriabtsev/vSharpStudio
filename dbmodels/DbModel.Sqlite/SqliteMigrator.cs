@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.Sqlite
 {
-    [System.ComponentModel.Composition.ExportMetadata("Name", "Sqlite")]
+    //[Export(typeof(IDbMigrator))]
+    //[ExportMetadata("Name", "Sqlite")]
     public class SqliteMigrator : IDbMigrator
     {
         static DiagnosticSource SqlITEMigratorDiagnostic = new DiagnosticListener("DbModel.Sqlite.SqliteMigrator");
         public ILogger Logger;
+        string IDbMigrator.DbTypeName => "Sqlite";
         ILoggerFactory IDbMigrator.LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -35,6 +38,15 @@ namespace DbModel.Sqlite
         private ILoggerFactory _LoggerFactory;
         string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
         private string _ConnectionString;
+        bool IDbMigrator.CreateDb()
+        {
+            return false;
+        }
+        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        {
+            DatabaseModel m = null;
+            return m;
+        }
         int IDbMigrator.GetMigrationVersion()
         {
             throw new NotImplementedException();

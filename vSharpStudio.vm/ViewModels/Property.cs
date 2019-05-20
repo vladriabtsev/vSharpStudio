@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
-        public Property(string name, EnumDataType type, uint? length = null, uint? accuracy = null) : this()
+        public Property(string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
         {
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);

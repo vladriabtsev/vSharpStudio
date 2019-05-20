@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.Npgsql
 {
-    [System.ComponentModel.Composition.ExportMetadata("Name", "Npgsql")]
+    //[Export(typeof(IDbMigrator))]
+    //[ExportMetadata("Name", "NpgSQL")]
     public class NpgsqlMigrator : IDbMigrator
     {
         static DiagnosticSource SqlITEMigratorDiagnostic = new DiagnosticListener("DbModel.Npgsql.NpgsqlMigrator");
         public ILogger Logger;
+        string IDbMigrator.DbTypeName => "NpgSQL";
         ILoggerFactory IDbMigrator.LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -35,6 +38,11 @@ namespace DbModel.Npgsql
         private ILoggerFactory _LoggerFactory;
         string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
         private string _ConnectionString;
+        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        {
+            DatabaseModel m = null;
+            return m;
+        }
         int IDbMigrator.GetMigrationVersion()
         {
             throw new NotImplementedException();

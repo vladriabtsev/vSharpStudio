@@ -5,10 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
-//option java_multiple_files = true;
-//option java_package = "io.grpc.examples.routeguide";
-//option java_outer_classname = "RouteGuideProto";
-//option objc_class_prefix = "RTG";
+//import "connections.proto";
 
 package proto_config;
 option csharp_namespace = "Proto.Config";
@@ -103,6 +100,7 @@ message proto_config {
     // @attr [ExpandableObjectAttribute()]
     id_db_generator id_db_generator = 33;
 
+
     // CONFIG OBJECTS
 
     proto_group_configs group_configs = 100;
@@ -111,6 +109,8 @@ message proto_config {
     proto_group_list_catalogs group_catalogs = 103;
     proto_group_documents group_documents = 104;
     proto_group_list_journals group_journals = 105;
+
+    //proto_connections.proto_group_connections group_connections = 121; 
 }
 /** 
  * @exclude

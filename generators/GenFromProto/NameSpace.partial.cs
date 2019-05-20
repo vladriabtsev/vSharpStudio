@@ -154,18 +154,20 @@ namespace GenFromProto
     public partial class NameSpace
     {
         FileDescriptor root;
+        string nameSpace;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
 
-        public NameSpace(FileDescriptor root)
+        public NameSpace(FileDescriptor root, string proto_file_name, string destNS)
         {
             this.root = root;
+            this.nameSpace = destNS;
             //var kuku = root.FindTypeByName<MessageDescriptor>("CommentMessage");
             CollectMessages(root);
-            string path = "../../../doc/proto.json";
-            string dir = Directory.GetCurrentDirectory();
-            if (!dir.EndsWith("bin"))
-                path = "../../../../doc/proto.json";
+            string path = "../../../../doc/" + proto_file_name + ".json";
+            //string dir = Directory.GetCurrentDirectory();
+            //if (!dir.EndsWith("bin"))
+            //    path = "../../doc/" + proto_file_name + ".json";
             Proto.Doc.json_doc jsonDoc = new Proto.Doc.json_doc();
             if (File.Exists(path))
             {

@@ -140,9 +140,16 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ResultFiles Include="$(TargetPath)" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\" />
+  </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
-copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
+    <PostBuildEvent>rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
+rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
 
     if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"

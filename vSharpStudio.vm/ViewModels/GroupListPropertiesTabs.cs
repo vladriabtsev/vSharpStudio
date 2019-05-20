@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

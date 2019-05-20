@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.Oracle
 {
-    [System.ComponentModel.Composition.ExportMetadata("Name", "Oracle")]
+    //[Export(typeof(IDbMigrator))]
+    //[ExportMetadata("Name", "Oracle")]
     public class OracleMigrator : IDbMigrator
     {
         static DiagnosticSource OracleMigratorDiagnostic = new DiagnosticListener("DbModel.Oracle.OracleMigrator");
         public ILogger Logger;
+        string IDbMigrator.DbTypeName => "Oracle";
         ILoggerFactory IDbMigrator.LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -35,6 +38,11 @@ namespace DbModel.Oracle
         private ILoggerFactory _LoggerFactory;
         string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
         private string _ConnectionString;
+        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        {
+            DatabaseModel m = null;
+            return m;
+        }
         int IDbMigrator.GetMigrationVersion()
         {
             throw new NotImplementedException();

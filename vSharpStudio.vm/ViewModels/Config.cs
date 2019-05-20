@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
+using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.vm.ViewModels
@@ -44,6 +45,8 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupJournals, 11);
             //this.GroupConfigs.Parent = this;
             //this.Children.Add(this.GroupConfigs, 12);
+            //this.gr.GroupJournals.Parent = this;
+            //this.Children.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSchema))
                 this.DbSchema = "v";
         }

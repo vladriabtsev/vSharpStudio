@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,11 +21,12 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.ViewModels
 {
-    public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>
+    public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static ILogger Logger = ApplicationLogging.CreateLogger<MainPageVM>();
-        public MainPageVM() : base(MainPageVMValidator.Validator)
+        public MainPageVM(bool isLoadConfig = true, Action<MainPageVM, IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
         {
+            this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 //Catalog c = new Catalog();
@@ -30,13 +34,14 @@ namespace vSharpStudio.ViewModels
                 //this.Model.Catalogs.ListCatalogs.Add(c);
                 return;
             }
-            if (File.Exists(CFG_PATH))
+            if (isLoadConfig && File.Exists(CFG_PATH))
             {
                 string json = File.ReadAllText(CFG_PATH);
                 this.Model = new Config(json);
             }
             else
                 this.Model = new Config();
+            this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
         }
         private const string CFG_PATH = @".\current.vcfg";
         //internal void OnSelectedItemChanged(object oldValue, object newValue)
@@ -44,17 +49,59 @@ namespace vSharpStudio.ViewModels
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
         //}
         public static Config ConfigInstance;
-        [System.ComponentModel.Composition.ImportMany(typeof(IDbMigrator))]
-        List<IDbMigrator> ListDbMigrators
+
+        // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
+        // https://docs.microsoft.com/en-us/dotnet/framework/mef/
+        [ImportMany(typeof(IDbMigrator))]
+        IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>> _dbMigrators;
+        public List<IDbMigrator> ListDbs { get; private set; }
+        public IDbMigrator SelectedDbType
         {
-            get { return _ListDbMigrators; }
+            get { return _SelectedDbType; }
             set
             {
-                _ListDbMigrators = value;
+                _SelectedDbType = value;
                 NotifyPropertyChanged();
+                InitConnectionString();
             }
         }
-        List<IDbMigrator> _ListDbMigrators;
+        private IDbMigrator _SelectedDbType;
+
+        Action<MainPageVM, IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>>> onImportsSatisfied = null;
+        public void OnImportsSatisfied()
+        {
+            if (onImportsSatisfied != null)
+                onImportsSatisfied(this, _dbMigrators);
+        }
+        public void Compose()
+        {
+            //AssemblyCatalog catalog = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
+            DirectoryCatalog dirCatalog = new DirectoryCatalog("Plugins", "*.dll");
+            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
+            //TypeCatalog catalog = new TypeCatalog((typeof(IDbMigrator));
+            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
+            CompositionContainer container = new CompositionContainer(dirCatalog);
+            container.SatisfyImportsOnce(this);
+            //container.ComposeParts(this);
+
+            //dirCatalog = new DirectoryCatalog(@"C:\Temp");
+            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
+            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
+            //CompositionContainer container = new CompositionContainer(catalog);
+            //container.ComposeParts(this);
+        }
+
+
+        //List<IDbMigrator> ListDbMigrators
+        //{
+        //    get { return _ListDbMigrators; }
+        //    set
+        //    {
+        //        _ListDbMigrators = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
+        //List<IDbMigrator> _ListDbMigrators;
         public Config Model
         {
             set
@@ -81,6 +128,13 @@ namespace vSharpStudio.ViewModels
             get { return _Model; }
         }
         private Config _Model;
+
+        public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
+        {
+            Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
+            this.Model.AcceptConfigNode(visitor);
+            return visitor.Result;
+        }
 
         #region Main
 
@@ -288,5 +342,151 @@ namespace vSharpStudio.ViewModels
         }
         private vCommand _CommandFromErrorToSelection;
 
+        #region ConnectionString
+        //string GetConnectionString(ref string connectionStringName, out string providerName)
+        //{
+        //    providerName = null;
+
+        //    string result = "";
+        //    ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+        //    string configPath = this.PathToProjectWithConnectionString + @"\App.config";
+        //    if (File.Exists(configPath))
+        //    {
+        //        configFile.ExeConfigFilename = configPath;
+        //    }
+        //    else
+        //    {
+        //        configPath = this.PathToProjectWithConnectionString + @"\Web.config";
+        //        if (File.Exists(configPath))
+        //        {
+        //            configFile.ExeConfigFilename = configPath;
+        //        }
+        //    }
+        //    if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
+        //        throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
+
+
+        //    var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+        //    var connSection = config.ConnectionStrings;
+
+        //    //if the connectionString is empty - which is the defauls
+        //    //look for count-1 - this is the last connection string
+        //    //and takes into account AppServices and LocalSqlServer
+        //    if (string.IsNullOrEmpty(connectionStringName))
+        //    {
+        //        if (connSection.ConnectionStrings.Count > 1)
+        //        {
+        //            connectionStringName = connSection.ConnectionStrings[connSection.ConnectionStrings.Count - 1].Name;
+        //            result = connSection.ConnectionStrings[connSection.ConnectionStrings.Count - 1].ConnectionString;
+        //            providerName = connSection.ConnectionStrings[connSection.ConnectionStrings.Count - 1].ProviderName;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            result = connSection.ConnectionStrings[connectionStringName].ConnectionString;
+        //            providerName = connSection.ConnectionStrings[connectionStringName].ProviderName;
+        //        }
+        //        catch
+        //        {
+        //            result = "There is no connection string name called '" + connectionStringName + "'";
+        //        }
+        //    }
+
+        //    //	if (String.IsNullOrEmpty(providerName))
+        //    //		providerName="System.Data.SqlClient";
+
+        //    return result;
+        //}
+        string GetConnectionString(out string providerName)
+        {
+            providerName = null;
+
+            string result = "";
+            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            string configPath = this.PathToProjectWithConnectionString + @"\App.config";
+            if (File.Exists(configPath))
+            {
+                configFile.ExeConfigFilename = configPath;
+            }
+            else
+            {
+                configPath = this.PathToProjectWithConnectionString + @"\Web.config";
+                if (File.Exists(configPath))
+                {
+                    configFile.ExeConfigFilename = configPath;
+                }
+            }
+            if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
+                throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
+
+
+            var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+            var connSection = config.ConnectionStrings;
+
+            try
+            {
+                result = connSection.ConnectionStrings[this.SelectedDbType.DbTypeName+"Admin"].ConnectionString;
+                providerName = connSection.ConnectionStrings[this.SelectedDbType.DbTypeName + "Admin"].ProviderName;
+            }
+            catch
+            {
+                result = "There is no connection string name called '" + this.SelectedDbType.DbTypeName + "Admin" + "'";
+            }
+
+            //	if (String.IsNullOrEmpty(providerName))
+            //		providerName="System.Data.SqlClient";
+
+            return result;
+        }
+        public string PathToProjectWithConnectionString
+        {
+            set
+            {
+                if (_PathToProjectWithConnectionString != value)
+                {
+                    _PathToProjectWithConnectionString = value;
+                    NotifyPropertyChanged();
+                }
+            }
+            get { return _PathToProjectWithConnectionString; }
+        }
+        private string _PathToProjectWithConnectionString = "";
+        public string ConnectionString
+        {
+            get { return _ConnectionString; }
+            set
+            {
+                _ConnectionString = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private string _ConnectionString;
+        void InitConnectionString()
+        {
+                this.ConnectionString = GetConnectionString(out _providerName);
+                // https://www.connectionstrings.com/sqlconnection/
+                if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
+                {
+                    //have to replace it
+                    string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
+                    this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
+                }
+        }
+        public string ProviderName
+        {
+            get
+            {
+                InitConnectionString();
+                return _providerName;
+            }
+        }
+        string _providerName = "";
+        public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
+        public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
+        public const string PROVIDER_NAME_MYSQL = "MySql.Data";
+        public const string PROVIDER_NAME_NPGSQL = "Npgsql";
+        #endregion
     }
 }

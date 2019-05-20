@@ -5,15 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="gen_doc.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.7.0" />
-    <PackageReference Include="Grpc" Version="1.20.0" />
-    <PackageReference Include="Grpc.Tools" Version="1.20.0">
+    <PackageReference Include="Grpc" Version="1.20.1" />
+    <PackageReference Include="Grpc.Tools" Version="1.20.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="..\proto\conn_mssql.proto" GrpcServices="Client">
+      <Link>proto\conn_mssql.proto</Link>
+    </Protobuf>
     <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
       <Link>proto\proto_doc.proto</Link>
     </Protobuf>
@@ -23,12 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="gen_doc.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <!--https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.compiler.plugin-->
-    <Exec Command="$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=html,index.html $(SolutionDir)proto\vsharpstudio.proto  &#xD;&#xA;$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=json,proto.json $(SolutionDir)proto\vsharpstudio.proto  &#xD;&#xA;rem cd $(SolutionDir)generators\GenFromProto\bin\&#xD;&#xA;rem $(SolutionDir)generators\GenFromProto\bin\GenFromProto.exe&#xD;&#xA; rem docker run --rm -v $(SolutionDir)generators\GenFromProto:/out -v $(SolutionDir)proto:/protos pseudomuto/protoc-gen-doc --doc_opt=json,proto.json &#xD;&#xA;rem docker run --rm -v $(SolutionDir)doc:/out -v $(SolutionDir)proto:/protos pseudomuto/protoc-gen-doc" />
+    <Exec Command="$(ProjectDir)gen_doc.bat $(SolutionDir)&#xD;&#xA;" />
   </Target>
 
 </Project>

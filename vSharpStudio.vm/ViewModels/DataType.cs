@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows;
 using FluentValidation;
 using ViewModelBase;
+using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using static Proto.Config.proto_data_type.Types;
 
@@ -19,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
-        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null) : this()
+        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
         {
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
@@ -36,6 +37,7 @@ namespace vSharpStudio.vm.ViewModels
                     // TODO revisit default length and accuracy for Numerical
                     this.Length = length ?? 16;
                     this.Accuracy = accuracy ?? 2;
+                    this.IsPositive = isPositive ?? false;
                     break;
                 case EnumDataType.Enumeration:
                     break;

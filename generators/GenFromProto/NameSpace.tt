@@ -9,13 +9,14 @@ using System;
 using System.Linq;
 using ViewModelBase;
 using FluentValidation;
-using Proto.Config;
+using <#= this.nameSpace #>;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

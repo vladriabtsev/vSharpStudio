@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.8.4.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Protobuf.3.7.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.EntityFrameworkCore.2.2.4\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -98,8 +104,8 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlClient, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Data.SqlClient.4.6.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    <Reference Include="System.Data.SqlClient, Version=4.5.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Data.SqlClient.4.6.1\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -107,8 +113,8 @@
     <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -125,24 +131,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\vSharpStudio.proto\obj\Debug\netstandard2.0\ConnMssql.cs">
+      <Link>ConnMssql.cs</Link>
+    </Compile>
+    <Compile Include="MsSql.partial.cs" />
     <Compile Include="MsSqlMigrator.cs" />
+    <Compile Include="ParametersViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationVisitor.prtial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj">
+      <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
+      <Name>vSharpStudio.std</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
+      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
+      <Name>Xceed.Wpf.Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\vSharpStudio.common\vSharpStudio.common.csproj">
       <Project>{28a43eea-81c6-4fd0-829f-2b0d6bd0b8e9}</Project>
       <Name>vSharpStudio.common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--Generate from proto-->
+  <ItemGroup>
+    <ProtoFile Include="$(SolutionDir)proto\conn_mssql.proto" />
+  </ItemGroup>
+  <!--<UsingTask AssemblyFile="$(SolutionDir)generators\GenTask\bin\Debug\GenTask.dll" TaskName="GenTask" />-->
+  <!--<UsingTask AssemblyFile="$(SolutionDir)generators\GenDocTask\bin\Debug\GenDocTask.dll" TaskName="GenDocTask" />-->
+  <Target Name="BeforeBuild">
+    <!--<GenDocTask SolutionPath="$(SolutionDir)" ProtoFile="@(ProtoFile)" DestinationFile="@(ProtoFile->'$(ProjectDir)doc\proto.json')" />
+    <GenDocTask SolutionPath="$(SolutionDir)" ProtoFile="@(ProtoFile)" DestinationFile="@(ProtoFile->'$(ProjectDir)doc\index.html')" />-->
+    <!--<GenTask GenToolPath="$(SolutionDir)generators\GenFromProto\bin\Debug\GenFromProto.exe" ProtoFile="@(ProtoFile)" DestinationFile="@(ProtoFile->'$(ProjectDir)Generated\%(Filename)VM.cs')" NameSpace="Proto.Config.Connection" />-->
+  </Target>
+  <!--Generate from proto-->
+  <!--copy plugin-->
+  <ItemGroup>
+    <ResultFiles Include="$(TargetPath)" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\" />
+  </Target>
+  <!--copy plugin-->
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
-copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
+    <PostBuildEvent>rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
+      rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
 </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=html,index_conn_mssql.html $(SolutionDir)proto\conn_mssql.proto  
+$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=json,conn_mssql.json $(SolutionDir)proto\conn_mssql.proto  
+
+</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,13 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/ef/core/providers/
 namespace DbModel.DB2
 {
-    [System.ComponentModel.Composition.ExportMetadata("Name", "Db2")]
+    //[Export(typeof(IDbMigrator))]
+    //[ExportMetadata("Name", "Db2")]
     public class Db2Migrator : IDbMigrator
     {
         static DiagnosticSource Db2MigratorDiagnostic = new DiagnosticListener("DbModel.DB2.Db2Migrator");
         public ILogger Logger;
+        string IDbMigrator.DbTypeName => "Db2";
         ILoggerFactory IDbMigrator.LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -38,7 +41,11 @@ namespace DbModel.DB2
         {
             throw new NotImplementedException();
         }
-
+        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        {
+            DatabaseModel m = null;
+            return m;
+        }
         void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)

@@ -102,8 +102,8 @@
     <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -136,6 +136,7 @@
     <Compile Include="ViewModels\Config.ISqlServerModelAnnotation.cs" />
     <Compile Include="ViewModels\Config.validation.messages.cs" />
     <Compile Include="ViewModels\Config.Validator.cs" />
+    <Compile Include="ViewModels\ConfigExt.cs" />
     <Compile Include="ViewModels\ConfigObjectBase%27.cs" />
     <Compile Include="ViewModels\ConfigObjectProblem.cs" />
     <Compile Include="ViewModels\Constant.cs" />
@@ -166,8 +167,6 @@
     <Compile Include="ViewModels\IdDbGenerator.cs" />
     <Compile Include="ViewModels\IdDbGenerator.Validator.cs" />
     <Compile Include="ViewModels\INodes.cs" />
-    <Compile Include="ViewModels\IParent.cs" />
-    <Compile Include="ViewModels\ITreeConfigNode.cs" />
     <Compile Include="ViewModels\Journal.cs" />
     <Compile Include="ViewModels\Journal.Validator.cs" />
     <Compile Include="ViewModels\Property.cs" />
@@ -186,6 +185,10 @@
     <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
       <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
       <Name>Xceed.Wpf.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj">
+      <Project>{28a43eea-81c6-4fd0-829f-2b0d6bd0b8e9}</Project>
+      <Name>vSharpStudio.common</Name>
     </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj">
       <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>

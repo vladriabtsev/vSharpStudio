@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

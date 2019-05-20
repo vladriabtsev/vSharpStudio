@@ -1,0 +1,631 @@
+{
+  "files": [
+    {
+      "name": "conn_mssql.proto",
+      "description": "",
+      "package": "proto_conn_mssql",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "ApplicationIntent",
+          "longName": "proto_ms_sql.ApplicationIntent",
+          "fullName": "proto_conn_mssql.proto_ms_sql.ApplicationIntent",
+          "description": "Summary:\n    Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.\n    Possible values are ReadWrite and ReadOnly.",
+          "values": [
+            {
+              "name": "ReadWrite",
+              "number": "0",
+              "description": "Summary:\n    The application workload type when connecting to a server is read write."
+            },
+            {
+              "name": "ReadOnly",
+              "number": "1",
+              "description": "Summary:\n    The application workload type when connecting to a server is read only."
+            }
+          ]
+        },
+        {
+          "name": "SqlAuthenticationMethod",
+          "longName": "proto_ms_sql.SqlAuthenticationMethod",
+          "fullName": "proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod",
+          "description": "Summary:\n    Describes the different SQL authentication methods that can be used by a client\n    connecting to Azure SQL Database. For details, see Connecting to SQL Database\n    By Using Azure Active Directory Authentication.",
+          "values": [
+            {
+              "name": "NotSpecified",
+              "number": "0",
+              "description": "Summary:\n    The authentication method is not specified."
+            },
+            {
+              "name": "SqlPassword",
+              "number": "1",
+              "description": "Summary:\n    The authentication method is Sql Password."
+            },
+            {
+              "name": "ActiveDirectoryPassword",
+              "number": "2",
+              "description": "Summary:\n    The authentication method uses Active Directory Password. Use Active Directory\n    Password to connect to a SQL Database using an Azure AD principal name and password."
+            },
+            {
+              "name": "ActiveDirectoryIntegrated",
+              "number": "3",
+              "description": "Summary:\n    The authentication method uses Active Directory Integrated. Use Active Directory\n    Integrated to connect to a SQL Database using integrated Windows authentication."
+            }
+          ]
+        },
+        {
+          "name": "SqlConnectionColumnEncryptionSetting",
+          "longName": "proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+          "fullName": "proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+          "description": "Summary:\n    Specifies that Always Encrypted functionality is enabled in a connection. Note\n    that these settings cannot be used to bypass encryption and gain access to plaintext\n    data. For details, see Always Encrypted (Database Engine).",
+          "values": [
+            {
+              "name": "Disabled",
+              "number": "0",
+              "description": "Summary:\n    Specifies the connection does not use Always Encrypted. Should be used if no\n    queries sent over the connection access encrypted columns."
+            },
+            {
+              "name": "Enabled",
+              "number": "1",
+              "description": "Summary:\n    Enables Always Encrypted functionality for the connection. Query parameters that\n    correspond to encrypted columns will be transparently encrypted and query results\n    from encrypted columns will be transparently decrypted."
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "proto_ms_sql",
+          "longName": "proto_ms_sql",
+          "fullName": "proto_conn_mssql.proto_ms_sql",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cMsSql, MsSql.MsSqlValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_pool_size",
+              "description": "Summary:\n    Gets or sets the maximum number of connections allowed in the connection pool\n    for this specific connection string.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize\n    property, or 100 if none has been supplied.\n@attr [Category(\"Pooling\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "connect_retry_count",
+              "description": "Summary:\n    [Supported in the .NET Framework 4.5.1 and later versions] The number of reconnections\n    attempted after identifying that there was an idle connection failure. This must\n    be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting\n    on idle connection failures. An System.ArgumentException will be thrown if set\n    to a value outside of the allowed range.\n\nReturns:\n    The number of reconnections attempted after identifying that there was an idle\n    connection failure.\n@attr [Category(\"ConnectionResilency\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "connect_retry_interval",
+              "description": "Summary:\n    [Supported in the .NET Framework 4.5.1 and later versions] Amount of time (in\n    seconds) between each reconnection attempt after identifying that there was an\n    idle connection failure. This must be an integer between 1 and 60. The default\n    is 10 seconds. An System.ArgumentException will be thrown if set to a value outside\n    of the allowed range.\n\nReturns:\n    Amount of time (in seconds) between each reconnection attempt after identifying\n    that there was an idle connection failure.\n@attr [Category(\"ConnectionResilency\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "min_pool_size",
+              "description": "Summary:\n    Gets or sets the minimum number of connections allowed in the connection pool\n    for this specific connection string.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize\n    property, or 0 if none has been supplied.\n@attr [Category(\"Pooling\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "multiple_active_result_sets",
+              "description": "Summary:\n    When true, an application can maintain multiple active result sets (MARS). When\n    false, an application must process or cancel all result sets from one batch before\n    it can execute any other batch on that connection.For more information, see Multiple\n    Active Result Sets (MARS).\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MultipleActiveResultSets\n    property, or false if none has been supplied.\n@attr [CategoryAttribute(\"Advanced\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "multi_subnet_failover",
+              "description": "Summary:\n    If your application is connecting to an AlwaysOn availability group (AG) on different\n    subnets, setting MultiSubnetFailover=true provides faster detection of and connection\n    to the (currently) active server. For more information about SqlClient support\n    for Always On Availability Groups, see SqlClient Support for High Availability,\n    Disaster Recovery.\n\nReturns:\n    Returns System.Boolean indicating the current value of the property.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "transparent_network_i_p_resolution",
+              "description": "Summary:\n    When the value of this key is set to true, the application is required to retrieve\n    all IP addresses for a particular DNS entry and attempt to connect with the first\n    one in the list. If the connection is not established within 0.5 seconds, the\n    application will try to connect to all others in parallel. When the first answers,\n    the application will establish the connection with the respondent IP address.\n\nReturns:\n    A boolean value.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_library",
+              "description": "Summary:\n    Gets or sets a string that contains the name of the network library used to establish\n    a connection to the SQL Server.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.NetworkLibrary\n    property, or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Advanced\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "PacketSize",
+              "description": "Summary:\n    Gets or sets the size in bytes of the network packets used to communicate with\n    an instance of SQL Server.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize\n    property, or 8000 if none has been supplied.\n@attr [Category(\"Advanced\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "persist_security_info",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates if security-sensitive information,\n    such as the password, is not returned as part of the connection if the connection\n    is open or has ever been in an open state.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PersistSecurityInfo\n    property, or false if none has been supplied.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "load_balance_timeout",
+              "description": "Summary:\n    Gets or sets the minimum time, in seconds, for the connection to live in the\n    connection pool before being destroyed.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.LoadBalanceTimeout\n    property, or 0 if none has been supplied.\n@attr [Category(\"Pooling\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "pooling",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether the connection will be pooled\n    or explicitly opened every time that the connection is requested.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Pooling property,\n    or true if none has been supplied.\n@attr [Category(\"Pooling\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "replication",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether replication is supported\n    using the connection.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Replication\n    property, or false if none has been supplied.\n@attr [Category(\"Replication\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "transaction_binding",
+              "description": "Summary:\n    Gets or sets a string value that indicates how the connection maintains its association\n    with an enlisted System.Transactions transaction.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding\n    property, or String.Empty if none has been supplied.\n@attr [Category(\"Advanced\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "type_system_version",
+              "description": "Summary:\n    Gets or sets a string value that indicates the type system the application expects.\n\nReturns:\n    The following table shows the possible values for the System.Data.SqlClient.SqlConnectionStringBuilder.TypeSystemVersion\n    property:ValueDescription SQL Server 2005Uses the SQL Server 2005 type system.\n    No conversions are made for the current version of ADO.NET.SQL Server 2008Uses\n    the SQL Server 2008 type system.LatestUse the latest version than this client-server\n    pair can handle. This will automatically move forward as the client and server\n    components are upgraded.\n@attr [Category(\"Advanced\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "user_i_d",
+              "description": "Summary:\n    Gets or sets the user ID to be used when connecting to SQL Server.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.UserID property,\n    or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "user_instance",
+              "description": "Summary:\n    Gets or sets a value that indicates whether to redirect the connection from the\n    default SQL Server Express instance to a runtime-initiated instance running under\n    the account of the caller.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.UserInstance\n    property, or False if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "workstation_i_d",
+              "description": "Summary:\n    Gets or sets the name of the workstation connecting to SQL Server.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.WorkstationID\n    property, or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Context\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "password",
+              "description": "Summary:\n    Gets or sets the password for the SQL Server account.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Password property,\n    or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    The password was incorrectly set to null. See code sample below.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "authentication",
+              "description": "Summary:\n    Gets the authentication of the connection string.\n\nReturns:\n    The authentication of the connection string.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "SqlAuthenticationMethod",
+              "longType": "proto_ms_sql.SqlAuthenticationMethod",
+              "fullType": "proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "initial_catalog",
+              "description": "Summary:\n    Gets or sets the name of the database associated with the connection.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.InitialCatalog\n    property, or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ApplicationIntentValue",
+              "description": "Summary:\n    Declares the application workload type when connecting to a database in an SQL\n    Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.\n    For more information about SqlClient support for Always On Availability Groups,\n    see SqlClient Support for High Availability, Disaster Recovery.\n\nReturns:\n    Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).\n@attr [Category(\"Initialization\")]",
+              "label": "",
+              "type": "ApplicationIntent",
+              "longType": "proto_ms_sql.ApplicationIntent",
+              "fullType": "proto_conn_mssql.proto_ms_sql.ApplicationIntent",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ApplicationName",
+              "description": "Summary:\n    Gets or sets the name of the application associated with the connection string.\n\nReturns:\n    The name of the application, or \".NET SqlClient Data Provider\" if no name has\n    been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Context\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "AsynchronousProcessing",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether asynchronous processing is\n    allowed by the connection created by using this connection string.\n\nReturns:\n    This property is ignored beginning in .NET Framework 4.5. For more information\n    about SqlClient support for asynchronous programming, see Asynchronous Programming.The\n    value of the System.Data.SqlClient.SqlConnectionStringBuilder.AsynchronousProcessing\n    property, or false if no value has been supplied.\n@attr [Category(\"Initialization\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "IntegratedSecurity",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether User ID and Password are\n    specified in the connection (when false) or whether the current Windows account\n    credentials are used for authentication (when true).\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.IntegratedSecurity\n    property, or false if none has been supplied.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ContextConnection",
+              "description": "Summary:\n    Gets or sets a value that indicates whether a client/server or in-process connection\n    to SQL Server should be made.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection\n    property, or False if none has been supplied.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ConnectTimeout",
+              "description": "Summary:\n    Gets or sets the length of time (in seconds) to wait for a connection to the\n    server before terminating the attempt and generating an error.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout\n    property, or 15 seconds if no value has been supplied.\n@attr [Category(\"Initialization\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "attach_d_b_filename",
+              "description": "Summary:\n    Gets or sets a string that contains the name of the primary data file. This includes\n    the full path name of an attachable database.\n\nReturns:\n    The value of the AttachDBFilename property, or String.Empty if no value has been\n    supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Editor(\"System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\", \"System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")]\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source",
+              "description": "Summary:\n    Gets or sets the name or network address of the instance of SQL Server to connect\n    to.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.DataSource\n    property, or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "encrypt",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption\n    for all data sent between the client and server if the server has a certificate\n    installed.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property,\n    or false if none has been supplied.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ColumnEncryptionSetting",
+              "description": "Summary:\n    Gets and sets the column encryption settings for the connection string builder.\n\nReturns:\n    The column encryption settings for the connection string builder.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "SqlConnectionColumnEncryptionSetting",
+              "longType": "proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+              "fullType": "proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "trust_server_certificate",
+              "description": "Summary:\n    Gets or sets a value that indicates whether the channel will be encrypted while\n    bypassing walking the certificate chain to validate trust.\n\nReturns:\n    A Boolean. Recognized values are true, false, yes, and no.\n@attr [Category(\"Security\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "enlist",
+              "description": "Summary:\n    Gets or sets a Boolean value that indicates whether the SQL Server connection\n    pooler automatically enlists the connection in the creation thread's current\n    transaction context.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Enlist property,\n    or true if none has been supplied.\n@attr [Category(\"Pooling\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "failover_partner",
+              "description": "Summary:\n    Gets or sets the name or address of the partner server to connect to if the primary\n    server is down.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.FailoverPartner\n    property, or String.Empty if none has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Source\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "CurrentLanguage",
+              "description": "Summary:\n    Gets or sets the SQL Server Language record name.\n\nReturns:\n    The value of the System.Data.SqlClient.SqlConnectionStringBuilder.CurrentLanguage\n    property, or String.Empty if no value has been supplied.\n\nExceptions:\n  T:System.ArgumentNullException:\n    To set the value to null, use System.DBNull.Value.\n@attr [Category(\"Initialization\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

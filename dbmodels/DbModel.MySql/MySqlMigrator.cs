@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,12 @@ namespace DbModel.MySql
 {
     // https://github.com/mysql/mysql-connector-net
     // https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
-    [System.ComponentModel.Composition.ExportMetadata("Name", "My SQL")]
+    //[Export(typeof(IDbMigrator))]
+    //[ExportMetadata("Name", "MySQL")]
     public class MySqlMigrator : IDbMigrator
     {
         public ILogger Logger;
+        string IDbMigrator.DbTypeName => "MySQL";
         ILoggerFactory IDbMigrator.LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -34,7 +37,11 @@ namespace DbModel.MySql
         {
             throw new NotImplementedException();
         }
-
+        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        {
+            DatabaseModel m = null;
+            return m;
+        }
         void IDbMigrator.UpdateToModel(IModel model)
         {
             if (_LoggerFactory == null)
