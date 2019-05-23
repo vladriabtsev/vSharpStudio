@@ -38,7 +38,7 @@ namespace vPlugin.DbModel.MsSql
         public MsSqlMigrator()
         {
             this.PluginType = vPluginTypeEnum.DbDesign;
-            this.Name = "MsSQL";
+            this.Name = "MsSql";
             this.Description = "vSharpStudio plugin. Database design for MS SQL support";
             this.Author = "Vladimir Riabtsev";
             this.Version = "0.1";

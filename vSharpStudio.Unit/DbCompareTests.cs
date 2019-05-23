@@ -65,23 +65,23 @@ namespace vSharpStudio.Unit
                         var tt = t.Value as IDbMigrator;
                         if (tt.Name == connStringName)
                         {
-                            mvm.SelectedDbType = tt;
+                            mvm.SelectedDbDesignPlugin = tt;
                         }
                     }
                 }
-                if (mvm.SelectedDbType == null)
+                if (mvm.SelectedDbDesignPlugin == null)
                     throw new ArgumentException();
 
                 var cfg = mvm.Model;
                 configCreation(cfg);
 
-                mvm.SelectedDbType.ConnectionString = mvm.ConnectionString;
+                mvm.SelectedDbDesignPlugin.ConnectionString = mvm.ConnectionString;
 
                 var model = mvm.GetEfModel();
                 // Migrate DB
-                mvm.SelectedDbType.UpdateToModel(model);
+                mvm.SelectedDbDesignPlugin.UpdateToModel(model);
 
-                var m = mvm.SelectedDbType.GetDbModel(new List<string>(), new List<string>());
+                var m = mvm.SelectedDbDesignPlugin.GetDbModel(new List<string>(), new List<string>());
                 assert(m);
             });
         }

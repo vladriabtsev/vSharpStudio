@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using vSharpStudio.vm.ViewModels;
 using ViewModelBase;
 using System.Diagnostics;
@@ -23,38 +24,17 @@ namespace vSharpStudio.Unit
         {
             var vm = new MainPageVM();
             vm.Compose();
-            Assert.IsTrue(vm.ListDbTypes.Count > 0);
+            Assert.IsTrue(vm.ListDbDesignPlugins.Count > 0);
             Assert.IsTrue(vm.Model.GroupSettings.Db.ListDbConnections.Count == 0);
         }
         [TestMethod]
-        public void Plugin002CanLoad()
+        public void Plugin002CanGetSettingsVM()
         {
             var vm = new MainPageVM();
             vm.Compose();
-        }
-        [TestMethod]
-        public void Config002CanSaveAndRestore()
-        {
-            var cfg = new Config();
-            cfg.GroupConstants.NodeAddNewSubNode();
-            string json = cfg.ExportToJson();
-            Assert.IsTrue(json.Length > 0);
-            var cfg2 = new Config(json);
-            Assert.IsTrue(cfg2.GroupConstants.Children.Count == 1);
-            Assert.IsTrue(cfg2.GroupConstants.Children[0].Name == typeof(Constant).Name + 1);
-        }
-        [TestMethod]
-        public void Config003CanSaveAndRestoreSortingValue()
-        {
-            var cfg = new Config();
-            cfg.GroupConstants.NodeAddNewSubNode();
-            cfg.GroupConstants.NodeAddNewSubNode();
-            cfg.GroupConstants.Children[1].NodeMoveUp();
-            string json = cfg.ExportToJson();
-            Assert.IsTrue(json.Length > 0);
-            var cfg2 = new Config(json);
-            Assert.IsTrue(cfg2.GroupConstants.Children.Count == 2);
-            Assert.IsTrue(cfg2.GroupConstants.Children[0].Name == typeof(Constant).Name + 2);
+            vm.SelectedDbDesignPlugin = (from p in vm.ListDbDesignPlugins where p.Name == "MsSql" select p).First();
+            Assert.IsTrue(vm.SelectedDbDesignPluginSettings != null);
+            Assert.IsTrue(vm.SelectedDbDesignPluginSettings is ConnMsSql);
         }
         //#endregion Config
 

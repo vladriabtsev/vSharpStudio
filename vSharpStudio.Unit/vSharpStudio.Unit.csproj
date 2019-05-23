@@ -145,6 +145,10 @@
       <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
       <Name>vSharpStudio.std</Name>
     </ProjectReference>
+    <ProjectReference Include="..\dbmodels\DbModel.MsSql\vPlugin.DbModel.MsSql.csproj">
+      <Project>{ff9f1aa6-d3e5-4b68-a3ce-381c9f833501}</Project>
+      <Name>vPlugin.DbModel.MsSql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj">
       <Project>{28a43eea-81c6-4fd0-829f-2b0d6bd0b8e9}</Project>
       <Name>vSharpStudio.common</Name>

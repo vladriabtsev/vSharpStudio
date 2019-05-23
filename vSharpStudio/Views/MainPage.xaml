@@ -26,8 +26,8 @@
                     <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Alt-S - save config as">
                         <ContentControl Template="{StaticResource iconSaveAs}" />
                     </Button>
-                    <xctk:WatermarkComboBox Margin="3,0" ItemsSource="{Binding ListDbTypes}" SelectedItem="{Binding SelectedDbType}" 
-                                            DisplayMemberPath="DbTypeName" MinWidth="70">
+                    <xctk:WatermarkComboBox Margin="3,0" ItemsSource="{Binding ListDbDesignPlugins}" SelectedItem="{Binding SelectedDbDesignPlugin}" 
+                                            DisplayMemberPath="Name" MinWidth="70">
                         <xctk:WatermarkComboBox.WatermarkTemplate>
                             <DataTemplate>
                                 <TextBlock Text="Db Type" Foreground="Gray" />

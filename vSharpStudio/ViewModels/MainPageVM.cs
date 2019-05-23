@@ -50,6 +50,8 @@ namespace vSharpStudio.ViewModels
         //}
         public static Config ConfigInstance;
 
+        #region Plugins
+
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
@@ -62,33 +64,44 @@ namespace vSharpStudio.ViewModels
             List<IDbMigrator> lstDbs = new List<IDbMigrator>();
             foreach (var t in _plugins)
             {
-                if (t is IDbMigrator)
+                if (t.Value.PluginType == vPluginTypeEnum.DbDesign && t.Value is IDbMigrator)
                     lstDbs.Add((IDbMigrator)t.Value);
             }
-            this.ListDbTypes = lstDbs;
+            this.ListDbDesignPlugins = lstDbs;
         }
-        public List<IDbMigrator> ListDbTypes
+        public List<IDbMigrator> ListDbDesignPlugins
         {
-            get { return _ListDbTypes; }
+            get { return _ListDbDesignPlugins; }
             set
             {
-                _ListDbTypes = value;
+                _ListDbDesignPlugins = value;
                 NotifyPropertyChanged();
             }
         }
-        public List<IDbMigrator> _ListDbTypes;
-        public IDbMigrator SelectedDbType
+        public List<IDbMigrator> _ListDbDesignPlugins;
+        public IDbMigrator SelectedDbDesignPlugin
         {
-            get { return _SelectedDbType; }
+            get { return _SelectedDbDesignPlugin; }
             set
             {
-                _SelectedDbType = value;
+                _SelectedDbDesignPlugin = value;
+                NotifyPropertyChanged();
+                //this.Model.GroupSettings.
+                //var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
+            }
+        }
+        private IDbMigrator _SelectedDbDesignPlugin;
+        public INotifyPropertyChanged SelectedDbDesignPluginSettings
+        {
+            get { return _SelectedDbDesignPluginSettings; }
+            set
+            {
+                _SelectedDbDesignPluginSettings = value;
                 NotifyPropertyChanged();
                 //InitConnectionString();
             }
         }
-        private IDbMigrator _SelectedDbType;
-
+        private INotifyPropertyChanged _SelectedDbDesignPluginSettings;
         private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
         {
             var dirs = Directory.GetDirectories(dir);
@@ -123,6 +136,8 @@ namespace vSharpStudio.ViewModels
             //CompositionContainer container = new CompositionContainer(catalog);
             //container.ComposeParts(this);
         }
+
+        #endregion Plugins
 
         //List<IvPlugin> ListDbMigrators
         //{
@@ -459,12 +474,12 @@ namespace vSharpStudio.ViewModels
 
             try
             {
-                result = connSection.ConnectionStrings[this.SelectedDbType.Name + "Admin"].ConnectionString;
-                providerName = connSection.ConnectionStrings[this.SelectedDbType.Name + "Admin"].ProviderName;
+                result = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ConnectionString;
+                providerName = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ProviderName;
             }
             catch
             {
-                result = "There is no connection string name called '" + this.SelectedDbType.Name + "Admin" + "'";
+                result = "There is no connection string name called '" + this.SelectedDbDesignPlugin.Name + "Admin" + "'";
             }
 
             //	if (String.IsNullOrEmpty(providerName))

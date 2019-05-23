@@ -22,7 +22,7 @@ namespace vSharpStudio.common
         string Version { get; }
         string Url { get; }
         string Licence { get; }
-        // MVVM settings model
+        // MVVM settings model (if settings == null then empty model will be created)
         INotifyPropertyChanged GetSettingsMvvm(Any settings);
         // current protobuf settings (reflecting all latest changes in MVVM settings model)
         Any Settings { get; }
