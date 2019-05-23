@@ -71,8 +71,75 @@ namespace GenFromProto
             }
             return s;
         }
+        public static bool IsMessage(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Message:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        public static bool IsAny(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Message:
+                    switch (from.MessageType.FullName)
+                    {
+                        case "google.protobuf.Any":
+                            return true;
+                        default:
+                            return false;
+                    }
+                default:
+                    return false;
+            }
+        }
+        public static bool IsCsSimple(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Bool:
+                case Google.Protobuf.Reflection.FieldType.Bytes:
+                case Google.Protobuf.Reflection.FieldType.Double:
+                case Google.Protobuf.Reflection.FieldType.Enum:
+                case Google.Protobuf.Reflection.FieldType.Fixed32:
+                case Google.Protobuf.Reflection.FieldType.Fixed64:
+                case Google.Protobuf.Reflection.FieldType.Float:
+                case Google.Protobuf.Reflection.FieldType.Int32:
+                case Google.Protobuf.Reflection.FieldType.Int64:
+                case Google.Protobuf.Reflection.FieldType.SFixed32:
+                case Google.Protobuf.Reflection.FieldType.SFixed64:
+                case Google.Protobuf.Reflection.FieldType.SInt32:
+                case Google.Protobuf.Reflection.FieldType.SInt64:
+                case Google.Protobuf.Reflection.FieldType.String:
+                case Google.Protobuf.Reflection.FieldType.UInt32:
+                case Google.Protobuf.Reflection.FieldType.UInt64:
+                    return true;
+                case Google.Protobuf.Reflection.FieldType.Message:
+                    switch (from.MessageType.Name)
+                    {
+                        case "bool_nullable":
+                        case "double_nullable":
+                        case "uint_nullable":
+                        case "ulong_nullable":
+                        case "float_nullable":
+                        case "int_nullable":
+                        case "long_nullable":
+                        case "string_nullable":
+                            return true;
+                        default:
+                            return false;
+                    }
+                default:
+                    throw new NotSupportedException();
+            }
+        }
         public static string ToTypeCs(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
+            // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
             if (from.FieldType == Google.Protobuf.Reflection.FieldType.Message)
             {
                 switch (from.MessageType.Name)
@@ -93,6 +160,10 @@ namespace GenFromProto
                         return "long?";
                     case "string_nullable":
                         return "string";
+                    case "Any":
+                        return "Google.Protobuf.WellKnownTypes.Any";
+                    case "Duration":
+                        return "Google.Protobuf.WellKnownTypes.Duration";
                     default:
                         return from.MessageType.Name.ToNameCs();
                 }
@@ -101,10 +172,9 @@ namespace GenFromProto
             {
                 return from.EnumType.Name;
             }
-
-            return from.FieldType.ToTypeCs();
+            return FieldTypeSimpleToTypeCs(from.FieldType);
         }
-        public static string ToTypeCs(this Google.Protobuf.Reflection.FieldType from)
+        public static string FieldTypeSimpleToTypeCs(Google.Protobuf.Reflection.FieldType from)
         {
             switch (from)
             {

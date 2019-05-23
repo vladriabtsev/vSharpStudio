@@ -51,11 +51,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Class.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConfigVisitor.cs">
+      <DependentUpon>ConfigVisitor.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ValidationVisitor.cs">
       <DependentUpon>ValidationVisitor.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ConfigVisitor.partial.cs" />
     <Compile Include="ValidationVisitor.partial.cs" />
     <Compile Include="IVisitorProto.partial.cs" />
     <Compile Include="IVisitorProto.cs">
@@ -126,6 +132,10 @@
     <Content Include="Comparison.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Comparison.cs</LastGenOutput>
+    </Content>
+    <Content Include="ConfigVisitor.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ConfigVisitor.cs</LastGenOutput>
     </Content>
     <Content Include="ValidationVisitor.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

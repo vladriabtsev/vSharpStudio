@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Design;
@@ -27,16 +29,25 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/ef/core/providers/
 // https://medium.com/volosoft/asp-net-core-dependency-injection-58bc78c5d369
 // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2
-namespace DbModel.MsSql
+namespace vPlugin.DbModel.MsSql
 {
     //[Export(typeof(IDbMigrator))]
     //[ExportMetadata("Name", "MsSQL")]
-    public class MsSqlMigrator : IDbMigrator
+    public class MsSqlMigrator : DbMigratorBase, IDbMigrator
     {
-        static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("DbModel.MsSql.MsSqlMigrator");
+        public MsSqlMigrator()
+        {
+            this.PluginType = vPluginTypeEnum.DbDesign;
+            this.Name = "MsSQL";
+            this.Description = "vSharpStudio plugin. Database design for MS SQL support";
+            this.Author = "Vladimir Riabtsev";
+            this.Version = "0.1";
+            this.Url = "https://www.vladnet.ca";
+            this.Licence = "";
+        }
+        static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("vPlugin.MsSqlMigrator");
         public ILogger Logger;
-        string IDbMigrator.DbTypeName => "MsSQL";
-        ILoggerFactory IDbMigrator.LoggerFactory
+        public ILoggerFactory LoggerFactory
         {
             get { return _LoggerFactory; }
             set
@@ -46,15 +57,24 @@ namespace DbModel.MsSql
             }
         }
         private ILoggerFactory _LoggerFactory;
-        string IDbMigrator.ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+
+        public INotifyPropertyChanged GetSettingsMvvm(Any settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
+
+        public Any Settings => throw new NotImplementedException();
+
         private string _ConnectionString;
-        bool IDbMigrator.CreateDb()
+        public bool CreateDb()
         {
             return false;
         }
         public void SetServices(ServiceProvider serviceProvider)
         {
-            (this as IDbMigrator).LoggerFactory = serviceProvider.GetService<ILoggerFactory>();
+            this.LoggerFactory = serviceProvider.GetService<ILoggerFactory>();
             reporter = serviceProvider.GetService<IOperationReporter>();
             candidateNamingService = serviceProvider.GetService<ICandidateNamingService>();
             pluralizer = serviceProvider.GetService<IPluralizer>();
@@ -69,11 +89,11 @@ namespace DbModel.MsSql
         IScaffoldingTypeMapper scaffoldingTypeMapper;
         IChangeDetector changeDetector;
 
-        int IDbMigrator.GetMigrationVersion()
+        public int GetMigrationVersion()
         {
             throw new NotImplementedException();
         }
-        DatabaseModel IDbMigrator.GetDbModel(List<string> schemas, List<string> tables)
+        public DatabaseModel GetDbModel(List<string> schemas, List<string> tables)
         {
             var databaseModelFactory = new SqlServerDatabaseModelFactory(
                 new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
@@ -81,10 +101,10 @@ namespace DbModel.MsSql
                     new LoggingOptions(),
                     MsSqlMigratorDiagnostic));
 
-            var databaseModel = databaseModelFactory.Create((this as IDbMigrator).ConnectionString, tables, schemas);
+            var databaseModel = databaseModelFactory.Create(this.ConnectionString, tables, schemas);
             return databaseModel;
         }
-        void IDbMigrator.UpdateToModel(IModel modelTarget)
+        public void UpdateToModel(IModel modelTarget)
         {
             if (_LoggerFactory == null)
                 throw new Exception();
@@ -131,5 +151,6 @@ namespace DbModel.MsSql
             //    ctx.GetService<CommandBatchPreparerDependencies>());
 
         }
+
     }
 }

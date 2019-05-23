@@ -11,8 +11,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial class ValidationVisitor
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
-        CancellationToken IVisitorConfigNode.Token => _cancellationToken;
-        private CancellationToken _cancellationToken;
         private int _level = -1;
         private ILogger _logger = null;
         public ValidationVisitor(CancellationToken cancellationToken, ILogger logger = null)

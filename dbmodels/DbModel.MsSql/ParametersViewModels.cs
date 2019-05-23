@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/20/2019 22:08:19
+// Auto generated on UTC 05/23/2019 18:54:48
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -17,25 +17,20 @@ namespace vSharpStudio.vm.ViewModels
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-	public partial class MsSql : ViewModelValidatableWithSeverity<MsSql, MsSql.MsSqlValidator>
+	public partial class ConnMsSql : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>
 	{
-		public partial class MsSqlValidator : ValidatorBase<MsSql, MsSqlValidator> { }
+		public partial class ConnMsSqlValidator : ValidatorBase<ConnMsSql, ConnMsSqlValidator> { }
 		#region CTOR
-		public MsSql() : base(MsSqlValidator.Validator)
+		public ConnMsSql() : base(ConnMsSqlValidator.Validator)
 		{
 			OnInit();
 		}
-		public MsSql(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(MsSql.DefaultName, this, this.SubNodes);
-	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static MsSql Clone(ITreeConfigNode parent, MsSql from, bool isDeep = true)
+		public static ConnMsSql Clone(ITreeConfigNode parent, ConnMsSql from, bool isDeep = true)
 		{
-		    MsSql vm = new MsSql();
+		    ConnMsSql vm = new ConnMsSql();
 		    vm.Name = from.Name;
 		    vm.Guid = from.Guid;
 		    vm.MaxPoolSize = from.MaxPoolSize;
@@ -75,7 +70,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.CurrentLanguage = from.CurrentLanguage;
 		    return vm;
 		}
-		public static void Update(MsSql to, MsSql from, bool isDeep = true)
+		public static void Update(ConnMsSql to, ConnMsSql from, bool isDeep = true)
 		{
 		    to.Name = from.Name;
 		    to.Guid = from.Guid;
@@ -116,26 +111,26 @@ namespace vSharpStudio.vm.ViewModels
 		    to.CurrentLanguage = from.CurrentLanguage;
 		}
 		#region IEditable
-		public override MsSql Backup()
+		public override ConnMsSql Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return MsSql.Clone(null, this);
+			return ConnMsSql.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(MsSql from)
+		public override void Restore(ConnMsSql from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    MsSql.Update(this, from, isDeep);
+		    ConnMsSql.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_ms_sql' to 'MsSql'
-		public static MsSql ConvertToVM(proto_ms_sql m, MsSql vm = null)
+		// Conversion from 'proto_conn_ms_sql' to 'ConnMsSql'
+		public static ConnMsSql ConvertToVM(proto_conn_ms_sql m, ConnMsSql vm = null)
 		{
 		    if (vm == null)
-		        vm = new MsSql();
+		        vm = new ConnMsSql();
 		    vm.Name = m.Name;
 		    vm.Guid = m.Guid;
 		    vm.MaxPoolSize = m.MaxPoolSize;
@@ -175,10 +170,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.CurrentLanguage = m.CurrentLanguage;
 		    return vm;
 		}
-		// Conversion from 'MsSql' to 'proto_ms_sql'
-		public static proto_ms_sql ConvertToProto(MsSql vm)
+		// Conversion from 'ConnMsSql' to 'proto_conn_ms_sql'
+		public static proto_conn_ms_sql ConvertToProto(ConnMsSql vm)
 		{
-		    proto_ms_sql m = new proto_ms_sql();
+		    proto_conn_ms_sql m = new proto_conn_ms_sql();
 		    m.Name = vm.Name;
 		    m.Guid = vm.Guid;
 		    m.MaxPoolSize = vm.MaxPoolSize;
@@ -851,7 +846,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public proto_ms_sql.Types.SqlAuthenticationMethod Authentication
+		public proto_conn_ms_sql.Types.SqlAuthenticationMethod Authentication
 		{ 
 			set
 			{
@@ -866,7 +861,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Authentication; }
 		}
-		private proto_ms_sql.Types.SqlAuthenticationMethod _Authentication;
+		private proto_conn_ms_sql.Types.SqlAuthenticationMethod _Authentication;
 		partial void OnAuthenticationChanging();
 		partial void OnAuthenticationChanged();
 		
@@ -913,7 +908,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).
 		///////////////////////////////////////////////////
 		[Category("Initialization")]
-		public proto_ms_sql.Types.ApplicationIntent ApplicationIntentValue
+		public proto_conn_ms_sql.Types.ApplicationIntent ApplicationIntentValue
 		{ 
 			set
 			{
@@ -928,7 +923,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ApplicationIntentValue; }
 		}
-		private proto_ms_sql.Types.ApplicationIntent _ApplicationIntentValue;
+		private proto_conn_ms_sql.Types.ApplicationIntent _ApplicationIntentValue;
 		partial void OnApplicationIntentValueChanging();
 		partial void OnApplicationIntentValueChanged();
 		
@@ -1188,7 +1183,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The column encryption settings for the connection string builder.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public proto_ms_sql.Types.SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
+		public proto_conn_ms_sql.Types.SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
 		{ 
 			set
 			{
@@ -1203,7 +1198,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ColumnEncryptionSetting; }
 		}
-		private proto_ms_sql.Types.SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
+		private proto_conn_ms_sql.Types.SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
 		partial void OnColumnEncryptionSettingChanging();
 		partial void OnColumnEncryptionSettingChanged();
 		
@@ -1339,18 +1334,37 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
-		void Visit(proto_ms_sql p);
+		void Visit(proto_conn_ms_sql p);
 	}
 	
 	public partial class ValidationVisitor : IVisitorConfigNode
 	{
-		public void Visit(MsSql p)
+	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
+	    private CancellationToken _cancellationToken;
+		public void Visit(ConnMsSql p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(MsSql p)
+		public void VisitEnd(ConnMsSql p)
 	    {
 	        OnVisitEnd(p);
 	    }
+	}
+	
+	public partial class ConfigVisitor : IVisitorConfigNode
+	{
+	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
+	    private CancellationToken _cancellationToken;
+	
+		public void Visit(ConnMsSql p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConnMsSql p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(ConnMsSql p) {}
+	    protected virtual void OnVisitEnd(ConnMsSql p) {}
 	}
 }

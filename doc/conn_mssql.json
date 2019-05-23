@@ -11,8 +11,8 @@
       "enums": [
         {
           "name": "ApplicationIntent",
-          "longName": "proto_ms_sql.ApplicationIntent",
-          "fullName": "proto_conn_mssql.proto_ms_sql.ApplicationIntent",
+          "longName": "proto_conn_ms_sql.ApplicationIntent",
+          "fullName": "proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent",
           "description": "Summary:\n    Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.\n    Possible values are ReadWrite and ReadOnly.",
           "values": [
             {
@@ -29,8 +29,8 @@
         },
         {
           "name": "SqlAuthenticationMethod",
-          "longName": "proto_ms_sql.SqlAuthenticationMethod",
-          "fullName": "proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod",
+          "longName": "proto_conn_ms_sql.SqlAuthenticationMethod",
+          "fullName": "proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod",
           "description": "Summary:\n    Describes the different SQL authentication methods that can be used by a client\n    connecting to Azure SQL Database. For details, see Connecting to SQL Database\n    By Using Azure Active Directory Authentication.",
           "values": [
             {
@@ -57,8 +57,8 @@
         },
         {
           "name": "SqlConnectionColumnEncryptionSetting",
-          "longName": "proto_ms_sql.SqlConnectionColumnEncryptionSetting",
-          "fullName": "proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+          "longName": "proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting",
+          "fullName": "proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting",
           "description": "Summary:\n    Specifies that Always Encrypted functionality is enabled in a connection. Note\n    that these settings cannot be used to bypass encryption and gain access to plaintext\n    data. For details, see Always Encrypted (Database Engine).",
           "values": [
             {
@@ -77,10 +77,10 @@
       "extensions": [],
       "messages": [
         {
-          "name": "proto_ms_sql",
-          "longName": "proto_ms_sql",
-          "fullName": "proto_conn_mssql.proto_ms_sql",
-          "description": "@base : ViewModelValidatableWithSeverity\u003cMsSql, MsSql.MsSqlValidator\u003e",
+          "name": "proto_conn_ms_sql",
+          "longName": "proto_conn_ms_sql",
+          "fullName": "proto_conn_mssql.proto_conn_ms_sql",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cConnMsSql, ConnMsSql.ConnMsSqlValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -300,8 +300,8 @@
               "description": "Summary:\n    Gets the authentication of the connection string.\n\nReturns:\n    The authentication of the connection string.\n@attr [Category(\"Security\")]",
               "label": "",
               "type": "SqlAuthenticationMethod",
-              "longType": "proto_ms_sql.SqlAuthenticationMethod",
-              "fullType": "proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod",
+              "longType": "proto_conn_ms_sql.SqlAuthenticationMethod",
+              "fullType": "proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod",
               "ismap": false,
               "defaultValue": ""
             },
@@ -320,8 +320,8 @@
               "description": "Summary:\n    Declares the application workload type when connecting to a database in an SQL\n    Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.\n    For more information about SqlClient support for Always On Availability Groups,\n    see SqlClient Support for High Availability, Disaster Recovery.\n\nReturns:\n    Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).\n@attr [Category(\"Initialization\")]",
               "label": "",
               "type": "ApplicationIntent",
-              "longType": "proto_ms_sql.ApplicationIntent",
-              "fullType": "proto_conn_mssql.proto_ms_sql.ApplicationIntent",
+              "longType": "proto_conn_ms_sql.ApplicationIntent",
+              "fullType": "proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent",
               "ismap": false,
               "defaultValue": ""
             },
@@ -410,8 +410,8 @@
               "description": "Summary:\n    Gets and sets the column encryption settings for the connection string builder.\n\nReturns:\n    The column encryption settings for the connection string builder.\n@attr [Category(\"Security\")]",
               "label": "",
               "type": "SqlConnectionColumnEncryptionSetting",
-              "longType": "proto_ms_sql.SqlConnectionColumnEncryptionSetting",
-              "fullType": "proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting",
+              "longType": "proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting",
+              "fullType": "proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting",
               "ismap": false,
               "defaultValue": ""
             },

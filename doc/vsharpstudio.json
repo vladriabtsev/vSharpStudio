@@ -334,26 +334,6 @@
               "defaultValue": ""
             },
             {
-              "name": "version_migration_current",
-              "description": "current migration version, increased by one on each deployment",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "version_migration_support_from_min",
-              "description": "min version supported by current version for migration",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name",
               "description": "",
               "label": "",
@@ -510,6 +490,16 @@
               "type": "id_db_generator",
               "longType": "id_db_generator",
               "fullType": "proto_config.id_db_generator",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_settings",
+              "description": "CONFIG OBJECTS",
+              "label": "",
+              "type": "proto_group_settings",
+              "longType": "proto_group_settings",
+              "fullType": "proto_config.proto_group_settings",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1975,6 +1965,57 @@
           ]
         },
         {
+          "name": "proto_group_settings",
+          "longName": "proto_group_settings",
+          "fullName": "proto_config.proto_group_settings",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config",
+              "description": "@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_settings_config",
+              "longType": "proto_settings_config",
+              "fullType": "proto_config.proto_settings_config",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "db",
+              "description": "",
+              "label": "",
+              "type": "proto_settings_db",
+              "longType": "proto_settings_db",
+              "fullType": "proto_config.proto_settings_db",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
@@ -2172,6 +2213,108 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_settings_config",
+          "longName": "proto_settings_config",
+          "fullName": "proto_config.proto_settings_config",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version_migration_current",
+              "description": "current migration version, increased by one on each deployment",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version_migration_support_from_min",
+              "description": "min version supported by current version for migration",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_settings_db",
+          "longName": "proto_settings_db",
+          "fullName": "proto_config.proto_settings_db",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cSettingsDb, SettingsDb.SettingsDbValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "selected_db_connection",
+              "description": "",
+              "label": "",
+              "type": "Any",
+              "longType": "google.protobuf.Any",
+              "fullType": "google.protobuf.Any",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_db_connections",
+              "description": "",
+              "label": "repeated",
+              "type": "Any",
+              "longType": "google.protobuf.Any",
+              "fullType": "google.protobuf.Any",
               "ismap": false,
               "defaultValue": ""
             }

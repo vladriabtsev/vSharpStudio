@@ -24,7 +24,7 @@ namespace vSharpStudio.ViewModels
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static ILogger Logger = ApplicationLogging.CreateLogger<MainPageVM>();
-        public MainPageVM(bool isLoadConfig = true, Action<MainPageVM, IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
+        public MainPageVM(bool isLoadConfig = true, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
         {
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
@@ -52,9 +52,31 @@ namespace vSharpStudio.ViewModels
 
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
-        [ImportMany(typeof(IDbMigrator))]
-        IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>> _dbMigrators;
-        public List<IDbMigrator> ListDbs { get; private set; }
+        [ImportMany(typeof(IvPlugin))]
+        IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins;
+        Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
+        public void OnImportsSatisfied()
+        {
+            if (onImportsSatisfied != null)
+                onImportsSatisfied(this, _plugins);
+            List<IDbMigrator> lstDbs = new List<IDbMigrator>();
+            foreach (var t in _plugins)
+            {
+                if (t is IDbMigrator)
+                    lstDbs.Add((IDbMigrator)t.Value);
+            }
+            this.ListDbTypes = lstDbs;
+        }
+        public List<IDbMigrator> ListDbTypes
+        {
+            get { return _ListDbTypes; }
+            set
+            {
+                _ListDbTypes = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public List<IDbMigrator> _ListDbTypes;
         public IDbMigrator SelectedDbType
         {
             get { return _SelectedDbType; }
@@ -62,26 +84,37 @@ namespace vSharpStudio.ViewModels
             {
                 _SelectedDbType = value;
                 NotifyPropertyChanged();
-                InitConnectionString();
+                //InitConnectionString();
             }
         }
         private IDbMigrator _SelectedDbType;
 
-        Action<MainPageVM, IEnumerable<Lazy<IDbMigrator, IDictionary<string, object>>>> onImportsSatisfied = null;
-        public void OnImportsSatisfied()
+        private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
         {
-            if (onImportsSatisfied != null)
-                onImportsSatisfied(this, _dbMigrators);
+            var dirs = Directory.GetDirectories(dir);
+            foreach (var t in dirs)
+            {
+                DirectoryCatalog dirCatalog = new DirectoryCatalog(t, search);
+                if (dirCatalog.Parts.Count() > 0)
+                    catalog.Catalogs.Add(dirCatalog);
+                AgregateCatalogs(t, search, catalog);
+            }
         }
         public void Compose()
         {
-            //AssemblyCatalog catalog = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
-            DirectoryCatalog dirCatalog = new DirectoryCatalog("Plugins", "*.dll");
-            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
-            //TypeCatalog catalog = new TypeCatalog((typeof(IDbMigrator));
-            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
-            CompositionContainer container = new CompositionContainer(dirCatalog);
+            AggregateCatalog catalog = new AggregateCatalog();
+            AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
+            CompositionContainer container = new CompositionContainer(catalog);
             container.SatisfyImportsOnce(this);
+
+
+            //AssemblyCatalog catalog = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
+            //DirectoryCatalog dirCatalog = new DirectoryCatalog("Plugins", "*.dll");
+            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
+            //TypeCatalog catalog = new TypeCatalog((typeof(IvPlugin));
+            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
+            //CompositionContainer container = new CompositionContainer(dirCatalog);
+            //container.SatisfyImportsOnce(this);
             //container.ComposeParts(this);
 
             //dirCatalog = new DirectoryCatalog(@"C:\Temp");
@@ -91,8 +124,7 @@ namespace vSharpStudio.ViewModels
             //container.ComposeParts(this);
         }
 
-
-        //List<IDbMigrator> ListDbMigrators
+        //List<IvPlugin> ListDbMigrators
         //{
         //    get { return _ListDbMigrators; }
         //    set
@@ -101,7 +133,7 @@ namespace vSharpStudio.ViewModels
         //        NotifyPropertyChanged();
         //    }
         //}
-        //List<IDbMigrator> _ListDbMigrators;
+        //List<IvPlugin> _ListDbMigrators;
         public Config Model
         {
             set
@@ -427,12 +459,12 @@ namespace vSharpStudio.ViewModels
 
             try
             {
-                result = connSection.ConnectionStrings[this.SelectedDbType.DbTypeName+"Admin"].ConnectionString;
-                providerName = connSection.ConnectionStrings[this.SelectedDbType.DbTypeName + "Admin"].ProviderName;
+                result = connSection.ConnectionStrings[this.SelectedDbType.Name + "Admin"].ConnectionString;
+                providerName = connSection.ConnectionStrings[this.SelectedDbType.Name + "Admin"].ProviderName;
             }
             catch
             {
-                result = "There is no connection string name called '" + this.SelectedDbType.DbTypeName + "Admin" + "'";
+                result = "There is no connection string name called '" + this.SelectedDbType.Name + "Admin" + "'";
             }
 
             //	if (String.IsNullOrEmpty(providerName))
@@ -465,14 +497,14 @@ namespace vSharpStudio.ViewModels
         private string _ConnectionString;
         void InitConnectionString()
         {
-                this.ConnectionString = GetConnectionString(out _providerName);
-                // https://www.connectionstrings.com/sqlconnection/
-                if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
-                {
-                    //have to replace it
-                    string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
-                    this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
-                }
+            this.ConnectionString = GetConnectionString(out _providerName);
+            // https://www.connectionstrings.com/sqlconnection/
+            if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
+            {
+                //have to replace it
+                string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
+                this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
+            }
         }
         public string ProviderName
         {

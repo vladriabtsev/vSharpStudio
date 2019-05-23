@@ -4,11 +4,11 @@
 ## Table of Contents
 
 - [conn_mssql.proto](#conn_mssql.proto)
-    - [proto_ms_sql](#proto_conn_mssql.proto_ms_sql)
+    - [proto_conn_ms_sql](#proto_conn_mssql.proto_conn_ms_sql)
   
-    - [proto_ms_sql.ApplicationIntent](#proto_conn_mssql.proto_ms_sql.ApplicationIntent)
-    - [proto_ms_sql.SqlAuthenticationMethod](#proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod)
-    - [proto_ms_sql.SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting)
+    - [proto_conn_ms_sql.ApplicationIntent](#proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent)
+    - [proto_conn_ms_sql.SqlAuthenticationMethod](#proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod)
+    - [proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting)
   
   
   
@@ -24,10 +24,10 @@
 
 
 
-<a name="proto_conn_mssql.proto_ms_sql"></a>
+<a name="proto_conn_mssql.proto_conn_ms_sql"></a>
 
-### proto_ms_sql
-@base : ViewModelValidatableWithSeverity&lt;MsSql, MsSql.MsSqlValidator&gt;
+### proto_conn_ms_sql
+@base : ViewModelValidatableWithSeverity&lt;ConnMsSql, ConnMsSql.ConnMsSqlValidator&gt;
 
 
 | Field | Type | Label | Description |
@@ -101,7 +101,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Password property, or String.Empty if none has been supplied.
 
 Exceptions: T:System.ArgumentNullException: The password was incorrectly set to null. See code sample below. @attr [Category(&#34;Security&#34;)] |
-| authentication | [proto_ms_sql.SqlAuthenticationMethod](#proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod) |  | Summary: Gets the authentication of the connection string.
+| authentication | [proto_conn_ms_sql.SqlAuthenticationMethod](#proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod) |  | Summary: Gets the authentication of the connection string.
 
 Returns: The authentication of the connection string. @attr [Category(&#34;Security&#34;)] |
 | initial_catalog | [string](#string) |  | Summary: Gets or sets the name of the database associated with the connection.
@@ -109,7 +109,7 @@ Returns: The authentication of the connection string. @attr [Category(&#34;Secur
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.InitialCatalog property, or String.Empty if none has been supplied.
 
 Exceptions: T:System.ArgumentNullException: To set the value to null, use System.DBNull.Value. @attr [Category(&#34;Source&#34;)] |
-| ApplicationIntentValue | [proto_ms_sql.ApplicationIntent](#proto_conn_mssql.proto_ms_sql.ApplicationIntent) |  | Summary: Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.
+| ApplicationIntentValue | [proto_conn_ms_sql.ApplicationIntent](#proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent) |  | Summary: Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.
 
 Returns: Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent). @attr [Category(&#34;Initialization&#34;)] |
 | ApplicationName | [string](#string) |  | Summary: Gets or sets the name of the application associated with the connection string.
@@ -142,7 +142,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 | encrypt | [bool](#bool) |  | Summary: Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.
 
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property, or false if none has been supplied. @attr [Category(&#34;Security&#34;)] |
-| ColumnEncryptionSetting | [proto_ms_sql.SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting) |  | Summary: Gets and sets the column encryption settings for the connection string builder.
+| ColumnEncryptionSetting | [proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting) |  | Summary: Gets and sets the column encryption settings for the connection string builder.
 
 Returns: The column encryption settings for the connection string builder. @attr [Category(&#34;Security&#34;)] |
 | trust_server_certificate | [bool](#bool) |  | Summary: Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.
@@ -169,9 +169,9 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
  
 
 
-<a name="proto_conn_mssql.proto_ms_sql.ApplicationIntent"></a>
+<a name="proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent"></a>
 
-### proto_ms_sql.ApplicationIntent
+### proto_conn_ms_sql.ApplicationIntent
 Summary:
     Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.
     Possible values are ReadWrite and ReadOnly.
@@ -183,9 +183,9 @@ Summary:
 
 
 
-<a name="proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod"></a>
+<a name="proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod"></a>
 
-### proto_ms_sql.SqlAuthenticationMethod
+### proto_conn_ms_sql.SqlAuthenticationMethod
 Summary:
     Describes the different SQL authentication methods that can be used by a client
     connecting to Azure SQL Database. For details, see Connecting to SQL Database
@@ -200,9 +200,9 @@ Summary:
 
 
 
-<a name="proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting"></a>
+<a name="proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting"></a>
 
-### proto_ms_sql.SqlConnectionColumnEncryptionSetting
+### proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting
 Summary:
     Specifies that Always Encrypted functionality is enabled in a connection. Note
     that these settings cannot be used to bypass encryption and gain access to plaintext

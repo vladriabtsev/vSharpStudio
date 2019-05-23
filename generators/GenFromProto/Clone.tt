@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>
+<# if (this.Doc.IsDefaultBase) { #>
 public override void Sort(Type type)
 {
 <#    int isort=0;
@@ -26,25 +26,33 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
-<# if (field.Name == "children") { #>
+<# if (field.IsAny()) { #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+    foreach(var t in from.<#= field.Name.ToNameCs() #>)
+        vm.<#= field.Name.ToNameCs() #>.Add(t.Clone());
+<# } else if (field.Name == "children") { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
-<# } else { #>
-    vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
-<# } #>
     foreach(var t in from.<#= field.Name.ToNameCs() #>)
         vm.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
+<# } else { #>
+    vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
+    foreach(var t in from.<#= field.Name.ToNameCs() #>)
+        vm.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+<# } #>
+<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+<#      } else if (field.IsMessage() && field.IsAny()) { #>
+    vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone();
+<#      } else if (field.IsMessage()) { #>
     if (isDeep)
         vm.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } 
      } 
-if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
+if (this.Doc.IsDefaultBase) {
 #>
     if (isNewGuid)
         vm.SetNewGuid();
@@ -53,8 +61,10 @@ if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true)
 {
-<#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
-<#      if (field.IsRepeated) { #>
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsAny())
+            continue;
+        if (field.IsRepeated) { #>
     if (isDeep)
     {
         foreach(var t in to.<#= field.Name.ToNameCs() #>.ToList())
@@ -125,8 +135,10 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 {
     if (vm == null)
         vm = new <#= message.Name.ToNameCs() #>();
-<#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
-<#      if (field.IsRepeated) { #>
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsAny())
+            continue;
+        if (field.IsRepeated) { #>
 <# if (field.Name == "children") { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
 <# } else { #>
@@ -149,7 +161,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 <#      } 
      } 
      #>
-<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>
+<# if (this.Doc.IsDefaultBase) { #>
     vm.OnInitFromDto();
 <# } #>
     return vm;
@@ -158,8 +170,10 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
 public static <#= message.Name #> ConvertToProto(<#= message.Name.ToNameCs() #> vm)
 {
     <#= message.Name #> m = new <#= message.Name #>();
-<#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
-<#      if (field.IsRepeated) { #>
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsAny())
+            continue;
+        if (field.IsRepeated) { #>
     foreach(var t in vm.<#= field.Name.ToNameCs() #>)
         m.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToProto((<#= field.ToTypeCs() #>)t));
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>

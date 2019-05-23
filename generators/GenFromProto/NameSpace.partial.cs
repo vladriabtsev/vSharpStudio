@@ -78,6 +78,8 @@ namespace GenFromProto
                 Fields[t.Name] = new FieldDoc(t);
             }
             this.Comments = MessageDoc.GetComments(message.Name, message.Description, out this.Attributes, out this.BaseClass);
+            if (!string.IsNullOrEmpty(this.BaseClass))
+                this.IsDefaultBase = false;
         }
 
         public static string GetComments(string name, string description, out string attributes, out string baseClass)
@@ -132,6 +134,7 @@ namespace GenFromProto
         }
 
         public Proto.Doc.message message;
+        public bool IsDefaultBase = true;
         public string BaseClass = null;
         public string Attributes = null;
         public string Comments = null;

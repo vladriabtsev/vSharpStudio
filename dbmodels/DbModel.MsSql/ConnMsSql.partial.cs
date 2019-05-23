@@ -7,7 +7,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class MsSql : IParent
+    public partial class ConnMsSql : IParent
     {
         public ITreeConfigNode Parent { get; set; }
     }

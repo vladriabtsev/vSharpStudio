@@ -4,6 +4,7 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 
 //import "connections.proto";
 
@@ -13,8 +14,36 @@ option csharp_namespace = "Proto.Config";
 /** 
  * @exclude
  * use 'proto_' prefix for all messages !!!
- * ####################################### P A R A M E T E R S ##################################
+ * ####################################### S E T T I N G S ##################################
  */
+message proto_group_settings {
+    // @attr [BrowsableAttribute(false)]
+    string guid = 1;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]
+    proto_settings_config config = 6;
+    proto_settings_db db = 7;
+}
+message proto_settings_config {
+    string guid = 1;
+    string name = 2;
+    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // current migration version, increased by one on each deployment
+    int32 version_migration_current = 7;
+    // min version supported by current version for migration
+    int32 version_migration_support_from_min = 8;
+}
+// @base : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
+message proto_settings_db {
+    google.protobuf.Any selected_db_connection = 1;
+    repeated google.protobuf.Any list_db_connections = 2;
+}
+
+
+
 // Primary key generation strategy
 // @base : ViewModelValidatableWithSeverity<IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator>
 message id_db_generator {
@@ -53,11 +82,6 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     string version = 2;
-    // current migration version, increased by one on each deployment
-    int32 version_migration_current = 7;
-    // min version supported by current version for migration
-    int32 version_migration_support_from_min = 8;
-
     string name = 3;
     uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(2)]
@@ -102,7 +126,7 @@ message proto_config {
 
 
     // CONFIG OBJECTS
-
+    proto_group_settings group_settings = 99;
     proto_group_configs group_configs = 100;
     proto_group_list_constants group_constants = 101;
     proto_group_list_enumerations group_enumerations = 102;

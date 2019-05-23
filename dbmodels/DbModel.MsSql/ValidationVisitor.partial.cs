@@ -9,8 +9,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ValidationVisitor
     {
-        public CancellationToken Token { get; set; }
-        private void OnVisit(MsSql p) { }
-        private void OnVisitEnd(MsSql p) { }
+        private void OnVisit(ConnMsSql p) { }
+        private void OnVisitEnd(ConnMsSql p) { }
     }
 }

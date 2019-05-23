@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/20/2019 22:08:19
+// Auto generated on UTC 05/23/2019 18:54:48
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -17,6 +17,378 @@ namespace vSharpStudio.vm.ViewModels
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
+	public partial class GroupSettings : ConfigObjectBase<GroupSettings, GroupSettings.GroupSettingsValidator>, IComparable<GroupSettings>, IAccept
+	{
+		public partial class GroupSettingsValidator : ValidatorBase<GroupSettings, GroupSettingsValidator> { }
+		#region CTOR
+		public GroupSettings() : base(GroupSettingsValidator.Validator)
+		{
+			this.Config = new SettingsConfig(this);
+			this.Db = new SettingsDb();
+			OnInit();
+		}
+		public GroupSettings(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(GroupSettings.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static GroupSettings Clone(ITreeConfigNode parent, GroupSettings from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupSettings vm = new GroupSettings();
+		    vm.Guid = from.Guid;
+		    vm.SortingValue = from.SortingValue;
+		    if (isDeep)
+		        vm.Config = vSharpStudio.vm.ViewModels.SettingsConfig.Clone(vm, from.Config, isDeep);
+		    if (isDeep)
+		        vm.Db = vSharpStudio.vm.ViewModels.SettingsDb.Clone(vm, from.Db, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupSettings to, GroupSettings from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		        SettingsConfig.Update(to.Config, from.Config, isDeep);
+		    if (isDeep)
+		        SettingsDb.Update(to.Db, from.Db, isDeep);
+		}
+		#region IEditable
+		public override GroupSettings Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupSettings.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupSettings from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupSettings.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_settings' to 'GroupSettings'
+		public static GroupSettings ConvertToVM(proto_group_settings m, GroupSettings vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupSettings();
+		    vm.Guid = m.Guid;
+		    vm.SortingValue = m.SortingValue;
+		    vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToVM(m.Config, vm.Config);
+		    vSharpStudio.vm.ViewModels.SettingsDb.ConvertToVM(m.Db, vm.Db);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupSettings' to 'proto_group_settings'
+		public static proto_group_settings ConvertToProto(GroupSettings vm)
+		{
+		    proto_group_settings m = new proto_group_settings();
+		    m.Guid = vm.Guid;
+		    m.SortingValue = vm.SortingValue;
+		    m.Config = vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToProto(vm.Config);
+		    m.Db = vSharpStudio.vm.ViewModels.SettingsDb.ConvertToProto(vm.Db);
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.Config.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(4)]
+		[ExpandableObjectAttribute()]
+		public SettingsConfig Config
+		{ 
+			set
+			{
+				if (_Config != value)
+				{
+					OnConfigChanging();
+		            _Config = value;
+					OnConfigChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Config; }
+		}
+		private SettingsConfig _Config;
+		partial void OnConfigChanging();
+		partial void OnConfigChanged();
+		public SettingsDb Db
+		{ 
+			set
+			{
+				if (_Db != value)
+				{
+					OnDbChanging();
+		            _Db = value;
+					OnDbChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Db; }
+		}
+		private SettingsDb _Db;
+		partial void OnDbChanging();
+		partial void OnDbChanged();
+		#endregion Properties
+	}
+	public partial class SettingsConfig : ConfigObjectBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IAccept
+	{
+		public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { }
+		#region CTOR
+		public SettingsConfig() : base(SettingsConfigValidator.Validator)
+		{
+			OnInit();
+		}
+		public SettingsConfig(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(SettingsConfig.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static SettingsConfig Clone(ITreeConfigNode parent, SettingsConfig from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    SettingsConfig vm = new SettingsConfig();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    vm.VersionMigrationCurrent = from.VersionMigrationCurrent;
+		    vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(SettingsConfig to, SettingsConfig from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    to.VersionMigrationCurrent = from.VersionMigrationCurrent;
+		    to.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
+		}
+		#region IEditable
+		public override SettingsConfig Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return SettingsConfig.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(SettingsConfig from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    SettingsConfig.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_settings_config' to 'SettingsConfig'
+		public static SettingsConfig ConvertToVM(proto_settings_config m, SettingsConfig vm = null)
+		{
+		    if (vm == null)
+		        vm = new SettingsConfig();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vm.VersionMigrationCurrent = m.VersionMigrationCurrent;
+		    vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'SettingsConfig' to 'proto_settings_config'
+		public static proto_settings_config ConvertToProto(SettingsConfig vm)
+		{
+		    proto_settings_config m = new proto_settings_config();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    m.VersionMigrationCurrent = vm.VersionMigrationCurrent;
+		    m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin;
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		
+		///////////////////////////////////////////////////
+		/// current migration version, increased by one on each deployment
+		///////////////////////////////////////////////////
+		public int VersionMigrationCurrent
+		{ 
+			set
+			{
+				if (_VersionMigrationCurrent != value)
+				{
+					OnVersionMigrationCurrentChanging();
+					_VersionMigrationCurrent = value;
+					OnVersionMigrationCurrentChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _VersionMigrationCurrent; }
+		}
+		private int _VersionMigrationCurrent;
+		partial void OnVersionMigrationCurrentChanging();
+		partial void OnVersionMigrationCurrentChanged();
+		
+		///////////////////////////////////////////////////
+		/// min version supported by current version for migration
+		///////////////////////////////////////////////////
+		public int VersionMigrationSupportFromMin
+		{ 
+			set
+			{
+				if (_VersionMigrationSupportFromMin != value)
+				{
+					OnVersionMigrationSupportFromMinChanging();
+					_VersionMigrationSupportFromMin = value;
+					OnVersionMigrationSupportFromMinChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _VersionMigrationSupportFromMin; }
+		}
+		private int _VersionMigrationSupportFromMin;
+		partial void OnVersionMigrationSupportFromMinChanging();
+		partial void OnVersionMigrationSupportFromMinChanged();
+		#endregion Properties
+	}
+	public partial class SettingsDb : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
+	{
+		public partial class SettingsDbValidator : ValidatorBase<SettingsDb, SettingsDbValidator> { }
+		#region CTOR
+		public SettingsDb() : base(SettingsDbValidator.Validator)
+		{
+			this.SelectedDbConnection = new Google.Protobuf.WellKnownTypes.Any();
+			this.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+			OnInit();
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public static SettingsDb Clone(ITreeConfigNode parent, SettingsDb from, bool isDeep = true)
+		{
+		    SettingsDb vm = new SettingsDb();
+		    vm.SelectedDbConnection = from.SelectedDbConnection.Clone();
+		    vm.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+		    foreach(var t in from.ListDbConnections)
+		        vm.ListDbConnections.Add(t.Clone());
+		    return vm;
+		}
+		public static void Update(SettingsDb to, SettingsDb from, bool isDeep = true)
+		{
+		}
+		#region IEditable
+		public override SettingsDb Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return SettingsDb.Clone(null, this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(SettingsDb from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    SettingsDb.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_settings_db' to 'SettingsDb'
+		public static SettingsDb ConvertToVM(proto_settings_db m, SettingsDb vm = null)
+		{
+		    if (vm == null)
+		        vm = new SettingsDb();
+		    return vm;
+		}
+		// Conversion from 'SettingsDb' to 'proto_settings_db'
+		public static proto_settings_db ConvertToProto(SettingsDb vm)
+		{
+		    proto_settings_db m = new proto_settings_db();
+		    return m;
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public Google.Protobuf.WellKnownTypes.Any SelectedDbConnection
+		{ 
+			set
+			{
+				if (_SelectedDbConnection != value)
+				{
+					OnSelectedDbConnectionChanging();
+		            _SelectedDbConnection = value;
+					OnSelectedDbConnectionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SelectedDbConnection; }
+		}
+		private Google.Protobuf.WellKnownTypes.Any _SelectedDbConnection;
+		partial void OnSelectedDbConnectionChanging();
+		partial void OnSelectedDbConnectionChanged();
+		public ObservableCollection<Google.Protobuf.WellKnownTypes.Any> ListDbConnections { get; set; }
+		partial void OnListDbConnectionsChanging();
+		partial void OnListDbConnectionsChanged();
+		#endregion Properties
+	}
 	
 	///////////////////////////////////////////////////
 	/// Primary key generation strategy
@@ -29,11 +401,6 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public IdDbGenerator(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(IdDbGenerator.DefaultName, this, this.SubNodes);
-	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -654,7 +1021,8 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.IdDbGenerator = new IdDbGenerator(this);
+			this.IdDbGenerator = new IdDbGenerator();
+			this.GroupSettings = new GroupSettings(this);
 			this.GroupConfigs = new GroupConfigs(this);
 			this.GroupConstants = new GroupListConstants(this);
 			this.GroupEnumerations = new GroupListEnumerations(this);
@@ -680,8 +1048,6 @@ namespace vSharpStudio.vm.ViewModels
 		    Config vm = new Config();
 		    vm.Guid = from.Guid;
 		    vm.Version = from.Version;
-		    vm.VersionMigrationCurrent = from.VersionMigrationCurrent;
-		    vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
 		    vm.Name = from.Name;
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
@@ -699,6 +1065,8 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.PrimaryKeyName = from.PrimaryKeyName;
 		    if (isDeep)
 		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
+		    if (isDeep)
+		        vm.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.Clone(vm, from.GroupSettings, isDeep);
 		    if (isDeep)
 		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.Clone(vm, from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -719,8 +1087,6 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    to.Guid = from.Guid;
 		    to.Version = from.Version;
-		    to.VersionMigrationCurrent = from.VersionMigrationCurrent;
-		    to.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin;
 		    to.Name = from.Name;
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
@@ -738,6 +1104,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.PrimaryKeyName = from.PrimaryKeyName;
 		    if (isDeep)
 		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
+		    if (isDeep)
+		        GroupSettings.Update(to.GroupSettings, from.GroupSettings, isDeep);
 		    if (isDeep)
 		        GroupConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -774,8 +1142,6 @@ namespace vSharpStudio.vm.ViewModels
 		        vm = new Config();
 		    vm.Guid = m.Guid;
 		    vm.Version = m.Version;
-		    vm.VersionMigrationCurrent = m.VersionMigrationCurrent;
-		    vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin;
 		    vm.Name = m.Name;
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
@@ -792,6 +1158,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
 		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.GroupSettings.ConvertToVM(m.GroupSettings, vm.GroupSettings);
 		    vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
 		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
 		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
@@ -807,8 +1174,6 @@ namespace vSharpStudio.vm.ViewModels
 		    proto_config m = new proto_config();
 		    m.Guid = vm.Guid;
 		    m.Version = vm.Version;
-		    m.VersionMigrationCurrent = vm.VersionMigrationCurrent;
-		    m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin;
 		    m.Name = vm.Name;
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
@@ -825,6 +1190,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.DbSchema = vm.DbSchema;
 		    m.PrimaryKeyName = vm.PrimaryKeyName;
 		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
+		    m.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.ConvertToProto(vm.GroupSettings);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToProto(vm.GroupConfigs);
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
@@ -866,50 +1232,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Version = "";
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
-		
-		///////////////////////////////////////////////////
-		/// current migration version, increased by one on each deployment
-		///////////////////////////////////////////////////
-		public int VersionMigrationCurrent
-		{ 
-			set
-			{
-				if (_VersionMigrationCurrent != value)
-				{
-					OnVersionMigrationCurrentChanging();
-					_VersionMigrationCurrent = value;
-					OnVersionMigrationCurrentChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _VersionMigrationCurrent; }
-		}
-		private int _VersionMigrationCurrent;
-		partial void OnVersionMigrationCurrentChanging();
-		partial void OnVersionMigrationCurrentChanged();
-		
-		///////////////////////////////////////////////////
-		/// min version supported by current version for migration
-		///////////////////////////////////////////////////
-		public int VersionMigrationSupportFromMin
-		{ 
-			set
-			{
-				if (_VersionMigrationSupportFromMin != value)
-				{
-					OnVersionMigrationSupportFromMinChanging();
-					_VersionMigrationSupportFromMin = value;
-					OnVersionMigrationSupportFromMinChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _VersionMigrationSupportFromMin; }
-		}
-		private int _VersionMigrationSupportFromMin;
-		partial void OnVersionMigrationSupportFromMinChanging();
-		partial void OnVersionMigrationSupportFromMinChanged();
 		[PropertyOrderAttribute(3)]
 		public string Description
 		{ 
@@ -1159,6 +1481,28 @@ namespace vSharpStudio.vm.ViewModels
 		private IdDbGenerator _IdDbGenerator;
 		partial void OnIdDbGeneratorChanging();
 		partial void OnIdDbGeneratorChanged();
+		
+		///////////////////////////////////////////////////
+		/// CONFIG OBJECTS
+		///////////////////////////////////////////////////
+		public GroupSettings GroupSettings
+		{ 
+			set
+			{
+				if (_GroupSettings != value)
+				{
+					OnGroupSettingsChanging();
+		            _GroupSettings = value;
+					OnGroupSettingsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupSettings; }
+		}
+		private GroupSettings _GroupSettings;
+		partial void OnGroupSettingsChanging();
+		partial void OnGroupSettingsChanged();
 		public GroupConfigs GroupConfigs
 		{ 
 			set
@@ -1277,11 +1621,6 @@ namespace vSharpStudio.vm.ViewModels
 		{
 			OnInit();
 		}
-		public DataType(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(DataType.DefaultName, this, this.SubNodes);
-	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
@@ -1995,7 +2334,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Property() : base(PropertyValidator.Validator)
 		{
-			this.DataType = new DataType(this);
+			this.DataType = new DataType();
 			OnInit();
 		}
 		public Property(ITreeConfigNode parent) : this()
@@ -2328,7 +2667,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Constant() : base(ConstantValidator.Validator)
 		{
-			this.DataType = new DataType(this);
+			this.DataType = new DataType();
 			OnInit();
 		}
 		public Constant(ITreeConfigNode parent) : this()
@@ -3009,7 +3348,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
 		{
-			this.IdDbGenerator = new IdDbGenerator(this);
+			this.IdDbGenerator = new IdDbGenerator();
 			this.GroupProperties = new GroupListProperties(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
@@ -3584,7 +3923,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
-			this.IdDbGenerator = new IdDbGenerator(this);
+			this.IdDbGenerator = new IdDbGenerator();
 			OnInit();
 		}
 		public Document(ITreeConfigNode parent) : this()
@@ -5021,6 +5360,10 @@ namespace vSharpStudio.vm.ViewModels
 	public interface IVisitorConfigNode
 	{
 	    CancellationToken Token { get; }
+		void Visit(GroupSettings p);
+		void VisitEnd(GroupSettings p);
+		void Visit(SettingsConfig p);
+		void VisitEnd(SettingsConfig p);
 		void Visit(GroupConfigs p);
 		void VisitEnd(GroupConfigs p);
 		void Visit(ConfigTree p);
@@ -5071,6 +5414,9 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
+		void Visit(proto_group_settings p);
+		void Visit(proto_settings_config p);
+		void Visit(proto_settings_db p);
 		void Visit(id_db_generator p);
 		void Visit(proto_group_configs p);
 		void Visit(proto_config_tree p);
@@ -5100,6 +5446,33 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public partial class ValidationVisitor : IVisitorConfigNode
 	{
+	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
+	    private CancellationToken _cancellationToken;
+		public void Visit(GroupSettings p)
+	    {
+	        OnVisit(p);
+	        ValidateSubAndCollectErrors(p, p.Db);
+	    }
+		public void VisitEnd(GroupSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(SettingsConfig p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(SettingsConfig p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(SettingsDb p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(SettingsDb p)
+	    {
+	        OnVisitEnd(p);
+	    }
 		public void Visit(IdDbGenerator p)
 	    {
 	        OnVisit(p);
@@ -5305,5 +5678,292 @@ namespace vSharpStudio.vm.ViewModels
 	    {
 	        OnVisitEnd(p);
 	    }
+	}
+	
+	public partial class ConfigVisitor : IVisitorConfigNode
+	{
+	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
+	    private CancellationToken _cancellationToken;
+	
+		public void Visit(GroupSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupSettings p) {}
+	    protected virtual void OnVisitEnd(GroupSettings p) {}
+		public void Visit(SettingsConfig p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(SettingsConfig p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(SettingsConfig p) {}
+	    protected virtual void OnVisitEnd(SettingsConfig p) {}
+		public void Visit(SettingsDb p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(SettingsDb p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(SettingsDb p) {}
+	    protected virtual void OnVisitEnd(SettingsDb p) {}
+		public void Visit(IdDbGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(IdDbGenerator p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(IdDbGenerator p) {}
+	    protected virtual void OnVisitEnd(IdDbGenerator p) {}
+		public void Visit(GroupConfigs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupConfigs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupConfigs p) {}
+	    protected virtual void OnVisitEnd(GroupConfigs p) {}
+		public void Visit(ConfigTree p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConfigTree p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(ConfigTree p) {}
+	    protected virtual void OnVisitEnd(ConfigTree p) {}
+		public void Visit(Config p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Config p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Config p) {}
+	    protected virtual void OnVisitEnd(Config p) {}
+		public void Visit(DataType p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(DataType p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(DataType p) {}
+	    protected virtual void OnVisitEnd(DataType p) {}
+		public void Visit(GroupListPropertiesTabs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListPropertiesTabs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListPropertiesTabs p) {}
+	    protected virtual void OnVisitEnd(GroupListPropertiesTabs p) {}
+		public void Visit(GroupPropertiesTab p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupPropertiesTab p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupPropertiesTab p) {}
+	    protected virtual void OnVisitEnd(GroupPropertiesTab p) {}
+		public void Visit(GroupListProperties p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListProperties p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListProperties p) {}
+	    protected virtual void OnVisitEnd(GroupListProperties p) {}
+		public void Visit(Property p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Property p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Property p) {}
+	    protected virtual void OnVisitEnd(Property p) {}
+		public void Visit(GroupListConstants p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListConstants p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListConstants p) {}
+	    protected virtual void OnVisitEnd(GroupListConstants p) {}
+		public void Visit(Constant p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Constant p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Constant p) {}
+	    protected virtual void OnVisitEnd(Constant p) {}
+		public void Visit(GroupListEnumerations p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListEnumerations p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListEnumerations p) {}
+	    protected virtual void OnVisitEnd(GroupListEnumerations p) {}
+		public void Visit(Enumeration p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Enumeration p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Enumeration p) {}
+	    protected virtual void OnVisitEnd(Enumeration p) {}
+		public void Visit(EnumerationPair p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(EnumerationPair p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(EnumerationPair p) {}
+	    protected virtual void OnVisitEnd(EnumerationPair p) {}
+		public void Visit(Catalog p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Catalog p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Catalog p) {}
+	    protected virtual void OnVisitEnd(Catalog p) {}
+		public void Visit(GroupListCatalogs p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListCatalogs p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListCatalogs p) {}
+	    protected virtual void OnVisitEnd(GroupListCatalogs p) {}
+		public void Visit(GroupDocuments p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupDocuments p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupDocuments p) {}
+	    protected virtual void OnVisitEnd(GroupDocuments p) {}
+		public void Visit(Document p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Document p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Document p) {}
+	    protected virtual void OnVisitEnd(Document p) {}
+		public void Visit(GroupListDocuments p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListDocuments p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListDocuments p) {}
+	    protected virtual void OnVisitEnd(GroupListDocuments p) {}
+		public void Visit(GroupListJournals p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListJournals p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListJournals p) {}
+	    protected virtual void OnVisitEnd(GroupListJournals p) {}
+		public void Visit(Journal p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Journal p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Journal p) {}
+	    protected virtual void OnVisitEnd(Journal p) {}
+		public void Visit(GroupListForms p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListForms p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListForms p) {}
+	    protected virtual void OnVisitEnd(GroupListForms p) {}
+		public void Visit(Form p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Form p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Form p) {}
+	    protected virtual void OnVisitEnd(Form p) {}
+		public void Visit(GroupListReports p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListReports p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListReports p) {}
+	    protected virtual void OnVisitEnd(GroupListReports p) {}
+		public void Visit(Report p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Report p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Report p) {}
+	    protected virtual void OnVisitEnd(Report p) {}
 	}
 }

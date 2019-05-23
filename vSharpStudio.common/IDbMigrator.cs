@@ -12,11 +12,12 @@ namespace vSharpStudio.common
 {
     // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
     // https://docs.microsoft.com/en-us/dotnet/framework/mef/
-    [InheritedExport(typeof(IDbMigrator))] // metadata was not exported
-    public interface IDbMigrator
+    /// <summary>
+    /// Interface for DbDesign type of plugins
+    /// </summary>
+    public interface IDbMigrator : IvPlugin
     {
         ILoggerFactory LoggerFactory { set; get; }
-        string DbTypeName { get; }
         string ConnectionString { set; get; }
         bool CreateDb();
         int GetMigrationVersion();

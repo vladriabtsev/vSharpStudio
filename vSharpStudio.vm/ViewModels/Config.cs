@@ -33,6 +33,11 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
+            this.GroupSettings.Parent = this;
+            this.Children.Add(this.GroupSettings, 0);
+
+            this.GroupConfigs.Parent = this;
+            this.Children.Add(this.GroupConfigs, 6);
             this.GroupConstants.Parent = this;
             this.Children.Add(this.GroupConstants, 7);
             this.GroupEnumerations.Parent = this;

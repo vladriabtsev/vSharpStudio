@@ -8,8 +8,8 @@
     <ProjectGuid>{FF9F1AA6-D3E5-4B68-A3CE-381C9F833501}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DbModel.MsSql</RootNamespace>
-    <AssemblyName>DbModel.MsSql</AssemblyName>
+    <RootNamespace>vPlugin.DbModel.MsSql</RootNamespace>
+    <AssemblyName>vPlugin.DbModel.MsSql</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -134,7 +134,8 @@
     <Compile Include="..\..\vSharpStudio.proto\obj\Debug\netstandard2.0\ConnMssql.cs">
       <Link>ConnMssql.cs</Link>
     </Compile>
-    <Compile Include="MsSql.partial.cs" />
+    <Compile Include="DbMigratorBase.cs" />
+    <Compile Include="ConnMsSql.partial.cs" />
     <Compile Include="MsSqlMigrator.cs" />
     <Compile Include="ParametersViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,8 +177,8 @@
     <ResultFiles Include="$(TargetDir)*.dll" />
   </ItemGroup>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\" />
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\Db\MsSql\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\Db\MsSql\" />
   </Target>
   <!--copy plugin-->
   <PropertyGroup>

@@ -60,9 +60,13 @@ namespace vSharpStudio.Unit
             {
                 foreach (var t in dbs)
                 {
-                    if (t.Value.DbTypeName == connStringName)
+                    if (t.Value is IDbMigrator)
                     {
-                        mvm.SelectedDbType = t.Value;
+                        var tt = t.Value as IDbMigrator;
+                        if (tt.Name == connStringName)
+                        {
+                            mvm.SelectedDbType = tt;
+                        }
                     }
                 }
                 if (mvm.SelectedDbType == null)

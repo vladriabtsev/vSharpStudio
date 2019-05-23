@@ -10,25 +10,33 @@
 	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
 	{
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
-         continue;
-       if (t.MessageType.Name.EndsWith("_nullable"))
+       if (t.IsCsSimple())
          continue;
 		if (t.IsRepeated) {#>
+<# if (t.IsAny()) { #>
+		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
+<# } else { #>
 		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
-<#		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.MessageType.Name.ToNameCs() #>(this);
+<# } #>
+<#		} else if (t.IsMessage()) { #>
+<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>();
+<# } else { #>
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this);
+<# } #>
 <#		} else if (t.IsMap) { #>
 		map???
 <#		} #>
 <# } #>
 		OnInit();
 	}
+<# if (this.Doc.IsDefaultBase) { #>
 	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this()
     {
         this.Parent = parent;
         //GetUniqueName(<#= message.Name.ToNameCs() #>.DefaultName, this, this.SubNodes);
     }
+<# } #>
 	partial void OnInit();
 	#endregion CTOR
 	#region Procedures
@@ -41,7 +49,7 @@
 	var va = new AcceptConfigNode(root, message);
 	this.Write(va.TransformText());
 
-    /*if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
+    /*if (is_config_base) {
 	    var av = new AcceptValidator(root, message);
 	    this.Write(av.TransformText());
     }*/
@@ -52,8 +60,8 @@
 <#	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
-        if (is_config_base && t.Name == "guid") continue;
-        if (is_config_base && t.Name == "name") continue;
+        if (this.Doc.IsDefaultBase && t.Name == "guid") continue;
+        if (this.Doc.IsDefaultBase && t.Name == "name") continue;
         if (t.Name == "name_ui") continue;
         if (t.Name == "sorting_value") continue;
 		var p = new Property(root, message, t);

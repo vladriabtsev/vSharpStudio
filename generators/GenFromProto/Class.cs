@@ -92,65 +92,136 @@ namespace GenFromProto
             
             #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.FieldType != Google.Protobuf.Reflection.FieldType.Message)
-         continue;
-       if (t.MessageType.Name.EndsWith("_nullable"))
+       if (t.IsCsSimple())
          continue;
 		if (t.IsRepeated) {
             
             #line default
             #line hidden
+            
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (t.IsAny()) { 
+            
+            #line default
+            #line hidden
             this.Write("\t\tthis.");
             
+            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ObservableCollection<");
+            
+            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(">();\r\n");
+            
             #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tthis.");
+            
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new SortedObservableCollection<ITreeConfigNode>();\r\n");
             
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-		} else if (t.FieldType == Google.Protobuf.Reflection.FieldType.Message) { 
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+		} else if (t.IsMessage()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden
             this.Write("\t\tthis.");
             
-            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
-            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.MessageType.Name.ToNameCs()));
+            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write("();\r\n");
+            
+            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("\t\tthis.");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write("(this);\r\n");
             
-            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 		} else if (t.IsMap) { 
             
             #line default
             #line hidden
             this.Write("\t\tmap???\r\n");
             
-            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 		} 
             
             #line default
             #line hidden
             
-            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\t\tOnInit();\r\n\t}\r\n\tpublic ");
+            this.Write("\t\tOnInit();\r\n\t}\r\n");
             
-            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 33 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (this.Doc.IsDefaultBase) { 
+            
+            #line default
+            #line hidden
+            this.Write("\tpublic ");
+            
+            #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
@@ -158,15 +229,21 @@ namespace GenFromProto
             this.Write("(ITreeConfigNode parent) : this()\r\n    {\r\n        this.Parent = parent;\r\n        " +
                     "//GetUniqueName(");
             
-            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 37 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".DefaultName, this, this.SubNodes);\r\n    }\r\n\tpartial void OnInit();\r\n\t#endregion " +
-                    "CTOR\r\n\t#region Procedures\r\n");
+            this.Write(".DefaultName, this, this.SubNodes);\r\n    }\r\n");
             
-            #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 39 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\tpartial void OnInit();\r\n\t#endregion CTOR\r\n\t#region Procedures\r\n");
+            
+            #line 43 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	
 	this.PushIndent("\t");
 	
@@ -176,7 +253,7 @@ namespace GenFromProto
 	var va = new AcceptConfigNode(root, message);
 	this.Write(va.TransformText());
 
-    /*if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) {
+    /*if (is_config_base) {
 	    var av = new AcceptValidator(root, message);
 	    this.Write(av.TransformText());
     }*/
@@ -187,12 +264,12 @@ namespace GenFromProto
             #line hidden
             this.Write("\t#endregion Procedures\r\n\t#region Properties\r\n");
             
-            #line 52 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 60 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("\t");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
-        if (is_config_base && t.Name == "guid") continue;
-        if (is_config_base && t.Name == "name") continue;
+        if (this.Doc.IsDefaultBase && t.Name == "guid") continue;
+        if (this.Doc.IsDefaultBase && t.Name == "name") continue;
         if (t.Name == "name_ui") continue;
         if (t.Name == "sorting_value") continue;
 		var p = new Property(root, message, t);

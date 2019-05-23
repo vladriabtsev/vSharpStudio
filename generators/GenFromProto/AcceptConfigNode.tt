@@ -10,15 +10,18 @@ public void AcceptConfigNode(IVisitorConfigNode visitor)
         return;
 	visitor.Visit(this);
 <# foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
+     if (field.IsCsSimple())
        continue;
 #>
-<# if (field.IsRepeated) { #>
+<# try { if (field.IsRepeated) { #>
 	foreach(var t in this.<#= field.Name.ToNameCs() #>)
 		(t as <#= field.ToTypeCs() #>).AcceptConfigNode(visitor);
-<# } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { #>
+<# } else if (field.MessageType.FullName == "google.protobuf.Any") { #>
 	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
-<# } #>
+<# } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { #>
+	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
+<# } } catch(Exception ex) { 
+} #>
 <# } #>
 	visitor.VisitEnd(this);
 }

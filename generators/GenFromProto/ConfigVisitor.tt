@@ -4,10 +4,11 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-public partial class ValidationVisitor : IVisitorConfigNode
+public partial class ConfigVisitor : IVisitorConfigNode
 {
     CancellationToken IVisitorConfigNode.Token => _cancellationToken;
     private CancellationToken _cancellationToken;
+
 <# foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -15,21 +16,12 @@ public partial class ValidationVisitor : IVisitorConfigNode
 	public void Visit(<#= message.Name.ToNameCs() #> p)
     {
         OnVisit(p);
-<# foreach (var field in message.Fields.InDeclarationOrder()) { 
-     if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
-       continue;
-     if (field.MessageType.Name.EndsWith("_nullable"))
-       continue;
-#>
-<# if (!field.IsAny() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
-        ValidateSubAndCollectErrors(p, p.<#= field.Name.ToNameCs() #>);
-<# } else { #>
-<# } #>
-<# } #>
     }
 	public void VisitEnd(<#= message.Name.ToNameCs() #> p)
     {
         OnVisitEnd(p);
     }
+    protected virtual void OnVisit(<#= message.Name.ToNameCs() #> p) {}
+    protected virtual void OnVisitEnd(<#= message.Name.ToNameCs() #> p) {}
 <# } #>
 }

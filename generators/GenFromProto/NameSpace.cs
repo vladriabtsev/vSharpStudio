@@ -80,6 +80,9 @@ namespace vSharpStudio.vm.ViewModels
 	var vv = new ValidationVisitor(root);
 	this.Write(vv.TransformText());
 
+	var cv = new ConfigVisitor(root);
+	this.Write(cv.TransformText());
+
 	this.PopIndent();
 
             

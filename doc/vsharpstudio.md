@@ -27,9 +27,12 @@
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_properties_tab](#proto_config.proto_group_properties_tab)
+    - [proto_group_settings](#proto_config.proto_group_settings)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
+    - [proto_settings_config](#proto_config.proto_settings_config)
+    - [proto_settings_db](#proto_config.proto_settings_db)
     - [string_nullable](#proto_config.string_nullable)
   
     - [proto_config.EnumDbType](#proto_config.proto_config.EnumDbType)
@@ -119,8 +122,6 @@ Configuration config
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
 | version | [string](#string) |  |  |
-| version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
-| version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
@@ -137,6 +138,7 @@ Configuration config
 | db_schema | [string](#string) |  |  |
 | primary_key_name | [string](#string) |  |  |
 | id_db_generator | [id_db_generator](#proto_config.id_db_generator) |  | @attr [ExpandableObjectAttribute()] |
+| group_settings | [proto_group_settings](#proto_config.proto_group_settings) |  | CONFIG OBJECTS |
 | group_configs | [proto_group_configs](#proto_config.proto_group_configs) |  |  |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  |  |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  |  |
@@ -536,6 +538,24 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_settings"></a>
+
+### proto_group_settings
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| sorting_value | [uint64](#uint64) |  |  |
+| config | [proto_settings_config](#proto_config.proto_settings_config) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] |
+| db | [proto_settings_db](#proto_config.proto_settings_db) |  |  |
+
+
+
+
+
+
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -591,6 +611,42 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)]
 
 repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; |
+
+
+
+
+
+
+<a name="proto_config.proto_settings_config"></a>
+
+### proto_settings_config
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
+| version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
+
+
+
+
+
+
+<a name="proto_config.proto_settings_db"></a>
+
+### proto_settings_db
+@base : ViewModelValidatableWithSeverity&lt;SettingsDb, SettingsDb.SettingsDbValidator&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| selected_db_connection | [google.protobuf.Any](#google.protobuf.Any) |  |  |
+| list_db_connections | [google.protobuf.Any](#google.protobuf.Any) | repeated |  |
 
 
 

@@ -28,8 +28,10 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     this.Children.Remove(item); 
     item.Parent = null;
 }
+<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.FullName == "google.protobuf.Any") { #>
+public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } else { #>
-public SortedObservableCollection<<#= field.MessageType.Name.ToNameCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
+public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
 <# } #>
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
 public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>

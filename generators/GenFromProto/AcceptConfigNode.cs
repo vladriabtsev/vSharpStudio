@@ -39,7 +39,7 @@ namespace GenFromProto
             
             #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
+     if (field.IsCsSimple())
        continue;
 
             
@@ -47,7 +47,7 @@ namespace GenFromProto
             #line hidden
             
             #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
- if (field.IsRepeated) { 
+ try { if (field.IsRepeated) { 
             
             #line default
             #line hidden
@@ -68,7 +68,7 @@ namespace GenFromProto
             this.Write(").AcceptConfigNode(visitor);\r\n");
             
             #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
- } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
+ } else if (field.MessageType.FullName == "google.protobuf.Any") { 
             
             #line default
             #line hidden
@@ -82,19 +82,34 @@ namespace GenFromProto
             this.Write(".AcceptConfigNode(visitor);\r\n");
             
             #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
- } 
+ } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { 
+            
+            #line default
+            #line hidden
+            this.Write("\tthis.");
+            
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".AcceptConfigNode(visitor);\r\n");
+            
+            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } } catch(Exception ex) { 
+} 
             
             #line default
             #line hidden
             
-            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
             
-            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } 
             
             #line default

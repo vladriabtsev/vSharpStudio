@@ -42,12 +42,12 @@ namespace vSharpStudio.Migration
 
             // get current migration version and previous version which can be ubdated
             // if current migration version can't migrate previous verion than stop !!!
-            if (last_version > 0 && ( // stop !!!
-                MainPageVM.ConfigInstance.VersionMigrationSupportFromMin > last_version ||
-                MainPageVM.ConfigInstance.VersionMigrationCurrent < last_version))
-            {
-                return false; 
-            }
+            //if (last_version > 0 && ( // stop !!!
+            //    MainPageVM.ConfigInstance.VersionMigrationSupportFromMin > last_version ||
+            //    MainPageVM.ConfigInstance.VersionMigrationCurrent < last_version))
+            //{
+            //    return false; 
+            //}
 
             // check if fields data types can be changed, if not than stop !!!
             //UpdateToModel(modelOnlyAdd);

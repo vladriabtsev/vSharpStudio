@@ -271,6 +271,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_settings"><span class="badge">M</span>proto_group_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
                 </li>
               
@@ -280,6 +284,14 @@
               
                 <li>
                   <a href="#proto_config.proto_report"><span class="badge">M</span>proto_report</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_settings_config"><span class="badge">M</span>proto_settings_config</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_settings_db"><span class="badge">M</span>proto_settings_db</a>
                 </li>
               
                 <li>
@@ -504,20 +516,6 @@
                 </tr>
               
                 <tr>
-                  <td>version_migration_current</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>current migration version, increased by one on each deployment </p></td>
-                </tr>
-              
-                <tr>
-                  <td>version_migration_support_from_min</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>min version supported by current version for migration </p></td>
-                </tr>
-              
-                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -632,6 +630,13 @@ it will override previous settings </p></td>
                   <td><a href="#proto_config.id_db_generator">id_db_generator</a></td>
                   <td></td>
                   <td><p>@attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_settings</td>
+                  <td><a href="#proto_config.proto_group_settings">proto_group_settings</a></td>
+                  <td></td>
+                  <td><p>CONFIG OBJECTS </p></td>
                 </tr>
               
                 <tr>
@@ -1845,6 +1850,51 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_settings">proto_group_settings</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#proto_config.proto_settings_config">proto_settings_config</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>db</td>
+                  <td><a href="#proto_config.proto_settings_db">proto_settings_db</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_journal">proto_journal</h3>
         <p></p>
 
@@ -2010,6 +2060,96 @@ repeated proto_document list_forms = 7; </p></td>
 
 repeated proto_group_properties list_properties = 6;
 repeated proto_document list_documents = 7; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_settings_config">proto_settings_config</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version_migration_current</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>current migration version, increased by one on each deployment </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version_migration_support_from_min</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>min version supported by current version for migration </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_settings_db">proto_settings_db</h3>
+        <p>@base : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>selected_db_connection</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_db_connections</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

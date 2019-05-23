@@ -18,9 +18,9 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public partial class ValidationVisitor : ValidationVisitorBase
+    public partial class ConfigVisitor : ConfigVisitorBase
     {
 #line hidden
         /// <summary>
@@ -28,11 +28,11 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\npublic partial class ValidationVisitor : IVisitorConfigNode\r\n{\r\n    Cancellatio" +
-                    "nToken IVisitorConfigNode.Token => _cancellationToken;\r\n    private Cancellation" +
-                    "Token _cancellationToken;\r\n");
+            this.Write("\r\npublic partial class ConfigVisitor : IVisitorConfigNode\r\n{\r\n    CancellationTok" +
+                    "en IVisitorConfigNode.Token => _cancellationToken;\r\n    private CancellationToke" +
+                    "n _cancellationToken;\r\n\r\n");
             
-            #line 11 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
  foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -42,65 +42,35 @@ namespace GenFromProto
             #line hidden
             this.Write("\tpublic void Visit(");
             
-            #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p)\r\n    {\r\n        OnVisit(p);\r\n");
+            this.Write(" p)\r\n    {\r\n        OnVisit(p);\r\n    }\r\n\tpublic void VisitEnd(");
             
-            #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- foreach (var field in message.Fields.InDeclarationOrder()) { 
-     if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
-       continue;
-     if (field.MessageType.Name.EndsWith("_nullable"))
-       continue;
-
-            
-            #line default
-            #line hidden
-            
-            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- if (!field.IsAny() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
-            
-            #line default
-            #line hidden
-            this.Write("        ValidateSubAndCollectErrors(p, p.");
-            
-            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(");\r\n");
-            
-            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            
-            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("    }\r\n\tpublic void VisitEnd(");
-            
-            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p)\r\n    {\r\n        OnVisitEnd(p);\r\n    }\r\n");
+            this.Write(" p)\r\n    {\r\n        OnVisitEnd(p);\r\n    }\r\n    protected virtual void OnVisit(");
             
-            #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" p) {}\r\n    protected virtual void OnVisitEnd(");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" p) {}\r\n");
+            
+            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
  } 
             
             #line default
@@ -117,7 +87,7 @@ namespace GenFromProto
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public class ValidationVisitorBase
+    public class ConfigVisitorBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

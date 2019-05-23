@@ -179,20 +179,20 @@
             <ul>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql"><span class="badge">M</span>proto_ms_sql</a>
+                  <a href="#proto_conn_mssql.proto_conn_ms_sql"><span class="badge">M</span>proto_conn_ms_sql</a>
                 </li>
               
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql.ApplicationIntent"><span class="badge">E</span>proto_ms_sql.ApplicationIntent</a>
+                  <a href="#proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent"><span class="badge">E</span>proto_conn_ms_sql.ApplicationIntent</a>
                 </li>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod"><span class="badge">E</span>proto_ms_sql.SqlAuthenticationMethod</a>
+                  <a href="#proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod"><span class="badge">E</span>proto_conn_ms_sql.SqlAuthenticationMethod</a>
                 </li>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting"><span class="badge">E</span>proto_ms_sql.SqlConnectionColumnEncryptionSetting</a>
+                  <a href="#proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting"><span class="badge">E</span>proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting</a>
                 </li>
               
               
@@ -212,8 +212,8 @@
       <p></p>
 
       
-        <h3 id="proto_conn_mssql.proto_ms_sql">proto_ms_sql</h3>
-        <p>@base : ViewModelValidatableWithSeverity<MsSql, MsSql.MsSqlValidator></p>
+        <h3 id="proto_conn_mssql.proto_conn_ms_sql">proto_conn_ms_sql</h3>
+        <p>@base : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator></p>
 
         
           <table class="field-table">
@@ -538,7 +538,7 @@ Exceptions:
               
                 <tr>
                   <td>authentication</td>
-                  <td><a href="#proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod">proto_ms_sql.SqlAuthenticationMethod</a></td>
+                  <td><a href="#proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod">proto_conn_ms_sql.SqlAuthenticationMethod</a></td>
                   <td></td>
                   <td><p>Summary:
     Gets the authentication of the connection string.
@@ -567,7 +567,7 @@ Exceptions:
               
                 <tr>
                   <td>ApplicationIntentValue</td>
-                  <td><a href="#proto_conn_mssql.proto_ms_sql.ApplicationIntent">proto_ms_sql.ApplicationIntent</a></td>
+                  <td><a href="#proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent">proto_conn_ms_sql.ApplicationIntent</a></td>
                   <td></td>
                   <td><p>Summary:
     Declares the application workload type when connecting to a database in an SQL
@@ -710,7 +710,7 @@ Returns:
               
                 <tr>
                   <td>ColumnEncryptionSetting</td>
-                  <td><a href="#proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting">proto_ms_sql.SqlConnectionColumnEncryptionSetting</a></td>
+                  <td><a href="#proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting">proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting</a></td>
                   <td></td>
                   <td><p>Summary:
     Gets and sets the column encryption settings for the connection string builder.
@@ -792,7 +792,7 @@ Exceptions:
       
 
       
-        <h3 id="proto_conn_mssql.proto_ms_sql.ApplicationIntent">proto_ms_sql.ApplicationIntent</h3>
+        <h3 id="proto_conn_mssql.proto_conn_ms_sql.ApplicationIntent">proto_conn_ms_sql.ApplicationIntent</h3>
         <p>Summary:</p><p>Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.</p><p>Possible values are ReadWrite and ReadOnly.</p>
         <table class="enum-table">
           <thead>
@@ -817,7 +817,7 @@ Exceptions:
           </tbody>
         </table>
       
-        <h3 id="proto_conn_mssql.proto_ms_sql.SqlAuthenticationMethod">proto_ms_sql.SqlAuthenticationMethod</h3>
+        <h3 id="proto_conn_mssql.proto_conn_ms_sql.SqlAuthenticationMethod">proto_conn_ms_sql.SqlAuthenticationMethod</h3>
         <p>Summary:</p><p>Describes the different SQL authentication methods that can be used by a client</p><p>connecting to Azure SQL Database. For details, see Connecting to SQL Database</p><p>By Using Azure Active Directory Authentication.</p>
         <table class="enum-table">
           <thead>
@@ -858,7 +858,7 @@ Exceptions:
           </tbody>
         </table>
       
-        <h3 id="proto_conn_mssql.proto_ms_sql.SqlConnectionColumnEncryptionSetting">proto_ms_sql.SqlConnectionColumnEncryptionSetting</h3>
+        <h3 id="proto_conn_mssql.proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting">proto_conn_ms_sql.SqlConnectionColumnEncryptionSetting</h3>
         <p>Summary:</p><p>Specifies that Always Encrypted functionality is enabled in a connection. Note</p><p>that these settings cannot be used to bypass encryption and gain access to plaintext</p><p>data. For details, see Always Encrypted (Database Engine).</p>
         <table class="enum-table">
           <thead>
