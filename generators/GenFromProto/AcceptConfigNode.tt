@@ -14,8 +14,10 @@ public void AcceptConfigNode(IVisitorConfigNode visitor)
        continue;
 #>
 <# try { if (field.IsRepeated) { #>
+<# if (!field.IsAny()) { #>
 	foreach(var t in this.<#= field.Name.ToNameCs() #>)
 		(t as <#= field.ToTypeCs() #>).AcceptConfigNode(visitor);
+<# } #>
 <# } else if (field.MessageType.FullName == "google.protobuf.Any") { #>
 	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
 <# } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { #>

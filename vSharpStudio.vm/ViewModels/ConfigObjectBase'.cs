@@ -449,35 +449,35 @@ namespace vSharpStudio.vm.ViewModels
             switch (tname)
             {
                 case "Catalog":
-                    var catalog = Catalog.Clone(this.Parent, this as Catalog, true, true);
+                    var catalog = Catalog.Clone(this as Catalog, true, true);
                     catalog.Parent = this.Parent;
                     (this.Parent as GroupListCatalogs).Add(catalog);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = catalog;
                     return catalog;
                 case "Constant":
-                    var constant = Constant.Clone(this.Parent, this as Constant, true, true);
+                    var constant = Constant.Clone(this as Constant, true, true);
                     constant.Parent = this.Parent;
                     (this.Parent as GroupListConstants).Add(constant);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = constant;
                     return constant;
                 case "Enumeration":
-                    var enumeration = Enumeration.Clone(this.Parent, this as Enumeration, true, true);
+                    var enumeration = Enumeration.Clone(this as Enumeration, true, true);
                     enumeration.Parent = this.Parent;
                     (this.Parent as GroupListEnumerations).Add(enumeration);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = enumeration;
                     return enumeration;
                 case "Journal":
-                    var journal = Journal.Clone(this.Parent, this as Journal, true, true);
+                    var journal = Journal.Clone(this as Journal, true, true);
                     journal.Parent = this.Parent;
                     (this.Parent as GroupListJournals).Add(journal);
                     this.Name = this.Name + "2";
                     (this.Parent.Parent as Config).SelectedNode = journal;
                     return journal;
                 case "Property":
-                    var prop = Property.Clone(this.Parent, this as Property, true, true);
+                    var prop = Property.Clone(this as Property, true, true);
                     prop.Parent = this.Parent;
                     if (this.Parent is GroupListProperties)
                     {

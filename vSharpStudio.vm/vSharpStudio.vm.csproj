@@ -144,6 +144,7 @@
     <Compile Include="ViewModels\DataType.cs" />
     <Compile Include="ViewModels\DataType.Validator.cs" />
     <Compile Include="ViewModels\DataTypeObjectNameEditor.cs" />
+    <Compile Include="ViewModels\SettingsForDbPlugin.cs" />
     <Compile Include="ViewModels\Document.cs" />
     <Compile Include="ViewModels\Document.Validator.cs" />
     <Compile Include="ViewModels\Enumeration.cs" />
@@ -166,8 +167,8 @@
     <Compile Include="ViewModels\GroupListReports.cs" />
     <Compile Include="ViewModels\GroupPropertiesTab.cs" />
     <Compile Include="ViewModels\IAccept.cs" />
-    <Compile Include="ViewModels\IdDbGenerator.cs" />
-    <Compile Include="ViewModels\IdDbGenerator.Validator.cs" />
+    <Compile Include="ViewModels\DbIdGenerator.cs" />
+    <Compile Include="ViewModels\DbIdGenerator.Validator.cs" />
     <Compile Include="ViewModels\INodes.cs" />
     <Compile Include="ViewModels\Journal.cs" />
     <Compile Include="ViewModels\Journal.Validator.cs" />

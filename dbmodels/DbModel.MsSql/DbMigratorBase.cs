@@ -14,6 +14,7 @@ namespace vPlugin.DbModel
 {
     public class DbMigratorBase
     {
+        public Guid Guid { get; protected set; }
         public vPluginTypeEnum PluginType { get; protected set; }
         public string Name { get; protected set; }
         public string Description { get; protected set; }

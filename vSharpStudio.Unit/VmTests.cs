@@ -35,13 +35,13 @@ namespace vSharpStudio.Unit
             };
             var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
-            vm.IdDbGenerator.HiLoSchema = "schema1";
+            vm.DbIdGenerator.HiLoSchema = "schema1";
             vm.BeginEdit();
             vm.Name = "test2";
-            vm.IdDbGenerator.HiLoSchema = "schema2";
+            vm.DbIdGenerator.HiLoSchema = "schema2";
             vm.CancelEdit();
             Assert.IsTrue(vm.Name == "test1");
-            Assert.IsTrue(vm.IdDbGenerator.HiLoSchema == "schema1");
+            Assert.IsTrue(vm.DbIdGenerator.HiLoSchema == "schema1");
         }
         [TestMethod]
         public void Editable012CanCancelSameLevelNullable()
@@ -51,11 +51,11 @@ namespace vSharpStudio.Unit
             };
             var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
-            vm.IdDbGenerator.IsPrimaryKeyClustered = true;
+            vm.DbIdGenerator.IsPrimaryKeyClustered = true;
             vm.BeginEdit();
-            vm.IdDbGenerator.IsPrimaryKeyClustered = false;
+            vm.DbIdGenerator.IsPrimaryKeyClustered = false;
             vm.CancelEdit();
-            Assert.IsTrue(vm.IdDbGenerator.IsPrimaryKeyClustered ?? false);
+            Assert.IsTrue(vm.DbIdGenerator.IsPrimaryKeyClustered ?? false);
         }
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()

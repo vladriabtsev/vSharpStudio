@@ -183,7 +183,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.id_db_generator"><span class="badge">M</span>id_db_generator</a>
+                  <a href="#proto_config.db_id_generator"><span class="badge">M</span>db_id_generator</a>
                 </li>
               
                 <li>
@@ -295,6 +295,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_settings_for_db_plugin"><span class="badge">M</span>proto_settings_for_db_plugin</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.string_nullable"><span class="badge">M</span>string_nullable</a>
                 </li>
               
@@ -359,8 +363,8 @@
 
         
       
-        <h3 id="proto_config.id_db_generator">id_db_generator</h3>
-        <p>Primary key generation strategy</p><p>@base : ViewModelValidatableWithSeverity<IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator></p>
+        <h3 id="proto_config.db_id_generator">db_id_generator</h3>
+        <p>Primary key generation strategy</p><p>@base : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator></p>
 
         
           <table class="field-table">
@@ -457,8 +461,8 @@
                 </tr>
               
                 <tr>
-                  <td>id_db_generator</td>
-                  <td><a href="#proto_config.id_db_generator">id_db_generator</a></td>
+                  <td>db_id_generator</td>
+                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
                   <td></td>
                   <td><p>@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
@@ -626,8 +630,8 @@ it will override previous settings </p></td>
                 </tr>
               
                 <tr>
-                  <td>id_db_generator</td>
-                  <td><a href="#proto_config.id_db_generator">id_db_generator</a></td>
+                  <td>db_id_generator</td>
+                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
                   <td></td>
                   <td><p>@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
@@ -932,8 +936,8 @@ it will override previous settings </p></td>
                 </tr>
               
                 <tr>
-                  <td>id_db_generator</td>
-                  <td><a href="#proto_config.id_db_generator">id_db_generator</a></td>
+                  <td>db_id_generator</td>
+                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
                   <td></td>
                   <td><p>@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
@@ -1882,7 +1886,7 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>db</td>
+                  <td>db_type</td>
                   <td><a href="#proto_config.proto_settings_db">proto_settings_db</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -2129,7 +2133,7 @@ repeated proto_document list_documents = 7; </p></td>
         
       
         <h3 id="proto_config.proto_settings_db">proto_settings_db</h3>
-        <p>@base : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator></p>
+        <p>@bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator></p>
 
         
           <table class="field-table">
@@ -2139,8 +2143,46 @@ repeated proto_document list_documents = 7; </p></td>
             <tbody>
               
                 <tr>
-                  <td>selected_db_connection</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>selected_db_design_plugin_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selected_db_connection_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_plugin_connections</td>
+                  <td><a href="#proto_config.proto_settings_for_db_plugin">proto_settings_for_db_plugin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_settings_for_db_plugin">proto_settings_for_db_plugin</h3>
+        <p>@bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>db_design_plugin_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

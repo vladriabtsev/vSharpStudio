@@ -143,10 +143,10 @@
           ]
         },
         {
-          "name": "id_db_generator",
-          "longName": "id_db_generator",
-          "fullName": "proto_config.id_db_generator",
-          "description": "Primary key generation strategy\n@base : ViewModelValidatableWithSeverity\u003cIdDbGenerator, IdDbGenerator.IdDbGeneratorValidator\u003e",
+          "name": "db_id_generator",
+          "longName": "db_id_generator",
+          "fullName": "proto_config.db_id_generator",
+          "description": "Primary key generation strategy\n@base : ViewModelValidatableWithSeverity\u003cDbIdGenerator, DbIdGenerator.DbIdGeneratorValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -263,12 +263,12 @@
               "defaultValue": ""
             },
             {
-              "name": "id_db_generator",
+              "name": "db_id_generator",
               "description": "@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "id_db_generator",
-              "longType": "id_db_generator",
-              "fullType": "proto_config.id_db_generator",
+              "type": "db_id_generator",
+              "longType": "db_id_generator",
+              "fullType": "proto_config.db_id_generator",
               "ismap": false,
               "defaultValue": ""
             },
@@ -484,12 +484,12 @@
               "defaultValue": ""
             },
             {
-              "name": "id_db_generator",
+              "name": "db_id_generator",
               "description": "@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "id_db_generator",
-              "longType": "id_db_generator",
-              "fullType": "proto_config.id_db_generator",
+              "type": "db_id_generator",
+              "longType": "db_id_generator",
+              "fullType": "proto_config.db_id_generator",
               "ismap": false,
               "defaultValue": ""
             },
@@ -868,12 +868,12 @@
               "defaultValue": ""
             },
             {
-              "name": "id_db_generator",
+              "name": "db_id_generator",
               "description": "@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "id_db_generator",
-              "longType": "id_db_generator",
-              "fullType": "proto_config.id_db_generator",
+              "type": "db_id_generator",
+              "longType": "db_id_generator",
+              "fullType": "proto_config.db_id_generator",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2004,7 +2004,7 @@
               "defaultValue": ""
             },
             {
-              "name": "db",
+              "name": "db_type",
               "description": "",
               "label": "",
               "type": "proto_settings_db",
@@ -2293,18 +2293,59 @@
           "name": "proto_settings_db",
           "longName": "proto_settings_db",
           "fullName": "proto_config.proto_settings_db",
-          "description": "@base : ViewModelValidatableWithSeverity\u003cSettingsDb, SettingsDb.SettingsDbValidator\u003e",
+          "description": "@bas : ViewModelValidatableWithSeverity\u003cSettingsDb, SettingsDb.SettingsDbValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
             {
-              "name": "selected_db_connection",
+              "name": "selected_db_design_plugin_guid",
               "description": "",
               "label": "",
-              "type": "Any",
-              "longType": "google.protobuf.Any",
-              "fullType": "google.protobuf.Any",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "selected_db_connection_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_plugin_connections",
+              "description": "",
+              "label": "repeated",
+              "type": "proto_settings_for_db_plugin",
+              "longType": "proto_settings_for_db_plugin",
+              "fullType": "proto_config.proto_settings_for_db_plugin",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_settings_for_db_plugin",
+          "longName": "proto_settings_for_db_plugin",
+          "fullName": "proto_config.proto_settings_for_db_plugin",
+          "description": "@bas : ViewModelValidatableWithSeverity\u003cSettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "db_design_plugin_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

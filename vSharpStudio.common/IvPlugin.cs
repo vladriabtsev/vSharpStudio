@@ -15,6 +15,7 @@ namespace vSharpStudio.common
     [InheritedExport(typeof(IvPlugin))] // metadata was not exported
     public interface IvPlugin
     {
+        Guid Guid { get; }
         vPluginTypeEnum PluginType { get; }
         string Name { get; }
         string Description { get; }

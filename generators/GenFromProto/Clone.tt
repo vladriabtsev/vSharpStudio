@@ -10,10 +10,12 @@ public override void Sort(Type type)
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
+<# if (!field.IsAny()) { #>
     if (type == typeof(<#= field.ToTypeCs() #>))
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
     }
+<# } #>
 <#      }
       }
       if (isort==0) { #>
@@ -21,7 +23,7 @@ public override void Sort(Type type)
 <#    } #>
 }
 <# } #>
-public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>)
+public static <#= message.Name.ToNameCs() #> Clone(<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>)
 {
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
@@ -33,11 +35,15 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
 <# } else if (field.Name == "children") { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
     foreach(var t in from.<#= field.Name.ToNameCs() #>)
-        vm.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone((<#= field.ToTypeCs() #>)t, isDeep));
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>();
+    foreach(var t in from.<#= field.Name.ToNameCs() #>)
+        vm.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone((<#= field.ToTypeCs() #>)t, isDeep));
 <# } else { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
     foreach(var t in from.<#= field.Name.ToNameCs() #>)
-        vm.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone((<#= field.ToTypeCs() #>)t, isDeep));
 <# } #>
 <#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
@@ -47,7 +53,7 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone();
 <#      } else if (field.IsMessage()) { #>
     if (isDeep)
-        vm.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
+        vm.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
 <#      } 
@@ -97,7 +103,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             {
                 var p = new <#= field.ToTypeCs() #>();
                 vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Update(p, (<#= field.ToTypeCs() #>)tt, isDeep);
-                to.Add(p);
+                to.<#= field.Name.ToNameCs() #>.Add(p);
             }
         }
     }
@@ -119,7 +125,7 @@ public override <#= message.Name.ToNameCs() #> Backup()
 {
     bool isDeep = true;
     OnBackupObjectStarting(ref isDeep);
-	return <#= message.Name.ToNameCs() #>.Clone(null, this);
+	return <#= message.Name.ToNameCs() #>.Clone(this);
 }
 partial void OnBackupObjectStarting(ref bool isDeep);
 public override void Restore(<#= message.Name.ToNameCs() #> from)
@@ -141,14 +147,18 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
         if (field.IsRepeated) { #>
 <# if (field.Name == "children") { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>();
 <# } else { #>
     vm.<#= field.Name.ToNameCs() #> = new SortedObservableCollection<<#= field.ToTypeCs() #>>();
 <# } #>
     foreach(var t in m.<#= field.Name.ToNameCs() #>)
     {
         var tvm = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(t);
+<# if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
         tvm.Parent = vm;
-        vm.Add(tvm);
+<# } #>
+        vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : "";

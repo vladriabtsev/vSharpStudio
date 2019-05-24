@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/23/2019 19:37:48
+// Auto generated on UTC 05/24/2019 19:26:39
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
 		public GroupSettings() : base(GroupSettingsValidator.Validator)
 		{
 			this.Config = new SettingsConfig(this);
-			this.Db = new SettingsDb();
+			this.DbType = new SettingsDb(this);
 			OnInit();
 		}
 		public GroupSettings(ITreeConfigNode parent) : this()
@@ -39,15 +39,15 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static GroupSettings Clone(ITreeConfigNode parent, GroupSettings from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupSettings Clone(GroupSettings from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupSettings vm = new GroupSettings();
 		    vm.Guid = from.Guid;
 		    vm.SortingValue = from.SortingValue;
 		    if (isDeep)
-		        vm.Config = vSharpStudio.vm.ViewModels.SettingsConfig.Clone(vm, from.Config, isDeep);
+		        vm.Config = vSharpStudio.vm.ViewModels.SettingsConfig.Clone(from.Config, isDeep);
 		    if (isDeep)
-		        vm.Db = vSharpStudio.vm.ViewModels.SettingsDb.Clone(vm, from.Db, isDeep);
+		        vm.DbType = vSharpStudio.vm.ViewModels.SettingsDb.Clone(from.DbType, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -59,14 +59,14 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        SettingsConfig.Update(to.Config, from.Config, isDeep);
 		    if (isDeep)
-		        SettingsDb.Update(to.Db, from.Db, isDeep);
+		        SettingsDb.Update(to.DbType, from.DbType, isDeep);
 		}
 		#region IEditable
 		public override GroupSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupSettings.Clone(null, this);
+			return GroupSettings.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupSettings from)
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.SortingValue = m.SortingValue;
 		    vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToVM(m.Config, vm.Config);
-		    vSharpStudio.vm.ViewModels.SettingsDb.ConvertToVM(m.Db, vm.Db);
+		    vSharpStudio.vm.ViewModels.SettingsDb.ConvertToVM(m.DbType, vm.DbType);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -96,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.SortingValue = vm.SortingValue;
 		    m.Config = vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToProto(vm.Config);
-		    m.Db = vSharpStudio.vm.ViewModels.SettingsDb.ConvertToProto(vm.Db);
+		    m.DbType = vSharpStudio.vm.ViewModels.SettingsDb.ConvertToProto(vm.DbType);
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -105,6 +105,7 @@ namespace vSharpStudio.vm.ViewModels
 		        return;
 			visitor.Visit(this);
 			this.Config.AcceptConfigNode(visitor);
+			this.DbType.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
@@ -130,24 +131,24 @@ namespace vSharpStudio.vm.ViewModels
 		private SettingsConfig _Config;
 		partial void OnConfigChanging();
 		partial void OnConfigChanged();
-		public SettingsDb Db
+		public SettingsDb DbType
 		{ 
 			set
 			{
-				if (_Db != value)
+				if (_DbType != value)
 				{
-					OnDbChanging();
-		            _Db = value;
-					OnDbChanged();
+					OnDbTypeChanging();
+		            _DbType = value;
+					OnDbTypeChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Db; }
+			get { return _DbType; }
 		}
-		private SettingsDb _Db;
-		partial void OnDbChanging();
-		partial void OnDbChanged();
+		private SettingsDb _DbType;
+		partial void OnDbTypeChanging();
+		partial void OnDbTypeChanged();
 		#endregion Properties
 	}
 	public partial class SettingsConfig : ConfigObjectBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IAccept
@@ -170,7 +171,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static SettingsConfig Clone(ITreeConfigNode parent, SettingsConfig from, bool isDeep = true, bool isNewGuid = false)
+		public static SettingsConfig Clone(SettingsConfig from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    SettingsConfig vm = new SettingsConfig();
 		    vm.Guid = from.Guid;
@@ -197,7 +198,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return SettingsConfig.Clone(null, this);
+			return SettingsConfig.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(SettingsConfig from)
@@ -309,37 +310,93 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnVersionMigrationSupportFromMinChanged();
 		#endregion Properties
 	}
-	public partial class SettingsDb : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
+	
+	///////////////////////////////////////////////////
+	/// @bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
+	///////////////////////////////////////////////////
+	public partial class SettingsDb : ConfigObjectBase<SettingsDb, SettingsDb.SettingsDbValidator>, IComparable<SettingsDb>, IAccept
 	{
 		public partial class SettingsDbValidator : ValidatorBase<SettingsDb, SettingsDbValidator> { }
 		#region CTOR
 		public SettingsDb() : base(SettingsDbValidator.Validator)
 		{
-			this.SelectedDbConnection = new Google.Protobuf.WellKnownTypes.Any();
-			this.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+			this.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
 			OnInit();
 		}
+		public SettingsDb(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(SettingsDb.DefaultName, this, this.SubNodes);
+	    }
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static SettingsDb Clone(ITreeConfigNode parent, SettingsDb from, bool isDeep = true)
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(SettingsForDbPlugin))
+		    {
+		        this.ListPluginConnections.Sort();
+		    }
+		}
+		public static SettingsDb Clone(SettingsDb from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    SettingsDb vm = new SettingsDb();
-		    vm.SelectedDbConnection = from.SelectedDbConnection.Clone();
-		    vm.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
-		    foreach(var t in from.ListDbConnections)
-		        vm.ListDbConnections.Add(t.Clone());
+		    vm.SelectedDbDesignPluginGuid = from.SelectedDbDesignPluginGuid;
+		    vm.SelectedDbConnectionGuid = from.SelectedDbConnectionGuid;
+		    vm.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
+		    foreach(var t in from.ListPluginConnections)
+		        vm.ListPluginConnections.Add(vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Clone((SettingsForDbPlugin)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
 		    return vm;
 		}
 		public static void Update(SettingsDb to, SettingsDb from, bool isDeep = true)
 		{
+		    to.SelectedDbDesignPluginGuid = from.SelectedDbDesignPluginGuid;
+		    to.SelectedDbConnectionGuid = from.SelectedDbConnectionGuid;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPluginConnections.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPluginConnections)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Update((SettingsForDbPlugin)t, (SettingsForDbPlugin)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPluginConnections.Remove(t);
+		        }
+		        foreach(var tt in from.ListPluginConnections)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPluginConnections.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new SettingsForDbPlugin();
+		                vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Update(p, (SettingsForDbPlugin)tt, isDeep);
+		                to.ListPluginConnections.Add(p);
+		            }
+		        }
+		    }
 		}
 		#region IEditable
 		public override SettingsDb Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return SettingsDb.Clone(null, this);
+			return SettingsDb.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(SettingsDb from)
@@ -355,36 +412,211 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new SettingsDb();
+		    vm.SelectedDbDesignPluginGuid = m.SelectedDbDesignPluginGuid;
+		    vm.SelectedDbConnectionGuid = m.SelectedDbConnectionGuid;
+		    vm.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
+		    foreach(var t in m.ListPluginConnections)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.SettingsForDbPlugin.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPluginConnections.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
 		    return vm;
 		}
 		// Conversion from 'SettingsDb' to 'proto_settings_db'
 		public static proto_settings_db ConvertToProto(SettingsDb vm)
 		{
 		    proto_settings_db m = new proto_settings_db();
+		    m.SelectedDbDesignPluginGuid = vm.SelectedDbDesignPluginGuid;
+		    m.SelectedDbConnectionGuid = vm.SelectedDbConnectionGuid;
+		    foreach(var t in vm.ListPluginConnections)
+		        m.ListPluginConnections.Add(vSharpStudio.vm.ViewModels.SettingsForDbPlugin.ConvertToProto((SettingsForDbPlugin)t));
 		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListPluginConnections)
+				(t as SettingsForDbPlugin).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public Google.Protobuf.WellKnownTypes.Any SelectedDbConnection
+		public string SelectedDbDesignPluginGuid
 		{ 
 			set
 			{
-				if (_SelectedDbConnection != value)
+				if (_SelectedDbDesignPluginGuid != value)
 				{
-					OnSelectedDbConnectionChanging();
-		            _SelectedDbConnection = value;
-					OnSelectedDbConnectionChanged();
+					OnSelectedDbDesignPluginGuidChanging();
+					_SelectedDbDesignPluginGuid = value;
+					OnSelectedDbDesignPluginGuidChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _SelectedDbConnection; }
+			get { return _SelectedDbDesignPluginGuid; }
 		}
-		private Google.Protobuf.WellKnownTypes.Any _SelectedDbConnection;
-		partial void OnSelectedDbConnectionChanging();
-		partial void OnSelectedDbConnectionChanged();
-		public ObservableCollection<Google.Protobuf.WellKnownTypes.Any> ListDbConnections { get; set; }
+		private string _SelectedDbDesignPluginGuid = "";
+		partial void OnSelectedDbDesignPluginGuidChanging();
+		partial void OnSelectedDbDesignPluginGuidChanged();
+		public string SelectedDbConnectionGuid
+		{ 
+			set
+			{
+				if (_SelectedDbConnectionGuid != value)
+				{
+					OnSelectedDbConnectionGuidChanging();
+					_SelectedDbConnectionGuid = value;
+					OnSelectedDbConnectionGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _SelectedDbConnectionGuid; }
+		}
+		private string _SelectedDbConnectionGuid = "";
+		partial void OnSelectedDbConnectionGuidChanging();
+		partial void OnSelectedDbConnectionGuidChanged();
+		public SortedObservableCollection<SettingsForDbPlugin> ListPluginConnections 
+		{ 
+			set
+			{
+				if (_ListPluginConnections != value)
+				{
+					OnListPluginConnectionsChanging();
+					_ListPluginConnections = value;
+					OnListPluginConnectionsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPluginConnections; }
+		}
+		private SortedObservableCollection<SettingsForDbPlugin> _ListPluginConnections;
+		partial void OnListPluginConnectionsChanging();
+		partial void OnListPluginConnectionsChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// @bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>
+	///////////////////////////////////////////////////
+	public partial class SettingsForDbPlugin : ConfigObjectBase<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>, IComparable<SettingsForDbPlugin>, IAccept
+	{
+		public partial class SettingsForDbPluginValidator : ValidatorBase<SettingsForDbPlugin, SettingsForDbPluginValidator> { }
+		#region CTOR
+		public SettingsForDbPlugin() : base(SettingsForDbPluginValidator.Validator)
+		{
+			this.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+			OnInit();
+		}
+		public SettingsForDbPlugin(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(SettingsForDbPlugin.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		}
+		public static SettingsForDbPlugin Clone(SettingsForDbPlugin from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    SettingsForDbPlugin vm = new SettingsForDbPlugin();
+		    vm.DbDesignPluginGuid = from.DbDesignPluginGuid;
+		    vm.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
+		    foreach(var t in from.ListDbConnections)
+		        vm.ListDbConnections.Add(t.Clone());
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(SettingsForDbPlugin to, SettingsForDbPlugin from, bool isDeep = true)
+		{
+		    to.DbDesignPluginGuid = from.DbDesignPluginGuid;
+		}
+		#region IEditable
+		public override SettingsForDbPlugin Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return SettingsForDbPlugin.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(SettingsForDbPlugin from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    SettingsForDbPlugin.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_settings_for_db_plugin' to 'SettingsForDbPlugin'
+		public static SettingsForDbPlugin ConvertToVM(proto_settings_for_db_plugin m, SettingsForDbPlugin vm = null)
+		{
+		    if (vm == null)
+		        vm = new SettingsForDbPlugin();
+		    vm.DbDesignPluginGuid = m.DbDesignPluginGuid;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'SettingsForDbPlugin' to 'proto_settings_for_db_plugin'
+		public static proto_settings_for_db_plugin ConvertToProto(SettingsForDbPlugin vm)
+		{
+		    proto_settings_for_db_plugin m = new proto_settings_for_db_plugin();
+		    m.DbDesignPluginGuid = vm.DbDesignPluginGuid;
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public string DbDesignPluginGuid
+		{ 
+			set
+			{
+				if (_DbDesignPluginGuid != value)
+				{
+					OnDbDesignPluginGuidChanging();
+					_DbDesignPluginGuid = value;
+					OnDbDesignPluginGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DbDesignPluginGuid; }
+		}
+		private string _DbDesignPluginGuid = "";
+		partial void OnDbDesignPluginGuidChanging();
+		partial void OnDbDesignPluginGuidChanged();
+		public ObservableCollection<Google.Protobuf.WellKnownTypes.Any> ListDbConnections
+		{ 
+			set
+			{
+				if (_ListDbConnections != value)
+				{
+					OnListDbConnectionsChanging();
+					_ListDbConnections = value;
+					OnListDbConnectionsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListDbConnections; }
+		}
+		private ObservableCollection<Google.Protobuf.WellKnownTypes.Any> _ListDbConnections;
 		partial void OnListDbConnectionsChanging();
 		partial void OnListDbConnectionsChanged();
 		#endregion Properties
@@ -393,20 +625,20 @@ namespace vSharpStudio.vm.ViewModels
 	///////////////////////////////////////////////////
 	/// Primary key generation strategy
 	///////////////////////////////////////////////////
-	public partial class IdDbGenerator : ViewModelValidatableWithSeverity<IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator>
+	public partial class DbIdGenerator : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator>
 	{
-		public partial class IdDbGeneratorValidator : ValidatorBase<IdDbGenerator, IdDbGeneratorValidator> { }
+		public partial class DbIdGeneratorValidator : ValidatorBase<DbIdGenerator, DbIdGeneratorValidator> { }
 		#region CTOR
-		public IdDbGenerator() : base(IdDbGeneratorValidator.Validator)
+		public DbIdGenerator() : base(DbIdGeneratorValidator.Validator)
 		{
 			OnInit();
 		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static IdDbGenerator Clone(ITreeConfigNode parent, IdDbGenerator from, bool isDeep = true)
+		public static DbIdGenerator Clone(DbIdGenerator from, bool isDeep = true)
 		{
-		    IdDbGenerator vm = new IdDbGenerator();
+		    DbIdGenerator vm = new DbIdGenerator();
 		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
 		    vm.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
 		    vm.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
@@ -414,7 +646,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSchema = from.HiLoSchema;
 		    return vm;
 		}
-		public static void Update(IdDbGenerator to, IdDbGenerator from, bool isDeep = true)
+		public static void Update(DbIdGenerator to, DbIdGenerator from, bool isDeep = true)
 		{
 		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
 		    to.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
@@ -423,26 +655,26 @@ namespace vSharpStudio.vm.ViewModels
 		    to.HiLoSchema = from.HiLoSchema;
 		}
 		#region IEditable
-		public override IdDbGenerator Backup()
+		public override DbIdGenerator Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return IdDbGenerator.Clone(null, this);
+			return DbIdGenerator.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(IdDbGenerator from)
+		public override void Restore(DbIdGenerator from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    IdDbGenerator.Update(this, from, isDeep);
+		    DbIdGenerator.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'id_db_generator' to 'IdDbGenerator'
-		public static IdDbGenerator ConvertToVM(id_db_generator m, IdDbGenerator vm = null)
+		// Conversion from 'db_id_generator' to 'DbIdGenerator'
+		public static DbIdGenerator ConvertToVM(db_id_generator m, DbIdGenerator vm = null)
 		{
 		    if (vm == null)
-		        vm = new IdDbGenerator();
+		        vm = new DbIdGenerator();
 		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
 		    vm.IsMemoryOptimized = m.IsMemoryOptimized.HasValue ? m.IsMemoryOptimized.Value : (bool?)null;
 		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
@@ -450,10 +682,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.HiLoSchema = m.HiLoSchema;
 		    return vm;
 		}
-		// Conversion from 'IdDbGenerator' to 'id_db_generator'
-		public static id_db_generator ConvertToProto(IdDbGenerator vm)
+		// Conversion from 'DbIdGenerator' to 'db_id_generator'
+		public static db_id_generator ConvertToProto(DbIdGenerator vm)
 		{
-		    id_db_generator m = new id_db_generator();
+		    db_id_generator m = new db_id_generator();
 		    m.IsPrimaryKeyClustered = new bool_nullable();
 		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
 		    if (vm.IsPrimaryKeyClustered.HasValue)
@@ -609,7 +841,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupConfigs Clone(ITreeConfigNode parent, GroupConfigs from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupConfigs Clone(GroupConfigs from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupConfigs vm = new GroupConfigs();
 		    vm.Guid = from.Guid;
@@ -618,7 +850,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone(vm, (ConfigTree)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone((ConfigTree)t, isDeep));
 		    vm.RelativeConfigPath = from.RelativeConfigPath;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
@@ -662,7 +894,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new ConfigTree();
 		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -673,7 +905,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupConfigs.Clone(null, this);
+			return GroupConfigs.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupConfigs from)
@@ -698,7 +930,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.RelativeConfigPath = m.RelativeConfigPath;
 		    vm.OnInitFromDto();
@@ -752,7 +984,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public ConfigTree this[int index] { get { return (ConfigTree)this.Children[index]; } }
 		public void Add(ConfigTree item) 
 		{ 
@@ -821,7 +1068,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static ConfigTree Clone(ITreeConfigNode parent, ConfigTree from, bool isDeep = true, bool isNewGuid = false)
+		public static ConfigTree Clone(ConfigTree from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    ConfigTree vm = new ConfigTree();
 		    vm.Guid = from.Guid;
@@ -829,10 +1076,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.ConfigNode, isDeep);
+		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(from.ConfigNode, isDeep);
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone(vm, (ConfigTree)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone((ConfigTree)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -877,7 +1124,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new ConfigTree();
 		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -887,7 +1134,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return ConfigTree.Clone(null, this);
+			return ConfigTree.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(ConfigTree from)
@@ -913,7 +1160,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -985,7 +1232,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnConfigNodeChanging();
 		partial void OnConfigNodeChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public ConfigTree this[int index] { get { return (ConfigTree)this.Children[index]; } }
 		public void Add(ConfigTree item) 
 		{ 
@@ -1021,7 +1283,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Config() : base(ConfigValidator.Validator)
 		{
-			this.IdDbGenerator = new IdDbGenerator();
+			this.DbIdGenerator = new DbIdGenerator();
 			this.GroupSettings = new GroupSettings(this);
 			this.GroupConfigs = new GroupConfigs(this);
 			this.GroupConstants = new GroupListConstants(this);
@@ -1043,7 +1305,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Config Clone(ITreeConfigNode parent, Config from, bool isDeep = true, bool isNewGuid = false)
+		public static Config Clone(Config from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Config vm = new Config();
 		    vm.Guid = from.Guid;
@@ -1064,21 +1326,21 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DbSchema = from.DbSchema;
 		    vm.PrimaryKeyName = from.PrimaryKeyName;
 		    if (isDeep)
-		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
+		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
 		    if (isDeep)
-		        vm.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.Clone(vm, from.GroupSettings, isDeep);
+		        vm.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.Clone(from.GroupSettings, isDeep);
 		    if (isDeep)
-		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.Clone(vm, from.GroupConfigs, isDeep);
+		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.Clone(from.GroupConfigs, isDeep);
 		    if (isDeep)
-		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.Clone(vm, from.GroupConstants, isDeep);
+		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.Clone(from.GroupConstants, isDeep);
 		    if (isDeep)
-		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(vm, from.GroupEnumerations, isDeep);
+		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(from.GroupEnumerations, isDeep);
 		    if (isDeep)
-		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
+		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(from.GroupCatalogs, isDeep);
 		    if (isDeep)
-		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
+		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(from.GroupDocuments, isDeep);
 		    if (isDeep)
-		        vm.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.Clone(vm, from.GroupJournals, isDeep);
+		        vm.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.Clone(from.GroupJournals, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -1103,7 +1365,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.DbSchema = from.DbSchema;
 		    to.PrimaryKeyName = from.PrimaryKeyName;
 		    if (isDeep)
-		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
+		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		    if (isDeep)
 		        GroupSettings.Update(to.GroupSettings, from.GroupSettings, isDeep);
 		    if (isDeep)
@@ -1124,7 +1386,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Config.Clone(null, this);
+			return Config.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Config from)
@@ -1157,7 +1419,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString;
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
-		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
 		    vSharpStudio.vm.ViewModels.GroupSettings.ConvertToVM(m.GroupSettings, vm.GroupSettings);
 		    vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
 		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
@@ -1189,7 +1451,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString;
 		    m.DbSchema = vm.DbSchema;
 		    m.PrimaryKeyName = vm.PrimaryKeyName;
-		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
+		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
 		    m.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.ConvertToProto(vm.GroupSettings);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToProto(vm.GroupConfigs);
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
@@ -1463,24 +1725,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnPrimaryKeyNameChanging();
 		partial void OnPrimaryKeyNameChanged();
 		[ExpandableObjectAttribute()]
-		public IdDbGenerator IdDbGenerator
+		public DbIdGenerator DbIdGenerator
 		{ 
 			set
 			{
-				if (_IdDbGenerator != value)
+				if (_DbIdGenerator != value)
 				{
-					OnIdDbGeneratorChanging();
-		            _IdDbGenerator = value;
-					OnIdDbGeneratorChanged();
+					OnDbIdGeneratorChanging();
+		            _DbIdGenerator = value;
+					OnDbIdGeneratorChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _IdDbGenerator; }
+			get { return _DbIdGenerator; }
 		}
-		private IdDbGenerator _IdDbGenerator;
-		partial void OnIdDbGeneratorChanging();
-		partial void OnIdDbGeneratorChanged();
+		private DbIdGenerator _DbIdGenerator;
+		partial void OnDbIdGeneratorChanging();
+		partial void OnDbIdGeneratorChanged();
 		
 		///////////////////////////////////////////////////
 		/// CONFIG OBJECTS
@@ -1624,7 +1886,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true)
+		public static DataType Clone(DataType from, bool isDeep = true)
 		{
 		    DataType vm = new DataType();
 		    vm.DataTypeEnum = from.DataTypeEnum;
@@ -1647,7 +1909,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return DataType.Clone(null, this);
+			return DataType.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(DataType from)
@@ -1808,7 +2070,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListPropertiesTabs Clone(ITreeConfigNode parent, GroupListPropertiesTabs from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListPropertiesTabs Clone(GroupListPropertiesTabs from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListPropertiesTabs vm = new GroupListPropertiesTabs();
 		    vm.Guid = from.Guid;
@@ -1818,7 +2080,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTab.Clone(vm, (GroupPropertiesTab)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.GroupPropertiesTab.Clone((GroupPropertiesTab)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -1862,7 +2124,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new GroupPropertiesTab();
 		                vSharpStudio.vm.ViewModels.GroupPropertiesTab.Update(p, (GroupPropertiesTab)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -1872,7 +2134,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListPropertiesTabs.Clone(null, this);
+			return GroupListPropertiesTabs.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListPropertiesTabs from)
@@ -1898,7 +2160,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.GroupPropertiesTab.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -1948,7 +2210,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public GroupPropertiesTab this[int index] { get { return (GroupPropertiesTab)this.Children[index]; } }
 		public void Add(GroupPropertiesTab item) 
 		{ 
@@ -1996,7 +2273,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static GroupPropertiesTab Clone(ITreeConfigNode parent, GroupPropertiesTab from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupPropertiesTab Clone(GroupPropertiesTab from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupPropertiesTab vm = new GroupPropertiesTab();
 		    vm.Guid = from.Guid;
@@ -2005,9 +2282,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
+		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupPropertiesSubtabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesSubtabs, isDeep);
+		        vm.GroupPropertiesSubtabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesSubtabs, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2029,7 +2306,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupPropertiesTab.Clone(null, this);
+			return GroupPropertiesTab.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupPropertiesTab from)
@@ -2162,7 +2439,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListProperties Clone(ITreeConfigNode parent, GroupListProperties from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListProperties Clone(GroupListProperties from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListProperties vm = new GroupListProperties();
 		    vm.Guid = from.Guid;
@@ -2172,7 +2449,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Property.Clone(vm, (Property)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Property.Clone((Property)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2216,7 +2493,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Property();
 		                vSharpStudio.vm.ViewModels.Property.Update(p, (Property)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -2226,7 +2503,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListProperties.Clone(null, this);
+			return GroupListProperties.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListProperties from)
@@ -2252,7 +2529,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Property.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -2302,7 +2579,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Property this[int index] { get { return (Property)this.Children[index]; } }
 		public void Add(Property item) 
 		{ 
@@ -2349,7 +2641,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Property Clone(ITreeConfigNode parent, Property from, bool isDeep = true, bool isNewGuid = false)
+		public static Property Clone(Property from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Property vm = new Property();
 		    vm.Guid = from.Guid;
@@ -2358,7 +2650,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2378,7 +2670,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Property.Clone(null, this);
+			return Property.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Property from)
@@ -2491,7 +2783,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListConstants Clone(ITreeConfigNode parent, GroupListConstants from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListConstants Clone(GroupListConstants from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListConstants vm = new GroupListConstants();
 		    vm.Guid = from.Guid;
@@ -2501,7 +2793,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Constant.Clone(vm, (Constant)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Constant.Clone((Constant)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2545,7 +2837,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Constant();
 		                vSharpStudio.vm.ViewModels.Constant.Update(p, (Constant)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -2555,7 +2847,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListConstants.Clone(null, this);
+			return GroupListConstants.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListConstants from)
@@ -2581,7 +2873,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Constant.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -2631,7 +2923,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Constant this[int index] { get { return (Constant)this.Children[index]; } }
 		public void Add(Constant item) 
 		{ 
@@ -2682,7 +2989,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Constant Clone(ITreeConfigNode parent, Constant from, bool isDeep = true, bool isNewGuid = false)
+		public static Constant Clone(Constant from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Constant vm = new Constant();
 		    vm.Guid = from.Guid;
@@ -2691,7 +2998,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
+		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2711,7 +3018,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Constant.Clone(null, this);
+			return Constant.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Constant from)
@@ -2824,7 +3131,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListEnumerations Clone(ITreeConfigNode parent, GroupListEnumerations from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListEnumerations Clone(GroupListEnumerations from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListEnumerations vm = new GroupListEnumerations();
 		    vm.Guid = from.Guid;
@@ -2834,7 +3141,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone(vm, (Enumeration)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Enumeration.Clone((Enumeration)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2878,7 +3185,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Enumeration();
 		                vSharpStudio.vm.ViewModels.Enumeration.Update(p, (Enumeration)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -2888,7 +3195,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListEnumerations.Clone(null, this);
+			return GroupListEnumerations.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListEnumerations from)
@@ -2914,7 +3221,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Enumeration.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -2964,7 +3271,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Enumeration this[int index] { get { return (Enumeration)this.Children[index]; } }
 		public void Add(Enumeration item) 
 		{ 
@@ -3014,7 +3336,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static Enumeration Clone(ITreeConfigNode parent, Enumeration from, bool isDeep = true, bool isNewGuid = false)
+		public static Enumeration Clone(Enumeration from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Enumeration vm = new Enumeration();
 		    vm.Guid = from.Guid;
@@ -3025,7 +3347,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DataTypeEnum = from.DataTypeEnum;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone(vm, (EnumerationPair)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone((EnumerationPair)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3070,7 +3392,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new EnumerationPair();
 		                vSharpStudio.vm.ViewModels.EnumerationPair.Update(p, (EnumerationPair)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -3080,7 +3402,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Enumeration.Clone(null, this);
+			return Enumeration.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Enumeration from)
@@ -3107,7 +3429,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -3179,7 +3501,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDataTypeEnumChanged();
 		[DisplayName("Elements")]
 		[NewItemTypes(typeof(EnumerationPair))]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public EnumerationPair this[int index] { get { return (EnumerationPair)this.Children[index]; } }
 		public void Add(EnumerationPair item) 
 		{ 
@@ -3225,7 +3562,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static EnumerationPair Clone(ITreeConfigNode parent, EnumerationPair from, bool isDeep = true, bool isNewGuid = false)
+		public static EnumerationPair Clone(EnumerationPair from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    EnumerationPair vm = new EnumerationPair();
 		    vm.Guid = from.Guid;
@@ -3252,7 +3589,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return EnumerationPair.Clone(null, this);
+			return EnumerationPair.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(EnumerationPair from)
@@ -3348,7 +3685,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
 		{
-			this.IdDbGenerator = new IdDbGenerator();
+			this.DbIdGenerator = new DbIdGenerator();
 			this.GroupProperties = new GroupListProperties(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
@@ -3366,7 +3703,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Catalog Clone(ITreeConfigNode parent, Catalog from, bool isDeep = true, bool isNewGuid = false)
+		public static Catalog Clone(Catalog from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Catalog vm = new Catalog();
 		    vm.Guid = from.Guid;
@@ -3375,13 +3712,13 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
+		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
 		    if (isDeep)
-		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
+		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
+		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(from.GroupForms, isDeep);
 		    if (isDeep)
-		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
+		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(from.GroupReports, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3394,7 +3731,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
 		    if (isDeep)
-		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
+		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -3407,7 +3744,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Catalog.Clone(null, this);
+			return Catalog.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Catalog from)
@@ -3428,7 +3765,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
 		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
@@ -3444,7 +3781,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
+		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
@@ -3482,24 +3819,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[ExpandableObjectAttribute()]
-		public IdDbGenerator IdDbGenerator
+		public DbIdGenerator DbIdGenerator
 		{ 
 			set
 			{
-				if (_IdDbGenerator != value)
+				if (_DbIdGenerator != value)
 				{
-					OnIdDbGeneratorChanging();
-		            _IdDbGenerator = value;
-					OnIdDbGeneratorChanged();
+					OnDbIdGeneratorChanging();
+		            _DbIdGenerator = value;
+					OnDbIdGeneratorChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _IdDbGenerator; }
+			get { return _DbIdGenerator; }
 		}
-		private IdDbGenerator _IdDbGenerator;
-		partial void OnIdDbGeneratorChanging();
-		partial void OnIdDbGeneratorChanged();
+		private DbIdGenerator _DbIdGenerator;
+		partial void OnDbIdGeneratorChanging();
+		partial void OnDbIdGeneratorChanged();
 		[BrowsableAttribute(false)]
 		public GroupListProperties GroupProperties
 		{ 
@@ -3583,7 +3920,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListCatalogs Clone(ITreeConfigNode parent, GroupListCatalogs from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListCatalogs Clone(GroupListCatalogs from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListCatalogs vm = new GroupListCatalogs();
 		    vm.Guid = from.Guid;
@@ -3593,7 +3930,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Catalog.Clone(vm, (Catalog)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Catalog.Clone((Catalog)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3637,7 +3974,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Catalog();
 		                vSharpStudio.vm.ViewModels.Catalog.Update(p, (Catalog)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -3647,7 +3984,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListCatalogs.Clone(null, this);
+			return GroupListCatalogs.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListCatalogs from)
@@ -3673,7 +4010,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Catalog.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -3723,7 +4060,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Catalog this[int index] { get { return (Catalog)this.Children[index]; } }
 		public void Add(Catalog item) 
 		{ 
@@ -3771,7 +4123,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static GroupDocuments Clone(ITreeConfigNode parent, GroupDocuments from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupDocuments Clone(GroupDocuments from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupDocuments vm = new GroupDocuments();
 		    vm.Guid = from.Guid;
@@ -3780,9 +4132,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
+		        vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupSharedProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
+		        vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(from.GroupListDocuments, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3804,7 +4156,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupDocuments.Clone(null, this);
+			return GroupDocuments.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupDocuments from)
@@ -3923,7 +4275,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
-			this.IdDbGenerator = new IdDbGenerator();
+			this.DbIdGenerator = new DbIdGenerator();
 			OnInit();
 		}
 		public Document(ITreeConfigNode parent) : this()
@@ -3938,7 +4290,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Document Clone(ITreeConfigNode parent, Document from, bool isDeep = true, bool isNewGuid = false)
+		public static Document Clone(Document from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Document vm = new Document();
 		    vm.Guid = from.Guid;
@@ -3947,15 +4299,15 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
+		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+		        vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesTabs, isDeep);
 		    if (isDeep)
-		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
+		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(from.GroupForms, isDeep);
 		    if (isDeep)
-		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
+		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(from.GroupReports, isDeep);
 		    if (isDeep)
-		        vm.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.Clone(vm, from.IdDbGenerator, isDeep);
+		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3976,14 +4328,14 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        GroupListReports.Update(to.GroupReports, from.GroupReports, isDeep);
 		    if (isDeep)
-		        IdDbGenerator.Update(to.IdDbGenerator, from.IdDbGenerator, isDeep);
+		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		}
 		#region IEditable
 		public override Document Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Document.Clone(null, this);
+			return Document.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Document from)
@@ -4008,7 +4360,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
 		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
-		    vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToVM(m.IdDbGenerator, vm.IdDbGenerator);
+		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4025,7 +4377,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
-		    m.IdDbGenerator = vSharpStudio.vm.ViewModels.IdDbGenerator.ConvertToProto(vm.IdDbGenerator);
+		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -4136,24 +4488,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupReportsChanging();
 		partial void OnGroupReportsChanged();
 		[ExpandableObjectAttribute()]
-		public IdDbGenerator IdDbGenerator
+		public DbIdGenerator DbIdGenerator
 		{ 
 			set
 			{
-				if (_IdDbGenerator != value)
+				if (_DbIdGenerator != value)
 				{
-					OnIdDbGeneratorChanging();
-		            _IdDbGenerator = value;
-					OnIdDbGeneratorChanged();
+					OnDbIdGeneratorChanging();
+		            _DbIdGenerator = value;
+					OnDbIdGeneratorChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _IdDbGenerator; }
+			get { return _DbIdGenerator; }
 		}
-		private IdDbGenerator _IdDbGenerator;
-		partial void OnIdDbGeneratorChanging();
-		partial void OnIdDbGeneratorChanged();
+		private DbIdGenerator _DbIdGenerator;
+		partial void OnDbIdGeneratorChanging();
+		partial void OnDbIdGeneratorChanged();
 		#endregion Properties
 	}
 	public partial class GroupListDocuments : ConfigObjectBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IAccept
@@ -4180,7 +4532,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListDocuments Clone(ITreeConfigNode parent, GroupListDocuments from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListDocuments Clone(GroupListDocuments from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListDocuments vm = new GroupListDocuments();
 		    vm.Guid = from.Guid;
@@ -4190,7 +4542,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, (Document)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Document.Clone((Document)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4234,7 +4586,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Document();
 		                vSharpStudio.vm.ViewModels.Document.Update(p, (Document)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4244,7 +4596,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListDocuments.Clone(null, this);
+			return GroupListDocuments.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListDocuments from)
@@ -4270,7 +4622,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4320,7 +4672,22 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Document this[int index] { get { return (Document)this.Children[index]; } }
 		public void Add(Document item) 
 		{ 
@@ -4370,7 +4737,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListJournals Clone(ITreeConfigNode parent, GroupListJournals from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListJournals Clone(GroupListJournals from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListJournals vm = new GroupListJournals();
 		    vm.Guid = from.Guid;
@@ -4380,7 +4747,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Journal.Clone(vm, (Journal)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Journal.Clone((Journal)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4424,7 +4791,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Journal();
 		                vSharpStudio.vm.ViewModels.Journal.Update(p, (Journal)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4434,7 +4801,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListJournals.Clone(null, this);
+			return GroupListJournals.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListJournals from)
@@ -4460,7 +4827,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Journal.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4514,7 +4881,22 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Journal this[int index] { get { return (Journal)this.Children[index]; } }
 		public void Add(Journal item) 
 		{ 
@@ -4564,7 +4946,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static Journal Clone(ITreeConfigNode parent, Journal from, bool isDeep = true, bool isNewGuid = false)
+		public static Journal Clone(Journal from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Journal vm = new Journal();
 		    vm.Guid = from.Guid;
@@ -4574,7 +4956,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Document.Clone(vm, (Document)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Document.Clone((Document)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4618,7 +5000,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Document();
 		                vSharpStudio.vm.ViewModels.Document.Update(p, (Document)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4628,7 +5010,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Journal.Clone(null, this);
+			return Journal.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Journal from)
@@ -4654,7 +5036,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Document.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4708,7 +5090,22 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_group_properties list_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Document this[int index] { get { return (Document)this.Children[index]; } }
 		public void Add(Document item) 
 		{ 
@@ -4758,7 +5155,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListForms Clone(ITreeConfigNode parent, GroupListForms from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListForms Clone(GroupListForms from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListForms vm = new GroupListForms();
 		    vm.Guid = from.Guid;
@@ -4768,7 +5165,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Form.Clone(vm, (Form)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Form.Clone((Form)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4812,7 +5209,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Form();
 		                vSharpStudio.vm.ViewModels.Form.Update(p, (Form)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -4822,7 +5219,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListForms.Clone(null, this);
+			return GroupListForms.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListForms from)
@@ -4848,7 +5245,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Form.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -4902,7 +5299,22 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Form this[int index] { get { return (Form)this.Children[index]; } }
 		public void Add(Form item) 
 		{ 
@@ -4948,7 +5360,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Form Clone(ITreeConfigNode parent, Form from, bool isDeep = true, bool isNewGuid = false)
+		public static Form Clone(Form from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Form vm = new Form();
 		    vm.Guid = from.Guid;
@@ -4973,7 +5385,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Form.Clone(null, this);
+			return Form.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Form from)
@@ -5069,7 +5481,7 @@ namespace vSharpStudio.vm.ViewModels
 		        this.Children.Sort();
 		    }
 		}
-		public static GroupListReports Clone(ITreeConfigNode parent, GroupListReports from, bool isDeep = true, bool isNewGuid = false)
+		public static GroupListReports Clone(GroupListReports from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    GroupListReports vm = new GroupListReports();
 		    vm.Guid = from.Guid;
@@ -5079,7 +5491,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in from.Children)
-		        vm.Add(vSharpStudio.vm.ViewModels.Report.Clone(vm, (Report)t, isDeep));
+		        vm.Children.Add(vSharpStudio.vm.ViewModels.Report.Clone((Report)t, isDeep));
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -5123,7 +5535,7 @@ namespace vSharpStudio.vm.ViewModels
 		            {
 		                var p = new Report();
 		                vSharpStudio.vm.ViewModels.Report.Update(p, (Report)tt, isDeep);
-		                to.Add(p);
+		                to.Children.Add(p);
 		            }
 		        }
 		    }
@@ -5133,7 +5545,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListReports.Clone(null, this);
+			return GroupListReports.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(GroupListReports from)
@@ -5159,7 +5571,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        var tvm = vSharpStudio.vm.ViewModels.Report.ConvertToVM(t);
 		        tvm.Parent = vm;
-		        vm.Add(tvm);
+		        vm.Children.Add(tvm);
 		    }
 		    vm.OnInitFromDto();
 		    return vm;
@@ -5213,7 +5625,22 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ITreeConfigNode> Children { get; set; }
+		public SortedObservableCollection<ITreeConfigNode> Children
+		{ 
+			set
+			{
+				if (_Children != value)
+				{
+					OnChildrenChanging();
+					_Children = value;
+					OnChildrenChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Children; }
+		}
+		private SortedObservableCollection<ITreeConfigNode> _Children;
 		public Report this[int index] { get { return (Report)this.Children[index]; } }
 		public void Add(Report item) 
 		{ 
@@ -5259,7 +5686,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static Report Clone(ITreeConfigNode parent, Report from, bool isDeep = true, bool isNewGuid = false)
+		public static Report Clone(Report from, bool isDeep = true, bool isNewGuid = false)
 		{
 		    Report vm = new Report();
 		    vm.Guid = from.Guid;
@@ -5284,7 +5711,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Report.Clone(null, this);
+			return Report.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(Report from)
@@ -5364,6 +5791,10 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(GroupSettings p);
 		void Visit(SettingsConfig p);
 		void VisitEnd(SettingsConfig p);
+		void Visit(SettingsDb p);
+		void VisitEnd(SettingsDb p);
+		void Visit(SettingsForDbPlugin p);
+		void VisitEnd(SettingsForDbPlugin p);
 		void Visit(GroupConfigs p);
 		void VisitEnd(GroupConfigs p);
 		void Visit(ConfigTree p);
@@ -5417,7 +5848,8 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(proto_group_settings p);
 		void Visit(proto_settings_config p);
 		void Visit(proto_settings_db p);
-		void Visit(id_db_generator p);
+		void Visit(proto_settings_for_db_plugin p);
+		void Visit(db_id_generator p);
 		void Visit(proto_group_configs p);
 		void Visit(proto_config_tree p);
 		void Visit(proto_config p);
@@ -5451,7 +5883,6 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(GroupSettings p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.Db);
 	    }
 		public void VisitEnd(GroupSettings p)
 	    {
@@ -5473,11 +5904,19 @@ namespace vSharpStudio.vm.ViewModels
 	    {
 	        OnVisitEnd(p);
 	    }
-		public void Visit(IdDbGenerator p)
+		public void Visit(SettingsForDbPlugin p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(IdDbGenerator p)
+		public void VisitEnd(SettingsForDbPlugin p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(DbIdGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(DbIdGenerator p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -5500,7 +5939,7 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(Config p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
 	    }
 		public void VisitEnd(Config p)
 	    {
@@ -5591,7 +6030,7 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(Catalog p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
 	    }
 		public void VisitEnd(Catalog p)
 	    {
@@ -5616,7 +6055,7 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(Document p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.IdDbGenerator);
+	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
 	    }
 		public void VisitEnd(Document p)
 	    {
@@ -5715,16 +6154,26 @@ namespace vSharpStudio.vm.ViewModels
 	    }
 	    protected virtual void OnVisit(SettingsDb p) {}
 	    protected virtual void OnVisitEnd(SettingsDb p) {}
-		public void Visit(IdDbGenerator p)
+		public void Visit(SettingsForDbPlugin p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(IdDbGenerator p)
+		public void VisitEnd(SettingsForDbPlugin p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(IdDbGenerator p) {}
-	    protected virtual void OnVisitEnd(IdDbGenerator p) {}
+	    protected virtual void OnVisit(SettingsForDbPlugin p) {}
+	    protected virtual void OnVisitEnd(SettingsForDbPlugin p) {}
+		public void Visit(DbIdGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(DbIdGenerator p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(DbIdGenerator p) {}
+	    protected virtual void OnVisitEnd(DbIdGenerator p) {}
 		public void Visit(GroupConfigs p)
 	    {
 	        OnVisit(p);

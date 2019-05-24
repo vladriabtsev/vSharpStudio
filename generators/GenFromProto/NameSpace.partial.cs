@@ -193,9 +193,7 @@ namespace GenFromProto
                     if (tt.MessageType.Name.EndsWith("_nullable"))
                         continue;
                     if (tt.IsMap)
-                    {
-                        throw new NotImplementedException();
-                    }
+                        continue;
                     if (!dicParents.ContainsKey(tt.MessageType.Name))
                     {
                         dicParents[tt.MessageType.Name] = new List<MessageDescriptor>();

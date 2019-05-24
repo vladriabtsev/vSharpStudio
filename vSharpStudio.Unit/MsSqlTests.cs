@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.ViewModels;
+using vPlugin.DbModel.MsSql;
 
 namespace vSharpStudio.Unit
 {
@@ -25,7 +26,7 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM();
             vm.Compose();
             Assert.IsTrue(vm.ListDbDesignPlugins.Count > 0);
-            Assert.IsTrue(vm.Model.GroupSettings.Db.ListDbConnections.Count == 0);
+            Assert.IsTrue(vm.Model.GroupSettings.DbType.ListPluginConnections.Count == 0);
         }
         [TestMethod]
         public void Plugin002CanGetSettingsVM()
@@ -33,8 +34,10 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM();
             vm.Compose();
             vm.SelectedDbDesignPlugin = (from p in vm.ListDbDesignPlugins where p.Name == "MsSql" select p).First();
-            Assert.IsTrue(vm.SelectedDbDesignPluginSettings != null);
-            Assert.IsTrue(vm.SelectedDbDesignPluginSettings is ConnMsSql);
+            Assert.IsTrue(vm.SelectedDbDesignPlugin != null);
+            Assert.IsTrue(vm.SelectedDbDesignPlugin is MsSqlMigrator);
+            //Assert.IsTrue(vm.list.SelectedDbDesignPlugin != null);
+            Assert.IsTrue(vm.SelectedDbDesignPlugin is ConnMsSql);
         }
         //#endregion Config
 

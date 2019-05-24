@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/23/2019 19:37:48
+// Auto generated on UTC 05/24/2019 19:26:39
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static ConnMsSql Clone(ITreeConfigNode parent, ConnMsSql from, bool isDeep = true)
+		public static ConnMsSql Clone(ConnMsSql from, bool isDeep = true)
 		{
 		    ConnMsSql vm = new ConnMsSql();
 		    vm.Name = from.Name;
@@ -115,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return ConnMsSql.Clone(null, this);
+			return ConnMsSql.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(ConnMsSql from)

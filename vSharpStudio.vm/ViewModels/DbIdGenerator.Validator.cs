@@ -8,11 +8,11 @@ using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class IdDbGenerator
+    public partial class DbIdGenerator
     {
-        public partial class IdDbGeneratorValidator
+        public partial class DbIdGeneratorValidator
         {
-            public IdDbGeneratorValidator()
+            public DbIdGeneratorValidator()
             {
             }
         }

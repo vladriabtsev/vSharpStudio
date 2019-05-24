@@ -6,7 +6,22 @@
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
 <# if (field.Name == "children") { #>
-public SortedObservableCollection<ITreeConfigNode> <#= field.Name.ToNameCs() #> { get; set; }
+public SortedObservableCollection<ITreeConfigNode> <#= field.Name.ToNameCs() #>
+{ 
+	set
+	{
+		if (_<#= field.Name.ToNameCs() #> != value)
+		{
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _<#= field.Name.ToNameCs() #>; }
+}
+private SortedObservableCollection<ITreeConfigNode> _<#= field.Name.ToNameCs() #>;
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.Children[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) 
 { 
@@ -28,10 +43,57 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     this.Children.Remove(item); 
     item.Parent = null;
 }
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.FullName == "google.protobuf.Any") { #>
-public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
+<# } else if (field.IsAny() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
+{ 
+	set
+	{
+		if (_<#= field.Name.ToNameCs() #> != value)
+		{
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _<#= field.Name.ToNameCs() #>; }
+}
+private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+<# } else if (field.IsMap) { #>
+public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
+{ 
+	set
+	{
+		if (_<#= field.Name.ToNameCs() #> != value)
+		{
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _<#= field.Name.ToNameCs() #>; }
+}
+private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 <# } else { #>
-public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; set; }
+public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> 
+{ 
+	set
+	{
+		if (_<#= field.Name.ToNameCs() #> != value)
+		{
+			On<#= field.Name.ToNameCs() #>Changing();
+			_<#= field.Name.ToNameCs() #> = value;
+			On<#= field.Name.ToNameCs() #>Changed();
+			NotifyPropertyChanged();
+			ValidateProperty();
+		}
+	}
+	get { return _<#= field.Name.ToNameCs() #>; }
+}
+private SortedObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 <# } #>
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
 public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>

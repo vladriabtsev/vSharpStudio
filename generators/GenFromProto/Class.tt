@@ -13,10 +13,12 @@
        if (t.IsCsSimple())
          continue;
 		if (t.IsRepeated) {#>
-<# if (t.IsAny()) { #>
+<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
-<# } else { #>
+<# } else if (t.Name == "children") { #>
 		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
+<# } else { #>
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>

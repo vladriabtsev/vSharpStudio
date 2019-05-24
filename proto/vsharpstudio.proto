@@ -22,7 +22,7 @@ message proto_group_settings {
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]
     proto_settings_config config = 6;
-    proto_settings_db db = 7;
+    proto_settings_db db_type = 7;
 }
 message proto_settings_config {
     string guid = 1;
@@ -36,17 +36,26 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
-// @base : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
+// @bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
 message proto_settings_db {
-    google.protobuf.Any selected_db_connection = 1;
+    string selected_db_design_plugin_guid = 1;
+    string selected_db_connection_guid = 2;
+    repeated proto_settings_for_db_plugin list_plugin_connections = 3;
+
+    //map<string, proto_settings_for_db> map_connections = 2;
+    //repeated google.protobuf.Any list_db_connections = 2;
+}
+// @bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>
+message proto_settings_for_db_plugin {
+    string db_design_plugin_guid = 1;
     repeated google.protobuf.Any list_db_connections = 2;
 }
 
 
 
 // Primary key generation strategy
-// @base : ViewModelValidatableWithSeverity<IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator>
-message id_db_generator {
+// @base : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator>
+message db_id_generator {
     bool_nullable is_primary_key_clustered = 10; // MsSql
     bool_nullable is_memory_optimized = 11; // MsSql
     bool_nullable is_sequence_hi_lo = 12; // SequenceHiLo or IdentityColumn. MsSql
@@ -122,7 +131,7 @@ message proto_config {
     string primary_key_name = 32;
 
     // @attr [ExpandableObjectAttribute()]
-    id_db_generator id_db_generator = 33;
+    db_id_generator db_id_generator = 33;
 
 
     // CONFIG OBJECTS
@@ -305,7 +314,7 @@ message proto_catalog {
     string description = 5;
 
     // @attr [ExpandableObjectAttribute()]
-    id_db_generator id_db_generator = 10;
+    db_id_generator db_id_generator = 10;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
@@ -359,7 +368,7 @@ message proto_document {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
     // @attr [ExpandableObjectAttribute()]
-    id_db_generator id_db_generator = 10;
+    db_id_generator db_id_generator = 10;
 }
 message proto_group_list_documents {
     string guid = 1;

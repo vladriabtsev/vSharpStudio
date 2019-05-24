@@ -51,38 +51,36 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tforeach(var t in this.");
             
             #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ if (!field.IsAny()) { 
+            
+            #line default
+            #line hidden
+            this.Write("\tforeach(var t in this.");
+            
+            #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(")\r\n\t\t(t as ");
             
-            #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(").AcceptConfigNode(visitor);\r\n");
             
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
- } else if (field.MessageType.FullName == "google.protobuf.Any") { 
-            
-            #line default
-            #line hidden
-            this.Write("\tthis.");
-            
             #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+ } 
             
             #line default
             #line hidden
-            this.Write(".AcceptConfigNode(visitor);\r\n");
             
             #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
- } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { 
+ } else if (field.MessageType.FullName == "google.protobuf.Any") { 
             
             #line default
             #line hidden
@@ -96,20 +94,34 @@ namespace GenFromProto
             this.Write(".AcceptConfigNode(visitor);\r\n");
             
             #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+ } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { 
+            
+            #line default
+            #line hidden
+            this.Write("\tthis.");
+            
+            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".AcceptConfigNode(visitor);\r\n");
+            
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } } catch(Exception ex) { 
 } 
             
             #line default
             #line hidden
             
-            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
             
-            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
  } 
             
             #line default

@@ -5,7 +5,7 @@
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
     - [bool_nullable](#proto_config.bool_nullable)
-    - [id_db_generator](#proto_config.id_db_generator)
+    - [db_id_generator](#proto_config.db_id_generator)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_tree](#proto_config.proto_config_tree)
@@ -33,6 +33,7 @@
     - [proto_report](#proto_config.proto_report)
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [proto_settings_db](#proto_config.proto_settings_db)
+    - [proto_settings_for_db_plugin](#proto_config.proto_settings_for_db_plugin)
     - [string_nullable](#proto_config.string_nullable)
   
     - [proto_config.EnumDbType](#proto_config.proto_config.EnumDbType)
@@ -69,11 +70,11 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 
 
 
-<a name="proto_config.id_db_generator"></a>
+<a name="proto_config.db_id_generator"></a>
 
-### id_db_generator
+### db_id_generator
 Primary key generation strategy
-@base : ViewModelValidatableWithSeverity&lt;IdDbGenerator, IdDbGenerator.IdDbGeneratorValidator&gt;
+@base : ViewModelValidatableWithSeverity&lt;DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator&gt;
 
 
 | Field | Type | Label | Description |
@@ -102,7 +103,7 @@ Primary key generation strategy
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| id_db_generator | [id_db_generator](#proto_config.id_db_generator) |  | @attr [ExpandableObjectAttribute()] |
+| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
@@ -137,7 +138,7 @@ Configuration config
 | path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings |
 | db_schema | [string](#string) |  |  |
 | primary_key_name | [string](#string) |  |  |
-| id_db_generator | [id_db_generator](#proto_config.id_db_generator) |  | @attr [ExpandableObjectAttribute()] |
+| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 | group_settings | [proto_group_settings](#proto_config.proto_group_settings) |  | CONFIG OBJECTS |
 | group_configs | [proto_group_configs](#proto_config.proto_group_configs) |  |  |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  |  |
@@ -227,7 +228,7 @@ Constant application wise value
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| id_db_generator | [id_db_generator](#proto_config.id_db_generator) |  | @attr [ExpandableObjectAttribute()] |
+| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 
 
 
@@ -549,7 +550,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | config | [proto_settings_config](#proto_config.proto_settings_config) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] |
-| db | [proto_settings_db](#proto_config.proto_settings_db) |  |  |
+| db_type | [proto_settings_db](#proto_config.proto_settings_db) |  |  |
 
 
 
@@ -640,12 +641,29 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 <a name="proto_config.proto_settings_db"></a>
 
 ### proto_settings_db
-@base : ViewModelValidatableWithSeverity&lt;SettingsDb, SettingsDb.SettingsDbValidator&gt;
+@bas : ViewModelValidatableWithSeverity&lt;SettingsDb, SettingsDb.SettingsDbValidator&gt;
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| selected_db_connection | [google.protobuf.Any](#google.protobuf.Any) |  |  |
+| selected_db_design_plugin_guid | [string](#string) |  |  |
+| selected_db_connection_guid | [string](#string) |  |  |
+| list_plugin_connections | [proto_settings_for_db_plugin](#proto_config.proto_settings_for_db_plugin) | repeated |  |
+
+
+
+
+
+
+<a name="proto_config.proto_settings_for_db_plugin"></a>
+
+### proto_settings_for_db_plugin
+@bas : ViewModelValidatableWithSeverity&lt;SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| db_design_plugin_guid | [string](#string) |  |  |
 | list_db_connections | [google.protobuf.Any](#google.protobuf.Any) | repeated |  |
 
 
