@@ -6,7 +6,6 @@ using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 using ViewModelBase;
-using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
 using Xunit.Abstractions;

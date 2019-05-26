@@ -2005,7 +2005,7 @@
             },
             {
               "name": "db_type",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()]",
               "label": "",
               "type": "proto_settings_db",
               "longType": "proto_settings_db",

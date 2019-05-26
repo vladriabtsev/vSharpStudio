@@ -22,6 +22,7 @@ message proto_group_settings {
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]
     proto_settings_config config = 6;
+    // @attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()]
     proto_settings_db db_type = 7;
 }
 message proto_settings_config {

@@ -550,7 +550,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | config | [proto_settings_config](#proto_config.proto_settings_config) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] |
-| db_type | [proto_settings_db](#proto_config.proto_settings_db) |  |  |
+| db_type | [proto_settings_db](#proto_config.proto_settings_db) |  | @attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()] |
 
 
 

@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/24/2019 19:26:39
+// Auto generated on UTC 05/26/2019 22:08:21
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -131,6 +131,8 @@ namespace vSharpStudio.vm.ViewModels
 		private SettingsConfig _Config;
 		partial void OnConfigChanging();
 		partial void OnConfigChanged();
+		[PropertyOrderAttribute(5)]
+		[ExpandableObjectAttribute()]
 		public SettingsDb DbType
 		{ 
 			set
