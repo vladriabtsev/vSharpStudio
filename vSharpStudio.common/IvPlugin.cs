@@ -16,16 +16,40 @@ namespace vSharpStudio.common
     public interface IvPlugin
     {
         Guid Guid { get; }
-        vPluginTypeEnum PluginType { get; }
         string Name { get; }
         string Description { get; }
         string Author { get; }
         string Version { get; }
         string Url { get; }
         string Licence { get; }
+        List<IvPluginCodeGenerator> ListGenerators { get; }
+    }
+    public interface IvPluginCodeGenerator
+    {
+        Guid Guid { get; }
+        string Name { get; }
+        string Description { get; }
+        vPluginTypeEnum PluginType { get; }
         // MVVM settings model (if settings == null then empty model will be created)
-        INotifyPropertyChanged GetSettingsMvvm(Any settings);
-        // current protobuf settings (reflecting all latest changes in MVVM settings model)
-        Any Settings { get; }
+        /// <summary>
+        /// MVVM model for editing settings.
+        /// INotifyPropertyChanged is minimum requirements for implemented interfaces.
+        /// For validation settings INotifyDataErrorInfo is a minimum. IValidatableWithSeverity is recomended.
+        /// </summary>
+        /// <param name="settings, json format"></param>
+        /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
+        IvPluginSettingsVM GetSettingsMvvm(string settings);
+    }
+    public interface IvPluginSettingsVM : IParent, INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Get protobuf model of settings from MVVM model (json format)
+        /// </summary>
+        string Settings { get; }
+        /// <summary>
+        /// Generate code for current settings
+        /// </summary>
+        /// <returns>Generated code</returns>
+        string GenerateCode();
     }
 }

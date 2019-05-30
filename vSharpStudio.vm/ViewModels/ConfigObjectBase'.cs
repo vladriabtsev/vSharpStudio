@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -114,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Sort
 
-        [BrowsableAttribute(false)]
+        [Editable(false)]
         public string Guid
         {
             get
@@ -362,6 +363,24 @@ namespace vSharpStudio.vm.ViewModels
             string tname = this.GetType().Name;
             switch (tname)
             {
+                case "PluginGenerator":
+                    var cfg = this.Parent.Parent.Parent as Config;
+                    PluginGenerator pg = (PluginGenerator)cfg.SelectedNode;
+                    PluginGeneratorSettings pgs = null;
+                    switch (pg.Generator.PluginType)
+                    {
+                        case vPluginTypeEnum.DbDesign:
+                            var settings = pg.Generator.GetSettingsMvvm(null);
+                            pgs = new PluginGeneratorSettings(settings);
+                            pgs.Guid = pg.Generator.Guid.ToString();
+                            GetUniqueName(pg.Name, pgs, pg.ListPluginGeneratorSettings);
+                            pg.ListPluginGeneratorSettings.Add(pgs);
+                            cfg.SelectedNode = pgs;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return pgs;
                 case "GroupListConstants":
                     var constant = new Constant();
                     var cnp = (this as GroupListConstants);

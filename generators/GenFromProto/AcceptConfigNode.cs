@@ -84,7 +84,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tthis.");
+            this.Write("\t//this.");
             
             #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptConfigNode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

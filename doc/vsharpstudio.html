@@ -255,6 +255,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_plugins"><span class="badge">M</span>proto_group_list_plugins</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_properties"><span class="badge">M</span>proto_group_list_properties</a>
                 </li>
               
@@ -271,11 +275,19 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_settings"><span class="badge">M</span>proto_group_settings</a>
+                  <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
+                  <a href="#proto_config.proto_plugin"><span class="badge">M</span>proto_plugin</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_generator"><span class="badge">M</span>proto_plugin_generator</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
                 </li>
               
                 <li>
@@ -288,14 +300,6 @@
               
                 <li>
                   <a href="#proto_config.proto_settings_config"><span class="badge">M</span>proto_settings_config</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_settings_db"><span class="badge">M</span>proto_settings_db</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_settings_for_db_plugin"><span class="badge">M</span>proto_settings_for_db_plugin</a>
                 </li>
               
                 <li>
@@ -637,8 +641,8 @@ it will override previous settings </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_settings</td>
-                  <td><a href="#proto_config.proto_group_settings">proto_group_settings</a></td>
+                  <td>group_plugins</td>
+                  <td><a href="#proto_config.proto_group_list_plugins">proto_group_list_plugins</a></td>
                   <td></td>
                   <td><p>CONFIG OBJECTS </p></td>
                 </tr>
@@ -1610,6 +1614,37 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_list_plugins">proto_group_list_plugins</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_plugins</td>
+                  <td><a href="#proto_config.proto_plugin">proto_plugin</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_properties">proto_group_list_properties</h3>
         <p></p>
 
@@ -1854,51 +1889,6 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
-        <h3 id="proto_config.proto_group_settings">proto_group_settings</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>config</td>
-                  <td><a href="#proto_config.proto_settings_config">proto_settings_config</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_type</td>
-                  <td><a href="#proto_config.proto_settings_db">proto_settings_db</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_journal">proto_journal</h3>
         <p></p>
 
@@ -1950,6 +1940,181 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>repeated</td>
                   <td><p>repeated proto_group_properties list_properties = 6;
 @attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin">proto_plugin</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_plugin_generators</td>
+                  <td><a href="#proto_config.proto_plugin_generator">proto_plugin_generator</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_generator">proto_plugin_generator</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_plugin_generator_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>This Guid is taken from Plugin Generator
+@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>This Name is taken from Plugin Generator
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>This Description is taken from Plugin Generator
+@attr [PropertyOrderAttribute(2)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generator_settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_private</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file_path_for_private_connection</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Editor(&#34;System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;, &#34;System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -2123,75 +2288,6 @@ repeated proto_document list_documents = 7; </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>min version supported by current version for migration </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_settings_db">proto_settings_db</h3>
-        <p>@bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>selected_db_design_plugin_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selected_db_connection_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_plugin_connections</td>
-                  <td><a href="#proto_config.proto_settings_for_db_plugin">proto_settings_for_db_plugin</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_settings_for_db_plugin">proto_settings_for_db_plugin</h3>
-        <p>@bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>db_design_plugin_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_db_connections</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>

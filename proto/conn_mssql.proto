@@ -3,6 +3,12 @@ syntax = "proto3";
 package proto_conn_mssql;
 option csharp_namespace = "Proto.Config.Connection"; // keep same for generator
 
+// @attr [CategoryOrder("Source", 1)]
+// @attr [CategoryOrder("Security", 2)]
+// @attr [CategoryOrder("Pooling", 3)]
+// @attr [CategoryOrder("Initialization", 4)]
+// @attr [CategoryOrder("ConnectionResilency", 5)]
+// @attr [CategoryOrder("Advanced", 6)]
 // @base : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>
 message proto_conn_ms_sql {
     string name = 1;
@@ -15,6 +21,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize
     //     property, or 100 if none has been supplied.
+    // @attr [Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize property, or 100 if none has been supplied.")]
     // @attr [Category("Pooling")]
     int32 max_pool_size = 2;
     //
@@ -28,6 +35,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The number of reconnections attempted after identifying that there was an idle
     //     connection failure.
+    // @attr [Description(".NET Framework 4.5.1 and later versions. The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.")]
     // @attr [Category("ConnectionResilency")]
     int32 connect_retry_count = 3;
     //
@@ -41,6 +49,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     Amount of time (in seconds) between each reconnection attempt after identifying
     //     that there was an idle connection failure.
+    // @attr [Description(".NET Framework 4.5.1 and later versions. Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.")]
     // @attr [Category("ConnectionResilency")]
     int32 connect_retry_interval = 4;
     //
@@ -51,6 +60,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize
     //     property, or 0 if none has been supplied.
+    // @attr [Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize property, or 0 if none has been supplied.")]
     // @attr [Category("Pooling")]
     int32 min_pool_size = 5;
     //
@@ -63,6 +73,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MultipleActiveResultSets
     //     property, or false if none has been supplied.
+    // @attr [Description("When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.")]
     // @attr [CategoryAttribute("Advanced")]
     bool multiple_active_result_sets = 6;
     //
@@ -75,6 +86,7 @@ message proto_conn_ms_sql {
     //
     // Returns:
     //     Returns System.Boolean indicating the current value of the property.
+    // @attr [Description("If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.")]
     // @attr [Category("Source")]
     bool multi_subnet_failover = 7;
     //
@@ -87,6 +99,7 @@ message proto_conn_ms_sql {
     //
     // Returns:
     //     A boolean value.
+    // @attr [Description("When the value of this key is set to true, the application is required to retrieve all IP addresses for a particular DNS entry and attempt to connect with the first one in the list. If the connection is not established within 0.5 seconds, the application will try to connect to all others in parallel. When the first answers, the application will establish the connection with the respondent IP address.")]
     // @attr [Category("Source")]
     bool transparent_network_i_p_resolution = 8;
     //
@@ -111,6 +124,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize
     //     property, or 8000 if none has been supplied.
+    // @attr [Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize property, or 8000 if none has been supplied.")]
     // @attr [Category("Advanced")]
     int32 PacketSize = 10;
     //
@@ -122,6 +136,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PersistSecurityInfo
     //     property, or false if none has been supplied.
+    // @attr [Description("Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.")]
     // @attr [Category("Security")]
     bool persist_security_info = 11;
     //
@@ -132,6 +147,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.LoadBalanceTimeout
     //     property, or 0 if none has been supplied.
+    // @attr [Description("Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.")]
     // @attr [Category("Pooling")]
     int32 load_balance_timeout = 12;
     //
@@ -142,6 +158,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Pooling property,
     //     or true if none has been supplied.
+    // @attr [Description("Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.")]
     // @attr [Category("Pooling")]
     bool pooling = 13;
     //
@@ -152,6 +169,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Replication
     //     property, or false if none has been supplied.
+    // @attr [Description("System.Data.SqlClient.SqlConnectionStringBuilder.Replication")]
     // @attr [Category("Replication")]
     bool replication = 14;
     //
@@ -162,6 +180,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding
     //     property, or String.Empty if none has been supplied.
+    // @attr [Description("System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding")]
     // @attr [Category("Advanced")]
     string transaction_binding = 15;
     //
@@ -276,6 +295,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("Gets or sets the name of the database associated with the connection.")]
     // @attr [Category("Source")]
     string initial_catalog = 22;
     //
@@ -302,6 +322,7 @@ message proto_conn_ms_sql {
     //
     // Returns:
     //     Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).
+    // @attr [Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
     // @attr [Category("Initialization")]
     ApplicationIntent ApplicationIntentValue = 23;
     //
@@ -315,6 +336,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("The name of the application, or \".NET SqlClient Data Provider\" if no name has been supplied.")]
     // @attr [Category("Context")]
     string ApplicationName = 24;
     //
@@ -327,6 +349,7 @@ message proto_conn_ms_sql {
     //     about SqlClient support for asynchronous programming, see Asynchronous Programming.The
     //     value of the System.Data.SqlClient.SqlConnectionStringBuilder.AsynchronousProcessing
     //     property, or false if no value has been supplied.
+    // @attr [Description("This property is ignored beginning in .NET Framework 4.5.")]
     // @attr [Category("Initialization")]
     bool AsynchronousProcessing = 25;
     //
@@ -338,6 +361,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.IntegratedSecurity
     //     property, or false if none has been supplied.
+    // @attr [Description("Gets or sets a Boolean value that indicates whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true).")]
     // @attr [Category("Security")]
     bool IntegratedSecurity = 26;
     //
@@ -348,6 +372,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection
     //     property, or False if none has been supplied.
+    // @attr [Description("System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection")]
     // @attr [Category("Source")]
     bool ContextConnection = 27;
     //
@@ -358,6 +383,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout
     //     property, or 15 seconds if no value has been supplied.
+    // @attr [Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout property, or 15 seconds if no value has been supplied.")]
     // @attr [Category("Initialization")]
     int32 ConnectTimeout = 28;
     //
@@ -372,6 +398,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
     // @attr [Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     // @attr [Category("Source")]
     string attach_d_b_filename = 29;
@@ -387,6 +414,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("Gets or sets the name or network address of the instance of SQL Server to connect to.")]
     // @attr [Category("Source")]
     string data_source = 30;
     //
@@ -398,6 +426,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property,
     //     or false if none has been supplied.
+    // @attr [Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
     // @attr [Category("Security")]
     bool encrypt = 31;
     //
@@ -425,6 +454,7 @@ message proto_conn_ms_sql {
     //
     // Returns:
     //     The column encryption settings for the connection string builder.
+    // @attr [Description("Gets and sets the column encryption settings for the connection string builder.")]
     // @attr [Category("Security")]
     SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting = 32;
     //
@@ -434,6 +464,7 @@ message proto_conn_ms_sql {
     //
     // Returns:
     //     A Boolean. Recognized values are true, false, yes, and no.
+    // @attr [Description("Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.")]
     // @attr [Category("Security")]
     bool trust_server_certificate = 33;
     //
@@ -445,6 +476,7 @@ message proto_conn_ms_sql {
     // Returns:
     //     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Enlist property,
     //     or true if none has been supplied.
+    // @attr [Description("Gets or sets a Boolean value that indicates whether the SQL Server connection pooler automatically enlists the connection in the creation thread's current transaction context.")]
     // @attr [Category("Pooling")]
     bool enlist = 34;
     //
@@ -459,6 +491,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("Gets or sets the name or address of the partner server to connect to if the primary server is down.")]
     // @attr [Category("Source")]
     string failover_partner = 35;
     //
@@ -472,6 +505,7 @@ message proto_conn_ms_sql {
     // Exceptions:
     //   T:System.ArgumentNullException:
     //     To set the value to null, use System.DBNull.Value.
+    // @attr [Description("Gets or sets the SQL Server Language record name.")]
     // @attr [Category("Initialization")]
     string CurrentLanguage = 36;
 }

@@ -17,6 +17,10 @@ namespace vSharpStudio.vm.ViewModels
     {
         public class ValidationMessages
         {
+            public const string GUID_IS_EMPTY = "Guid is empty";
+            public const string PLUGIN_WAS_NOT_FOUND = "Plugin is not found";
+            public const string PLUGIN_GENERATOR_WAS_NOT_FOUND = "Plugin Generator is not found";
+
             public const string NAME_START_WITH_DIGIT = "Remove digit from first position of 'Name'. 'Name' of a config object can't start with digit";
             public const string NAME_CANT_CONTAINS_SPACE = "Remove space from the 'Name'. Space is not alowed in a 'Name' of a config object";
             public const string NAME_HAS_TO_BE_UNIQUE = "Change 'Name'. 'Name' of the config object has to be unique";

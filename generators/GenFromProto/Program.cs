@@ -71,6 +71,16 @@ namespace GenFromProto
             }
             return s;
         }
+        public static bool IsBytes(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Bytes:
+                    return true;
+                default:
+                    return false;
+            }
+        }
         public static bool IsMessage(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
             switch (from.FieldType)

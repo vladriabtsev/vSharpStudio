@@ -19,7 +19,7 @@ public void AcceptConfigNode(IVisitorConfigNode visitor)
 		(t as <#= field.ToTypeCs() #>).AcceptConfigNode(visitor);
 <# } #>
 <# } else if (field.MessageType.FullName == "google.protobuf.Any") { #>
-	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
+	//this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
 <# } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { #>
 	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor);
 <# } } catch(Exception ex) { 

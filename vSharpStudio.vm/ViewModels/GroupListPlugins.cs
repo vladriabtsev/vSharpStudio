@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
@@ -10,11 +11,11 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
-    public partial class GroupListReports : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class GroupListPlugins : ICanGoRight
     {
         partial void OnInit()
         {
-            this.Name = "Reports";
+            this.Name = "Plugins";
             this.IsEditable = false;
         }
     }

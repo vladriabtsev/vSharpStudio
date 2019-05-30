@@ -19,6 +19,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Name = "Shared";
             else
                 this.Name = "Properties";
+            this.IsEditable = false;
         }
 
         protected override void OnParentChanged()

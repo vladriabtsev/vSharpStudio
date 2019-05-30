@@ -14,7 +14,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : IChildren, ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
     {
         public static readonly string DefaultName = "Catalog";
-        [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {

@@ -23,17 +23,18 @@
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
     - [proto_group_list_forms](#proto_config.proto_group_list_forms)
     - [proto_group_list_journals](#proto_config.proto_group_list_journals)
+    - [proto_group_list_plugins](#proto_config.proto_group_list_plugins)
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_properties_tab](#proto_config.proto_group_properties_tab)
-    - [proto_group_settings](#proto_config.proto_group_settings)
     - [proto_journal](#proto_config.proto_journal)
+    - [proto_plugin](#proto_config.proto_plugin)
+    - [proto_plugin_generator](#proto_config.proto_plugin_generator)
+    - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
     - [proto_settings_config](#proto_config.proto_settings_config)
-    - [proto_settings_db](#proto_config.proto_settings_db)
-    - [proto_settings_for_db_plugin](#proto_config.proto_settings_for_db_plugin)
     - [string_nullable](#proto_config.string_nullable)
   
     - [proto_config.EnumDbType](#proto_config.proto_config.EnumDbType)
@@ -139,7 +140,7 @@ Configuration config
 | db_schema | [string](#string) |  |  |
 | primary_key_name | [string](#string) |  |  |
 | db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
-| group_settings | [proto_group_settings](#proto_config.proto_group_settings) |  | CONFIG OBJECTS |
+| group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | CONFIG OBJECTS |
 | group_configs | [proto_group_configs](#proto_config.proto_group_configs) |  |  |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  |  |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  |  |
@@ -458,6 +459,22 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_list_plugins"></a>
+
+### proto_group_list_plugins
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| list_plugins | [proto_plugin](#proto_config.proto_plugin) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_properties"></a>
 
 ### proto_group_list_properties
@@ -539,24 +556,6 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
-<a name="proto_config.proto_group_settings"></a>
-
-### proto_group_settings
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| sorting_value | [uint64](#uint64) |  |  |
-| config | [proto_settings_config](#proto_config.proto_settings_config) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()] |
-| db_type | [proto_settings_db](#proto_config.proto_settings_db) |  | @attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()] |
-
-
-
-
-
-
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -571,6 +570,65 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | children | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin"></a>
+
+### proto_plugin
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Editable(false)] |
+| name | [string](#string) |  | @attr [Editable(false)] |
+| description | [string](#string) |  | @attr [Editable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| list_plugin_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_generator"></a>
+
+### proto_plugin_generator
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Editable(false)] |
+| name | [string](#string) |  | @attr [Editable(false)] |
+| description | [string](#string) |  | @attr [Editable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| list_plugin_generator_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_generator_settings"></a>
+
+### proto_plugin_generator_settings
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | This Guid is taken from Plugin Generator @attr [BrowsableAttribute(false)] |
+| name | [string](#string) |  | This Name is taken from Plugin Generator @attr [PropertyOrderAttribute(1)] |
+| description | [string](#string) |  | This Description is taken from Plugin Generator @attr [PropertyOrderAttribute(2)] @attr [Editable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] |
+| file_path_for_private_connection | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(&#34;System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;, &#34;System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;)] |
 
 
 
@@ -632,39 +690,6 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
-
-
-
-
-
-
-<a name="proto_config.proto_settings_db"></a>
-
-### proto_settings_db
-@bas : ViewModelValidatableWithSeverity&lt;SettingsDb, SettingsDb.SettingsDbValidator&gt;
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| selected_db_design_plugin_guid | [string](#string) |  |  |
-| selected_db_connection_guid | [string](#string) |  |  |
-| list_plugin_connections | [proto_settings_for_db_plugin](#proto_config.proto_settings_for_db_plugin) | repeated |  |
-
-
-
-
-
-
-<a name="proto_config.proto_settings_for_db_plugin"></a>
-
-### proto_settings_for_db_plugin
-@bas : ViewModelValidatableWithSeverity&lt;SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator&gt;
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| db_design_plugin_guid | [string](#string) |  |  |
-| list_db_connections | [google.protobuf.Any](#google.protobuf.Any) | repeated |  |
 
 
 

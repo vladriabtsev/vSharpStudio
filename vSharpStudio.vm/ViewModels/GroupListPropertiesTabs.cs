@@ -15,7 +15,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-                this.Name = "Tabs";
+            this.Name = "Tabs";
+            this.IsEditable = false;
         }
 
         //protected override void OnParentChanged()

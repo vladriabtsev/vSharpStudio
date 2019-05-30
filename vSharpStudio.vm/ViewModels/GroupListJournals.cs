@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Journals";
+            this.IsEditable = false;
         }
     }
 }

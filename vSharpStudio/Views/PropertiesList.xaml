@@ -12,9 +12,16 @@
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <xctk:PropertyGrid SelectedObject="{Binding Model.SelectedNode}" NameColumnWidth="120">
-            <!--<xctk:PropertyGrid.EditorDefinitions>
-                <xctk:EditorTemplateDefinition>
+        <xctk:PropertyGrid SelectedObject="{Binding Model.SelectedNode}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
+            <xctk:PropertyGrid.EditorDefinitions>
+                <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
+                    <xctk:EditorTemplateDefinition.EditingTemplate>
+                        <DataTemplate>
+                            <xctk:PropertyGridEditorTextBox Text="{Binding Value}" IsEnabled="{Binding Instance.IsEditable}" />
+                        </DataTemplate>
+                    </xctk:EditorTemplateDefinition.EditingTemplate>
+                </xctk:EditorTemplateDefinition>
+                <!--<xctk:EditorTemplateDefinition>
                     <xctk:EditorTemplateDefinition.TargetProperties>
                         <xctk:TargetPropertyType Type="{x:Type vmtype:DataType}" />
                     </xctk:EditorTemplateDefinition.TargetProperties>
@@ -37,8 +44,8 @@
                             </Grid>
                         </DataTemplate>
                     </xctk:EditorTemplateDefinition.EditingTemplate>
-                </xctk:EditorTemplateDefinition>
-            </xctk:PropertyGrid.EditorDefinitions>-->
+                </xctk:EditorTemplateDefinition>-->
+            </xctk:PropertyGrid.EditorDefinitions>
         </xctk:PropertyGrid>
     </Grid>
 </UserControl>

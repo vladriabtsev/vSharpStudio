@@ -16,14 +16,56 @@ option csharp_namespace = "Proto.Config";
  * use 'proto_' prefix for all messages !!!
  * ####################################### S E T T I N G S ##################################
  */
-message proto_group_settings {
+message proto_group_list_plugins {
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 3;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin list_plugins = 4;
+}
+message proto_plugin {
+    // @attr [Editable(false)]
+    string guid = 1;
+    // @attr [Editable(false)]
+    string name = 2;
+    // @attr [Editable(false)]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 4;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator list_plugin_generators = 5;
+}
+message proto_plugin_generator {
+    // @attr [Editable(false)]
+    string guid = 1;
+    // @attr [Editable(false)]
+    string name = 2;
+    // @attr [Editable(false)]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 4;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator_settings list_plugin_generator_settings = 5;
+}
+message proto_plugin_generator_settings {
+    // This Guid is taken from Plugin Generator
     // @attr [BrowsableAttribute(false)]
     string guid = 1;
-    uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]
-    proto_settings_config config = 6;
-    // @attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()]
-    proto_settings_db db_type = 7;
+    // This Name is taken from Plugin Generator
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // This Description is taken from Plugin Generator
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [Editable(false)]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 4;
+    // @attr [BrowsableAttribute(false)]
+    string generator_settings = 5;
+    // @attr [PropertyOrderAttribute(3)]
+    bool is_private = 6;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    string file_path_for_private_connection = 7;
 }
 message proto_settings_config {
     string guid = 1;
@@ -37,22 +79,6 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
-// @bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
-message proto_settings_db {
-    string selected_db_design_plugin_guid = 1;
-    string selected_db_connection_guid = 2;
-    repeated proto_settings_for_db_plugin list_plugin_connections = 3;
-
-    //map<string, proto_settings_for_db> map_connections = 2;
-    //repeated google.protobuf.Any list_db_connections = 2;
-}
-// @bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>
-message proto_settings_for_db_plugin {
-    string db_design_plugin_guid = 1;
-    repeated google.protobuf.Any list_db_connections = 2;
-}
-
-
 
 // Primary key generation strategy
 // @base : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator>
@@ -136,7 +162,7 @@ message proto_config {
 
 
     // CONFIG OBJECTS
-    proto_group_settings group_settings = 99;
+    proto_group_list_plugins group_plugins = 99;
     proto_group_configs group_configs = 100;
     proto_group_list_constants group_constants = 101;
     proto_group_list_enumerations group_enumerations = 102;

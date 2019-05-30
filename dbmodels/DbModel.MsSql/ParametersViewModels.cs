@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/26/2019 22:08:21
+// Auto generated on UTC 05/30/2019 00:48:08
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -10,13 +10,21 @@ using System.Threading;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
+using Google.Protobuf;
 
 namespace vSharpStudio.vm.ViewModels
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
+	[CategoryOrder("Source", 1)]
+	[CategoryOrder("Security", 2)]
+	[CategoryOrder("Pooling", 3)]
+	[CategoryOrder("Initialization", 4)]
+	[CategoryOrder("ConnectionResilency", 5)]
+	[CategoryOrder("Advanced", 6)]
 	public partial class ConnMsSql : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>
 	{
 		public partial class ConnMsSqlValidator : ValidatorBase<ConnMsSql, ConnMsSqlValidator> { }
@@ -262,6 +270,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize
 		///     property, or 100 if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize property, or 100 if none has been supplied.")]
 		[Category("Pooling")]
 		public int MaxPoolSize
 		{ 
@@ -294,6 +303,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The number of reconnections attempted after identifying that there was an idle
 		///     connection failure.
 		///////////////////////////////////////////////////
+		[Description(".NET Framework 4.5.1 and later versions. The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.")]
 		[Category("ConnectionResilency")]
 		public int ConnectRetryCount
 		{ 
@@ -326,6 +336,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     Amount of time (in seconds) between each reconnection attempt after identifying
 		///     that there was an idle connection failure.
 		///////////////////////////////////////////////////
+		[Description(".NET Framework 4.5.1 and later versions. Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.")]
 		[Category("ConnectionResilency")]
 		public int ConnectRetryInterval
 		{ 
@@ -355,6 +366,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize
 		///     property, or 0 if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize property, or 0 if none has been supplied.")]
 		[Category("Pooling")]
 		public int MinPoolSize
 		{ 
@@ -386,6 +398,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MultipleActiveResultSets
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.")]
 		[CategoryAttribute("Advanced")]
 		public bool MultipleActiveResultSets
 		{ 
@@ -417,6 +430,7 @@ namespace vSharpStudio.vm.ViewModels
 		/// Returns:
 		///     Returns System.Boolean indicating the current value of the property.
 		///////////////////////////////////////////////////
+		[Description("If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.")]
 		[Category("Source")]
 		public bool MultiSubnetFailover
 		{ 
@@ -448,6 +462,7 @@ namespace vSharpStudio.vm.ViewModels
 		/// Returns:
 		///     A boolean value.
 		///////////////////////////////////////////////////
+		[Description("When the value of this key is set to true, the application is required to retrieve all IP addresses for a particular DNS entry and attempt to connect with the first one in the list. If the connection is not established within 0.5 seconds, the application will try to connect to all others in parallel. When the first answers, the application will establish the connection with the respondent IP address.")]
 		[Category("Source")]
 		public bool TransparentNetworkIPResolution
 		{ 
@@ -510,6 +525,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize
 		///     property, or 8000 if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize property, or 8000 if none has been supplied.")]
 		[Category("Advanced")]
 		public int PacketSize
 		{ 
@@ -540,6 +556,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PersistSecurityInfo
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.")]
 		[Category("Security")]
 		public bool PersistSecurityInfo
 		{ 
@@ -569,6 +586,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.LoadBalanceTimeout
 		///     property, or 0 if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.")]
 		[Category("Pooling")]
 		public int LoadBalanceTimeout
 		{ 
@@ -598,6 +616,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Pooling property,
 		///     or true if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.")]
 		[Category("Pooling")]
 		public bool Pooling
 		{ 
@@ -627,6 +646,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Replication
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.Replication")]
 		[Category("Replication")]
 		public bool Replication
 		{ 
@@ -656,6 +676,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding
 		///     property, or String.Empty if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding")]
 		[Category("Advanced")]
 		public string TransactionBinding
 		{ 
@@ -877,6 +898,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets the name of the database associated with the connection.")]
 		[Category("Source")]
 		public string InitialCatalog
 		{ 
@@ -907,6 +929,7 @@ namespace vSharpStudio.vm.ViewModels
 		/// Returns:
 		///     Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).
 		///////////////////////////////////////////////////
+		[Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
 		[Category("Initialization")]
 		public proto_conn_ms_sql.Types.ApplicationIntent ApplicationIntentValue
 		{ 
@@ -939,6 +962,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("The name of the application, or \".NET SqlClient Data Provider\" if no name has been supplied.")]
 		[Category("Context")]
 		public string ApplicationName
 		{ 
@@ -970,6 +994,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     value of the System.Data.SqlClient.SqlConnectionStringBuilder.AsynchronousProcessing
 		///     property, or false if no value has been supplied.
 		///////////////////////////////////////////////////
+		[Description("This property is ignored beginning in .NET Framework 4.5.")]
 		[Category("Initialization")]
 		public bool AsynchronousProcessing
 		{ 
@@ -1000,6 +1025,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.IntegratedSecurity
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a Boolean value that indicates whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true).")]
 		[Category("Security")]
 		public bool IntegratedSecurity
 		{ 
@@ -1029,6 +1055,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection
 		///     property, or False if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection")]
 		[Category("Source")]
 		public bool ContextConnection
 		{ 
@@ -1058,6 +1085,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout
 		///     property, or 15 seconds if no value has been supplied.
 		///////////////////////////////////////////////////
+		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout property, or 15 seconds if no value has been supplied.")]
 		[Category("Initialization")]
 		public int ConnectTimeout
 		{ 
@@ -1091,6 +1119,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
 		[Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
 		[Category("Source")]
 		public string AttachDBFilename
@@ -1125,6 +1154,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets the name or network address of the instance of SQL Server to connect to.")]
 		[Category("Source")]
 		public string DataSource
 		{ 
@@ -1155,6 +1185,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property,
 		///     or false if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
 		[Category("Security")]
 		public bool Encrypt
 		{ 
@@ -1182,6 +1213,7 @@ namespace vSharpStudio.vm.ViewModels
 		/// Returns:
 		///     The column encryption settings for the connection string builder.
 		///////////////////////////////////////////////////
+		[Description("Gets and sets the column encryption settings for the connection string builder.")]
 		[Category("Security")]
 		public proto_conn_ms_sql.Types.SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
 		{ 
@@ -1210,6 +1242,7 @@ namespace vSharpStudio.vm.ViewModels
 		/// Returns:
 		///     A Boolean. Recognized values are true, false, yes, and no.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.")]
 		[Category("Security")]
 		public bool TrustServerCertificate
 		{ 
@@ -1240,6 +1273,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Enlist property,
 		///     or true if none has been supplied.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets a Boolean value that indicates whether the SQL Server connection pooler automatically enlists the connection in the creation thread's current transaction context.")]
 		[Category("Pooling")]
 		public bool Enlist
 		{ 
@@ -1273,6 +1307,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets the name or address of the partner server to connect to if the primary server is down.")]
 		[Category("Source")]
 		public string FailoverPartner
 		{ 
@@ -1305,6 +1340,7 @@ namespace vSharpStudio.vm.ViewModels
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
+		[Description("Gets or sets the SQL Server Language record name.")]
 		[Category("Initialization")]
 		public string CurrentLanguage
 		{ 

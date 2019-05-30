@@ -22,7 +22,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Config : IMigration, ICanGoLeft
     {
         public static readonly string DefaultName = "Config";
-        [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
@@ -33,8 +32,10 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.GroupSettings.Parent = this;
-            this.Children.Add(this.GroupSettings, 0);
+            this.GroupPlugins.Parent = this;
+            this.Children.Add(this.GroupPlugins, 0);
+            //this.GroupSettings.Parent = this;
+            //this.Children.Add(this.GroupSettings, 1);
 
             this.GroupConfigs.Parent = this;
             this.Children.Add(this.GroupConfigs, 6);
@@ -117,7 +118,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion Validation
-
 
         #region IMigration
 

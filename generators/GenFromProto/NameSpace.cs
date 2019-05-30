@@ -51,7 +51,9 @@ using System.Threading;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
+using Google.Protobuf;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -60,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 ");
             
-            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)

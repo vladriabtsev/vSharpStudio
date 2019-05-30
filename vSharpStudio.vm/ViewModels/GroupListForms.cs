@@ -15,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Forms";
+            this.IsEditable = false;
         }
     }
 }

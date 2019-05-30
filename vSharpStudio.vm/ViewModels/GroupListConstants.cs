@@ -15,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Constants";
+            this.IsEditable = false;
         }
     }
 }

@@ -494,12 +494,12 @@
               "defaultValue": ""
             },
             {
-              "name": "group_settings",
+              "name": "group_plugins",
               "description": "CONFIG OBJECTS",
               "label": "",
-              "type": "proto_group_settings",
-              "longType": "proto_group_settings",
-              "fullType": "proto_config.proto_group_settings",
+              "type": "proto_group_list_plugins",
+              "longType": "proto_group_list_plugins",
+              "fullType": "proto_config.proto_group_list_plugins",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1671,6 +1671,37 @@
           ]
         },
         {
+          "name": "proto_group_list_plugins",
+          "longName": "proto_group_list_plugins",
+          "fullName": "proto_config.proto_group_list_plugins",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_plugins",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin",
+              "longType": "proto_plugin",
+              "fullType": "proto_config.proto_plugin",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_properties",
           "longName": "proto_group_list_properties",
           "fullName": "proto_config.proto_group_list_properties",
@@ -1965,57 +1996,6 @@
           ]
         },
         {
-          "name": "proto_group_settings",
-          "longName": "proto_group_settings",
-          "fullName": "proto_config.proto_group_settings",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "config",
-              "description": "@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_settings_config",
-              "longType": "proto_settings_config",
-              "fullType": "proto_config.proto_settings_config",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_type",
-              "description": "@attr [PropertyOrderAttribute(5)][ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_settings_db",
-              "longType": "proto_settings_db",
-              "fullType": "proto_config.proto_settings_db",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
@@ -2081,6 +2061,209 @@
               "type": "proto_document",
               "longType": "proto_document",
               "fullType": "proto_config.proto_document",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin",
+          "longName": "proto_plugin",
+          "fullName": "proto_config.proto_plugin",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_plugin_generators",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator",
+              "longType": "proto_plugin_generator",
+              "fullType": "proto_config.proto_plugin_generator",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_generator",
+          "longName": "proto_plugin_generator",
+          "fullName": "proto_config.proto_plugin_generator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_plugin_generator_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_settings",
+              "longType": "proto_plugin_generator_settings",
+              "fullType": "proto_config.proto_plugin_generator_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_generator_settings",
+          "longName": "proto_plugin_generator_settings",
+          "fullName": "proto_config.proto_plugin_generator_settings",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "This Guid is taken from Plugin Generator\n@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "This Name is taken from Plugin Generator\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "This Description is taken from Plugin Generator\n@attr [PropertyOrderAttribute(2)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "generator_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_private",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "file_path_for_private_connection",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(\"System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\", \"System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2284,78 +2467,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_settings_db",
-          "longName": "proto_settings_db",
-          "fullName": "proto_config.proto_settings_db",
-          "description": "@bas : ViewModelValidatableWithSeverity\u003cSettingsDb, SettingsDb.SettingsDbValidator\u003e",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "selected_db_design_plugin_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "selected_db_connection_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_plugin_connections",
-              "description": "",
-              "label": "repeated",
-              "type": "proto_settings_for_db_plugin",
-              "longType": "proto_settings_for_db_plugin",
-              "fullType": "proto_config.proto_settings_for_db_plugin",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_settings_for_db_plugin",
-          "longName": "proto_settings_for_db_plugin",
-          "fullName": "proto_config.proto_settings_for_db_plugin",
-          "description": "@bas : ViewModelValidatableWithSeverity\u003cSettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator\u003e",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db_design_plugin_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_db_connections",
-              "description": "",
-              "label": "repeated",
-              "type": "Any",
-              "longType": "google.protobuf.Any",
-              "fullType": "google.protobuf.Any",
               "ismap": false,
               "defaultValue": ""
             }

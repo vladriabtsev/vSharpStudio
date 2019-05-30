@@ -88,6 +88,20 @@ namespace ViewModelBase
         [BrowsableAttribute(false)]
         public bool IsChanged { get { return _IsChanged; } set { SetValue<bool>(ref _IsChanged, value); } }
         private bool _IsChanged;
+        [BrowsableAttribute(false)]
+        public bool IsReadonly
+        {
+            get { return _IsReadonly; }
+            set { SetValue<bool>(ref _IsReadonly, value, () => { IsEditable = !_IsReadonly; }); }
+        }
+        private bool _IsReadonly = false;
+        [BrowsableAttribute(false)]
+        public bool IsEditable
+        {
+            get { return _IsEditable; }
+            set { SetValue<bool>(ref _IsEditable, value, () => { IsReadonly = !_IsEditable; }); }
+        }
+        private bool _IsEditable = true;
 
         #region Messages
         protected readonly MessageBusCore CurrentMessageBus;

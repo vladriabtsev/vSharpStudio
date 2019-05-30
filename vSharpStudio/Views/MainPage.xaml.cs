@@ -30,7 +30,7 @@ namespace vSharpStudio.Views
             ViewModelBindable.AppDispatcher = UIDispatcher.Current;
             InitializeComponent();
 #if DEBUG
-            _model = new MainPageVM();
+            _model = new MainPageVM(true);
             _model.Compose();
             this.DataContext = _model;
 #else

@@ -15,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Catalogs";
+            this.IsEditable = false;
             if (this.Parent is Catalog)
                 this.NameUi = "Sub Catalogs";
         }

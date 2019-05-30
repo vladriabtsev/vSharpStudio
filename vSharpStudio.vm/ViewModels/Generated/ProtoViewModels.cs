@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/26/2019 22:08:21
+// Auto generated on UTC 05/30/2019 00:48:07
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -10,27 +10,536 @@ using System.Threading;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
+using Google.Protobuf;
 
 namespace vSharpStudio.vm.ViewModels
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-	public partial class GroupSettings : ConfigObjectBase<GroupSettings, GroupSettings.GroupSettingsValidator>, IComparable<GroupSettings>, IAccept
+	public partial class GroupListPlugins : ConfigObjectBase<GroupListPlugins, GroupListPlugins.GroupListPluginsValidator>, IComparable<GroupListPlugins>, IAccept
 	{
-		public partial class GroupSettingsValidator : ValidatorBase<GroupSettings, GroupSettingsValidator> { }
+		public partial class GroupListPluginsValidator : ValidatorBase<GroupListPlugins, GroupListPluginsValidator> { }
 		#region CTOR
-		public GroupSettings() : base(GroupSettingsValidator.Validator)
+		public GroupListPlugins() : base(GroupListPluginsValidator.Validator)
 		{
-			this.Config = new SettingsConfig(this);
-			this.DbType = new SettingsDb(this);
+			this.ListPlugins = new SortedObservableCollection<Plugin>();
 			OnInit();
 		}
-		public GroupSettings(ITreeConfigNode parent) : this()
+		public GroupListPlugins(ITreeConfigNode parent) : this()
 	    {
 	        this.Parent = parent;
-	        //GetUniqueName(GroupSettings.DefaultName, this, this.SubNodes);
+	        //GetUniqueName(GroupListPlugins.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Plugin))
+		    {
+		        this.ListPlugins.Sort();
+		    }
+		}
+		public static GroupListPlugins Clone(GroupListPlugins from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupListPlugins vm = new GroupListPlugins();
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListPlugins = new SortedObservableCollection<Plugin>();
+		    foreach(var t in from.ListPlugins)
+		        vm.ListPlugins.Add(vSharpStudio.vm.ViewModels.Plugin.Clone((Plugin)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupListPlugins to, GroupListPlugins from, bool isDeep = true)
+		{
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPlugins.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPlugins)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Plugin.Update((Plugin)t, (Plugin)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPlugins.Remove(t);
+		        }
+		        foreach(var tt in from.ListPlugins)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPlugins.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Plugin();
+		                vSharpStudio.vm.ViewModels.Plugin.Update(p, (Plugin)tt, isDeep);
+		                to.ListPlugins.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupListPlugins Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupListPlugins.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupListPlugins from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupListPlugins.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_list_plugins' to 'GroupListPlugins'
+		public static GroupListPlugins ConvertToVM(proto_group_list_plugins m, GroupListPlugins vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupListPlugins();
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListPlugins = new SortedObservableCollection<Plugin>();
+		    foreach(var t in m.ListPlugins)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Plugin.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPlugins.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupListPlugins' to 'proto_group_list_plugins'
+		public static proto_group_list_plugins ConvertToProto(GroupListPlugins vm)
+		{
+		    proto_group_list_plugins m = new proto_group_list_plugins();
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListPlugins)
+		        m.ListPlugins.Add(vSharpStudio.vm.ViewModels.Plugin.ConvertToProto((Plugin)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListPlugins)
+				(t as Plugin).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Plugin> ListPlugins 
+		{ 
+			set
+			{
+				if (_ListPlugins != value)
+				{
+					OnListPluginsChanging();
+					_ListPlugins = value;
+					OnListPluginsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPlugins; }
+		}
+		private SortedObservableCollection<Plugin> _ListPlugins;
+		partial void OnListPluginsChanging();
+		partial void OnListPluginsChanged();
+		#endregion Properties
+	}
+	public partial class Plugin : ConfigObjectBase<Plugin, Plugin.PluginValidator>, IComparable<Plugin>, IAccept
+	{
+		public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { }
+		#region CTOR
+		public Plugin() : base(PluginValidator.Validator)
+		{
+			this.ListPluginGenerators = new SortedObservableCollection<PluginGenerator>();
+			OnInit();
+		}
+		public Plugin(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(Plugin.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(PluginGenerator))
+		    {
+		        this.ListPluginGenerators.Sort();
+		    }
+		}
+		public static Plugin Clone(Plugin from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Plugin vm = new Plugin();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.Description = from.Description;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListPluginGenerators = new SortedObservableCollection<PluginGenerator>();
+		    foreach(var t in from.ListPluginGenerators)
+		        vm.ListPluginGenerators.Add(vSharpStudio.vm.ViewModels.PluginGenerator.Clone((PluginGenerator)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Plugin to, Plugin from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.Description = from.Description;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPluginGenerators.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPluginGenerators)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.PluginGenerator.Update((PluginGenerator)t, (PluginGenerator)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPluginGenerators.Remove(t);
+		        }
+		        foreach(var tt in from.ListPluginGenerators)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPluginGenerators.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new PluginGenerator();
+		                vSharpStudio.vm.ViewModels.PluginGenerator.Update(p, (PluginGenerator)tt, isDeep);
+		                to.ListPluginGenerators.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override Plugin Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Plugin.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Plugin from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Plugin.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_plugin' to 'Plugin'
+		public static Plugin ConvertToVM(proto_plugin m, Plugin vm = null)
+		{
+		    if (vm == null)
+		        vm = new Plugin();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.Description = m.Description;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListPluginGenerators = new SortedObservableCollection<PluginGenerator>();
+		    foreach(var t in m.ListPluginGenerators)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.PluginGenerator.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPluginGenerators.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Plugin' to 'proto_plugin'
+		public static proto_plugin ConvertToProto(Plugin vm)
+		{
+		    proto_plugin m = new proto_plugin();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.Description = vm.Description;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListPluginGenerators)
+		        m.ListPluginGenerators.Add(vSharpStudio.vm.ViewModels.PluginGenerator.ConvertToProto((PluginGenerator)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListPluginGenerators)
+				(t as PluginGenerator).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[Editable(false)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<PluginGenerator> ListPluginGenerators 
+		{ 
+			set
+			{
+				if (_ListPluginGenerators != value)
+				{
+					OnListPluginGeneratorsChanging();
+					_ListPluginGenerators = value;
+					OnListPluginGeneratorsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPluginGenerators; }
+		}
+		private SortedObservableCollection<PluginGenerator> _ListPluginGenerators;
+		partial void OnListPluginGeneratorsChanging();
+		partial void OnListPluginGeneratorsChanged();
+		#endregion Properties
+	}
+	public partial class PluginGenerator : ConfigObjectBase<PluginGenerator, PluginGenerator.PluginGeneratorValidator>, IComparable<PluginGenerator>, IAccept
+	{
+		public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { }
+		#region CTOR
+		public PluginGenerator() : base(PluginGeneratorValidator.Validator)
+		{
+			this.ListPluginGeneratorSettings = new SortedObservableCollection<PluginGeneratorSettings>();
+			OnInit();
+		}
+		public PluginGenerator(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(PluginGenerator.DefaultName, this, this.SubNodes);
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(PluginGeneratorSettings))
+		    {
+		        this.ListPluginGeneratorSettings.Sort();
+		    }
+		}
+		public static PluginGenerator Clone(PluginGenerator from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    PluginGenerator vm = new PluginGenerator();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.Description = from.Description;
+		    vm.SortingValue = from.SortingValue;
+		    vm.ListPluginGeneratorSettings = new SortedObservableCollection<PluginGeneratorSettings>();
+		    foreach(var t in from.ListPluginGeneratorSettings)
+		        vm.ListPluginGeneratorSettings.Add(vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Clone((PluginGeneratorSettings)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(PluginGenerator to, PluginGenerator from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.Description = from.Description;
+		    to.SortingValue = from.SortingValue;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListPluginGeneratorSettings.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListPluginGeneratorSettings)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Update((PluginGeneratorSettings)t, (PluginGeneratorSettings)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListPluginGeneratorSettings.Remove(t);
+		        }
+		        foreach(var tt in from.ListPluginGeneratorSettings)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListPluginGeneratorSettings.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new PluginGeneratorSettings();
+		                vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Update(p, (PluginGeneratorSettings)tt, isDeep);
+		                to.ListPluginGeneratorSettings.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override PluginGenerator Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return PluginGenerator.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(PluginGenerator from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    PluginGenerator.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_plugin_generator' to 'PluginGenerator'
+		public static PluginGenerator ConvertToVM(proto_plugin_generator m, PluginGenerator vm = null)
+		{
+		    if (vm == null)
+		        vm = new PluginGenerator();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.Description = m.Description;
+		    vm.SortingValue = m.SortingValue;
+		    vm.ListPluginGeneratorSettings = new SortedObservableCollection<PluginGeneratorSettings>();
+		    foreach(var t in m.ListPluginGeneratorSettings)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListPluginGeneratorSettings.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'PluginGenerator' to 'proto_plugin_generator'
+		public static proto_plugin_generator ConvertToProto(PluginGenerator vm)
+		{
+		    proto_plugin_generator m = new proto_plugin_generator();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.Description = vm.Description;
+		    m.SortingValue = vm.SortingValue;
+		    foreach(var t in vm.ListPluginGeneratorSettings)
+		        m.ListPluginGeneratorSettings.Add(vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListPluginGeneratorSettings)
+				(t as PluginGeneratorSettings).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[Editable(false)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<PluginGeneratorSettings> ListPluginGeneratorSettings 
+		{ 
+			set
+			{
+				if (_ListPluginGeneratorSettings != value)
+				{
+					OnListPluginGeneratorSettingsChanging();
+					_ListPluginGeneratorSettings = value;
+					OnListPluginGeneratorSettingsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPluginGeneratorSettings; }
+		}
+		private SortedObservableCollection<PluginGeneratorSettings> _ListPluginGeneratorSettings;
+		partial void OnListPluginGeneratorSettingsChanging();
+		partial void OnListPluginGeneratorSettingsChanged();
+		#endregion Properties
+	}
+	public partial class PluginGeneratorSettings : ConfigObjectBase<PluginGeneratorSettings, PluginGeneratorSettings.PluginGeneratorSettingsValidator>, IComparable<PluginGeneratorSettings>, IAccept
+	{
+		public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { }
+		#region CTOR
+		public PluginGeneratorSettings() : base(PluginGeneratorSettingsValidator.Validator)
+		{
+			OnInit();
+		}
+		public PluginGeneratorSettings(ITreeConfigNode parent) : this()
+	    {
+	        this.Parent = parent;
+	        //GetUniqueName(PluginGeneratorSettings.DefaultName, this, this.SubNodes);
 	    }
 		partial void OnInit();
 		#endregion CTOR
@@ -39,64 +548,72 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    //throw new Exception();
 		}
-		public static GroupSettings Clone(GroupSettings from, bool isDeep = true, bool isNewGuid = false)
+		public static PluginGeneratorSettings Clone(PluginGeneratorSettings from, bool isDeep = true, bool isNewGuid = false)
 		{
-		    GroupSettings vm = new GroupSettings();
+		    PluginGeneratorSettings vm = new PluginGeneratorSettings();
 		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.Description = from.Description;
 		    vm.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        vm.Config = vSharpStudio.vm.ViewModels.SettingsConfig.Clone(from.Config, isDeep);
-		    if (isDeep)
-		        vm.DbType = vSharpStudio.vm.ViewModels.SettingsDb.Clone(from.DbType, isDeep);
+		    vm.GeneratorSettings = from.GeneratorSettings;
+		    vm.IsPrivate = from.IsPrivate;
+		    vm.FilePathForPrivateConnection = from.FilePathForPrivateConnection;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(GroupSettings to, GroupSettings from, bool isDeep = true)
+		public static void Update(PluginGeneratorSettings to, PluginGeneratorSettings from, bool isDeep = true)
 		{
 		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.Description = from.Description;
 		    to.SortingValue = from.SortingValue;
-		    if (isDeep)
-		        SettingsConfig.Update(to.Config, from.Config, isDeep);
-		    if (isDeep)
-		        SettingsDb.Update(to.DbType, from.DbType, isDeep);
+		    to.GeneratorSettings = from.GeneratorSettings;
+		    to.IsPrivate = from.IsPrivate;
+		    to.FilePathForPrivateConnection = from.FilePathForPrivateConnection;
 		}
 		#region IEditable
-		public override GroupSettings Backup()
+		public override PluginGeneratorSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupSettings.Clone(this);
+			return PluginGeneratorSettings.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(GroupSettings from)
+		public override void Restore(PluginGeneratorSettings from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    GroupSettings.Update(this, from, isDeep);
+		    PluginGeneratorSettings.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_group_settings' to 'GroupSettings'
-		public static GroupSettings ConvertToVM(proto_group_settings m, GroupSettings vm = null)
+		// Conversion from 'proto_plugin_generator_settings' to 'PluginGeneratorSettings'
+		public static PluginGeneratorSettings ConvertToVM(proto_plugin_generator_settings m, PluginGeneratorSettings vm = null)
 		{
 		    if (vm == null)
-		        vm = new GroupSettings();
+		        vm = new PluginGeneratorSettings();
 		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.Description = m.Description;
 		    vm.SortingValue = m.SortingValue;
-		    vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToVM(m.Config, vm.Config);
-		    vSharpStudio.vm.ViewModels.SettingsDb.ConvertToVM(m.DbType, vm.DbType);
+		    vm.GeneratorSettings = m.GeneratorSettings;
+		    vm.IsPrivate = m.IsPrivate;
+		    vm.FilePathForPrivateConnection = m.FilePathForPrivateConnection;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'GroupSettings' to 'proto_group_settings'
-		public static proto_group_settings ConvertToProto(GroupSettings vm)
+		// Conversion from 'PluginGeneratorSettings' to 'proto_plugin_generator_settings'
+		public static proto_plugin_generator_settings ConvertToProto(PluginGeneratorSettings vm)
 		{
-		    proto_group_settings m = new proto_group_settings();
+		    proto_plugin_generator_settings m = new proto_plugin_generator_settings();
 		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.Description = vm.Description;
 		    m.SortingValue = vm.SortingValue;
-		    m.Config = vSharpStudio.vm.ViewModels.SettingsConfig.ConvertToProto(vm.Config);
-		    m.DbType = vSharpStudio.vm.ViewModels.SettingsDb.ConvertToProto(vm.DbType);
+		    m.GeneratorSettings = vm.GeneratorSettings;
+		    m.IsPrivate = vm.IsPrivate;
+		    m.FilePathForPrivateConnection = vm.FilePathForPrivateConnection;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -104,53 +621,93 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.Config.AcceptConfigNode(visitor);
-			this.DbType.AcceptConfigNode(visitor);
 			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
 		
+		
+		///////////////////////////////////////////////////
+		/// This Description is taken from Plugin Generator
+		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(2)]
+		[Editable(false)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public string GeneratorSettings
+		{ 
+			set
+			{
+				if (_GeneratorSettings != value)
+				{
+					OnGeneratorSettingsChanging();
+					_GeneratorSettings = value;
+					OnGeneratorSettingsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GeneratorSettings; }
+		}
+		private string _GeneratorSettings = "";
+		partial void OnGeneratorSettingsChanging();
+		partial void OnGeneratorSettingsChanged();
+		[PropertyOrderAttribute(3)]
+		public bool IsPrivate
+		{ 
+			set
+			{
+				if (_IsPrivate != value)
+				{
+					OnIsPrivateChanging();
+					_IsPrivate = value;
+					OnIsPrivateChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsPrivate; }
+		}
+		private bool _IsPrivate;
+		partial void OnIsPrivateChanging();
+		partial void OnIsPrivateChanged();
 		[PropertyOrderAttribute(4)]
-		[ExpandableObjectAttribute()]
-		public SettingsConfig Config
+		[Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+		public string FilePathForPrivateConnection
 		{ 
 			set
 			{
-				if (_Config != value)
+				if (_FilePathForPrivateConnection != value)
 				{
-					OnConfigChanging();
-		            _Config = value;
-					OnConfigChanged();
+					OnFilePathForPrivateConnectionChanging();
+					_FilePathForPrivateConnection = value;
+					OnFilePathForPrivateConnectionChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Config; }
+			get { return _FilePathForPrivateConnection; }
 		}
-		private SettingsConfig _Config;
-		partial void OnConfigChanging();
-		partial void OnConfigChanged();
-		[PropertyOrderAttribute(5)]
-		[ExpandableObjectAttribute()]
-		public SettingsDb DbType
-		{ 
-			set
-			{
-				if (_DbType != value)
-				{
-					OnDbTypeChanging();
-		            _DbType = value;
-					OnDbTypeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbType; }
-		}
-		private SettingsDb _DbType;
-		partial void OnDbTypeChanging();
-		partial void OnDbTypeChanged();
+		private string _FilePathForPrivateConnection = "";
+		partial void OnFilePathForPrivateConnectionChanging();
+		partial void OnFilePathForPrivateConnectionChanged();
 		#endregion Properties
 	}
 	public partial class SettingsConfig : ConfigObjectBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IAccept
@@ -310,317 +867,6 @@ namespace vSharpStudio.vm.ViewModels
 		private int _VersionMigrationSupportFromMin;
 		partial void OnVersionMigrationSupportFromMinChanging();
 		partial void OnVersionMigrationSupportFromMinChanged();
-		#endregion Properties
-	}
-	
-	///////////////////////////////////////////////////
-	/// @bas : ViewModelValidatableWithSeverity<SettingsDb, SettingsDb.SettingsDbValidator>
-	///////////////////////////////////////////////////
-	public partial class SettingsDb : ConfigObjectBase<SettingsDb, SettingsDb.SettingsDbValidator>, IComparable<SettingsDb>, IAccept
-	{
-		public partial class SettingsDbValidator : ValidatorBase<SettingsDb, SettingsDbValidator> { }
-		#region CTOR
-		public SettingsDb() : base(SettingsDbValidator.Validator)
-		{
-			this.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
-			OnInit();
-		}
-		public SettingsDb(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(SettingsDb.DefaultName, this, this.SubNodes);
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    if (type == typeof(SettingsForDbPlugin))
-		    {
-		        this.ListPluginConnections.Sort();
-		    }
-		}
-		public static SettingsDb Clone(SettingsDb from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    SettingsDb vm = new SettingsDb();
-		    vm.SelectedDbDesignPluginGuid = from.SelectedDbDesignPluginGuid;
-		    vm.SelectedDbConnectionGuid = from.SelectedDbConnectionGuid;
-		    vm.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
-		    foreach(var t in from.ListPluginConnections)
-		        vm.ListPluginConnections.Add(vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Clone((SettingsForDbPlugin)t, isDeep));
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(SettingsDb to, SettingsDb from, bool isDeep = true)
-		{
-		    to.SelectedDbDesignPluginGuid = from.SelectedDbDesignPluginGuid;
-		    to.SelectedDbConnectionGuid = from.SelectedDbConnectionGuid;
-		    if (isDeep)
-		    {
-		        foreach(var t in to.ListPluginConnections.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListPluginConnections)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Update((SettingsForDbPlugin)t, (SettingsForDbPlugin)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListPluginConnections.Remove(t);
-		        }
-		        foreach(var tt in from.ListPluginConnections)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListPluginConnections.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new SettingsForDbPlugin();
-		                vSharpStudio.vm.ViewModels.SettingsForDbPlugin.Update(p, (SettingsForDbPlugin)tt, isDeep);
-		                to.ListPluginConnections.Add(p);
-		            }
-		        }
-		    }
-		}
-		#region IEditable
-		public override SettingsDb Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return SettingsDb.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(SettingsDb from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    SettingsDb.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_settings_db' to 'SettingsDb'
-		public static SettingsDb ConvertToVM(proto_settings_db m, SettingsDb vm = null)
-		{
-		    if (vm == null)
-		        vm = new SettingsDb();
-		    vm.SelectedDbDesignPluginGuid = m.SelectedDbDesignPluginGuid;
-		    vm.SelectedDbConnectionGuid = m.SelectedDbConnectionGuid;
-		    vm.ListPluginConnections = new SortedObservableCollection<SettingsForDbPlugin>();
-		    foreach(var t in m.ListPluginConnections)
-		    {
-		        var tvm = vSharpStudio.vm.ViewModels.SettingsForDbPlugin.ConvertToVM(t);
-		        tvm.Parent = vm;
-		        vm.ListPluginConnections.Add(tvm);
-		    }
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'SettingsDb' to 'proto_settings_db'
-		public static proto_settings_db ConvertToProto(SettingsDb vm)
-		{
-		    proto_settings_db m = new proto_settings_db();
-		    m.SelectedDbDesignPluginGuid = vm.SelectedDbDesignPluginGuid;
-		    m.SelectedDbConnectionGuid = vm.SelectedDbConnectionGuid;
-		    foreach(var t in vm.ListPluginConnections)
-		        m.ListPluginConnections.Add(vSharpStudio.vm.ViewModels.SettingsForDbPlugin.ConvertToProto((SettingsForDbPlugin)t));
-		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			foreach(var t in this.ListPluginConnections)
-				(t as SettingsForDbPlugin).AcceptConfigNode(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public string SelectedDbDesignPluginGuid
-		{ 
-			set
-			{
-				if (_SelectedDbDesignPluginGuid != value)
-				{
-					OnSelectedDbDesignPluginGuidChanging();
-					_SelectedDbDesignPluginGuid = value;
-					OnSelectedDbDesignPluginGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _SelectedDbDesignPluginGuid; }
-		}
-		private string _SelectedDbDesignPluginGuid = "";
-		partial void OnSelectedDbDesignPluginGuidChanging();
-		partial void OnSelectedDbDesignPluginGuidChanged();
-		public string SelectedDbConnectionGuid
-		{ 
-			set
-			{
-				if (_SelectedDbConnectionGuid != value)
-				{
-					OnSelectedDbConnectionGuidChanging();
-					_SelectedDbConnectionGuid = value;
-					OnSelectedDbConnectionGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _SelectedDbConnectionGuid; }
-		}
-		private string _SelectedDbConnectionGuid = "";
-		partial void OnSelectedDbConnectionGuidChanging();
-		partial void OnSelectedDbConnectionGuidChanged();
-		public SortedObservableCollection<SettingsForDbPlugin> ListPluginConnections 
-		{ 
-			set
-			{
-				if (_ListPluginConnections != value)
-				{
-					OnListPluginConnectionsChanging();
-					_ListPluginConnections = value;
-					OnListPluginConnectionsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListPluginConnections; }
-		}
-		private SortedObservableCollection<SettingsForDbPlugin> _ListPluginConnections;
-		partial void OnListPluginConnectionsChanging();
-		partial void OnListPluginConnectionsChanged();
-		#endregion Properties
-	}
-	
-	///////////////////////////////////////////////////
-	/// @bas : ViewModelValidatableWithSeverity<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>
-	///////////////////////////////////////////////////
-	public partial class SettingsForDbPlugin : ConfigObjectBase<SettingsForDbPlugin, SettingsForDbPlugin.SettingsForDbPluginValidator>, IComparable<SettingsForDbPlugin>, IAccept
-	{
-		public partial class SettingsForDbPluginValidator : ValidatorBase<SettingsForDbPlugin, SettingsForDbPluginValidator> { }
-		#region CTOR
-		public SettingsForDbPlugin() : base(SettingsForDbPluginValidator.Validator)
-		{
-			this.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
-			OnInit();
-		}
-		public SettingsForDbPlugin(ITreeConfigNode parent) : this()
-	    {
-	        this.Parent = parent;
-	        //GetUniqueName(SettingsForDbPlugin.DefaultName, this, this.SubNodes);
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		}
-		public static SettingsForDbPlugin Clone(SettingsForDbPlugin from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    SettingsForDbPlugin vm = new SettingsForDbPlugin();
-		    vm.DbDesignPluginGuid = from.DbDesignPluginGuid;
-		    vm.ListDbConnections = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();
-		    foreach(var t in from.ListDbConnections)
-		        vm.ListDbConnections.Add(t.Clone());
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(SettingsForDbPlugin to, SettingsForDbPlugin from, bool isDeep = true)
-		{
-		    to.DbDesignPluginGuid = from.DbDesignPluginGuid;
-		}
-		#region IEditable
-		public override SettingsForDbPlugin Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return SettingsForDbPlugin.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(SettingsForDbPlugin from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    SettingsForDbPlugin.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_settings_for_db_plugin' to 'SettingsForDbPlugin'
-		public static SettingsForDbPlugin ConvertToVM(proto_settings_for_db_plugin m, SettingsForDbPlugin vm = null)
-		{
-		    if (vm == null)
-		        vm = new SettingsForDbPlugin();
-		    vm.DbDesignPluginGuid = m.DbDesignPluginGuid;
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'SettingsForDbPlugin' to 'proto_settings_for_db_plugin'
-		public static proto_settings_for_db_plugin ConvertToProto(SettingsForDbPlugin vm)
-		{
-		    proto_settings_for_db_plugin m = new proto_settings_for_db_plugin();
-		    m.DbDesignPluginGuid = vm.DbDesignPluginGuid;
-		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public string DbDesignPluginGuid
-		{ 
-			set
-			{
-				if (_DbDesignPluginGuid != value)
-				{
-					OnDbDesignPluginGuidChanging();
-					_DbDesignPluginGuid = value;
-					OnDbDesignPluginGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbDesignPluginGuid; }
-		}
-		private string _DbDesignPluginGuid = "";
-		partial void OnDbDesignPluginGuidChanging();
-		partial void OnDbDesignPluginGuidChanged();
-		public ObservableCollection<Google.Protobuf.WellKnownTypes.Any> ListDbConnections
-		{ 
-			set
-			{
-				if (_ListDbConnections != value)
-				{
-					OnListDbConnectionsChanging();
-					_ListDbConnections = value;
-					OnListDbConnectionsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListDbConnections; }
-		}
-		private ObservableCollection<Google.Protobuf.WellKnownTypes.Any> _ListDbConnections;
-		partial void OnListDbConnectionsChanging();
-		partial void OnListDbConnectionsChanged();
 		#endregion Properties
 	}
 	
@@ -1286,7 +1532,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Config() : base(ConfigValidator.Validator)
 		{
 			this.DbIdGenerator = new DbIdGenerator();
-			this.GroupSettings = new GroupSettings(this);
+			this.GroupPlugins = new GroupListPlugins(this);
 			this.GroupConfigs = new GroupConfigs(this);
 			this.GroupConstants = new GroupListConstants(this);
 			this.GroupEnumerations = new GroupListEnumerations(this);
@@ -1330,7 +1576,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
 		    if (isDeep)
-		        vm.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.Clone(from.GroupSettings, isDeep);
+		        vm.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.Clone(from.GroupPlugins, isDeep);
 		    if (isDeep)
 		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.Clone(from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -1369,7 +1615,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		    if (isDeep)
-		        GroupSettings.Update(to.GroupSettings, from.GroupSettings, isDeep);
+		        GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
 		    if (isDeep)
 		        GroupConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
 		    if (isDeep)
@@ -1422,7 +1668,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
 		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
-		    vSharpStudio.vm.ViewModels.GroupSettings.ConvertToVM(m.GroupSettings, vm.GroupSettings);
+		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
 		    vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
 		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
 		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
@@ -1454,7 +1700,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.DbSchema = vm.DbSchema;
 		    m.PrimaryKeyName = vm.PrimaryKeyName;
 		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
-		    m.GroupSettings = vSharpStudio.vm.ViewModels.GroupSettings.ConvertToProto(vm.GroupSettings);
+		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupConfigs.ConvertToProto(vm.GroupConfigs);
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
@@ -1749,24 +1995,24 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// CONFIG OBJECTS
 		///////////////////////////////////////////////////
-		public GroupSettings GroupSettings
+		public GroupListPlugins GroupPlugins
 		{ 
 			set
 			{
-				if (_GroupSettings != value)
+				if (_GroupPlugins != value)
 				{
-					OnGroupSettingsChanging();
-		            _GroupSettings = value;
-					OnGroupSettingsChanged();
+					OnGroupPluginsChanging();
+		            _GroupPlugins = value;
+					OnGroupPluginsChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _GroupSettings; }
+			get { return _GroupPlugins; }
 		}
-		private GroupSettings _GroupSettings;
-		partial void OnGroupSettingsChanging();
-		partial void OnGroupSettingsChanged();
+		private GroupListPlugins _GroupPlugins;
+		partial void OnGroupPluginsChanging();
+		partial void OnGroupPluginsChanged();
 		public GroupConfigs GroupConfigs
 		{ 
 			set
@@ -5789,14 +6035,16 @@ namespace vSharpStudio.vm.ViewModels
 	public interface IVisitorConfigNode
 	{
 	    CancellationToken Token { get; }
-		void Visit(GroupSettings p);
-		void VisitEnd(GroupSettings p);
+		void Visit(GroupListPlugins p);
+		void VisitEnd(GroupListPlugins p);
+		void Visit(Plugin p);
+		void VisitEnd(Plugin p);
+		void Visit(PluginGenerator p);
+		void VisitEnd(PluginGenerator p);
+		void Visit(PluginGeneratorSettings p);
+		void VisitEnd(PluginGeneratorSettings p);
 		void Visit(SettingsConfig p);
 		void VisitEnd(SettingsConfig p);
-		void Visit(SettingsDb p);
-		void VisitEnd(SettingsDb p);
-		void Visit(SettingsForDbPlugin p);
-		void VisitEnd(SettingsForDbPlugin p);
 		void Visit(GroupConfigs p);
 		void VisitEnd(GroupConfigs p);
 		void Visit(ConfigTree p);
@@ -5847,10 +6095,11 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
-		void Visit(proto_group_settings p);
+		void Visit(proto_group_list_plugins p);
+		void Visit(proto_plugin p);
+		void Visit(proto_plugin_generator p);
+		void Visit(proto_plugin_generator_settings p);
 		void Visit(proto_settings_config p);
-		void Visit(proto_settings_db p);
-		void Visit(proto_settings_for_db_plugin p);
 		void Visit(db_id_generator p);
 		void Visit(proto_group_configs p);
 		void Visit(proto_config_tree p);
@@ -5882,11 +6131,35 @@ namespace vSharpStudio.vm.ViewModels
 	{
 	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
 	    private CancellationToken _cancellationToken;
-		public void Visit(GroupSettings p)
+		public void Visit(GroupListPlugins p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(GroupSettings p)
+		public void VisitEnd(GroupListPlugins p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Plugin p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Plugin p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(PluginGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(PluginGenerator p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(PluginGeneratorSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(PluginGeneratorSettings p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -5895,22 +6168,6 @@ namespace vSharpStudio.vm.ViewModels
 	        OnVisit(p);
 	    }
 		public void VisitEnd(SettingsConfig p)
-	    {
-	        OnVisitEnd(p);
-	    }
-		public void Visit(SettingsDb p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(SettingsDb p)
-	    {
-	        OnVisitEnd(p);
-	    }
-		public void Visit(SettingsForDbPlugin p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(SettingsForDbPlugin p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -6126,16 +6383,46 @@ namespace vSharpStudio.vm.ViewModels
 	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
 	    private CancellationToken _cancellationToken;
 	
-		public void Visit(GroupSettings p)
+		public void Visit(GroupListPlugins p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(GroupSettings p)
+		public void VisitEnd(GroupListPlugins p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(GroupSettings p) {}
-	    protected virtual void OnVisitEnd(GroupSettings p) {}
+	    protected virtual void OnVisit(GroupListPlugins p) {}
+	    protected virtual void OnVisitEnd(GroupListPlugins p) {}
+		public void Visit(Plugin p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Plugin p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Plugin p) {}
+	    protected virtual void OnVisitEnd(Plugin p) {}
+		public void Visit(PluginGenerator p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(PluginGenerator p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(PluginGenerator p) {}
+	    protected virtual void OnVisitEnd(PluginGenerator p) {}
+		public void Visit(PluginGeneratorSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(PluginGeneratorSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(PluginGeneratorSettings p) {}
+	    protected virtual void OnVisitEnd(PluginGeneratorSettings p) {}
 		public void Visit(SettingsConfig p)
 	    {
 	        OnVisit(p);
@@ -6146,26 +6433,6 @@ namespace vSharpStudio.vm.ViewModels
 	    }
 	    protected virtual void OnVisit(SettingsConfig p) {}
 	    protected virtual void OnVisitEnd(SettingsConfig p) {}
-		public void Visit(SettingsDb p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(SettingsDb p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(SettingsDb p) {}
-	    protected virtual void OnVisitEnd(SettingsDb p) {}
-		public void Visit(SettingsForDbPlugin p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(SettingsForDbPlugin p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(SettingsForDbPlugin p) {}
-	    protected virtual void OnVisitEnd(SettingsForDbPlugin p) {}
 		public void Visit(DbIdGenerator p)
 	    {
 	        OnVisit(p);

@@ -24,7 +24,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Proto.Config.Connection;
 using vSharpStudio.common;
+using vSharpStudio.vm.ViewModels;
 
 // https://docs.microsoft.com/en-us/ef/core/providers/
 // https://medium.com/volosoft/asp-net-core-dependency-injection-58bc78c5d369
@@ -33,21 +35,52 @@ namespace vPlugin.DbModel.MsSql
 {
     //[Export(typeof(IDbMigrator))]
     //[ExportMetadata("Name", "MsSQL")]
-    public class MsSqlMigrator : DbMigratorBase, IDbMigrator
+    public class MsSqlPlugin : IvPlugin
     {
-        public MsSqlMigrator()
+        public MsSqlPlugin()
         {
             this.Guid = new Guid("C94175E4-E8F4-4A84-871B-6994199A2076");
-            this.PluginType = vPluginTypeEnum.DbDesign;
             this.Name = "MsSql";
             this.Description = "vSharpStudio plugin. Database design for MS SQL support";
             this.Author = "Vladimir Riabtsev";
             this.Version = "0.1";
             this.Url = "https://www.vladnet.ca";
             this.Licence = "";
+            this.ListGenerators = new List<IvPluginCodeGenerator>();
+            this.ListGenerators.Add(new MsSqlMigrator());
+        }
+        public Guid Guid { get; protected set; }
+        public string Name { get; protected set; }
+        public string Description { get; protected set; }
+        public string Author { get; protected set; }
+        public string Version { get; protected set; }
+        public string Url { get; protected set; }
+        public string Licence { get; protected set; }
+        public List<IvPluginCodeGenerator> ListGenerators { get; protected set; }
+    }
+    public class MsSqlMigrator : IDbMigrator
+    {
+        public MsSqlMigrator()
+        {
+            this.Guid = new Guid("0D85CF93-9134-45C6-B3B9-6BFAF4A12183");
+            this.Name = "Connections";
+            this.Description = "Connection strings";
+            this.PluginType = vPluginTypeEnum.DbDesign;
         }
         static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("vPlugin.MsSqlMigrator");
         public ILogger Logger;
+        public Guid Guid { get; protected set; }
+        public string Name { get; protected set; }
+        public string Description { get; protected set; }
+        public vPluginTypeEnum PluginType { get; }
+        public IvPluginSettingsVM GetSettingsMvvm(string settings)
+        {
+            if (settings == null)
+                return new ConnMsSql();
+            proto_conn_ms_sql proto = proto_conn_ms_sql.Parser.ParseJson(settings);
+            ConnMsSql res = ConnMsSql.ConvertToVM(proto);
+            return res;
+        }
         public ILoggerFactory LoggerFactory
         {
             get { return _LoggerFactory; }
@@ -59,14 +92,11 @@ namespace vPlugin.DbModel.MsSql
         }
         private ILoggerFactory _LoggerFactory;
 
-        public INotifyPropertyChanged GetSettingsMvvm(Any settings)
-        {
-            throw new NotImplementedException();
-        }
-
         public string ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
 
-        public Any Settings => throw new NotImplementedException();
+        //public Any Settings => throw new NotImplementedException();
+
+        //public List<IvPluginCodeGenerator> ListGenerators => throw new NotImplementedException();
 
         private string _ConnectionString;
         public bool CreateDb()
@@ -83,6 +113,7 @@ namespace vPlugin.DbModel.MsSql
             scaffoldingTypeMapper = serviceProvider.GetService<IScaffoldingTypeMapper>();
             changeDetector = serviceProvider.GetService<IChangeDetector>();
         }
+
         IOperationReporter reporter;
         ICandidateNamingService candidateNamingService;
         IPluralizer pluralizer;

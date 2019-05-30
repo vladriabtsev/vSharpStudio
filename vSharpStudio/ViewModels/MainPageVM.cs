@@ -24,7 +24,11 @@ namespace vSharpStudio.ViewModels
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static ILogger Logger = ApplicationLogging.CreateLogger<MainPageVM>();
-        public MainPageVM(bool isLoadConfig = true, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
+        public MainPageVM() : base(MainPageVMValidator.Validator)
+        {
+
+        }
+        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
         {
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
@@ -36,8 +40,11 @@ namespace vSharpStudio.ViewModels
             }
             if (isLoadConfig && File.Exists(CFG_PATH))
             {
-                string json = File.ReadAllText(CFG_PATH);
-                this.Model = new Config(json);
+                var protoarr = File.ReadAllBytes(CFG_PATH);
+                var pconfig = Proto.Config.proto_config.Parser.ParseFrom(protoarr);
+                this.Model = Config.ConvertToVM(pconfig);
+                //string json = File.ReadAllText(CFG_PATH);
+                //this.Model = new Config(json);
             }
             else
                 this.Model = new Config();
@@ -64,8 +71,53 @@ namespace vSharpStudio.ViewModels
             List<IDbMigrator> lstDbs = new List<IDbMigrator>();
             foreach (var t in _plugins)
             {
-                if (t.Value.PluginType == vPluginTypeEnum.DbDesign && t.Value is IDbMigrator)
-                    lstDbs.Add((IDbMigrator)t.Value);
+                var p = new Plugin(t.Value);
+                bool is_found = false;
+                foreach (var tt in this.Model.GroupPlugins.ListPlugins)
+                {
+                    if (tt.Guid == p.Guid)
+                    {
+                        tt.SetVPlugin(t.Value);
+                        p = tt;
+                        is_found = true;
+                        break;
+                    }
+                }
+                if (!is_found)
+                    this.Model.GroupPlugins.ListPlugins.Add(p);
+                p.Parent = this.Model.GroupPlugins;
+
+                foreach (var tt in t.Value.ListGenerators)
+                {
+                    var pg = new PluginGenerator(tt);
+                    is_found = false;
+                    foreach (var ttt in p.ListPluginGenerators)
+                    {
+                        if (ttt.Guid == pg.Guid)
+                        {
+                            ttt.SetGenerator(tt);
+                            pg = ttt;
+                            is_found = true;
+                            break;
+                        }
+                    }
+                    if (!is_found)
+                        p.ListPluginGenerators.Add(pg);
+                    pg.Parent = p;
+
+                    if (tt.PluginType == vPluginTypeEnum.DbDesign)
+                    {
+                        lstDbs.Add((IDbMigrator)tt);
+                    }
+                }
+                foreach (var ttt in p.ListPluginGenerators)
+                {
+                    foreach (var tttt in ttt.ListPluginGeneratorSettings)
+                    {
+                        if (ttt.Generator != null)
+                            tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
+                    }
+                }
             }
             this.ListDbDesignPlugins = lstDbs;
         }
@@ -195,12 +247,28 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigSave;
+        private void PluginSettingsToModel()
+        {
+            foreach (var t in _Model.GroupPlugins.ListPlugins)
+            {
+                foreach (var tt in t.ListPluginGenerators)
+                {
+                    foreach (var ttt in tt.ListPluginGeneratorSettings)
+                    {
+                        ttt.GeneratorSettings = ttt.VM.Settings;
+                    }
+                }
+            }
+        }
         internal void Save()
         {
-            var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-            File.WriteAllText(CFG_PATH, json);
+            PluginSettingsToModel();
+            var proto = Config.ConvertToProto(_Model);
+            File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+            //var json = JsonFormatter.Default.Format(proto);
+            //File.WriteAllText(CFG_PATH, json);
 #if DEBUG
-            CompareSaved(json);
+            //CompareSaved(json);
 #endif
         }
         public vCommand CommandConfigSaveAs
@@ -227,10 +295,13 @@ namespace vSharpStudio.ViewModels
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePathSaveAs = openFileDialog.FileName;
-                var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-                File.WriteAllText(FilePathSaveAs, json);
+                PluginSettingsToModel();
+                var proto = Config.ConvertToProto(_Model);
+                File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+                //var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+                //File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
-                CompareSaved(json);
+                //CompareSaved(json);
 #endif
             }
         }

@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Documens";
+            this.IsEditable = false;
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
             this.GroupSharedProperties.Parent = this;
             Children.Add(this.GroupSharedProperties, 7);
