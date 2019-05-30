@@ -627,8 +627,8 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | description | [string](#string) |  | This Description is taken from Plugin Generator @attr [PropertyOrderAttribute(2)] @attr [Editable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] |
-| file_path_for_private_connection | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(&#34;System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;, &#34;System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;)] |
+| is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
+| file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 

@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/30/2019 00:48:08
+// Auto generated on UTC 05/30/2019 15:06:59
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1120,7 +1120,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
-		[Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 		[Category("Source")]
 		public string AttachDBFilename
 		{ 

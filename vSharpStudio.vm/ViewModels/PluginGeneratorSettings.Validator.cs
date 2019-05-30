@@ -15,6 +15,12 @@ namespace vSharpStudio.vm.ViewModels
                 RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
                 RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
                 RuleFor(x => x.Name).Must((o, name) => { return IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+                RuleFor(x => x.FilePath).Must((o, fp) =>
+                {
+                    if (o.IsPrivate && string.IsNullOrWhiteSpace(fp))
+                        return false;
+                    return true;
+                }).WithMessage(Config.ValidationMessages.FILE_PATH_FOR_PRIVATE);
             }
             private bool IsUnique(PluginGeneratorSettings val)
             {

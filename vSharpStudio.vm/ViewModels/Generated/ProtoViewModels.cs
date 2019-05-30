@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/30/2019 00:48:07
+// Auto generated on UTC 05/30/2019 15:06:58
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -557,7 +557,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.GeneratorSettings = from.GeneratorSettings;
 		    vm.IsPrivate = from.IsPrivate;
-		    vm.FilePathForPrivateConnection = from.FilePathForPrivateConnection;
+		    vm.FilePath = from.FilePath;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -570,7 +570,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.GeneratorSettings = from.GeneratorSettings;
 		    to.IsPrivate = from.IsPrivate;
-		    to.FilePathForPrivateConnection = from.FilePathForPrivateConnection;
+		    to.FilePath = from.FilePath;
 		}
 		#region IEditable
 		public override PluginGeneratorSettings Backup()
@@ -599,7 +599,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.GeneratorSettings = m.GeneratorSettings;
 		    vm.IsPrivate = m.IsPrivate;
-		    vm.FilePathForPrivateConnection = m.FilePathForPrivateConnection;
+		    vm.FilePath = m.FilePath;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -613,7 +613,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.GeneratorSettings = vm.GeneratorSettings;
 		    m.IsPrivate = vm.IsPrivate;
-		    m.FilePathForPrivateConnection = vm.FilePathForPrivateConnection;
+		    m.FilePath = vm.FilePath;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -670,6 +670,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGeneratorSettingsChanging();
 		partial void OnGeneratorSettingsChanged();
 		[PropertyOrderAttribute(3)]
+		[Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
 		public bool IsPrivate
 		{ 
 			set
@@ -689,25 +690,26 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnIsPrivateChanging();
 		partial void OnIsPrivateChanged();
 		[PropertyOrderAttribute(4)]
-		[Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-		public string FilePathForPrivateConnection
+		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+		[Description("File path to store connection string settings in private place.")]
+		public string FilePath
 		{ 
 			set
 			{
-				if (_FilePathForPrivateConnection != value)
+				if (_FilePath != value)
 				{
-					OnFilePathForPrivateConnectionChanging();
-					_FilePathForPrivateConnection = value;
-					OnFilePathForPrivateConnectionChanged();
+					OnFilePathChanging();
+					_FilePath = value;
+					OnFilePathChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _FilePathForPrivateConnection; }
+			get { return _FilePath; }
 		}
-		private string _FilePathForPrivateConnection = "";
-		partial void OnFilePathForPrivateConnectionChanging();
-		partial void OnFilePathForPrivateConnectionChanged();
+		private string _FilePath = "";
+		partial void OnFilePathChanging();
+		partial void OnFilePathChanged();
 		#endregion Properties
 	}
 	public partial class SettingsConfig : ConfigObjectBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IAccept

@@ -27,7 +27,14 @@ namespace vSharpStudio.common
     public interface IvPluginCodeGenerator
     {
         Guid Guid { get; }
+        /// <summary>
+        /// Plugin code generator name
+        /// </summary>
         string Name { get; }
+        /// <summary>
+        /// Default setings name
+        /// </summary>
+        string DefaultSettingsName { get; }
         string Description { get; }
         vPluginTypeEnum PluginType { get; }
         // MVVM settings model (if settings == null then empty model will be created)

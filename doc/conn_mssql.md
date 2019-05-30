@@ -139,7 +139,7 @@ Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Conne
 
 Returns: The value of the AttachDBFilename property, or String.Empty if no value has been supplied.
 
-Exceptions: T:System.ArgumentNullException: To set the value to null, use System.DBNull.Value. @attr [Description(&#34;Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.&#34;)] @attr [Editor(&#34;System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;, &#34;System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&#34;)] @attr [Category(&#34;Source&#34;)] |
+Exceptions: T:System.ArgumentNullException: To set the value to null, use System.DBNull.Value. @attr [Description(&#34;Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.&#34;)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Category(&#34;Source&#34;)] |
 | data_source | [string](#string) |  | Summary: Gets or sets the name or network address of the instance of SQL Server to connect to.
 
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.DataSource property, or String.Empty if none has been supplied.

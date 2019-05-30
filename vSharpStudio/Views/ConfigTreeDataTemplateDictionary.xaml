@@ -55,7 +55,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGeneratorSettings}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGeneratorSettings}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{StaticResource iconAddBehavior}" />

@@ -2249,7 +2249,7 @@
             },
             {
               "name": "is_private",
-              "description": "@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2258,8 +2258,8 @@
               "defaultValue": ""
             },
             {
-              "name": "file_path_for_private_connection",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(\"System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\", \"System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")]",
+              "name": "file_path",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",

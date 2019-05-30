@@ -59,6 +59,7 @@ namespace vSharpStudio.ViewModels
 
         #region Plugins
 
+        // https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ff603380(v=vs.100) // debug
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
@@ -115,7 +116,22 @@ namespace vSharpStudio.ViewModels
                     foreach (var tttt in ttt.ListPluginGeneratorSettings)
                     {
                         if (ttt.Generator != null)
-                            tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
+                        {
+                            if (tttt.IsPrivate)
+                            {
+                                Utils.DangerousCall(() =>
+                                {
+                                    tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
+                                }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
+                            }
+                            else
+                            {
+                                Utils.DangerousCall(() =>
+                                {
+                                    tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
+                                }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
+                            }
+                        }
                     }
                 }
             }
@@ -255,7 +271,18 @@ namespace vSharpStudio.ViewModels
                 {
                     foreach (var ttt in tt.ListPluginGeneratorSettings)
                     {
-                        ttt.GeneratorSettings = ttt.VM.Settings;
+                        Utils.DangerousCall(() =>
+                        {
+                            ttt.GeneratorSettings = ttt.VM.Settings;
+                        }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
+                        if (ttt.IsPrivate)
+                        {
+                            Utils.DangerousCall(() =>
+                            {
+                                File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
+                            }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
+                            ttt.GeneratorSettings = "";
+                        }
                     }
                 }
             }
@@ -264,7 +291,10 @@ namespace vSharpStudio.ViewModels
         {
             PluginSettingsToModel();
             var proto = Config.ConvertToProto(_Model);
-            File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+            Utils.DangerousCall(() =>
+            {
+                File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+            }, "Can't save configuration. File path: '" + CFG_PATH + "'");
             //var json = JsonFormatter.Default.Format(proto);
             //File.WriteAllText(CFG_PATH, json);
 #if DEBUG
@@ -297,7 +327,10 @@ namespace vSharpStudio.ViewModels
                 FilePathSaveAs = openFileDialog.FileName;
                 PluginSettingsToModel();
                 var proto = Config.ConvertToProto(_Model);
-                File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+                Utils.DangerousCall(() =>
+                {
+                    File.WriteAllBytes(FilePathSaveAs, proto.ToByteArray());
+                }, "Can't save configuration. File path: '" + FilePathSaveAs + "'");
                 //var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
                 //File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
@@ -352,7 +385,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNew ?? (_CommandAddNew = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeAddNew(); },
+                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNew(); }, "Add new node command"); },
                 (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNew(); }));
             }
         }
@@ -362,7 +395,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeAddNewSubNode(); },
+                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command");  },
                 (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }

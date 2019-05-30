@@ -300,6 +300,24 @@ namespace vSharpStudio.vm.ViewModels
             string tname = this.GetType().Name;
             switch (tname)
             {
+                case "PluginGeneratorSettings":
+                    var cfg = this.Parent.Parent.Parent.Parent as Config;
+                    PluginGenerator pg = (PluginGenerator)cfg.SelectedNode.Parent;
+                    PluginGeneratorSettings pgs = null;
+                    switch (pg.Generator.PluginType)
+                    {
+                        case vPluginTypeEnum.DbDesign:
+                            var settings = pg.Generator.GetSettingsMvvm(null);
+                            pgs = new PluginGeneratorSettings(settings);
+                            pgs.Guid = pg.Generator.Guid.ToString();
+                            GetUniqueName(pg.Generator.DefaultSettingsName, pgs, pg.ListPluginGeneratorSettings);
+                            pg.ListPluginGeneratorSettings.Add(pgs);
+                            cfg.SelectedNode = pgs;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return pgs;
                 case "Constant":
                     var res = new Constant();
                     //res.Parent = this.Parent;
@@ -373,7 +391,7 @@ namespace vSharpStudio.vm.ViewModels
                             var settings = pg.Generator.GetSettingsMvvm(null);
                             pgs = new PluginGeneratorSettings(settings);
                             pgs.Guid = pg.Generator.Guid.ToString();
-                            GetUniqueName(pg.Name, pgs, pg.ListPluginGeneratorSettings);
+                            GetUniqueName(pg.Generator.DefaultSettingsName, pgs, pg.ListPluginGeneratorSettings);
                             pg.ListPluginGeneratorSettings.Add(pgs);
                             cfg.SelectedNode = pgs;
                             break;

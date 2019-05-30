@@ -64,6 +64,7 @@ namespace vPlugin.DbModel.MsSql
         {
             this.Guid = new Guid("0D85CF93-9134-45C6-B3B9-6BFAF4A12183");
             this.Name = "Connections";
+            this.DefaultSettingsName = "Connection";
             this.Description = "Connection strings";
             this.PluginType = vPluginTypeEnum.DbDesign;
         }
@@ -71,6 +72,7 @@ namespace vPlugin.DbModel.MsSql
         public ILogger Logger;
         public Guid Guid { get; protected set; }
         public string Name { get; protected set; }
+        public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
         public vPluginTypeEnum PluginType { get; }
         public IvPluginSettingsVM GetSettingsMvvm(string settings)

@@ -62,10 +62,12 @@ message proto_plugin_generator_settings {
     // @attr [BrowsableAttribute(false)]
     string generator_settings = 5;
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
     bool is_private = 6;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor("System.Windows.Forms.Design.FileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    string file_path_for_private_connection = 7;
+    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    // @attr [Description("File path to store connection string settings in private place.")]
+    string file_path = 7;
 }
 message proto_settings_config {
     string guid = 1;
