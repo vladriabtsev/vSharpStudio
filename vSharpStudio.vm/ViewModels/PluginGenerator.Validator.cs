@@ -13,7 +13,21 @@ namespace vSharpStudio.vm.ViewModels
             public PluginGeneratorValidator()
             {
                 RuleFor(x => x.Generator).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_GENERATOR_WAS_NOT_FOUND);
-                RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
+                RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_NOT_UNIQUE);
+                RuleFor(x => x.Guid).Must((x, guid) => {
+                    if (x.Parent == null)
+                        return true;
+                    GroupListPlugins lst = (GroupListPlugins)x.Parent.Parent;
+                    int count = 0;
+                    foreach (var tt in lst.ListPlugins)
+                    {
+                        foreach (var t in tt.ListPluginGenerators)
+                            if (t.Guid == guid) count++;
+                    }
+                    if (count > 1)
+                        return false;
+                    return true;
+                }).WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
                 string message = "wrong validation rule";
                 RuleFor(x => x).Must((o, name) => {
                     if (o.Generator == null)
@@ -21,14 +35,16 @@ namespace vSharpStudio.vm.ViewModels
                     switch(o.Generator.PluginType)
                     {
                         case common.vPluginTypeEnum.DbDesign:
-                            if (o.Generator is IDbMigrator)
-                                return true;
-                            message = "Interface 'IDbMigrator' is not implemented";
+                            if (!(o.Generator is IDbMigrator))
+                            {
+                                message = "Interface 'IDbMigrator' is not implemented";
+                                return false;
+                            }
                             break;
                         default:
                             break;
                     }
-                    return false;
+                    return true;
                 }).WithMessage(message);
             }
         }

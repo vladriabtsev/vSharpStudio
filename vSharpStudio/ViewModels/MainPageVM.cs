@@ -79,6 +79,8 @@ namespace vSharpStudio.ViewModels
                     if (tt.Guid == p.Guid)
                     {
                         tt.SetVPlugin(t.Value);
+                        tt.Name = t.Value.Name;
+                        tt.Description = t.Value.Description;
                         p = tt;
                         is_found = true;
                         break;
@@ -97,6 +99,8 @@ namespace vSharpStudio.ViewModels
                         if (ttt.Guid == pg.Guid)
                         {
                             ttt.SetGenerator(tt);
+                            ttt.Name = tt.Name;
+                            ttt.Description = tt.Description;
                             pg = ttt;
                             is_found = true;
                             break;

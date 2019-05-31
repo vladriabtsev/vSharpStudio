@@ -134,7 +134,9 @@
     <Compile Include="..\..\vSharpStudio.proto\obj\Debug\netstandard2.0\ConnMssql.cs">
       <Link>ConnMssql.cs</Link>
     </Compile>
+    <Compile Include="ConnectionGenerator.cs" />
     <Compile Include="ConnMsSql.partial.cs" />
+    <Compile Include="MsSqlDesignGenerator.cs" />
     <Compile Include="MsSqlMigrator.cs" />
     <Compile Include="ParametersViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

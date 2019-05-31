@@ -575,6 +575,10 @@ namespace vSharpStudio.vm.ViewModels
                 (this.Parent as IChildren).Children.Remove((T)this);
                 this.Parent = null;
             }
+            if (this is ICanRemoveNode)
+            {
+                (this as ICanRemoveNode).RemoveNode();
+            }
             else
                 throw new Exception();
         }

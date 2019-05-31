@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("PluginGeneratorSettings:{Name,nq}")]
-    public partial class PluginGeneratorSettings : ICanGoLeft, ICanAddNode
+    public partial class PluginGeneratorSettings : ICanGoLeft, ICanAddNode, ICanRemoveNode
     {
         public PluginGeneratorSettings(IvPluginSettingsVM settingsVM) : this()
         {
@@ -25,6 +25,12 @@ namespace vSharpStudio.vm.ViewModels
         public void SetVM(IvPluginSettingsVM vm)
         {
             this.VM = vm;
+        }
+
+        public void RemoveNode()
+        {
+            (this.Parent as PluginGenerator).ListPluginGeneratorSettings.Remove(this);
+            this.Parent = null;
         }
 
         #region IConfigObject
