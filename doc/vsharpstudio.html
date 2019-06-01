@@ -308,15 +308,11 @@
               
               
                 <li>
-                  <a href="#proto_config.proto_config.EnumDbType"><span class="badge">E</span>proto_config.EnumDbType</a>
+                  <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_data_type.EnumDataType"><span class="badge">E</span>proto_data_type.EnumDataType</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_enumeration.EnumEnumerationType"><span class="badge">E</span>proto_enumeration.EnumEnumerationType</a>
+                  <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
                 </li>
               
               
@@ -565,13 +561,6 @@ if no:
                 <tr>
                   <td>connection_string_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_type_enum</td>
-                  <td><a href="#proto_config.proto_config.EnumDbType">proto_config.EnumDbType</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -826,7 +815,7 @@ it will override previous settings </p></td>
               
                 <tr>
                   <td>data_type_enum</td>
-                  <td><a href="#proto_config.proto_data_type.EnumDataType">proto_data_type.EnumDataType</a></td>
+                  <td><a href="#proto_config.proto_enum_data_type">proto_enum_data_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(1)][DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
@@ -1000,7 +989,7 @@ it will override previous settings </p></td>
               
                 <tr>
                   <td>data_type_enum</td>
-                  <td><a href="#proto_config.proto_enumeration.EnumEnumerationType">proto_enumeration.EnumEnumerationType</a></td>
+                  <td><a href="#proto_config.enum_enumeration_type">enum_enumeration_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
@@ -2332,7 +2321,7 @@ repeated proto_document list_documents = 7; </p></td>
       
 
       
-        <h3 id="proto_config.proto_config.EnumDbType">proto_config.EnumDbType</h3>
+        <h3 id="proto_config.enum_enumeration_type">enum_enumeration_type</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -2341,21 +2330,33 @@ repeated proto_document list_documents = 7; </p></td>
           <tbody>
             
               <tr>
-                <td>MS_SQL_SERVER</td>
+                <td>STRING_VALUE</td>
                 <td>0</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>MS_SQL_FILE</td>
+                <td>BYTE_VALUE</td>
                 <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SHORT_VALUE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>INTEGER_VALUE</td>
+                <td>3</td>
                 <td><p></p></td>
               </tr>
             
           </tbody>
         </table>
       
-        <h3 id="proto_config.proto_data_type.EnumDataType">proto_data_type.EnumDataType</h3>
+        <h3 id="proto_config.proto_enum_data_type">proto_enum_data_type</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -2412,43 +2413,8 @@ repeated proto_document list_documents = 7; </p></td>
               </tr>
             
               <tr>
-                <td>Any</td>
+                <td>ANY</td>
                 <td>15</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_enumeration.EnumEnumerationType">proto_enumeration.EnumEnumerationType</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>STRING</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>BYTE</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHORT</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>INTEGER</td>
-                <td>3</td>
                 <td><p></p></td>
               </tr>
             

@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static string GetTypeDesc(Enumeration p)
         {
-            string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataTypeEnum);
+            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             //switch (p.DataTypeEnum)
             //{
             //    case Proto.Config.proto_enumeration.Types.EnumEnumerationType.Integer:

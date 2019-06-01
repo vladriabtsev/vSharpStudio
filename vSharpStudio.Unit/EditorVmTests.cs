@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using vSharpStudio.common;
 
 namespace vSharpStudio.Unit
 {
@@ -460,13 +461,13 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
 
             cfg.GroupEnumerations.NodeAddNewSubNode();
-            cfg.GroupEnumerations[0].DataTypeEnum = Proto.Config.proto_enumeration.Types.EnumEnumerationType.Integer;
+            cfg.GroupEnumerations[0].DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
             cfg.GroupEnumerations[0].Children.Add(new EnumerationPair() { Name = "one", Value = "1" });
 
             cfg.GroupConstants.NodeAddNewSubNode();
-            cfg.GroupConstants[0].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Bool;
+            cfg.GroupConstants[0].DataType.DataTypeEnum = EnumDataType.BOOL;
             cfg.GroupConstants.NodeAddNewSubNode();
-            cfg.GroupConstants[1].DataType.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enumeration;
+            cfg.GroupConstants[1].DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             cfg.GroupConstants[1].DataType.ObjectGuid = cfg.GroupEnumerations.Children[0].Guid;
 
             return cfg;
@@ -485,7 +486,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Any;
+            dt.DataTypeEnum = EnumDataType.ANY;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -495,7 +496,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Bool;
+            dt.DataTypeEnum = EnumDataType.BOOL;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -505,7 +506,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Catalog;
+            dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -517,7 +518,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Catalogs;
+            dt.DataTypeEnum = EnumDataType.CATALOGS;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -539,7 +540,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Enumeration;
+            dt.DataTypeEnum = EnumDataType.ENUMERATION;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -551,7 +552,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.Numerical;
+            dt.DataTypeEnum = EnumDataType.NUMERICAL;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);
@@ -560,7 +561,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(dt.VisibilityLength == Visibility.Visible);
             //Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
-            dt.DataTypeEnum = Proto.Config.proto_data_type.Types.EnumDataType.String;
+            dt.DataTypeEnum = EnumDataType.STRING;
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);
             Assert.IsTrue(dt.CountInfos == 0);

@@ -168,6 +168,8 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= message.Name #> m, 
     vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.IsBytes()) { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.ToByteArray();
+<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>
+    vm.<#= field.Name.ToNameCs() #> = (<#= field.ToTypeCs() #>)m.<#= field.Name.ToNameCs() #>;
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>;
 <#      } 
@@ -198,6 +200,8 @@ public static <#= message.Name #> ConvertToProto(<#= message.Name.ToNameCs() #> 
     m.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToProto(vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.IsBytes()) { #>
     m.<#= field.Name.ToNameCs() #> = ByteString.CopyFrom(vm.<#= field.Name.ToNameCs() #>);
+<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>
+    m.<#= field.Name.ToNameCs() #> = (<#= field.EnumType.Name #>)vm.<#= field.Name.ToNameCs() #>;
 <#      } else { #>
     m.<#= field.Name.ToNameCs() #> = vm.<#= field.Name.ToNameCs() #>;
 <#      } 

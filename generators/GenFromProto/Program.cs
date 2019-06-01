@@ -10,19 +10,20 @@ using Google.Protobuf.Reflection;
 
 namespace GenFromProto
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
             try
             {
                 int ii = 0;
-                if (args.Count() > 3)
+                if (args.Count() > 4)
                     ii = 1;
                 //Debugger.Launch();
-                string protofilename = args[0 + ii]; // args[0] proto file name (without extention)
-                string destfile = args[1 + ii]; // args[1] destination file
-                string destNS = args[2 + ii]; // args[2] destination namespace
+                string gen = args[0 + ii]; // args[0] model/interface
+                string protofilename = args[1 + ii]; // args[1] proto file name (without extention)
+                string destfile = args[2 + ii]; // args[2] destination file
+                string destNS = args[3 + ii]; // args[3] destination namespace
 
                 var ncs = protofilename.ToNameCs();
                 string reflectionClass = ncs + "Reflection";
@@ -31,8 +32,26 @@ namespace GenFromProto
                 object value = descr.GetValue(null, null);
                 FileDescriptor typedValue = (FileDescriptor)value;
 
-                NameSpace ns = new NameSpace(typedValue, protofilename, destNS);
-                string res = ns.TransformText();
+                Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
+                List<MessageDescriptor> messages = CollectMessages(typedValue, dicParents);
+
+                string path = "../../../../doc/" + protofilename + ".json";
+                ProtoDoc.CreateDoc(path);
+
+                string res = null;
+                if (gen == "model")
+                {
+                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS);
+                    res = ns.TransformText();
+                }
+                else
+                if (gen == "interface")
+                {
+                    ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, destNS);
+                    res = ns.TransformText();
+                }
+                else
+                    throw new ArgumentException("Expected 'model' or 'interface' instead of '" + gen + "'");
 
                 string filedest = destfile;
                 if (!File.Exists(filedest))
@@ -180,7 +199,7 @@ namespace GenFromProto
             }
             else if (from.FieldType == Google.Protobuf.Reflection.FieldType.Enum)
             {
-                return from.EnumType.Name;
+                return from.EnumType.Name.ToNameCs();
             }
             return FieldTypeSimpleToTypeCs(from.FieldType);
         }

@@ -139,12 +139,7 @@ message proto_config {
     //    2. Create connection string from db_server, db_database_name, db_user
     bool is_db_from_connection_string = 11; 
     string connection_string_name = 12;
-    enum EnumDbType {
-        MS_SQL_SERVER = 0;
-        MS_SQL_FILE = 1;
-    }
 
-    EnumDbType db_type_enum = 13;
     string db_server = 14;
     string db_database_name = 15;
     bool is_db_windows_authentication = 16; 
@@ -178,24 +173,24 @@ message proto_config {
  * @exclude
  * ####################################### D A T A  T Y P E ##########################################
  */
+enum proto_enum_data_type {
+    STRING = 0;
+    NUMERICAL = 1;
+    BOOL = 5;
+
+    //CONSTANT = 7;
+    ENUMERATION = 8;
+    CATALOG = 9;
+    CATALOGS = 10;
+    DOCUMENT = 11;
+    DOCUMENTS = 12;
+
+    ANY = 15;
+}
 // @base : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>
 message proto_data_type {
-    enum EnumDataType {
-        STRING = 0;
-        NUMERICAL = 1;
-        BOOL = 5;
-
-        //CONSTANT = 7;
-        ENUMERATION = 8;
-        CATALOG = 9;
-        CATALOGS = 10;
-        DOCUMENT = 11;
-        DOCUMENTS = 12;
-
-        Any = 15;
-    }
     // @attr [PropertyOrderAttribute(1)][DisplayName("Type")]
-    EnumDataType data_type_enum = 1; 
+    proto_enum_data_type data_type_enum = 1; 
     // @attr [PropertyOrderAttribute(3)]
     uint32 length = 2; 
     // @attr [PropertyOrderAttribute(5)]
@@ -299,13 +294,13 @@ message proto_group_list_enumerations {
     // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration children = 6;
 }
+enum enum_enumeration_type {
+    STRING_VALUE = 0;
+    BYTE_VALUE = 1;
+    SHORT_VALUE = 2;
+    INTEGER_VALUE = 3;
+}
 message proto_enumeration {
-    enum EnumEnumerationType {
-        STRING = 0;
-        BYTE = 1;
-        SHORT = 2;
-        INTEGER = 3;
-    }
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
@@ -314,7 +309,7 @@ message proto_enumeration {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)][DisplayName("Type")]
-    EnumEnumerationType data_type_enum = 6; 
+    enum_enumeration_type data_type_enum = 6; 
     // @attr [DisplayName("Elements")][NewItemTypes(typeof(EnumerationPair))]
     repeated proto_enumeration_pair children = 7;
 }

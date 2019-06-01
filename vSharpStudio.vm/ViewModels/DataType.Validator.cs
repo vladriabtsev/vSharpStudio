@@ -4,7 +4,6 @@ using System.Numerics;
 using System.Text;
 using ViewModelBase;
 using FluentValidation;
-using static Proto.Config.proto_data_type.Types;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -24,7 +23,7 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_POSITIVE);
                 RuleFor(p => p.Length).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y < 1)
+                    if (p.DataTypeEnum == EnumDataType.NUMERICAL && y < 1)
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
@@ -32,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.Length == 0)
                         return true;
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y <= p.Accuracy)
+                    if (p.DataTypeEnum == EnumDataType.NUMERICAL && y <= p.Accuracy)
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_LESS_THAN_ACCURACY);
@@ -69,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.Length == 0)
                         return true;
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Numerical && y >= p.Length)
+                    if (p.DataTypeEnum == EnumDataType.NUMERICAL && y >= p.Length)
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_ACCURACY_GREATER_THAN_LENGTH);
@@ -78,25 +77,25 @@ namespace vSharpStudio.vm.ViewModels
                 #region ObjectGuid
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Enumeration && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                    if (p.DataTypeEnum == EnumDataType.ENUMERATION && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Catalog && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                    if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum == Proto.Config.proto_data_type.Types.EnumDataType.Document && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                    if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectGuid))
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT);
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Enumeration)
+                    if (p.DataTypeEnum != EnumDataType.ENUMERATION)
                         return true;
                     IParent n = (IParent)p;
                     while (true)
@@ -119,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Catalog)
+                    if (p.DataTypeEnum != EnumDataType.CATALOG)
                         return true;
                     IParent n = (IParent)p;
                     while (true)
@@ -142,7 +141,7 @@ namespace vSharpStudio.vm.ViewModels
                 }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
                 RuleFor(p => p.ObjectGuid).Must((p, y) =>
                 {
-                    if (p.DataTypeEnum != Proto.Config.proto_data_type.Types.EnumDataType.Document)
+                    if (p.DataTypeEnum != EnumDataType.DOCUMENT)
                         return true;
                     IParent n = (IParent)p;
                     while (true)

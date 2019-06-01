@@ -3,6 +3,68 @@ syntax = "proto3";
 package proto_conn_mssql;
 option csharp_namespace = "Proto.Config.Connection"; // keep same for generator
 
+// Summary:
+//     Describes the different SQL authentication methods that can be used by a client
+//     connecting to Azure SQL Database. For details, see Connecting to SQL Database
+//
+//     By Using Azure Active Directory Authentication.
+enum SqlAuthenticationMethod
+{
+    //
+    // Summary:
+    //     The authentication method is not specified.
+    NotSpecified = 0;
+    //
+    // Summary:
+    //     The authentication method is Sql Password.
+    SqlPassword = 1;
+    //
+    // Summary:
+    //     The authentication method uses Active Directory Password. Use Active Directory
+    //     Password to connect to a SQL Database using an Azure AD principal name and password.
+    ActiveDirectoryPassword = 2;
+    //
+    // Summary:
+    //     The authentication method uses Active Directory Integrated. Use Active Directory
+    //     Integrated to connect to a SQL Database using integrated Windows authentication.
+    ActiveDirectoryIntegrated = 3;
+}
+//
+// Summary:
+//     Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.
+//     Possible values are ReadWrite and ReadOnly.
+enum ApplicationIntent
+{
+    //
+    // Summary:
+    //     The application workload type when connecting to a server is read write.
+    ReadWrite = 0;
+    //
+    // Summary:
+    //     The application workload type when connecting to a server is read only.
+    ReadOnly = 1;
+}
+//
+// Summary:
+//     Specifies that Always Encrypted functionality is enabled in a connection. Note
+//     that these settings cannot be used to bypass encryption and gain access to plaintext
+//     data. For details, see Always Encrypted (Database Engine).
+enum SqlConnectionColumnEncryptionSetting
+{
+    //
+    // Summary:
+    //     Specifies the connection does not use Always Encrypted. Should be used if no
+    //     queries sent over the connection access encrypted columns.
+    Disabled = 0;
+    //
+    // Summary:
+    //     Enables Always Encrypted functionality for the connection. Query parameters that
+    //     correspond to encrypted columns will be transparently encrypted and query results
+    //     from encrypted columns will be transparently decrypted.
+    Enabled = 1;
+}
+
+
 // @attr [CategoryOrder("Source", 1)]
 // @attr [CategoryOrder("Security", 2)]
 // @attr [CategoryOrder("Pooling", 3)]
@@ -252,32 +314,6 @@ message proto_conn_ms_sql {
     string password = 20;
     //
     // Summary:
-    //     Describes the different SQL authentication methods that can be used by a client
-    //     connecting to Azure SQL Database. For details, see Connecting to SQL Database
-    //     By Using Azure Active Directory Authentication.
-    enum SqlAuthenticationMethod
-    {
-        //
-        // Summary:
-        //     The authentication method is not specified.
-        NotSpecified = 0;
-        //
-        // Summary:
-        //     The authentication method is Sql Password.
-        SqlPassword = 1;
-        //
-        // Summary:
-        //     The authentication method uses Active Directory Password. Use Active Directory
-        //     Password to connect to a SQL Database using an Azure AD principal name and password.
-        ActiveDirectoryPassword = 2;
-        //
-        // Summary:
-        //     The authentication method uses Active Directory Integrated. Use Active Directory
-        //     Integrated to connect to a SQL Database using integrated Windows authentication.
-        ActiveDirectoryIntegrated = 3;
-    }
-    //
-    // Summary:
     //     Gets the authentication of the connection string.
     //
     // Returns:
@@ -298,21 +334,6 @@ message proto_conn_ms_sql {
     // @attr [Description("Gets or sets the name of the database associated with the connection.")]
     // @attr [Category("Source")]
     string initial_catalog = 22;
-    //
-    // Summary:
-    //     Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.
-    //     Possible values are ReadWrite and ReadOnly.
-    enum ApplicationIntent
-    {
-        //
-        // Summary:
-        //     The application workload type when connecting to a server is read write.
-        ReadWrite = 0;
-        //
-        // Summary:
-        //     The application workload type when connecting to a server is read only.
-        ReadOnly = 1;
-    }
     //
     // Summary:
     //     Declares the application workload type when connecting to a database in an SQL
@@ -429,25 +450,6 @@ message proto_conn_ms_sql {
     // @attr [Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
     // @attr [Category("Security")]
     bool encrypt = 31;
-    //
-    // Summary:
-    //     Specifies that Always Encrypted functionality is enabled in a connection. Note
-    //     that these settings cannot be used to bypass encryption and gain access to plaintext
-    //     data. For details, see Always Encrypted (Database Engine).
-    enum SqlConnectionColumnEncryptionSetting
-    {
-        //
-        // Summary:
-        //     Specifies the connection does not use Always Encrypted. Should be used if no
-        //     queries sent over the connection access encrypted columns.
-        Disabled = 0;
-        //
-        // Summary:
-        //     Enables Always Encrypted functionality for the connection. Query parameters that
-        //     correspond to encrypted columns will be transparently encrypted and query results
-        //     from encrypted columns will be transparently decrypted.
-        Enabled = 1;
-    }
     //
     // Summary:
     //     Gets and sets the column encryption settings for the connection string builder.

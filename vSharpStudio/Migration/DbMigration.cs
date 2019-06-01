@@ -14,13 +14,13 @@ namespace vSharpStudio.Migration
     public class DbMigration
     {
         private DbMigration() { }
-        private DbMigration(IDbMigrator migrator) { _migrator = migrator; }
-        public static DbMigration CreateMigration(IDbMigrator migrator, Action oncreated, Action ondeleting)
+        private DbMigration(IDbDesign migrator) { _migrator = migrator; }
+        public static DbMigration CreateMigration(IDbDesign migrator, Action oncreated, Action ondeleting)
         {
             DbMigration res = new DbMigration(migrator);
             return res;
         }
-        private IDbMigrator _migrator = null;
+        private IDbDesign _migrator = null;
         private Action oncreated = null;
 
         /// <summary>

@@ -4,33 +4,43 @@
       "name": "vsharpstudio.proto",
       "description": "",
       "package": "proto_config",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": false,
       "enums": [
         {
-          "name": "EnumDbType",
-          "longName": "proto_config.EnumDbType",
-          "fullName": "proto_config.proto_config.EnumDbType",
+          "name": "enum_enumeration_type",
+          "longName": "enum_enumeration_type",
+          "fullName": "proto_config.enum_enumeration_type",
           "description": "",
           "values": [
             {
-              "name": "MS_SQL_SERVER",
+              "name": "STRING_VALUE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "MS_SQL_FILE",
+              "name": "BYTE_VALUE",
               "number": "1",
+              "description": ""
+            },
+            {
+              "name": "SHORT_VALUE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "INTEGER_VALUE",
+              "number": "3",
               "description": ""
             }
           ]
         },
         {
-          "name": "EnumDataType",
-          "longName": "proto_data_type.EnumDataType",
-          "fullName": "proto_config.proto_data_type.EnumDataType",
+          "name": "proto_enum_data_type",
+          "longName": "proto_enum_data_type",
+          "fullName": "proto_config.proto_enum_data_type",
           "description": "",
           "values": [
             {
@@ -74,36 +84,8 @@
               "description": ""
             },
             {
-              "name": "Any",
+              "name": "ANY",
               "number": "15",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "EnumEnumerationType",
-          "longName": "proto_enumeration.EnumEnumerationType",
-          "fullName": "proto_config.proto_enumeration.EnumEnumerationType",
-          "description": "",
-          "values": [
-            {
-              "name": "STRING",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "BYTE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "SHORT",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "INTEGER",
-              "number": "3",
               "description": ""
             }
           ]
@@ -390,16 +372,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_type_enum",
-              "description": "",
-              "label": "",
-              "type": "EnumDbType",
-              "longType": "proto_config.EnumDbType",
-              "fullType": "proto_config.proto_config.EnumDbType",
               "ismap": false,
               "defaultValue": ""
             },
@@ -720,9 +692,9 @@
               "name": "data_type_enum",
               "description": "@attr [PropertyOrderAttribute(1)][DisplayName(\"Type\")]",
               "label": "",
-              "type": "EnumDataType",
-              "longType": "proto_data_type.EnumDataType",
-              "fullType": "proto_config.proto_data_type.EnumDataType",
+              "type": "proto_enum_data_type",
+              "longType": "proto_enum_data_type",
+              "fullType": "proto_config.proto_enum_data_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -942,9 +914,9 @@
               "name": "data_type_enum",
               "description": "@attr [PropertyOrderAttribute(4)][DisplayName(\"Type\")]",
               "label": "",
-              "type": "EnumEnumerationType",
-              "longType": "proto_enumeration.EnumEnumerationType",
-              "fullType": "proto_config.proto_enumeration.EnumEnumerationType",
+              "type": "enum_enumeration_type",
+              "longType": "enum_enumeration_type",
+              "fullType": "proto_config.enum_enumeration_type",
               "ismap": false,
               "defaultValue": ""
             },

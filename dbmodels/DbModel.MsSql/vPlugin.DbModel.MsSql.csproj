@@ -137,8 +137,8 @@
     <Compile Include="ConnectionGenerator.cs" />
     <Compile Include="ConnMsSql.partial.cs" />
     <Compile Include="MsSqlDesignGenerator.cs" />
-    <Compile Include="MsSqlMigrator.cs" />
-    <Compile Include="ParametersViewModels.cs" />
+    <Compile Include="MsSqlPlugin.cs" />
+    <Compile Include="SettingsViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationVisitor.partial.cs" />
   </ItemGroup>

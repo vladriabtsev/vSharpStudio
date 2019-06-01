@@ -95,23 +95,6 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 }
 private SortedObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 <# } #>
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) { #>
-public <#= message.Name #>.Types.<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
-{ 
-	set
-	{
-		if (_<#= field.Name.ToNameCs() #> != value)
-		{
-			On<#= field.Name.ToNameCs() #>Changing();
-			_<#= field.Name.ToNameCs() #> = value;
-			On<#= field.Name.ToNameCs() #>Changed();
-			NotifyPropertyChanged();
-			ValidateProperty();
-		}
-	}
-	get { return _<#= field.Name.ToNameCs() #>; }
-}
-private <#= message.Name #>.Types.<#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 <# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 

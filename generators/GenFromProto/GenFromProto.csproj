@@ -56,6 +56,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ModelInterfaces.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelInterfaces.partial.cs" />
+    <Compile Include="Program.partial.cs" />
+    <Compile Include="ProtoDoc.cs" />
     <Compile Include="ValidationVisitor.cs">
       <DependentUpon>ValidationVisitor.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -136,6 +144,10 @@
     <Content Include="ConfigVisitor.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ConfigVisitor.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelInterfaces.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ModelInterfaces.cs</LastGenOutput>
     </Content>
     <Content Include="ValidationVisitor.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

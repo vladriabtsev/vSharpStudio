@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/31/2019 11:21:05
+// Auto generated on UTC 06/01/2019 21:06:03
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -160,9 +160,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.UserInstance = m.UserInstance;
 		    vm.WorkstationID = m.WorkstationID;
 		    vm.Password = m.Password;
-		    vm.Authentication = m.Authentication;
+		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication;
 		    vm.InitialCatalog = m.InitialCatalog;
-		    vm.ApplicationIntentValue = m.ApplicationIntentValue;
+		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue;
 		    vm.ApplicationName = m.ApplicationName;
 		    vm.AsynchronousProcessing = m.AsynchronousProcessing;
 		    vm.IntegratedSecurity = m.IntegratedSecurity;
@@ -171,7 +171,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.AttachDBFilename = m.AttachDBFilename;
 		    vm.DataSource = m.DataSource;
 		    vm.Encrypt = m.Encrypt;
-		    vm.ColumnEncryptionSetting = m.ColumnEncryptionSetting;
+		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting;
 		    vm.TrustServerCertificate = m.TrustServerCertificate;
 		    vm.Enlist = m.Enlist;
 		    vm.FailoverPartner = m.FailoverPartner;
@@ -203,9 +203,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.UserInstance = vm.UserInstance;
 		    m.WorkstationID = vm.WorkstationID;
 		    m.Password = vm.Password;
-		    m.Authentication = vm.Authentication;
+		    m.Authentication = (SqlAuthenticationMethod)vm.Authentication;
 		    m.InitialCatalog = vm.InitialCatalog;
-		    m.ApplicationIntentValue = vm.ApplicationIntentValue;
+		    m.ApplicationIntentValue = (ApplicationIntent)vm.ApplicationIntentValue;
 		    m.ApplicationName = vm.ApplicationName;
 		    m.AsynchronousProcessing = vm.AsynchronousProcessing;
 		    m.IntegratedSecurity = vm.IntegratedSecurity;
@@ -214,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.AttachDBFilename = vm.AttachDBFilename;
 		    m.DataSource = vm.DataSource;
 		    m.Encrypt = vm.Encrypt;
-		    m.ColumnEncryptionSetting = vm.ColumnEncryptionSetting;
+		    m.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting;
 		    m.TrustServerCertificate = vm.TrustServerCertificate;
 		    m.Enlist = vm.Enlist;
 		    m.FailoverPartner = vm.FailoverPartner;
@@ -867,7 +867,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public proto_conn_ms_sql.Types.SqlAuthenticationMethod Authentication
+		public SqlAuthenticationMethod Authentication
 		{ 
 			set
 			{
@@ -882,7 +882,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Authentication; }
 		}
-		private proto_conn_ms_sql.Types.SqlAuthenticationMethod _Authentication;
+		private SqlAuthenticationMethod _Authentication;
 		partial void OnAuthenticationChanging();
 		partial void OnAuthenticationChanged();
 		
@@ -931,7 +931,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
 		[Category("Initialization")]
-		public proto_conn_ms_sql.Types.ApplicationIntent ApplicationIntentValue
+		public ApplicationIntent ApplicationIntentValue
 		{ 
 			set
 			{
@@ -946,7 +946,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ApplicationIntentValue; }
 		}
-		private proto_conn_ms_sql.Types.ApplicationIntent _ApplicationIntentValue;
+		private ApplicationIntent _ApplicationIntentValue;
 		partial void OnApplicationIntentValueChanging();
 		partial void OnApplicationIntentValueChanged();
 		
@@ -1215,7 +1215,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets and sets the column encryption settings for the connection string builder.")]
 		[Category("Security")]
-		public proto_conn_ms_sql.Types.SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
+		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
 		{ 
 			set
 			{
@@ -1230,7 +1230,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _ColumnEncryptionSetting; }
 		}
-		private proto_conn_ms_sql.Types.SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
+		private SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
 		partial void OnColumnEncryptionSettingChanging();
 		partial void OnColumnEncryptionSettingChanged();
 		

@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
-using static Proto.Config.proto_data_type.Types;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

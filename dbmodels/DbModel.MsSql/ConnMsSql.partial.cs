@@ -28,10 +28,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var proto = ConnMsSql.ConvertToProto(this);
                 return JsonFormatter.Default.Format(proto);
-                //return proto.ToByteArray();
-                //return Any.Pack(proto);
             }
-        } //.proto_conn_ms_sql");
+        }
 
         public string GenerateCode()
         {

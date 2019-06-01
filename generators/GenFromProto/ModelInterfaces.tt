@@ -1,0 +1,38 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+namespace vSharpStudio.common
+{
+<# foreach(var t in root.EnumTypes) { this.PushIndent("\t"); #>
+public enum <#= t.Name.ToNameCs() #> {
+<#    foreach (var tt in t.Values) { this.PushIndent("\t"); #>
+<#= tt.Name #> = <#= tt.Number #>,
+<#    this.PopIndent(); } #>
+}
+<# this.PopIndent(); }
+   foreach (var message in messages) { 
+     if (message.Name.EndsWith("_nullable"))
+       continue;
+     this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name];
+     this.PushIndent("\t");
+#>
+<#= this.MessageDoc.Comments #>
+public interface I<#= message.Name.ToNameCs() #>
+{
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; 
+         this.PushIndent("\t"); #>
+<#= this.FieldDoc.Comments #><# if (field.IsCsSimple()) { #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
+<#       } else { #>
+I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
+<#       } #>
+<#       this.PopIndent();
+      } #>
+}
+<#    this.PopIndent();
+   } #>
+}

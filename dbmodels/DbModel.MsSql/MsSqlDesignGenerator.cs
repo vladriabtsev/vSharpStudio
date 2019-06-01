@@ -21,7 +21,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vPlugin.DbModel.MsSql
 {
-    public class MsSqlDesignGenerator : IDbMigrator
+    public class MsSqlDesignGenerator : IDbDesign
     {
         public MsSqlDesignGenerator()
         {

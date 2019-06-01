@@ -69,7 +69,7 @@ namespace vSharpStudio.ViewModels
         {
             if (onImportsSatisfied != null)
                 onImportsSatisfied(this, _plugins);
-            List<IDbMigrator> lstDbs = new List<IDbMigrator>();
+            List<IDbDesign> lstDbs = new List<IDbDesign>();
             foreach (var t in _plugins)
             {
                 var p = new Plugin(t.Value);
@@ -112,7 +112,7 @@ namespace vSharpStudio.ViewModels
 
                     if (tt.PluginType == vPluginTypeEnum.DbDesign)
                     {
-                        lstDbs.Add((IDbMigrator)tt);
+                        lstDbs.Add((IDbDesign)tt);
                     }
                 }
                 foreach (var ttt in p.ListPluginGenerators)
@@ -141,7 +141,7 @@ namespace vSharpStudio.ViewModels
             }
             this.ListDbDesignPlugins = lstDbs;
         }
-        public List<IDbMigrator> ListDbDesignPlugins
+        public List<IDbDesign> ListDbDesignPlugins
         {
             get { return _ListDbDesignPlugins; }
             set
@@ -150,8 +150,8 @@ namespace vSharpStudio.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public List<IDbMigrator> _ListDbDesignPlugins;
-        public IDbMigrator SelectedDbDesignPlugin
+        public List<IDbDesign> _ListDbDesignPlugins;
+        public IDbDesign SelectedDbDesignPlugin
         {
             get { return _SelectedDbDesignPlugin; }
             set
@@ -162,7 +162,7 @@ namespace vSharpStudio.ViewModels
                 //var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
             }
         }
-        private IDbMigrator _SelectedDbDesignPlugin;
+        private IDbDesign _SelectedDbDesignPlugin;
         public INotifyPropertyChanged SelectedDbDesignPluginSettings
         {
             get { return _SelectedDbDesignPluginSettings; }

@@ -116,7 +116,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDbMigrator.cs" />
+    <Compile Include="IDbDesign.cs" />
     <Compile Include="IParent.cs" />
     <Compile Include="ITreeConfigNode.cs" />
     <Compile Include="IvPlugin.cs" />

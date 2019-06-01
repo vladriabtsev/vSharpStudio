@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
-using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {

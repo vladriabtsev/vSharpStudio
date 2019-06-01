@@ -8,7 +8,6 @@ using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using Xunit;
 using Xunit.Abstractions;
-using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.xUnit
 {

@@ -8,7 +8,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
-using static Proto.Config.proto_data_type.Types;
 
 // https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 // https://www.automatetheplanet.com/mstest-cheat-sheet/
@@ -29,7 +28,7 @@ namespace vSharpStudio.Unit
         {
             Exec(connStringName, (cfg) =>
             {
-                cfg.AdNew(new Constant("c1", EnumDataType.Bool));
+                cfg.AdNew(new Constant("c1", EnumDataType.BOOL));
                 //m.AdNew(new Constant("c2", EnumDataType.Numerical, 2, 0, true));
 
             }, (m) =>
@@ -60,9 +59,9 @@ namespace vSharpStudio.Unit
             {
                 foreach (var t in dbs)
                 {
-                    if (t.Value is IDbMigrator)
+                    if (t.Value is IDbDesign)
                     {
-                        var tt = t.Value as IDbMigrator;
+                        var tt = t.Value as IDbDesign;
                         if (tt.Name == connStringName)
                         {
                             mvm.SelectedDbDesignPlugin = tt;

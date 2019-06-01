@@ -37,9 +37,8 @@
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [string_nullable](#proto_config.string_nullable)
   
-    - [proto_config.EnumDbType](#proto_config.proto_config.EnumDbType)
-    - [proto_data_type.EnumDataType](#proto_config.proto_data_type.EnumDataType)
-    - [proto_enumeration.EnumEnumerationType](#proto_config.proto_enumeration.EnumEnumerationType)
+    - [enum_enumeration_type](#proto_config.enum_enumeration_type)
+    - [proto_enum_data_type](#proto_config.proto_enum_data_type)
   
   
   
@@ -130,7 +129,6 @@ Configuration config
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
 | connection_string_name | [string](#string) |  |  |
-| db_type_enum | [proto_config.EnumDbType](#proto_config.proto_config.EnumDbType) |  |  |
 | db_server | [string](#string) |  |  |
 | db_database_name | [string](#string) |  |  |
 | is_db_windows_authentication | [bool](#bool) |  |  |
@@ -201,7 +199,7 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| data_type_enum | [proto_data_type.EnumDataType](#proto_config.proto_data_type.EnumDataType) |  | @attr [PropertyOrderAttribute(1)][DisplayName(&#34;Type&#34;)] |
+| data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)][DisplayName(&#34;Type&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Is positive&#34;)] |
@@ -249,7 +247,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| data_type_enum | [proto_enumeration.EnumEnumerationType](#proto_config.proto_enumeration.EnumEnumerationType) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] |
+| data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] |
 | children | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)][NewItemTypes(typeof(EnumerationPair))] |
 
 
@@ -714,21 +712,23 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
  
 
 
-<a name="proto_config.proto_config.EnumDbType"></a>
+<a name="proto_config.enum_enumeration_type"></a>
 
-### proto_config.EnumDbType
+### enum_enumeration_type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| MS_SQL_SERVER | 0 |  |
-| MS_SQL_FILE | 1 |  |
+| STRING_VALUE | 0 |  |
+| BYTE_VALUE | 1 |  |
+| SHORT_VALUE | 2 |  |
+| INTEGER_VALUE | 3 |  |
 
 
 
-<a name="proto_config.proto_data_type.EnumDataType"></a>
+<a name="proto_config.proto_enum_data_type"></a>
 
-### proto_data_type.EnumDataType
+### proto_enum_data_type
 
 
 | Name | Number | Description |
@@ -741,21 +741,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | CATALOGS | 10 |  |
 | DOCUMENT | 11 |  |
 | DOCUMENTS | 12 |  |
-| Any | 15 |  |
-
-
-
-<a name="proto_config.proto_enumeration.EnumEnumerationType"></a>
-
-### proto_enumeration.EnumEnumerationType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| STRING | 0 |  |
-| BYTE | 1 |  |
-| SHORT | 2 |  |
-| INTEGER | 3 |  |
+| ANY | 15 |  |
 
 
  

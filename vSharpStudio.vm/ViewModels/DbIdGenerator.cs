@@ -8,7 +8,6 @@ using System.Windows;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
-using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {

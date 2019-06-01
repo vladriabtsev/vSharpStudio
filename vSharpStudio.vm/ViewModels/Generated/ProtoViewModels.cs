@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/31/2019 11:21:05
+// Auto generated on UTC 06/01/2019 21:06:03
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1566,7 +1566,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    vm.ConnectionStringName = from.ConnectionStringName;
-		    vm.DbTypeEnum = from.DbTypeEnum;
 		    vm.DbServer = from.DbServer;
 		    vm.DbDatabaseName = from.DbDatabaseName;
 		    vm.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
@@ -1605,7 +1604,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    to.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    to.ConnectionStringName = from.ConnectionStringName;
-		    to.DbTypeEnum = from.DbTypeEnum;
 		    to.DbServer = from.DbServer;
 		    to.DbDatabaseName = from.DbDatabaseName;
 		    to.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
@@ -1660,7 +1658,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
 		    vm.ConnectionStringName = m.ConnectionStringName;
-		    vm.DbTypeEnum = m.DbTypeEnum;
 		    vm.DbServer = m.DbServer;
 		    vm.DbDatabaseName = m.DbDatabaseName;
 		    vm.IsDbWindowsAuthentication = m.IsDbWindowsAuthentication;
@@ -1692,7 +1689,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
 		    m.ConnectionStringName = vm.ConnectionStringName;
-		    m.DbTypeEnum = vm.DbTypeEnum;
 		    m.DbServer = vm.DbServer;
 		    m.DbDatabaseName = vm.DbDatabaseName;
 		    m.IsDbWindowsAuthentication = vm.IsDbWindowsAuthentication;
@@ -1807,24 +1803,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ConnectionStringName = "";
 		partial void OnConnectionStringNameChanging();
 		partial void OnConnectionStringNameChanged();
-		public proto_config.Types.EnumDbType DbTypeEnum
-		{ 
-			set
-			{
-				if (_DbTypeEnum != value)
-				{
-					OnDbTypeEnumChanging();
-					_DbTypeEnum = value;
-					OnDbTypeEnumChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbTypeEnum; }
-		}
-		private proto_config.Types.EnumDbType _DbTypeEnum;
-		partial void OnDbTypeEnumChanging();
-		partial void OnDbTypeEnumChanged();
 		public string DbServer
 		{ 
 			set
@@ -2175,7 +2153,7 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new DataType();
-		    vm.DataTypeEnum = m.DataTypeEnum;
+		    vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum;
 		    vm.Length = m.Length;
 		    vm.Accuracy = m.Accuracy;
 		    vm.IsPositive = m.IsPositive;
@@ -2186,7 +2164,7 @@ namespace vSharpStudio.vm.ViewModels
 		public static proto_data_type ConvertToProto(DataType vm)
 		{
 		    proto_data_type m = new proto_data_type();
-		    m.DataTypeEnum = vm.DataTypeEnum;
+		    m.DataTypeEnum = (proto_enum_data_type)vm.DataTypeEnum;
 		    m.Length = vm.Length;
 		    m.Accuracy = vm.Accuracy;
 		    m.IsPositive = vm.IsPositive;
@@ -2198,7 +2176,7 @@ namespace vSharpStudio.vm.ViewModels
 		
 		[PropertyOrderAttribute(1)]
 		[DisplayName("Type")]
-		public proto_data_type.Types.EnumDataType DataTypeEnum
+		public EnumDataType DataTypeEnum
 		{ 
 			set
 			{
@@ -2213,7 +2191,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DataTypeEnum; }
 		}
-		private proto_data_type.Types.EnumDataType _DataTypeEnum;
+		private EnumDataType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
 		[PropertyOrderAttribute(3)]
@@ -3673,7 +3651,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.DataTypeEnum = m.DataTypeEnum;
+		    vm.DataTypeEnum = (EnumEnumerationType)m.DataTypeEnum;
 		    vm.Children = new SortedObservableCollection<ITreeConfigNode>();
 		    foreach(var t in m.Children)
 		    {
@@ -3693,7 +3671,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    m.DataTypeEnum = vm.DataTypeEnum;
+		    m.DataTypeEnum = (enum_enumeration_type)vm.DataTypeEnum;
 		    foreach(var t in vm.Children)
 		        m.Children.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto((EnumerationPair)t));
 		    return m;
@@ -3731,7 +3709,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanged();
 		[PropertyOrderAttribute(4)]
 		[DisplayName("Type")]
-		public proto_enumeration.Types.EnumEnumerationType DataTypeEnum
+		public EnumEnumerationType DataTypeEnum
 		{ 
 			set
 			{
@@ -3746,7 +3724,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _DataTypeEnum; }
 		}
-		private proto_enumeration.Types.EnumEnumerationType _DataTypeEnum;
+		private EnumEnumerationType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
 		[DisplayName("Elements")]

@@ -9,7 +9,6 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -25,23 +24,23 @@ namespace vSharpStudio.vm.ViewModels
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.Any:
+                case EnumDataType.ANY:
                     break;
-                case EnumDataType.Bool:
+                case EnumDataType.BOOL:
                     break;
-                case EnumDataType.Catalogs:
+                case EnumDataType.CATALOGS:
                     break;
-                case EnumDataType.Documents:
+                case EnumDataType.DOCUMENTS:
                     break;
-                case EnumDataType.Numerical:
+                case EnumDataType.NUMERICAL:
                     // TODO revisit default length and accuracy for Numerical
                     this.Length = length ?? 16;
                     this.Accuracy = accuracy ?? 2;
                     this.IsPositive = isPositive ?? false;
                     break;
-                case EnumDataType.Enumeration:
+                case EnumDataType.ENUMERATION:
                     break;
-                case EnumDataType.String:
+                case EnumDataType.STRING:
                     this.Length = length ?? 30;
                     break;
                 default:
@@ -54,11 +53,11 @@ namespace vSharpStudio.vm.ViewModels
             this.ObjectGuid = guidOfType;
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.Catalog:
+                case EnumDataType.CATALOG:
                     break;
-                case EnumDataType.Document:
+                case EnumDataType.DOCUMENT:
                     break;
-                case EnumDataType.Enumeration:
+                case EnumDataType.ENUMERATION:
                     break;
                 default:
                     throw new ArgumentException();
@@ -70,18 +69,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static string GetTypeDesc(DataType p)
         {
-            string res = Enum.GetName(typeof(Proto.Config.proto_data_type.Types.EnumDataType), (int)p.DataTypeEnum);
+            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             string objName = "Not found";
             ITreeConfigNode config = p.Parent;
             while (config != null && config.Parent != null)
                 config = config.Parent;
             switch (p.DataTypeEnum)
             {
-                case Proto.Config.proto_data_type.Types.EnumDataType.Any:
+                case EnumDataType.ANY:
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Bool:
+                case EnumDataType.BOOL:
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+                case EnumDataType.CATALOG:
                     if (config is Config)
                     {
                         foreach (var t in (config as Config).GroupCatalogs.Children)
@@ -94,9 +93,9 @@ namespace vSharpStudio.vm.ViewModels
                         res += ": " + objName;
                     }
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Catalogs:
+                case EnumDataType.CATALOGS:
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+                case EnumDataType.DOCUMENT:
                     if (config is Config)
                     { 
                         foreach (var t in (config as Config).GroupDocuments.GroupListDocuments.Children)
@@ -109,9 +108,9 @@ namespace vSharpStudio.vm.ViewModels
                     res += ": " + objName;
             }
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Documents:
+                case EnumDataType.DOCUMENTS:
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
+                case EnumDataType.ENUMERATION:
                     if (config is Config)
                     {
                         foreach (var t in (config as Config).GroupEnumerations.Children)
@@ -124,10 +123,10 @@ namespace vSharpStudio.vm.ViewModels
                         res += ": " + objName;
                     }
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.Numerical:
+                case EnumDataType.NUMERICAL:
                     res += ", " + (p.IsPositive ? "+" : "") + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : "") + " clr:" + p.ClrType + " proto:" + p.ProtoType;
                     break;
-                case Proto.Config.proto_data_type.Types.EnumDataType.String:
+                case EnumDataType.STRING:
                     res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
                     break;
                 default:
@@ -189,7 +188,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 switch (this.DataTypeEnum)
                 {
-                    case EnumDataType.Numerical:
+                    case EnumDataType.NUMERICAL:
                         if (this.Length > this.Accuracy)
                             return "".PadRight((int)(this.Length - this.Accuracy), '9');
                         else if (this.Length == this.Accuracy)
@@ -198,7 +197,7 @@ namespace vSharpStudio.vm.ViewModels
                             return "unlimited";
                         else
                             return "";
-                    case EnumDataType.String:
+                    case EnumDataType.STRING:
                         if (this.Length > 0)
                             return "max length " + this.Length;
                         else
@@ -215,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 switch (this.DataTypeEnum)
                 {
-                    case EnumDataType.Numerical:
+                    case EnumDataType.NUMERICAL:
                         if (this.Accuracy > 0)
                             return "0.".PadRight((int)(this.Accuracy + 1), '0') + "1";
                         //if (this.Accuracy == 1)
@@ -250,21 +249,21 @@ namespace vSharpStudio.vm.ViewModels
                 // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
                 switch (this.DataTypeEnum)
                 {
-                    case EnumDataType.Catalog:
+                    case EnumDataType.CATALOG:
                         return "Catalog";
-                    case EnumDataType.Catalogs:
+                    case EnumDataType.CATALOGS:
                         return "Catalog";
-                    case EnumDataType.Document:
+                    case EnumDataType.DOCUMENT:
                         return "Document";
-                    case EnumDataType.Documents:
+                    case EnumDataType.DOCUMENTS:
                         return "Documents";
-                    case EnumDataType.Enumeration:
+                    case EnumDataType.ENUMERATION:
                         return "Enumeration";
-                    case EnumDataType.Bool:
+                    case EnumDataType.BOOL:
                         return "bool";
-                    case EnumDataType.String:
+                    case EnumDataType.STRING:
                         return "string";
-                    case EnumDataType.Numerical:
+                    case EnumDataType.NUMERICAL:
                         if (this.Accuracy == 0)
                         {
                             if (this.IsPositive)
@@ -320,21 +319,21 @@ namespace vSharpStudio.vm.ViewModels
                 // https://developers.google.com/protocol-buffers/docs/proto3#scalar
                 switch (this.DataTypeEnum)
                 {
-                    case EnumDataType.Catalog:
+                    case EnumDataType.CATALOG:
                         return "catalog";
-                    case EnumDataType.Catalogs:
+                    case EnumDataType.CATALOGS:
                         return "catalogs";
-                    case EnumDataType.Document:
+                    case EnumDataType.DOCUMENT:
                         return "document";
-                    case EnumDataType.Documents:
+                    case EnumDataType.DOCUMENTS:
                         return "documents";
-                    case EnumDataType.Enumeration:
+                    case EnumDataType.ENUMERATION:
                         return "enumeration";
-                    case EnumDataType.Bool:
+                    case EnumDataType.BOOL:
                         return "bool";
-                    case EnumDataType.String:
+                    case EnumDataType.STRING:
                         return "string";
-                    case EnumDataType.Numerical:
+                    case EnumDataType.NUMERICAL:
                         if (this.Accuracy == 0)
                         {
                             if (this.IsPositive)
@@ -392,9 +391,9 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     switch (this.DataTypeEnum)
                     {
-                        case EnumDataType.Catalog:
-                        case EnumDataType.Document:
-                        case EnumDataType.Enumeration:
+                        case EnumDataType.CATALOG:
+                        case EnumDataType.DOCUMENT:
+                        case EnumDataType.ENUMERATION:
                             UpdateListObjects();
                             break;
                         default:
@@ -411,10 +410,10 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(p => p.ProtoType);
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.Any:
-                case EnumDataType.Bool:
-                case EnumDataType.Catalogs:
-                case EnumDataType.Documents:
+                case EnumDataType.ANY:
+                case EnumDataType.BOOL:
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -425,9 +424,9 @@ namespace vSharpStudio.vm.ViewModels
                     this.ObjectGuid = "";
                     this.ListObjects = null;
                     break;
-                case EnumDataType.Catalog:
-                case EnumDataType.Document:
-                case EnumDataType.Enumeration:
+                case EnumDataType.CATALOG:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.ENUMERATION:
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
@@ -439,7 +438,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ListObjects = null;
                     UpdateListObjects();
                     break;
-                case EnumDataType.Numerical:
+                case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
                         this.VisibilityIsPositive = Visibility.Visible;
                     else
@@ -453,7 +452,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ObjectGuid = "";
                     this.ListObjects = null;
                     break;
-                case EnumDataType.String:
+                case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
@@ -476,13 +475,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 switch (this.DataTypeEnum)
                 {
-                    case Proto.Config.proto_data_type.Types.EnumDataType.Enumeration:
+                    case EnumDataType.ENUMERATION:
                         this.ListObjects = (config as Config).GroupEnumerations.Children;
                         break;
-                    case Proto.Config.proto_data_type.Types.EnumDataType.Catalog:
+                    case EnumDataType.CATALOG:
                         this.ListObjects = (config as Config).GroupCatalogs.Children;
                         break;
-                    case Proto.Config.proto_data_type.Types.EnumDataType.Document:
+                    case EnumDataType.DOCUMENT:
                         this.ListObjects = (config as Config).GroupDocuments.GroupListDocuments.Children;
                         break;
                     default:

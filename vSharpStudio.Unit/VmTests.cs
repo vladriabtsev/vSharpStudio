@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ViewModelBase;
+using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
-using static Proto.Config.proto_data_type.Types;
 
 namespace vSharpStudio.Unit
 {
@@ -99,20 +99,20 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
             cfg.GroupCatalogs.Add(vm);
             vm.BeginEdit();
-            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties.Children.Count == 0);
-            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.Numerical, 10, 0));
+            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
             vm.BeginEdit();
-            vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.String;
+            vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.STRING;
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties.Children.Count == 1);
-            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
             vm.BeginEdit();
             vm.GroupProperties.Children.Clear();
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties.Children.Count == 1);
-            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.Numerical);
+            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
         }
         #endregion Editable
 

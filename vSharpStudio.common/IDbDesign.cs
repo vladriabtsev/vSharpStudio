@@ -15,7 +15,7 @@ namespace vSharpStudio.common
     /// <summary>
     /// Interface for DbDesign type of plugins
     /// </summary>
-    public interface IDbMigrator : IvPluginCodeGenerator
+    public interface IDbDesign : IvPluginCodeGenerator
     {
         ILoggerFactory LoggerFactory { set; get; }
         string ConnectionString { set; get; }
