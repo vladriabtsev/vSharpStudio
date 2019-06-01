@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 namespace vSharpStudio.common
 {
@@ -22,7 +23,7 @@ namespace vSharpStudio.common
 	public interface IGroupListPlugins
 	{
 		ulong SortingValue { get; }
-		IPlugin ListPlugins { get; }
+		IEnumerable<IPlugin> ListPluginsI { get; }
 	}
 	
 	public interface IPlugin
@@ -31,7 +32,7 @@ namespace vSharpStudio.common
 		string Name { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
-		IPluginGenerator ListPluginGenerators { get; }
+		IEnumerable<IPluginGenerator> ListPluginGeneratorsI { get; }
 	}
 	
 	public interface IPluginGenerator
@@ -40,7 +41,7 @@ namespace vSharpStudio.common
 		string Name { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
-		IPluginGeneratorSettings ListPluginGeneratorSettings { get; }
+		IEnumerable<IPluginGeneratorSettings> ListPluginGeneratorSettingsI { get; }
 	}
 	
 	public interface IPluginGeneratorSettings
@@ -127,7 +128,7 @@ namespace vSharpStudio.common
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
 		string Description { get; }
-		IConfigTree Children { get; }
+		IEnumerable<IConfigTree> ListConfigTreesI { get; }
 		string RelativeConfigPath { get; }
 	}
 	
@@ -141,8 +142,8 @@ namespace vSharpStudio.common
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
 		string Description { get; }
-		IConfig ConfigNode { get; }
-		IConfigTree Children { get; }
+		IConfig ConfigNodeI { get; }
+		IEnumerable<IConfigTree> ListConfigTreesI { get; }
 	}
 	
 	///////////////////////////////////////////////////
@@ -184,18 +185,18 @@ namespace vSharpStudio.common
 		string PathToProjectWithConnectionString { get; }
 		string DbSchema { get; }
 		string PrimaryKeyName { get; }
-		IDbIdGenerator DbIdGenerator { get; }
+		IDbIdGenerator DbIdGeneratorI { get; }
 		
 		///////////////////////////////////////////////////
 		/// CONFIG OBJECTS
 		///////////////////////////////////////////////////
-		IGroupListPlugins GroupPlugins { get; }
-		IGroupConfigs GroupConfigs { get; }
-		IGroupListConstants GroupConstants { get; }
-		IGroupListEnumerations GroupEnumerations { get; }
-		IGroupListCatalogs GroupCatalogs { get; }
-		IGroupDocuments GroupDocuments { get; }
-		IGroupListJournals GroupJournals { get; }
+		IGroupListPlugins GroupPluginsI { get; }
+		IGroupConfigs GroupConfigsI { get; }
+		IGroupListConstants GroupConstantsI { get; }
+		IGroupListEnumerations GroupEnumerationsI { get; }
+		IGroupListCatalogs GroupCatalogsI { get; }
+		IGroupDocuments GroupDocumentsI { get; }
+		IGroupListJournals GroupJournalsI { get; }
 	}
 	
 	public interface IDataType
@@ -214,7 +215,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IGroupPropertiesTab Children { get; }
+		IEnumerable<IGroupPropertiesTab> ListGroupPropertiesTabsI { get; }
 	}
 	
 	public interface IGroupPropertiesTab
@@ -224,8 +225,8 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IGroupListProperties GroupProperties { get; }
-		IGroupListPropertiesTabs GroupPropertiesSubtabs { get; }
+		IGroupListProperties GroupPropertiesI { get; }
+		IGroupListPropertiesTabs GroupPropertiesSubtabsI { get; }
 	}
 	
 	public interface IGroupListProperties
@@ -235,7 +236,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IProperty Children { get; }
+		IEnumerable<IProperty> ListPropertiesI { get; }
 	}
 	
 	public interface IProperty
@@ -245,7 +246,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IDataType DataType { get; }
+		IDataType DataTypeI { get; }
 	}
 	
 	public interface IGroupListConstants
@@ -255,7 +256,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IConstant Children { get; }
+		IEnumerable<IConstant> ListConstantsI { get; }
 	}
 	
 	///////////////////////////////////////////////////
@@ -269,7 +270,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IDataType DataType { get; }
+		IDataType DataTypeI { get; }
 	}
 	
 	public interface IGroupListEnumerations
@@ -279,7 +280,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IEnumeration Children { get; }
+		IEnumerable<IEnumeration> ListEnumerationsI { get; }
 	}
 	
 	public interface IEnumeration
@@ -290,7 +291,7 @@ namespace vSharpStudio.common
 		string NameUi { get; }
 		string Description { get; }
 		EnumEnumerationType DataTypeEnum { get; }
-		IEnumerationPair Children { get; }
+		IEnumerable<IEnumerationPair> ListEnumerationPairsI { get; }
 	}
 	
 	public interface IEnumerationPair
@@ -314,10 +315,10 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IDbIdGenerator DbIdGenerator { get; }
-		IGroupListProperties GroupProperties { get; }
-		IGroupListForms GroupForms { get; }
-		IGroupListReports GroupReports { get; }
+		IDbIdGenerator DbIdGeneratorI { get; }
+		IGroupListProperties GroupPropertiesI { get; }
+		IGroupListForms GroupFormsI { get; }
+		IGroupListReports GroupReportsI { get; }
 	}
 	
 	public interface IGroupListCatalogs
@@ -327,7 +328,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		ICatalog Children { get; }
+		IEnumerable<ICatalog> ListCatalogsI { get; }
 	}
 	
 	public interface IGroupDocuments
@@ -337,8 +338,8 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IGroupListProperties GroupSharedProperties { get; }
-		IGroupListDocuments GroupListDocuments { get; }
+		IGroupListProperties GroupSharedPropertiesI { get; }
+		IGroupListDocuments GroupListDocumentsI { get; }
 	}
 	
 	public interface IDocument
@@ -348,11 +349,11 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IGroupListProperties GroupProperties { get; }
-		IGroupListPropertiesTabs GroupPropertiesTabs { get; }
-		IGroupListForms GroupForms { get; }
-		IGroupListReports GroupReports { get; }
-		IDbIdGenerator DbIdGenerator { get; }
+		IGroupListProperties GroupPropertiesI { get; }
+		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
+		IGroupListForms GroupFormsI { get; }
+		IGroupListReports GroupReportsI { get; }
+		IDbIdGenerator DbIdGeneratorI { get; }
 	}
 	
 	public interface IGroupListDocuments
@@ -362,7 +363,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IDocument Children { get; }
+		IEnumerable<IDocument> ListDocumentsI { get; }
 	}
 	
 	public interface IGroupListJournals
@@ -376,7 +377,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IJournal Children { get; }
+		IEnumerable<IJournal> ListJournalsI { get; }
 	}
 	
 	public interface IJournal
@@ -390,7 +391,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		/// repeated proto_group_properties list_properties = 6;
 		///////////////////////////////////////////////////
-		IDocument Children { get; }
+		IEnumerable<IDocument> ListDocumentsI { get; }
 	}
 	
 	public interface IGroupListForms
@@ -404,7 +405,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IForm Children { get; }
+		IEnumerable<IForm> ListFormsI { get; }
 	}
 	
 	public interface IForm
@@ -433,7 +434,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IReport Children { get; }
+		IEnumerable<IReport> ListReportsI { get; }
 	}
 	
 	public interface IReport

@@ -164,7 +164,7 @@ Configuration config
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | string name_ui = 4; |
 | config_node | [proto_config](#proto_config.proto_config) |  |  |
-| children | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
+| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -248,7 +248,7 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] |
-| children | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)][NewItemTypes(typeof(EnumerationPair))] |
+| list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)][NewItemTypes(typeof(EnumerationPair))] |
 
 
 
@@ -308,7 +308,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | string name_ui = 4; |
-| children | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
+| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
 | relative_config_path | [string](#string) |  |  |
 
 
@@ -350,7 +350,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
+| list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -370,7 +370,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_constant](#proto_config.proto_constant) | repeated | @attr [BrowsableAttribute(false)] |
+| list_constants | [proto_constant](#proto_config.proto_constant) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -390,7 +390,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_document](#proto_config.proto_document) | repeated | @attr [BrowsableAttribute(false)] |
+| list_documents | [proto_document](#proto_config.proto_document) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -410,7 +410,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
+| list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -430,7 +430,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| list_forms | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
 
 
@@ -450,7 +450,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
 
 
@@ -486,7 +486,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
+| list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -506,7 +506,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_group_properties_tab](#proto_config.proto_group_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
+| list_group_properties_tabs | [proto_group_properties_tab](#proto_config.proto_group_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -526,7 +526,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
 
 
@@ -567,7 +567,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| children | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
+| list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
 
 
 

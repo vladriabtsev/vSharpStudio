@@ -28,50 +28,50 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nnamespace vSharpStudio.common\r\n{\r\n");
+            this.Write("using System.Collections.Generic;\r\n\r\nnamespace vSharpStudio.common\r\n{\r\n");
             
-            #line 9 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 10 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
  foreach(var t in root.EnumTypes) { this.PushIndent("\t"); 
             
             #line default
             #line hidden
             this.Write("public enum ");
             
-            #line 10 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 11 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 11 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
     foreach (var tt in t.Values) { this.PushIndent("\t"); 
             
             #line default
             #line hidden
             
-            #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(tt.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(tt.Number));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
     this.PopIndent(); } 
             
             #line default
             #line hidden
             this.Write("}\r\n");
             
-            #line 15 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
  this.PopIndent(); }
    foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
@@ -83,21 +83,21 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 22 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MessageDoc.Comments));
             
             #line default
             #line hidden
             this.Write("\r\npublic interface I");
             
-            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 24 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 25 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 26 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 
          this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; 
          this.PushIndent("\t"); 
@@ -105,60 +105,81 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 28 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.FieldDoc.Comments));
             
             #line default
             #line hidden
             
-            #line 28 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
  if (field.IsCsSimple()) { 
             
             #line default
             #line hidden
             
-            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 30 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 30 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" { get; }\r\n");
             
-            #line 30 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 31 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+       } else if (field.IsRepeated) { 
+            
+            #line default
+            #line hidden
+            this.Write("IEnumerable<I");
+            
+            #line 32 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write("> ");
+            
+            #line 32 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("I { get; }\r\n");
+            
+            #line 33 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
        } else { 
             
             #line default
             #line hidden
             this.Write("I");
             
-            #line 31 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 34 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 31 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 34 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" { get; }\r\n");
+            this.Write("I { get; }\r\n");
             
-            #line 32 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 35 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
        } 
             
             #line default
             #line hidden
             
-            #line 33 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 36 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
        this.PopIndent();
       } 
             
@@ -166,7 +187,7 @@ namespace GenFromProto
             #line hidden
             this.Write("}\r\n");
             
-            #line 36 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 39 "C:\dev\vsharpstudio\generators\GenFromProto\ModelInterfaces.tt"
     this.PopIndent();
    } 
             

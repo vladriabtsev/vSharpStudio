@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using System.Collections.Generic;
 
 namespace vSharpStudio.common
 {
@@ -27,8 +28,10 @@ public interface I<#= message.Name.ToNameCs() #>
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsCsSimple()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
+<#       } else if (field.IsRepeated) { #>
+IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; }
 <#       } else { #>
-I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
+I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; }
 <#       } #>
 <#       this.PopIndent();
       } #>

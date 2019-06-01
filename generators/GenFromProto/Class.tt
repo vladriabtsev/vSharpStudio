@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #>
 {
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
 	#region CTOR

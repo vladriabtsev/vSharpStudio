@@ -597,7 +597,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_config_trees",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_config_tree",
@@ -921,7 +921,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_enumeration_pairs",
               "description": "@attr [DisplayName(\"Elements\")][NewItemTypes(typeof(EnumerationPair))]",
               "label": "repeated",
               "type": "proto_enumeration_pair",
@@ -1114,7 +1114,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_config_trees",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_config_tree",
@@ -1276,7 +1276,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_catalogs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_catalog",
@@ -1347,7 +1347,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_constants",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_constant",
@@ -1418,7 +1418,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_documents",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_document",
@@ -1489,7 +1489,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_enumerations",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_enumeration",
@@ -1560,7 +1560,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_forms",
               "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_form",
@@ -1631,7 +1631,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_journals",
               "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_journal",
@@ -1733,7 +1733,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_property",
@@ -1804,7 +1804,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_group_properties_tabs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_group_properties_tab",
@@ -1875,7 +1875,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_reports",
               "description": "repeated proto_property list_shared_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_report",
@@ -2027,7 +2027,7 @@
               "defaultValue": ""
             },
             {
-              "name": "children",
+              "name": "list_documents",
               "description": "repeated proto_group_properties list_properties = 6;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_document",

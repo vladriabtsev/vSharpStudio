@@ -102,7 +102,7 @@ message proto_group_configs {
 //  string name_ui = 4;
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_config_tree children = 6;
+    repeated proto_config_tree list_config_trees = 6;
     string relative_config_path = 7;
 }
 message proto_config_tree {
@@ -113,7 +113,7 @@ message proto_config_tree {
     string description = 5;
     proto_config config_node = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_config_tree children = 7;
+    repeated proto_config_tree list_config_trees = 7;
 }
 // Configuration config
 message proto_config {
@@ -213,7 +213,7 @@ message proto_group_list_properties_tabs {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_group_properties_tab children = 6;
+    repeated proto_group_properties_tab list_group_properties_tabs = 6;
 }
 message proto_group_properties_tab {
     string guid = 1;
@@ -237,7 +237,7 @@ message proto_group_list_properties {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_property children = 6;
+    repeated proto_property list_properties = 6;
 }
 message proto_property {
     string guid = 1;
@@ -263,7 +263,7 @@ message proto_group_list_constants {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_constant children = 6;
+    repeated proto_constant list_constants = 6;
 }
 //
 // Constant application wise value
@@ -292,7 +292,7 @@ message proto_group_list_enumerations {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_enumeration children = 6;
+    repeated proto_enumeration list_enumerations = 6;
 }
 enum enum_enumeration_type {
     STRING_VALUE = 0;
@@ -311,7 +311,7 @@ message proto_enumeration {
     // @attr [PropertyOrderAttribute(4)][DisplayName("Type")]
     enum_enumeration_type data_type_enum = 6; 
     // @attr [DisplayName("Elements")][NewItemTypes(typeof(EnumerationPair))]
-    repeated proto_enumeration_pair children = 7;
+    repeated proto_enumeration_pair list_enumeration_pairs = 7;
 }
 message proto_enumeration_pair {
     string guid = 1;
@@ -356,7 +356,7 @@ message proto_group_list_catalogs {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_catalog children = 7;
+    repeated proto_catalog list_catalogs = 7;
 }
 /** 
  * @exclude
@@ -403,7 +403,7 @@ message proto_group_list_documents {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_document children = 6;
+    repeated proto_document list_documents = 6;
 }
 /** 
  * @exclude
@@ -419,7 +419,7 @@ message proto_group_list_journals {
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_journal children = 7;
+    repeated proto_journal list_journals = 7;
 }
 message proto_journal {
     string guid = 1;
@@ -431,7 +431,7 @@ message proto_journal {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_document children = 7;
+    repeated proto_document list_documents = 7;
 }
 /** 
  * @exclude
@@ -447,7 +447,7 @@ message proto_group_list_forms {
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_form children = 7;
+    repeated proto_form list_forms = 7;
 }
 message proto_form {
     string guid = 1;
@@ -474,7 +474,7 @@ message proto_group_list_reports {
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_report children = 7;
+    repeated proto_report list_reports = 7;
 }
 message proto_report {
     string guid = 1;

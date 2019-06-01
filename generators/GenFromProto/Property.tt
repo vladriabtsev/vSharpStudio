@@ -60,6 +60,8 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+[BrowsableAttribute(false)]
+public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } else if (field.IsMap) { #>
 public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
 { 
@@ -94,8 +96,10 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private SortedObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+[BrowsableAttribute(false)]
+public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } #>
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) {#>
+<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && !field.IsCsSimple()) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 
 	set
@@ -112,6 +116,8 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
+[BrowsableAttribute(false)]
+public I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get { return _<#= field.Name.ToNameCs() #>; }}
 <# } else { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 

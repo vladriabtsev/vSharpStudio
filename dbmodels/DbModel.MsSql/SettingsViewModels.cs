@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/01/2019 21:06:03
+// Auto generated on UTC 06/01/2019 22:38:29
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
 	[CategoryOrder("Initialization", 4)]
 	[CategoryOrder("ConnectionResilency", 5)]
 	[CategoryOrder("Advanced", 6)]
-	public partial class ConnMsSql : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>
+	public partial class ConnMsSql : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>, IConnMsSql
 	{
 		public partial class ConnMsSqlValidator : ValidatorBase<ConnMsSql, ConnMsSqlValidator> { }
 		#region CTOR
