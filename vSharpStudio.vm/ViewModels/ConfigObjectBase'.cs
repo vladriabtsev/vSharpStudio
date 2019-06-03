@@ -153,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                             p.Parent.Sort(this.GetType());
-                        SetSelected(this);
+                        //SetSelected(this);
                     }
                 }
             }

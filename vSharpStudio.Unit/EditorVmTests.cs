@@ -413,7 +413,7 @@ namespace vSharpStudio.Unit
 
             #region Properties
 
-            cfg.GroupCatalogs[0].NodeAddNewSubNode();
+            cfg.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.SelectedNode != null);
             Assert.IsTrue(cfg.SelectedNode == cfg.GroupCatalogs[0].GroupProperties[0]);
             Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[0].NodeCanLeft() == true);
