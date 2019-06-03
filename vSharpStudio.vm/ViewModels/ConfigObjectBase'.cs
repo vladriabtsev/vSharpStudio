@@ -153,19 +153,27 @@ namespace vSharpStudio.vm.ViewModels
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                             p.Parent.Sort(this.GetType());
-                        if (this.Parent != null)
-                        {
-                            ITreeConfigNode config = this.Parent;
-                            while (config.Parent != null)
-                                config = config.Parent;
-                            if (config is Config)
-                                (config as Config).SelectedNode = this;
-                        }
+                        SetSelected(this);
                     }
                 }
             }
             get { return _Name; }
         }
+
+        protected void SetSelected(ITreeConfigNode node)
+        {
+            if (this.Parent != null)
+            {
+                ITreeConfigNode config = this.Parent;
+                while (config.Parent != null)
+                    config = config.Parent;
+                if (config is Config)
+                    (config as Config).SelectedNode = node;
+                //else
+                //    throw new Exception();
+            }
+        }
+
         private string _Name = "";
         [PropertyOrder(1)]
         [DisplayName("UI Name")]
@@ -295,80 +303,9 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
-        public ITreeConfigNode NodeAddNew()
+        public virtual ITreeConfigNode NodeAddNew()
         {
-            string tname = this.GetType().Name;
-            switch (tname)
-            {
-                case "PluginGeneratorSettings":
-                    var cfg = this.Parent.Parent.Parent.Parent as Config;
-                    PluginGenerator pg = (PluginGenerator)cfg.SelectedNode.Parent;
-                    PluginGeneratorSettings pgs = null;
-                    switch (pg.Generator.PluginType)
-                    {
-                        case vPluginTypeEnum.DbDesign:
-                            var settings = pg.Generator.GetSettingsMvvm(null);
-                            pgs = new PluginGeneratorSettings(settings);
-                            pgs.Guid = pg.Generator.Guid.ToString();
-                            GetUniqueName(pg.Generator.DefaultSettingsName, pgs, pg.ListPluginGeneratorSettings);
-                            pg.ListPluginGeneratorSettings.Add(pgs);
-                            cfg.SelectedNode = pgs;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return pgs;
-                case "Constant":
-                    var res = new Constant();
-                    //res.Parent = this.Parent;
-                    (this.Parent as GroupListConstants).Add(res);
-                    GetUniqueName(Constant.DefaultName, res, (this.Parent as GroupListConstants).Children);
-                    (this.Parent.Parent as Config).SelectedNode = res;
-                    return res;
-                case "Enumeration":
-                    var enumeration = new Enumeration();
-                    //enumeration.Parent = this.Parent;
-                    (this.Parent as GroupListEnumerations).Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, (this.Parent as GroupListEnumerations).Children);
-                    (this.Parent.Parent as Config).SelectedNode = enumeration;
-                    return enumeration;
-                case "Catalog":
-                    var catalog = new Catalog();
-                    //catalog.Parent = this.Parent;
-                    (this.Parent as GroupListCatalogs).Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, (this.Parent as GroupListCatalogs).Children);
-                    (this.Parent.Parent as Config).SelectedNode = catalog;
-                    return catalog;
-                case "Document":
-                    var doc = new Document();
-                    //doc.Parent = this.Parent;
-                    (this.Parent as GroupListDocuments).Add(doc);
-                    GetUniqueName(Document.DefaultName, doc, (this.Parent as GroupListDocuments).Children);
-                    (this.Parent.Parent as Config).SelectedNode = doc;
-                    return doc;
-                case "Property":
-                    var prop = new Property();
-                    if (this.Parent is GroupListProperties)
-                    {
-                        var pp = this.Parent as GroupListProperties;
-                        pp.Add(prop);
-                        GetUniqueName(Property.DefaultName, prop, pp.Children);
-                    }
-                    else
-                        throw new Exception();
-                    ITreeConfigNode config = this.Parent;
-                    while (config.Parent != null)
-                        config = config.Parent;
-                    (config as Config).SelectedNode = prop;
-                    return prop;
-                case "Journal":
-                    var journal = new Journal();
-                    (this.Parent as GroupListJournals).Add(journal);
-                    GetUniqueName(Enumeration.DefaultName, journal, (this.Parent as GroupListJournals).Children);
-                    (this.Parent.Parent as Config).SelectedNode = journal;
-                    return journal;
-            }
-            throw new Exception();
+            throw new NotImplementedException();
         }
         public bool NodeCanAddNewSubNode()
         {
@@ -376,103 +313,9 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
-        public ITreeConfigNode NodeAddNewSubNode()
+        public virtual ITreeConfigNode NodeAddNewSubNode()
         {
-            string tname = this.GetType().Name;
-            switch (tname)
-            {
-                case "PluginGenerator":
-                    var cfg = this.Parent.Parent.Parent as Config;
-                    PluginGenerator pg = (PluginGenerator)cfg.SelectedNode;
-                    PluginGeneratorSettings pgs = null;
-                    switch (pg.Generator.PluginType)
-                    {
-                        case vPluginTypeEnum.DbDesign:
-                            var settings = pg.Generator.GetSettingsMvvm(null);
-                            pgs = new PluginGeneratorSettings(settings);
-                            pgs.Guid = pg.Generator.Guid.ToString();
-                            GetUniqueName(pg.Generator.DefaultSettingsName, pgs, pg.ListPluginGeneratorSettings);
-                            pg.ListPluginGeneratorSettings.Add(pgs);
-                            cfg.SelectedNode = pgs;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return pgs;
-                case "GroupListConstants":
-                    var constant = new Constant();
-                    var cnp = (this as GroupListConstants);
-                    cnp.Add(constant);
-                    GetUniqueName(Constant.DefaultName, constant, cnp.Children);
-                    (this.Parent as Config).SelectedNode = constant;
-                    return constant;
-                case "GroupListEnumerations":
-                    var enumeration = new Enumeration();
-                    var cep = (this as GroupListEnumerations);
-                    cep.Add(enumeration);
-                    GetUniqueName(Enumeration.DefaultName, enumeration, cep.Children);
-                    (this.Parent as Config).SelectedNode = enumeration;
-                    return enumeration;
-                case "GroupListProperties":
-                    var prop = new Property();
-                    var pp = (this as GroupListProperties);
-                    pp.Add(prop);
-                    GetUniqueName(Property.DefaultName, prop, pp.Children);
-                    return UpdateSelectedNode(prop);
-                case "GroupListPropertiesTabs":
-                    var propt = new GroupPropertiesTab();
-                    var ppropt = (this as GroupListPropertiesTabs);
-                    ppropt.Add(propt);
-                    GetUniqueName(GroupPropertiesTab.DefaultName, propt, ppropt.Children);
-                    return UpdateSelectedNode(propt);
-                case "GroupListCatalogs":
-                    var catalog = new Catalog();
-                    var cp = (this as GroupListCatalogs);
-                    cp.Add(catalog);
-                    GetUniqueName(Catalog.DefaultName, catalog, cp.Children);
-                    (this.Parent as Config).SelectedNode = catalog;
-                    return catalog;
-                case "Catalog":
-                    var prop2 = new Property();
-                    var ppc = (this as Catalog);
-                    ppc.GroupProperties.Add(prop2);
-                    GetUniqueName(Property.DefaultName, prop2, ppc.GroupProperties.Children);
-                    return UpdateSelectedNode(prop2);
-                case "GroupListForms":
-                    var form = new Form();
-                    var pform = (this as GroupListForms);
-                    pform.Add(form);
-                    GetUniqueName(Form.DefaultName, form, pform.Children);
-                    return UpdateSelectedNode(form);
-                case "GroupListReports":
-                    var rpt = new Report();
-                    var prpt = (this as GroupListReports);
-                    prpt.Add(rpt);
-                    GetUniqueName(Report.DefaultName, rpt, prpt.Children);
-                    return UpdateSelectedNode(rpt);
-                case "GroupListDocuments":
-                    var doc = new Document();
-                    var pdoc = (this as GroupListDocuments);
-                    pdoc.Add(doc);
-                    GetUniqueName(Document.DefaultName, doc, pdoc.Children);
-                    return UpdateSelectedNode(doc);
-                case "GroupListJournals":
-                    var journal = new Journal();
-                    var jp = (this as GroupListJournals);
-                    jp.Add(journal);
-                    GetUniqueName(Journal.DefaultName, journal, jp.Children);
-                    (this.Parent as Config).SelectedNode = journal;
-                    return journal;
-            }
-            throw new Exception();
-        }
-        private ITreeConfigNode UpdateSelectedNode(ITreeConfigNode p)
-        {
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = p;
-            return p;
+            throw new NotImplementedException();
         }
         public bool NodeCanAddClone()
         {
@@ -480,57 +323,9 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
-        public ITreeConfigNode NodeAddClone()
+        public virtual ITreeConfigNode NodeAddClone()
         {
-            string tname = this.GetType().Name;
-            switch (tname)
-            {
-                case "Catalog":
-                    var catalog = Catalog.Clone(this as Catalog, true, true);
-                    catalog.Parent = this.Parent;
-                    (this.Parent as GroupListCatalogs).Add(catalog);
-                    this.Name = this.Name + "2";
-                    (this.Parent.Parent as Config).SelectedNode = catalog;
-                    return catalog;
-                case "Constant":
-                    var constant = Constant.Clone(this as Constant, true, true);
-                    constant.Parent = this.Parent;
-                    (this.Parent as GroupListConstants).Add(constant);
-                    this.Name = this.Name + "2";
-                    (this.Parent.Parent as Config).SelectedNode = constant;
-                    return constant;
-                case "Enumeration":
-                    var enumeration = Enumeration.Clone(this as Enumeration, true, true);
-                    enumeration.Parent = this.Parent;
-                    (this.Parent as GroupListEnumerations).Add(enumeration);
-                    this.Name = this.Name + "2";
-                    (this.Parent.Parent as Config).SelectedNode = enumeration;
-                    return enumeration;
-                case "Journal":
-                    var journal = Journal.Clone(this as Journal, true, true);
-                    journal.Parent = this.Parent;
-                    (this.Parent as GroupListJournals).Add(journal);
-                    this.Name = this.Name + "2";
-                    (this.Parent.Parent as Config).SelectedNode = journal;
-                    return journal;
-                case "Property":
-                    var prop = Property.Clone(this as Property, true, true);
-                    prop.Parent = this.Parent;
-                    if (this.Parent is GroupListProperties)
-                    {
-                        var pp = this.Parent as GroupListProperties;
-                        pp.Add(prop);
-                    }
-                    else
-                        throw new Exception();
-                    this.Name = this.Name + "2";
-                    ITreeConfigNode config = this.Parent;
-                    while (config.Parent != null)
-                        config = config.Parent;
-                    (config as Config).SelectedNode = prop;
-                    return prop;
-            }
-            throw new Exception();
+            throw new NotImplementedException();
         }
         public bool NodeCanMoveDown()
         {
@@ -538,14 +333,9 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return NodeCanDown();
         }
-        public void NodeMoveDown()
+        public virtual void NodeMoveDown()
         {
-            if (this.Parent is IChildren)
-                (this.Parent as IChildren).Children.MoveDown(this);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = this;
+            throw new NotImplementedException();
         }
         public bool NodeCanMoveUp()
         {
@@ -553,14 +343,9 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return NodeCanUp();
         }
-        public void NodeMoveUp()
+        public virtual void NodeMoveUp()
         {
-            if (this.Parent is IChildren)
-                (this.Parent as IChildren).Children.MoveUp(this);
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = this;
+            throw new NotImplementedException();
         }
         public bool NodeCanRemove()
         {
@@ -568,19 +353,9 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
-        public void NodeRemove()
+        public virtual void NodeRemove()
         {
-            if (this.Parent is IChildren)
-            {
-                (this.Parent as IChildren).Children.Remove((T)this);
-                this.Parent = null;
-            }
-            if (this is ICanRemoveNode)
-            {
-                (this as ICanRemoveNode).RemoveNode();
-            }
-            else
-                throw new Exception();
+            throw new NotImplementedException();
         }
         public bool NodeCanLeft()
         {
@@ -590,10 +365,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void NodeLeft()
         {
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = this.Parent;
+            SetSelected(this.Parent);
         }
         public bool NodeCanRight()
         {
@@ -611,58 +383,25 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public void NodeRight()
+        public virtual void NodeRight()
         {
-            if (this is IChildren)
-            {
-                var p = (this as IChildren).Children[0];
-                ITreeConfigNode config = this.Parent;
-                while (config.Parent != null)
-                    config = config.Parent;
-                (config as Config).SelectedNode = p;
-            }
+            throw new NotImplementedException();
         }
-        public bool NodeCanDown()
+        public virtual bool NodeCanDown()
         {
-            if (NodeCanAddClone())
-            {
-                if ((this.Parent is IChildren) && (this.Parent as IChildren).Children.CanDown(this))
-                    return true;
-            }
             return false;
         }
-        public void NodeDown()
+        public virtual void NodeDown()
         {
-            T next = null;
-            if (this.Parent is IChildren)
-                next = (this.Parent as IChildren).Children.GetNext(this) as T;
-            if (next == null)
-                return;
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = next;
+            throw new NotImplementedException();
         }
-        public bool NodeCanUp()
+        public virtual bool NodeCanUp()
         {
-            if (NodeCanAddClone())
-            {
-                if ((this.Parent is IChildren) && (this.Parent as IChildren).Children.CanUp(this))
-                    return true;
-            }
             return false;
         }
-        public void NodeUp()
+        public virtual void NodeUp()
         {
-            T prev = null;
-            if (this.Parent is IChildren)
-                prev = (this.Parent as IChildren).Children.GetPrev(this) as T;
-            if (prev == null)
-                return;
-            ITreeConfigNode config = this.Parent;
-            while (config.Parent != null)
-                config = config.Parent;
-            (config as Config).SelectedNode = prev;
+            throw new NotImplementedException();
         }
 
         #endregion Commands

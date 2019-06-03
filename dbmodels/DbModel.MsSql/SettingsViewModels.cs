@@ -1,9 +1,8 @@
-// Auto generated on UTC 06/01/2019 22:38:29
+// Auto generated on UTC 06/03/2019 22:13:43
 using System;
 using System.Linq;
 using ViewModelBase;
 using FluentValidation;
-using Proto.Config.Connection;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
@@ -135,7 +134,7 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_conn_ms_sql' to 'ConnMsSql'
-		public static ConnMsSql ConvertToVM(proto_conn_ms_sql m, ConnMsSql vm = null)
+		public static ConnMsSql ConvertToVM(Proto.Config.Connection.proto_conn_ms_sql m, ConnMsSql vm = null)
 		{
 		    if (vm == null)
 		        vm = new ConnMsSql();
@@ -179,9 +178,9 @@ namespace vSharpStudio.vm.ViewModels
 		    return vm;
 		}
 		// Conversion from 'ConnMsSql' to 'proto_conn_ms_sql'
-		public static proto_conn_ms_sql ConvertToProto(ConnMsSql vm)
+		public static Proto.Config.Connection.proto_conn_ms_sql ConvertToProto(ConnMsSql vm)
 		{
-		    proto_conn_ms_sql m = new proto_conn_ms_sql();
+		    Proto.Config.Connection.proto_conn_ms_sql m = new Proto.Config.Connection.proto_conn_ms_sql();
 		    m.Name = vm.Name;
 		    m.Guid = vm.Guid;
 		    m.MaxPoolSize = vm.MaxPoolSize;
@@ -203,9 +202,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.UserInstance = vm.UserInstance;
 		    m.WorkstationID = vm.WorkstationID;
 		    m.Password = vm.Password;
-		    m.Authentication = (SqlAuthenticationMethod)vm.Authentication;
+		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication;
 		    m.InitialCatalog = vm.InitialCatalog;
-		    m.ApplicationIntentValue = (ApplicationIntent)vm.ApplicationIntentValue;
+		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue;
 		    m.ApplicationName = vm.ApplicationName;
 		    m.AsynchronousProcessing = vm.AsynchronousProcessing;
 		    m.IntegratedSecurity = vm.IntegratedSecurity;
@@ -214,7 +213,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.AttachDBFilename = vm.AttachDBFilename;
 		    m.DataSource = vm.DataSource;
 		    m.Encrypt = vm.Encrypt;
-		    m.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting;
+		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting;
 		    m.TrustServerCertificate = vm.TrustServerCertificate;
 		    m.Enlist = vm.Enlist;
 		    m.FailoverPartner = vm.FailoverPartner;
@@ -1370,7 +1369,7 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
-		void Visit(proto_conn_ms_sql p);
+		void Visit(Proto.Config.Connection.proto_conn_ms_sql p);
 	}
 	
 	public partial class ValidationVisitor : IVisitorConfigNode

@@ -38,6 +38,10 @@ namespace ViewModelBase
         {
             //this.CollectionChanged += SortedObservableCollection_CollectionChanged;
         }
+        public SortedObservableCollection(IEnumerable<T> lst)
+        {
+            this.AddRange(lst);
+        }
         //public SortedObservableCollection(object parent, bool isSort = true) : this()
         //{
         //    this.Parent = parent;

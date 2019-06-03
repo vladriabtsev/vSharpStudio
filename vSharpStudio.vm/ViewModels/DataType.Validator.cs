@@ -109,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
                         else
                             return true;
                     }
-                    foreach (var t in (n as Config).GroupEnumerations.Children)
+                    foreach (var t in (n as Config).GroupEnumerations.ListEnumerations)
                     {
                         if (t.Guid == y)
                             return true;
@@ -132,7 +132,7 @@ namespace vSharpStudio.vm.ViewModels
                         else
                             return true;
                     }
-                    foreach (var t in (n as Config).GroupCatalogs.Children)
+                    foreach (var t in (n as Config).GroupCatalogs.ListCatalogs)
                     {
                         if (t.Guid == y)
                             return true;
@@ -155,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
                         else
                             return true;
                     }
-                    foreach (var t in (n as Config).GroupDocuments.GroupListDocuments.Children)
+                    foreach (var t in (n as Config).GroupDocuments.GroupListDocuments.ListDocuments)
                     {
                         if (t.Guid == y)
                             return true;

@@ -10,7 +10,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
     public partial class GroupListPlugins : ICanGoRight
     {
         partial void OnInit()

@@ -5,11 +5,11 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class GroupPropertiesTab
+    public partial class PropertiesTab
     {
-        public partial class GroupPropertiesTabValidator
+        public partial class PropertiesTabValidator
         {
-            public GroupPropertiesTabValidator()
+            public PropertiesTabValidator()
             {
                 RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
                 RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
                 //RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
                 //RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
             }
-            private bool IsUnique(GroupPropertiesTab val)
+            private bool IsUnique(PropertiesTab val)
             {
                 if (val.Parent == null)
                     return true;
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val.Parent is GroupListPropertiesTabs)
                 {
                     GroupListPropertiesTabs p = (GroupListPropertiesTabs)val.Parent;
-                    foreach (var t in p.Children)
+                    foreach (var t in p.ListPropertiesTabs)
                     {
                         if ((val.Guid != t.Guid) && (val.Name == t.Name))
                             return false;

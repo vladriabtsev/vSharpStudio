@@ -223,15 +223,15 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_configs"><span class="badge">M</span>proto_group_configs</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_group_documents"><span class="badge">M</span>proto_group_documents</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_group_list_catalogs"><span class="badge">M</span>proto_group_list_catalogs</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_group_list_config_trees"><span class="badge">M</span>proto_group_list_config_trees</a>
                 </li>
               
                 <li>
@@ -271,10 +271,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_properties_tab"><span class="badge">M</span>proto_group_properties_tab</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
                 </li>
               
@@ -288,6 +284,10 @@
               
                 <li>
                   <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_properties_tab"><span class="badge">M</span>proto_properties_tab</a>
                 </li>
               
                 <li>
@@ -638,7 +638,7 @@ it will override previous settings </p></td>
               
                 <tr>
                   <td>group_configs</td>
-                  <td><a href="#proto_config.proto_group_configs">proto_group_configs</a></td>
+                  <td><a href="#proto_config.proto_group_list_config_trees">proto_group_list_config_trees</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1122,65 +1122,6 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
-        <h3 id="proto_config.proto_group_configs">proto_group_configs</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>string name_ui = 4; </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_config_trees</td>
-                  <td><a href="#proto_config.proto_config_tree">proto_config_tree</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>relative_config_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_group_documents">proto_group_documents</h3>
         <p></p>
 
@@ -1297,6 +1238,65 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_catalog">proto_catalog</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_group_list_config_trees">proto_group_list_config_trees</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_config_trees</td>
+                  <td><a href="#proto_config.proto_config_tree">proto_config_tree</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_config_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -1739,8 +1739,8 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_properties_tab">proto_group_properties_tab</a></td>
+                  <td>list_properties_tabs</td>
+                  <td><a href="#proto_config.proto_properties_tab">proto_properties_tab</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1803,72 +1803,6 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>repeated</td>
                   <td><p>repeated proto_property list_shared_properties = 6;
 @attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_group_properties_tab">proto_group_properties_tab</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_properties</td>
-                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_properties_subtabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1977,7 +1911,7 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_plugin_generators</td>
+                  <td>list_generators</td>
                   <td><a href="#proto_config.proto_plugin_generator">proto_plugin_generator</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2029,7 +1963,7 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_plugin_generator_settings</td>
+                  <td>list_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2106,6 +2040,72 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_properties_tab">proto_properties_tab</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties</td>
+                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties_subtabs</td>
+                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>

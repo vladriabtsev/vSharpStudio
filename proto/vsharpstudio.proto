@@ -13,7 +13,9 @@ option csharp_namespace = "Proto.Config";
 
 /** 
  * @exclude
+ *    ##### IMPORTANT #####
  * use 'proto_' prefix for all messages !!!
+ * if repeated property name is ending message name, than c# class will implement indexer to access such property elements 
  * ####################################### S E T T I N G S ##################################
  */
 message proto_group_list_plugins {
@@ -32,7 +34,7 @@ message proto_plugin {
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator list_plugin_generators = 5;
+    repeated proto_plugin_generator list_generators = 5;
 }
 message proto_plugin_generator {
     // @attr [Editable(false)]
@@ -44,7 +46,7 @@ message proto_plugin_generator {
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator_settings list_plugin_generator_settings = 5;
+    repeated proto_plugin_generator_settings list_settings = 5;
 }
 message proto_plugin_generator_settings {
     // This Guid is taken from Plugin Generator
@@ -95,7 +97,7 @@ message db_id_generator {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
-message proto_group_configs {
+message proto_group_list_config_trees {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
@@ -160,7 +162,7 @@ message proto_config {
 
     // CONFIG OBJECTS
     proto_group_list_plugins group_plugins = 99;
-    proto_group_configs group_configs = 100;
+    proto_group_list_config_trees group_configs = 100;
     proto_group_list_constants group_constants = 101;
     proto_group_list_enumerations group_enumerations = 102;
     proto_group_list_catalogs group_catalogs = 103;
@@ -213,9 +215,9 @@ message proto_group_list_properties_tabs {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_group_properties_tab list_group_properties_tabs = 6;
+    repeated proto_properties_tab list_properties_tabs = 6;
 }
-message proto_group_properties_tab {
+message proto_properties_tab {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;

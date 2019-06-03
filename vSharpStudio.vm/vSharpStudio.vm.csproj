@@ -157,7 +157,7 @@
     <Compile Include="ViewModels\Ext.cs" />
     <Compile Include="ViewModels\Form.cs" />
     <Compile Include="ViewModels\Generated\ProtoViewModels.cs" />
-    <Compile Include="ViewModels\GroupConfigs.cs" />
+    <Compile Include="ViewModels\GroupListConfigTrees.cs" />
     <Compile Include="ViewModels\GroupDocuments.cs" />
     <Compile Include="ViewModels\GroupListCatalogs.cs" />
     <Compile Include="ViewModels\GroupListConstants.cs" />
@@ -168,7 +168,7 @@
     <Compile Include="ViewModels\GroupListProperties.cs" />
     <Compile Include="ViewModels\GroupListPropertiesTabs.cs" />
     <Compile Include="ViewModels\GroupListReports.cs" />
-    <Compile Include="ViewModels\GroupPropertiesTab.cs" />
+    <Compile Include="ViewModels\PropertiesTab.cs" />
     <Compile Include="ViewModels\IAccept.cs" />
     <Compile Include="ViewModels\DbIdGenerator.cs" />
     <Compile Include="ViewModels\DbIdGenerator.Validator.cs" />
@@ -176,7 +176,7 @@
     <Compile Include="ViewModels\Journal.cs" />
     <Compile Include="ViewModels\Journal.Validator.cs" />
     <Compile Include="ViewModels\Property.cs" />
-    <Compile Include="ViewModels\GroupPropertiesTab.Validator .cs" />
+    <Compile Include="ViewModels\PropertiesTab.Validator .cs" />
     <Compile Include="ViewModels\Plugin.Validator.cs" />
     <Compile Include="ViewModels\PluginGenerator.Validator.cs" />
     <Compile Include="ViewModels\PluginGeneratorSettings.Validator.cs" />

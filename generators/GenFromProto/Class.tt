@@ -15,8 +15,6 @@
 		if (t.IsRepeated) {#>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
-<# } else if (t.Name == "children") { #>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<ITreeConfigNode>();
 <# } else { #>
 		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();
 <# } #>
@@ -33,10 +31,29 @@
 		OnInit();
 	}
 <# if (this.Doc.IsDefaultBase) { #>
-	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this()
+	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : base(<#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.Parent = parent;
-        //GetUniqueName(<#= message.Name.ToNameCs() #>.DefaultName, this, this.SubNodes);
+<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
+       if (t.IsCsSimple())
+         continue;
+		if (t.IsRepeated) {#>
+<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
+<# } else { #>
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();
+<# } #>
+<#		} else if (t.IsMessage()) { #>
+<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>();
+<# } else { #>
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this);
+<# } #>
+<#		} else if (t.IsMap) { #>
+		map???
+<#		} #>
+<# } #>
+		OnInit();
     }
 <# } #>
 	partial void OnInit();
@@ -45,7 +62,7 @@
 <#	
 	this.PushIndent("\t");
 	
-    var cloner = new Clone(root, message);
+    var cloner = new Clone(root, message, nameSpace);
 	this.Write(cloner.TransformText());
 
 	var va = new AcceptConfigNode(root, message);

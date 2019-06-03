@@ -10,8 +10,8 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
-    public partial class GroupListPropertiesTabs : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
+    public partial class GroupListPropertiesTabs : ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         partial void OnInit()
         {
@@ -19,24 +19,15 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
         }
 
-        //protected override void OnParentChanged()
-        //{
-        //    if (this.Parent is GroupDocuments)
-        //        this.NameUi = "Shared Properties";
-        //    else
-        //        this.NameUi = "Properties";
-        //}
-        //protected override void OnInitFromDto()
-        //{
-        //    if (this.Parent is GroupDocuments)
-        //        this.NameUi = "Shared Properties";
-        //    else
-        //        this.NameUi = "Properties";
-        //}
-
-        #region ITreeNode
-
-
-        #endregion ITreeNode
+        #region Tree operations
+        public override ITreeConfigNode NodeAddNewSubNode()
+        {
+            var node = new PropertiesTab();
+            this.Add(node);
+            GetUniqueName(PropertiesTab.DefaultName, node, this.ListPropertiesTabs);
+            SetSelected(node);
+            return node;
+        }
+        #endregion Tree operations
     }
 }

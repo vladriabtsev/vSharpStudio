@@ -8,7 +8,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} documents:{ListDocuments.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq}")]
     public partial class GroupDocuments : IChildren, ICanGoRight, ICanGoLeft
     {
         [BrowsableAttribute(false)]

@@ -87,9 +87,9 @@ namespace vSharpStudio.Unit
             vm.BeginEdit();
             prop = new Property() { Name = "test3" };
             vm.GroupProperties.Add(prop);
-            Assert.IsTrue(vm.GroupProperties.Children.Count == 2);
+            Assert.IsTrue(vm.GroupProperties.Count() == 2);
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Children.Count == 1);
+            Assert.IsTrue(vm.GroupProperties.Count() == 1);
             Assert.IsTrue(vm.GroupProperties[0].Name == "test1");
         }
         [TestMethod]
@@ -101,17 +101,17 @@ namespace vSharpStudio.Unit
             vm.BeginEdit();
             vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Children.Count == 0);
+            Assert.IsTrue(vm.GroupProperties.Count() == 0);
             vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
             vm.BeginEdit();
             vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.STRING;
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Children.Count == 1);
+            Assert.IsTrue(vm.GroupProperties.Count() == 1);
             Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
             vm.BeginEdit();
-            vm.GroupProperties.Children.Clear();
+            vm.GroupProperties.ListProperties.Clear();
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Children.Count == 1);
+            Assert.IsTrue(vm.GroupProperties.Count() == 1);
             Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
         }
         #endregion Editable
@@ -196,8 +196,8 @@ namespace vSharpStudio.Unit
             cfg.GroupConstants.NodeAddNewSubNode();
             Constant.ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
             cfg.ValidateSubTreeFromNode(cfg.GroupConstants);
-            Assert.IsTrue(cfg.GroupConstants.Children[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupConstants.Children[0].CountErrors == 1);
+            Assert.IsTrue(cfg.GroupConstants[0].ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.GroupConstants[0].CountErrors == 1);
             Assert.IsTrue(cfg.GroupConstants.ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.GroupConstants.CountErrors == 1);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
@@ -208,8 +208,8 @@ namespace vSharpStudio.Unit
             cfg.GroupEnumerations.NodeAddNewSubNode();
             Enumeration.EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
             cfg.ValidateSubTreeFromNode(cfg.GroupEnumerations);
-            Assert.IsTrue(cfg.GroupEnumerations.Children[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupEnumerations.Children[0].CountErrors == 1);
+            Assert.IsTrue(cfg.GroupEnumerations[0].ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.GroupEnumerations[0].CountErrors == 1);
             Assert.IsTrue(cfg.GroupEnumerations.ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.GroupEnumerations.CountErrors == 1);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);

@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
                     int count = 0;
                     foreach (var tt in lst.ListPlugins)
                     {
-                        foreach (var t in tt.ListPluginGenerators)
+                        foreach (var t in tt.ListGenerators)
                             if (t.Guid == guid) count++;
                     }
                     if (count > 1)

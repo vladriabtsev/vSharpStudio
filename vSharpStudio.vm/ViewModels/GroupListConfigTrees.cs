@@ -8,8 +8,8 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListDocuments.Count,nq}")]
-    public partial class GroupConfigs : IChildren, ICanGoRight, ICanGoLeft
+    [DebuggerDisplay("Group:{Name,nq} configs:{ListConfigTrees.Count,nq}")]
+    public partial class GroupListConfigTrees : ICanGoRight, ICanGoLeft
     {
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }

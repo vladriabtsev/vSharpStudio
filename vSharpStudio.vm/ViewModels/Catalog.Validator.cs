@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 GroupListCatalogs p = (GroupListCatalogs)val.Parent;
-                foreach (var t in p.Children)
+                foreach (var t in p.ListCatalogs)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))
                         return false;

@@ -32,13 +32,25 @@ namespace vSharpStudio.vm.ViewModels
             this.Generator = generator;
         }
 
-        #region IConfigObject
-        //public void Create()
-        //{
-        //    GroupListConstants vm = (GroupListConstants)this.Parent;
-        //    int icurr = vm.Children.IndexOf(this);
-        //    vm.Children.Add(new Constant() { Parent = this.Parent });
-        //}
-        #endregion IConfigObject
+        #region Tree operations
+        public override ITreeConfigNode NodeAddNewSubNode()
+        {
+            PluginGeneratorSettings pgs = null;
+            switch (this.Generator.PluginType)
+            {
+                case vPluginTypeEnum.DbDesign:
+                    var settings = this.Generator.GetSettingsMvvm(null);
+                    pgs = new PluginGeneratorSettings(settings);
+                    pgs.SetGuid(this.Generator.Guid.ToString());
+                    GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
+                    this.ListSettings.Add(pgs);
+                    SetSelected(pgs);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return pgs;
+        }
+        #endregion Tree operations
     }
 }

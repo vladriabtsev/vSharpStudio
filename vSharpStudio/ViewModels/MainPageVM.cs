@@ -94,7 +94,7 @@ namespace vSharpStudio.ViewModels
                 {
                     var pg = new PluginGenerator(tt);
                     is_found = false;
-                    foreach (var ttt in p.ListPluginGenerators)
+                    foreach (var ttt in p.ListGenerators)
                     {
                         if (ttt.Guid == pg.Guid)
                         {
@@ -107,7 +107,7 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                     if (!is_found)
-                        p.ListPluginGenerators.Add(pg);
+                        p.ListGenerators.Add(pg);
                     pg.Parent = p;
 
                     if (tt.PluginType == vPluginTypeEnum.DbDesign)
@@ -115,9 +115,9 @@ namespace vSharpStudio.ViewModels
                         lstDbs.Add((IDbDesign)tt);
                     }
                 }
-                foreach (var ttt in p.ListPluginGenerators)
+                foreach (var ttt in p.ListGenerators)
                 {
-                    foreach (var tttt in ttt.ListPluginGeneratorSettings)
+                    foreach (var tttt in ttt.ListSettings)
                     {
                         if (ttt.Generator != null)
                         {
@@ -271,9 +271,9 @@ namespace vSharpStudio.ViewModels
         {
             foreach (var t in _Model.GroupPlugins.ListPlugins)
             {
-                foreach (var tt in t.ListPluginGenerators)
+                foreach (var tt in t.ListGenerators)
                 {
-                    foreach (var ttt in tt.ListPluginGeneratorSettings)
+                    foreach (var ttt in tt.ListSettings)
                     {
                         Utils.DangerousCall(() =>
                         {

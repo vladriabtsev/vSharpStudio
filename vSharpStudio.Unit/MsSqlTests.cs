@@ -32,7 +32,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(lstPlugins.Count == 1);
             var lstPlugins2 = (from p in vm.Model.GroupPlugins.ListPlugins where p.VPlugin is MsSqlPlugin select p).ToList();
             Assert.IsTrue(lstPlugins2.Count == 1);
-            Assert.IsTrue(lstPlugins2[0].ListPluginGenerators.Count == 2);
+            Assert.IsTrue(lstPlugins2[0].ListGenerators.Count == 2);
         }
         [TestMethod]
         public void Plugin002CanWorkWithConnections()
@@ -40,7 +40,7 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.Compose();
             var plugin = (from p in vm.Model.GroupPlugins.ListPlugins where p.VPlugin is MsSqlPlugin select p).First();
-            var connGen = (from p in plugin.ListPluginGenerators where p.Generator is ConnectionGenerator select p).First();
+            var connGen = (from p in plugin.ListGenerators where p.Generator is ConnectionGenerator select p).First();
             var cvm = (ConnMsSql)connGen.Generator.GetSettingsMvvm(null);
             cvm.Name = "test";
             var json = cvm.Settings;

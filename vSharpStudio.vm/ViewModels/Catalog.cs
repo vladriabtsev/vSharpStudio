@@ -37,16 +37,75 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
             {
-                this.GroupProperties.Children.Add(t);
+                this.GroupProperties.ListProperties.Add(t);
             }
         }
 
-        #region ITreeConfigNode
-
-        #endregion ITreeConfigNode
-
-        #region ITreeNode
-
-        #endregion ITreeNode
+        #region Tree operations
+        public override bool NodeCanUp()
+        {
+            if (NodeCanAddClone())
+            {
+                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanUp(this))
+                    return true;
+            }
+            return false;
+        }
+        public override void NodeUp()
+        {
+            var prev = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetPrev(this);
+            if (prev == null)
+                return;
+            SetSelected(prev);
+        }
+        public override void NodeMoveUp()
+        {
+            (this.Parent as GroupListCatalogs).ListCatalogs.MoveUp(this);
+            SetSelected(this);
+        }
+        public override bool NodeCanDown()
+        {
+            if (NodeCanAddClone())
+            {
+                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanDown(this))
+                    return true;
+            }
+            return false;
+        }
+        public override void NodeDown()
+        {
+            var next = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetNext(this);
+            if (next == null)
+                return;
+            SetSelected(next);
+        }
+        public override void NodeMoveDown()
+        {
+            (this.Parent as GroupListCatalogs).ListCatalogs.MoveDown(this);
+            SetSelected(this);
+        }
+        public override void NodeRemove()
+        {
+            (this.Parent as GroupListCatalogs).Remove(this);
+            this.Parent = null;
+        }
+        public override ITreeConfigNode NodeAddClone()
+        {
+            var node = Catalog.Clone(this, true, true);
+            node.Parent = this.Parent;
+            (this.Parent as GroupListCatalogs).Add(node);
+            this.Name = this.Name + "2";
+            SetSelected(node);
+            return node;
+        }
+        public override ITreeConfigNode NodeAddNew()
+        {
+            var node = new Catalog();
+            (this.Parent as GroupListCatalogs).Add(node);
+            GetUniqueName(Catalog.DefaultName, node, (this.Parent as GroupListCatalogs).ListCatalogs);
+            SetSelected(node);
+            return node;
+        }
+        #endregion Tree operations
     }
 }

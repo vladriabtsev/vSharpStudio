@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-  public partial class IVisitorProto
-  {
-    FileDescriptor root;
-    public IVisitorProto(FileDescriptor root)
+    public partial class IVisitorProto
     {
-      this.root = root;
+        FileDescriptor root;
+        string nameSpace;
+
+        public IVisitorProto(FileDescriptor root, string destNS)
+        {
+            this.root = root;
+            this.nameSpace = destNS;
+        }
     }
-  }
 }

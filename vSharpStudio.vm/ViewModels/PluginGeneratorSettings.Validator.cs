@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val.Parent is PluginGenerator)
                 {
                     PluginGenerator p = (PluginGenerator)val.Parent;
-                    foreach (var t in p.ListPluginGeneratorSettings)
+                    foreach (var t in p.ListSettings)
                     {
                         if ((val.Guid != t.Guid) && (val.Name == t.Name))
                             return false;

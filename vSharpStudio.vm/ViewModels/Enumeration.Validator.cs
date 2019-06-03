@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                     return true;
                 GroupListEnumerations p = (GroupListEnumerations)val.Parent;
-                foreach (var t in p.Children)
+                foreach (var t in p.ListEnumerations)
                 {
                     if ((val.Guid != t.Guid) && (val.Name == t.Name))
                         return false;

@@ -32,7 +32,7 @@ namespace vSharpStudio.common
 		string Name { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
-		IEnumerable<IPluginGenerator> ListPluginGeneratorsI { get; }
+		IEnumerable<IPluginGenerator> ListGeneratorsI { get; }
 	}
 	
 	public interface IPluginGenerator
@@ -41,7 +41,7 @@ namespace vSharpStudio.common
 		string Name { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
-		IEnumerable<IPluginGeneratorSettings> ListPluginGeneratorSettingsI { get; }
+		IEnumerable<IPluginGeneratorSettings> ListSettingsI { get; }
 	}
 	
 	public interface IPluginGeneratorSettings
@@ -118,7 +118,7 @@ namespace vSharpStudio.common
 		string HiLoSchema { get; }
 	}
 	
-	public interface IGroupConfigs
+	public interface IGroupListConfigTrees
 	{
 		string Guid { get; }
 		string Name { get; }
@@ -191,7 +191,7 @@ namespace vSharpStudio.common
 		/// CONFIG OBJECTS
 		///////////////////////////////////////////////////
 		IGroupListPlugins GroupPluginsI { get; }
-		IGroupConfigs GroupConfigsI { get; }
+		IGroupListConfigTrees GroupConfigsI { get; }
 		IGroupListConstants GroupConstantsI { get; }
 		IGroupListEnumerations GroupEnumerationsI { get; }
 		IGroupListCatalogs GroupCatalogsI { get; }
@@ -215,10 +215,10 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IEnumerable<IGroupPropertiesTab> ListGroupPropertiesTabsI { get; }
+		IEnumerable<IPropertiesTab> ListPropertiesTabsI { get; }
 	}
 	
-	public interface IGroupPropertiesTab
+	public interface IPropertiesTab
 	{
 		string Guid { get; }
 		string Name { get; }

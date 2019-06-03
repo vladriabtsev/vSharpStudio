@@ -36,7 +36,7 @@ namespace vSharpStudio.Views
                 case "NameUi":
                     var grd = (PropertyGrid)sender;
                     if (
-                        grd.SelectedObject is GroupConfigs ||
+                        grd.SelectedObject is GroupListConfigTrees ||
                         grd.SelectedObject is GroupDocuments ||
                         grd.SelectedObject is GroupListCatalogs ||
                         grd.SelectedObject is GroupListConstants ||
@@ -48,7 +48,7 @@ namespace vSharpStudio.Views
                         grd.SelectedObject is GroupListProperties ||
                         grd.SelectedObject is GroupListPropertiesTabs ||
                         grd.SelectedObject is GroupListReports ||
-                        grd.SelectedObject is GroupPropertiesTab
+                        grd.SelectedObject is PropertiesTab
                         )
                     {
                         e.IsBrowsable = false;

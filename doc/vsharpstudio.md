@@ -15,9 +15,9 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
-    - [proto_group_configs](#proto_config.proto_group_configs)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
+    - [proto_group_list_config_trees](#proto_config.proto_group_list_config_trees)
     - [proto_group_list_constants](#proto_config.proto_group_list_constants)
     - [proto_group_list_documents](#proto_config.proto_group_list_documents)
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
@@ -27,11 +27,11 @@
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
-    - [proto_group_properties_tab](#proto_config.proto_group_properties_tab)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
+    - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
     - [proto_settings_config](#proto_config.proto_settings_config)
@@ -139,7 +139,7 @@ Configuration config
 | primary_key_name | [string](#string) |  |  |
 | db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | CONFIG OBJECTS |
-| group_configs | [proto_group_configs](#proto_config.proto_group_configs) |  |  |
+| group_configs | [proto_group_list_config_trees](#proto_config.proto_group_list_config_trees) |  |  |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  |  |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  |  |
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  |  |
@@ -296,26 +296,6 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
-<a name="proto_config.proto_group_configs"></a>
-
-### proto_group_configs
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
-| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
-| relative_config_path | [string](#string) |  |  |
-
-
-
-
-
-
 <a name="proto_config.proto_group_documents"></a>
 
 ### proto_group_documents
@@ -351,6 +331,26 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_group_list_config_trees"></a>
+
+### proto_group_list_config_trees
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; |
+| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
+| relative_config_path | [string](#string) |  |  |
 
 
 
@@ -506,7 +506,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| list_group_properties_tabs | [proto_group_properties_tab](#proto_config.proto_group_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
+| list_properties_tabs | [proto_properties_tab](#proto_config.proto_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -527,27 +527,6 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_group_properties_tab"></a>
-
-### proto_group_properties_tab
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
-| group_properties_subtabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -586,7 +565,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name | [string](#string) |  | @attr [Editable(false)] |
 | description | [string](#string) |  | @attr [Editable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_plugin_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
+| list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -605,7 +584,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name | [string](#string) |  | @attr [Editable(false)] |
 | description | [string](#string) |  | @attr [Editable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_plugin_generator_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated | @attr [BrowsableAttribute(false)] |
+| list_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -627,6 +606,27 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
 | file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+
+
+
+
+
+
+<a name="proto_config.proto_properties_tab"></a>
+
+### proto_properties_tab
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
+| group_properties_subtabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 
 
 

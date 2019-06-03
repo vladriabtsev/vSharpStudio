@@ -23,7 +23,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:Plugin}" ItemsSource="{Binding ListPluginGenerators}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Plugin}" ItemsSource="{Binding ListGenerators}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -39,7 +39,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGenerator}" ItemsSource="{Binding ListPluginGeneratorSettings}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGenerator}" ItemsSource="{Binding ListSettings}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -87,7 +87,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupConfigs}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConfigTrees}" ItemsSource="{Binding ListConfigTrees}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -119,7 +119,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListProperties}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListProperties}" ItemsSource="{Binding ListProperties}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -135,7 +135,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupPropertiesTab}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:PropertiesTab}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -151,7 +151,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListPropertiesTabs}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListPropertiesTabs}" ItemsSource="{Binding ListPropertiesTabs}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -183,7 +183,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConstants}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListConstants}" ItemsSource="{Binding ListConstants}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -215,7 +215,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListEnumerations}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListEnumerations}" ItemsSource="{Binding ListEnumerations}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -295,7 +295,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListForms}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListForms}" ItemsSource="{Binding ListForms}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -306,7 +306,7 @@
             <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListReports}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListReports}" ItemsSource="{Binding ListReports}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -317,7 +317,7 @@
             <TextBlock Text="{Binding Name}" Margin="2,0,0,2" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListCatalogs}" ItemsSource="{Binding ListCatalogs}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -344,7 +344,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListDocuments}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListDocuments}" ItemsSource="{Binding ListDocuments}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -387,7 +387,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListJournals}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListJournals}" ItemsSource="{Binding ListJournals}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

@@ -479,9 +479,9 @@
               "name": "group_configs",
               "description": "",
               "label": "",
-              "type": "proto_group_configs",
-              "longType": "proto_group_configs",
-              "fullType": "proto_config.proto_group_configs",
+              "type": "proto_group_list_config_trees",
+              "longType": "proto_group_list_config_trees",
+              "fullType": "proto_config.proto_group_list_config_trees",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1065,77 +1065,6 @@
           ]
         },
         {
-          "name": "proto_group_configs",
-          "longName": "proto_group_configs",
-          "fullName": "proto_config.proto_group_configs",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "string name_ui = 4;",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_config_trees",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_config_tree",
-              "longType": "proto_config_tree",
-              "fullType": "proto_config.proto_config_tree",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "relative_config_path",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_group_documents",
           "longName": "proto_group_documents",
           "fullName": "proto_config.proto_group_documents",
@@ -1282,6 +1211,77 @@
               "type": "proto_catalog",
               "longType": "proto_catalog",
               "fullType": "proto_config.proto_catalog",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_group_list_config_trees",
+          "longName": "proto_group_list_config_trees",
+          "fullName": "proto_config.proto_group_list_config_trees",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_config_trees",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_config_tree",
+              "longType": "proto_config_tree",
+              "fullType": "proto_config.proto_config_tree",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relative_config_path",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1804,12 +1804,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_group_properties_tabs",
+              "name": "list_properties_tabs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_group_properties_tab",
-              "longType": "proto_group_properties_tab",
-              "fullType": "proto_config.proto_group_properties_tab",
+              "type": "proto_properties_tab",
+              "longType": "proto_properties_tab",
+              "fullType": "proto_config.proto_properties_tab",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1881,87 +1881,6 @@
               "type": "proto_report",
               "longType": "proto_report",
               "fullType": "proto_config.proto_report",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_group_properties_tab",
-          "longName": "proto_group_properties_tab",
-          "fullName": "proto_config.proto_group_properties_tab",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_properties",
-              "longType": "proto_group_list_properties",
-              "fullType": "proto_config.proto_group_list_properties",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_properties_subtabs",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_properties_tabs",
-              "longType": "proto_group_list_properties_tabs",
-              "fullType": "proto_config.proto_group_list_properties_tabs",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2088,7 +2007,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_plugin_generators",
+              "name": "list_generators",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator",
@@ -2149,7 +2068,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_plugin_generator_settings",
+              "name": "list_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator_settings",
@@ -2236,6 +2155,87 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_properties_tab",
+          "longName": "proto_properties_tab",
+          "fullName": "proto_config.proto_properties_tab",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties_subtabs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties_tabs",
+              "longType": "proto_group_list_properties_tabs",
+              "fullType": "proto_config.proto_group_list_properties_tabs",
               "ismap": false,
               "defaultValue": ""
             }
