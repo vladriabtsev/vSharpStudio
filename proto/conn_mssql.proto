@@ -3,6 +3,13 @@ syntax = "proto3";
 package proto_conn_mssql;
 option csharp_namespace = "Proto.Config.Connection"; // keep same for generator
 
+// @base : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator>
+message proto_ms_sql_design_generator_settings {
+    string name = 1;
+    string guid = 2;
+    bool is_use_foreingkey = 11;
+    bool is_use_foreingkey_index = 12;
+}
 // Summary:
 //     Describes the different SQL authentication methods that can be used by a client
 //     connecting to Azure SQL Database. For details, see Connecting to SQL Database
@@ -71,8 +78,8 @@ enum SqlConnectionColumnEncryptionSetting
 // @attr [CategoryOrder("Initialization", 4)]
 // @attr [CategoryOrder("ConnectionResilency", 5)]
 // @attr [CategoryOrder("Advanced", 6)]
-// @base : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>
-message proto_conn_ms_sql {
+// @base : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator>
+message proto_ms_sql_connection_settings {
     string name = 1;
     string guid = 102;
     //

@@ -22,6 +22,13 @@ namespace vSharpStudio.common
         bool CreateDb();
         int GetMigrationVersion();
         DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
-        void UpdateToModel(IModel model);
+        //void UpdateToModel(IModel model);
+
+        /// <summary>
+        /// Return last proto model which was used last time for migration
+        /// </summary>
+        /// <returns>json version of IConfig</returns>
+        string GetLastModel();
+        bool UpdateToModel(IConfig model, string protoModel);
     }
 }

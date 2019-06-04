@@ -172,11 +172,6 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		bool IsDbFromConnectionString { get; }
 		string ConnectionStringName { get; }
-		string DbServer { get; }
-		string DbDatabaseName { get; }
-		bool IsDbWindowsAuthentication { get; }
-		string DbUser { get; }
-		string DbPassword { get; }
 		
 		///////////////////////////////////////////////////
 		/// path to project with config file containing connection string. Usefull for UNIT tests.

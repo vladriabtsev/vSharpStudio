@@ -179,7 +179,11 @@
             <ul>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_conn_ms_sql"><span class="badge">M</span>proto_conn_ms_sql</a>
+                  <a href="#proto_conn_mssql.proto_ms_sql_connection_settings"><span class="badge">M</span>proto_ms_sql_connection_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_conn_mssql.proto_ms_sql_design_generator_settings"><span class="badge">M</span>proto_ms_sql_design_generator_settings</a>
                 </li>
               
               
@@ -212,8 +216,8 @@
       <p></p>
 
       
-        <h3 id="proto_conn_mssql.proto_conn_ms_sql">proto_conn_ms_sql</h3>
-        <p>@attr [CategoryOrder("Source", 1)]</p><p>@attr [CategoryOrder("Security", 2)]</p><p>@attr [CategoryOrder("Pooling", 3)]</p><p>@attr [CategoryOrder("Initialization", 4)]</p><p>@attr [CategoryOrder("ConnectionResilency", 5)]</p><p>@attr [CategoryOrder("Advanced", 6)]</p><p>@base : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator></p>
+        <h3 id="proto_conn_mssql.proto_ms_sql_connection_settings">proto_ms_sql_connection_settings</h3>
+        <p>@attr [CategoryOrder("Source", 1)]</p><p>@attr [CategoryOrder("Security", 2)]</p><p>@attr [CategoryOrder("Pooling", 3)]</p><p>@attr [CategoryOrder("Initialization", 4)]</p><p>@attr [CategoryOrder("ConnectionResilency", 5)]</p><p>@attr [CategoryOrder("Advanced", 6)]</p><p>@base : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator></p>
 
         
           <table class="field-table">
@@ -809,6 +813,51 @@ Exceptions:
     To set the value to null, use System.DBNull.Value.
 @attr [Description(&#34;Gets or sets the SQL Server Language record name.&#34;)]
 @attr [Category(&#34;Initialization&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_conn_mssql.proto_ms_sql_design_generator_settings">proto_ms_sql_design_generator_settings</h3>
+        <p>@base : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_foreingkey</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_foreingkey_index</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/03/2019 22:13:42
+// Auto generated on UTC 06/04/2019 20:16:17
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1591,11 +1591,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    vm.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    vm.ConnectionStringName = from.ConnectionStringName;
-		    vm.DbServer = from.DbServer;
-		    vm.DbDatabaseName = from.DbDatabaseName;
-		    vm.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
-		    vm.DbUser = from.DbUser;
-		    vm.DbPassword = from.DbPassword;
 		    vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 		    vm.DbSchema = from.DbSchema;
 		    vm.PrimaryKeyName = from.PrimaryKeyName;
@@ -1629,11 +1624,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    to.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    to.ConnectionStringName = from.ConnectionStringName;
-		    to.DbServer = from.DbServer;
-		    to.DbDatabaseName = from.DbDatabaseName;
-		    to.IsDbWindowsAuthentication = from.IsDbWindowsAuthentication;
-		    to.DbUser = from.DbUser;
-		    to.DbPassword = from.DbPassword;
 		    to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
 		    to.DbSchema = from.DbSchema;
 		    to.PrimaryKeyName = from.PrimaryKeyName;
@@ -1683,11 +1673,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
 		    vm.ConnectionStringName = m.ConnectionStringName;
-		    vm.DbServer = m.DbServer;
-		    vm.DbDatabaseName = m.DbDatabaseName;
-		    vm.IsDbWindowsAuthentication = m.IsDbWindowsAuthentication;
-		    vm.DbUser = m.DbUser;
-		    vm.DbPassword = m.DbPassword;
 		    vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString;
 		    vm.DbSchema = m.DbSchema;
 		    vm.PrimaryKeyName = m.PrimaryKeyName;
@@ -1714,11 +1699,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
 		    m.ConnectionStringName = vm.ConnectionStringName;
-		    m.DbServer = vm.DbServer;
-		    m.DbDatabaseName = vm.DbDatabaseName;
-		    m.IsDbWindowsAuthentication = vm.IsDbWindowsAuthentication;
-		    m.DbUser = vm.DbUser;
-		    m.DbPassword = vm.DbPassword;
 		    m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString;
 		    m.DbSchema = vm.DbSchema;
 		    m.PrimaryKeyName = vm.PrimaryKeyName;
@@ -1828,96 +1808,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ConnectionStringName = "";
 		partial void OnConnectionStringNameChanging();
 		partial void OnConnectionStringNameChanged();
-		public string DbServer
-		{ 
-			set
-			{
-				if (_DbServer != value)
-				{
-					OnDbServerChanging();
-					_DbServer = value;
-					OnDbServerChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbServer; }
-		}
-		private string _DbServer = "";
-		partial void OnDbServerChanging();
-		partial void OnDbServerChanged();
-		public string DbDatabaseName
-		{ 
-			set
-			{
-				if (_DbDatabaseName != value)
-				{
-					OnDbDatabaseNameChanging();
-					_DbDatabaseName = value;
-					OnDbDatabaseNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbDatabaseName; }
-		}
-		private string _DbDatabaseName = "";
-		partial void OnDbDatabaseNameChanging();
-		partial void OnDbDatabaseNameChanged();
-		public bool IsDbWindowsAuthentication
-		{ 
-			set
-			{
-				if (_IsDbWindowsAuthentication != value)
-				{
-					OnIsDbWindowsAuthenticationChanging();
-					_IsDbWindowsAuthentication = value;
-					OnIsDbWindowsAuthenticationChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsDbWindowsAuthentication; }
-		}
-		private bool _IsDbWindowsAuthentication;
-		partial void OnIsDbWindowsAuthenticationChanging();
-		partial void OnIsDbWindowsAuthenticationChanged();
-		public string DbUser
-		{ 
-			set
-			{
-				if (_DbUser != value)
-				{
-					OnDbUserChanging();
-					_DbUser = value;
-					OnDbUserChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbUser; }
-		}
-		private string _DbUser = "";
-		partial void OnDbUserChanging();
-		partial void OnDbUserChanged();
-		public string DbPassword
-		{ 
-			set
-			{
-				if (_DbPassword != value)
-				{
-					OnDbPasswordChanging();
-					_DbPassword = value;
-					OnDbPasswordChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbPassword; }
-		}
-		private string _DbPassword = "";
-		partial void OnDbPasswordChanging();
-		partial void OnDbPasswordChanged();
 		
 		///////////////////////////////////////////////////
 		/// path to project with config file containing connection string. Usefull for UNIT tests.

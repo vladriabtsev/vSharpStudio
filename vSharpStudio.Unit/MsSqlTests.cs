@@ -41,17 +41,34 @@ namespace vSharpStudio.Unit
             vm.Compose();
             var plugin = (from p in vm.Model.GroupPlugins.ListPlugins where p.VPlugin is MsSqlPlugin select p).First();
             var connGen = (from p in plugin.ListGenerators where p.Generator is ConnectionGenerator select p).First();
-            var cvm = (ConnMsSql)connGen.Generator.GetSettingsMvvm(null);
+            var cvm = (MsSqlConnectionSettings)connGen.Generator.GetSettingsMvvm(null);
             cvm.Name = "test";
             var json = cvm.Settings;
-            var cvm2 = (ConnMsSql)connGen.Generator.GetSettingsMvvm(json);
+            var cvm2 = (MsSqlConnectionSettings)connGen.Generator.GetSettingsMvvm(json);
             Assert.IsTrue(cvm.Name == cvm2.Name);
 
             cvm.DataSource = "mydbsource";
             var connstring = cvm.GenerateCode();
-            Assert.AreEqual("", connstring);
+            Assert.AreEqual("Data Source=mydbsource", connstring);
         }
         //#endregion Config
+        [TestMethod]
+        public void Plugin003Design()
+        {
+            var vm = new MainPageVM(false);
+            vm.Compose();
+            var plugin = (from p in vm.Model.GroupPlugins.ListPlugins where p.VPlugin is MsSqlPlugin select p).First();
+            var gen = (from p in plugin.ListGenerators where p.Generator is MsSqlDesignGenerator select p).First();
+
+            var cvm = (MsSqlDesignGeneratorSettings)gen.Generator.GetSettingsMvvm(null);
+            cvm.Name = "test";
+            var json = cvm.Settings;
+            var cvm2 = (MsSqlDesignGeneratorSettings)gen.Generator.GetSettingsMvvm(json);
+            Assert.IsTrue(cvm.Name == cvm2.Name);
+
+            var connstring = cvm.GenerateCode();
+            Assert.AreEqual("Data Source=mydbsource", connstring);
+        }
 
     }
 }

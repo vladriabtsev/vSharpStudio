@@ -9,7 +9,9 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ValidationVisitor
     {
-        private void OnVisit(ConnMsSql p) { }
-        private void OnVisitEnd(ConnMsSql p) { }
+        private void OnVisit(MsSqlConnectionSettings p) { }
+        private void OnVisitEnd(MsSqlConnectionSettings p) { }
+        private void OnVisit(MsSqlDesignGeneratorSettings p) { }
+        private void OnVisitEnd(MsSqlDesignGeneratorSettings p) { }
     }
 }

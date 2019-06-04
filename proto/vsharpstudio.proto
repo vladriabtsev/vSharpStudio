@@ -142,11 +142,12 @@ message proto_config {
     bool is_db_from_connection_string = 11; 
     string connection_string_name = 12;
 
-    string db_server = 14;
-    string db_database_name = 15;
-    bool is_db_windows_authentication = 16; 
-    string db_user = 17;
-    string db_password = 18;
+    //string db_server = 14;
+    //string db_database_name = 15;
+    //bool is_db_windows_authentication = 16; 
+    //string db_user = 17;
+    //string db_password = 18;
+
     // path to project with config file containing connection string. Usefull for UNIT tests.
     // it will override previous settings
     string path_to_project_with_connection_string = 19;
@@ -158,7 +159,6 @@ message proto_config {
 
     // @attr [ExpandableObjectAttribute()]
     db_id_generator db_id_generator = 33;
-
 
     // CONFIG OBJECTS
     proto_group_list_plugins group_plugins = 99;

@@ -31,9 +31,9 @@ namespace vPlugin.DbModel.MsSql
         public IvPluginSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)
-                return new ConnMsSql();
-            proto_conn_ms_sql proto = proto_conn_ms_sql.Parser.ParseJson(settings);
-            ConnMsSql res = ConnMsSql.ConvertToVM(proto);
+                return new MsSqlConnectionSettings();
+            proto_ms_sql_connection_settings proto = proto_ms_sql_connection_settings.Parser.ParseJson(settings);
+            MsSqlConnectionSettings res = MsSqlConnectionSettings.ConvertToVM(proto);
             return res;
         }
         public string ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }

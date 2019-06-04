@@ -4,7 +4,8 @@
 ## Table of Contents
 
 - [conn_mssql.proto](#conn_mssql.proto)
-    - [proto_conn_ms_sql](#proto_conn_mssql.proto_conn_ms_sql)
+    - [proto_ms_sql_connection_settings](#proto_conn_mssql.proto_ms_sql_connection_settings)
+    - [proto_ms_sql_design_generator_settings](#proto_conn_mssql.proto_ms_sql_design_generator_settings)
   
     - [ApplicationIntent](#proto_conn_mssql.ApplicationIntent)
     - [SqlAuthenticationMethod](#proto_conn_mssql.SqlAuthenticationMethod)
@@ -24,16 +25,16 @@
 
 
 
-<a name="proto_conn_mssql.proto_conn_ms_sql"></a>
+<a name="proto_conn_mssql.proto_ms_sql_connection_settings"></a>
 
-### proto_conn_ms_sql
+### proto_ms_sql_connection_settings
 @attr [CategoryOrder(&#34;Source&#34;, 1)]
 @attr [CategoryOrder(&#34;Security&#34;, 2)]
 @attr [CategoryOrder(&#34;Pooling&#34;, 3)]
 @attr [CategoryOrder(&#34;Initialization&#34;, 4)]
 @attr [CategoryOrder(&#34;ConnectionResilency&#34;, 5)]
 @attr [CategoryOrder(&#34;Advanced&#34;, 6)]
-@base : ViewModelValidatableWithSeverity&lt;ConnMsSql, ConnMsSql.ConnMsSqlValidator&gt;
+@base : ViewModelValidatableWithSeverity&lt;MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator&gt;
 
 
 | Field | Type | Label | Description |
@@ -167,6 +168,24 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.CurrentLanguage property, or String.Empty if no value has been supplied.
 
 Exceptions: T:System.ArgumentNullException: To set the value to null, use System.DBNull.Value. @attr [Description(&#34;Gets or sets the SQL Server Language record name.&#34;)] @attr [Category(&#34;Initialization&#34;)] |
+
+
+
+
+
+
+<a name="proto_conn_mssql.proto_ms_sql_design_generator_settings"></a>
+
+### proto_ms_sql_design_generator_settings
+@base : ViewModelValidatableWithSeverity&lt;MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| guid | [string](#string) |  |  |
+| is_use_foreingkey | [bool](#bool) |  |  |
+| is_use_foreingkey_index | [bool](#bool) |  |  |
 
 
 

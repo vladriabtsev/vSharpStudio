@@ -17,7 +17,15 @@ namespace vSharpStudio.common
 		Enabled = 1,
 	}
 	
-	public interface IConnMsSql
+	public interface IMsSqlDesignGeneratorSettings
+	{
+		string Name { get; }
+		string Guid { get; }
+		bool IsUseForeingkey { get; }
+		bool IsUseForeingkeyIndex { get; }
+	}
+	
+	public interface IMsSqlConnectionSettings
 	{
 		string Name { get; }
 		string Guid { get; }

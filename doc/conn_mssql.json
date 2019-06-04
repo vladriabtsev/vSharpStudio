@@ -77,10 +77,10 @@
       "extensions": [],
       "messages": [
         {
-          "name": "proto_conn_ms_sql",
-          "longName": "proto_conn_ms_sql",
-          "fullName": "proto_conn_mssql.proto_conn_ms_sql",
-          "description": "@attr [CategoryOrder(\"Source\", 1)]\n@attr [CategoryOrder(\"Security\", 2)]\n@attr [CategoryOrder(\"Pooling\", 3)]\n@attr [CategoryOrder(\"Initialization\", 4)]\n@attr [CategoryOrder(\"ConnectionResilency\", 5)]\n@attr [CategoryOrder(\"Advanced\", 6)]\n@base : ViewModelValidatableWithSeverity\u003cConnMsSql, ConnMsSql.ConnMsSqlValidator\u003e",
+          "name": "proto_ms_sql_connection_settings",
+          "longName": "proto_ms_sql_connection_settings",
+          "fullName": "proto_conn_mssql.proto_ms_sql_connection_settings",
+          "description": "@attr [CategoryOrder(\"Source\", 1)]\n@attr [CategoryOrder(\"Security\", 2)]\n@attr [CategoryOrder(\"Pooling\", 3)]\n@attr [CategoryOrder(\"Initialization\", 4)]\n@attr [CategoryOrder(\"ConnectionResilency\", 5)]\n@attr [CategoryOrder(\"Advanced\", 6)]\n@base : ViewModelValidatableWithSeverity\u003cMsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -452,6 +452,57 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_ms_sql_design_generator_settings",
+          "longName": "proto_ms_sql_design_generator_settings",
+          "fullName": "proto_conn_mssql.proto_ms_sql_design_generator_settings",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cMsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_foreingkey",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_foreingkey_index",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

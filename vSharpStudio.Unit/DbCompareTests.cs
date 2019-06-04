@@ -76,9 +76,9 @@ namespace vSharpStudio.Unit
 
                 mvm.SelectedDbDesignPlugin.ConnectionString = mvm.ConnectionString;
 
-                var model = mvm.GetEfModel();
-                // Migrate DB
-                mvm.SelectedDbDesignPlugin.UpdateToModel(model);
+                //var model = mvm.GetEfModel();
+                //// Migrate DB
+                //mvm.SelectedDbDesignPlugin.UpdateToModel(model);
 
                 var m = mvm.SelectedDbDesignPlugin.GetDbModel(new List<string>(), new List<string>());
                 assert(m);

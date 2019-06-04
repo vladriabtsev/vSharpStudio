@@ -21,7 +21,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vPlugin.DbModel.MsSql
 {
-    public class MsSqlDesignGenerator : IDbDesign
+    public class MsSqlDesignGenerator : IvPluginCodeGenerator, IDbDesign
     {
         public MsSqlDesignGenerator()
         {
@@ -41,9 +41,9 @@ namespace vPlugin.DbModel.MsSql
         public IvPluginSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)
-                return new ConnMsSql();
-            proto_conn_ms_sql proto = proto_conn_ms_sql.Parser.ParseJson(settings);
-            ConnMsSql res = ConnMsSql.ConvertToVM(proto);
+                return new MsSqlConnectionSettings();
+            proto_ms_sql_connection_settings proto = proto_ms_sql_connection_settings.Parser.ParseJson(settings);
+            MsSqlConnectionSettings res = MsSqlConnectionSettings.ConvertToVM(proto);
             return res;
         }
         public ILoggerFactory LoggerFactory
@@ -101,7 +101,13 @@ namespace vPlugin.DbModel.MsSql
             var databaseModel = databaseModelFactory.Create(this.ConnectionString, tables, schemas);
             return databaseModel;
         }
-        public void UpdateToModel(IModel modelTarget)
+        public string GetLastModel()
+        {
+            string res = null;
+            return res;
+        }
+
+        public bool UpdateToModel(IConfig model, string protoModel)
         {
             if (_LoggerFactory == null)
                 throw new Exception();
@@ -146,7 +152,7 @@ namespace vPlugin.DbModel.MsSql
             //    changeDetector,
             //    ctx.GetService<StateManagerDependencies>(),
             //    ctx.GetService<CommandBatchPreparerDependencies>());
-
+            return true;
         }
 
     }

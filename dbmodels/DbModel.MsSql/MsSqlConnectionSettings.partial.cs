@@ -11,7 +11,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConnMsSql : IvPluginSettingsVM
+    public partial class MsSqlConnectionSettings : IvPluginSettingsVM
     {
         partial void OnInit()
         {
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                var proto = ConnMsSql.ConvertToProto(this);
+                var proto = MsSqlConnectionSettings.ConvertToProto(this);
                 return JsonFormatter.Default.Format(proto);
             }
         }

@@ -129,11 +129,6 @@ Configuration config
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
 | connection_string_name | [string](#string) |  |  |
-| db_server | [string](#string) |  |  |
-| db_database_name | [string](#string) |  |  |
-| is_db_windows_authentication | [bool](#bool) |  |  |
-| db_user | [string](#string) |  |  |
-| db_password | [string](#string) |  |  |
 | path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings |
 | db_schema | [string](#string) |  |  |
 | primary_key_name | [string](#string) |  |  |

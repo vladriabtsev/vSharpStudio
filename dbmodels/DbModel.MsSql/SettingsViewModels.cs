@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/03/2019 22:13:43
+// Auto generated on UTC 06/04/2019 20:16:17
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -18,26 +18,167 @@ namespace vSharpStudio.vm.ViewModels
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-	[CategoryOrder("Source", 1)]
-	[CategoryOrder("Security", 2)]
-	[CategoryOrder("Pooling", 3)]
-	[CategoryOrder("Initialization", 4)]
-	[CategoryOrder("ConnectionResilency", 5)]
-	[CategoryOrder("Advanced", 6)]
-	public partial class ConnMsSql : ViewModelValidatableWithSeverity<ConnMsSql, ConnMsSql.ConnMsSqlValidator>, IConnMsSql
+	public partial class MsSqlDesignGeneratorSettings : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator>, IMsSqlDesignGeneratorSettings
 	{
-		public partial class ConnMsSqlValidator : ValidatorBase<ConnMsSql, ConnMsSqlValidator> { }
+		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { }
 		#region CTOR
-		public ConnMsSql() : base(ConnMsSqlValidator.Validator)
+		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator)
 		{
 			OnInit();
 		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static ConnMsSql Clone(ConnMsSql from, bool isDeep = true)
+		public static MsSqlDesignGeneratorSettings Clone(MsSqlDesignGeneratorSettings from, bool isDeep = true)
 		{
-		    ConnMsSql vm = new ConnMsSql();
+		    MsSqlDesignGeneratorSettings vm = new MsSqlDesignGeneratorSettings();
+		    vm.Name = from.Name;
+		    vm.Guid = from.Guid;
+		    vm.IsUseForeingkey = from.IsUseForeingkey;
+		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
+		    return vm;
+		}
+		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true)
+		{
+		    to.Name = from.Name;
+		    to.Guid = from.Guid;
+		    to.IsUseForeingkey = from.IsUseForeingkey;
+		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
+		}
+		#region IEditable
+		public override MsSqlDesignGeneratorSettings Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return MsSqlDesignGeneratorSettings.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(MsSqlDesignGeneratorSettings from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    MsSqlDesignGeneratorSettings.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_ms_sql_design_generator_settings' to 'MsSqlDesignGeneratorSettings'
+		public static MsSqlDesignGeneratorSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_design_generator_settings m, MsSqlDesignGeneratorSettings vm = null)
+		{
+		    if (vm == null)
+		        vm = new MsSqlDesignGeneratorSettings();
+		    vm.Name = m.Name;
+		    vm.Guid = m.Guid;
+		    vm.IsUseForeingkey = m.IsUseForeingkey;
+		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex;
+		    return vm;
+		}
+		// Conversion from 'MsSqlDesignGeneratorSettings' to 'proto_ms_sql_design_generator_settings'
+		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm)
+		{
+		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings();
+		    m.Name = vm.Name;
+		    m.Guid = vm.Guid;
+		    m.IsUseForeingkey = vm.IsUseForeingkey;
+		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex;
+		    return m;
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public string Name
+		{ 
+			set
+			{
+				if (_Name != value)
+				{
+					OnNameChanging();
+					_Name = value;
+					OnNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Name; }
+		}
+		private string _Name = "";
+		partial void OnNameChanging();
+		partial void OnNameChanged();
+		public string Guid
+		{ 
+			set
+			{
+				if (_Guid != value)
+				{
+					OnGuidChanging();
+					_Guid = value;
+					OnGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Guid; }
+		}
+		private string _Guid = "";
+		partial void OnGuidChanging();
+		partial void OnGuidChanged();
+		public bool IsUseForeingkey
+		{ 
+			set
+			{
+				if (_IsUseForeingkey != value)
+				{
+					OnIsUseForeingkeyChanging();
+					_IsUseForeingkey = value;
+					OnIsUseForeingkeyChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsUseForeingkey; }
+		}
+		private bool _IsUseForeingkey;
+		partial void OnIsUseForeingkeyChanging();
+		partial void OnIsUseForeingkeyChanged();
+		public bool IsUseForeingkeyIndex
+		{ 
+			set
+			{
+				if (_IsUseForeingkeyIndex != value)
+				{
+					OnIsUseForeingkeyIndexChanging();
+					_IsUseForeingkeyIndex = value;
+					OnIsUseForeingkeyIndexChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsUseForeingkeyIndex; }
+		}
+		private bool _IsUseForeingkeyIndex;
+		partial void OnIsUseForeingkeyIndexChanging();
+		partial void OnIsUseForeingkeyIndexChanged();
+		#endregion Properties
+	}
+	[CategoryOrder("Source", 1)]
+	[CategoryOrder("Security", 2)]
+	[CategoryOrder("Pooling", 3)]
+	[CategoryOrder("Initialization", 4)]
+	[CategoryOrder("ConnectionResilency", 5)]
+	[CategoryOrder("Advanced", 6)]
+	public partial class MsSqlConnectionSettings : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator>, IMsSqlConnectionSettings
+	{
+		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { }
+		#region CTOR
+		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator)
+		{
+			OnInit();
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public static MsSqlConnectionSettings Clone(MsSqlConnectionSettings from, bool isDeep = true)
+		{
+		    MsSqlConnectionSettings vm = new MsSqlConnectionSettings();
 		    vm.Name = from.Name;
 		    vm.Guid = from.Guid;
 		    vm.MaxPoolSize = from.MaxPoolSize;
@@ -77,7 +218,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.CurrentLanguage = from.CurrentLanguage;
 		    return vm;
 		}
-		public static void Update(ConnMsSql to, ConnMsSql from, bool isDeep = true)
+		public static void Update(MsSqlConnectionSettings to, MsSqlConnectionSettings from, bool isDeep = true)
 		{
 		    to.Name = from.Name;
 		    to.Guid = from.Guid;
@@ -118,26 +259,26 @@ namespace vSharpStudio.vm.ViewModels
 		    to.CurrentLanguage = from.CurrentLanguage;
 		}
 		#region IEditable
-		public override ConnMsSql Backup()
+		public override MsSqlConnectionSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return ConnMsSql.Clone(this);
+			return MsSqlConnectionSettings.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ConnMsSql from)
+		public override void Restore(MsSqlConnectionSettings from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    ConnMsSql.Update(this, from, isDeep);
+		    MsSqlConnectionSettings.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_conn_ms_sql' to 'ConnMsSql'
-		public static ConnMsSql ConvertToVM(Proto.Config.Connection.proto_conn_ms_sql m, ConnMsSql vm = null)
+		// Conversion from 'proto_ms_sql_connection_settings' to 'MsSqlConnectionSettings'
+		public static MsSqlConnectionSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_connection_settings m, MsSqlConnectionSettings vm = null)
 		{
 		    if (vm == null)
-		        vm = new ConnMsSql();
+		        vm = new MsSqlConnectionSettings();
 		    vm.Name = m.Name;
 		    vm.Guid = m.Guid;
 		    vm.MaxPoolSize = m.MaxPoolSize;
@@ -177,10 +318,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.CurrentLanguage = m.CurrentLanguage;
 		    return vm;
 		}
-		// Conversion from 'ConnMsSql' to 'proto_conn_ms_sql'
-		public static Proto.Config.Connection.proto_conn_ms_sql ConvertToProto(ConnMsSql vm)
+		// Conversion from 'MsSqlConnectionSettings' to 'proto_ms_sql_connection_settings'
+		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm)
 		{
-		    Proto.Config.Connection.proto_conn_ms_sql m = new Proto.Config.Connection.proto_conn_ms_sql();
+		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings();
 		    m.Name = vm.Name;
 		    m.Guid = vm.Guid;
 		    m.MaxPoolSize = vm.MaxPoolSize;
@@ -1369,18 +1510,27 @@ namespace vSharpStudio.vm.ViewModels
 	
 	public interface IVisitorProto
 	{
-		void Visit(Proto.Config.Connection.proto_conn_ms_sql p);
+		void Visit(Proto.Config.Connection.proto_ms_sql_design_generator_settings p);
+		void Visit(Proto.Config.Connection.proto_ms_sql_connection_settings p);
 	}
 	
 	public partial class ValidationVisitor : IVisitorConfigNode
 	{
 	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
 	    private CancellationToken _cancellationToken;
-		public void Visit(ConnMsSql p)
+		public void Visit(MsSqlDesignGeneratorSettings p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(ConnMsSql p)
+		public void VisitEnd(MsSqlDesignGeneratorSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(MsSqlConnectionSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(MsSqlConnectionSettings p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -1391,15 +1541,25 @@ namespace vSharpStudio.vm.ViewModels
 	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
 	    private CancellationToken _cancellationToken;
 	
-		public void Visit(ConnMsSql p)
+		public void Visit(MsSqlDesignGeneratorSettings p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(ConnMsSql p)
+		public void VisitEnd(MsSqlDesignGeneratorSettings p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(ConnMsSql p) {}
-	    protected virtual void OnVisitEnd(ConnMsSql p) {}
+	    protected virtual void OnVisit(MsSqlDesignGeneratorSettings p) {}
+	    protected virtual void OnVisitEnd(MsSqlDesignGeneratorSettings p) {}
+		public void Visit(MsSqlConnectionSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(MsSqlConnectionSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(MsSqlConnectionSettings p) {}
+	    protected virtual void OnVisitEnd(MsSqlConnectionSettings p) {}
 	}
 }

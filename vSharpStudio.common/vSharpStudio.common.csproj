@@ -120,6 +120,7 @@
     <Compile Include="IParent.cs" />
     <Compile Include="ITreeConfigNode.cs" />
     <Compile Include="IvPlugin.cs" />
+    <Compile Include="ModelInterfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vPluginTypeEnum.cs" />
   </ItemGroup>

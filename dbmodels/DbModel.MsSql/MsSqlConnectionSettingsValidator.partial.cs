@@ -12,11 +12,11 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConnMsSql
+    public partial class MsSqlConnectionSettings
     {
-        public partial class ConnMsSqlValidator
+        public partial class MsSqlConnectionSettingsValidator
         {
-            public ConnMsSqlValidator()
+            public MsSqlConnectionSettingsValidator()
             {
                 RuleFor(x => x.MaxPoolSize).GreaterThan(0);
                 RuleFor(x => x.MaxPoolSize).GreaterThan(x => x.MinPoolSize);
