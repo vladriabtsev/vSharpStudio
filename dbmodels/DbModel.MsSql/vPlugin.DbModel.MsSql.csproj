@@ -135,6 +135,7 @@
       <Link>ConnMssql.cs</Link>
     </Compile>
     <Compile Include="ConnectionGenerator.cs" />
+    <Compile Include="ConnMsSqlValidator.partial.cs" />
     <Compile Include="ConnMsSql.partial.cs" />
     <Compile Include="MsSqlDesignGenerator.cs" />
     <Compile Include="MsSqlPlugin.cs" />
