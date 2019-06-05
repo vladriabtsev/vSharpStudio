@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/04/2019 20:16:17
+// Auto generated on UTC 06/05/2019 19:19:24
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -36,6 +36,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = from.Guid;
 		    vm.IsUseForeingkey = from.IsUseForeingkey;
 		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
+		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures;
+		    vm.IsUseViews = from.IsUseViews;
+		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
+		    vm.IsMemoryOptimized = from.IsMemoryOptimized;
 		    return vm;
 		}
 		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true)
@@ -44,6 +48,10 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Guid = from.Guid;
 		    to.IsUseForeingkey = from.IsUseForeingkey;
 		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
+		    to.IsUseStorageProcedures = from.IsUseStorageProcedures;
+		    to.IsUseViews = from.IsUseViews;
+		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
+		    to.IsMemoryOptimized = from.IsMemoryOptimized;
 		}
 		#region IEditable
 		public override MsSqlDesignGeneratorSettings Backup()
@@ -70,6 +78,10 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Guid = m.Guid;
 		    vm.IsUseForeingkey = m.IsUseForeingkey;
 		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex;
+		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures;
+		    vm.IsUseViews = m.IsUseViews;
+		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered;
+		    vm.IsMemoryOptimized = m.IsMemoryOptimized;
 		    return vm;
 		}
 		// Conversion from 'MsSqlDesignGeneratorSettings' to 'proto_ms_sql_design_generator_settings'
@@ -80,6 +92,10 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Guid = vm.Guid;
 		    m.IsUseForeingkey = vm.IsUseForeingkey;
 		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex;
+		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures;
+		    m.IsUseViews = vm.IsUseViews;
+		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered;
+		    m.IsMemoryOptimized = vm.IsMemoryOptimized;
 		    return m;
 		}
 		#endregion Procedures
@@ -157,6 +173,86 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsUseForeingkeyIndex;
 		partial void OnIsUseForeingkeyIndexChanging();
 		partial void OnIsUseForeingkeyIndexChanged();
+		public bool IsUseStorageProcedures
+		{ 
+			set
+			{
+				if (_IsUseStorageProcedures != value)
+				{
+					OnIsUseStorageProceduresChanging();
+					_IsUseStorageProcedures = value;
+					OnIsUseStorageProceduresChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsUseStorageProcedures; }
+		}
+		private bool _IsUseStorageProcedures;
+		partial void OnIsUseStorageProceduresChanging();
+		partial void OnIsUseStorageProceduresChanged();
+		public bool IsUseViews
+		{ 
+			set
+			{
+				if (_IsUseViews != value)
+				{
+					OnIsUseViewsChanging();
+					_IsUseViews = value;
+					OnIsUseViewsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsUseViews; }
+		}
+		private bool _IsUseViews;
+		partial void OnIsUseViewsChanging();
+		partial void OnIsUseViewsChanged();
+		
+		///////////////////////////////////////////////////
+		/// MsSql
+		///////////////////////////////////////////////////
+		public bool IsPrimaryKeyClustered
+		{ 
+			set
+			{
+				if (_IsPrimaryKeyClustered != value)
+				{
+					OnIsPrimaryKeyClusteredChanging();
+					_IsPrimaryKeyClustered = value;
+					OnIsPrimaryKeyClusteredChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsPrimaryKeyClustered; }
+		}
+		private bool _IsPrimaryKeyClustered;
+		partial void OnIsPrimaryKeyClusteredChanging();
+		partial void OnIsPrimaryKeyClusteredChanged();
+		
+		///////////////////////////////////////////////////
+		/// MsSql
+		///////////////////////////////////////////////////
+		public bool IsMemoryOptimized
+		{ 
+			set
+			{
+				if (_IsMemoryOptimized != value)
+				{
+					OnIsMemoryOptimizedChanging();
+					_IsMemoryOptimized = value;
+					OnIsMemoryOptimizedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsMemoryOptimized; }
+		}
+		private bool _IsMemoryOptimized;
+		partial void OnIsMemoryOptimizedChanging();
+		partial void OnIsMemoryOptimizedChanged();
 		#endregion Properties
 	}
 	[CategoryOrder("Source", 1)]

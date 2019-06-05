@@ -7,7 +7,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document : IChildren, ICanGoLeft, ICanGoRight, ICanAddNode
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode
     {
         public static readonly string DefaultName = "Document";
         [BrowsableAttribute(false)]

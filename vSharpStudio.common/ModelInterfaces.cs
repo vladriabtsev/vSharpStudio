@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 namespace vSharpStudio.common
 {
+	public enum DbIdGeneratorMethod {
+		ColumnIdentity = 0,
+		HiLoSequence = 1,
+	}
 	public enum EnumDataType {
 		STRING = 0,
 		NUMERICAL = 1,
@@ -86,39 +90,35 @@ namespace vSharpStudio.common
 	}
 	
 	///////////////////////////////////////////////////
-	/// Primary key generation strategy
+	/// General DB settings
 	///////////////////////////////////////////////////
 	
-	public interface IDbIdGenerator
+	public interface IDbSettings
 	{
+		string DbSchema { get; }
+		DbIdGeneratorMethod IdGenerator { get; }
+		string KeyType { get; }
+		string KeyName { get; }
+		string Timestamp { get; }
 		
 		///////////////////////////////////////////////////
-		/// MsSql
+		/// if yes: 
+		///    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
+		/// if no:
+		///    1. Find DB type from 
+		///    2. Create connection string from db_server, db_database_name, db_user
 		///////////////////////////////////////////////////
-		bool? IsPrimaryKeyClustered { get; }
+		bool IsDbFromConnectionString { get; }
+		string ConnectionStringName { get; }
 		
 		///////////////////////////////////////////////////
-		/// MsSql
+		/// path to project with config file containing connection string. Usefull for UNIT tests.
+		/// it will override previous settings
 		///////////////////////////////////////////////////
-		bool? IsMemoryOptimized { get; }
-		
-		///////////////////////////////////////////////////
-		/// SequenceHiLo or IdentityColumn. MsSql
-		///////////////////////////////////////////////////
-		bool? IsSequenceHiLo { get; }
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		string HiLoSequenceName { get; }
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		string HiLoSchema { get; }
+		string PathToProjectWithConnectionString { get; }
 	}
 	
-	public interface IGroupListConfigTrees
+	public interface IGroupListBaseConfigs
 	{
 		string Guid { get; }
 		string Name { get; }
@@ -128,11 +128,10 @@ namespace vSharpStudio.common
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
 		string Description { get; }
-		IEnumerable<IConfigTree> ListConfigTreesI { get; }
-		string RelativeConfigPath { get; }
+		IEnumerable<IBaseConfig> ListBaseConfigsI { get; }
 	}
 	
-	public interface IConfigTree
+	public interface IBaseConfig
 	{
 		string Guid { get; }
 		string Name { get; }
@@ -143,7 +142,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		string Description { get; }
 		IConfig ConfigNodeI { get; }
-		IEnumerable<IConfigTree> ListConfigTreesI { get; }
+		string RelativeConfigPath { get; }
 	}
 	
 	///////////////////////////////////////////////////
@@ -164,29 +163,11 @@ namespace vSharpStudio.common
 		string Description { get; }
 		
 		///////////////////////////////////////////////////
-		/// if yes: 
-		///    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-		/// if no:
-		///    1. Find DB type from 
-		///    2. Create connection string from db_server, db_database_name, db_user
+		/// GENERAL DB SETTINGS
 		///////////////////////////////////////////////////
-		bool IsDbFromConnectionString { get; }
-		string ConnectionStringName { get; }
-		
-		///////////////////////////////////////////////////
-		/// path to project with config file containing connection string. Usefull for UNIT tests.
-		/// it will override previous settings
-		///////////////////////////////////////////////////
-		string PathToProjectWithConnectionString { get; }
-		string DbSchema { get; }
-		string PrimaryKeyName { get; }
-		IDbIdGenerator DbIdGeneratorI { get; }
-		
-		///////////////////////////////////////////////////
-		/// CONFIG OBJECTS
-		///////////////////////////////////////////////////
+		IDbSettings DbSettingsI { get; }
 		IGroupListPlugins GroupPluginsI { get; }
-		IGroupListConfigTrees GroupConfigsI { get; }
+		IGroupListBaseConfigs GroupConfigsI { get; }
 		IGroupListConstants GroupConstantsI { get; }
 		IGroupListEnumerations GroupEnumerationsI { get; }
 		IGroupListCatalogs GroupCatalogsI { get; }
@@ -310,7 +291,6 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		IDbIdGenerator DbIdGeneratorI { get; }
 		IGroupListProperties GroupPropertiesI { get; }
 		IGroupListForms GroupFormsI { get; }
 		IGroupListReports GroupReportsI { get; }
@@ -348,7 +328,6 @@ namespace vSharpStudio.common
 		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
 		IGroupListForms GroupFormsI { get; }
 		IGroupListReports GroupReportsI { get; }
-		IDbIdGenerator DbIdGeneratorI { get; }
 	}
 	
 	public interface IGroupListDocuments

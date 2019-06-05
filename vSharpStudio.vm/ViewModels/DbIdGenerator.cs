@@ -12,8 +12,8 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    [DebuggerDisplay("IdDbGenerator:{DataType.GetTypeDesc(this),nq}")]
-    public partial class DbIdGenerator
+    [DebuggerDisplay("DbSettings:{DataType.GetTypeDesc(this),nq}")]
+    public partial class DbSettings
     {
         partial void OnInit()
         {

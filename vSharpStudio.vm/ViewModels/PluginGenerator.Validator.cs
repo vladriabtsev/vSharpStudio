@@ -32,10 +32,10 @@ namespace vSharpStudio.vm.ViewModels
                 RuleFor(x => x).Must((o, name) => {
                     if (o.Generator == null)
                         return true;
-                    switch(o.Generator.PluginType)
+                    switch(o.Generator.PluginGeneratorType)
                     {
-                        case common.vPluginTypeEnum.DbDesign:
-                            if (!(o.Generator is IDbDesign))
+                        case common.vPluginGeneratorTypeEnum.DbDesign:
+                            if (!(o.Generator is IvPluginDbGenerator))
                             {
                                 message = "Interface 'IDbMigrator' is not implemented";
                                 return false;

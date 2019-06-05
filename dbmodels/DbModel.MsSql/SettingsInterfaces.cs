@@ -23,6 +23,18 @@ namespace vSharpStudio.common
 		string Guid { get; }
 		bool IsUseForeingkey { get; }
 		bool IsUseForeingkeyIndex { get; }
+		bool IsUseStorageProcedures { get; }
+		bool IsUseViews { get; }
+		
+		///////////////////////////////////////////////////
+		/// MsSql
+		///////////////////////////////////////////////////
+		bool IsPrimaryKeyClustered { get; }
+		
+		///////////////////////////////////////////////////
+		/// MsSql
+		///////////////////////////////////////////////////
+		bool IsMemoryOptimized { get; }
 	}
 	
 	public interface IMsSqlConnectionSettings

@@ -69,7 +69,7 @@ namespace vSharpStudio.ViewModels
         {
             if (onImportsSatisfied != null)
                 onImportsSatisfied(this, _plugins);
-            List<IDbDesign> lstDbs = new List<IDbDesign>();
+            List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
             foreach (var t in _plugins)
             {
                 var p = new Plugin(t.Value);
@@ -110,9 +110,9 @@ namespace vSharpStudio.ViewModels
                         p.ListGenerators.Add(pg);
                     pg.Parent = p;
 
-                    if (tt.PluginType == vPluginTypeEnum.DbDesign)
+                    if (tt.PluginGeneratorType == vPluginGeneratorTypeEnum.DbDesign)
                     {
-                        lstDbs.Add((IDbDesign)tt);
+                        lstDbs.Add((IvPluginDbGenerator)tt);
                     }
                 }
                 foreach (var ttt in p.ListGenerators)
@@ -141,7 +141,7 @@ namespace vSharpStudio.ViewModels
             }
             this.ListDbDesignPlugins = lstDbs;
         }
-        public List<IDbDesign> ListDbDesignPlugins
+        public List<IvPluginDbGenerator> ListDbDesignPlugins
         {
             get { return _ListDbDesignPlugins; }
             set
@@ -150,8 +150,8 @@ namespace vSharpStudio.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public List<IDbDesign> _ListDbDesignPlugins;
-        public IDbDesign SelectedDbDesignPlugin
+        public List<IvPluginDbGenerator> _ListDbDesignPlugins;
+        public IvPluginDbGenerator SelectedDbDesignPlugin
         {
             get { return _SelectedDbDesignPlugin; }
             set
@@ -162,7 +162,7 @@ namespace vSharpStudio.ViewModels
                 //var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
             }
         }
-        private IDbDesign _SelectedDbDesignPlugin;
+        private IvPluginDbGenerator _SelectedDbDesignPlugin;
         public INotifyPropertyChanged SelectedDbDesignPluginSettings
         {
             get { return _SelectedDbDesignPluginSettings; }

@@ -11,7 +11,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vPlugin.DbModel.MsSql
 {
-    public class ConnectionGenerator : IvPluginCodeGenerator
+    public class ConnectionGenerator : IvPluginGenerator
     {
         public ConnectionGenerator()
         {
@@ -19,7 +19,7 @@ namespace vPlugin.DbModel.MsSql
             this.Name = "Connections";
             this.DefaultSettingsName = "Connection";
             this.Description = "Connection string generator";
-            this.PluginType = vPluginTypeEnum.DbConnection;
+            this.PluginGeneratorType = vPluginGeneratorTypeEnum.DbConnection;
         }
         static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("vPlugin.MsSqlMigrator");
         public ILogger Logger;
@@ -27,8 +27,8 @@ namespace vPlugin.DbModel.MsSql
         public string Name { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
-        public vPluginTypeEnum PluginType { get; }
-        public IvPluginSettingsVM GetSettingsMvvm(string settings)
+        public vPluginGeneratorTypeEnum PluginGeneratorType { get; }
+        public IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)
                 return new MsSqlConnectionSettings();

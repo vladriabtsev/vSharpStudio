@@ -21,7 +21,7 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vPlugin.DbModel.MsSql
 {
-    public class MsSqlDesignGenerator : IvPluginCodeGenerator, IDbDesign
+    public class MsSqlDesignGenerator : IvPluginGenerator, IvPluginDbGenerator
     {
         public MsSqlDesignGenerator()
         {
@@ -29,7 +29,7 @@ namespace vPlugin.DbModel.MsSql
             this.Name = "Design";
             this.DefaultSettingsName = "Setting";
             this.Description = "DB structure creation and migration";
-            this.PluginType = vPluginTypeEnum.DbDesign;
+            this.PluginGeneratorType = vPluginGeneratorTypeEnum.DbDesign;
         }
         static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("vPlugin.MsSqlMigrator");
         public ILogger Logger;
@@ -37,8 +37,8 @@ namespace vPlugin.DbModel.MsSql
         public string Name { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
-        public vPluginTypeEnum PluginType { get; }
-        public IvPluginSettingsVM GetSettingsMvvm(string settings)
+        public vPluginGeneratorTypeEnum PluginGeneratorType { get; }
+        public IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)
                 return new MsSqlConnectionSettings();

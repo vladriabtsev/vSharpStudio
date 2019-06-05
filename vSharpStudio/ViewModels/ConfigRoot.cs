@@ -27,7 +27,7 @@ namespace vSharpStudio.ViewModels
         }
         public ConfigRoot2(string pathToProjectWithConnectionString, string connectionStringName)
         {
-            this.PathToProjectWithConnectionString = pathToProjectWithConnectionString;
+            this.DbSettings.PathToProjectWithConnectionString = pathToProjectWithConnectionString;
 //            this.ConnectionStringName = connectionStringName;
             //InitMigration();
         }

@@ -11,7 +11,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : IChildren, ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
     {
         public static readonly string DefaultName = "Catalog";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }

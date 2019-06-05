@@ -28,6 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         public string ConnectionString = null;
         partial void OnInit()
         {
+            this.Name = "Config";
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
@@ -36,9 +37,10 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupPlugins, 0);
             //this.GroupSettings.Parent = this;
             //this.Children.Add(this.GroupSettings, 1);
-
             this.GroupConfigs.Parent = this;
-            this.Children.Add(this.GroupConfigs, 6);
+            this.Children.Add(this.GroupConfigs, 5);
+
+            this.Children.Add(this, 6);
             this.GroupConstants.Parent = this;
             this.Children.Add(this.GroupConstants, 7);
             this.GroupEnumerations.Parent = this;
@@ -53,8 +55,8 @@ namespace vSharpStudio.vm.ViewModels
             //this.Children.Add(this.GroupConfigs, 12);
             //this.gr.GroupJournals.Parent = this;
             //this.Children.Add(this.GroupJournals, 11);
-            if (string.IsNullOrWhiteSpace(this.DbSchema))
-                this.DbSchema = "v";
+            if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
+                this.DbSettings.DbSchema = "v";
         }
         protected override void OnInitFromDto()
         {
@@ -166,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupEnumerationsChanged() { RecreateSubNodes(); }
 
         #endregion ITreeNode
-
+        [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
         {
             set

@@ -11,7 +11,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class MsSqlConnectionSettings : IvPluginSettingsVM
+    public partial class MsSqlConnectionSettings : IvPluginGeneratorSettingsVM
     {
         partial void OnInit()
         {

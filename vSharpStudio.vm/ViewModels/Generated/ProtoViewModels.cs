@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/04/2019 20:16:17
+// Auto generated on UTC 06/05/2019 19:19:23
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -902,868 +902,191 @@ namespace vSharpStudio.vm.ViewModels
 	}
 	
 	///////////////////////////////////////////////////
-	/// Primary key generation strategy
+	/// General DB settings
 	///////////////////////////////////////////////////
-	public partial class DbIdGenerator : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator>, IDbIdGenerator
+	public partial class DbSettings : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>, IDbSettings
 	{
-		public partial class DbIdGeneratorValidator : ValidatorBase<DbIdGenerator, DbIdGeneratorValidator> { }
+		public partial class DbSettingsValidator : ValidatorBase<DbSettings, DbSettingsValidator> { }
 		#region CTOR
-		public DbIdGenerator() : base(DbIdGeneratorValidator.Validator)
+		public DbSettings() : base(DbSettingsValidator.Validator)
 		{
 			OnInit();
 		}
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static DbIdGenerator Clone(DbIdGenerator from, bool isDeep = true)
+		public static DbSettings Clone(DbSettings from, bool isDeep = true)
 		{
-		    DbIdGenerator vm = new DbIdGenerator();
-		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
-		    vm.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
-		    vm.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
-		    vm.HiLoSequenceName = from.HiLoSequenceName;
-		    vm.HiLoSchema = from.HiLoSchema;
-		    return vm;
-		}
-		public static void Update(DbIdGenerator to, DbIdGenerator from, bool isDeep = true)
-		{
-		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered.HasValue ? from.IsPrimaryKeyClustered.Value : (bool?)null;
-		    to.IsMemoryOptimized = from.IsMemoryOptimized.HasValue ? from.IsMemoryOptimized.Value : (bool?)null;
-		    to.IsSequenceHiLo = from.IsSequenceHiLo.HasValue ? from.IsSequenceHiLo.Value : (bool?)null;
-		    to.HiLoSequenceName = from.HiLoSequenceName;
-		    to.HiLoSchema = from.HiLoSchema;
-		}
-		#region IEditable
-		public override DbIdGenerator Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return DbIdGenerator.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(DbIdGenerator from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    DbIdGenerator.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'db_id_generator' to 'DbIdGenerator'
-		public static DbIdGenerator ConvertToVM(Proto.Config.db_id_generator m, DbIdGenerator vm = null)
-		{
-		    if (vm == null)
-		        vm = new DbIdGenerator();
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered.HasValue ? m.IsPrimaryKeyClustered.Value : (bool?)null;
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized.HasValue ? m.IsMemoryOptimized.Value : (bool?)null;
-		    vm.IsSequenceHiLo = m.IsSequenceHiLo.HasValue ? m.IsSequenceHiLo.Value : (bool?)null;
-		    vm.HiLoSequenceName = m.HiLoSequenceName;
-		    vm.HiLoSchema = m.HiLoSchema;
-		    return vm;
-		}
-		// Conversion from 'DbIdGenerator' to 'db_id_generator'
-		public static Proto.Config.db_id_generator ConvertToProto(DbIdGenerator vm)
-		{
-		    Proto.Config.db_id_generator m = new Proto.Config.db_id_generator();
-		    m.IsPrimaryKeyClustered = new Proto.Config.bool_nullable();
-		    m.IsPrimaryKeyClustered.HasValue = vm.IsPrimaryKeyClustered.HasValue;
-		    if (vm.IsPrimaryKeyClustered.HasValue)
-		        m.IsPrimaryKeyClustered.Value = vm.IsPrimaryKeyClustered.Value;
-		    m.IsMemoryOptimized = new Proto.Config.bool_nullable();
-		    m.IsMemoryOptimized.HasValue = vm.IsMemoryOptimized.HasValue;
-		    if (vm.IsMemoryOptimized.HasValue)
-		        m.IsMemoryOptimized.Value = vm.IsMemoryOptimized.Value;
-		    m.IsSequenceHiLo = new Proto.Config.bool_nullable();
-		    m.IsSequenceHiLo.HasValue = vm.IsSequenceHiLo.HasValue;
-		    if (vm.IsSequenceHiLo.HasValue)
-		        m.IsSequenceHiLo.Value = vm.IsSequenceHiLo.Value;
-		    m.HiLoSequenceName = vm.HiLoSequenceName;
-		    m.HiLoSchema = vm.HiLoSchema;
-		    return m;
-		}
-		#endregion Procedures
-		#region Properties
-		
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		public bool? IsPrimaryKeyClustered
-		{ 
-			set
-			{
-				if (_IsPrimaryKeyClustered != value)
-				{
-					OnIsPrimaryKeyClusteredChanging();
-					_IsPrimaryKeyClustered = value;
-					OnIsPrimaryKeyClusteredChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsPrimaryKeyClustered; }
-		}
-		private bool? _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging();
-		partial void OnIsPrimaryKeyClusteredChanged();
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		public bool? IsMemoryOptimized
-		{ 
-			set
-			{
-				if (_IsMemoryOptimized != value)
-				{
-					OnIsMemoryOptimizedChanging();
-					_IsMemoryOptimized = value;
-					OnIsMemoryOptimizedChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsMemoryOptimized; }
-		}
-		private bool? _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging();
-		partial void OnIsMemoryOptimizedChanged();
-		
-		///////////////////////////////////////////////////
-		/// SequenceHiLo or IdentityColumn. MsSql
-		///////////////////////////////////////////////////
-		public bool? IsSequenceHiLo
-		{ 
-			set
-			{
-				if (_IsSequenceHiLo != value)
-				{
-					OnIsSequenceHiLoChanging();
-					_IsSequenceHiLo = value;
-					OnIsSequenceHiLoChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsSequenceHiLo; }
-		}
-		private bool? _IsSequenceHiLo;
-		partial void OnIsSequenceHiLoChanging();
-		partial void OnIsSequenceHiLoChanged();
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		public string HiLoSequenceName
-		{ 
-			set
-			{
-				if (_HiLoSequenceName != value)
-				{
-					OnHiLoSequenceNameChanging();
-					_HiLoSequenceName = value;
-					OnHiLoSequenceNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSequenceName; }
-		}
-		private string _HiLoSequenceName = "";
-		partial void OnHiLoSequenceNameChanging();
-		partial void OnHiLoSequenceNameChanged();
-		
-		///////////////////////////////////////////////////
-		/// MsSql
-		///////////////////////////////////////////////////
-		public string HiLoSchema
-		{ 
-			set
-			{
-				if (_HiLoSchema != value)
-				{
-					OnHiLoSchemaChanging();
-					_HiLoSchema = value;
-					OnHiLoSchemaChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _HiLoSchema; }
-		}
-		private string _HiLoSchema = "";
-		partial void OnHiLoSchemaChanging();
-		partial void OnHiLoSchemaChanged();
-		#endregion Properties
-	}
-	public partial class GroupListConfigTrees : ConfigObjectBase<GroupListConfigTrees, GroupListConfigTrees.GroupListConfigTreesValidator>, IComparable<GroupListConfigTrees>, IAccept, IGroupListConfigTrees
-	{
-		public partial class GroupListConfigTreesValidator : ValidatorBase<GroupListConfigTrees, GroupListConfigTreesValidator> { }
-		#region CTOR
-		public GroupListConfigTrees() : base(GroupListConfigTreesValidator.Validator)
-		{
-			this.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-			OnInit();
-		}
-		public GroupListConfigTrees(ITreeConfigNode parent) : base(GroupListConfigTreesValidator.Validator)
-	    {
-	        this.Parent = parent;
-			this.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-			OnInit();
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    if (type == typeof(ConfigTree))
-		    {
-		        this.ListConfigTrees.Sort();
-		    }
-		}
-		public static GroupListConfigTrees Clone(GroupListConfigTrees from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    GroupListConfigTrees vm = new GroupListConfigTrees();
-		    vm.Guid = from.Guid;
-		    vm.Name = from.Name;
-		    vm.SortingValue = from.SortingValue;
-		    vm.Description = from.Description;
-		    vm.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-		    foreach(var t in from.ListConfigTrees)
-		        vm.ListConfigTrees.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone((ConfigTree)t, isDeep));
-		    vm.RelativeConfigPath = from.RelativeConfigPath;
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(GroupListConfigTrees to, GroupListConfigTrees from, bool isDeep = true)
-		{
-		    to.Guid = from.Guid;
-		    to.Name = from.Name;
-		    to.SortingValue = from.SortingValue;
-		    to.Description = from.Description;
-		    if (isDeep)
-		    {
-		        foreach(var t in to.ListConfigTrees.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListConfigTrees)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    vSharpStudio.vm.ViewModels.ConfigTree.Update((ConfigTree)t, (ConfigTree)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListConfigTrees.Remove(t);
-		        }
-		        foreach(var tt in from.ListConfigTrees)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListConfigTrees.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new ConfigTree();
-		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
-		                to.ListConfigTrees.Add(p);
-		            }
-		        }
-		    }
-		    to.RelativeConfigPath = from.RelativeConfigPath;
-		}
-		#region IEditable
-		public override GroupListConfigTrees Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return GroupListConfigTrees.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(GroupListConfigTrees from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    GroupListConfigTrees.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_group_list_config_trees' to 'GroupListConfigTrees'
-		public static GroupListConfigTrees ConvertToVM(Proto.Config.proto_group_list_config_trees m, GroupListConfigTrees vm = null)
-		{
-		    if (vm == null)
-		        vm = new GroupListConfigTrees();
-		    vm.Guid = m.Guid;
-		    vm.Name = m.Name;
-		    vm.SortingValue = m.SortingValue;
-		    vm.Description = m.Description;
-		    vm.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-		    foreach(var t in m.ListConfigTrees)
-		    {
-		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
-		        tvm.Parent = vm;
-		        vm.ListConfigTrees.Add(tvm);
-		    }
-		    vm.RelativeConfigPath = m.RelativeConfigPath;
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'GroupListConfigTrees' to 'proto_group_list_config_trees'
-		public static Proto.Config.proto_group_list_config_trees ConvertToProto(GroupListConfigTrees vm)
-		{
-		    Proto.Config.proto_group_list_config_trees m = new Proto.Config.proto_group_list_config_trees();
-		    m.Guid = vm.Guid;
-		    m.Name = vm.Name;
-		    m.SortingValue = vm.SortingValue;
-		    m.Description = vm.Description;
-		    foreach(var t in vm.ListConfigTrees)
-		        m.ListConfigTrees.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToProto((ConfigTree)t));
-		    m.RelativeConfigPath = vm.RelativeConfigPath;
-		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			foreach(var t in this.ListConfigTrees)
-				(t as ConfigTree).AcceptConfigNode(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		
-		///////////////////////////////////////////////////
-		/// string name_ui = 4;
-		///////////////////////////////////////////////////
-		public string Description
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging();
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging();
-		partial void OnDescriptionChanged();
-		[BrowsableAttribute(false)]
-		public ConfigTree this[int index] { get { return (ConfigTree)this.ListConfigTrees[index]; } }
-		public void Add(ConfigTree item) 
-		{ 
-		    this.ListConfigTrees.Add(item); 
-		    item.Parent = this;
-		}
-		public void AddRange(IEnumerable<ConfigTree> items) 
-		{ 
-		    this.ListConfigTrees.AddRange(items); 
-		    foreach(var t in items)
-		        t.Parent = this;
-		}
-		public int Count() 
-		{ 
-		    return this.ListConfigTrees.Count; 
-		}
-		public void Remove(ConfigTree item) 
-		{
-		    this.ListConfigTrees.Remove(item); 
-		    item.Parent = null;
-		}
-		public SortedObservableCollection<ConfigTree> ListConfigTrees 
-		{ 
-			set
-			{
-				if (_ListConfigTrees != value)
-				{
-					OnListConfigTreesChanging();
-					_ListConfigTrees = value;
-					OnListConfigTreesChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListConfigTrees; }
-		}
-		private SortedObservableCollection<ConfigTree> _ListConfigTrees;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IConfigTree> ListConfigTreesI { get { foreach (var t in _ListConfigTrees) yield return t; } }
-		partial void OnListConfigTreesChanging();
-		partial void OnListConfigTreesChanged();
-		public string RelativeConfigPath
-		{ 
-			set
-			{
-				if (_RelativeConfigPath != value)
-				{
-					OnRelativeConfigPathChanging();
-					_RelativeConfigPath = value;
-					OnRelativeConfigPathChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _RelativeConfigPath; }
-		}
-		private string _RelativeConfigPath = "";
-		partial void OnRelativeConfigPathChanging();
-		partial void OnRelativeConfigPathChanged();
-		#endregion Properties
-	}
-	public partial class ConfigTree : ConfigObjectBase<ConfigTree, ConfigTree.ConfigTreeValidator>, IComparable<ConfigTree>, IAccept, IConfigTree
-	{
-		public partial class ConfigTreeValidator : ValidatorBase<ConfigTree, ConfigTreeValidator> { }
-		#region CTOR
-		public ConfigTree() : base(ConfigTreeValidator.Validator)
-		{
-			this.ConfigNode = new Config(this);
-			this.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-			OnInit();
-		}
-		public ConfigTree(ITreeConfigNode parent) : base(ConfigTreeValidator.Validator)
-	    {
-	        this.Parent = parent;
-			this.ConfigNode = new Config(this);
-			this.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-			OnInit();
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    if (type == typeof(ConfigTree))
-		    {
-		        this.ListConfigTrees.Sort();
-		    }
-		}
-		public static ConfigTree Clone(ConfigTree from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    ConfigTree vm = new ConfigTree();
-		    vm.Guid = from.Guid;
-		    vm.Name = from.Name;
-		    vm.SortingValue = from.SortingValue;
-		    vm.Description = from.Description;
-		    if (isDeep)
-		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(from.ConfigNode, isDeep);
-		    vm.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-		    foreach(var t in from.ListConfigTrees)
-		        vm.ListConfigTrees.Add(vSharpStudio.vm.ViewModels.ConfigTree.Clone((ConfigTree)t, isDeep));
-		    if (isNewGuid)
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(ConfigTree to, ConfigTree from, bool isDeep = true)
-		{
-		    to.Guid = from.Guid;
-		    to.Name = from.Name;
-		    to.SortingValue = from.SortingValue;
-		    to.Description = from.Description;
-		    if (isDeep)
-		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
-		    if (isDeep)
-		    {
-		        foreach(var t in to.ListConfigTrees.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListConfigTrees)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    vSharpStudio.vm.ViewModels.ConfigTree.Update((ConfigTree)t, (ConfigTree)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListConfigTrees.Remove(t);
-		        }
-		        foreach(var tt in from.ListConfigTrees)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListConfigTrees.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new ConfigTree();
-		                vSharpStudio.vm.ViewModels.ConfigTree.Update(p, (ConfigTree)tt, isDeep);
-		                to.ListConfigTrees.Add(p);
-		            }
-		        }
-		    }
-		}
-		#region IEditable
-		public override ConfigTree Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return ConfigTree.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ConfigTree from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    ConfigTree.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_config_tree' to 'ConfigTree'
-		public static ConfigTree ConvertToVM(Proto.Config.proto_config_tree m, ConfigTree vm = null)
-		{
-		    if (vm == null)
-		        vm = new ConfigTree();
-		    vm.Guid = m.Guid;
-		    vm.Name = m.Name;
-		    vm.SortingValue = m.SortingValue;
-		    vm.Description = m.Description;
-		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
-		    vm.ListConfigTrees = new SortedObservableCollection<ConfigTree>();
-		    foreach(var t in m.ListConfigTrees)
-		    {
-		        var tvm = vSharpStudio.vm.ViewModels.ConfigTree.ConvertToVM(t);
-		        tvm.Parent = vm;
-		        vm.ListConfigTrees.Add(tvm);
-		    }
-		    vm.OnInitFromDto();
-		    return vm;
-		}
-		// Conversion from 'ConfigTree' to 'proto_config_tree'
-		public static Proto.Config.proto_config_tree ConvertToProto(ConfigTree vm)
-		{
-		    Proto.Config.proto_config_tree m = new Proto.Config.proto_config_tree();
-		    m.Guid = vm.Guid;
-		    m.Name = vm.Name;
-		    m.SortingValue = vm.SortingValue;
-		    m.Description = vm.Description;
-		    m.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.ConfigNode);
-		    foreach(var t in vm.ListConfigTrees)
-		        m.ListConfigTrees.Add(vSharpStudio.vm.ViewModels.ConfigTree.ConvertToProto((ConfigTree)t));
-		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			this.ConfigNode.AcceptConfigNode(visitor);
-			foreach(var t in this.ListConfigTrees)
-				(t as ConfigTree).AcceptConfigNode(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		
-		///////////////////////////////////////////////////
-		/// string name_ui = 4;
-		///////////////////////////////////////////////////
-		public string Description
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging();
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging();
-		partial void OnDescriptionChanged();
-		public Config ConfigNode
-		{ 
-			set
-			{
-				if (_ConfigNode != value)
-				{
-					OnConfigNodeChanging();
-		            _ConfigNode = value;
-					OnConfigNodeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ConfigNode; }
-		}
-		private Config _ConfigNode;
-		[BrowsableAttribute(false)]
-		public IConfig ConfigNodeI { get { return _ConfigNode; }}
-		partial void OnConfigNodeChanging();
-		partial void OnConfigNodeChanged();
-		[BrowsableAttribute(false)]
-		public SortedObservableCollection<ConfigTree> ListConfigTrees 
-		{ 
-			set
-			{
-				if (_ListConfigTrees != value)
-				{
-					OnListConfigTreesChanging();
-					_ListConfigTrees = value;
-					OnListConfigTreesChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListConfigTrees; }
-		}
-		private SortedObservableCollection<ConfigTree> _ListConfigTrees;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IConfigTree> ListConfigTreesI { get { foreach (var t in _ListConfigTrees) yield return t; } }
-		partial void OnListConfigTreesChanging();
-		partial void OnListConfigTreesChanged();
-		#endregion Properties
-	}
-	
-	///////////////////////////////////////////////////
-	/// Configuration config
-	///////////////////////////////////////////////////
-	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept, IConfig
-	{
-		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
-		#region CTOR
-		public Config() : base(ConfigValidator.Validator)
-		{
-			this.DbIdGenerator = new DbIdGenerator();
-			this.GroupPlugins = new GroupListPlugins(this);
-			this.GroupConfigs = new GroupListConfigTrees(this);
-			this.GroupConstants = new GroupListConstants(this);
-			this.GroupEnumerations = new GroupListEnumerations(this);
-			this.GroupCatalogs = new GroupListCatalogs(this);
-			this.GroupDocuments = new GroupDocuments(this);
-			this.GroupJournals = new GroupListJournals(this);
-			OnInit();
-		}
-		public Config(ITreeConfigNode parent) : base(ConfigValidator.Validator)
-	    {
-	        this.Parent = parent;
-			this.DbIdGenerator = new DbIdGenerator();
-			this.GroupPlugins = new GroupListPlugins(this);
-			this.GroupConfigs = new GroupListConfigTrees(this);
-			this.GroupConstants = new GroupListConstants(this);
-			this.GroupEnumerations = new GroupListEnumerations(this);
-			this.GroupCatalogs = new GroupListCatalogs(this);
-			this.GroupDocuments = new GroupDocuments(this);
-			this.GroupJournals = new GroupListJournals(this);
-			OnInit();
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public override void Sort(Type type)
-		{
-		    //throw new Exception();
-		}
-		public static Config Clone(Config from, bool isDeep = true, bool isNewGuid = false)
-		{
-		    Config vm = new Config();
-		    vm.Guid = from.Guid;
-		    vm.Version = from.Version;
-		    vm.Name = from.Name;
-		    vm.SortingValue = from.SortingValue;
-		    vm.NameUi = from.NameUi;
-		    vm.Description = from.Description;
+		    DbSettings vm = new DbSettings();
+		    vm.DbSchema = from.DbSchema;
+		    vm.IdGenerator = from.IdGenerator;
+		    vm.KeyType = from.KeyType;
+		    vm.KeyName = from.KeyName;
+		    vm.Timestamp = from.Timestamp;
 		    vm.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    vm.ConnectionStringName = from.ConnectionStringName;
 		    vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
-		    vm.DbSchema = from.DbSchema;
-		    vm.PrimaryKeyName = from.PrimaryKeyName;
-		    if (isDeep)
-		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
-		    if (isDeep)
-		        vm.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.Clone(from.GroupPlugins, isDeep);
-		    if (isDeep)
-		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListConfigTrees.Clone(from.GroupConfigs, isDeep);
-		    if (isDeep)
-		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.Clone(from.GroupConstants, isDeep);
-		    if (isDeep)
-		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(from.GroupEnumerations, isDeep);
-		    if (isDeep)
-		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(from.GroupCatalogs, isDeep);
-		    if (isDeep)
-		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(from.GroupDocuments, isDeep);
-		    if (isDeep)
-		        vm.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.Clone(from.GroupJournals, isDeep);
-		    if (isNewGuid)
-		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(Config to, Config from, bool isDeep = true)
+		public static void Update(DbSettings to, DbSettings from, bool isDeep = true)
 		{
-		    to.Guid = from.Guid;
-		    to.Version = from.Version;
-		    to.Name = from.Name;
-		    to.SortingValue = from.SortingValue;
-		    to.NameUi = from.NameUi;
-		    to.Description = from.Description;
+		    to.DbSchema = from.DbSchema;
+		    to.IdGenerator = from.IdGenerator;
+		    to.KeyType = from.KeyType;
+		    to.KeyName = from.KeyName;
+		    to.Timestamp = from.Timestamp;
 		    to.IsDbFromConnectionString = from.IsDbFromConnectionString;
 		    to.ConnectionStringName = from.ConnectionStringName;
 		    to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString;
-		    to.DbSchema = from.DbSchema;
-		    to.PrimaryKeyName = from.PrimaryKeyName;
-		    if (isDeep)
-		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
-		    if (isDeep)
-		        GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
-		    if (isDeep)
-		        GroupListConfigTrees.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
-		    if (isDeep)
-		        GroupListConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
-		    if (isDeep)
-		        GroupListEnumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
-		    if (isDeep)
-		        GroupListCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
-		    if (isDeep)
-		        GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
-		    if (isDeep)
-		        GroupListJournals.Update(to.GroupJournals, from.GroupJournals, isDeep);
 		}
 		#region IEditable
-		public override Config Backup()
+		public override DbSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return Config.Clone(this);
+			return DbSettings.Clone(this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Config from)
+		public override void Restore(DbSettings from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    Config.Update(this, from, isDeep);
+		    DbSettings.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_config' to 'Config'
-		public static Config ConvertToVM(Proto.Config.proto_config m, Config vm = null)
+		// Conversion from 'db_settings' to 'DbSettings'
+		public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm = null)
 		{
 		    if (vm == null)
-		        vm = new Config();
-		    vm.Guid = m.Guid;
-		    vm.Version = m.Version;
-		    vm.Name = m.Name;
-		    vm.SortingValue = m.SortingValue;
-		    vm.NameUi = m.NameUi;
-		    vm.Description = m.Description;
+		        vm = new DbSettings();
+		    vm.DbSchema = m.DbSchema;
+		    vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator;
+		    vm.KeyType = m.KeyType;
+		    vm.KeyName = m.KeyName;
+		    vm.Timestamp = m.Timestamp;
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString;
 		    vm.ConnectionStringName = m.ConnectionStringName;
 		    vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString;
-		    vm.DbSchema = m.DbSchema;
-		    vm.PrimaryKeyName = m.PrimaryKeyName;
-		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
-		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
-		    vSharpStudio.vm.ViewModels.GroupListConfigTrees.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
-		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
-		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
-		    vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs);
-		    vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments);
-		    vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals);
-		    vm.OnInitFromDto();
 		    return vm;
 		}
-		// Conversion from 'Config' to 'proto_config'
-		public static Proto.Config.proto_config ConvertToProto(Config vm)
+		// Conversion from 'DbSettings' to 'db_settings'
+		public static Proto.Config.db_settings ConvertToProto(DbSettings vm)
 		{
-		    Proto.Config.proto_config m = new Proto.Config.proto_config();
-		    m.Guid = vm.Guid;
-		    m.Version = vm.Version;
-		    m.Name = vm.Name;
-		    m.SortingValue = vm.SortingValue;
-		    m.NameUi = vm.NameUi;
-		    m.Description = vm.Description;
+		    Proto.Config.db_settings m = new Proto.Config.db_settings();
+		    m.DbSchema = vm.DbSchema;
+		    m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator;
+		    m.KeyType = vm.KeyType;
+		    m.KeyName = vm.KeyName;
+		    m.Timestamp = vm.Timestamp;
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString;
 		    m.ConnectionStringName = vm.ConnectionStringName;
 		    m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString;
-		    m.DbSchema = vm.DbSchema;
-		    m.PrimaryKeyName = vm.PrimaryKeyName;
-		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
-		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
-		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListConfigTrees.ConvertToProto(vm.GroupConfigs);
-		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
-		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
-		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto(vm.GroupCatalogs);
-		    m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto(vm.GroupDocuments);
-		    m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto(vm.GroupJournals);
 		    return m;
-		}
-		public void AcceptConfigNode(IVisitorConfigNode visitor) 
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			this.GroupConstants.AcceptConfigNode(visitor);
-			this.GroupEnumerations.AcceptConfigNode(visitor);
-			this.GroupCatalogs.AcceptConfigNode(visitor);
-			this.GroupDocuments.AcceptConfigNode(visitor);
-			this.GroupJournals.AcceptConfigNode(visitor);
-			visitor.VisitEnd(this);
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public string Version
+		[PropertyOrderAttribute(1)]
+		[Description("DB schema name for all object in this configuration")]
+		public string DbSchema
 		{ 
 			set
 			{
-				if (_Version != value)
+				if (_DbSchema != value)
 				{
-					OnVersionChanging();
-					_Version = value;
-					OnVersionChanged();
+					OnDbSchemaChanging();
+					_DbSchema = value;
+					OnDbSchemaChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Version; }
+			get { return _DbSchema; }
 		}
-		private string _Version = "";
-		partial void OnVersionChanging();
-		partial void OnVersionChanged();
+		private string _DbSchema = "";
+		partial void OnDbSchemaChanging();
+		partial void OnDbSchemaChanged();
+		[PropertyOrderAttribute(2)]
+		[Description("Primary key generation method")]
+		public DbIdGeneratorMethod IdGenerator
+		{ 
+			set
+			{
+				if (_IdGenerator != value)
+				{
+					OnIdGeneratorChanging();
+					_IdGenerator = value;
+					OnIdGeneratorChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IdGenerator; }
+		}
+		private DbIdGeneratorMethod _IdGenerator;
+		partial void OnIdGeneratorChanging();
+		partial void OnIdGeneratorChanged();
 		[PropertyOrderAttribute(3)]
-		public string Description
+		[Description("Primary key field type")]
+		public string KeyType
 		{ 
 			set
 			{
-				if (_Description != value)
+				if (_KeyType != value)
 				{
-					OnDescriptionChanging();
-					_Description = value;
-					OnDescriptionChanged();
+					OnKeyTypeChanging();
+					_KeyType = value;
+					OnKeyTypeChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _Description; }
+			get { return _KeyType; }
 		}
-		private string _Description = "";
-		partial void OnDescriptionChanging();
-		partial void OnDescriptionChanged();
+		private string _KeyType = "";
+		partial void OnKeyTypeChanging();
+		partial void OnKeyTypeChanged();
+		[PropertyOrderAttribute(4)]
+		[Description("Primary key field name")]
+		public string KeyName
+		{ 
+			set
+			{
+				if (_KeyName != value)
+				{
+					OnKeyNameChanging();
+					_KeyName = value;
+					OnKeyNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _KeyName; }
+		}
+		private string _KeyName = "";
+		partial void OnKeyNameChanging();
+		partial void OnKeyNameChanged();
+		[PropertyOrderAttribute(5)]
+		[Description("Record data version/timestamp field name")]
+		public string Timestamp
+		{ 
+			set
+			{
+				if (_Timestamp != value)
+				{
+					OnTimestampChanging();
+					_Timestamp = value;
+					OnTimestampChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Timestamp; }
+		}
+		private string _Timestamp = "";
+		partial void OnTimestampChanging();
+		partial void OnTimestampChanged();
 		
 		///////////////////////////////////////////////////
 		/// if yes: 
@@ -1813,6 +1136,9 @@ namespace vSharpStudio.vm.ViewModels
 		/// path to project with config file containing connection string. Usefull for UNIT tests.
 		/// it will override previous settings
 		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(4)]
+		[Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+		[Description("File path to store connection string settings in private place.")]
 		public string PathToProjectWithConnectionString
 		{ 
 			set
@@ -1831,67 +1157,608 @@ namespace vSharpStudio.vm.ViewModels
 		private string _PathToProjectWithConnectionString = "";
 		partial void OnPathToProjectWithConnectionStringChanging();
 		partial void OnPathToProjectWithConnectionStringChanged();
-		public string DbSchema
-		{ 
-			set
-			{
-				if (_DbSchema != value)
-				{
-					OnDbSchemaChanging();
-					_DbSchema = value;
-					OnDbSchemaChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbSchema; }
+		#endregion Properties
+	}
+	public partial class GroupListBaseConfigs : ConfigObjectBase<GroupListBaseConfigs, GroupListBaseConfigs.GroupListBaseConfigsValidator>, IComparable<GroupListBaseConfigs>, IAccept, IGroupListBaseConfigs
+	{
+		public partial class GroupListBaseConfigsValidator : ValidatorBase<GroupListBaseConfigs, GroupListBaseConfigsValidator> { }
+		#region CTOR
+		public GroupListBaseConfigs() : base(GroupListBaseConfigsValidator.Validator)
+		{
+			this.ListBaseConfigs = new SortedObservableCollection<BaseConfig>();
+			OnInit();
 		}
-		private string _DbSchema = "";
-		partial void OnDbSchemaChanging();
-		partial void OnDbSchemaChanged();
-		public string PrimaryKeyName
-		{ 
-			set
-			{
-				if (_PrimaryKeyName != value)
-				{
-					OnPrimaryKeyNameChanging();
-					_PrimaryKeyName = value;
-					OnPrimaryKeyNameChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _PrimaryKeyName; }
+		public GroupListBaseConfigs(ITreeConfigNode parent) : base(GroupListBaseConfigsValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.ListBaseConfigs = new SortedObservableCollection<BaseConfig>();
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(BaseConfig))
+		    {
+		        this.ListBaseConfigs.Sort();
+		    }
 		}
-		private string _PrimaryKeyName = "";
-		partial void OnPrimaryKeyNameChanging();
-		partial void OnPrimaryKeyNameChanged();
-		[ExpandableObjectAttribute()]
-		public DbIdGenerator DbIdGenerator
-		{ 
-			set
-			{
-				if (_DbIdGenerator != value)
-				{
-					OnDbIdGeneratorChanging();
-		            _DbIdGenerator = value;
-					OnDbIdGeneratorChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbIdGenerator; }
+		public static GroupListBaseConfigs Clone(GroupListBaseConfigs from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupListBaseConfigs vm = new GroupListBaseConfigs();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.Description = from.Description;
+		    vm.ListBaseConfigs = new SortedObservableCollection<BaseConfig>();
+		    foreach(var t in from.ListBaseConfigs)
+		        vm.ListBaseConfigs.Add(vSharpStudio.vm.ViewModels.BaseConfig.Clone((BaseConfig)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
 		}
-		private DbIdGenerator _DbIdGenerator;
-		[BrowsableAttribute(false)]
-		public IDbIdGenerator DbIdGeneratorI { get { return _DbIdGenerator; }}
-		partial void OnDbIdGeneratorChanging();
-		partial void OnDbIdGeneratorChanged();
+		public static void Update(GroupListBaseConfigs to, GroupListBaseConfigs from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.Description = from.Description;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListBaseConfigs.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListBaseConfigs)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.BaseConfig.Update((BaseConfig)t, (BaseConfig)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListBaseConfigs.Remove(t);
+		        }
+		        foreach(var tt in from.ListBaseConfigs)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListBaseConfigs.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new BaseConfig();
+		                vSharpStudio.vm.ViewModels.BaseConfig.Update(p, (BaseConfig)tt, isDeep);
+		                to.ListBaseConfigs.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupListBaseConfigs Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupListBaseConfigs.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupListBaseConfigs from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupListBaseConfigs.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_list_base_configs' to 'GroupListBaseConfigs'
+		public static GroupListBaseConfigs ConvertToVM(Proto.Config.proto_group_list_base_configs m, GroupListBaseConfigs vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupListBaseConfigs();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.Description = m.Description;
+		    vm.ListBaseConfigs = new SortedObservableCollection<BaseConfig>();
+		    foreach(var t in m.ListBaseConfigs)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.BaseConfig.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListBaseConfigs.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupListBaseConfigs' to 'proto_group_list_base_configs'
+		public static Proto.Config.proto_group_list_base_configs ConvertToProto(GroupListBaseConfigs vm)
+		{
+		    Proto.Config.proto_group_list_base_configs m = new Proto.Config.proto_group_list_base_configs();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.Description = vm.Description;
+		    foreach(var t in vm.ListBaseConfigs)
+		        m.ListBaseConfigs.Add(vSharpStudio.vm.ViewModels.BaseConfig.ConvertToProto((BaseConfig)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListBaseConfigs)
+				(t as BaseConfig).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
 		
 		///////////////////////////////////////////////////
-		/// CONFIG OBJECTS
+		/// string name_ui = 4;
 		///////////////////////////////////////////////////
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public BaseConfig this[int index] { get { return (BaseConfig)this.ListBaseConfigs[index]; } }
+		public void Add(BaseConfig item) 
+		{ 
+		    this.ListBaseConfigs.Add(item); 
+		    item.Parent = this;
+		}
+		public void AddRange(IEnumerable<BaseConfig> items) 
+		{ 
+		    this.ListBaseConfigs.AddRange(items); 
+		    foreach(var t in items)
+		        t.Parent = this;
+		}
+		public int Count() 
+		{ 
+		    return this.ListBaseConfigs.Count; 
+		}
+		public void Remove(BaseConfig item) 
+		{
+		    this.ListBaseConfigs.Remove(item); 
+		    item.Parent = null;
+		}
+		public SortedObservableCollection<BaseConfig> ListBaseConfigs 
+		{ 
+			set
+			{
+				if (_ListBaseConfigs != value)
+				{
+					OnListBaseConfigsChanging();
+					_ListBaseConfigs = value;
+					OnListBaseConfigsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListBaseConfigs; }
+		}
+		private SortedObservableCollection<BaseConfig> _ListBaseConfigs;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IBaseConfig> ListBaseConfigsI { get { foreach (var t in _ListBaseConfigs) yield return t; } }
+		partial void OnListBaseConfigsChanging();
+		partial void OnListBaseConfigsChanged();
+		#endregion Properties
+	}
+	public partial class BaseConfig : ConfigObjectBase<BaseConfig, BaseConfig.BaseConfigValidator>, IComparable<BaseConfig>, IAccept, IBaseConfig
+	{
+		public partial class BaseConfigValidator : ValidatorBase<BaseConfig, BaseConfigValidator> { }
+		#region CTOR
+		public BaseConfig() : base(BaseConfigValidator.Validator)
+		{
+			this.ConfigNode = new Config(this);
+			OnInit();
+		}
+		public BaseConfig(ITreeConfigNode parent) : base(BaseConfigValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.ConfigNode = new Config(this);
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static BaseConfig Clone(BaseConfig from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    BaseConfig vm = new BaseConfig();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(from.ConfigNode, isDeep);
+		    vm.RelativeConfigPath = from.RelativeConfigPath;
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(BaseConfig to, BaseConfig from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.Description = from.Description;
+		    if (isDeep)
+		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
+		    to.RelativeConfigPath = from.RelativeConfigPath;
+		}
+		#region IEditable
+		public override BaseConfig Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return BaseConfig.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(BaseConfig from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    BaseConfig.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_base_config' to 'BaseConfig'
+		public static BaseConfig ConvertToVM(Proto.Config.proto_base_config m, BaseConfig vm = null)
+		{
+		    if (vm == null)
+		        vm = new BaseConfig();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.Description = m.Description;
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
+		    vm.RelativeConfigPath = m.RelativeConfigPath;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'BaseConfig' to 'proto_base_config'
+		public static Proto.Config.proto_base_config ConvertToProto(BaseConfig vm)
+		{
+		    Proto.Config.proto_base_config m = new Proto.Config.proto_base_config();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.Description = vm.Description;
+		    m.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.ConfigNode);
+		    m.RelativeConfigPath = vm.RelativeConfigPath;
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.ConfigNode.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		
+		///////////////////////////////////////////////////
+		/// string name_ui = 4;
+		///////////////////////////////////////////////////
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		public Config ConfigNode
+		{ 
+			set
+			{
+				if (_ConfigNode != value)
+				{
+					OnConfigNodeChanging();
+		            _ConfigNode = value;
+					OnConfigNodeChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ConfigNode; }
+		}
+		private Config _ConfigNode;
+		[BrowsableAttribute(false)]
+		public IConfig ConfigNodeI { get { return _ConfigNode; }}
+		partial void OnConfigNodeChanging();
+		partial void OnConfigNodeChanged();
+		public string RelativeConfigPath
+		{ 
+			set
+			{
+				if (_RelativeConfigPath != value)
+				{
+					OnRelativeConfigPathChanging();
+					_RelativeConfigPath = value;
+					OnRelativeConfigPathChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _RelativeConfigPath; }
+		}
+		private string _RelativeConfigPath = "";
+		partial void OnRelativeConfigPathChanging();
+		partial void OnRelativeConfigPathChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// Configuration config
+	///////////////////////////////////////////////////
+	public partial class Config : ConfigObjectBase<Config, Config.ConfigValidator>, IComparable<Config>, IAccept, IConfig
+	{
+		public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { }
+		#region CTOR
+		public Config() : base(ConfigValidator.Validator)
+		{
+			this.DbSettings = new DbSettings();
+			this.GroupPlugins = new GroupListPlugins(this);
+			this.GroupConfigs = new GroupListBaseConfigs(this);
+			this.GroupConstants = new GroupListConstants(this);
+			this.GroupEnumerations = new GroupListEnumerations(this);
+			this.GroupCatalogs = new GroupListCatalogs(this);
+			this.GroupDocuments = new GroupDocuments(this);
+			this.GroupJournals = new GroupListJournals(this);
+			OnInit();
+		}
+		public Config(ITreeConfigNode parent) : base(ConfigValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.DbSettings = new DbSettings();
+			this.GroupPlugins = new GroupListPlugins(this);
+			this.GroupConfigs = new GroupListBaseConfigs(this);
+			this.GroupConstants = new GroupListConstants(this);
+			this.GroupEnumerations = new GroupListEnumerations(this);
+			this.GroupCatalogs = new GroupListCatalogs(this);
+			this.GroupDocuments = new GroupDocuments(this);
+			this.GroupJournals = new GroupListJournals(this);
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static Config Clone(Config from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Config vm = new Config();
+		    vm.Guid = from.Guid;
+		    vm.Version = from.Version;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
+		    if (isDeep)
+		        vm.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.Clone(from.GroupPlugins, isDeep);
+		    if (isDeep)
+		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.Clone(from.GroupConfigs, isDeep);
+		    if (isDeep)
+		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.Clone(from.GroupConstants, isDeep);
+		    if (isDeep)
+		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(from.GroupEnumerations, isDeep);
+		    if (isDeep)
+		        vm.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(from.GroupCatalogs, isDeep);
+		    if (isDeep)
+		        vm.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(from.GroupDocuments, isDeep);
+		    if (isDeep)
+		        vm.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.Clone(from.GroupJournals, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Config to, Config from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Version = from.Version;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    if (isDeep)
+		        DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
+		    if (isDeep)
+		        GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
+		    if (isDeep)
+		        GroupListBaseConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
+		    if (isDeep)
+		        GroupListConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
+		    if (isDeep)
+		        GroupListEnumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
+		    if (isDeep)
+		        GroupListCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
+		    if (isDeep)
+		        GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
+		    if (isDeep)
+		        GroupListJournals.Update(to.GroupJournals, from.GroupJournals, isDeep);
+		}
+		#region IEditable
+		public override Config Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Config.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Config from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Config.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_config' to 'Config'
+		public static Config ConvertToVM(Proto.Config.proto_config m, Config vm = null)
+		{
+		    if (vm == null)
+		        vm = new Config();
+		    vm.Guid = m.Guid;
+		    vm.Version = m.Version;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
+		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
+		    vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
+		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
+		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
+		    vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs);
+		    vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments);
+		    vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Config' to 'proto_config'
+		public static Proto.Config.proto_config ConvertToProto(Config vm)
+		{
+		    Proto.Config.proto_config m = new Proto.Config.proto_config();
+		    m.Guid = vm.Guid;
+		    m.Version = vm.Version;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto(vm.DbSettings);
+		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
+		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToProto(vm.GroupConfigs);
+		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
+		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
+		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto(vm.GroupCatalogs);
+		    m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto(vm.GroupDocuments);
+		    m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto(vm.GroupJournals);
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.GroupConstants.AcceptConfigNode(visitor);
+			this.GroupEnumerations.AcceptConfigNode(visitor);
+			this.GroupCatalogs.AcceptConfigNode(visitor);
+			this.GroupDocuments.AcceptConfigNode(visitor);
+			this.GroupJournals.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(4)]
+		public string Version
+		{ 
+			set
+			{
+				if (_Version != value)
+				{
+					OnVersionChanging();
+					_Version = value;
+					OnVersionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Version; }
+		}
+		private string _Version = "";
+		partial void OnVersionChanging();
+		partial void OnVersionChanged();
+		[PropertyOrderAttribute(5)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		
+		///////////////////////////////////////////////////
+		/// GENERAL DB SETTINGS
+		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(11)]
+		[ExpandableObjectAttribute()]
+		public DbSettings DbSettings
+		{ 
+			set
+			{
+				if (_DbSettings != value)
+				{
+					OnDbSettingsChanging();
+		            _DbSettings = value;
+					OnDbSettingsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DbSettings; }
+		}
+		private DbSettings _DbSettings;
+		[BrowsableAttribute(false)]
+		public IDbSettings DbSettingsI { get { return _DbSettings; }}
+		partial void OnDbSettingsChanging();
+		partial void OnDbSettingsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListPlugins GroupPlugins
 		{ 
 			set
@@ -1912,7 +1779,8 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListPlugins GroupPluginsI { get { return _GroupPlugins; }}
 		partial void OnGroupPluginsChanging();
 		partial void OnGroupPluginsChanged();
-		public GroupListConfigTrees GroupConfigs
+		[BrowsableAttribute(false)]
+		public GroupListBaseConfigs GroupConfigs
 		{ 
 			set
 			{
@@ -1927,11 +1795,12 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _GroupConfigs; }
 		}
-		private GroupListConfigTrees _GroupConfigs;
+		private GroupListBaseConfigs _GroupConfigs;
 		[BrowsableAttribute(false)]
-		public IGroupListConfigTrees GroupConfigsI { get { return _GroupConfigs; }}
+		public IGroupListBaseConfigs GroupConfigsI { get { return _GroupConfigs; }}
 		partial void OnGroupConfigsChanging();
 		partial void OnGroupConfigsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListConstants GroupConstants
 		{ 
 			set
@@ -1952,6 +1821,7 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListConstants GroupConstantsI { get { return _GroupConstants; }}
 		partial void OnGroupConstantsChanging();
 		partial void OnGroupConstantsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListEnumerations GroupEnumerations
 		{ 
 			set
@@ -1972,6 +1842,7 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListEnumerations GroupEnumerationsI { get { return _GroupEnumerations; }}
 		partial void OnGroupEnumerationsChanging();
 		partial void OnGroupEnumerationsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListCatalogs GroupCatalogs
 		{ 
 			set
@@ -1992,6 +1863,7 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListCatalogs GroupCatalogsI { get { return _GroupCatalogs; }}
 		partial void OnGroupCatalogsChanging();
 		partial void OnGroupCatalogsChanged();
+		[BrowsableAttribute(false)]
 		public GroupDocuments GroupDocuments
 		{ 
 			set
@@ -2012,6 +1884,7 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupDocuments GroupDocumentsI { get { return _GroupDocuments; }}
 		partial void OnGroupDocumentsChanging();
 		partial void OnGroupDocumentsChanged();
+		[BrowsableAttribute(false)]
 		public GroupListJournals GroupJournals
 		{ 
 			set
@@ -3850,7 +3723,6 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public Catalog() : base(CatalogValidator.Validator)
 		{
-			this.DbIdGenerator = new DbIdGenerator();
 			this.GroupProperties = new GroupListProperties(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
@@ -3859,7 +3731,6 @@ namespace vSharpStudio.vm.ViewModels
 		public Catalog(ITreeConfigNode parent) : base(CatalogValidator.Validator)
 	    {
 	        this.Parent = parent;
-			this.DbIdGenerator = new DbIdGenerator();
 			this.GroupProperties = new GroupListProperties(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
@@ -3881,8 +3752,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    if (isDeep)
-		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
-		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
 		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(from.GroupForms, isDeep);
@@ -3899,8 +3768,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
-		    if (isDeep)
-		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -3934,7 +3801,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
 		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
@@ -3950,7 +3816,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
@@ -3987,27 +3852,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		[ExpandableObjectAttribute()]
-		public DbIdGenerator DbIdGenerator
-		{ 
-			set
-			{
-				if (_DbIdGenerator != value)
-				{
-					OnDbIdGeneratorChanging();
-		            _DbIdGenerator = value;
-					OnDbIdGeneratorChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbIdGenerator; }
-		}
-		private DbIdGenerator _DbIdGenerator;
-		[BrowsableAttribute(false)]
-		public IDbIdGenerator DbIdGeneratorI { get { return _DbIdGenerator; }}
-		partial void OnDbIdGeneratorChanging();
-		partial void OnDbIdGeneratorChanged();
 		[BrowsableAttribute(false)]
 		public GroupListProperties GroupProperties
 		{ 
@@ -4461,7 +4305,6 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
-			this.DbIdGenerator = new DbIdGenerator();
 			OnInit();
 		}
 		public Document(ITreeConfigNode parent) : base(DocumentValidator.Validator)
@@ -4471,7 +4314,6 @@ namespace vSharpStudio.vm.ViewModels
 			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
-			this.DbIdGenerator = new DbIdGenerator();
 			OnInit();
 	    }
 		partial void OnInit();
@@ -4497,8 +4339,6 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(from.GroupForms, isDeep);
 		    if (isDeep)
 		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(from.GroupReports, isDeep);
-		    if (isDeep)
-		        vm.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.Clone(from.DbIdGenerator, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -4518,8 +4358,6 @@ namespace vSharpStudio.vm.ViewModels
 		        GroupListForms.Update(to.GroupForms, from.GroupForms, isDeep);
 		    if (isDeep)
 		        GroupListReports.Update(to.GroupReports, from.GroupReports, isDeep);
-		    if (isDeep)
-		        DbIdGenerator.Update(to.DbIdGenerator, from.DbIdGenerator, isDeep);
 		}
 		#region IEditable
 		public override Document Backup()
@@ -4551,7 +4389,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
 		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
-		    vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToVM(m.DbIdGenerator, vm.DbIdGenerator);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -4568,7 +4405,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
-		    m.DbIdGenerator = vSharpStudio.vm.ViewModels.DbIdGenerator.ConvertToProto(vm.DbIdGenerator);
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -4686,27 +4522,6 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListReports GroupReportsI { get { return _GroupReports; }}
 		partial void OnGroupReportsChanging();
 		partial void OnGroupReportsChanged();
-		[ExpandableObjectAttribute()]
-		public DbIdGenerator DbIdGenerator
-		{ 
-			set
-			{
-				if (_DbIdGenerator != value)
-				{
-					OnDbIdGeneratorChanging();
-		            _DbIdGenerator = value;
-					OnDbIdGeneratorChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _DbIdGenerator; }
-		}
-		private DbIdGenerator _DbIdGenerator;
-		[BrowsableAttribute(false)]
-		public IDbIdGenerator DbIdGeneratorI { get { return _DbIdGenerator; }}
-		partial void OnDbIdGeneratorChanging();
-		partial void OnDbIdGeneratorChanged();
 		#endregion Properties
 	}
 	public partial class GroupListDocuments : ConfigObjectBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IAccept, IGroupListDocuments
@@ -5992,10 +5807,10 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(PluginGeneratorSettings p);
 		void Visit(SettingsConfig p);
 		void VisitEnd(SettingsConfig p);
-		void Visit(GroupListConfigTrees p);
-		void VisitEnd(GroupListConfigTrees p);
-		void Visit(ConfigTree p);
-		void VisitEnd(ConfigTree p);
+		void Visit(GroupListBaseConfigs p);
+		void VisitEnd(GroupListBaseConfigs p);
+		void Visit(BaseConfig p);
+		void VisitEnd(BaseConfig p);
 		void Visit(Config p);
 		void VisitEnd(Config p);
 		void Visit(GroupListPropertiesTabs p);
@@ -6047,9 +5862,9 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(Proto.Config.proto_plugin_generator p);
 		void Visit(Proto.Config.proto_plugin_generator_settings p);
 		void Visit(Proto.Config.proto_settings_config p);
-		void Visit(Proto.Config.db_id_generator p);
-		void Visit(Proto.Config.proto_group_list_config_trees p);
-		void Visit(Proto.Config.proto_config_tree p);
+		void Visit(Proto.Config.db_settings p);
+		void Visit(Proto.Config.proto_group_list_base_configs p);
+		void Visit(Proto.Config.proto_base_config p);
 		void Visit(Proto.Config.proto_config p);
 		void Visit(Proto.Config.proto_data_type p);
 		void Visit(Proto.Config.proto_group_list_properties_tabs p);
@@ -6118,34 +5933,34 @@ namespace vSharpStudio.vm.ViewModels
 	    {
 	        OnVisitEnd(p);
 	    }
-		public void Visit(DbIdGenerator p)
+		public void Visit(DbSettings p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(DbIdGenerator p)
+		public void VisitEnd(DbSettings p)
 	    {
 	        OnVisitEnd(p);
 	    }
-		public void Visit(GroupListConfigTrees p)
+		public void Visit(GroupListBaseConfigs p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(GroupListConfigTrees p)
+		public void VisitEnd(GroupListBaseConfigs p)
 	    {
 	        OnVisitEnd(p);
 	    }
-		public void Visit(ConfigTree p)
+		public void Visit(BaseConfig p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(ConfigTree p)
+		public void VisitEnd(BaseConfig p)
 	    {
 	        OnVisitEnd(p);
 	    }
 		public void Visit(Config p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
+	        ValidateSubAndCollectErrors(p, p.DbSettings);
 	    }
 		public void VisitEnd(Config p)
 	    {
@@ -6236,7 +6051,6 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(Catalog p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
 	    }
 		public void VisitEnd(Catalog p)
 	    {
@@ -6261,7 +6075,6 @@ namespace vSharpStudio.vm.ViewModels
 		public void Visit(Document p)
 	    {
 	        OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DbIdGenerator);
 	    }
 		public void VisitEnd(Document p)
 	    {
@@ -6380,36 +6193,36 @@ namespace vSharpStudio.vm.ViewModels
 	    }
 	    protected virtual void OnVisit(SettingsConfig p) {}
 	    protected virtual void OnVisitEnd(SettingsConfig p) {}
-		public void Visit(DbIdGenerator p)
+		public void Visit(DbSettings p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(DbIdGenerator p)
+		public void VisitEnd(DbSettings p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(DbIdGenerator p) {}
-	    protected virtual void OnVisitEnd(DbIdGenerator p) {}
-		public void Visit(GroupListConfigTrees p)
+	    protected virtual void OnVisit(DbSettings p) {}
+	    protected virtual void OnVisitEnd(DbSettings p) {}
+		public void Visit(GroupListBaseConfigs p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(GroupListConfigTrees p)
+		public void VisitEnd(GroupListBaseConfigs p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(GroupListConfigTrees p) {}
-	    protected virtual void OnVisitEnd(GroupListConfigTrees p) {}
-		public void Visit(ConfigTree p)
+	    protected virtual void OnVisit(GroupListBaseConfigs p) {}
+	    protected virtual void OnVisitEnd(GroupListBaseConfigs p) {}
+		public void Visit(BaseConfig p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(ConfigTree p)
+		public void VisitEnd(BaseConfig p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(ConfigTree p) {}
-	    protected virtual void OnVisitEnd(ConfigTree p) {}
+	    protected virtual void OnVisit(BaseConfig p) {}
+	    protected virtual void OnVisitEnd(BaseConfig p) {}
 		public void Visit(Config p)
 	    {
 	        OnVisit(p);

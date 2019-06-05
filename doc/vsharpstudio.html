@@ -183,7 +183,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.db_id_generator"><span class="badge">M</span>db_id_generator</a>
+                  <a href="#proto_config.db_settings"><span class="badge">M</span>db_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_base_config"><span class="badge">M</span>proto_base_config</a>
                 </li>
               
                 <li>
@@ -192,10 +196,6 @@
               
                 <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_config_tree"><span class="badge">M</span>proto_config_tree</a>
                 </li>
               
                 <li>
@@ -227,11 +227,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_list_catalogs"><span class="badge">M</span>proto_group_list_catalogs</a>
+                  <a href="#proto_config.proto_group_list_base_configs"><span class="badge">M</span>proto_group_list_base_configs</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_list_config_trees"><span class="badge">M</span>proto_group_list_config_trees</a>
+                  <a href="#proto_config.proto_group_list_catalogs"><span class="badge">M</span>proto_group_list_catalogs</a>
                 </li>
               
                 <li>
@@ -308,6 +308,10 @@
               
               
                 <li>
+                  <a href="#proto_config.db_id_generator_method"><span class="badge">E</span>db_id_generator_method</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
                 </li>
               
@@ -363,8 +367,8 @@
 
         
       
-        <h3 id="proto_config.db_id_generator">db_id_generator</h3>
-        <p>Primary key generation strategy</p><p>@base : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator></p>
+        <h3 id="proto_config.db_settings">db_settings</h3>
+        <p>General DB settings</p><p>@base : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator></p>
 
         
           <table class="field-table">
@@ -374,38 +378,131 @@
             <tbody>
               
                 <tr>
-                  <td>is_primary_key_clustered</td>
-                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
-                  <td></td>
-                  <td><p>MsSql </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_memory_optimized</td>
-                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
-                  <td></td>
-                  <td><p>MsSql </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_sequence_hi_lo</td>
-                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
-                  <td></td>
-                  <td><p>SequenceHiLo or IdentityColumn. MsSql </p></td>
-                </tr>
-              
-                <tr>
-                  <td>hi_lo_sequence_name</td>
+                  <td>db_schema</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>MsSql </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [Description(&#34;DB schema name for all object in this configuration&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>hi_lo_schema</td>
+                  <td>id_generator</td>
+                  <td><a href="#proto_config.db_id_generator_method">db_id_generator_method</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [Description(&#34;Primary key generation method&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>MsSql </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [Description(&#34;Primary key field type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Description(&#34;Primary key field name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [Description(&#34;Record data version/timestamp field name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_db_from_connection_string</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>if yes: 
+   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
+if no:
+   1. Find DB type from 
+   2. Create connection string from db_server, db_database_name, db_user </p></td>
+                </tr>
+              
+                <tr>
+                  <td>connection_string_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path_to_project_with_connection_string</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>path to project with config file containing connection string. Usefull for UNIT tests.
+it will override previous settings
+@attr [PropertyOrderAttribute(4)]
+@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+@attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_base_config">proto_base_config</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config_node</td>
+                  <td><a href="#proto_config.proto_config">proto_config</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_config_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -461,13 +558,6 @@
                 </tr>
               
                 <tr>
-                  <td>db_id_generator</td>
-                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
-                  <td></td>
-                  <td><p>@attr [ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-                <tr>
                   <td>group_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
                   <td></td>
@@ -516,7 +606,7 @@
                   <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
                 </tr>
               
                 <tr>
@@ -537,168 +627,71 @@
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_db_from_connection_string</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>db_settings</td>
+                  <td><a href="#proto_config.db_settings">db_settings</a></td>
                   <td></td>
-                  <td><p>if yes: 
-   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-if no:
-   1. Find DB type from 
-   2. Create connection string from db_server, db_database_name, db_user </p></td>
-                </tr>
-              
-                <tr>
-                  <td>connection_string_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>path_to_project_with_connection_string</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>path to project with config file containing connection string. Usefull for UNIT tests.
-it will override previous settings </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_schema</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>primary_key_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_id_generator</td>
-                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
-                  <td></td>
-                  <td><p>@attr [ExpandableObjectAttribute()] </p></td>
+                  <td><p>GENERAL DB SETTINGS
+@attr [PropertyOrderAttribute(11)]
+@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_plugins</td>
                   <td><a href="#proto_config.proto_group_list_plugins">proto_group_list_plugins</a></td>
                   <td></td>
-                  <td><p>CONFIG OBJECTS </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_configs</td>
-                  <td><a href="#proto_config.proto_group_list_config_trees">proto_group_list_config_trees</a></td>
+                  <td><a href="#proto_config.proto_group_list_base_configs">proto_group_list_base_configs</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_constants</td>
                   <td><a href="#proto_config.proto_group_list_constants">proto_group_list_constants</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_enumerations</td>
                   <td><a href="#proto_config.proto_group_list_enumerations">proto_group_list_enumerations</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_catalogs</td>
                   <td><a href="#proto_config.proto_group_list_catalogs">proto_group_list_catalogs</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_documents</td>
                   <td><a href="#proto_config.proto_group_documents">proto_group_documents</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>group_journals</td>
                   <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_config_tree">proto_config_tree</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>string name_ui = 4; </p></td>
-                </tr>
-              
-                <tr>
-                  <td>config_node</td>
-                  <td><a href="#proto_config.proto_config">proto_config</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_config_trees</td>
-                  <td><a href="#proto_config.proto_config_tree">proto_config_tree</a></td>
-                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -891,13 +884,6 @@ it will override previous settings </p></td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_id_generator</td>
-                  <td><a href="#proto_config.db_id_generator">db_id_generator</a></td>
-                  <td></td>
-                  <td><p>@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
             </tbody>
@@ -1153,6 +1139,58 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_list_base_configs">proto_group_list_base_configs</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_base_configs</td>
+                  <td><a href="#proto_config.proto_base_config">proto_base_config</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_catalogs">proto_group_list_catalogs</h3>
         <p></p>
 
@@ -1203,65 +1241,6 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_catalog">proto_catalog</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_group_list_config_trees">proto_group_list_config_trees</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>string name_ui = 4; </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_config_trees</td>
-                  <td><a href="#proto_config.proto_config_tree">proto_config_tree</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>relative_config_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -2285,6 +2264,29 @@ repeated proto_document list_documents = 7; </p></td>
         
       
 
+      
+        <h3 id="proto_config.db_id_generator_method">db_id_generator_method</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ColumnIdentity</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>HiLoSequence</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="proto_config.enum_enumeration_type">enum_enumeration_type</h3>
         <p></p>

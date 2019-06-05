@@ -9,8 +9,4 @@ namespace vSharpStudio.common
     {
         ITreeConfigNode Parent { get; set; }
     }
-    public interface IChildren
-    {
-        SortedObservableCollection<ITreeConfigNode> Children { get; }
-    }
 }

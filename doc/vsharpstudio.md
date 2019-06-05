@@ -5,10 +5,10 @@
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
     - [bool_nullable](#proto_config.bool_nullable)
-    - [db_id_generator](#proto_config.db_id_generator)
+    - [db_settings](#proto_config.db_settings)
+    - [proto_base_config](#proto_config.proto_base_config)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
-    - [proto_config_tree](#proto_config.proto_config_tree)
     - [proto_constant](#proto_config.proto_constant)
     - [proto_data_type](#proto_config.proto_data_type)
     - [proto_document](#proto_config.proto_document)
@@ -16,8 +16,8 @@
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
     - [proto_group_documents](#proto_config.proto_group_documents)
+    - [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
-    - [proto_group_list_config_trees](#proto_config.proto_group_list_config_trees)
     - [proto_group_list_constants](#proto_config.proto_group_list_constants)
     - [proto_group_list_documents](#proto_config.proto_group_list_documents)
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
@@ -37,6 +37,7 @@
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [string_nullable](#proto_config.string_nullable)
   
+    - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
   
@@ -70,20 +71,43 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 
 
 
-<a name="proto_config.db_id_generator"></a>
+<a name="proto_config.db_settings"></a>
 
-### db_id_generator
-Primary key generation strategy
-@base : ViewModelValidatableWithSeverity&lt;DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator&gt;
+### db_settings
+General DB settings
+@base : ViewModelValidatableWithSeverity&lt;DbSettings, DbSettings.DbSettingsValidator&gt;
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_primary_key_clustered | [bool_nullable](#proto_config.bool_nullable) |  | MsSql |
-| is_memory_optimized | [bool_nullable](#proto_config.bool_nullable) |  | MsSql |
-| is_sequence_hi_lo | [bool_nullable](#proto_config.bool_nullable) |  | SequenceHiLo or IdentityColumn. MsSql |
-| hi_lo_sequence_name | [string](#string) |  | MsSql |
-| hi_lo_schema | [string](#string) |  | MsSql |
+| db_schema | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;DB schema name for all object in this configuration&#34;)] |
+| id_generator | [db_id_generator_method](#proto_config.db_id_generator_method) |  | @attr [PropertyOrderAttribute(2)] @attr [Description(&#34;Primary key generation method&#34;)] |
+| key_type | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;Primary key field type&#34;)] |
+| key_name | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Description(&#34;Primary key field name&#34;)] |
+| timestamp | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;Record data version/timestamp field name&#34;)] |
+| is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
+| connection_string_name | [string](#string) |  |  |
+| path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+
+
+
+
+
+
+<a name="proto_config.proto_base_config"></a>
+
+### proto_base_config
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; |
+| config_node | [proto_config](#proto_config.proto_config) |  |  |
+| relative_config_path | [string](#string) |  |  |
 
 
 
@@ -103,7 +127,6 @@ Primary key generation strategy
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
@@ -122,44 +145,19 @@ Configuration config
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
-| version | [string](#string) |  |  |
+| version | [string](#string) |  | @attr [PropertyOrderAttribute(4)] |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
-| connection_string_name | [string](#string) |  |  |
-| path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings |
-| db_schema | [string](#string) |  |  |
-| primary_key_name | [string](#string) |  |  |
-| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
-| group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | CONFIG OBJECTS |
-| group_configs | [proto_group_list_config_trees](#proto_config.proto_group_list_config_trees) |  |  |
-| group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  |  |
-| group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  |  |
-| group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  |  |
-| group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  |  |
-| group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  |  |
-
-
-
-
-
-
-<a name="proto_config.proto_config_tree"></a>
-
-### proto_config_tree
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
-| config_node | [proto_config](#proto_config.proto_config) |  |  |
-| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
+| name_ui | [string](#string) |  |  |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
+| group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
+| group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
+| group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
+| group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
+| group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [BrowsableAttribute(false)] |
+| group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [BrowsableAttribute(false)] |
+| group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -222,7 +220,6 @@ Constant application wise value
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| db_id_generator | [db_id_generator](#proto_config.db_id_generator) |  | @attr [ExpandableObjectAttribute()] |
 
 
 
@@ -312,6 +309,25 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_list_base_configs"></a>
+
+### proto_group_list_base_configs
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; |
+| list_base_configs | [proto_base_config](#proto_config.proto_base_config) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_catalogs"></a>
 
 ### proto_group_list_catalogs
@@ -326,26 +342,6 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_group_list_config_trees"></a>
-
-### proto_group_list_config_trees
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
-| list_config_trees | [proto_config_tree](#proto_config.proto_config_tree) | repeated | @attr [BrowsableAttribute(false)] |
-| relative_config_path | [string](#string) |  |  |
 
 
 
@@ -705,6 +701,18 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
  
+
+
+<a name="proto_config.db_id_generator_method"></a>
+
+### db_id_generator_method
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ColumnIdentity | 0 |  |
+| HiLoSequence | 1 |  |
+
 
 
 <a name="proto_config.enum_enumeration_type"></a>

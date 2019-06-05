@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
     public partial class PluginGenerator : ICanGoLeft, ICanGoRight, ICanAddSubNode
     {
-        public PluginGenerator(IvPluginCodeGenerator plugin) : this()
+        public PluginGenerator(IvPluginGenerator plugin) : this()
         {
             this.Guid = plugin.Guid.ToString();
             this.Name = plugin.Name;
@@ -26,8 +26,8 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [BrowsableAttribute(false)]
-        public IvPluginCodeGenerator Generator { get; private set; }
-        public void SetGenerator(IvPluginCodeGenerator generator)
+        public IvPluginGenerator Generator { get; private set; }
+        public void SetGenerator(IvPluginGenerator generator)
         {
             this.Generator = generator;
         }
@@ -36,9 +36,9 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNewSubNode()
         {
             PluginGeneratorSettings pgs = null;
-            switch (this.Generator.PluginType)
+            switch (this.Generator.PluginGeneratorType)
             {
-                case vPluginTypeEnum.DbDesign:
+                case vPluginGeneratorTypeEnum.DbDesign:
                     var settings = this.Generator.GetSettingsMvvm(null);
                     pgs = new PluginGeneratorSettings(settings);
                     pgs.SetGuid(this.Generator.Guid.ToString());

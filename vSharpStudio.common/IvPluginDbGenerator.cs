@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 
@@ -15,7 +13,7 @@ namespace vSharpStudio.common
     /// <summary>
     /// Interface for DbDesign type of plugins
     /// </summary>
-    public interface IDbDesign : IvPluginCodeGenerator
+    public interface IvPluginDbGenerator : IvPluginGenerator
     {
         ILoggerFactory LoggerFactory { set; get; }
         string ConnectionString { set; get; }

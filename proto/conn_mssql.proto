@@ -9,6 +9,10 @@ message proto_ms_sql_design_generator_settings {
     string guid = 2;
     bool is_use_foreingkey = 11;
     bool is_use_foreingkey_index = 12;
+    bool is_use_storage_procedures = 13;
+    bool is_use_views = 14;
+    bool is_primary_key_clustered = 15; // MsSql
+    bool is_memory_optimized = 16; // MsSql
 }
 // Summary:
 //     Describes the different SQL authentication methods that can be used by a client

@@ -59,9 +59,9 @@ namespace vSharpStudio.Unit
             {
                 foreach (var t in dbs)
                 {
-                    if (t.Value is IDbDesign)
+                    if (t.Value is IvPluginDbGenerator)
                     {
-                        var tt = t.Value as IDbDesign;
+                        var tt = t.Value as IvPluginDbGenerator;
                         if (tt.Name == connStringName)
                         {
                             mvm.SelectedDbDesignPlugin = tt;

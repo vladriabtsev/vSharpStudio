@@ -186,6 +186,10 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 | guid | [string](#string) |  |  |
 | is_use_foreingkey | [bool](#bool) |  |  |
 | is_use_foreingkey_index | [bool](#bool) |  |  |
+| is_use_storage_procedures | [bool](#bool) |  |  |
+| is_use_views | [bool](#bool) |  |  |
+| is_primary_key_clustered | [bool](#bool) |  | MsSql |
+| is_memory_optimized | [bool](#bool) |  | MsSql |
 
 
 

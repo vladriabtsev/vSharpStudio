@@ -9,7 +9,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq}")]
-    public partial class GroupDocuments : IChildren, ICanGoRight, ICanGoLeft
+    public partial class GroupDocuments : ICanGoRight, ICanGoLeft
     {
         [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }

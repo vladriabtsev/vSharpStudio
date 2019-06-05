@@ -9,13 +9,13 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} configs:{ListConfigTrees.Count,nq}")]
-    public partial class GroupListConfigTrees : ICanGoRight, ICanGoLeft
+    public partial class GroupListBaseConfigs : ICanAddSubNode, ICanGoRight
     {
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
-            this.Name = "Configs";
+            this.Name = "BaseConfigs";
             this.IsEditable = false;
             //this.Children = new SortedObservableCollection<ITreeConfigNode>();
             //this.GroupSharedProperties.Parent = this;
@@ -23,5 +23,16 @@ namespace vSharpStudio.vm.ViewModels
             //this.GroupListDocuments.Parent = this;
             //Children.Add(this.GroupListDocuments, 8);
         }
+
+        #region Tree operations
+        public override ITreeConfigNode NodeAddNewSubNode()
+        {
+            var node = new BaseConfig();
+            this.Add(node);
+            GetUniqueName(BaseConfig.DefaultName, node, this.ListBaseConfigs);
+            SetSelected(node);
+            return node;
+        }
+        #endregion Tree operations
     }
 }

@@ -9,7 +9,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq} sub:{ListSubPropertiesGroups.Count,nq}")]
-    public partial class PropertiesTab : IChildren, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         public static readonly string DefaultName = "Tab";
         [BrowsableAttribute(false)]

@@ -27,36 +27,32 @@ namespace vSharpStudio.Unit
         #region Editable
 
         [TestMethod]
-        public void Editable011CanCancelSameLevelSimpleProperty()
+        public void Editable011CanCancelDifferentLevelSimpleProperty()
         {
-            Catalog vm = new Catalog
-            {
-                Name = "test1",
-            };
             var cfg = new Config();
-            cfg.GroupCatalogs.Add(vm);
-            vm.DbIdGenerator.HiLoSchema = "schema1";
-            vm.BeginEdit();
-            vm.Name = "test2";
-            vm.DbIdGenerator.HiLoSchema = "schema2";
-            vm.CancelEdit();
-            Assert.IsTrue(vm.Name == "test1");
-            Assert.IsTrue(vm.DbIdGenerator.HiLoSchema == "schema1");
+            cfg.Name = "test1";
+            cfg.DbSettings.DbSchema = "schema1";
+            cfg.BeginEdit();
+            cfg.Name = "test2";
+            cfg.DbSettings.DbSchema = "schema2";
+            cfg.CancelEdit();
+            Assert.IsTrue(cfg.Name == "test1");
+            Assert.IsTrue(cfg.DbSettings.DbSchema == "schema1");
         }
-        [TestMethod]
-        public void Editable012CanCancelSameLevelNullable()
-        {
-            Catalog vm = new Catalog
-            {
-            };
-            var cfg = new Config();
-            cfg.GroupCatalogs.Add(vm);
-            vm.DbIdGenerator.IsPrimaryKeyClustered = true;
-            vm.BeginEdit();
-            vm.DbIdGenerator.IsPrimaryKeyClustered = false;
-            vm.CancelEdit();
-            Assert.IsTrue(vm.DbIdGenerator.IsPrimaryKeyClustered ?? false);
-        }
+        //[TestMethod]
+        //public void Editable012CanCancelSameLevelNullable()
+        //{
+        //    Catalog vm = new Catalog
+        //    {
+        //    };
+        //    var cfg = new Config();
+        //    cfg.GroupCatalogs.Add(vm);
+        //    vm.DbIdGenerator.IsPrimaryKeyClustered = true;
+        //    vm.BeginEdit();
+        //    vm.DbIdGenerator.IsPrimaryKeyClustered = false;
+        //    vm.CancelEdit();
+        //    Assert.IsTrue(vm.DbIdGenerator.IsPrimaryKeyClustered ?? false);
+        //}
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {

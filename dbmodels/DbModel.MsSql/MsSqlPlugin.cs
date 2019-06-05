@@ -20,7 +20,7 @@ namespace vPlugin.DbModel.MsSql
             this.Version = "0.1";
             this.Url = "https://www.vladnet.ca";
             this.Licence = "";
-            this.ListGenerators = new List<IvPluginCodeGenerator>();
+            this.ListGenerators = new List<IvPluginGenerator>();
             this.ListGenerators.Add(new ConnectionGenerator());
             this.ListGenerators.Add(new MsSqlDesignGenerator());
         }
@@ -31,6 +31,6 @@ namespace vPlugin.DbModel.MsSql
         public string Version { get; protected set; }
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
-        public List<IvPluginCodeGenerator> ListGenerators { get; protected set; }
+        public List<IvPluginGenerator> ListGenerators { get; protected set; }
     }
 }

@@ -10,6 +10,24 @@
       "hasServices": false,
       "enums": [
         {
+          "name": "db_id_generator_method",
+          "longName": "db_id_generator_method",
+          "fullName": "proto_config.db_id_generator_method",
+          "description": "",
+          "values": [
+            {
+              "name": "ColumnIdentity",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "HiLoSequence",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
@@ -125,47 +143,17 @@
           ]
         },
         {
-          "name": "db_id_generator",
-          "longName": "db_id_generator",
-          "fullName": "proto_config.db_id_generator",
-          "description": "Primary key generation strategy\n@base : ViewModelValidatableWithSeverity\u003cDbIdGenerator, DbIdGenerator.DbIdGeneratorValidator\u003e",
+          "name": "db_settings",
+          "longName": "db_settings",
+          "fullName": "proto_config.db_settings",
+          "description": "General DB settings\n@base : ViewModelValidatableWithSeverity\u003cDbSettings, DbSettings.DbSettingsValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
             {
-              "name": "is_primary_key_clustered",
-              "description": "MsSql",
-              "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_config.bool_nullable",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_memory_optimized",
-              "description": "MsSql",
-              "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_config.bool_nullable",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_sequence_hi_lo",
-              "description": "SequenceHiLo or IdentityColumn. MsSql",
-              "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_config.bool_nullable",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "hi_lo_sequence_name",
-              "description": "MsSql",
+              "name": "db_schema",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"DB schema name for all object in this configuration\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -174,8 +162,139 @@
               "defaultValue": ""
             },
             {
-              "name": "hi_lo_schema",
-              "description": "MsSql",
+              "name": "id_generator",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Primary key generation method\")]",
+              "label": "",
+              "type": "db_id_generator_method",
+              "longType": "db_id_generator_method",
+              "fullType": "proto_config.db_id_generator_method",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "key_type",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"Primary key field type\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "key_name",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Description(\"Primary key field name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "timestamp",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"Record data version/timestamp field name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_db_from_connection_string",
+              "description": "if yes: \n   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.\nif no:\n   1. Find DB type from \n   2. Create connection string from db_server, db_database_name, db_user",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "connection_string_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "path_to_project_with_connection_string",
+              "description": "path to project with config file containing connection string. Usefull for UNIT tests.\nit will override previous settings\n@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_base_config",
+          "longName": "proto_base_config",
+          "fullName": "proto_config.proto_base_config",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config_node",
+              "description": "",
+              "label": "",
+              "type": "proto_config",
+              "longType": "proto_config",
+              "fullType": "proto_config.proto_config",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relative_config_path",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -245,16 +364,6 @@
               "defaultValue": ""
             },
             {
-              "name": "db_id_generator",
-              "description": "@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "db_id_generator",
-              "longType": "db_id_generator",
-              "fullType": "proto_config.db_id_generator",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "group_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -307,7 +416,7 @@
             },
             {
               "name": "version",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(4)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -337,7 +446,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)]",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -347,7 +456,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -356,68 +465,18 @@
               "defaultValue": ""
             },
             {
-              "name": "is_db_from_connection_string",
-              "description": "if yes: \n   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.\nif no:\n   1. Find DB type from \n   2. Create connection string from db_server, db_database_name, db_user",
+              "name": "db_settings",
+              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "connection_string_name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "path_to_project_with_connection_string",
-              "description": "path to project with config file containing connection string. Usefull for UNIT tests.\nit will override previous settings",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_schema",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "primary_key_name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_id_generator",
-              "description": "@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "db_id_generator",
-              "longType": "db_id_generator",
-              "fullType": "proto_config.db_id_generator",
+              "type": "db_settings",
+              "longType": "db_settings",
+              "fullType": "proto_config.db_settings",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "group_plugins",
-              "description": "CONFIG OBJECTS",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_plugins",
               "longType": "proto_group_list_plugins",
@@ -427,17 +486,17 @@
             },
             {
               "name": "group_configs",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_group_list_config_trees",
-              "longType": "proto_group_list_config_trees",
-              "fullType": "proto_config.proto_group_list_config_trees",
+              "type": "proto_group_list_base_configs",
+              "longType": "proto_group_list_base_configs",
+              "fullType": "proto_config.proto_group_list_base_configs",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "group_constants",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_constants",
               "longType": "proto_group_list_constants",
@@ -447,7 +506,7 @@
             },
             {
               "name": "group_enumerations",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_enumerations",
               "longType": "proto_group_list_enumerations",
@@ -457,7 +516,7 @@
             },
             {
               "name": "group_catalogs",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_catalogs",
               "longType": "proto_group_list_catalogs",
@@ -467,7 +526,7 @@
             },
             {
               "name": "group_documents",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_documents",
               "longType": "proto_group_documents",
@@ -477,82 +536,11 @@
             },
             {
               "name": "group_journals",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_journals",
               "longType": "proto_group_list_journals",
               "fullType": "proto_config.proto_group_list_journals",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_config_tree",
-          "longName": "proto_config_tree",
-          "fullName": "proto_config.proto_config_tree",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "string name_ui = 4;",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "config_node",
-              "description": "",
-              "label": "",
-              "type": "proto_config",
-              "longType": "proto_config",
-              "fullType": "proto_config.proto_config",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_config_trees",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_config_tree",
-              "longType": "proto_config_tree",
-              "fullType": "proto_config.proto_config_tree",
               "ismap": false,
               "defaultValue": ""
             }
@@ -786,16 +774,6 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_id_generator",
-              "description": "@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "db_id_generator",
-              "longType": "db_id_generator",
-              "fullType": "proto_config.db_id_generator",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1096,6 +1074,67 @@
           ]
         },
         {
+          "name": "proto_group_list_base_configs",
+          "longName": "proto_group_list_base_configs",
+          "fullName": "proto_config.proto_group_list_base_configs",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_base_configs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_base_config",
+              "longType": "proto_base_config",
+              "fullType": "proto_config.proto_base_config",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_catalogs",
           "longName": "proto_group_list_catalogs",
           "fullName": "proto_config.proto_group_list_catalogs",
@@ -1161,77 +1200,6 @@
               "type": "proto_catalog",
               "longType": "proto_catalog",
               "fullType": "proto_config.proto_catalog",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_group_list_config_trees",
-          "longName": "proto_group_list_config_trees",
-          "fullName": "proto_config.proto_group_list_config_trees",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "string name_ui = 4;",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_config_trees",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_config_tree",
-              "longType": "proto_config_tree",
-              "fullType": "proto_config.proto_config_tree",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "relative_config_path",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }

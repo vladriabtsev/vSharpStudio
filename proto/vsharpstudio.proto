@@ -84,56 +84,29 @@ message proto_settings_config {
     int32 version_migration_support_from_min = 8;
 }
 
-// Primary key generation strategy
-// @base : ViewModelValidatableWithSeverity<DbIdGenerator, DbIdGenerator.DbIdGeneratorValidator>
-message db_id_generator {
-    bool_nullable is_primary_key_clustered = 10; // MsSql
-    bool_nullable is_memory_optimized = 11; // MsSql
-    bool_nullable is_sequence_hi_lo = 12; // SequenceHiLo or IdentityColumn. MsSql
-    string hi_lo_sequence_name = 13; // MsSql
-    string hi_lo_schema = 14; // MsSql
+enum db_id_generator_method
+{
+    ColumnIdentity = 0;
+    HiLoSequence = 1;
 }
-/** 
- * @exclude
- * ####################################### C O N F I G ##########################################
- */
-message proto_group_list_config_trees {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-//  string name_ui = 4;
-    string description = 5;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_config_tree list_config_trees = 6;
-    string relative_config_path = 7;
-}
-message proto_config_tree {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-//  string name_ui = 4;
-    string description = 5;
-    proto_config config_node = 6;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_config_tree list_config_trees = 7;
-}
-// Configuration config
-message proto_config {
-    // Unique Guid for configuration (for comparison)
-    string guid = 1;
-    string version = 2;
-    string name = 3;
-    uint64 sorting_value = 4;
+// General DB settings
+// @base : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>
+message db_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [Description("DB schema name for all object in this configuration")]
+    string db_schema = 1;
     // @attr [PropertyOrderAttribute(2)]
-    string name_ui = 5;
+    // @attr [Description("Primary key generation method")]
+    db_id_generator_method id_generator = 2;
     // @attr [PropertyOrderAttribute(3)]
-    string description = 6;
-
-    // VM
-    //string vm_namespace = 10;
-
-    // CONNECTION STRING SECTION
-
+    // @attr [Description("Primary key field type")]
+    string key_type = 3;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Description("Primary key field name")]
+    string key_name = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Description("Record data version/timestamp field name")]
+    string timestamp = 5;
     // if yes: 
     //    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
     // if no:
@@ -141,35 +114,66 @@ message proto_config {
     //    2. Create connection string from db_server, db_database_name, db_user
     bool is_db_from_connection_string = 11; 
     string connection_string_name = 12;
-
-    //string db_server = 14;
-    //string db_database_name = 15;
-    //bool is_db_windows_authentication = 16; 
-    //string db_user = 17;
-    //string db_password = 18;
-
     // path to project with config file containing connection string. Usefull for UNIT tests.
     // it will override previous settings
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    // @attr [Description("File path to store connection string settings in private place.")]
     string path_to_project_with_connection_string = 19;
+}
+/** 
+ * @exclude
+ * ####################################### C O N F I G ##########################################
+ */
+message proto_group_list_base_configs {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_base_config list_base_configs = 9;
+}
+message proto_base_config {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
+    proto_config config_node = 6;
+    string relative_config_path = 7;
+}
+// Configuration config
+message proto_config {
+    // Unique Guid for configuration (for comparison)
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(4)]
+    string version = 2;
+    string name = 3;
+    uint64 sorting_value = 4;
+    string name_ui = 5;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 6;
 
     // GENERAL DB SETTINGS
-
-    string db_schema = 31;
-    string primary_key_name = 32;
-
+    // @attr [PropertyOrderAttribute(11)]
     // @attr [ExpandableObjectAttribute()]
-    db_id_generator db_id_generator = 33;
+    db_settings db_settings = 14;
 
-    // CONFIG OBJECTS
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_plugins group_plugins = 99;
-    proto_group_list_config_trees group_configs = 100;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_base_configs group_configs = 100;
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_constants group_constants = 101;
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_enumerations group_enumerations = 102;
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_catalogs group_catalogs = 103;
+    // @attr [BrowsableAttribute(false)]
     proto_group_documents group_documents = 104;
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_journals group_journals = 105;
-
-    //proto_connections.proto_group_connections group_connections = 121; 
 }
 /** 
  * @exclude
@@ -339,9 +343,6 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
-    // @attr [ExpandableObjectAttribute()]
-    db_id_generator db_id_generator = 10;
-
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
     // @attr [BrowsableAttribute(false)]
@@ -393,8 +394,6 @@ message proto_document {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
-    // @attr [ExpandableObjectAttribute()]
-    db_id_generator db_id_generator = 10;
 }
 message proto_group_list_documents {
     string guid = 1;

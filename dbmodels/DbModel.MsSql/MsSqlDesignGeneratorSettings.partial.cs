@@ -8,7 +8,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class MsSqlDesignGeneratorSettings : IvPluginSettingsVM
+    public partial class MsSqlDesignGeneratorSettings : IvPluginGeneratorSettingsVM
     {
         public string Settings => throw new NotImplementedException();
 

@@ -66,8 +66,11 @@ namespace vSharpStudio.Unit
             var cvm2 = (MsSqlDesignGeneratorSettings)gen.Generator.GetSettingsMvvm(json);
             Assert.IsTrue(cvm.Name == cvm2.Name);
 
-            var connstring = cvm.GenerateCode();
-            Assert.AreEqual("Data Source=mydbsource", connstring);
+
+
+
+            var sql = cvm.GenerateCode();
+            Assert.AreEqual("", sql);
         }
 
     }
