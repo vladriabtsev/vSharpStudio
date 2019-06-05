@@ -17,6 +17,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public class ValidationMessages
         {
+            public const string FILE_IS_NOT_EXISTS = "File is not exists";
             public const string GUID_IS_EMPTY = "Guid is empty";
             public const string GUID_IS_NOT_UNIQUE = "Guid is not unique";
             public const string PLUGIN_WAS_NOT_FOUND = "Plugin is not found";

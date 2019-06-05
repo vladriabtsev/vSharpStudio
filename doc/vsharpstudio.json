@@ -274,7 +274,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;",
+              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -284,7 +284,7 @@
             },
             {
               "name": "config_node",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_config",
               "longType": "proto_config",
@@ -293,8 +293,8 @@
               "defaultValue": ""
             },
             {
-              "name": "relative_config_path",
-              "description": "",
+              "name": "relative_config_file_path",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -345,7 +345,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -607,7 +607,7 @@
             },
             {
               "name": "data_type",
-              "description": "@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(\"Type\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()][DisplayName(\"Type\")]",
               "label": "",
               "type": "proto_data_type",
               "longType": "proto_data_type",
@@ -628,7 +628,7 @@
           "fields": [
             {
               "name": "data_type_enum",
-              "description": "@attr [PropertyOrderAttribute(1)][DisplayName(\"Type\")]",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Type\")]",
               "label": "",
               "type": "proto_enum_data_type",
               "longType": "proto_enum_data_type",
@@ -658,7 +658,7 @@
             },
             {
               "name": "is_positive",
-              "description": "@attr [PropertyOrderAttribute(4)][DisplayName(\"Is positive\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Is positive\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -668,7 +668,7 @@
             },
             {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -719,7 +719,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -820,7 +820,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -840,7 +840,7 @@
             },
             {
               "name": "data_type_enum",
-              "description": "@attr [PropertyOrderAttribute(4)][DisplayName(\"Type\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Type\")]",
               "label": "",
               "type": "enum_enumeration_type",
               "longType": "enum_enumeration_type",
@@ -850,7 +850,7 @@
             },
             {
               "name": "list_enumeration_pairs",
-              "description": "@attr [DisplayName(\"Elements\")][NewItemTypes(typeof(EnumerationPair))]",
+              "description": "@attr [DisplayName(\"Elements\")]\n@attr [NewItemTypes(typeof(EnumerationPair))]",
               "label": "repeated",
               "type": "proto_enumeration_pair",
               "longType": "proto_enumeration_pair",
@@ -901,7 +901,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -972,7 +972,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1033,7 +1033,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1175,7 +1175,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1246,7 +1246,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1317,7 +1317,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1388,7 +1388,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1459,7 +1459,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1530,7 +1530,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1632,7 +1632,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1703,7 +1703,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1774,7 +1774,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1845,7 +1845,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2119,7 +2119,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2200,7 +2200,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2220,7 +2220,7 @@
             },
             {
               "name": "data_type",
-              "description": "@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(\"Type\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Type\")]",
               "label": "",
               "type": "proto_data_type",
               "longType": "proto_data_type",
@@ -2271,7 +2271,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",

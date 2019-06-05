@@ -139,9 +139,13 @@ message proto_base_config {
     string name = 2;
     uint64 sorting_value = 3;
 //  string name_ui = 4;
+    // @attr [PropertyOrderAttribute(5)]
     string description = 5;
+    // @attr [BrowsableAttribute(false)]
     proto_config config_node = 6;
-    string relative_config_path = 7;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    string relative_config_file_path = 7;
 }
 // Configuration config
 message proto_config {
@@ -195,15 +199,18 @@ enum proto_enum_data_type {
 }
 // @base : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>
 message proto_data_type {
-    // @attr [PropertyOrderAttribute(1)][DisplayName("Type")]
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
     // @attr [PropertyOrderAttribute(3)]
     uint32 length = 2; 
     // @attr [PropertyOrderAttribute(5)]
     uint32 accuracy = 3; 
-    // @attr [PropertyOrderAttribute(4)][DisplayName("Is positive")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Is positive")]
     bool is_positive = 4; 
-    // @attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
     string object_guid = 5;
 }
 /** 
@@ -214,7 +221,8 @@ message proto_group_list_properties_tabs {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -225,7 +233,8 @@ message proto_properties_tab {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -238,7 +247,8 @@ message proto_group_list_properties {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -249,11 +259,14 @@ message proto_property {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName("Type")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Type")]
     proto_data_type data_type = 6;
 }
 /** 
@@ -264,7 +277,8 @@ message proto_group_list_constants {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -282,7 +296,8 @@ message proto_constant {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName("Type")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
 }
 /** 
@@ -293,7 +308,8 @@ message proto_group_list_enumerations {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -310,20 +326,24 @@ message proto_enumeration {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)][DisplayName("Type")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Type")]
     enum_enumeration_type data_type_enum = 6; 
-    // @attr [DisplayName("Elements")][NewItemTypes(typeof(EnumerationPair))]
+    // @attr [DisplayName("Elements")]
+    // @attr [NewItemTypes(typeof(EnumerationPair))]
     repeated proto_enumeration_pair list_enumeration_pairs = 7;
 }
 message proto_enumeration_pair {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -338,7 +358,8 @@ message proto_catalog {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -354,7 +375,8 @@ message proto_group_list_catalogs {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -369,7 +391,8 @@ message proto_group_documents {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -382,7 +405,8 @@ message proto_document {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -399,7 +423,8 @@ message proto_group_list_documents {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -414,7 +439,8 @@ message proto_group_list_journals {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -426,7 +452,8 @@ message proto_journal {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -442,7 +469,8 @@ message proto_group_list_forms {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -454,7 +482,8 @@ message proto_form {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -469,7 +498,8 @@ message proto_group_list_reports {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -481,7 +511,8 @@ message proto_report {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;

@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/05/2019 19:19:23
+// Auto generated on UTC 06/05/2019 21:34:53
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -148,6 +148,24 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Plugin> ListPlugins 
+		{ 
+			set
+			{
+				if (_ListPlugins != value)
+				{
+					OnListPluginsChanging();
+					_ListPlugins = value;
+					OnListPluginsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPlugins; }
+		}
+		private SortedObservableCollection<Plugin> _ListPlugins;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IPlugin> ListPluginsI { get { foreach (var t in _ListPlugins) yield return t; } }
 		public Plugin this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
 		public void Add(Plugin item) 
 		{ 
@@ -169,24 +187,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListPlugins.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Plugin> ListPlugins 
-		{ 
-			set
-			{
-				if (_ListPlugins != value)
-				{
-					OnListPluginsChanging();
-					_ListPlugins = value;
-					OnListPluginsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListPlugins; }
-		}
-		private SortedObservableCollection<Plugin> _ListPlugins;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IPlugin> ListPluginsI { get { foreach (var t in _ListPlugins) yield return t; } }
 		partial void OnListPluginsChanging();
 		partial void OnListPluginsChanged();
 		#endregion Properties
@@ -1323,6 +1323,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<BaseConfig> ListBaseConfigs 
+		{ 
+			set
+			{
+				if (_ListBaseConfigs != value)
+				{
+					OnListBaseConfigsChanging();
+					_ListBaseConfigs = value;
+					OnListBaseConfigsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListBaseConfigs; }
+		}
+		private SortedObservableCollection<BaseConfig> _ListBaseConfigs;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IBaseConfig> ListBaseConfigsI { get { foreach (var t in _ListBaseConfigs) yield return t; } }
 		public BaseConfig this[int index] { get { return (BaseConfig)this.ListBaseConfigs[index]; } }
 		public void Add(BaseConfig item) 
 		{ 
@@ -1344,24 +1362,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListBaseConfigs.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<BaseConfig> ListBaseConfigs 
-		{ 
-			set
-			{
-				if (_ListBaseConfigs != value)
-				{
-					OnListBaseConfigsChanging();
-					_ListBaseConfigs = value;
-					OnListBaseConfigsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListBaseConfigs; }
-		}
-		private SortedObservableCollection<BaseConfig> _ListBaseConfigs;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IBaseConfig> ListBaseConfigsI { get { foreach (var t in _ListBaseConfigs) yield return t; } }
 		partial void OnListBaseConfigsChanging();
 		partial void OnListBaseConfigsChanged();
 		#endregion Properties
@@ -1397,7 +1397,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    if (isDeep)
 		        vm.ConfigNode = vSharpStudio.vm.ViewModels.Config.Clone(from.ConfigNode, isDeep);
-		    vm.RelativeConfigPath = from.RelativeConfigPath;
+		    vm.RelativeConfigFilePath = from.RelativeConfigFilePath;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -1410,7 +1410,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
-		    to.RelativeConfigPath = from.RelativeConfigPath;
+		    to.RelativeConfigFilePath = from.RelativeConfigFilePath;
 		}
 		#region IEditable
 		public override BaseConfig Backup()
@@ -1438,7 +1438,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.Description = m.Description;
 		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
-		    vm.RelativeConfigPath = m.RelativeConfigPath;
+		    vm.RelativeConfigFilePath = m.RelativeConfigFilePath;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -1451,7 +1451,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.Description = vm.Description;
 		    m.ConfigNode = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.ConfigNode);
-		    m.RelativeConfigPath = vm.RelativeConfigPath;
+		    m.RelativeConfigFilePath = vm.RelativeConfigFilePath;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -1469,6 +1469,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(5)]
 		public string Description
 		{ 
 			set
@@ -1487,6 +1488,7 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
 		public Config ConfigNode
 		{ 
 			set
@@ -1507,24 +1509,26 @@ namespace vSharpStudio.vm.ViewModels
 		public IConfig ConfigNodeI { get { return _ConfigNode; }}
 		partial void OnConfigNodeChanging();
 		partial void OnConfigNodeChanged();
-		public string RelativeConfigPath
+		[PropertyOrderAttribute(6)]
+		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+		public string RelativeConfigFilePath
 		{ 
 			set
 			{
-				if (_RelativeConfigPath != value)
+				if (_RelativeConfigFilePath != value)
 				{
-					OnRelativeConfigPathChanging();
-					_RelativeConfigPath = value;
-					OnRelativeConfigPathChanged();
+					OnRelativeConfigFilePathChanging();
+					_RelativeConfigFilePath = value;
+					OnRelativeConfigFilePathChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _RelativeConfigPath; }
+			get { return _RelativeConfigFilePath; }
 		}
-		private string _RelativeConfigPath = "";
-		partial void OnRelativeConfigPathChanging();
-		partial void OnRelativeConfigPathChanged();
+		private string _RelativeConfigFilePath = "";
+		partial void OnRelativeConfigFilePathChanging();
+		partial void OnRelativeConfigFilePathChanged();
 		#endregion Properties
 	}
 	
@@ -2243,6 +2247,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<PropertiesTab> ListPropertiesTabs 
+		{ 
+			set
+			{
+				if (_ListPropertiesTabs != value)
+				{
+					OnListPropertiesTabsChanging();
+					_ListPropertiesTabs = value;
+					OnListPropertiesTabsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListPropertiesTabs; }
+		}
+		private SortedObservableCollection<PropertiesTab> _ListPropertiesTabs;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IPropertiesTab> ListPropertiesTabsI { get { foreach (var t in _ListPropertiesTabs) yield return t; } }
 		public PropertiesTab this[int index] { get { return (PropertiesTab)this.ListPropertiesTabs[index]; } }
 		public void Add(PropertiesTab item) 
 		{ 
@@ -2264,24 +2286,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListPropertiesTabs.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<PropertiesTab> ListPropertiesTabs 
-		{ 
-			set
-			{
-				if (_ListPropertiesTabs != value)
-				{
-					OnListPropertiesTabsChanging();
-					_ListPropertiesTabs = value;
-					OnListPropertiesTabsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListPropertiesTabs; }
-		}
-		private SortedObservableCollection<PropertiesTab> _ListPropertiesTabs;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IPropertiesTab> ListPropertiesTabsI { get { foreach (var t in _ListPropertiesTabs) yield return t; } }
 		partial void OnListPropertiesTabsChanging();
 		partial void OnListPropertiesTabsChanged();
 		#endregion Properties
@@ -2621,6 +2625,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Property> ListProperties 
+		{ 
+			set
+			{
+				if (_ListProperties != value)
+				{
+					OnListPropertiesChanging();
+					_ListProperties = value;
+					OnListPropertiesChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListProperties; }
+		}
+		private SortedObservableCollection<Property> _ListProperties;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IProperty> ListPropertiesI { get { foreach (var t in _ListProperties) yield return t; } }
 		public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
 		public void Add(Property item) 
 		{ 
@@ -2642,24 +2664,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListProperties.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Property> ListProperties 
-		{ 
-			set
-			{
-				if (_ListProperties != value)
-				{
-					OnListPropertiesChanging();
-					_ListProperties = value;
-					OnListPropertiesChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListProperties; }
-		}
-		private SortedObservableCollection<Property> _ListProperties;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IProperty> ListPropertiesI { get { foreach (var t in _ListProperties) yield return t; } }
 		partial void OnListPropertiesChanging();
 		partial void OnListPropertiesChanged();
 		#endregion Properties
@@ -2971,6 +2975,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Constant> ListConstants 
+		{ 
+			set
+			{
+				if (_ListConstants != value)
+				{
+					OnListConstantsChanging();
+					_ListConstants = value;
+					OnListConstantsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListConstants; }
+		}
+		private SortedObservableCollection<Constant> _ListConstants;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IConstant> ListConstantsI { get { foreach (var t in _ListConstants) yield return t; } }
 		public Constant this[int index] { get { return (Constant)this.ListConstants[index]; } }
 		public void Add(Constant item) 
 		{ 
@@ -2992,24 +3014,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListConstants.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Constant> ListConstants 
-		{ 
-			set
-			{
-				if (_ListConstants != value)
-				{
-					OnListConstantsChanging();
-					_ListConstants = value;
-					OnListConstantsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListConstants; }
-		}
-		private SortedObservableCollection<Constant> _ListConstants;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IConstant> ListConstantsI { get { foreach (var t in _ListConstants) yield return t; } }
 		partial void OnListConstantsChanging();
 		partial void OnListConstantsChanged();
 		#endregion Properties
@@ -3325,6 +3329,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Enumeration> ListEnumerations 
+		{ 
+			set
+			{
+				if (_ListEnumerations != value)
+				{
+					OnListEnumerationsChanging();
+					_ListEnumerations = value;
+					OnListEnumerationsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListEnumerations; }
+		}
+		private SortedObservableCollection<Enumeration> _ListEnumerations;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IEnumeration> ListEnumerationsI { get { foreach (var t in _ListEnumerations) yield return t; } }
 		public Enumeration this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
 		public void Add(Enumeration item) 
 		{ 
@@ -3346,24 +3368,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListEnumerations.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Enumeration> ListEnumerations 
-		{ 
-			set
-			{
-				if (_ListEnumerations != value)
-				{
-					OnListEnumerationsChanging();
-					_ListEnumerations = value;
-					OnListEnumerationsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListEnumerations; }
-		}
-		private SortedObservableCollection<Enumeration> _ListEnumerations;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IEnumeration> ListEnumerationsI { get { foreach (var t in _ListEnumerations) yield return t; } }
 		partial void OnListEnumerationsChanging();
 		partial void OnListEnumerationsChanged();
 		#endregion Properties
@@ -4082,6 +4086,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Catalog> ListCatalogs 
+		{ 
+			set
+			{
+				if (_ListCatalogs != value)
+				{
+					OnListCatalogsChanging();
+					_ListCatalogs = value;
+					OnListCatalogsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListCatalogs; }
+		}
+		private SortedObservableCollection<Catalog> _ListCatalogs;
+		[BrowsableAttribute(false)]
+		public IEnumerable<ICatalog> ListCatalogsI { get { foreach (var t in _ListCatalogs) yield return t; } }
 		public Catalog this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
 		public void Add(Catalog item) 
 		{ 
@@ -4103,24 +4125,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListCatalogs.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Catalog> ListCatalogs 
-		{ 
-			set
-			{
-				if (_ListCatalogs != value)
-				{
-					OnListCatalogsChanging();
-					_ListCatalogs = value;
-					OnListCatalogsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListCatalogs; }
-		}
-		private SortedObservableCollection<Catalog> _ListCatalogs;
-		[BrowsableAttribute(false)]
-		public IEnumerable<ICatalog> ListCatalogsI { get { foreach (var t in _ListCatalogs) yield return t; } }
 		partial void OnListCatalogsChanging();
 		partial void OnListCatalogsChanged();
 		#endregion Properties
@@ -4689,6 +4693,24 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Document> ListDocuments 
+		{ 
+			set
+			{
+				if (_ListDocuments != value)
+				{
+					OnListDocumentsChanging();
+					_ListDocuments = value;
+					OnListDocumentsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListDocuments; }
+		}
+		private SortedObservableCollection<Document> _ListDocuments;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IDocument> ListDocumentsI { get { foreach (var t in _ListDocuments) yield return t; } }
 		public Document this[int index] { get { return (Document)this.ListDocuments[index]; } }
 		public void Add(Document item) 
 		{ 
@@ -4710,24 +4732,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListDocuments.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Document> ListDocuments 
-		{ 
-			set
-			{
-				if (_ListDocuments != value)
-				{
-					OnListDocumentsChanging();
-					_ListDocuments = value;
-					OnListDocumentsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListDocuments; }
-		}
-		private SortedObservableCollection<Document> _ListDocuments;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IDocument> ListDocumentsI { get { foreach (var t in _ListDocuments) yield return t; } }
 		partial void OnListDocumentsChanging();
 		partial void OnListDocumentsChanged();
 		#endregion Properties
@@ -4901,6 +4905,24 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Journal> ListJournals 
+		{ 
+			set
+			{
+				if (_ListJournals != value)
+				{
+					OnListJournalsChanging();
+					_ListJournals = value;
+					OnListJournalsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListJournals; }
+		}
+		private SortedObservableCollection<Journal> _ListJournals;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IJournal> ListJournalsI { get { foreach (var t in _ListJournals) yield return t; } }
 		public Journal this[int index] { get { return (Journal)this.ListJournals[index]; } }
 		public void Add(Journal item) 
 		{ 
@@ -4922,24 +4944,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListJournals.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Journal> ListJournals 
-		{ 
-			set
-			{
-				if (_ListJournals != value)
-				{
-					OnListJournalsChanging();
-					_ListJournals = value;
-					OnListJournalsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListJournals; }
-		}
-		private SortedObservableCollection<Journal> _ListJournals;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IJournal> ListJournalsI { get { foreach (var t in _ListJournals) yield return t; } }
 		partial void OnListJournalsChanging();
 		partial void OnListJournalsChanged();
 		#endregion Properties
@@ -5304,6 +5308,24 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Form> ListForms 
+		{ 
+			set
+			{
+				if (_ListForms != value)
+				{
+					OnListFormsChanging();
+					_ListForms = value;
+					OnListFormsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListForms; }
+		}
+		private SortedObservableCollection<Form> _ListForms;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IForm> ListFormsI { get { foreach (var t in _ListForms) yield return t; } }
 		public Form this[int index] { get { return (Form)this.ListForms[index]; } }
 		public void Add(Form item) 
 		{ 
@@ -5325,24 +5347,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListForms.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Form> ListForms 
-		{ 
-			set
-			{
-				if (_ListForms != value)
-				{
-					OnListFormsChanging();
-					_ListForms = value;
-					OnListFormsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListForms; }
-		}
-		private SortedObservableCollection<Form> _ListForms;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IForm> ListFormsI { get { foreach (var t in _ListForms) yield return t; } }
 		partial void OnListFormsChanging();
 		partial void OnListFormsChanged();
 		#endregion Properties
@@ -5633,6 +5637,24 @@ namespace vSharpStudio.vm.ViewModels
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Report> ListReports 
+		{ 
+			set
+			{
+				if (_ListReports != value)
+				{
+					OnListReportsChanging();
+					_ListReports = value;
+					OnListReportsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListReports; }
+		}
+		private SortedObservableCollection<Report> _ListReports;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IReport> ListReportsI { get { foreach (var t in _ListReports) yield return t; } }
 		public Report this[int index] { get { return (Report)this.ListReports[index]; } }
 		public void Add(Report item) 
 		{ 
@@ -5654,24 +5676,6 @@ namespace vSharpStudio.vm.ViewModels
 		    this.ListReports.Remove(item); 
 		    item.Parent = null;
 		}
-		public SortedObservableCollection<Report> ListReports 
-		{ 
-			set
-			{
-				if (_ListReports != value)
-				{
-					OnListReportsChanging();
-					_ListReports = value;
-					OnListReportsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListReports; }
-		}
-		private SortedObservableCollection<Report> _ListReports;
-		[BrowsableAttribute(false)]
-		public IEnumerable<IReport> ListReportsI { get { foreach (var t in _ListReports) yield return t; } }
 		partial void OnListReportsChanging();
 		partial void OnListReportsChanged();
 		#endregion Properties

@@ -130,6 +130,7 @@
     <Compile Include="Migration\Migration.cs" />
     <Compile Include="Migration\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaseConfig.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.cs" />
     <Compile Include="ViewModels\Catalog.cs" />
     <Compile Include="ViewModels\Catalog.Validator.cs" />

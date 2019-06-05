@@ -142,7 +142,7 @@ namespace vSharpStudio.common
 		///////////////////////////////////////////////////
 		string Description { get; }
 		IConfig ConfigNodeI { get; }
-		string RelativeConfigPath { get; }
+		string RelativeConfigFilePath { get; }
 	}
 	
 	///////////////////////////////////////////////////

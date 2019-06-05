@@ -488,21 +488,23 @@ it will override previous settings
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4; </p></td>
+                  <td><p>string name_ui = 4;
+@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
                   <td>config_node</td>
                   <td><a href="#proto_config.proto_config">proto_config</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>relative_config_path</td>
+                  <td>relative_config_file_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -547,7 +549,8 @@ it will override previous settings
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -751,7 +754,8 @@ it will override previous settings
                   <td>data_type</td>
                   <td><a href="#proto_config.proto_data_type">proto_data_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -775,7 +779,8 @@ it will override previous settings
                   <td>data_type_enum</td>
                   <td><a href="#proto_config.proto_enum_data_type">proto_enum_data_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)][DisplayName(&#34;Type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -796,14 +801,16 @@ it will override previous settings
                   <td>is_positive</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)][DisplayName(&#34;Is positive&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Is positive&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -848,7 +855,8 @@ it will override previous settings
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -928,7 +936,8 @@ it will override previous settings
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -942,14 +951,16 @@ it will override previous settings
                   <td>data_type_enum</td>
                   <td><a href="#proto_config.enum_enumeration_type">enum_enumeration_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>list_enumeration_pairs</td>
                   <td><a href="#proto_config.proto_enumeration_pair">proto_enumeration_pair</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [DisplayName(&#34;Elements&#34;)][NewItemTypes(typeof(EnumerationPair))] </p></td>
+                  <td><p>@attr [DisplayName(&#34;Elements&#34;)]
+@attr [NewItemTypes(typeof(EnumerationPair))] </p></td>
                 </tr>
               
             </tbody>
@@ -994,7 +1005,8 @@ it will override previous settings
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1053,7 +1065,8 @@ it will override previous settings
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1108,7 +1121,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1226,7 +1240,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1285,7 +1300,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1344,7 +1360,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1403,7 +1420,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1462,7 +1480,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1522,7 +1541,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1613,7 +1633,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1672,7 +1693,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1731,7 +1753,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1791,7 +1814,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2028,7 +2052,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2094,7 +2119,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2108,7 +2134,9 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>data_type</td>
                   <td><a href="#proto_config.proto_data_type">proto_data_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -2153,7 +2181,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>

@@ -8,7 +8,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListConfigTrees.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigs.Count,nq}")]
     public partial class GroupListBaseConfigs : ICanAddSubNode, ICanGoRight
     {
         //[BrowsableAttribute(false)]

@@ -105,9 +105,9 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
-| config_node | [proto_config](#proto_config.proto_config) |  |  |
-| relative_config_path | [string](#string) |  |  |
+| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| config_node | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
+| relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] |
 
 
 
@@ -125,7 +125,7 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
@@ -177,7 +177,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] |
+| data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] |
 
 
 
@@ -192,11 +192,11 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)][DisplayName(&#34;Type&#34;)] |
+| data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
-| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Is positive&#34;)] |
-| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(2)][Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
+| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Is positive&#34;)] |
+| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
 
 
 
@@ -214,7 +214,7 @@ Constant application wise value
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
@@ -237,10 +237,10 @@ Constant application wise value
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | @attr [PropertyOrderAttribute(4)][DisplayName(&#34;Type&#34;)] |
-| list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)][NewItemTypes(typeof(EnumerationPair))] |
+| data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Type&#34;)] |
+| list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)] @attr [NewItemTypes(typeof(EnumerationPair))] |
 
 
 
@@ -258,7 +258,7 @@ Constant application wise value
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | value | [string](#string) |  | TODO struct for different types, at least INTEGER |
 
@@ -278,7 +278,7 @@ Constant application wise value
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)]
 
 repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; |
@@ -299,7 +299,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
@@ -339,7 +339,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -359,7 +359,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_constants | [proto_constant](#proto_config.proto_constant) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -379,7 +379,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -399,7 +399,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -419,7 +419,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_forms | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
@@ -439,7 +439,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
@@ -475,7 +475,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -495,7 +495,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties_tabs | [proto_properties_tab](#proto_config.proto_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -515,7 +515,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
 
@@ -535,7 +535,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
 
@@ -614,7 +614,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_subtabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
@@ -635,9 +635,9 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)][ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] |
+| data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Type&#34;)] |
 
 
 
@@ -655,7 +655,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)]
 
 repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; |
