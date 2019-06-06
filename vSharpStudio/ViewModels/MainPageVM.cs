@@ -221,6 +221,17 @@ namespace vSharpStudio.ViewModels
         //    }
         //}
         //List<IvPlugin> _ListDbMigrators;
+        public string SolutionPath
+        {
+            set
+            {
+                _SolutionPath = value;
+                NotifyPropertyChanged();
+                //ValidateProperty();
+            }
+            get { return _SolutionPath; }
+        }
+        private string _SolutionPath;
         public Config Model
         {
             set

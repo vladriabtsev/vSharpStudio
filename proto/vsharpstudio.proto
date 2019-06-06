@@ -86,8 +86,8 @@ message proto_settings_config {
 
 enum db_id_generator_method
 {
-    ColumnIdentity = 0;
-    HiLoSequence = 1;
+    Identity = 0;
+    HiLo = 1;
 }
 // General DB settings
 // @base : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 namespace vSharpStudio.common
 {
 	public enum DbIdGeneratorMethod {
-		ColumnIdentity = 0,
-		HiLoSequence = 1,
+		Identity = 0,
+		HiLo = 1,
 	}
 	public enum EnumDataType {
 		STRING = 0,

@@ -16,12 +16,12 @@
           "description": "",
           "values": [
             {
-              "name": "ColumnIdentity",
+              "name": "Identity",
               "number": "0",
               "description": ""
             },
             {
-              "name": "HiLoSequence",
+              "name": "HiLo",
               "number": "1",
               "description": ""
             }

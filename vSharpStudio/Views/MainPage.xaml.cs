@@ -23,6 +23,7 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class MainPage : UserControl
     {
+        public static MainPageVM MainPageVM;
         private MainPageVM _model = null;
         public MainPage()
         {
@@ -34,12 +35,14 @@ namespace vSharpStudio.Views
             _model.Compose();
             this.DataContext = _model;
 #else
+            _model = new MainPageVM();
             Task task = Task.Run(() =>
             {
-                _model = new MainPageVM();
+                _model.Compose();
                 this.DataContext = _model;
             });
 #endif
+            MainPage.MainPageVM = _model;
         }
     }
 }

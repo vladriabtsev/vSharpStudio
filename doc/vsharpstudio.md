@@ -710,8 +710,8 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ColumnIdentity | 0 |  |
-| HiLoSequence | 1 |  |
+| Identity | 0 |  |
+| HiLo | 1 |  |
 
 
 
