@@ -18,22 +18,27 @@
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
+    - [proto_group_list_common](#proto_config.proto_group_list_common)
     - [proto_group_list_constants](#proto_config.proto_group_list_constants)
     - [proto_group_list_documents](#proto_config.proto_group_list_documents)
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
     - [proto_group_list_forms](#proto_config.proto_group_list_forms)
     - [proto_group_list_journals](#proto_config.proto_group_list_journals)
+    - [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms)
     - [proto_group_list_plugins](#proto_config.proto_group_list_plugins)
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
+    - [proto_group_list_roles](#proto_config.proto_group_list_roles)
     - [proto_journal](#proto_config.proto_journal)
+    - [proto_main_view_form](#proto_config.proto_main_view_form)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
+    - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [string_nullable](#proto_config.string_nullable)
   
@@ -153,6 +158,7 @@ Configuration config
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
+| group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [BrowsableAttribute(false)] |
@@ -348,6 +354,27 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_list_common"></a>
+
+### proto_group_list_common
+Common parameters section
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| group_roles | [proto_group_list_roles](#proto_config.proto_group_list_roles) |  | @attr [BrowsableAttribute(false)] |
+| group_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_constants"></a>
 
 ### proto_group_list_constants
@@ -448,6 +475,26 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_list_main_view_forms"></a>
+
+### proto_group_list_main_view_forms
+main view forms hierarchy node with children
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| list_main_view_forms | [proto_main_view_form](#proto_config.proto_main_view_form) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_plugins"></a>
 
 ### proto_group_list_plugins
@@ -478,6 +525,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
+| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [Editable(false)] |
 
 
 
@@ -524,6 +572,26 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
+<a name="proto_config.proto_group_list_roles"></a>
+
+### proto_group_list_roles
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -538,6 +606,26 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_main_view_form"></a>
+
+### proto_main_view_form
+main view forms hierarchy parent
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| group_list_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -638,6 +726,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Type&#34;)] |
+| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [Editable(false)] |
 
 
 
@@ -659,6 +748,25 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)]
 
 repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; |
+
+
+
+
+
+
+<a name="proto_config.proto_role"></a>
+
+### proto_role
+User&#39;s role
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 
 
 

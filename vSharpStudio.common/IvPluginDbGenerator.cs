@@ -16,10 +16,8 @@ namespace vSharpStudio.common
     public interface IvPluginDbGenerator : IvPluginGenerator
     {
         ILoggerFactory LoggerFactory { set; get; }
-        string ConnectionString { set; get; }
-        bool CreateDb();
         int GetMigrationVersion();
-        DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
+        //DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
         //void UpdateToModel(IModel model);
 
         /// <summary>
@@ -27,6 +25,10 @@ namespace vSharpStudio.common
         /// </summary>
         /// <returns>json version of IConfig</returns>
         string GetLastModel();
-        bool UpdateToModel(IConfig model, string protoModel);
+        void UpdateToModel(string connectionString, Action<Exception> onError, Func<bool> onDbCreate, Func<string, IConfig> onCreatePrevIConfig, IConfig model);
+        //void Backup(string filePath);
+        //void Restore(string filePath);
+        //void Export(string filePath);
+        //void Import(string filePath);
     }
 }

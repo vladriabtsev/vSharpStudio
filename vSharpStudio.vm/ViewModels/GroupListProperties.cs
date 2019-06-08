@@ -42,6 +42,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property();
             this.Add(node);
+            //TODO can be more economical?
+            if (this.LastGenPosition == 0)
+                this.LastGenPosition = 1;
+            this.LastGenPosition++;
+            node.Position = this.LastGenPosition;
             GetUniqueName(Property.DefaultName, node, this.ListProperties);
             SetSelected(node);
             return node;

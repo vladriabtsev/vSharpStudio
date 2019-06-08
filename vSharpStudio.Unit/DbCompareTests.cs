@@ -74,14 +74,14 @@ namespace vSharpStudio.Unit
                 var cfg = mvm.Model;
                 configCreation(cfg);
 
-                mvm.SelectedDbDesignPlugin.ConnectionString = mvm.ConnectionString;
+                //mvm.SelectedDbDesignPlugin.ConnectionString = mvm.ConnectionString;
 
                 //var model = mvm.GetEfModel();
                 //// Migrate DB
                 //mvm.SelectedDbDesignPlugin.UpdateToModel(model);
 
-                var m = mvm.SelectedDbDesignPlugin.GetDbModel(new List<string>(), new List<string>());
-                assert(m);
+                //var m = mvm.SelectedDbDesignPlugin.GetDbModel(new List<string>(), new List<string>());
+                //assert(m);
             });
         }
     }

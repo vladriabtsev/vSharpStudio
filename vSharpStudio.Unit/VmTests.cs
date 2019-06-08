@@ -127,6 +127,8 @@ namespace vSharpStudio.Unit
             Config.ConfigValidator.Reset();
             Catalog.CatalogValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\";
+
             var c = new Catalog() { Name = "test" };
 
             Assert.IsTrue(c.Parent == null);
@@ -186,6 +188,8 @@ namespace vSharpStudio.Unit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\";
+
             string mes1 = "test error message";
             string mes2 = "test error message2";
 
@@ -221,5 +225,25 @@ namespace vSharpStudio.Unit
         }
         #endregion Validatable
 
+        #region Property unique position for Protobuf
+        [TestMethod]
+        public void Property001_Position()
+        {
+            var cfg = new Config();
+            cfg.GroupCatalogs.NodeAddNewSubNode();
+            cfg.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[0].Position == 2);
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 2);
+            cfg.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[1].Position == 3);
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            cfg.GroupCatalogs[0].GroupProperties[0].NodeRemove();
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[0].Position == 3);
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            cfg.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[1].Position == 4);
+            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
+        }
+        #endregion Property unique position for Protobuf
     }
 }

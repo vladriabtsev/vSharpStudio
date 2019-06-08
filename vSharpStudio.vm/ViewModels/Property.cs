@@ -92,7 +92,13 @@ namespace vSharpStudio.vm.ViewModels
             if (!(this.Parent is GroupListProperties))
                 throw new Exception();
             var node = new Property();
-            (this.Parent as GroupListProperties).Add(node);
+            var glp = (this.Parent as GroupListProperties);
+            glp.Add(node);
+            //TODO can be more economical?
+            if (glp.LastGenPosition == 0)
+                glp.LastGenPosition = 1;
+            glp.LastGenPosition++;
+            node.Position = glp.LastGenPosition;
             GetUniqueName(Property.DefaultName, node, (this.Parent as GroupListProperties).ListProperties);
             SetSelected(node);
             return node;

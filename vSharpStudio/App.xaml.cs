@@ -18,13 +18,11 @@ namespace vSharpStudio
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             MainWindow wnd = new MainWindow();
-
+            wnd.Show();
             if (e.Args.Length == 1)
             {
-                if (Directory.Exists(e.Args[0]))
-                    MainPage.MainPageVM.SolutionPath = e.Args[0];
+                MainPage.MainPageVM.Model.SolutionPath = e.Args[0];
             }
-            wnd.Show();
         }
     }
 }

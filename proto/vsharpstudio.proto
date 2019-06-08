@@ -169,6 +169,8 @@ message proto_config {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_base_configs group_configs = 100;
     // @attr [BrowsableAttribute(false)]
+    proto_group_list_common group_common = 106;
+    // @attr [BrowsableAttribute(false)]
     proto_group_list_constants group_constants = 101;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_enumerations group_enumerations = 102;
@@ -215,6 +217,75 @@ message proto_data_type {
 }
 /** 
  * @exclude
+ * ####################################### C O M M O N ##########################################
+ */
+// Common parameters section
+message proto_group_list_common {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_roles group_roles = 7;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_main_view_forms group_view_forms = 8;
+}
+// User's role
+message proto_role {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+}
+message proto_group_list_roles {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_role list_roles = 6;
+}
+// main view forms hierarchy parent
+message proto_main_view_form {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_main_view_forms group_list_view_forms = 6;
+}
+// main view forms hierarchy node with children
+message proto_group_list_main_view_forms {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_main_view_form list_main_view_forms = 6;
+}
+/** 
+ * @exclude
  * ####################################### P R O P E R T Y ##########################################
  */
 message proto_group_list_properties_tabs {
@@ -254,6 +325,9 @@ message proto_group_list_properties {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_property list_properties = 6;
+    // Last generated Protobuf field position
+    // @attr [Editable(false)]
+    uint32 last_gen_position = 7;
 }
 message proto_property {
     string guid = 1;
@@ -268,6 +342,10 @@ message proto_property {
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Type")]
     proto_data_type data_type = 6;
+    // Protobuf field position
+    // Reserved positions: 1 - primary key
+    // @attr [Editable(false)]
+    uint32 position = 7;
 }
 /** 
  * @exclude

@@ -114,6 +114,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             Assert.True(cfg.ValidationCollection != null);
             Assert.True(cfg.ValidationCollection.Count == 0);
         }
@@ -122,6 +123,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes = "test error message";
             Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Error);
             cfg.Validate();
@@ -136,6 +138,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes = "test warning message";
             Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Warning);
             cfg.Validate();
@@ -150,6 +153,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes = "test info message";
             Config.ConfigValidator.Validator.RuleFor(x => x).Null().WithMessage(mes).WithSeverity(Severity.Info);
             cfg.Validate();
@@ -164,6 +168,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes1 = "test error message";
             string mes2 = "test warning message";
             string mes3 = "test info message";
@@ -193,6 +198,7 @@ namespace vSharpStudio.xUnit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes1 = "test error message";
             string mes2 = "test error message2";
 
@@ -212,10 +218,11 @@ namespace vSharpStudio.xUnit
             Assert.True(p.Model == cfg);
         }
         [Fact]
-        public void Validation006_CanSortByWeight2()
+        public void Validation007_CanSortByWeight2()
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
+            cfg.SolutionPath = @"..\..\..\..\";
             string mes1 = "test error message";
             string mes2 = "test error message2";
 

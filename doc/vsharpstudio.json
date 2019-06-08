@@ -495,6 +495,16 @@
               "defaultValue": ""
             },
             {
+              "name": "group_common",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_common",
+              "longType": "proto_group_list_common",
+              "fullType": "proto_config.proto_group_list_common",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_constants",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1206,6 +1216,87 @@
           ]
         },
         {
+          "name": "proto_group_list_common",
+          "longName": "proto_group_list_common",
+          "fullName": "proto_config.proto_group_list_common",
+          "description": "Common parameters section",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_roles",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_roles",
+              "longType": "proto_group_list_roles",
+              "fullType": "proto_config.proto_group_list_roles",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_view_forms",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_main_view_forms",
+              "longType": "proto_group_list_main_view_forms",
+              "fullType": "proto_config.proto_group_list_main_view_forms",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_constants",
           "longName": "proto_group_list_constants",
           "fullName": "proto_config.proto_group_list_constants",
@@ -1561,6 +1652,77 @@
           ]
         },
         {
+          "name": "proto_group_list_main_view_forms",
+          "longName": "proto_group_list_main_view_forms",
+          "fullName": "proto_config.proto_group_list_main_view_forms",
+          "description": "main view forms hierarchy node with children",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_main_view_forms",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_main_view_form",
+              "longType": "proto_main_view_form",
+              "fullType": "proto_config.proto_main_view_form",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_plugins",
           "longName": "proto_group_list_plugins",
           "fullName": "proto_config.proto_group_list_plugins",
@@ -1657,6 +1819,16 @@
               "type": "proto_property",
               "longType": "proto_property",
               "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_gen_position",
+              "description": "Last generated Protobuf field position\n@attr [Editable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1805,6 +1977,77 @@
           ]
         },
         {
+          "name": "proto_group_list_roles",
+          "longName": "proto_group_list_roles",
+          "fullName": "proto_config.proto_group_list_roles",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_roles",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_role",
+              "longType": "proto_role",
+              "fullType": "proto_config.proto_role",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
@@ -1870,6 +2113,77 @@
               "type": "proto_document",
               "longType": "proto_document",
               "fullType": "proto_config.proto_document",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_main_view_form",
+          "longName": "proto_main_view_form",
+          "fullName": "proto_config.proto_main_view_form",
+          "description": "main view forms hierarchy parent",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_list_view_forms",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_main_view_forms",
+              "longType": "proto_group_list_main_view_forms",
+              "fullType": "proto_config.proto_group_list_main_view_forms",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2227,6 +2541,16 @@
               "fullType": "proto_config.proto_data_type",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "position",
+              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [Editable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -2282,6 +2606,67 @@
             {
               "name": "description",
               "description": "@attr [PropertyOrderAttribute(3)]\n\nrepeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role",
+          "longName": "proto_role",
+          "fullName": "proto_config.proto_role",
+          "description": "User's role",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",

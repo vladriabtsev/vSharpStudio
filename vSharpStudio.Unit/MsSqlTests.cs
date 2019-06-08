@@ -53,7 +53,7 @@ namespace vSharpStudio.Unit
         }
         //#endregion Config
         [TestMethod]
-        public void Plugin003Design()
+        public void Db001CanCreateDb()
         {
             var vm = new MainPageVM(false);
             vm.Compose();
@@ -65,13 +65,24 @@ namespace vSharpStudio.Unit
             var json = cvm.Settings;
             var cvm2 = (MsSqlDesignGeneratorSettings)gen.Generator.GetSettingsMvvm(json);
             Assert.IsTrue(cvm.Name == cvm2.Name);
-
-
-
-
             var sql = cvm.GenerateCode();
             Assert.AreEqual("", sql);
         }
 
+        [TestMethod]
+        public void Db002CanCreateCatalogStructure()
+        {
+            Assert.IsTrue(false);
+        }
+        [TestMethod]
+        public void Db002CanMigrateCatalogStructure()
+        {
+            Assert.IsTrue(false);
+        }
+        [TestMethod]
+        public void Db002CanExportImport()
+        {
+            Assert.IsTrue(false);
+        }
     }
 }

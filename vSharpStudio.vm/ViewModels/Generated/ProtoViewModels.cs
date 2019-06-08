@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/06/2019 01:30:02
+// Auto generated on UTC 06/08/2019 15:18:51
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1544,6 +1544,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.DbSettings = new DbSettings();
 			this.GroupPlugins = new GroupListPlugins(this);
 			this.GroupConfigs = new GroupListBaseConfigs(this);
+			this.GroupCommon = new GroupListCommon(this);
 			this.GroupConstants = new GroupListConstants(this);
 			this.GroupEnumerations = new GroupListEnumerations(this);
 			this.GroupCatalogs = new GroupListCatalogs(this);
@@ -1557,6 +1558,7 @@ namespace vSharpStudio.vm.ViewModels
 			this.DbSettings = new DbSettings();
 			this.GroupPlugins = new GroupListPlugins(this);
 			this.GroupConfigs = new GroupListBaseConfigs(this);
+			this.GroupCommon = new GroupListCommon(this);
 			this.GroupConstants = new GroupListConstants(this);
 			this.GroupEnumerations = new GroupListEnumerations(this);
 			this.GroupCatalogs = new GroupListCatalogs(this);
@@ -1587,6 +1589,8 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.Clone(from.GroupConfigs, isDeep);
 		    if (isDeep)
+		        vm.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.Clone(from.GroupCommon, isDeep);
+		    if (isDeep)
 		        vm.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.Clone(from.GroupConstants, isDeep);
 		    if (isDeep)
 		        vm.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(from.GroupEnumerations, isDeep);
@@ -1614,6 +1618,8 @@ namespace vSharpStudio.vm.ViewModels
 		        GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
 		    if (isDeep)
 		        GroupListBaseConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
+		    if (isDeep)
+		        GroupListCommon.Update(to.GroupCommon, from.GroupCommon, isDeep);
 		    if (isDeep)
 		        GroupListConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
 		    if (isDeep)
@@ -1655,6 +1661,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
 		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
 		    vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
+		    vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon);
 		    vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
 		    vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
 		    vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs);
@@ -1676,6 +1683,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto(vm.DbSettings);
 		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToProto(vm.GroupConfigs);
+		    m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto(vm.GroupCommon);
 		    m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto(vm.GroupConstants);
 		    m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto(vm.GroupEnumerations);
 		    m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto(vm.GroupCatalogs);
@@ -1688,6 +1696,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
+			this.GroupCommon.AcceptConfigNode(visitor);
 			this.GroupConstants.AcceptConfigNode(visitor);
 			this.GroupEnumerations.AcceptConfigNode(visitor);
 			this.GroupCatalogs.AcceptConfigNode(visitor);
@@ -1804,6 +1813,27 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListBaseConfigs GroupConfigsI { get { return _GroupConfigs; }}
 		partial void OnGroupConfigsChanging();
 		partial void OnGroupConfigsChanged();
+		[BrowsableAttribute(false)]
+		public GroupListCommon GroupCommon
+		{ 
+			set
+			{
+				if (_GroupCommon != value)
+				{
+					OnGroupCommonChanging();
+		            _GroupCommon = value;
+					OnGroupCommonChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupCommon; }
+		}
+		private GroupListCommon _GroupCommon;
+		[BrowsableAttribute(false)]
+		public IGroupListCommon GroupCommonI { get { return _GroupCommon; }}
+		partial void OnGroupCommonChanging();
+		partial void OnGroupCommonChanged();
 		[BrowsableAttribute(false)]
 		public GroupListConstants GroupConstants
 		{ 
@@ -2080,6 +2110,861 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ObjectGuid = "";
 		partial void OnObjectGuidChanging();
 		partial void OnObjectGuidChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// Common parameters section
+	///////////////////////////////////////////////////
+	public partial class GroupListCommon : ConfigObjectBase<GroupListCommon, GroupListCommon.GroupListCommonValidator>, IComparable<GroupListCommon>, IAccept, IGroupListCommon
+	{
+		public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { }
+		#region CTOR
+		public GroupListCommon() : base(GroupListCommonValidator.Validator)
+		{
+			this.GroupRoles = new GroupListRoles(this);
+			this.GroupViewForms = new GroupListMainViewForms(this);
+			OnInit();
+		}
+		public GroupListCommon(ITreeConfigNode parent) : base(GroupListCommonValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.GroupRoles = new GroupListRoles(this);
+			this.GroupViewForms = new GroupListMainViewForms(this);
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static GroupListCommon Clone(GroupListCommon from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupListCommon vm = new GroupListCommon();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.Clone(from.GroupRoles, isDeep);
+		    if (isDeep)
+		        vm.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(from.GroupViewForms, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupListCommon to, GroupListCommon from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    if (isDeep)
+		        GroupListRoles.Update(to.GroupRoles, from.GroupRoles, isDeep);
+		    if (isDeep)
+		        GroupListMainViewForms.Update(to.GroupViewForms, from.GroupViewForms, isDeep);
+		}
+		#region IEditable
+		public override GroupListCommon Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupListCommon.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupListCommon from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupListCommon.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_list_common' to 'GroupListCommon'
+		public static GroupListCommon ConvertToVM(Proto.Config.proto_group_list_common m, GroupListCommon vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupListCommon();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToVM(m.GroupRoles, vm.GroupRoles);
+		    vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupViewForms, vm.GroupViewForms);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupListCommon' to 'proto_group_list_common'
+		public static Proto.Config.proto_group_list_common ConvertToProto(GroupListCommon vm)
+		{
+		    Proto.Config.proto_group_list_common m = new Proto.Config.proto_group_list_common();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    m.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToProto(vm.GroupRoles);
+		    m.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto(vm.GroupViewForms);
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.GroupRoles.AcceptConfigNode(visitor);
+			this.GroupViewForms.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public GroupListRoles GroupRoles
+		{ 
+			set
+			{
+				if (_GroupRoles != value)
+				{
+					OnGroupRolesChanging();
+		            _GroupRoles = value;
+					OnGroupRolesChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupRoles; }
+		}
+		private GroupListRoles _GroupRoles;
+		[BrowsableAttribute(false)]
+		public IGroupListRoles GroupRolesI { get { return _GroupRoles; }}
+		partial void OnGroupRolesChanging();
+		partial void OnGroupRolesChanged();
+		[BrowsableAttribute(false)]
+		public GroupListMainViewForms GroupViewForms
+		{ 
+			set
+			{
+				if (_GroupViewForms != value)
+				{
+					OnGroupViewFormsChanging();
+		            _GroupViewForms = value;
+					OnGroupViewFormsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupViewForms; }
+		}
+		private GroupListMainViewForms _GroupViewForms;
+		[BrowsableAttribute(false)]
+		public IGroupListMainViewForms GroupViewFormsI { get { return _GroupViewForms; }}
+		partial void OnGroupViewFormsChanging();
+		partial void OnGroupViewFormsChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// User's role
+	///////////////////////////////////////////////////
+	public partial class Role : ConfigObjectBase<Role, Role.RoleValidator>, IComparable<Role>, IAccept, IRole
+	{
+		public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { }
+		#region CTOR
+		public Role() : base(RoleValidator.Validator)
+		{
+			OnInit();
+		}
+		public Role(ITreeConfigNode parent) : base(RoleValidator.Validator)
+	    {
+	        this.Parent = parent;
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static Role Clone(Role from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    Role vm = new Role();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(Role to, Role from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		}
+		#region IEditable
+		public override Role Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return Role.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(Role from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    Role.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_role' to 'Role'
+		public static Role ConvertToVM(Proto.Config.proto_role m, Role vm = null)
+		{
+		    if (vm == null)
+		        vm = new Role();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'Role' to 'proto_role'
+		public static Proto.Config.proto_role ConvertToProto(Role vm)
+		{
+		    Proto.Config.proto_role m = new Proto.Config.proto_role();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		#endregion Properties
+	}
+	public partial class GroupListRoles : ConfigObjectBase<GroupListRoles, GroupListRoles.GroupListRolesValidator>, IComparable<GroupListRoles>, IAccept, IGroupListRoles
+	{
+		public partial class GroupListRolesValidator : ValidatorBase<GroupListRoles, GroupListRolesValidator> { }
+		#region CTOR
+		public GroupListRoles() : base(GroupListRolesValidator.Validator)
+		{
+			this.ListRoles = new SortedObservableCollection<Role>();
+			OnInit();
+		}
+		public GroupListRoles(ITreeConfigNode parent) : base(GroupListRolesValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.ListRoles = new SortedObservableCollection<Role>();
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(Role))
+		    {
+		        this.ListRoles.Sort();
+		    }
+		}
+		public static GroupListRoles Clone(GroupListRoles from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupListRoles vm = new GroupListRoles();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    vm.ListRoles = new SortedObservableCollection<Role>();
+		    foreach(var t in from.ListRoles)
+		        vm.ListRoles.Add(vSharpStudio.vm.ViewModels.Role.Clone((Role)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupListRoles to, GroupListRoles from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListRoles.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListRoles)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.Role.Update((Role)t, (Role)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListRoles.Remove(t);
+		        }
+		        foreach(var tt in from.ListRoles)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListRoles.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new Role();
+		                vSharpStudio.vm.ViewModels.Role.Update(p, (Role)tt, isDeep);
+		                to.ListRoles.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupListRoles Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupListRoles.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupListRoles from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupListRoles.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_list_roles' to 'GroupListRoles'
+		public static GroupListRoles ConvertToVM(Proto.Config.proto_group_list_roles m, GroupListRoles vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupListRoles();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vm.ListRoles = new SortedObservableCollection<Role>();
+		    foreach(var t in m.ListRoles)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.Role.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListRoles.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupListRoles' to 'proto_group_list_roles'
+		public static Proto.Config.proto_group_list_roles ConvertToProto(GroupListRoles vm)
+		{
+		    Proto.Config.proto_group_list_roles m = new Proto.Config.proto_group_list_roles();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    foreach(var t in vm.ListRoles)
+		        m.ListRoles.Add(vSharpStudio.vm.ViewModels.Role.ConvertToProto((Role)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListRoles)
+				(t as Role).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<Role> ListRoles 
+		{ 
+			set
+			{
+				if (_ListRoles != value)
+				{
+					OnListRolesChanging();
+					_ListRoles = value;
+					OnListRolesChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListRoles; }
+		}
+		private SortedObservableCollection<Role> _ListRoles;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IRole> ListRolesI { get { foreach (var t in _ListRoles) yield return t; } }
+		public Role this[int index] { get { return (Role)this.ListRoles[index]; } }
+		public void Add(Role item) 
+		{ 
+		    this.ListRoles.Add(item); 
+		    item.Parent = this;
+		}
+		public void AddRange(IEnumerable<Role> items) 
+		{ 
+		    this.ListRoles.AddRange(items); 
+		    foreach(var t in items)
+		        t.Parent = this;
+		}
+		public int Count() 
+		{ 
+		    return this.ListRoles.Count; 
+		}
+		public void Remove(Role item) 
+		{
+		    this.ListRoles.Remove(item); 
+		    item.Parent = null;
+		}
+		partial void OnListRolesChanging();
+		partial void OnListRolesChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// main view forms hierarchy parent
+	///////////////////////////////////////////////////
+	public partial class MainViewForm : ConfigObjectBase<MainViewForm, MainViewForm.MainViewFormValidator>, IComparable<MainViewForm>, IAccept, IMainViewForm
+	{
+		public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { }
+		#region CTOR
+		public MainViewForm() : base(MainViewFormValidator.Validator)
+		{
+			this.GroupListViewForms = new GroupListMainViewForms(this);
+			OnInit();
+		}
+		public MainViewForm(ITreeConfigNode parent) : base(MainViewFormValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.GroupListViewForms = new GroupListMainViewForms(this);
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static MainViewForm Clone(MainViewForm from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    MainViewForm vm = new MainViewForm();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    if (isDeep)
+		        vm.GroupListViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(from.GroupListViewForms, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(MainViewForm to, MainViewForm from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    if (isDeep)
+		        GroupListMainViewForms.Update(to.GroupListViewForms, from.GroupListViewForms, isDeep);
+		}
+		#region IEditable
+		public override MainViewForm Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return MainViewForm.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(MainViewForm from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    MainViewForm.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_main_view_form' to 'MainViewForm'
+		public static MainViewForm ConvertToVM(Proto.Config.proto_main_view_form m, MainViewForm vm = null)
+		{
+		    if (vm == null)
+		        vm = new MainViewForm();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, vm.GroupListViewForms);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'MainViewForm' to 'proto_main_view_form'
+		public static Proto.Config.proto_main_view_form ConvertToProto(MainViewForm vm)
+		{
+		    Proto.Config.proto_main_view_form m = new Proto.Config.proto_main_view_form();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    m.GroupListViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto(vm.GroupListViewForms);
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.GroupListViewForms.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public GroupListMainViewForms GroupListViewForms
+		{ 
+			set
+			{
+				if (_GroupListViewForms != value)
+				{
+					OnGroupListViewFormsChanging();
+		            _GroupListViewForms = value;
+					OnGroupListViewFormsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupListViewForms; }
+		}
+		private GroupListMainViewForms _GroupListViewForms;
+		[BrowsableAttribute(false)]
+		public IGroupListMainViewForms GroupListViewFormsI { get { return _GroupListViewForms; }}
+		partial void OnGroupListViewFormsChanging();
+		partial void OnGroupListViewFormsChanged();
+		#endregion Properties
+	}
+	
+	///////////////////////////////////////////////////
+	/// main view forms hierarchy node with children
+	///////////////////////////////////////////////////
+	public partial class GroupListMainViewForms : ConfigObjectBase<GroupListMainViewForms, GroupListMainViewForms.GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IAccept, IGroupListMainViewForms
+	{
+		public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { }
+		#region CTOR
+		public GroupListMainViewForms() : base(GroupListMainViewFormsValidator.Validator)
+		{
+			this.ListMainViewForms = new SortedObservableCollection<MainViewForm>();
+			OnInit();
+		}
+		public GroupListMainViewForms(ITreeConfigNode parent) : base(GroupListMainViewFormsValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.ListMainViewForms = new SortedObservableCollection<MainViewForm>();
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    if (type == typeof(MainViewForm))
+		    {
+		        this.ListMainViewForms.Sort();
+		    }
+		}
+		public static GroupListMainViewForms Clone(GroupListMainViewForms from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    GroupListMainViewForms vm = new GroupListMainViewForms();
+		    vm.Guid = from.Guid;
+		    vm.Name = from.Name;
+		    vm.SortingValue = from.SortingValue;
+		    vm.NameUi = from.NameUi;
+		    vm.Description = from.Description;
+		    vm.ListMainViewForms = new SortedObservableCollection<MainViewForm>();
+		    foreach(var t in from.ListMainViewForms)
+		        vm.ListMainViewForms.Add(vSharpStudio.vm.ViewModels.MainViewForm.Clone((MainViewForm)t, isDeep));
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(GroupListMainViewForms to, GroupListMainViewForms from, bool isDeep = true)
+		{
+		    to.Guid = from.Guid;
+		    to.Name = from.Name;
+		    to.SortingValue = from.SortingValue;
+		    to.NameUi = from.NameUi;
+		    to.Description = from.Description;
+		    if (isDeep)
+		    {
+		        foreach(var t in to.ListMainViewForms.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListMainViewForms)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    vSharpStudio.vm.ViewModels.MainViewForm.Update((MainViewForm)t, (MainViewForm)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListMainViewForms.Remove(t);
+		        }
+		        foreach(var tt in from.ListMainViewForms)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListMainViewForms.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new MainViewForm();
+		                vSharpStudio.vm.ViewModels.MainViewForm.Update(p, (MainViewForm)tt, isDeep);
+		                to.ListMainViewForms.Add(p);
+		            }
+		        }
+		    }
+		}
+		#region IEditable
+		public override GroupListMainViewForms Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return GroupListMainViewForms.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(GroupListMainViewForms from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    GroupListMainViewForms.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_group_list_main_view_forms' to 'GroupListMainViewForms'
+		public static GroupListMainViewForms ConvertToVM(Proto.Config.proto_group_list_main_view_forms m, GroupListMainViewForms vm = null)
+		{
+		    if (vm == null)
+		        vm = new GroupListMainViewForms();
+		    vm.Guid = m.Guid;
+		    vm.Name = m.Name;
+		    vm.SortingValue = m.SortingValue;
+		    vm.NameUi = m.NameUi;
+		    vm.Description = m.Description;
+		    vm.ListMainViewForms = new SortedObservableCollection<MainViewForm>();
+		    foreach(var t in m.ListMainViewForms)
+		    {
+		        var tvm = vSharpStudio.vm.ViewModels.MainViewForm.ConvertToVM(t);
+		        tvm.Parent = vm;
+		        vm.ListMainViewForms.Add(tvm);
+		    }
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'GroupListMainViewForms' to 'proto_group_list_main_view_forms'
+		public static Proto.Config.proto_group_list_main_view_forms ConvertToProto(GroupListMainViewForms vm)
+		{
+		    Proto.Config.proto_group_list_main_view_forms m = new Proto.Config.proto_group_list_main_view_forms();
+		    m.Guid = vm.Guid;
+		    m.Name = vm.Name;
+		    m.SortingValue = vm.SortingValue;
+		    m.NameUi = vm.NameUi;
+		    m.Description = vm.Description;
+		    foreach(var t in vm.ListMainViewForms)
+		        m.ListMainViewForms.Add(vSharpStudio.vm.ViewModels.MainViewForm.ConvertToProto((MainViewForm)t));
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			foreach(var t in this.ListMainViewForms)
+				(t as MainViewForm).AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(3)]
+		public string Description
+		{ 
+			set
+			{
+				if (_Description != value)
+				{
+					OnDescriptionChanging();
+					_Description = value;
+					OnDescriptionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Description; }
+		}
+		private string _Description = "";
+		partial void OnDescriptionChanging();
+		partial void OnDescriptionChanged();
+		[BrowsableAttribute(false)]
+		public SortedObservableCollection<MainViewForm> ListMainViewForms 
+		{ 
+			set
+			{
+				if (_ListMainViewForms != value)
+				{
+					OnListMainViewFormsChanging();
+					_ListMainViewForms = value;
+					OnListMainViewFormsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListMainViewForms; }
+		}
+		private SortedObservableCollection<MainViewForm> _ListMainViewForms;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IMainViewForm> ListMainViewFormsI { get { foreach (var t in _ListMainViewForms) yield return t; } }
+		public MainViewForm this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
+		public void Add(MainViewForm item) 
+		{ 
+		    this.ListMainViewForms.Add(item); 
+		    item.Parent = this;
+		}
+		public void AddRange(IEnumerable<MainViewForm> items) 
+		{ 
+		    this.ListMainViewForms.AddRange(items); 
+		    foreach(var t in items)
+		        t.Parent = this;
+		}
+		public int Count() 
+		{ 
+		    return this.ListMainViewForms.Count; 
+		}
+		public void Remove(MainViewForm item) 
+		{
+		    this.ListMainViewForms.Remove(item); 
+		    item.Parent = null;
+		}
+		partial void OnListMainViewFormsChanging();
+		partial void OnListMainViewFormsChanged();
 		#endregion Properties
 	}
 	public partial class GroupListPropertiesTabs : ConfigObjectBase<GroupListPropertiesTabs, GroupListPropertiesTabs.GroupListPropertiesTabsValidator>, IComparable<GroupListPropertiesTabs>, IAccept, IGroupListPropertiesTabs
@@ -2496,6 +3381,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.ListProperties = new SortedObservableCollection<Property>();
 		    foreach(var t in from.ListProperties)
 		        vm.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.Clone((Property)t, isDeep));
+		    vm.LastGenPosition = from.LastGenPosition;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2543,6 +3429,7 @@ namespace vSharpStudio.vm.ViewModels
 		            }
 		        }
 		    }
+		    to.LastGenPosition = from.LastGenPosition;
 		}
 		#region IEditable
 		public override GroupListProperties Backup()
@@ -2577,6 +3464,7 @@ namespace vSharpStudio.vm.ViewModels
 		        tvm.Parent = vm;
 		        vm.ListProperties.Add(tvm);
 		    }
+		    vm.LastGenPosition = m.LastGenPosition;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2591,6 +3479,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    foreach(var t in vm.ListProperties)
 		        m.ListProperties.Add(vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)t));
+		    m.LastGenPosition = vm.LastGenPosition;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -2666,6 +3555,29 @@ namespace vSharpStudio.vm.ViewModels
 		}
 		partial void OnListPropertiesChanging();
 		partial void OnListPropertiesChanged();
+		
+		///////////////////////////////////////////////////
+		/// Last generated Protobuf field position
+		///////////////////////////////////////////////////
+		[Editable(false)]
+		public uint LastGenPosition
+		{ 
+			set
+			{
+				if (_LastGenPosition != value)
+				{
+					OnLastGenPositionChanging();
+					_LastGenPosition = value;
+					OnLastGenPositionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _LastGenPosition; }
+		}
+		private uint _LastGenPosition;
+		partial void OnLastGenPositionChanging();
+		partial void OnLastGenPositionChanged();
 		#endregion Properties
 	}
 	public partial class Property : ConfigObjectBase<Property, Property.PropertyValidator>, IComparable<Property>, IAccept, IProperty
@@ -2700,6 +3612,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = from.Description;
 		    if (isDeep)
 		        vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
+		    vm.Position = from.Position;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -2713,6 +3626,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		        DataType.Update(to.DataType, from.DataType, isDeep);
+		    to.Position = from.Position;
 		}
 		#region IEditable
 		public override Property Backup()
@@ -2741,6 +3655,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, vm.DataType);
+		    vm.Position = m.Position;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -2754,6 +3669,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto(vm.DataType);
+		    m.Position = vm.Position;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -2808,6 +3724,30 @@ namespace vSharpStudio.vm.ViewModels
 		public IDataType DataTypeI { get { return _DataType; }}
 		partial void OnDataTypeChanging();
 		partial void OnDataTypeChanged();
+		
+		///////////////////////////////////////////////////
+		/// Protobuf field position
+		/// Reserved positions: 1 - primary key
+		///////////////////////////////////////////////////
+		[Editable(false)]
+		public uint Position
+		{ 
+			set
+			{
+				if (_Position != value)
+				{
+					OnPositionChanging();
+					_Position = value;
+					OnPositionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Position; }
+		}
+		private uint _Position;
+		partial void OnPositionChanging();
+		partial void OnPositionChanged();
 		#endregion Properties
 	}
 	public partial class GroupListConstants : ConfigObjectBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IAccept, IGroupListConstants
@@ -5817,6 +6757,16 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(BaseConfig p);
 		void Visit(Config p);
 		void VisitEnd(Config p);
+		void Visit(GroupListCommon p);
+		void VisitEnd(GroupListCommon p);
+		void Visit(Role p);
+		void VisitEnd(Role p);
+		void Visit(GroupListRoles p);
+		void VisitEnd(GroupListRoles p);
+		void Visit(MainViewForm p);
+		void VisitEnd(MainViewForm p);
+		void Visit(GroupListMainViewForms p);
+		void VisitEnd(GroupListMainViewForms p);
 		void Visit(GroupListPropertiesTabs p);
 		void VisitEnd(GroupListPropertiesTabs p);
 		void Visit(PropertiesTab p);
@@ -5871,6 +6821,11 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(Proto.Config.proto_base_config p);
 		void Visit(Proto.Config.proto_config p);
 		void Visit(Proto.Config.proto_data_type p);
+		void Visit(Proto.Config.proto_group_list_common p);
+		void Visit(Proto.Config.proto_role p);
+		void Visit(Proto.Config.proto_group_list_roles p);
+		void Visit(Proto.Config.proto_main_view_form p);
+		void Visit(Proto.Config.proto_group_list_main_view_forms p);
 		void Visit(Proto.Config.proto_group_list_properties_tabs p);
 		void Visit(Proto.Config.proto_properties_tab p);
 		void Visit(Proto.Config.proto_group_list_properties p);
@@ -5975,6 +6930,46 @@ namespace vSharpStudio.vm.ViewModels
 	        OnVisit(p);
 	    }
 		public void VisitEnd(DataType p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListCommon p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListCommon p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(Role p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Role p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListRoles p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListRoles p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(MainViewForm p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(MainViewForm p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(GroupListMainViewForms p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListMainViewForms p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -6247,6 +7242,56 @@ namespace vSharpStudio.vm.ViewModels
 	    }
 	    protected virtual void OnVisit(DataType p) {}
 	    protected virtual void OnVisitEnd(DataType p) {}
+		public void Visit(GroupListCommon p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListCommon p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListCommon p) {}
+	    protected virtual void OnVisitEnd(GroupListCommon p) {}
+		public void Visit(Role p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(Role p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(Role p) {}
+	    protected virtual void OnVisitEnd(Role p) {}
+		public void Visit(GroupListRoles p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListRoles p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListRoles p) {}
+	    protected virtual void OnVisitEnd(GroupListRoles p) {}
+		public void Visit(MainViewForm p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(MainViewForm p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(MainViewForm p) {}
+	    protected virtual void OnVisitEnd(MainViewForm p) {}
+		public void Visit(GroupListMainViewForms p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(GroupListMainViewForms p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(GroupListMainViewForms p) {}
+	    protected virtual void OnVisitEnd(GroupListMainViewForms p) {}
 		public void Visit(GroupListPropertiesTabs p)
 	    {
 	        OnVisit(p);

@@ -146,6 +146,7 @@
     <Compile Include="ViewModels\DataType.cs" />
     <Compile Include="ViewModels\DataType.Validator.cs" />
     <Compile Include="ViewModels\DataTypeObjectNameEditor.cs" />
+    <Compile Include="ViewModels\GroupListCommon.cs" />
     <Compile Include="ViewModels\GroupListPlugins.cs" />
     <Compile Include="ViewModels\PluginGeneratorSettings.cs" />
     <Compile Include="ViewModels\PluginGenerator.cs" />

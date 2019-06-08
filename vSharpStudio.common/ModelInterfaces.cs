@@ -168,6 +168,7 @@ namespace vSharpStudio.common
 		IDbSettings DbSettingsI { get; }
 		IGroupListPlugins GroupPluginsI { get; }
 		IGroupListBaseConfigs GroupConfigsI { get; }
+		IGroupListCommon GroupCommonI { get; }
 		IGroupListConstants GroupConstantsI { get; }
 		IGroupListEnumerations GroupEnumerationsI { get; }
 		IGroupListCatalogs GroupCatalogsI { get; }
@@ -182,6 +183,72 @@ namespace vSharpStudio.common
 		uint Accuracy { get; }
 		bool IsPositive { get; }
 		string ObjectGuid { get; }
+	}
+	
+	///////////////////////////////////////////////////
+	/// Common parameters section
+	///////////////////////////////////////////////////
+	
+	public interface IGroupListCommon
+	{
+		string Guid { get; }
+		string Name { get; }
+		ulong SortingValue { get; }
+		string NameUi { get; }
+		string Description { get; }
+		IGroupListRoles GroupRolesI { get; }
+		IGroupListMainViewForms GroupViewFormsI { get; }
+	}
+	
+	///////////////////////////////////////////////////
+	/// User's role
+	///////////////////////////////////////////////////
+	
+	public interface IRole
+	{
+		string Guid { get; }
+		string Name { get; }
+		ulong SortingValue { get; }
+		string NameUi { get; }
+		string Description { get; }
+	}
+	
+	public interface IGroupListRoles
+	{
+		string Guid { get; }
+		string Name { get; }
+		ulong SortingValue { get; }
+		string NameUi { get; }
+		string Description { get; }
+		IEnumerable<IRole> ListRolesI { get; }
+	}
+	
+	///////////////////////////////////////////////////
+	/// main view forms hierarchy parent
+	///////////////////////////////////////////////////
+	
+	public interface IMainViewForm
+	{
+		string Guid { get; }
+		string Name { get; }
+		ulong SortingValue { get; }
+		string NameUi { get; }
+		string Description { get; }
+		IGroupListMainViewForms GroupListViewFormsI { get; }
+	}
+	
+	///////////////////////////////////////////////////
+	/// main view forms hierarchy node with children
+	///////////////////////////////////////////////////
+	
+	public interface IGroupListMainViewForms
+	{
+		string Guid { get; }
+		string Name { get; }
+		ulong SortingValue { get; }
+		string NameUi { get; }
+		string Description { get; }
+		IEnumerable<IMainViewForm> ListMainViewFormsI { get; }
 	}
 	
 	public interface IGroupListPropertiesTabs
@@ -213,6 +280,11 @@ namespace vSharpStudio.common
 		string NameUi { get; }
 		string Description { get; }
 		IEnumerable<IProperty> ListPropertiesI { get; }
+		
+		///////////////////////////////////////////////////
+		/// Last generated Protobuf field position
+		///////////////////////////////////////////////////
+		uint LastGenPosition { get; }
 	}
 	
 	public interface IProperty
@@ -223,6 +295,12 @@ namespace vSharpStudio.common
 		string NameUi { get; }
 		string Description { get; }
 		IDataType DataTypeI { get; }
+		
+		///////////////////////////////////////////////////
+		/// Protobuf field position
+		/// Reserved positions: 1 - primary key
+		///////////////////////////////////////////////////
+		uint Position { get; }
 	}
 	
 	public interface IGroupListConstants

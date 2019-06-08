@@ -16,12 +16,13 @@ using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : IMigration, ICanGoLeft
     {
-        public static readonly string DefaultName = "Config";
+        //public static readonly string DefaultName = "Config";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
@@ -35,12 +36,12 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             this.GroupPlugins.Parent = this;
             this.Children.Add(this.GroupPlugins, 0);
-            //this.GroupSettings.Parent = this;
-            //this.Children.Add(this.GroupSettings, 1);
             this.GroupConfigs.Parent = this;
-            this.Children.Add(this.GroupConfigs, 5);
+            this.Children.Add(this.GroupConfigs, 4);
 
-            this.Children.Add(this, 6);
+            this.Children.Add(this, 5);
+            this.GroupCommon.Parent = this;
+            this.Children.Add(this.GroupCommon, 6);
             this.GroupConstants.Parent = this;
             this.Children.Add(this.GroupConstants, 7);
             this.GroupEnumerations.Parent = this;
@@ -51,10 +52,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDocuments, 10);
             this.GroupJournals.Parent = this;
             this.Children.Add(this.GroupJournals, 11);
-            //this.GroupConfigs.Parent = this;
-            //this.Children.Add(this.GroupConfigs, 12);
-            //this.gr.GroupJournals.Parent = this;
-            //this.Children.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
                 this.DbSettings.DbSchema = "v";
         }
@@ -168,6 +165,19 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupEnumerationsChanged() { RecreateSubNodes(); }
 
         #endregion ITreeNode
+
+        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        public string SolutionPath
+        {
+            set
+            {
+                _SolutionPath = value;
+                NotifyPropertyChanged();
+                //ValidateProperty();
+            }
+            get { return _SolutionPath; }
+        }
+        private string _SolutionPath;
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
         {

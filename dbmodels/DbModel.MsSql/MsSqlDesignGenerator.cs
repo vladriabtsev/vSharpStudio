@@ -41,9 +41,9 @@ namespace vPlugin.DbModel.MsSql
         public IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)
-                return new MsSqlConnectionSettings();
-            proto_ms_sql_connection_settings proto = proto_ms_sql_connection_settings.Parser.ParseJson(settings);
-            MsSqlConnectionSettings res = MsSqlConnectionSettings.ConvertToVM(proto);
+                return new MsSqlDesignGeneratorSettings();
+            proto_ms_sql_design_generator_settings proto = proto_ms_sql_design_generator_settings.Parser.ParseJson(settings);
+            MsSqlDesignGeneratorSettings res = MsSqlDesignGeneratorSettings.ConvertToVM(proto);
             return res;
         }
         public ILoggerFactory LoggerFactory
@@ -56,18 +56,6 @@ namespace vPlugin.DbModel.MsSql
             }
         }
         private ILoggerFactory _LoggerFactory;
-
-        public string ConnectionString { get { return _ConnectionString; } set { _ConnectionString = value; } }
-
-        //public Any Settings => throw new NotImplementedException();
-
-        //public List<IvPluginCodeGenerator> ListGenerators => throw new NotImplementedException();
-
-        private string _ConnectionString;
-        public bool CreateDb()
-        {
-            return false;
-        }
         public void SetServices(ServiceProvider serviceProvider)
         {
             this.LoggerFactory = serviceProvider.GetService<ILoggerFactory>();
@@ -90,70 +78,104 @@ namespace vPlugin.DbModel.MsSql
         {
             throw new NotImplementedException();
         }
-        public DatabaseModel GetDbModel(List<string> schemas, List<string> tables)
-        {
-            var databaseModelFactory = new SqlServerDatabaseModelFactory(
-                new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
-                    _LoggerFactory,
-                    new LoggingOptions(),
-                    MsSqlMigratorDiagnostic));
+        //public DatabaseModel GetDbModel(List<string> schemas, List<string> tables)
+        //{
+        //    var databaseModelFactory = new SqlServerDatabaseModelFactory(
+        //        new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
+        //            _LoggerFactory,
+        //            new LoggingOptions(),
+        //            MsSqlMigratorDiagnostic));
 
-            var databaseModel = databaseModelFactory.Create(this.ConnectionString, tables, schemas);
-            return databaseModel;
-        }
+        //    var databaseModel = databaseModelFactory.Create(this.ConnectionString, tables, schemas);
+        //    return databaseModel;
+        //}
         public string GetLastModel()
         {
             string res = null;
             return res;
         }
 
-        public bool UpdateToModel(IConfig model, string protoModel)
+        public void UpdateToModel(string connectionString, Action<Exception> onError, Func<bool> onDbCreate, Func<string, IConfig> onCreatePrevIConfig, IConfig model)
         {
-            if (_LoggerFactory == null)
-                throw new Exception();
-            if (_ConnectionString == null)
-                throw new Exception();
-            var dbModelFactory = new SqlServerDatabaseModelFactory(
-                                new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
-                                    _LoggerFactory,
-                                    new LoggingOptions(),
-                                    MsSqlMigratorDiagnostic));
+            try
+            {
 
-            //var typeMappingSource = new SqlServerTypeMappingSource(
-            //    new TypeMappingSourceDependencies(
-            //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
-            //        Array.Empty<ITypeMappingSourcePlugin>()
-            //    ),
-            //    new RelationalTypeMappingSourceDependencies(Array.Empty<IRelationalTypeMappingSourcePlugin>())
-            //);
+                if (_LoggerFactory == null)
+                    throw new Exception();
+                if (string.IsNullOrWhiteSpace(connectionString))
+                    throw new ArgumentException("connection string is empty");
+                if (onDbCreate==null)
+                    throw new ArgumentException("onDbCreate Action is null");
+                if (onCreatePrevIConfig == null)
+                    throw new ArgumentException("onCreatePrevIConfig Func is null");
+                if (model == null)
+                    throw new ArgumentException("model is null");
 
-            var dbModel = dbModelFactory.Create(_ConnectionString, new List<string>(), new List<string>());
-            RelationalScaffoldingModelFactory relFactory = new RelationalScaffoldingModelFactory(
-                reporter,
-                candidateNamingService,
-                pluralizer,
-                cSharpUtilities,
-                scaffoldingTypeMapper);
-            var modelSource = relFactory.Create(dbModel, true);
+                // check if DB need to be created
+                // ask and create
+                if (onDbCreate()) // create DB
+                {
 
-            //var ctx = TestHelpers.CreateContext(
-            //    TestHelpers.AddProviderOptions(new DbContextOptionsBuilder())
-            //        .UseModel(model).EnableSensitiveDataLogging().Options);
+                }
+                else
+                    return;
+                string json = null;
 
-            //var differ = new MigrationsModelDiffer(
-            //    new SqlServerTypeMappingSource(
-            //            new TypeMappingSourceDependencies(
-            //                new ValueConverterSelector(new ValueConverterSelectorDependencies()),
-            //                Array.Empty<ITypeMappingSourcePlugin>()
-            //            ),
-            //            new RelationalTypeMappingSourceDependencies(Array.Empty<IRelationalTypeMappingSourcePlugin>())),
-            //    new SqlServerMigrationsAnnotationProvider(
-            //        new MigrationsAnnotationProviderDependencies()),
-            //    changeDetector,
-            //    ctx.GetService<StateManagerDependencies>(),
-            //    ctx.GetService<CommandBatchPreparerDependencies>());
-            return true;
+                IConfig prev_model = onCreatePrevIConfig(json);
+
+
+
+
+
+
+
+                var dbModelFactory = new SqlServerDatabaseModelFactory(
+                                    new DiagnosticsLogger<DbLoggerCategory.Scaffolding>(
+                                        _LoggerFactory,
+                                        new LoggingOptions(),
+                                        MsSqlMigratorDiagnostic));
+
+                //var typeMappingSource = new SqlServerTypeMappingSource(
+                //    new TypeMappingSourceDependencies(
+                //        new ValueConverterSelector(new ValueConverterSelectorDependencies()),
+                //        Array.Empty<ITypeMappingSourcePlugin>()
+                //    ),
+                //    new RelationalTypeMappingSourceDependencies(Array.Empty<IRelationalTypeMappingSourcePlugin>())
+                //);
+
+                var dbModel = dbModelFactory.Create(connectionString, new List<string>(), new List<string>());
+                RelationalScaffoldingModelFactory relFactory = new RelationalScaffoldingModelFactory(
+                    reporter,
+                    candidateNamingService,
+                    pluralizer,
+                    cSharpUtilities,
+                    scaffoldingTypeMapper);
+                var modelSource = relFactory.Create(dbModel, true);
+
+                //var ctx = TestHelpers.CreateContext(
+                //    TestHelpers.AddProviderOptions(new DbContextOptionsBuilder())
+                //        .UseModel(model).EnableSensitiveDataLogging().Options);
+
+                //var differ = new MigrationsModelDiffer(
+                //    new SqlServerTypeMappingSource(
+                //            new TypeMappingSourceDependencies(
+                //                new ValueConverterSelector(new ValueConverterSelectorDependencies()),
+                //                Array.Empty<ITypeMappingSourcePlugin>()
+                //            ),
+                //            new RelationalTypeMappingSourceDependencies(Array.Empty<IRelationalTypeMappingSourcePlugin>())),
+                //    new SqlServerMigrationsAnnotationProvider(
+                //        new MigrationsAnnotationProviderDependencies()),
+                //    changeDetector,
+                //    ctx.GetService<StateManagerDependencies>(),
+                //    ctx.GetService<CommandBatchPreparerDependencies>());
+            }
+            catch (Exception ex)
+            {
+                if (onError != null)
+                    onError(ex);
+                else
+                    throw;
+            }
         }
-
     }
 }

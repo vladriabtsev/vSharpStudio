@@ -575,7 +575,7 @@ namespace vSharpStudio.Unit
         public void Rules002_Enumeration()
         {
             var cfg = createTree();
-
+            cfg.SolutionPath = @"..\..\..\";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
@@ -655,6 +655,7 @@ namespace vSharpStudio.Unit
         public void Rules003_Constant()
         {
             var cfg = createTree();
+            cfg.SolutionPath = @"..\..\..\";
 
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);
@@ -732,26 +733,6 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(errenum.MoveNext() == true);
             //Assert.IsTrue((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             //Assert.IsTrue(errenum.MoveNext() == false);
-        }
-        [TestMethod]
-        public void Compare001_CanNothingChanged()
-        {
-            Assert.IsTrue(false);
-        }
-        [TestMethod]
-        public void Compare002_CanFindAdded()
-        {
-            Assert.IsTrue(false);
-        }
-        [TestMethod]
-        public void Compare003_CanFindDeleted()
-        {
-            Assert.IsTrue(false);
-        }
-        [TestMethod]
-        public void Compare004_CanFindChanged()
-        {
-            Assert.IsTrue(false);
         }
         #endregion Compare Tree
     }
