@@ -1,4 +1,13 @@
 # Development workflow
+
+```mermaid
+graph TD
+    A((new project))-->B
+    A-->C
+    B-->D
+    C-->D
+```
+
 ## New project
 For new project next steps are needed:
  * Open Visual Studio

@@ -199,6 +199,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_config_short_history"><span class="badge">M</span>proto_config_short_history</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_constant"><span class="badge">M</span>proto_constant</a>
                 </li>
               
@@ -627,9 +631,10 @@ it will override previous settings
               
                 <tr>
                   <td>version</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Editable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -658,6 +663,13 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_updated</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)] </p></td>
                 </tr>
               
                 <tr>
@@ -723,6 +735,44 @@ it will override previous settings
                   <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>current_config</td>
+                  <td><a href="#proto_config.proto_config">proto_config</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prev_stable_config</td>
+                  <td><a href="#proto_config.proto_config">proto_config</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>old_stable_config</td>
+                  <td><a href="#proto_config.proto_config">proto_config</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

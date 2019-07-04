@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using FluentValidation;
+using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode
+    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode, IMutableAnnotatable
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue //, ITreeConfigNode
     {
@@ -137,6 +141,18 @@ namespace vSharpStudio.vm.ViewModels
         protected void SetNewGuid()
         {
             _Guid = System.Guid.NewGuid().ToString();
+        }
+        public string FullName
+        {
+            get
+            {
+                if (this.Parent == null)
+                    return "MainConfig." + this.Name;
+                ITreeConfigNode config = this.Parent;
+                while (config.Parent != null)
+                    config = config.Parent;
+                return (config as Config).Name + "." + this.Name;
+            }
         }
         [PropertyOrder(0)]
         public string Name
@@ -293,6 +309,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             get { return _IsExpanded; }
         }
+
         private bool _IsExpanded;
 
         #region Commands
@@ -405,5 +422,194 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion Commands
+
+        #region IMutableAnnotatable
+
+        private readonly Microsoft.EntityFrameworkCore.Internal.LazyRef<SortedDictionary<string, Annotation>> _annotations =
+            new Microsoft.EntityFrameworkCore.Internal.LazyRef<SortedDictionary<string, Annotation>>(() => new SortedDictionary<string, Annotation>());
+
+        /// <summary>
+        ///     Gets all annotations on the current object.
+        /// </summary>
+        public virtual IEnumerable<Annotation> GetAnnotations() =>
+            _annotations.HasValue
+                ? _annotations.Value.Values.Where(a => a.Value != null)
+                : Enumerable.Empty<Annotation>();
+
+        /// <summary>
+        ///     Adds an annotation to this object. Throws if an annotation with the specified name already exists.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to be added. </param>
+        /// <param name="value"> The value to be stored in the annotation. </param>
+        /// <returns> The newly added annotation. </returns>
+        public virtual Annotation AddAnnotation(string name, object value)
+        {
+            //Check.NotEmpty(name, nameof(name));
+
+            var annotation = CreateAnnotation(name, value);
+
+            return AddAnnotation(name, annotation);
+        }
+
+        /// <summary>
+        ///     Adds an annotation to this object. Throws if an annotation with the specified name already exists.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to be added. </param>
+        /// <param name="annotation"> The annotation to be added. </param>
+        /// <returns> The added annotation. </returns>
+        protected virtual Annotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        {
+            if (FindAnnotation(name) != null)
+            {
+                throw new InvalidOperationException(Microsoft.EntityFrameworkCore.Internal.CoreStrings.DuplicateAnnotation(name));
+            }
+
+            SetAnnotation(name, annotation);
+
+            return annotation;
+        }
+
+        /// <summary>
+        ///     Sets the annotation stored under the given key. Overwrites the existing annotation if an
+        ///     annotation with the specified name already exists.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to be added. </param>
+        /// <param name="value"> The value to be stored in the annotation. </param>
+        public virtual void SetAnnotation(string name, object value)
+            => SetAnnotation(name, CreateAnnotation(name, value));
+
+        /// <summary>
+        ///     Sets the annotation stored under the given key. Overwrites the existing annotation if an
+        ///     annotation with the specified name already exists.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to be added. </param>
+        /// <param name="annotation"> The annotation to be set. </param>
+        /// <returns> The annotation that was set. </returns>
+        protected virtual Annotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        {
+            var oldAnnotation = FindAnnotation(name);
+
+            _annotations.Value[name] = annotation;
+
+            return oldAnnotation != null
+                   && Equals(oldAnnotation.Value, annotation.Value)
+                ? annotation
+                : OnAnnotationSet(name, annotation, oldAnnotation);
+        }
+
+        /// <summary>
+        ///     Runs the corresponding conventions when an annotation was set or removed.
+        /// </summary>
+        /// <param name="name"> The key of the set annotation. </param>
+        /// <param name="annotation"> The annotation set. </param>
+        /// <param name="oldAnnotation"> The old annotation. </param>
+        /// <returns> The annotation that was set. </returns>
+        protected virtual Annotation OnAnnotationSet(
+            [NotNull] string name, [CanBeNull] Annotation annotation, [CanBeNull] Annotation oldAnnotation)
+            => annotation;
+
+        /// <summary>
+        ///     Adds an annotation to this object or returns the existing annotation if one with the specified name
+        ///     already exists.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to be added. </param>
+        /// <param name="value"> The value to be stored in the annotation. </param>
+        /// <returns>
+        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, the newly
+        ///     added annotation.
+        /// </returns>
+        public virtual Annotation GetOrAddAnnotation([NotNull] string name, [CanBeNull] object value)
+            => FindAnnotation(name) ?? AddAnnotation(name, value);
+
+        /// <summary>
+        ///     Gets the annotation with the given name, returning null if it does not exist.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to find. </param>
+        /// <returns>
+        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
+        /// </returns>
+        public virtual Annotation FindAnnotation(string name)
+        {
+            //Check.NotEmpty(name, nameof(name));
+
+            return !_annotations.HasValue
+                ? null
+                : _annotations.Value.TryGetValue(name, out var annotation)
+                ? annotation
+                : null;
+        }
+
+        /// <summary>
+        ///     Removes the given annotation from this object.
+        /// </summary>
+        /// <param name="name"> The annotation to remove. </param>
+        /// <returns> The annotation that was removed. </returns>
+        public virtual Annotation RemoveAnnotation(string name)
+        {
+            //Check.NotNull(name, nameof(name));
+
+            var annotation = FindAnnotation(name);
+            if (annotation == null)
+            {
+                return null;
+            }
+
+            _annotations.Value.Remove(name);
+
+            OnAnnotationSet(name, null, annotation);
+
+            return annotation;
+        }
+
+        /// <summary>
+        ///     Gets the value annotation with the given name, returning null if it does not exist.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to find. </param>
+        /// <returns>
+        ///     The value of the existing annotation if an annotation with the specified name already exists.
+        ///     Otherwise, null.
+        /// </returns>
+        public virtual object this[string name]
+        {
+            get => FindAnnotation(name)?.Value;
+            set
+            {
+                //Check.NotEmpty(name, nameof(name));
+
+                if (value == null)
+                {
+                    RemoveAnnotation(name);
+                }
+                else
+                {
+                    SetAnnotation(name, CreateAnnotation(name, value));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Creates a new annotation.
+        /// </summary>
+        /// <param name="name"> The key of the annotation. </param>
+        /// <param name="value"> The value to be stored in the annotation. </param>
+        /// <returns> The newly created annotation. </returns>
+        protected virtual Annotation CreateAnnotation([NotNull] string name, [CanBeNull] object value)
+            => new Annotation(name, value);
+
+        /// <summary>
+        ///     Gets all annotations on the current object.
+        /// </summary>
+        IEnumerable<IAnnotation> IAnnotatable.GetAnnotations() => GetAnnotations();
+
+        /// <summary>
+        ///     Gets the annotation with the given name, returning null if it does not exist.
+        /// </summary>
+        /// <param name="name"> The key of the annotation to find. </param>
+        /// <returns>
+        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
+        /// </returns>
+        IAnnotation IAnnotatable.FindAnnotation(string name) => FindAnnotation(name);
+
+        #endregion IMutableAnnotatable
     }
 }

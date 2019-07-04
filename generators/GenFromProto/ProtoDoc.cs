@@ -7,6 +7,22 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
+    public class MyDictionary<TKey, TValue> : Dictionary<TKey, TValue>
+    {
+        public new TValue this[TKey key]
+        {
+            get
+            {
+                if (base.ContainsKey(key))
+                    return base[key];
+                else
+                    return base[key];
+            }
+            set { base[key] = value; }
+        }
+
+    }
+
     public class ProtoDoc
     {
         public static void CreateDoc(string path)
@@ -30,7 +46,7 @@ namespace GenFromProto
             }
 
         }
-        public static Dictionary<string, FileDoc> Files = new Dictionary<string, FileDoc>();
+        public static MyDictionary<string, FileDoc> Files = new MyDictionary<string, FileDoc>();
     }
     public class FileDoc
     {
@@ -48,8 +64,8 @@ namespace GenFromProto
             }
         }
         public Proto.Doc.file file;
-        public Dictionary<string, EnumDoc> Enums = new Dictionary<string, EnumDoc>();
-        public Dictionary<string, MessageDoc> Messages = new Dictionary<string, MessageDoc>();
+        public MyDictionary<string, EnumDoc> Enums = new MyDictionary<string, EnumDoc>();
+        public MyDictionary<string, MessageDoc> Messages = new MyDictionary<string, MessageDoc>();
     }
     public class EnumDoc
     {
@@ -69,7 +85,7 @@ namespace GenFromProto
         public Proto.Doc.enums enums;
         public string Attributes = null;
         public string Comments = null;
-        public Dictionary<string, ValueDoc> Values = new Dictionary<string, ValueDoc>();
+        public MyDictionary<string, ValueDoc> Values = new MyDictionary<string, ValueDoc>();
     }
     public class ValueDoc
     {
@@ -149,7 +165,7 @@ namespace GenFromProto
         public string BaseClass = null;
         public string Attributes = null;
         public string Comments = null;
-        public Dictionary<string, FieldDoc> Fields = new Dictionary<string, FieldDoc>();
+        public MyDictionary<string, FieldDoc> Fields = new MyDictionary<string, FieldDoc>();
     }
     public class FieldDoc
     {

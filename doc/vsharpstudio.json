@@ -416,11 +416,11 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(4)]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editable(false)]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },
@@ -461,6 +461,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_updated",
+              "description": "@attr [PropertyOrderAttribute(6)]",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             },
@@ -551,6 +561,47 @@
               "type": "proto_group_list_journals",
               "longType": "proto_group_list_journals",
               "fullType": "proto_config.proto_group_list_journals",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_config_short_history",
+          "longName": "proto_config_short_history",
+          "fullName": "proto_config.proto_config_short_history",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "current_config",
+              "description": "",
+              "label": "",
+              "type": "proto_config",
+              "longType": "proto_config",
+              "fullType": "proto_config.proto_config",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prev_stable_config",
+              "description": "",
+              "label": "",
+              "type": "proto_config",
+              "longType": "proto_config",
+              "fullType": "proto_config.proto_config",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "old_stable_config",
+              "description": "",
+              "label": "",
+              "type": "proto_config",
+              "longType": "proto_config",
+              "fullType": "proto_config.proto_config",
               "ismap": false,
               "defaultValue": ""
             }

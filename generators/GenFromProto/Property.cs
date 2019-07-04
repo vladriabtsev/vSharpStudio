@@ -394,7 +394,7 @@ namespace GenFromProto
             #line hidden
             
             #line 87 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && !field.IsCsSimple()) {
+ } else if (field.IsMessage() && !field.IsCsSimple()) {
             
             #line default
             #line hidden

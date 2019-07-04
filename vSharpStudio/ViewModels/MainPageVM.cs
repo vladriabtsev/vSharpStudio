@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using ViewModelBase;
@@ -23,10 +24,9 @@ namespace vSharpStudio.ViewModels
 {
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
-        public static ILogger Logger = ApplicationLogging.CreateLogger<MainPageVM>();
+        public ILogger Logger;
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
-
         }
         public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
         {
@@ -38,19 +38,35 @@ namespace vSharpStudio.ViewModels
                 //this.Model.Catalogs.ListCatalogs.Add(c);
                 return;
             }
+
+            if (App.ServiceCollection == null)
+            {
+                ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+                App.ServiceCollection = new ServiceCollection();
+                App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
+            }
+            var Services = App.ServiceCollection.BuildServiceProvider();
+            Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
+            Logger.LogInformation("Application is starting.");
+
             if (isLoadConfig && File.Exists(CFG_PATH))
             {
+                Logger.LogInformation("Configuration data are found in the file: " + CFG_PATH);
                 var protoarr = File.ReadAllBytes(CFG_PATH);
-                var pconfig = Proto.Config.proto_config.Parser.ParseFrom(protoarr);
-                this.Model = Config.ConvertToVM(pconfig);
+                pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
+                this.Model = Config.ConvertToVM(pconfig_history.CurrentConfig);
                 //string json = File.ReadAllText(CFG_PATH);
                 //this.Model = new Config(json);
             }
             else
+            {
+                Logger.LogInformation("Creating empty Configuration");
                 this.Model = new Config();
+            }
             this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
         }
-        private const string CFG_PATH = @".\current.vcfg";
+        public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
+        public static readonly string CFG_PATH = @".\current.vcfg";
         //internal void OnSelectedItemChanged(object oldValue, object newValue)
         //{
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
@@ -67,6 +83,7 @@ namespace vSharpStudio.ViewModels
         Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
         public void OnImportsSatisfied()
         {
+            Logger.LogInformation("Loaded " + _plugins.Count() + " plugins");
             if (onImportsSatisfied != null)
                 onImportsSatisfied(this, _plugins);
             List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
@@ -187,6 +204,7 @@ namespace vSharpStudio.ViewModels
         }
         public void Compose()
         {
+            Logger.LogInformation("Loading plugins");
             AggregateCatalog catalog = new AggregateCatalog();
             AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
             CompositionContainer container = new CompositionContainer(catalog);
@@ -294,10 +312,14 @@ namespace vSharpStudio.ViewModels
         internal void Save()
         {
             PluginSettingsToModel();
+            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(_Model);
+            if (pconfig_history == null)
+                pconfig_history = new Proto.Config.proto_config_short_history();
+            pconfig_history.CurrentConfig = proto;
             Utils.DangerousCall(() =>
             {
-                File.WriteAllBytes(CFG_PATH, proto.ToByteArray());
+                File.WriteAllBytes(CFG_PATH, pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_PATH + "'");
             //var json = JsonFormatter.Default.Format(proto);
             //File.WriteAllText(CFG_PATH, json);
@@ -330,6 +352,7 @@ namespace vSharpStudio.ViewModels
             {
                 FilePathSaveAs = openFileDialog.FileName;
                 PluginSettingsToModel();
+                _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
                 var proto = Config.ConvertToProto(_Model);
                 Utils.DangerousCall(() =>
                 {
@@ -379,6 +402,40 @@ namespace vSharpStudio.ViewModels
         }
         private string _SaveToolTip = _saveBaseToolTip;
         private const string _saveBaseToolTip = "Ctrl-S - save config";
+        public vCommand CommandConfigCreateStableVersion
+        {
+            get
+            {
+                return _CommandConfigCreateStableVersion ?? (_CommandConfigCreateStableVersion = vCommand.Create(
+                (o) => { this.CreateStableVersion(); },
+                (o) => { return this.Model != null; }));
+            }
+        }
+        private vCommand _CommandConfigCreateStableVersion;
+
+        private void CreateStableVersion()
+        {
+            if (pconfig_history == null)
+                return;
+            PluginSettingsToModel();
+            //todo check if model has DB connected changes. Return if not.
+
+            //todo create migration code
+
+            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Model);
+            pconfig_history.CurrentConfig = proto;
+            if (pconfig_history.PrevStableConfig != null)
+            {
+                pconfig_history.OldStableConfig = pconfig_history.PrevStableConfig.Clone();
+            }
+            pconfig_history.PrevStableConfig = pconfig_history.CurrentConfig.Clone();
+            pconfig_history.CurrentConfig.Version++;
+            Utils.DangerousCall(() =>
+            {
+                File.WriteAllBytes(CFG_PATH, pconfig_history.ToByteArray());
+            }, "Can't save configuration. File path: '" + CFG_PATH + "'");
+        }
 
         #endregion Main
 
@@ -399,7 +456,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
-                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command");  },
+                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
                 (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }

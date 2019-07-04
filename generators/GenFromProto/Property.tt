@@ -84,7 +84,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     item.Parent = null;
 }
 <# } #>
-<# } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && !field.IsCsSimple()) {#>
+<# } else if (field.IsMessage() && !field.IsCsSimple()) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 { 
 	set

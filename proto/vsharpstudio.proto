@@ -125,6 +125,11 @@ message db_settings {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
+message proto_config_short_history {
+    proto_config current_config = 1;
+    proto_config prev_stable_config = 2;
+    proto_config old_stable_config = 3;
+}
 message proto_group_list_base_configs {
     string guid = 1;
     string name = 2;
@@ -152,12 +157,15 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     // @attr [PropertyOrderAttribute(4)]
-    string version = 2;
+    // @attr [Editable(false)]
+    int32 version = 2;
     string name = 3;
     uint64 sorting_value = 4;
     string name_ui = 5;
     // @attr [PropertyOrderAttribute(5)]
     string description = 6;
+    // @attr [PropertyOrderAttribute(6)]
+    google.protobuf.Timestamp last_updated = 7;
 
     // GENERAL DB SETTINGS
     // @attr [PropertyOrderAttribute(11)]

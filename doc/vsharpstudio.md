@@ -9,6 +9,7 @@
     - [proto_base_config](#proto_config.proto_base_config)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
+    - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
     - [proto_data_type](#proto_config.proto_data_type)
     - [proto_document](#proto_config.proto_document)
@@ -150,11 +151,12 @@ Configuration config
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
-| version | [string](#string) |  | @attr [PropertyOrderAttribute(4)] |
+| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [Editable(false)] |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
@@ -164,6 +166,23 @@ Configuration config
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [BrowsableAttribute(false)] |
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [BrowsableAttribute(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_config_short_history"></a>
+
+### proto_config_short_history
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| current_config | [proto_config](#proto_config.proto_config) |  |  |
+| prev_stable_config | [proto_config](#proto_config.proto_config) |  |  |
+| old_stable_config | [proto_config](#proto_config.proto_config) |  |  |
 
 
 

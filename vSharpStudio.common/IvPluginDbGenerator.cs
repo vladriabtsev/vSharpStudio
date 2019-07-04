@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 
@@ -25,7 +27,15 @@ namespace vSharpStudio.common
         /// </summary>
         /// <returns>json version of IConfig</returns>
         string GetLastModel();
-        void UpdateToModel(string connectionString, Action<Exception> onError, Func<bool> onDbCreate, Func<string, IConfig> onCreatePrevIConfig, IConfig model);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="operations">To do what model differ will not capable to do. Probably renaming tables and fields propery</param>
+        /// <param name="target_model"></param>
+        /// <param name="onNeedDbCreate"></param>
+        /// <param name="onError"></param>
+        void UpdateToModel(string connectionString, MigrationOperation[] operations, IModel target_model, Func<bool> onNeedDbCreate, Action<Exception> onError);
         //void Backup(string filePath);
         //void Restore(string filePath);
         //void Export(string filePath);

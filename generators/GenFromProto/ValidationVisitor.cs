@@ -61,7 +61,7 @@ namespace GenFromProto
             #line hidden
             
             #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- if (!field.IsAny() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+ if (!field.IsAny() && !field.IsCsSimple() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden

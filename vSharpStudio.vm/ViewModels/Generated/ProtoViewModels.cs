@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/08/2019 15:18:51
+// Auto generated on UTC 07/04/2019 22:09:07
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1159,6 +1159,165 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnPathToProjectWithConnectionStringChanged();
 		#endregion Properties
 	}
+	public partial class ConfigShortHistory : ConfigObjectBase<ConfigShortHistory, ConfigShortHistory.ConfigShortHistoryValidator>, IComparable<ConfigShortHistory>, IAccept, IConfigShortHistory
+	{
+		public partial class ConfigShortHistoryValidator : ValidatorBase<ConfigShortHistory, ConfigShortHistoryValidator> { }
+		#region CTOR
+		public ConfigShortHistory() : base(ConfigShortHistoryValidator.Validator)
+		{
+			this.CurrentConfig = new Config(this);
+			this.PrevStableConfig = new Config(this);
+			this.OldStableConfig = new Config(this);
+			OnInit();
+		}
+		public ConfigShortHistory(ITreeConfigNode parent) : base(ConfigShortHistoryValidator.Validator)
+	    {
+	        this.Parent = parent;
+			this.CurrentConfig = new Config(this);
+			this.PrevStableConfig = new Config(this);
+			this.OldStableConfig = new Config(this);
+			OnInit();
+	    }
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public override void Sort(Type type)
+		{
+		    //throw new Exception();
+		}
+		public static ConfigShortHistory Clone(ConfigShortHistory from, bool isDeep = true, bool isNewGuid = false)
+		{
+		    ConfigShortHistory vm = new ConfigShortHistory();
+		    if (isDeep)
+		        vm.CurrentConfig = vSharpStudio.vm.ViewModels.Config.Clone(from.CurrentConfig, isDeep);
+		    if (isDeep)
+		        vm.PrevStableConfig = vSharpStudio.vm.ViewModels.Config.Clone(from.PrevStableConfig, isDeep);
+		    if (isDeep)
+		        vm.OldStableConfig = vSharpStudio.vm.ViewModels.Config.Clone(from.OldStableConfig, isDeep);
+		    if (isNewGuid)
+		        vm.SetNewGuid();
+		    return vm;
+		}
+		public static void Update(ConfigShortHistory to, ConfigShortHistory from, bool isDeep = true)
+		{
+		    if (isDeep)
+		        Config.Update(to.CurrentConfig, from.CurrentConfig, isDeep);
+		    if (isDeep)
+		        Config.Update(to.PrevStableConfig, from.PrevStableConfig, isDeep);
+		    if (isDeep)
+		        Config.Update(to.OldStableConfig, from.OldStableConfig, isDeep);
+		}
+		#region IEditable
+		public override ConfigShortHistory Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return ConfigShortHistory.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(ConfigShortHistory from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    ConfigShortHistory.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_config_short_history' to 'ConfigShortHistory'
+		public static ConfigShortHistory ConvertToVM(Proto.Config.proto_config_short_history m, ConfigShortHistory vm = null)
+		{
+		    if (vm == null)
+		        vm = new ConfigShortHistory();
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.CurrentConfig, vm.CurrentConfig);
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.PrevStableConfig, vm.PrevStableConfig);
+		    vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.OldStableConfig, vm.OldStableConfig);
+		    vm.OnInitFromDto();
+		    return vm;
+		}
+		// Conversion from 'ConfigShortHistory' to 'proto_config_short_history'
+		public static Proto.Config.proto_config_short_history ConvertToProto(ConfigShortHistory vm)
+		{
+		    Proto.Config.proto_config_short_history m = new Proto.Config.proto_config_short_history();
+		    m.CurrentConfig = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.CurrentConfig);
+		    m.PrevStableConfig = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.PrevStableConfig);
+		    m.OldStableConfig = vSharpStudio.vm.ViewModels.Config.ConvertToProto(vm.OldStableConfig);
+		    return m;
+		}
+		public void AcceptConfigNode(IVisitorConfigNode visitor) 
+		{
+		    if (visitor.Token.IsCancellationRequested)
+		        return;
+			visitor.Visit(this);
+			this.CurrentConfig.AcceptConfigNode(visitor);
+			this.PrevStableConfig.AcceptConfigNode(visitor);
+			this.OldStableConfig.AcceptConfigNode(visitor);
+			visitor.VisitEnd(this);
+		}
+		#endregion Procedures
+		#region Properties
+		
+		public Config CurrentConfig
+		{ 
+			set
+			{
+				if (_CurrentConfig != value)
+				{
+					OnCurrentConfigChanging();
+		            _CurrentConfig = value;
+					OnCurrentConfigChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _CurrentConfig; }
+		}
+		private Config _CurrentConfig;
+		[BrowsableAttribute(false)]
+		public IConfig CurrentConfigI { get { return _CurrentConfig; }}
+		partial void OnCurrentConfigChanging();
+		partial void OnCurrentConfigChanged();
+		public Config PrevStableConfig
+		{ 
+			set
+			{
+				if (_PrevStableConfig != value)
+				{
+					OnPrevStableConfigChanging();
+		            _PrevStableConfig = value;
+					OnPrevStableConfigChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PrevStableConfig; }
+		}
+		private Config _PrevStableConfig;
+		[BrowsableAttribute(false)]
+		public IConfig PrevStableConfigI { get { return _PrevStableConfig; }}
+		partial void OnPrevStableConfigChanging();
+		partial void OnPrevStableConfigChanged();
+		public Config OldStableConfig
+		{ 
+			set
+			{
+				if (_OldStableConfig != value)
+				{
+					OnOldStableConfigChanging();
+		            _OldStableConfig = value;
+					OnOldStableConfigChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _OldStableConfig; }
+		}
+		private Config _OldStableConfig;
+		[BrowsableAttribute(false)]
+		public IConfig OldStableConfigI { get { return _OldStableConfig; }}
+		partial void OnOldStableConfigChanging();
+		partial void OnOldStableConfigChanged();
+		#endregion Properties
+	}
 	public partial class GroupListBaseConfigs : ConfigObjectBase<GroupListBaseConfigs, GroupListBaseConfigs.GroupListBaseConfigsValidator>, IComparable<GroupListBaseConfigs>, IAccept, IGroupListBaseConfigs
 	{
 		public partial class GroupListBaseConfigsValidator : ValidatorBase<GroupListBaseConfigs, GroupListBaseConfigsValidator> { }
@@ -1582,6 +1741,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
+		    vm.LastUpdated = from.LastUpdated;
 		    if (isDeep)
 		        vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
 		    if (isDeep)
@@ -1612,6 +1772,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
+		    to.LastUpdated = from.LastUpdated;
 		    if (isDeep)
 		        DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
 		    if (isDeep)
@@ -1658,6 +1819,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
+		    vm.LastUpdated = m.LastUpdated;
 		    vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
 		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
 		    vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
@@ -1680,6 +1842,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
+		    m.LastUpdated = vm.LastUpdated;
 		    m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto(vm.DbSettings);
 		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToProto(vm.GroupConfigs);
@@ -1708,7 +1871,8 @@ namespace vSharpStudio.vm.ViewModels
 		#region Properties
 		
 		[PropertyOrderAttribute(4)]
-		public string Version
+		[Editable(false)]
+		public int Version
 		{ 
 			set
 			{
@@ -1723,7 +1887,7 @@ namespace vSharpStudio.vm.ViewModels
 			}
 			get { return _Version; }
 		}
-		private string _Version = "";
+		private int _Version;
 		partial void OnVersionChanging();
 		partial void OnVersionChanged();
 		[PropertyOrderAttribute(5)]
@@ -1745,6 +1909,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[PropertyOrderAttribute(6)]
+		public Google.Protobuf.WellKnownTypes.Timestamp LastUpdated
+		{ 
+			set
+			{
+				if (_LastUpdated != value)
+				{
+					OnLastUpdatedChanging();
+					_LastUpdated = value;
+					OnLastUpdatedChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _LastUpdated; }
+		}
+		private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
+		partial void OnLastUpdatedChanging();
+		partial void OnLastUpdatedChanged();
 		
 		///////////////////////////////////////////////////
 		/// GENERAL DB SETTINGS
@@ -6751,6 +6934,8 @@ namespace vSharpStudio.vm.ViewModels
 		void VisitEnd(PluginGeneratorSettings p);
 		void Visit(SettingsConfig p);
 		void VisitEnd(SettingsConfig p);
+		void Visit(ConfigShortHistory p);
+		void VisitEnd(ConfigShortHistory p);
 		void Visit(GroupListBaseConfigs p);
 		void VisitEnd(GroupListBaseConfigs p);
 		void Visit(BaseConfig p);
@@ -6817,6 +7002,7 @@ namespace vSharpStudio.vm.ViewModels
 		void Visit(Proto.Config.proto_plugin_generator_settings p);
 		void Visit(Proto.Config.proto_settings_config p);
 		void Visit(Proto.Config.db_settings p);
+		void Visit(Proto.Config.proto_config_short_history p);
 		void Visit(Proto.Config.proto_group_list_base_configs p);
 		void Visit(Proto.Config.proto_base_config p);
 		void Visit(Proto.Config.proto_config p);
@@ -6897,6 +7083,14 @@ namespace vSharpStudio.vm.ViewModels
 	        OnVisit(p);
 	    }
 		public void VisitEnd(DbSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+		public void Visit(ConfigShortHistory p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConfigShortHistory p)
 	    {
 	        OnVisitEnd(p);
 	    }
@@ -7202,6 +7396,16 @@ namespace vSharpStudio.vm.ViewModels
 	    }
 	    protected virtual void OnVisit(DbSettings p) {}
 	    protected virtual void OnVisitEnd(DbSettings p) {}
+		public void Visit(ConfigShortHistory p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ConfigShortHistory p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(ConfigShortHistory p) {}
+	    protected virtual void OnVisitEnd(ConfigShortHistory p) {}
 		public void Visit(GroupListBaseConfigs p)
 	    {
 	        OnVisit(p);

@@ -47,7 +47,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<#= message.Name.ToNameCs() #
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
 <#      } else if (field.IsMessage() && field.IsAny()) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone();
-<#      } else if (field.IsMessage()) { #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
     if (isDeep)
         vm.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.Clone(from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
@@ -103,11 +103,11 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             }
         }
     }
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name == "string_nullable") { #>
+<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
     to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>;
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable")) { #>
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
     to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message) { #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
     if (isDeep)
         <#= field.ToTypeCs() #>.Update(to.<#= field.Name.ToNameCs() #>, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
@@ -158,7 +158,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.nameSpace #>.<
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : "";
 <#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null;
-<#      } else if (field.IsMessage()) { #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
     vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.IsBytes()) { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.ToByteArray();
@@ -190,7 +190,7 @@ public static <#= this.nameSpace #>.<#= message.Name #> ConvertToProto(<#= messa
     m.<#= field.Name.ToNameCs() #>.HasValue = vm.<#= field.Name.ToNameCs() #>.HasValue;
     if (vm.<#= field.Name.ToNameCs() #>.HasValue)
         m.<#= field.Name.ToNameCs() #>.Value = vm.<#= field.Name.ToNameCs() #>.Value;
-<#      } else if (field.IsMessage() && !field.IsAny()) { #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage() && !field.IsAny()) { #>
     m.<#= field.Name.ToNameCs() #> = vSharpStudio.vm.ViewModels.<#= field.ToTypeCs() #>.ConvertToProto(vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.IsBytes()) { #>
     m.<#= field.Name.ToNameCs() #> = ByteString.CopyFrom(vm.<#= field.Name.ToNameCs() #>);

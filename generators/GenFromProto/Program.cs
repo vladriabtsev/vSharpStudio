@@ -158,6 +158,7 @@ namespace GenFromProto
                         case "int_nullable":
                         case "long_nullable":
                         case "string_nullable":
+                        case "Timestamp":
                             return true;
                         default:
                             return false;
@@ -193,6 +194,8 @@ namespace GenFromProto
                         return "Google.Protobuf.WellKnownTypes.Any";
                     case "Duration":
                         return "Google.Protobuf.WellKnownTypes.Duration";
+                    case "Timestamp":
+                        return "Google.Protobuf.WellKnownTypes.Timestamp";
                     default:
                         return from.MessageType.Name.ToNameCs();
                 }

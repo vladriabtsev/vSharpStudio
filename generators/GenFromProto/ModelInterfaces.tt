@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
 
 namespace vSharpStudio.common
 {
@@ -21,11 +22,18 @@ public enum <#= t.Name.ToNameCs() #> {
      this.PushIndent("\t");
 #>
 <#= this.MessageDoc.Comments #>
-public interface I<#= message.Name.ToNameCs() #>
+public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #>
 {
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
          this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; 
          this.PushIndent("\t"); #>
+<# if (MessageDoc.IsDefaultBase) {
+     if (field.Name=="guid") continue;
+     if (field.Name=="name") { #>
+string FullName { get; }
+<#     continue;
+     } 
+   } #>
 <#= this.FieldDoc.Comments #><# if (field.IsCsSimple()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
 <#       } else if (field.IsRepeated) { #>
