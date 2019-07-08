@@ -297,7 +297,16 @@ namespace vSharpStudio.common
 																																										ulong SortingValue { get; }
 																																										string NameUi { get; }
 																																										string Description { get; }
+																																										
+																																										///////////////////////////////////////////////////
+																																										/// Enumeration element type
+																																										///////////////////////////////////////////////////
 																																										EnumEnumerationType DataTypeEnum { get; }
+																																										
+																																										///////////////////////////////////////////////////
+																																										/// Length of string if 'STRING' is selected as enumeration element type
+																																										///////////////////////////////////////////////////
+																																										int DataTypeLength { get; }
 																																										IEnumerable<IEnumerationPair> ListEnumerationPairsI { get; }
 																																									}
 																																									

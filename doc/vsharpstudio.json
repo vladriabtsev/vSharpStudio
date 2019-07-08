@@ -901,11 +901,21 @@
             },
             {
               "name": "data_type_enum",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Type\")]",
+              "description": "Enumeration element type\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Type\")]",
               "label": "",
               "type": "enum_enumeration_type",
               "longType": "enum_enumeration_type",
               "fullType": "proto_config.enum_enumeration_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data_type_length",
+              "description": "Length of string if 'STRING' is selected as enumeration element type\n@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Length\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },

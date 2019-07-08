@@ -30,6 +30,23 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public void AddEnumerationPair(EnumerationPair node)
+        {
+            this.NodeAddNewSubNode(node);
+        }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        {
+            EnumerationPair node = null;
+            if (node_impl == null)
+                node = new EnumerationPair();
+            else
+                node = (EnumerationPair)node_impl;
+            this.ListEnumerationPairs.Add(node);
+            if (node_impl == null)
+                GetUniqueName(EnumerationPair.DefaultName, node, this.ListEnumerationPairs);
+            SetSelected(node);
+            return node;
+        }
         public override bool NodeCanUp()
         {
             if (NodeCanAddClone())

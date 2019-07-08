@@ -120,6 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiffModel\DiffCatalogs.cs" />
+    <Compile Include="DiffModel\Ext.cs" />
+    <Compile Include="DiffModel\DiffDataType.cs" />
     <Compile Include="DiffModel\DiffPropeties.cs" />
     <Compile Include="DiffModel\DiffConstants.cs" />
     <Compile Include="DiffModel\DiffModel.partial.cs" />

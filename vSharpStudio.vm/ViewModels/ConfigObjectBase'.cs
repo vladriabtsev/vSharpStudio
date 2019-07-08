@@ -330,7 +330,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
-        public virtual ITreeConfigNode NodeAddNewSubNode()
+        public virtual ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node = null)
         {
             throw new NotImplementedException();
         }

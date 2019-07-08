@@ -67,6 +67,15 @@ namespace vSharpStudio.ViewModels
         }
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
         public static readonly string CFG_PATH = @".\current.vcfg";
+        public DiffModel GetDiffModel()
+        {
+            DiffModel res = new DiffModel(
+                pconfig_history.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig),
+                pconfig_history.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig),
+                this.Model
+            );
+            return res;
+        }
         //internal void OnSelectedItemChanged(object oldValue, object newValue)
         //{
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;

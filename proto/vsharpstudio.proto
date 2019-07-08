@@ -417,12 +417,17 @@ message proto_enumeration {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // Enumeration element type
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Type")]
     enum_enumeration_type data_type_enum = 6; 
+    // Length of string if 'STRING' is selected as enumeration element type
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Length")]
+    int32 data_type_length = 7; 
     // @attr [DisplayName("Elements")]
     // @attr [NewItemTypes(typeof(EnumerationPair))]
-    repeated proto_enumeration_pair list_enumeration_pairs = 7;
+    repeated proto_enumeration_pair list_enumeration_pairs = 8;
 }
 message proto_enumeration_pair {
     string guid = 1;

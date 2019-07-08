@@ -38,16 +38,25 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override ITreeConfigNode NodeAddNewSubNode()
+        public void AddProperty(Property node)
         {
-            var node = new Property();
+            this.NodeAddNewSubNode(node);
+        }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        {
+            Property node = null;
+            if (node_impl == null)
+                node = new Property();
+            else
+                node = (Property)node_impl;
             this.Add(node);
             //TODO can be more economical?
             if (this.LastGenPosition == 0)
                 this.LastGenPosition = 1;
             this.LastGenPosition++;
             node.Position = this.LastGenPosition;
-            GetUniqueName(Property.DefaultName, node, this.ListProperties);
+            if (node_impl == null)
+                GetUniqueName(Property.DefaultName, node, this.ListProperties);
             SetSelected(node);
             return node;
         }

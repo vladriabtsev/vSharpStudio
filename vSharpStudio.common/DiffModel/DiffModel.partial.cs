@@ -19,15 +19,17 @@ namespace vSharpStudio.common
     {
         public DiffModel(IConfig oldest_config, IConfig prev_config, IConfig current_config)
         {
-            this.Constants = new DiffConstants(oldest_config.GroupConstantsI.ListConstantsI,
-                                               prev_config.GroupConstantsI.ListConstantsI,
-                                               current_config.GroupConstantsI.ListConstantsI);
+            this.Constants = new DiffConstants(
+                oldest_config == null ? null : oldest_config.GroupConstantsI.ListConstantsI,
+                prev_config == null ? null : prev_config.GroupConstantsI.ListConstantsI,
+                current_config.GroupConstantsI.ListConstantsI);
             //this.Catalogs = new DiffCatalogs(oldest_config.GroupCatalogsI.ListCatalogsI,
             //                                   prev_config.GroupCatalogsI.ListCatalogsI,
             //                                   current_config.GroupCatalogsI.ListCatalogsI);
-            this.Catalogs = new DiffCatalogs(oldest_config.GroupCatalogsI.ListCatalogsI,
-                                               prev_config.GroupCatalogsI.ListCatalogsI,
-                                               current_config.GroupCatalogsI.ListCatalogsI);
+            this.Catalogs = new DiffCatalogs(
+                oldest_config == null ? null : oldest_config.GroupCatalogsI.ListCatalogsI,
+                prev_config == null ? null : prev_config.GroupCatalogsI.ListCatalogsI,
+                current_config.GroupCatalogsI.ListCatalogsI);
         }
     }
 }

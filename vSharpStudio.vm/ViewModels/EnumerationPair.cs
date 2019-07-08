@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class EnumerationPair
     {
+        public static readonly string DefaultName = "Element";
         partial void OnInit()
         {
         }

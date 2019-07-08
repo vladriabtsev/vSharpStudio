@@ -25,11 +25,20 @@ namespace vSharpStudio.vm.ViewModels
                 this.NameUi = "Sub Catalogs";
         }
         #region Tree operations
-        public override ITreeConfigNode NodeAddNewSubNode()
+        public void AddCatalog(Catalog node)
         {
-            var node = new Catalog();
+            this.NodeAddNewSubNode(node);
+        }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        {
+            Catalog node = null;
+            if (node_impl == null)
+                node = new Catalog();
+            else
+                node = (Catalog)node_impl;
             this.Add(node);
-            GetUniqueName(Catalog.DefaultName, node, this.ListCatalogs);
+            if (node_impl == null)
+                GetUniqueName(Catalog.DefaultName, node, this.ListCatalogs);
             SetSelected(node);
             return node;
         }

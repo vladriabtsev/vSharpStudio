@@ -31,6 +31,10 @@ namespace vSharpStudio.vm.ViewModels
             public const string NAME_HAS_TO_BE_UNIQUE = "Change 'Name'. 'Name' of the config object has to be unique";
             public const string NAME_CANT_BE_EMPTY = "Enter 'Name' for config object. 'Name' of the config object can't be empty";
 
+            public const string ENUM_VALUE_NOT_CONVERTABLE = "Enumeration pair 'Value' has to be convertable to enumeration data type";
+            public const string ENUM_VALUE_HAS_TO_BE_UNIQUE = "Enumeration pair 'Value' has to be unique";
+            public const string ENUM_VALUE_CANT_BE_EMPTY = "Enter 'Value' for enumeration element. 'Value' of the enumeration element can't be empty";
+
             public const string TYPE_MIN_EMPTY = "Enter value for 'MinValue'";
             public const string TYPE_MAX_EMPTY = "Enter value for 'MaxValue'";
             public const string TYPE_LENGTH_POSITIVE = "Enter positive value for 'Length'";

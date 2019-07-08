@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/04/2019 22:09:07
+// Auto generated on UTC 07/08/2019 17:54:43
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4529,6 +4529,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    vm.DataTypeEnum = from.DataTypeEnum;
+		    vm.DataTypeLength = from.DataTypeLength;
 		    vm.ListEnumerationPairs = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in from.ListEnumerationPairs)
 		        vm.ListEnumerationPairs.Add(vSharpStudio.vm.ViewModels.EnumerationPair.Clone((EnumerationPair)t, isDeep));
@@ -4544,6 +4545,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
 		    to.DataTypeEnum = from.DataTypeEnum;
+		    to.DataTypeLength = from.DataTypeLength;
 		    if (isDeep)
 		    {
 		        foreach(var t in to.ListEnumerationPairs.ToList())
@@ -4608,6 +4610,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vm.DataTypeEnum = (EnumEnumerationType)m.DataTypeEnum;
+		    vm.DataTypeLength = m.DataTypeLength;
 		    vm.ListEnumerationPairs = new SortedObservableCollection<EnumerationPair>();
 		    foreach(var t in m.ListEnumerationPairs)
 		    {
@@ -4628,6 +4631,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.DataTypeEnum = (Proto.Config.enum_enumeration_type)vm.DataTypeEnum;
+		    m.DataTypeLength = vm.DataTypeLength;
 		    foreach(var t in vm.ListEnumerationPairs)
 		        m.ListEnumerationPairs.Add(vSharpStudio.vm.ViewModels.EnumerationPair.ConvertToProto((EnumerationPair)t));
 		    return m;
@@ -4663,6 +4667,10 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		
+		///////////////////////////////////////////////////
+		/// Enumeration element type
+		///////////////////////////////////////////////////
 		[PropertyOrderAttribute(4)]
 		[DisplayName("Type")]
 		public EnumEnumerationType DataTypeEnum
@@ -4683,6 +4691,30 @@ namespace vSharpStudio.vm.ViewModels
 		private EnumEnumerationType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
+		
+		///////////////////////////////////////////////////
+		/// Length of string if 'STRING' is selected as enumeration element type
+		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(5)]
+		[DisplayName("Length")]
+		public int DataTypeLength
+		{ 
+			set
+			{
+				if (_DataTypeLength != value)
+				{
+					OnDataTypeLengthChanging();
+					_DataTypeLength = value;
+					OnDataTypeLengthChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DataTypeLength; }
+		}
+		private int _DataTypeLength;
+		partial void OnDataTypeLengthChanging();
+		partial void OnDataTypeLengthChanged();
 		[DisplayName("Elements")]
 		[NewItemTypes(typeof(EnumerationPair))]
 		public SortedObservableCollection<EnumerationPair> ListEnumerationPairs 

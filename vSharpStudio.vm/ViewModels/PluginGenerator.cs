@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override ITreeConfigNode NodeAddNewSubNode()
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PluginGeneratorSettings pgs = null;
             switch (this.Generator.PluginGeneratorType)

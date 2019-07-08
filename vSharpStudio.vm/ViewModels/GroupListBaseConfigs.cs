@@ -25,11 +25,20 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override ITreeConfigNode NodeAddNewSubNode()
+        public void AddBaseConfig(BaseConfig node)
         {
-            var node = new BaseConfig();
+            this.NodeAddNewSubNode(node);
+        }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        {
+            BaseConfig node=null;
+            if (node_impl == null)
+                node = new BaseConfig();
+            else
+                node = (BaseConfig)node_impl;
             this.Add(node);
-            GetUniqueName(BaseConfig.DefaultName, node, this.ListBaseConfigs);
+            if (node_impl == null)
+                GetUniqueName(BaseConfig.DefaultName, node, this.ListBaseConfigs);
             SetSelected(node);
             return node;
         }
