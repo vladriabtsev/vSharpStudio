@@ -374,6 +374,16 @@
               "defaultValue": ""
             },
             {
+              "name": "group_properties_tabs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties_tabs",
+              "longType": "proto_group_list_properties_tabs",
+              "fullType": "proto_config.proto_group_list_properties_tabs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_forms",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -2523,7 +2533,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_properties_subtabs",
+              "name": "group_properties_tabs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_properties_tabs",

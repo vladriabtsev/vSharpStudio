@@ -19,8 +19,8 @@ namespace vSharpStudio.vm.ViewModels
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
             this.GroupProperties.Parent = this;
             Children.Add(this.GroupProperties, 7);
-            this.GroupPropertiesSubtabs.Parent = this;
-            Children.Add(this.GroupPropertiesSubtabs, 9);
+            this.GroupPropertiesTabs.Parent = this;
+            Children.Add(this.GroupPropertiesTabs, 9);
         }
 
         #region Tree operations

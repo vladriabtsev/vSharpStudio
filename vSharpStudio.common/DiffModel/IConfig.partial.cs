@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : IMutableAnnotatable
+    public partial interface IConfig : IMutableAnnotatable
     {
     }
 }

@@ -115,7 +115,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             var diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 3);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 3);
             Assert.IsTrue(c1.IsNew());
             Assert.IsTrue(c2.IsNew());
             Assert.IsTrue(c3.IsNew());
@@ -128,33 +128,33 @@ namespace vSharpStudio.Unit
             vm.Model.GroupConstants.AddConstant(c4);
             vm.Model.GroupConstants.Remove(c2);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count==4);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(!c1.IsDiffDataType());
+            Assert.IsTrue(c1.GetDiffDataType() == null);
             Assert.IsTrue(c1.IsRenamed());
-            var cc2 = (from p in diff.Constants.ListAll where p.Name == "c2" select p).Single();
+            var cc2 = (from p in diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
             Assert.IsTrue(c3.IsCanLooseData());
-            Assert.IsTrue(c3.IsDiffDataType());
+            Assert.IsTrue(c3.GetDiffDataType() != null);
             Assert.IsTrue(c4.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 4);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 4);
             Assert.IsTrue(!c1.IsRenamed());
-            Assert.IsTrue(!c1.IsDiffDataType());
-            cc2 = (from p in diff.Constants.ListAll where p.Name == "c2" select p).Single();
+            Assert.IsTrue(c1.GetDiffDataType() == null);
+            cc2 = (from p in diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(!c3.IsDiffDataType());
+            Assert.IsTrue(c3.GetDiffDataType() == null);
             Assert.IsTrue(!c4.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 3); // deleted is removed
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 3); // deleted is removed
         }
         [TestMethod]
         public void Main004_Diff_Enumerations()
@@ -164,9 +164,11 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(true);
 
             // create object and save
-            var c1 = new Enumeration() { Name = "c1", DataTypeEnum= EnumEnumerationType.BYTE_VALUE };
+            var c1 = new Enumeration() { Name = "c1", DataTypeEnum = EnumEnumerationType.BYTE_VALUE };
             vm.Model.GroupEnumerations.AddEnumeration(c1);
-            c1.AddEnumerationPair(new EnumerationPair() { Name="e1", Value="123" });
+            c1.AddEnumerationPair(new EnumerationPair() { Name = "e1", Value = "123" });
+            c1.AddEnumerationPair(new EnumerationPair() { Name = "e2", Value = "124" });
+            c1.AddEnumerationPair(new EnumerationPair() { Name = "e3", Value = "125" });
             var c2 = new Enumeration() { Name = "c2" };
             vm.Model.GroupEnumerations.AddEnumeration(c2);
             var c3 = new Enumeration() { Name = "c3" };
@@ -174,46 +176,57 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             var diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.e.Constants.ListAll.Count == 3);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Enumerations.ListAll.Count == 3);
             Assert.IsTrue(c1.IsNew());
+            Assert.IsTrue(c1.ListEnumerationPairs[0].IsNew());
+            Assert.IsTrue(c1.ListEnumerationPairs[1].IsNew());
+            Assert.IsTrue(c1.ListEnumerationPairs[2].IsNew());
             Assert.IsTrue(c2.IsNew());
             Assert.IsTrue(c3.IsNew());
 
             // create stable version (first prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             c1.Name = "c1r";
-            c3.DataType.Length = 100;
-            var c4 = new Constant() { Name = "c4" };
-            vm.Model.GroupConstants.AddConstant(c4);
-            vm.Model.GroupConstants.Remove(c2);
+            //c3.DataType.Length = 100;
+            var c4 = new Enumeration() { Name = "c4" };
+            vm.Model.GroupEnumerations.AddEnumeration(c4);
+            vm.Model.GroupEnumerations.Remove(c2);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 4);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(!c1.IsDiffDataType());
+            Assert.IsTrue(c1.GetDiffEnumerationType() == null);
             Assert.IsTrue(c1.IsRenamed());
-            var cc2 = (from p in diff.Constants.ListAll where p.Name == "c2" select p).Single();
+            var cc2 = (from p in diff.Configs.ListAll[0].GetDiffConfig().Enumerations.ListAll where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
             Assert.IsTrue(c3.IsCanLooseData());
-            Assert.IsTrue(c3.IsDiffDataType());
+            Assert.IsTrue(c3.GetDiffEnumerationType() != null);
             Assert.IsTrue(c4.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 4);
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 4);
             Assert.IsTrue(!c1.IsRenamed());
-            Assert.IsTrue(!c1.IsDiffDataType());
-            cc2 = (from p in diff.Constants.ListAll where p.Name == "c2" select p).Single();
+            Assert.IsTrue(c1.GetDiffEnumerationType() == null);
+            cc2 = (from p in diff.Configs.ListAll[0].GetDiffConfig().Enumerations.ListAll where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(!c3.IsDiffDataType());
+            Assert.IsTrue(c3.GetDiffEnumerationType() == null);
             Assert.IsTrue(!c4.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
             diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.Constants.ListAll.Count == 3); // deleted is removed
+            Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Enumerations.ListAll.Count == 3); // deleted is removed
+        }
+        [TestMethod]
+        public void Main077_Diff_Model()
+        {
+            // empty config
+            remove_config();
+            var vm = new MainPageVM(true);
+            var diff = vm.GetDiffModel();
         }
     }
 }

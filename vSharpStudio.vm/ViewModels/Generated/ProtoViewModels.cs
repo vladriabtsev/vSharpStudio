@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/08/2019 17:54:43
+// Auto generated on UTC 07/09/2019 12:57:15
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3365,14 +3365,14 @@ namespace vSharpStudio.vm.ViewModels
 		public PropertiesTab() : base(PropertiesTabValidator.Validator)
 		{
 			this.GroupProperties = new GroupListProperties(this);
-			this.GroupPropertiesSubtabs = new GroupListPropertiesTabs(this);
+			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			OnInit();
 		}
 		public PropertiesTab(ITreeConfigNode parent) : base(PropertiesTabValidator.Validator)
 	    {
 	        this.Parent = parent;
 			this.GroupProperties = new GroupListProperties(this);
-			this.GroupPropertiesSubtabs = new GroupListPropertiesTabs(this);
+			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			OnInit();
 	    }
 		partial void OnInit();
@@ -3393,7 +3393,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
-		        vm.GroupPropertiesSubtabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesSubtabs, isDeep);
+		        vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesTabs, isDeep);
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3408,7 +3408,7 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
-		        GroupListPropertiesTabs.Update(to.GroupPropertiesSubtabs, from.GroupPropertiesSubtabs, isDeep);
+		        GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
 		}
 		#region IEditable
 		public override PropertiesTab Backup()
@@ -3437,7 +3437,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
-		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesSubtabs, vm.GroupPropertiesSubtabs);
+		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3451,7 +3451,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
-		    m.GroupPropertiesSubtabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesSubtabs);
+		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -3506,26 +3506,26 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnGroupPropertiesChanging();
 		partial void OnGroupPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public GroupListPropertiesTabs GroupPropertiesSubtabs
+		public GroupListPropertiesTabs GroupPropertiesTabs
 		{ 
 			set
 			{
-				if (_GroupPropertiesSubtabs != value)
+				if (_GroupPropertiesTabs != value)
 				{
-					OnGroupPropertiesSubtabsChanging();
-		            _GroupPropertiesSubtabs = value;
-					OnGroupPropertiesSubtabsChanged();
+					OnGroupPropertiesTabsChanging();
+		            _GroupPropertiesTabs = value;
+					OnGroupPropertiesTabsChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _GroupPropertiesSubtabs; }
+			get { return _GroupPropertiesTabs; }
 		}
-		private GroupListPropertiesTabs _GroupPropertiesSubtabs;
+		private GroupListPropertiesTabs _GroupPropertiesTabs;
 		[BrowsableAttribute(false)]
-		public IGroupListPropertiesTabs GroupPropertiesSubtabsI { get { return _GroupPropertiesSubtabs; }}
-		partial void OnGroupPropertiesSubtabsChanging();
-		partial void OnGroupPropertiesSubtabsChanged();
+		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
+		partial void OnGroupPropertiesTabsChanging();
+		partial void OnGroupPropertiesTabsChanged();
 		#endregion Properties
 	}
 	public partial class GroupListProperties : ConfigObjectBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IAccept, IGroupListProperties
@@ -4883,6 +4883,7 @@ namespace vSharpStudio.vm.ViewModels
 		public Catalog() : base(CatalogValidator.Validator)
 		{
 			this.GroupProperties = new GroupListProperties(this);
+			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
 			OnInit();
@@ -4891,6 +4892,7 @@ namespace vSharpStudio.vm.ViewModels
 	    {
 	        this.Parent = parent;
 			this.GroupProperties = new GroupListProperties(this);
+			this.GroupPropertiesTabs = new GroupListPropertiesTabs(this);
 			this.GroupForms = new GroupListForms(this);
 			this.GroupReports = new GroupListReports(this);
 			OnInit();
@@ -4913,6 +4915,8 @@ namespace vSharpStudio.vm.ViewModels
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
+		        vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesTabs, isDeep);
+		    if (isDeep)
 		        vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(from.GroupForms, isDeep);
 		    if (isDeep)
 		        vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(from.GroupReports, isDeep);
@@ -4929,6 +4933,8 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Description = from.Description;
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
+		    if (isDeep)
+		        GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
 		    if (isDeep)
 		        GroupListForms.Update(to.GroupForms, from.GroupForms, isDeep);
 		    if (isDeep)
@@ -4961,6 +4967,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
+		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
 		    vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
 		    vm.OnInitFromDto();
@@ -4976,6 +4983,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
+		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
 		    m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto(vm.GroupReports);
 		    return m;
@@ -5032,6 +5040,27 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListProperties GroupPropertiesI { get { return _GroupProperties; }}
 		partial void OnGroupPropertiesChanging();
 		partial void OnGroupPropertiesChanged();
+		[BrowsableAttribute(false)]
+		public GroupListPropertiesTabs GroupPropertiesTabs
+		{ 
+			set
+			{
+				if (_GroupPropertiesTabs != value)
+				{
+					OnGroupPropertiesTabsChanging();
+		            _GroupPropertiesTabs = value;
+					OnGroupPropertiesTabsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _GroupPropertiesTabs; }
+		}
+		private GroupListPropertiesTabs _GroupPropertiesTabs;
+		[BrowsableAttribute(false)]
+		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
+		partial void OnGroupPropertiesTabsChanging();
+		partial void OnGroupPropertiesTabsChanged();
 		[BrowsableAttribute(false)]
 		public GroupListForms GroupForms
 		{ 

@@ -16,15 +16,14 @@ namespace vSharpStudio.common
     /// </summary>
     public partial class DiffModel
     {
-        public DiffConstants Constants;
-        public DiffCatalogs Catalogs;
+        public DiffModel(IConfig oldest_config, IConfig prev_config, IConfig current_config)
+        {
+            //this.Configs = new DiffListConfigs(
+            //    oldest_config == null ? null : oldest_config.GroupConstantsI.ListConstantsI,
+            //    prev_config == null ? null : prev_config.GroupConstantsI.ListConstantsI,
+            //    current_config.GroupConstantsI.ListConstantsI);
+        }
 
-        #region Constants
-        // Renamed
-        // Deleted - not exist in curent model and previous release model
-        // Modified
-        // Deprecated - removed in current model, but exist in previous release model
-        #endregion Constants
-
+        public DiffListConfigs Configs;
     }
 }

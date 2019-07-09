@@ -18,7 +18,8 @@ namespace vSharpStudio.common
 		Enabled = 1,
 	}
 	
-	public partial interface IMsSqlDesignGeneratorSettings{
+	public partial interface IMsSqlDesignGeneratorSettings 
+	{
 		string Name { get; }
 		string Guid { get; }
 		bool IsUseForeingkey { get; }
@@ -37,7 +38,8 @@ namespace vSharpStudio.common
 		bool IsMemoryOptimized { get; }
 	}
 	
-	public partial interface IMsSqlConnectionSettings{
+	public partial interface IMsSqlConnectionSettings 
+	{
 		string Name { get; }
 		string Guid { get; }
 		

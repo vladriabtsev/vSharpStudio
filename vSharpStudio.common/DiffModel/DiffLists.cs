@@ -7,15 +7,20 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace vSharpStudio.common
 {
-    public enum DiffEnumHistoryAnnotation { New, Deprecated, Deleted, Renamed, DiffDataType, CanLooseData, DiffProperties }
-    public class DiffDics<T>
+    public enum DiffEnumHistoryAnnotation { New, Deprecated, Deleted, Renamed, DiffListEnumerationPairs, DiffEnumerationType, DiffPropertyDataType,
+        CanLooseData, DiffConfig, DiffConstant, DiffEnumeration, DiffProperty, DiffPropertiesTab, DiffCatalog, DiffDocument, DiffListProperties, DiffListPropertiesTabs, DiffEnumerationPair
+    }
+    public class DiffLists<T>
             where T : IGuid, IName, IMutableAnnotatable
     {
-        public DiffDics(IEnumerable<T> oldest, IEnumerable<T> prev, IEnumerable<T> current)
+        protected Dictionary<string, T> dic_oldest;
+        protected Dictionary<string, T> dic_prev;
+        protected Dictionary<string, T> dic_curr;
+        public DiffLists(IEnumerable<T> oldest, IEnumerable<T> prev, IEnumerable<T> current)
         {
             this.ListAll = new List<T>();
 
-            Dictionary<string, T> dic_oldest = new Dictionary<string, T>();
+            dic_oldest = new Dictionary<string, T>();
             if (oldest != null)
             {
                 foreach (var t in oldest)
@@ -25,7 +30,7 @@ namespace vSharpStudio.common
                     dic_oldest[t.Guid] = t;
                 }
             }
-            Dictionary<string, T> dic_prev = new Dictionary<string, T>();
+            dic_prev = new Dictionary<string, T>();
             if (prev != null)
             {
                 foreach (var t in prev)
@@ -35,7 +40,7 @@ namespace vSharpStudio.common
                     dic_prev[t.Guid] = t;
                 }
             }
-            Dictionary<string, T> dic_curr = new Dictionary<string, T>();
+            dic_curr = new Dictionary<string, T>();
             foreach (var t in current)
             {
                 foreach (var tt in t.GetAnnotations().ToList())
@@ -95,78 +100,20 @@ namespace vSharpStudio.common
                     }
                 }
             }
-            if (typeof(T).Name == typeof(IConstant).Name)
-            {
-                foreach (var t in this.ListAll)
-                {
-                    IConstant tt = (IConstant)t;
-                    if (tt.IsDeleted())
-                        continue;
-                    if (tt.IsDeprecated())
-                        continue;
-                    if (tt.IsNew())
-                        continue;
-                    IDataType prev2 = dic_prev.ContainsKey(t.Guid) ? ((IConstant)dic_prev[t.Guid]).DataTypeI : null;
-                    IDataType current2 = dic_curr.ContainsKey(t.Guid) ? ((IConstant)dic_curr[t.Guid]).DataTypeI : null;
-                    var res = IsCanLoseData(prev2, current2);
-                    if (res == null)
-                        continue;
-                    if (res ?? false)
-                        t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
-                    var diff_data_type = new DiffDataType(prev2, current2);
-                    t[DiffEnumHistoryAnnotation.DiffDataType.ToString()] = diff_data_type;
-                }
-            }
-            else if (typeof(T).Name == typeof(IEnumeration).Name)
-            {
-                foreach (var t in this.ListAll)
-                {
-                    IEnumeration tt = (IEnumeration)t;
-                    if (tt.IsDeleted())
-                        continue;
-                    if (tt.IsDeprecated())
-                        continue;
-                    if (tt.IsNew())
-                        continue;
-                    IEnumeration prev2 = (IEnumeration)dic_prev[t.Guid];
-                    IEnumeration current2 = (IEnumeration)dic_curr[t.Guid];
-                    if (prev2.DataTypeEnum!=current2.DataTypeEnum)
-                    {
-                        if (current2.DataTypeEnum== EnumEnumerationType.BYTE_VALUE)
-                            t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
-                        var diff_data_type = new DiffDataType(prev2, current2);
-                        t[DiffEnumHistoryAnnotation.DiffDataType.ToString()] = diff_data_type;
-                    }
-                    else if (current2.DataTypeEnum== EnumEnumerationType.STRING_VALUE)
-                    {
-                        if (current2.DataTypeLength < prev2.DataTypeLength)
-                            t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
-                        var diff_data_type = new DiffDataType(prev2, current2);
-                        t[DiffEnumHistoryAnnotation.DiffDataType.ToString()] = diff_data_type;
-                    }
-                }
-            }
-            else if (typeof(T).Name == typeof(ICatalog).Name)
-            {
-                foreach (var t in this.ListAll)
-                {
-                    ICatalog tt = (ICatalog)t;
-                    IEnumerable<IProperty> oldest2 = dic_oldest.ContainsKey(t.Guid) ? ((ICatalog)dic_oldest[t.Guid]).GroupPropertiesI.ListPropertiesI : new List<IProperty>();
-                    IEnumerable<IProperty> prev2 = dic_prev.ContainsKey(t.Guid) ? ((ICatalog)dic_prev[t.Guid]).GroupPropertiesI.ListPropertiesI : new List<IProperty>();
-                    IEnumerable<IProperty> current2 = dic_curr.ContainsKey(t.Guid) ? ((ICatalog)dic_curr[t.Guid]).GroupPropertiesI.ListPropertiesI : new List<IProperty>();
-                    var diff_properties = new DiffProperties(oldest2, prev2, current2);
-                    t[DiffEnumHistoryAnnotation.DiffProperties.ToString()] = diff_properties;
-                }
-            }
-            dic_oldest.Clear();
-            dic_prev.Clear();
-            dic_curr.Clear();
         }
         // string is a current namespace plus name
         //public static Dictionary<string, DiffConstant> DicTypeChanged { get; private set; }
         public List<T> ListAll { get; private set; }
-
-        private bool? IsCanLoseData(IDataType prev, IDataType cur)
+        protected void ClearDics()
+        {
+            dic_oldest.Clear();
+            dic_oldest = null;
+            dic_prev.Clear();
+            dic_prev = null;
+            dic_curr.Clear();
+            dic_curr = null;
+        }
+        protected bool? IsCanLooseData(IDataType prev, IDataType cur)
         {
             if (cur.DataTypeEnum != prev.DataTypeEnum)
                 return true;

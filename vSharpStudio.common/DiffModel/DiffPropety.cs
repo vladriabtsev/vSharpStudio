@@ -17,13 +17,4 @@ namespace vSharpStudio.common
         public IProperty Current { get; private set; }
         public IProperty Previous { get; private set; }
     }
-    public class DiffProperties : DiffDics<IProperty>
-    {
-        public static DiffConstants DiffDics;
-        public DiffProperties(IEnumerable<IProperty> oldest, IEnumerable<IProperty> prev, IEnumerable<IProperty> current)
-            : base(oldest, prev, current)
-        {
-        }
-        //public static Dictionary<string, DiffConstant> DicTypeChanged { get; private set; }
-    }
 }
