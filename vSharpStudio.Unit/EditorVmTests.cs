@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using vSharpStudio.vm.ViewModels;
 using ViewModelBase;
 using System.Diagnostics;
@@ -638,11 +639,10 @@ namespace vSharpStudio.Unit
             cfg.GroupEnumerations[1].Name = "ab";
             //cfg.GroupConstants[1].DataType.ObjectName = "ab";
             cfg.ValidateSubTreeFromNode(cfg);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 2);
-            Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            Assert.IsTrue(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
-            Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            Assert.IsTrue(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            Assert.IsTrue(cfg.ValidationCollection.Count == 3);
+            Assert.IsTrue((from p in cfg.ValidationCollection where p.Severity == FluentValidation.Severity.Error select p).ToList().Count() == 3);
+            Assert.IsTrue((from p in cfg.ValidationCollection where p.Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE select p).ToList().Count() == 2);
+            Assert.IsTrue((from p in cfg.ValidationCollection where p.Message == Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO select p).ToList().Count() == 1);
             Assert.IsTrue(cfg.GroupEnumerations[1].ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.GroupEnumerations[1].ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             Assert.IsTrue(cfg.GroupEnumerations[1].HasErrors == true);

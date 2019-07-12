@@ -25,8 +25,8 @@ namespace vSharpStudio.Unit
         }
         private void remove_config()
         {
-            if (File.Exists(MainPageVM.CFG_PATH))
-                File.Delete(MainPageVM.CFG_PATH);
+            if (File.Exists(MainPageVM.CFG_FILE_PATH))
+                File.Delete(MainPageVM.CFG_FILE_PATH);
         }
         [TestMethod]
         public void Main001StartWithEmptyConfig()
@@ -99,7 +99,41 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(false);
         }
         [TestMethod]
-        public void Main003_Diff_Constants()
+        public void Main003_BaseConfigLoading()
+        {
+            // empty config
+            remove_config();
+            var vm = new MainPageVM(true);
+            Assert.IsTrue(vm.Model.GroupConfigs.Count() == 0);
+
+            // base config
+            var vmb = new MainPageVM(false);
+            vmb.Model.Name = "ext";
+            var c2 = new Constant() { Name = "c2" };
+            vmb.Model.GroupConstants.AddConstant(c2);
+            var path = @".\extcfg\";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
+
+            // create object and save
+            var bcfg = new BaseConfig() { RelativeConfigFilePath = path };
+            vm.Model.GroupConfigs.AddBaseConfig(bcfg);
+            var c1 = new Constant() { Name = "c1" };
+            vm.Model.GroupConstants.AddConstant(c1);
+            vm.CommandConfigSave.Execute(null);
+
+            vm = new MainPageVM(true);
+            Assert.IsTrue(vm.Model.GroupConstants.Count() == 1);
+            Assert.IsTrue(vm.Model.GroupConstants[0].Name == "c1");
+            Assert.IsTrue(vm.Model.GroupConfigs.Count() == 1);
+            Assert.IsTrue(vm.Model.GroupConfigs[0].Config.GroupConstants.ListConstants.Count() == 1);
+            Assert.IsTrue(vm.Model.GroupConfigs[0].Config.GroupConstants[0].Name == "c2");
+            Assert.IsTrue(vm.Model.GroupConfigs[0].Config.Name == "ext");
+            Assert.IsTrue(vm.Model.GroupConfigs[0].Name == "ext");
+        }
+        [TestMethod]
+        public void Main011_Diff_Constants()
         {
             // empty config
             remove_config();
@@ -157,7 +191,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(diff.Configs.ListAll[0].GetDiffConfig().Constants.ListAll.Count == 3); // deleted is removed
         }
         [TestMethod]
-        public void Main004_Diff_Enumerations()
+        public void Main012_Diff_Enumerations()
         {
             // empty config
             remove_config();

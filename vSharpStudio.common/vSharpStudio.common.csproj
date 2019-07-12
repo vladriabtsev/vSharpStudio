@@ -141,6 +141,7 @@
     <Compile Include="DiffModel\DiffListConstants.cs" />
     <Compile Include="DiffModel\DiffModel.cs" />
     <Compile Include="DiffModel\DiffLists.cs" />
+    <Compile Include="DiffModel\IBaseConfig.partial.cs" />
     <Compile Include="DiffModel\IConfig.partial.cs" />
     <Compile Include="DiffModel\IEnumerationPair.partial.cs" />
     <Compile Include="DiffModel\IGuid.cs" />

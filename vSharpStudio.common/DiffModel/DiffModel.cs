@@ -18,10 +18,34 @@ namespace vSharpStudio.common
     {
         public DiffModel(IConfig oldest_config, IConfig prev_config, IConfig current_config)
         {
-            //this.Configs = new DiffListConfigs(
-            //    oldest_config == null ? null : oldest_config.GroupConstantsI.ListConstantsI,
-            //    prev_config == null ? null : prev_config.GroupConstantsI.ListConstantsI,
-            //    current_config.GroupConstantsI.ListConstantsI);
+            var oldests = GetListConfigs(oldest_config);
+            var prevs = GetListConfigs(prev_config);
+            var currents = GetListConfigs(current_config);
+            this.Configs = new DiffListConfigs(oldests, prevs, currents);
+        }
+
+        private static List<IConfig> GetListConfigs(IConfig cfg)
+        {
+            var lst = new List<IConfig>();
+            if (cfg == null)
+                return lst;
+            var dic = new Dictionary<string, IConfig>();
+            dic[cfg.Guid] = cfg;
+            GetSubConfigs(cfg, dic);
+            foreach(var t in dic)
+            {
+                lst.Add(t.Value);
+            }
+            dic.Clear();
+            return lst;
+        }
+        private static void GetSubConfigs(IConfig cfg, Dictionary<string, IConfig> dic)
+        {
+            foreach (var t in cfg.GroupConfigsI.ListBaseConfigsI)
+            {
+                dic[t.Config.Guid] = t.Config;
+                GetSubConfigs(t.Config, dic);
+            }
         }
 
         public DiffListConfigs Configs;

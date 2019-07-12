@@ -49,14 +49,9 @@ namespace vSharpStudio.ViewModels
             Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
             Logger.LogInformation("Application is starting.");
 
-            if (isLoadConfig && File.Exists(CFG_PATH))
+            if (isLoadConfig && File.Exists(CFG_FILE_PATH))
             {
-                Logger.LogInformation("Configuration data are found in the file: " + CFG_PATH);
-                var protoarr = File.ReadAllBytes(CFG_PATH);
-                pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
-                this.Model = Config.ConvertToVM(pconfig_history.CurrentConfig);
-                //string json = File.ReadAllText(CFG_PATH);
-                //this.Model = new Config(json);
+                this.Model = LoadConfig(CFG_FILE_PATH, "");
             }
             else
             {
@@ -65,8 +60,27 @@ namespace vSharpStudio.ViewModels
             }
             this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
         }
+        private Config LoadConfig(string file_path, string indent)
+        {
+            if (!File.Exists(file_path))
+                throw new ArgumentException("Configuration data are not found in the file: " + file_path);
+            Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
+            var protoarr = File.ReadAllBytes(file_path);
+            pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
+            var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig);
+            string ind2 = indent + "   ";
+            foreach (var t in cfg.GroupConfigs.ListBaseConfigs)
+            {
+                t.Config = LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
+                t.Name = t.Config.Name;
+            }
+            //string json = File.ReadAllText(CFG_PATH);
+            //this.Model = new Config(json);
+            return cfg;
+        }
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
-        public static readonly string CFG_PATH = @".\current.vcfg";
+        public static readonly string CFG_FILE_PATH = @".\current.vcfg";
+        public static readonly string CFG_FILE_NAME = "current.vcfg";
         public DiffModel GetDiffModel()
         {
             DiffModel res = new DiffModel(
@@ -318,6 +332,16 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
+        public void SaveConfigAsForTests(string file_path)
+        {
+            PluginSettingsToModel();
+            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Model);
+            if (pconfig_history == null)
+                pconfig_history = new Proto.Config.proto_config_short_history();
+            pconfig_history.CurrentConfig = proto;
+            File.WriteAllBytes(file_path, pconfig_history.ToByteArray());
+        }
         internal void Save()
         {
             PluginSettingsToModel();
@@ -328,8 +352,8 @@ namespace vSharpStudio.ViewModels
             pconfig_history.CurrentConfig = proto;
             Utils.DangerousCall(() =>
             {
-                File.WriteAllBytes(CFG_PATH, pconfig_history.ToByteArray());
-            }, "Can't save configuration. File path: '" + CFG_PATH + "'");
+                File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
+            }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
             //var json = JsonFormatter.Default.Format(proto);
             //File.WriteAllText(CFG_PATH, json);
 #if DEBUG
@@ -442,8 +466,8 @@ namespace vSharpStudio.ViewModels
             pconfig_history.CurrentConfig.Version++;
             Utils.DangerousCall(() =>
             {
-                File.WriteAllBytes(CFG_PATH, pconfig_history.ToByteArray());
-            }, "Can't save configuration. File path: '" + CFG_PATH + "'");
+                File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
+            }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
         }
 
         #endregion Main
