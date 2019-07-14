@@ -78,7 +78,7 @@ namespace vSharpStudio.Unit
             IServiceProvider service_provider = new ServiceCollection()
                 .AddEntityFrameworkSqlServer()
                 .BuildServiceProvider();
-            using (var context = new vDbContext(service_provider, connectionString,
+            using (var context = new vDbContext(connectionString, service_provider, 
                 new DbContextOptionsBuilder().UseSqlServer(connectionString).Options))
             {
                 context.Database.EnsureDeleted();
@@ -105,13 +105,13 @@ namespace vSharpStudio.Unit
             var gvm = (MsSqlDesignGeneratorSettings)gen.Generator.GetSettingsMvvm(null);
             gvm.Name = "test";
 
-            var dgen = (MsSqlDesignGenerator)gen.Generator;
 
             MigrationOperation[] operations = null;
-            IMutableModel model = null;
 
+            var diff = vm.GetDiffModel();
             //EnsureDeletedTestDb(connstring);
-            dgen.UpdateToModel(connstring, operations, model, () => { return true; },
+            var dgen = (MsSqlDesignGenerator)gen.Generator;
+            dgen.UpdateToModel(connstring, operations, diff, () => { return true; },
                 //(json) =>
                 //{
                 //    IConfig prev = null;

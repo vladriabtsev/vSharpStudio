@@ -77,9 +77,9 @@ namespace vSharpStudio.vm.ViewModels
             switch (p.DataTypeEnum)
             {
                 case EnumDataType.ANY:
-                    break;
+                    throw new NotImplementedException();
                 case EnumDataType.BOOL:
-                    break;
+                    throw new NotImplementedException();
                 case EnumDataType.CATALOG:
                     if (config is Config)
                     {
@@ -94,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.CATALOGS:
-                    break;
+                    throw new NotImplementedException();
                 case EnumDataType.DOCUMENT:
                     if (config is Config)
                     { 

@@ -18,10 +18,11 @@ namespace vSharpStudio.common
     {
         public DiffModel(IConfig oldest_config, IConfig prev_config, IConfig current_config)
         {
+            this.DiffMainConfig = new DiffConfig(oldest_config, prev_config, current_config);
             var oldests = GetListConfigs(oldest_config);
             var prevs = GetListConfigs(prev_config);
             var currents = GetListConfigs(current_config);
-            this.Configs = new DiffListConfigs(oldests, prevs, currents);
+            this.DiffListSubConfigs = new DiffListConfigs(oldests, prevs, currents);
         }
 
         private static List<IConfig> GetListConfigs(IConfig cfg)
@@ -30,24 +31,23 @@ namespace vSharpStudio.common
             if (cfg == null)
                 return lst;
             var dic = new Dictionary<string, IConfig>();
-            dic[cfg.Guid] = cfg;
-            GetSubConfigs(cfg, dic);
+            GetSubConfigs(cfg);
             foreach(var t in dic)
             {
                 lst.Add(t.Value);
             }
             dic.Clear();
             return lst;
-        }
-        private static void GetSubConfigs(IConfig cfg, Dictionary<string, IConfig> dic)
-        {
-            foreach (var t in cfg.GroupConfigsI.ListBaseConfigsI)
+            void GetSubConfigs(IConfig _cfg)
             {
-                dic[t.Config.Guid] = t.Config;
-                GetSubConfigs(t.Config, dic);
+                foreach (var t in _cfg.GroupConfigsI.ListBaseConfigsI)
+                {
+                    dic[t.Config.Guid] = t.Config;
+                    GetSubConfigs(t.Config);
+                }
             }
         }
-
-        public DiffListConfigs Configs;
+        public DiffConfig DiffMainConfig;
+        public DiffListConfigs DiffListSubConfigs;
     }
 }

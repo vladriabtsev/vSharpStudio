@@ -20,17 +20,17 @@ namespace vSharpStudio.common
                     continue;
                 if (tt.IsDeprecated())
                     continue;
-                IDocument oldest2 = (IDocument)dic_oldest[t.Guid];
-                IDocument prev2 = (IDocument)dic_prev[t.Guid];
-                IDocument current2 = (IDocument)dic_curr[t.Guid];
+                IDocument oldest2 = dic_oldest.ContainsKey(t.Guid) ? dic_oldest[t.Guid] : null;
+                IDocument prev2 = dic_prev.ContainsKey(t.Guid) ? dic_prev[t.Guid] : null;
+                IDocument current2 = dic_curr.ContainsKey(t.Guid) ? dic_curr[t.Guid] : null;
                 DiffListProperties diff_properties = new DiffListProperties(
-                    oldest2 == null ? null : oldest2.GroupPropertiesI.ListPropertiesI,
-                    prev2 == null ? null : prev2.GroupPropertiesI.ListPropertiesI,
+                    oldest2?.GroupPropertiesI.ListPropertiesI,
+                    prev2?.GroupPropertiesI.ListPropertiesI,
                     current2.GroupPropertiesI.ListPropertiesI);
                 t[DiffEnumHistoryAnnotation.DiffListProperties.ToString()] = diff_properties;
                 DiffListPropertiesTabs diff_properties_tabs = new DiffListPropertiesTabs(
-                    oldest2 == null ? null : oldest2.GroupPropertiesTabsI.ListPropertiesTabsI,
-                    prev2 == null ? null : prev2.GroupPropertiesTabsI.ListPropertiesTabsI,
+                    oldest2?.GroupPropertiesTabsI.ListPropertiesTabsI,
+                    prev2?.GroupPropertiesTabsI.ListPropertiesTabsI,
                     current2.GroupPropertiesTabsI.ListPropertiesTabsI);
                 t[DiffEnumHistoryAnnotation.DiffListPropertiesTabs.ToString()] = diff_properties_tabs;
 

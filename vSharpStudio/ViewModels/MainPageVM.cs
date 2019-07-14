@@ -84,8 +84,8 @@ namespace vSharpStudio.ViewModels
         public DiffModel GetDiffModel()
         {
             DiffModel res = new DiffModel(
-                pconfig_history.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig),
-                pconfig_history.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig),
+                pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig),
+                pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig),
                 this.Model
             );
             return res;

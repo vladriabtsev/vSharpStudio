@@ -35,7 +35,7 @@ namespace vSharpStudio.common
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
-        void UpdateToModel(string connectionString, MigrationOperation[] operations, IModel target_model, Func<bool> onNeedDbCreate, Action<Exception> onError);
+        void UpdateToModel(string connectionString, MigrationOperation[] operations, DiffModel target_model, Func<bool> onNeedDbCreate, Action<Exception> onError);
         //void Backup(string filePath);
         //void Restore(string filePath);
         //void Export(string filePath);

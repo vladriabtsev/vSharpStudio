@@ -18,11 +18,9 @@ namespace vSharpStudio.common
                 IProperty tt = (IProperty)t;
                 if (tt.IsDeleted())
                     continue;
-                if (tt.IsNew())
-                    continue;
                 if (tt.IsDeprecated())
                     continue;
-                IProperty prev2 = (IProperty)dic_prev[t.Guid];
+                IProperty prev2 = dic_prev.ContainsKey(t.Guid) ? dic_prev[t.Guid] : null;
                 IProperty current2 = (IProperty)dic_curr[t.Guid];
                 bool isCanLoose = false;
                 bool isTypeChanged = false;

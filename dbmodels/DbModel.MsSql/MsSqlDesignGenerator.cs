@@ -186,7 +186,7 @@ namespace vPlugin.DbModel.MsSql
         //    }
         //}
         protected static string EOL => Environment.NewLine;
-        public void UpdateToModel(string connectionString, MigrationOperation[] operations, IModel target_model, Func<bool> onNeedDbCreate, Action<Exception> onError)
+        public void UpdateToModel(string connectionString, MigrationOperation[] operations, DiffModel diffModel, Func<bool> onNeedDbCreate, Action<Exception> onError)
         {
             string Sql;
             try
@@ -209,7 +209,7 @@ namespace vPlugin.DbModel.MsSql
                 var service_provider = services.BuildServiceProvider();
 
 
-                using (var context = new vDbContext(service_provider, connectionString, options))
+                using (var context = new vDbContext(connectionString, service_provider, options))
                 {
                     if (!context.Database.CanConnect())
                     {
@@ -234,14 +234,16 @@ namespace vPlugin.DbModel.MsSql
                     var differ = context.Database.GetService<IMigrationsModelDiffer>();
                     //var differ = service_provider.GetRequiredService<IMigrationsModelDiffer>();
 
-
                     // Database Model
                     List<string> schemas = new List<string>();
                     List<string> tables = new List<string>();
                     var databaseModel = databaseModelFactory.Create(connectionString, tables, schemas);
 
                     var source_model = modelFactory.Create(databaseModel, true);
-                    var diffs = differ.GetDifferences(source_model, target_model);
+                    DbModelCreator target = new DbModelCreator();
+                    target.Visit(diffModel, new ModelBuilder(new ConventionSet()));
+
+                    var diffs = differ.GetDifferences(source_model, target.Model);
                     var commands = sqlGenerator.Generate(diffs);
                     executor.ExecuteNonQuery(commands, connection);
 
