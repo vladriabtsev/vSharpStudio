@@ -188,7 +188,6 @@ namespace vPlugin.DbModel.MsSql
         protected static string EOL => Environment.NewLine;
         public void UpdateToModel(string connectionString, MigrationOperation[] operations, DiffModel diffModel, Func<bool> onNeedDbCreate, Action<Exception> onError)
         {
-            string Sql;
             try
             {
 
@@ -215,9 +214,9 @@ namespace vPlugin.DbModel.MsSql
                     {
                         if (!onNeedDbCreate())
                             return;
+                        context.Database.EnsureCreated();
                     }
 
-                    //context.Database.EnsureCreated();
                     //context.Database.EnsureClean();
                     // IModificationCommandBatchFactory
 

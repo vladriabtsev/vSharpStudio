@@ -16,19 +16,15 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IEnumeration tt = (IEnumeration)t;
-                if (tt.IsDeleted())
-                    continue;
-                if (tt.IsDeprecated())
-                    continue;
                 IEnumeration oldest2 = dic_oldest.ContainsKey(t.Guid) ? dic_oldest[t.Guid] : null;
                 IEnumeration prev2 = dic_prev.ContainsKey(t.Guid) ? dic_prev[t.Guid] : null;
                 IEnumeration current2 = dic_curr.ContainsKey(t.Guid) ? dic_curr[t.Guid] : null;
                 DiffListEnumerationPairs diff_elements = new DiffListEnumerationPairs(
                     oldest2?.ListEnumerationPairsI,
                     prev2?.ListEnumerationPairsI,
-                    current2.ListEnumerationPairsI);
+                    current2?.ListEnumerationPairsI);
                 t[DiffEnumHistoryAnnotation.DiffListEnumerationPairs.ToString()] = diff_elements;
-                if (prev2 != null)
+                if (prev2 != null && current2 != null)
                 {
                     if (prev2.DataTypeEnum != current2.DataTypeEnum)
                     {

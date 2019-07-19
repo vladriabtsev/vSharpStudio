@@ -16,19 +16,14 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IConstant tt = (IConstant)t;
-                if (tt.IsDeleted())
-                    continue;
-                if (tt.IsDeprecated())
-                    continue;
-                if (tt.IsNew())
-                    continue;
                 IDataType prev2 = dic_prev.ContainsKey(t.Guid) ? ((IConstant)dic_prev[t.Guid]).DataTypeI : null;
                 IDataType current2 = dic_curr.ContainsKey(t.Guid) ? ((IConstant)dic_curr[t.Guid]).DataTypeI : null;
-                var res = IsCanLooseData(prev2, current2);
-                if (res == null)
-                    continue;
-                if (res ?? false)
-                    t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
+                if (prev2 != null && current2 != null)
+                {
+                    var res = IsCanLooseData(prev2, current2);
+                    if (res ?? false)
+                        t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
+                }
                 var diff_data_type = new DiffDataType(prev2, current2);
                 t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
 

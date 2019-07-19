@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
-<# if (field.IsAny() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<# if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { #>
 public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
 { 
 	set
@@ -23,7 +23,7 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 }
 private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 [BrowsableAttribute(false)]
-public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
+public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } else if (field.IsMap) { #>
 public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
 { 

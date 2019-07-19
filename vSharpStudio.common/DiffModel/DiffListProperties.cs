@@ -16,49 +16,48 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IProperty tt = (IProperty)t;
-                if (tt.IsDeleted())
-                    continue;
-                if (tt.IsDeprecated())
-                    continue;
                 IProperty prev2 = dic_prev.ContainsKey(t.Guid) ? dic_prev[t.Guid] : null;
                 IProperty current2 = (IProperty)dic_curr[t.Guid];
                 bool isCanLoose = false;
                 bool isTypeChanged = false;
-                if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum)
+                if (prev2 != null && current2!=null)
                 {
-                    isCanLoose = true;
-                }
-                else if (current2.DataTypeI.DataTypeEnum == EnumDataType.STRING)
-                {
-                    if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
+                    if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum)
+                    {
                         isCanLoose = true;
-                }
-                else if (current2.DataTypeI.DataTypeEnum == EnumDataType.NUMERICAL)
-                {
-                    if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
-                        isCanLoose = true;
-                    if (current2.DataTypeI.Accuracy < prev2.DataTypeI.Accuracy)
-                        isCanLoose = true;
-                }
-                if (isCanLoose)
-                    t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
+                    }
+                    else if (current2.DataTypeI.DataTypeEnum == EnumDataType.STRING)
+                    {
+                        if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
+                            isCanLoose = true;
+                    }
+                    else if (current2.DataTypeI.DataTypeEnum == EnumDataType.NUMERICAL)
+                    {
+                        if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
+                            isCanLoose = true;
+                        if (current2.DataTypeI.Accuracy < prev2.DataTypeI.Accuracy)
+                            isCanLoose = true;
+                    }
+                    if (isCanLoose)
+                        t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
 
-                if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum ||
-                    current2.DataTypeI.Length != prev2.DataTypeI.Length ||
-                    current2.DataTypeI.Accuracy != prev2.DataTypeI.Accuracy
-                    )
-                {
-                    isTypeChanged = true;
-                }
+                    if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum ||
+                        current2.DataTypeI.Length != prev2.DataTypeI.Length ||
+                        current2.DataTypeI.Accuracy != prev2.DataTypeI.Accuracy
+                        )
+                    {
+                        isTypeChanged = true;
+                    }
 
-                if (isTypeChanged)
-                {
-                    DiffDataType diff_data_type = new DiffDataType(prev2.DataTypeI, current2.DataTypeI);
-                    t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
-                }
+                    if (isTypeChanged)
+                    {
+                        DiffDataType diff_data_type = new DiffDataType(prev2.DataTypeI, current2.DataTypeI);
+                        t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
+                    }
 
-                DiffProperty diff = new DiffProperty(prev2, current2);
-                t[DiffEnumHistoryAnnotation.DiffProperty.ToString()] = diff;
+                    DiffProperty diff = new DiffProperty(prev2, current2);
+                    t[DiffEnumHistoryAnnotation.DiffProperty.ToString()] = diff;
+                }
             }
             this.ClearDics();
         }

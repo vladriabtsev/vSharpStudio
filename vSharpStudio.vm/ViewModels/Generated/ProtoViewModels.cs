@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/13/2019 17:51:05
+// Auto generated on UTC 07/19/2019 11:51:05
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1742,6 +1742,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
 		    vm.LastUpdated = from.LastUpdated;
+		    vm.PrimaryKeyType = from.PrimaryKeyType;
 		    if (isDeep)
 		        vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
 		    if (isDeep)
@@ -1773,6 +1774,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
 		    to.LastUpdated = from.LastUpdated;
+		    to.PrimaryKeyType = from.PrimaryKeyType;
 		    if (isDeep)
 		        DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
 		    if (isDeep)
@@ -1820,6 +1822,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
 		    vm.LastUpdated = m.LastUpdated;
+		    vm.PrimaryKeyType = (EnumPrimaryKeyType)m.PrimaryKeyType;
 		    vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
 		    vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
 		    vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
@@ -1843,6 +1846,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
 		    m.LastUpdated = vm.LastUpdated;
+		    m.PrimaryKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PrimaryKeyType;
 		    m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto(vm.DbSettings);
 		    m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto(vm.GroupPlugins);
 		    m.GroupConfigs = vSharpStudio.vm.ViewModels.GroupListBaseConfigs.ConvertToProto(vm.GroupConfigs);
@@ -1928,6 +1932,25 @@ namespace vSharpStudio.vm.ViewModels
 		private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
 		partial void OnLastUpdatedChanging();
 		partial void OnLastUpdatedChanged();
+		[PropertyOrderAttribute(7)]
+		public EnumPrimaryKeyType PrimaryKeyType
+		{ 
+			set
+			{
+				if (_PrimaryKeyType != value)
+				{
+					OnPrimaryKeyTypeChanging();
+					_PrimaryKeyType = value;
+					OnPrimaryKeyTypeChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PrimaryKeyType; }
+		}
+		private EnumPrimaryKeyType _PrimaryKeyType;
+		partial void OnPrimaryKeyTypeChanging();
+		partial void OnPrimaryKeyTypeChanged();
 		
 		///////////////////////////////////////////////////
 		/// GENERAL DB SETTINGS
@@ -2130,6 +2153,7 @@ namespace vSharpStudio.vm.ViewModels
 		#region CTOR
 		public DataType() : base(DataTypeValidator.Validator)
 		{
+			this.ListObjectGuids = new ObservableCollection<string>();
 			OnInit();
 		}
 		partial void OnInit();
@@ -2143,6 +2167,9 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Accuracy = from.Accuracy;
 		    vm.IsPositive = from.IsPositive;
 		    vm.ObjectGuid = from.ObjectGuid;
+		    vm.IsNullable = from.IsNullable;
+		    foreach(var t in from.ListObjectGuids)
+		        vm.ListObjectGuids.Add(t);
 		    return vm;
 		}
 		public static void Update(DataType to, DataType from, bool isDeep = true)
@@ -2152,6 +2179,12 @@ namespace vSharpStudio.vm.ViewModels
 		    to.Accuracy = from.Accuracy;
 		    to.IsPositive = from.IsPositive;
 		    to.ObjectGuid = from.ObjectGuid;
+		    to.IsNullable = from.IsNullable;
+		        to.ListObjectGuids.Clear();
+		        foreach(var tt in from.ListObjectGuids)
+		        {
+		            to.ListObjectGuids.Add(tt);
+		        }
 		}
 		#region IEditable
 		public override DataType Backup()
@@ -2179,6 +2212,12 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Accuracy = m.Accuracy;
 		    vm.IsPositive = m.IsPositive;
 		    vm.ObjectGuid = m.ObjectGuid;
+		    vm.IsNullable = m.IsNullable;
+		    vm.ListObjectGuids = new ObservableCollection<string>();
+		    foreach(var t in m.ListObjectGuids)
+		    {
+		        vm.ListObjectGuids.Add(t);
+		    }
 		    return vm;
 		}
 		// Conversion from 'DataType' to 'proto_data_type'
@@ -2190,6 +2229,9 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Accuracy = vm.Accuracy;
 		    m.IsPositive = vm.IsPositive;
 		    m.ObjectGuid = vm.ObjectGuid;
+		    m.IsNullable = vm.IsNullable;
+		    foreach(var t in vm.ListObjectGuids)
+		        m.ListObjectGuids.Add(t);
 		    return m;
 		}
 		#endregion Procedures
@@ -2215,7 +2257,7 @@ namespace vSharpStudio.vm.ViewModels
 		private EnumDataType _DataTypeEnum;
 		partial void OnDataTypeEnumChanging();
 		partial void OnDataTypeEnumChanged();
-		[PropertyOrderAttribute(3)]
+		[PropertyOrderAttribute(5)]
 		public uint Length
 		{ 
 			set
@@ -2234,7 +2276,7 @@ namespace vSharpStudio.vm.ViewModels
 		private uint _Length;
 		partial void OnLengthChanging();
 		partial void OnLengthChanged();
-		[PropertyOrderAttribute(5)]
+		[PropertyOrderAttribute(7)]
 		public uint Accuracy
 		{ 
 			set
@@ -2253,7 +2295,7 @@ namespace vSharpStudio.vm.ViewModels
 		private uint _Accuracy;
 		partial void OnAccuracyChanging();
 		partial void OnAccuracyChanged();
-		[PropertyOrderAttribute(4)]
+		[PropertyOrderAttribute(6)]
 		[DisplayName("Is positive")]
 		public bool IsPositive
 		{ 
@@ -2273,7 +2315,7 @@ namespace vSharpStudio.vm.ViewModels
 		private bool _IsPositive;
 		partial void OnIsPositiveChanging();
 		partial void OnIsPositiveChanged();
-		[PropertyOrderAttribute(2)]
+		[PropertyOrderAttribute(3)]
 		[Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
 		public string ObjectGuid
 		{ 
@@ -2293,6 +2335,46 @@ namespace vSharpStudio.vm.ViewModels
 		private string _ObjectGuid = "";
 		partial void OnObjectGuidChanging();
 		partial void OnObjectGuidChanged();
+		[PropertyOrderAttribute(2)]
+		public bool IsNullable
+		{ 
+			set
+			{
+				if (_IsNullable != value)
+				{
+					OnIsNullableChanging();
+					_IsNullable = value;
+					OnIsNullableChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsNullable; }
+		}
+		private bool _IsNullable;
+		partial void OnIsNullableChanging();
+		partial void OnIsNullableChanged();
+		[PropertyOrderAttribute(4)]
+		public ObservableCollection<string> ListObjectGuids
+		{ 
+			set
+			{
+				if (_ListObjectGuids != value)
+				{
+					OnListObjectGuidsChanging();
+					_ListObjectGuids = value;
+					OnListObjectGuidsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListObjectGuids; }
+		}
+		private ObservableCollection<string> _ListObjectGuids;
+		[BrowsableAttribute(false)]
+		public IEnumerable<string> ListObjectGuidsI { get { foreach (var t in _ListObjectGuids) yield return t; } }
+		partial void OnListObjectGuidsChanging();
+		partial void OnListObjectGuidsChanged();
 		#endregion Properties
 	}
 	

@@ -7,10 +7,17 @@ namespace vSharpStudio.common
 		Identity = 0,
 		HiLo = 1,
 	}
+	public enum EnumPrimaryKeyType {
+		INT = 0,
+		LONG = 1,
+	}
 	public enum EnumDataType {
 		STRING = 0,
 		NUMERICAL = 1,
-		BOOL = 5,
+		BOOL = 2,
+		TIME = 3,
+		DATE = 4,
+		DATETIME = 5,
 		ENUMERATION = 8,
 		CATALOG = 9,
 		CATALOGS = 10,
@@ -33,7 +40,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IPlugin : IGuid, IName 
 	{
-	    string FullName { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
 		IEnumerable<IPluginGenerator> ListGeneratorsI { get; }
@@ -41,7 +47,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IPluginGenerator : IGuid, IName 
 	{
-	    string FullName { get; }
 		string Description { get; }
 		ulong SortingValue { get; }
 		IEnumerable<IPluginGeneratorSettings> ListSettingsI { get; }
@@ -49,7 +54,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IPluginGeneratorSettings : IGuid, IName 
 	{
-	    string FullName { get; }
 		
 		///////////////////////////////////////////////////
 		/// This Description is taken from Plugin Generator
@@ -63,7 +67,6 @@ namespace vSharpStudio.common
 	
 	public partial interface ISettingsConfig : IGuid, IName 
 	{
-	    string FullName { get; }
 		string NameUi { get; }
 		string Description { get; }
 		
@@ -116,7 +119,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListBaseConfigs : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		
 		///////////////////////////////////////////////////
@@ -128,7 +130,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IBaseConfig : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		
 		///////////////////////////////////////////////////
@@ -146,11 +147,11 @@ namespace vSharpStudio.common
 	public partial interface IConfig : IGuid, IName 
 	{
 		int Version { get; }
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
 		Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; }
+		EnumPrimaryKeyType PrimaryKeyType { get; }
 		
 		///////////////////////////////////////////////////
 		/// GENERAL DB SETTINGS
@@ -173,6 +174,8 @@ namespace vSharpStudio.common
 		uint Accuracy { get; }
 		bool IsPositive { get; }
 		string ObjectGuid { get; }
+		bool IsNullable { get; }
+		IEnumerable<string> ListObjectGuidsI { get; }
 	}
 	
 	///////////////////////////////////////////////////
@@ -181,7 +184,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListCommon : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -195,7 +197,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IRole : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -203,7 +204,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListRoles : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -216,7 +216,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IMainViewForm : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -229,7 +228,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListMainViewForms : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -238,7 +236,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListPropertiesTabs : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -247,7 +244,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IPropertiesTab : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -257,7 +253,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListProperties : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -271,7 +266,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IProperty : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -286,7 +280,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListConstants : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -299,7 +292,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IConstant : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -308,7 +300,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListEnumerations : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -317,7 +308,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IEnumeration : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -336,7 +326,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IEnumerationPair : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -349,7 +338,6 @@ namespace vSharpStudio.common
 	
 	public partial interface ICatalog : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -361,7 +349,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListCatalogs : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -370,7 +357,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupDocuments : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -380,7 +366,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IDocument : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -392,7 +377,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListDocuments : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -401,7 +385,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListJournals : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -414,7 +397,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IJournal : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -427,7 +409,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListForms : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -440,7 +421,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IForm : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		
@@ -454,7 +434,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IGroupListReports : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
@@ -467,7 +446,6 @@ namespace vSharpStudio.common
 	
 	public partial interface IReport : IGuid, IName 
 	{
-	    string FullName { get; }
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		

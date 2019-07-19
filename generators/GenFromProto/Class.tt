@@ -10,10 +10,10 @@
 	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
 	{
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.IsCsSimple())
+       if (t.IsCsSimple() && !t.IsRepeated)
          continue;
 		if (t.IsRepeated) {#>
-<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+<# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
 <# } else { #>
 		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();

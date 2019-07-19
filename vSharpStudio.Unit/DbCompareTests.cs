@@ -18,6 +18,7 @@ namespace vSharpStudio.Unit
     {
         public DbCompareTests()
         {
+            MsSqlTests.InitLogging(this);
         }
         [TestMethod]
         [DataRow("MsSQL")]

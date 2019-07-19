@@ -99,7 +99,7 @@ namespace GenFromProto
             
             #line 12 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.IsCsSimple())
+       if (t.IsCsSimple() && !t.IsRepeated)
          continue;
 		if (t.IsRepeated) {
             
@@ -107,7 +107,7 @@ namespace GenFromProto
             #line hidden
             
             #line 16 "C:\dev\vsharpstudio\generators\GenFromProto\Class.tt"
- if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
+ if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden

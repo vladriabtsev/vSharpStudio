@@ -73,6 +73,21 @@
             },
             {
               "name": "BOOL",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "TIME",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "DATE",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "DATETIME",
               "number": "5",
               "description": ""
             },
@@ -104,6 +119,24 @@
             {
               "name": "ANY",
               "number": "15",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_primary_key_type",
+          "longName": "proto_enum_primary_key_type",
+          "fullName": "proto_config.proto_enum_primary_key_type",
+          "description": "",
+          "values": [
+            {
+              "name": "INT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LONG",
+              "number": "1",
               "description": ""
             }
           ]
@@ -485,6 +518,16 @@
               "defaultValue": ""
             },
             {
+              "name": "primary_key_type",
+              "description": "@attr [PropertyOrderAttribute(7)]",
+              "label": "",
+              "type": "proto_enum_primary_key_type",
+              "longType": "proto_enum_primary_key_type",
+              "fullType": "proto_config.proto_enum_primary_key_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "db_settings",
               "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
@@ -709,16 +752,6 @@
             },
             {
               "name": "length",
-              "description": "@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "accuracy",
               "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "uint32",
@@ -728,8 +761,18 @@
               "defaultValue": ""
             },
             {
+              "name": "accuracy",
+              "description": "@attr [PropertyOrderAttribute(7)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_positive",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Is positive\")]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Is positive\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -739,8 +782,28 @@
             },
             {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
               "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_nullable",
+              "description": "@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_object_guids",
+              "description": "@attr [PropertyOrderAttribute(4)]",
+              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",

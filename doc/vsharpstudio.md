@@ -46,6 +46,7 @@
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
+    - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
   
   
   
@@ -158,6 +159,7 @@ Configuration config
 | name_ui | [string](#string) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
+| primary_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(7)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
@@ -219,10 +221,12 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
-| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] |
-| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
-| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Is positive&#34;)] |
-| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
+| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
+| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(7)] |
+| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Is positive&#34;)] |
+| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
+| is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] |
+| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(4)] |
 
 
 
@@ -867,13 +871,28 @@ User&#39;s role
 | ---- | ------ | ----------- |
 | STRING | 0 |  |
 | NUMERICAL | 1 |  |
-| BOOL | 5 |  |
+| BOOL | 2 |  |
+| TIME | 3 |  |
+| DATE | 4 |  |
+| DATETIME | 5 |  |
 | ENUMERATION | 8 | CONSTANT = 7; |
 | CATALOG | 9 |  |
 | CATALOGS | 10 |  |
 | DOCUMENT | 11 |  |
 | DOCUMENTS | 12 |  |
 | ANY | 15 |  |
+
+
+
+<a name="proto_config.proto_enum_primary_key_type"></a>
+
+### proto_enum_primary_key_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INT | 0 |  |
+| LONG | 1 |  |
 
 
  

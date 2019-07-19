@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\vSharpStudio.common\DiffModel\IGuid.cs" Link="IGuid.cs" />
+    <Compile Include="..\..\vSharpStudio.common\DiffModel\IName.cs" Link="IName.cs" />
+    <Compile Include="..\..\vSharpStudio.common\ModelInterfaces.cs" Link="ModelInterfaces.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Google.Protobuf" Version="3.9.0" />
+  </ItemGroup>
+
+</Project>

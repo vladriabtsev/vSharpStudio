@@ -16,10 +16,6 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IEnumerationPair tt = (IEnumerationPair)t;
-                if (tt.IsDeleted())
-                    continue;
-                if (tt.IsNew())
-                    continue;
                 IEnumerationPair prev2 = dic_prev[t.Guid];
                 IEnumerationPair current2 = dic_curr[t.Guid];
                 DiffEnumerationPair diff = new DiffEnumerationPair(prev2, current2);

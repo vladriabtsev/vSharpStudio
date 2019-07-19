@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Numerics;
@@ -18,6 +19,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
+            this.IsNullable = true;
+            this.Length = 10;
+            this.DataTypeEnum = EnumDataType.STRING;
         }
         public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
         {
@@ -51,17 +55,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.DataTypeEnum = type;
             this.ObjectGuid = guidOfType;
-            switch (this.DataTypeEnum)
-            {
-                case EnumDataType.CATALOG:
-                    break;
-                case EnumDataType.DOCUMENT:
-                    break;
-                case EnumDataType.ENUMERATION:
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
+            this.ListObjectGuids = new ObservableCollection<string>();
         }
         public override string ToString()
         {
@@ -97,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
                 case EnumDataType.DOCUMENT:
                     if (config is Config)
-                    { 
+                    {
                         foreach (var t in (config as Config).GroupDocuments.GroupListDocuments.ListDocuments)
                         {
                             if (p.ObjectGuid == t.Guid)
@@ -105,8 +99,8 @@ namespace vSharpStudio.vm.ViewModels
                                 objName = t.Name;
                             }
                         }
-                    res += ": " + objName;
-            }
+                        res += ": " + objName;
+                    }
                     break;
                 case EnumDataType.DOCUMENTS:
                     break;
@@ -124,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.NUMERICAL:
-                    res += ", " + (p.IsPositive ? "+" : "") + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : "") + " clr:" + p.ClrType + " proto:" + p.ProtoType;
+                    res += ", " + (p.IsPositive ? "+" : "") + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : "") + " clr:" + p.ClrTypeName + " proto:" + p.ProtoType;
                     break;
                 case EnumDataType.STRING:
                     res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
@@ -241,11 +235,88 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger _MaxNumericalValue;
-        [PropertyOrderAttribute(11)]
-        public string ClrType
+        [BrowsableAttribute(false)]
+        public Type ClrType
         {
             get
             {
+                switch (ClrTypeName)
+                {
+                    case "DateTime":
+                        return typeof(DateTime);
+                    case "DateTime?":
+                        return typeof(DateTime?);
+                    case "bool":
+                        return typeof(bool);
+                    case "bool?":
+                        return typeof(bool?);
+                    case "string":
+                        return typeof(string);
+                    case "byte":
+                        return typeof(byte);
+                    case "byte?":
+                        return typeof(byte?);
+                    case "ushort":
+                        return typeof(ushort);
+                    case "ushort?":
+                        return typeof(ushort?);
+                    case "uint":
+                        return typeof(uint);
+                    case "uint?":
+                        return typeof(uint?);
+                    case "ulong":
+                        return typeof(ulong);
+                    case "ulong?":
+                        return typeof(ulong?);
+                    case "BigInteger":
+                        return typeof(BigInteger);
+                    case "BigInteger?":
+                        return typeof(BigInteger?);
+                    case "sbyte":
+                        return typeof(sbyte);
+                    case "sbyte?":
+                        return typeof(sbyte?);
+                    case "short":
+                        return typeof(short);
+                    case "short?":
+                        return typeof(short?);
+                    case "int":
+                        return typeof(int);
+                    case "int?":
+                        return typeof(int?);
+                    case "long":
+                        return typeof(long);
+                    case "long?":
+                        return typeof(long?);
+                    case "BigDecimal":
+                        return typeof(BigDecimal);
+                    case "BigDecimal?":
+                        return typeof(BigDecimal?);
+                    case "float":
+                        return typeof(float);
+                    case "float?":
+                        return typeof(float?);
+                    case "double":
+                        return typeof(double);
+                    case "double?":
+                        return typeof(double?);
+                    case "decimal":
+                        return typeof(decimal);
+                    case "decimal?":
+                        return typeof(decimal?);
+                    default:
+                        throw new Exception("Not supported operation");
+                }
+            }
+        }
+        [PropertyOrderAttribute(11)]
+        public string ClrTypeName
+        {
+            get
+            {
+                string sn = "";
+                if (this.IsNullable)
+                    sn = "?";
                 // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
                 switch (this.DataTypeEnum)
                 {
@@ -259,8 +330,12 @@ namespace vSharpStudio.vm.ViewModels
                         return "Documents";
                     case EnumDataType.ENUMERATION:
                         return "Enumeration";
+                    case EnumDataType.DATE:
+                    case EnumDataType.DATETIME:
+                    case EnumDataType.TIME:
+                        return "DateTime" + sn;
                     case EnumDataType.BOOL:
-                        return "bool";
+                        return "bool" + sn;
                     case EnumDataType.STRING:
                         return "string";
                     case EnumDataType.NUMERICAL:
@@ -269,26 +344,32 @@ namespace vSharpStudio.vm.ViewModels
                             if (this.IsPositive)
                             {
                                 if (this.MaxNumericalValue <= byte.MaxValue)
-                                    return "byte";
+                                    return "byte" + sn;
                                 if (this.MaxNumericalValue <= ushort.MaxValue)
-                                    return "ushort";
+                                    return "ushort" + sn;
                                 if (this.MaxNumericalValue <= uint.MaxValue)
-                                    return "uint";
+                                    return "uint" + sn;
                                 if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
-                                    return "ulong";
-                                return "BigInteger";
+                                    return "ulong" + sn;
+                                if (this.Length <= 28) 
+                                    return "decimal" + sn;
+                                throw new Exception("Not supported operation");
+                                //return "BigInteger" + sn;
                             }
                             else
                             {
                                 if (this.MaxNumericalValue <= sbyte.MaxValue)
-                                    return "sbyte";
+                                    return "sbyte" + sn;
                                 if (this.MaxNumericalValue <= short.MaxValue)
-                                    return "short";
+                                    return "short" + sn;
                                 if (this.MaxNumericalValue <= int.MaxValue)
-                                    return "int";
+                                    return "int" + sn;
                                 if (this.MaxNumericalValue <= long.MaxValue)
-                                    return "long";
-                                return "BigInteger";
+                                    return "long" + sn;
+                                if (this.Length <= 28)
+                                    return "decimal" + sn;
+                                throw new Exception("Not supported operation");
+                                //return "BigInteger" + sn;
                             }
                         }
                         else
@@ -299,12 +380,13 @@ namespace vSharpStudio.vm.ViewModels
                             if (this.Length == 0)
                                 return "BigDecimal";
                             if (this.Length <= 6)
-                                return "float";
+                                return "float" + sn;
                             if (this.Length <= 15)
-                                return "double";
+                                return "double" + sn;
                             if (this.Length < 29)
-                                return "decimal";
-                            return "BigDecimal";
+                                return "decimal" + sn;
+                            throw new Exception("Not supported operation");
+                            //return "BigDecimal";
                         }
                     default:
                         throw new Exception("Not supported operation");
@@ -404,14 +486,37 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private SortedObservableCollection<ITreeConfigNode> _ListObjects;
+        partial void OnDataTypeEnumChanging()
+        {
+            switch (this.DataTypeEnum)
+            {
+                case EnumDataType.CATALOG:
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.CATALOGS:
+                    this.ObjectGuid = "";
+                    break;
+                case EnumDataType.DOCUMENT:
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.DOCUMENTS:
+                    this.ObjectGuid = "";
+                    break;
+                case EnumDataType.ENUMERATION:
+                    break;
+            }
+        }
         partial void OnDataTypeEnumChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ClrTypeName);
             this.NotifyPropertyChanged(p => p.ProtoType);
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.ANY:
                 case EnumDataType.BOOL:
+                case EnumDataType.DATETIME:
+                case EnumDataType.DATE:
+                case EnumDataType.TIME:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                     this.VisibilityAccuracy = Visibility.Collapsed;
@@ -436,6 +541,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.IsPositive = false;
                     this.ObjectGuid = "";
                     this.ListObjects = null;
+                    this.ListObjectGuids.Clear();
                     UpdateListObjects();
                     break;
                 case EnumDataType.NUMERICAL:
@@ -451,6 +557,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.IsPositive = false;
                     this.ObjectGuid = "";
                     this.ListObjects = null;
+                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -462,7 +569,10 @@ namespace vSharpStudio.vm.ViewModels
                     this.IsPositive = false;
                     this.ObjectGuid = "";
                     this.ListObjects = null;
+                    this.ListObjectGuids.Clear();
                     break;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -495,7 +605,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnLengthChanged()
         {
             _MaxNumericalValue = 0;
-            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ClrTypeName);
             this.NotifyPropertyChanged(p => p.ProtoType);
             this.NotifyPropertyChanged(p => p.MaxValue);
             this.NotifyPropertyChanged(p => p.MinValue);
@@ -503,7 +613,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnAccuracyChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ClrTypeName);
             this.NotifyPropertyChanged(p => p.ProtoType);
             this.ValidateProperty(p => p.Length);
             this.NotifyPropertyChanged(p => p.MaxValue);
@@ -515,7 +625,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsPositiveChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrType);
+            this.NotifyPropertyChanged(p => p.ClrTypeName);
             this.NotifyPropertyChanged(p => p.ProtoType);
             this.NotifyPropertyChanged(p => p.MaxValue);
             this.NotifyPropertyChanged(p => p.MinValue);

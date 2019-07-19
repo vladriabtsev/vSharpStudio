@@ -152,6 +152,10 @@ message proto_base_config {
     // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
     string relative_config_file_path = 7;
 }
+enum proto_enum_primary_key_type {
+    INT = 0;
+    LONG = 1;
+}
 // Configuration config
 message proto_config {
     // Unique Guid for configuration (for comparison)
@@ -166,6 +170,8 @@ message proto_config {
     string description = 6;
     // @attr [PropertyOrderAttribute(6)]
     google.protobuf.Timestamp last_updated = 7;
+    // @attr [PropertyOrderAttribute(7)]
+    proto_enum_primary_key_type primary_key_type = 8;
 
     // GENERAL DB SETTINGS
     // @attr [PropertyOrderAttribute(11)]
@@ -196,7 +202,10 @@ message proto_config {
 enum proto_enum_data_type {
     STRING = 0;
     NUMERICAL = 1;
-    BOOL = 5;
+    BOOL = 2;
+    TIME = 3;
+    DATE = 4;
+    DATETIME = 5;
 
     //CONSTANT = 7;
     ENUMERATION = 8;
@@ -212,16 +221,20 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
-    // @attr [PropertyOrderAttribute(3)]
-    uint32 length = 2; 
     // @attr [PropertyOrderAttribute(5)]
+    uint32 length = 2; 
+    // @attr [PropertyOrderAttribute(7)]
     uint32 accuracy = 3; 
-    // @attr [PropertyOrderAttribute(4)]
+    // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Is positive")]
     bool is_positive = 4; 
-    // @attr [PropertyOrderAttribute(2)]
+    // @attr [PropertyOrderAttribute(3)]
     // @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
     string object_guid = 5;
+    // @attr [PropertyOrderAttribute(2)]
+    bool is_nullable = 6;
+    // @attr [PropertyOrderAttribute(4)]
+    repeated string list_object_guids = 7;
 }
 /** 
  * @exclude

@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace vSharpStudio.common
 {
-    public enum DiffEnumHistoryAnnotation { New, Deprecated, Deleted, Renamed, DiffListEnumerationPairs, DiffEnumerationType, DiffPropertyDataType,
+    public enum DiffEnumHistoryAnnotation
+    {
+        New, Deprecated, Deleted, Renamed, DiffListEnumerationPairs, DiffEnumerationType, DiffPropertyDataType,
         CanLooseData, DiffConfig, DiffConstant, DiffEnumeration, DiffProperty, DiffPropertiesTab, DiffCatalog, DiffDocument, DiffListProperties, DiffListPropertiesTabs, DiffEnumerationPair
     }
     public class DiffLists<T>
@@ -119,6 +121,12 @@ namespace vSharpStudio.common
                 return true;
             switch (cur.DataTypeEnum)
             {
+                case EnumDataType.ANY:
+                case EnumDataType.BOOL:
+                case EnumDataType.DATE:
+                case EnumDataType.DATETIME:
+                case EnumDataType.TIME:
+                    return false;
                 case EnumDataType.STRING:
                     if (cur.Length != prev.Length)
                     {
@@ -147,8 +155,33 @@ namespace vSharpStudio.common
                         return false;
                     }
                     break;
+                case EnumDataType.ENUMERATION:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.CATALOG:
+                    if (cur.ObjectGuid != prev.ObjectGuid)
+                        return true;
+                    return false;
+                case EnumDataType.DOCUMENTS:
+                case EnumDataType.CATALOGS:
+                    foreach(var t in prev.ListObjectGuidsI)
+                    {
+                        bool is_found = false;
+                        foreach (var tt in cur.ListObjectGuidsI)
+                        {
+                            if (t==tt)
+                            {
+                                is_found = true;
+                                break;
+                            }
+                        }
+                        if (!is_found)
+                            return true;
+                    }
+                    return false;
+                default:
+                    throw new NotImplementedException();
             }
-            return null;
+            return false;
         }
     }
 }

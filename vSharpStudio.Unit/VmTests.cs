@@ -19,10 +19,11 @@ namespace vSharpStudio.Unit
         public VmTests()
         {
             ViewModelBindable.isUnitTests = true;
-            ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            loggerFactory.AddProvider(new DebugLoggerProvider());
-            _logger = loggerFactory.CreateLogger<VmTests>();
-            _logger.LogInformation("======================  Start VmTests tests ===============================");
+            //ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            //loggerFactory.AddProvider(new DebugLoggerProvider());
+            //_logger = loggerFactory.CreateLogger<VmTests>();
+            //_logger.LogInformation("======================  Start VmTests tests ===============================");
+            MsSqlTests.InitLogging(this);
         }
         #region Editable
 

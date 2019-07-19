@@ -28,15 +28,16 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
          this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; #>
 <# if (MessageDoc.IsDefaultBase) {
      if (field.Name=="guid") continue;
-     if (field.Name=="name") { #>
-    string FullName { get; }
-<#     continue;
-     } 
+     if (field.Name=="name") continue;
    } this.PushIndent("\t"); #>
-<#= this.FieldDoc.Comments #><# if (field.IsCsSimple()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
-<#       } else if (field.IsRepeated) { #>
+<#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
+<# if (field.IsCsSimple()) { #>
+IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; }
+<# } else { #>
 IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; }
+<# } #>
+<#       } else if (field.IsCsSimple()) { #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
 <#       } else { #>
 I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; }
 <#       } #>

@@ -14,11 +14,11 @@ namespace vSharpStudio.common
         protected ModelBuilder modelBuilder;
         protected abstract void Visit(IEnumeration m, DiffEnumerationType diff_type);
         protected abstract void Visit(IEnumerationPair m, DiffEnumerationPair diff_type);
-        protected abstract void Visit(List<IConstant> lst);
+        protected abstract void Visit(List<IConstant> diff_lst);
         protected abstract void Visit(IConstant m, DiffDataType diff_type);
         protected abstract void Visit(IConfig m, DiffConfig diff);
         protected abstract void Visit(ICatalog m, DiffCatalog diff);
-        protected abstract void Visit(IDocument m, DiffDocument diff);
+        protected abstract void Visit(IDocument m, DiffListProperties diff_shared_prop, DiffDocument diff);
         protected abstract void Visit(IPropertiesTab m, DiffPropertiesTab diff);
         protected abstract void Visit(IProperty m, DiffProperty diff, DiffDataType diff_type);
 
@@ -47,8 +47,6 @@ namespace vSharpStudio.common
         }
         public void Visit(DiffModel diff, ModelBuilder modelBuilder)
         {
-            if (diff == null)
-                return;
             this.modelBuilder = modelBuilder;
 
             RunThroughConfig(diff.DiffMainConfig.Config);
@@ -97,17 +95,19 @@ namespace vSharpStudio.common
                 var diff_tabs = tt.GetDiffListPropertiesTabs();
                 this.VisitPropertiesTabs(diff_tabs);
             }
-            //foreach (var tt in diff_config.Documents.ListAll)
-            //{
-            //    var diff_doc = tt.GetDiffDocument();
-            //    this.Visit(tt, diff_doc);
+            foreach (var tt in diff_config.Documents.ListAll)
+            {
+                var diff_doc = tt.GetDiffDocument();
+                this.Visit(tt, diff_config.Documents.DiffSharedProps, diff_doc);
 
-            //    var diff_properties = tt.GetDiffListProperties();
-            //    this.VisitProperties(diff_properties);
+                this.VisitProperties(diff_config.Documents.DiffSharedProps);
 
-            //    var diff_tabs = tt.GetDiffListPropertiesTabs();
-            //    this.VisitPropertiesTabs(diff_tabs);
-            //}
+                var diff_properties = tt.GetDiffListProperties();
+                this.VisitProperties(diff_properties);
+
+                var diff_tabs = tt.GetDiffListPropertiesTabs();
+                this.VisitPropertiesTabs(diff_tabs);
+            }
         }
     }
 }

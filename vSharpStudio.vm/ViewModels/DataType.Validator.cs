@@ -35,6 +35,14 @@ namespace vSharpStudio.vm.ViewModels
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_LESS_THAN_ACCURACY);
+                RuleFor(p => p.Length).Must((p, y) =>
+                {
+                    if (p.Length == 0)
+                        return true;
+                    if (p.DataTypeEnum == EnumDataType.NUMERICAL && y > 38)
+                        return false;
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.TYPE_LENGTH_LIMIT, 38));
                 #endregion Length
 
                 #region MinValueString

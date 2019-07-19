@@ -22,6 +22,7 @@ namespace vSharpStudio.Unit
         public MainVmTests()
         {
             ViewModelBindable.isUnitTests = true;
+            MsSqlTests.InitLogging(this);
         }
         private void remove_config()
         {

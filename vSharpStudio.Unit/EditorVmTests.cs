@@ -16,6 +16,7 @@ namespace vSharpStudio.Unit
         public EditorVmTests()
         {
             ViewModelBindable.isUnitTests = true;
+            MsSqlTests.InitLogging(this);
         }
         #region SortedCollection
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }

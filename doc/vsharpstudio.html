@@ -343,6 +343,10 @@
                   <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
                 </li>
               
+                <li>
+                  <a href="#proto_config.proto_enum_primary_key_type"><span class="badge">E</span>proto_enum_primary_key_type</a>
+                </li>
+              
               
               
             </ul>
@@ -680,6 +684,13 @@ it will override previous settings
                 </tr>
               
                 <tr>
+                  <td>primary_key_type</td>
+                  <td><a href="#proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>db_settings</td>
                   <td><a href="#proto_config.db_settings">db_settings</a></td>
                   <td></td>
@@ -871,21 +882,21 @@ it will override previous settings
                   <td>length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
                   <td>accuracy</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)] </p></td>
                 </tr>
               
                 <tr>
                   <td>is_positive</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Is positive&#34;)] </p></td>
                 </tr>
               
@@ -893,8 +904,22 @@ it will override previous settings
                   <td>object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_nullable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_object_guids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
                 </tr>
               
             </tbody>
@@ -2785,6 +2810,24 @@ repeated proto_document list_documents = 7; </p></td>
             
               <tr>
                 <td>BOOL</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TIME</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DATE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DATETIME</td>
                 <td>5</td>
                 <td><p></p></td>
               </tr>
@@ -2822,6 +2865,29 @@ repeated proto_document list_documents = 7; </p></td>
               <tr>
                 <td>ANY</td>
                 <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>INT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LONG</td>
+                <td>1</td>
                 <td><p></p></td>
               </tr>
             

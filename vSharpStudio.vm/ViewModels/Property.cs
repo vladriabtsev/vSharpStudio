@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
-        public string ClrType { get { return this.DataType.ClrType; } }
+        public string ClrType { get { return this.DataType.ClrTypeName; } }
         public string ProtoType { get { return this.DataType.ProtoType; } }
 
         #region Tree operations

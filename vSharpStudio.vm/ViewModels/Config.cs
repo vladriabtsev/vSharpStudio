@@ -30,6 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = "Config";
+            this.PrimaryKeyType = EnumPrimaryKeyType.INT;
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);

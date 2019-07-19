@@ -11,6 +11,29 @@ namespace vSharpStudio.common
 {
     public static class Ext
     {
+        public static Dictionary<string, object> ToDicSql(this string param, object obj)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic[param] = obj;
+            return dic;
+        }
+        public static Dictionary<string, object> ToDicSql(this Dictionary<string, object> dic, string param, object obj)
+        {
+            dic[param] = obj;
+            return dic;
+        }
+        public static Type ToType(this EnumPrimaryKeyType obj)
+        {
+            switch(obj)
+            {
+                case EnumPrimaryKeyType.INT:
+                    return typeof(int);
+                case EnumPrimaryKeyType.LONG:
+                    return typeof(long);
+                default:
+                    throw new NotSupportedException();
+            }
+        }
         public static bool IsNew(this IMutableAnnotatable obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.New.ToString()) == null)

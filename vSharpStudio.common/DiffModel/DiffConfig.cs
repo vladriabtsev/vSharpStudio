@@ -30,10 +30,10 @@ namespace vSharpStudio.common
                 oldest_config?.GroupCatalogsI.ListCatalogsI,
                 prev_config?.GroupCatalogsI.ListCatalogsI,
                 current_config.GroupCatalogsI.ListCatalogsI);
-            //this.Documents = new DiffListDocuments(
-            //    oldest_config?.GroupDocumentsI,
-            //    prev_config?.GroupCatalogsI.ListCatalogsI,
-            //    current_config.GroupCatalogsI.ListCatalogsI);
+            this.Documents = new DiffListDocuments(
+                oldest_config?.GroupDocumentsI,
+                prev_config?.GroupDocumentsI,
+                current_config.GroupDocumentsI);
             this.Config = current_config;
             this.Config[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
         }
