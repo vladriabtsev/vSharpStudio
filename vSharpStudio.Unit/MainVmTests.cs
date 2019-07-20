@@ -197,7 +197,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(diff.DiffMainConfig.Constants.ListAll.Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(c1.GetDiffDataType() == null);
+            Assert.IsTrue(c1.GetDiffDataType() != null);
             Assert.IsTrue(c1.IsRenamed());
             var cc2 = (from p in diff.DiffMainConfig.Constants.ListAll where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());

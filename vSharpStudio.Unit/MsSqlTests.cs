@@ -291,7 +291,7 @@ namespace vSharpStudio.Unit
                         case "nvarchar":
                             Assert.AreEqual("nvarchar", t.DATA_TYPE);
                             Assert.AreEqual("NO", t.IS_NULLABLE);
-                            Assert.AreEqual(-1, t.CHARACTER_MAXIMUM_LENGTH);
+                            Assert.AreEqual(10, t.CHARACTER_MAXIMUM_LENGTH);
                             break;
                         case "nvarchar5":
                             Assert.AreEqual("nvarchar", t.DATA_TYPE);
@@ -331,7 +331,7 @@ namespace vSharpStudio.Unit
                         case "nvarcharn":
                             Assert.AreEqual("nvarchar", t.DATA_TYPE);
                             Assert.AreEqual("YES", t.IS_NULLABLE);
-                            Assert.AreEqual(-1, t.CHARACTER_MAXIMUM_LENGTH);
+                            Assert.AreEqual(10, t.CHARACTER_MAXIMUM_LENGTH);
                             break;
                         case "nvarcharn5":
                             Assert.AreEqual("nvarchar", t.DATA_TYPE);
