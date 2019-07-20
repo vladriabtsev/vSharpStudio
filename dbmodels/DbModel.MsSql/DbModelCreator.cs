@@ -78,7 +78,7 @@ namespace vPlugin.DbModel.MsSql
                     continue;
                 CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
-            
+
             foreach (var t in m.GetDiffListProperties().ListAll)
             {
                 if (t.IsDeleted())
@@ -143,8 +143,10 @@ namespace vPlugin.DbModel.MsSql
                     }
                     if (cat == null)
                         throw new Exception("ObjectGuid is not found in the list of diff catalogs");
-                    //builder.Property(diff.Config.PrimaryKeyType.ToType(), name);
+                    //builder.Property(diff.Config.PrimaryKeyType.ToType(), name + "Id");
                     builder.HasOne(cat.Name, name);
+                    //if (isUseIndexForFk)
+                    //    builder.HasIndex(new string[] { name + "Id" });
                     break;
                 case EnumDataType.CATALOGS:
                     if (datatype.ListObjectGuidsI == null)
@@ -178,6 +180,8 @@ namespace vPlugin.DbModel.MsSql
                         throw new Exception("ObjectGuid is not found in the list of diff documents");
                     //builder.Property(diff.Config.PrimaryKeyType.ToType(), name);
                     builder.HasOne(doc.Name, name);
+                    //if (isUseIndexForFk)
+                    //    builder.HasIndex(new string[] { name + "Id" });
                     break;
                 case EnumDataType.DOCUMENTS:
                     throw new NotImplementedException();

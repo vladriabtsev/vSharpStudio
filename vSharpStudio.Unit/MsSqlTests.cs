@@ -709,12 +709,12 @@ WHERE  ct.name=@table";
         }
 
         [TestMethod]
-        public void Db002CanMigrateCatalogStructure()
+        public void MigrationIsNotRemovingIndexes()
         {
             Assert.IsTrue(false);
         }
         [TestMethod]
-        public void Db002CanExportImport()
+        public void CanExportImport()
         {
             Assert.IsTrue(false);
         }
