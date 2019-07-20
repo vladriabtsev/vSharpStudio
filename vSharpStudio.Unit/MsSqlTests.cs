@@ -622,7 +622,7 @@ WHERE  ct.name=@table";
                             Assert.AreEqual("bigint", t.DATA_TYPE);
                             Assert.AreEqual("NO", t.IS_NULLABLE);
                             break;
-                        case "int_doc" + "Id":
+                        case "int_doc":
                             Assert.AreEqual("bigint", t.DATA_TYPE);
                             Assert.AreEqual("YES", t.IS_NULLABLE);
                             break;
@@ -652,7 +652,7 @@ WHERE  ct.name=@table";
                 fks = conn.Query(fks_query, "table".ToDicSql("Constants")).ToList();
                 Assert.AreEqual(1, fks.Count());
                 Assert.AreEqual("doc", fks[0].ParentName);
-                Assert.AreEqual("int_docId", fks[0].ChildFieldName);
+                Assert.AreEqual("int_doc", fks[0].ChildFieldName);
                 Assert.AreEqual("Id", fks[0].ParentKeyFieldName);
 
                 fks = conn.Query(fks_query, "table".ToDicSql("doc")).ToList();
