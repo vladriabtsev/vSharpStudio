@@ -397,6 +397,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_index_fk",
+              "description": "@attr [PropertyOrderAttribute(4)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -2602,6 +2612,16 @@
               "type": "proto_group_list_properties_tabs",
               "longType": "proto_group_list_properties_tabs",
               "fullType": "proto_config.proto_group_list_properties_tabs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_index_fk",
+              "description": "@attr [PropertyOrderAttribute(4)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

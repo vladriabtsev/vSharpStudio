@@ -249,6 +249,7 @@ namespace vSharpStudio.common
 		string Description { get; }
 		IGroupListProperties GroupPropertiesI { get; }
 		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
+		bool IsIndexFk { get; }
 	}
 	
 	public partial interface IGroupListProperties : IGuid, IName 
@@ -341,6 +342,7 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
+		bool IsIndexFk { get; }
 		IGroupListProperties GroupPropertiesI { get; }
 		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
 		IGroupListForms GroupFormsI { get; }

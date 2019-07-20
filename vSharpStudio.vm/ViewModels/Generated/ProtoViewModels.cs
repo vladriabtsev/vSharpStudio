@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/20/2019 00:27:38
+// Auto generated on UTC 07/20/2019 15:44:13
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3476,6 +3476,7 @@ namespace vSharpStudio.vm.ViewModels
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
 		        vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(from.GroupPropertiesTabs, isDeep);
+		    vm.IsIndexFk = from.IsIndexFk;
 		    if (isNewGuid)
 		        vm.SetNewGuid();
 		    return vm;
@@ -3491,6 +3492,7 @@ namespace vSharpStudio.vm.ViewModels
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
 		        GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+		    to.IsIndexFk = from.IsIndexFk;
 		}
 		#region IEditable
 		public override PropertiesTab Backup()
@@ -3520,6 +3522,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.Description = m.Description;
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
+		    vm.IsIndexFk = m.IsIndexFk;
 		    vm.OnInitFromDto();
 		    return vm;
 		}
@@ -3534,6 +3537,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.Description = vm.Description;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
+		    m.IsIndexFk = vm.IsIndexFk;
 		    return m;
 		}
 		public void AcceptConfigNode(IVisitorConfigNode visitor) 
@@ -3608,6 +3612,25 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
 		partial void OnGroupPropertiesTabsChanging();
 		partial void OnGroupPropertiesTabsChanged();
+		[PropertyOrderAttribute(4)]
+		public bool IsIndexFk
+		{ 
+			set
+			{
+				if (_IsIndexFk != value)
+				{
+					OnIsIndexFkChanging();
+					_IsIndexFk = value;
+					OnIsIndexFkChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsIndexFk; }
+		}
+		private bool _IsIndexFk;
+		partial void OnIsIndexFkChanging();
+		partial void OnIsIndexFkChanged();
 		#endregion Properties
 	}
 	public partial class GroupListProperties : ConfigObjectBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IAccept, IGroupListProperties
@@ -4994,6 +5017,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
+		    vm.IsIndexFk = from.IsIndexFk;
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -5013,6 +5037,7 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
+		    to.IsIndexFk = from.IsIndexFk;
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -5048,6 +5073,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
+		    vm.IsIndexFk = m.IsIndexFk;
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
@@ -5064,6 +5090,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
+		    m.IsIndexFk = vm.IsIndexFk;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
@@ -5101,6 +5128,25 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
+		[PropertyOrderAttribute(4)]
+		public bool IsIndexFk
+		{ 
+			set
+			{
+				if (_IsIndexFk != value)
+				{
+					OnIsIndexFkChanging();
+					_IsIndexFk = value;
+					OnIsIndexFkChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsIndexFk; }
+		}
+		private bool _IsIndexFk;
+		partial void OnIsIndexFkChanging();
+		partial void OnIsIndexFkChanged();
 		[BrowsableAttribute(false)]
 		public GroupListProperties GroupProperties
 		{ 

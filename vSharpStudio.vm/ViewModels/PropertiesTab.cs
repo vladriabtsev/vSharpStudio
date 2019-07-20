@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
+            this.IsIndexFk = true;
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
             this.GroupProperties.Parent = this;
             Children.Add(this.GroupProperties, 7);

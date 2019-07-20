@@ -344,6 +344,7 @@ namespace vSharpStudio.Unit
                 }
             });
         }
+        //TODO indexes tests
         [TestMethod]
         public void Db004_CatalogsAndCatalogDataTypes()
         {
@@ -414,7 +415,7 @@ namespace vSharpStudio.Unit
                             Assert.AreEqual("bigint", t.DATA_TYPE);
                             Assert.AreEqual("NO", t.IS_NULLABLE);
                             break;
-                        case "parent" + "Id":
+                        case "parent":
                             Assert.AreEqual("bigint", t.DATA_TYPE);
                             Assert.AreEqual("YES", t.IS_NULLABLE);
                             break;
@@ -478,13 +479,13 @@ WHERE  ct.name=@table";
                 var fks = conn.Query(fks_query, "table".ToDicSql("child")).ToList();
                 Assert.AreEqual(1, fks.Count());
                 Assert.AreEqual("parent", fks[0].ParentName);
-                Assert.AreEqual("parentId", fks[0].ChildFieldName);
+                Assert.AreEqual("parent", fks[0].ChildFieldName);
                 Assert.AreEqual("Id", fks[0].ParentKeyFieldName);
 
                 fks = conn.Query(fks_query, "table".ToDicSql("Constants")).ToList();
                 Assert.AreEqual(1, fks.Count());
                 Assert.AreEqual("child", fks[0].ParentName);
-                Assert.AreEqual("childId", fks[0].ChildFieldName);
+                Assert.AreEqual("child", fks[0].ChildFieldName);
                 Assert.AreEqual("Id", fks[0].ParentKeyFieldName);
 
                 fks = conn.Query(fks_query, "table".ToDicSql("ParentSub")).ToList();
