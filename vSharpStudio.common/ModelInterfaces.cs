@@ -176,6 +176,7 @@ namespace vSharpStudio.common
 		string ObjectGuid { get; }
 		bool IsNullable { get; }
 		IEnumerable<string> ListObjectGuidsI { get; }
+		bool IsIndexFk { get; }
 	}
 	
 	///////////////////////////////////////////////////
@@ -249,6 +250,10 @@ namespace vSharpStudio.common
 		string Description { get; }
 		IGroupListProperties GroupPropertiesI { get; }
 		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
+		
+		///////////////////////////////////////////////////
+		/// Create Index for foreign key navigation property
+		///////////////////////////////////////////////////
 		bool IsIndexFk { get; }
 	}
 	
@@ -342,7 +347,6 @@ namespace vSharpStudio.common
 		ulong SortingValue { get; }
 		string NameUi { get; }
 		string Description { get; }
-		bool IsIndexFk { get; }
 		IGroupListProperties GroupPropertiesI { get; }
 		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
 		IGroupListForms GroupFormsI { get; }

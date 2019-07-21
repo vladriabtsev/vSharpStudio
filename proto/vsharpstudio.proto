@@ -235,6 +235,10 @@ message proto_data_type {
     bool is_nullable = 6;
     // @attr [PropertyOrderAttribute(4)]
     repeated string list_object_guids = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("FK Index")]
+    // @attr [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
+    bool is_index_fk = 9;
 }
 /** 
  * @exclude
@@ -334,6 +338,7 @@ message proto_properties_tab {
     proto_group_list_properties group_properties = 7;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties_tabs group_properties_tabs = 6;
+    // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(4)]
     bool is_index_fk = 8;
 }
@@ -365,10 +370,11 @@ message proto_property {
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Type")]
     proto_data_type data_type = 6;
+
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [Editable(false)]
-    uint32 position = 7;
+    uint32 position = 15;
 }
 /** 
  * @exclude
@@ -469,9 +475,6 @@ message proto_catalog {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)]
-    bool is_index_fk = 6;
-
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
     // @attr [BrowsableAttribute(false)]

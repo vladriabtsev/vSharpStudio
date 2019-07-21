@@ -16,8 +16,6 @@ namespace vPlugin.DbModel.MsSql
         }
         protected override void Visit(List<IConstant> diff_lst)
         {
-            //x.HasOne("Node").WithMany().HasForeignKey("ParentAltId");
-            //x.HasIndex("ParentAltId");
             if (diff_config.Constants.ListAll.Count == 0)
                 return;
             string name = "Constants";
@@ -28,7 +26,7 @@ namespace vPlugin.DbModel.MsSql
             {
                 if (t.IsDeleted())
                     continue;
-                CreateField(builder, t.Name, t.DataTypeI, diff_config, false);
+                CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
         }
         protected override void Visit(IEnumerationPair m, DiffEnumerationPair diff_type)
@@ -56,7 +54,7 @@ namespace vPlugin.DbModel.MsSql
             {
                 if (t.IsDeleted())
                     continue;
-                CreateField(builder, t.Name, t.DataTypeI, diff_config, m.IsIndexFk);
+                CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
             foreach (var t in m.GetDiffListPropertiesTabs().ListAll)
             {
@@ -76,14 +74,14 @@ namespace vPlugin.DbModel.MsSql
             {
                 if (t.IsDeleted())
                     continue;
-                CreateField(builder, t.Name, t.DataTypeI, diff_config, false);
+                CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
 
             foreach (var t in m.GetDiffListProperties().ListAll)
             {
                 if (t.IsDeleted())
                     continue;
-                CreateField(builder, t.Name, t.DataTypeI, diff_config, false);
+                CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
             foreach (var t in m.GetDiffListPropertiesTabs().ListAll)
             {
@@ -95,27 +93,60 @@ namespace vPlugin.DbModel.MsSql
         protected override void Visit(IConfig m, DiffConfig diff)
         {
             this.diff_config = diff;
+
+            var glen = Guid.Empty.ToString().Length;
+            var gtype = "nvarchar(" + glen + ")";
+            string history_table = "HistoryTable";
+            var builder = modelBuilder.Entity(history_table).ToTable(history_table, diff_config.Config.Name);
+            builder.Property(diff_config.Config.PrimaryKeyType.ToType(), "Id").UseSqlServerIdentityColumn();
+            builder.HasKey("Id");
+            builder.Property(typeof(string), "Guid").HasColumnType(gtype).IsRequired(true);
+            builder.HasIndex(new string[] { "Guid" }).IsUnique();
+
+            string history_record = "HistoryRecord";
+            builder = modelBuilder.Entity(history_record).ToTable(history_record, diff_config.Config.Name);
+            builder.Property(diff_config.Config.PrimaryKeyType.ToType(), "Id").UseSqlServerIdentityColumn();
+            builder.HasKey("Id");
+            builder.HasOne(history_table).WithMany().HasForeignKey(history_table + "Id");
+            builder.HasIndex(new string[] { history_table + "Id" });
+            builder.Property(diff_config.Config.PrimaryKeyType.ToType(), "RecordId");
+
+            string history_field = "HistoryField";
+            builder = modelBuilder.Entity(history_field).ToTable(history_field, diff_config.Config.Name);
+            builder.Property(diff_config.Config.PrimaryKeyType.ToType(), "Id").UseSqlServerIdentityColumn();
+            builder.HasKey("Id");
+            builder.HasOne(history_record).WithMany().HasForeignKey(history_record + "Id");
+            builder.HasIndex(new string[] { history_record + "Id" });
+            builder.Property(typeof(string), "Guid").HasColumnType(gtype).IsRequired(true);
+            builder.HasIndex(new string[] { "Guid" });
+
+            string history_value = "HistoryValue";
+            builder = modelBuilder.Entity(history_value).ToTable(history_value, diff_config.Config.Name);
+            builder.HasOne(history_field).WithMany().HasForeignKey(history_field + "Id");
+            builder.Property(typeof(DateTime), "When").HasColumnType("datetime2").IsRequired(true);
+            builder.HasKey(new string[] { history_field + "Id", "When" });
+            builder.Property(typeof(string), "Value").HasColumnType("nvarchar(max)").IsRequired(true);
+            //builder.HasIndex(new string[] { history_field + "Id", "When" });
         }
         private void CreateTab(string parent, IPropertiesTab tab)
         {
             string tabname = parent + tab.Name;
-            //parent_builder.HasMany(tabname);
             var builder = modelBuilder.Entity(tabname).ToTable(tabname, diff_config.Config.Name);
             builder.HasOne(parent).WithMany().HasForeignKey(parent + "Id");
             builder.Property(diff_config.Config.PrimaryKeyType.ToType(), "Id").UseSqlServerIdentityColumn();
             builder.HasKey("Id");
             if (tab.IsIndexFk)
-                CreateFkIndex(builder, parent + "Id", diff_config);
+                builder.HasIndex(new string[] { parent + "Id" });
             foreach (var t in tab.GroupPropertiesI.ListPropertiesI)
             {
-                CreateField(builder, t.Name, t.DataTypeI, diff_config, tab.IsIndexFk);
+                CreateField(builder, t.Name, t.DataTypeI, diff_config);
             }
             foreach (var t in tab.GroupPropertiesTabsI.ListPropertiesTabsI)
             {
                 CreateTab(tabname, t);
             }
         }
-        private static void CreateField(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder builder, string name, IDataType datatype, DiffConfig diff, bool isUseIndexForFk)
+        private static void CreateField(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder builder, string name, IDataType datatype, DiffConfig diff)
         {
             switch (datatype.DataTypeEnum)
             {
@@ -147,8 +178,8 @@ namespace vPlugin.DbModel.MsSql
                     if (cat == null)
                         throw new Exception("ObjectGuid is not found in the list of diff catalogs");
                     builder.HasOne(cat.Name).WithMany().HasForeignKey(name);
-                    if (isUseIndexForFk)
-                        CreateFkIndex(builder, name, diff);
+                    if (datatype.IsIndexFk)
+                        builder.HasIndex(new string[] { name });
                     break;
                 case EnumDataType.CATALOGS:
                     if (datatype.ListObjectGuidsI == null)
@@ -181,8 +212,8 @@ namespace vPlugin.DbModel.MsSql
                     if (doc == null)
                         throw new Exception("ObjectGuid is not found in the list of diff documents");
                     builder.HasOne(doc.Name).WithMany().HasForeignKey(name); ;
-                    if (isUseIndexForFk)
-                        CreateFkIndex(builder, name, diff);
+                    if (datatype.IsIndexFk)
+                        builder.HasIndex(new string[] { name });
                     break;
                 case EnumDataType.DOCUMENTS:
                     throw new NotImplementedException();
@@ -299,22 +330,6 @@ namespace vPlugin.DbModel.MsSql
                 default:
                     throw new NotImplementedException();
             }
-        }
-
-        private static void CreateFkIndex(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder builder, string name, DiffConfig diff)
-        {
-            //switch (diff.Config.PrimaryKeyType)
-            //{
-            //    case EnumPrimaryKeyType.INT:
-            //        builder.Property(typeof(int?), name + "Id").HasColumnType("int").IsRequired(false);
-            //        break;
-            //    case EnumPrimaryKeyType.LONG:
-            //        builder.Property(typeof(long?), name + "Id").HasColumnType("bigint").IsRequired(false);
-            //        break;
-            //    default:
-            //        throw new NotImplementedException();
-            //}
-            builder.HasIndex(new string[] { name });
         }
     }
 }

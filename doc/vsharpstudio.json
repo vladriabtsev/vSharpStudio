@@ -397,16 +397,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_index_fk",
-              "description": "@attr [PropertyOrderAttribute(4)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "group_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -817,6 +807,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_index_fk",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"FK Index\")]\n@attr [Description(\"Create Index if this property is using foreign key (for Catalog or Document type)\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2617,7 +2617,7 @@
             },
             {
               "name": "is_index_fk",
-              "description": "@attr [PropertyOrderAttribute(4)]",
+              "description": "Create Index for foreign key navigation property\n@attr [PropertyOrderAttribute(4)]",
               "label": "",
               "type": "bool",
               "longType": "bool",

@@ -134,7 +134,6 @@ General DB settings
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
@@ -228,6 +227,7 @@ Constant application wise value
 | object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] |
 | list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(4)] |
+| is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
 
 
 
@@ -732,7 +732,7 @@ main view forms hierarchy parent
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
-| is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] |
+| is_index_fk | [bool](#bool) |  | Create Index for foreign key navigation property @attr [PropertyOrderAttribute(4)] |
 
 
 

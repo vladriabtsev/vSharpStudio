@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/20/2019 15:44:13
+// Auto generated on UTC 07/20/2019 21:29:03
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -2170,6 +2170,7 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.IsNullable = from.IsNullable;
 		    foreach(var t in from.ListObjectGuids)
 		        vm.ListObjectGuids.Add(t);
+		    vm.IsIndexFk = from.IsIndexFk;
 		    return vm;
 		}
 		public static void Update(DataType to, DataType from, bool isDeep = true)
@@ -2185,6 +2186,7 @@ namespace vSharpStudio.vm.ViewModels
 		        {
 		            to.ListObjectGuids.Add(tt);
 		        }
+		    to.IsIndexFk = from.IsIndexFk;
 		}
 		#region IEditable
 		public override DataType Backup()
@@ -2218,6 +2220,7 @@ namespace vSharpStudio.vm.ViewModels
 		    {
 		        vm.ListObjectGuids.Add(t);
 		    }
+		    vm.IsIndexFk = m.IsIndexFk;
 		    return vm;
 		}
 		// Conversion from 'DataType' to 'proto_data_type'
@@ -2232,6 +2235,7 @@ namespace vSharpStudio.vm.ViewModels
 		    m.IsNullable = vm.IsNullable;
 		    foreach(var t in vm.ListObjectGuids)
 		        m.ListObjectGuids.Add(t);
+		    m.IsIndexFk = vm.IsIndexFk;
 		    return m;
 		}
 		#endregion Procedures
@@ -2375,6 +2379,27 @@ namespace vSharpStudio.vm.ViewModels
 		public IEnumerable<string> ListObjectGuidsI { get { foreach (var t in _ListObjectGuids) yield return t; } }
 		partial void OnListObjectGuidsChanging();
 		partial void OnListObjectGuidsChanged();
+		[PropertyOrderAttribute(8)]
+		[DisplayName("FK Index")]
+		[Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
+		public bool IsIndexFk
+		{ 
+			set
+			{
+				if (_IsIndexFk != value)
+				{
+					OnIsIndexFkChanging();
+					_IsIndexFk = value;
+					OnIsIndexFkChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _IsIndexFk; }
+		}
+		private bool _IsIndexFk;
+		partial void OnIsIndexFkChanging();
+		partial void OnIsIndexFkChanged();
 		#endregion Properties
 	}
 	
@@ -3612,6 +3637,10 @@ namespace vSharpStudio.vm.ViewModels
 		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
 		partial void OnGroupPropertiesTabsChanging();
 		partial void OnGroupPropertiesTabsChanged();
+		
+		///////////////////////////////////////////////////
+		/// Create Index for foreign key navigation property
+		///////////////////////////////////////////////////
 		[PropertyOrderAttribute(4)]
 		public bool IsIndexFk
 		{ 
@@ -5017,7 +5046,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = from.SortingValue;
 		    vm.NameUi = from.NameUi;
 		    vm.Description = from.Description;
-		    vm.IsIndexFk = from.IsIndexFk;
 		    if (isDeep)
 		        vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -5037,7 +5065,6 @@ namespace vSharpStudio.vm.ViewModels
 		    to.SortingValue = from.SortingValue;
 		    to.NameUi = from.NameUi;
 		    to.Description = from.Description;
-		    to.IsIndexFk = from.IsIndexFk;
 		    if (isDeep)
 		        GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
 		    if (isDeep)
@@ -5073,7 +5100,6 @@ namespace vSharpStudio.vm.ViewModels
 		    vm.SortingValue = m.SortingValue;
 		    vm.NameUi = m.NameUi;
 		    vm.Description = m.Description;
-		    vm.IsIndexFk = m.IsIndexFk;
 		    vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
 		    vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
 		    vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
@@ -5090,7 +5116,6 @@ namespace vSharpStudio.vm.ViewModels
 		    m.SortingValue = vm.SortingValue;
 		    m.NameUi = vm.NameUi;
 		    m.Description = vm.Description;
-		    m.IsIndexFk = vm.IsIndexFk;
 		    m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto(vm.GroupProperties);
 		    m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs);
 		    m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto(vm.GroupForms);
@@ -5128,25 +5153,6 @@ namespace vSharpStudio.vm.ViewModels
 		private string _Description = "";
 		partial void OnDescriptionChanging();
 		partial void OnDescriptionChanged();
-		[PropertyOrderAttribute(4)]
-		public bool IsIndexFk
-		{ 
-			set
-			{
-				if (_IsIndexFk != value)
-				{
-					OnIsIndexFkChanging();
-					_IsIndexFk = value;
-					OnIsIndexFkChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsIndexFk; }
-		}
-		private bool _IsIndexFk;
-		partial void OnIsIndexFkChanging();
-		partial void OnIsIndexFkChanged();
 		[BrowsableAttribute(false)]
 		public GroupListProperties GroupProperties
 		{ 

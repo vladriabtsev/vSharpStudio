@@ -589,13 +589,6 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>is_index_fk</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>group_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
                   <td></td>
@@ -927,6 +920,15 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_index_fk</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;FK Index&#34;)]
+@attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -2462,7 +2464,8 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>is_index_fk</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
+                  <td><p>Create Index for foreign key navigation property
+@attr [PropertyOrderAttribute(4)] </p></td>
                 </tr>
               
             </tbody>
