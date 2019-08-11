@@ -659,6 +659,31 @@ WHERE  ct.name=@table";
                 Assert.AreEqual(0, fks.Count());
             });
         }
+        [TestMethod]
+        public void Db006_MigrateDataWhenApplyNewDbStructure()
+        {
+            MainPageVM mvm = null;
+            Execute((vm) =>
+            {
+                mvm = vm;
+
+                Constant c = null;
+                c = new Constant() { Name = "tinyint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = false } };
+                vm.Model.GroupConstants.AddConstant(c);
+                c = new Constant() { Name = "smallint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = false } };
+                vm.Model.GroupConstants.AddConstant(c);
+                c = new Constant() { Name = "int", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = false } };
+                vm.Model.GroupConstants.AddConstant(c);
+                c = new Constant() { Name = "bigint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = false } };
+                vm.Model.GroupConstants.AddConstant(c);
+                c = new Constant() { Name = "nvarchar", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = false, Length = 0 } };
+                vm.Model.GroupConstants.AddConstant(c);
+
+            }, (conn) =>
+            {
+                conn.Execute("");
+            });
+        }
 
         private void Execute(Action<MainPageVM> onInitModel, Action<SqlConnection> onDbUpdated)
         {

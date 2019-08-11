@@ -38,7 +38,7 @@ namespace vSharpStudio.vm.ViewModels
             PluginGeneratorSettings pgs = null;
             switch (this.Generator.PluginGeneratorType)
             {
-                case vPluginGeneratorTypeEnum.DbDesign:
+                case vPluginLayerTypeEnum.DbDesign:
                     var settings = this.Generator.GetSettingsMvvm(null);
                     pgs = new PluginGeneratorSettings(settings);
                     pgs.SetGuid(this.Generator.Guid.ToString());

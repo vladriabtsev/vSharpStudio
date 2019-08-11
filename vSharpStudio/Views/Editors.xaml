@@ -6,10 +6,36 @@
              xmlns:local="clr-namespace:vSharpStudio.Views"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+             xmlns:bvm="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DefaultTemplate">
+            <Grid>
+                <TextBlock Text="DefaultTemplate" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HighlightTemplate">
+            <Grid>
+                <TextBlock Text="HighlightTemplate" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
+        <StackPanel>
         <TextBlock Text="Editors" />
-
+        <ContentControl Name="cc" DataContext="{Binding Model.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type bvm:GroupListPlugins}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="GroupListPlugins" />
+                    </StackPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+                <ContentControl.ContentTemplateSelector>
+                    <Binding Mode="OneWay" Source="{StaticResource editorTemplateSelector}"/>
+                </ContentControl.ContentTemplateSelector>
+            </ContentControl>
+        </StackPanel>
     </Grid>
 </UserControl>

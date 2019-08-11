@@ -54,7 +54,7 @@ namespace vPlugin.DbModel.MsSql
             this.Name = "Design";
             this.DefaultSettingsName = "Setting";
             this.Description = "DB structure creation and migration";
-            this.PluginGeneratorType = vPluginGeneratorTypeEnum.DbDesign;
+            this.PluginGeneratorType = vPluginLayerTypeEnum.DbDesign;
 
             services = new ServiceCollection()
                 .AddEntityFrameworkSqlServer();
@@ -76,7 +76,7 @@ namespace vPlugin.DbModel.MsSql
         public string Name { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
-        public vPluginGeneratorTypeEnum PluginGeneratorType { get; }
+        public vPluginLayerTypeEnum PluginGeneratorType { get; }
         public IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)

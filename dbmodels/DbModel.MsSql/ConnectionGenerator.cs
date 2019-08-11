@@ -19,7 +19,7 @@ namespace vPlugin.DbModel.MsSql
             this.Name = "Connections";
             this.DefaultSettingsName = "Connection";
             this.Description = "Connection string generator";
-            this.PluginGeneratorType = vPluginGeneratorTypeEnum.DbConnection;
+            this.PluginGeneratorType = vPluginLayerTypeEnum.DbConnection;
         }
         static DiagnosticSource MsSqlMigratorDiagnostic = new DiagnosticListener("vPlugin.MsSqlMigrator");
         public ILogger Logger;
@@ -27,7 +27,7 @@ namespace vPlugin.DbModel.MsSql
         public string Name { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
-        public vPluginGeneratorTypeEnum PluginGeneratorType { get; }
+        public vPluginLayerTypeEnum PluginGeneratorType { get; }
         public IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings)
         {
             if (settings == null)

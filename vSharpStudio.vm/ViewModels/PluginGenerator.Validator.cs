@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
                         return true;
                     switch(o.Generator.PluginGeneratorType)
                     {
-                        case common.vPluginGeneratorTypeEnum.DbDesign:
+                        case common.vPluginLayerTypeEnum.DbDesign:
                             if (!(o.Generator is IvPluginDbGenerator))
                             {
                                 message = "Interface 'IDbMigrator' is not implemented";

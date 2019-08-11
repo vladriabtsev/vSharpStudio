@@ -150,7 +150,7 @@ namespace vSharpStudio.ViewModels
                         p.ListGenerators.Add(pg);
                     pg.Parent = p;
 
-                    if (tt.PluginGeneratorType == vPluginGeneratorTypeEnum.DbDesign)
+                    if (tt.PluginGeneratorType == vPluginLayerTypeEnum.DbDesign)
                     {
                         lstDbs.Add((IvPluginDbGenerator)tt);
                     }
