@@ -36,19 +36,20 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PluginGeneratorSettings pgs = null;
-            switch (this.Generator.PluginGeneratorType)
-            {
-                case vPluginLayerTypeEnum.DbDesign:
-                    var settings = this.Generator.GetSettingsMvvm(null);
-                    pgs = new PluginGeneratorSettings(settings);
-                    pgs.SetGuid(this.Generator.Guid.ToString());
-                    GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
-                    this.ListSettings.Add(pgs);
-                    SetSelected(pgs);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            //switch (this.Generator.PluginGeneratorType)
+            //{
+            //    case vPluginLayerTypeEnum.DbDesign:
+            var settings = this.Generator.GetSettingsMvvm(null);
+            pgs = new PluginGeneratorSettings(settings);
+            pgs.SetGuid(this.Generator.Guid.ToString());
+            GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
+            pgs.Parent = this;
+            this.ListSettings.Add(pgs);
+            SetSelected(pgs);
+            //break;
+            //    default:
+            //        throw new NotImplementedException();
+            //}
             return pgs;
         }
         #endregion Tree operations

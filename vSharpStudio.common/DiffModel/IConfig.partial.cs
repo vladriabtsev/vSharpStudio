@@ -9,5 +9,6 @@ namespace vSharpStudio.common
 {
     public partial interface IConfig : IMutableAnnotatable
     {
+        ITreeConfigNode SelectedNode { get; set; }
     }
 }

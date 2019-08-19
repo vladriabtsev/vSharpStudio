@@ -17,17 +17,19 @@ namespace GenFromProto
             try
             {
                 int ii = 0;
-                if (args.Count() > 4)
+                if (args.Count() > 5)
                     ii = 1;
-                //Debugger.Launch();
+                if (args.Count() < 4)
+                    Debugger.Launch();
                 string gen = args[0 + ii]; // args[0] model/interface
                 string protofilename = args[1 + ii]; // args[1] proto file name (without extention)
                 string destfile = args[2 + ii]; // args[2] destination file
                 string destNS = args[3 + ii]; // args[3] destination namespace
+                string json_doc_folder = args[4 + ii]; // args[4] 
 
                 var ncs = protofilename.ToNameCs();
                 string reflectionClass = ncs + "Reflection";
-                Type reflection = typeof(Proto.Config.VsharpstudioReflection).Assembly.GetType(destNS + "." + reflectionClass);
+                Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
                 var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
                 object value = descr.GetValue(null, null);
                 FileDescriptor typedValue = (FileDescriptor)value;
@@ -35,7 +37,8 @@ namespace GenFromProto
                 Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
                 List<MessageDescriptor> messages = CollectMessages(typedValue, dicParents);
 
-                string path = "../../../../doc/" + protofilename + ".json";
+                //string path = "../../../../doc/" + protofilename + ".json";
+                string path = json_doc_folder + protofilename + ".json";
                 ProtoDoc.CreateDoc(path);
 
                 string res = null;

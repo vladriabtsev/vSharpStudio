@@ -13,7 +13,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.common
 {
     public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode, IMutableAnnotatable
       where TValidator : AbstractValidator<T>
@@ -151,7 +151,7 @@ namespace vSharpStudio.vm.ViewModels
                 ITreeConfigNode config = this.Parent;
                 while (config.Parent != null)
                     config = config.Parent;
-                return (config as Config).Name + "." + this.Name;
+                return (config as IConfig).Name + "." + this.Name;
             }
         }
         [PropertyOrder(0)]
@@ -183,8 +183,8 @@ namespace vSharpStudio.vm.ViewModels
                 ITreeConfigNode config = this.Parent;
                 while (config.Parent != null)
                     config = config.Parent;
-                if (config is Config)
-                    (config as Config).SelectedNode = node;
+                if (config is IConfig)
+                    (config as IConfig).SelectedNode = node;
                 //else
                 //    throw new Exception();
             }

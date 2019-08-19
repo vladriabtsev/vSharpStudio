@@ -31,8 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.Protobuf, Version=3.9.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.9.0\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.4.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.9.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\vSharpStudio.pro\packages\Google.Protobuf.3.9.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
@@ -119,6 +122,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigObjectBase%27.cs" />
     <Compile Include="DiffModel\DiffConstant.cs" />
     <Compile Include="DiffModel\DiffDocument.cs" />
     <Compile Include="DiffModel\DiffEnumeration.cs" />
@@ -153,6 +157,7 @@
     <Compile Include="DiffModel\IDocument.partial.cs" />
     <Compile Include="DiffModel\IPropertiesTab.partial.cs" />
     <Compile Include="DiffModel\IProperty.partial.cs" />
+    <Compile Include="INodes.cs" />
     <Compile Include="IParent.cs" />
     <Compile Include="ITreeConfigNode.cs" />
     <Compile Include="IvPlugin.cs" />

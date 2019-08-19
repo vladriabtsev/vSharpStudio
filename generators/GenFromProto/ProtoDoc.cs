@@ -16,7 +16,7 @@ namespace GenFromProto
                 if (base.ContainsKey(key))
                     return base[key];
                 else
-                    return base[key];
+                    throw new ArgumentException("Dictionary doesn't contain key '" + key + "'.");
             }
             set { base[key] = value; }
         }

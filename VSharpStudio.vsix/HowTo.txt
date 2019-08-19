@@ -1,2 +1,0 @@
-﻿http://www.visualstudioextensibility.com/2017/08/02/msdn-magazine-article-creating-extensions-for-multiple-visual-studio-versions/
-https://docs.microsoft.com/en-ca/visualstudio/extensibility/installing-the-visual-studio-sdk?view=vs-2017
