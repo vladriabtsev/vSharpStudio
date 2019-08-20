@@ -8,7 +8,7 @@ import "google/protobuf/any.proto";
 
 //import "connections.proto";
 
-package proto_config;
+package proto_config; // 
 option csharp_namespace = "Proto.Config";
 
 /** 

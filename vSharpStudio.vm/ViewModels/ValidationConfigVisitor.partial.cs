@@ -8,12 +8,12 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ValidationVisitor
+    public partial class ValidationConfigVisitor
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         private int _level = -1;
         private ILogger _logger = null;
-        public ValidationVisitor(CancellationToken cancellationToken, ILogger logger = null)
+        public ValidationConfigVisitor(CancellationToken cancellationToken, ILogger logger = null)
         {
             this._cancellationToken = cancellationToken;
             this._logger = logger;
@@ -110,7 +110,7 @@ namespace vSharpStudio.vm.ViewModels
 
             foreach (var t in p.ValidationCollection)
             {
-//                t.Model = node;
+                //                t.Model = node;
                 AddMessage(pp, t);
             }
         }

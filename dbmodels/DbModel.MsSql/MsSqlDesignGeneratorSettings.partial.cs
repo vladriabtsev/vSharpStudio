@@ -26,8 +26,6 @@ namespace vSharpStudio.vm.ViewModels
 
         public ITreeConfigNode Parent { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public string GenerateCode()
         {
             throw new NotImplementedException();

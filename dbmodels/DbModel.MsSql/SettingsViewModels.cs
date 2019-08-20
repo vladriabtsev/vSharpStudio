@@ -1,4 +1,4 @@
-// Auto generated on UTC 08/19/2019 17:23:26
+// Auto generated on UTC 08/20/2019 18:43:16
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -13,14 +13,19 @@ using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
 using Google.Protobuf;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-	public partial class MsSqlDesignGeneratorSettings : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator>, IMsSqlDesignGeneratorSettings
+
+    public interface IMsSqlDesignGeneratorSettingsAcceptVisitor // NameSpace.tt Line: 28
+    {
+        void AcceptMsSqlDesignGeneratorSettingsNodeVisitor(MsSqlDesignGeneratorSettingsVisitor visitor);
+    }
+	public partial class MsSqlDesignGeneratorSettings : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator>, IMsSqlDesignGeneratorSettings // Class.tt Line: 6
 	{
-		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { }
+		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { } 
 		#region CTOR
 		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator)
 		{
@@ -29,30 +34,31 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static MsSqlDesignGeneratorSettings Clone(MsSqlDesignGeneratorSettings from, bool isDeep = true)
+		public static MsSqlDesignGeneratorSettings Clone(MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 27
 		{
 		    MsSqlDesignGeneratorSettings vm = new MsSqlDesignGeneratorSettings();
-		    vm.Name = from.Name;
-		    vm.Guid = from.Guid;
-		    vm.IsUseForeingkey = from.IsUseForeingkey;
-		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
-		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures;
-		    vm.IsUseViews = from.IsUseViews;
-		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
-		    vm.IsMemoryOptimized = from.IsMemoryOptimized;
+		    vm.Name = from.Name; // Clone.tt Line: 58
+		    vm.Guid = from.Guid; // Clone.tt Line: 58
+		    vm.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 58
+		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 58
+		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 58
+		    vm.IsUseViews = from.IsUseViews; // Clone.tt Line: 58
+		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 58
+		    vm.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 58
 		    return vm;
 		}
-		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true)
+		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 68
 		{
-		    to.Name = from.Name;
-		    to.Guid = from.Guid;
-		    to.IsUseForeingkey = from.IsUseForeingkey;
-		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex;
-		    to.IsUseStorageProcedures = from.IsUseStorageProcedures;
-		    to.IsUseViews = from.IsUseViews;
-		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered;
-		    to.IsMemoryOptimized = from.IsMemoryOptimized;
+		    to.Name = from.Name; // Clone.tt Line: 126
+		    to.Guid = from.Guid; // Clone.tt Line: 126
+		    to.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 126
+		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 126
+		    to.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 126
+		    to.IsUseViews = from.IsUseViews; // Clone.tt Line: 126
+		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 126
+		    to.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 126
 		}
+		// Clone.tt Line: 131
 		#region IEditable
 		public override MsSqlDesignGeneratorSettings Backup()
 		{
@@ -74,34 +80,34 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new MsSqlDesignGeneratorSettings();
-		    vm.Name = m.Name;
-		    vm.Guid = m.Guid;
-		    vm.IsUseForeingkey = m.IsUseForeingkey;
-		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex;
-		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures;
-		    vm.IsUseViews = m.IsUseViews;
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered;
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized;
+		    vm.Name = m.Name; // Clone.tt Line: 195
+		    vm.Guid = m.Guid; // Clone.tt Line: 195
+		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 195
+		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 195
+		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 195
+		    vm.IsUseViews = m.IsUseViews; // Clone.tt Line: 195
+		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered; // Clone.tt Line: 195
+		    vm.IsMemoryOptimized = m.IsMemoryOptimized; // Clone.tt Line: 195
 		    return vm;
 		}
 		// Conversion from 'MsSqlDesignGeneratorSettings' to 'proto_ms_sql_design_generator_settings'
-		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm)
+		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 205
 		{
 		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings();
-		    m.Name = vm.Name;
-		    m.Guid = vm.Guid;
-		    m.IsUseForeingkey = vm.IsUseForeingkey;
-		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex;
-		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures;
-		    m.IsUseViews = vm.IsUseViews;
-		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered;
-		    m.IsMemoryOptimized = vm.IsMemoryOptimized;
+		    m.Name = vm.Name; // Clone.tt Line: 231
+		    m.Guid = vm.Guid; // Clone.tt Line: 231
+		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 231
+		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 231
+		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 231
+		    m.IsUseViews = vm.IsUseViews; // Clone.tt Line: 231
+		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered; // Clone.tt Line: 231
+		    m.IsMemoryOptimized = vm.IsMemoryOptimized; // Clone.tt Line: 231
 		    return m;
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
+		public string Name // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -117,9 +123,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging();
+		partial void OnNameChanging(); // Property.tt Line: 124
 		partial void OnNameChanged();
-		public string Guid
+		public string Guid // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -135,9 +141,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging();
+		partial void OnGuidChanging(); // Property.tt Line: 124
 		partial void OnGuidChanged();
-		public bool IsUseForeingkey
+		public bool IsUseForeingkey // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -153,9 +159,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsUseForeingkey; }
 		}
 		private bool _IsUseForeingkey;
-		partial void OnIsUseForeingkeyChanging();
+		partial void OnIsUseForeingkeyChanging(); // Property.tt Line: 124
 		partial void OnIsUseForeingkeyChanged();
-		public bool IsUseForeingkeyIndex
+		public bool IsUseForeingkeyIndex // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -171,9 +177,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsUseForeingkeyIndex; }
 		}
 		private bool _IsUseForeingkeyIndex;
-		partial void OnIsUseForeingkeyIndexChanging();
+		partial void OnIsUseForeingkeyIndexChanging(); // Property.tt Line: 124
 		partial void OnIsUseForeingkeyIndexChanged();
-		public bool IsUseStorageProcedures
+		public bool IsUseStorageProcedures // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -189,9 +195,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsUseStorageProcedures; }
 		}
 		private bool _IsUseStorageProcedures;
-		partial void OnIsUseStorageProceduresChanging();
+		partial void OnIsUseStorageProceduresChanging(); // Property.tt Line: 124
 		partial void OnIsUseStorageProceduresChanged();
-		public bool IsUseViews
+		public bool IsUseViews // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -207,13 +213,13 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsUseViews; }
 		}
 		private bool _IsUseViews;
-		partial void OnIsUseViewsChanging();
+		partial void OnIsUseViewsChanging(); // Property.tt Line: 124
 		partial void OnIsUseViewsChanged();
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsPrimaryKeyClustered
+		public bool IsPrimaryKeyClustered // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -229,13 +235,13 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsPrimaryKeyClustered; }
 		}
 		private bool _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging();
+		partial void OnIsPrimaryKeyClusteredChanging(); // Property.tt Line: 124
 		partial void OnIsPrimaryKeyClusteredChanged();
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsMemoryOptimized
+		public bool IsMemoryOptimized // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -251,7 +257,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IsMemoryOptimized; }
 		}
 		private bool _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging();
+		partial void OnIsMemoryOptimizedChanging(); // Property.tt Line: 124
 		partial void OnIsMemoryOptimizedChanged();
 		#endregion Properties
 	}
@@ -261,9 +267,9 @@ namespace vSharpStudio.vm.ViewModels
 	[CategoryOrder("Initialization", 4)]
 	[CategoryOrder("ConnectionResilency", 5)]
 	[CategoryOrder("Advanced", 6)]
-	public partial class MsSqlConnectionSettings : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator>, IMsSqlConnectionSettings
+	public partial class MsSqlConnectionSettings : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator>, IMsSqlConnectionSettings // Class.tt Line: 6
 	{
-		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { }
+		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { } 
 		#region CTOR
 		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator)
 		{
@@ -272,88 +278,89 @@ namespace vSharpStudio.vm.ViewModels
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static MsSqlConnectionSettings Clone(MsSqlConnectionSettings from, bool isDeep = true)
+		public static MsSqlConnectionSettings Clone(MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 27
 		{
 		    MsSqlConnectionSettings vm = new MsSqlConnectionSettings();
-		    vm.Name = from.Name;
-		    vm.Guid = from.Guid;
-		    vm.MaxPoolSize = from.MaxPoolSize;
-		    vm.ConnectRetryCount = from.ConnectRetryCount;
-		    vm.ConnectRetryInterval = from.ConnectRetryInterval;
-		    vm.MinPoolSize = from.MinPoolSize;
-		    vm.MultipleActiveResultSets = from.MultipleActiveResultSets;
-		    vm.MultiSubnetFailover = from.MultiSubnetFailover;
-		    vm.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution;
-		    vm.NetworkLibrary = from.NetworkLibrary;
-		    vm.PacketSize = from.PacketSize;
-		    vm.PersistSecurityInfo = from.PersistSecurityInfo;
-		    vm.LoadBalanceTimeout = from.LoadBalanceTimeout;
-		    vm.Pooling = from.Pooling;
-		    vm.Replication = from.Replication;
-		    vm.TransactionBinding = from.TransactionBinding;
-		    vm.TypeSystemVersion = from.TypeSystemVersion;
-		    vm.UserID = from.UserID;
-		    vm.UserInstance = from.UserInstance;
-		    vm.WorkstationID = from.WorkstationID;
-		    vm.Password = from.Password;
-		    vm.Authentication = from.Authentication;
-		    vm.InitialCatalog = from.InitialCatalog;
-		    vm.ApplicationIntentValue = from.ApplicationIntentValue;
-		    vm.ApplicationName = from.ApplicationName;
-		    vm.AsynchronousProcessing = from.AsynchronousProcessing;
-		    vm.IntegratedSecurity = from.IntegratedSecurity;
-		    vm.ContextConnection = from.ContextConnection;
-		    vm.ConnectTimeout = from.ConnectTimeout;
-		    vm.AttachDBFilename = from.AttachDBFilename;
-		    vm.DataSource = from.DataSource;
-		    vm.Encrypt = from.Encrypt;
-		    vm.ColumnEncryptionSetting = from.ColumnEncryptionSetting;
-		    vm.TrustServerCertificate = from.TrustServerCertificate;
-		    vm.Enlist = from.Enlist;
-		    vm.FailoverPartner = from.FailoverPartner;
-		    vm.CurrentLanguage = from.CurrentLanguage;
+		    vm.Name = from.Name; // Clone.tt Line: 58
+		    vm.Guid = from.Guid; // Clone.tt Line: 58
+		    vm.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 58
+		    vm.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 58
+		    vm.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 58
+		    vm.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 58
+		    vm.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 58
+		    vm.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 58
+		    vm.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 58
+		    vm.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 58
+		    vm.PacketSize = from.PacketSize; // Clone.tt Line: 58
+		    vm.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 58
+		    vm.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 58
+		    vm.Pooling = from.Pooling; // Clone.tt Line: 58
+		    vm.Replication = from.Replication; // Clone.tt Line: 58
+		    vm.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 58
+		    vm.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 58
+		    vm.UserID = from.UserID; // Clone.tt Line: 58
+		    vm.UserInstance = from.UserInstance; // Clone.tt Line: 58
+		    vm.WorkstationID = from.WorkstationID; // Clone.tt Line: 58
+		    vm.Password = from.Password; // Clone.tt Line: 58
+		    vm.Authentication = from.Authentication; // Clone.tt Line: 58
+		    vm.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 58
+		    vm.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 58
+		    vm.ApplicationName = from.ApplicationName; // Clone.tt Line: 58
+		    vm.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 58
+		    vm.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 58
+		    vm.ContextConnection = from.ContextConnection; // Clone.tt Line: 58
+		    vm.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 58
+		    vm.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 58
+		    vm.DataSource = from.DataSource; // Clone.tt Line: 58
+		    vm.Encrypt = from.Encrypt; // Clone.tt Line: 58
+		    vm.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 58
+		    vm.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 58
+		    vm.Enlist = from.Enlist; // Clone.tt Line: 58
+		    vm.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 58
+		    vm.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 58
 		    return vm;
 		}
-		public static void Update(MsSqlConnectionSettings to, MsSqlConnectionSettings from, bool isDeep = true)
+		public static void Update(MsSqlConnectionSettings to, MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 68
 		{
-		    to.Name = from.Name;
-		    to.Guid = from.Guid;
-		    to.MaxPoolSize = from.MaxPoolSize;
-		    to.ConnectRetryCount = from.ConnectRetryCount;
-		    to.ConnectRetryInterval = from.ConnectRetryInterval;
-		    to.MinPoolSize = from.MinPoolSize;
-		    to.MultipleActiveResultSets = from.MultipleActiveResultSets;
-		    to.MultiSubnetFailover = from.MultiSubnetFailover;
-		    to.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution;
-		    to.NetworkLibrary = from.NetworkLibrary;
-		    to.PacketSize = from.PacketSize;
-		    to.PersistSecurityInfo = from.PersistSecurityInfo;
-		    to.LoadBalanceTimeout = from.LoadBalanceTimeout;
-		    to.Pooling = from.Pooling;
-		    to.Replication = from.Replication;
-		    to.TransactionBinding = from.TransactionBinding;
-		    to.TypeSystemVersion = from.TypeSystemVersion;
-		    to.UserID = from.UserID;
-		    to.UserInstance = from.UserInstance;
-		    to.WorkstationID = from.WorkstationID;
-		    to.Password = from.Password;
-		    to.Authentication = from.Authentication;
-		    to.InitialCatalog = from.InitialCatalog;
-		    to.ApplicationIntentValue = from.ApplicationIntentValue;
-		    to.ApplicationName = from.ApplicationName;
-		    to.AsynchronousProcessing = from.AsynchronousProcessing;
-		    to.IntegratedSecurity = from.IntegratedSecurity;
-		    to.ContextConnection = from.ContextConnection;
-		    to.ConnectTimeout = from.ConnectTimeout;
-		    to.AttachDBFilename = from.AttachDBFilename;
-		    to.DataSource = from.DataSource;
-		    to.Encrypt = from.Encrypt;
-		    to.ColumnEncryptionSetting = from.ColumnEncryptionSetting;
-		    to.TrustServerCertificate = from.TrustServerCertificate;
-		    to.Enlist = from.Enlist;
-		    to.FailoverPartner = from.FailoverPartner;
-		    to.CurrentLanguage = from.CurrentLanguage;
+		    to.Name = from.Name; // Clone.tt Line: 126
+		    to.Guid = from.Guid; // Clone.tt Line: 126
+		    to.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 126
+		    to.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 126
+		    to.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 126
+		    to.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 126
+		    to.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 126
+		    to.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 126
+		    to.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 126
+		    to.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 126
+		    to.PacketSize = from.PacketSize; // Clone.tt Line: 126
+		    to.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 126
+		    to.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 126
+		    to.Pooling = from.Pooling; // Clone.tt Line: 126
+		    to.Replication = from.Replication; // Clone.tt Line: 126
+		    to.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 126
+		    to.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 126
+		    to.UserID = from.UserID; // Clone.tt Line: 126
+		    to.UserInstance = from.UserInstance; // Clone.tt Line: 126
+		    to.WorkstationID = from.WorkstationID; // Clone.tt Line: 126
+		    to.Password = from.Password; // Clone.tt Line: 126
+		    to.Authentication = from.Authentication; // Clone.tt Line: 126
+		    to.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 126
+		    to.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 126
+		    to.ApplicationName = from.ApplicationName; // Clone.tt Line: 126
+		    to.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 126
+		    to.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 126
+		    to.ContextConnection = from.ContextConnection; // Clone.tt Line: 126
+		    to.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 126
+		    to.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 126
+		    to.DataSource = from.DataSource; // Clone.tt Line: 126
+		    to.Encrypt = from.Encrypt; // Clone.tt Line: 126
+		    to.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 126
+		    to.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 126
+		    to.Enlist = from.Enlist; // Clone.tt Line: 126
+		    to.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 126
+		    to.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 126
 		}
+		// Clone.tt Line: 131
 		#region IEditable
 		public override MsSqlConnectionSettings Backup()
 		{
@@ -375,92 +382,92 @@ namespace vSharpStudio.vm.ViewModels
 		{
 		    if (vm == null)
 		        vm = new MsSqlConnectionSettings();
-		    vm.Name = m.Name;
-		    vm.Guid = m.Guid;
-		    vm.MaxPoolSize = m.MaxPoolSize;
-		    vm.ConnectRetryCount = m.ConnectRetryCount;
-		    vm.ConnectRetryInterval = m.ConnectRetryInterval;
-		    vm.MinPoolSize = m.MinPoolSize;
-		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets;
-		    vm.MultiSubnetFailover = m.MultiSubnetFailover;
-		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution;
-		    vm.NetworkLibrary = m.NetworkLibrary;
-		    vm.PacketSize = m.PacketSize;
-		    vm.PersistSecurityInfo = m.PersistSecurityInfo;
-		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout;
-		    vm.Pooling = m.Pooling;
-		    vm.Replication = m.Replication;
-		    vm.TransactionBinding = m.TransactionBinding;
-		    vm.TypeSystemVersion = m.TypeSystemVersion;
-		    vm.UserID = m.UserID;
-		    vm.UserInstance = m.UserInstance;
-		    vm.WorkstationID = m.WorkstationID;
-		    vm.Password = m.Password;
-		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication;
-		    vm.InitialCatalog = m.InitialCatalog;
-		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue;
-		    vm.ApplicationName = m.ApplicationName;
-		    vm.AsynchronousProcessing = m.AsynchronousProcessing;
-		    vm.IntegratedSecurity = m.IntegratedSecurity;
-		    vm.ContextConnection = m.ContextConnection;
-		    vm.ConnectTimeout = m.ConnectTimeout;
-		    vm.AttachDBFilename = m.AttachDBFilename;
-		    vm.DataSource = m.DataSource;
-		    vm.Encrypt = m.Encrypt;
-		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting;
-		    vm.TrustServerCertificate = m.TrustServerCertificate;
-		    vm.Enlist = m.Enlist;
-		    vm.FailoverPartner = m.FailoverPartner;
-		    vm.CurrentLanguage = m.CurrentLanguage;
+		    vm.Name = m.Name; // Clone.tt Line: 195
+		    vm.Guid = m.Guid; // Clone.tt Line: 195
+		    vm.MaxPoolSize = m.MaxPoolSize; // Clone.tt Line: 195
+		    vm.ConnectRetryCount = m.ConnectRetryCount; // Clone.tt Line: 195
+		    vm.ConnectRetryInterval = m.ConnectRetryInterval; // Clone.tt Line: 195
+		    vm.MinPoolSize = m.MinPoolSize; // Clone.tt Line: 195
+		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets; // Clone.tt Line: 195
+		    vm.MultiSubnetFailover = m.MultiSubnetFailover; // Clone.tt Line: 195
+		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution; // Clone.tt Line: 195
+		    vm.NetworkLibrary = m.NetworkLibrary; // Clone.tt Line: 195
+		    vm.PacketSize = m.PacketSize; // Clone.tt Line: 195
+		    vm.PersistSecurityInfo = m.PersistSecurityInfo; // Clone.tt Line: 195
+		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout; // Clone.tt Line: 195
+		    vm.Pooling = m.Pooling; // Clone.tt Line: 195
+		    vm.Replication = m.Replication; // Clone.tt Line: 195
+		    vm.TransactionBinding = m.TransactionBinding; // Clone.tt Line: 195
+		    vm.TypeSystemVersion = m.TypeSystemVersion; // Clone.tt Line: 195
+		    vm.UserID = m.UserID; // Clone.tt Line: 195
+		    vm.UserInstance = m.UserInstance; // Clone.tt Line: 195
+		    vm.WorkstationID = m.WorkstationID; // Clone.tt Line: 195
+		    vm.Password = m.Password; // Clone.tt Line: 195
+		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication; // Clone.tt Line: 193
+		    vm.InitialCatalog = m.InitialCatalog; // Clone.tt Line: 195
+		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue; // Clone.tt Line: 193
+		    vm.ApplicationName = m.ApplicationName; // Clone.tt Line: 195
+		    vm.AsynchronousProcessing = m.AsynchronousProcessing; // Clone.tt Line: 195
+		    vm.IntegratedSecurity = m.IntegratedSecurity; // Clone.tt Line: 195
+		    vm.ContextConnection = m.ContextConnection; // Clone.tt Line: 195
+		    vm.ConnectTimeout = m.ConnectTimeout; // Clone.tt Line: 195
+		    vm.AttachDBFilename = m.AttachDBFilename; // Clone.tt Line: 195
+		    vm.DataSource = m.DataSource; // Clone.tt Line: 195
+		    vm.Encrypt = m.Encrypt; // Clone.tt Line: 195
+		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting; // Clone.tt Line: 193
+		    vm.TrustServerCertificate = m.TrustServerCertificate; // Clone.tt Line: 195
+		    vm.Enlist = m.Enlist; // Clone.tt Line: 195
+		    vm.FailoverPartner = m.FailoverPartner; // Clone.tt Line: 195
+		    vm.CurrentLanguage = m.CurrentLanguage; // Clone.tt Line: 195
 		    return vm;
 		}
 		// Conversion from 'MsSqlConnectionSettings' to 'proto_ms_sql_connection_settings'
-		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm)
+		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm) // Clone.tt Line: 205
 		{
 		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings();
-		    m.Name = vm.Name;
-		    m.Guid = vm.Guid;
-		    m.MaxPoolSize = vm.MaxPoolSize;
-		    m.ConnectRetryCount = vm.ConnectRetryCount;
-		    m.ConnectRetryInterval = vm.ConnectRetryInterval;
-		    m.MinPoolSize = vm.MinPoolSize;
-		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets;
-		    m.MultiSubnetFailover = vm.MultiSubnetFailover;
-		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution;
-		    m.NetworkLibrary = vm.NetworkLibrary;
-		    m.PacketSize = vm.PacketSize;
-		    m.PersistSecurityInfo = vm.PersistSecurityInfo;
-		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout;
-		    m.Pooling = vm.Pooling;
-		    m.Replication = vm.Replication;
-		    m.TransactionBinding = vm.TransactionBinding;
-		    m.TypeSystemVersion = vm.TypeSystemVersion;
-		    m.UserID = vm.UserID;
-		    m.UserInstance = vm.UserInstance;
-		    m.WorkstationID = vm.WorkstationID;
-		    m.Password = vm.Password;
-		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication;
-		    m.InitialCatalog = vm.InitialCatalog;
-		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue;
-		    m.ApplicationName = vm.ApplicationName;
-		    m.AsynchronousProcessing = vm.AsynchronousProcessing;
-		    m.IntegratedSecurity = vm.IntegratedSecurity;
-		    m.ContextConnection = vm.ContextConnection;
-		    m.ConnectTimeout = vm.ConnectTimeout;
-		    m.AttachDBFilename = vm.AttachDBFilename;
-		    m.DataSource = vm.DataSource;
-		    m.Encrypt = vm.Encrypt;
-		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting;
-		    m.TrustServerCertificate = vm.TrustServerCertificate;
-		    m.Enlist = vm.Enlist;
-		    m.FailoverPartner = vm.FailoverPartner;
-		    m.CurrentLanguage = vm.CurrentLanguage;
+		    m.Name = vm.Name; // Clone.tt Line: 231
+		    m.Guid = vm.Guid; // Clone.tt Line: 231
+		    m.MaxPoolSize = vm.MaxPoolSize; // Clone.tt Line: 231
+		    m.ConnectRetryCount = vm.ConnectRetryCount; // Clone.tt Line: 231
+		    m.ConnectRetryInterval = vm.ConnectRetryInterval; // Clone.tt Line: 231
+		    m.MinPoolSize = vm.MinPoolSize; // Clone.tt Line: 231
+		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets; // Clone.tt Line: 231
+		    m.MultiSubnetFailover = vm.MultiSubnetFailover; // Clone.tt Line: 231
+		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution; // Clone.tt Line: 231
+		    m.NetworkLibrary = vm.NetworkLibrary; // Clone.tt Line: 231
+		    m.PacketSize = vm.PacketSize; // Clone.tt Line: 231
+		    m.PersistSecurityInfo = vm.PersistSecurityInfo; // Clone.tt Line: 231
+		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout; // Clone.tt Line: 231
+		    m.Pooling = vm.Pooling; // Clone.tt Line: 231
+		    m.Replication = vm.Replication; // Clone.tt Line: 231
+		    m.TransactionBinding = vm.TransactionBinding; // Clone.tt Line: 231
+		    m.TypeSystemVersion = vm.TypeSystemVersion; // Clone.tt Line: 231
+		    m.UserID = vm.UserID; // Clone.tt Line: 231
+		    m.UserInstance = vm.UserInstance; // Clone.tt Line: 231
+		    m.WorkstationID = vm.WorkstationID; // Clone.tt Line: 231
+		    m.Password = vm.Password; // Clone.tt Line: 231
+		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication; // Clone.tt Line: 229
+		    m.InitialCatalog = vm.InitialCatalog; // Clone.tt Line: 231
+		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue; // Clone.tt Line: 229
+		    m.ApplicationName = vm.ApplicationName; // Clone.tt Line: 231
+		    m.AsynchronousProcessing = vm.AsynchronousProcessing; // Clone.tt Line: 231
+		    m.IntegratedSecurity = vm.IntegratedSecurity; // Clone.tt Line: 231
+		    m.ContextConnection = vm.ContextConnection; // Clone.tt Line: 231
+		    m.ConnectTimeout = vm.ConnectTimeout; // Clone.tt Line: 231
+		    m.AttachDBFilename = vm.AttachDBFilename; // Clone.tt Line: 231
+		    m.DataSource = vm.DataSource; // Clone.tt Line: 231
+		    m.Encrypt = vm.Encrypt; // Clone.tt Line: 231
+		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting; // Clone.tt Line: 229
+		    m.TrustServerCertificate = vm.TrustServerCertificate; // Clone.tt Line: 231
+		    m.Enlist = vm.Enlist; // Clone.tt Line: 231
+		    m.FailoverPartner = vm.FailoverPartner; // Clone.tt Line: 231
+		    m.CurrentLanguage = vm.CurrentLanguage; // Clone.tt Line: 231
 		    return m;
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public string Name
+		public string Name // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -476,9 +483,9 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging();
+		partial void OnNameChanging(); // Property.tt Line: 124
 		partial void OnNameChanged();
-		public string Guid
+		public string Guid // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -494,7 +501,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging();
+		partial void OnGuidChanging(); // Property.tt Line: 124
 		partial void OnGuidChanged();
 		
 		///////////////////////////////////////////////////
@@ -508,7 +515,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize property, or 100 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MaxPoolSize
+		public int MaxPoolSize // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -524,7 +531,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _MaxPoolSize; }
 		}
 		private int _MaxPoolSize;
-		partial void OnMaxPoolSizeChanging();
+		partial void OnMaxPoolSizeChanging(); // Property.tt Line: 124
 		partial void OnMaxPoolSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -541,7 +548,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryCount
+		public int ConnectRetryCount // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -557,7 +564,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ConnectRetryCount; }
 		}
 		private int _ConnectRetryCount;
-		partial void OnConnectRetryCountChanging();
+		partial void OnConnectRetryCountChanging(); // Property.tt Line: 124
 		partial void OnConnectRetryCountChanged();
 		
 		///////////////////////////////////////////////////
@@ -574,7 +581,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryInterval
+		public int ConnectRetryInterval // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -590,7 +597,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ConnectRetryInterval; }
 		}
 		private int _ConnectRetryInterval;
-		partial void OnConnectRetryIntervalChanging();
+		partial void OnConnectRetryIntervalChanging(); // Property.tt Line: 124
 		partial void OnConnectRetryIntervalChanged();
 		
 		///////////////////////////////////////////////////
@@ -604,7 +611,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize property, or 0 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MinPoolSize
+		public int MinPoolSize // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -620,7 +627,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _MinPoolSize; }
 		}
 		private int _MinPoolSize;
-		partial void OnMinPoolSizeChanging();
+		partial void OnMinPoolSizeChanging(); // Property.tt Line: 124
 		partial void OnMinPoolSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -636,7 +643,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.")]
 		[CategoryAttribute("Advanced")]
-		public bool MultipleActiveResultSets
+		public bool MultipleActiveResultSets // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -652,7 +659,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _MultipleActiveResultSets; }
 		}
 		private bool _MultipleActiveResultSets;
-		partial void OnMultipleActiveResultSetsChanging();
+		partial void OnMultipleActiveResultSetsChanging(); // Property.tt Line: 124
 		partial void OnMultipleActiveResultSetsChanged();
 		
 		///////////////////////////////////////////////////
@@ -668,7 +675,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.")]
 		[Category("Source")]
-		public bool MultiSubnetFailover
+		public bool MultiSubnetFailover // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -684,7 +691,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _MultiSubnetFailover; }
 		}
 		private bool _MultiSubnetFailover;
-		partial void OnMultiSubnetFailoverChanging();
+		partial void OnMultiSubnetFailoverChanging(); // Property.tt Line: 124
 		partial void OnMultiSubnetFailoverChanged();
 		
 		///////////////////////////////////////////////////
@@ -700,7 +707,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("When the value of this key is set to true, the application is required to retrieve all IP addresses for a particular DNS entry and attempt to connect with the first one in the list. If the connection is not established within 0.5 seconds, the application will try to connect to all others in parallel. When the first answers, the application will establish the connection with the respondent IP address.")]
 		[Category("Source")]
-		public bool TransparentNetworkIPResolution
+		public bool TransparentNetworkIPResolution // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -716,7 +723,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _TransparentNetworkIPResolution; }
 		}
 		private bool _TransparentNetworkIPResolution;
-		partial void OnTransparentNetworkIPResolutionChanging();
+		partial void OnTransparentNetworkIPResolutionChanging(); // Property.tt Line: 124
 		partial void OnTransparentNetworkIPResolutionChanged();
 		
 		///////////////////////////////////////////////////
@@ -733,7 +740,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string NetworkLibrary
+		public string NetworkLibrary // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -749,7 +756,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _NetworkLibrary; }
 		}
 		private string _NetworkLibrary = "";
-		partial void OnNetworkLibraryChanging();
+		partial void OnNetworkLibraryChanging(); // Property.tt Line: 124
 		partial void OnNetworkLibraryChanged();
 		
 		///////////////////////////////////////////////////
@@ -763,7 +770,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize property, or 8000 if none has been supplied.")]
 		[Category("Advanced")]
-		public int PacketSize
+		public int PacketSize // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -779,7 +786,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _PacketSize; }
 		}
 		private int _PacketSize;
-		partial void OnPacketSizeChanging();
+		partial void OnPacketSizeChanging(); // Property.tt Line: 124
 		partial void OnPacketSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -794,7 +801,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.")]
 		[Category("Security")]
-		public bool PersistSecurityInfo
+		public bool PersistSecurityInfo // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -810,7 +817,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _PersistSecurityInfo; }
 		}
 		private bool _PersistSecurityInfo;
-		partial void OnPersistSecurityInfoChanging();
+		partial void OnPersistSecurityInfoChanging(); // Property.tt Line: 124
 		partial void OnPersistSecurityInfoChanged();
 		
 		///////////////////////////////////////////////////
@@ -824,7 +831,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.")]
 		[Category("Pooling")]
-		public int LoadBalanceTimeout
+		public int LoadBalanceTimeout // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -840,7 +847,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _LoadBalanceTimeout; }
 		}
 		private int _LoadBalanceTimeout;
-		partial void OnLoadBalanceTimeoutChanging();
+		partial void OnLoadBalanceTimeoutChanging(); // Property.tt Line: 124
 		partial void OnLoadBalanceTimeoutChanged();
 		
 		///////////////////////////////////////////////////
@@ -854,7 +861,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.")]
 		[Category("Pooling")]
-		public bool Pooling
+		public bool Pooling // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -870,7 +877,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Pooling; }
 		}
 		private bool _Pooling;
-		partial void OnPoolingChanging();
+		partial void OnPoolingChanging(); // Property.tt Line: 124
 		partial void OnPoolingChanged();
 		
 		///////////////////////////////////////////////////
@@ -884,7 +891,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.Replication")]
 		[Category("Replication")]
-		public bool Replication
+		public bool Replication // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -900,7 +907,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Replication; }
 		}
 		private bool _Replication;
-		partial void OnReplicationChanging();
+		partial void OnReplicationChanging(); // Property.tt Line: 124
 		partial void OnReplicationChanged();
 		
 		///////////////////////////////////////////////////
@@ -914,7 +921,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding")]
 		[Category("Advanced")]
-		public string TransactionBinding
+		public string TransactionBinding // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -930,7 +937,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _TransactionBinding; }
 		}
 		private string _TransactionBinding = "";
-		partial void OnTransactionBindingChanging();
+		partial void OnTransactionBindingChanging(); // Property.tt Line: 124
 		partial void OnTransactionBindingChanged();
 		
 		///////////////////////////////////////////////////
@@ -946,7 +953,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     components are upgraded.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string TypeSystemVersion
+		public string TypeSystemVersion // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -962,7 +969,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _TypeSystemVersion; }
 		}
 		private string _TypeSystemVersion = "";
-		partial void OnTypeSystemVersionChanging();
+		partial void OnTypeSystemVersionChanging(); // Property.tt Line: 124
 		partial void OnTypeSystemVersionChanged();
 		
 		///////////////////////////////////////////////////
@@ -978,7 +985,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string UserID
+		public string UserID // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -994,7 +1001,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _UserID; }
 		}
 		private string _UserID = "";
-		partial void OnUserIDChanging();
+		partial void OnUserIDChanging(); // Property.tt Line: 124
 		partial void OnUserIDChanged();
 		
 		///////////////////////////////////////////////////
@@ -1012,7 +1019,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Source")]
-		public bool UserInstance
+		public bool UserInstance // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1028,7 +1035,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _UserInstance; }
 		}
 		private bool _UserInstance;
-		partial void OnUserInstanceChanging();
+		partial void OnUserInstanceChanging(); // Property.tt Line: 124
 		partial void OnUserInstanceChanged();
 		
 		///////////////////////////////////////////////////
@@ -1044,7 +1051,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Context")]
-		public string WorkstationID
+		public string WorkstationID // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1060,7 +1067,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _WorkstationID; }
 		}
 		private string _WorkstationID = "";
-		partial void OnWorkstationIDChanging();
+		partial void OnWorkstationIDChanging(); // Property.tt Line: 124
 		partial void OnWorkstationIDChanged();
 		
 		///////////////////////////////////////////////////
@@ -1076,7 +1083,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The password was incorrectly set to null. See code sample below.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string Password
+		public string Password // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1092,7 +1099,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Password; }
 		}
 		private string _Password = "";
-		partial void OnPasswordChanging();
+		partial void OnPasswordChanging(); // Property.tt Line: 124
 		partial void OnPasswordChanged();
 		
 		///////////////////////////////////////////////////
@@ -1103,7 +1110,7 @@ namespace vSharpStudio.vm.ViewModels
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public SqlAuthenticationMethod Authentication
+		public SqlAuthenticationMethod Authentication // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1119,7 +1126,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Authentication; }
 		}
 		private SqlAuthenticationMethod _Authentication;
-		partial void OnAuthenticationChanging();
+		partial void OnAuthenticationChanging(); // Property.tt Line: 124
 		partial void OnAuthenticationChanged();
 		
 		///////////////////////////////////////////////////
@@ -1136,7 +1143,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name of the database associated with the connection.")]
 		[Category("Source")]
-		public string InitialCatalog
+		public string InitialCatalog // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1152,7 +1159,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _InitialCatalog; }
 		}
 		private string _InitialCatalog = "";
-		partial void OnInitialCatalogChanging();
+		partial void OnInitialCatalogChanging(); // Property.tt Line: 124
 		partial void OnInitialCatalogChanged();
 		
 		///////////////////////////////////////////////////
@@ -1167,7 +1174,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
 		[Category("Initialization")]
-		public ApplicationIntent ApplicationIntentValue
+		public ApplicationIntent ApplicationIntentValue // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1183,7 +1190,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ApplicationIntentValue; }
 		}
 		private ApplicationIntent _ApplicationIntentValue;
-		partial void OnApplicationIntentValueChanging();
+		partial void OnApplicationIntentValueChanging(); // Property.tt Line: 124
 		partial void OnApplicationIntentValueChanged();
 		
 		///////////////////////////////////////////////////
@@ -1200,7 +1207,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("The name of the application, or \".NET SqlClient Data Provider\" if no name has been supplied.")]
 		[Category("Context")]
-		public string ApplicationName
+		public string ApplicationName // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1216,7 +1223,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ApplicationName; }
 		}
 		private string _ApplicationName = "";
-		partial void OnApplicationNameChanging();
+		partial void OnApplicationNameChanging(); // Property.tt Line: 124
 		partial void OnApplicationNameChanged();
 		
 		///////////////////////////////////////////////////
@@ -1232,7 +1239,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("This property is ignored beginning in .NET Framework 4.5.")]
 		[Category("Initialization")]
-		public bool AsynchronousProcessing
+		public bool AsynchronousProcessing // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1248,7 +1255,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _AsynchronousProcessing; }
 		}
 		private bool _AsynchronousProcessing;
-		partial void OnAsynchronousProcessingChanging();
+		partial void OnAsynchronousProcessingChanging(); // Property.tt Line: 124
 		partial void OnAsynchronousProcessingChanged();
 		
 		///////////////////////////////////////////////////
@@ -1263,7 +1270,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true).")]
 		[Category("Security")]
-		public bool IntegratedSecurity
+		public bool IntegratedSecurity // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1279,7 +1286,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _IntegratedSecurity; }
 		}
 		private bool _IntegratedSecurity;
-		partial void OnIntegratedSecurityChanging();
+		partial void OnIntegratedSecurityChanging(); // Property.tt Line: 124
 		partial void OnIntegratedSecurityChanged();
 		
 		///////////////////////////////////////////////////
@@ -1293,7 +1300,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection")]
 		[Category("Source")]
-		public bool ContextConnection
+		public bool ContextConnection // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1309,7 +1316,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ContextConnection; }
 		}
 		private bool _ContextConnection;
-		partial void OnContextConnectionChanging();
+		partial void OnContextConnectionChanging(); // Property.tt Line: 124
 		partial void OnContextConnectionChanged();
 		
 		///////////////////////////////////////////////////
@@ -1323,7 +1330,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout property, or 15 seconds if no value has been supplied.")]
 		[Category("Initialization")]
-		public int ConnectTimeout
+		public int ConnectTimeout // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1339,7 +1346,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ConnectTimeout; }
 		}
 		private int _ConnectTimeout;
-		partial void OnConnectTimeoutChanging();
+		partial void OnConnectTimeoutChanging(); // Property.tt Line: 124
 		partial void OnConnectTimeoutChanged();
 		
 		///////////////////////////////////////////////////
@@ -1358,7 +1365,7 @@ namespace vSharpStudio.vm.ViewModels
 		[Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
 		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 		[Category("Source")]
-		public string AttachDBFilename
+		public string AttachDBFilename // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1374,7 +1381,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _AttachDBFilename; }
 		}
 		private string _AttachDBFilename = "";
-		partial void OnAttachDBFilenameChanging();
+		partial void OnAttachDBFilenameChanging(); // Property.tt Line: 124
 		partial void OnAttachDBFilenameChanged();
 		
 		///////////////////////////////////////////////////
@@ -1392,7 +1399,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or network address of the instance of SQL Server to connect to.")]
 		[Category("Source")]
-		public string DataSource
+		public string DataSource // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1408,7 +1415,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _DataSource; }
 		}
 		private string _DataSource = "";
-		partial void OnDataSourceChanging();
+		partial void OnDataSourceChanging(); // Property.tt Line: 124
 		partial void OnDataSourceChanged();
 		
 		///////////////////////////////////////////////////
@@ -1423,7 +1430,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
 		[Category("Security")]
-		public bool Encrypt
+		public bool Encrypt // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1439,7 +1446,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Encrypt; }
 		}
 		private bool _Encrypt;
-		partial void OnEncryptChanging();
+		partial void OnEncryptChanging(); // Property.tt Line: 124
 		partial void OnEncryptChanged();
 		
 		///////////////////////////////////////////////////
@@ -1451,7 +1458,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets and sets the column encryption settings for the connection string builder.")]
 		[Category("Security")]
-		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting
+		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1467,7 +1474,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _ColumnEncryptionSetting; }
 		}
 		private SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
-		partial void OnColumnEncryptionSettingChanging();
+		partial void OnColumnEncryptionSettingChanging(); // Property.tt Line: 124
 		partial void OnColumnEncryptionSettingChanged();
 		
 		///////////////////////////////////////////////////
@@ -1480,7 +1487,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.")]
 		[Category("Security")]
-		public bool TrustServerCertificate
+		public bool TrustServerCertificate // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1496,7 +1503,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _TrustServerCertificate; }
 		}
 		private bool _TrustServerCertificate;
-		partial void OnTrustServerCertificateChanging();
+		partial void OnTrustServerCertificateChanging(); // Property.tt Line: 124
 		partial void OnTrustServerCertificateChanged();
 		
 		///////////////////////////////////////////////////
@@ -1511,7 +1518,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the SQL Server connection pooler automatically enlists the connection in the creation thread's current transaction context.")]
 		[Category("Pooling")]
-		public bool Enlist
+		public bool Enlist // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1527,7 +1534,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _Enlist; }
 		}
 		private bool _Enlist;
-		partial void OnEnlistChanging();
+		partial void OnEnlistChanging(); // Property.tt Line: 124
 		partial void OnEnlistChanged();
 		
 		///////////////////////////////////////////////////
@@ -1545,7 +1552,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or address of the partner server to connect to if the primary server is down.")]
 		[Category("Source")]
-		public string FailoverPartner
+		public string FailoverPartner // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1561,7 +1568,7 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _FailoverPartner; }
 		}
 		private string _FailoverPartner = "";
-		partial void OnFailoverPartnerChanging();
+		partial void OnFailoverPartnerChanging(); // Property.tt Line: 124
 		partial void OnFailoverPartnerChanged();
 		
 		///////////////////////////////////////////////////
@@ -1578,7 +1585,7 @@ namespace vSharpStudio.vm.ViewModels
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the SQL Server Language record name.")]
 		[Category("Initialization")]
-		public string CurrentLanguage
+		public string CurrentLanguage // Property.tt Line: 107
 		{ 
 			set
 			{
@@ -1594,48 +1601,33 @@ namespace vSharpStudio.vm.ViewModels
 			get { return _CurrentLanguage; }
 		}
 		private string _CurrentLanguage = "";
-		partial void OnCurrentLanguageChanging();
+		partial void OnCurrentLanguageChanging(); // Property.tt Line: 124
 		partial void OnCurrentLanguageChanged();
 		#endregion Properties
 	}
 	
-	public interface IVisitorConfigNode
-	{
-	    CancellationToken Token { get; }
-	}
-	
-	public interface IVisitorProto
+	public interface IVisitorProto // IVisitorProto.tt Line: 7
 	{
 		void Visit(Proto.Config.Connection.proto_ms_sql_design_generator_settings p);
 		void Visit(Proto.Config.Connection.proto_ms_sql_connection_settings p);
 	}
 	
-	public partial class ValidationVisitor : IVisitorConfigNode
+	public partial class ValidationMsSqlDesignGeneratorSettingsVisitor : MsSqlDesignGeneratorSettingsVisitor //: IVisitorMsSqlDesignGeneratorSettingsNode // ValidationVisitor.tt Line: 7
 	{
-	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
-	    private CancellationToken _cancellationToken;
-		public void Visit(MsSqlDesignGeneratorSettings p)
+		protected override void OnVisit(MsSqlDesignGeneratorSettings p) // ValidationVisitor.tt Line: 13
 	    {
-	        OnVisit(p);
+	        base.OnVisit(p);
 	    }
-		public void VisitEnd(MsSqlDesignGeneratorSettings p)
+		protected override void OnVisit(MsSqlConnectionSettings p) // ValidationVisitor.tt Line: 13
 	    {
-	        OnVisitEnd(p);
-	    }
-		public void Visit(MsSqlConnectionSettings p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(MsSqlConnectionSettings p)
-	    {
-	        OnVisitEnd(p);
+	        base.OnVisit(p);
 	    }
 	}
 	
-	public partial class ConfigVisitor : IVisitorConfigNode
+	public partial class MsSqlDesignGeneratorSettingsVisitor : IVisitorMsSqlDesignGeneratorSettingsNode // NodeVisitor.tt Line: 7
 	{
-	    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
-	    private CancellationToken _cancellationToken;
+	    public CancellationToken Token { get { return _cancellationToken; } }
+	    protected CancellationToken _cancellationToken;
 	
 		public void Visit(MsSqlDesignGeneratorSettings p)
 	    {
@@ -1658,4 +1650,9 @@ namespace vSharpStudio.vm.ViewModels
 	    protected virtual void OnVisit(MsSqlConnectionSettings p) {}
 	    protected virtual void OnVisitEnd(MsSqlConnectionSettings p) {}
 	}
+
+public interface IVisitorMsSqlDesignGeneratorSettingsNode // IVisitorConfigNode.tt Line: 7
+{
+    System.Threading.CancellationToken Token { get; }
+}
 }

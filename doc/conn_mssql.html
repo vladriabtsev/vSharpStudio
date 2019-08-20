@@ -179,24 +179,24 @@
             <ul>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql_connection_settings"><span class="badge">M</span>proto_ms_sql_connection_settings</a>
+                  <a href="#proto_ms_sql_design_generator_settings.proto_ms_sql_connection_settings"><span class="badge">M</span>proto_ms_sql_connection_settings</a>
                 </li>
               
                 <li>
-                  <a href="#proto_conn_mssql.proto_ms_sql_design_generator_settings"><span class="badge">M</span>proto_ms_sql_design_generator_settings</a>
+                  <a href="#proto_ms_sql_design_generator_settings.proto_ms_sql_design_generator_settings"><span class="badge">M</span>proto_ms_sql_design_generator_settings</a>
                 </li>
               
               
                 <li>
-                  <a href="#proto_conn_mssql.ApplicationIntent"><span class="badge">E</span>ApplicationIntent</a>
+                  <a href="#proto_ms_sql_design_generator_settings.ApplicationIntent"><span class="badge">E</span>ApplicationIntent</a>
                 </li>
               
                 <li>
-                  <a href="#proto_conn_mssql.SqlAuthenticationMethod"><span class="badge">E</span>SqlAuthenticationMethod</a>
+                  <a href="#proto_ms_sql_design_generator_settings.SqlAuthenticationMethod"><span class="badge">E</span>SqlAuthenticationMethod</a>
                 </li>
               
                 <li>
-                  <a href="#proto_conn_mssql.SqlConnectionColumnEncryptionSetting"><span class="badge">E</span>SqlConnectionColumnEncryptionSetting</a>
+                  <a href="#proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting"><span class="badge">E</span>SqlConnectionColumnEncryptionSetting</a>
                 </li>
               
               
@@ -216,7 +216,7 @@
       <p></p>
 
       
-        <h3 id="proto_conn_mssql.proto_ms_sql_connection_settings">proto_ms_sql_connection_settings</h3>
+        <h3 id="proto_ms_sql_design_generator_settings.proto_ms_sql_connection_settings">proto_ms_sql_connection_settings</h3>
         <p>@attr [CategoryOrder("Source", 1)]</p><p>@attr [CategoryOrder("Security", 2)]</p><p>@attr [CategoryOrder("Pooling", 3)]</p><p>@attr [CategoryOrder("Initialization", 4)]</p><p>@attr [CategoryOrder("ConnectionResilency", 5)]</p><p>@attr [CategoryOrder("Advanced", 6)]</p><p>@base : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator></p>
 
         
@@ -555,7 +555,7 @@ Exceptions:
               
                 <tr>
                   <td>authentication</td>
-                  <td><a href="#proto_conn_mssql.SqlAuthenticationMethod">SqlAuthenticationMethod</a></td>
+                  <td><a href="#proto_ms_sql_design_generator_settings.SqlAuthenticationMethod">SqlAuthenticationMethod</a></td>
                   <td></td>
                   <td><p>Summary:
     Gets the authentication of the connection string.
@@ -585,7 +585,7 @@ Exceptions:
               
                 <tr>
                   <td>ApplicationIntentValue</td>
-                  <td><a href="#proto_conn_mssql.ApplicationIntent">ApplicationIntent</a></td>
+                  <td><a href="#proto_ms_sql_design_generator_settings.ApplicationIntent">ApplicationIntent</a></td>
                   <td></td>
                   <td><p>Summary:
     Declares the application workload type when connecting to a database in an SQL
@@ -737,7 +737,7 @@ Returns:
               
                 <tr>
                   <td>ColumnEncryptionSetting</td>
-                  <td><a href="#proto_conn_mssql.SqlConnectionColumnEncryptionSetting">SqlConnectionColumnEncryptionSetting</a></td>
+                  <td><a href="#proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting">SqlConnectionColumnEncryptionSetting</a></td>
                   <td></td>
                   <td><p>Summary:
     Gets and sets the column encryption settings for the connection string builder.
@@ -822,7 +822,7 @@ Exceptions:
 
         
       
-        <h3 id="proto_conn_mssql.proto_ms_sql_design_generator_settings">proto_ms_sql_design_generator_settings</h3>
+        <h3 id="proto_ms_sql_design_generator_settings.proto_ms_sql_design_generator_settings">proto_ms_sql_design_generator_settings</h3>
         <p>@base : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator></p>
 
         
@@ -897,7 +897,7 @@ Exceptions:
       
 
       
-        <h3 id="proto_conn_mssql.ApplicationIntent">ApplicationIntent</h3>
+        <h3 id="proto_ms_sql_design_generator_settings.ApplicationIntent">ApplicationIntent</h3>
         <p>Summary:</p><p>Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.</p><p>Possible values are ReadWrite and ReadOnly.</p>
         <table class="enum-table">
           <thead>
@@ -922,7 +922,7 @@ Exceptions:
           </tbody>
         </table>
       
-        <h3 id="proto_conn_mssql.SqlAuthenticationMethod">SqlAuthenticationMethod</h3>
+        <h3 id="proto_ms_sql_design_generator_settings.SqlAuthenticationMethod">SqlAuthenticationMethod</h3>
         <p>Summary:</p><p>Describes the different SQL authentication methods that can be used by a client</p><p>connecting to Azure SQL Database. For details, see Connecting to SQL Database</p><p>By Using Azure Active Directory Authentication.</p>
         <table class="enum-table">
           <thead>
@@ -963,7 +963,7 @@ Exceptions:
           </tbody>
         </table>
       
-        <h3 id="proto_conn_mssql.SqlConnectionColumnEncryptionSetting">SqlConnectionColumnEncryptionSetting</h3>
+        <h3 id="proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting">SqlConnectionColumnEncryptionSetting</h3>
         <p>Summary:</p><p>Specifies that Always Encrypted functionality is enabled in a connection. Note</p><p>that these settings cannot be used to bypass encryption and gain access to plaintext</p><p>data. For details, see Always Encrypted (Database Engine).</p>
         <table class="enum-table">
           <thead>

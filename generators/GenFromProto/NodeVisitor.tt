@@ -4,10 +4,10 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-public partial class ConfigVisitor : IVisitorConfigNode
+public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos() #>
 {
-    CancellationToken IVisitorConfigNode.Token => _cancellationToken;
-    private CancellationToken _cancellationToken;
+    public CancellationToken Token { get { return _cancellationToken; } }
+    protected CancellationToken _cancellationToken;
 
 <# foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))

@@ -18,9 +18,9 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public partial class ConfigVisitor : ConfigVisitorBase
+    public partial class NodeVisitor : NodeVisitorBase
     {
 #line hidden
         /// <summary>
@@ -28,11 +28,31 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\npublic partial class ConfigVisitor : IVisitorConfigNode\r\n{\r\n    CancellationTok" +
-                    "en IVisitorConfigNode.Token => _cancellationToken;\r\n    private CancellationToke" +
-                    "n _cancellationToken;\r\n\r\n");
+            this.Write("\r\npublic partial class ");
             
-            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Visitor : IVisitor");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Node // ");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    public CancellationToken Token { get { return _cancellationToken; } }\r\n " +
+                    "   protected CancellationToken _cancellationToken;\r\n\r\n");
+            
+            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
  foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -42,35 +62,35 @@ namespace GenFromProto
             #line hidden
             this.Write("\tpublic void Visit(");
             
-            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p)\r\n    {\r\n        OnVisit(p);\r\n    }\r\n\tpublic void VisitEnd(");
             
-            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p)\r\n    {\r\n        OnVisitEnd(p);\r\n    }\r\n    protected virtual void OnVisit(");
             
-            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p) {}\r\n    protected virtual void OnVisitEnd(");
             
-            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p) {}\r\n");
             
-            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ConfigVisitor.tt"
+            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
  } 
             
             #line default
@@ -87,7 +107,7 @@ namespace GenFromProto
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
-    public class ConfigVisitorBase
+    public class NodeVisitorBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

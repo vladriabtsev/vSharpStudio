@@ -7,7 +7,6 @@
   <ItemGroup>
     <Compile Include="..\..\vSharpStudio.common\DiffModel\IGuid.cs" Link="IGuid.cs" />
     <Compile Include="..\..\vSharpStudio.common\DiffModel\IName.cs" Link="IName.cs" />
-    <Compile Include="..\..\vSharpStudio.common\ModelInterfaces.cs" Link="ModelInterfaces.cs" />
   </ItemGroup>
 
   <ItemGroup>

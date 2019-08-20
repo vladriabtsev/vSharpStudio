@@ -28,10 +28,17 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("public void AcceptValidator(VisitorConfigNode visitor) \r\n{\r\n    if (visitor.Token" +
-                    ".IsCancellationRequested)\r\n        return;\r\n\tvisitor.Visit(this);\r\n");
+            this.Write("\r\npublic void AcceptValidator(VisitorConfigNode visitor) // ");
             
-            #line 11 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    if (visitor.Token.IsCancellationRequested)\r\n        return;\r\n\tvisitor.Vi" +
+                    "sit(this);\r\n");
+            
+            #line 12 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
        continue;
@@ -40,41 +47,55 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
  if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("\tforeach(var t in this.");
             
-            #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tt.AcceptConfigNode(visitor);\r\n");
+            this.Write(")\r\n\t\tt.AcceptConfigNode(visitor); // ");
             
             #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
  } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
             
             #line default
             #line hidden
             this.Write("\tthis.");
             
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".AcceptConfigNode(visitor);\r\n");
+            this.Write(".AcceptConfigNode(visitor); // ");
             
             #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
  } 
             
             #line default

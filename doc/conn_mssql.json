@@ -3,7 +3,7 @@
     {
       "name": "conn_mssql.proto",
       "description": "",
-      "package": "proto_conn_mssql",
+      "package": "proto_ms_sql_design_generator_settings",
       "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
@@ -12,7 +12,7 @@
         {
           "name": "ApplicationIntent",
           "longName": "ApplicationIntent",
-          "fullName": "proto_conn_mssql.ApplicationIntent",
+          "fullName": "proto_ms_sql_design_generator_settings.ApplicationIntent",
           "description": "Summary:\n    Specifies a value for System.Data.SqlClient.SqlConnectionStringBuilder.ApplicationIntent.\n    Possible values are ReadWrite and ReadOnly.",
           "values": [
             {
@@ -30,7 +30,7 @@
         {
           "name": "SqlAuthenticationMethod",
           "longName": "SqlAuthenticationMethod",
-          "fullName": "proto_conn_mssql.SqlAuthenticationMethod",
+          "fullName": "proto_ms_sql_design_generator_settings.SqlAuthenticationMethod",
           "description": "Summary:\n    Describes the different SQL authentication methods that can be used by a client\n    connecting to Azure SQL Database. For details, see Connecting to SQL Database\n\n    By Using Azure Active Directory Authentication.",
           "values": [
             {
@@ -58,7 +58,7 @@
         {
           "name": "SqlConnectionColumnEncryptionSetting",
           "longName": "SqlConnectionColumnEncryptionSetting",
-          "fullName": "proto_conn_mssql.SqlConnectionColumnEncryptionSetting",
+          "fullName": "proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting",
           "description": "Summary:\n    Specifies that Always Encrypted functionality is enabled in a connection. Note\n    that these settings cannot be used to bypass encryption and gain access to plaintext\n    data. For details, see Always Encrypted (Database Engine).",
           "values": [
             {
@@ -79,7 +79,7 @@
         {
           "name": "proto_ms_sql_connection_settings",
           "longName": "proto_ms_sql_connection_settings",
-          "fullName": "proto_conn_mssql.proto_ms_sql_connection_settings",
+          "fullName": "proto_ms_sql_design_generator_settings.proto_ms_sql_connection_settings",
           "description": "@attr [CategoryOrder(\"Source\", 1)]\n@attr [CategoryOrder(\"Security\", 2)]\n@attr [CategoryOrder(\"Pooling\", 3)]\n@attr [CategoryOrder(\"Initialization\", 4)]\n@attr [CategoryOrder(\"ConnectionResilency\", 5)]\n@attr [CategoryOrder(\"Advanced\", 6)]\n@base : ViewModelValidatableWithSeverity\u003cMsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,
@@ -301,7 +301,7 @@
               "label": "",
               "type": "SqlAuthenticationMethod",
               "longType": "SqlAuthenticationMethod",
-              "fullType": "proto_conn_mssql.SqlAuthenticationMethod",
+              "fullType": "proto_ms_sql_design_generator_settings.SqlAuthenticationMethod",
               "ismap": false,
               "defaultValue": ""
             },
@@ -321,7 +321,7 @@
               "label": "",
               "type": "ApplicationIntent",
               "longType": "ApplicationIntent",
-              "fullType": "proto_conn_mssql.ApplicationIntent",
+              "fullType": "proto_ms_sql_design_generator_settings.ApplicationIntent",
               "ismap": false,
               "defaultValue": ""
             },
@@ -411,7 +411,7 @@
               "label": "",
               "type": "SqlConnectionColumnEncryptionSetting",
               "longType": "SqlConnectionColumnEncryptionSetting",
-              "fullType": "proto_conn_mssql.SqlConnectionColumnEncryptionSetting",
+              "fullType": "proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting",
               "ismap": false,
               "defaultValue": ""
             },
@@ -460,7 +460,7 @@
         {
           "name": "proto_ms_sql_design_generator_settings",
           "longName": "proto_ms_sql_design_generator_settings",
-          "fullName": "proto_conn_mssql.proto_ms_sql_design_generator_settings",
+          "fullName": "proto_ms_sql_design_generator_settings.proto_ms_sql_design_generator_settings",
           "description": "@base : ViewModelValidatableWithSeverity\u003cMsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator\u003e",
           "hasExtensions": false,
           "hasFields": true,

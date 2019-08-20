@@ -28,7 +28,21 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\npublic interface IVisitorConfigNode\r\n{\r\n    CancellationToken Token { get; }\r\n");
+            this.Write("\r\npublic interface IVisitor");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Node // ");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    System.Threading.CancellationToken Token { get; }\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
  foreach (var message in messages) { 

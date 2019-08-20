@@ -34,6 +34,8 @@ namespace GenFromProto
                 jsonDoc = Proto.Doc.json_doc.Parser.ParseJson(json);
                 JsonDoc.CreateDesc(jsonDoc);
             }
+            else
+                throw new ArgumentException("path is not exists '" + path + "'.");
         }
     }
     public class JsonDoc

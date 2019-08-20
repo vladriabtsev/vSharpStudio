@@ -74,7 +74,7 @@ namespace vSharpStudio.ViewModels
         //}
 
         private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
-        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
+        public new async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
             // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
@@ -86,7 +86,7 @@ namespace vSharpStudio.ViewModels
                 ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
-        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
+        public new void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
             if (node == null)
                 return;
@@ -100,9 +100,9 @@ namespace vSharpStudio.ViewModels
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new ValidationVisitor(token, logger);
+            var visitor = new ValidationConfigVisitor(token, logger);
             visitor.UpdateSubstructCounts(node);
-            (node as IAccept).AcceptConfigNode(visitor);
+            (node as IConfigAcceptVisitor).AcceptConfigNodeVisitor(visitor);
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...

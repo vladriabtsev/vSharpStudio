@@ -5,11 +5,12 @@
 <#@ import namespace="System.Collections.Generic" #>
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
+using ViewModelBase;
 
-namespace vSharpStudio.common
+namespace vSharpStudio.common // <#=Helper.FilePos() #>
 {
 <# foreach(var t in root.EnumTypes) { this.PushIndent("\t"); #>
-public enum <#= t.Name.ToNameCs() #> {
+public enum <#= t.Name.ToNameCs() #> { // <#=Helper.FilePos() #>
 <#    foreach (var tt in t.Values) { this.PushIndent("\t"); #>
 <#= tt.Name #> = <#= tt.Number #>,
 <#    this.PopIndent(); } #>
@@ -22,7 +23,7 @@ public enum <#= t.Name.ToNameCs() #> {
      this.PushIndent("\t");
 #>
 <#= this.MessageDoc.Comments #>
-public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #> 
+public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IValidatableWithSeverity, IGuid, IName<# } #>  // <#=Helper.FilePos() #>
 {
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
          this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; #>
@@ -32,18 +33,20 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
    } this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsCsSimple()) { #>
-IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; }
+IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
 <# } else { #>
-IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; }
+IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; }
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>
-I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; }
+I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
 <#       } #>
 <#       this.PopIndent();
       } #>
 }
-<#    this.PopIndent();
-   } #>
+<#    
+      this.PopIndent();
+   } 
+#>
 }

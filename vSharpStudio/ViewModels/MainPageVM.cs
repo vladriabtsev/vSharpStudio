@@ -292,7 +292,7 @@ namespace vSharpStudio.ViewModels
         public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
         {
             Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
-            this.Model.AcceptConfigNode(visitor);
+            this.Model.AcceptConfigNodeVisitor(visitor);
             return visitor.Result;
         }
 

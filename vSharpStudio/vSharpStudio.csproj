@@ -178,7 +178,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DbModels\MsSqlModelBuilderVisitor.cs" />
     <Compile Include="Migration\ConfigToModelVisitor.cs" />
     <Compile Include="Migration\DbMigration.cs" />
     <Compile Include="Migration\MsSqlServerSchemaReader.cs" />
@@ -387,6 +386,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DbModels\" />
     <Folder Include="icons\" />
     <Folder Include="Utils\" />
   </ItemGroup>

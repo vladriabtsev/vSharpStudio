@@ -23,7 +23,7 @@ namespace GenFromProto
             {
                 if (t.Name.EndsWith("_nullable"))
                     continue;
-                if (!JsonDoc.Files[root.Name].Messages[t.Name].BaseClass.StartsWith(" : ConfigObjectBase"))
+                if (!JsonDoc.Files[root.Name].Messages[t.Name].IsDefaultBase)
                     continue;
                 this.messages.Add(t);
             }

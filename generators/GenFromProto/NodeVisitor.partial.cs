@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GenFromProto
 {
-    public partial class ConfigVisitor
+    public partial class NodeVisitor
     {
         FileDescriptor root;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
-        public ConfigVisitor(FileDescriptor root)
+        public NodeVisitor(FileDescriptor root)
         {
             this.root = root;
             CollectMessages(root);

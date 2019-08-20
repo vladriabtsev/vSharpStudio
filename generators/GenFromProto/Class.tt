@@ -3,9 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
-	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { }
+	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } 
 	#region CTOR
 	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
 	{
@@ -14,23 +14,24 @@
          continue;
 		if (t.IsRepeated) {#>
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
+		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>();
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this);
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMap) { #>
-		map???
+		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
 		OnInit();
 	}
 <# if (this.Doc.IsDefaultBase) { #>
+    // <#=Helper.FilePos() #>
 	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : base(<#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.Parent = parent;
@@ -39,18 +40,18 @@
          continue;
 		if (t.IsRepeated) {#>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>();
+		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>();
+		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>();
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this);
+		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMap) { #>
-		map???
+		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
 		OnInit();

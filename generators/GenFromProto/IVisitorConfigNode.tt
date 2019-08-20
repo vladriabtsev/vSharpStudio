@@ -4,9 +4,9 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-public interface IVisitorConfigNode
+public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos() #>
 {
-    CancellationToken Token { get; }
+    System.Threading.CancellationToken Token { get; }
 <# foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;

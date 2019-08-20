@@ -6,7 +6,7 @@
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
 <# if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { #>
-public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
+public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -25,7 +25,7 @@ private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs()
 [BrowsableAttribute(false)]
 public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } else if (field.IsMap) { #>
-public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
+public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -42,7 +42,7 @@ public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>
 }
 private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 <# } else { #>
-public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> 
+public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>  // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -63,7 +63,7 @@ public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get
 <# } #>
 <# if (message.Name.EndsWith(field.Name)) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
-public void Add(<#= field.MessageType.Name.ToNameCs() #> item) 
+public void Add(<#= field.MessageType.Name.ToNameCs() #> item)  // <#=Helper.FilePos() #>
 { 
     this.<#= field.Name.ToNameCs() #>.Add(item); 
     item.Parent = this;
@@ -85,7 +85,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
 }
 <# } #>
 <# } else if (field.IsMessage() && !field.IsCsSimple()) {#>
-public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
+public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -104,7 +104,7 @@ private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 [BrowsableAttribute(false)]
 public I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get { return _<#= field.Name.ToNameCs() #>; }}
 <# } else { #>
-public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
+public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -121,5 +121,5 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string") { #> = ""<# } #>;
 <# } #>
-partial void On<#= field.Name.ToNameCs() #>Changing();
+partial void On<#= field.Name.ToNameCs() #>Changing(); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();

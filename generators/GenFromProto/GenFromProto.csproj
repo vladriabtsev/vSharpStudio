@@ -51,8 +51,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Class.tt</DependentUpon>
     </Compile>
-    <Compile Include="ConfigVisitor.cs">
-      <DependentUpon>ConfigVisitor.tt</DependentUpon>
+    <Compile Include="NodeVisitor.cs">
+      <DependentUpon>NodeVisitor.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -64,12 +64,13 @@
     <Compile Include="ModelInterfaces.partial.cs" />
     <Compile Include="Program.partial.cs" />
     <Compile Include="ProtoDoc.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="ValidationVisitor.cs">
       <DependentUpon>ValidationVisitor.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ConfigVisitor.partial.cs" />
+    <Compile Include="NodeVisitor.partial.cs" />
     <Compile Include="ValidationVisitor.partial.cs" />
     <Compile Include="IVisitorProto.partial.cs" />
     <Compile Include="IVisitorProto.cs">
@@ -83,7 +84,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AcceptValidator.partial.cs" />
-    <Compile Include="AcceptConfigNode.partial.cs" />
+    <Compile Include="AcceptNodeVisitor.partial.cs" />
     <Compile Include="Clone.partial.cs" />
     <Compile Include="IVisitorConfigNode.partial.cs" />
     <Compile Include="Property.partial.cs" />
@@ -116,15 +117,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IVisitorConfigNode.tt</DependentUpon>
     </Compile>
-    <Compile Include="AcceptConfigNode.cs">
+    <Compile Include="AcceptNodeVisitor.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AcceptConfigNode.tt</DependentUpon>
+      <DependentUpon>AcceptNodeVisitor.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EmbeddedResource Include="gen.bat" />
+    <None Include="gen_doc.bat" />
     <None Include="packages.config" />
     <None Include="proto.json" />
   </ItemGroup>
@@ -141,9 +142,9 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Comparison.cs</LastGenOutput>
     </Content>
-    <Content Include="ConfigVisitor.tt">
+    <Content Include="NodeVisitor.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ConfigVisitor.cs</LastGenOutput>
+      <LastGenOutput>NodeVisitor.cs</LastGenOutput>
     </Content>
     <Content Include="ModelInterfaces.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -173,9 +174,9 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AcceptValidator.cs</LastGenOutput>
     </Content>
-    <Content Include="AcceptConfigNode.tt">
+    <Content Include="AcceptNodeVisitor.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>AcceptConfigNode.cs</LastGenOutput>
+      <LastGenOutput>AcceptNodeVisitor.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -189,7 +190,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)gen.bat $(TargetPath) $(SolutionDir)
+    <PostBuildEvent>$(ProjectDir)gen_doc.bat $(SolutionDir) $(TargetPath)
+
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Extensions.Logging;
+using vSharpStudio.common;
 using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Migration
@@ -41,7 +42,8 @@ namespace vSharpStudio.Migration
         }
         protected override void OnVisit(Constant p)
         {
-            VisitDataType(p.DataType, p.Name);
+            var pp = (Constant)p;
+            VisitDataType(pp.DataType, pp.Name);
         }
 
         protected override void OnVisit(Catalog p)

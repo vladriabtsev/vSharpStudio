@@ -19,7 +19,7 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class NameSpace : NameSpaceBase
     {
@@ -31,7 +31,7 @@ namespace GenFromProto
         {
             this.Write("// Auto generated on UTC ");
             
-            #line 7 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateTime.Now.ToUniversalTime()));
             
             #line default
@@ -51,14 +51,50 @@ using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
 using Google.Protobuf;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.vm.ViewModels // ");
+            
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write(@"
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
-");
+
+    public interface I");
             
-            #line 27 "C:\dev\vsharpstudio\generators\GenFromProto\NameSpace.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("AcceptVisitor // ");
+            
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    {\r\n        void Accept");
+            
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("NodeVisitor(");
+            
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Visitor visitor);\r\n    }\r\n");
+            
+            #line 32 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("\t");
 	foreach (var t in root.MessageTypes)
@@ -69,19 +105,19 @@ namespace vSharpStudio.vm.ViewModels
 		this.Write(cl.TransformText());
 	}
 
-	var v = new IVisitorConfigNode(root);
-	this.Write(v.TransformText());
-
 	var vp = new IVisitorProto(root, nameSpace);
 	this.Write(vp.TransformText());
 
 	var vv = new ValidationVisitor(root);
 	this.Write(vv.TransformText());
 
-	var cv = new ConfigVisitor(root);
+	var cv = new NodeVisitor(root);
 	this.Write(cv.TransformText());
 
 	this.PopIndent();
+
+   var v = new IVisitorConfigNode(root);
+   this.Write(v.TransformText());
 
             
             #line default

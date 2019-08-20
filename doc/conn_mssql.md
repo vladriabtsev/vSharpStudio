@@ -4,12 +4,12 @@
 ## Table of Contents
 
 - [conn_mssql.proto](#conn_mssql.proto)
-    - [proto_ms_sql_connection_settings](#proto_conn_mssql.proto_ms_sql_connection_settings)
-    - [proto_ms_sql_design_generator_settings](#proto_conn_mssql.proto_ms_sql_design_generator_settings)
+    - [proto_ms_sql_connection_settings](#proto_ms_sql_design_generator_settings.proto_ms_sql_connection_settings)
+    - [proto_ms_sql_design_generator_settings](#proto_ms_sql_design_generator_settings.proto_ms_sql_design_generator_settings)
   
-    - [ApplicationIntent](#proto_conn_mssql.ApplicationIntent)
-    - [SqlAuthenticationMethod](#proto_conn_mssql.SqlAuthenticationMethod)
-    - [SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.SqlConnectionColumnEncryptionSetting)
+    - [ApplicationIntent](#proto_ms_sql_design_generator_settings.ApplicationIntent)
+    - [SqlAuthenticationMethod](#proto_ms_sql_design_generator_settings.SqlAuthenticationMethod)
+    - [SqlConnectionColumnEncryptionSetting](#proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting)
   
   
   
@@ -25,7 +25,7 @@
 
 
 
-<a name="proto_conn_mssql.proto_ms_sql_connection_settings"></a>
+<a name="proto_ms_sql_design_generator_settings.proto_ms_sql_connection_settings"></a>
 
 ### proto_ms_sql_connection_settings
 @attr [CategoryOrder(&#34;Source&#34;, 1)]
@@ -108,7 +108,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Password property, or String.Empty if none has been supplied.
 
 Exceptions: T:System.ArgumentNullException: The password was incorrectly set to null. See code sample below. @attr [Category(&#34;Security&#34;)] |
-| authentication | [SqlAuthenticationMethod](#proto_conn_mssql.SqlAuthenticationMethod) |  | Summary: Gets the authentication of the connection string.
+| authentication | [SqlAuthenticationMethod](#proto_ms_sql_design_generator_settings.SqlAuthenticationMethod) |  | Summary: Gets the authentication of the connection string.
 
 Returns: The authentication of the connection string. @attr [Category(&#34;Security&#34;)] |
 | initial_catalog | [string](#string) |  | Summary: Gets or sets the name of the database associated with the connection.
@@ -116,7 +116,7 @@ Returns: The authentication of the connection string. @attr [Category(&#34;Secur
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.InitialCatalog property, or String.Empty if none has been supplied.
 
 Exceptions: T:System.ArgumentNullException: To set the value to null, use System.DBNull.Value. @attr [Description(&#34;Gets or sets the name of the database associated with the connection.&#34;)] @attr [Category(&#34;Source&#34;)] |
-| ApplicationIntentValue | [ApplicationIntent](#proto_conn_mssql.ApplicationIntent) |  | Summary: Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.
+| ApplicationIntentValue | [ApplicationIntent](#proto_ms_sql_design_generator_settings.ApplicationIntent) |  | Summary: Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.
 
 Returns: Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent). @attr [Description(&#34;Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.&#34;)] @attr [Category(&#34;Initialization&#34;)] |
 | ApplicationName | [string](#string) |  | Summary: Gets or sets the name of the application associated with the connection string.
@@ -149,7 +149,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 | encrypt | [bool](#bool) |  | Summary: Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.
 
 Returns: The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property, or false if none has been supplied. @attr [Description(&#34;Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.&#34;)] @attr [Category(&#34;Security&#34;)] |
-| ColumnEncryptionSetting | [SqlConnectionColumnEncryptionSetting](#proto_conn_mssql.SqlConnectionColumnEncryptionSetting) |  | Summary: Gets and sets the column encryption settings for the connection string builder.
+| ColumnEncryptionSetting | [SqlConnectionColumnEncryptionSetting](#proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting) |  | Summary: Gets and sets the column encryption settings for the connection string builder.
 
 Returns: The column encryption settings for the connection string builder. @attr [Description(&#34;Gets and sets the column encryption settings for the connection string builder.&#34;)] @attr [Category(&#34;Security&#34;)] |
 | trust_server_certificate | [bool](#bool) |  | Summary: Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.
@@ -174,7 +174,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 
 
 
-<a name="proto_conn_mssql.proto_ms_sql_design_generator_settings"></a>
+<a name="proto_ms_sql_design_generator_settings.proto_ms_sql_design_generator_settings"></a>
 
 ### proto_ms_sql_design_generator_settings
 @base : ViewModelValidatableWithSeverity&lt;MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator&gt;
@@ -198,7 +198,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
  
 
 
-<a name="proto_conn_mssql.ApplicationIntent"></a>
+<a name="proto_ms_sql_design_generator_settings.ApplicationIntent"></a>
 
 ### ApplicationIntent
 Summary:
@@ -212,7 +212,7 @@ Summary:
 
 
 
-<a name="proto_conn_mssql.SqlAuthenticationMethod"></a>
+<a name="proto_ms_sql_design_generator_settings.SqlAuthenticationMethod"></a>
 
 ### SqlAuthenticationMethod
 Summary:
@@ -230,7 +230,7 @@ Summary:
 
 
 
-<a name="proto_conn_mssql.SqlConnectionColumnEncryptionSetting"></a>
+<a name="proto_ms_sql_design_generator_settings.SqlConnectionColumnEncryptionSetting"></a>
 
 ### SqlConnectionColumnEncryptionSetting
 Summary:

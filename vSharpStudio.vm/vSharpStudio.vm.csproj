@@ -174,7 +174,6 @@
     <Compile Include="ViewModels\GroupListPropertiesTabs.cs" />
     <Compile Include="ViewModels\GroupListReports.cs" />
     <Compile Include="ViewModels\PropertiesTab.cs" />
-    <Compile Include="ViewModels\IAccept.cs" />
     <Compile Include="ViewModels\DbIdGenerator.cs" />
     <Compile Include="ViewModels\DbIdGenerator.Validator.cs" />
     <Compile Include="ViewModels\Journal.cs" />
@@ -188,7 +187,7 @@
     <Compile Include="ViewModels\Report.cs" />
     <Compile Include="ViewModels\Utils.cs" />
     <Compile Include="ViewModels\ConfigVisitor.partial.cs" />
-    <Compile Include="ViewModels\ValidationVisitor.partial.cs" />
+    <Compile Include="ViewModels\ValidationConfigVisitor.partial.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj">

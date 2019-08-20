@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.common
 {
     public interface IAccept
     {
