@@ -1,4 +1,4 @@
-// Auto generated on UTC 08/20/2019 18:43:16
+// Auto generated on UTC 08/20/2019 19:11:29
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1612,15 +1612,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.Connection.proto_ms_sql_connection_settings p);
 	}
 	
-	public partial class ValidationMsSqlDesignGeneratorSettingsVisitor : MsSqlDesignGeneratorSettingsVisitor //: IVisitorMsSqlDesignGeneratorSettingsNode // ValidationVisitor.tt Line: 7
+	public partial class ValidationMsSqlDesignGeneratorSettingsVisitor : MsSqlDesignGeneratorSettingsVisitor // ValidationVisitor.tt Line: 7
 	{
-		protected override void OnVisit(MsSqlDesignGeneratorSettings p) // ValidationVisitor.tt Line: 13
+	    partial void OnVisit(IValidatableWithSeverity p);
+	    partial void OnVisitEnd(IValidatableWithSeverity p);
+		protected override void OnVisit(MsSqlDesignGeneratorSettings p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(MsSqlConnectionSettings p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(MsSqlDesignGeneratorSettings p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(MsSqlConnectionSettings p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(MsSqlConnectionSettings p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
 	}
 	

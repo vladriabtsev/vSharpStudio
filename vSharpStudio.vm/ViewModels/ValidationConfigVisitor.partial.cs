@@ -89,7 +89,7 @@ namespace vSharpStudio.vm.ViewModels
                 AddMessage(p, t);
             }
         }
-        private void OnVisit(IValidatableWithSeverity p)
+        partial void OnVisit(IValidatableWithSeverity p)
         {
             //if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
             //    node = p;
@@ -115,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object node = null;
-        private void OnVisitEnd(IValidatableWithSeverity p)
+        partial void OnVisitEnd(IValidatableWithSeverity p)
         {
             if (!(p is ITreeConfigNode))
                 throw new ArgumentException();

@@ -4,15 +4,17 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.Package.ToNameCs() #>Visitor //: IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos() #>
+public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.Package.ToNameCs() #>Visitor // <#=Helper.FilePos() #>
 {
+    partial void OnVisit(IValidatableWithSeverity p);
+    partial void OnVisitEnd(IValidatableWithSeverity p);
 <# foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
 	protected override void OnVisit(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
     {
-        base.OnVisit(p);
+        OnVisit(p as IValidatableWithSeverity);
 <# foreach (var field in message.Fields.InDeclarationOrder()) { 
      if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
        continue;
@@ -29,6 +31,10 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
 <# } else { #>
 <# } #>
 <# } #>
+    }
+	protected override void OnVisitEnd(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
+    {
+        OnVisitEnd(p as IValidatableWithSeverity);
     }
 <# } #>
 }

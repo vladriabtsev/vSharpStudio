@@ -1,4 +1,4 @@
-// Auto generated on UTC 08/20/2019 18:43:14
+// Auto generated on UTC 08/20/2019 19:11:29
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -7318,154 +7318,300 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.proto_report p);
 	}
 	
-	public partial class ValidationConfigVisitor : ConfigVisitor //: IVisitorConfigNode // ValidationVisitor.tt Line: 7
+	public partial class ValidationConfigVisitor : ConfigVisitor // ValidationVisitor.tt Line: 7
 	{
-		protected override void OnVisit(GroupListPlugins p) // ValidationVisitor.tt Line: 13
+	    partial void OnVisit(IValidatableWithSeverity p);
+	    partial void OnVisitEnd(IValidatableWithSeverity p);
+		protected override void OnVisit(GroupListPlugins p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Plugin p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListPlugins p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(PluginGenerator p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(Plugin p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(Plugin p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(SettingsConfig p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(PluginGenerator p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(DbSettings p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(PluginGenerator p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(ConfigShortHistory p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListBaseConfigs p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(BaseConfig p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(SettingsConfig p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Config p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(SettingsConfig p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 27
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(DataType p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(DbSettings p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListCommon p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Role p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(ConfigShortHistory p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListRoles p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(ConfigShortHistory p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(MainViewForm p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(GroupListBaseConfigs p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListMainViewForms p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListBaseConfigs p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(BaseConfig p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(PropertiesTab p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(BaseConfig p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListProperties p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(Config p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 29
 	    }
-		protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 27
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListConstants p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(DataType p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Constant p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(DataType p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
-	        ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 27
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListEnumerations p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(GroupListCommon p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Enumeration p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListCommon p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(EnumerationPair p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(Role p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(Role p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListCatalogs p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(GroupListRoles p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupDocuments p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListRoles p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Document p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(MainViewForm p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListDocuments p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(MainViewForm p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListJournals p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(GroupListMainViewForms p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Journal p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListMainViewForms p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListForms p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Form p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListReports p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisit(PropertiesTab p) // ValidationVisitor.tt Line: 15
 	    {
-	        base.OnVisit(p);
+	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(Report p) // ValidationVisitor.tt Line: 13
+		protected override void OnVisitEnd(PropertiesTab p) // ValidationVisitor.tt Line: 35
 	    {
-	        base.OnVisit(p);
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListProperties p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 29
+	    }
+		protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListConstants p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListConstants p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Constant p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 29
+	    }
+		protected override void OnVisitEnd(Constant p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListEnumerations p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListEnumerations p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Enumeration p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Enumeration p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(EnumerationPair p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(EnumerationPair p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListCatalogs p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupDocuments p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupDocuments p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Document p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Document p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListDocuments p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListDocuments p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListJournals p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListJournals p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Journal p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Journal p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListForms p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Form p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Form p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(GroupListReports p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(GroupListReports p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisit(Report p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(Report p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
 	}
 	
