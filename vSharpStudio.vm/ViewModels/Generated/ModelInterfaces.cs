@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
+using ViewModelBase;
 
-namespace vSharpStudio.common
+namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 {
-	public enum DbIdGeneratorMethod {
+	public enum DbIdGeneratorMethod { // ModelInterfaces.tt Line: 13
 		Identity = 0,
 		HiLo = 1,
 	}
-	public enum EnumPrimaryKeyType {
+	public enum EnumPrimaryKeyType { // ModelInterfaces.tt Line: 13
 		INT = 0,
 		LONG = 1,
 	}
-	public enum EnumDataType {
+	public enum EnumDataType { // ModelInterfaces.tt Line: 13
 		STRING = 0,
 		NUMERICAL = 1,
 		BOOL = 2,
@@ -25,73 +26,73 @@ namespace vSharpStudio.common
 		DOCUMENTS = 12,
 		ANY = 15,
 	}
-	public enum EnumEnumerationType {
+	public enum EnumEnumerationType { // ModelInterfaces.tt Line: 13
 		STRING_VALUE = 0,
 		BYTE_VALUE = 1,
 		SHORT_VALUE = 2,
 		INTEGER_VALUE = 3,
 	}
 	
-	public partial interface IGroupListPlugins : IGuid, IName 
+	public partial interface IGroupListPlugins : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		IEnumerable<IPlugin> ListPluginsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IPlugin> ListPluginsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IPlugin : IGuid, IName 
+	public partial interface IPlugin : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		string Description { get; }
-		ulong SortingValue { get; }
-		IEnumerable<IPluginGenerator> ListGeneratorsI { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IPluginGenerator> ListGeneratorsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IPluginGenerator : IGuid, IName 
+	public partial interface IPluginGenerator : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		string Description { get; }
-		ulong SortingValue { get; }
-		IEnumerable<IPluginGeneratorSettings> ListSettingsI { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IPluginGeneratorSettings> ListSettingsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IPluginGeneratorSettings : IGuid, IName 
+	public partial interface IPluginGeneratorSettings : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		
 		///////////////////////////////////////////////////
 		/// This Description is taken from Plugin Generator
 		///////////////////////////////////////////////////
-		string Description { get; }
-		ulong SortingValue { get; }
-		string GeneratorSettings { get; }
-		bool IsPrivate { get; }
-		string FilePath { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string GeneratorSettings { get; } // ModelInterfaces.tt Line: 41
+		bool IsPrivate { get; } // ModelInterfaces.tt Line: 41
+		string FilePath { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface ISettingsConfig : IGuid, IName 
+	public partial interface ISettingsConfig : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		string NameUi { get; }
-		string Description { get; }
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// current migration version, increased by one on each deployment
 		///////////////////////////////////////////////////
-		int VersionMigrationCurrent { get; }
+		int VersionMigrationCurrent { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// min version supported by current version for migration
 		///////////////////////////////////////////////////
-		int VersionMigrationSupportFromMin { get; }
+		int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 41
 	}
 	
 	///////////////////////////////////////////////////
 	/// General DB settings
 	///////////////////////////////////////////////////
 	
-	public partial interface IDbSettings 
+	public partial interface IDbSettings  // ModelInterfaces.tt Line: 26
 	{
-		string DbSchema { get; }
-		DbIdGeneratorMethod IdGenerator { get; }
-		string KeyType { get; }
-		string KeyName { get; }
-		string Timestamp { get; }
+		string DbSchema { get; } // ModelInterfaces.tt Line: 41
+		DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 41
+		string KeyType { get; } // ModelInterfaces.tt Line: 41
+		string KeyName { get; } // ModelInterfaces.tt Line: 41
+		string Timestamp { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// if yes: 
@@ -100,439 +101,366 @@ namespace vSharpStudio.common
 		///    1. Find DB type from 
 		///    2. Create connection string from db_server, db_database_name, db_user
 		///////////////////////////////////////////////////
-		bool IsDbFromConnectionString { get; }
-		string ConnectionStringName { get; }
+		bool IsDbFromConnectionString { get; } // ModelInterfaces.tt Line: 41
+		string ConnectionStringName { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// path to project with config file containing connection string. Usefull for UNIT tests.
 		/// it will override previous settings
 		///////////////////////////////////////////////////
-		string PathToProjectWithConnectionString { get; }
+		string PathToProjectWithConnectionString { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IConfigShortHistory : IGuid, IName 
+	public partial interface IConfigShortHistory : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		IConfig CurrentConfigI { get; }
-		IConfig PrevStableConfigI { get; }
-		IConfig OldStableConfigI { get; }
+		IConfig CurrentConfigI { get; } // ModelInterfaces.tt Line: 43
+		IConfig PrevStableConfigI { get; } // ModelInterfaces.tt Line: 43
+		IConfig OldStableConfigI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IGroupListBaseConfigs : IGuid, IName 
+	public partial interface IGroupListBaseConfigs : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
-		string Description { get; }
-		IEnumerable<IBaseConfig> ListBaseConfigsI { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IBaseConfig> ListBaseConfigsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IBaseConfig : IGuid, IName 
+	public partial interface IBaseConfig : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
-		string Description { get; }
-		IConfig ConfigNodeI { get; }
-		string RelativeConfigFilePath { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IConfig ConfigNodeI { get; } // ModelInterfaces.tt Line: 43
+		string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 41
 	}
 	
 	///////////////////////////////////////////////////
 	/// Configuration config
 	///////////////////////////////////////////////////
 	
-	public partial interface IConfig : IGuid, IName 
+	public partial interface IConfig : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		int Version { get; }
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; }
-		EnumPrimaryKeyType PrimaryKeyType { get; }
+		int Version { get; } // ModelInterfaces.tt Line: 41
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 41
+		EnumPrimaryKeyType PrimaryKeyType { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// GENERAL DB SETTINGS
 		///////////////////////////////////////////////////
-		IDbSettings DbSettingsI { get; }
-		IGroupListPlugins GroupPluginsI { get; }
-		IGroupListBaseConfigs GroupConfigsI { get; }
-		IGroupListCommon GroupCommonI { get; }
-		IGroupListConstants GroupConstantsI { get; }
-		IGroupListEnumerations GroupEnumerationsI { get; }
-		IGroupListCatalogs GroupCatalogsI { get; }
-		IGroupDocuments GroupDocumentsI { get; }
-		IGroupListJournals GroupJournalsI { get; }
+		IDbSettings DbSettingsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListPlugins GroupPluginsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListBaseConfigs GroupConfigsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListCommon GroupCommonI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListConstants GroupConstantsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListEnumerations GroupEnumerationsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListCatalogs GroupCatalogsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupDocuments GroupDocumentsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListJournals GroupJournalsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IDataType 
+	public partial interface IDataType  // ModelInterfaces.tt Line: 26
 	{
-		EnumDataType DataTypeEnum { get; }
-		uint Length { get; }
-		uint Accuracy { get; }
-		bool IsPositive { get; }
-		string ObjectGuid { get; }
-		bool IsNullable { get; }
-		IEnumerable<string> ListObjectGuidsI { get; }
-		bool IsIndexFk { get; }
+		EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 41
+		uint Length { get; } // ModelInterfaces.tt Line: 41
+		uint Accuracy { get; } // ModelInterfaces.tt Line: 41
+		bool IsPositive { get; } // ModelInterfaces.tt Line: 41
+		string ObjectGuid { get; } // ModelInterfaces.tt Line: 41
+		bool IsNullable { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<string> ListObjectGuidsI { get; } // ModelInterfaces.tt Line: 36
+		bool IsIndexFk { get; } // ModelInterfaces.tt Line: 41
 	}
 	
 	///////////////////////////////////////////////////
 	/// Common parameters section
 	///////////////////////////////////////////////////
 	
-	public partial interface IGroupListCommon : IGuid, IName 
+	public partial interface IGroupListCommon : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListRoles GroupRolesI { get; }
-		IGroupListMainViewForms GroupViewFormsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListRoles GroupRolesI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListMainViewForms GroupViewFormsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
 	///////////////////////////////////////////////////
 	/// User's role
 	///////////////////////////////////////////////////
 	
-	public partial interface IRole : IGuid, IName 
+	public partial interface IRole : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IGroupListRoles : IGuid, IName 
+	public partial interface IGroupListRoles : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IRole> ListRolesI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IRole> ListRolesI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
 	///////////////////////////////////////////////////
 	/// main view forms hierarchy parent
 	///////////////////////////////////////////////////
 	
-	public partial interface IMainViewForm : IGuid, IName 
+	public partial interface IMainViewForm : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListMainViewForms GroupListViewFormsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListMainViewForms GroupListViewFormsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
 	///////////////////////////////////////////////////
 	/// main view forms hierarchy node with children
 	///////////////////////////////////////////////////
 	
-	public partial interface IGroupListMainViewForms : IGuid, IName 
+	public partial interface IGroupListMainViewForms : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IMainViewForm> ListMainViewFormsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IMainViewForm> ListMainViewFormsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IGroupListPropertiesTabs : IGuid, IName 
+	public partial interface IGroupListPropertiesTabs : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IPropertiesTab> ListPropertiesTabsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IPropertiesTab> ListPropertiesTabsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IPropertiesTab : IGuid, IName 
+	public partial interface IPropertiesTab : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListProperties GroupPropertiesI { get; }
-		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListProperties GroupPropertiesI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListPropertiesTabs GroupPropertiesTabsI { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Create Index for foreign key navigation property
 		///////////////////////////////////////////////////
-		bool IsIndexFk { get; }
+		bool IsIndexFk { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IGroupListProperties : IGuid, IName 
+	public partial interface IGroupListProperties : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IProperty> ListPropertiesI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IProperty> ListPropertiesI { get; } // ModelInterfaces.tt Line: 38
 		
 		///////////////////////////////////////////////////
 		/// Last generated Protobuf field position
 		///////////////////////////////////////////////////
-		uint LastGenPosition { get; }
+		uint LastGenPosition { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IProperty : IGuid, IName 
+	public partial interface IProperty : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IDataType DataTypeI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IDataType DataTypeI { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Protobuf field position
 		/// Reserved positions: 1 - primary key
 		///////////////////////////////////////////////////
-		uint Position { get; }
+		uint Position { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IGroupListConstants : IGuid, IName 
+	public partial interface IGroupListConstants : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IConstant> ListConstantsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IConstant> ListConstantsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
 	///////////////////////////////////////////////////
 	/// Constant application wise value
 	///////////////////////////////////////////////////
 	
-	public partial interface IConstant : IGuid, IName 
+	public partial interface IConstant : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IDataType DataTypeI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IDataType DataTypeI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IGroupListEnumerations : IGuid, IName 
+	public partial interface IGroupListEnumerations : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IEnumeration> ListEnumerationsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IEnumeration> ListEnumerationsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IEnumeration : IGuid, IName 
+	public partial interface IEnumeration : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// Enumeration element type
 		///////////////////////////////////////////////////
-		EnumEnumerationType DataTypeEnum { get; }
+		EnumEnumerationType DataTypeEnum { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// Length of string if 'STRING' is selected as enumeration element type
 		///////////////////////////////////////////////////
-		int DataTypeLength { get; }
-		IEnumerable<IEnumerationPair> ListEnumerationPairsI { get; }
+		int DataTypeLength { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IEnumerationPair> ListEnumerationPairsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IEnumerationPair : IGuid, IName 
+	public partial interface IEnumerationPair : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// TODO struct for different types, at least INTEGER
 		///////////////////////////////////////////////////
-		string Value { get; }
+		string Value { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface ICatalog : IGuid, IName 
+	public partial interface ICatalog : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListProperties GroupPropertiesI { get; }
-		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
-		IGroupListForms GroupFormsI { get; }
-		IGroupListReports GroupReportsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListProperties GroupPropertiesI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListPropertiesTabs GroupPropertiesTabsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListForms GroupFormsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListReports GroupReportsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IGroupListCatalogs : IGuid, IName 
+	public partial interface IGroupListCatalogs : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<ICatalog> ListCatalogsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<ICatalog> ListCatalogsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IGroupDocuments : IGuid, IName 
+	public partial interface IGroupDocuments : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListProperties GroupSharedPropertiesI { get; }
-		IGroupListDocuments GroupListDocumentsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListProperties GroupSharedPropertiesI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListDocuments GroupListDocumentsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IDocument : IGuid, IName 
+	public partial interface IDocument : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IGroupListProperties GroupPropertiesI { get; }
-		IGroupListPropertiesTabs GroupPropertiesTabsI { get; }
-		IGroupListForms GroupFormsI { get; }
-		IGroupListReports GroupReportsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IGroupListProperties GroupPropertiesI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListPropertiesTabs GroupPropertiesTabsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListForms GroupFormsI { get; } // ModelInterfaces.tt Line: 43
+		IGroupListReports GroupReportsI { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IGroupListDocuments : IGuid, IName 
+	public partial interface IGroupListDocuments : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
-		IEnumerable<IDocument> ListDocumentsI { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
+		IEnumerable<IDocument> ListDocumentsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IGroupListJournals : IGuid, IName 
+	public partial interface IGroupListJournals : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IEnumerable<IJournal> ListJournalsI { get; }
+		IEnumerable<IJournal> ListJournalsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IJournal : IGuid, IName 
+	public partial interface IJournal : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// repeated proto_group_properties list_properties = 6;
 		///////////////////////////////////////////////////
-		IEnumerable<IDocument> ListDocumentsI { get; }
+		IEnumerable<IDocument> ListDocumentsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IGroupListForms : IGuid, IName 
+	public partial interface IGroupListForms : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IEnumerable<IForm> ListFormsI { get; }
+		IEnumerable<IForm> ListFormsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IForm : IGuid, IName 
+	public partial interface IForm : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// 
 		/// repeated proto_group_properties list_properties = 6;
 		/// repeated proto_document list_forms = 7;
 		///////////////////////////////////////////////////
-		string Description { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
 	}
 	
-	public partial interface IGroupListReports : IGuid, IName 
+	public partial interface IGroupListReports : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
-		string Description { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
+		string Description { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// repeated proto_property list_shared_properties = 6;
 		///////////////////////////////////////////////////
-		IEnumerable<IReport> ListReportsI { get; }
+		IEnumerable<IReport> ListReportsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	
-	public partial interface IReport : IGuid, IName 
+	public partial interface IReport : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
-		ulong SortingValue { get; }
-		string NameUi { get; }
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
 		
 		///////////////////////////////////////////////////
 		/// 
 		/// repeated proto_group_properties list_properties = 6;
 		/// repeated proto_document list_documents = 7;
 		///////////////////////////////////////////////////
-		string Description { get; }
+		string Description { get; } // ModelInterfaces.tt Line: 41
 	}
-
-public interface IVisitorConfigNode
-{
-    CancellationToken Token { get; }
-	void Visit(GroupListPlugins p);
-	void VisitEnd(GroupListPlugins p);
-	void Visit(Plugin p);
-	void VisitEnd(Plugin p);
-	void Visit(PluginGenerator p);
-	void VisitEnd(PluginGenerator p);
-	void Visit(PluginGeneratorSettings p);
-	void VisitEnd(PluginGeneratorSettings p);
-	void Visit(SettingsConfig p);
-	void VisitEnd(SettingsConfig p);
-	void Visit(ConfigShortHistory p);
-	void VisitEnd(ConfigShortHistory p);
-	void Visit(GroupListBaseConfigs p);
-	void VisitEnd(GroupListBaseConfigs p);
-	void Visit(BaseConfig p);
-	void VisitEnd(BaseConfig p);
-	void Visit(Config p);
-	void VisitEnd(Config p);
-	void Visit(GroupListCommon p);
-	void VisitEnd(GroupListCommon p);
-	void Visit(Role p);
-	void VisitEnd(Role p);
-	void Visit(GroupListRoles p);
-	void VisitEnd(GroupListRoles p);
-	void Visit(MainViewForm p);
-	void VisitEnd(MainViewForm p);
-	void Visit(GroupListMainViewForms p);
-	void VisitEnd(GroupListMainViewForms p);
-	void Visit(GroupListPropertiesTabs p);
-	void VisitEnd(GroupListPropertiesTabs p);
-	void Visit(PropertiesTab p);
-	void VisitEnd(PropertiesTab p);
-	void Visit(GroupListProperties p);
-	void VisitEnd(GroupListProperties p);
-	void Visit(Property p);
-	void VisitEnd(Property p);
-	void Visit(GroupListConstants p);
-	void VisitEnd(GroupListConstants p);
-	void Visit(Constant p);
-	void VisitEnd(Constant p);
-	void Visit(GroupListEnumerations p);
-	void VisitEnd(GroupListEnumerations p);
-	void Visit(Enumeration p);
-	void VisitEnd(Enumeration p);
-	void Visit(EnumerationPair p);
-	void VisitEnd(EnumerationPair p);
-	void Visit(Catalog p);
-	void VisitEnd(Catalog p);
-	void Visit(GroupListCatalogs p);
-	void VisitEnd(GroupListCatalogs p);
-	void Visit(GroupDocuments p);
-	void VisitEnd(GroupDocuments p);
-	void Visit(Document p);
-	void VisitEnd(Document p);
-	void Visit(GroupListDocuments p);
-	void VisitEnd(GroupListDocuments p);
-	void Visit(GroupListJournals p);
-	void VisitEnd(GroupListJournals p);
-	void Visit(Journal p);
-	void VisitEnd(Journal p);
-	void Visit(GroupListForms p);
-	void VisitEnd(GroupListForms p);
-	void Visit(Form p);
-	void VisitEnd(Form p);
-	void Visit(GroupListReports p);
-	void VisitEnd(GroupListReports p);
-	void Visit(Report p);
-	void VisitEnd(Report p);
-}
 }
