@@ -63,10 +63,10 @@
 <#	
 	this.PushIndent("\t");
 	
-    var cloner = new Clone(root, message, nameSpace);
+    var cloner = new Clone(root, message, nameSpace, protoNameSpace);
 	this.Write(cloner.TransformText());
 
-	var va = new AcceptConfigNode(root, message);
+	var va = new AcceptNodeVisitor(root, message);
 	this.Write(va.TransformText());
 
     /*if (is_config_base) {

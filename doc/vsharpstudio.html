@@ -187,6 +187,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_app_project"><span class="badge">M</span>proto_app_project</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_app_solution"><span class="badge">M</span>proto_app_solution</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_base_config"><span class="badge">M</span>proto_base_config</a>
                 </li>
               
@@ -228,6 +236,10 @@
               
                 <li>
                   <a href="#proto_config.proto_group_documents"><span class="badge">M</span>proto_group_documents</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_group_list_app_solutions"><span class="badge">M</span>proto_group_list_app_solutions</a>
                 </li>
               
                 <li>
@@ -284,6 +296,10 @@
               
                 <li>
                   <a href="#proto_config.proto_group_list_roles"><span class="badge">M</span>proto_group_list_roles</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_item_name_value"><span class="badge">M</span>proto_item_name_value</a>
                 </li>
               
                 <li>
@@ -472,6 +488,138 @@ it will override previous settings
 @attr [PropertyOrderAttribute(4)]
 @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_app_project">proto_app_project</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4;
+@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_app_project_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>connection_string_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Description(&#34;Connection string name for database operations. If empty, solution setting is used&#34;)]
+@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_app_solution">proto_app_solution</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4;
+@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_app_solution_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>List NET projects
+@attr [PropertyOrderAttribute(6)]
+@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>connection_string_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Description(&#34;Connection string name for database operations. If empty, UI setting is used&#34;)]
+@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_app_projects</td>
+                  <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -697,6 +845,13 @@ it will override previous settings
                   <td><p>GENERAL DB SETTINGS
 @attr [PropertyOrderAttribute(11)]
 @attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_app_solutions</td>
+                  <td><a href="#proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1272,6 +1427,59 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_group_list_documents">proto_group_list_documents</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string name_ui = 4; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_app_solutions</td>
+                  <td><a href="#proto_config.proto_app_solution">proto_app_solution</a></td>
+                  <td>repeated</td>
+                  <td><p>List NET solutions
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2093,6 +2301,44 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_role">proto_role</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_item_name_value">proto_item_name_value</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

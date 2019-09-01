@@ -49,6 +49,15 @@
       <HintPath>..\..\vSharpStudio.pro\packages\Google.Protobuf.3.9.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\vSharpStudio.pro\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\vSharpStudio.pro\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\vSharpStudio.pro\packages\Microsoft.EntityFrameworkCore.Relational.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -177,25 +186,13 @@
       <Project>{ff9f1aa6-d3e5-4b68-a3ce-381c9f833501}</Project>
       <Name>vPlugin.DbModel.MsSql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj">
-      <Project>{f6d4a92f-94ac-45ad-95da-38ef931e632b}</Project>
-      <Name>EFCore.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Design\EFCore.Design.csproj">
       <Project>{d16ad2c5-a8ed-4b20-bb47-81d7910a8304}</Project>
       <Name>EFCore.Design</Name>
     </ProjectReference>
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj">
-      <Project>{c6032c0a-690a-44cb-a969-640ecd122ae6}</Project>
-      <Name>EFCore.Relational</Name>
-    </ProjectReference>
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.SqlServer\EFCore.SqlServer.csproj">
       <Project>{ce17bf3f-3c16-4b41-88d6-27109732003f}</Project>
       <Name>EFCore.SqlServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj">
-      <Project>{71036be2-da53-4e56-a6e7-47bfa18ba040}</Project>
-      <Name>EFCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj">
       <Project>{28a43eea-81c6-4fd0-829f-2b0d6bd0b8e9}</Project>

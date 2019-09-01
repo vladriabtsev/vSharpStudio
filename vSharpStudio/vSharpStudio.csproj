@@ -106,7 +106,7 @@
       <HintPath>..\packages\Serilog.2.8.0\lib\net46\Serilog.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Extensions.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Extensions.Logging.3.0.0\lib\netstandard2.0\Serilog.Extensions.Logging.dll</HintPath>
+      <HintPath>..\..\vSharpStudio.pro\packages\Serilog.Extensions.Logging.3.0.1\lib\netstandard2.0\Serilog.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Sinks.Async, Version=1.4.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.Sinks.Async.1.4.0\lib\net461\Serilog.Sinks.Async.dll</HintPath>
@@ -229,8 +229,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>vApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConfigRoot.cs" />
-    <Compile Include="ViewModels\ConfigRootValidator.cs" />
     <Compile Include="ViewModels\EditorTemplateSelector.cs" />
     <Compile Include="ViewModels\Utils.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />

@@ -29,7 +29,19 @@ namespace GenFromProto
 
                 var ncs = protofilename.ToNameCs();
                 string reflectionClass = ncs + "Reflection";
-                Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
+                //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
+                var types = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetTypes();
+                Type reflection = null;
+                foreach (var t in types)
+                {
+                    if (t.Name== reflectionClass)
+                    {
+                        reflection = t;
+                        break;
+                    }
+                }
+                var protoNS = reflection.FullName.Substring(0, reflection.FullName.LastIndexOf('.'));
+                //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(reflectionClass);
                 var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
                 object value = descr.GetValue(null, null);
                 FileDescriptor typedValue = (FileDescriptor)value;
@@ -44,13 +56,13 @@ namespace GenFromProto
                 string res = null;
                 if (gen == "model")
                 {
-                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS);
+                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS, protoNS);
                     res = ns.TransformText();
                 }
                 else
                 if (gen == "interface")
                 {
-                    ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, destNS);
+                    ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, destNS, protoNS);
                     res = ns.TransformText();
                 }
                 else

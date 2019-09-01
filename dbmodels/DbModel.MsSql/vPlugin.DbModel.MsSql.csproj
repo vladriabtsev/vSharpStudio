@@ -184,7 +184,7 @@
   <!--Generate from proto-->
   <!--copy plugin-->
   <ItemGroup>
-    <ResultFiles Include="$(TargetDir)*.dll" />
+    <ResultFiles Include="$(TargetDir)*.*" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\Db\MsSql\" />
@@ -193,12 +193,12 @@
   <!--copy plugin-->
   <PropertyGroup>
     <PostBuildEvent>rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio\$(OutDir)
-      rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
+rem copy $(TargetDir)*.* $(SolutionDir)vSharpStudio.Unit\$(OutDir)
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=html,index_conn_mssql.html $(SolutionDir)proto\conn_mssql.proto  
-$(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=json,conn_mssql.json $(SolutionDir)proto\conn_mssql.proto  
+    <PreBuildEvent>rem $(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=html,index_conn_mssql.html $(SolutionDir)proto\conn_mssql.proto  
+rem $(SolutionDir)protoc\bin\protoc.exe -I=$(SolutionDir)proto --plugin=protoc-gen-doc=$(SolutionDir)protoc\bin\protoc-gen-doc.exe --doc_out=$(SolutionDir)doc --doc_opt=json,conn_mssql.json $(SolutionDir)proto\conn_mssql.proto  
 
 </PreBuildEvent>
   </PropertyGroup>

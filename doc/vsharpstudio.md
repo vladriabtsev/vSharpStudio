@@ -6,6 +6,8 @@
 - [vsharpstudio.proto](#vsharpstudio.proto)
     - [bool_nullable](#proto_config.bool_nullable)
     - [db_settings](#proto_config.db_settings)
+    - [proto_app_project](#proto_config.proto_app_project)
+    - [proto_app_solution](#proto_config.proto_app_solution)
     - [proto_base_config](#proto_config.proto_base_config)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
@@ -17,6 +19,7 @@
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
     - [proto_group_documents](#proto_config.proto_group_documents)
+    - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
     - [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
     - [proto_group_list_common](#proto_config.proto_group_list_common)
@@ -31,6 +34,7 @@
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
+    - [proto_item_name_value](#proto_config.proto_item_name_value)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
     - [proto_plugin](#proto_config.proto_plugin)
@@ -101,6 +105,47 @@ General DB settings
 
 
 
+<a name="proto_config.proto_app_project"></a>
+
+### proto_app_project
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
+| connection_string_name | [string](#string) |  | @attr [Description(&#34;Connection string name for database operations. If empty, solution setting is used&#34;)] @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] |
+
+
+
+
+
+
+<a name="proto_config.proto_app_solution"></a>
+
+### proto_app_solution
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
+| connection_string_name | [string](#string) |  | @attr [Description(&#34;Connection string name for database operations. If empty, UI setting is used&#34;)] @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] |
+| list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_base_config"></a>
 
 ### proto_base_config
@@ -161,6 +206,7 @@ Configuration config
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | primary_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(7)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
+| group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
@@ -335,6 +381,25 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_group_list_app_solutions"></a>
+
+### proto_group_list_app_solutions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | string name_ui = 4; |
+| list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
 
 
 
@@ -612,6 +677,23 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_item_name_value"></a>
+
+### proto_item_name_value
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
 
 
 

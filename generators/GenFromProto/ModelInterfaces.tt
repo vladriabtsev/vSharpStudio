@@ -39,6 +39,8 @@ IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // 
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+<#       } else if (field.IsAny()) { #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>
 I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
 <#       } #>

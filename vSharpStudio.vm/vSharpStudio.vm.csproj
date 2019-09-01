@@ -133,9 +133,13 @@
     <Compile Include="Migration\Migration.cs" />
     <Compile Include="Migration\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AppProject.cs" />
+    <Compile Include="ViewModels\AppProject.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.cs" />
+    <Compile Include="ViewModels\AppSolution.cs" />
     <Compile Include="ViewModels\Catalog.cs" />
+    <Compile Include="ViewModels\AppSolution.Validator.cs" />
     <Compile Include="ViewModels\Catalog.Validator.cs" />
     <Compile Include="ViewModels\Config.cs" />
     <Compile Include="ViewModels\Config.ISqlServerModelAnnotation.cs" />
@@ -147,9 +151,11 @@
     <Compile Include="ViewModels\Constant.Validator.cs" />
     <Compile Include="ViewModels\DataType.cs" />
     <Compile Include="ViewModels\DataType.Validator.cs" />
+    <Compile Include="ViewModels\AppConnStringNameEditor.cs" />
     <Compile Include="ViewModels\DataTypeObjectNameEditor.cs" />
     <Compile Include="ViewModels\EnumerationPair.Validator.cs" />
     <Compile Include="ViewModels\GroupListCommon.cs" />
+    <Compile Include="ViewModels\GroupListAppSolutions.cs" />
     <Compile Include="ViewModels\GroupListPlugins.cs" />
     <Compile Include="ViewModels\PluginGeneratorSettings.cs" />
     <Compile Include="ViewModels\PluginGenerator.cs" />

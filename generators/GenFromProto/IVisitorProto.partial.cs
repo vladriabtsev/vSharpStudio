@@ -12,11 +12,13 @@ namespace GenFromProto
     {
         FileDescriptor root;
         string nameSpace;
+        string protoNameSpace;
 
-        public IVisitorProto(FileDescriptor root, string destNS)
+        public IVisitorProto(FileDescriptor root, string destNS, string protoNS)
         {
             this.root = root;
             this.nameSpace = destNS;
+            this.protoNameSpace = protoNS;
         }
     }
 }

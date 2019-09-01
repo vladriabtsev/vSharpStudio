@@ -11,15 +11,17 @@ namespace GenFromProto
     public partial class Clone
     {
         string nameSpace;
+        string protoNameSpace;
         FileDescriptor root;
         MessageDescriptor message;
         MessageDoc Doc;
-        public Clone(FileDescriptor root, MessageDescriptor message, string destNS)
+        public Clone(FileDescriptor root, MessageDescriptor message, string destNS, string protoNS)
         {
             this.root = root;
             this.message = message;
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
             this.nameSpace = destNS;
+            this.protoNameSpace = protoNS;
         }
     }
 }

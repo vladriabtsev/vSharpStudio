@@ -28,7 +28,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Proto.Config.Connection;
 using vSharpStudio.common;
-using vSharpStudio.vm.ViewModels;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.SqlServer.Design.Internal;
 

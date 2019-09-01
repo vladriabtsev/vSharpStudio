@@ -17,6 +17,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         public class ValidationMessages
         {
+            public const string CONN_STR_NAME_NOT_EXISTS = "Wrong connection string name";
+
             public const string FILE_IS_NOT_EXISTS = "File is not exists";
             public const string FOLDER_IS_NOT_EXISTS = "Folder is not exists";
             public const string SOLUTION_FOLDER_IS_NOT_EXISTS = "Solution folder is not exists. Set as a parameter on start";

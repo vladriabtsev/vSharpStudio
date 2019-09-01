@@ -84,7 +84,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     item.Parent = null;
 }
 <# } #>
-<# } else if (field.IsMessage() && !field.IsCsSimple()) {#>
+<# } else if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
 	set

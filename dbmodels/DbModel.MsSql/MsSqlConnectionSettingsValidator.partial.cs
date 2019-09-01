@@ -10,7 +10,7 @@ using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
 using FluentValidation;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vPlugin.DbModel.MsSql
 {
     public partial class MsSqlConnectionSettings
     {

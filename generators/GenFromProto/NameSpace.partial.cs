@@ -13,15 +13,17 @@ namespace GenFromProto
     {
         FileDescriptor root;
         string nameSpace;
+        string protoNameSpace;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
 
         public NameSpace(FileDescriptor root, List<MessageDescriptor> messages,
             Dictionary<string, List<MessageDescriptor>> dicParents, 
-            string destNS)
+            string destNS, string protoNS)
         {
             this.root = root;
             this.nameSpace = destNS;
+            this.protoNameSpace = protoNS;
             this.messages = messages;
             this.dicParents = dicParents;
         }

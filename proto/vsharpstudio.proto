@@ -123,6 +123,51 @@ message db_settings {
 }
 /** 
  * @exclude
+ * ####################################### A P P S ##########################################
+ */
+message proto_group_list_app_solutions {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    string description = 5;
+    // List NET solutions
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_app_solution list_app_solutions = 9;
+}
+message proto_app_solution {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 5;
+    // List NET projects
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    string relative_app_solution_path = 7;
+    // @attr [Description("Connection string name for database operations. If empty, UI setting is used")]
+    // @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
+    string connection_string_name = 8;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_app_project list_app_projects = 9;
+}
+message proto_app_project {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+//  string name_ui = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 5;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    string relative_app_project_path = 7;
+    // @attr [Description("Connection string name for database operations. If empty, solution setting is used")]
+    // @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
+    string connection_string_name = 8;
+}
+/** 
+ * @exclude
  * ####################################### C O N F I G ##########################################
  */
 message proto_config_short_history {
@@ -178,6 +223,8 @@ message proto_config {
     // @attr [ExpandableObjectAttribute()]
     db_settings db_settings = 14;
 
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_app_solutions  group_app_solutions = 98;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_plugins group_plugins = 99;
     // @attr [BrowsableAttribute(false)]
@@ -631,6 +678,15 @@ message proto_report {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
+}
+/** 
+ * @exclude
+ * ####################################### U T I L S ##########################################
+ */
+message proto_item_name_value {
+    string name = 1;
+    google.protobuf.Any value = 2;
+    uint64 sorting_value = 3;
 }
 /** 
  * @exclude

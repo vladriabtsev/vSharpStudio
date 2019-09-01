@@ -267,6 +267,158 @@
           ]
         },
         {
+          "name": "proto_app_project",
+          "longName": "proto_app_project",
+          "fullName": "proto_config.proto_app_project",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relative_app_project_path",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "connection_string_name",
+              "description": "@attr [Description(\"Connection string name for database operations. If empty, solution setting is used\")]\n@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_app_solution",
+          "longName": "proto_app_solution",
+          "fullName": "proto_config.proto_app_solution",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relative_app_solution_path",
+              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "connection_string_name",
+              "description": "@attr [Description(\"Connection string name for database operations. If empty, UI setting is used\")]\n@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_app_projects",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_app_project",
+              "longType": "proto_app_project",
+              "fullType": "proto_config.proto_app_project",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_base_config",
           "longName": "proto_base_config",
           "fullName": "proto_config.proto_base_config",
@@ -534,6 +686,16 @@
               "type": "db_settings",
               "longType": "db_settings",
               "fullType": "proto_config.db_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_app_solutions",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_app_solutions",
+              "longType": "proto_group_list_app_solutions",
+              "fullType": "proto_config.proto_group_list_app_solutions",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1222,6 +1384,67 @@
               "type": "proto_group_list_documents",
               "longType": "proto_group_list_documents",
               "fullType": "proto_config.proto_group_list_documents",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_group_list_app_solutions",
+          "longName": "proto_group_list_app_solutions",
+          "fullName": "proto_config.proto_group_list_app_solutions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "string name_ui = 4;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_app_solutions",
+              "description": "List NET solutions\n@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_app_solution",
+              "longType": "proto_app_solution",
+              "fullType": "proto_config.proto_app_solution",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2186,6 +2409,47 @@
               "type": "proto_role",
               "longType": "proto_role",
               "fullType": "proto_config.proto_role",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_item_name_value",
+          "longName": "proto_item_name_value",
+          "fullName": "proto_config.proto_item_name_value",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "Any",
+              "longType": "google.protobuf.Any",
+              "fullType": "google.protobuf.Any",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             }

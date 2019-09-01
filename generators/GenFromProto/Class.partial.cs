@@ -14,14 +14,16 @@ namespace GenFromProto
         MessageDescriptor message;
         MessageDoc Doc;
         string nameSpace;
+        string protoNameSpace;
 
         Dictionary<string, List<MessageDescriptor>> dicParents;
-        public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents, string destNS)
+        public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents, string destNS, string protoNS)
         {
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;
             this.nameSpace = destNS;
+            this.protoNameSpace = protoNS;
             if (!JsonDoc.Files.ContainsKey(root.Name))
             {
             }

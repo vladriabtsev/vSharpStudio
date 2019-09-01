@@ -9,7 +9,7 @@ using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vPlugin.DbModel.MsSql
 {
     public partial class MsSqlConnectionSettings : IvPluginGeneratorSettingsVM
     {

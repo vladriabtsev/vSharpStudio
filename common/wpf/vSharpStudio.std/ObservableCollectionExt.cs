@@ -210,8 +210,8 @@ namespace ViewModelBase
 
     private int _trottleInterval = 500;
 
-    private bool _firstNotification = true;
-    private DateTime _lastChanges;
+    //private bool _firstNotification = true;
+    //private DateTime _lastChanges;
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
       lock (_lock)

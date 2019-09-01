@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using vSharpStudio.common;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vPlugin.DbModel.MsSql
 {
     public partial class MsSqlDesignGeneratorSettings : IvPluginGeneratorSettingsVM
     {

@@ -37,6 +37,8 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             this.GroupPlugins.Parent = this;
             this.Children.Add(this.GroupPlugins, 0);
+            this.GroupAppSolutions.Parent = this;
+            this.Children.Add(this.GroupAppSolutions, 1);
             this.GroupConfigs.Parent = this;
             this.Children.Add(this.GroupConfigs, 4);
 
@@ -196,5 +198,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
+
+        public List<ItemNameValue> ListConnectionStringNames { get; set; }
     }
 }

@@ -19,7 +19,7 @@ using System.ComponentModel.DataAnnotations;
 using vSharpStudio.common;
 using Google.Protobuf;
 
-namespace vSharpStudio.vm.ViewModels // <#=Helper.FilePos() #>
+namespace <#= nameSpace #> // <#=Helper.FilePos() #>
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
@@ -35,11 +35,11 @@ namespace vSharpStudio.vm.ViewModels // <#=Helper.FilePos() #>
 	{
         if (t.Name.EndsWith("_nullable"))
            continue;
-		var cl = new Class(root, t, dicParents, nameSpace);
+		var cl = new Class(root, t, dicParents, nameSpace, protoNameSpace);
 		this.Write(cl.TransformText());
 	}
 
-	var vp = new IVisitorProto(root, nameSpace);
+	var vp = new IVisitorProto(root, nameSpace, protoNameSpace);
 	this.Write(vp.TransformText());
 
 	var vv = new ValidationVisitor(root);

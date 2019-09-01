@@ -59,7 +59,9 @@ namespace vSharpStudio.ViewModels
                 this.Model = new Config();
             }
             this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
+            this.ConnectionStringSettingsGet();
         }
+
         private Config LoadConfig(string file_path, string indent)
         {
             if (!File.Exists(file_path))
@@ -163,14 +165,14 @@ namespace vSharpStudio.ViewModels
                         {
                             if (tttt.IsPrivate)
                             {
-                                Utils.DangerousCall(() =>
+                                Utils.TryCall(() =>
                                 {
                                     tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
                                 }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
                             }
                             else
                             {
-                                Utils.DangerousCall(() =>
+                                Utils.TryCall(() =>
                                 {
                                     tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
                                 }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
@@ -316,13 +318,13 @@ namespace vSharpStudio.ViewModels
                 {
                     foreach (var ttt in tt.ListSettings)
                     {
-                        Utils.DangerousCall(() =>
+                        Utils.TryCall(() =>
                         {
                             ttt.GeneratorSettings = ttt.VM.Settings;
                         }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
                         if (ttt.IsPrivate)
                         {
-                            Utils.DangerousCall(() =>
+                            Utils.TryCall(() =>
                             {
                                 File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
                             }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
@@ -350,10 +352,11 @@ namespace vSharpStudio.ViewModels
             if (pconfig_history == null)
                 pconfig_history = new Proto.Config.proto_config_short_history();
             pconfig_history.CurrentConfig = proto;
-            Utils.DangerousCall(() =>
+            Utils.TryCall(() =>
             {
                 File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
+            this.ConnectionStringSettingsSave();
             //var json = JsonFormatter.Default.Format(proto);
             //File.WriteAllText(CFG_PATH, json);
 #if DEBUG
@@ -387,7 +390,7 @@ namespace vSharpStudio.ViewModels
                 PluginSettingsToModel();
                 _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
                 var proto = Config.ConvertToProto(_Model);
-                Utils.DangerousCall(() =>
+                Utils.TryCall(() =>
                 {
                     File.WriteAllBytes(FilePathSaveAs, proto.ToByteArray());
                 }, "Can't save configuration. File path: '" + FilePathSaveAs + "'");
@@ -464,7 +467,7 @@ namespace vSharpStudio.ViewModels
             }
             pconfig_history.PrevStableConfig = pconfig_history.CurrentConfig.Clone();
             pconfig_history.CurrentConfig.Version++;
-            Utils.DangerousCall(() =>
+            Utils.TryCall(() =>
             {
                 File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
@@ -479,7 +482,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNew ?? (_CommandAddNew = vCommand.Create(
-                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNew(); }, "Add new node command"); },
+                (o) => { Utils.TryCall(() => { this.Model.SelectedNode.NodeAddNew(); }, "Add new node command"); },
                 (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNew(); }));
             }
         }
@@ -489,7 +492,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
-                (o) => { Utils.DangerousCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
+                (o) => { Utils.TryCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
                 (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
@@ -588,6 +591,44 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandFromErrorToSelection;
 
         #region ConnectionString
+        // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
+        // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
+
+        internal ConnectionStringSettingsCollection ConnectionStringSettings = null;
+        private void ConnectionStringSettingsGet()
+        {
+            this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
+            this.Model.ListConnectionStringNames = new List<ItemNameValue>();
+            for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+            {
+                this.Model.ListConnectionStringNames.Add(new ItemNameValue() { Name = this.ConnectionStringSettings[i].Name });
+            }
+        }
+        private void ConnectionStringSettingsSave()
+        {
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var conns = configFile.ConnectionStrings.ConnectionStrings;
+            conns.Clear();
+            for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+            {
+                conns.Add(this.ConnectionStringSettings[i]);
+            }
+            //var settings = configFile.AppSettings.Settings;
+            //if (settings[key] == null)
+            //{
+            //    settings.Add(key, value);
+            //}
+            //else
+            //{
+            //    settings[key].Value = value;
+            //}
+            Utils.TryCall(() =>
+            {
+                configFile.Save(ConfigurationSaveMode.Modified);
+            }, "Error writing app settings");
+            //ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+        }
+
         //string GetConnectionString(ref string connectionStringName, out string providerName)
         //{
         //    providerName = null;

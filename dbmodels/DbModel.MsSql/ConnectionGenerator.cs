@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Proto.Config.Connection;
 using vSharpStudio.common;
-using vSharpStudio.vm.ViewModels;
 
 namespace vPlugin.DbModel.MsSql
 {
