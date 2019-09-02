@@ -34,7 +34,6 @@
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
-    - [proto_item_name_value](#proto_config.proto_item_name_value)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
     - [proto_plugin](#proto_config.proto_plugin)
@@ -677,23 +676,6 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_item_name_value"></a>
-
-### proto_item_name_value
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
 
 
 

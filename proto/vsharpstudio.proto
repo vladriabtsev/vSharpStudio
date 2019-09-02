@@ -683,11 +683,13 @@ message proto_report {
  * @exclude
  * ####################################### U T I L S ##########################################
  */
+ /*
 message proto_item_name_value {
     string name = 1;
     google.protobuf.Any value = 2;
     uint64 sorting_value = 3;
 }
+*/
 /** 
  * @exclude
  * ####################################### N U L L A B L E ##########################################

@@ -508,10 +508,4 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///////////////////////////////////////////////////
 		string Description { get; } // ModelInterfaces.tt Line: 41
 	}
-	
-	public partial interface IItemNameValue : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		Google.Protobuf.WellKnownTypes.Any Value { get; } // ModelInterfaces.tt Line: 43
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 41
-	}
 }

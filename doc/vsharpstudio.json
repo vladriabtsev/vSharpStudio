@@ -2415,47 +2415,6 @@
           ]
         },
         {
-          "name": "proto_item_name_value",
-          "longName": "proto_item_name_value",
-          "fullName": "proto_config.proto_item_name_value",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "Any",
-              "longType": "google.protobuf.Any",
-              "fullType": "google.protobuf.Any",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",

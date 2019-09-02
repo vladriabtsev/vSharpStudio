@@ -18,7 +18,9 @@ using Microsoft.Win32;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.std;
+using vSharpStudio.Views;
 using vSharpStudio.vm.ViewModels;
+using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
 {
@@ -368,8 +370,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandConfigSaveAs ?? (_CommandConfigSaveAs = vCommand.Create(
-                (o) => { this.SaveAs(); },
-                (o) => { return this.Model != null; }));
+                    (o) => { this.SaveAs(); },
+                    (o) => { return this.Model != null; }));
             }
         }
         private vCommand _CommandConfigSaveAs;
@@ -401,6 +403,26 @@ namespace vSharpStudio.ViewModels
 #endif
             }
         }
+        public vCommand CommandEditConnStrings
+        {
+            get
+            {
+                return _CommandEditConnStrings ?? (_CommandEditConnStrings = vCommand.Create(
+                    (o) =>
+                    {
+                        if (this.Model.ListConnectionStringVMs.Count == 0)
+                            MessageBox.Show("There are no connection strings in the App config file", "Warning");
+                        var vm = new ConnStringEditorVM(this);
+                        var win = new ConnStringEditorWindow(vm);
+                        if (win.ShowDialog() ?? false)
+                        {
+
+                        }
+                    },
+                    (o) => { return this.Model != null; }));
+            }
+        }
+        private vCommand _CommandEditConnStrings;
 
         private void CompareSaved(string json)
         {
@@ -598,10 +620,15 @@ namespace vSharpStudio.ViewModels
         private void ConnectionStringSettingsGet()
         {
             this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
-            this.Model.ListConnectionStringNames = new List<ItemNameValue>();
+            this.Model.ListConnectionStringVMs = new List<ConnStringVM>();
             for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
             {
-                this.Model.ListConnectionStringNames.Add(new ItemNameValue() { Name = this.ConnectionStringSettings[i].Name });
+                this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
+                {
+                    Name = this.ConnectionStringSettings[i].Name,
+                    ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
+                    Provider = this.ConnectionStringSettings[i].ProviderName
+                });
             }
         }
         private void ConnectionStringSettingsSave()

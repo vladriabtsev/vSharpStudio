@@ -199,6 +199,6 @@ namespace vSharpStudio.vm.ViewModels
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
 
-        public List<ItemNameValue> ListConnectionStringNames { get; set; }
+        public List<ConnStringVM> ListConnectionStringVMs { get; set; }
     }
 }

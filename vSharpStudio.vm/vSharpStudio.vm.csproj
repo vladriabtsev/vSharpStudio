@@ -147,6 +147,8 @@
     <Compile Include="ViewModels\Config.Validator.cs" />
     <Compile Include="ViewModels\ConfigExt.cs" />
     <Compile Include="ViewModels\ConfigObjectProblem.cs" />
+    <Compile Include="ViewModels\ConnStringVM.cs" />
+    <Compile Include="ViewModels\ConnStringVMValidator.cs" />
     <Compile Include="ViewModels\Constant.cs" />
     <Compile Include="ViewModels\Constant.Validator.cs" />
     <Compile Include="ViewModels\DataType.cs" />

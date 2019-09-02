@@ -1,4 +1,4 @@
-// Auto generated on UTC 09/01/2019 20:21:00
+// Auto generated on UTC 09/02/2019 02:01:16
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -8005,115 +8005,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDescriptionChanged();
 		#endregion Properties
 	}
-	public partial class ItemNameValue : ConfigObjectBase<ItemNameValue, ItemNameValue.ItemNameValueValidator>, IComparable<ItemNameValue>, IConfigAcceptVisitor, IItemNameValue // Class.tt Line: 6
-	{
-		public partial class ItemNameValueValidator : ValidatorBase<ItemNameValue, ItemNameValueValidator> { } 
-		#region CTOR
-		public ItemNameValue() : base(ItemNameValueValidator.Validator)
-		{
-			this.Value = new Google.Protobuf.WellKnownTypes.Any(); // Class.tt Line: 23
-			OnInit();
-		}
-	    // Class.tt Line: 34
-		public ItemNameValue(ITreeConfigNode parent) : base(ItemNameValueValidator.Validator)
-	    {
-	        this.Parent = parent;
-			this.Value = new Google.Protobuf.WellKnownTypes.Any(); // Class.tt Line: 49
-			OnInit();
-	    }
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		
-		public override void Sort(Type type) // Clone.tt Line: 8
-		{
-		    //throw new Exception();
-		}
-		public static ItemNameValue Clone(ItemNameValue from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
-		{
-		    ItemNameValue vm = new ItemNameValue();
-		    vm.Name = from.Name; // Clone.tt Line: 58
-		    vm.Value = from.Value.Clone(); // Clone.tt Line: 53
-		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
-		    if (isNewGuid) // Clone.tt Line: 63
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(ItemNameValue to, ItemNameValue from, bool isDeep = true) // Clone.tt Line: 68
-		{
-		    to.Name = from.Name; // Clone.tt Line: 126
-		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
-		}
-		// Clone.tt Line: 131
-		#region IEditable
-		public override ItemNameValue Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return ItemNameValue.Clone(this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ItemNameValue from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    ItemNameValue.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_item_name_value' to 'ItemNameValue'
-		public static ItemNameValue ConvertToVM(Proto.Config.proto_item_name_value m, ItemNameValue vm = null) // Clone.tt Line: 149
-		{
-		    if (vm == null)
-		        vm = new ItemNameValue();
-		    if (m == null)
-		        return vm;
-		    vm.Name = m.Name; // Clone.tt Line: 197
-		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 197
-		    vm.OnInitFromDto(); // Clone.tt Line: 202
-		    return vm;
-		}
-		// Conversion from 'ItemNameValue' to 'proto_item_name_value'
-		public static Proto.Config.proto_item_name_value ConvertToProto(ItemNameValue vm) // Clone.tt Line: 207
-		{
-		    Proto.Config.proto_item_name_value m = new Proto.Config.proto_item_name_value(); // Clone.tt Line: 209
-		    m.Name = vm.Name; // Clone.tt Line: 233
-		    m.Value = vm.Value; // Clone.tt Line: 233
-		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 233
-		    return m;
-		}
-		
-		public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			//this.Value.AcceptConfigNodeVisitor(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public Google.Protobuf.WellKnownTypes.Any Value // Property.tt Line: 107
-		{ 
-			set
-			{
-				if (_Value != value)
-				{
-					OnValueChanging();
-					_Value = value;
-					OnValueChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Value; }
-		}
-		private Google.Protobuf.WellKnownTypes.Any _Value;
-		partial void OnValueChanging(); // Property.tt Line: 124
-		partial void OnValueChanged();
-		#endregion Properties
-	}
 	
 	public interface IVisitorProto // IVisitorProto.tt Line: 7
 	{
@@ -8156,7 +8047,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.proto_form p);
 		void Visit(Proto.Config.proto_group_list_reports p);
 		void Visit(Proto.Config.proto_report p);
-		void Visit(Proto.Config.proto_item_name_value p);
 	}
 	
 	public partial class ValidationConfigVisitor : ConfigVisitor // ValidationVisitor.tt Line: 7
@@ -8475,14 +8365,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	        OnVisit(p as IValidatableWithSeverity);
 	    }
 		protected override void OnVisitEnd(Report p) // ValidationVisitor.tt Line: 35
-	    {
-	        OnVisitEnd(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisit(ItemNameValue p) // ValidationVisitor.tt Line: 15
-	    {
-	        OnVisit(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisitEnd(ItemNameValue p) // ValidationVisitor.tt Line: 35
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
@@ -8883,16 +8765,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    }
 	    protected virtual void OnVisit(Report p) {}
 	    protected virtual void OnVisitEnd(Report p) {}
-		public void Visit(ItemNameValue p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(ItemNameValue p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(ItemNameValue p) {}
-	    protected virtual void OnVisitEnd(ItemNameValue p) {}
 	}
 
 public interface IVisitorConfigNode // IVisitorConfigNode.tt Line: 7
@@ -8972,7 +8844,5 @@ public interface IVisitorConfigNode // IVisitorConfigNode.tt Line: 7
 	void VisitEnd(GroupListReports p);
 	void Visit(Report p);
 	void VisitEnd(Report p);
-	void Visit(ItemNameValue p);
-	void VisitEnd(ItemNameValue p);
 }
 }

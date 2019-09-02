@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
             //cbx.IsSynchronizedWithCurrentItem = true;
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Name";
-            var _binding_lst = new Binding("ListConnectionStringNames"); //bind to the Value property of the PropertyItem
+            var _binding_lst = new Binding("ListConnectionStringVMs"); //bind to the Value property of the PropertyItem
             _binding_lst.Source = cfg;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;

@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
                 Config cfg = (Config)p;
                 if (string.IsNullOrWhiteSpace(val.ConnectionStringName))
                     return true;
-                foreach (var t in cfg.ListConnectionStringNames)
+                foreach (var t in cfg.ListConnectionStringVMs)
                 {
                     if (val.ConnectionStringName == t.Name)
                         return true;
