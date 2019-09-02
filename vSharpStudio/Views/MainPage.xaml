@@ -9,6 +9,11 @@
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding CommandConfigSave}"/>
+        <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding CommandConfigSaveAs}"/>
+        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,10 +29,10 @@
                     <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
                         <ContentControl Template="{StaticResource iconSaveAll}" />
                     </Button>-->
-                    <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Alt-S? - save config as">
+                    <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
                         <ContentControl Template="{StaticResource iconSaveAs}" />
                     </Button>
-                    <Button Command="{Binding CommandEditConnStrings}" ToolTip="Alt-C? - connection strings builder">
+                    <Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
                         <ContentControl Template="{StaticResource iconConnectionBuilder}" />
                     </Button>
                     <xctk:WatermarkComboBox Margin="3,0" ItemsSource="{Binding ListDbDesignPlugins}" SelectedItem="{Binding SelectedDbDesignPlugin}" 

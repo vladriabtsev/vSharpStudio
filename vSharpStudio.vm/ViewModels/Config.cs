@@ -57,6 +57,8 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupJournals, 11);
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
                 this.DbSettings.DbSchema = "v";
+            this.ListConnectionStringVMs = new List<ConnStringVM>();
+            this.ListDbProviders = new List<string>();
         }
         protected override void OnInitFromDto()
         {
@@ -199,6 +201,22 @@ namespace vSharpStudio.vm.ViewModels
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
 
+        #region Connection string editor
+
+        public Action<string> OnProviderSelectionChanged = null;
         public List<ConnStringVM> ListConnectionStringVMs { get; set; }
+        public List<string> ListDbProviders { get; set; }
+        public string SelectedDbProvider
+        {
+            get { return _SelectedDbProvider; }
+            set
+            {
+                _SelectedDbProvider = value;
+                OnProviderSelectionChanged(value);
+            }
+        }
+        private string _SelectedDbProvider;
+
+        #endregion Connection string editor
     }
 }

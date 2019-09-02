@@ -61,7 +61,52 @@ namespace vSharpStudio.ViewModels
                 this.Model = new Config();
             }
             this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
-            this.ConnectionStringSettingsGet();
+            this.Model.OnProviderSelectionChanged = (provider) =>
+            {
+                this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
+                this.Model.ListConnectionStringVMs.Clear();
+                this.Model.ListDbProviders.Clear();
+                for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+                {
+                    string pr = this.ConnectionStringSettings[i].ProviderName;
+                    if (string.IsNullOrEmpty(pr))
+                    {
+                        bool isFound = false;
+                        foreach (var tt in this.Model.ListDbProviders)
+                        {
+                            if (tt == pr)
+                            {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                            this.Model.ListDbProviders.Add(pr);
+                    }
+                    if (provider != null)
+                    {
+                        if (provider == pr)
+                        {
+                            this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
+                            {
+                                Name = this.ConnectionStringSettings[i].Name,
+                                ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
+                                Provider = pr
+                            });
+                        }
+                    }
+                    else
+                    {
+                        this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
+                        {
+                            Name = this.ConnectionStringSettings[i].Name,
+                            ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
+                            Provider = pr
+                        }); ;
+                    }
+                }
+            };
+            this.Model.OnProviderSelectionChanged(null);
         }
 
         private Config LoadConfig(string file_path, string indent)
@@ -307,8 +352,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
-                (o) => { this.Save(); },
-                (o) => { return this.Model != null; }));
+                    (o) => { this.Save(); },
+                    (o) => { return this.Model != null; }));
             }
         }
         private vCommand _CommandConfigSave;
@@ -617,20 +662,6 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
 
         internal ConnectionStringSettingsCollection ConnectionStringSettings = null;
-        private void ConnectionStringSettingsGet()
-        {
-            this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
-            this.Model.ListConnectionStringVMs = new List<ConnStringVM>();
-            for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
-            {
-                this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
-                {
-                    Name = this.ConnectionStringSettings[i].Name,
-                    ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
-                    Provider = this.ConnectionStringSettings[i].ProviderName
-                });
-            }
-        }
         private void ConnectionStringSettingsSave()
         {
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

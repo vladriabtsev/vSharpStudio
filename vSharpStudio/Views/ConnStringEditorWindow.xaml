@@ -9,6 +9,11 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:ConnStringEditorVM, IsDesignTimeCreatable=True}"
         Title="vStudio connection strings" Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="Insert" Command="{Binding CommandAddDbConnection}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Delete" Command="{Binding CommandDelDbConnection}"/>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding CommandDbConnectionsSave}"/>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -31,24 +36,25 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ToolBar Grid.Column="0" HorizontalAlignment="Left">
-                    <Button Command="{Binding CommandAddDbConnection}" ToolTip="Alt-A - add Db connection string">
+                    <Button Command="{Binding CommandAddDbConnection}" ToolTip="Ctrl-Insert - add Db connection string">
                         <ContentControl Template="{StaticResource iconAddDatabase}" />
                     </Button>
                     <!--<Button Command="{Binding CommandEditDbConnection}" ToolTip="Alt-E - edit Db connection string">
                         <ContentControl Template="{StaticResource iconConfigureDatabaseWizard}" />
                     </Button>-->
-                    <Button Command="{Binding CommandDelDbConnection}" ToolTip="Alt-D - delete Db connection string">
+                    <Button Command="{Binding CommandDelDbConnection}" ToolTip="Ctrl-Delete - delete Db connection string">
                         <ContentControl Template="{StaticResource iconDatabaseOffline}" />
                     </Button>
-                    <Button Command="{Binding CommandDbConnectionsSave}" ToolTip="{Binding SaveToolTip}">
+                    <Button Command="{Binding CommandDbConnectionsSave}" ToolTip="Ctrl-S - save all DB connection strings">
                         <ContentControl Template="{StaticResource iconSaveAll}" />
                     </Button>
                 </ToolBar>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <!--<CheckBox Content="Check connections " VerticalAlignment="Center" />-->
                     <CheckBox Content="Select by: " VerticalAlignment="Center" FontWeight="Bold" IsChecked="{Binding IsSelectedByDbProvider}" />
-                    <xctk:WatermarkComboBox MinWidth="220" 
-                                            ItemsSource="{Binding MainVM.Model.ListConnectionStringNames}">
+                    <xctk:WatermarkComboBox MinWidth="220"
+                                            SelectedItem="{Binding MainVM.Model.SelectedDbProvider}"
+                                            ItemsSource="{Binding MainVM.Model.ListDbProviders}">
                         <xctk:WatermarkComboBox.WatermarkTemplate>
                             <DataTemplate>
                                 <TextBlock Text="db provider" Foreground="Gray" />
@@ -64,10 +70,11 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <DataGrid ItemsSource="{Binding MainVM.Model.ListConnectionStringVMs}" 
-                          SelectedItem="{Binding SelectedConnectionStringVM}" GridLinesVisibility="None" AutoGenerateColumns="False">
+                          SelectedItem="{Binding SelectedConnectionStringVM}" 
+                          GridLinesVisibility="None" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                        <!--<DataGridTextColumn Header="Status" Binding="{Binding Status}" />-->
                         <DataGridTextColumn Header="Connection string" Binding="{Binding ConnectionString}" Width="*" />
                         <DataGridTextColumn Header="Provider" Binding="{Binding Provider}" />
                     </DataGrid.Columns>
@@ -85,8 +92,18 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding SelectedStringProvider}" />
-                    <local:PropertiesList Grid.Row="1" />
+                    <TextBlock Text="{Binding SelectedDbProvider}" />
+                    <xctk:PropertyGrid SelectedObject="{Binding PluginConnectionStringVM}" NameColumnWidth="120">
+                        <xctk:PropertyGrid.EditorDefinitions>
+                            <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
+                                <xctk:EditorTemplateDefinition.EditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:PropertyGridEditorTextBox Text="{Binding Value}" IsEnabled="{Binding Instance.IsEditable}" />
+                                    </DataTemplate>
+                                </xctk:EditorTemplateDefinition.EditingTemplate>
+                            </xctk:EditorTemplateDefinition>
+                        </xctk:PropertyGrid.EditorDefinitions>
+                    </xctk:PropertyGrid>
                 </Grid>
             </Grid>
         </Grid>

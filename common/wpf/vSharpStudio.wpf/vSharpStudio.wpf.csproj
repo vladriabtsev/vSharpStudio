@@ -126,6 +126,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
+      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
+      <Name>Xceed.Wpf.Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj">
       <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
       <Name>vSharpStudio.std</Name>
