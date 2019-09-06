@@ -14,6 +14,7 @@ namespace vPlugin.DbModel.MsSql
         partial void OnInit()
         {
         }
+        public string NameUi { get; protected set; }
         [BrowsableAttribute(false)]
         public string Settings
         {

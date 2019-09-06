@@ -13,16 +13,8 @@ namespace vSharpStudio.common
     /// Main plugin interface for all plugin types of vSharpStudio
     /// </summary>
     [InheritedExport(typeof(IvPlugin))] // metadata was not exported
-    public interface IvPlugin
+    public interface IvPluginDb : IvPlugin
     {
-        string Guid { get; }
-        string Version { get; }
-        string Name { get; }
-        string NameUI { get; }
-        string Description { get; }
-        string Author { get; }
-        string Url { get; }
-        string Licence { get; }
-        List<IvPluginGenerator> ListGenerators { get; }
+        string ProviderName { get; }
     }
 }

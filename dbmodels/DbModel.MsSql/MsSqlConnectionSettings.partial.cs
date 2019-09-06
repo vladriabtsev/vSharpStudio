@@ -25,6 +25,7 @@ namespace vPlugin.DbModel.MsSql
 #endif
         }
         public ITreeConfigNode Parent { get; set; }
+        public string NameUi { get; protected set; }
 
         [BrowsableAttribute(false)]
         public string Settings

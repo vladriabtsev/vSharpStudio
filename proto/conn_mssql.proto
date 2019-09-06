@@ -7,6 +7,9 @@ option csharp_namespace = "Proto.Config.Connection"; // keep same for generator
 message proto_ms_sql_design_generator_settings {
     string name = 1;
     string guid = 2;
+    // @attr [Editable(false)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
     bool is_use_foreingkey = 11;
     bool is_use_foreingkey_index = 12;
     bool is_use_storage_procedures = 13;

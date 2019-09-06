@@ -6,6 +6,7 @@
 - [vsharpstudio.proto](#vsharpstudio.proto)
     - [bool_nullable](#proto_config.bool_nullable)
     - [db_settings](#proto_config.db_settings)
+    - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_solution](#proto_config.proto_app_solution)
     - [proto_base_config](#proto_config.proto_base_config)
@@ -104,6 +105,27 @@ General DB settings
 
 
 
+<a name="proto_config.proto_app_db_settings"></a>
+
+### proto_app_db_settings
+@base : ViewModelValidatableWithSeverity&lt;AppDbSettings, AppDbSettings.AppDbSettingsValidator&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plugin_guid | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))] @attr [Description(&#34;Default DB Plugin&#34;)] |
+| plugin_name | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [Editable(false)] |
+| version | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editable(false)] |
+| plugin_gen_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))] @attr [Description(&#34;Default DB Plugin generator&#34;)] |
+| plugin_gen_name | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Editable(false)] |
+| conn_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))] @attr [Description(&#34;Default DB connection string&#34;)] |
+| conn_name | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [Editable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_app_project"></a>
 
 ### proto_app_project
@@ -117,7 +139,7 @@ General DB settings
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
-| connection_string_name | [string](#string) |  | @attr [Description(&#34;Connection string name for database operations. If empty, solution setting is used&#34;)] @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] |
+| default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] |
 
 
 
@@ -137,7 +159,7 @@ General DB settings
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
-| connection_string_name | [string](#string) |  | @attr [Description(&#34;Connection string name for database operations. If empty, UI setting is used&#34;)] @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] |
+| default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -394,10 +416,11 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
+| guid | [string](#string) |  | @attr [Editable(false)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(2)] |
+| default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(3)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
 
 
@@ -731,6 +754,7 @@ main view forms hierarchy parent
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Editable(false)] |
+| version | [string](#string) |  | @attr [Editable(false)] |
 | name | [string](#string) |  | @attr [Editable(false)] |
 | description | [string](#string) |  | @attr [Editable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |

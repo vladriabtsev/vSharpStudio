@@ -28,13 +28,15 @@ message proto_plugin {
     // @attr [Editable(false)]
     string guid = 1;
     // @attr [Editable(false)]
-    string name = 2;
+    string version = 2;
     // @attr [Editable(false)]
-    string description = 3;
+    string name = 3;
+    // @attr [Editable(false)]
+    string description = 4;
     // @attr [BrowsableAttribute(false)]
-    uint64 sorting_value = 4;
+    uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator list_generators = 5;
+    repeated proto_plugin_generator list_generators = 6;
 }
 message proto_plugin_generator {
     // @attr [Editable(false)]
@@ -125,12 +127,47 @@ message db_settings {
  * @exclude
  * ####################################### A P P S ##########################################
  */
+// @base : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>
+message proto_app_db_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
+    // @attr [Description("Default DB Plugin")]
+    string plugin_guid = 1;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [Editable(false)]
+    string plugin_name = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [Editable(false)]
+    string version = 3;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
+    // @attr [Description("Default DB Plugin generator")]
+    string plugin_gen_guid = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Editable(false)]
+    string plugin_gen_name = 5;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
+    // @attr [Description("Default DB connection string")]
+    string conn_guid = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [Editable(false)]
+    string conn_name = 7;
+}
 message proto_group_list_app_solutions {
+    // @attr [Editable(false)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
 //  string name_ui = 4;
+    // @attr [PropertyOrderAttribute(2)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Default DB")]
+    proto_app_db_settings default_db = 6;
     // List NET solutions
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
@@ -146,9 +183,11 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
     string relative_app_solution_path = 7;
-    // @attr [Description("Connection string name for database operations. If empty, UI setting is used")]
-    // @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
-    string connection_string_name = 8;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Default DB")]
+    // @attr [Description("Database connection. If empty, all solutions settings are used")]
+    proto_app_db_settings default_db = 8;
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project list_app_projects = 9;
 }
@@ -162,9 +201,11 @@ message proto_app_project {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
     string relative_app_project_path = 7;
-    // @attr [Description("Connection string name for database operations. If empty, solution setting is used")]
-    // @attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
-    string connection_string_name = 8;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Default DB")]
+    // @attr [Description("Database connection. If empty, solution settings are used")]
+    proto_app_db_settings default_db = 8;
 }
 /** 
  * @exclude

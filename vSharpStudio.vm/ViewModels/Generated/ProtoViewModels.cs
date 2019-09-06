@@ -1,4 +1,4 @@
-// Auto generated on UTC 09/02/2019 02:01:16
+// Auto generated on UTC 09/06/2019 17:25:13
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -233,6 +233,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		{
 		    Plugin vm = new Plugin();
 		    vm.Guid = from.Guid; // Clone.tt Line: 58
+		    vm.Version = from.Version; // Clone.tt Line: 58
 		    vm.Name = from.Name; // Clone.tt Line: 58
 		    vm.Description = from.Description; // Clone.tt Line: 58
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
@@ -246,6 +247,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		public static void Update(Plugin to, Plugin from, bool isDeep = true) // Clone.tt Line: 68
 		{
 		    to.Guid = from.Guid; // Clone.tt Line: 126
+		    to.Version = from.Version; // Clone.tt Line: 126
 		    to.Name = from.Name; // Clone.tt Line: 126
 		    to.Description = from.Description; // Clone.tt Line: 126
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
@@ -311,6 +313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (m == null)
 		        return vm;
 		    vm.Guid = m.Guid; // Clone.tt Line: 197
+		    vm.Version = m.Version; // Clone.tt Line: 197
 		    vm.Name = m.Name; // Clone.tt Line: 197
 		    vm.Description = m.Description; // Clone.tt Line: 197
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 197
@@ -329,6 +332,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		{
 		    Proto.Config.proto_plugin m = new Proto.Config.proto_plugin(); // Clone.tt Line: 209
 		    m.Guid = vm.Guid; // Clone.tt Line: 233
+		    m.Version = vm.Version; // Clone.tt Line: 233
 		    m.Name = vm.Name; // Clone.tt Line: 233
 		    m.Description = vm.Description; // Clone.tt Line: 233
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 233
@@ -349,6 +353,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		#endregion Procedures
 		#region Properties
 		
+		[Editable(false)]
+		public string Version // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_Version != value)
+				{
+					OnVersionChanging();
+					_Version = value;
+					OnVersionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Version; }
+		}
+		private string _Version = "";
+		partial void OnVersionChanging(); // Property.tt Line: 124
+		partial void OnVersionChanged();
 		[Editable(false)]
 		public string Description // Property.tt Line: 107
 		{ 
@@ -1197,12 +1220,240 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnPathToProjectWithConnectionStringChanged();
 		#endregion Properties
 	}
+	public partial class AppDbSettings : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>, IAppDbSettings // Class.tt Line: 6
+	{
+		public partial class AppDbSettingsValidator : ValidatorBase<AppDbSettings, AppDbSettingsValidator> { } 
+		#region CTOR
+		public AppDbSettings() : base(AppDbSettingsValidator.Validator)
+		{
+			OnInit();
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public static AppDbSettings Clone(AppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
+		{
+		    AppDbSettings vm = new AppDbSettings();
+		    vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 58
+		    vm.PluginName = from.PluginName; // Clone.tt Line: 58
+		    vm.Version = from.Version; // Clone.tt Line: 58
+		    vm.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 58
+		    vm.PluginGenName = from.PluginGenName; // Clone.tt Line: 58
+		    vm.ConnGuid = from.ConnGuid; // Clone.tt Line: 58
+		    vm.ConnName = from.ConnName; // Clone.tt Line: 58
+		    return vm;
+		}
+		public static void Update(AppDbSettings to, AppDbSettings from, bool isDeep = true) // Clone.tt Line: 68
+		{
+		    to.PluginGuid = from.PluginGuid; // Clone.tt Line: 126
+		    to.PluginName = from.PluginName; // Clone.tt Line: 126
+		    to.Version = from.Version; // Clone.tt Line: 126
+		    to.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 126
+		    to.PluginGenName = from.PluginGenName; // Clone.tt Line: 126
+		    to.ConnGuid = from.ConnGuid; // Clone.tt Line: 126
+		    to.ConnName = from.ConnName; // Clone.tt Line: 126
+		}
+		// Clone.tt Line: 131
+		#region IEditable
+		public override AppDbSettings Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return AppDbSettings.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(AppDbSettings from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    AppDbSettings.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_app_db_settings' to 'AppDbSettings'
+		public static AppDbSettings ConvertToVM(Proto.Config.proto_app_db_settings m, AppDbSettings vm = null) // Clone.tt Line: 149
+		{
+		    if (vm == null)
+		        vm = new AppDbSettings();
+		    if (m == null)
+		        return vm;
+		    vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 197
+		    vm.PluginName = m.PluginName; // Clone.tt Line: 197
+		    vm.Version = m.Version; // Clone.tt Line: 197
+		    vm.PluginGenGuid = m.PluginGenGuid; // Clone.tt Line: 197
+		    vm.PluginGenName = m.PluginGenName; // Clone.tt Line: 197
+		    vm.ConnGuid = m.ConnGuid; // Clone.tt Line: 197
+		    vm.ConnName = m.ConnName; // Clone.tt Line: 197
+		    return vm;
+		}
+		// Conversion from 'AppDbSettings' to 'proto_app_db_settings'
+		public static Proto.Config.proto_app_db_settings ConvertToProto(AppDbSettings vm) // Clone.tt Line: 207
+		{
+		    Proto.Config.proto_app_db_settings m = new Proto.Config.proto_app_db_settings(); // Clone.tt Line: 209
+		    m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 233
+		    m.PluginName = vm.PluginName; // Clone.tt Line: 233
+		    m.Version = vm.Version; // Clone.tt Line: 233
+		    m.PluginGenGuid = vm.PluginGenGuid; // Clone.tt Line: 233
+		    m.PluginGenName = vm.PluginGenName; // Clone.tt Line: 233
+		    m.ConnGuid = vm.ConnGuid; // Clone.tt Line: 233
+		    m.ConnName = vm.ConnName; // Clone.tt Line: 233
+		    return m;
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[PropertyOrderAttribute(1)]
+		[Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
+		[Description("Default DB Plugin")]
+		public string PluginGuid // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_PluginGuid != value)
+				{
+					OnPluginGuidChanging();
+					_PluginGuid = value;
+					OnPluginGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PluginGuid; }
+		}
+		private string _PluginGuid = "";
+		partial void OnPluginGuidChanging(); // Property.tt Line: 124
+		partial void OnPluginGuidChanged();
+		[PropertyOrderAttribute(2)]
+		[Editable(false)]
+		public string PluginName // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_PluginName != value)
+				{
+					OnPluginNameChanging();
+					_PluginName = value;
+					OnPluginNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PluginName; }
+		}
+		private string _PluginName = "";
+		partial void OnPluginNameChanging(); // Property.tt Line: 124
+		partial void OnPluginNameChanged();
+		[PropertyOrderAttribute(3)]
+		[Editable(false)]
+		public string Version // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_Version != value)
+				{
+					OnVersionChanging();
+					_Version = value;
+					OnVersionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Version; }
+		}
+		private string _Version = "";
+		partial void OnVersionChanging(); // Property.tt Line: 124
+		partial void OnVersionChanged();
+		[PropertyOrderAttribute(4)]
+		[Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
+		[Description("Default DB Plugin generator")]
+		public string PluginGenGuid // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_PluginGenGuid != value)
+				{
+					OnPluginGenGuidChanging();
+					_PluginGenGuid = value;
+					OnPluginGenGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PluginGenGuid; }
+		}
+		private string _PluginGenGuid = "";
+		partial void OnPluginGenGuidChanging(); // Property.tt Line: 124
+		partial void OnPluginGenGuidChanged();
+		[PropertyOrderAttribute(5)]
+		[Editable(false)]
+		public string PluginGenName // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_PluginGenName != value)
+				{
+					OnPluginGenNameChanging();
+					_PluginGenName = value;
+					OnPluginGenNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _PluginGenName; }
+		}
+		private string _PluginGenName = "";
+		partial void OnPluginGenNameChanging(); // Property.tt Line: 124
+		partial void OnPluginGenNameChanged();
+		[PropertyOrderAttribute(6)]
+		[Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
+		[Description("Default DB connection string")]
+		public string ConnGuid // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_ConnGuid != value)
+				{
+					OnConnGuidChanging();
+					_ConnGuid = value;
+					OnConnGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ConnGuid; }
+		}
+		private string _ConnGuid = "";
+		partial void OnConnGuidChanging(); // Property.tt Line: 124
+		partial void OnConnGuidChanged();
+		[PropertyOrderAttribute(7)]
+		[Editable(false)]
+		public string ConnName // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_ConnName != value)
+				{
+					OnConnNameChanging();
+					_ConnName = value;
+					OnConnNameChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ConnName; }
+		}
+		private string _ConnName = "";
+		partial void OnConnNameChanging(); // Property.tt Line: 124
+		partial void OnConnNameChanged();
+		#endregion Properties
+	}
 	public partial class GroupListAppSolutions : ConfigObjectBase<GroupListAppSolutions, GroupListAppSolutions.GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 6
 	{
 		public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } 
 		#region CTOR
 		public GroupListAppSolutions() : base(GroupListAppSolutionsValidator.Validator)
 		{
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 23
 			this.ListAppSolutions = new SortedObservableCollection<AppSolution>(); // Class.tt Line: 19
 			OnInit();
 		}
@@ -1210,6 +1461,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		public GroupListAppSolutions(ITreeConfigNode parent) : base(GroupListAppSolutionsValidator.Validator)
 	    {
 	        this.Parent = parent;
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 49
 			this.ListAppSolutions = new SortedObservableCollection<AppSolution>(); // Class.tt Line: 45
 			OnInit();
 	    }
@@ -1231,6 +1483,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = from.Name; // Clone.tt Line: 58
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
 		    vm.Description = from.Description; // Clone.tt Line: 58
+		    if (isDeep) // Clone.tt Line: 55
+		        vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
 		    vm.ListAppSolutions = new SortedObservableCollection<AppSolution>();
 		    foreach(var t in from.ListAppSolutions) // Clone.tt Line: 45
 		        vm.ListAppSolutions.Add(AppSolution.Clone((AppSolution)t, isDeep));
@@ -1244,6 +1498,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.Name = from.Name; // Clone.tt Line: 126
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
 		    to.Description = from.Description; // Clone.tt Line: 126
+		    if (isDeep) // Clone.tt Line: 123
+		        AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
 		    if (isDeep) // Clone.tt Line: 75
 		    {
 		        foreach(var t in to.ListAppSolutions.ToList())
@@ -1309,6 +1565,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = m.Name; // Clone.tt Line: 197
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 197
 		    vm.Description = m.Description; // Clone.tt Line: 197
+		    AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 191
 		    vm.ListAppSolutions = new SortedObservableCollection<AppSolution>();
 		    foreach(var t in m.ListAppSolutions) // Clone.tt Line: 177
 		    {
@@ -1327,6 +1584,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.Name = vm.Name; // Clone.tt Line: 233
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 233
 		    m.Description = vm.Description; // Clone.tt Line: 233
+		    m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 227
 		    foreach(var t in vm.ListAppSolutions) // Clone.tt Line: 212
 		        m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // Clone.tt Line: 216
 		    return m;
@@ -1348,6 +1606,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		/// string name_ui = 4;
 		///////////////////////////////////////////////////
+		[PropertyOrderAttribute(2)]
 		public string Description // Property.tt Line: 107
 		{ 
 			set
@@ -1366,6 +1625,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private string _Description = "";
 		partial void OnDescriptionChanging(); // Property.tt Line: 124
 		partial void OnDescriptionChanged();
+		[PropertyOrderAttribute(3)]
+		[ExpandableObjectAttribute()]
+		[DisplayName("Default DB")]
+		public AppDbSettings DefaultDb // Property.tt Line: 88
+		{ 
+			set
+			{
+				if (_DefaultDb != value)
+				{
+					OnDefaultDbChanging();
+		            _DefaultDb = value;
+					OnDefaultDbChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _DefaultDb; }
+		}
+		private AppDbSettings _DefaultDb;
+		[BrowsableAttribute(false)]
+		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		partial void OnDefaultDbChanging(); // Property.tt Line: 124
+		partial void OnDefaultDbChanged();
 		
 		///////////////////////////////////////////////////
 		/// List NET solutions
@@ -1420,6 +1702,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		#region CTOR
 		public AppSolution() : base(AppSolutionValidator.Validator)
 		{
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 23
 			this.ListAppProjects = new SortedObservableCollection<AppProject>(); // Class.tt Line: 19
 			OnInit();
 		}
@@ -1427,6 +1710,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		public AppSolution(ITreeConfigNode parent) : base(AppSolutionValidator.Validator)
 	    {
 	        this.Parent = parent;
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 49
 			this.ListAppProjects = new SortedObservableCollection<AppProject>(); // Class.tt Line: 45
 			OnInit();
 	    }
@@ -1449,7 +1733,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
 		    vm.Description = from.Description; // Clone.tt Line: 58
 		    vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 58
-		    vm.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 58
+		    if (isDeep) // Clone.tt Line: 55
+		        vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
 		    vm.ListAppProjects = new SortedObservableCollection<AppProject>();
 		    foreach(var t in from.ListAppProjects) // Clone.tt Line: 45
 		        vm.ListAppProjects.Add(AppProject.Clone((AppProject)t, isDeep));
@@ -1464,7 +1749,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
 		    to.Description = from.Description; // Clone.tt Line: 126
 		    to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 126
-		    to.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 126
+		    if (isDeep) // Clone.tt Line: 123
+		        AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
 		    if (isDeep) // Clone.tt Line: 75
 		    {
 		        foreach(var t in to.ListAppProjects.ToList())
@@ -1531,7 +1817,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 197
 		    vm.Description = m.Description; // Clone.tt Line: 197
 		    vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 197
-		    vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 197
+		    AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 191
 		    vm.ListAppProjects = new SortedObservableCollection<AppProject>();
 		    foreach(var t in m.ListAppProjects) // Clone.tt Line: 177
 		    {
@@ -1551,7 +1837,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 233
 		    m.Description = vm.Description; // Clone.tt Line: 233
 		    m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 233
-		    m.ConnectionStringName = vm.ConnectionStringName; // Clone.tt Line: 233
+		    m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 227
 		    foreach(var t in vm.ListAppProjects) // Clone.tt Line: 212
 		        m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // Clone.tt Line: 216
 		    return m;
@@ -1616,26 +1902,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private string _RelativeAppSolutionPath = "";
 		partial void OnRelativeAppSolutionPathChanging(); // Property.tt Line: 124
 		partial void OnRelativeAppSolutionPathChanged();
-		[Description("Connection string name for database operations. If empty, UI setting is used")]
-		[Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
-		public string ConnectionStringName // Property.tt Line: 107
+		[PropertyOrderAttribute(8)]
+		[ExpandableObjectAttribute()]
+		[DisplayName("Default DB")]
+		[Description("Database connection. If empty, all solutions settings are used")]
+		public AppDbSettings DefaultDb // Property.tt Line: 88
 		{ 
 			set
 			{
-				if (_ConnectionStringName != value)
+				if (_DefaultDb != value)
 				{
-					OnConnectionStringNameChanging();
-					_ConnectionStringName = value;
-					OnConnectionStringNameChanged();
+					OnDefaultDbChanging();
+		            _DefaultDb = value;
+					OnDefaultDbChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _ConnectionStringName; }
+			get { return _DefaultDb; }
 		}
-		private string _ConnectionStringName = "";
-		partial void OnConnectionStringNameChanging(); // Property.tt Line: 124
-		partial void OnConnectionStringNameChanged();
+		private AppDbSettings _DefaultDb;
+		[BrowsableAttribute(false)]
+		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		partial void OnDefaultDbChanging(); // Property.tt Line: 124
+		partial void OnDefaultDbChanged();
 		[BrowsableAttribute(false)]
 		public SortedObservableCollection<AppProject> ListAppProjects  // Property.tt Line: 45
 		{ 
@@ -1665,12 +1955,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		#region CTOR
 		public AppProject() : base(AppProjectValidator.Validator)
 		{
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 23
 			OnInit();
 		}
 	    // Class.tt Line: 34
 		public AppProject(ITreeConfigNode parent) : base(AppProjectValidator.Validator)
 	    {
 	        this.Parent = parent;
+			this.DefaultDb = new AppDbSettings(); // Class.tt Line: 49
 			OnInit();
 	    }
 		partial void OnInit();
@@ -1689,7 +1981,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
 		    vm.Description = from.Description; // Clone.tt Line: 58
 		    vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 58
-		    vm.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 58
+		    if (isDeep) // Clone.tt Line: 55
+		        vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
 		    if (isNewGuid) // Clone.tt Line: 63
 		        vm.SetNewGuid();
 		    return vm;
@@ -1701,7 +1994,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
 		    to.Description = from.Description; // Clone.tt Line: 126
 		    to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 126
-		    to.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 126
+		    if (isDeep) // Clone.tt Line: 123
+		        AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
 		}
 		// Clone.tt Line: 131
 		#region IEditable
@@ -1732,7 +2026,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 197
 		    vm.Description = m.Description; // Clone.tt Line: 197
 		    vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 197
-		    vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 197
+		    AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 191
 		    vm.OnInitFromDto(); // Clone.tt Line: 202
 		    return vm;
 		}
@@ -1745,7 +2039,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 233
 		    m.Description = vm.Description; // Clone.tt Line: 233
 		    m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 233
-		    m.ConnectionStringName = vm.ConnectionStringName; // Clone.tt Line: 233
+		    m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 227
 		    return m;
 		}
 		
@@ -1802,26 +2096,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private string _RelativeAppProjectPath = "";
 		partial void OnRelativeAppProjectPathChanging(); // Property.tt Line: 124
 		partial void OnRelativeAppProjectPathChanged();
-		[Description("Connection string name for database operations. If empty, solution setting is used")]
-		[Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]
-		public string ConnectionStringName // Property.tt Line: 107
+		[PropertyOrderAttribute(8)]
+		[ExpandableObjectAttribute()]
+		[DisplayName("Default DB")]
+		[Description("Database connection. If empty, solution settings are used")]
+		public AppDbSettings DefaultDb // Property.tt Line: 88
 		{ 
 			set
 			{
-				if (_ConnectionStringName != value)
+				if (_DefaultDb != value)
 				{
-					OnConnectionStringNameChanging();
-					_ConnectionStringName = value;
-					OnConnectionStringNameChanged();
+					OnDefaultDbChanging();
+		            _DefaultDb = value;
+					OnDefaultDbChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _ConnectionStringName; }
+			get { return _DefaultDb; }
 		}
-		private string _ConnectionStringName = "";
-		partial void OnConnectionStringNameChanging(); // Property.tt Line: 124
-		partial void OnConnectionStringNameChanged();
+		private AppDbSettings _DefaultDb;
+		[BrowsableAttribute(false)]
+		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		partial void OnDefaultDbChanging(); // Property.tt Line: 124
+		partial void OnDefaultDbChanged();
 		#endregion Properties
 	}
 	public partial class ConfigShortHistory : ConfigObjectBase<ConfigShortHistory, ConfigShortHistory.ConfigShortHistoryValidator>, IComparable<ConfigShortHistory>, IConfigAcceptVisitor, IConfigShortHistory // Class.tt Line: 6
@@ -8014,6 +8312,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.proto_plugin_generator_settings p);
 		void Visit(Proto.Config.proto_settings_config p);
 		void Visit(Proto.Config.db_settings p);
+		void Visit(Proto.Config.proto_app_db_settings p);
 		void Visit(Proto.Config.proto_group_list_app_solutions p);
 		void Visit(Proto.Config.proto_app_solution p);
 		void Visit(Proto.Config.proto_app_project p);
@@ -8101,9 +8400,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
+		protected override void OnVisit(AppDbSettings p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(AppDbSettings p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
 		protected override void OnVisit(GroupListAppSolutions p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
 	    }
 		protected override void OnVisitEnd(GroupListAppSolutions p) // ValidationVisitor.tt Line: 35
 	    {
@@ -8112,6 +8420,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		protected override void OnVisit(AppSolution p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
 	    }
 		protected override void OnVisitEnd(AppSolution p) // ValidationVisitor.tt Line: 35
 	    {
@@ -8120,6 +8429,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		protected override void OnVisit(AppProject p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
+	        ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
 	    }
 		protected override void OnVisitEnd(AppProject p) // ValidationVisitor.tt Line: 35
 	    {
@@ -8435,6 +8745,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    }
 	    protected virtual void OnVisit(DbSettings p) {}
 	    protected virtual void OnVisitEnd(DbSettings p) {}
+		public void Visit(AppDbSettings p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(AppDbSettings p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(AppDbSettings p) {}
+	    protected virtual void OnVisitEnd(AppDbSettings p) {}
 		public void Visit(GroupListAppSolutions p)
 	    {
 	        OnVisit(p);

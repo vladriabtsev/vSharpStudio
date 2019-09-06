@@ -487,6 +487,16 @@
               "defaultValue": ""
             },
             {
+              "name": "name_ui",
+              "description": "@attr [Editable(false)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_use_foreingkey",
               "description": "",
               "label": "",

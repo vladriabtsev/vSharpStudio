@@ -160,7 +160,9 @@
     <Compile Include="INodes.cs" />
     <Compile Include="IParent.cs" />
     <Compile Include="ITreeConfigNode.cs" />
+    <Compile Include="IvPluginDb.cs" />
     <Compile Include="IvPlugin.cs" />
+    <Compile Include="IvPluginDbConnStrEditor.cs" />
     <Compile Include="IvPluginGenerator.cs" />
     <Compile Include="IvPluginDbGenerator.cs" />
     <Compile Include="IvPluginGeneratorSettingsVM.cs" />

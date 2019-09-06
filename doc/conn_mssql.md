@@ -184,6 +184,7 @@ Exceptions: T:System.ArgumentNullException: To set the value to null, use System
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | guid | [string](#string) |  |  |
+| name_ui | [string](#string) |  | @attr [Editable(false)] @attr [DisplayName(&#34;UI name&#34;)] |
 | is_use_foreingkey | [bool](#bool) |  |  |
 | is_use_foreingkey_index | [bool](#bool) |  |  |
 | is_use_storage_procedures | [bool](#bool) |  |  |

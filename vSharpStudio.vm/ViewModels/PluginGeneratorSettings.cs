@@ -25,6 +25,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Guid = guid;
         }
         [ExpandableObjectAttribute()]
+        [DisplayName("Settings")]
         public IvPluginGeneratorSettingsVM VM { get; private set; }
         public void SetVM(IvPluginGeneratorSettingsVM vm)
         {

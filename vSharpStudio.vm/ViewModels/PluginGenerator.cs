@@ -52,6 +52,14 @@ namespace vSharpStudio.vm.ViewModels
             //}
             return pgs;
         }
+        public override bool NodeCanRemove()
+        {
+            return this.Generator == null || string.IsNullOrWhiteSpace(this.Guid);
+        }
+        public override void NodeRemove()
+        {
+            (this.Parent as Plugin).ListGenerators.Remove(this);
+        }
         #endregion Tree operations
     }
 }

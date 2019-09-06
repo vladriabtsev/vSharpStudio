@@ -26,7 +26,9 @@ namespace vSharpStudio.vm.ViewModels
             public const string GUID_IS_NOT_UNIQUE = "Guid is not unique";
             public const string PLUGIN_WAS_NOT_FOUND = "Plugin is not found";
             public const string PLUGIN_GENERATOR_WAS_NOT_FOUND = "Plugin Generator is not found";
-            public const string FILE_PATH_FOR_PRIVATE = "File path for storing connection string settings in private place is not selected";
+            public const string PLUGIN_GENERATOR_SETTINGS_WAS_NOT_FOUND = "Plugin Generator Settings is not found";
+            public const string FILE_PATH_FOR_PRIVATE_PATH = "File path for storing connection string settings in private place is empty, but IsPrivet is selected";
+            public const string FILE_PATH_FOR_IS_PRIVATE = "IsPrivate is selected, but file path is empty";
 
             public const string NAME_START_WITH_DIGIT = "Remove digit from first position of 'Name'. 'Name' of a config object can't start with digit";
             public const string NAME_CANT_CONTAINS_SPACE = "Remove space from the 'Name'. Space is not alowed in a 'Name' of a config object";

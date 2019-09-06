@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
              xmlns:local="clr-namespace:vSharpStudio.Views"
+             xmlns:common="clr-namespace:vSharpStudio.common;assembly=vSharpStudio.common"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:ConverterDicToListPlugins x:Key="ConverterDicToListPlugins"/>
+    </UserControl.Resources>
     <UserControl.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding CommandConfigSave}"/>
         <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding CommandConfigSaveAs}"/>
@@ -35,18 +39,23 @@
                     <Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
                         <ContentControl Template="{StaticResource iconConnectionBuilder}" />
                     </Button>
-                    <xctk:WatermarkComboBox Margin="3,0" ItemsSource="{Binding ListDbDesignPlugins}" SelectedItem="{Binding SelectedDbDesignPlugin}" 
-                                            DisplayMemberPath="Name" MinWidth="70">
+                    <TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
+                        <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
+                    </TextBlock>
+                    <xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
+                                            SelectedItem="{Binding SelectedDbDesignPlugin}" 
+                                            DisplayMemberPath="Plugin.NameUi" 
+                                            Margin="3,0" MinWidth="70">
                         <xctk:WatermarkComboBox.WatermarkTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Db Type" Foreground="Gray" />
+                                <TextBlock Text="Db plugin" Foreground="Gray" />
                             </DataTemplate>
                         </xctk:WatermarkComboBox.WatermarkTemplate>   
                     </xctk:WatermarkComboBox>
                     <xctk:WatermarkComboBox MinWidth="120">
                         <xctk:WatermarkComboBox.WatermarkTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Connection" Foreground="Gray" />
+                                <TextBlock Text="Connection string" Foreground="Gray" />
                             </DataTemplate>
                         </xctk:WatermarkComboBox.WatermarkTemplate>
                     </xctk:WatermarkComboBox>

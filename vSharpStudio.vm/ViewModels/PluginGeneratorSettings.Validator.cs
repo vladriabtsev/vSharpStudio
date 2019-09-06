@@ -20,7 +20,13 @@ namespace vSharpStudio.vm.ViewModels
                     if (o.IsPrivate && string.IsNullOrWhiteSpace(fp))
                         return false;
                     return true;
-                }).WithMessage(Config.ValidationMessages.FILE_PATH_FOR_PRIVATE);
+                }).WithMessage(Config.ValidationMessages.FILE_PATH_FOR_PRIVATE_PATH);
+                RuleFor(x => x.IsPrivate).Must((o, p) =>
+                {
+                    if (p && string.IsNullOrWhiteSpace(o.FilePath))
+                        return false;
+                    return true;
+                }).WithMessage(Config.ValidationMessages.FILE_PATH_FOR_IS_PRIVATE);
             }
             private bool IsUnique(PluginGeneratorSettings val)
             {

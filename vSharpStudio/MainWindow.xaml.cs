@@ -23,6 +23,8 @@ namespace vSharpStudio
         public MainWindow()
         {
             InitializeComponent();
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return;
             //vSharpStudio.std.ApplicationLogging.LoggerFactory.AddProvider(new Serilog.Sinks.File.PeriodicFlushToDiskSink()
 
         }

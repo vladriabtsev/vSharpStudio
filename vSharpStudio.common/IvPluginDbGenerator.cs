@@ -18,6 +18,7 @@ namespace vSharpStudio.common
     public interface IvPluginDbGenerator : IvPluginGenerator
     {
         ILoggerFactory LoggerFactory { set; get; }
+        string ProviderName { get; }
         int GetMigrationVersion();
         //DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
         //void UpdateToModel(IModel model);

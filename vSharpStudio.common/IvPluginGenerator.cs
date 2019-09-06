@@ -8,11 +8,15 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGenerator
     {
-        Guid Guid { get; }
+        string Guid { get; }
         /// <summary>
-        /// Plugin code generator name
+        /// Short Plugin code generator name (without spaces)
         /// </summary>
         string Name { get; }
+        /// <summary>
+        /// Short Plugin code generator name to show in a UI
+        /// </summary>
+        string NameUi { get; }
         /// <summary>
         /// Default setings name
         /// </summary>

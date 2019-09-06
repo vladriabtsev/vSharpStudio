@@ -23,6 +23,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	{
 		string Name { get; } // ModelInterfaces.tt Line: 41
 		string Guid { get; } // ModelInterfaces.tt Line: 41
+		string NameUi { get; } // ModelInterfaces.tt Line: 41
 		bool IsUseForeingkey { get; } // ModelInterfaces.tt Line: 41
 		bool IsUseForeingkeyIndex { get; } // ModelInterfaces.tt Line: 41
 		bool IsUseStorageProcedures { get; } // ModelInterfaces.tt Line: 41

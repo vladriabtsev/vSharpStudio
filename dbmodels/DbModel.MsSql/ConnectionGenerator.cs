@@ -15,7 +15,8 @@ namespace vPlugin.DbModel.MsSql
         public ConnectionGenerator()
         {
             this.Guid = new Guid("85B2000B-6B1A-49B8-A977-01C1FF21649D");
-            this.Name = "Connections";
+            this.Name = "SampleMsSqlConn";
+            this.NameUi = "Sample MsSql connection plugin";
             this.DefaultSettingsName = "Connection";
             this.Description = "Connection string generator";
             this.PluginGeneratorType = vPluginLayerTypeEnum.DbConnection;
@@ -24,6 +25,7 @@ namespace vPlugin.DbModel.MsSql
         public ILogger Logger;
         public Guid Guid { get; protected set; }
         public string Name { get; protected set; }
+        public string NameUi { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
         public vPluginLayerTypeEnum PluginGeneratorType { get; }

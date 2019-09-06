@@ -133,7 +133,9 @@
     <Compile Include="Migration\Migration.cs" />
     <Compile Include="Migration\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AppDbSettings.cs" />
     <Compile Include="ViewModels\AppProject.cs" />
+    <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.cs" />
@@ -155,6 +157,9 @@
     <Compile Include="ViewModels\DataType.Validator.cs" />
     <Compile Include="ViewModels\AppConnStringNameEditor.cs" />
     <Compile Include="ViewModels\DataTypeObjectNameEditor.cs" />
+    <Compile Include="ViewModels\EditorDbConnSelection.cs" />
+    <Compile Include="ViewModels\EditorDbPluginGenSelection.cs" />
+    <Compile Include="ViewModels\EditorDbPluginSelection.cs" />
     <Compile Include="ViewModels\EnumerationPair.Validator.cs" />
     <Compile Include="ViewModels\GroupListCommon.cs" />
     <Compile Include="ViewModels\GroupListAppSolutions.cs" />
@@ -181,6 +186,7 @@
     <Compile Include="ViewModels\GroupListProperties.cs" />
     <Compile Include="ViewModels\GroupListPropertiesTabs.cs" />
     <Compile Include="ViewModels\GroupListReports.cs" />
+    <Compile Include="ViewModels\PluginRow.cs" />
     <Compile Include="ViewModels\PropertiesTab.cs" />
     <Compile Include="ViewModels\DbIdGenerator.cs" />
     <Compile Include="ViewModels\DbIdGenerator.Validator.cs" />

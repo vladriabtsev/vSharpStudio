@@ -1,4 +1,4 @@
-// Auto generated on UTC 09/02/2019 02:01:18
+// Auto generated on UTC 09/06/2019 17:25:13
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -39,6 +39,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		    MsSqlDesignGeneratorSettings vm = new MsSqlDesignGeneratorSettings();
 		    vm.Name = from.Name; // Clone.tt Line: 58
 		    vm.Guid = from.Guid; // Clone.tt Line: 58
+		    vm.NameUi = from.NameUi; // Clone.tt Line: 58
 		    vm.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 58
 		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 58
 		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 58
@@ -51,6 +52,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		{
 		    to.Name = from.Name; // Clone.tt Line: 126
 		    to.Guid = from.Guid; // Clone.tt Line: 126
+		    to.NameUi = from.NameUi; // Clone.tt Line: 126
 		    to.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 126
 		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 126
 		    to.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 126
@@ -84,6 +86,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		        return vm;
 		    vm.Name = m.Name; // Clone.tt Line: 197
 		    vm.Guid = m.Guid; // Clone.tt Line: 197
+		    vm.NameUi = m.NameUi; // Clone.tt Line: 197
 		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 197
 		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 197
 		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 197
@@ -98,6 +101,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings(); // Clone.tt Line: 209
 		    m.Name = vm.Name; // Clone.tt Line: 233
 		    m.Guid = vm.Guid; // Clone.tt Line: 233
+		    m.NameUi = vm.NameUi; // Clone.tt Line: 233
 		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 233
 		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 233
 		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 233
@@ -145,6 +149,26 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		private string _Guid = "";
 		partial void OnGuidChanging(); // Property.tt Line: 124
 		partial void OnGuidChanged();
+		[Editable(false)]
+		[DisplayName("UI name")]
+		public string NameUi // Property.tt Line: 107
+		{ 
+			set
+			{
+				if (_NameUi != value)
+				{
+					OnNameUiChanging();
+					_NameUi = value;
+					OnNameUiChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _NameUi; }
+		}
+		private string _NameUi = "";
+		partial void OnNameUiChanging(); // Property.tt Line: 124
+		partial void OnNameUiChanged();
 		public bool IsUseForeingkey // Property.tt Line: 107
 		{ 
 			set

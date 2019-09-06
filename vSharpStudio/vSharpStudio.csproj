@@ -229,17 +229,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>vApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConnStringEditorVM.cs" />
-    <Compile Include="ViewModels\ConnStringEditorVMValidator.cs" />
+    <Compile Include="ViewModels\ConverterDicToListPlugins.cs" />
     <Compile Include="ViewModels\EditorTemplateSelector.cs" />
     <Compile Include="ViewModels\Utils.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
     <Compile Include="ViewModels\MainPageVMValidator.cs" />
     <Compile Include="Views\ConfigTree.xaml.cs">
       <DependentUpon>ConfigTree.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ConnStringEditorWindow.xaml.cs">
-      <DependentUpon>ConnStringEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Editors.xaml.cs">
       <DependentUpon>Editors.xaml</DependentUpon>
@@ -274,10 +270,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ConfigTreeDataTemplateDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ConnStringEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

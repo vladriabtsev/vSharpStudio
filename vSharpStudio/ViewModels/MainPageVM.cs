@@ -60,53 +60,53 @@ namespace vSharpStudio.ViewModels
                 Logger.LogInformation("Creating empty Configuration");
                 this.Model = new Config();
             }
-            this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
-            this.Model.OnProviderSelectionChanged = (provider) =>
-            {
-                this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
-                this.Model.ListConnectionStringVMs.Clear();
-                this.Model.ListDbProviders.Clear();
-                for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
-                {
-                    string pr = this.ConnectionStringSettings[i].ProviderName;
-                    if (string.IsNullOrEmpty(pr))
-                    {
-                        bool isFound = false;
-                        foreach (var tt in this.Model.ListDbProviders)
-                        {
-                            if (tt == pr)
-                            {
-                                isFound = true;
-                                break;
-                            }
-                        }
-                        if (!isFound)
-                            this.Model.ListDbProviders.Add(pr);
-                    }
-                    if (provider != null)
-                    {
-                        if (provider == pr)
-                        {
-                            this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
-                            {
-                                Name = this.ConnectionStringSettings[i].Name,
-                                ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
-                                Provider = pr
-                            });
-                        }
-                    }
-                    else
-                    {
-                        this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
-                        {
-                            Name = this.ConnectionStringSettings[i].Name,
-                            ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
-                            Provider = pr
-                        }); ;
-                    }
-                }
-            };
-            this.Model.OnProviderSelectionChanged(null);
+            //this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
+            //this.Model.OnProviderSelectionChanged = (provider) =>
+            //{
+            //    this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
+            //    this.Model.ListConnectionStringVMs.Clear();
+            //    this.Model.ListDbProviders.Clear();
+            //    for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+            //    {
+            //        string pr = this.ConnectionStringSettings[i].ProviderName;
+            //        if (string.IsNullOrEmpty(pr))
+            //        {
+            //            bool isFound = false;
+            //            foreach (var tt in this.Model.ListDbProviders)
+            //            {
+            //                if (tt == pr)
+            //                {
+            //                    isFound = true;
+            //                    break;
+            //                }
+            //            }
+            //            if (!isFound)
+            //                this.Model.ListDbProviders.Add(pr);
+            //        }
+            //        if (provider != null)
+            //        {
+            //            if (provider == pr)
+            //            {
+            //                this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
+            //                {
+            //                    Name = this.ConnectionStringSettings[i].Name,
+            //                    ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
+            //                    Provider = pr
+            //                });
+            //            }
+            //        }
+            //        else
+            //        {
+            //            this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
+            //            {
+            //                Name = this.ConnectionStringSettings[i].Name,
+            //                ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
+            //                Provider = pr
+            //            }); ;
+            //        }
+            //    }
+            //};
+            //this.Model.OnProviderSelectionChanged(null);
         }
 
         private Config LoadConfig(string file_path, string indent)
@@ -158,34 +158,41 @@ namespace vSharpStudio.ViewModels
             Logger.LogInformation("Loaded " + _plugins.Count() + " plugins");
             if (onImportsSatisfied != null)
                 onImportsSatisfied(this, _plugins);
-            List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
+            List<PluginRow> lstGens = new List<PluginRow>();
+            //List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
             foreach (var t in _plugins)
             {
-                var p = new Plugin(t.Value);
+                Plugin p = null;
                 bool is_found = false;
+                // attaching plugin
                 foreach (var tt in this.Model.GroupPlugins.ListPlugins)
                 {
-                    if (tt.Guid == p.Guid)
+                    if (tt.Guid == t.Value.Guid && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                     {
                         tt.SetVPlugin(t.Value);
                         tt.Name = t.Value.Name;
                         tt.Description = t.Value.Description;
+                        tt.Version = t.Value.Version;
                         p = tt;
                         is_found = true;
                         break;
                     }
                 }
                 if (!is_found)
+                {
+                    p = new Plugin(t.Value);
                     this.Model.GroupPlugins.ListPlugins.Add(p);
-                p.Parent = this.Model.GroupPlugins;
+                    p.Parent = this.Model.GroupPlugins;
+                }
 
+                // attaching plugin generators
                 foreach (var tt in t.Value.ListGenerators)
                 {
-                    var pg = new PluginGenerator(tt);
+                    PluginGenerator pg = null;
                     is_found = false;
                     foreach (var ttt in p.ListGenerators)
                     {
-                        if (ttt.Guid == pg.Guid)
+                        if (ttt.Guid == tt.Guid)
                         {
                             ttt.SetGenerator(tt);
                             ttt.Name = tt.Name;
@@ -196,13 +203,17 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                     if (!is_found)
-                        p.ListGenerators.Add(pg);
-                    pg.Parent = p;
-
-                    if (tt.PluginGeneratorType == vPluginLayerTypeEnum.DbDesign)
                     {
-                        lstDbs.Add((IvPluginDbGenerator)tt);
+                        pg = new PluginGenerator(tt);
+                        p.ListGenerators.Add(pg);
+                        pg.Parent = p;
                     }
+                    lstGens.Add(new PluginRow()
+                    {
+                        GeneratorType = tt.PluginGeneratorType,
+                        Plugin = p,
+                        PluginGenerator = pg
+                    });
                 }
                 foreach (var ttt in p.ListGenerators)
                 {
@@ -228,8 +239,33 @@ namespace vSharpStudio.ViewModels
                     }
                 }
             }
-            this.ListDbDesignPlugins = lstDbs;
+            var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
+            foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
+            {
+                vPluginLayerTypeEnum gt = (vPluginLayerTypeEnum)t;
+                List<PluginRow> lst = new List<PluginRow>();
+                foreach (var tt in lstGens)
+                {
+                    if (tt.GeneratorType == gt)
+                        lst.Add(tt);
+                }
+                dic[gt] = lst;
+            }
+            if (this.DicPlugins != null)
+                this.DicPlugins.Clear();
+            this.DicPlugins = dic;
+            this.Model.DicPlugins = dic;
         }
+        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins
+        {
+            get { return _DicPlugins; }
+            set
+            {
+                _DicPlugins = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> _DicPlugins;
         public List<IvPluginDbGenerator> ListDbDesignPlugins
         {
             get { return _ListDbDesignPlugins; }
@@ -240,7 +276,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         public List<IvPluginDbGenerator> _ListDbDesignPlugins;
-        public IvPluginDbGenerator SelectedDbDesignPlugin
+        public PluginRow SelectedDbDesignPlugin
         {
             get { return _SelectedDbDesignPlugin; }
             set
@@ -251,7 +287,7 @@ namespace vSharpStudio.ViewModels
                 //var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
             }
         }
-        private IvPluginDbGenerator _SelectedDbDesignPlugin;
+        private PluginRow _SelectedDbDesignPlugin;
         public INotifyPropertyChanged SelectedDbDesignPluginSettings
         {
             get { return _SelectedDbDesignPluginSettings; }
@@ -281,36 +317,10 @@ namespace vSharpStudio.ViewModels
             AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
             CompositionContainer container = new CompositionContainer(catalog);
             container.SatisfyImportsOnce(this);
-
-
-            //AssemblyCatalog catalog = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
-            //DirectoryCatalog dirCatalog = new DirectoryCatalog("Plugins", "*.dll");
-            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
-            //TypeCatalog catalog = new TypeCatalog((typeof(IvPlugin));
-            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
-            //CompositionContainer container = new CompositionContainer(dirCatalog);
-            //container.SatisfyImportsOnce(this);
-            //container.ComposeParts(this);
-
-            //dirCatalog = new DirectoryCatalog(@"C:\Temp");
-            //AssemblyCatalog assemblyCat = new AssemblyCatalog(System.Reflection.Assembly.GetExecutingAssembly());
-            //AggregateCatalog catalog = new AggregateCatalog(assemblyCat, dirCatalog);
-            //CompositionContainer container = new CompositionContainer(catalog);
-            //container.ComposeParts(this);
         }
 
         #endregion Plugins
 
-        //List<IvPlugin> ListDbMigrators
-        //{
-        //    get { return _ListDbMigrators; }
-        //    set
-        //    {
-        //        _ListDbMigrators = value;
-        //        NotifyPropertyChanged();
-        //    }
-        //}
-        //List<IvPlugin> _ListDbMigrators;
         public Config Model
         {
             set
@@ -448,27 +458,6 @@ namespace vSharpStudio.ViewModels
 #endif
             }
         }
-        public vCommand CommandEditConnStrings
-        {
-            get
-            {
-                return _CommandEditConnStrings ?? (_CommandEditConnStrings = vCommand.Create(
-                    (o) =>
-                    {
-                        if (this.Model.ListConnectionStringVMs.Count == 0)
-                            MessageBox.Show("There are no connection strings in the App config file", "Warning");
-                        var vm = new ConnStringEditorVM(this);
-                        var win = new ConnStringEditorWindow(vm);
-                        if (win.ShowDialog() ?? false)
-                        {
-
-                        }
-                    },
-                    (o) => { return this.Model != null; }));
-            }
-        }
-        private vCommand _CommandEditConnStrings;
-
         private void CompareSaved(string json)
         {
             return;
@@ -743,94 +732,94 @@ namespace vSharpStudio.ViewModels
 
         //    return result;
         //}
-        string GetConnectionString(out string providerName)
-        {
-            providerName = null;
+        //string GetConnectionString(out string providerName)
+        //{
+        //    providerName = null;
 
-            string result = "";
-            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
-            string configPath = this.PathToProjectWithConnectionString + @"\App.config";
-            if (File.Exists(configPath))
-            {
-                configFile.ExeConfigFilename = configPath;
-            }
-            else
-            {
-                configPath = this.PathToProjectWithConnectionString + @"\Web.config";
-                if (File.Exists(configPath))
-                {
-                    configFile.ExeConfigFilename = configPath;
-                }
-            }
-            if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
-                throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
+        //    string result = "";
+        //    ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+        //    string configPath = this.PathToProjectWithConnectionString + @"\App.config";
+        //    if (File.Exists(configPath))
+        //    {
+        //        configFile.ExeConfigFilename = configPath;
+        //    }
+        //    else
+        //    {
+        //        configPath = this.PathToProjectWithConnectionString + @"\Web.config";
+        //        if (File.Exists(configPath))
+        //        {
+        //            configFile.ExeConfigFilename = configPath;
+        //        }
+        //    }
+        //    if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
+        //        throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
 
 
-            var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
-            var connSection = config.ConnectionStrings;
+        //    var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+        //    var connSection = config.ConnectionStrings;
 
-            try
-            {
-                result = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ConnectionString;
-                providerName = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ProviderName;
-            }
-            catch
-            {
-                result = "There is no connection string name called '" + this.SelectedDbDesignPlugin.Name + "Admin" + "'";
-            }
+        //    try
+        //    {
+        //        result = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ConnectionString;
+        //        providerName = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ProviderName;
+        //    }
+        //    catch
+        //    {
+        //        result = "There is no connection string name called '" + this.SelectedDbDesignPlugin.Name + "Admin" + "'";
+        //    }
 
-            //	if (String.IsNullOrEmpty(providerName))
-            //		providerName="System.Data.SqlClient";
+        //    //	if (String.IsNullOrEmpty(providerName))
+        //    //		providerName="System.Data.SqlClient";
 
-            return result;
-        }
-        public string PathToProjectWithConnectionString
-        {
-            set
-            {
-                if (_PathToProjectWithConnectionString != value)
-                {
-                    _PathToProjectWithConnectionString = value;
-                    NotifyPropertyChanged();
-                }
-            }
-            get { return _PathToProjectWithConnectionString; }
-        }
-        private string _PathToProjectWithConnectionString = "";
-        public string ConnectionString
-        {
-            get { return _ConnectionString; }
-            set
-            {
-                _ConnectionString = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private string _ConnectionString;
-        void InitConnectionString()
-        {
-            this.ConnectionString = GetConnectionString(out _providerName);
-            // https://www.connectionstrings.com/sqlconnection/
-            if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
-            {
-                //have to replace it
-                string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
-                this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
-            }
-        }
-        public string ProviderName
-        {
-            get
-            {
-                InitConnectionString();
-                return _providerName;
-            }
-        }
-        string _providerName = "";
-        public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
-        public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
-        public const string PROVIDER_NAME_MYSQL = "MySql.Data";
-        public const string PROVIDER_NAME_NPGSQL = "Npgsql";
+        //    return result;
+        //}
+        //public string PathToProjectWithConnectionString
+        //{
+        //    set
+        //    {
+        //        if (_PathToProjectWithConnectionString != value)
+        //        {
+        //            _PathToProjectWithConnectionString = value;
+        //            NotifyPropertyChanged();
+        //        }
+        //    }
+        //    get { return _PathToProjectWithConnectionString; }
+        //}
+        //private string _PathToProjectWithConnectionString = "";
+        //public string ConnectionString
+        //{
+        //    get { return _ConnectionString; }
+        //    set
+        //    {
+        //        _ConnectionString = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
+        //private string _ConnectionString;
+        //void InitConnectionString()
+        //{
+        //    this.ConnectionString = GetConnectionString(out _providerName);
+        //    // https://www.connectionstrings.com/sqlconnection/
+        //    if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
+        //    {
+        //        //have to replace it
+        //        string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
+        //        this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
+        //    }
+        //}
+        //public string ProviderName
+        //{
+        //    get
+        //    {
+        //        InitConnectionString();
+        //        return _providerName;
+        //    }
+        //}
+        //string _providerName = "";
+        //public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
+        //public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
+        //public const string PROVIDER_NAME_MYSQL = "MySql.Data";
+        //public const string PROVIDER_NAME_NPGSQL = "Npgsql";
         #endregion
     }
 }

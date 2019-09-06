@@ -24,6 +24,8 @@ namespace vSharpStudio.Views
         public ConfigTree()
         {
             InitializeComponent();
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return;
         }
 
         //private void ConfigTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

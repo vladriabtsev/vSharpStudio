@@ -267,6 +267,87 @@
           ]
         },
         {
+          "name": "proto_app_db_settings",
+          "longName": "proto_app_db_settings",
+          "fullName": "proto_config.proto_app_db_settings",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cAppDbSettings, AppDbSettings.AppDbSettingsValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_guid",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]\n@attr [Description(\"Default DB Plugin\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_name",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_gen_guid",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]\n@attr [Description(\"Default DB Plugin generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_gen_name",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "conn_guid",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]\n@attr [Description(\"Default DB connection string\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "conn_name",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_app_project",
           "longName": "proto_app_project",
           "fullName": "proto_config.proto_app_project",
@@ -326,12 +407,12 @@
               "defaultValue": ""
             },
             {
-              "name": "connection_string_name",
-              "description": "@attr [Description(\"Connection string name for database operations. If empty, solution setting is used\")]\n@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]",
+              "name": "default_db",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]\n@attr [Description(\"Database connection. If empty, solution settings are used\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_app_db_settings",
+              "longType": "proto_app_db_settings",
+              "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -397,12 +478,12 @@
               "defaultValue": ""
             },
             {
-              "name": "connection_string_name",
-              "description": "@attr [Description(\"Connection string name for database operations. If empty, UI setting is used\")]\n@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))]",
+              "name": "default_db",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]\n@attr [Description(\"Database connection. If empty, all solutions settings are used\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_app_db_settings",
+              "longType": "proto_app_db_settings",
+              "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1400,7 +1481,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [Editable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1410,7 +1491,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1420,7 +1501,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1430,11 +1511,21 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;",
+              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_db",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]",
+              "label": "",
+              "type": "proto_app_db_settings",
+              "longType": "proto_app_db_settings",
+              "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2567,6 +2658,16 @@
           "fields": [
             {
               "name": "guid",
+              "description": "@attr [Editable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
               "description": "@attr [Editable(false)]",
               "label": "",
               "type": "string",

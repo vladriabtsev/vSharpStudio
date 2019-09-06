@@ -364,9 +364,9 @@ namespace vSharpStudio.common
         {
             throw new NotImplementedException();
         }
-        public bool NodeCanRemove()
+        public virtual bool NodeCanRemove()
         {
-            if (this is ICanAddNode)
+            if (this is ICanRemoveNode)
                 return true;
             return false;
         }

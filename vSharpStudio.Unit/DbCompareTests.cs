@@ -65,7 +65,7 @@ namespace vSharpStudio.Unit
                         var tt = t.Value as IvPluginDbGenerator;
                         if (tt.Name == connStringName)
                         {
-                            mvm.SelectedDbDesignPlugin = tt;
+                            //mvm.SelectedDbDesignPlugin = tt;
                         }
                     }
                 }

@@ -187,6 +187,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_app_db_settings"><span class="badge">M</span>proto_app_db_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_app_project"><span class="badge">M</span>proto_app_project</a>
                 </li>
               
@@ -493,6 +497,82 @@ it will override previous settings
 
         
       
+        <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
+        <p>@base : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>plugin_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
+@attr [Description(&#34;Default DB Plugin&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugin_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugin_gen_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
+@attr [Description(&#34;Default DB Plugin generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugin_gen_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conn_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
+@attr [Description(&#34;Default DB connection string&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conn_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_app_project">proto_app_project</h3>
         <p></p>
 
@@ -541,11 +621,13 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>connection_string_name</td>
-                  <td><a href="#string">string</a></td>
+                  <td>default_db</td>
+                  <td><a href="#proto_config.proto_app_db_settings">proto_app_db_settings</a></td>
                   <td></td>
-                  <td><p>@attr [Description(&#34;Connection string name for database operations. If empty, solution setting is used&#34;)]
-@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Default DB&#34;)]
+@attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -604,11 +686,13 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>connection_string_name</td>
-                  <td><a href="#string">string</a></td>
+                  <td>default_db</td>
+                  <td><a href="#proto_config.proto_app_db_settings">proto_app_db_settings</a></td>
                   <td></td>
-                  <td><p>@attr [Description(&#34;Connection string name for database operations. If empty, UI setting is used&#34;)]
-@attr [Editor(typeof(AppConnStringNameEditor), typeof(AppConnStringNameEditor))] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Default DB&#34;)]
+@attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1446,28 +1530,38 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editable(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4; </p></td>
+                  <td><p>string name_ui = 4;
+@attr [PropertyOrderAttribute(2)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_db</td>
+                  <td><a href="#proto_config.proto_app_db_settings">proto_app_db_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Default DB&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2439,6 +2533,13 @@ repeated proto_document list_forms = 7; </p></td>
               
                 <tr>
                   <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Editable(false)] </p></td>

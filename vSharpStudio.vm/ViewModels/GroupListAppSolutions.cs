@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Apps";
             this.IsEditable = false;
+            this.DefaultDb.Parent = this;
         }
 
         #region Tree operations

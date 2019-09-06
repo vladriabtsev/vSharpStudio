@@ -50,7 +50,8 @@ namespace vPlugin.DbModel.MsSql
         public MsSqlDesignGenerator()
         {
             this.Guid = new Guid("0D85CF93-9134-45C6-B3B9-6BFAF4A12183");
-            this.Name = "Design";
+            this.Name = "SampleMsSqlDesign";
+            this.NameUi = "Sample MsSql design plugin";
             this.DefaultSettingsName = "Setting";
             this.Description = "DB structure creation and migration";
             this.PluginGeneratorType = vPluginLayerTypeEnum.DbDesign;
@@ -73,6 +74,7 @@ namespace vPlugin.DbModel.MsSql
         public ILogger Logger;
         public Guid Guid { get; protected set; }
         public string Name { get; protected set; }
+        public string NameUi { get; protected set; }
         public string DefaultSettingsName { get; protected set; }
         public string Description { get; protected set; }
         public vPluginLayerTypeEnum PluginGeneratorType { get; }

@@ -30,6 +30,8 @@ namespace vSharpStudio.Views
             // https://www.abhishekshukla.com/wpf/advanced-wpf-part-4-threading-in-windows-presentation-foundation/
             ViewModelBindable.AppDispatcher = UIDispatcher.Current;
             InitializeComponent();
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return;
 #if DEBUG
             _model = new MainPageVM(true);
             _model.Compose();
