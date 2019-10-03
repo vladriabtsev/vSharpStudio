@@ -43,32 +43,35 @@ namespace vSharpStudio.common
                 }
             }
             dic_curr = new Dictionary<string, T>();
-            foreach (var t in current)
+            if (current != null)
             {
-                foreach (var tt in t.GetAnnotations().ToList())
+                foreach (var t in current)
                 {
-                    t.RemoveAnnotation(tt.Name);
+                    foreach (var tt in t.GetAnnotations().ToList())
+                    {
+                        t.RemoveAnnotation(tt.Name);
+                    }
+                    if (dic_curr.ContainsKey(t.Guid))
+                        throw new Exception();
+                    dic_curr[t.Guid] = t;
                 }
-                if (dic_curr.ContainsKey(t.Guid))
-                    throw new Exception();
-                dic_curr[t.Guid] = t;
-            }
-            // new, renamed
-            foreach (var t in current)
-            {
-                if (!dic_prev.ContainsKey(t.Guid))
+                // new, renamed
+                foreach (var t in current)
                 {
-                    t[DiffEnumHistoryAnnotation.New.ToString()] = DiffEnumHistoryAnnotation.New;
-                }
-                else if (t.Name != dic_prev[t.Guid].Name)
-                {
-                    t[DiffEnumHistoryAnnotation.Renamed.ToString()] = DiffEnumHistoryAnnotation.Renamed;
-                }
-                else
-                {
+                    if (!dic_prev.ContainsKey(t.Guid))
+                    {
+                        t[DiffEnumHistoryAnnotation.New.ToString()] = DiffEnumHistoryAnnotation.New;
+                    }
+                    else if (t.Name != dic_prev[t.Guid].Name)
+                    {
+                        t[DiffEnumHistoryAnnotation.Renamed.ToString()] = DiffEnumHistoryAnnotation.Renamed;
+                    }
+                    else
+                    {
 
+                    }
+                    this.ListAll.Add(t);
                 }
-                this.ListAll.Add(t);
             }
             // deprecated
             if (prev != null)
@@ -163,12 +166,12 @@ namespace vSharpStudio.common
                     return false;
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.CATALOGS:
-                    foreach(var t in prev.ListObjectGuidsI)
+                    foreach (var t in prev.ListObjectGuidsI)
                     {
                         bool is_found = false;
                         foreach (var tt in cur.ListObjectGuidsI)
                         {
-                            if (t==tt)
+                            if (t == tt)
                             {
                                 is_found = true;
                                 break;

@@ -24,10 +24,5 @@ namespace vSharpStudio.Views
         {
             InitializeComponent();
         }
-
-        private void ContentControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //cc.s
-        }
     }
 }

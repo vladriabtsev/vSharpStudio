@@ -20,7 +20,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : IMigration, ICanGoLeft
+    public partial class ConfigModel : IMigration, ICanGoLeft
     {
         //public static readonly string DefaultName = "Config";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
@@ -29,48 +29,23 @@ namespace vSharpStudio.vm.ViewModels
         public string ConnectionString = null;
         partial void OnInit()
         {
-            this.Name = "Config";
-            this.PrimaryKeyType = EnumPrimaryKeyType.INT;
+            this.Name = "Model";
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
-#if DEBUG
-            //SubNodes.Add(this.GroupConstants, 1);
-#endif
-            this.GroupConfigs.Parent = this;
-            this.Children.Add(this.GroupConfigs, 0);
-
-            this.Model.Parent = this;
-            this.Children.Add(this.Model, 1);
-
-            //this.Children.Add(this, 5);
-
-            this.GroupSubModels.Parent = this;
-            this.Children.Add(this.GroupSubModels, 8);
-
-            if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
-                this.DbSettings.DbSchema = "v";
-            //this.ListConnectionStringVMs = new List<ConnStringVM>();
-            //this.ListDbProviders = new List<string>();
-
-            this.GroupPlugins.Parent = this;
-            this.Children.Add(this.GroupPlugins, 9);
-            this.GroupAppSolutions.Parent = this;
-            this.Children.Add(this.GroupAppSolutions, 10);
+            this.Children.Add(this.GroupCommon, 6);
+            this.GroupConstants.Parent = this;
+            this.Children.Add(this.GroupConstants, 7);
+            this.GroupEnumerations.Parent = this;
+            this.Children.Add(this.GroupEnumerations, 8);
+            this.GroupCatalogs.Parent = this;
+            this.Children.Add(this.GroupCatalogs, 9);
+            this.GroupDocuments.Parent = this;
+            this.Children.Add(this.GroupDocuments, 10);
+            this.GroupJournals.Parent = this;
+            this.Children.Add(this.GroupJournals, 11);
         }
         protected override void OnInitFromDto()
         {
             RecreateSubNodes();
-        }
-        public Config(string configJson)
-            : this()
-        {
-            var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
-            Config.ConvertToVM(pconfig, this);
-        }
-        public string ExportToJson()
-        {
-            var pconfig = Config.ConvertToProto(this);
-            var res = JsonFormatter.Default.Format(pconfig);
-            return res;
         }
 
         #region Validation
@@ -161,6 +136,9 @@ namespace vSharpStudio.vm.ViewModels
         void RecreateSubNodes()
         {
         }
+        partial void OnGroupConstantsChanged() { RecreateSubNodes(); }
+        partial void OnGroupCatalogsChanged() { RecreateSubNodes(); }
+        partial void OnGroupEnumerationsChanged() { RecreateSubNodes(); }
 
         #endregion ITreeNode
 

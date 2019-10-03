@@ -59,7 +59,7 @@ namespace vSharpStudio.Unit
         {
             Catalog vm = new Catalog();
             var cfg = new Config();
-            cfg.GroupCatalogs.Add(vm);
+            cfg.Model.GroupCatalogs.Add(vm);
             vm.Name = "test1";
             vm.BeginEdit();
             vm.Name = "test2";
@@ -75,7 +75,7 @@ namespace vSharpStudio.Unit
                 Name = "test1"
             };
             var cfg = new Config();
-            cfg.GroupCatalogs.Add(vm);
+            cfg.Model.GroupCatalogs.Add(vm);
             vm.GroupProperties.Add(prop);
             vm.BeginEdit();
             vm.GroupProperties[0].Name = "test2";
@@ -94,7 +94,7 @@ namespace vSharpStudio.Unit
         {
             Catalog vm = new Catalog();
             var cfg = new Config();
-            cfg.GroupCatalogs.Add(vm);
+            cfg.Model.GroupCatalogs.Add(vm);
             vm.BeginEdit();
             vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
             vm.CancelEdit();
@@ -133,8 +133,8 @@ namespace vSharpStudio.Unit
             var c = new Catalog() { Name = "test" };
 
             Assert.IsTrue(c.Parent == null);
-            cfg.GroupCatalogs.Add(c);
-            Assert.IsTrue(c.Parent == cfg.GroupCatalogs);
+            cfg.Model.GroupCatalogs.Add(c);
+            Assert.IsTrue(c.Parent == cfg.Model.GroupCatalogs);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
@@ -173,9 +173,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, c.CountWarnings);
             Assert.AreEqual(1, c.CountInfos);
 
-            Assert.AreEqual(1, cfg.GroupCatalogs.CountErrors);
-            Assert.AreEqual(2, cfg.GroupCatalogs.CountWarnings);
-            Assert.AreEqual(1, cfg.GroupCatalogs.CountInfos);
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.CountErrors);
+            Assert.AreEqual(2, cfg.Model.GroupCatalogs.CountWarnings);
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.CountInfos);
 
             Assert.AreEqual(1, cfg.CountErrors);
             Assert.AreEqual(2, cfg.CountWarnings);
@@ -194,25 +194,25 @@ namespace vSharpStudio.Unit
             string mes1 = "test error message";
             string mes2 = "test error message2";
 
-            cfg.GroupConstants.NodeAddNewSubNode();
+            cfg.Model.GroupConstants.NodeAddNewSubNode();
             Constant.ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
-            cfg.ValidateSubTreeFromNode(cfg.GroupConstants);
-            Assert.IsTrue(cfg.GroupConstants[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupConstants[0].CountErrors == 1);
-            Assert.IsTrue(cfg.GroupConstants.ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupConstants.CountErrors == 1);
+            cfg.ValidateSubTreeFromNode(cfg.Model.GroupConstants);
+            Assert.IsTrue(cfg.Model.GroupConstants[0].ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupConstants[0].CountErrors == 1);
+            Assert.IsTrue(cfg.Model.GroupConstants.ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupConstants.CountErrors == 1);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(cfg.CountErrors == 1);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
 
-            cfg.GroupEnumerations.NodeAddNewSubNode();
+            cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             Enumeration.EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
-            cfg.ValidateSubTreeFromNode(cfg.GroupEnumerations);
-            Assert.IsTrue(cfg.GroupEnumerations[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupEnumerations[0].CountErrors == 1);
-            Assert.IsTrue(cfg.GroupEnumerations.ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.GroupEnumerations.CountErrors == 1);
+            cfg.ValidateSubTreeFromNode(cfg.Model.GroupEnumerations);
+            Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.CountErrors == 1);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(cfg.CountErrors == 2);
             Assert.IsTrue(cfg.CountInfos == 0);
@@ -231,19 +231,19 @@ namespace vSharpStudio.Unit
         public void Property001_Position()
         {
             var cfg = new Config();
-            cfg.GroupCatalogs.NodeAddNewSubNode();
-            cfg.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[0].Position == 2);
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 2);
-            cfg.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[1].Position == 3);
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
-            cfg.GroupCatalogs[0].GroupProperties[0].NodeRemove();
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[0].Position == 3);
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
-            cfg.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties[1].Position == 4);
-            Assert.IsTrue(cfg.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
+            cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 2);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 2);
+            cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 3);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeRemove();
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 3);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 4);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
         }
         #endregion Property unique position for Protobuf
     }

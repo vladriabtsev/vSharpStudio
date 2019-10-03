@@ -16,8 +16,12 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IEnumerationPair tt = (IEnumerationPair)t;
-                IEnumerationPair prev2 = dic_prev[t.Guid];
-                IEnumerationPair current2 = dic_curr[t.Guid];
+                IEnumerationPair prev2 = null;
+                if (dic_prev.ContainsKey(t.Guid))
+                    prev2 = dic_prev[t.Guid];
+                IEnumerationPair current2 = null;
+                if (dic_curr.ContainsKey(t.Guid))
+                    current2 = dic_curr[t.Guid];
                 DiffEnumerationPair diff = new DiffEnumerationPair(prev2, current2);
                 t[DiffEnumHistoryAnnotation.DiffEnumerationPair.ToString()] = diff;
 

@@ -137,12 +137,17 @@
     <Compile Include="ViewModels\AppProject.cs" />
     <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
+    <Compile Include="ViewModels\SubModelRow.cs" />
+    <Compile Include="ViewModels\SubModel.Validator.cs" />
+    <Compile Include="ViewModels\SubModel.cs" />
     <Compile Include="ViewModels\BaseConfig.Validator.cs" />
     <Compile Include="ViewModels\BaseConfig.cs" />
     <Compile Include="ViewModels\AppSolution.cs" />
     <Compile Include="ViewModels\Catalog.cs" />
     <Compile Include="ViewModels\AppSolution.Validator.cs" />
     <Compile Include="ViewModels\Catalog.Validator.cs" />
+    <Compile Include="ViewModels\ConfigModel.Validator.cs" />
+    <Compile Include="ViewModels\ConfigModel.cs" />
     <Compile Include="ViewModels\Config.cs" />
     <Compile Include="ViewModels\Config.ISqlServerModelAnnotation.cs" />
     <Compile Include="ViewModels\Config.validation.messages.cs" />
@@ -161,6 +166,7 @@
     <Compile Include="ViewModels\EditorDbPluginGenSelection.cs" />
     <Compile Include="ViewModels\EditorDbPluginSelection.cs" />
     <Compile Include="ViewModels\EnumerationPair.Validator.cs" />
+    <Compile Include="ViewModels\GroupListSubModels.cs" />
     <Compile Include="ViewModels\GroupListCommon.cs" />
     <Compile Include="ViewModels\GroupListAppSolutions.cs" />
     <Compile Include="ViewModels\GroupListPlugins.cs" />

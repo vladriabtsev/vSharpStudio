@@ -18,6 +18,7 @@ namespace vSharpStudio.common
         protected abstract void Visit(List<IConstant> diff_lst);
         protected abstract void Visit(IConstant m, DiffDataType diff_type);
         protected abstract void Visit(IConfig m, DiffConfig diff);
+        protected abstract void Visit(IConfigModel m, DiffConfig diff);
         protected abstract void Visit(ICatalog m, DiffCatalog diff);
         protected abstract void Visit(IDocument m, DiffListProperties diff_shared_prop, DiffDocument diff);
         protected abstract void Visit(IPropertiesTab m, DiffPropertiesTab diff);
@@ -68,7 +69,7 @@ namespace vSharpStudio.common
         {
             var diff_config = t.GetDiffConfig();
             this.Visit(t, diff_config);
-            foreach (var tt in diff_config.Enumerations.ListAll)
+            foreach (var tt in diff_config.ConfigModel.Enumerations.ListAll)
             {
                 var diff_type = tt.GetDiffEnumerationType();
                 this.Visit(tt, diff_type);
@@ -80,13 +81,13 @@ namespace vSharpStudio.common
                     this.Visit(ttt, diff_pair);
                 }
             }
-            this.Visit(diff_config.Constants.ListAll);
-            foreach (var tt in diff_config.Constants.ListAll)
+            this.Visit(diff_config.ConfigModel.Constants.ListAll);
+            foreach (var tt in diff_config.ConfigModel.Constants.ListAll)
             {
                 var diff_type = tt.GetDiffDataType();
                 this.Visit(tt, diff_type);
             }
-            foreach (var tt in diff_config.Catalogs.ListAll)
+            foreach (var tt in diff_config.ConfigModel.Catalogs.ListAll)
             {
                 var diff_catalog = tt.GetDiffCatalog();
                 this.Visit(tt, diff_catalog);
@@ -97,12 +98,12 @@ namespace vSharpStudio.common
                 var diff_tabs = tt.GetDiffListPropertiesTabs();
                 this.VisitPropertiesTabs(diff_tabs);
             }
-            foreach (var tt in diff_config.Documents.ListAll)
+            foreach (var tt in diff_config.ConfigModel.Documents.ListAll)
             {
                 var diff_doc = tt.GetDiffDocument();
-                this.Visit(tt, diff_config.Documents.DiffSharedProps, diff_doc);
+                this.Visit(tt, diff_config.ConfigModel.Documents.DiffSharedProps, diff_doc);
 
-                this.VisitProperties(diff_config.Documents.DiffSharedProps);
+                this.VisitProperties(diff_config.ConfigModel.Documents.DiffSharedProps);
 
                 var diff_properties = tt.GetDiffListProperties();
                 this.VisitProperties(diff_properties);

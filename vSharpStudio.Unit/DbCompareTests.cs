@@ -72,7 +72,7 @@ namespace vSharpStudio.Unit
                 if (mvm.SelectedDbDesignPlugin == null)
                     throw new ArgumentException();
 
-                var cfg = mvm.Model;
+                var cfg = mvm.Config;
                 configCreation(cfg);
 
                 //mvm.SelectedDbDesignPlugin.ConnectionString = mvm.ConnectionString;

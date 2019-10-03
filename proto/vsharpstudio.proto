@@ -85,7 +85,6 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
-
 enum db_id_generator_method
 {
     Identity = 0;
@@ -161,7 +160,6 @@ message proto_group_list_app_solutions {
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
-//  string name_ui = 4;
     // @attr [PropertyOrderAttribute(2)]
     string description = 5;
     // @attr [PropertyOrderAttribute(3)]
@@ -176,7 +174,6 @@ message proto_app_solution {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-//  string name_ui = 4;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
     // List NET projects
@@ -195,7 +192,6 @@ message proto_app_project {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-//  string name_ui = 4;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
     // @attr [PropertyOrderAttribute(6)]
@@ -220,7 +216,6 @@ message proto_group_list_base_configs {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-//  string name_ui = 4;
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_base_config list_base_configs = 9;
@@ -229,7 +224,6 @@ message proto_base_config {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-//  string name_ui = 4;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -265,11 +259,53 @@ message proto_config {
     db_settings db_settings = 14;
 
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_app_solutions  group_app_solutions = 98;
+    proto_group_list_base_configs group_configs = 101;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_plugins group_plugins = 99;
+    proto_config_model model = 102;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_base_configs group_configs = 100;
+    proto_group_list_sub_models group_sub_models = 103;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_plugins group_plugins = 104;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_app_solutions  group_app_solutions = 105;
+}
+/** 
+ * @exclude
+ * ####################################### M O D E L ##########################################
+ */
+message proto_group_list_sub_models {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string description = 5;
+    // @attr [DisplayName("Auto")]
+    // @attr [Description("Auto insert dependancies")]
+    bool is_auto_insert_dependancies = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_sub_model list_sub_models = 9;
+}
+message proto_sub_model {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guids = 6;
+}
+// Configuration model
+message proto_config_model {
+    // Unique Guid for configuration (for comparison)
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editable(false)]
+    int32 version = 2;
+    string name = 3;
+    uint64 sorting_value = 4;
+    string name_ui = 5;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 6;
+
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
     // @attr [BrowsableAttribute(false)]
@@ -731,6 +767,13 @@ message proto_item_name_value {
     uint64 sorting_value = 3;
 }
 */
+// @base : ViewModelBindable<SubModelRow>
+message proto_sub_model_row {
+    string group_name = 1;
+    string name = 2;
+    string guid = 3;
+    bool is_included = 4;
+}
 /** 
  * @exclude
  * ####################################### N U L L A B L E ##########################################

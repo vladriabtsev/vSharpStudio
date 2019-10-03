@@ -14,6 +14,7 @@ namespace GenFromProto
         MessageDescriptor message;
         FieldDescriptor field;
         FieldDoc Doc;
+        MessageDoc DocMes;
         //bool isSpecial = false;
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {
@@ -21,6 +22,7 @@ namespace GenFromProto
             this.message = message;
             this.field = field;
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];
+            this.DocMes = JsonDoc.Files[root.Name].Messages[message.Name];
             //if (field.Name == "guid") // || field.Name == "name" || field.Name == "name_ui" || field.Name == "sorting_value")
             //    isSpecial = true;
         }

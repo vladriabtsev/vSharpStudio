@@ -40,7 +40,7 @@ namespace vSharpStudio
             if (e.Args.Length == 1)
             {
                 Logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);
-                MainPage.MainPageVM.Model.SolutionPath = e.Args[0];
+                MainPage.MainPageVM.Config.SolutionPath = e.Args[0];
             }
         }
     }

@@ -21,29 +21,29 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	
 	public partial interface IMsSqlDesignGeneratorSettings  // ModelInterfaces.tt Line: 26
 	{
-		string Name { get; } // ModelInterfaces.tt Line: 41
-		string Guid { get; } // ModelInterfaces.tt Line: 41
-		string NameUi { get; } // ModelInterfaces.tt Line: 41
-		bool IsUseForeingkey { get; } // ModelInterfaces.tt Line: 41
-		bool IsUseForeingkeyIndex { get; } // ModelInterfaces.tt Line: 41
-		bool IsUseStorageProcedures { get; } // ModelInterfaces.tt Line: 41
-		bool IsUseViews { get; } // ModelInterfaces.tt Line: 41
+		string Name { get; } // ModelInterfaces.tt Line: 43
+		string Guid { get; } // ModelInterfaces.tt Line: 43
+		string NameUi { get; } // ModelInterfaces.tt Line: 43
+		bool IsUseForeingkey { get; } // ModelInterfaces.tt Line: 43
+		bool IsUseForeingkeyIndex { get; } // ModelInterfaces.tt Line: 43
+		bool IsUseStorageProcedures { get; } // ModelInterfaces.tt Line: 43
+		bool IsUseViews { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		bool IsPrimaryKeyClustered { get; } // ModelInterfaces.tt Line: 41
+		bool IsPrimaryKeyClustered { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		bool IsMemoryOptimized { get; } // ModelInterfaces.tt Line: 41
+		bool IsMemoryOptimized { get; } // ModelInterfaces.tt Line: 43
 	}
 	
 	public partial interface IMsSqlConnectionSettings  // ModelInterfaces.tt Line: 26
 	{
-		string Name { get; } // ModelInterfaces.tt Line: 41
-		string Guid { get; } // ModelInterfaces.tt Line: 41
+		string Name { get; } // ModelInterfaces.tt Line: 43
+		string Guid { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -54,7 +54,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize
 		///     property, or 100 if none has been supplied.
 		///////////////////////////////////////////////////
-		int MaxPoolSize { get; } // ModelInterfaces.tt Line: 41
+		int MaxPoolSize { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -68,7 +68,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The number of reconnections attempted after identifying that there was an idle
 		///     connection failure.
 		///////////////////////////////////////////////////
-		int ConnectRetryCount { get; } // ModelInterfaces.tt Line: 41
+		int ConnectRetryCount { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -82,7 +82,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     Amount of time (in seconds) between each reconnection attempt after identifying
 		///     that there was an idle connection failure.
 		///////////////////////////////////////////////////
-		int ConnectRetryInterval { get; } // ModelInterfaces.tt Line: 41
+		int ConnectRetryInterval { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -93,7 +93,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize
 		///     property, or 0 if none has been supplied.
 		///////////////////////////////////////////////////
-		int MinPoolSize { get; } // ModelInterfaces.tt Line: 41
+		int MinPoolSize { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -106,7 +106,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MultipleActiveResultSets
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
-		bool MultipleActiveResultSets { get; } // ModelInterfaces.tt Line: 41
+		bool MultipleActiveResultSets { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -119,7 +119,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     Returns System.Boolean indicating the current value of the property.
 		///////////////////////////////////////////////////
-		bool MultiSubnetFailover { get; } // ModelInterfaces.tt Line: 41
+		bool MultiSubnetFailover { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -132,7 +132,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     A boolean value.
 		///////////////////////////////////////////////////
-		bool TransparentNetworkIPResolution { get; } // ModelInterfaces.tt Line: 41
+		bool TransparentNetworkIPResolution { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -147,7 +147,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string NetworkLibrary { get; } // ModelInterfaces.tt Line: 41
+		string NetworkLibrary { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -158,7 +158,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize
 		///     property, or 8000 if none has been supplied.
 		///////////////////////////////////////////////////
-		int PacketSize { get; } // ModelInterfaces.tt Line: 41
+		int PacketSize { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -170,7 +170,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PersistSecurityInfo
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
-		bool PersistSecurityInfo { get; } // ModelInterfaces.tt Line: 41
+		bool PersistSecurityInfo { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -181,7 +181,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.LoadBalanceTimeout
 		///     property, or 0 if none has been supplied.
 		///////////////////////////////////////////////////
-		int LoadBalanceTimeout { get; } // ModelInterfaces.tt Line: 41
+		int LoadBalanceTimeout { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -192,7 +192,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Pooling property,
 		///     or true if none has been supplied.
 		///////////////////////////////////////////////////
-		bool Pooling { get; } // ModelInterfaces.tt Line: 41
+		bool Pooling { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -203,7 +203,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Replication
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
-		bool Replication { get; } // ModelInterfaces.tt Line: 41
+		bool Replication { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -214,7 +214,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding
 		///     property, or String.Empty if none has been supplied.
 		///////////////////////////////////////////////////
-		string TransactionBinding { get; } // ModelInterfaces.tt Line: 41
+		string TransactionBinding { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -228,7 +228,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     pair can handle. This will automatically move forward as the client and server
 		///     components are upgraded.
 		///////////////////////////////////////////////////
-		string TypeSystemVersion { get; } // ModelInterfaces.tt Line: 41
+		string TypeSystemVersion { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -242,7 +242,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string UserID { get; } // ModelInterfaces.tt Line: 41
+		string UserID { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -258,7 +258,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		bool UserInstance { get; } // ModelInterfaces.tt Line: 41
+		bool UserInstance { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -272,7 +272,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string WorkstationID { get; } // ModelInterfaces.tt Line: 41
+		string WorkstationID { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -286,7 +286,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     The password was incorrectly set to null. See code sample below.
 		///////////////////////////////////////////////////
-		string Password { get; } // ModelInterfaces.tt Line: 41
+		string Password { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -295,7 +295,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
-		SqlAuthenticationMethod Authentication { get; } // ModelInterfaces.tt Line: 41
+		SqlAuthenticationMethod Authentication { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -309,7 +309,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string InitialCatalog { get; } // ModelInterfaces.tt Line: 41
+		string InitialCatalog { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -321,7 +321,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     Returns the current value of the property (a value of type System.Data.SqlClient.ApplicationIntent).
 		///////////////////////////////////////////////////
-		ApplicationIntent ApplicationIntentValue { get; } // ModelInterfaces.tt Line: 41
+		ApplicationIntent ApplicationIntentValue { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -335,7 +335,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string ApplicationName { get; } // ModelInterfaces.tt Line: 41
+		string ApplicationName { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -348,7 +348,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     value of the System.Data.SqlClient.SqlConnectionStringBuilder.AsynchronousProcessing
 		///     property, or false if no value has been supplied.
 		///////////////////////////////////////////////////
-		bool AsynchronousProcessing { get; } // ModelInterfaces.tt Line: 41
+		bool AsynchronousProcessing { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -360,7 +360,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.IntegratedSecurity
 		///     property, or false if none has been supplied.
 		///////////////////////////////////////////////////
-		bool IntegratedSecurity { get; } // ModelInterfaces.tt Line: 41
+		bool IntegratedSecurity { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -371,7 +371,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection
 		///     property, or False if none has been supplied.
 		///////////////////////////////////////////////////
-		bool ContextConnection { get; } // ModelInterfaces.tt Line: 41
+		bool ContextConnection { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -382,7 +382,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout
 		///     property, or 15 seconds if no value has been supplied.
 		///////////////////////////////////////////////////
-		int ConnectTimeout { get; } // ModelInterfaces.tt Line: 41
+		int ConnectTimeout { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -397,7 +397,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string AttachDBFilename { get; } // ModelInterfaces.tt Line: 41
+		string AttachDBFilename { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -412,7 +412,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string DataSource { get; } // ModelInterfaces.tt Line: 41
+		string DataSource { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -424,7 +424,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Encrypt property,
 		///     or false if none has been supplied.
 		///////////////////////////////////////////////////
-		bool Encrypt { get; } // ModelInterfaces.tt Line: 41
+		bool Encrypt { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -433,7 +433,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     The column encryption settings for the connection string builder.
 		///////////////////////////////////////////////////
-		SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting { get; } // ModelInterfaces.tt Line: 41
+		SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -443,7 +443,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// Returns:
 		///     A Boolean. Recognized values are true, false, yes, and no.
 		///////////////////////////////////////////////////
-		bool TrustServerCertificate { get; } // ModelInterfaces.tt Line: 41
+		bool TrustServerCertificate { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -455,7 +455,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///     The value of the System.Data.SqlClient.SqlConnectionStringBuilder.Enlist property,
 		///     or true if none has been supplied.
 		///////////////////////////////////////////////////
-		bool Enlist { get; } // ModelInterfaces.tt Line: 41
+		bool Enlist { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -470,7 +470,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string FailoverPartner { get; } // ModelInterfaces.tt Line: 41
+		string FailoverPartner { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -484,6 +484,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		///   T:System.ArgumentNullException:
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
-		string CurrentLanguage { get; } // ModelInterfaces.tt Line: 41
+		string CurrentLanguage { get; } // ModelInterfaces.tt Line: 43
 	}
 }

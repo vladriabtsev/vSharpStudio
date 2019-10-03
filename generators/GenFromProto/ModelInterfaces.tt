@@ -32,7 +32,9 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
      if (field.Name=="name") continue;
    } this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
-<# if (field.IsCsSimple()) { #>
+<# if (field.IsMap()) { #>
+IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
+<# } else if (field.IsCsSimple()) { #>
 IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
 <# } else { #>
 IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>

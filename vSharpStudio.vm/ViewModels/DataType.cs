@@ -77,7 +77,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CATALOG:
                     if (config is Config)
                     {
-                        foreach (var t in (config as Config).GroupCatalogs.ListCatalogs)
+                        foreach (var t in (config as Config).Model.GroupCatalogs.ListCatalogs)
                         {
                             if (p.ObjectGuid == t.Guid)
                             {
@@ -92,7 +92,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DOCUMENT:
                     if (config is Config)
                     {
-                        foreach (var t in (config as Config).GroupDocuments.GroupListDocuments.ListDocuments)
+                        foreach (var t in (config as Config).Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
                             if (p.ObjectGuid == t.Guid)
                             {
@@ -107,7 +107,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ENUMERATION:
                     if (config is Config)
                     {
-                        foreach (var t in (config as Config).GroupEnumerations.ListEnumerations)
+                        foreach (var t in (config as Config).Model.GroupEnumerations.ListEnumerations)
                         {
                             if (p.ObjectGuid == t.Guid)
                             {
@@ -588,13 +588,13 @@ namespace vSharpStudio.vm.ViewModels
                 switch (this.DataTypeEnum)
                 {
                     case EnumDataType.ENUMERATION:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).GroupEnumerations.ListEnumerations);
+                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupEnumerations.ListEnumerations);
                         break;
                     case EnumDataType.CATALOG:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).GroupCatalogs.ListCatalogs);
+                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupCatalogs.ListCatalogs);
                         break;
                     case EnumDataType.DOCUMENT:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).GroupDocuments.GroupListDocuments.ListDocuments);
+                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupDocuments.GroupListDocuments.ListDocuments);
                         break;
                     default:
                         break;

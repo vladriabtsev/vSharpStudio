@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.ViewModels
 {
+    // https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselector?view=netframework-4.8
     public class EditorTemplateSelector : DataTemplateSelector
     {
         public DataTemplate DefaultTemplate { get; set; }
@@ -30,6 +32,13 @@ namespace vSharpStudio.ViewModels
             //{
             //    return DefaultTemplate;
             //}
+            if (item != null)
+            {
+                if (item.GetType().FullName == typeof(SubModel).FullName)
+                {
+
+                }
+            }
             return DefaultTemplate;
         }
     }

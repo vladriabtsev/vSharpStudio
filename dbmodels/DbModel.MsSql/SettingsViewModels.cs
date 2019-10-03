@@ -1,4 +1,4 @@
-// Auto generated on UTC 09/22/2019 13:41:07
+// Auto generated on UTC 10/03/2019 16:28:28
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -27,8 +27,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 	{
 		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { } 
 		#region CTOR
-		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator)
-		{
+		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator)	{
 			OnInit();
 		}
 		partial void OnInit();
@@ -60,7 +59,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 126
 		    to.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 126
 		}
-		// Clone.tt Line: 131
+		// Clone.tt Line: 132
 		#region IEditable
 		public override MsSqlDesignGeneratorSettings Backup()
 		{
@@ -78,42 +77,42 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_ms_sql_design_generator_settings' to 'MsSqlDesignGeneratorSettings'
-		public static MsSqlDesignGeneratorSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_design_generator_settings m, MsSqlDesignGeneratorSettings vm = null) // Clone.tt Line: 149
+		public static MsSqlDesignGeneratorSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_design_generator_settings m, MsSqlDesignGeneratorSettings vm = null) // Clone.tt Line: 151
 		{
 		    if (vm == null)
 		        vm = new MsSqlDesignGeneratorSettings();
 		    if (m == null)
 		        return vm;
-		    vm.Name = m.Name; // Clone.tt Line: 197
-		    vm.Guid = m.Guid; // Clone.tt Line: 197
-		    vm.NameUi = m.NameUi; // Clone.tt Line: 197
-		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 197
-		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 197
-		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 197
-		    vm.IsUseViews = m.IsUseViews; // Clone.tt Line: 197
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered; // Clone.tt Line: 197
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized; // Clone.tt Line: 197
+		    vm.Name = m.Name; // Clone.tt Line: 199
+		    vm.Guid = m.Guid; // Clone.tt Line: 199
+		    vm.NameUi = m.NameUi; // Clone.tt Line: 199
+		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 199
+		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 199
+		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 199
+		    vm.IsUseViews = m.IsUseViews; // Clone.tt Line: 199
+		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered; // Clone.tt Line: 199
+		    vm.IsMemoryOptimized = m.IsMemoryOptimized; // Clone.tt Line: 199
 		    return vm;
 		}
 		// Conversion from 'MsSqlDesignGeneratorSettings' to 'proto_ms_sql_design_generator_settings'
-		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 207
+		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 209
 		{
-		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings(); // Clone.tt Line: 209
-		    m.Name = vm.Name; // Clone.tt Line: 233
-		    m.Guid = vm.Guid; // Clone.tt Line: 233
-		    m.NameUi = vm.NameUi; // Clone.tt Line: 233
-		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 233
-		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 233
-		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 233
-		    m.IsUseViews = vm.IsUseViews; // Clone.tt Line: 233
-		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered; // Clone.tt Line: 233
-		    m.IsMemoryOptimized = vm.IsMemoryOptimized; // Clone.tt Line: 233
+		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings(); // Clone.tt Line: 211
+		    m.Name = vm.Name; // Clone.tt Line: 235
+		    m.Guid = vm.Guid; // Clone.tt Line: 235
+		    m.NameUi = vm.NameUi; // Clone.tt Line: 235
+		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 235
+		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 235
+		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 235
+		    m.IsUseViews = vm.IsUseViews; // Clone.tt Line: 235
+		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered; // Clone.tt Line: 235
+		    m.IsMemoryOptimized = vm.IsMemoryOptimized; // Clone.tt Line: 235
 		    return m;
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public string Name // Property.tt Line: 107
+		public string Name // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -129,9 +128,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging(); // Property.tt Line: 124
+		partial void OnNameChanging(); // Property.tt Line: 134
 		partial void OnNameChanged();
-		public string Guid // Property.tt Line: 107
+		public string Guid // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -147,11 +146,11 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging(); // Property.tt Line: 124
+		partial void OnGuidChanging(); // Property.tt Line: 134
 		partial void OnGuidChanged();
 		[Editable(false)]
 		[DisplayName("UI name")]
-		public string NameUi // Property.tt Line: 107
+		public string NameUi // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -167,9 +166,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _NameUi; }
 		}
 		private string _NameUi = "";
-		partial void OnNameUiChanging(); // Property.tt Line: 124
+		partial void OnNameUiChanging(); // Property.tt Line: 134
 		partial void OnNameUiChanged();
-		public bool IsUseForeingkey // Property.tt Line: 107
+		public bool IsUseForeingkey // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -185,9 +184,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseForeingkey; }
 		}
 		private bool _IsUseForeingkey;
-		partial void OnIsUseForeingkeyChanging(); // Property.tt Line: 124
+		partial void OnIsUseForeingkeyChanging(); // Property.tt Line: 134
 		partial void OnIsUseForeingkeyChanged();
-		public bool IsUseForeingkeyIndex // Property.tt Line: 107
+		public bool IsUseForeingkeyIndex // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -203,9 +202,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseForeingkeyIndex; }
 		}
 		private bool _IsUseForeingkeyIndex;
-		partial void OnIsUseForeingkeyIndexChanging(); // Property.tt Line: 124
+		partial void OnIsUseForeingkeyIndexChanging(); // Property.tt Line: 134
 		partial void OnIsUseForeingkeyIndexChanged();
-		public bool IsUseStorageProcedures // Property.tt Line: 107
+		public bool IsUseStorageProcedures // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -221,9 +220,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseStorageProcedures; }
 		}
 		private bool _IsUseStorageProcedures;
-		partial void OnIsUseStorageProceduresChanging(); // Property.tt Line: 124
+		partial void OnIsUseStorageProceduresChanging(); // Property.tt Line: 134
 		partial void OnIsUseStorageProceduresChanged();
-		public bool IsUseViews // Property.tt Line: 107
+		public bool IsUseViews // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -239,13 +238,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseViews; }
 		}
 		private bool _IsUseViews;
-		partial void OnIsUseViewsChanging(); // Property.tt Line: 124
+		partial void OnIsUseViewsChanging(); // Property.tt Line: 134
 		partial void OnIsUseViewsChanged();
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsPrimaryKeyClustered // Property.tt Line: 107
+		public bool IsPrimaryKeyClustered // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -261,13 +260,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsPrimaryKeyClustered; }
 		}
 		private bool _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging(); // Property.tt Line: 124
+		partial void OnIsPrimaryKeyClusteredChanging(); // Property.tt Line: 134
 		partial void OnIsPrimaryKeyClusteredChanged();
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsMemoryOptimized // Property.tt Line: 107
+		public bool IsMemoryOptimized // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -283,7 +282,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsMemoryOptimized; }
 		}
 		private bool _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging(); // Property.tt Line: 124
+		partial void OnIsMemoryOptimizedChanging(); // Property.tt Line: 134
 		partial void OnIsMemoryOptimizedChanged();
 		#endregion Properties
 	}
@@ -297,8 +296,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 	{
 		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { } 
 		#region CTOR
-		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator)
-		{
+		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator)	{
 			OnInit();
 		}
 		partial void OnInit();
@@ -386,7 +384,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		    to.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 126
 		    to.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 126
 		}
-		// Clone.tt Line: 131
+		// Clone.tt Line: 132
 		#region IEditable
 		public override MsSqlConnectionSettings Backup()
 		{
@@ -404,98 +402,98 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_ms_sql_connection_settings' to 'MsSqlConnectionSettings'
-		public static MsSqlConnectionSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_connection_settings m, MsSqlConnectionSettings vm = null) // Clone.tt Line: 149
+		public static MsSqlConnectionSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_connection_settings m, MsSqlConnectionSettings vm = null) // Clone.tt Line: 151
 		{
 		    if (vm == null)
 		        vm = new MsSqlConnectionSettings();
 		    if (m == null)
 		        return vm;
-		    vm.Name = m.Name; // Clone.tt Line: 197
-		    vm.Guid = m.Guid; // Clone.tt Line: 197
-		    vm.MaxPoolSize = m.MaxPoolSize; // Clone.tt Line: 197
-		    vm.ConnectRetryCount = m.ConnectRetryCount; // Clone.tt Line: 197
-		    vm.ConnectRetryInterval = m.ConnectRetryInterval; // Clone.tt Line: 197
-		    vm.MinPoolSize = m.MinPoolSize; // Clone.tt Line: 197
-		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets; // Clone.tt Line: 197
-		    vm.MultiSubnetFailover = m.MultiSubnetFailover; // Clone.tt Line: 197
-		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution; // Clone.tt Line: 197
-		    vm.NetworkLibrary = m.NetworkLibrary; // Clone.tt Line: 197
-		    vm.PacketSize = m.PacketSize; // Clone.tt Line: 197
-		    vm.PersistSecurityInfo = m.PersistSecurityInfo; // Clone.tt Line: 197
-		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout; // Clone.tt Line: 197
-		    vm.Pooling = m.Pooling; // Clone.tt Line: 197
-		    vm.Replication = m.Replication; // Clone.tt Line: 197
-		    vm.TransactionBinding = m.TransactionBinding; // Clone.tt Line: 197
-		    vm.TypeSystemVersion = m.TypeSystemVersion; // Clone.tt Line: 197
-		    vm.UserID = m.UserID; // Clone.tt Line: 197
-		    vm.UserInstance = m.UserInstance; // Clone.tt Line: 197
-		    vm.WorkstationID = m.WorkstationID; // Clone.tt Line: 197
-		    vm.Password = m.Password; // Clone.tt Line: 197
-		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication; // Clone.tt Line: 195
-		    vm.InitialCatalog = m.InitialCatalog; // Clone.tt Line: 197
-		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue; // Clone.tt Line: 195
-		    vm.ApplicationName = m.ApplicationName; // Clone.tt Line: 197
-		    vm.AsynchronousProcessing = m.AsynchronousProcessing; // Clone.tt Line: 197
-		    vm.IntegratedSecurity = m.IntegratedSecurity; // Clone.tt Line: 197
-		    vm.ContextConnection = m.ContextConnection; // Clone.tt Line: 197
-		    vm.ConnectTimeout = m.ConnectTimeout; // Clone.tt Line: 197
-		    vm.AttachDBFilename = m.AttachDBFilename; // Clone.tt Line: 197
-		    vm.DataSource = m.DataSource; // Clone.tt Line: 197
-		    vm.Encrypt = m.Encrypt; // Clone.tt Line: 197
-		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting; // Clone.tt Line: 195
-		    vm.TrustServerCertificate = m.TrustServerCertificate; // Clone.tt Line: 197
-		    vm.Enlist = m.Enlist; // Clone.tt Line: 197
-		    vm.FailoverPartner = m.FailoverPartner; // Clone.tt Line: 197
-		    vm.CurrentLanguage = m.CurrentLanguage; // Clone.tt Line: 197
+		    vm.Name = m.Name; // Clone.tt Line: 199
+		    vm.Guid = m.Guid; // Clone.tt Line: 199
+		    vm.MaxPoolSize = m.MaxPoolSize; // Clone.tt Line: 199
+		    vm.ConnectRetryCount = m.ConnectRetryCount; // Clone.tt Line: 199
+		    vm.ConnectRetryInterval = m.ConnectRetryInterval; // Clone.tt Line: 199
+		    vm.MinPoolSize = m.MinPoolSize; // Clone.tt Line: 199
+		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets; // Clone.tt Line: 199
+		    vm.MultiSubnetFailover = m.MultiSubnetFailover; // Clone.tt Line: 199
+		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution; // Clone.tt Line: 199
+		    vm.NetworkLibrary = m.NetworkLibrary; // Clone.tt Line: 199
+		    vm.PacketSize = m.PacketSize; // Clone.tt Line: 199
+		    vm.PersistSecurityInfo = m.PersistSecurityInfo; // Clone.tt Line: 199
+		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout; // Clone.tt Line: 199
+		    vm.Pooling = m.Pooling; // Clone.tt Line: 199
+		    vm.Replication = m.Replication; // Clone.tt Line: 199
+		    vm.TransactionBinding = m.TransactionBinding; // Clone.tt Line: 199
+		    vm.TypeSystemVersion = m.TypeSystemVersion; // Clone.tt Line: 199
+		    vm.UserID = m.UserID; // Clone.tt Line: 199
+		    vm.UserInstance = m.UserInstance; // Clone.tt Line: 199
+		    vm.WorkstationID = m.WorkstationID; // Clone.tt Line: 199
+		    vm.Password = m.Password; // Clone.tt Line: 199
+		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication; // Clone.tt Line: 197
+		    vm.InitialCatalog = m.InitialCatalog; // Clone.tt Line: 199
+		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue; // Clone.tt Line: 197
+		    vm.ApplicationName = m.ApplicationName; // Clone.tt Line: 199
+		    vm.AsynchronousProcessing = m.AsynchronousProcessing; // Clone.tt Line: 199
+		    vm.IntegratedSecurity = m.IntegratedSecurity; // Clone.tt Line: 199
+		    vm.ContextConnection = m.ContextConnection; // Clone.tt Line: 199
+		    vm.ConnectTimeout = m.ConnectTimeout; // Clone.tt Line: 199
+		    vm.AttachDBFilename = m.AttachDBFilename; // Clone.tt Line: 199
+		    vm.DataSource = m.DataSource; // Clone.tt Line: 199
+		    vm.Encrypt = m.Encrypt; // Clone.tt Line: 199
+		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting; // Clone.tt Line: 197
+		    vm.TrustServerCertificate = m.TrustServerCertificate; // Clone.tt Line: 199
+		    vm.Enlist = m.Enlist; // Clone.tt Line: 199
+		    vm.FailoverPartner = m.FailoverPartner; // Clone.tt Line: 199
+		    vm.CurrentLanguage = m.CurrentLanguage; // Clone.tt Line: 199
 		    return vm;
 		}
 		// Conversion from 'MsSqlConnectionSettings' to 'proto_ms_sql_connection_settings'
-		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm) // Clone.tt Line: 207
+		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm) // Clone.tt Line: 209
 		{
-		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings(); // Clone.tt Line: 209
-		    m.Name = vm.Name; // Clone.tt Line: 233
-		    m.Guid = vm.Guid; // Clone.tt Line: 233
-		    m.MaxPoolSize = vm.MaxPoolSize; // Clone.tt Line: 233
-		    m.ConnectRetryCount = vm.ConnectRetryCount; // Clone.tt Line: 233
-		    m.ConnectRetryInterval = vm.ConnectRetryInterval; // Clone.tt Line: 233
-		    m.MinPoolSize = vm.MinPoolSize; // Clone.tt Line: 233
-		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets; // Clone.tt Line: 233
-		    m.MultiSubnetFailover = vm.MultiSubnetFailover; // Clone.tt Line: 233
-		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution; // Clone.tt Line: 233
-		    m.NetworkLibrary = vm.NetworkLibrary; // Clone.tt Line: 233
-		    m.PacketSize = vm.PacketSize; // Clone.tt Line: 233
-		    m.PersistSecurityInfo = vm.PersistSecurityInfo; // Clone.tt Line: 233
-		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout; // Clone.tt Line: 233
-		    m.Pooling = vm.Pooling; // Clone.tt Line: 233
-		    m.Replication = vm.Replication; // Clone.tt Line: 233
-		    m.TransactionBinding = vm.TransactionBinding; // Clone.tt Line: 233
-		    m.TypeSystemVersion = vm.TypeSystemVersion; // Clone.tt Line: 233
-		    m.UserID = vm.UserID; // Clone.tt Line: 233
-		    m.UserInstance = vm.UserInstance; // Clone.tt Line: 233
-		    m.WorkstationID = vm.WorkstationID; // Clone.tt Line: 233
-		    m.Password = vm.Password; // Clone.tt Line: 233
-		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication; // Clone.tt Line: 231
-		    m.InitialCatalog = vm.InitialCatalog; // Clone.tt Line: 233
-		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue; // Clone.tt Line: 231
-		    m.ApplicationName = vm.ApplicationName; // Clone.tt Line: 233
-		    m.AsynchronousProcessing = vm.AsynchronousProcessing; // Clone.tt Line: 233
-		    m.IntegratedSecurity = vm.IntegratedSecurity; // Clone.tt Line: 233
-		    m.ContextConnection = vm.ContextConnection; // Clone.tt Line: 233
-		    m.ConnectTimeout = vm.ConnectTimeout; // Clone.tt Line: 233
-		    m.AttachDBFilename = vm.AttachDBFilename; // Clone.tt Line: 233
-		    m.DataSource = vm.DataSource; // Clone.tt Line: 233
-		    m.Encrypt = vm.Encrypt; // Clone.tt Line: 233
-		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting; // Clone.tt Line: 231
-		    m.TrustServerCertificate = vm.TrustServerCertificate; // Clone.tt Line: 233
-		    m.Enlist = vm.Enlist; // Clone.tt Line: 233
-		    m.FailoverPartner = vm.FailoverPartner; // Clone.tt Line: 233
-		    m.CurrentLanguage = vm.CurrentLanguage; // Clone.tt Line: 233
+		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings(); // Clone.tt Line: 211
+		    m.Name = vm.Name; // Clone.tt Line: 235
+		    m.Guid = vm.Guid; // Clone.tt Line: 235
+		    m.MaxPoolSize = vm.MaxPoolSize; // Clone.tt Line: 235
+		    m.ConnectRetryCount = vm.ConnectRetryCount; // Clone.tt Line: 235
+		    m.ConnectRetryInterval = vm.ConnectRetryInterval; // Clone.tt Line: 235
+		    m.MinPoolSize = vm.MinPoolSize; // Clone.tt Line: 235
+		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets; // Clone.tt Line: 235
+		    m.MultiSubnetFailover = vm.MultiSubnetFailover; // Clone.tt Line: 235
+		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution; // Clone.tt Line: 235
+		    m.NetworkLibrary = vm.NetworkLibrary; // Clone.tt Line: 235
+		    m.PacketSize = vm.PacketSize; // Clone.tt Line: 235
+		    m.PersistSecurityInfo = vm.PersistSecurityInfo; // Clone.tt Line: 235
+		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout; // Clone.tt Line: 235
+		    m.Pooling = vm.Pooling; // Clone.tt Line: 235
+		    m.Replication = vm.Replication; // Clone.tt Line: 235
+		    m.TransactionBinding = vm.TransactionBinding; // Clone.tt Line: 235
+		    m.TypeSystemVersion = vm.TypeSystemVersion; // Clone.tt Line: 235
+		    m.UserID = vm.UserID; // Clone.tt Line: 235
+		    m.UserInstance = vm.UserInstance; // Clone.tt Line: 235
+		    m.WorkstationID = vm.WorkstationID; // Clone.tt Line: 235
+		    m.Password = vm.Password; // Clone.tt Line: 235
+		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication; // Clone.tt Line: 233
+		    m.InitialCatalog = vm.InitialCatalog; // Clone.tt Line: 235
+		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue; // Clone.tt Line: 233
+		    m.ApplicationName = vm.ApplicationName; // Clone.tt Line: 235
+		    m.AsynchronousProcessing = vm.AsynchronousProcessing; // Clone.tt Line: 235
+		    m.IntegratedSecurity = vm.IntegratedSecurity; // Clone.tt Line: 235
+		    m.ContextConnection = vm.ContextConnection; // Clone.tt Line: 235
+		    m.ConnectTimeout = vm.ConnectTimeout; // Clone.tt Line: 235
+		    m.AttachDBFilename = vm.AttachDBFilename; // Clone.tt Line: 235
+		    m.DataSource = vm.DataSource; // Clone.tt Line: 235
+		    m.Encrypt = vm.Encrypt; // Clone.tt Line: 235
+		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting; // Clone.tt Line: 233
+		    m.TrustServerCertificate = vm.TrustServerCertificate; // Clone.tt Line: 235
+		    m.Enlist = vm.Enlist; // Clone.tt Line: 235
+		    m.FailoverPartner = vm.FailoverPartner; // Clone.tt Line: 235
+		    m.CurrentLanguage = vm.CurrentLanguage; // Clone.tt Line: 235
 		    return m;
 		}
 		#endregion Procedures
 		#region Properties
 		
-		public string Name // Property.tt Line: 107
+		public string Name // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -511,9 +509,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging(); // Property.tt Line: 124
+		partial void OnNameChanging(); // Property.tt Line: 134
 		partial void OnNameChanged();
-		public string Guid // Property.tt Line: 107
+		public string Guid // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -529,7 +527,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging(); // Property.tt Line: 124
+		partial void OnGuidChanging(); // Property.tt Line: 134
 		partial void OnGuidChanged();
 		
 		///////////////////////////////////////////////////
@@ -543,7 +541,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize property, or 100 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MaxPoolSize // Property.tt Line: 107
+		public int MaxPoolSize // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -559,7 +557,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MaxPoolSize; }
 		}
 		private int _MaxPoolSize;
-		partial void OnMaxPoolSizeChanging(); // Property.tt Line: 124
+		partial void OnMaxPoolSizeChanging(); // Property.tt Line: 134
 		partial void OnMaxPoolSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -576,7 +574,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryCount // Property.tt Line: 107
+		public int ConnectRetryCount // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -592,7 +590,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectRetryCount; }
 		}
 		private int _ConnectRetryCount;
-		partial void OnConnectRetryCountChanging(); // Property.tt Line: 124
+		partial void OnConnectRetryCountChanging(); // Property.tt Line: 134
 		partial void OnConnectRetryCountChanged();
 		
 		///////////////////////////////////////////////////
@@ -609,7 +607,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryInterval // Property.tt Line: 107
+		public int ConnectRetryInterval // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -625,7 +623,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectRetryInterval; }
 		}
 		private int _ConnectRetryInterval;
-		partial void OnConnectRetryIntervalChanging(); // Property.tt Line: 124
+		partial void OnConnectRetryIntervalChanging(); // Property.tt Line: 134
 		partial void OnConnectRetryIntervalChanged();
 		
 		///////////////////////////////////////////////////
@@ -639,7 +637,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize property, or 0 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MinPoolSize // Property.tt Line: 107
+		public int MinPoolSize // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -655,7 +653,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MinPoolSize; }
 		}
 		private int _MinPoolSize;
-		partial void OnMinPoolSizeChanging(); // Property.tt Line: 124
+		partial void OnMinPoolSizeChanging(); // Property.tt Line: 134
 		partial void OnMinPoolSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -671,7 +669,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.")]
 		[CategoryAttribute("Advanced")]
-		public bool MultipleActiveResultSets // Property.tt Line: 107
+		public bool MultipleActiveResultSets // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -687,7 +685,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MultipleActiveResultSets; }
 		}
 		private bool _MultipleActiveResultSets;
-		partial void OnMultipleActiveResultSetsChanging(); // Property.tt Line: 124
+		partial void OnMultipleActiveResultSetsChanging(); // Property.tt Line: 134
 		partial void OnMultipleActiveResultSetsChanged();
 		
 		///////////////////////////////////////////////////
@@ -703,7 +701,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.")]
 		[Category("Source")]
-		public bool MultiSubnetFailover // Property.tt Line: 107
+		public bool MultiSubnetFailover // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -719,7 +717,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MultiSubnetFailover; }
 		}
 		private bool _MultiSubnetFailover;
-		partial void OnMultiSubnetFailoverChanging(); // Property.tt Line: 124
+		partial void OnMultiSubnetFailoverChanging(); // Property.tt Line: 134
 		partial void OnMultiSubnetFailoverChanged();
 		
 		///////////////////////////////////////////////////
@@ -735,7 +733,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("When the value of this key is set to true, the application is required to retrieve all IP addresses for a particular DNS entry and attempt to connect with the first one in the list. If the connection is not established within 0.5 seconds, the application will try to connect to all others in parallel. When the first answers, the application will establish the connection with the respondent IP address.")]
 		[Category("Source")]
-		public bool TransparentNetworkIPResolution // Property.tt Line: 107
+		public bool TransparentNetworkIPResolution // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -751,7 +749,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TransparentNetworkIPResolution; }
 		}
 		private bool _TransparentNetworkIPResolution;
-		partial void OnTransparentNetworkIPResolutionChanging(); // Property.tt Line: 124
+		partial void OnTransparentNetworkIPResolutionChanging(); // Property.tt Line: 134
 		partial void OnTransparentNetworkIPResolutionChanged();
 		
 		///////////////////////////////////////////////////
@@ -768,7 +766,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string NetworkLibrary // Property.tt Line: 107
+		public string NetworkLibrary // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -784,7 +782,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _NetworkLibrary; }
 		}
 		private string _NetworkLibrary = "";
-		partial void OnNetworkLibraryChanging(); // Property.tt Line: 124
+		partial void OnNetworkLibraryChanging(); // Property.tt Line: 134
 		partial void OnNetworkLibraryChanged();
 		
 		///////////////////////////////////////////////////
@@ -798,7 +796,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize property, or 8000 if none has been supplied.")]
 		[Category("Advanced")]
-		public int PacketSize // Property.tt Line: 107
+		public int PacketSize // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -814,7 +812,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _PacketSize; }
 		}
 		private int _PacketSize;
-		partial void OnPacketSizeChanging(); // Property.tt Line: 124
+		partial void OnPacketSizeChanging(); // Property.tt Line: 134
 		partial void OnPacketSizeChanged();
 		
 		///////////////////////////////////////////////////
@@ -829,7 +827,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.")]
 		[Category("Security")]
-		public bool PersistSecurityInfo // Property.tt Line: 107
+		public bool PersistSecurityInfo // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -845,7 +843,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _PersistSecurityInfo; }
 		}
 		private bool _PersistSecurityInfo;
-		partial void OnPersistSecurityInfoChanging(); // Property.tt Line: 124
+		partial void OnPersistSecurityInfoChanging(); // Property.tt Line: 134
 		partial void OnPersistSecurityInfoChanged();
 		
 		///////////////////////////////////////////////////
@@ -859,7 +857,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.")]
 		[Category("Pooling")]
-		public int LoadBalanceTimeout // Property.tt Line: 107
+		public int LoadBalanceTimeout // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -875,7 +873,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _LoadBalanceTimeout; }
 		}
 		private int _LoadBalanceTimeout;
-		partial void OnLoadBalanceTimeoutChanging(); // Property.tt Line: 124
+		partial void OnLoadBalanceTimeoutChanging(); // Property.tt Line: 134
 		partial void OnLoadBalanceTimeoutChanged();
 		
 		///////////////////////////////////////////////////
@@ -889,7 +887,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.")]
 		[Category("Pooling")]
-		public bool Pooling // Property.tt Line: 107
+		public bool Pooling // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -905,7 +903,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Pooling; }
 		}
 		private bool _Pooling;
-		partial void OnPoolingChanging(); // Property.tt Line: 124
+		partial void OnPoolingChanging(); // Property.tt Line: 134
 		partial void OnPoolingChanged();
 		
 		///////////////////////////////////////////////////
@@ -919,7 +917,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.Replication")]
 		[Category("Replication")]
-		public bool Replication // Property.tt Line: 107
+		public bool Replication // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -935,7 +933,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Replication; }
 		}
 		private bool _Replication;
-		partial void OnReplicationChanging(); // Property.tt Line: 124
+		partial void OnReplicationChanging(); // Property.tt Line: 134
 		partial void OnReplicationChanged();
 		
 		///////////////////////////////////////////////////
@@ -949,7 +947,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding")]
 		[Category("Advanced")]
-		public string TransactionBinding // Property.tt Line: 107
+		public string TransactionBinding // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -965,7 +963,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TransactionBinding; }
 		}
 		private string _TransactionBinding = "";
-		partial void OnTransactionBindingChanging(); // Property.tt Line: 124
+		partial void OnTransactionBindingChanging(); // Property.tt Line: 134
 		partial void OnTransactionBindingChanged();
 		
 		///////////////////////////////////////////////////
@@ -981,7 +979,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     components are upgraded.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string TypeSystemVersion // Property.tt Line: 107
+		public string TypeSystemVersion // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -997,7 +995,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TypeSystemVersion; }
 		}
 		private string _TypeSystemVersion = "";
-		partial void OnTypeSystemVersionChanging(); // Property.tt Line: 124
+		partial void OnTypeSystemVersionChanging(); // Property.tt Line: 134
 		partial void OnTypeSystemVersionChanged();
 		
 		///////////////////////////////////////////////////
@@ -1013,7 +1011,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string UserID // Property.tt Line: 107
+		public string UserID // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1029,7 +1027,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _UserID; }
 		}
 		private string _UserID = "";
-		partial void OnUserIDChanging(); // Property.tt Line: 124
+		partial void OnUserIDChanging(); // Property.tt Line: 134
 		partial void OnUserIDChanged();
 		
 		///////////////////////////////////////////////////
@@ -1047,7 +1045,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Source")]
-		public bool UserInstance // Property.tt Line: 107
+		public bool UserInstance // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1063,7 +1061,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _UserInstance; }
 		}
 		private bool _UserInstance;
-		partial void OnUserInstanceChanging(); // Property.tt Line: 124
+		partial void OnUserInstanceChanging(); // Property.tt Line: 134
 		partial void OnUserInstanceChanged();
 		
 		///////////////////////////////////////////////////
@@ -1079,7 +1077,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Context")]
-		public string WorkstationID // Property.tt Line: 107
+		public string WorkstationID // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1095,7 +1093,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _WorkstationID; }
 		}
 		private string _WorkstationID = "";
-		partial void OnWorkstationIDChanging(); // Property.tt Line: 124
+		partial void OnWorkstationIDChanging(); // Property.tt Line: 134
 		partial void OnWorkstationIDChanged();
 		
 		///////////////////////////////////////////////////
@@ -1111,7 +1109,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     The password was incorrectly set to null. See code sample below.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string Password // Property.tt Line: 107
+		public string Password // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1127,7 +1125,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Password; }
 		}
 		private string _Password = "";
-		partial void OnPasswordChanging(); // Property.tt Line: 124
+		partial void OnPasswordChanging(); // Property.tt Line: 134
 		partial void OnPasswordChanged();
 		
 		///////////////////////////////////////////////////
@@ -1138,7 +1136,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public SqlAuthenticationMethod Authentication // Property.tt Line: 107
+		public SqlAuthenticationMethod Authentication // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1154,7 +1152,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Authentication; }
 		}
 		private SqlAuthenticationMethod _Authentication;
-		partial void OnAuthenticationChanging(); // Property.tt Line: 124
+		partial void OnAuthenticationChanging(); // Property.tt Line: 134
 		partial void OnAuthenticationChanged();
 		
 		///////////////////////////////////////////////////
@@ -1171,7 +1169,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name of the database associated with the connection.")]
 		[Category("Source")]
-		public string InitialCatalog // Property.tt Line: 107
+		public string InitialCatalog // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1187,7 +1185,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _InitialCatalog; }
 		}
 		private string _InitialCatalog = "";
-		partial void OnInitialCatalogChanging(); // Property.tt Line: 124
+		partial void OnInitialCatalogChanging(); // Property.tt Line: 134
 		partial void OnInitialCatalogChanged();
 		
 		///////////////////////////////////////////////////
@@ -1202,7 +1200,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
 		[Category("Initialization")]
-		public ApplicationIntent ApplicationIntentValue // Property.tt Line: 107
+		public ApplicationIntent ApplicationIntentValue // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1218,7 +1216,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ApplicationIntentValue; }
 		}
 		private ApplicationIntent _ApplicationIntentValue;
-		partial void OnApplicationIntentValueChanging(); // Property.tt Line: 124
+		partial void OnApplicationIntentValueChanging(); // Property.tt Line: 134
 		partial void OnApplicationIntentValueChanged();
 		
 		///////////////////////////////////////////////////
@@ -1235,7 +1233,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The name of the application, or \".NET SqlClient Data Provider\" if no name has been supplied.")]
 		[Category("Context")]
-		public string ApplicationName // Property.tt Line: 107
+		public string ApplicationName // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1251,7 +1249,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ApplicationName; }
 		}
 		private string _ApplicationName = "";
-		partial void OnApplicationNameChanging(); // Property.tt Line: 124
+		partial void OnApplicationNameChanging(); // Property.tt Line: 134
 		partial void OnApplicationNameChanged();
 		
 		///////////////////////////////////////////////////
@@ -1267,7 +1265,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("This property is ignored beginning in .NET Framework 4.5.")]
 		[Category("Initialization")]
-		public bool AsynchronousProcessing // Property.tt Line: 107
+		public bool AsynchronousProcessing // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1283,7 +1281,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _AsynchronousProcessing; }
 		}
 		private bool _AsynchronousProcessing;
-		partial void OnAsynchronousProcessingChanging(); // Property.tt Line: 124
+		partial void OnAsynchronousProcessingChanging(); // Property.tt Line: 134
 		partial void OnAsynchronousProcessingChanged();
 		
 		///////////////////////////////////////////////////
@@ -1298,7 +1296,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true).")]
 		[Category("Security")]
-		public bool IntegratedSecurity // Property.tt Line: 107
+		public bool IntegratedSecurity // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1314,7 +1312,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IntegratedSecurity; }
 		}
 		private bool _IntegratedSecurity;
-		partial void OnIntegratedSecurityChanging(); // Property.tt Line: 124
+		partial void OnIntegratedSecurityChanging(); // Property.tt Line: 134
 		partial void OnIntegratedSecurityChanged();
 		
 		///////////////////////////////////////////////////
@@ -1328,7 +1326,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection")]
 		[Category("Source")]
-		public bool ContextConnection // Property.tt Line: 107
+		public bool ContextConnection // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1344,7 +1342,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ContextConnection; }
 		}
 		private bool _ContextConnection;
-		partial void OnContextConnectionChanging(); // Property.tt Line: 124
+		partial void OnContextConnectionChanging(); // Property.tt Line: 134
 		partial void OnContextConnectionChanged();
 		
 		///////////////////////////////////////////////////
@@ -1358,7 +1356,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout property, or 15 seconds if no value has been supplied.")]
 		[Category("Initialization")]
-		public int ConnectTimeout // Property.tt Line: 107
+		public int ConnectTimeout // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1374,7 +1372,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectTimeout; }
 		}
 		private int _ConnectTimeout;
-		partial void OnConnectTimeoutChanging(); // Property.tt Line: 124
+		partial void OnConnectTimeoutChanging(); // Property.tt Line: 134
 		partial void OnConnectTimeoutChanged();
 		
 		///////////////////////////////////////////////////
@@ -1393,7 +1391,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		[Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
 		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 		[Category("Source")]
-		public string AttachDBFilename // Property.tt Line: 107
+		public string AttachDBFilename // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1409,7 +1407,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _AttachDBFilename; }
 		}
 		private string _AttachDBFilename = "";
-		partial void OnAttachDBFilenameChanging(); // Property.tt Line: 124
+		partial void OnAttachDBFilenameChanging(); // Property.tt Line: 134
 		partial void OnAttachDBFilenameChanged();
 		
 		///////////////////////////////////////////////////
@@ -1427,7 +1425,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or network address of the instance of SQL Server to connect to.")]
 		[Category("Source")]
-		public string DataSource // Property.tt Line: 107
+		public string DataSource // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1443,7 +1441,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _DataSource; }
 		}
 		private string _DataSource = "";
-		partial void OnDataSourceChanging(); // Property.tt Line: 124
+		partial void OnDataSourceChanging(); // Property.tt Line: 134
 		partial void OnDataSourceChanged();
 		
 		///////////////////////////////////////////////////
@@ -1458,7 +1456,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
 		[Category("Security")]
-		public bool Encrypt // Property.tt Line: 107
+		public bool Encrypt // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1474,7 +1472,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Encrypt; }
 		}
 		private bool _Encrypt;
-		partial void OnEncryptChanging(); // Property.tt Line: 124
+		partial void OnEncryptChanging(); // Property.tt Line: 134
 		partial void OnEncryptChanged();
 		
 		///////////////////////////////////////////////////
@@ -1486,7 +1484,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets and sets the column encryption settings for the connection string builder.")]
 		[Category("Security")]
-		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting // Property.tt Line: 107
+		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1502,7 +1500,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ColumnEncryptionSetting; }
 		}
 		private SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
-		partial void OnColumnEncryptionSettingChanging(); // Property.tt Line: 124
+		partial void OnColumnEncryptionSettingChanging(); // Property.tt Line: 134
 		partial void OnColumnEncryptionSettingChanged();
 		
 		///////////////////////////////////////////////////
@@ -1515,7 +1513,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.")]
 		[Category("Security")]
-		public bool TrustServerCertificate // Property.tt Line: 107
+		public bool TrustServerCertificate // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1531,7 +1529,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TrustServerCertificate; }
 		}
 		private bool _TrustServerCertificate;
-		partial void OnTrustServerCertificateChanging(); // Property.tt Line: 124
+		partial void OnTrustServerCertificateChanging(); // Property.tt Line: 134
 		partial void OnTrustServerCertificateChanged();
 		
 		///////////////////////////////////////////////////
@@ -1546,7 +1544,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the SQL Server connection pooler automatically enlists the connection in the creation thread's current transaction context.")]
 		[Category("Pooling")]
-		public bool Enlist // Property.tt Line: 107
+		public bool Enlist // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1562,7 +1560,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Enlist; }
 		}
 		private bool _Enlist;
-		partial void OnEnlistChanging(); // Property.tt Line: 124
+		partial void OnEnlistChanging(); // Property.tt Line: 134
 		partial void OnEnlistChanged();
 		
 		///////////////////////////////////////////////////
@@ -1580,7 +1578,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or address of the partner server to connect to if the primary server is down.")]
 		[Category("Source")]
-		public string FailoverPartner // Property.tt Line: 107
+		public string FailoverPartner // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1596,7 +1594,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _FailoverPartner; }
 		}
 		private string _FailoverPartner = "";
-		partial void OnFailoverPartnerChanging(); // Property.tt Line: 124
+		partial void OnFailoverPartnerChanging(); // Property.tt Line: 134
 		partial void OnFailoverPartnerChanged();
 		
 		///////////////////////////////////////////////////
@@ -1613,7 +1611,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the SQL Server Language record name.")]
 		[Category("Initialization")]
-		public string CurrentLanguage // Property.tt Line: 107
+		public string CurrentLanguage // Property.tt Line: 115
 		{ 
 			set
 			{
@@ -1629,7 +1627,7 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _CurrentLanguage; }
 		}
 		private string _CurrentLanguage = "";
-		partial void OnCurrentLanguageChanging(); // Property.tt Line: 124
+		partial void OnCurrentLanguageChanging(); // Property.tt Line: 134
 		partial void OnCurrentLanguageChanged();
 		#endregion Properties
 	}

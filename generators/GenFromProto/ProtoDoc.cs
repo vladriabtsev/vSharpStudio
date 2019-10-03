@@ -108,7 +108,29 @@ namespace GenFromProto
             }
             this.Comments = MessageDoc.GetComments(message.Name, message.Description, out this.Attributes, out this.BaseClass);
             if (!string.IsNullOrEmpty(this.BaseClass))
+            {
                 this.IsDefaultBase = false;
+                string s = this.BaseClass.Substring(this.BaseClass.IndexOf(':') + 1).TrimStart();
+                if (s.StartsWith("ViewModelBindable"))
+                    this.IsBindableBase = true;
+                if (s.StartsWith("ViewModelEditable"))
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                }
+                if (s.StartsWith("ViewModelValidatable") || s.StartsWith("ViewModelValidatableWithSeverity"))
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                }
+            }
+            else
+            {
+                this.IsBindableBase = true;
+                this.IsEditableBase = true;
+                this.IsValidatableBase = true;
+            }
         }
 
         public static string GetComments(string name, string description, out string attributes, out string baseClass)
@@ -164,6 +186,9 @@ namespace GenFromProto
 
         public Proto.Doc.message message;
         public bool IsDefaultBase = true;
+        public bool IsBindableBase = false;
+        public bool IsEditableBase = false;
+        public bool IsValidatableBase = false;
         public string BaseClass = null;
         public string Attributes = null;
         public string Comments = null;

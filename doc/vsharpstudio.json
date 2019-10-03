@@ -388,7 +388,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -459,7 +459,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -540,7 +540,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -771,12 +771,32 @@
               "defaultValue": ""
             },
             {
-              "name": "group_app_solutions",
+              "name": "group_configs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_group_list_app_solutions",
-              "longType": "proto_group_list_app_solutions",
-              "fullType": "proto_config.proto_group_list_app_solutions",
+              "type": "proto_group_list_base_configs",
+              "longType": "proto_group_list_base_configs",
+              "fullType": "proto_config.proto_group_list_base_configs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "model",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_config_model",
+              "longType": "proto_config_model",
+              "fullType": "proto_config.proto_config_model",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_sub_models",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_sub_models",
+              "longType": "proto_group_list_sub_models",
+              "fullType": "proto_config.proto_group_list_sub_models",
               "ismap": false,
               "defaultValue": ""
             },
@@ -791,12 +811,83 @@
               "defaultValue": ""
             },
             {
-              "name": "group_configs",
+              "name": "group_app_solutions",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_group_list_base_configs",
-              "longType": "proto_group_list_base_configs",
-              "fullType": "proto_config.proto_group_list_base_configs",
+              "type": "proto_group_list_app_solutions",
+              "longType": "proto_group_list_app_solutions",
+              "fullType": "proto_config.proto_group_list_app_solutions",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_config_model",
+          "longName": "proto_config_model",
+          "fullName": "proto_config.proto_config_model",
+          "description": "Configuration model",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "Unique Guid for configuration (for comparison)",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editable(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1511,7 +1602,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;\n@attr [PropertyOrderAttribute(2)]",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1582,7 +1673,7 @@
             },
             {
               "name": "description",
-              "description": "string name_ui = 4;",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2506,6 +2597,77 @@
           ]
         },
         {
+          "name": "proto_group_list_sub_models",
+          "longName": "proto_group_list_sub_models",
+          "fullName": "proto_config.proto_group_list_sub_models",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_auto_insert_dependancies",
+              "description": "@attr [DisplayName(\"Auto\")]\n@attr [Description(\"Auto insert dependancies\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_sub_models",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_sub_model",
+              "longType": "proto_sub_model",
+              "fullType": "proto_config.proto_sub_model",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
@@ -3220,6 +3382,118 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_sub_model",
+          "longName": "proto_sub_model",
+          "fullName": "proto_config.proto_sub_model",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guids",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_sub_model_row",
+          "longName": "proto_sub_model_row",
+          "fullName": "proto_config.proto_sub_model_row",
+          "description": "@base : ViewModelBindable\u003cSubModelRow\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "group_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_included",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

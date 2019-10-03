@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="List All Validations"/>
         <DataGrid Grid.Row="1" x:Name="dataGrid" IsSynchronizedWithCurrentItem="True" 
-                  ItemsSource="{Binding Model.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
+                  ItemsSource="{Binding Config.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
             <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

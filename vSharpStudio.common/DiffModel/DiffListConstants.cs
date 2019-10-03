@@ -25,7 +25,8 @@ namespace vSharpStudio.common
                         t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
                 }
                 var diff_data_type = new DiffDataType(prev2, current2);
-                t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
+                if (!diff_data_type.IsSame())
+                    t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
 
                 IConstant prev3 = dic_prev.ContainsKey(t.Guid) ? (IConstant)dic_prev[t.Guid] : null;
                 IConstant current3 = dic_curr.ContainsKey(t.Guid) ? (IConstant)dic_curr[t.Guid] : null;

@@ -16,7 +16,9 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
+<# if (this.DocMes.IsValidatableBase) { #>
 			ValidateProperty();
+<# } #>
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -35,7 +37,9 @@ public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=He
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
+<# if (this.DocMes.IsValidatableBase) { #>
 			ValidateProperty();
+<# } #>
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -52,7 +56,9 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
+<# if (this.DocMes.IsValidatableBase) { #>
 			ValidateProperty();
+<# } #>
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -95,7 +101,9 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
             _<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
+<# if (this.DocMes.IsValidatableBase) { #>
 			ValidateProperty();
+<# } #>
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
@@ -114,7 +122,9 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
+<# if (this.DocMes.IsValidatableBase) { #>
 			ValidateProperty();
+<# } #>
 		}
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }

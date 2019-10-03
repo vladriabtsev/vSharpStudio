@@ -10,7 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static Config AdNew(this Config cfg, Constant p)
         {
-            cfg.GroupConstants.Add(p);
+            cfg.Model.GroupConstants.Add(p);
             return cfg;
         }
     }

@@ -52,7 +52,8 @@ namespace vSharpStudio.common
                     if (isTypeChanged)
                     {
                         DiffDataType diff_data_type = new DiffDataType(prev2.DataTypeI, current2.DataTypeI);
-                        t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
+                        if (!diff_data_type.IsSame())
+                            t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
                     }
 
                     DiffProperty diff = new DiffProperty(prev2, current2);

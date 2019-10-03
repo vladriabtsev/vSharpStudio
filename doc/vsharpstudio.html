@@ -211,6 +211,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_config_model"><span class="badge">M</span>proto_config_model</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_config_short_history"><span class="badge">M</span>proto_config_short_history</a>
                 </li>
               
@@ -303,6 +307,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_sub_models"><span class="badge">M</span>proto_group_list_sub_models</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
                 </li>
               
@@ -340,6 +348,14 @@
               
                 <li>
                   <a href="#proto_config.proto_settings_config"><span class="badge">M</span>proto_settings_config</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_sub_model"><span class="badge">M</span>proto_sub_model</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_sub_model_row"><span class="badge">M</span>proto_sub_model_row</a>
                 </li>
               
                 <li>
@@ -608,8 +624,7 @@ it will override previous settings
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4;
-@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -672,8 +687,7 @@ it will override previous settings
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4;
-@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -744,8 +758,7 @@ it will override previous settings
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4;
-@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -928,8 +941,22 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>group_app_solutions</td>
-                  <td><a href="#proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</a></td>
+                  <td>group_configs</td>
+                  <td><a href="#proto_config.proto_group_list_base_configs">proto_group_list_base_configs</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>model</td>
+                  <td><a href="#proto_config.proto_config_model">proto_config_model</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_sub_models</td>
+                  <td><a href="#proto_config.proto_group_list_sub_models">proto_group_list_sub_models</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -942,10 +969,70 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>group_configs</td>
-                  <td><a href="#proto_config.proto_group_list_base_configs">proto_group_list_base_configs</a></td>
+                  <td>group_app_solutions</td>
+                  <td><a href="#proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_config_model">proto_config_model</h3>
+        <p>Configuration model</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique Guid for configuration (for comparison) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Editable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -1551,8 +1638,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4;
-@attr [PropertyOrderAttribute(2)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
                 </tr>
               
                 <tr>
@@ -1614,7 +1700,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>string name_ui = 4; </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -2400,6 +2486,66 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_list_sub_models">proto_group_list_sub_models</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_auto_insert_dependancies</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Auto&#34;)]
+@attr [Description(&#34;Auto insert dependancies&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_sub_models</td>
+                  <td><a href="#proto_config.proto_sub_model">proto_sub_model</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_journal">proto_journal</h3>
         <p></p>
 
@@ -3010,6 +3156,103 @@ repeated proto_document list_documents = 7; </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>min version supported by current version for migration </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_sub_model">proto_sub_model</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_sub_model_row">proto_sub_model_row</h3>
+        <p>@base : ViewModelBindable<SubModelRow></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>group_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_included</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

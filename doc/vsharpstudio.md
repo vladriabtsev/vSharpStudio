@@ -12,6 +12,7 @@
     - [proto_base_config](#proto_config.proto_base_config)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
+    - [proto_config_model](#proto_config.proto_config_model)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
     - [proto_data_type](#proto_config.proto_data_type)
@@ -35,6 +36,7 @@
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
+    - [proto_group_list_sub_models](#proto_config.proto_group_list_sub_models)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
     - [proto_plugin](#proto_config.proto_plugin)
@@ -45,6 +47,8 @@
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
+    - [proto_sub_model](#proto_config.proto_sub_model)
+    - [proto_sub_model_row](#proto_config.proto_sub_model_row)
     - [string_nullable](#proto_config.string_nullable)
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
@@ -137,7 +141,7 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] |
 
@@ -157,7 +161,7 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
@@ -178,7 +182,7 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(5)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | config_node | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
 | relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] |
 
@@ -227,9 +231,31 @@ Configuration config
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | primary_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(7)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
-| group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
-| group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
+| model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
+| group_sub_models | [proto_group_list_sub_models](#proto_config.proto_group_list_sub_models) |  | @attr [BrowsableAttribute(false)] |
+| group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
+| group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_config_model"></a>
+
+### proto_config_model
+Configuration model
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
+| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [Editable(false)] |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  |  |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -419,7 +445,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  | @attr [Editable(false)] |
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| description | [string](#string) |  | string name_ui = 4; @attr [PropertyOrderAttribute(2)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(3)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
 
@@ -439,7 +465,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | string name_ui = 4; |
+| description | [string](#string) |  |  |
 | list_base_configs | [proto_base_config](#proto_config.proto_base_config) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -705,6 +731,26 @@ main view forms hierarchy node with children
 
 
 
+<a name="proto_config.proto_group_list_sub_models"></a>
+
+### proto_group_list_sub_models
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  |  |
+| is_auto_insert_dependancies | [bool](#bool) |  | @attr [DisplayName(&#34;Auto&#34;)] @attr [Description(&#34;Auto insert dependancies&#34;)] |
+| list_sub_models | [proto_sub_model](#proto_config.proto_sub_model) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -902,6 +948,43 @@ User&#39;s role
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
+
+
+
+
+
+
+<a name="proto_config.proto_sub_model"></a>
+
+### proto_sub_model
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| list_guids | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_sub_model_row"></a>
+
+### proto_sub_model_row
+@base : ViewModelBindable&lt;SubModelRow&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| group_name | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| guid | [string](#string) |  |  |
+| is_included | [bool](#bool) |  |  |
 
 
 

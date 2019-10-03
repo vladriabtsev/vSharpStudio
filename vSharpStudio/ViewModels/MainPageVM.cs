@@ -53,12 +53,12 @@ namespace vSharpStudio.ViewModels
 
             if (isLoadConfig && File.Exists(CFG_FILE_PATH))
             {
-                this.Model = LoadConfig(CFG_FILE_PATH, "");
+                this.Config = LoadConfig(CFG_FILE_PATH, "");
             }
             else
             {
                 Logger.LogInformation("Creating empty Configuration");
-                this.Model = new Config();
+                this.Config = new Config();
             }
             //this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
             //this.Model.OnProviderSelectionChanged = (provider) =>
@@ -135,7 +135,7 @@ namespace vSharpStudio.ViewModels
             DiffModel res = new DiffModel(
                 pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig),
                 pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig),
-                this.Model
+                this.Config
             );
             return res;
         }
@@ -165,7 +165,7 @@ namespace vSharpStudio.ViewModels
                 Plugin p = null;
                 bool is_found = false;
                 // attaching plugin
-                foreach (var tt in this.Model.GroupPlugins.ListPlugins)
+                foreach (var tt in this.Config.GroupPlugins.ListPlugins)
                 {
                     if (tt.Guid == t.Value.Guid && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                     {
@@ -181,8 +181,8 @@ namespace vSharpStudio.ViewModels
                 if (!is_found)
                 {
                     p = new Plugin(t.Value);
-                    this.Model.GroupPlugins.ListPlugins.Add(p);
-                    p.Parent = this.Model.GroupPlugins;
+                    this.Config.GroupPlugins.ListPlugins.Add(p);
+                    p.Parent = this.Config.GroupPlugins;
                 }
 
                 // attaching plugin generators
@@ -254,7 +254,7 @@ namespace vSharpStudio.ViewModels
             if (this.DicPlugins != null)
                 this.DicPlugins.Clear();
             this.DicPlugins = dic;
-            this.Model.DicPlugins = dic;
+            this.Config.DicPlugins = dic;
         }
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins
         {
@@ -321,15 +321,15 @@ namespace vSharpStudio.ViewModels
 
         #endregion Plugins
 
-        public Config Model
+        public Config Config
         {
             set
             {
-                _Model = value;
+                _Config = value;
                 MainPageVM.ConfigInstance = value;
                 NotifyPropertyChanged();
                 ValidateProperty();
-                _Model.OnSelectedNodeChanged = () =>
+                _Config.OnSelectedNodeChanged = () =>
                 {
                     CommandAddNew.RaiseCanExecuteChanged();
                     CommandAddNewChild.RaiseCanExecuteChanged();
@@ -341,17 +341,17 @@ namespace vSharpStudio.ViewModels
                     CommandSelectionRight.RaiseCanExecuteChanged();
                     CommandSelectionDown.RaiseCanExecuteChanged();
                     CommandSelectionUp.RaiseCanExecuteChanged();
-                    _Model.ValidateSubTreeFromNode(_Model.SelectedNode);
+                    _Config.ValidateSubTreeFromNode(_Config.SelectedNode);
                 };
             }
-            get { return _Model; }
+            get { return _Config; }
         }
-        private Config _Model;
+        private Config _Config;
 
         public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
         {
             Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
-            this.Model.AcceptConfigNodeVisitor(visitor);
+            this.Config.AcceptConfigNodeVisitor(visitor);
             return visitor.Result;
         }
 
@@ -363,13 +363,13 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
                     (o) => { this.Save(); },
-                    (o) => { return this.Model != null; }));
+                    (o) => { return this.Config != null; }));
             }
         }
         private vCommand _CommandConfigSave;
         private void PluginSettingsToModel()
         {
-            foreach (var t in _Model.GroupPlugins.ListPlugins)
+            foreach (var t in _Config.GroupPlugins.ListPlugins)
             {
                 foreach (var tt in t.ListGenerators)
                 {
@@ -394,8 +394,8 @@ namespace vSharpStudio.ViewModels
         public void SaveConfigAsForTests(string file_path)
         {
             PluginSettingsToModel();
-            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Model);
+            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Config);
             if (pconfig_history == null)
                 pconfig_history = new Proto.Config.proto_config_short_history();
             pconfig_history.CurrentConfig = proto;
@@ -404,8 +404,8 @@ namespace vSharpStudio.ViewModels
         internal void Save()
         {
             PluginSettingsToModel();
-            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Model);
+            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Config);
             if (pconfig_history == null)
                 pconfig_history = new Proto.Config.proto_config_short_history();
             pconfig_history.CurrentConfig = proto;
@@ -426,7 +426,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandConfigSaveAs ?? (_CommandConfigSaveAs = vCommand.Create(
                     (o) => { this.SaveAs(); },
-                    (o) => { return this.Model != null; }));
+                    (o) => { return this.Config != null; }));
             }
         }
         private vCommand _CommandConfigSaveAs;
@@ -445,8 +445,8 @@ namespace vSharpStudio.ViewModels
             {
                 FilePathSaveAs = openFileDialog.FileName;
                 PluginSettingsToModel();
-                _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-                var proto = Config.ConvertToProto(_Model);
+                _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                var proto = Config.ConvertToProto(_Config);
                 Utils.TryCall(() =>
                 {
                     File.WriteAllBytes(FilePathSaveAs, proto.ToByteArray());
@@ -464,7 +464,7 @@ namespace vSharpStudio.ViewModels
 
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
             var model = new Config(json);
-            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Model as Config, model as Config);
+            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
             if (!result.AreEqual)
             {
                 Console.WriteLine(result.DifferencesString);
@@ -500,7 +500,7 @@ namespace vSharpStudio.ViewModels
             {
                 return _CommandConfigCreateStableVersion ?? (_CommandConfigCreateStableVersion = vCommand.Create(
                 (o) => { this.CreateStableVersion(); },
-                (o) => { return this.Model != null; }));
+                (o) => { return this.Config != null; }));
             }
         }
         private vCommand _CommandConfigCreateStableVersion;
@@ -514,8 +514,8 @@ namespace vSharpStudio.ViewModels
 
             //todo create migration code
 
-            _Model.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Model);
+            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Config);
             pconfig_history.CurrentConfig = proto;
             if (pconfig_history.PrevStableConfig != null)
             {
@@ -538,8 +538,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNew ?? (_CommandAddNew = vCommand.Create(
-                (o) => { Utils.TryCall(() => { this.Model.SelectedNode.NodeAddNew(); }, "Add new node command"); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNew(); }));
+                (o) => { Utils.TryCall(() => { this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
             }
         }
         private vCommand _CommandAddNew;
@@ -548,8 +548,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
-                (o) => { Utils.TryCall(() => { this.Model.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddNewSubNode(); }));
+                (o) => { Utils.TryCall(() => { this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
         private vCommand _CommandAddNewChild;
@@ -558,8 +558,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandAddClone ?? (_CommandAddClone = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeAddClone(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanAddClone(); }));
+                (o) => { this.Config.SelectedNode.NodeAddClone(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
             }
         }
         private vCommand _CommandAddClone;
@@ -568,8 +568,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandMoveDown ?? (_CommandMoveDown = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeMoveDown(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveDown(); }));
+                (o) => { this.Config.SelectedNode.NodeMoveDown(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
             }
         }
         private vCommand _CommandMoveDown;
@@ -578,8 +578,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandMoveUp ?? (_CommandMoveUp = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeMoveUp(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanMoveUp(); }));
+                (o) => { this.Config.SelectedNode.NodeMoveUp(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
             }
         }
         private vCommand _CommandMoveUp;
@@ -588,8 +588,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandDelete ?? (_CommandDelete = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeRemove(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRemove(); }));
+                (o) => { this.Config.SelectedNode.NodeRemove(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRemove(); }));
             }
         }
         private vCommand _CommandDelete;
@@ -598,8 +598,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandSelectionLeft ?? (_CommandSelectionLeft = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeLeft(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanLeft(); }));
+                (o) => { this.Config.SelectedNode.NodeLeft(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
             }
         }
         private vCommand _CommandSelectionLeft;
@@ -608,8 +608,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandSelectionRight ?? (_CommandSelectionRight = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeRight(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanRight(); }));
+                (o) => { this.Config.SelectedNode.NodeRight(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
             }
         }
         private vCommand _CommandSelectionRight;
@@ -618,8 +618,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandSelectionDown ?? (_CommandSelectionDown = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeDown(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanDown(); }));
+                (o) => { this.Config.SelectedNode.NodeDown(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
             }
         }
         private vCommand _CommandSelectionDown;
@@ -628,8 +628,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandSelectionUp ?? (_CommandSelectionUp = vCommand.Create(
-                (o) => { this.Model.SelectedNode.NodeUp(); },
-                (o) => { return this.Model != null && this.Model.SelectedNode != null && this.Model.SelectedNode.NodeCanUp(); }));
+                (o) => { this.Config.SelectedNode.NodeUp(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
             }
         }
         private vCommand _CommandSelectionUp;
@@ -640,8 +640,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return _CommandFromErrorToSelection ?? (_CommandFromErrorToSelection = vCommand.Create(
-                (o) => { if (o == null) return; this.Model.SelectedNode = (ITreeConfigNode)(o as ValidationMessage).Model; },
-                (o) => { return this.Model != null; }));
+                (o) => { if (o == null) return; this.Config.SelectedNode = (ITreeConfigNode)(o as ValidationMessage).Model; },
+                (o) => { return this.Config != null; }));
             }
         }
         private vCommand _CommandFromErrorToSelection;
@@ -656,9 +656,12 @@ namespace vSharpStudio.ViewModels
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var conns = configFile.ConnectionStrings.ConnectionStrings;
             conns.Clear();
-            for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+            if (this.ConnectionStringSettings != null)
             {
-                conns.Add(this.ConnectionStringSettings[i]);
+                for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
+                {
+                    conns.Add(this.ConnectionStringSettings[i]);
+                }
             }
             //var settings = configFile.AppSettings.Settings;
             //if (settings[key] == null)

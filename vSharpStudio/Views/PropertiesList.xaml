@@ -12,7 +12,7 @@
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <xctk:PropertyGrid SelectedObject="{Binding Model.SelectedNode}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
+        <xctk:PropertyGrid SelectedObject="{Binding Config.SelectedNode}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
             <xctk:PropertyGrid.EditorDefinitions>
                 <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
                     <xctk:EditorTemplateDefinition.EditingTemplate>

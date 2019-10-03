@@ -11,7 +11,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
-<# if (!field.IsAny()) { #>
+<# if (!field.IsAny() && field.IsMessage()) { #>
     if (type == typeof(<#= field.ToTypeCs() #>)) // <#=Helper.FilePos() #>
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
@@ -128,6 +128,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
      } 
      #>
 }
+<# if (this.Doc.IsEditableBase) { #>
 // <#=Helper.FilePos() #>
 #region IEditable
 public override <#= message.Name.ToNameCs() #> Backup()
@@ -145,6 +146,7 @@ public override void Restore(<#= message.Name.ToNameCs() #> from)
 }
 partial void OnRestoreObjectStarting(ref bool isDeep);
 #endregion IEditable
+<# } #>
 // Conversion from '<#= message.Name #>' to '<#= message.Name.ToNameCs() #>'
 public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace #>.<#= message.Name #> m, <#= message.Name.ToNameCs() #> vm = null) // <#=Helper.FilePos() #>
 {

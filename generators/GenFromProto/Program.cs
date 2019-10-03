@@ -34,7 +34,7 @@ namespace GenFromProto
                 Type reflection = null;
                 foreach (var t in types)
                 {
-                    if (t.Name== reflectionClass)
+                    if (t.Name == reflectionClass)
                     {
                         reflection = t;
                         break;
@@ -114,6 +114,12 @@ namespace GenFromProto
                 default:
                     return false;
             }
+        }
+        public static bool IsMap(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            if (from.IsMap)
+                return true;
+            return false;
         }
         public static bool IsMessage(this Google.Protobuf.Reflection.FieldDescriptor from)
         {

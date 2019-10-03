@@ -7,7 +7,7 @@
 {
 	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } 
 	#region CTOR
-	public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
+	public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #>
 	{
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
        if (t.IsCsSimple() && !t.IsRepeated)
