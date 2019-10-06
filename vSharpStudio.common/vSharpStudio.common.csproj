@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigObjectBase%27.cs" />
+    <Compile Include="Defaults.cs" />
     <Compile Include="DiffModel\DiffConfigModel.cs" />
     <Compile Include="DiffModel\DiffConstant.cs" />
     <Compile Include="DiffModel\DiffDocument.cs" />

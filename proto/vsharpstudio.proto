@@ -292,6 +292,7 @@ message proto_sub_model {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated string list_guids = 6;
+    //map<string, string> map_guids = 7;
 }
 // Configuration model
 message proto_config_model {

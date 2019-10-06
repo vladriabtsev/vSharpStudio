@@ -214,6 +214,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
+		
+		///////////////////////////////////////////////////
+		/// 
+		/// map<string, string> map_guids = 7;
+		///////////////////////////////////////////////////
 		IEnumerable<string> ListGuidsI { get; } // ModelInterfaces.tt Line: 38
 	}
 	

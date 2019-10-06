@@ -391,27 +391,51 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
+        internal void SavePrepare()
+        {
+            foreach (var t in _Config.GroupSubModels.ListSubModels)
+            {
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                int i = 0;
+                foreach(var tt in t.ListGuids.ToList())
+                {
+                    if (t.DicGuids.ContainsKey(tt))
+                    {
+                        i++;
+                        dic[tt] = null;
+                    }
+                    else
+                    {
+                        t.ListGuids.RemoveAt(i);
+                    }
+                }
+                foreach(var td in t.DicGuids)
+                {
+                    if (!dic.ContainsKey(td.Key))
+                    {
+                        t.ListGuids.Add(td.Key);
+                    }
+                }
+            }
+            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(_Config);
+            if (this.pconfig_history == null)
+                this.pconfig_history = new Proto.Config.proto_config_short_history();
+            this.pconfig_history.CurrentConfig = proto;
+        }
         public void SaveConfigAsForTests(string file_path)
         {
             PluginSettingsToModel();
-            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Config);
-            if (pconfig_history == null)
-                pconfig_history = new Proto.Config.proto_config_short_history();
-            pconfig_history.CurrentConfig = proto;
-            File.WriteAllBytes(file_path, pconfig_history.ToByteArray());
+            SavePrepare();
+            File.WriteAllBytes(file_path, this.pconfig_history.ToByteArray());
         }
         internal void Save()
         {
             PluginSettingsToModel();
-            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Config);
-            if (pconfig_history == null)
-                pconfig_history = new Proto.Config.proto_config_short_history();
-            pconfig_history.CurrentConfig = proto;
+            SavePrepare();
             Utils.TryCall(() =>
             {
-                File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
+                File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
             this.ConnectionStringSettingsSave();
             //var json = JsonFormatter.Default.Format(proto);
@@ -445,11 +469,10 @@ namespace vSharpStudio.ViewModels
             {
                 FilePathSaveAs = openFileDialog.FileName;
                 PluginSettingsToModel();
-                _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-                var proto = Config.ConvertToProto(_Config);
+                SavePrepare();
                 Utils.TryCall(() =>
                 {
-                    File.WriteAllBytes(FilePathSaveAs, proto.ToByteArray());
+                    File.WriteAllBytes(FilePathSaveAs, this.pconfig_history.ToByteArray());
                 }, "Can't save configuration. File path: '" + FilePathSaveAs + "'");
                 //var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
                 //File.WriteAllText(FilePathSaveAs, json);

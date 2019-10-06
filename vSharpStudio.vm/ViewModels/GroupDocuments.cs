@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
-            this.Name = "Documens";
+            this.Name = Defaults.DocumentsGroupName;
             this.IsEditable = false;
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
             this.GroupSharedProperties.Parent = this;

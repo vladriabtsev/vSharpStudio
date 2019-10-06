@@ -3438,7 +3438,7 @@
             },
             {
               "name": "list_guids",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [BrowsableAttribute(false)]\n\nmap\u003cstring, string\u003e map_guids = 7;",
               "label": "repeated",
               "type": "string",
               "longType": "string",

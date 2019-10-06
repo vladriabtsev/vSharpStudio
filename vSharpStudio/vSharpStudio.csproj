@@ -178,6 +178,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Class1.cs" />
     <Compile Include="Migration\ConfigToModelVisitor.cs" />
     <Compile Include="Migration\DbMigration.cs" />
     <Compile Include="Migration\MsSqlServerSchemaReader.cs" />
@@ -246,6 +247,9 @@
     <Compile Include="Views\PropertiesList.xaml.cs">
       <DependentUpon>PropertiesList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TreeSubModels.xaml.cs">
+      <DependentUpon>TreeSubModels.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ValidationListForSelectedNode.xaml.cs">
       <DependentUpon>ValidationListForSelectedNode.xaml</DependentUpon>
     </Compile>
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PropertiesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TreeSubModels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

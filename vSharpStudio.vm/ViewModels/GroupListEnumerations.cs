@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-            this.Name = "Enumerations";
+            this.Name = Defaults.EnumerationsGroupName;
             this.IsEditable = false;
         }
 

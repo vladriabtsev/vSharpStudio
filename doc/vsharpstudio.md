@@ -966,7 +966,9 @@ User&#39;s role
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| list_guids | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guids | [string](#string) | repeated | @attr [BrowsableAttribute(false)]
+
+map&lt;string, string&gt; map_guids = 7; |
 
 
 

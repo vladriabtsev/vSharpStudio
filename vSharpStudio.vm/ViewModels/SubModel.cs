@@ -55,11 +55,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.DicGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = true, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = false, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
@@ -73,15 +73,15 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.DicGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = true, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = false, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow() { SubModel = this, GroupName = grp, ListSubModelRow = lst, IsIncluded = is_all && (lst.Count > 0) });
+                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
                 lst = new List<SubModelRow>();
@@ -91,15 +91,15 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.DicGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = true, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = false, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow() { SubModel = this, GroupName = grp, ListSubModelRow = lst, IsIncluded = is_all && (lst.Count > 0) });
+                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
                 lst = new List<SubModelRow>();
@@ -109,15 +109,15 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.DicGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = true, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow() { SubModel = this, GroupName = grp, IsIncluded = false, Name = t.Name, Guid = t.Guid });
+                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow() { SubModel = this, GroupName = grp, ListSubModelRow = lst, IsIncluded = is_all && (lst.Count > 0) });
+                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
                 return _ListObjects;

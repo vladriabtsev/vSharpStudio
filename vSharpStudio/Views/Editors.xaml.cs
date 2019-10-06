@@ -24,5 +24,11 @@ namespace vSharpStudio.Views
         {
             InitializeComponent();
         }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            cc.Height = e.NewSize.Height;
+            cc.Width = e.NewSize.Width;
+        }
     }
 }

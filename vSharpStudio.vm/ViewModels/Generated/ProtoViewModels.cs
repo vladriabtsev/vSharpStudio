@@ -1,4 +1,4 @@
-// Auto generated on UTC 10/03/2019 16:28:27
+// Auto generated on UTC 10/03/2019 16:36:23
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3371,6 +3371,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private string _Description = "";
 		partial void OnDescriptionChanging(); // Property.tt Line: 134
 		partial void OnDescriptionChanged();
+		
+		///////////////////////////////////////////////////
+		/// 
+		/// map<string, string> map_guids = 7;
+		///////////////////////////////////////////////////
 		[BrowsableAttribute(false)]
 		public ObservableCollection<string> ListGuids // Property.tt Line: 9
 		{ 

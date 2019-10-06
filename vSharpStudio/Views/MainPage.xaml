@@ -50,7 +50,7 @@
                             <DataTemplate>
                                 <TextBlock Text="Db plugin" Foreground="Gray" />
                             </DataTemplate>
-                        </xctk:WatermarkComboBox.WatermarkTemplate>   
+                        </xctk:WatermarkComboBox.WatermarkTemplate>
                     </xctk:WatermarkComboBox>
                     <xctk:WatermarkComboBox MinWidth="120">
                         <xctk:WatermarkComboBox.WatermarkTemplate>
@@ -89,6 +89,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" MinHeight="20" />
                 </Grid.RowDefinitions>
+                <!--<local:Editors Grid.Row="0" Height="{Binding RowDefinitions[0].Height.Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>-->
                 <local:Editors Grid.Row="0"/>
                 <GridSplitter Grid.Row="1" ResizeDirection="Rows" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.5" >
                     <GridSplitter.Background>
