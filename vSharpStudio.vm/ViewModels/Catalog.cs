@@ -7,6 +7,7 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -15,7 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Catalog";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
-        [Editor(typeof(EditorObjectSubModels), typeof(EditorObjectSubModels))]
+        [PropertyOrderAttribute(11)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
         public bool Models { get; set; }
         partial void OnInit()
         {

@@ -9,9 +9,9 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class SubModelRow
+    public partial class ModelRow
     {
-        public SubModelRow(SubModel subModel, string groupName, string name, string guid, bool isIncluded)
+        public ModelRow(Model subModel, string groupName, string name, string guid, bool isIncluded)
         {
             this.SubModel = subModel;
             this._GroupName = groupName;
@@ -19,15 +19,15 @@ namespace vSharpStudio.vm.ViewModels
             this._Guid = guid;
             this._IsIncluded = isIncluded;
         }
-        public SubModelRow(SubModel subModel, string groupName, List<SubModelRow> lst, bool isIncluded)
+        public ModelRow(Model subModel, string groupName, List<ModelRow> lst, bool isIncluded)
         {
             this.SubModel = subModel;
             this._GroupName = groupName;
             this.ListSubModelRow = lst;
             this._IsIncluded = isIncluded;
         }
-        public SubModel SubModel { get; set; }
-        public List<SubModelRow> ListSubModelRow;
+        public Model SubModel { get; set; }
+        public List<ModelRow> ListSubModelRow;
         partial void OnIsIncludedChanged()
         {
             if (_IsIncluded)

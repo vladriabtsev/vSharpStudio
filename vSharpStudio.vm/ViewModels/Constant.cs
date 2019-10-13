@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,7 +14,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant : ICanGoLeft, ICanAddNode, ISetParent
     {
         public static readonly string DefaultName = "Constant";
-
         partial void OnInit()
         {
         }
@@ -26,6 +27,9 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
+        [PropertyOrderAttribute(11)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
+        public bool Models { get; set; }
 
         #region IConfigObject
         //public void Create()

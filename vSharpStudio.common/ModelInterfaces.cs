@@ -201,17 +201,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		IDbSettings DbSettingsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListBaseConfigs GroupConfigsI { get; } // ModelInterfaces.tt Line: 47
 		IConfigModel ModelI { get; } // ModelInterfaces.tt Line: 47
-		IGroupListSubModels GroupSubModelsI { get; } // ModelInterfaces.tt Line: 47
+		IGroupListModels GroupSubModelsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListPlugins GroupPluginsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListAppSolutions GroupAppSolutionsI { get; } // ModelInterfaces.tt Line: 47
 	}
 	
-	public partial interface IGroupListSubModels : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	public partial interface IGroupListModels : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
 		bool IsAutoInsertDependancies { get; } // ModelInterfaces.tt Line: 43
-		IEnumerable<ISubModel> ListSubModelsI { get; } // ModelInterfaces.tt Line: 40
+		IEnumerable<IModel> ListModelsI { get; } // ModelInterfaces.tt Line: 40
 	}
 	
 	public partial interface IObjectInclusionRecord  // ModelInterfaces.tt Line: 26
@@ -220,7 +220,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		bool? Inclusion { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface ISubModel : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	public partial interface IModel : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
@@ -548,7 +548,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		string Description { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface ISubModelRow  // ModelInterfaces.tt Line: 26
+	public partial interface IModelRow  // ModelInterfaces.tt Line: 26
 	{
 		string GroupName { get; } // ModelInterfaces.tt Line: 43
 		string Name { get; } // ModelInterfaces.tt Line: 43

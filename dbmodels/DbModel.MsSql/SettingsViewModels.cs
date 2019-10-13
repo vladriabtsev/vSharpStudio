@@ -1,4 +1,4 @@
-// Auto generated on UTC 10/13/2019 02:32:56
+// Auto generated on UTC 10/13/2019 23:52:52
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -112,13 +112,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		#endregion Procedures
 		#region Properties
 		
-		public string Name // Property.tt Line: 115
+		public string Name // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Name != value)
 				{
-					OnNameChanging();
+					OnNameChanging(_Name, value);
 					_Name = value;
 					OnNameChanged();
 					NotifyPropertyChanged();
@@ -128,15 +128,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging(); // Property.tt Line: 134
+		partial void OnNameChanging(string from, string to); // Property.tt Line: 141
 		partial void OnNameChanged();
-		public string Guid // Property.tt Line: 115
+		
+		public string Guid // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Guid != value)
 				{
-					OnGuidChanging();
+					OnGuidChanging(_Guid, value);
 					_Guid = value;
 					OnGuidChanged();
 					NotifyPropertyChanged();
@@ -146,17 +147,18 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging(); // Property.tt Line: 134
+		partial void OnGuidChanging(string from, string to); // Property.tt Line: 141
 		partial void OnGuidChanged();
+		
 		[Editable(false)]
 		[DisplayName("UI name")]
-		public string NameUi // Property.tt Line: 115
+		public string NameUi // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_NameUi != value)
 				{
-					OnNameUiChanging();
+					OnNameUiChanging(_NameUi, value);
 					_NameUi = value;
 					OnNameUiChanged();
 					NotifyPropertyChanged();
@@ -166,15 +168,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _NameUi; }
 		}
 		private string _NameUi = "";
-		partial void OnNameUiChanging(); // Property.tt Line: 134
+		partial void OnNameUiChanging(string from, string to); // Property.tt Line: 141
 		partial void OnNameUiChanged();
-		public bool IsUseForeingkey // Property.tt Line: 115
+		
+		public bool IsUseForeingkey // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsUseForeingkey != value)
 				{
-					OnIsUseForeingkeyChanging();
+					OnIsUseForeingkeyChanging(_IsUseForeingkey, value);
 					_IsUseForeingkey = value;
 					OnIsUseForeingkeyChanged();
 					NotifyPropertyChanged();
@@ -184,15 +187,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseForeingkey; }
 		}
 		private bool _IsUseForeingkey;
-		partial void OnIsUseForeingkeyChanging(); // Property.tt Line: 134
+		partial void OnIsUseForeingkeyChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsUseForeingkeyChanged();
-		public bool IsUseForeingkeyIndex // Property.tt Line: 115
+		
+		public bool IsUseForeingkeyIndex // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsUseForeingkeyIndex != value)
 				{
-					OnIsUseForeingkeyIndexChanging();
+					OnIsUseForeingkeyIndexChanging(_IsUseForeingkeyIndex, value);
 					_IsUseForeingkeyIndex = value;
 					OnIsUseForeingkeyIndexChanged();
 					NotifyPropertyChanged();
@@ -202,15 +206,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseForeingkeyIndex; }
 		}
 		private bool _IsUseForeingkeyIndex;
-		partial void OnIsUseForeingkeyIndexChanging(); // Property.tt Line: 134
+		partial void OnIsUseForeingkeyIndexChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsUseForeingkeyIndexChanged();
-		public bool IsUseStorageProcedures // Property.tt Line: 115
+		
+		public bool IsUseStorageProcedures // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsUseStorageProcedures != value)
 				{
-					OnIsUseStorageProceduresChanging();
+					OnIsUseStorageProceduresChanging(_IsUseStorageProcedures, value);
 					_IsUseStorageProcedures = value;
 					OnIsUseStorageProceduresChanged();
 					NotifyPropertyChanged();
@@ -220,15 +225,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseStorageProcedures; }
 		}
 		private bool _IsUseStorageProcedures;
-		partial void OnIsUseStorageProceduresChanging(); // Property.tt Line: 134
+		partial void OnIsUseStorageProceduresChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsUseStorageProceduresChanged();
-		public bool IsUseViews // Property.tt Line: 115
+		
+		public bool IsUseViews // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsUseViews != value)
 				{
-					OnIsUseViewsChanging();
+					OnIsUseViewsChanging(_IsUseViews, value);
 					_IsUseViews = value;
 					OnIsUseViewsChanged();
 					NotifyPropertyChanged();
@@ -238,19 +244,20 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsUseViews; }
 		}
 		private bool _IsUseViews;
-		partial void OnIsUseViewsChanging(); // Property.tt Line: 134
+		partial void OnIsUseViewsChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsUseViewsChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsPrimaryKeyClustered // Property.tt Line: 115
+		public bool IsPrimaryKeyClustered // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsPrimaryKeyClustered != value)
 				{
-					OnIsPrimaryKeyClusteredChanging();
+					OnIsPrimaryKeyClusteredChanging(_IsPrimaryKeyClustered, value);
 					_IsPrimaryKeyClustered = value;
 					OnIsPrimaryKeyClusteredChanged();
 					NotifyPropertyChanged();
@@ -260,19 +267,20 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsPrimaryKeyClustered; }
 		}
 		private bool _IsPrimaryKeyClustered;
-		partial void OnIsPrimaryKeyClusteredChanging(); // Property.tt Line: 134
+		partial void OnIsPrimaryKeyClusteredChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsPrimaryKeyClusteredChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// MsSql
 		///////////////////////////////////////////////////
-		public bool IsMemoryOptimized // Property.tt Line: 115
+		public bool IsMemoryOptimized // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IsMemoryOptimized != value)
 				{
-					OnIsMemoryOptimizedChanging();
+					OnIsMemoryOptimizedChanging(_IsMemoryOptimized, value);
 					_IsMemoryOptimized = value;
 					OnIsMemoryOptimizedChanged();
 					NotifyPropertyChanged();
@@ -282,8 +290,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IsMemoryOptimized; }
 		}
 		private bool _IsMemoryOptimized;
-		partial void OnIsMemoryOptimizedChanging(); // Property.tt Line: 134
+		partial void OnIsMemoryOptimizedChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIsMemoryOptimizedChanged();
+	
 		#endregion Properties
 	}
 	[CategoryOrder("Source", 1)]
@@ -493,13 +502,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		#endregion Procedures
 		#region Properties
 		
-		public string Name // Property.tt Line: 115
+		public string Name // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Name != value)
 				{
-					OnNameChanging();
+					OnNameChanging(_Name, value);
 					_Name = value;
 					OnNameChanged();
 					NotifyPropertyChanged();
@@ -509,15 +518,16 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Name; }
 		}
 		private string _Name = "";
-		partial void OnNameChanging(); // Property.tt Line: 134
+		partial void OnNameChanging(string from, string to); // Property.tt Line: 141
 		partial void OnNameChanged();
-		public string Guid // Property.tt Line: 115
+		
+		public string Guid // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Guid != value)
 				{
-					OnGuidChanging();
+					OnGuidChanging(_Guid, value);
 					_Guid = value;
 					OnGuidChanged();
 					NotifyPropertyChanged();
@@ -527,8 +537,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Guid; }
 		}
 		private string _Guid = "";
-		partial void OnGuidChanging(); // Property.tt Line: 134
+		partial void OnGuidChanging(string from, string to); // Property.tt Line: 141
 		partial void OnGuidChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -541,13 +552,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MaxPoolSize property, or 100 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MaxPoolSize // Property.tt Line: 115
+		public int MaxPoolSize // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_MaxPoolSize != value)
 				{
-					OnMaxPoolSizeChanging();
+					OnMaxPoolSizeChanging(_MaxPoolSize, value);
 					_MaxPoolSize = value;
 					OnMaxPoolSizeChanged();
 					NotifyPropertyChanged();
@@ -557,8 +568,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MaxPoolSize; }
 		}
 		private int _MaxPoolSize;
-		partial void OnMaxPoolSizeChanging(); // Property.tt Line: 134
+		partial void OnMaxPoolSizeChanging(int from, int to); // Property.tt Line: 141
 		partial void OnMaxPoolSizeChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -574,13 +586,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryCount // Property.tt Line: 115
+		public int ConnectRetryCount // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ConnectRetryCount != value)
 				{
-					OnConnectRetryCountChanging();
+					OnConnectRetryCountChanging(_ConnectRetryCount, value);
 					_ConnectRetryCount = value;
 					OnConnectRetryCountChanged();
 					NotifyPropertyChanged();
@@ -590,8 +602,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectRetryCount; }
 		}
 		private int _ConnectRetryCount;
-		partial void OnConnectRetryCountChanging(); // Property.tt Line: 134
+		partial void OnConnectRetryCountChanging(int from, int to); // Property.tt Line: 141
 		partial void OnConnectRetryCountChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -607,13 +620,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description(".NET Framework 4.5.1 and later versions. Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.")]
 		[Category("ConnectionResilency")]
-		public int ConnectRetryInterval // Property.tt Line: 115
+		public int ConnectRetryInterval // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ConnectRetryInterval != value)
 				{
-					OnConnectRetryIntervalChanging();
+					OnConnectRetryIntervalChanging(_ConnectRetryInterval, value);
 					_ConnectRetryInterval = value;
 					OnConnectRetryIntervalChanged();
 					NotifyPropertyChanged();
@@ -623,8 +636,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectRetryInterval; }
 		}
 		private int _ConnectRetryInterval;
-		partial void OnConnectRetryIntervalChanging(); // Property.tt Line: 134
+		partial void OnConnectRetryIntervalChanging(int from, int to); // Property.tt Line: 141
 		partial void OnConnectRetryIntervalChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -637,13 +651,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.MinPoolSize property, or 0 if none has been supplied.")]
 		[Category("Pooling")]
-		public int MinPoolSize // Property.tt Line: 115
+		public int MinPoolSize // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_MinPoolSize != value)
 				{
-					OnMinPoolSizeChanging();
+					OnMinPoolSizeChanging(_MinPoolSize, value);
 					_MinPoolSize = value;
 					OnMinPoolSizeChanged();
 					NotifyPropertyChanged();
@@ -653,8 +667,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MinPoolSize; }
 		}
 		private int _MinPoolSize;
-		partial void OnMinPoolSizeChanging(); // Property.tt Line: 134
+		partial void OnMinPoolSizeChanging(int from, int to); // Property.tt Line: 141
 		partial void OnMinPoolSizeChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -669,13 +684,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.")]
 		[CategoryAttribute("Advanced")]
-		public bool MultipleActiveResultSets // Property.tt Line: 115
+		public bool MultipleActiveResultSets // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_MultipleActiveResultSets != value)
 				{
-					OnMultipleActiveResultSetsChanging();
+					OnMultipleActiveResultSetsChanging(_MultipleActiveResultSets, value);
 					_MultipleActiveResultSets = value;
 					OnMultipleActiveResultSetsChanged();
 					NotifyPropertyChanged();
@@ -685,8 +700,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MultipleActiveResultSets; }
 		}
 		private bool _MultipleActiveResultSets;
-		partial void OnMultipleActiveResultSetsChanging(); // Property.tt Line: 134
+		partial void OnMultipleActiveResultSetsChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnMultipleActiveResultSetsChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -701,13 +717,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server. For more information about SqlClient support for Always On Availability Groups, see SqlClient Support for High Availability, Disaster Recovery.")]
 		[Category("Source")]
-		public bool MultiSubnetFailover // Property.tt Line: 115
+		public bool MultiSubnetFailover // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_MultiSubnetFailover != value)
 				{
-					OnMultiSubnetFailoverChanging();
+					OnMultiSubnetFailoverChanging(_MultiSubnetFailover, value);
 					_MultiSubnetFailover = value;
 					OnMultiSubnetFailoverChanged();
 					NotifyPropertyChanged();
@@ -717,8 +733,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _MultiSubnetFailover; }
 		}
 		private bool _MultiSubnetFailover;
-		partial void OnMultiSubnetFailoverChanging(); // Property.tt Line: 134
+		partial void OnMultiSubnetFailoverChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnMultiSubnetFailoverChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -733,13 +750,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("When the value of this key is set to true, the application is required to retrieve all IP addresses for a particular DNS entry and attempt to connect with the first one in the list. If the connection is not established within 0.5 seconds, the application will try to connect to all others in parallel. When the first answers, the application will establish the connection with the respondent IP address.")]
 		[Category("Source")]
-		public bool TransparentNetworkIPResolution // Property.tt Line: 115
+		public bool TransparentNetworkIPResolution // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_TransparentNetworkIPResolution != value)
 				{
-					OnTransparentNetworkIPResolutionChanging();
+					OnTransparentNetworkIPResolutionChanging(_TransparentNetworkIPResolution, value);
 					_TransparentNetworkIPResolution = value;
 					OnTransparentNetworkIPResolutionChanged();
 					NotifyPropertyChanged();
@@ -749,8 +766,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TransparentNetworkIPResolution; }
 		}
 		private bool _TransparentNetworkIPResolution;
-		partial void OnTransparentNetworkIPResolutionChanging(); // Property.tt Line: 134
+		partial void OnTransparentNetworkIPResolutionChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnTransparentNetworkIPResolutionChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -766,13 +784,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string NetworkLibrary // Property.tt Line: 115
+		public string NetworkLibrary // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_NetworkLibrary != value)
 				{
-					OnNetworkLibraryChanging();
+					OnNetworkLibraryChanging(_NetworkLibrary, value);
 					_NetworkLibrary = value;
 					OnNetworkLibraryChanged();
 					NotifyPropertyChanged();
@@ -782,8 +800,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _NetworkLibrary; }
 		}
 		private string _NetworkLibrary = "";
-		partial void OnNetworkLibraryChanging(); // Property.tt Line: 134
+		partial void OnNetworkLibraryChanging(string from, string to); // Property.tt Line: 141
 		partial void OnNetworkLibraryChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -796,13 +815,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.PacketSize property, or 8000 if none has been supplied.")]
 		[Category("Advanced")]
-		public int PacketSize // Property.tt Line: 115
+		public int PacketSize // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_PacketSize != value)
 				{
-					OnPacketSizeChanging();
+					OnPacketSizeChanging(_PacketSize, value);
 					_PacketSize = value;
 					OnPacketSizeChanged();
 					NotifyPropertyChanged();
@@ -812,8 +831,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _PacketSize; }
 		}
 		private int _PacketSize;
-		partial void OnPacketSizeChanging(); // Property.tt Line: 134
+		partial void OnPacketSizeChanging(int from, int to); // Property.tt Line: 141
 		partial void OnPacketSizeChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -827,13 +847,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.")]
 		[Category("Security")]
-		public bool PersistSecurityInfo // Property.tt Line: 115
+		public bool PersistSecurityInfo // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_PersistSecurityInfo != value)
 				{
-					OnPersistSecurityInfoChanging();
+					OnPersistSecurityInfoChanging(_PersistSecurityInfo, value);
 					_PersistSecurityInfo = value;
 					OnPersistSecurityInfoChanged();
 					NotifyPropertyChanged();
@@ -843,8 +863,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _PersistSecurityInfo; }
 		}
 		private bool _PersistSecurityInfo;
-		partial void OnPersistSecurityInfoChanging(); // Property.tt Line: 134
+		partial void OnPersistSecurityInfoChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnPersistSecurityInfoChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -857,13 +878,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.")]
 		[Category("Pooling")]
-		public int LoadBalanceTimeout // Property.tt Line: 115
+		public int LoadBalanceTimeout // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_LoadBalanceTimeout != value)
 				{
-					OnLoadBalanceTimeoutChanging();
+					OnLoadBalanceTimeoutChanging(_LoadBalanceTimeout, value);
 					_LoadBalanceTimeout = value;
 					OnLoadBalanceTimeoutChanged();
 					NotifyPropertyChanged();
@@ -873,8 +894,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _LoadBalanceTimeout; }
 		}
 		private int _LoadBalanceTimeout;
-		partial void OnLoadBalanceTimeoutChanging(); // Property.tt Line: 134
+		partial void OnLoadBalanceTimeoutChanging(int from, int to); // Property.tt Line: 141
 		partial void OnLoadBalanceTimeoutChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -887,13 +909,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.")]
 		[Category("Pooling")]
-		public bool Pooling // Property.tt Line: 115
+		public bool Pooling // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Pooling != value)
 				{
-					OnPoolingChanging();
+					OnPoolingChanging(_Pooling, value);
 					_Pooling = value;
 					OnPoolingChanged();
 					NotifyPropertyChanged();
@@ -903,8 +925,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Pooling; }
 		}
 		private bool _Pooling;
-		partial void OnPoolingChanging(); // Property.tt Line: 134
+		partial void OnPoolingChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnPoolingChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -917,13 +940,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.Replication")]
 		[Category("Replication")]
-		public bool Replication // Property.tt Line: 115
+		public bool Replication // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Replication != value)
 				{
-					OnReplicationChanging();
+					OnReplicationChanging(_Replication, value);
 					_Replication = value;
 					OnReplicationChanged();
 					NotifyPropertyChanged();
@@ -933,8 +956,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Replication; }
 		}
 		private bool _Replication;
-		partial void OnReplicationChanging(); // Property.tt Line: 134
+		partial void OnReplicationChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnReplicationChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -947,13 +971,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding")]
 		[Category("Advanced")]
-		public string TransactionBinding // Property.tt Line: 115
+		public string TransactionBinding // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_TransactionBinding != value)
 				{
-					OnTransactionBindingChanging();
+					OnTransactionBindingChanging(_TransactionBinding, value);
 					_TransactionBinding = value;
 					OnTransactionBindingChanged();
 					NotifyPropertyChanged();
@@ -963,8 +987,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TransactionBinding; }
 		}
 		private string _TransactionBinding = "";
-		partial void OnTransactionBindingChanging(); // Property.tt Line: 134
+		partial void OnTransactionBindingChanging(string from, string to); // Property.tt Line: 141
 		partial void OnTransactionBindingChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -979,13 +1004,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     components are upgraded.
 		///////////////////////////////////////////////////
 		[Category("Advanced")]
-		public string TypeSystemVersion // Property.tt Line: 115
+		public string TypeSystemVersion // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_TypeSystemVersion != value)
 				{
-					OnTypeSystemVersionChanging();
+					OnTypeSystemVersionChanging(_TypeSystemVersion, value);
 					_TypeSystemVersion = value;
 					OnTypeSystemVersionChanged();
 					NotifyPropertyChanged();
@@ -995,8 +1020,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TypeSystemVersion; }
 		}
 		private string _TypeSystemVersion = "";
-		partial void OnTypeSystemVersionChanging(); // Property.tt Line: 134
+		partial void OnTypeSystemVersionChanging(string from, string to); // Property.tt Line: 141
 		partial void OnTypeSystemVersionChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1011,13 +1037,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string UserID // Property.tt Line: 115
+		public string UserID // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_UserID != value)
 				{
-					OnUserIDChanging();
+					OnUserIDChanging(_UserID, value);
 					_UserID = value;
 					OnUserIDChanged();
 					NotifyPropertyChanged();
@@ -1027,8 +1053,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _UserID; }
 		}
 		private string _UserID = "";
-		partial void OnUserIDChanging(); // Property.tt Line: 134
+		partial void OnUserIDChanging(string from, string to); // Property.tt Line: 141
 		partial void OnUserIDChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1045,13 +1072,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Source")]
-		public bool UserInstance // Property.tt Line: 115
+		public bool UserInstance // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_UserInstance != value)
 				{
-					OnUserInstanceChanging();
+					OnUserInstanceChanging(_UserInstance, value);
 					_UserInstance = value;
 					OnUserInstanceChanged();
 					NotifyPropertyChanged();
@@ -1061,8 +1088,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _UserInstance; }
 		}
 		private bool _UserInstance;
-		partial void OnUserInstanceChanging(); // Property.tt Line: 134
+		partial void OnUserInstanceChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnUserInstanceChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1077,13 +1105,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     To set the value to null, use System.DBNull.Value.
 		///////////////////////////////////////////////////
 		[Category("Context")]
-		public string WorkstationID // Property.tt Line: 115
+		public string WorkstationID // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_WorkstationID != value)
 				{
-					OnWorkstationIDChanging();
+					OnWorkstationIDChanging(_WorkstationID, value);
 					_WorkstationID = value;
 					OnWorkstationIDChanged();
 					NotifyPropertyChanged();
@@ -1093,8 +1121,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _WorkstationID; }
 		}
 		private string _WorkstationID = "";
-		partial void OnWorkstationIDChanging(); // Property.tt Line: 134
+		partial void OnWorkstationIDChanging(string from, string to); // Property.tt Line: 141
 		partial void OnWorkstationIDChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1109,13 +1138,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     The password was incorrectly set to null. See code sample below.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public string Password // Property.tt Line: 115
+		public string Password // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Password != value)
 				{
-					OnPasswordChanging();
+					OnPasswordChanging(_Password, value);
 					_Password = value;
 					OnPasswordChanged();
 					NotifyPropertyChanged();
@@ -1125,8 +1154,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Password; }
 		}
 		private string _Password = "";
-		partial void OnPasswordChanging(); // Property.tt Line: 134
+		partial void OnPasswordChanging(string from, string to); // Property.tt Line: 141
 		partial void OnPasswordChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1136,13 +1166,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///     The authentication of the connection string.
 		///////////////////////////////////////////////////
 		[Category("Security")]
-		public SqlAuthenticationMethod Authentication // Property.tt Line: 115
+		public SqlAuthenticationMethod Authentication // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Authentication != value)
 				{
-					OnAuthenticationChanging();
+					OnAuthenticationChanging(_Authentication, value);
 					_Authentication = value;
 					OnAuthenticationChanged();
 					NotifyPropertyChanged();
@@ -1152,8 +1182,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Authentication; }
 		}
 		private SqlAuthenticationMethod _Authentication;
-		partial void OnAuthenticationChanging(); // Property.tt Line: 134
+		partial void OnAuthenticationChanging(SqlAuthenticationMethod from, SqlAuthenticationMethod to); // Property.tt Line: 141
 		partial void OnAuthenticationChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1169,13 +1200,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name of the database associated with the connection.")]
 		[Category("Source")]
-		public string InitialCatalog // Property.tt Line: 115
+		public string InitialCatalog // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_InitialCatalog != value)
 				{
-					OnInitialCatalogChanging();
+					OnInitialCatalogChanging(_InitialCatalog, value);
 					_InitialCatalog = value;
 					OnInitialCatalogChanged();
 					NotifyPropertyChanged();
@@ -1185,8 +1216,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _InitialCatalog; }
 		}
 		private string _InitialCatalog = "";
-		partial void OnInitialCatalogChanging(); // Property.tt Line: 134
+		partial void OnInitialCatalogChanging(string from, string to); // Property.tt Line: 141
 		partial void OnInitialCatalogChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1200,13 +1232,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Declares the application workload type when connecting to a database in an SQL Server Availability Group. You can set the value of this property with System.Data.SqlClient.ApplicationIntent.")]
 		[Category("Initialization")]
-		public ApplicationIntent ApplicationIntentValue // Property.tt Line: 115
+		public ApplicationIntent ApplicationIntentValue // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ApplicationIntentValue != value)
 				{
-					OnApplicationIntentValueChanging();
+					OnApplicationIntentValueChanging(_ApplicationIntentValue, value);
 					_ApplicationIntentValue = value;
 					OnApplicationIntentValueChanged();
 					NotifyPropertyChanged();
@@ -1216,8 +1248,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ApplicationIntentValue; }
 		}
 		private ApplicationIntent _ApplicationIntentValue;
-		partial void OnApplicationIntentValueChanging(); // Property.tt Line: 134
+		partial void OnApplicationIntentValueChanging(ApplicationIntent from, ApplicationIntent to); // Property.tt Line: 141
 		partial void OnApplicationIntentValueChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1233,13 +1266,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The name of the application, or \".NET SqlClient Data Provider\" if no name has been supplied.")]
 		[Category("Context")]
-		public string ApplicationName // Property.tt Line: 115
+		public string ApplicationName // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ApplicationName != value)
 				{
-					OnApplicationNameChanging();
+					OnApplicationNameChanging(_ApplicationName, value);
 					_ApplicationName = value;
 					OnApplicationNameChanged();
 					NotifyPropertyChanged();
@@ -1249,8 +1282,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ApplicationName; }
 		}
 		private string _ApplicationName = "";
-		partial void OnApplicationNameChanging(); // Property.tt Line: 134
+		partial void OnApplicationNameChanging(string from, string to); // Property.tt Line: 141
 		partial void OnApplicationNameChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1265,13 +1299,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("This property is ignored beginning in .NET Framework 4.5.")]
 		[Category("Initialization")]
-		public bool AsynchronousProcessing // Property.tt Line: 115
+		public bool AsynchronousProcessing // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_AsynchronousProcessing != value)
 				{
-					OnAsynchronousProcessingChanging();
+					OnAsynchronousProcessingChanging(_AsynchronousProcessing, value);
 					_AsynchronousProcessing = value;
 					OnAsynchronousProcessingChanged();
 					NotifyPropertyChanged();
@@ -1281,8 +1315,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _AsynchronousProcessing; }
 		}
 		private bool _AsynchronousProcessing;
-		partial void OnAsynchronousProcessingChanging(); // Property.tt Line: 134
+		partial void OnAsynchronousProcessingChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnAsynchronousProcessingChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1296,13 +1331,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true).")]
 		[Category("Security")]
-		public bool IntegratedSecurity // Property.tt Line: 115
+		public bool IntegratedSecurity // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_IntegratedSecurity != value)
 				{
-					OnIntegratedSecurityChanging();
+					OnIntegratedSecurityChanging(_IntegratedSecurity, value);
 					_IntegratedSecurity = value;
 					OnIntegratedSecurityChanged();
 					NotifyPropertyChanged();
@@ -1312,8 +1347,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _IntegratedSecurity; }
 		}
 		private bool _IntegratedSecurity;
-		partial void OnIntegratedSecurityChanging(); // Property.tt Line: 134
+		partial void OnIntegratedSecurityChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnIntegratedSecurityChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1326,13 +1362,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("System.Data.SqlClient.SqlConnectionStringBuilder.ContextConnection")]
 		[Category("Source")]
-		public bool ContextConnection // Property.tt Line: 115
+		public bool ContextConnection // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ContextConnection != value)
 				{
-					OnContextConnectionChanging();
+					OnContextConnectionChanging(_ContextConnection, value);
 					_ContextConnection = value;
 					OnContextConnectionChanged();
 					NotifyPropertyChanged();
@@ -1342,8 +1378,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ContextConnection; }
 		}
 		private bool _ContextConnection;
-		partial void OnContextConnectionChanging(); // Property.tt Line: 134
+		partial void OnContextConnectionChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnContextConnectionChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1356,13 +1393,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("The value of the System.Data.SqlClient.SqlConnectionStringBuilder.ConnectTimeout property, or 15 seconds if no value has been supplied.")]
 		[Category("Initialization")]
-		public int ConnectTimeout // Property.tt Line: 115
+		public int ConnectTimeout // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ConnectTimeout != value)
 				{
-					OnConnectTimeoutChanging();
+					OnConnectTimeoutChanging(_ConnectTimeout, value);
 					_ConnectTimeout = value;
 					OnConnectTimeoutChanged();
 					NotifyPropertyChanged();
@@ -1372,8 +1409,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ConnectTimeout; }
 		}
 		private int _ConnectTimeout;
-		partial void OnConnectTimeoutChanging(); // Property.tt Line: 134
+		partial void OnConnectTimeoutChanging(int from, int to); // Property.tt Line: 141
 		partial void OnConnectTimeoutChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1391,13 +1429,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		[Description("Gets or sets a string that contains the name of the primary data file. This includes the full path name of an attachable database.")]
 		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 		[Category("Source")]
-		public string AttachDBFilename // Property.tt Line: 115
+		public string AttachDBFilename // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_AttachDBFilename != value)
 				{
-					OnAttachDBFilenameChanging();
+					OnAttachDBFilenameChanging(_AttachDBFilename, value);
 					_AttachDBFilename = value;
 					OnAttachDBFilenameChanged();
 					NotifyPropertyChanged();
@@ -1407,8 +1445,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _AttachDBFilename; }
 		}
 		private string _AttachDBFilename = "";
-		partial void OnAttachDBFilenameChanging(); // Property.tt Line: 134
+		partial void OnAttachDBFilenameChanging(string from, string to); // Property.tt Line: 141
 		partial void OnAttachDBFilenameChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1425,13 +1464,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or network address of the instance of SQL Server to connect to.")]
 		[Category("Source")]
-		public string DataSource // Property.tt Line: 115
+		public string DataSource // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_DataSource != value)
 				{
-					OnDataSourceChanging();
+					OnDataSourceChanging(_DataSource, value);
 					_DataSource = value;
 					OnDataSourceChanged();
 					NotifyPropertyChanged();
@@ -1441,8 +1480,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _DataSource; }
 		}
 		private string _DataSource = "";
-		partial void OnDataSourceChanging(); // Property.tt Line: 134
+		partial void OnDataSourceChanging(string from, string to); // Property.tt Line: 141
 		partial void OnDataSourceChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1456,13 +1496,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.")]
 		[Category("Security")]
-		public bool Encrypt // Property.tt Line: 115
+		public bool Encrypt // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Encrypt != value)
 				{
-					OnEncryptChanging();
+					OnEncryptChanging(_Encrypt, value);
 					_Encrypt = value;
 					OnEncryptChanged();
 					NotifyPropertyChanged();
@@ -1472,8 +1512,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Encrypt; }
 		}
 		private bool _Encrypt;
-		partial void OnEncryptChanging(); // Property.tt Line: 134
+		partial void OnEncryptChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnEncryptChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1484,13 +1525,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets and sets the column encryption settings for the connection string builder.")]
 		[Category("Security")]
-		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting // Property.tt Line: 115
+		public SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_ColumnEncryptionSetting != value)
 				{
-					OnColumnEncryptionSettingChanging();
+					OnColumnEncryptionSettingChanging(_ColumnEncryptionSetting, value);
 					_ColumnEncryptionSetting = value;
 					OnColumnEncryptionSettingChanged();
 					NotifyPropertyChanged();
@@ -1500,8 +1541,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _ColumnEncryptionSetting; }
 		}
 		private SqlConnectionColumnEncryptionSetting _ColumnEncryptionSetting;
-		partial void OnColumnEncryptionSettingChanging(); // Property.tt Line: 134
+		partial void OnColumnEncryptionSettingChanging(SqlConnectionColumnEncryptionSetting from, SqlConnectionColumnEncryptionSetting to); // Property.tt Line: 141
 		partial void OnColumnEncryptionSettingChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1513,13 +1555,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.")]
 		[Category("Security")]
-		public bool TrustServerCertificate // Property.tt Line: 115
+		public bool TrustServerCertificate // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_TrustServerCertificate != value)
 				{
-					OnTrustServerCertificateChanging();
+					OnTrustServerCertificateChanging(_TrustServerCertificate, value);
 					_TrustServerCertificate = value;
 					OnTrustServerCertificateChanged();
 					NotifyPropertyChanged();
@@ -1529,8 +1571,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _TrustServerCertificate; }
 		}
 		private bool _TrustServerCertificate;
-		partial void OnTrustServerCertificateChanging(); // Property.tt Line: 134
+		partial void OnTrustServerCertificateChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnTrustServerCertificateChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1544,13 +1587,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets a Boolean value that indicates whether the SQL Server connection pooler automatically enlists the connection in the creation thread's current transaction context.")]
 		[Category("Pooling")]
-		public bool Enlist // Property.tt Line: 115
+		public bool Enlist // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_Enlist != value)
 				{
-					OnEnlistChanging();
+					OnEnlistChanging(_Enlist, value);
 					_Enlist = value;
 					OnEnlistChanged();
 					NotifyPropertyChanged();
@@ -1560,8 +1603,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _Enlist; }
 		}
 		private bool _Enlist;
-		partial void OnEnlistChanging(); // Property.tt Line: 134
+		partial void OnEnlistChanging(bool from, bool to); // Property.tt Line: 141
 		partial void OnEnlistChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1578,13 +1622,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the name or address of the partner server to connect to if the primary server is down.")]
 		[Category("Source")]
-		public string FailoverPartner // Property.tt Line: 115
+		public string FailoverPartner // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_FailoverPartner != value)
 				{
-					OnFailoverPartnerChanging();
+					OnFailoverPartnerChanging(_FailoverPartner, value);
 					_FailoverPartner = value;
 					OnFailoverPartnerChanged();
 					NotifyPropertyChanged();
@@ -1594,8 +1638,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _FailoverPartner; }
 		}
 		private string _FailoverPartner = "";
-		partial void OnFailoverPartnerChanging(); // Property.tt Line: 134
+		partial void OnFailoverPartnerChanging(string from, string to); // Property.tt Line: 141
 		partial void OnFailoverPartnerChanged();
+		
 		
 		///////////////////////////////////////////////////
 		/// Summary:
@@ -1611,13 +1656,13 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		///////////////////////////////////////////////////
 		[Description("Gets or sets the SQL Server Language record name.")]
 		[Category("Initialization")]
-		public string CurrentLanguage // Property.tt Line: 115
+		public string CurrentLanguage // Property.tt Line: 123
 		{ 
 			set
 			{
 				if (_CurrentLanguage != value)
 				{
-					OnCurrentLanguageChanging();
+					OnCurrentLanguageChanging(_CurrentLanguage, value);
 					_CurrentLanguage = value;
 					OnCurrentLanguageChanged();
 					NotifyPropertyChanged();
@@ -1627,8 +1672,9 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 			get { return _CurrentLanguage; }
 		}
 		private string _CurrentLanguage = "";
-		partial void OnCurrentLanguageChanging(); // Property.tt Line: 134
+		partial void OnCurrentLanguageChanging(string from, string to); // Property.tt Line: 141
 		partial void OnCurrentLanguageChanged();
+	
 		#endregion Properties
 	}
 	

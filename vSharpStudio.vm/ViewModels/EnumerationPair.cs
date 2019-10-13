@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,5 +14,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
+        [PropertyOrderAttribute(11)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
+        public bool Models { get; set; }
     }
 }

@@ -9,9 +9,20 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class SubModel : ISubModel, IIncludeDefaultPolicy
+    public static class ModelExt
     {
-        public static readonly string DefaultName = "SubModel";
+        public static bool? CheckIsIncluded(this Model m, ITreeConfigNode node)
+        {
+            return m.CheckIsSelected(node);
+        }
+        public static bool? CheckIsIncluded(this ITreeConfigNode node, Model m)
+        {
+            return m.CheckIsSelected(node);
+        }
+    }
+    public partial class Model : IModel, IIncludeDefaultPolicy
+    {
+        public static readonly string DefaultName = "Model";
         protected override void OnInitFromDto()
         {
             foreach (var t in this.ListObjectInclusionRecords)
@@ -24,9 +35,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         [BrowsableAttribute(false)]
         public Dictionary<string, ObjectInclusionRecord> DicInclusionRecordObjectGuids = new Dictionary<string, ObjectInclusionRecord>();
-
+        partial void OnEnumDefaultInclusionChanging(EnumIncludeDefaultPolicy from, EnumIncludeDefaultPolicy to)
+        {
+            throw new NotImplementedException();
+        }
         #region for model object nodes
-        internal bool? CheckIsSelected(ITreeConfigNode obj)
+        public bool? CheckIsSelected(ITreeConfigNode obj)
         {
             if (this.DicInclusionRecordObjectGuids.ContainsKey(obj.Guid))
             {
@@ -52,12 +66,14 @@ namespace vSharpStudio.vm.ViewModels
             throw new NotSupportedException();
         }
 
-        internal void IsSelectedChanged(string guid, bool? prev, bool? isSelected)
+        public void IsSelectedChanged(string guid, bool? prev, bool? isSelected)
         {
             if (this.DicInclusionRecordObjectGuids.ContainsKey(guid))
             {
                 if (isSelected == null)
                 {
+                    var r = this.DicInclusionRecordObjectGuids[guid];
+                    this.ListObjectInclusionRecords.Remove(r);
                     this.DicInclusionRecordObjectGuids.Remove(guid);
                 }
                 else
@@ -66,14 +82,18 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 if (isSelected != null)
-                    this.DicInclusionRecordObjectGuids[guid].Inclusion = isSelected;
+                {
+                    var r = new ObjectInclusionRecord() { Inclusion = isSelected, Guid = guid };
+                    this.DicInclusionRecordObjectGuids[guid] = r;
+                    this.ListObjectInclusionRecords.Add(r);
+                }
             }
         }
 
         #endregion for model object nodes
 
         [BrowsableAttribute(false)]
-        public List<SubModelRow> ListObjects
+        public List<ModelRow> ListObjects
         {
             get
             {
@@ -82,81 +102,81 @@ namespace vSharpStudio.vm.ViewModels
                 while (p.Parent != null)
                     p = p.Parent;
                 Config m = (Config)p;
-                List<SubModelRow> lst = new List<SubModelRow>();
+                List<ModelRow> lst = new List<ModelRow>();
                 bool is_all = true;
                 string grp = "Constants";
                 foreach (var t in m.Model.GroupConstants.ListConstants)
                 {
                     if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow() { SubModel = this, GroupName = grp, ListSubModelRow = lst, IsIncluded = is_all && (lst.Count > 0) });
+                _ListObjects.Add(new ModelRow() { SubModel = this, GroupName = grp, ListSubModelRow = lst, IsIncluded = is_all && (lst.Count > 0) });
                 _ListObjects.AddRange(lst);
 
-                lst = new List<SubModelRow>();
+                lst = new List<ModelRow>();
                 is_all = true;
                 grp = "Enumerations";
                 foreach (var t in m.Model.GroupEnumerations.ListEnumerations)
                 {
                     if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
+                _ListObjects.Add(new ModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
-                lst = new List<SubModelRow>();
+                lst = new List<ModelRow>();
                 is_all = true;
                 grp = "Catalogs";
                 foreach (var t in m.Model.GroupCatalogs.ListCatalogs)
                 {
                     if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
+                _ListObjects.Add(new ModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
-                lst = new List<SubModelRow>();
+                lst = new List<ModelRow>();
                 is_all = true;
                 grp = "Documents";
                 foreach (var t in m.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                 {
                     if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, true));
                     }
                     else
                     {
-                        lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, false));
+                        lst.Add(new ModelRow(this, grp, t.Name, t.Guid, false));
                         is_all = false;
                     }
                 }
-                _ListObjects.Add(new SubModelRow(this, grp, lst, is_all && (lst.Count > 0)));
+                _ListObjects.Add(new ModelRow(this, grp, lst, is_all && (lst.Count > 0)));
                 _ListObjects.AddRange(lst);
 
                 return _ListObjects;
             }
         }
-        private List<SubModelRow> _ListObjects = new List<SubModelRow>();
+        private List<ModelRow> _ListObjects = new List<ModelRow>();
     }
 }

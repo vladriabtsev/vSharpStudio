@@ -812,9 +812,9 @@
               "name": "group_sub_models",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_group_list_sub_models",
-              "longType": "proto_group_list_sub_models",
-              "fullType": "proto_config.proto_group_list_sub_models",
+              "type": "proto_group_list_models",
+              "longType": "proto_group_list_models",
+              "fullType": "proto_config.proto_group_list_models",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2290,6 +2290,77 @@
           ]
         },
         {
+          "name": "proto_group_list_models",
+          "longName": "proto_group_list_models",
+          "fullName": "proto_config.proto_group_list_models",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_auto_insert_dependancies",
+              "description": "@attr [DisplayName(\"Auto\")]\n@attr [Description(\"Auto insert dependancies\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_models",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_model",
+              "longType": "proto_model",
+              "fullType": "proto_config.proto_model",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_plugins",
           "longName": "proto_group_list_plugins",
           "fullName": "proto_config.proto_group_list_plugins",
@@ -2615,77 +2686,6 @@
           ]
         },
         {
-          "name": "proto_group_list_sub_models",
-          "longName": "proto_group_list_sub_models",
-          "fullName": "proto_config.proto_group_list_sub_models",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_auto_insert_dependancies",
-              "description": "@attr [DisplayName(\"Auto\")]\n@attr [Description(\"Auto insert dependancies\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_sub_models",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_sub_model",
-              "longType": "proto_sub_model",
-              "fullType": "proto_config.proto_sub_model",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
@@ -2822,6 +2822,138 @@
               "type": "proto_group_list_main_view_forms",
               "longType": "proto_group_list_main_view_forms",
               "fullType": "proto_config.proto_group_list_main_view_forms",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_model",
+          "longName": "proto_model",
+          "fullName": "proto_config.proto_model",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "enum_default_inclusion",
+              "description": "@attr [DisplayName(\"Default Mode\")]\n@attr [Description(\"Default mode for model objects inclusion behavior\")]",
+              "label": "",
+              "type": "proto_enum_include_default_policy",
+              "longType": "proto_enum_include_default_policy",
+              "fullType": "proto_config.proto_enum_include_default_policy",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_object_inclusion_records",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_object_inclusion_record",
+              "longType": "proto_object_inclusion_record",
+              "fullType": "proto_config.proto_object_inclusion_record",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_group_objects",
+              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [ExpandableObjectAttribute()]\nproto_object_inclusion_record test =12;",
+              "label": "repeated",
+              "type": "proto_object_inclusion_record",
+              "longType": "proto_object_inclusion_record",
+              "fullType": "proto_config.proto_object_inclusion_record",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_model_row",
+          "longName": "proto_model_row",
+          "fullName": "proto_config.proto_model_row",
+          "description": "@base : ViewModelBindable\u003cModelRow\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "group_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_included",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3431,138 +3563,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_sub_model",
-          "longName": "proto_sub_model",
-          "fullName": "proto_config.proto_sub_model",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [PropertyOrderAttribute(5)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "enum_default_inclusion",
-              "description": "@attr [DisplayName(\"Default Mode\")]\n@attr [Description(\"Default mode for model objects inclusion behavior\")]",
-              "label": "",
-              "type": "proto_enum_include_default_policy",
-              "longType": "proto_enum_include_default_policy",
-              "fullType": "proto_config.proto_enum_include_default_policy",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_object_inclusion_records",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_object_inclusion_record",
-              "longType": "proto_object_inclusion_record",
-              "fullType": "proto_config.proto_object_inclusion_record",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_group_objects",
-              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [ExpandableObjectAttribute()]\nproto_object_inclusion_record test =12;",
-              "label": "repeated",
-              "type": "proto_object_inclusion_record",
-              "longType": "proto_object_inclusion_record",
-              "fullType": "proto_config.proto_object_inclusion_record",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_sub_model_row",
-          "longName": "proto_sub_model_row",
-          "fullName": "proto_config.proto_sub_model_row",
-          "description": "@base : ViewModelBindable\u003cSubModelRow\u003e",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "group_name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_included",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

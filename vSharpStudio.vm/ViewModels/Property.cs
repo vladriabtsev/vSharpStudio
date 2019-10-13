@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -27,6 +29,9 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
+        [PropertyOrderAttribute(3)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
+        public bool Models { get; set; }
         public string ClrType { get { return this.DataType.ClrTypeName; } }
         public string ProtoType { get { return this.DataType.ProtoType; } }
 

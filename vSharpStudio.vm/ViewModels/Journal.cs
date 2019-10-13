@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -9,6 +11,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Journal";
 
+        [PropertyOrderAttribute(11)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
+        public bool Models { get; set; }
         #region Tree operations
         public override bool NodeCanUp()
         {

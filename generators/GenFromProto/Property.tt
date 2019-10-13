@@ -12,7 +12,7 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 	{
 		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			On<#= field.Name.ToNameCs() #>Changing();
+			On<#= field.Name.ToNameCs() #>Changing(_<#= field.Name.ToNameCs() #>, value);
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
@@ -24,6 +24,8 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+partial void On<#= field.Name.ToNameCs() #>Changing(ObservableCollection<<#= field.ToTypeCs() #>> from, ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
+partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
 public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } else if (field.IsMap) { #>
@@ -33,7 +35,7 @@ public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=He
 	{
 		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			On<#= field.Name.ToNameCs() #>Changing();
+			On<#= field.Name.ToNameCs() #>Changing(_<#= field.Name.ToNameCs() #>, value);
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
@@ -45,6 +47,8 @@ public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=He
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
+partial void On<#= field.Name.ToNameCs() #>Changed();
 <# } else { #>
 public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>  // <#=Helper.FilePos() #>
 { 
@@ -52,7 +56,7 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 	{
 		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			On<#= field.Name.ToNameCs() #>Changing();
+			On<#= field.Name.ToNameCs() #>Changing(_<#= field.Name.ToNameCs() #>, value);
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
@@ -64,6 +68,8 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private SortedObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> from, SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
+partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
 public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } #>
@@ -97,7 +103,7 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
 	{
 		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			On<#= field.Name.ToNameCs() #>Changing();
+			On<#= field.Name.ToNameCs() #>Changing(_<#= field.Name.ToNameCs() #>, value);
             _<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
@@ -109,6 +115,8 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
+partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
+partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
 public I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get { return _<#= field.Name.ToNameCs() #>; }}
 <# } else { #>
@@ -118,7 +126,7 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
 	{
 		if (_<#= field.Name.ToNameCs() #> != value)
 		{
-			On<#= field.Name.ToNameCs() #>Changing();
+			On<#= field.Name.ToNameCs() #>Changing(_<#= field.Name.ToNameCs() #>, value);
 			_<#= field.Name.ToNameCs() #> = value;
 			On<#= field.Name.ToNameCs() #>Changed();
 			NotifyPropertyChanged();
@@ -130,6 +138,6 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string") { #> = ""<# } #>;
-<# } #>
-partial void On<#= field.Name.ToNameCs() #>Changing(); // <#=Helper.FilePos() #>
+partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
+<# } #>

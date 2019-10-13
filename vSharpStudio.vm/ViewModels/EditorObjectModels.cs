@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class EditorObjectSubModels : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
+    public class EditorObjectModels : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             Config cfg = (Config)p;
             CheckListBox clbx = new CheckListBox();
             List<SubVm> lst = new List<SubVm>();
-            foreach (var t in cfg.GroupSubModels.ListSubModels)
+            foreach (var t in cfg.GroupSubModels.ListModels)
             {
                 var svm = new SubVm() { Name = t.Name, SubModel = t, Node = obj };
                 svm.SetIsSelected(t.CheckIsSelected(obj));
@@ -59,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 _IsSelected = val;
             }
-            public SubModel SubModel;
+            public Model SubModel;
             public ITreeConfigNode Node;
 
             #region INotifyPropertyChanged Members

@@ -11,7 +11,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class EditorObjectGroupSubModels : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
+    public class EditorObjectGroupModels : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {

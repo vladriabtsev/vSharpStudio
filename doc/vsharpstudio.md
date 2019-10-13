@@ -31,14 +31,16 @@
     - [proto_group_list_forms](#proto_config.proto_group_list_forms)
     - [proto_group_list_journals](#proto_config.proto_group_list_journals)
     - [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms)
+    - [proto_group_list_models](#proto_config.proto_group_list_models)
     - [proto_group_list_plugins](#proto_config.proto_group_list_plugins)
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
-    - [proto_group_list_sub_models](#proto_config.proto_group_list_sub_models)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
+    - [proto_model](#proto_config.proto_model)
+    - [proto_model_row](#proto_config.proto_model_row)
     - [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
@@ -48,8 +50,6 @@
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
-    - [proto_sub_model](#proto_config.proto_sub_model)
-    - [proto_sub_model_row](#proto_config.proto_sub_model_row)
     - [string_nullable](#proto_config.string_nullable)
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
@@ -235,7 +235,7 @@ Configuration config
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
 | model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
-| group_sub_models | [proto_group_list_sub_models](#proto_config.proto_group_list_sub_models) |  | @attr [BrowsableAttribute(false)] |
+| group_sub_models | [proto_group_list_models](#proto_config.proto_group_list_models) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
 
@@ -636,6 +636,26 @@ main view forms hierarchy node with children
 
 
 
+<a name="proto_config.proto_group_list_models"></a>
+
+### proto_group_list_models
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  |  |
+| is_auto_insert_dependancies | [bool](#bool) |  | @attr [DisplayName(&#34;Auto&#34;)] @attr [Description(&#34;Auto insert dependancies&#34;)] |
+| list_models | [proto_model](#proto_config.proto_model) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_plugins"></a>
 
 ### proto_group_list_plugins
@@ -733,26 +753,6 @@ main view forms hierarchy node with children
 
 
 
-<a name="proto_config.proto_group_list_sub_models"></a>
-
-### proto_group_list_sub_models
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  |  |
-| is_auto_insert_dependancies | [bool](#bool) |  | @attr [DisplayName(&#34;Auto&#34;)] @attr [Description(&#34;Auto insert dependancies&#34;)] |
-| list_sub_models | [proto_sub_model](#proto_config.proto_sub_model) | repeated | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -787,6 +787,47 @@ main view forms hierarchy parent
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_list_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_model"></a>
+
+### proto_model
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| enum_default_inclusion | [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy) |  | @attr [DisplayName(&#34;Default Mode&#34;)] @attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] |
+| list_object_inclusion_records | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)] |
+| list_group_objects | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)]
+
+@attr [ExpandableObjectAttribute()] proto_object_inclusion_record test =12; |
+
+
+
+
+
+
+<a name="proto_config.proto_model_row"></a>
+
+### proto_model_row
+@base : ViewModelBindable&lt;ModelRow&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| group_name | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| guid | [string](#string) |  |  |
+| is_included | [bool](#bool) |  |  |
 
 
 
@@ -966,47 +1007,6 @@ User&#39;s role
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
-
-
-
-
-
-
-<a name="proto_config.proto_sub_model"></a>
-
-### proto_sub_model
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| enum_default_inclusion | [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy) |  | @attr [DisplayName(&#34;Default Mode&#34;)] @attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] |
-| list_object_inclusion_records | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)] |
-| list_group_objects | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)]
-
-@attr [ExpandableObjectAttribute()] proto_object_inclusion_record test =12; |
-
-
-
-
-
-
-<a name="proto_config.proto_sub_model_row"></a>
-
-### proto_sub_model_row
-@base : ViewModelBindable&lt;SubModelRow&gt;
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| group_name | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| guid | [string](#string) |  |  |
-| is_included | [bool](#bool) |  |  |
 
 
 

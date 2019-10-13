@@ -85,14 +85,14 @@ namespace vSharpStudio.Views
                 grd.ShowGridLines = true;
             if (isLst)
             {
-                foreach (var t in cfg.GroupSubModels.ListSubModels)
+                foreach (var t in cfg.GroupSubModels.ListModels)
                 {
                     grd.ColumnDefinitions.Add(new ColumnDefinition() { Width = chkbWidth });
                 }
                 //this.grd.RowDefinitions.Add(new RowDefinition() { Height = headerHeight });
                 grd.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
                 int ic = 0;
-                foreach (var t in cfg.GroupSubModels.ListSubModels)
+                foreach (var t in cfg.GroupSubModels.ListModels)
                 {
                     TextBlock tb = new TextBlock();
                     tb.Text = t.Name;
@@ -186,7 +186,7 @@ namespace vSharpStudio.Views
             if (isShowLines)
                 grd.ShowGridLines = true;
             int ir = 0, ic = 0;
-            foreach (var tt in cfg.GroupSubModels.ListSubModels)
+            foreach (var tt in cfg.GroupSubModels.ListModels)
             {
                 grd.ColumnDefinitions.Add(new ColumnDefinition() { Width = chkbWidth });
             }
@@ -194,7 +194,7 @@ namespace vSharpStudio.Views
             {
                 grd.RowDefinitions.Add(new RowDefinition() { Height = rowHeight });
                 ic = 0;
-                foreach (var tt in cfg.GroupSubModels.ListSubModels)
+                foreach (var tt in cfg.GroupSubModels.ListModels)
                 {
                     CheckBox cb = new CheckBox();
                     cb.IsThreeState = true;
@@ -215,7 +215,7 @@ namespace vSharpStudio.Views
             if (sender is CheckBox)
             {
                 var cb = sender as CheckBox;
-                SubModel sm = (SubModel)cb.Tag;
+                Model sm = (Model)cb.Tag;
                 if (cb.IsChecked == null)
                 {
                     //sm.DicGuids
@@ -246,14 +246,14 @@ namespace vSharpStudio.Views
             }
             else
             {
-                if (e.NewValue is SubModel)
+                if (e.NewValue is Model)
                 {
-                    var sm = e.NewValue as SubModel;
+                    var sm = e.NewValue as Model;
                     cfg = (Config)sm.Parent.Parent;
                 }
-                else if (e.NewValue is GroupListSubModels)
+                else if (e.NewValue is GroupListModels)
                 {
-                    var gsm = e.NewValue as GroupListSubModels;
+                    var gsm = e.NewValue as GroupListModels;
                     cfg = (Config)gsm.Parent;
                     isLst = true;
                 }

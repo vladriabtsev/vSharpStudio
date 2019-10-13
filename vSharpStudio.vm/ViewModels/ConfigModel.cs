@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         public string ConnectionString = null;
         partial void OnInit()
         {
-            this.Name = "Model";
+            this.Name = "ConfigModel";
             this.Children = new SortedObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupCommon, 6);
             this.GroupConstants.Parent = this;
@@ -48,6 +48,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnInitFromDto()
         {
+            this.Name = "ConfigModel";
             RecreateSubNodes();
         }
 

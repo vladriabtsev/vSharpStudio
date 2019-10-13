@@ -405,51 +405,6 @@ namespace vSharpStudio.ViewModels
         }
         internal void SavePrepare()
         {
-            foreach (var t in _Config.GroupSubModels.ListSubModels)
-            {
-                Dictionary<string, ObjectInclusionRecord> dic = new Dictionary<string, ObjectInclusionRecord>();
-                int i = 0;
-                //foreach(var tt in t.ListIncluded.ToList())
-                //{
-                //    if (t.DicIncludedGuids.ContainsKey(tt.Guid))
-                //    {
-                //        i++;
-                //        dic[tt.Guid] = tt;
-                //    }
-                //    else
-                //    {
-                //        t.ListIncluded.RemoveAt(i);
-                //    }
-                //}
-                //foreach(var td in t.DicIncludedGuids)
-                //{
-                //    if (!dic.ContainsKey(td.Key))
-                //    {
-                //        t.ListIncluded.Add(td.Value);
-                //    }
-                //}
-                //dic.Clear();
-                //foreach (var tt in t.ListExcluded.ToList())
-                //{
-                //    if (t.DicExcludedGuids.ContainsKey(tt.Guid))
-                //    {
-                //        i++;
-                //        dic[tt.Guid] = tt;
-                //    }
-                //    else
-                //    {
-                //        t.ListExcluded.RemoveAt(i);
-                //    }
-                //}
-                //foreach (var td in t.DicExcludedGuids)
-                //{
-                //    if (!dic.ContainsKey(td.Key))
-                //    {
-                //        t.ListExcluded.Add(td.Value);
-                //    }
-                //}
-                dic.Clear();
-            }
             _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(_Config);
             if (this.pconfig_history == null)

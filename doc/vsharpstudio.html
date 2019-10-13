@@ -287,6 +287,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_models"><span class="badge">M</span>proto_group_list_models</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_plugins"><span class="badge">M</span>proto_group_list_plugins</a>
                 </li>
               
@@ -307,15 +311,19 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_list_sub_models"><span class="badge">M</span>proto_group_list_sub_models</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_journal"><span class="badge">M</span>proto_journal</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_main_view_form"><span class="badge">M</span>proto_main_view_form</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_model"><span class="badge">M</span>proto_model</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_model_row"><span class="badge">M</span>proto_model_row</a>
                 </li>
               
                 <li>
@@ -352,14 +360,6 @@
               
                 <li>
                   <a href="#proto_config.proto_settings_config"><span class="badge">M</span>proto_settings_config</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_sub_model"><span class="badge">M</span>proto_sub_model</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_sub_model_row"><span class="badge">M</span>proto_sub_model_row</a>
                 </li>
               
                 <li>
@@ -964,7 +964,7 @@ it will override previous settings
               
                 <tr>
                   <td>group_sub_models</td>
-                  <td><a href="#proto_config.proto_group_list_sub_models">proto_group_list_sub_models</a></td>
+                  <td><a href="#proto_config.proto_group_list_models">proto_group_list_models</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -2214,6 +2214,66 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_list_models">proto_group_list_models</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_auto_insert_dependancies</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Auto&#34;)]
+@attr [Description(&#34;Auto insert dependancies&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_models</td>
+                  <td><a href="#proto_config.proto_model">proto_model</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_plugins">proto_group_list_plugins</h3>
         <p></p>
 
@@ -2494,66 +2554,6 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
-        <h3 id="proto_config.proto_group_list_sub_models">proto_group_list_sub_models</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_auto_insert_dependancies</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Auto&#34;)]
-@attr [Description(&#34;Auto insert dependancies&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_sub_models</td>
-                  <td><a href="#proto_config.proto_sub_model">proto_sub_model</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_journal">proto_journal</h3>
         <p></p>
 
@@ -2666,6 +2666,121 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_group_list_main_view_forms">proto_group_list_main_view_forms</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_model">proto_model</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enum_default_inclusion</td>
+                  <td><a href="#proto_config.proto_enum_include_default_policy">proto_enum_include_default_policy</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Default Mode&#34;)]
+@attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_object_inclusion_records</td>
+                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_group_objects</td>
+                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+@attr [ExpandableObjectAttribute()]
+proto_object_inclusion_record test =12; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_model_row">proto_model_row</h3>
+        <p>@base : ViewModelBindable<ModelRow></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>group_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_included</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -3195,121 +3310,6 @@ repeated proto_document list_documents = 7; </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>min version supported by current version for migration </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_sub_model">proto_sub_model</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>enum_default_inclusion</td>
-                  <td><a href="#proto_config.proto_enum_include_default_policy">proto_enum_include_default_policy</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Default Mode&#34;)]
-@attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_object_inclusion_records</td>
-                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_group_objects</td>
-                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)]
-
-@attr [ExpandableObjectAttribute()]
-proto_object_inclusion_record test =12; </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_sub_model_row">proto_sub_model_row</h3>
-        <p>@base : ViewModelBindable<SubModelRow></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>group_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_included</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>

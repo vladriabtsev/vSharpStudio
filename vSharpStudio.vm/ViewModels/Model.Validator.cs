@@ -8,7 +8,7 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class SubModel
+    public partial class Model
     {
         public partial class SubModelValidator
         {

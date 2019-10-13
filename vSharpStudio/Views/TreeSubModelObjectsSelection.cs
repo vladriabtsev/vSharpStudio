@@ -26,14 +26,14 @@ namespace vSharpStudio.Views
             }
             else
             {
-                if (e.NewValue is SubModel)
+                if (e.NewValue is Model)
                 {
-                    var sm = e.NewValue as SubModel;
+                    var sm = e.NewValue as Model;
                     cfg = (Config)sm.Parent.Parent;
                 }
-                else if (e.NewValue is GroupListSubModels)
+                else if (e.NewValue is GroupListModels)
                 {
-                    var gsm = e.NewValue as GroupListSubModels;
+                    var gsm = e.NewValue as GroupListModels;
                     cfg = (Config)gsm.Parent;
                     isLst = true;
                 }

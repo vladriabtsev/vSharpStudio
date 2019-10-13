@@ -389,7 +389,7 @@
         </StackPanel>
     </HierarchicalDataTemplate>
 
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListSubModels}" ItemsSource="{Binding ListSubModels}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListModels}" ItemsSource="{Binding ListSubModels}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -405,7 +405,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:SubModel}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:Model}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{StaticResource icon3DScene}" />

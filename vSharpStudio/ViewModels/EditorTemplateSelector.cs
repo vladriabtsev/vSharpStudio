@@ -34,7 +34,7 @@ namespace vSharpStudio.ViewModels
             //}
             if (item != null)
             {
-                if (item.GetType().FullName == typeof(SubModel).FullName)
+                if (item.GetType().FullName == typeof(Model).FullName)
                 {
 
                 }

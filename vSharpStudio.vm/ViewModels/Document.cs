@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -28,6 +29,9 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.Parent = this;
             Children.Add(this.GroupReports, 9);
         }
+        [PropertyOrderAttribute(11)]
+        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
+        public bool Models { get; set; }
 
         #region Tree operations
         public override bool NodeCanUp()

@@ -9,22 +9,26 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigs.Count,nq}")]
-    public partial class GroupListSubModels : ITreeModel, ICanAddSubNode, ICanGoRight
+    [DebuggerDisplay("Group:{Name,nq} models:{ListModels.Count,nq}")]
+    public partial class GroupListModels : ITreeModel, ICanAddSubNode, ICanGoRight
     {
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
-        public IEnumerable<object> GetChildren(object parent) { return this.ListSubModels; }
-        public bool HasChildren(object parent) { return this.ListSubModels.Count > 0; }
+        public IEnumerable<object> GetChildren(object parent) { return this.ListModels; }
+        public bool HasChildren(object parent) { return this.ListModels.Count > 0; }
         partial void OnInit()
         {
-            this.Name = "SubModels";
+            this.Name = "Models";
             this.IsEditable = false;
             //this.Children = new SortedObservableCollection<ITreeConfigNode>();
             //this.GroupSharedProperties.Parent = this;
             //Children.Add(this.GroupSharedProperties, 7);
             //this.GroupListDocuments.Parent = this;
             //Children.Add(this.GroupListDocuments, 8);
+        }
+        protected override void OnInitFromDto()
+        {
+            this.Name = "Models";
         }
 
         #region Tree operations
@@ -34,14 +38,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
-            SubModel node =null;
+            Model node =null;
             if (node_impl == null)
-                node = new SubModel();
+                node = new Model();
             else
-                node = (SubModel)node_impl;
+                node = (Model)node_impl;
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(SubModel.DefaultName, node, this.ListSubModels);
+                GetUniqueName(Model.DefaultName, node, this.ListModels);
             SetSelected(node);
             return node;
         }

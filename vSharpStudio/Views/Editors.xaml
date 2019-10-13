@@ -29,7 +29,7 @@
             <ContentControl Name="cc" Content="{Binding Config.SelectedNode}">
                 <!--<ContentControl Name="cc" DataContext="{Binding Config.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">-->
                 <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type bvm:GroupListSubModels}">
+                    <DataTemplate DataType="{x:Type bvm:GroupListModels}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -70,7 +70,7 @@
                             </local:TreeSubModelObjectsSelection>
                         </Grid>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type bvm:SubModel}">
+                    <DataTemplate DataType="{x:Type bvm:Model}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />

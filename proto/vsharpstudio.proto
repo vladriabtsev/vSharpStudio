@@ -263,7 +263,7 @@ message proto_config {
     // @attr [BrowsableAttribute(false)]
     proto_config_model model = 102;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_sub_models group_sub_models = 103;
+    proto_group_list_models group_sub_models = 103;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_plugins group_plugins = 104;
     // @attr [BrowsableAttribute(false)]
@@ -278,7 +278,7 @@ enum proto_enum_include_default_policy {
     INCLUDE = 1;
     //NONE = 2;
 }
-message proto_group_list_sub_models {
+message proto_group_list_models {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
@@ -287,7 +287,7 @@ message proto_group_list_sub_models {
     // @attr [Description("Auto insert dependancies")]
     bool is_auto_insert_dependancies = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_sub_model list_sub_models = 9;
+    repeated proto_model list_models = 9;
 }
 // @base : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator>
 message proto_object_inclusion_record {
@@ -295,7 +295,7 @@ message proto_object_inclusion_record {
     string guid = 1;
     bool_nullable inclusion = 2;
 }
-message proto_sub_model {
+message proto_model {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
@@ -785,8 +785,8 @@ message proto_item_name_value {
     uint64 sorting_value = 3;
 }
 */
-// @base : ViewModelBindable<SubModelRow>
-message proto_sub_model_row {
+// @base : ViewModelBindable<ModelRow>
+message proto_model_row {
     string group_name = 1;
     string name = 2;
     string guid = 3;
