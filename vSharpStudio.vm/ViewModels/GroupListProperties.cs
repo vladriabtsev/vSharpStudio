@@ -7,12 +7,15 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties : ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
+        public IEnumerable<object> GetChildren(object parent) { return this.ListProperties; }
+        public bool HasChildren(object parent) { return this.ListProperties.Count > 0; }
         partial void OnInit()
         {
             if (this.Parent is GroupDocuments)

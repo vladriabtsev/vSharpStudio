@@ -30,7 +30,7 @@ namespace vSharpStudio.ViewModels
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
         }
-        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null) : base(MainPageVMValidator.Validator)
+        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null) : base(MainPageVMValidator.Validator)
         {
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
@@ -51,9 +51,21 @@ namespace vSharpStudio.ViewModels
             Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
             Logger.LogInformation("Application is starting.");
 
-            if (isLoadConfig && File.Exists(CFG_FILE_PATH))
+            if (isLoadConfig)
             {
-                this.Config = LoadConfig(CFG_FILE_PATH, "");
+                if (configFile != null)
+                {
+                    this.Config = LoadConfig(configFile, "");
+                }
+                else if (File.Exists(CFG_FILE_PATH))
+                {
+                    this.Config = LoadConfig(CFG_FILE_PATH, "");
+                }
+                else
+                {
+                    Logger.LogInformation("Creating empty Configuration");
+                    this.Config = new Config();
+                }
             }
             else
             {
@@ -118,7 +130,7 @@ namespace vSharpStudio.ViewModels
             pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig);
             string ind2 = indent + "   ";
-            foreach (var t in cfg.GroupConfigs.ListBaseConfigs)
+            foreach (var t in cfg.GroupConfigs.ListBaseConfigs.ToList())
             {
                 t.Config = LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
                 t.Name = t.Config.Name;
@@ -395,27 +407,48 @@ namespace vSharpStudio.ViewModels
         {
             foreach (var t in _Config.GroupSubModels.ListSubModels)
             {
-                Dictionary<string, string> dic = new Dictionary<string, string>();
+                Dictionary<string, ObjectInclusionRecord> dic = new Dictionary<string, ObjectInclusionRecord>();
                 int i = 0;
-                foreach(var tt in t.ListGuids.ToList())
-                {
-                    if (t.DicGuids.ContainsKey(tt))
-                    {
-                        i++;
-                        dic[tt] = null;
-                    }
-                    else
-                    {
-                        t.ListGuids.RemoveAt(i);
-                    }
-                }
-                foreach(var td in t.DicGuids)
-                {
-                    if (!dic.ContainsKey(td.Key))
-                    {
-                        t.ListGuids.Add(td.Key);
-                    }
-                }
+                //foreach(var tt in t.ListIncluded.ToList())
+                //{
+                //    if (t.DicIncludedGuids.ContainsKey(tt.Guid))
+                //    {
+                //        i++;
+                //        dic[tt.Guid] = tt;
+                //    }
+                //    else
+                //    {
+                //        t.ListIncluded.RemoveAt(i);
+                //    }
+                //}
+                //foreach(var td in t.DicIncludedGuids)
+                //{
+                //    if (!dic.ContainsKey(td.Key))
+                //    {
+                //        t.ListIncluded.Add(td.Value);
+                //    }
+                //}
+                //dic.Clear();
+                //foreach (var tt in t.ListExcluded.ToList())
+                //{
+                //    if (t.DicExcludedGuids.ContainsKey(tt.Guid))
+                //    {
+                //        i++;
+                //        dic[tt.Guid] = tt;
+                //    }
+                //    else
+                //    {
+                //        t.ListExcluded.RemoveAt(i);
+                //    }
+                //}
+                //foreach (var td in t.DicExcludedGuids)
+                //{
+                //    if (!dic.ContainsKey(td.Key))
+                //    {
+                //        t.ListExcluded.Add(td.Value);
+                //    }
+                //}
+                dic.Clear();
             }
             _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(_Config);

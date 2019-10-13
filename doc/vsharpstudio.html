@@ -319,6 +319,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_object_inclusion_record"><span class="badge">M</span>proto_object_inclusion_record</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_plugin"><span class="badge">M</span>proto_plugin</a>
                 </li>
               
@@ -373,6 +377,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_include_default_policy"><span class="badge">E</span>proto_enum_include_default_policy</a>
                 </li>
               
                 <li>
@@ -1227,7 +1235,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] </p></td>
+@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
                 <tr>
@@ -2667,6 +2675,37 @@ repeated proto_document list_forms = 7; </p></td>
 
         
       
+        <h3 id="proto_config.proto_object_inclusion_record">proto_object_inclusion_record</h3>
+        <p>@base : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>inclusion</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_plugin">proto_plugin</h3>
         <p></p>
 
@@ -3204,12 +3243,28 @@ repeated proto_document list_documents = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_guids</td>
-                  <td><a href="#string">string</a></td>
+                  <td>enum_default_inclusion</td>
+                  <td><a href="#proto_config.proto_enum_include_default_policy">proto_enum_include_default_policy</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Default Mode&#34;)]
+@attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_object_inclusion_records</td>
+                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_group_objects</td>
+                  <td><a href="#proto_config.proto_object_inclusion_record">proto_object_inclusion_record</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)]
 
-map&lt;string, string&gt; map_guids = 7; </p></td>
+@attr [ExpandableObjectAttribute()]
+proto_object_inclusion_record test =12; </p></td>
                 </tr>
               
             </tbody>
@@ -3433,6 +3488,29 @@ map&lt;string, string&gt; map_guids = 7; </p></td>
                 <td>ANY</td>
                 <td>15</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_include_default_policy">proto_enum_include_default_policy</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>EXCLUDE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>INCLUDE</td>
+                <td>1</td>
+                <td><p>NONE = 2;</p></td>
               </tr>
             
           </tbody>

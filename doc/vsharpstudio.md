@@ -39,6 +39,7 @@
     - [proto_group_list_sub_models](#proto_config.proto_group_list_sub_models)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
+    - [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
@@ -54,6 +55,7 @@
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
+    - [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
   
   
@@ -317,7 +319,7 @@ Constant application wise value
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(7)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Is positive&#34;)] |
-| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))] |
+| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] |
 | list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(4)] |
 | is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
@@ -791,6 +793,22 @@ main view forms hierarchy parent
 
 
 
+<a name="proto_config.proto_object_inclusion_record"></a>
+
+### proto_object_inclusion_record
+@base : ViewModelValidatableWithSeverity&lt;ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator&gt;
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| inclusion | [bool_nullable](#proto_config.bool_nullable) |  |  |
+
+
+
+
+
+
 <a name="proto_config.proto_plugin"></a>
 
 ### proto_plugin
@@ -966,9 +984,11 @@ User&#39;s role
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| list_guids | [string](#string) | repeated | @attr [BrowsableAttribute(false)]
+| enum_default_inclusion | [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy) |  | @attr [DisplayName(&#34;Default Mode&#34;)] @attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] |
+| list_object_inclusion_records | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)] |
+| list_group_objects | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)]
 
-map&lt;string, string&gt; map_guids = 7; |
+@attr [ExpandableObjectAttribute()] proto_object_inclusion_record test =12; |
 
 
 
@@ -1056,6 +1076,18 @@ map&lt;string, string&gt; map_guids = 7; |
 | DOCUMENT | 11 |  |
 | DOCUMENTS | 12 |  |
 | ANY | 15 |  |
+
+
+
+<a name="proto_config.proto_enum_include_default_policy"></a>
+
+### proto_enum_include_default_policy
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| EXCLUDE | 0 |  |
+| INCLUDE | 1 | NONE = 2; |
 
 
 

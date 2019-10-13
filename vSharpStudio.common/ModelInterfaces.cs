@@ -12,6 +12,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		INT = 0,
 		LONG = 1,
 	}
+	public enum EnumIncludeDefaultPolicy { // ModelInterfaces.tt Line: 13
+		EXCLUDE = 0,
+		INCLUDE = 1,
+	}
 	public enum EnumDataType { // ModelInterfaces.tt Line: 13
 		STRING = 0,
 		NUMERICAL = 1,
@@ -210,16 +214,24 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		IEnumerable<ISubModel> ListSubModelsI { get; } // ModelInterfaces.tt Line: 40
 	}
 	
+	public partial interface IObjectInclusionRecord  // ModelInterfaces.tt Line: 26
+	{
+		string Guid { get; } // ModelInterfaces.tt Line: 43
+		bool? Inclusion { get; } // ModelInterfaces.tt Line: 43
+	}
+	
 	public partial interface ISubModel : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
+		EnumIncludeDefaultPolicy EnumDefaultInclusion { get; } // ModelInterfaces.tt Line: 43
+		IEnumerable<IObjectInclusionRecord> ListObjectInclusionRecordsI { get; } // ModelInterfaces.tt Line: 40
 		
 		///////////////////////////////////////////////////
 		/// 
-		/// map<string, string> map_guids = 7;
+		/// proto_object_inclusion_record test =12;
 		///////////////////////////////////////////////////
-		IEnumerable<string> ListGuidsI { get; } // ModelInterfaces.tt Line: 38
+		IEnumerable<IObjectInclusionRecord> ListGroupObjectsI { get; } // ModelInterfaces.tt Line: 40
 	}
 	
 	///////////////////////////////////////////////////

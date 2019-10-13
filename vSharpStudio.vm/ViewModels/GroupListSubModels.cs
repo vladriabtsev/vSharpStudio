@@ -5,14 +5,17 @@ using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigs.Count,nq}")]
-    public partial class GroupListSubModels : ICanAddSubNode, ICanGoRight
+    public partial class GroupListSubModels : ITreeModel, ICanAddSubNode, ICanGoRight
     {
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public IEnumerable<object> GetChildren(object parent) { return this.ListSubModels; }
+        public bool HasChildren(object parent) { return this.ListSubModels.Count > 0; }
         partial void OnInit()
         {
             this.Name = "SubModels";

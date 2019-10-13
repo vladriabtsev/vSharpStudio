@@ -6,12 +6,16 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
-    public partial class GroupListCatalogs : ICanAddSubNode, ICanGoRight
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight
     {
+        public IEnumerable<object> GetChildren(object parent) { return this.ListCatalogs; }
+        public bool HasChildren(object parent) { return this.ListCatalogs.Count > 0; }
+
         partial void OnInit()
         {
             this.Name = Defaults.CatalogsGroupName;

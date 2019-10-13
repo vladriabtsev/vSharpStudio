@@ -68,7 +68,9 @@
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->
         <!--https://www.codeproject.com/Articles/1204663/Advanced-WPF-TreeViews-Part-of-n-2-->
-        <Controls:TreeViewEx Grid.Row="1" x:Name="configTreeView" 
+        <Controls:TreeViewEx Grid.Row="1" x:Name="configTreeView"
+                             VirtualizingStackPanel.IsVirtualizing="True" 
+                             VirtualizingStackPanel.VirtualizationMode="Recycling"
                              ItemsSource="{Binding Config.Children}" 
                              SelectedItem="{Binding Config.SelectedNode}">
             <TreeView.ItemContainerStyle>

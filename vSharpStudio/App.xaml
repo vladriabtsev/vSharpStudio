@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/vSharpStudio.wpf;component/Icons.xaml" />
+                <ResourceDictionary Source="TreeStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <vm:EditorTemplateSelector x:Key="editorTemplateSelector" />
         </ResourceDictionary>

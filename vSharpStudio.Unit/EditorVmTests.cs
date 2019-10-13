@@ -411,7 +411,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanMoveUp() == false);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanMoveDown() == false);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNew() == true);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNewSubNode() == true);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNewSubNode() == false);
 
             #region Properties
 

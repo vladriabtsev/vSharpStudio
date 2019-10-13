@@ -16,12 +16,15 @@ using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
+using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : IMigration, ICanGoLeft
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft
     {
+        public IEnumerable<object> GetChildren(object parent) { return this.Children; }
+        public bool HasChildren(object parent) { return this.Children.Count > 0; }
         //public static readonly string DefaultName = "Config";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
 

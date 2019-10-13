@@ -124,6 +124,24 @@
           ]
         },
         {
+          "name": "proto_enum_include_default_policy",
+          "longName": "proto_enum_include_default_policy",
+          "fullName": "proto_config.proto_enum_include_default_policy",
+          "description": "",
+          "values": [
+            {
+              "name": "EXCLUDE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "INCLUDE",
+              "number": "1",
+              "description": "NONE = 2;"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_primary_key_type",
           "longName": "proto_enum_primary_key_type",
           "fullName": "proto_config.proto_enum_primary_key_type",
@@ -1116,7 +1134,7 @@
             },
             {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2810,6 +2828,37 @@
           ]
         },
         {
+          "name": "proto_object_inclusion_record",
+          "longName": "proto_object_inclusion_record",
+          "fullName": "proto_config.proto_object_inclusion_record",
+          "description": "@base : ViewModelValidatableWithSeverity\u003cObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "inclusion",
+              "description": "",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_plugin",
           "longName": "proto_plugin",
           "fullName": "proto_config.proto_plugin",
@@ -3437,12 +3486,32 @@
               "defaultValue": ""
             },
             {
-              "name": "list_guids",
-              "description": "@attr [BrowsableAttribute(false)]\n\nmap\u003cstring, string\u003e map_guids = 7;",
+              "name": "enum_default_inclusion",
+              "description": "@attr [DisplayName(\"Default Mode\")]\n@attr [Description(\"Default mode for model objects inclusion behavior\")]",
+              "label": "",
+              "type": "proto_enum_include_default_policy",
+              "longType": "proto_enum_include_default_policy",
+              "fullType": "proto_config.proto_enum_include_default_policy",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_object_inclusion_records",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_object_inclusion_record",
+              "longType": "proto_object_inclusion_record",
+              "fullType": "proto_config.proto_object_inclusion_record",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_group_objects",
+              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [ExpandableObjectAttribute()]\nproto_object_inclusion_record test =12;",
+              "label": "repeated",
+              "type": "proto_object_inclusion_record",
+              "longType": "proto_object_inclusion_record",
+              "fullType": "proto_config.proto_object_inclusion_record",
               "ismap": false,
               "defaultValue": ""
             }

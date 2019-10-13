@@ -1,4 +1,4 @@
-// Auto generated on UTC 10/03/2019 16:36:23
+// Auto generated on UTC 10/13/2019 02:32:55
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3247,18 +3247,124 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListSubModelsChanged();
 		#endregion Properties
 	}
+	public partial class ObjectInclusionRecord : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator>, IObjectInclusionRecord // Class.tt Line: 6
+	{
+		public partial class ObjectInclusionRecordValidator : ValidatorBase<ObjectInclusionRecord, ObjectInclusionRecordValidator> { } 
+		#region CTOR
+		public ObjectInclusionRecord() : base(ObjectInclusionRecordValidator.Validator)	{
+			OnInit();
+		}
+		partial void OnInit();
+		#endregion CTOR
+		#region Procedures
+		public static ObjectInclusionRecord Clone(ObjectInclusionRecord from, bool isDeep = true) // Clone.tt Line: 27
+		{
+		    ObjectInclusionRecord vm = new ObjectInclusionRecord();
+		    vm.Guid = from.Guid; // Clone.tt Line: 58
+		    vm.Inclusion = from.Inclusion.HasValue ? from.Inclusion.Value : (bool?)null; // Clone.tt Line: 51
+		    return vm;
+		}
+		public static void Update(ObjectInclusionRecord to, ObjectInclusionRecord from, bool isDeep = true) // Clone.tt Line: 68
+		{
+		    to.Guid = from.Guid; // Clone.tt Line: 126
+		    to.Inclusion = from.Inclusion.HasValue ? from.Inclusion.Value : (bool?)null; // Clone.tt Line: 121
+		}
+		// Clone.tt Line: 132
+		#region IEditable
+		public override ObjectInclusionRecord Backup()
+		{
+		    bool isDeep = true;
+		    OnBackupObjectStarting(ref isDeep);
+			return ObjectInclusionRecord.Clone(this);
+		}
+		partial void OnBackupObjectStarting(ref bool isDeep);
+		public override void Restore(ObjectInclusionRecord from)
+		{
+		    bool isDeep = true;
+		    OnRestoreObjectStarting(ref isDeep);
+		    ObjectInclusionRecord.Update(this, from, isDeep);
+		}
+		partial void OnRestoreObjectStarting(ref bool isDeep);
+		#endregion IEditable
+		// Conversion from 'proto_object_inclusion_record' to 'ObjectInclusionRecord'
+		public static ObjectInclusionRecord ConvertToVM(Proto.Config.proto_object_inclusion_record m, ObjectInclusionRecord vm = null) // Clone.tt Line: 151
+		{
+		    if (vm == null)
+		        vm = new ObjectInclusionRecord();
+		    if (m == null)
+		        return vm;
+		    vm.Guid = m.Guid; // Clone.tt Line: 199
+		    vm.Inclusion = m.Inclusion.HasValue ? m.Inclusion.Value : (bool?)null; // Clone.tt Line: 191
+		    return vm;
+		}
+		// Conversion from 'ObjectInclusionRecord' to 'proto_object_inclusion_record'
+		public static Proto.Config.proto_object_inclusion_record ConvertToProto(ObjectInclusionRecord vm) // Clone.tt Line: 209
+		{
+		    Proto.Config.proto_object_inclusion_record m = new Proto.Config.proto_object_inclusion_record(); // Clone.tt Line: 211
+		    m.Guid = vm.Guid; // Clone.tt Line: 235
+		    m.Inclusion = new Proto.Config.bool_nullable(); // Clone.tt Line: 224
+		    m.Inclusion.HasValue = vm.Inclusion.HasValue;
+		    if (vm.Inclusion.HasValue)
+		        m.Inclusion.Value = vm.Inclusion.Value;
+		    return m;
+		}
+		#endregion Procedures
+		#region Properties
+		
+		[BrowsableAttribute(false)]
+		public string Guid // Property.tt Line: 115
+		{ 
+			set
+			{
+				if (_Guid != value)
+				{
+					OnGuidChanging();
+					_Guid = value;
+					OnGuidChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Guid; }
+		}
+		private string _Guid = "";
+		partial void OnGuidChanging(); // Property.tt Line: 134
+		partial void OnGuidChanged();
+		public bool? Inclusion // Property.tt Line: 115
+		{ 
+			set
+			{
+				if (_Inclusion != value)
+				{
+					OnInclusionChanging();
+					_Inclusion = value;
+					OnInclusionChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _Inclusion; }
+		}
+		private bool? _Inclusion;
+		partial void OnInclusionChanging(); // Property.tt Line: 134
+		partial void OnInclusionChanged();
+		#endregion Properties
+	}
 	public partial class SubModel : ConfigObjectBase<SubModel, SubModel.SubModelValidator>, IComparable<SubModel>, IConfigAcceptVisitor, ISubModel // Class.tt Line: 6
 	{
 		public partial class SubModelValidator : ValidatorBase<SubModel, SubModelValidator> { } 
 		#region CTOR
 		public SubModel() : base(SubModelValidator.Validator)	{
-			this.ListGuids = new ObservableCollection<string>(); // Class.tt Line: 17
+			this.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 17
+			this.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 17
 			OnInit();
 		}
 	    // Class.tt Line: 34
 		public SubModel(ITreeConfigNode parent) : base(SubModelValidator.Validator)
 	    {
 	        this.Parent = parent;
+			this.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 43
+			this.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 43
 			OnInit();
 	    }
 		partial void OnInit();
@@ -3275,8 +3381,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = from.Name; // Clone.tt Line: 58
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 58
 		    vm.Description = from.Description; // Clone.tt Line: 58
-		    foreach(var t in from.ListGuids) // Clone.tt Line: 37
-		        vm.ListGuids.Add(t);
+		    vm.EnumDefaultInclusion = from.EnumDefaultInclusion; // Clone.tt Line: 58
+		    vm.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>();
+		    foreach(var t in from.ListObjectInclusionRecords) // Clone.tt Line: 41
+		        vm.ListObjectInclusionRecords.Add(ObjectInclusionRecord.Clone((ObjectInclusionRecord)t, isDeep));
+		    vm.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>();
+		    foreach(var t in from.ListGroupObjects) // Clone.tt Line: 41
+		        vm.ListGroupObjects.Add(ObjectInclusionRecord.Clone((ObjectInclusionRecord)t, isDeep));
 		    if (isNewGuid) // Clone.tt Line: 63
 		        vm.SetNewGuid();
 		    return vm;
@@ -3287,11 +3398,79 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.Name = from.Name; // Clone.tt Line: 126
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 126
 		    to.Description = from.Description; // Clone.tt Line: 126
-		        to.ListGuids.Clear(); // Clone.tt Line: 112
-		        foreach(var tt in from.ListGuids)
+		    to.EnumDefaultInclusion = from.EnumDefaultInclusion; // Clone.tt Line: 126
+		    if (isDeep) // Clone.tt Line: 75
+		    {
+		        foreach(var t in to.ListObjectInclusionRecords.ToList())
 		        {
-		            to.ListGuids.Add(tt);
+		            bool isfound = false;
+		            foreach(var tt in from.ListObjectInclusionRecords)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    ObjectInclusionRecord.Update((ObjectInclusionRecord)t, (ObjectInclusionRecord)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListObjectInclusionRecords.Remove(t);
 		        }
+		        foreach(var tt in from.ListObjectInclusionRecords)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListObjectInclusionRecords.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new ObjectInclusionRecord();
+		                ObjectInclusionRecord.Update(p, (ObjectInclusionRecord)tt, isDeep);
+		                to.ListObjectInclusionRecords.Add(p);
+		            }
+		        }
+		    }
+		    if (isDeep) // Clone.tt Line: 75
+		    {
+		        foreach(var t in to.ListGroupObjects.ToList())
+		        {
+		            bool isfound = false;
+		            foreach(var tt in from.ListGroupObjects)
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    ObjectInclusionRecord.Update((ObjectInclusionRecord)t, (ObjectInclusionRecord)tt, isDeep);
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		                to.ListGroupObjects.Remove(t);
+		        }
+		        foreach(var tt in from.ListGroupObjects)
+		        {
+		            bool isfound = false;
+		            foreach(var t in to.ListGroupObjects.ToList())
+		            {
+		                if (t == tt)
+		                {
+		                    isfound = true;
+		                    break;
+		                }
+		            }
+		            if (!isfound)
+		            {
+		                var p = new ObjectInclusionRecord();
+		                ObjectInclusionRecord.Update(p, (ObjectInclusionRecord)tt, isDeep);
+		                to.ListGroupObjects.Add(p);
+		            }
+		        }
+		    }
 		}
 		// Clone.tt Line: 132
 		#region IEditable
@@ -3321,10 +3500,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = m.Name; // Clone.tt Line: 199
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 199
 		    vm.Description = m.Description; // Clone.tt Line: 199
-		    vm.ListGuids = new ObservableCollection<string>();
-		    foreach(var t in m.ListGuids) // Clone.tt Line: 163
+		    vm.EnumDefaultInclusion = (EnumIncludeDefaultPolicy)m.EnumDefaultInclusion; // Clone.tt Line: 197
+		    vm.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>();
+		    foreach(var t in m.ListObjectInclusionRecords) // Clone.tt Line: 169
 		    {
-		        vm.ListGuids.Add(t);
+		        var tvm = ObjectInclusionRecord.ConvertToVM(t);
+		        vm.ListObjectInclusionRecords.Add(tvm); // Clone.tt Line: 175
+		    }
+		    vm.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>();
+		    foreach(var t in m.ListGroupObjects) // Clone.tt Line: 169
+		    {
+		        var tvm = ObjectInclusionRecord.ConvertToVM(t);
+		        vm.ListGroupObjects.Add(tvm); // Clone.tt Line: 175
 		    }
 		    vm.OnInitFromDto(); // Clone.tt Line: 204
 		    return vm;
@@ -3337,8 +3524,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.Name = vm.Name; // Clone.tt Line: 235
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 235
 		    m.Description = vm.Description; // Clone.tt Line: 235
-		    foreach(var t in vm.ListGuids) // Clone.tt Line: 214
-		        m.ListGuids.Add(t); // Clone.tt Line: 216
+		    m.EnumDefaultInclusion = (Proto.Config.proto_enum_include_default_policy)vm.EnumDefaultInclusion; // Clone.tt Line: 233
+		    foreach(var t in vm.ListObjectInclusionRecords) // Clone.tt Line: 214
+		        m.ListObjectInclusionRecords.Add(ObjectInclusionRecord.ConvertToProto((ObjectInclusionRecord)t)); // Clone.tt Line: 218
+		    foreach(var t in vm.ListGroupObjects) // Clone.tt Line: 214
+		        m.ListGroupObjects.Add(ObjectInclusionRecord.ConvertToProto((ObjectInclusionRecord)t)); // Clone.tt Line: 218
 		    return m;
 		}
 		
@@ -3371,32 +3561,74 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private string _Description = "";
 		partial void OnDescriptionChanging(); // Property.tt Line: 134
 		partial void OnDescriptionChanged();
-		
-		///////////////////////////////////////////////////
-		/// 
-		/// map<string, string> map_guids = 7;
-		///////////////////////////////////////////////////
-		[BrowsableAttribute(false)]
-		public ObservableCollection<string> ListGuids // Property.tt Line: 9
+		[DisplayName("Default Mode")]
+		[Description("Default mode for model objects inclusion behavior")]
+		public EnumIncludeDefaultPolicy EnumDefaultInclusion // Property.tt Line: 115
 		{ 
 			set
 			{
-				if (_ListGuids != value)
+				if (_EnumDefaultInclusion != value)
 				{
-					OnListGuidsChanging();
-					_ListGuids = value;
-					OnListGuidsChanged();
+					OnEnumDefaultInclusionChanging();
+					_EnumDefaultInclusion = value;
+					OnEnumDefaultInclusionChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _ListGuids; }
+			get { return _EnumDefaultInclusion; }
 		}
-		private ObservableCollection<string> _ListGuids;
+		private EnumIncludeDefaultPolicy _EnumDefaultInclusion;
+		partial void OnEnumDefaultInclusionChanging(); // Property.tt Line: 134
+		partial void OnEnumDefaultInclusionChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<string> ListGuidsI { get { foreach (var t in _ListGuids) yield return t; } }
-		partial void OnListGuidsChanging(); // Property.tt Line: 134
-		partial void OnListGuidsChanged();
+		public ObservableCollection<ObjectInclusionRecord> ListObjectInclusionRecords // Property.tt Line: 9
+		{ 
+			set
+			{
+				if (_ListObjectInclusionRecords != value)
+				{
+					OnListObjectInclusionRecordsChanging();
+					_ListObjectInclusionRecords = value;
+					OnListObjectInclusionRecordsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListObjectInclusionRecords; }
+		}
+		private ObservableCollection<ObjectInclusionRecord> _ListObjectInclusionRecords;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IObjectInclusionRecord> ListObjectInclusionRecordsI { get { foreach (var t in _ListObjectInclusionRecords) yield return t; } }
+		partial void OnListObjectInclusionRecordsChanging(); // Property.tt Line: 134
+		partial void OnListObjectInclusionRecordsChanged();
+		
+		///////////////////////////////////////////////////
+		/// 
+		/// proto_object_inclusion_record test =12;
+		///////////////////////////////////////////////////
+		[BrowsableAttribute(false)]
+		[ExpandableObjectAttribute()]
+		public ObservableCollection<ObjectInclusionRecord> ListGroupObjects // Property.tt Line: 9
+		{ 
+			set
+			{
+				if (_ListGroupObjects != value)
+				{
+					OnListGroupObjectsChanging();
+					_ListGroupObjects = value;
+					OnListGroupObjectsChanged();
+					NotifyPropertyChanged();
+					ValidateProperty();
+				}
+			}
+			get { return _ListGroupObjects; }
+		}
+		private ObservableCollection<ObjectInclusionRecord> _ListGroupObjects;
+		[BrowsableAttribute(false)]
+		public IEnumerable<IObjectInclusionRecord> ListGroupObjectsI { get { foreach (var t in _ListGroupObjects) yield return t; } }
+		partial void OnListGroupObjectsChanging(); // Property.tt Line: 134
+		partial void OnListGroupObjectsChanged();
 		#endregion Properties
 	}
 	
@@ -3904,7 +4136,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnIsPositiveChanging(); // Property.tt Line: 134
 		partial void OnIsPositiveChanged();
 		[PropertyOrderAttribute(3)]
-		[Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
+		[Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
 		public string ObjectGuid // Property.tt Line: 115
 		{ 
 			set
@@ -8973,6 +9205,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.proto_base_config p);
 		void Visit(Proto.Config.proto_config p);
 		void Visit(Proto.Config.proto_group_list_sub_models p);
+		void Visit(Proto.Config.proto_object_inclusion_record p);
 		void Visit(Proto.Config.proto_sub_model p);
 		void Visit(Proto.Config.proto_config_model p);
 		void Visit(Proto.Config.proto_data_type p);
@@ -9132,9 +9365,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
+		protected override void OnVisit(ObjectInclusionRecord p) // ValidationVisitor.tt Line: 15
+	    {
+	        OnVisit(p as IValidatableWithSeverity);
+	    }
+		protected override void OnVisitEnd(ObjectInclusionRecord p) // ValidationVisitor.tt Line: 35
+	    {
+	        OnVisitEnd(p as IValidatableWithSeverity);
+	    }
 		protected override void OnVisit(SubModel p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
+	        foreach(var t in p.ListObjectInclusionRecords) // ValidationVisitor.tt Line: 26
+	            ValidateSubAndCollectErrors(p, t);
+	        foreach(var t in p.ListGroupObjects) // ValidationVisitor.tt Line: 26
+	            ValidateSubAndCollectErrors(p, t);
 	    }
 		protected override void OnVisitEnd(SubModel p) // ValidationVisitor.tt Line: 35
 	    {
@@ -9523,6 +9768,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    }
 	    protected virtual void OnVisit(GroupListSubModels p) {}
 	    protected virtual void OnVisitEnd(GroupListSubModels p) {}
+		public void Visit(ObjectInclusionRecord p)
+	    {
+	        OnVisit(p);
+	    }
+		public void VisitEnd(ObjectInclusionRecord p)
+	    {
+	        OnVisitEnd(p);
+	    }
+	    protected virtual void OnVisit(ObjectInclusionRecord p) {}
+	    protected virtual void OnVisitEnd(ObjectInclusionRecord p) {}
 		public void Visit(SubModel p)
 	    {
 	        OnVisit(p);

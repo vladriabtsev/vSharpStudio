@@ -11,7 +11,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
-<# if (!field.IsAny() && field.IsMessage()) { #>
+<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
     if (type == typeof(<#= field.ToTypeCs() #>)) // <#=Helper.FilePos() #>
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
@@ -221,7 +221,7 @@ public static <#= this.protoNameSpace #>.<#= message.Name #> ConvertToProto(<#= 
     m.<#= field.Name.ToNameCs() #>.Value = string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>) ? "" : vm.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
     m.<#= field.Name.ToNameCs() #>.HasValue = !string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>);
 <#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
-    m.<#= field.Name.ToNameCs() #> = new <#= this.nameSpace #>.<#= field.MessageType.Name #>(); // <#=Helper.FilePos() #>
+    m.<#= field.Name.ToNameCs() #> = new <#= this.protoNameSpace #>.<#= field.MessageType.Name #>(); // <#=Helper.FilePos() #>
     m.<#= field.Name.ToNameCs() #>.HasValue = vm.<#= field.Name.ToNameCs() #>.HasValue;
     if (vm.<#= field.Name.ToNameCs() #>.HasValue)
         m.<#= field.Name.ToNameCs() #>.Value = vm.<#= field.Name.ToNameCs() #>.Value;

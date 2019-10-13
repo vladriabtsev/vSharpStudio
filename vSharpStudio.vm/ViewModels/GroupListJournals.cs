@@ -5,12 +5,15 @@ using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListJournals.Count,nq}")]
-    public partial class GroupListJournals : ICanAddSubNode, ICanGoRight
+    public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight
     {
+        public IEnumerable<object> GetChildren(object parent) { return this.ListJournals; }
+        public bool HasChildren(object parent) { return this.ListJournals.Count > 0; }
         partial void OnInit()
         {
             this.Name = "Journals";

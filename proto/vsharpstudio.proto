@@ -273,6 +273,11 @@ message proto_config {
  * @exclude
  * ####################################### M O D E L ##########################################
  */
+enum proto_enum_include_default_policy {
+    EXCLUDE = 0;
+    INCLUDE = 1;
+    //NONE = 2;
+}
 message proto_group_list_sub_models {
     string guid = 1;
     string name = 2;
@@ -284,15 +289,27 @@ message proto_group_list_sub_models {
     // @attr [BrowsableAttribute(false)]
     repeated proto_sub_model list_sub_models = 9;
 }
+// @base : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator>
+message proto_object_inclusion_record {
+    // @attr [BrowsableAttribute(false)]
+    string guid = 1;
+    bool_nullable inclusion = 2;
+}
 message proto_sub_model {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
+    // @attr [DisplayName("Default Mode")]
+    // @attr [Description("Default mode for model objects inclusion behavior")]
+    proto_enum_include_default_policy enum_default_inclusion = 6;
     // @attr [BrowsableAttribute(false)]
-    repeated string list_guids = 6;
-    //map<string, string> map_guids = 7;
+    repeated proto_object_inclusion_record list_object_inclusion_records = 10;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_object_inclusion_record list_group_objects = 11;
+    // @attr [ExpandableObjectAttribute()]
+    //proto_object_inclusion_record test =12;
 }
 // Configuration model
 message proto_config_model {
@@ -354,7 +371,7 @@ message proto_data_type {
     // @attr [DisplayName("Is positive")]
     bool is_positive = 4; 
     // @attr [PropertyOrderAttribute(3)]
-    // @attr [Editor(typeof(DataTypeObjectNameEditor), typeof(DataTypeObjectNameEditor))]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 5;
     // @attr [PropertyOrderAttribute(2)]
     bool is_nullable = 6;

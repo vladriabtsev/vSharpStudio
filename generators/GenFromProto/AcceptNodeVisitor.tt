@@ -11,7 +11,7 @@ public void Accept<#= root.Package.ToNameCs() #>NodeVisitor(<#= root.Package.ToN
         return;
 	visitor.Visit(this);
 <# foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.IsCsSimple())
+     if (field.IsCsSimple() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)
        continue;
 #>
 <# try { if (field.IsRepeated) { #>

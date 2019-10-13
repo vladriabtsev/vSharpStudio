@@ -236,8 +236,8 @@ namespace vSharpStudio.common
                     ci = 0;
                 else if (c >= 'A' && c <= 'Z')
                     ci = c - 'A' + 11;
-                else
-                    throw new ArgumentException("Unexpected char value: '" + c + "'");
+                //else
+                //    throw new ArgumentException("Unexpected char value: '" + c + "'");
                 ulong pow = 1;
                 for (int j = 0; j < _maxlen - i - 1; j++)
                 {

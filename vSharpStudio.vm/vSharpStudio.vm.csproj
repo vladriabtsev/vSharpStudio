@@ -115,6 +115,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -137,6 +138,12 @@
     <Compile Include="ViewModels\AppProject.cs" />
     <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
+    <Compile Include="ViewModels\EditorObjectGroupSubModels.cs" />
+    <Compile Include="ViewModels\EditorObjectSubModels.cs" />
+    <Compile Include="ViewModels\IIncludeDefaultPolicy.cs" />
+    <Compile Include="ViewModels\ObjectSubModelsEditor.xaml.cs">
+      <DependentUpon>ObjectSubModelsEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\SubModelRow.cs" />
     <Compile Include="ViewModels\SubModel.Validator.cs" />
     <Compile Include="ViewModels\SubModel.cs" />
@@ -160,8 +167,8 @@
     <Compile Include="ViewModels\Constant.Validator.cs" />
     <Compile Include="ViewModels\DataType.cs" />
     <Compile Include="ViewModels\DataType.Validator.cs" />
-    <Compile Include="ViewModels\AppConnStringNameEditor.cs" />
-    <Compile Include="ViewModels\DataTypeObjectNameEditor.cs" />
+    <Compile Include="ViewModels\EditorAppConnStringName.cs" />
+    <Compile Include="ViewModels\EditorDataTypeObjectName.cs" />
     <Compile Include="ViewModels\EditorDbConnSelection.cs" />
     <Compile Include="ViewModels\EditorDbPluginGenSelection.cs" />
     <Compile Include="ViewModels\EditorDbPluginSelection.cs" />
@@ -214,6 +221,10 @@
       <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
       <Name>vSharpStudio.std</Name>
     </ProjectReference>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj">
+      <Project>{871161A9-567D-476E-9D3E-AA44400FB63A}</Project>
+      <Name>vSharpStudio.wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
       <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
       <Name>Xceed.Wpf.Toolkit</Name>
@@ -230,6 +241,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ViewModels\ObjectSubModelsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

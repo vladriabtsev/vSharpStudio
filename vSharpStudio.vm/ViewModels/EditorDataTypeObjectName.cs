@@ -5,24 +5,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using ViewModelBase;
-using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class AppConnStringNameEditor : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
+    public class EditorDataTypeObjectName : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            IParent p = (IParent)propertyItem.Instance;
-            while (p.Parent != null)
-                p = p.Parent;
-            Config cfg = (Config)p;
+            DataType dt = (DataType)propertyItem.Instance;
             ComboBox cbx = new ComboBox();
-            //cbx.IsSynchronizedWithCurrentItem = true;
             cbx.DisplayMemberPath = "Name";
-            cbx.SelectedValuePath = "Name";
-            var _binding_lst = new Binding("ListConnectionStringVMs"); //bind to the Value property of the PropertyItem
-            _binding_lst.Source = cfg;
+            cbx.SelectedValuePath = "Guid";
+            var _binding_lst = new Binding("ListObjects"); //bind to the Value property of the PropertyItem
+            _binding_lst.Source = dt;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;

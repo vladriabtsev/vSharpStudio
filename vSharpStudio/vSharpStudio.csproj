@@ -247,6 +247,7 @@
     <Compile Include="Views\PropertiesList.xaml.cs">
       <DependentUpon>PropertiesList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TreeSubModelObjectsSelection.cs" />
     <Compile Include="Views\TreeSubModels.xaml.cs">
       <DependentUpon>TreeSubModels.xaml</DependentUpon>
     </Compile>
@@ -265,6 +266,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TreeStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ConfigTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

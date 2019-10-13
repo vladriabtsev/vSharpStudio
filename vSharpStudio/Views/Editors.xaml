@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
              xmlns:bvm="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
+             xmlns:ctrls="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf"
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800" SizeChanged="UserControl_SizeChanged">
     <!--<UserControl.Resources>
@@ -30,7 +31,43 @@
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type bvm:GroupListSubModels}">
                         <Grid>
-                            <local:TreeSubModels />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <!--<TextBlock Text="title" Background="#FFFF0A0A" />-->
+                            <local:TreeSubModelObjectsSelection Grid.Row="1" ItemContainerStyle="{StaticResource TreeListItemNodeStyle}">
+                                <local:TreeSubModelObjectsSelection.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ctrls:RowExpander/>
+                                            <Border Focusable="True" BorderThickness="{TemplateBinding Border.BorderThickness}" 
+								                    Padding="{TemplateBinding Control.Padding}" 
+								                    BorderBrush="{TemplateBinding Border.BorderBrush}" 
+								                    Background="{TemplateBinding Panel.Background}" 
+								                    Name="Bd" 
+								                    SnapsToDevicePixels="True">
+                                                <TextBlock Text="{Binding Name}" />
+                                            </Border>
+                                        </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ctrls:TreeListItem}}}" 
+									                Value="True">
+                                                <Setter Property="Background" TargetName="Bd">
+                                                    <Setter.Value>
+                                                        <DynamicResource ResourceKey="{x:Static SystemColors.HighlightBrushKey}" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="TextElement.Foreground">
+                                                    <Setter.Value>
+                                                        <DynamicResource ResourceKey="{x:Static SystemColors.HighlightTextBrushKey}" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </local:TreeSubModelObjectsSelection.ItemTemplate>
+                            </local:TreeSubModelObjectsSelection>
                         </Grid>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type bvm:SubModel}">
@@ -46,13 +83,13 @@
                                     <DataGridTextColumn Header="Group"  Binding="{Binding GroupName}"/>
                                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                                     <DataGridCheckBoxColumn Header="Included?" Binding="{Binding IsIncluded, Mode=TwoWay}" Width="*" />
-                                    <!--<DataGridTemplateColumn>
+                                    <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellEditingTemplate>
                                             <DataTemplate>
                                                 <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay}"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellEditingTemplate>
-                                    </DataGridTemplateColumn>-->
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>

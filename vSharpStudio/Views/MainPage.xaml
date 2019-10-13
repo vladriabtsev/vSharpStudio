@@ -85,13 +85,14 @@
             <!--Editors-->
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="6*" MinHeight="20" />
+                    <RowDefinition Height="62*" MinHeight="20" />
+                    <RowDefinition Height="117*"/>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" MinHeight="20" />
+                    <RowDefinition Height="30*" MinHeight="20" />
                 </Grid.RowDefinitions>
                 <!--<local:Editors Grid.Row="0" Height="{Binding RowDefinitions[0].Height.Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>-->
-                <local:Editors Grid.Row="0"/>
-                <GridSplitter Grid.Row="1" ResizeDirection="Rows" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.5" >
+                <local:Editors Grid.Row="0" Grid.RowSpan="2"/>
+                <GridSplitter Grid.Row="2" ResizeDirection="Rows" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.5" >
                     <GridSplitter.Background>
                         <RadialGradientBrush>
                             <GradientStop Color="Black" Offset="0.003"/>
@@ -100,7 +101,7 @@
                     </GridSplitter.Background>
                 </GridSplitter>
                 <!--List All Validations-->
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="3">
                     <local:ValidationListForSelectedNode />
                 </Grid>
             </Grid>

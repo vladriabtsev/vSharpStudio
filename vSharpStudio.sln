@@ -78,6 +78,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.db", "common\v
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationLogging", "common\ApplicationLogging\ApplicationLogging.csproj", "{A70A13EF-958C-4078-BA5A-A208D90743A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppTest", "WpfAppTest\WpfAppTest.csproj", "{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +201,12 @@ Global
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

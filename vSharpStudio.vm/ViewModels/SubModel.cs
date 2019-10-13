@@ -9,34 +9,68 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class SubModel : ISubModel
+    public partial class SubModel : ISubModel, IIncludeDefaultPolicy
     {
         public static readonly string DefaultName = "SubModel";
         protected override void OnInitFromDto()
         {
-            foreach (var t in this.ListGuids)
+            foreach (var t in this.ListObjectInclusionRecords)
             {
-                this.DicGuids[t] = null;
+                if (t.Inclusion.HasValue)
+                {
+                    this.DicInclusionRecordObjectGuids[t.Guid] = t;
+                }
             }
         }
-        public Dictionary<string, string> DicGuids = new Dictionary<string, string>();
-        //[BrowsableAttribute(false)]
-        //public Config Config
-        //{
-        //    set
-        //    {
-        //        _Config = value;
-        //        NotifyPropertyChanged();
-        //        if (this.Parent != null)
-        //            this.Parent.Name = _Config.Name;
-        //        //ValidateProperty();
-        //    }
-        //    get { return _Config; }
-        //}
+        [BrowsableAttribute(false)]
+        public Dictionary<string, ObjectInclusionRecord> DicInclusionRecordObjectGuids = new Dictionary<string, ObjectInclusionRecord>();
 
-        //IConfig IBaseConfig.Config => _Config;
+        #region for model object nodes
+        internal bool? CheckIsSelected(ITreeConfigNode obj)
+        {
+            if (this.DicInclusionRecordObjectGuids.ContainsKey(obj.Guid))
+            {
+                return this.DicInclusionRecordObjectGuids[obj.Guid].Inclusion;
+            }
+            else
+            {
+                ITreeConfigNode p = obj.Parent;
+                while (p != null)
+                {
+                    if (this.DicInclusionRecordObjectGuids.ContainsKey(p.Guid))
+                        return this.DicInclusionRecordObjectGuids[p.Guid].Inclusion;
+                    p = p.Parent;
+                }
+            }
+            switch (this.EnumDefaultInclusion)
+            {
+                case EnumIncludeDefaultPolicy.INCLUDE:
+                    return true;
+                case EnumIncludeDefaultPolicy.EXCLUDE:
+                    return false;
+            }
+            throw new NotSupportedException();
+        }
 
-        //private Config _Config;
+        internal void IsSelectedChanged(string guid, bool? prev, bool? isSelected)
+        {
+            if (this.DicInclusionRecordObjectGuids.ContainsKey(guid))
+            {
+                if (isSelected == null)
+                {
+                    this.DicInclusionRecordObjectGuids.Remove(guid);
+                }
+                else
+                    this.DicInclusionRecordObjectGuids[guid].Inclusion = isSelected;
+            }
+            else
+            {
+                if (isSelected != null)
+                    this.DicInclusionRecordObjectGuids[guid].Inclusion = isSelected;
+            }
+        }
+
+        #endregion for model object nodes
 
         [BrowsableAttribute(false)]
         public List<SubModelRow> ListObjects
@@ -53,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels
                 string grp = "Constants";
                 foreach (var t in m.Model.GroupConstants.ListConstants)
                 {
-                    if (this.DicGuids.ContainsKey(t.Guid))
+                    if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
                         lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
@@ -71,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
                 grp = "Enumerations";
                 foreach (var t in m.Model.GroupEnumerations.ListEnumerations)
                 {
-                    if (this.DicGuids.ContainsKey(t.Guid))
+                    if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
                         lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
@@ -89,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
                 grp = "Catalogs";
                 foreach (var t in m.Model.GroupCatalogs.ListCatalogs)
                 {
-                    if (this.DicGuids.ContainsKey(t.Guid))
+                    if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
                         lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }
@@ -107,7 +141,7 @@ namespace vSharpStudio.vm.ViewModels
                 grp = "Documents";
                 foreach (var t in m.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                 {
-                    if (this.DicGuids.ContainsKey(t.Guid))
+                    if (this.DicInclusionRecordObjectGuids.ContainsKey(t.Guid))
                     {
                         lst.Add(new SubModelRow(this, grp, t.Name, t.Guid, true));
                     }

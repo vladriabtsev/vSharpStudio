@@ -11,10 +11,12 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode
     {
         public static readonly string DefaultName = "Catalog";
         public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        [Editor(typeof(EditorObjectSubModels), typeof(EditorObjectSubModels))]
+        public bool Models { get; set; }
         partial void OnInit()
         {
             this.Children = new SortedObservableCollection<ITreeConfigNode>();

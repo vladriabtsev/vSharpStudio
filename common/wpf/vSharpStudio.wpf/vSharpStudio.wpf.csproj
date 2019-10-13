@@ -60,6 +60,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TreeListView\ObservableCollectionAdv.cs" />
+    <Compile Include="Controls\TreeListView\Converters.cs" />
+    <Compile Include="Controls\TreeListView\ITreeModel.cs" />
+    <Compile Include="Controls\TreeListView\RowExpander.cs" />
+    <Compile Include="Controls\TreeListView\TreeListView.cs" />
+    <Compile Include="Controls\TreeListView\TreeListItem.cs" />
+    <Compile Include="Controls\TreeListView\TreeNode.cs" />
     <Compile Include="Controls\TreeViewExt.cs" />
     <Compile Include="Controls\vField.cs" />
     <Compile Include="Controls\vFieldPanel.cs" />
@@ -99,6 +106,10 @@
     <Page Include="Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
