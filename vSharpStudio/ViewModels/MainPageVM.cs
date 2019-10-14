@@ -123,6 +123,7 @@ namespace vSharpStudio.ViewModels
 
         private Config LoadConfig(string file_path, string indent)
         {
+            Config.IsLoading = true;
             if (!File.Exists(file_path))
                 throw new ArgumentException("Configuration data are not found in the file: " + file_path);
             Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
@@ -137,6 +138,7 @@ namespace vSharpStudio.ViewModels
             }
             //string json = File.ReadAllText(CFG_PATH);
             //this.Model = new Config(json);
+            Config.IsLoading = false;
             return cfg;
         }
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }

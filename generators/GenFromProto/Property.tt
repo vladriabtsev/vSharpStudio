@@ -50,7 +50,7 @@ private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 <# } else { #>
-public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>  // <#=Helper.FilePos() #>
+public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>  // <#=Helper.FilePos() #>
 { 
 	set
 	{
@@ -67,7 +67,7 @@ public SortedObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToName
 	}
 	get { return _<#= field.Name.ToNameCs() #>; }
 }
-private SortedObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
+private ConfigNodesCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> from, SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]

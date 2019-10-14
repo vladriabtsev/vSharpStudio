@@ -182,22 +182,21 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>();\r\n    foreach(v" +
-                    "ar t in from.");
+            this.Write(" = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>(); // ");
+            
+            #line 33 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in from.");
             
             #line 34 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(") // ");
-            
-            #line 34 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        vm.");
+            this.Write(") \r\n        vm.");
             
             #line 35 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -253,7 +252,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(">();\r\n    foreach(var t in from.");
+            this.Write(">(); // ");
+            
+            #line 40 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in from.");
             
             #line 41 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -302,14 +308,21 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" = new SortedObservableCollection<");
+            this.Write(" = new ConfigNodesCollection<");
             
             #line 44 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
-            this.Write(">();\r\n    foreach(var t in from.");
+            this.Write(">(vm); // ");
+            
+            #line 44 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in from.");
             
             #line 45 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -992,7 +1005,14 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(">();\r\n    foreach(var t in m.");
+            this.Write(">(); // ");
+            
+            #line 162 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in m.");
             
             #line 163 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1034,7 +1054,14 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(">();\r\n    foreach(var t in m.");
+            this.Write(">(); // ");
+            
+            #line 168 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in m.");
             
             #line 169 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1063,6 +1090,13 @@ if (this.Doc.IsDefaultBase) {
             #line default
             #line hidden
             this.Write("        tvm.Parent = vm; // ");
+            
+            #line 173 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write(" // ");
             
             #line 173 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
@@ -1104,14 +1138,21 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(" = new SortedObservableCollection<");
+            this.Write(" = new ConfigNodesCollection<");
             
             #line 178 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
-            this.Write(">();\r\n    foreach(var t in m.");
+            this.Write(">(vm); // ");
+            
+            #line 178 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    foreach(var t in m.");
             
             #line 179 "C:\dev\vsharpstudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

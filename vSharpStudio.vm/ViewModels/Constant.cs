@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : ICanGoLeft, ICanAddNode, ISetParent
+    public partial class Constant : ICanGoLeft, ICanAddNode
     {
         public static readonly string DefaultName = "Constant";
         partial void OnInit()
@@ -39,10 +39,6 @@ namespace vSharpStudio.vm.ViewModels
         //    vm.Children.Add(new Constant() { Parent = this.Parent });
         //}
 
-        public void SetParent(object parent)
-        {
-            this.Parent = (GroupListConstants)parent;
-        }
         #endregion IConfigObject
 
         #region Tree operations

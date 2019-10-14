@@ -23,6 +23,8 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ITreeModel, IMigration, ICanGoLeft
     {
+        // to use xxxIsChanging(x from, x to)
+        public static bool IsLoading;
         public IEnumerable<object> GetChildren(object parent) { return this.Children; }
         public bool HasChildren(object parent) { return this.Children.Count > 0; }
         //public static readonly string DefaultName = "Config";

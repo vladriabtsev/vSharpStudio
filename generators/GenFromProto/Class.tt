@@ -16,7 +16,7 @@
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+		this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
@@ -42,7 +42,7 @@
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
 		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new SortedObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+		this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>

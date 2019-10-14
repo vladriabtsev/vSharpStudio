@@ -37,7 +37,19 @@ namespace vSharpStudio.vm.ViewModels
         public Dictionary<string, ObjectInclusionRecord> DicInclusionRecordObjectGuids = new Dictionary<string, ObjectInclusionRecord>();
         partial void OnEnumDefaultInclusionChanging(EnumIncludeDefaultPolicy from, EnumIncludeDefaultPolicy to)
         {
-            throw new NotImplementedException();
+            if (Config.IsLoading)
+                return;
+            var cfg = (Config)this.Parent.Parent;
+            var m = cfg.Model;
+            ChildrenInclusionChange(m);
+        }
+
+        private static void ChildrenInclusionChange(ConfigModel m)
+        {
+            if (m.HasChildren(m))
+                foreach (var t in m.GetChildren(m))
+                {
+                }
         }
         #region for model object nodes
         public bool? CheckIsSelected(ITreeConfigNode obj)

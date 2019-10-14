@@ -52,16 +52,30 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (val.Parent == null)
                     return true;
-                Enumeration p = (Enumeration)val.Parent;
-                switch (p.DataTypeEnum)
-                {
-                    case common.EnumEnumerationType.STRING_VALUE:
-                        if (string.IsNullOrWhiteSpace(val.Value))
-                            return false;
-                        break;
-                    default:
-                        throw new ArgumentException();
-                }
+                if (string.IsNullOrWhiteSpace(val.Value))
+                    return false;
+                //Enumeration p = (Enumeration)val.Parent;
+                //switch (p.DataTypeEnum)
+                //{
+                //    case common.EnumEnumerationType.BYTE_VALUE:
+                //        if (string.IsNullOrWhiteSpace(val.Value))
+                //            return false;
+                //        break;
+                //    case common.EnumEnumerationType.INTEGER_VALUE:
+                //        if (string.IsNullOrWhiteSpace(val.Value))
+                //            return false;
+                //        break;
+                //    case common.EnumEnumerationType.SHORT_VALUE:
+                //        if (string.IsNullOrWhiteSpace(val.Value))
+                //            return false;
+                //        break;
+                //    case common.EnumEnumerationType.STRING_VALUE:
+                //        if (string.IsNullOrWhiteSpace(val.Value))
+                //            return false;
+                //        break;
+                //    default:
+                //        throw new ArgumentException();
+                //}
                 return true;
             }
             private bool IsUniqueValue(EnumerationPair val)

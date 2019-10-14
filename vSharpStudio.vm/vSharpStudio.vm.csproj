@@ -138,6 +138,7 @@
     <Compile Include="ViewModels\AppProject.cs" />
     <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
+    <Compile Include="ViewModels\ConfigNodesCollection%27.cs" />
     <Compile Include="ViewModels\EditorObjectGroupModels.cs" />
     <Compile Include="ViewModels\EditorObjectModels.cs" />
     <Compile Include="ViewModels\IIncludeDefaultPolicy.cs" />
