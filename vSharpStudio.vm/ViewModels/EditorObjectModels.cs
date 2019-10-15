@@ -24,23 +24,25 @@ namespace vSharpStudio.vm.ViewModels
             Config cfg = (Config)p;
             CheckListBox clbx = new CheckListBox();
             List<SubVm> lst = new List<SubVm>();
-            foreach (var t in cfg.GroupSubModels.ListModels)
+            foreach (var t in cfg.GroupModels.ListModels)
             {
-                var svm = new SubVm() { Name = t.Name, SubModel = t, Node = obj };
+                var svm = new SubVm() { Name = t.Name, Model = t, Node = obj };
                 svm.SetIsSelected(t.CheckIsSelected(obj));
                 lst.Add(svm);
             }
             clbx.DisplayMemberPath = "Name";
             clbx.IsSelectAllActive = true;
             clbx.SelectedMemberPath = "IsSelected";
+            clbx.ValueMemberPath = "Model.Guid";
             clbx.Delimiter = ", ";
             clbx.ItemsSource = lst;
+            //clbx.Command
             return clbx;
         }
         public class SubVm : INotifyPropertyChanged
         {
             public string Name { get; set; }
-            public bool? IsSelected
+            public bool IsSelected
             {
                 get { return _IsSelected; }
                 set
@@ -50,16 +52,16 @@ namespace vSharpStudio.vm.ViewModels
                         var prev = _IsSelected;
                         _IsSelected = value;
                         OnPropertyChanged("IsSelected");
-                        SubModel.IsSelectedChanged(this.Node.Guid, prev, _IsSelected);
+                        Model.IsSelectedChanged(this.Node.Guid, prev, _IsSelected);
                     }
                 }
             }
-            private bool? _IsSelected;
+            private bool _IsSelected;
             public void SetIsSelected(bool? val)
             {
-                _IsSelected = val;
+                _IsSelected = val ?? false;
             }
-            public Model SubModel;
+            public Model Model { get; set; }
             public ITreeConfigNode Node;
 
             #region INotifyPropertyChanged Members

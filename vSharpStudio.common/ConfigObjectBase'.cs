@@ -19,9 +19,10 @@ namespace vSharpStudio.common
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue //, ITreeConfigNode
     {
-        public ConfigObjectBase(TValidator validator)
+        public ConfigObjectBase(ITreeConfigNode parent, TValidator validator)
             : base(validator)
         {
+            this.Parent = parent;
         }
         protected virtual void OnInitFromDto()
         {
@@ -611,5 +612,15 @@ namespace vSharpStudio.common
         IAnnotation IAnnotatable.FindAnnotation(string name) => FindAnnotation(name);
 
         #endregion IMutableAnnotatable
+        public virtual bool HasChildren(object parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IEnumerable<object> GetChildren(object parent)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

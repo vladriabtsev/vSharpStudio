@@ -29,7 +29,7 @@ namespace vSharpStudio.Unit
         {
             Exec(connStringName, (cfg) =>
             {
-                cfg.AdNew(new Constant("c1", EnumDataType.BOOL));
+                cfg.Model.GroupConstants.AddConstant("c1", new DataType() { DataTypeEnum = EnumDataType.BOOL });
                 //m.AdNew(new Constant("c2", EnumDataType.Numerical, 2, 0, true));
 
             }, (m) =>

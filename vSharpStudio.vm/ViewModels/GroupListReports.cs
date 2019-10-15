@@ -13,8 +13,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListReports.Count,nq}")]
     public partial class GroupListReports : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListReports; }
-        public bool HasChildren(object parent) { return this.ListReports.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListReports; }
+        public override bool HasChildren(object parent) { return this.ListReports.Count > 0; }
         partial void OnInit()
         {
             this.Name = "Reports";
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Report node = null;
             if (node_impl == null)
-                node = new Report();
+                node = new Report(this);
             else
                 node = (Report)node_impl;
             this.Add(node);

@@ -1,4 +1,4 @@
-// Auto generated on UTC 10/14/2019 15:01:55
+// Auto generated on UTC 10/15/2019 19:06:43
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -25,47 +25,50 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
     }
 	public partial class MsSqlDesignGeneratorSettings : ViewModelValidatableWithSeverity<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettings.MsSqlDesignGeneratorSettingsValidator>, IMsSqlDesignGeneratorSettings // Class.tt Line: 6
 	{
-		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { } 
+		public partial class MsSqlDesignGeneratorSettingsValidator : ValidatorBase<MsSqlDesignGeneratorSettings, MsSqlDesignGeneratorSettingsValidator> { } // Class.tt Line: 8
 		#region CTOR
-		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator)	{
+		public MsSqlDesignGeneratorSettings() : base(MsSqlDesignGeneratorSettingsValidator.Validator) // Class.tt Line: 38
+		{
+			OnInitBegin();
 			OnInit();
 		}
+		partial void OnInitBegin();
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static MsSqlDesignGeneratorSettings Clone(MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 27
+		public static MsSqlDesignGeneratorSettings Clone(ITreeConfigNode parent, MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 27
 		{
 		    MsSqlDesignGeneratorSettings vm = new MsSqlDesignGeneratorSettings();
-		    vm.Name = from.Name; // Clone.tt Line: 58
-		    vm.Guid = from.Guid; // Clone.tt Line: 58
-		    vm.NameUi = from.NameUi; // Clone.tt Line: 58
-		    vm.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 58
-		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 58
-		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 58
-		    vm.IsUseViews = from.IsUseViews; // Clone.tt Line: 58
-		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 58
-		    vm.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 58
+		    vm.Name = from.Name; // Clone.tt Line: 62
+		    vm.Guid = from.Guid; // Clone.tt Line: 62
+		    vm.NameUi = from.NameUi; // Clone.tt Line: 62
+		    vm.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 62
+		    vm.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 62
+		    vm.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 62
+		    vm.IsUseViews = from.IsUseViews; // Clone.tt Line: 62
+		    vm.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 62
+		    vm.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 62
 		    return vm;
 		}
-		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 68
+		public static void Update(MsSqlDesignGeneratorSettings to, MsSqlDesignGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 72
 		{
-		    to.Name = from.Name; // Clone.tt Line: 126
-		    to.Guid = from.Guid; // Clone.tt Line: 126
-		    to.NameUi = from.NameUi; // Clone.tt Line: 126
-		    to.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 126
-		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 126
-		    to.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 126
-		    to.IsUseViews = from.IsUseViews; // Clone.tt Line: 126
-		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 126
-		    to.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 126
+		    to.Name = from.Name; // Clone.tt Line: 134
+		    to.Guid = from.Guid; // Clone.tt Line: 134
+		    to.NameUi = from.NameUi; // Clone.tt Line: 134
+		    to.IsUseForeingkey = from.IsUseForeingkey; // Clone.tt Line: 134
+		    to.IsUseForeingkeyIndex = from.IsUseForeingkeyIndex; // Clone.tt Line: 134
+		    to.IsUseStorageProcedures = from.IsUseStorageProcedures; // Clone.tt Line: 134
+		    to.IsUseViews = from.IsUseViews; // Clone.tt Line: 134
+		    to.IsPrimaryKeyClustered = from.IsPrimaryKeyClustered; // Clone.tt Line: 134
+		    to.IsMemoryOptimized = from.IsMemoryOptimized; // Clone.tt Line: 134
 		}
-		// Clone.tt Line: 132
+		// Clone.tt Line: 140
 		#region IEditable
 		public override MsSqlDesignGeneratorSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return MsSqlDesignGeneratorSettings.Clone(this);
+			return MsSqlDesignGeneratorSettings.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(MsSqlDesignGeneratorSettings from)
@@ -77,36 +80,34 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_ms_sql_design_generator_settings' to 'MsSqlDesignGeneratorSettings'
-		public static MsSqlDesignGeneratorSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_design_generator_settings m, MsSqlDesignGeneratorSettings vm = null) // Clone.tt Line: 151
+		public static MsSqlDesignGeneratorSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_design_generator_settings m, MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 163
 		{
-		    if (vm == null)
-		        vm = new MsSqlDesignGeneratorSettings();
 		    if (m == null)
 		        return vm;
-		    vm.Name = m.Name; // Clone.tt Line: 199
-		    vm.Guid = m.Guid; // Clone.tt Line: 199
-		    vm.NameUi = m.NameUi; // Clone.tt Line: 199
-		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 199
-		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 199
-		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 199
-		    vm.IsUseViews = m.IsUseViews; // Clone.tt Line: 199
-		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered; // Clone.tt Line: 199
-		    vm.IsMemoryOptimized = m.IsMemoryOptimized; // Clone.tt Line: 199
+		    vm.Name = m.Name; // Clone.tt Line: 216
+		    vm.Guid = m.Guid; // Clone.tt Line: 216
+		    vm.NameUi = m.NameUi; // Clone.tt Line: 216
+		    vm.IsUseForeingkey = m.IsUseForeingkey; // Clone.tt Line: 216
+		    vm.IsUseForeingkeyIndex = m.IsUseForeingkeyIndex; // Clone.tt Line: 216
+		    vm.IsUseStorageProcedures = m.IsUseStorageProcedures; // Clone.tt Line: 216
+		    vm.IsUseViews = m.IsUseViews; // Clone.tt Line: 216
+		    vm.IsPrimaryKeyClustered = m.IsPrimaryKeyClustered; // Clone.tt Line: 216
+		    vm.IsMemoryOptimized = m.IsMemoryOptimized; // Clone.tt Line: 216
 		    return vm;
 		}
 		// Conversion from 'MsSqlDesignGeneratorSettings' to 'proto_ms_sql_design_generator_settings'
-		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 209
+		public static Proto.Config.Connection.proto_ms_sql_design_generator_settings ConvertToProto(MsSqlDesignGeneratorSettings vm) // Clone.tt Line: 226
 		{
-		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings(); // Clone.tt Line: 211
-		    m.Name = vm.Name; // Clone.tt Line: 235
-		    m.Guid = vm.Guid; // Clone.tt Line: 235
-		    m.NameUi = vm.NameUi; // Clone.tt Line: 235
-		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 235
-		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 235
-		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 235
-		    m.IsUseViews = vm.IsUseViews; // Clone.tt Line: 235
-		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered; // Clone.tt Line: 235
-		    m.IsMemoryOptimized = vm.IsMemoryOptimized; // Clone.tt Line: 235
+		    Proto.Config.Connection.proto_ms_sql_design_generator_settings m = new Proto.Config.Connection.proto_ms_sql_design_generator_settings(); // Clone.tt Line: 228
+		    m.Name = vm.Name; // Clone.tt Line: 252
+		    m.Guid = vm.Guid; // Clone.tt Line: 252
+		    m.NameUi = vm.NameUi; // Clone.tt Line: 252
+		    m.IsUseForeingkey = vm.IsUseForeingkey; // Clone.tt Line: 252
+		    m.IsUseForeingkeyIndex = vm.IsUseForeingkeyIndex; // Clone.tt Line: 252
+		    m.IsUseStorageProcedures = vm.IsUseStorageProcedures; // Clone.tt Line: 252
+		    m.IsUseViews = vm.IsUseViews; // Clone.tt Line: 252
+		    m.IsPrimaryKeyClustered = vm.IsPrimaryKeyClustered; // Clone.tt Line: 252
+		    m.IsMemoryOptimized = vm.IsMemoryOptimized; // Clone.tt Line: 252
 		    return m;
 		}
 		#endregion Procedures
@@ -303,103 +304,106 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 	[CategoryOrder("Advanced", 6)]
 	public partial class MsSqlConnectionSettings : ViewModelValidatableWithSeverity<MsSqlConnectionSettings, MsSqlConnectionSettings.MsSqlConnectionSettingsValidator>, IMsSqlConnectionSettings // Class.tt Line: 6
 	{
-		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { } 
+		public partial class MsSqlConnectionSettingsValidator : ValidatorBase<MsSqlConnectionSettings, MsSqlConnectionSettingsValidator> { } // Class.tt Line: 8
 		#region CTOR
-		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator)	{
+		public MsSqlConnectionSettings() : base(MsSqlConnectionSettingsValidator.Validator) // Class.tt Line: 38
+		{
+			OnInitBegin();
 			OnInit();
 		}
+		partial void OnInitBegin();
 		partial void OnInit();
 		#endregion CTOR
 		#region Procedures
-		public static MsSqlConnectionSettings Clone(MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 27
+		public static MsSqlConnectionSettings Clone(ITreeConfigNode parent, MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 27
 		{
 		    MsSqlConnectionSettings vm = new MsSqlConnectionSettings();
-		    vm.Name = from.Name; // Clone.tt Line: 58
-		    vm.Guid = from.Guid; // Clone.tt Line: 58
-		    vm.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 58
-		    vm.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 58
-		    vm.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 58
-		    vm.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 58
-		    vm.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 58
-		    vm.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 58
-		    vm.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 58
-		    vm.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 58
-		    vm.PacketSize = from.PacketSize; // Clone.tt Line: 58
-		    vm.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 58
-		    vm.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 58
-		    vm.Pooling = from.Pooling; // Clone.tt Line: 58
-		    vm.Replication = from.Replication; // Clone.tt Line: 58
-		    vm.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 58
-		    vm.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 58
-		    vm.UserID = from.UserID; // Clone.tt Line: 58
-		    vm.UserInstance = from.UserInstance; // Clone.tt Line: 58
-		    vm.WorkstationID = from.WorkstationID; // Clone.tt Line: 58
-		    vm.Password = from.Password; // Clone.tt Line: 58
-		    vm.Authentication = from.Authentication; // Clone.tt Line: 58
-		    vm.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 58
-		    vm.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 58
-		    vm.ApplicationName = from.ApplicationName; // Clone.tt Line: 58
-		    vm.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 58
-		    vm.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 58
-		    vm.ContextConnection = from.ContextConnection; // Clone.tt Line: 58
-		    vm.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 58
-		    vm.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 58
-		    vm.DataSource = from.DataSource; // Clone.tt Line: 58
-		    vm.Encrypt = from.Encrypt; // Clone.tt Line: 58
-		    vm.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 58
-		    vm.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 58
-		    vm.Enlist = from.Enlist; // Clone.tt Line: 58
-		    vm.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 58
-		    vm.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 58
+		    vm.Name = from.Name; // Clone.tt Line: 62
+		    vm.Guid = from.Guid; // Clone.tt Line: 62
+		    vm.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 62
+		    vm.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 62
+		    vm.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 62
+		    vm.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 62
+		    vm.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 62
+		    vm.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 62
+		    vm.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 62
+		    vm.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 62
+		    vm.PacketSize = from.PacketSize; // Clone.tt Line: 62
+		    vm.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 62
+		    vm.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 62
+		    vm.Pooling = from.Pooling; // Clone.tt Line: 62
+		    vm.Replication = from.Replication; // Clone.tt Line: 62
+		    vm.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 62
+		    vm.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 62
+		    vm.UserID = from.UserID; // Clone.tt Line: 62
+		    vm.UserInstance = from.UserInstance; // Clone.tt Line: 62
+		    vm.WorkstationID = from.WorkstationID; // Clone.tt Line: 62
+		    vm.Password = from.Password; // Clone.tt Line: 62
+		    vm.Authentication = from.Authentication; // Clone.tt Line: 62
+		    vm.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 62
+		    vm.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 62
+		    vm.ApplicationName = from.ApplicationName; // Clone.tt Line: 62
+		    vm.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 62
+		    vm.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 62
+		    vm.ContextConnection = from.ContextConnection; // Clone.tt Line: 62
+		    vm.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 62
+		    vm.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 62
+		    vm.DataSource = from.DataSource; // Clone.tt Line: 62
+		    vm.Encrypt = from.Encrypt; // Clone.tt Line: 62
+		    vm.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 62
+		    vm.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 62
+		    vm.Enlist = from.Enlist; // Clone.tt Line: 62
+		    vm.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 62
+		    vm.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 62
 		    return vm;
 		}
-		public static void Update(MsSqlConnectionSettings to, MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 68
+		public static void Update(MsSqlConnectionSettings to, MsSqlConnectionSettings from, bool isDeep = true) // Clone.tt Line: 72
 		{
-		    to.Name = from.Name; // Clone.tt Line: 126
-		    to.Guid = from.Guid; // Clone.tt Line: 126
-		    to.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 126
-		    to.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 126
-		    to.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 126
-		    to.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 126
-		    to.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 126
-		    to.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 126
-		    to.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 126
-		    to.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 126
-		    to.PacketSize = from.PacketSize; // Clone.tt Line: 126
-		    to.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 126
-		    to.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 126
-		    to.Pooling = from.Pooling; // Clone.tt Line: 126
-		    to.Replication = from.Replication; // Clone.tt Line: 126
-		    to.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 126
-		    to.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 126
-		    to.UserID = from.UserID; // Clone.tt Line: 126
-		    to.UserInstance = from.UserInstance; // Clone.tt Line: 126
-		    to.WorkstationID = from.WorkstationID; // Clone.tt Line: 126
-		    to.Password = from.Password; // Clone.tt Line: 126
-		    to.Authentication = from.Authentication; // Clone.tt Line: 126
-		    to.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 126
-		    to.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 126
-		    to.ApplicationName = from.ApplicationName; // Clone.tt Line: 126
-		    to.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 126
-		    to.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 126
-		    to.ContextConnection = from.ContextConnection; // Clone.tt Line: 126
-		    to.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 126
-		    to.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 126
-		    to.DataSource = from.DataSource; // Clone.tt Line: 126
-		    to.Encrypt = from.Encrypt; // Clone.tt Line: 126
-		    to.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 126
-		    to.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 126
-		    to.Enlist = from.Enlist; // Clone.tt Line: 126
-		    to.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 126
-		    to.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 126
+		    to.Name = from.Name; // Clone.tt Line: 134
+		    to.Guid = from.Guid; // Clone.tt Line: 134
+		    to.MaxPoolSize = from.MaxPoolSize; // Clone.tt Line: 134
+		    to.ConnectRetryCount = from.ConnectRetryCount; // Clone.tt Line: 134
+		    to.ConnectRetryInterval = from.ConnectRetryInterval; // Clone.tt Line: 134
+		    to.MinPoolSize = from.MinPoolSize; // Clone.tt Line: 134
+		    to.MultipleActiveResultSets = from.MultipleActiveResultSets; // Clone.tt Line: 134
+		    to.MultiSubnetFailover = from.MultiSubnetFailover; // Clone.tt Line: 134
+		    to.TransparentNetworkIPResolution = from.TransparentNetworkIPResolution; // Clone.tt Line: 134
+		    to.NetworkLibrary = from.NetworkLibrary; // Clone.tt Line: 134
+		    to.PacketSize = from.PacketSize; // Clone.tt Line: 134
+		    to.PersistSecurityInfo = from.PersistSecurityInfo; // Clone.tt Line: 134
+		    to.LoadBalanceTimeout = from.LoadBalanceTimeout; // Clone.tt Line: 134
+		    to.Pooling = from.Pooling; // Clone.tt Line: 134
+		    to.Replication = from.Replication; // Clone.tt Line: 134
+		    to.TransactionBinding = from.TransactionBinding; // Clone.tt Line: 134
+		    to.TypeSystemVersion = from.TypeSystemVersion; // Clone.tt Line: 134
+		    to.UserID = from.UserID; // Clone.tt Line: 134
+		    to.UserInstance = from.UserInstance; // Clone.tt Line: 134
+		    to.WorkstationID = from.WorkstationID; // Clone.tt Line: 134
+		    to.Password = from.Password; // Clone.tt Line: 134
+		    to.Authentication = from.Authentication; // Clone.tt Line: 134
+		    to.InitialCatalog = from.InitialCatalog; // Clone.tt Line: 134
+		    to.ApplicationIntentValue = from.ApplicationIntentValue; // Clone.tt Line: 134
+		    to.ApplicationName = from.ApplicationName; // Clone.tt Line: 134
+		    to.AsynchronousProcessing = from.AsynchronousProcessing; // Clone.tt Line: 134
+		    to.IntegratedSecurity = from.IntegratedSecurity; // Clone.tt Line: 134
+		    to.ContextConnection = from.ContextConnection; // Clone.tt Line: 134
+		    to.ConnectTimeout = from.ConnectTimeout; // Clone.tt Line: 134
+		    to.AttachDBFilename = from.AttachDBFilename; // Clone.tt Line: 134
+		    to.DataSource = from.DataSource; // Clone.tt Line: 134
+		    to.Encrypt = from.Encrypt; // Clone.tt Line: 134
+		    to.ColumnEncryptionSetting = from.ColumnEncryptionSetting; // Clone.tt Line: 134
+		    to.TrustServerCertificate = from.TrustServerCertificate; // Clone.tt Line: 134
+		    to.Enlist = from.Enlist; // Clone.tt Line: 134
+		    to.FailoverPartner = from.FailoverPartner; // Clone.tt Line: 134
+		    to.CurrentLanguage = from.CurrentLanguage; // Clone.tt Line: 134
 		}
-		// Clone.tt Line: 132
+		// Clone.tt Line: 140
 		#region IEditable
 		public override MsSqlConnectionSettings Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return MsSqlConnectionSettings.Clone(this);
+			return MsSqlConnectionSettings.Clone(null, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
 		public override void Restore(MsSqlConnectionSettings from)
@@ -411,92 +415,90 @@ namespace vPlugin.DbModel.MsSql // NameSpace.tt Line: 22
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
 		// Conversion from 'proto_ms_sql_connection_settings' to 'MsSqlConnectionSettings'
-		public static MsSqlConnectionSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_connection_settings m, MsSqlConnectionSettings vm = null) // Clone.tt Line: 151
+		public static MsSqlConnectionSettings ConvertToVM(Proto.Config.Connection.proto_ms_sql_connection_settings m, MsSqlConnectionSettings vm) // Clone.tt Line: 163
 		{
-		    if (vm == null)
-		        vm = new MsSqlConnectionSettings();
 		    if (m == null)
 		        return vm;
-		    vm.Name = m.Name; // Clone.tt Line: 199
-		    vm.Guid = m.Guid; // Clone.tt Line: 199
-		    vm.MaxPoolSize = m.MaxPoolSize; // Clone.tt Line: 199
-		    vm.ConnectRetryCount = m.ConnectRetryCount; // Clone.tt Line: 199
-		    vm.ConnectRetryInterval = m.ConnectRetryInterval; // Clone.tt Line: 199
-		    vm.MinPoolSize = m.MinPoolSize; // Clone.tt Line: 199
-		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets; // Clone.tt Line: 199
-		    vm.MultiSubnetFailover = m.MultiSubnetFailover; // Clone.tt Line: 199
-		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution; // Clone.tt Line: 199
-		    vm.NetworkLibrary = m.NetworkLibrary; // Clone.tt Line: 199
-		    vm.PacketSize = m.PacketSize; // Clone.tt Line: 199
-		    vm.PersistSecurityInfo = m.PersistSecurityInfo; // Clone.tt Line: 199
-		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout; // Clone.tt Line: 199
-		    vm.Pooling = m.Pooling; // Clone.tt Line: 199
-		    vm.Replication = m.Replication; // Clone.tt Line: 199
-		    vm.TransactionBinding = m.TransactionBinding; // Clone.tt Line: 199
-		    vm.TypeSystemVersion = m.TypeSystemVersion; // Clone.tt Line: 199
-		    vm.UserID = m.UserID; // Clone.tt Line: 199
-		    vm.UserInstance = m.UserInstance; // Clone.tt Line: 199
-		    vm.WorkstationID = m.WorkstationID; // Clone.tt Line: 199
-		    vm.Password = m.Password; // Clone.tt Line: 199
-		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication; // Clone.tt Line: 197
-		    vm.InitialCatalog = m.InitialCatalog; // Clone.tt Line: 199
-		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue; // Clone.tt Line: 197
-		    vm.ApplicationName = m.ApplicationName; // Clone.tt Line: 199
-		    vm.AsynchronousProcessing = m.AsynchronousProcessing; // Clone.tt Line: 199
-		    vm.IntegratedSecurity = m.IntegratedSecurity; // Clone.tt Line: 199
-		    vm.ContextConnection = m.ContextConnection; // Clone.tt Line: 199
-		    vm.ConnectTimeout = m.ConnectTimeout; // Clone.tt Line: 199
-		    vm.AttachDBFilename = m.AttachDBFilename; // Clone.tt Line: 199
-		    vm.DataSource = m.DataSource; // Clone.tt Line: 199
-		    vm.Encrypt = m.Encrypt; // Clone.tt Line: 199
-		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting; // Clone.tt Line: 197
-		    vm.TrustServerCertificate = m.TrustServerCertificate; // Clone.tt Line: 199
-		    vm.Enlist = m.Enlist; // Clone.tt Line: 199
-		    vm.FailoverPartner = m.FailoverPartner; // Clone.tt Line: 199
-		    vm.CurrentLanguage = m.CurrentLanguage; // Clone.tt Line: 199
+		    vm.Name = m.Name; // Clone.tt Line: 216
+		    vm.Guid = m.Guid; // Clone.tt Line: 216
+		    vm.MaxPoolSize = m.MaxPoolSize; // Clone.tt Line: 216
+		    vm.ConnectRetryCount = m.ConnectRetryCount; // Clone.tt Line: 216
+		    vm.ConnectRetryInterval = m.ConnectRetryInterval; // Clone.tt Line: 216
+		    vm.MinPoolSize = m.MinPoolSize; // Clone.tt Line: 216
+		    vm.MultipleActiveResultSets = m.MultipleActiveResultSets; // Clone.tt Line: 216
+		    vm.MultiSubnetFailover = m.MultiSubnetFailover; // Clone.tt Line: 216
+		    vm.TransparentNetworkIPResolution = m.TransparentNetworkIPResolution; // Clone.tt Line: 216
+		    vm.NetworkLibrary = m.NetworkLibrary; // Clone.tt Line: 216
+		    vm.PacketSize = m.PacketSize; // Clone.tt Line: 216
+		    vm.PersistSecurityInfo = m.PersistSecurityInfo; // Clone.tt Line: 216
+		    vm.LoadBalanceTimeout = m.LoadBalanceTimeout; // Clone.tt Line: 216
+		    vm.Pooling = m.Pooling; // Clone.tt Line: 216
+		    vm.Replication = m.Replication; // Clone.tt Line: 216
+		    vm.TransactionBinding = m.TransactionBinding; // Clone.tt Line: 216
+		    vm.TypeSystemVersion = m.TypeSystemVersion; // Clone.tt Line: 216
+		    vm.UserID = m.UserID; // Clone.tt Line: 216
+		    vm.UserInstance = m.UserInstance; // Clone.tt Line: 216
+		    vm.WorkstationID = m.WorkstationID; // Clone.tt Line: 216
+		    vm.Password = m.Password; // Clone.tt Line: 216
+		    vm.Authentication = (SqlAuthenticationMethod)m.Authentication; // Clone.tt Line: 214
+		    vm.InitialCatalog = m.InitialCatalog; // Clone.tt Line: 216
+		    vm.ApplicationIntentValue = (ApplicationIntent)m.ApplicationIntentValue; // Clone.tt Line: 214
+		    vm.ApplicationName = m.ApplicationName; // Clone.tt Line: 216
+		    vm.AsynchronousProcessing = m.AsynchronousProcessing; // Clone.tt Line: 216
+		    vm.IntegratedSecurity = m.IntegratedSecurity; // Clone.tt Line: 216
+		    vm.ContextConnection = m.ContextConnection; // Clone.tt Line: 216
+		    vm.ConnectTimeout = m.ConnectTimeout; // Clone.tt Line: 216
+		    vm.AttachDBFilename = m.AttachDBFilename; // Clone.tt Line: 216
+		    vm.DataSource = m.DataSource; // Clone.tt Line: 216
+		    vm.Encrypt = m.Encrypt; // Clone.tt Line: 216
+		    vm.ColumnEncryptionSetting = (SqlConnectionColumnEncryptionSetting)m.ColumnEncryptionSetting; // Clone.tt Line: 214
+		    vm.TrustServerCertificate = m.TrustServerCertificate; // Clone.tt Line: 216
+		    vm.Enlist = m.Enlist; // Clone.tt Line: 216
+		    vm.FailoverPartner = m.FailoverPartner; // Clone.tt Line: 216
+		    vm.CurrentLanguage = m.CurrentLanguage; // Clone.tt Line: 216
 		    return vm;
 		}
 		// Conversion from 'MsSqlConnectionSettings' to 'proto_ms_sql_connection_settings'
-		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm) // Clone.tt Line: 209
+		public static Proto.Config.Connection.proto_ms_sql_connection_settings ConvertToProto(MsSqlConnectionSettings vm) // Clone.tt Line: 226
 		{
-		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings(); // Clone.tt Line: 211
-		    m.Name = vm.Name; // Clone.tt Line: 235
-		    m.Guid = vm.Guid; // Clone.tt Line: 235
-		    m.MaxPoolSize = vm.MaxPoolSize; // Clone.tt Line: 235
-		    m.ConnectRetryCount = vm.ConnectRetryCount; // Clone.tt Line: 235
-		    m.ConnectRetryInterval = vm.ConnectRetryInterval; // Clone.tt Line: 235
-		    m.MinPoolSize = vm.MinPoolSize; // Clone.tt Line: 235
-		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets; // Clone.tt Line: 235
-		    m.MultiSubnetFailover = vm.MultiSubnetFailover; // Clone.tt Line: 235
-		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution; // Clone.tt Line: 235
-		    m.NetworkLibrary = vm.NetworkLibrary; // Clone.tt Line: 235
-		    m.PacketSize = vm.PacketSize; // Clone.tt Line: 235
-		    m.PersistSecurityInfo = vm.PersistSecurityInfo; // Clone.tt Line: 235
-		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout; // Clone.tt Line: 235
-		    m.Pooling = vm.Pooling; // Clone.tt Line: 235
-		    m.Replication = vm.Replication; // Clone.tt Line: 235
-		    m.TransactionBinding = vm.TransactionBinding; // Clone.tt Line: 235
-		    m.TypeSystemVersion = vm.TypeSystemVersion; // Clone.tt Line: 235
-		    m.UserID = vm.UserID; // Clone.tt Line: 235
-		    m.UserInstance = vm.UserInstance; // Clone.tt Line: 235
-		    m.WorkstationID = vm.WorkstationID; // Clone.tt Line: 235
-		    m.Password = vm.Password; // Clone.tt Line: 235
-		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication; // Clone.tt Line: 233
-		    m.InitialCatalog = vm.InitialCatalog; // Clone.tt Line: 235
-		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue; // Clone.tt Line: 233
-		    m.ApplicationName = vm.ApplicationName; // Clone.tt Line: 235
-		    m.AsynchronousProcessing = vm.AsynchronousProcessing; // Clone.tt Line: 235
-		    m.IntegratedSecurity = vm.IntegratedSecurity; // Clone.tt Line: 235
-		    m.ContextConnection = vm.ContextConnection; // Clone.tt Line: 235
-		    m.ConnectTimeout = vm.ConnectTimeout; // Clone.tt Line: 235
-		    m.AttachDBFilename = vm.AttachDBFilename; // Clone.tt Line: 235
-		    m.DataSource = vm.DataSource; // Clone.tt Line: 235
-		    m.Encrypt = vm.Encrypt; // Clone.tt Line: 235
-		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting; // Clone.tt Line: 233
-		    m.TrustServerCertificate = vm.TrustServerCertificate; // Clone.tt Line: 235
-		    m.Enlist = vm.Enlist; // Clone.tt Line: 235
-		    m.FailoverPartner = vm.FailoverPartner; // Clone.tt Line: 235
-		    m.CurrentLanguage = vm.CurrentLanguage; // Clone.tt Line: 235
+		    Proto.Config.Connection.proto_ms_sql_connection_settings m = new Proto.Config.Connection.proto_ms_sql_connection_settings(); // Clone.tt Line: 228
+		    m.Name = vm.Name; // Clone.tt Line: 252
+		    m.Guid = vm.Guid; // Clone.tt Line: 252
+		    m.MaxPoolSize = vm.MaxPoolSize; // Clone.tt Line: 252
+		    m.ConnectRetryCount = vm.ConnectRetryCount; // Clone.tt Line: 252
+		    m.ConnectRetryInterval = vm.ConnectRetryInterval; // Clone.tt Line: 252
+		    m.MinPoolSize = vm.MinPoolSize; // Clone.tt Line: 252
+		    m.MultipleActiveResultSets = vm.MultipleActiveResultSets; // Clone.tt Line: 252
+		    m.MultiSubnetFailover = vm.MultiSubnetFailover; // Clone.tt Line: 252
+		    m.TransparentNetworkIPResolution = vm.TransparentNetworkIPResolution; // Clone.tt Line: 252
+		    m.NetworkLibrary = vm.NetworkLibrary; // Clone.tt Line: 252
+		    m.PacketSize = vm.PacketSize; // Clone.tt Line: 252
+		    m.PersistSecurityInfo = vm.PersistSecurityInfo; // Clone.tt Line: 252
+		    m.LoadBalanceTimeout = vm.LoadBalanceTimeout; // Clone.tt Line: 252
+		    m.Pooling = vm.Pooling; // Clone.tt Line: 252
+		    m.Replication = vm.Replication; // Clone.tt Line: 252
+		    m.TransactionBinding = vm.TransactionBinding; // Clone.tt Line: 252
+		    m.TypeSystemVersion = vm.TypeSystemVersion; // Clone.tt Line: 252
+		    m.UserID = vm.UserID; // Clone.tt Line: 252
+		    m.UserInstance = vm.UserInstance; // Clone.tt Line: 252
+		    m.WorkstationID = vm.WorkstationID; // Clone.tt Line: 252
+		    m.Password = vm.Password; // Clone.tt Line: 252
+		    m.Authentication = (Proto.Config.Connection.SqlAuthenticationMethod)vm.Authentication; // Clone.tt Line: 250
+		    m.InitialCatalog = vm.InitialCatalog; // Clone.tt Line: 252
+		    m.ApplicationIntentValue = (Proto.Config.Connection.ApplicationIntent)vm.ApplicationIntentValue; // Clone.tt Line: 250
+		    m.ApplicationName = vm.ApplicationName; // Clone.tt Line: 252
+		    m.AsynchronousProcessing = vm.AsynchronousProcessing; // Clone.tt Line: 252
+		    m.IntegratedSecurity = vm.IntegratedSecurity; // Clone.tt Line: 252
+		    m.ContextConnection = vm.ContextConnection; // Clone.tt Line: 252
+		    m.ConnectTimeout = vm.ConnectTimeout; // Clone.tt Line: 252
+		    m.AttachDBFilename = vm.AttachDBFilename; // Clone.tt Line: 252
+		    m.DataSource = vm.DataSource; // Clone.tt Line: 252
+		    m.Encrypt = vm.Encrypt; // Clone.tt Line: 252
+		    m.ColumnEncryptionSetting = (Proto.Config.Connection.SqlConnectionColumnEncryptionSetting)vm.ColumnEncryptionSetting; // Clone.tt Line: 250
+		    m.TrustServerCertificate = vm.TrustServerCertificate; // Clone.tt Line: 252
+		    m.Enlist = vm.Enlist; // Clone.tt Line: 252
+		    m.FailoverPartner = vm.FailoverPartner; // Clone.tt Line: 252
+		    m.CurrentLanguage = vm.CurrentLanguage; // Clone.tt Line: 252
 		    return m;
 		}
 		#endregion Procedures

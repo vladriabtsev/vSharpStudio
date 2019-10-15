@@ -72,8 +72,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Report.Clone(this, true, true);
-            node.Parent = this.Parent;
+            var node = Report.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListReports).Add(node);
             this.Name = this.Name + "2";
             SetSelected(node);
@@ -81,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Report();
+            var node = new Report(this.Parent);
             (this.Parent as GroupListReports).Add(node);
             GetUniqueName(Report.DefaultName, node, (this.Parent as GroupListReports).ListReports);
             SetSelected(node);

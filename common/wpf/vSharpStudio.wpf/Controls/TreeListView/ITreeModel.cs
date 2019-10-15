@@ -13,9 +13,9 @@ namespace vSharpStudio.wpf.Controls
 		/// </summary>
 		IEnumerable<object> GetChildren(object parent);
 
-		/// <summary>
-		/// returns wheather specified parent has any children or not.
-		/// </summary>
-		bool HasChildren(object parent);
+        /// <summary>
+        /// returns wheather specified parent has any children or not.
+        /// </summary>
+        bool HasChildren(object parent);
 	}
 }

@@ -23,14 +23,12 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Model : IModel, IIncludeDefaultPolicy
     {
         public static readonly string DefaultName = "Model";
+        private Config cfg = null;
         protected override void OnInitFromDto()
         {
             foreach (var t in this.ListObjectInclusionRecords)
             {
-                if (t.Inclusion.HasValue)
-                {
-                    this.DicInclusionRecordObjectGuids[t.Guid] = t;
-                }
+                this.DicInclusionRecordObjectGuids[t.Guid] = t;
             }
         }
         [BrowsableAttribute(false)]
@@ -39,20 +37,22 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (Config.IsLoading)
                 return;
-            var cfg = (Config)this.Parent.Parent;
+            if (cfg == null)
+                cfg = (Config)this.Parent.Parent;
             var m = cfg.Model;
             ChildrenInclusionChange(m);
         }
 
         private static void ChildrenInclusionChange(ConfigModel m)
         {
+            throw new NotImplementedException();
             if (m.HasChildren(m))
                 foreach (var t in m.GetChildren(m))
                 {
                 }
         }
         #region for model object nodes
-        public bool? CheckIsSelected(ITreeConfigNode obj)
+        public bool CheckIsSelected(ITreeConfigNode obj)
         {
             if (this.DicInclusionRecordObjectGuids.ContainsKey(obj.Guid))
             {
@@ -78,28 +78,45 @@ namespace vSharpStudio.vm.ViewModels
             throw new NotSupportedException();
         }
 
-        public void IsSelectedChanged(string guid, bool? prev, bool? isSelected)
+        public void IsSelectedChanged(string guid, bool prev, bool isSelected)
         {
-            if (this.DicInclusionRecordObjectGuids.ContainsKey(guid))
+            if (cfg == null)
+                cfg = (Config)this.Parent.Parent;
+#if DEBUG
+            if (cfg.DicNodes.ContainsKey(guid))
+                throw new ArgumentException();
+#endif
+            var n = cfg.DicNodes[guid];
+            var isPrevSel = CheckIsSelected(n);
+            if (isSelected)
             {
-                if (isSelected == null)
-                {
-                    var r = this.DicInclusionRecordObjectGuids[guid];
-                    this.ListObjectInclusionRecords.Remove(r);
-                    this.DicInclusionRecordObjectGuids.Remove(guid);
-                }
-                else
-                    this.DicInclusionRecordObjectGuids[guid].Inclusion = isSelected;
+                //if (!isPrevSel)
+
             }
             else
             {
-                if (isSelected != null)
-                {
-                    var r = new ObjectInclusionRecord() { Inclusion = isSelected, Guid = guid };
-                    this.DicInclusionRecordObjectGuids[guid] = r;
-                    this.ListObjectInclusionRecords.Add(r);
-                }
+
             }
+            //if (this.DicInclusionRecordObjectGuids.ContainsKey(guid))
+            //{
+            //    if (isSelected == null)
+            //    {
+            //        var r = this.DicInclusionRecordObjectGuids[guid];
+            //        this.ListObjectInclusionRecords.Remove(r);
+            //        this.DicInclusionRecordObjectGuids.Remove(guid);
+            //    }
+            //    else
+            //        this.DicInclusionRecordObjectGuids[guid].Inclusion = isSelected;
+            //}
+            //else
+            //{
+            //    if (isSelected != null)
+            //    {
+            //        var r = new ObjectInclusionRecord() { Inclusion = isSelected, Guid = guid };
+            //        this.DicInclusionRecordObjectGuids[guid] = r;
+            //        this.ListObjectInclusionRecords.Add(r);
+            //    }
+            //}
         }
 
         #endregion for model object nodes

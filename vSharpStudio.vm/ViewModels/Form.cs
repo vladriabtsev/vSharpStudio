@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Form.Clone(this, true, true);
+            var node = Form.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListForms).Add(node);
             this.Name = this.Name + "2";
@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Form();
+            var node = new Form(this.Parent);
             (this.Parent as GroupListForms).Add(node);
             GetUniqueName(Form.DefaultName, node, (this.Parent as GroupListForms).ListForms);
             SetSelected(node);

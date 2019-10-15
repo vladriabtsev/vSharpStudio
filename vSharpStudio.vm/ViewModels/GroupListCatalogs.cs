@@ -13,8 +13,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
     public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListCatalogs; }
-        public bool HasChildren(object parent) { return this.ListCatalogs.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListCatalogs; }
+        public override bool HasChildren(object parent) { return this.ListCatalogs.Count > 0; }
 
         partial void OnInit()
         {
@@ -29,15 +29,23 @@ namespace vSharpStudio.vm.ViewModels
                 this.NameUi = "Sub Catalogs";
         }
         #region Tree operations
-        public void AddCatalog(Catalog node)
+        public Catalog AddCatalog()
         {
+            var node = new Catalog(this);
             this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Catalog AddCatalog(string name)
+        {
+            var node = new Catalog(this) { Name = name };
+            this.NodeAddNewSubNode(node);
+            return node;
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Catalog node = null;
             if (node_impl == null)
-                node = new Catalog();
+                node = new Catalog(this);
             else
                 node = (Catalog)node_impl;
             this.Add(node);

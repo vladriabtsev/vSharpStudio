@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Plugin:{Name,nq}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
-        public Plugin(IvPlugin plugin) : this()
+        public Plugin(ITreeConfigNode parent, IvPlugin plugin) : this(parent)
         {
             this.Guid = plugin.Guid.ToString();
             this.Name = plugin.Name;

@@ -23,17 +23,17 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.Children; }
-        public bool HasChildren(object parent) { return this.Children.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
+        public override bool HasChildren(object parent) { return this.Children.Count > 0; }
         //public static readonly string DefaultName = "Config";
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
         partial void OnInit()
         {
             this.Name = "ConfigModel";
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.Children.Add(this.GroupCommon, 6);
             this.GroupConstants.Parent = this;
             this.Children.Add(this.GroupConstants, 7);

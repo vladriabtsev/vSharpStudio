@@ -138,97 +138,53 @@ namespace vSharpStudio.Unit
                 Enumeration en = null;
                 Constant c = null;
 
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.BYTE_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "tinyint_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.SHORT_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "smallint_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.INTEGER_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "int_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.STRING_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "nvarchar_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "int_enum_def", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("tinyint_enum", EnumEnumerationType.BYTE_VALUE);
+                c = vm.Config.Model.GroupConstants.AddConstant("tinyint_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("smallint_enum", EnumEnumerationType.SHORT_VALUE);
+                c = vm.Config.Model.GroupConstants.AddConstant("smallint_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("int_enum", EnumEnumerationType.INTEGER_VALUE);
+                c = vm.Config.Model.GroupConstants.AddConstant("int_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("nvarchar_enum", EnumEnumerationType.STRING_VALUE);
+                c = vm.Config.Model.GroupConstants.AddConstant("nvarchar_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("int_enum_def");
+                c = vm.Config.Model.GroupConstants.AddConstant("int_enum_def", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = false });
 
-                c = new Constant() { Name = "datetime", DataType = new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "datetime2", DataType = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "datetime3", DataType = new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "bit", DataType = new DataType() { DataTypeEnum = EnumDataType.BOOL, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "tinyint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "smallint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "int", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "bigint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "decimal", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 28, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "decimal2", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 15, Accuracy = 2, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "nvarchar", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "nvarchar5", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = 5, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                vm.Config.Model.GroupConstants.AddConstant("datetime", new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("datetime2", new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("datetime3", new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("bit", new DataType() { DataTypeEnum = EnumDataType.BOOL, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("tinyint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("smallint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("int", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("bigint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("decimal", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 28, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("decimal2", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 15, Accuracy = 2, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("nvarchar", new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("nvarchar5", new DataType() { DataTypeEnum = EnumDataType.STRING, Length = 5, IsNullable = false });
 
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.BYTE_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "tinyintn_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.SHORT_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "smallintn_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.INTEGER_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "intn_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { DataTypeEnum = EnumEnumerationType.STRING_VALUE };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "nvarcharn_enum", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                en = new Enumeration() { };
-                vm.Config.Model.GroupEnumerations.AddEnumeration(en);
-                c = new Constant() { Name = "intn_enum_def", DataType = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("tinyintn_enum", EnumEnumerationType.BYTE_VALUE);
+                vm.Config.Model.GroupConstants.AddConstant("tinyintn_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("smallintn_enum", EnumEnumerationType.SHORT_VALUE);
+                vm.Config.Model.GroupConstants.AddConstant("smallintn_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("intn_enum", EnumEnumerationType.INTEGER_VALUE);
+                vm.Config.Model.GroupConstants.AddConstant("intn_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("nvarcharn_enum", EnumEnumerationType.STRING_VALUE);
+                vm.Config.Model.GroupConstants.AddConstant("nvarcharn_enum", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true });
+                en = vm.Config.Model.GroupEnumerations.AddEnumeration("intn_enum_def");
+                vm.Config.Model.GroupConstants.AddConstant("intn_enum_def", new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid, IsNullable = true });
 
-                c = new Constant() { Name = "datetimen", DataType = new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "datetimen2", DataType = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "datetimen3", DataType = new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "bitn", DataType = new DataType() { DataTypeEnum = EnumDataType.BOOL, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "tinyintn", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "smallintn", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "intn", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "bigintn", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "decimaln", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 28, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "decimaln2", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 15, Accuracy = 2, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "nvarcharn", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "nvarcharn5", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = 5, IsNullable = true } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                vm.Config.Model.GroupConstants.AddConstant("datetimen", new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("datetimen2", new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("datetimen3", new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("bitn", new DataType() { DataTypeEnum = EnumDataType.BOOL, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("tinyintn", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("smallintn", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("intn", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("bigintn", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("decimaln", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 28, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("decimaln2", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 15, Accuracy = 2, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("nvarcharn", new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = true });
+                vm.Config.Model.GroupConstants.AddConstant("nvarcharn5", new DataType() { DataTypeEnum = EnumDataType.STRING, Length = 5, IsNullable = true });
                 vm.CommandConfigSave.Execute(null);
             }, (conn) =>
             {
@@ -354,31 +310,19 @@ namespace vSharpStudio.Unit
                 vm.Config.Name = "tst";
                 Catalog ctlg = null;
                 Property p = null;
-                ctlg = new Catalog() { Name = "parent" };
-                p = new Property() { Name = "datetime2", DataType = new DataType() { DataTypeEnum = EnumDataType.DATETIME } };
-                ctlg.GroupProperties.AddProperty(p);
+                ctlg = vm.Config.Model.GroupCatalogs.AddCatalog("parent");
+                p = ctlg.GroupProperties.AddProperty("datetime2", new DataType() { DataTypeEnum = EnumDataType.DATETIME });
+                var tab = ctlg.GroupPropertiesTabs.AddPropertiesTab("Sub");
+                p = tab.GroupProperties.AddProperty("int", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL });
 
-                var tab = new PropertiesTab() { Name = "Sub" };
-                p = new Property() { Name = "int", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL } };
-                tab.GroupProperties.AddProperty(p);
-                ctlg.GroupPropertiesTabs.AddPropertiesTab(tab);
-
-                var tab2 = new PropertiesTab() { Name = "Sub2" };
-                p = new Property() { Name = "nvarchar", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING } };
-                tab2.GroupProperties.AddProperty(p);
-                tab.GroupPropertiesTabs.AddPropertiesTab(tab2);
-
-                vm.Config.Model.GroupCatalogs.AddCatalog(ctlg);
+                var tab2 = ctlg.GroupPropertiesTabs.AddPropertiesTab("Sub2");
+                p = tab2.GroupProperties.AddProperty("nvarchar", new DataType() { DataTypeEnum = EnumDataType.STRING });
 
                 string parentguid = ctlg.Guid;
-                ctlg = new Catalog() { Name = "child" };
-                p = new Property() { Name = "parent", DataType = new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = parentguid } };
-                ctlg.GroupProperties.AddProperty(p);
-                vm.Config.Model.GroupCatalogs.AddCatalog(ctlg);
+                ctlg = vm.Config.Model.GroupCatalogs.AddCatalog("child");
+                p = ctlg.GroupProperties.AddProperty("parent", new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = parentguid });
 
-                Constant c = null;
-                c = new Constant() { Name = "child", DataType = new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = ctlg.Guid } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                Constant c = vm.Config.Model.GroupConstants.AddConstant("child", new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = ctlg.Guid });
 
                 vm.CommandConfigSave.Execute(null);
             }, (conn) =>
@@ -513,28 +457,19 @@ WHERE  ct.name=@table";
                 vm.Config.Name = "tst";
                 Document doc = null;
                 Property p = null;
-                doc = new Document() { Name = "doc" };
-                p = new Property() { Name = "datetime2", DataType = new DataType() { DataTypeEnum = EnumDataType.DATETIME } };
-                doc.GroupProperties.AddProperty(p);
 
-                var tab = new PropertiesTab() { Name = "Sub" };
-                p = new Property() { Name = "int", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL } };
-                tab.GroupProperties.AddProperty(p);
-                doc.GroupPropertiesTabs.AddPropertiesTab(tab);
+                doc = vm.Config.Model.GroupDocuments.GroupListDocuments.AddDocument("doc");
+                p = doc.GroupProperties.AddProperty("datetime2", new DataType() { DataTypeEnum = EnumDataType.DATETIME });
 
-                var tab2 = new PropertiesTab() { Name = "Sub2" };
-                p = new Property() { Name = "nvarchar", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING } };
-                tab2.GroupProperties.AddProperty(p);
-                tab.GroupPropertiesTabs.AddPropertiesTab(tab2);
+                var tab = doc.GroupPropertiesTabs.AddPropertiesTab("Sub");
+                p = tab.GroupProperties.AddProperty("int", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL });
 
-                vm.Config.Model.GroupDocuments.GroupListDocuments.AddDocument(doc);
+                var tab2 = tab.GroupPropertiesTabs.AddPropertiesTab("Sub2");
+                p = tab2.GroupProperties.AddProperty("nvarchar", new DataType() { DataTypeEnum = EnumDataType.STRING });
 
-                p = new Property() { Name = "int_shared", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL } };
-                vm.Config.Model.GroupDocuments.GroupSharedProperties.AddProperty(p);
+                p = vm.Config.Model.GroupDocuments.GroupSharedProperties.AddProperty("int_shared", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL });
 
-                Constant c = null;
-                c = new Constant() { Name = "int_doc", DataType = new DataType() { DataTypeEnum = EnumDataType.DOCUMENT, ObjectGuid = doc.Guid } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                Constant c=vm.Config.Model.GroupConstants.AddConstant("int_doc", new DataType() { DataTypeEnum = EnumDataType.DOCUMENT, ObjectGuid = doc.Guid });
 
                 vm.CommandConfigSave.Execute(null);
             }, (conn) =>
@@ -667,17 +602,11 @@ WHERE  ct.name=@table";
             {
                 mvm = vm;
 
-                Constant c = null;
-                c = new Constant() { Name = "tinyint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "smallint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "int", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "bigint", DataType = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = false } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
-                c = new Constant() { Name = "nvarchar", DataType = new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = false, Length = 0 } };
-                vm.Config.Model.GroupConstants.AddConstant(c);
+                vm.Config.Model.GroupConstants.AddConstant("tinyint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 2, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("smallint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 4, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("int", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 9, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("bigint", new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, IsPositive = true, Length = 18, IsNullable = false });
+                vm.Config.Model.GroupConstants.AddConstant("nvarchar", new DataType() { DataTypeEnum = EnumDataType.STRING, IsNullable = false, Length = 0 });
 
             }, (conn) =>
             {

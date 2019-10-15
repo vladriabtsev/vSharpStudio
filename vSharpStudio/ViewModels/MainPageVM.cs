@@ -129,7 +129,7 @@ namespace vSharpStudio.ViewModels
             Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
             var protoarr = File.ReadAllBytes(file_path);
             pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
-            var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig);
+            var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
             string ind2 = indent + "   ";
             foreach (var t in cfg.GroupConfigs.ListBaseConfigs.ToList())
             {
@@ -147,8 +147,8 @@ namespace vSharpStudio.ViewModels
         public DiffModel GetDiffModel()
         {
             DiffModel res = new DiffModel(
-                pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig),
-                pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig),
+                pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig, new Config()),
+                pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config()),
                 this.Config
             );
             return res;
@@ -194,9 +194,8 @@ namespace vSharpStudio.ViewModels
                 }
                 if (!is_found)
                 {
-                    p = new Plugin(t.Value);
+                    p = new Plugin(this.Config.GroupPlugins, t.Value);
                     this.Config.GroupPlugins.ListPlugins.Add(p);
-                    p.Parent = this.Config.GroupPlugins;
                 }
 
                 // attaching plugin generators
@@ -218,9 +217,8 @@ namespace vSharpStudio.ViewModels
                     }
                     if (!is_found)
                     {
-                        pg = new PluginGenerator(tt);
+                        pg = new PluginGenerator(p, tt);
                         p.ListGenerators.Add(pg);
-                        pg.Parent = p;
                     }
                     lstGens.Add(new PluginRow()
                     {
@@ -475,14 +473,14 @@ namespace vSharpStudio.ViewModels
         {
             return;
 
-            KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
-            var model = new Config(json);
-            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
-            if (!result.AreEqual)
-            {
-                Console.WriteLine(result.DifferencesString);
-                throw new Exception();
-            }
+            //KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
+            //var model = new Config(json);
+            //KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
+            //if (!result.AreEqual)
+            //{
+            //    Console.WriteLine(result.DifferencesString);
+            //    throw new Exception();
+            //}
         }
 
         public string FilePathSaveAs

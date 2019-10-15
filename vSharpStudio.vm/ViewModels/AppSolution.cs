@@ -14,20 +14,20 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
     {
         public static readonly string DefaultName = "Solution";
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.DefaultDb.Parent = this;
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
         }
-        public AppSolution(string name) : this()
+        public AppSolution(ITreeConfigNode parent, string name) : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
         }
-        public AppSolution(string name, List<AppProject> listProjects) : this()
+        public AppSolution(ITreeConfigNode parent, string name, List<AppProject> listProjects) : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProjects)
@@ -86,7 +86,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = AppSolution.Clone(this, true, true);
+            var node = AppSolution.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListAppSolutions).Add(node);
             this.Name = this.Name + "2";
@@ -95,7 +95,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new AppSolution();
+            var node = new AppSolution(this.Parent);
             (this.Parent as GroupListAppSolutions).Add(node);
             GetUniqueName(AppSolution.DefaultName, node, (this.Parent as GroupListAppSolutions).ListAppSolutions);
             SetSelected(node);
@@ -105,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             AppProject node = null;
             if (node_impl == null)
-                node = new AppProject();
+                node = new AppProject(this);
             else
                 node = (AppProject)node_impl;
             node.Parent = this;

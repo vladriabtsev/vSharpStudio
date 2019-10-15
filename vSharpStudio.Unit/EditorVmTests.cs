@@ -23,7 +23,7 @@ namespace vSharpStudio.Unit
         [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
         public class TestSortable : ConfigObjectBase<TestSortable, TestValidator>
         {
-            public TestSortable() : base(TestValidator.Validator) { }
+            public TestSortable() : base(null, TestValidator.Validator) { }
         }
         [TestMethod]
         public void SortedCollection001CanSort()
@@ -114,7 +114,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant001GuidInit()
         {
-            var cfg = new Constant();
+            var cfg = new Constant((ITreeConfigNode)null);
             Assert.IsTrue(cfg.Guid.Length > 0);
         }
         [TestMethod]
@@ -141,7 +141,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum001GuidInit()
         {
-            var cfg = new Enumeration();
+            var cfg = new Enumeration((ITreeConfigNode)null);
             Assert.IsTrue(cfg.Guid.Length > 0);
         }
         [TestMethod]
@@ -159,7 +159,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Property001GuidInit()
         {
-            var cfg = new Property();
+            var cfg = new Property((ITreeConfigNode)null);
             Assert.IsTrue(cfg.Guid.Length > 0);
         }
         #endregion Property
@@ -168,8 +168,9 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Catalog001GuidInit()
         {
-            var cfg = new Catalog();
-            Assert.IsTrue(cfg.Guid.Length > 0);
+            var cfg = new Config();
+            var c = cfg.Model.GroupCatalogs.AddCatalog();
+            Assert.IsTrue(c.Guid.Length > 0);
         }
         #endregion Catalog
 
@@ -193,7 +194,7 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
             ViewModelBindable.isNotValidateForUnitTests = true;
 
-            var cnst = new Constant() { Parent = cfg.Model.GroupConstants };
+            var cnst = new Constant(cfg.Model.GroupConstants);
             cfg.Model.GroupConstants.Add(cnst);
             var curr = cnst.SortingValue;
             cnst.Name = "abc1";
@@ -260,7 +261,7 @@ namespace vSharpStudio.Unit
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
             var cfg = new Config();
-            var cnst = new Constant() { Parent = cfg.Model.GroupConstants };
+            var cnst = new Constant(cfg.Model.GroupConstants);
             cfg.Model.GroupConstants.Add(cnst);
             cnst.Name = "abc1";
             var curr = cnst.SortingValue;
@@ -275,11 +276,11 @@ namespace vSharpStudio.Unit
         public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
             var cfg = new Config();
-            var cnst = new Constant() { Parent = cfg.Model.GroupConstants };
+            var cnst = new Constant(cfg.Model.GroupConstants);
             cfg.Model.GroupConstants.Add(cnst);
             cnst.Name = "abc1";
 
-            var cnst2 = new Constant() { Parent = cfg.Model.GroupConstants };
+            var cnst2 = new Constant(cfg.Model.GroupConstants);
             cfg.Model.GroupConstants.Add(cnst2);
             cnst2.Name = "abc1";
 
@@ -464,7 +465,7 @@ namespace vSharpStudio.Unit
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             cfg.Model.GroupEnumerations[0].DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
-            cfg.Model.GroupEnumerations[0].ListEnumerationPairs.Add(new EnumerationPair() { Name = "one", Value = "1" });
+            cfg.Model.GroupEnumerations[0].ListEnumerationPairs.Add(new EnumerationPair(cfg.Model.GroupEnumerations[0]) { Name = "one", Value = "1" });
 
             cfg.Model.GroupConstants.NodeAddNewSubNode();
             cfg.Model.GroupConstants[0].DataType.DataTypeEnum = EnumDataType.BOOL;

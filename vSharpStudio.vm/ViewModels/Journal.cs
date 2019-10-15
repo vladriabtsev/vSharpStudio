@@ -64,8 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Journal.Clone(this, true, true);
-            node.Parent = this.Parent;
+            var node = Journal.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListJournals).Add(node);
             this.Name = this.Name + "2";
             SetSelected(node);
@@ -73,7 +72,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Journal();
+            var node = new Journal(this.Parent);
             (this.Parent as GroupListJournals).Add(node);
             GetUniqueName(Journal.DefaultName, node, (this.Parent as GroupListJournals).ListJournals);
             SetSelected(node);

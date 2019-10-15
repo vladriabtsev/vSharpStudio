@@ -389,7 +389,7 @@
         </StackPanel>
     </HierarchicalDataTemplate>
 
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListModels}" ItemsSource="{Binding ListSubModels}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListModels}" ItemsSource="{Binding ListModels}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

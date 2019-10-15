@@ -14,8 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
     public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListProperties; }
-        public bool HasChildren(object parent) { return this.ListProperties.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListProperties; }
+        public override bool HasChildren(object parent) { return this.ListProperties.Count > 0; }
         partial void OnInit()
         {
             if (this.Parent is GroupDocuments)
@@ -41,15 +41,30 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public void AddProperty(Property node)
+        public Property AddProperty(string name)
         {
+            var node = new Property(this) { Name = name };
             this.NodeAddNewSubNode(node);
+            return node;
         }
+        public Property AddProperty(string name, DataType type)
+        {
+            var node = new Property(this) { Name = name, DataType = type };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
+        {
+            var node = new Property(this) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Property node = null;
             if (node_impl == null)
-                node = new Property();
+                node = new Property(this);
             else
                 node = (Property)node_impl;
             this.Add(node);

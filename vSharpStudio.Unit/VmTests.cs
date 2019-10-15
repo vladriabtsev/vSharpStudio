@@ -57,10 +57,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
-            Catalog vm = new Catalog();
             var cfg = new Config();
-            cfg.Model.GroupCatalogs.Add(vm);
-            vm.Name = "test1";
+            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test1");
             vm.BeginEdit();
             vm.Name = "test2";
             vm.CancelEdit();
@@ -69,21 +67,15 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable014CanCancelSecondLevelCollection()
         {
-            Catalog vm = new Catalog();
-            var prop = new Property
-            {
-                Name = "test1"
-            };
             var cfg = new Config();
-            cfg.Model.GroupCatalogs.Add(vm);
-            vm.GroupProperties.Add(prop);
+            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test");
+            var prop = vm.GroupProperties.AddProperty("test1");
             vm.BeginEdit();
             vm.GroupProperties[0].Name = "test2";
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties[0].Name == "test1");
             vm.BeginEdit();
-            prop = new Property() { Name = "test3" };
-            vm.GroupProperties.Add(prop);
+            prop = vm.GroupProperties.AddProperty("test3");
             Assert.IsTrue(vm.GroupProperties.Count() == 2);
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties.Count() == 1);
@@ -92,14 +84,13 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable021CanCancelCatalogPropertiy()
         {
-            Catalog vm = new Catalog();
             var cfg = new Config();
-            cfg.Model.GroupCatalogs.Add(vm);
+            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog();
             vm.BeginEdit();
-            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
+            vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
             vm.CancelEdit();
             Assert.IsTrue(vm.GroupProperties.Count() == 0);
-            vm.GroupProperties.Add(new Property("pdouble0", EnumDataType.NUMERICAL, 10, 0));
+            vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
             vm.BeginEdit();
             vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.STRING;
             vm.CancelEdit();
@@ -130,10 +121,7 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
             cfg.SolutionPath = @"..\..\..\";
 
-            var c = new Catalog() { Name = "test" };
-
-            Assert.IsTrue(c.Parent == null);
-            cfg.Model.GroupCatalogs.Add(c);
+            var c = cfg.Model.GroupCatalogs.AddCatalog("test");
             Assert.IsTrue(c.Parent == cfg.Model.GroupCatalogs);
 
             string mes1 = "test error message";

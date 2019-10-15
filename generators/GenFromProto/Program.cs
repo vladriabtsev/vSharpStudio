@@ -105,6 +105,20 @@ namespace GenFromProto
             }
             return s;
         }
+        public static bool IsDefaultBase(this Google.Protobuf.Reflection.MessageDescriptor from)
+        {
+            var doc=JsonDoc.Files[from.File.Name].Messages[from.Name];
+            if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
+                return true;
+            return false;
+        }
+        public static bool IsDefaultBase(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            var doc = JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
+            if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
+                return true;
+            return false;
+        }
         public static bool IsBytes(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
             switch (from.FieldType)

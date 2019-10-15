@@ -25,18 +25,24 @@ namespace vSharpStudio.vm.ViewModels
     {
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
-        public IEnumerable<object> GetChildren(object parent) { return this.Children; }
-        public bool HasChildren(object parent) { return this.Children.Count > 0; }
+        public Dictionary<string, ITreeConfigNode> DicNodes = null;
+        public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
+        //public bool HasChildren(object parent) { return this.Children.Count > 0; }
+        public override bool HasChildren(object parent) { return this.Children.Count > 0; }
         //public static readonly string DefaultName = "Config";
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
+        partial void OnInitBegin()
+        {
+            this.DicNodes = new Dictionary<string, ITreeConfigNode>(1000);
+        }
         partial void OnInit()
         {
             this.Name = "Config";
             this.PrimaryKeyType = EnumPrimaryKeyType.INT;
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -48,8 +54,8 @@ namespace vSharpStudio.vm.ViewModels
 
             //this.Children.Add(this, 5);
 
-            this.GroupSubModels.Parent = this;
-            this.Children.Add(this.GroupSubModels, 8);
+            this.GroupModels.Parent = this;
+            this.Children.Add(this.GroupModels, 8);
 
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
                 this.DbSettings.DbSchema = "v";
@@ -65,9 +71,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             RecreateSubNodes();
         }
-        public Config(string configJson)
-            : this()
+        public Config() : this((ITreeConfigNode)null)
         {
+        }
+        public Config(string configJson) : this((ITreeConfigNode)null)
+        {
+            OnInitBegin();
             var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
         }

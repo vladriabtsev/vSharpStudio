@@ -11,17 +11,17 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Catalog:{Name,nq} props:{listProperties.Count,nq}")]
+    [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode
     {
         public static readonly string DefaultName = "Catalog";
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [PropertyOrderAttribute(11)]
         [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
         public bool Models { get; set; }
         partial void OnInit()
         {
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -32,11 +32,11 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.Parent = this;
             Children.Add(this.GroupReports, 5);
         }
-        public Catalog(string name) : this()
+        public Catalog(ITreeConfigNode parent, string name) : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
         }
-        public Catalog(string name, List<Property> listProperties) : this()
+        public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties) : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProperties)
@@ -95,7 +95,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Catalog.Clone(this, true, true);
+            var node = Catalog.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListCatalogs).Add(node);
             this.Name = this.Name + "2";
@@ -104,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Catalog();
+            var node = new Catalog(this.Parent);
             (this.Parent as GroupListCatalogs).Add(node);
             GetUniqueName(Catalog.DefaultName, node, (this.Parent as GroupListCatalogs).ListCatalogs);
             SetSelected(node);

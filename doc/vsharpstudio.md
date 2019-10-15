@@ -235,7 +235,7 @@ Configuration config
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
 | model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
-| group_sub_models | [proto_group_list_models](#proto_config.proto_group_list_models) |  | @attr [BrowsableAttribute(false)] |
+| group_models | [proto_group_list_models](#proto_config.proto_group_list_models) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
 
@@ -843,7 +843,7 @@ main view forms hierarchy parent
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| inclusion | [bool_nullable](#proto_config.bool_nullable) |  |  |
+| inclusion | [bool](#bool) |  | bool_nullable inclusion = 2; |
 
 
 

@@ -13,11 +13,11 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Tab";
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
             this.IsIndexFk = true;
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
@@ -74,8 +74,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = PropertiesTab.Clone(this, true, true);
-            node.Parent = this.Parent;
+            var node = PropertiesTab.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListPropertiesTabs).Add(node);
             this.Name = this.Name + "2";
             SetSelected(node);
@@ -83,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new PropertiesTab();
+            var node = new PropertiesTab(this.Parent);
             (this.Parent as GroupListPropertiesTabs).Add(node);
             GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
             SetSelected(node);

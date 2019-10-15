@@ -12,8 +12,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigs.Count,nq}")]
     public partial class GroupListBaseConfigs : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListBaseConfigs; }
-        public bool HasChildren(object parent) { return this.ListBaseConfigs.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListBaseConfigs; }
+        public override bool HasChildren(object parent) { return this.ListBaseConfigs.Count > 0; }
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             BaseConfig node=null;
             if (node_impl == null)
-                node = new BaseConfig();
+                node = new BaseConfig(this);
             else
                 node = (BaseConfig)node_impl;
             this.Add(node);

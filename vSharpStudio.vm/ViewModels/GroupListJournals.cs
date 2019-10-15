@@ -12,8 +12,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListJournals.Count,nq}")]
     public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListJournals; }
-        public bool HasChildren(object parent) { return this.ListJournals.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListJournals; }
+        public override bool HasChildren(object parent) { return this.ListJournals.Count > 0; }
         partial void OnInit()
         {
             this.Name = "Journals";
@@ -29,7 +29,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Journal node = null;
             if (node_impl == null)
-                node = new Journal();
+                node = new Journal(this);
             else
                 node = (Journal)node_impl;
             this.Add(node);

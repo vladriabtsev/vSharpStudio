@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGeneratorSettings:{Name,nq}")]
     public partial class PluginGeneratorSettings : ICanGoLeft, ICanAddNode, ICanRemoveNode
     {
-        public PluginGeneratorSettings(IvPluginGeneratorSettingsVM settingsVM) : this()
+        public PluginGeneratorSettings(ITreeConfigNode parent, IvPluginGeneratorSettingsVM settingsVM) : this(parent)
         {
             this.VM = settingsVM;
         }
@@ -87,8 +87,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = PluginGeneratorSettings.Clone(this, true, true);
-            node.Parent = this.Parent;
+            var node = PluginGeneratorSettings.Clone(this.Parent, this, true, true);
             (this.Parent as PluginGenerator).ListSettings.Add(node);
             this.Name = this.Name + "2";
             SetSelected(node);

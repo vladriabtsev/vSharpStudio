@@ -14,8 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         //[BrowsableAttribute(false)]
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
-        public IEnumerable<object> GetChildren(object parent) { return this.ListModels; }
-        public bool HasChildren(object parent) { return this.ListModels.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListModels; }
+        public override bool HasChildren(object parent) { return this.ListModels.Count > 0; }
         partial void OnInit()
         {
             this.Name = "Models";
@@ -32,15 +32,17 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public void AddBaseConfig(BaseConfig node)
+        public Model AddModel(string name)
         {
+            var node = new Model(this) { Name = name };
             this.NodeAddNewSubNode(node);
+            return node;
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Model node =null;
             if (node_impl == null)
-                node = new Model();
+                node = new Model(this);
             else
                 node = (Model)node_impl;
             this.Add(node);

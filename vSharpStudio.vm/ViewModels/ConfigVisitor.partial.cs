@@ -14,7 +14,6 @@ namespace vSharpStudio.vm.ViewModels
         {
 
         }
-        private int _level = -1;
         private ILogger _logger = null;
         public ConfigVisitor(CancellationToken cancellationToken, ILogger logger = null)
         {

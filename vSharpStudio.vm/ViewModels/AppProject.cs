@@ -15,16 +15,16 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
     {
         public static readonly string DefaultName = "Project";
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.DefaultDb.Parent = this;
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
         }
-        public AppProject(string name, string relativeToSolutionProjectPath) : this()
+        public AppProject(ITreeConfigNode parent, string name, string relativeToSolutionProjectPath) : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
             this.RelativeAppProjectPath = relativeToSolutionProjectPath;
@@ -80,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = AppProject.Clone(this, true, true);
+            var node = AppProject.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as AppSolution).ListAppProjects.Add(node);
             this.Name = this.Name + "2";
@@ -89,8 +89,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new AppProject();
-            node.Parent = this.Parent;
+            var node = new AppProject(this.Parent);
             (this.Parent as AppSolution).ListAppProjects.Add(node);
             GetUniqueName(AppProject.DefaultName, node, (this.Parent as AppSolution).ListAppProjects);
             SetSelected(node);

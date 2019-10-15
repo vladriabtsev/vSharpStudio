@@ -5,6 +5,7 @@ using ViewModelBase;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FluentValidation;
+using vSharpStudio.common;
 
 namespace vSharpStudio.xUnit
 {

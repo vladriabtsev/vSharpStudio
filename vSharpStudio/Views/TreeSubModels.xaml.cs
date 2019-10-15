@@ -85,14 +85,14 @@ namespace vSharpStudio.Views
                 grd.ShowGridLines = true;
             if (isLst)
             {
-                foreach (var t in cfg.GroupSubModels.ListModels)
+                foreach (var t in cfg.GroupModels.ListModels)
                 {
                     grd.ColumnDefinitions.Add(new ColumnDefinition() { Width = chkbWidth });
                 }
                 //this.grd.RowDefinitions.Add(new RowDefinition() { Height = headerHeight });
                 grd.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
                 int ic = 0;
-                foreach (var t in cfg.GroupSubModels.ListModels)
+                foreach (var t in cfg.GroupModels.ListModels)
                 {
                     TextBlock tb = new TextBlock();
                     tb.Text = t.Name;
@@ -186,7 +186,7 @@ namespace vSharpStudio.Views
             if (isShowLines)
                 grd.ShowGridLines = true;
             int ir = 0, ic = 0;
-            foreach (var tt in cfg.GroupSubModels.ListModels)
+            foreach (var tt in cfg.GroupModels.ListModels)
             {
                 grd.ColumnDefinitions.Add(new ColumnDefinition() { Width = chkbWidth });
             }
@@ -194,7 +194,7 @@ namespace vSharpStudio.Views
             {
                 grd.RowDefinitions.Add(new RowDefinition() { Height = rowHeight });
                 ic = 0;
-                foreach (var tt in cfg.GroupSubModels.ListModels)
+                foreach (var tt in cfg.GroupModels.ListModels)
                 {
                     CheckBox cb = new CheckBox();
                     cb.IsThreeState = true;

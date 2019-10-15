@@ -17,12 +17,12 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
-        public Constant(string name, EnumDataType type, string guidOfType) : this()
+        public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType) : this(parent)
         {
             this.Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
-        public Constant(string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
+        public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this(parent)
         {
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Constant.Clone(this, true, true);
+            var node = Constant.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListConstants).Add(node);
             this.Name = this.Name + "2";
@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Constant();
+            var node = new Constant(this.Parent);
             (this.Parent as GroupListConstants).Add(node);
             GetUniqueName(Constant.DefaultName, node, (this.Parent as GroupListConstants).ListConstants);
             SetSelected(node);

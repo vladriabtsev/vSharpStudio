@@ -12,15 +12,15 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq}")]
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.Children; }
-        public bool HasChildren(object parent) { return this.Children.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
+        public override bool HasChildren(object parent) { return this.Children.Count > 0; }
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
             this.Name = Defaults.DocumentsGroupName;
             this.IsEditable = false;
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupSharedProperties.Parent = this;
             Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;

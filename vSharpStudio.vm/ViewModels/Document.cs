@@ -12,11 +12,11 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Document";
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         partial void OnInit()
         {
-            this.Children = new SortedObservableCollection<ITreeConfigNode>();
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -83,7 +83,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Document.Clone(this, true, true);
+            var node = Document.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListDocuments).Add(node);
             this.Name = this.Name + "2";
@@ -92,7 +92,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Document();
+            var node = new Document(this.Parent);
             (this.Parent as GroupListDocuments).Add(node);
             GetUniqueName(Document.DefaultName, node, (this.Parent as GroupListDocuments).ListDocuments);
             SetSelected(node);

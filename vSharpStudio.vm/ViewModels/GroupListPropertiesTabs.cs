@@ -14,8 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
     public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListPropertiesTabs; }
-        public bool HasChildren(object parent) { return this.ListPropertiesTabs.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListPropertiesTabs; }
+        public override bool HasChildren(object parent) { return this.ListPropertiesTabs.Count > 0; }
         partial void OnInit()
         {
             this.Name = "Tabs";
@@ -23,15 +23,17 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public void AddPropertiesTab(PropertiesTab node)
+        public PropertiesTab AddPropertiesTab(string name)
         {
+            var node = new PropertiesTab(this) { Name = name };
             this.NodeAddNewSubNode(node);
+            return node;
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PropertiesTab node = null;
             if (node_impl == null)
-                node = new PropertiesTab();
+                node = new PropertiesTab(this);
             else
                 node = (PropertiesTab)node_impl;
             this.Add(node);

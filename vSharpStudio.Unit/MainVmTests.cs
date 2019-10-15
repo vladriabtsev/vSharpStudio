@@ -110,18 +110,16 @@ namespace vSharpStudio.Unit
             // base config
             var vmb = new MainPageVM(false);
             vmb.Config.Name = "ext";
-            var c2 = new Constant() { Name = "c2" };
-            vmb.Config.Model.GroupConstants.AddConstant(c2);
+            var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             var path = @".\extcfg\";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfig() { RelativeConfigFilePath = path };
+            var bcfg = new BaseConfig(vm.Config.GroupConfigs) { RelativeConfigFilePath = path };
             vm.Config.GroupConfigs.AddBaseConfig(bcfg);
-            var c1 = new Constant() { Name = "c1" };
-            vm.Config.Model.GroupConstants.AddConstant(c1);
+            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
@@ -144,18 +142,16 @@ namespace vSharpStudio.Unit
             // base config
             var vmb = new MainPageVM(false);
             vmb.Config.Name = "ext";
-            var c2 = new Constant() { Name = "c2" };
-            vmb.Config.Model.GroupConstants.AddConstant(c2);
+            var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             var path = @".\extcfg\";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfig() { RelativeConfigFilePath = path };
+            var bcfg = new BaseConfig(vm.Config.GroupConfigs) { RelativeConfigFilePath = path };
             vm.Config.GroupConfigs.AddBaseConfig(bcfg);
-            var c1 = new Constant() { Name = "c1" };
-            vm.Config.Model.GroupConstants.AddConstant(c1);
+            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
@@ -172,13 +168,11 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(true);
 
             // create object and save
-            var c1 = new Constant() { Name = "c1" };
-            vm.Config.Model.GroupConstants.AddConstant(c1);
-            var c2 = new Constant() { Name = "c2" };
-            vm.Config.Model.GroupConstants.AddConstant(c2);
-            var c3 = new Constant() { Name = "c3" };
+            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
+            new Constant(vm.Config.Model.GroupConstants) { Name = "c3" };
+            var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
             c3.DataType.Length = 101;
-            vm.Config.Model.GroupConstants.AddConstant(c3);
             vm.CommandConfigSave.Execute(null);
 
             var diff = vm.GetDiffModel();
@@ -191,8 +185,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             c1.Name = "c1r";
             c3.DataType.Length = 100;
-            var c4 = new Constant() { Name = "c4" };
-            vm.Config.Model.GroupConstants.AddConstant(c4);
+            var c4 = vm.Config.Model.GroupConstants.AddConstant("c4");
             vm.Config.Model.GroupConstants.Remove(c2);
             diff = vm.GetDiffModel();
             Assert.IsTrue(diff.DiffMainConfig.ConfigModel.Constants.ListAll.Count == 4);
@@ -231,15 +224,12 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(true);
 
             // create object and save
-            var c1 = new Enumeration() { Name = "c1", DataTypeEnum = EnumEnumerationType.BYTE_VALUE };
-            vm.Config.Model.GroupEnumerations.AddEnumeration(c1);
-            c1.AddEnumerationPair(new EnumerationPair() { Name = "e1", Value = "123" });
-            c1.AddEnumerationPair(new EnumerationPair() { Name = "e2", Value = "124" });
-            c1.AddEnumerationPair(new EnumerationPair() { Name = "e3", Value = "125" });
-            var c2 = new Enumeration() { Name = "c2" };
-            vm.Config.Model.GroupEnumerations.AddEnumeration(c2);
-            var c3 = new Enumeration() { Name = "c3", DataTypeEnum = EnumEnumerationType.INTEGER_VALUE };
-            vm.Config.Model.GroupEnumerations.AddEnumeration(c3);
+            var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            c1.AddEnumerationPair("e1", "123");
+            c1.AddEnumerationPair("e2", "124");
+            c1.AddEnumerationPair("e3", "125");
+            var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
+            var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
             vm.CommandConfigSave.Execute(null);
 
             var diff = vm.GetDiffModel();
@@ -255,8 +245,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             c1.Name = "c1r";
             c3.DataTypeEnum = EnumEnumerationType.BYTE_VALUE;
-            var c4 = new Enumeration() { Name = "c4" };
-            vm.Config.Model.GroupEnumerations.AddEnumeration(c4);
+            var c4 = vm.Config.Model.GroupEnumerations.AddEnumeration("c4", EnumEnumerationType.INTEGER_VALUE);
             vm.Config.Model.GroupEnumerations.Remove(c2);
             diff = vm.GetDiffModel();
             Assert.IsTrue(diff.DiffMainConfig.ConfigModel.Enumerations.ListAll.Count == 4);

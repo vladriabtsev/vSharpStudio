@@ -809,7 +809,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_sub_models",
+              "name": "group_models",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_group_list_models",
@@ -2980,11 +2980,11 @@
             },
             {
               "name": "inclusion",
-              "description": "",
+              "description": "bool_nullable inclusion = 2;",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_config.bool_nullable",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

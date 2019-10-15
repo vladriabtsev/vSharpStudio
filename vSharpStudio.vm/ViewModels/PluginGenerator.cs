@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
     public partial class PluginGenerator : ICanGoLeft, ICanGoRight, ICanAddSubNode
     {
-        public PluginGenerator(IvPluginGenerator plugin) : this()
+        public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin) : this(parent)
         {
             this.Guid = plugin.Guid.ToString();
             this.Name = plugin.Name;
@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    case vPluginLayerTypeEnum.DbDesign:
             var settings = this.Generator.GetSettingsMvvm(null);
-            pgs = new PluginGeneratorSettings(settings);
+            pgs = new PluginGeneratorSettings(this, settings);
             pgs.SetGuid(this.Generator.Guid.ToString());
             GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
             pgs.Parent = this;

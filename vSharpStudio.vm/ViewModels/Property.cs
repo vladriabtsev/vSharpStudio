@@ -19,12 +19,12 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
-        public Property(string name, EnumDataType type, string guidOfType) : this()
+        public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType) : this(parent)
         {
             this.Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
-        public Property(string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
+        public Property(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this(parent)
         {
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
@@ -85,8 +85,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Property.Clone(this, true, true);
-            node.Parent = this.Parent;
+            var node = Property.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListProperties).Add(node);
             this.Name = this.Name + "2";
             SetSelected(node);
@@ -96,7 +95,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!(this.Parent is GroupListProperties))
                 throw new Exception();
-            var node = new Property();
+            var node = new Property(this.Parent);
             var glp = (this.Parent as GroupListProperties);
             glp.Add(node);
             //TODO can be more economical?

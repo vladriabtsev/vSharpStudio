@@ -13,8 +13,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListConstants.Count,nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public IEnumerable<object> GetChildren(object parent) { return this.ListConstants; }
-        public bool HasChildren(object parent) { return this.ListConstants.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent) { return this.ListConstants; }
+        public override bool HasChildren(object parent) { return this.ListConstants.Count > 0; }
         partial void OnInit()
         {
             this.Name = Defaults.ConstantsGroupName;
@@ -22,15 +22,17 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public void AddConstant(Constant node)
+        public Constant AddConstant(string name, DataType type = null)
         {
+            Constant node = new Constant(this) { Name = name, DataType = new DataType() };
             this.NodeAddNewSubNode(node);
+            return node;
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Constant node = null;
             if (node_impl == null)
-                node = new Constant();
+                node = new Constant(this);
             else
                 node = (Constant)node_impl;
             this.Add(node);

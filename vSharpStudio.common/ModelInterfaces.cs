@@ -201,7 +201,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		IDbSettings DbSettingsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListBaseConfigs GroupConfigsI { get; } // ModelInterfaces.tt Line: 47
 		IConfigModel ModelI { get; } // ModelInterfaces.tt Line: 47
-		IGroupListModels GroupSubModelsI { get; } // ModelInterfaces.tt Line: 47
+		IGroupListModels GroupModelsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListPlugins GroupPluginsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListAppSolutions GroupAppSolutionsI { get; } // ModelInterfaces.tt Line: 47
 	}
@@ -217,7 +217,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	public partial interface IObjectInclusionRecord  // ModelInterfaces.tt Line: 26
 	{
 		string Guid { get; } // ModelInterfaces.tt Line: 43
-		bool? Inclusion { get; } // ModelInterfaces.tt Line: 43
+		
+		///////////////////////////////////////////////////
+		/// bool_nullable inclusion = 2;
+		///////////////////////////////////////////////////
+		bool Inclusion { get; } // ModelInterfaces.tt Line: 43
 	}
 	
 	public partial interface IModel : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26

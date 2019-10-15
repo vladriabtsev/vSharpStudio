@@ -36,15 +36,17 @@ namespace vSharpStudio.vm.ViewModels
         public bool Models { get; set; }
 
         #region Tree operations
-        public void AddEnumerationPair(EnumerationPair node)
+        public EnumerationPair AddEnumerationPair(string name, string val)
         {
+            EnumerationPair node = new EnumerationPair(this) { Name = name, Value = val };
             this.NodeAddNewSubNode(node);
+            return node;
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             EnumerationPair node = null;
             if (node_impl == null)
-                node = new EnumerationPair();
+                node = new EnumerationPair(this);
             else
                 node = (EnumerationPair)node_impl;
             this.ListEnumerationPairs.Add(node);
@@ -102,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Enumeration.Clone(this, true, true);
+            var node = Enumeration.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListEnumerations).Add(node);
             this.Name = this.Name + "2";
@@ -111,7 +113,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Enumeration();
+            var node = new Enumeration(this.Parent);
             (this.Parent as GroupListEnumerations).Add(node);
             GetUniqueName(Enumeration.DefaultName, node, (this.Parent as GroupListEnumerations).ListEnumerations);
             SetSelected(node);
