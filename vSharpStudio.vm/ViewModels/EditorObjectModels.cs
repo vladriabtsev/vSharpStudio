@@ -39,6 +39,8 @@ namespace vSharpStudio.vm.ViewModels
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(clbx, ListCheckBox.ItemsSourceProperty, _binding_lst);
             clbx.SelectionMode = SelectionMode.Multiple;
+            //clbx.Padding = new Thickness(5);
+            clbx.BorderThickness = new Thickness(0);
             return clbx;
         }
     }
