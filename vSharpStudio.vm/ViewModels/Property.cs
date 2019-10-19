@@ -18,6 +18,7 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Property";
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
         }
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType) : this(parent)
         {

@@ -13,6 +13,7 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Element";
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
         }
         [PropertyOrderAttribute(11)]
         [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]

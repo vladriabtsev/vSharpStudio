@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Constant";
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
         }
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType) : this(parent)
         {

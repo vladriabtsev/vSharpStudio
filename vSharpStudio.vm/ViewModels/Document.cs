@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);

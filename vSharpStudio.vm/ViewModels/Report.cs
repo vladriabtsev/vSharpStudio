@@ -17,6 +17,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
         }
 
         [PropertyOrderAttribute(11)]

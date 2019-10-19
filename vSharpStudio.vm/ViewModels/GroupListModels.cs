@@ -45,6 +45,7 @@ namespace vSharpStudio.vm.ViewModels
                 node = new Model(this);
             else
                 node = (Model)node_impl;
+            node.DicInclusionRecordObjectGuids.IsActivateActions = true;
             this.Add(node);
             if (node_impl == null)
                 GetUniqueName(Model.DefaultName, node, this.ListModels);

@@ -60,6 +60,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ListCheckBox.cs" />
     <Compile Include="Controls\TreeListView\ObservableCollectionAdv.cs" />
     <Compile Include="Controls\TreeListView\Converters.cs" />
     <Compile Include="Controls\TreeListView\ITreeModel.cs" />

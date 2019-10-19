@@ -614,13 +614,13 @@ namespace vSharpStudio.common
         #endregion IMutableAnnotatable
         public virtual bool HasChildren(object parent)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public virtual IEnumerable<object> GetChildren(object parent)
         {
             throw new NotImplementedException();
         }
-
+        public bool IsIncludableInModels { get; protected set; }
     }
 }

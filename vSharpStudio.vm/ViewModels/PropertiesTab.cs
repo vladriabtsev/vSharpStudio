@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;

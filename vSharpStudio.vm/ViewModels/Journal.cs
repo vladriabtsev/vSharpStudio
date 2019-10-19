@@ -11,6 +11,10 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Journal";
 
+        partial void OnInit()
+        {
+            this.IsIncludableInModels = true;
+        }
         [PropertyOrderAttribute(11)]
         [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
         public bool Models { get; set; }

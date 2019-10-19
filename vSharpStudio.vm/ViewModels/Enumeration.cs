@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Enumeration";
         partial void OnInit()
         {
+            this.IsIncludableInModels = true;
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
         }

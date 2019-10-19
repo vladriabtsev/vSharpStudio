@@ -58,13 +58,13 @@ namespace vSharpStudio.Unit
             m.EnumDefaultInclusion = EnumIncludeDefaultPolicy.INCLUDE;
             cm.GroupCatalogs.NodeAddNewSubNode();
             vm.SaveConfigAsForTests(cfgPath);
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
 
             vm = new MainPageVM(true, null, cfgPath);
             Assert.IsTrue(vm.Config.GroupModels.ListModels.Count == 1);
             m = vm.Config.GroupModels[0];
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
         }
         [TestMethod]
@@ -78,19 +78,20 @@ namespace vSharpStudio.Unit
             var sms = vm.Config.GroupModels;
             var m = sms.AddModel("sm1");
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.EXCLUDE;
+
             vm.SaveConfigAsForTests(cfgPath);
-            Assert.IsFalse(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsFalse(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
 
             vm = new MainPageVM(true, null, cfgPath);
             Assert.IsTrue(vm.Config.GroupModels.ListModels.Count == 1);
             Assert.IsTrue(vm.Config.GroupModels.ListModels[0].Name == "sm1");
             m = vm.Config.GroupModels[0];
-            Assert.IsFalse(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsFalse(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
         }
         [TestMethod]
-        public void S04DefaultAllIncludeInModelsButOneExclude()
+        public void S04DefaultAllIncludeInModels()
         {
             string cfgPath = "test01.cfg";
             remove_config();
@@ -100,27 +101,27 @@ namespace vSharpStudio.Unit
             var pr2 = cat.GroupProperties.NodeAddNewSubNode();
             var sms = vm.Config.GroupModels;
             var m = sms.AddModel("sm1");
-            m.IsSelectedChanged(pr1.Guid, false, false);
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.INCLUDE;
+
             vm.SaveConfigAsForTests(cfgPath);
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
-            Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
+            Assert.IsTrue(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
 
             vm = new MainPageVM(true, null, cfgPath);
             Assert.IsTrue(vm.Config.GroupModels.ListModels.Count == 1);
             Assert.IsTrue(vm.Config.GroupModels.ListModels[0].Name == "sm1");
             m = vm.Config.GroupModels[0];
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             pr1 = vm.Config.Model.GroupCatalogs[0].GroupProperties[0];
             pr2 = vm.Config.Model.GroupCatalogs[0].GroupProperties[1];
-            Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
+            Assert.IsTrue(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
         }
         [TestMethod]
-        public void S05DefaultChangeNothingChanged()
+        public void S05DefaultAllIncludeInModelsButOneExclude()
         {
             string cfgPath = "test01.cfg";
             remove_config();
@@ -130,29 +131,60 @@ namespace vSharpStudio.Unit
             var pr2 = cat.GroupProperties.NodeAddNewSubNode();
             var sms = vm.Config.GroupModels;
             var m = sms.AddModel("sm1");
-            m.IsSelectedChanged(cat.Guid, true, true);
-            m.IsSelectedChanged(pr1.Guid, false, false);
+            vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.INCLUDE;
 
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            m.OnIsIncludedChanging(pr2, false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
+            Assert.IsTrue(pr1.CheckIsIncluded(m) ?? false);
+            Assert.IsFalse(pr2.CheckIsIncluded(m) ?? false);
+
+            vm.SaveConfigAsForTests(cfgPath);
+            vm = new MainPageVM(true, null, cfgPath);
+            Assert.IsTrue(vm.Config.GroupModels.ListModels.Count == 1);
+            Assert.IsTrue(vm.Config.GroupModels.ListModels[0].Name == "sm1");
+            m = vm.Config.GroupModels[0];
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
+            pr1 = vm.Config.Model.GroupCatalogs[0].GroupProperties[0];
+            pr2 = vm.Config.Model.GroupCatalogs[0].GroupProperties[1];
+            Assert.IsTrue(pr1.CheckIsIncluded(m) ?? false);
+            Assert.IsFalse(pr2.CheckIsIncluded(m) ?? false);
+        }
+        [TestMethod]
+        public void S06DefaultChangeNothingChanged()
+        {
+            string cfgPath = "test01.cfg";
+            remove_config();
+            var vm = new MainPageVM(false);
+            var cat = (Catalog)vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
+            var pr1 = cat.GroupProperties.NodeAddNewSubNode();
+            var pr2 = cat.GroupProperties.NodeAddNewSubNode();
+            var sms = vm.Config.GroupModels;
+            var m = sms.AddModel("sm1");
+            m.OnIsIncludedChanging(cat, true);
+            m.OnIsIncludedChanging(pr1, false);
+
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
 
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.INCLUDE;
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
 
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.EXCLUDE;
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
 
             vm.SaveConfigAsForTests(cfgPath);
             vm = new MainPageVM(true, null, cfgPath);
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
@@ -160,7 +192,7 @@ namespace vSharpStudio.Unit
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.INCLUDE;
             vm.SaveConfigAsForTests(cfgPath);
             vm = new MainPageVM(true, null, cfgPath);
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
@@ -168,7 +200,7 @@ namespace vSharpStudio.Unit
             vm.Config.GroupModels[0].EnumDefaultInclusion = EnumIncludeDefaultPolicy.EXCLUDE;
             vm.SaveConfigAsForTests(cfgPath);
             vm = new MainPageVM(true, null, cfgPath);
-            Assert.IsTrue(m.CheckIsIncluded(vm.Config.Model.GroupCatalogs[0]) ?? false);
+            Assert.IsTrue(ModelExt.CheckIsIncluded(m, vm.Config.Model.GroupCatalogs[0]) ?? false);
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].CheckIsIncluded(m) ?? false);
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
