@@ -146,6 +146,79 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion ITreeNode
 
+        #region Objects
+        public IEnumerable<ITreeConfigNode> GetAllNodes()
+        {
+            yield return this.GroupEnumerations;
+            foreach (var t in this.GroupEnumerations.ListEnumerations)
+                yield return t;
+            yield return this.GroupConstants;
+            foreach (var t in this.GroupConstants.ListConstants)
+                yield return t;
+            yield return this.GroupCatalogs;
+            foreach (var t in this.GroupCatalogs.ListCatalogs)
+            {
+                yield return t;
+                yield return t.GroupProperties;
+                foreach (var tt in t.GroupProperties.ListProperties)
+                    yield return tt;
+                yield return t.GroupPropertiesTabs;
+                foreach (var tt in t.GroupPropertiesTabs.ListPropertiesTabs)
+                {
+                    yield return tt;
+                    yield return tt.GroupProperties;
+                    foreach (var ttt in tt.GroupProperties.ListProperties)
+                        yield return ttt;
+                }
+                yield return t.GroupForms;
+                foreach (var tt in t.GroupForms.ListForms)
+                    yield return tt;
+                yield return t.GroupReports;
+                foreach (var tt in t.GroupReports.ListReports)
+                    yield return tt;
+            }
+            yield return this.GroupDocuments;
+            yield return this.GroupDocuments.GroupSharedProperties;
+            foreach (var t in this.GroupDocuments.GroupSharedProperties.ListProperties)
+                yield return t;
+            yield return this.GroupDocuments.GroupListDocuments;
+            foreach (var t in this.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                yield return t;
+                yield return t.GroupProperties;
+                foreach (var tt in t.GroupProperties.ListProperties)
+                    yield return tt;
+
+                yield return t.GroupPropertiesTabs;
+                foreach (var tt in GetTabNodes(t.GroupPropertiesTabs))
+                    yield return tt;
+
+                yield return t.GroupForms;
+                foreach (var tt in t.GroupForms.ListForms)
+                    yield return tt;
+                yield return t.GroupReports;
+                foreach (var tt in t.GroupReports.ListReports)
+                    yield return tt;
+            }
+            yield return this.GroupJournals;
+            foreach (var t in this.GroupJournals.ListJournals)
+                yield return t;
+        }
+        private IEnumerable<ITreeConfigNode> GetTabNodes(GroupListPropertiesTabs tab)
+        {
+            foreach (var tt in tab.ListPropertiesTabs)
+            {
+                yield return tt;
+                yield return tt.GroupProperties;
+                foreach (var ttt in tt.GroupProperties.ListProperties)
+                    yield return ttt;
+                yield return tt.GroupPropertiesTabs;
+                foreach (var ttt in GetTabNodes(tt.GroupPropertiesTabs))
+                    yield return tt;
+            }
+        }
+        #endregion Objects
+
         [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
         public string SolutionPath
         {

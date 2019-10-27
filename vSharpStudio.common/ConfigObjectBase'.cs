@@ -23,6 +23,7 @@ namespace vSharpStudio.common
             : base(validator)
         {
             this.Parent = parent;
+            this.ListInModels = new List<IModelRow>();
         }
         protected virtual void OnInitFromDto()
         {
@@ -621,6 +622,8 @@ namespace vSharpStudio.common
         {
             throw new NotImplementedException();
         }
+        [BrowsableAttribute(false)]
         public bool IsIncludableInModels { get; protected set; }
+        public List<IModelRow> ListInModels { get; protected set; }
     }
 }

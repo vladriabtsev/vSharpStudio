@@ -139,11 +139,7 @@
     <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
     <Compile Include="ViewModels\ConfigNodesCollection%27.cs" />
-    <Compile Include="ViewModels\EditorObjectGroupModels.cs" />
     <Compile Include="ViewModels\EditorObjectModels.cs" />
-    <Compile Include="ViewModels\EditorObjectModels2.xaml.cs">
-      <DependentUpon>EditorObjectModels2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\IIncludeDefaultPolicy.cs" />
     <Compile Include="ViewModels\ObjectSubModelsEditor.xaml.cs">
       <DependentUpon>ObjectSubModelsEditor.xaml</DependentUpon>
@@ -247,10 +243,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ViewModels\EditorObjectModels2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ViewModels\ObjectSubModelsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

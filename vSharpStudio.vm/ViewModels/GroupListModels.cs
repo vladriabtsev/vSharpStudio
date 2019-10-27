@@ -16,19 +16,48 @@ namespace vSharpStudio.vm.ViewModels
         //public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         public override IEnumerable<object> GetChildren(object parent) { return this.ListModels; }
         public override bool HasChildren(object parent) { return this.ListModels.Count > 0; }
-        partial void OnInit()
+        private ConfigModel cm = null;
+        private void Init()
         {
             this.Name = "Models";
+            this.ListModels.OnAddAction = (m) =>
+            {
+                foreach (var t in cm.GetAllNodes())
+                    t.ListInModels.Add(new ModelRow());
+            };
+            this.ListModels.OnRemoveAction = (indx) =>
+            {
+                foreach (var t in cm.GetAllNodes())
+                    t.ListInModels.RemoveAt(indx);
+            };
+            this.ListModels.OnSortAction = (ifrom, ito) =>
+            {
+                if (ifrom == ito || ifrom == -1)
+                    return;
+                foreach (var t in cm.GetAllNodes())
+                    MoveObject(ifrom, ito, t);
+            };
+            cm = (this.Parent as Config).Model;
+        }
+        private static void MoveObject(int ifrom, int ito, ITreeConfigNode t)
+        {
+            var obj = t.ListInModels[ifrom];
+            t.ListInModels.RemoveAt(ifrom);
+            t.ListInModels.Insert(ito, obj);
+        }
+        partial void OnInit()
+        {
             this.IsEditable = false;
             //this.Children = new SortedObservableCollection<ITreeConfigNode>();
             //this.GroupSharedProperties.Parent = this;
             //Children.Add(this.GroupSharedProperties, 7);
             //this.GroupListDocuments.Parent = this;
             //Children.Add(this.GroupListDocuments, 8);
+            this.Init();
         }
         protected override void OnInitFromDto()
         {
-            this.Name = "Models";
+            this.Init();
         }
 
         #region Tree operations
@@ -40,7 +69,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
-            Model node =null;
+            Model node = null;
             if (node_impl == null)
                 node = new Model(this);
             else

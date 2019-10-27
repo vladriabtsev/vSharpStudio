@@ -14,23 +14,19 @@ namespace vSharpStudio.wpf.Controls
 		private class NodeCollection : Collection<TreeNode>
 		{
 			private TreeNode _owner;
-
 			public NodeCollection(TreeNode owner)
 			{
 				_owner = owner;
 			}
-
 			protected override void ClearItems()
 			{
 				while (this.Count != 0)
 					this.RemoveAt(this.Count - 1);
 			}
-
 			protected override void InsertItem(int index, TreeNode item)
 			{
 				if (item == null)
 					throw new ArgumentNullException("item");
-
 				if (item.Parent != _owner)
 				{
 					if (item.Parent != null)
@@ -42,7 +38,6 @@ namespace vSharpStudio.wpf.Controls
 					base.InsertItem(index, item);
 				}
 			}
-
 			protected override void RemoveItem(int index)
 			{
 				TreeNode item = this[index];
@@ -52,7 +47,6 @@ namespace vSharpStudio.wpf.Controls
 					this[i]._index--;
 				base.RemoveItem(index);
 			}
-
 			protected override void SetItem(int index, TreeNode item)
 			{
 				if (item == null)
@@ -76,12 +70,11 @@ namespace vSharpStudio.wpf.Controls
 
 		#region Properties
 
-		private TreeListView _tree;
-		internal TreeListView Tree
+		private TreeList _tree;
+		internal TreeList Tree
 		{
 			get { return _tree; }
 		}
-
 		private INotifyCollectionChanged _childrenSource;
 		internal INotifyCollectionChanged ChildrenSource
 		{
@@ -97,7 +90,6 @@ namespace vSharpStudio.wpf.Controls
 					_childrenSource.CollectionChanged += ChildrenChanged;
 			}
 		}
-
 		private int _index = -1;
 		public int Index
 		{
@@ -106,7 +98,6 @@ namespace vSharpStudio.wpf.Controls
 				return _index;
 			}
 		}
-
 		/// <summary>
 		/// Returns true if all parent nodes of this node are expanded.
 		/// </summary>
@@ -124,19 +115,16 @@ namespace vSharpStudio.wpf.Controls
 				return true;
 			}
 		}
-
 		public bool IsExpandedOnce
 		{
 			get;
 			internal set;
 		}
-
 		public bool HasChildren
 		{
 			get;
 			internal set;
 		}
-
 		private bool _isExpanded;
 		public bool IsExpanded
 		{
@@ -151,12 +139,10 @@ namespace vSharpStudio.wpf.Controls
 				}
 			}
 		}
-
 		internal void AssignIsExpanded(bool value)
 		{
 			_isExpanded = value;
 		}
-
 		public bool IsExpandable
 		{
 			get
@@ -164,7 +150,6 @@ namespace vSharpStudio.wpf.Controls
 				return (HasChildren && !IsExpandedOnce) || Nodes.Count > 0;
 			}
 		}
-
 		private bool _isSelected;
 		public bool IsSelected
 		{
@@ -178,14 +163,11 @@ namespace vSharpStudio.wpf.Controls
 				}
 			}
 		}
-
-
 		private TreeNode _parent;
 		public TreeNode Parent
 		{
 			get { return _parent; }
 		}
-
 		public int Level
 		{
 			get
@@ -196,7 +178,6 @@ namespace vSharpStudio.wpf.Controls
 					return _parent.Level + 1;
 			}
 		}
-
 		public TreeNode PreviousNode
 		{
 			get
@@ -210,7 +191,6 @@ namespace vSharpStudio.wpf.Controls
 				return null;
 			}
 		}
-
 		public TreeNode NextNode
 		{
 			get
@@ -224,7 +204,6 @@ namespace vSharpStudio.wpf.Controls
 				return null;
 			}
 		}
-
 		internal TreeNode BottomNode
 		{
 			get
@@ -240,7 +219,6 @@ namespace vSharpStudio.wpf.Controls
 				return null;
 			}
 		}
-
 		internal TreeNode NextVisibleNode
 		{
 			get
@@ -257,7 +235,6 @@ namespace vSharpStudio.wpf.Controls
 				}
 			}
 		}
-
 		public int VisibleChildrenCount
 		{
 			get
@@ -265,7 +242,6 @@ namespace vSharpStudio.wpf.Controls
 				return AllVisibleChildren.Count();
 			}
 		}
-
 		public IEnumerable<TreeNode> AllVisibleChildren
 		{
 			get
@@ -282,19 +258,16 @@ namespace vSharpStudio.wpf.Controls
 				}
 			}
 		}
-
 		private object _tag;
 		public object Tag
 		{
 			get { return _tag; }
 		}
-
 		private Collection<TreeNode> _children;
 		internal Collection<TreeNode> Children
 		{
 			get { return _children; }
 		}
-
 		private ReadOnlyCollection<TreeNode> _nodes;
 		public ReadOnlyCollection<TreeNode> Nodes
 		{
@@ -303,7 +276,7 @@ namespace vSharpStudio.wpf.Controls
 
 		#endregion
 
-		internal TreeNode(TreeListView tree, object tag)
+		internal TreeNode(TreeList tree, object tag)
 		{
 			if (tree == null)
 				throw new ArgumentNullException("tree");

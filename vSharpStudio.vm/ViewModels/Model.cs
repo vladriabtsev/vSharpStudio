@@ -31,9 +31,9 @@ namespace vSharpStudio.vm.ViewModels
             {
 #if DEBUG
                 bool isFound = false;
-                foreach(var t in this.ListObjectInclusionRecords)
+                foreach (var t in this.ListObjectInclusionRecords)
                 {
-                    if (t.Guid==key)
+                    if (t.Guid == key)
                     {
                         isFound = true;
                         break;

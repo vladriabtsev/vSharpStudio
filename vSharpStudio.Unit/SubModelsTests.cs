@@ -205,5 +205,57 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(pr1.CheckIsIncluded(m) ?? false);
             Assert.IsTrue(pr2.CheckIsIncluded(m) ?? false);
         }
+        [TestMethod]
+        public void S07AddModelRowsInListInModelsForNewTreeConfigNode()
+        {
+            var vm = new MainPageVM(false);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.ListInModels.Count == 0);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.ListInModels.Count == 0);
+
+            var m = vm.Config.Model;
+            var sms = vm.Config.GroupModels;
+            sms.AddModel("sm1");
+            m.GroupCatalogs.AddCatalog("c1");
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].ListInModels.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].ListInModels[0].IsIncluded);
+
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.ListInModels.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.ListInModels[0].IsIncluded);
+
+            Assert.IsTrue(vm.Config.Model.GroupConstants.ListInModels.Count == 1);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.ListInModels[0].IsIncluded);
+        }
+        [TestMethod]
+        public void S11AddModelAddObjectsListInModels()
+        {
+            var vm = new MainPageVM(false);
+            var m = vm.Config.Model;
+            m.GroupCatalogs.AddCatalog("c1");
+            var sms = vm.Config.GroupModels;
+            sms.AddModel("sm1");
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].ListInModels.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].ListInModels[0].IsIncluded);
+
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.ListInModels.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.ListInModels[0].IsIncluded);
+
+            Assert.IsTrue(vm.Config.Model.GroupConstants.ListInModels.Count == 1);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.ListInModels[0].IsIncluded);
+        }
+        [TestMethod]
+        public void S12CanRemoveModel()
+        {
+            Assert.IsTrue(false);
+        }
+        [TestMethod]
+        public void S13CanMoveModelInList()
+        {
+            Assert.IsTrue(false);
+        }
+        [TestMethod]
+        public void S14CanChangeInclusion()
+        {
+            Assert.IsTrue(false);
+        }
     }
 }

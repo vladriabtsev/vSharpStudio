@@ -31,6 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -60,14 +66,17 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ListCheckBox.cs" />
-    <Compile Include="Controls\TreeListView\ObservableCollectionAdv.cs" />
-    <Compile Include="Controls\TreeListView\Converters.cs" />
-    <Compile Include="Controls\TreeListView\ITreeModel.cs" />
-    <Compile Include="Controls\TreeListView\RowExpander.cs" />
+    <Compile Include="Controls\TreeListView\TreeListViewItem.cs" />
     <Compile Include="Controls\TreeListView\TreeListView.cs" />
-    <Compile Include="Controls\TreeListView\TreeListItem.cs" />
-    <Compile Include="Controls\TreeListView\TreeNode.cs" />
+    <Compile Include="Controls\vListCheckBox.cs" />
+    <Compile Include="Controls\ListCheckBox.cs" />
+    <Compile Include="Controls\TreeList\ObservableCollectionAdv.cs" />
+    <Compile Include="Controls\Converters.cs" />
+    <Compile Include="Controls\TreeList\ITreeModel.cs" />
+    <Compile Include="Controls\TreeList\RowExpander.cs" />
+    <Compile Include="Controls\TreeList\TreeList.cs" />
+    <Compile Include="Controls\TreeList\TreeListItem.cs" />
+    <Compile Include="Controls\TreeList\TreeNode.cs" />
     <Compile Include="Controls\TreeViewExt.cs" />
     <Compile Include="Controls\vField.cs" />
     <Compile Include="Controls\vFieldPanel.cs" />
@@ -76,6 +85,7 @@
     </Compile>
     <Compile Include="Converters\ConverterCountToWidth.cs" />
     <Compile Include="Converters\ConverterIconNameToResource.cs" />
+    <Compile Include="DataTemplateExt.cs" />
     <Compile Include="UIDispatcher.cs" />
     <Page Include="Controls\vDialog.xaml">
       <SubType>Designer</SubType>
@@ -85,18 +95,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\vTreeListTwo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="Controls\vDialog.xaml.cs">
       <DependentUpon>vDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\vTreeList.xaml.cs">
       <DependentUpon>vTreeList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\vTreeListTwo.xaml.cs">
-      <DependentUpon>vTreeListTwo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ConverterBoolToCollapsed.cs" />
     <Compile Include="Converters\ConverterBoolToVisible.cs" />
@@ -108,9 +111,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="Themes\generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TreeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +142,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="key.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,5 +159,6 @@
       <Name>vSharpStudio.std</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

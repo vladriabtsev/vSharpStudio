@@ -138,6 +138,8 @@ namespace ViewModelBase
             lock (_lock)
             {
                 base.Add(item);
+                if (OnAddAction != null)
+                    OnAddAction(item);
                 InternalSort();
             }
         }
@@ -145,7 +147,10 @@ namespace ViewModelBase
         {
             lock (_lock)
             {
+                var ifrom = IndexOf(item);
                 var res = base.Remove(item);
+                if (OnRemoveAction != null)
+                    OnRemoveAction(ifrom);
                 InternalSort();
                 return res;
             }
@@ -157,10 +162,15 @@ namespace ViewModelBase
                 foreach (T itm in collection)
                 {
                     this.Add(itm, sortingWeight);
+                    if (OnAddAction != null)
+                        OnAddAction(itm);
                 }
                 InternalSort();
             }
         }
+        public Action<int> OnRemoveAction;
+        public Action<T> OnAddAction;
+        public Action<int, int> OnSortAction;
         #region Sort
         /// <summary>
         /// Sorts the items of the collection in descending order according to a key.
@@ -212,7 +222,11 @@ namespace ViewModelBase
 
             foreach (var item in sortedItemsList)
             {
-                base.MoveItem(IndexOf(item), sortedItemsList.IndexOf(item));
+                var ifrom = IndexOf(item);
+                var ito = sortedItemsList.IndexOf(item);
+                base.MoveItem(ifrom, ito);
+                if (OnSortAction != null)
+                    OnSortAction(ifrom, ito);
             }
             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
         }

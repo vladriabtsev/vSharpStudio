@@ -36,6 +36,9 @@ namespace vSharpStudio.common
         void NodeUp();
         bool NodeCanDown();
         void NodeDown();
+        // if true, object can be included in submodel
+        // if false, this is group of objects. Can't be included in submodel, but show inclusion of objects in the group
         bool IsIncludableInModels { get; }
+        List<IModelRow> ListInModels { get; }
     }
 }

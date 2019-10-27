@@ -38,7 +38,7 @@ namespace vSharpStudio.Views
                     isLst = true;
                 }
                 cm = cfg.Model;
-                this.Model = cm;
+                //this.Model = cm;
             }
         }
     }
