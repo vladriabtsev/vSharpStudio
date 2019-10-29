@@ -40,10 +40,10 @@ namespace vSharpStudio.common
             return lst;
             void GetSubConfigs(IConfig _cfg)
             {
-                foreach (var t in _cfg.GroupConfigsI.ListBaseConfigsI)
+                foreach (var t in _cfg.GroupConfigLinksI.ListBaseConfigLinksI)
                 {
-                    dic[t.Config.Guid] = t.Config;
-                    GetSubConfigs(t.Config);
+                    dic[t.ConfigNodeI.Guid] = t.ConfigNodeI;
+                    GetSubConfigs(t.ConfigNodeI);
                 }
             }
         }

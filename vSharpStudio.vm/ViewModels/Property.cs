@@ -30,9 +30,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
-        [PropertyOrderAttribute(3)]
-        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
-        public bool Models { get; set; }
         public string ClrType { get { return this.DataType.ClrTypeName; } }
         public string ProtoType { get { return this.DataType.ProtoType; } }
 

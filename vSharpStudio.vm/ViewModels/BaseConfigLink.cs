@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfig : IBaseConfig
+    public partial class BaseConfigLink : IBaseConfig
     {
         public static readonly string DefaultName = "BaseConfig";
         [BrowsableAttribute(false)]

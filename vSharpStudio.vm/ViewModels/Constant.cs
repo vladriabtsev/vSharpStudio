@@ -28,9 +28,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
-        [PropertyOrderAttribute(11)]
-        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
-        public bool Models { get; set; }
 
         #region IConfigObject
         //public void Create()

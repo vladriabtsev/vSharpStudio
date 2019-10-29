@@ -16,9 +16,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Catalog";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
-        [PropertyOrderAttribute(11)]
-        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
-        public bool Models { get; set; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

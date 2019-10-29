@@ -212,15 +212,15 @@ message proto_config_short_history {
     proto_config prev_stable_config = 2;
     proto_config old_stable_config = 3;
 }
-message proto_group_list_base_configs {
+message proto_group_list_base_config_links {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_base_config list_base_configs = 9;
+    repeated proto_base_config_link list_base_config_links = 9;
 }
-message proto_base_config {
+message proto_base_config_link {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
@@ -259,11 +259,9 @@ message proto_config {
     db_settings db_settings = 14;
 
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_base_configs group_configs = 101;
+    proto_group_list_base_config_links group_config_links = 101;
     // @attr [BrowsableAttribute(false)]
     proto_config_model model = 102;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_models group_models = 103;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_plugins group_plugins = 104;
     // @attr [BrowsableAttribute(false)]
@@ -273,45 +271,6 @@ message proto_config {
  * @exclude
  * ####################################### M O D E L ##########################################
  */
-enum proto_enum_include_default_policy {
-    EXCLUDE = 0;
-    INCLUDE = 1;
-    //NONE = 2;
-}
-message proto_group_list_models {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-    string description = 5;
-    // @attr [DisplayName("Auto")]
-    // @attr [Description("Auto insert dependancies")]
-    bool is_auto_insert_dependancies = 6;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_model list_models = 9;
-}
-// @base : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator>
-message proto_object_inclusion_record {
-    // @attr [BrowsableAttribute(false)]
-    string guid = 1;
-    bool inclusion = 2;
-    //bool_nullable inclusion = 2;
-}
-message proto_model {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(5)]
-    string description = 5;
-    // @attr [DisplayName("Default Mode")]
-    // @attr [Description("Default mode for model objects inclusion behavior")]
-    proto_enum_include_default_policy enum_default_inclusion = 6;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_object_inclusion_record list_object_inclusion_records = 10;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_object_inclusion_record list_group_objects = 11;
-    // @attr [ExpandableObjectAttribute()]
-    //proto_object_inclusion_record test =12;
-}
 // Configuration model
 message proto_config_model {
     // Unique Guid for configuration (for comparison)

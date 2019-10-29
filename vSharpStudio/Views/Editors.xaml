@@ -29,12 +29,6 @@
             <ContentControl Name="cc" Content="{Binding Config.SelectedNode}">
                 <!--<ContentControl Name="cc" DataContext="{Binding Config.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">-->
                 <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type bvm:GroupListModels}">
-                        <local:TreeModels />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type bvm:Model}">
-                        <local:TreeModels />
-                    </DataTemplate>
                     <DataTemplate DataType="{x:Type bvm:GroupListPlugins}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="GroupListPlugins" />

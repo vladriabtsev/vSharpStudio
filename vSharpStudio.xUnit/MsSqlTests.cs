@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using vSharpStudio.vm.ViewModels;
+//using vSharpStudio.vm.ViewModels;
 using Xunit;
 
 namespace vSharpStudio.xUnit

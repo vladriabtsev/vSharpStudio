@@ -131,7 +131,7 @@ namespace vSharpStudio.ViewModels
             pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
             string ind2 = indent + "   ";
-            foreach (var t in cfg.GroupConfigs.ListBaseConfigs.ToList())
+            foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
                 t.Config = LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
                 t.Name = t.Config.Name;

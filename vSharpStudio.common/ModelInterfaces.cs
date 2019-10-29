@@ -12,10 +12,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		INT = 0,
 		LONG = 1,
 	}
-	public enum EnumIncludeDefaultPolicy { // ModelInterfaces.tt Line: 13
-		EXCLUDE = 0,
-		INCLUDE = 1,
-	}
 	public enum EnumDataType { // ModelInterfaces.tt Line: 13
 		STRING = 0,
 		NUMERICAL = 1,
@@ -167,14 +163,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		IConfig OldStableConfigI { get; } // ModelInterfaces.tt Line: 47
 	}
 	
-	public partial interface IGroupListBaseConfigs : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	public partial interface IGroupListBaseConfigLinks : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
-		IEnumerable<IBaseConfig> ListBaseConfigsI { get; } // ModelInterfaces.tt Line: 40
+		IEnumerable<IBaseConfigLink> ListBaseConfigLinksI { get; } // ModelInterfaces.tt Line: 40
 	}
 	
-	public partial interface IBaseConfig : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	public partial interface IBaseConfigLink : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
@@ -199,43 +195,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		/// GENERAL DB SETTINGS
 		///////////////////////////////////////////////////
 		IDbSettings DbSettingsI { get; } // ModelInterfaces.tt Line: 47
-		IGroupListBaseConfigs GroupConfigsI { get; } // ModelInterfaces.tt Line: 47
+		IGroupListBaseConfigLinks GroupConfigLinksI { get; } // ModelInterfaces.tt Line: 47
 		IConfigModel ModelI { get; } // ModelInterfaces.tt Line: 47
-		IGroupListModels GroupModelsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListPlugins GroupPluginsI { get; } // ModelInterfaces.tt Line: 47
 		IGroupListAppSolutions GroupAppSolutionsI { get; } // ModelInterfaces.tt Line: 47
-	}
-	
-	public partial interface IGroupListModels : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
-		string Description { get; } // ModelInterfaces.tt Line: 43
-		bool IsAutoInsertDependancies { get; } // ModelInterfaces.tt Line: 43
-		IEnumerable<IModel> ListModelsI { get; } // ModelInterfaces.tt Line: 40
-	}
-	
-	public partial interface IObjectInclusionRecord  // ModelInterfaces.tt Line: 26
-	{
-		string Guid { get; } // ModelInterfaces.tt Line: 43
-		
-		///////////////////////////////////////////////////
-		/// bool_nullable inclusion = 2;
-		///////////////////////////////////////////////////
-		bool Inclusion { get; } // ModelInterfaces.tt Line: 43
-	}
-	
-	public partial interface IModel : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
-		string Description { get; } // ModelInterfaces.tt Line: 43
-		EnumIncludeDefaultPolicy EnumDefaultInclusion { get; } // ModelInterfaces.tt Line: 43
-		IEnumerable<IObjectInclusionRecord> ListObjectInclusionRecordsI { get; } // ModelInterfaces.tt Line: 40
-		
-		///////////////////////////////////////////////////
-		/// 
-		/// proto_object_inclusion_record test =12;
-		///////////////////////////////////////////////////
-		IEnumerable<IObjectInclusionRecord> ListGroupObjectsI { get; } // ModelInterfaces.tt Line: 40
 	}
 	
 	///////////////////////////////////////////////////

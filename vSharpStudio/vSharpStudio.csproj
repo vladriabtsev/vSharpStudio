@@ -247,9 +247,6 @@
     <Compile Include="Views\PropertiesList.xaml.cs">
       <DependentUpon>PropertiesList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TreeModels.xaml.cs">
-      <DependentUpon>TreeModels.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ValidationListForSelectedNode.xaml.cs">
       <DependentUpon>ValidationListForSelectedNode.xaml</DependentUpon>
     </Compile>
@@ -290,10 +287,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PropertiesList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TreeModels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

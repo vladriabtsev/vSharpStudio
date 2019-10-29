@@ -9,7 +9,7 @@
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_solution](#proto_config.proto_app_solution)
-    - [proto_base_config](#proto_config.proto_base_config)
+    - [proto_base_config_link](#proto_config.proto_base_config_link)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_model](#proto_config.proto_config_model)
@@ -22,7 +22,7 @@
     - [proto_form](#proto_config.proto_form)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
-    - [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs)
+    - [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
     - [proto_group_list_common](#proto_config.proto_group_list_common)
     - [proto_group_list_constants](#proto_config.proto_group_list_constants)
@@ -31,7 +31,6 @@
     - [proto_group_list_forms](#proto_config.proto_group_list_forms)
     - [proto_group_list_journals](#proto_config.proto_group_list_journals)
     - [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms)
-    - [proto_group_list_models](#proto_config.proto_group_list_models)
     - [proto_group_list_plugins](#proto_config.proto_group_list_plugins)
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs)
@@ -39,9 +38,7 @@
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
-    - [proto_model](#proto_config.proto_model)
     - [proto_model_row](#proto_config.proto_model_row)
-    - [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
@@ -55,7 +52,6 @@
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
-    - [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
   
   
@@ -173,9 +169,9 @@ General DB settings
 
 
 
-<a name="proto_config.proto_base_config"></a>
+<a name="proto_config.proto_base_config_link"></a>
 
-### proto_base_config
+### proto_base_config_link
 
 
 
@@ -233,9 +229,8 @@ Configuration config
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | primary_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(7)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
-| group_configs | [proto_group_list_base_configs](#proto_config.proto_group_list_base_configs) |  | @attr [BrowsableAttribute(false)] |
+| group_config_links | [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links) |  | @attr [BrowsableAttribute(false)] |
 | model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
-| group_models | [proto_group_list_models](#proto_config.proto_group_list_models) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
 | group_app_solutions | [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions) |  | @attr [BrowsableAttribute(false)] |
 
@@ -456,9 +451,9 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 
 
-<a name="proto_config.proto_group_list_base_configs"></a>
+<a name="proto_config.proto_group_list_base_config_links"></a>
 
-### proto_group_list_base_configs
+### proto_group_list_base_config_links
 
 
 
@@ -468,7 +463,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  |  |
-| list_base_configs | [proto_base_config](#proto_config.proto_base_config) | repeated | @attr [BrowsableAttribute(false)] |
+| list_base_config_links | [proto_base_config_link](#proto_config.proto_base_config_link) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -636,26 +631,6 @@ main view forms hierarchy node with children
 
 
 
-<a name="proto_config.proto_group_list_models"></a>
-
-### proto_group_list_models
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  |  |
-| is_auto_insert_dependancies | [bool](#bool) |  | @attr [DisplayName(&#34;Auto&#34;)] @attr [Description(&#34;Auto insert dependancies&#34;)] |
-| list_models | [proto_model](#proto_config.proto_model) | repeated | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_group_list_plugins"></a>
 
 ### proto_group_list_plugins
@@ -793,29 +768,6 @@ main view forms hierarchy parent
 
 
 
-<a name="proto_config.proto_model"></a>
-
-### proto_model
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| enum_default_inclusion | [proto_enum_include_default_policy](#proto_config.proto_enum_include_default_policy) |  | @attr [DisplayName(&#34;Default Mode&#34;)] @attr [Description(&#34;Default mode for model objects inclusion behavior&#34;)] |
-| list_object_inclusion_records | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)] |
-| list_group_objects | [proto_object_inclusion_record](#proto_config.proto_object_inclusion_record) | repeated | @attr [BrowsableAttribute(false)]
-
-@attr [ExpandableObjectAttribute()] proto_object_inclusion_record test =12; |
-
-
-
-
-
-
 <a name="proto_config.proto_model_row"></a>
 
 ### proto_model_row
@@ -828,22 +780,6 @@ main view forms hierarchy parent
 | name | [string](#string) |  |  |
 | guid | [string](#string) |  |  |
 | is_included | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="proto_config.proto_object_inclusion_record"></a>
-
-### proto_object_inclusion_record
-@base : ViewModelValidatableWithSeverity&lt;ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator&gt;
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| inclusion | [bool](#bool) |  | bool_nullable inclusion = 2; |
 
 
 
@@ -1076,18 +1012,6 @@ User&#39;s role
 | DOCUMENT | 11 |  |
 | DOCUMENTS | 12 |  |
 | ANY | 15 |  |
-
-
-
-<a name="proto_config.proto_enum_include_default_policy"></a>
-
-### proto_enum_include_default_policy
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| EXCLUDE | 0 |  |
-| INCLUDE | 1 | NONE = 2; |
 
 
 

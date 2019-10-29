@@ -36,7 +36,7 @@ namespace vSharpStudio.Views
                 case "NameUi":
                     var grd = (PropertyGrid)sender;
                     if (
-                        grd.SelectedObject is GroupListBaseConfigs ||
+                        grd.SelectedObject is GroupListBaseConfigLinks ||
                         grd.SelectedObject is GroupDocuments ||
                         grd.SelectedObject is GroupListCatalogs ||
                         grd.SelectedObject is GroupListConstants ||

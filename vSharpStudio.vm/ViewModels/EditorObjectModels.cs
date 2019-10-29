@@ -26,12 +26,12 @@ namespace vSharpStudio.vm.ViewModels
             Config cfg = (Config)p;
             ListCheckBox clbx = new ListCheckBox();
             this.ListModels = new List<SubVm>();
-            foreach (var t in cfg.GroupModels.ListModels)
-            {
-                var svm = new SubVm() { Name = t.Name, Model = t, Node = obj, Guid=t.Guid };
-                svm.SetIsSelected(t.CheckIsIncluded(obj));
-                this.ListModels.Add(svm);
-            }
+            //foreach (var t in cfg.GroupModels.ListModels)
+            //{
+            //    var svm = new SubVm() { Name = t.Name, Model = t, Node = obj, Guid=t.Guid };
+            //    svm.SetIsSelected(t.CheckIsIncluded(obj));
+            //    this.ListModels.Add(svm);
+            //}
             var _binding_lst = new Binding("ListModels");
             _binding_lst.Source = this;
             _binding_lst.ValidatesOnExceptions = false;
@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             _IsSelected = val ?? false;
         }
-        public Model Model { get; set; }
+        //public Model Model { get; set; }
         public ITreeConfigNode Node;
 
         #region INotifyPropertyChanged Members

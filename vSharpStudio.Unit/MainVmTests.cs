@@ -105,7 +105,7 @@ namespace vSharpStudio.Unit
             // empty config
             remove_config();
             var vm = new MainPageVM(true);
-            Assert.IsTrue(vm.Config.GroupConfigs.Count() == 0);
+            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
@@ -117,19 +117,19 @@ namespace vSharpStudio.Unit
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfig(vm.Config.GroupConfigs) { RelativeConfigFilePath = path };
-            vm.Config.GroupConfigs.AddBaseConfig(bcfg);
+            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = path };
+            vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
-            Assert.IsTrue(vm.Config.GroupConfigs.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigs[0].Config.Model.GroupConstants.ListConstants.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigs[0].Config.Model.GroupConstants[0].Name == "c2");
-            Assert.IsTrue(vm.Config.GroupConfigs[0].Config.Name == "ext");
-            Assert.IsTrue(vm.Config.GroupConfigs[0].Name == "ext");
+            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Model.GroupConstants[0].Name == "c2");
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Name == "ext");
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
         }
         [TestMethod]
         public void Main004_BaseConfigDiff()
@@ -137,7 +137,7 @@ namespace vSharpStudio.Unit
             // empty config
             remove_config();
             var vm = new MainPageVM(true);
-            Assert.IsTrue(vm.Config.GroupConfigs.Count() == 0);
+            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
@@ -149,8 +149,8 @@ namespace vSharpStudio.Unit
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfig(vm.Config.GroupConfigs) { RelativeConfigFilePath = path };
-            vm.Config.GroupConfigs.AddBaseConfig(bcfg);
+            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = path };
+            vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 

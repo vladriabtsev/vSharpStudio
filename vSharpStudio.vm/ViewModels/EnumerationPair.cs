@@ -15,8 +15,5 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
         }
-        [PropertyOrderAttribute(11)]
-        [Editor(typeof(EditorObjectModels), typeof(EditorObjectModels))]
-        public bool Models { get; set; }
     }
 }

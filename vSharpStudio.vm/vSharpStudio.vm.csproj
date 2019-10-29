@@ -138,17 +138,13 @@
     <Compile Include="ViewModels\AppProject.cs" />
     <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
     <Compile Include="ViewModels\AppProject.Validator.cs" />
+    <Compile Include="ViewModels\BaseConfigLink.cs" />
+    <Compile Include="ViewModels\BaseConfigLink.Validator.cs" />
     <Compile Include="ViewModels\ConfigNodesCollection%27.cs" />
-    <Compile Include="ViewModels\EditorObjectModels.cs" />
-    <Compile Include="ViewModels\IIncludeDefaultPolicy.cs" />
+    <Compile Include="ViewModels\GroupListBaseConfigLinks.cs" />
     <Compile Include="ViewModels\ObjectSubModelsEditor.xaml.cs">
       <DependentUpon>ObjectSubModelsEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ModelRow.cs" />
-    <Compile Include="ViewModels\Model.Validator.cs" />
-    <Compile Include="ViewModels\Model.cs" />
-    <Compile Include="ViewModels\BaseConfig.Validator.cs" />
-    <Compile Include="ViewModels\BaseConfig.cs" />
     <Compile Include="ViewModels\AppSolution.cs" />
     <Compile Include="ViewModels\Catalog.cs" />
     <Compile Include="ViewModels\AppSolution.Validator.cs" />
@@ -173,7 +169,6 @@
     <Compile Include="ViewModels\EditorDbPluginGenSelection.cs" />
     <Compile Include="ViewModels\EditorDbPluginSelection.cs" />
     <Compile Include="ViewModels\EnumerationPair.Validator.cs" />
-    <Compile Include="ViewModels\GroupListModels.cs" />
     <Compile Include="ViewModels\GroupListCommon.cs" />
     <Compile Include="ViewModels\GroupListAppSolutions.cs" />
     <Compile Include="ViewModels\GroupListPlugins.cs" />
@@ -188,7 +183,6 @@
     <Compile Include="ViewModels\Ext.cs" />
     <Compile Include="ViewModels\Form.cs" />
     <Compile Include="ViewModels\Generated\ProtoViewModels.cs" />
-    <Compile Include="ViewModels\GroupListBaseConfigs.cs" />
     <Compile Include="ViewModels\GroupDocuments.cs" />
     <Compile Include="ViewModels\GroupListCatalogs.cs" />
     <Compile Include="ViewModels\GroupListConstants.cs" />

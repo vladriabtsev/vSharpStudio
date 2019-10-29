@@ -46,16 +46,14 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.GroupConfigs.Parent = this;
-            this.Children.Add(this.GroupConfigs, 0);
+            this.GroupConfigLinks.Parent = this;
+            this.Children.Add(this.GroupConfigLinks, 0);
 
             this.Model.Parent = this;
             this.Children.Add(this.Model, 1);
 
             //this.Children.Add(this, 5);
 
-            this.GroupModels.Parent = this;
-            this.Children.Add(this.GroupModels, 8);
 
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
                 this.DbSettings.DbSchema = "v";

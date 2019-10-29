@@ -1,4 +1,4 @@
-// Auto generated on UTC 10/27/2019 22:53:53
+// Auto generated on UTC 10/29/2019 23:05:11
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -2279,16 +2279,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	
 		#endregion Properties
 	}
-	public partial class GroupListBaseConfigs : ConfigObjectBase<GroupListBaseConfigs, GroupListBaseConfigs.GroupListBaseConfigsValidator>, IComparable<GroupListBaseConfigs>, IConfigAcceptVisitor, IGroupListBaseConfigs // Class.tt Line: 6
+	public partial class GroupListBaseConfigLinks : ConfigObjectBase<GroupListBaseConfigLinks, GroupListBaseConfigLinks.GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 6
 	{
-		public partial class GroupListBaseConfigsValidator : ValidatorBase<GroupListBaseConfigs, GroupListBaseConfigsValidator> { } // Class.tt Line: 8
+		public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 8
 		#region CTOR
-		//public GroupListBaseConfigs(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
-		//public GroupListBaseConfigs() : base(GroupListBaseConfigsValidator.Validator)
-		public GroupListBaseConfigs(ITreeConfigNode parent) : base(parent, GroupListBaseConfigsValidator.Validator) // Class.tt Line: 13
+		//public GroupListBaseConfigLinks(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
+		//public GroupListBaseConfigLinks() : base(GroupListBaseConfigLinksValidator.Validator)
+		public GroupListBaseConfigLinks(ITreeConfigNode parent) : base(parent, GroupListBaseConfigLinksValidator.Validator) // Class.tt Line: 13
 	    {
 			OnInitBegin();
-			this.ListBaseConfigs = new ConfigNodesCollection<BaseConfig>(this); // Class.tt Line: 23
+			this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 23
 			OnInit();
 	    }
 		partial void OnInitBegin();
@@ -2298,26 +2298,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		
 		public override void Sort(Type type) // Clone.tt Line: 8
 		{
-		    if (type == typeof(BaseConfig)) // Clone.tt Line: 15
+		    if (type == typeof(BaseConfigLink)) // Clone.tt Line: 15
 		    {
-		        this.ListBaseConfigs.Sort();
+		        this.ListBaseConfigLinks.Sort();
 		    }
 		}
-		public static GroupListBaseConfigs Clone(ITreeConfigNode parent, GroupListBaseConfigs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+		public static GroupListBaseConfigLinks Clone(ITreeConfigNode parent, GroupListBaseConfigLinks from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
 		{
-		    GroupListBaseConfigs vm = new GroupListBaseConfigs(parent);
+		    GroupListBaseConfigLinks vm = new GroupListBaseConfigLinks(parent);
 		    vm.Guid = from.Guid; // Clone.tt Line: 62
 		    vm.Name = from.Name; // Clone.tt Line: 62
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
 		    vm.Description = from.Description; // Clone.tt Line: 62
-		    vm.ListBaseConfigs = new ConfigNodesCollection<BaseConfig>(vm); // Clone.tt Line: 48
-		    foreach(var t in from.ListBaseConfigs) // Clone.tt Line: 49
-		        vm.ListBaseConfigs.Add(BaseConfig.Clone(vm, (BaseConfig)t, isDeep));
+		    vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 48
+		    foreach(var t in from.ListBaseConfigLinks) // Clone.tt Line: 49
+		        vm.ListBaseConfigLinks.Add(BaseConfigLink.Clone(vm, (BaseConfigLink)t, isDeep));
 		    if (isNewGuid) // Clone.tt Line: 67
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(GroupListBaseConfigs to, GroupListBaseConfigs from, bool isDeep = true) // Clone.tt Line: 72
+		public static void Update(GroupListBaseConfigLinks to, GroupListBaseConfigLinks from, bool isDeep = true) // Clone.tt Line: 72
 		{
 		    to.Guid = from.Guid; // Clone.tt Line: 134
 		    to.Name = from.Name; // Clone.tt Line: 134
@@ -2325,25 +2325,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.Description = from.Description; // Clone.tt Line: 134
 		    if (isDeep) // Clone.tt Line: 79
 		    {
-		        foreach(var t in to.ListBaseConfigs.ToList())
+		        foreach(var t in to.ListBaseConfigLinks.ToList())
 		        {
 		            bool isfound = false;
-		            foreach(var tt in from.ListBaseConfigs)
+		            foreach(var tt in from.ListBaseConfigLinks)
 		            {
 		                if (t == tt)
 		                {
 		                    isfound = true;
-		                    BaseConfig.Update((BaseConfig)t, (BaseConfig)tt, isDeep);
+		                    BaseConfigLink.Update((BaseConfigLink)t, (BaseConfigLink)tt, isDeep);
 		                    break;
 		                }
 		            }
 		            if (!isfound)
-		                to.ListBaseConfigs.Remove(t);
+		                to.ListBaseConfigLinks.Remove(t);
 		        }
-		        foreach(var tt in from.ListBaseConfigs)
+		        foreach(var tt in from.ListBaseConfigLinks)
 		        {
 		            bool isfound = false;
-		            foreach(var t in to.ListBaseConfigs.ToList())
+		            foreach(var t in to.ListBaseConfigLinks.ToList())
 		            {
 		                if (t == tt)
 		                {
@@ -2353,32 +2353,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		            }
 		            if (!isfound)
 		            {
-		                var p = new BaseConfig(to); // Clone.tt Line: 110
-		                BaseConfig.Update(p, (BaseConfig)tt, isDeep);
-		                to.ListBaseConfigs.Add(p);
+		                var p = new BaseConfigLink(to); // Clone.tt Line: 110
+		                BaseConfigLink.Update(p, (BaseConfigLink)tt, isDeep);
+		                to.ListBaseConfigLinks.Add(p);
 		            }
 		        }
 		    }
 		}
 		// Clone.tt Line: 140
 		#region IEditable
-		public override GroupListBaseConfigs Backup()
+		public override GroupListBaseConfigLinks Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return GroupListBaseConfigs.Clone(this.Parent, this);
+			return GroupListBaseConfigLinks.Clone(this.Parent, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(GroupListBaseConfigs from)
+		public override void Restore(GroupListBaseConfigLinks from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    GroupListBaseConfigs.Update(this, from, isDeep);
+		    GroupListBaseConfigLinks.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_group_list_base_configs' to 'GroupListBaseConfigs'
-		public static GroupListBaseConfigs ConvertToVM(Proto.Config.proto_group_list_base_configs m, GroupListBaseConfigs vm) // Clone.tt Line: 163
+		// Conversion from 'proto_group_list_base_config_links' to 'GroupListBaseConfigLinks'
+		public static GroupListBaseConfigLinks ConvertToVM(Proto.Config.proto_group_list_base_config_links m, GroupListBaseConfigLinks vm) // Clone.tt Line: 163
 		{
 		    if (m == null)
 		        return vm;
@@ -2386,25 +2386,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = m.Name; // Clone.tt Line: 216
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 216
 		    vm.Description = m.Description; // Clone.tt Line: 216
-		    vm.ListBaseConfigs = new ConfigNodesCollection<BaseConfig>(vm); // Clone.tt Line: 188
-		    foreach(var t in m.ListBaseConfigs) // Clone.tt Line: 189
+		    vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 188
+		    foreach(var t in m.ListBaseConfigLinks) // Clone.tt Line: 189
 		    {
-		        var tvm = BaseConfig.ConvertToVM(t, new BaseConfig(vm)); // Clone.tt Line: 192
-		        vm.ListBaseConfigs.Add(tvm);
+		        var tvm = BaseConfigLink.ConvertToVM(t, new BaseConfigLink(vm)); // Clone.tt Line: 192
+		        vm.ListBaseConfigLinks.Add(tvm);
 		    }
 		    vm.OnInitFromDto(); // Clone.tt Line: 221
 		    return vm;
 		}
-		// Conversion from 'GroupListBaseConfigs' to 'proto_group_list_base_configs'
-		public static Proto.Config.proto_group_list_base_configs ConvertToProto(GroupListBaseConfigs vm) // Clone.tt Line: 226
+		// Conversion from 'GroupListBaseConfigLinks' to 'proto_group_list_base_config_links'
+		public static Proto.Config.proto_group_list_base_config_links ConvertToProto(GroupListBaseConfigLinks vm) // Clone.tt Line: 226
 		{
-		    Proto.Config.proto_group_list_base_configs m = new Proto.Config.proto_group_list_base_configs(); // Clone.tt Line: 228
+		    Proto.Config.proto_group_list_base_config_links m = new Proto.Config.proto_group_list_base_config_links(); // Clone.tt Line: 228
 		    m.Guid = vm.Guid; // Clone.tt Line: 252
 		    m.Name = vm.Name; // Clone.tt Line: 252
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 252
 		    m.Description = vm.Description; // Clone.tt Line: 252
-		    foreach(var t in vm.ListBaseConfigs) // Clone.tt Line: 231
-		        m.ListBaseConfigs.Add(BaseConfig.ConvertToProto((BaseConfig)t)); // Clone.tt Line: 235
+		    foreach(var t in vm.ListBaseConfigLinks) // Clone.tt Line: 231
+		        m.ListBaseConfigLinks.Add(BaseConfigLink.ConvertToProto((BaseConfigLink)t)); // Clone.tt Line: 235
 		    return m;
 		}
 		
@@ -2413,7 +2413,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			foreach(var t in this.ListBaseConfigs)
+			foreach(var t in this.ListBaseConfigLinks)
 				t.AcceptConfigNodeVisitor(visitor);
 			visitor.VisitEnd(this);
 		}
@@ -2440,57 +2440,57 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDescriptionChanged();
 		
 		[BrowsableAttribute(false)]
-		public ConfigNodesCollection<BaseConfig> ListBaseConfigs  // Property.tt Line: 53
+		public ConfigNodesCollection<BaseConfigLink> ListBaseConfigLinks  // Property.tt Line: 53
 		{ 
 			set
 			{
-				if (_ListBaseConfigs != value)
+				if (_ListBaseConfigLinks != value)
 				{
-					OnListBaseConfigsChanging(_ListBaseConfigs, value);
-					_ListBaseConfigs = value;
-					OnListBaseConfigsChanged();
+					OnListBaseConfigLinksChanging(_ListBaseConfigLinks, value);
+					_ListBaseConfigLinks = value;
+					OnListBaseConfigLinksChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _ListBaseConfigs; }
+			get { return _ListBaseConfigLinks; }
 		}
-		private ConfigNodesCollection<BaseConfig> _ListBaseConfigs;
-		partial void OnListBaseConfigsChanging(SortedObservableCollection<BaseConfig> from, SortedObservableCollection<BaseConfig> to); // Property.tt Line: 71
-		partial void OnListBaseConfigsChanged();
+		private ConfigNodesCollection<BaseConfigLink> _ListBaseConfigLinks;
+		partial void OnListBaseConfigLinksChanging(SortedObservableCollection<BaseConfigLink> from, SortedObservableCollection<BaseConfigLink> to); // Property.tt Line: 71
+		partial void OnListBaseConfigLinksChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IBaseConfig> ListBaseConfigsI { get { foreach (var t in _ListBaseConfigs) yield return t; } }
-		public BaseConfig this[int index] { get { return (BaseConfig)this.ListBaseConfigs[index]; } }
-		public void Add(BaseConfig item)  // Property.tt Line: 78
+		public IEnumerable<IBaseConfigLink> ListBaseConfigLinksI { get { foreach (var t in _ListBaseConfigLinks) yield return t; } }
+		public BaseConfigLink this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
+		public void Add(BaseConfigLink item)  // Property.tt Line: 78
 		{ 
-		    this.ListBaseConfigs.Add(item); 
+		    this.ListBaseConfigLinks.Add(item); 
 		    item.Parent = this;
 		}
-		public void AddRange(IEnumerable<BaseConfig> items) 
+		public void AddRange(IEnumerable<BaseConfigLink> items) 
 		{ 
-		    this.ListBaseConfigs.AddRange(items); 
+		    this.ListBaseConfigLinks.AddRange(items); 
 		    foreach(var t in items)
 		        t.Parent = this;
 		}
 		public int Count() 
 		{ 
-		    return this.ListBaseConfigs.Count; 
+		    return this.ListBaseConfigLinks.Count; 
 		}
-		public void Remove(BaseConfig item) 
+		public void Remove(BaseConfigLink item) 
 		{
-		    this.ListBaseConfigs.Remove(item); 
+		    this.ListBaseConfigLinks.Remove(item); 
 		    item.Parent = null;
 		}
 	
 		#endregion Properties
 	}
-	public partial class BaseConfig : ConfigObjectBase<BaseConfig, BaseConfig.BaseConfigValidator>, IComparable<BaseConfig>, IConfigAcceptVisitor, IBaseConfig // Class.tt Line: 6
+	public partial class BaseConfigLink : ConfigObjectBase<BaseConfigLink, BaseConfigLink.BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 6
 	{
-		public partial class BaseConfigValidator : ValidatorBase<BaseConfig, BaseConfigValidator> { } // Class.tt Line: 8
+		public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 8
 		#region CTOR
-		//public BaseConfig(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
-		//public BaseConfig() : base(BaseConfigValidator.Validator)
-		public BaseConfig(ITreeConfigNode parent) : base(parent, BaseConfigValidator.Validator) // Class.tt Line: 13
+		//public BaseConfigLink(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
+		//public BaseConfigLink() : base(BaseConfigLinkValidator.Validator)
+		public BaseConfigLink(ITreeConfigNode parent) : base(parent, BaseConfigLinkValidator.Validator) // Class.tt Line: 13
 	    {
 			OnInitBegin();
 			this.ConfigNode = new Config(this); // Class.tt Line: 29
@@ -2505,9 +2505,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		{
 		    //throw new Exception();
 		}
-		public static BaseConfig Clone(ITreeConfigNode parent, BaseConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+		public static BaseConfigLink Clone(ITreeConfigNode parent, BaseConfigLink from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
 		{
-		    BaseConfig vm = new BaseConfig(parent);
+		    BaseConfigLink vm = new BaseConfigLink(parent);
 		    vm.Guid = from.Guid; // Clone.tt Line: 62
 		    vm.Name = from.Name; // Clone.tt Line: 62
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
@@ -2519,7 +2519,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		        vm.SetNewGuid();
 		    return vm;
 		}
-		public static void Update(BaseConfig to, BaseConfig from, bool isDeep = true) // Clone.tt Line: 72
+		public static void Update(BaseConfigLink to, BaseConfigLink from, bool isDeep = true) // Clone.tt Line: 72
 		{
 		    to.Guid = from.Guid; // Clone.tt Line: 134
 		    to.Name = from.Name; // Clone.tt Line: 134
@@ -2531,23 +2531,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		}
 		// Clone.tt Line: 140
 		#region IEditable
-		public override BaseConfig Backup()
+		public override BaseConfigLink Backup()
 		{
 		    bool isDeep = true;
 		    OnBackupObjectStarting(ref isDeep);
-			return BaseConfig.Clone(this.Parent, this);
+			return BaseConfigLink.Clone(this.Parent, this);
 		}
 		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(BaseConfig from)
+		public override void Restore(BaseConfigLink from)
 		{
 		    bool isDeep = true;
 		    OnRestoreObjectStarting(ref isDeep);
-		    BaseConfig.Update(this, from, isDeep);
+		    BaseConfigLink.Update(this, from, isDeep);
 		}
 		partial void OnRestoreObjectStarting(ref bool isDeep);
 		#endregion IEditable
-		// Conversion from 'proto_base_config' to 'BaseConfig'
-		public static BaseConfig ConvertToVM(Proto.Config.proto_base_config m, BaseConfig vm) // Clone.tt Line: 163
+		// Conversion from 'proto_base_config_link' to 'BaseConfigLink'
+		public static BaseConfigLink ConvertToVM(Proto.Config.proto_base_config_link m, BaseConfigLink vm) // Clone.tt Line: 163
 		{
 		    if (m == null)
 		        return vm;
@@ -2562,10 +2562,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.OnInitFromDto(); // Clone.tt Line: 221
 		    return vm;
 		}
-		// Conversion from 'BaseConfig' to 'proto_base_config'
-		public static Proto.Config.proto_base_config ConvertToProto(BaseConfig vm) // Clone.tt Line: 226
+		// Conversion from 'BaseConfigLink' to 'proto_base_config_link'
+		public static Proto.Config.proto_base_config_link ConvertToProto(BaseConfigLink vm) // Clone.tt Line: 226
 		{
-		    Proto.Config.proto_base_config m = new Proto.Config.proto_base_config(); // Clone.tt Line: 228
+		    Proto.Config.proto_base_config_link m = new Proto.Config.proto_base_config_link(); // Clone.tt Line: 228
 		    m.Guid = vm.Guid; // Clone.tt Line: 252
 		    m.Name = vm.Name; // Clone.tt Line: 252
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 252
@@ -2666,9 +2666,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    {
 			OnInitBegin();
 			this.DbSettings = new DbSettings(); // Class.tt Line: 27
-			this.GroupConfigs = new GroupListBaseConfigs(this); // Class.tt Line: 29
+			this.GroupConfigLinks = new GroupListBaseConfigLinks(this); // Class.tt Line: 29
 			this.Model = new ConfigModel(this); // Class.tt Line: 29
-			this.GroupModels = new GroupListModels(this); // Class.tt Line: 29
 			this.GroupPlugins = new GroupListPlugins(this); // Class.tt Line: 29
 			this.GroupAppSolutions = new GroupListAppSolutions(this); // Class.tt Line: 29
 			OnInit();
@@ -2696,11 +2695,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (isDeep) // Clone.tt Line: 59
 		        vm.DbSettings = DbSettings.Clone(vm, from.DbSettings, isDeep);
 		    if (isDeep) // Clone.tt Line: 59
-		        vm.GroupConfigs = GroupListBaseConfigs.Clone(vm, from.GroupConfigs, isDeep);
+		        vm.GroupConfigLinks = GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
 		    if (isDeep) // Clone.tt Line: 59
 		        vm.Model = ConfigModel.Clone(vm, from.Model, isDeep);
-		    if (isDeep) // Clone.tt Line: 59
-		        vm.GroupModels = GroupListModels.Clone(vm, from.GroupModels, isDeep);
 		    if (isDeep) // Clone.tt Line: 59
 		        vm.GroupPlugins = GroupListPlugins.Clone(vm, from.GroupPlugins, isDeep);
 		    if (isDeep) // Clone.tt Line: 59
@@ -2722,11 +2719,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (isDeep) // Clone.tt Line: 131
 		        DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
 		    if (isDeep) // Clone.tt Line: 131
-		        GroupListBaseConfigs.Update(to.GroupConfigs, from.GroupConfigs, isDeep);
+		        GroupListBaseConfigLinks.Update(to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
 		    if (isDeep) // Clone.tt Line: 131
 		        ConfigModel.Update(to.Model, from.Model, isDeep);
-		    if (isDeep) // Clone.tt Line: 131
-		        GroupListModels.Update(to.GroupModels, from.GroupModels, isDeep);
 		    if (isDeep) // Clone.tt Line: 131
 		        GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
 		    if (isDeep) // Clone.tt Line: 131
@@ -2765,15 +2760,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (vm.DbSettings == null) // Clone.tt Line: 204
 		        vm.DbSettings = new DbSettings(); // Clone.tt Line: 208
 		    DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
-		    if (vm.GroupConfigs == null) // Clone.tt Line: 204
-		        vm.GroupConfigs = new GroupListBaseConfigs(vm); // Clone.tt Line: 206
-		    GroupListBaseConfigs.ConvertToVM(m.GroupConfigs, vm.GroupConfigs);
+		    if (vm.GroupConfigLinks == null) // Clone.tt Line: 204
+		        vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 206
+		    GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks);
 		    if (vm.Model == null) // Clone.tt Line: 204
 		        vm.Model = new ConfigModel(vm); // Clone.tt Line: 206
 		    ConfigModel.ConvertToVM(m.Model, vm.Model);
-		    if (vm.GroupModels == null) // Clone.tt Line: 204
-		        vm.GroupModels = new GroupListModels(vm); // Clone.tt Line: 206
-		    GroupListModels.ConvertToVM(m.GroupModels, vm.GroupModels);
 		    if (vm.GroupPlugins == null) // Clone.tt Line: 204
 		        vm.GroupPlugins = new GroupListPlugins(vm); // Clone.tt Line: 206
 		    GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
@@ -2796,9 +2788,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 252
 		    m.PrimaryKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PrimaryKeyType; // Clone.tt Line: 250
 		    m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 246
-		    m.GroupConfigs = GroupListBaseConfigs.ConvertToProto(vm.GroupConfigs); // Clone.tt Line: 246
+		    m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 246
 		    m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 246
-		    m.GroupModels = GroupListModels.ConvertToProto(vm.GroupModels); // Clone.tt Line: 246
 		    m.GroupPlugins = GroupListPlugins.ConvertToProto(vm.GroupPlugins); // Clone.tt Line: 246
 		    m.GroupAppSolutions = GroupListAppSolutions.ConvertToProto(vm.GroupAppSolutions); // Clone.tt Line: 246
 		    return m;
@@ -2810,8 +2801,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		        return;
 			visitor.Visit(this);
 			this.Model.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 25
-		
-			this.GroupModels.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 25
 		
 			visitor.VisitEnd(this);
 		}
@@ -2927,26 +2916,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		public IDbSettings DbSettingsI { get { return _DbSettings; }}
 		
 		[BrowsableAttribute(false)]
-		public GroupListBaseConfigs GroupConfigs // Property.tt Line: 100
+		public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 100
 		{ 
 			set
 			{
-				if (_GroupConfigs != value)
+				if (_GroupConfigLinks != value)
 				{
-					OnGroupConfigsChanging(_GroupConfigs, value);
-		            _GroupConfigs = value;
-					OnGroupConfigsChanged();
+					OnGroupConfigLinksChanging(_GroupConfigLinks, value);
+		            _GroupConfigLinks = value;
+					OnGroupConfigLinksChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _GroupConfigs; }
+			get { return _GroupConfigLinks; }
 		}
-		private GroupListBaseConfigs _GroupConfigs;
-		partial void OnGroupConfigsChanging(GroupListBaseConfigs from, GroupListBaseConfigs to); // Property.tt Line: 118
-		partial void OnGroupConfigsChanged();
+		private GroupListBaseConfigLinks _GroupConfigLinks;
+		partial void OnGroupConfigLinksChanging(GroupListBaseConfigLinks from, GroupListBaseConfigLinks to); // Property.tt Line: 118
+		partial void OnGroupConfigLinksChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListBaseConfigs GroupConfigsI { get { return _GroupConfigs; }}
+		public IGroupListBaseConfigLinks GroupConfigLinksI { get { return _GroupConfigLinks; }}
 		
 		[BrowsableAttribute(false)]
 		public ConfigModel Model // Property.tt Line: 100
@@ -2969,28 +2958,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnModelChanged();
 		[BrowsableAttribute(false)]
 		public IConfigModel ModelI { get { return _Model; }}
-		
-		[BrowsableAttribute(false)]
-		public GroupListModels GroupModels // Property.tt Line: 100
-		{ 
-			set
-			{
-				if (_GroupModels != value)
-				{
-					OnGroupModelsChanging(_GroupModels, value);
-		            _GroupModels = value;
-					OnGroupModelsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _GroupModels; }
-		}
-		private GroupListModels _GroupModels;
-		partial void OnGroupModelsChanging(GroupListModels from, GroupListModels to); // Property.tt Line: 118
-		partial void OnGroupModelsChanged();
-		[BrowsableAttribute(false)]
-		public IGroupListModels GroupModelsI { get { return _GroupModels; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListPlugins GroupPlugins // Property.tt Line: 100
@@ -3035,623 +3002,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupAppSolutionsChanged();
 		[BrowsableAttribute(false)]
 		public IGroupListAppSolutions GroupAppSolutionsI { get { return _GroupAppSolutions; }}
-	
-		#endregion Properties
-	}
-	public partial class GroupListModels : ConfigObjectBase<GroupListModels, GroupListModels.GroupListModelsValidator>, IComparable<GroupListModels>, IConfigAcceptVisitor, IGroupListModels // Class.tt Line: 6
-	{
-		public partial class GroupListModelsValidator : ValidatorBase<GroupListModels, GroupListModelsValidator> { } // Class.tt Line: 8
-		#region CTOR
-		//public GroupListModels(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
-		//public GroupListModels() : base(GroupListModelsValidator.Validator)
-		public GroupListModels(ITreeConfigNode parent) : base(parent, GroupListModelsValidator.Validator) // Class.tt Line: 13
-	    {
-			OnInitBegin();
-			this.ListModels = new ConfigNodesCollection<Model>(this); // Class.tt Line: 23
-			OnInit();
-	    }
-		partial void OnInitBegin();
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		
-		public override void Sort(Type type) // Clone.tt Line: 8
-		{
-		    if (type == typeof(Model)) // Clone.tt Line: 15
-		    {
-		        this.ListModels.Sort();
-		    }
-		}
-		public static GroupListModels Clone(ITreeConfigNode parent, GroupListModels from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
-		{
-		    GroupListModels vm = new GroupListModels(parent);
-		    vm.Guid = from.Guid; // Clone.tt Line: 62
-		    vm.Name = from.Name; // Clone.tt Line: 62
-		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-		    vm.Description = from.Description; // Clone.tt Line: 62
-		    vm.IsAutoInsertDependancies = from.IsAutoInsertDependancies; // Clone.tt Line: 62
-		    vm.ListModels = new ConfigNodesCollection<Model>(vm); // Clone.tt Line: 48
-		    foreach(var t in from.ListModels) // Clone.tt Line: 49
-		        vm.ListModels.Add(Model.Clone(vm, (Model)t, isDeep));
-		    if (isNewGuid) // Clone.tt Line: 67
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(GroupListModels to, GroupListModels from, bool isDeep = true) // Clone.tt Line: 72
-		{
-		    to.Guid = from.Guid; // Clone.tt Line: 134
-		    to.Name = from.Name; // Clone.tt Line: 134
-		    to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-		    to.Description = from.Description; // Clone.tt Line: 134
-		    to.IsAutoInsertDependancies = from.IsAutoInsertDependancies; // Clone.tt Line: 134
-		    if (isDeep) // Clone.tt Line: 79
-		    {
-		        foreach(var t in to.ListModels.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListModels)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    Model.Update((Model)t, (Model)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListModels.Remove(t);
-		        }
-		        foreach(var tt in from.ListModels)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListModels.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new Model(to); // Clone.tt Line: 110
-		                Model.Update(p, (Model)tt, isDeep);
-		                to.ListModels.Add(p);
-		            }
-		        }
-		    }
-		}
-		// Clone.tt Line: 140
-		#region IEditable
-		public override GroupListModels Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return GroupListModels.Clone(this.Parent, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(GroupListModels from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    GroupListModels.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_group_list_models' to 'GroupListModels'
-		public static GroupListModels ConvertToVM(Proto.Config.proto_group_list_models m, GroupListModels vm) // Clone.tt Line: 163
-		{
-		    if (m == null)
-		        return vm;
-		    vm.Guid = m.Guid; // Clone.tt Line: 216
-		    vm.Name = m.Name; // Clone.tt Line: 216
-		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 216
-		    vm.Description = m.Description; // Clone.tt Line: 216
-		    vm.IsAutoInsertDependancies = m.IsAutoInsertDependancies; // Clone.tt Line: 216
-		    vm.ListModels = new ConfigNodesCollection<Model>(vm); // Clone.tt Line: 188
-		    foreach(var t in m.ListModels) // Clone.tt Line: 189
-		    {
-		        var tvm = Model.ConvertToVM(t, new Model(vm)); // Clone.tt Line: 192
-		        vm.ListModels.Add(tvm);
-		    }
-		    vm.OnInitFromDto(); // Clone.tt Line: 221
-		    return vm;
-		}
-		// Conversion from 'GroupListModels' to 'proto_group_list_models'
-		public static Proto.Config.proto_group_list_models ConvertToProto(GroupListModels vm) // Clone.tt Line: 226
-		{
-		    Proto.Config.proto_group_list_models m = new Proto.Config.proto_group_list_models(); // Clone.tt Line: 228
-		    m.Guid = vm.Guid; // Clone.tt Line: 252
-		    m.Name = vm.Name; // Clone.tt Line: 252
-		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 252
-		    m.Description = vm.Description; // Clone.tt Line: 252
-		    m.IsAutoInsertDependancies = vm.IsAutoInsertDependancies; // Clone.tt Line: 252
-		    foreach(var t in vm.ListModels) // Clone.tt Line: 231
-		        m.ListModels.Add(Model.ConvertToProto((Model)t)); // Clone.tt Line: 235
-		    return m;
-		}
-		
-		public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			foreach(var t in this.ListModels)
-				t.AcceptConfigNodeVisitor(visitor);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		public string Description // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging(_Description, value);
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 141
-		partial void OnDescriptionChanged();
-		
-		[DisplayName("Auto")]
-		[Description("Auto insert dependancies")]
-		public bool IsAutoInsertDependancies // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_IsAutoInsertDependancies != value)
-				{
-					OnIsAutoInsertDependanciesChanging(_IsAutoInsertDependancies, value);
-					_IsAutoInsertDependancies = value;
-					OnIsAutoInsertDependanciesChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _IsAutoInsertDependancies; }
-		}
-		private bool _IsAutoInsertDependancies;
-		partial void OnIsAutoInsertDependanciesChanging(bool from, bool to); // Property.tt Line: 141
-		partial void OnIsAutoInsertDependanciesChanged();
-		
-		[BrowsableAttribute(false)]
-		public ConfigNodesCollection<Model> ListModels  // Property.tt Line: 53
-		{ 
-			set
-			{
-				if (_ListModels != value)
-				{
-					OnListModelsChanging(_ListModels, value);
-					_ListModels = value;
-					OnListModelsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListModels; }
-		}
-		private ConfigNodesCollection<Model> _ListModels;
-		partial void OnListModelsChanging(SortedObservableCollection<Model> from, SortedObservableCollection<Model> to); // Property.tt Line: 71
-		partial void OnListModelsChanged();
-		[BrowsableAttribute(false)]
-		public IEnumerable<IModel> ListModelsI { get { foreach (var t in _ListModels) yield return t; } }
-		public Model this[int index] { get { return (Model)this.ListModels[index]; } }
-		public void Add(Model item)  // Property.tt Line: 78
-		{ 
-		    this.ListModels.Add(item); 
-		    item.Parent = this;
-		}
-		public void AddRange(IEnumerable<Model> items) 
-		{ 
-		    this.ListModels.AddRange(items); 
-		    foreach(var t in items)
-		        t.Parent = this;
-		}
-		public int Count() 
-		{ 
-		    return this.ListModels.Count; 
-		}
-		public void Remove(Model item) 
-		{
-		    this.ListModels.Remove(item); 
-		    item.Parent = null;
-		}
-	
-		#endregion Properties
-	}
-	public partial class ObjectInclusionRecord : ViewModelValidatableWithSeverity<ObjectInclusionRecord, ObjectInclusionRecord.ObjectInclusionRecordValidator>, IObjectInclusionRecord // Class.tt Line: 6
-	{
-		public partial class ObjectInclusionRecordValidator : ValidatorBase<ObjectInclusionRecord, ObjectInclusionRecordValidator> { } // Class.tt Line: 8
-		#region CTOR
-		public ObjectInclusionRecord() : base(ObjectInclusionRecordValidator.Validator) // Class.tt Line: 38
-		{
-			OnInitBegin();
-			OnInit();
-		}
-		partial void OnInitBegin();
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		public static ObjectInclusionRecord Clone(ITreeConfigNode parent, ObjectInclusionRecord from, bool isDeep = true) // Clone.tt Line: 27
-		{
-		    ObjectInclusionRecord vm = new ObjectInclusionRecord();
-		    vm.Guid = from.Guid; // Clone.tt Line: 62
-		    vm.Inclusion = from.Inclusion; // Clone.tt Line: 62
-		    return vm;
-		}
-		public static void Update(ObjectInclusionRecord to, ObjectInclusionRecord from, bool isDeep = true) // Clone.tt Line: 72
-		{
-		    to.Guid = from.Guid; // Clone.tt Line: 134
-		    to.Inclusion = from.Inclusion; // Clone.tt Line: 134
-		}
-		// Clone.tt Line: 140
-		#region IEditable
-		public override ObjectInclusionRecord Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return ObjectInclusionRecord.Clone(null, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(ObjectInclusionRecord from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    ObjectInclusionRecord.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_object_inclusion_record' to 'ObjectInclusionRecord'
-		public static ObjectInclusionRecord ConvertToVM(Proto.Config.proto_object_inclusion_record m, ObjectInclusionRecord vm) // Clone.tt Line: 163
-		{
-		    if (m == null)
-		        return vm;
-		    vm.Guid = m.Guid; // Clone.tt Line: 216
-		    vm.Inclusion = m.Inclusion; // Clone.tt Line: 216
-		    return vm;
-		}
-		// Conversion from 'ObjectInclusionRecord' to 'proto_object_inclusion_record'
-		public static Proto.Config.proto_object_inclusion_record ConvertToProto(ObjectInclusionRecord vm) // Clone.tt Line: 226
-		{
-		    Proto.Config.proto_object_inclusion_record m = new Proto.Config.proto_object_inclusion_record(); // Clone.tt Line: 228
-		    m.Guid = vm.Guid; // Clone.tt Line: 252
-		    m.Inclusion = vm.Inclusion; // Clone.tt Line: 252
-		    return m;
-		}
-		#endregion Procedures
-		#region Properties
-		
-		[BrowsableAttribute(false)]
-		public string Guid // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_Guid != value)
-				{
-					OnGuidChanging(_Guid, value);
-					_Guid = value;
-					OnGuidChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Guid; }
-		}
-		private string _Guid = "";
-		partial void OnGuidChanging(string from, string to); // Property.tt Line: 141
-		partial void OnGuidChanged();
-		
-		
-		///////////////////////////////////////////////////
-		/// bool_nullable inclusion = 2;
-		///////////////////////////////////////////////////
-		public bool Inclusion // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_Inclusion != value)
-				{
-					OnInclusionChanging(_Inclusion, value);
-					_Inclusion = value;
-					OnInclusionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Inclusion; }
-		}
-		private bool _Inclusion;
-		partial void OnInclusionChanging(bool from, bool to); // Property.tt Line: 141
-		partial void OnInclusionChanged();
-	
-		#endregion Properties
-	}
-	public partial class Model : ConfigObjectBase<Model, Model.ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // Class.tt Line: 6
-	{
-		public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 8
-		#region CTOR
-		//public Model(ITreeConfigNode parent) : this() { this.Parent = parent; } // Class.tt Line: 11
-		//public Model() : base(ModelValidator.Validator)
-		public Model(ITreeConfigNode parent) : base(parent, ModelValidator.Validator) // Class.tt Line: 13
-	    {
-			OnInitBegin();
-			this.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 21
-			this.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>(); // Class.tt Line: 21
-			OnInit();
-	    }
-		partial void OnInitBegin();
-		partial void OnInit();
-		#endregion CTOR
-		#region Procedures
-		
-		public override void Sort(Type type) // Clone.tt Line: 8
-		{
-		}
-		public static Model Clone(ITreeConfigNode parent, Model from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
-		{
-		    Model vm = new Model(parent);
-		    vm.Guid = from.Guid; // Clone.tt Line: 62
-		    vm.Name = from.Name; // Clone.tt Line: 62
-		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-		    vm.Description = from.Description; // Clone.tt Line: 62
-		    vm.EnumDefaultInclusion = from.EnumDefaultInclusion; // Clone.tt Line: 62
-		    vm.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>(); // Clone.tt Line: 44
-		    foreach(var t in from.ListObjectInclusionRecords) // Clone.tt Line: 45
-		        vm.ListObjectInclusionRecords.Add(ObjectInclusionRecord.Clone(vm, (ObjectInclusionRecord)t, isDeep));
-		    vm.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>(); // Clone.tt Line: 44
-		    foreach(var t in from.ListGroupObjects) // Clone.tt Line: 45
-		        vm.ListGroupObjects.Add(ObjectInclusionRecord.Clone(vm, (ObjectInclusionRecord)t, isDeep));
-		    if (isNewGuid) // Clone.tt Line: 67
-		        vm.SetNewGuid();
-		    return vm;
-		}
-		public static void Update(Model to, Model from, bool isDeep = true) // Clone.tt Line: 72
-		{
-		    to.Guid = from.Guid; // Clone.tt Line: 134
-		    to.Name = from.Name; // Clone.tt Line: 134
-		    to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-		    to.Description = from.Description; // Clone.tt Line: 134
-		    to.EnumDefaultInclusion = from.EnumDefaultInclusion; // Clone.tt Line: 134
-		    if (isDeep) // Clone.tt Line: 79
-		    {
-		        foreach(var t in to.ListObjectInclusionRecords.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListObjectInclusionRecords)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    ObjectInclusionRecord.Update((ObjectInclusionRecord)t, (ObjectInclusionRecord)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListObjectInclusionRecords.Remove(t);
-		        }
-		        foreach(var tt in from.ListObjectInclusionRecords)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListObjectInclusionRecords.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new ObjectInclusionRecord(); // Clone.tt Line: 112
-		                ObjectInclusionRecord.Update(p, (ObjectInclusionRecord)tt, isDeep);
-		                to.ListObjectInclusionRecords.Add(p);
-		            }
-		        }
-		    }
-		    if (isDeep) // Clone.tt Line: 79
-		    {
-		        foreach(var t in to.ListGroupObjects.ToList())
-		        {
-		            bool isfound = false;
-		            foreach(var tt in from.ListGroupObjects)
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    ObjectInclusionRecord.Update((ObjectInclusionRecord)t, (ObjectInclusionRecord)tt, isDeep);
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		                to.ListGroupObjects.Remove(t);
-		        }
-		        foreach(var tt in from.ListGroupObjects)
-		        {
-		            bool isfound = false;
-		            foreach(var t in to.ListGroupObjects.ToList())
-		            {
-		                if (t == tt)
-		                {
-		                    isfound = true;
-		                    break;
-		                }
-		            }
-		            if (!isfound)
-		            {
-		                var p = new ObjectInclusionRecord(); // Clone.tt Line: 112
-		                ObjectInclusionRecord.Update(p, (ObjectInclusionRecord)tt, isDeep);
-		                to.ListGroupObjects.Add(p);
-		            }
-		        }
-		    }
-		}
-		// Clone.tt Line: 140
-		#region IEditable
-		public override Model Backup()
-		{
-		    bool isDeep = true;
-		    OnBackupObjectStarting(ref isDeep);
-			return Model.Clone(this.Parent, this);
-		}
-		partial void OnBackupObjectStarting(ref bool isDeep);
-		public override void Restore(Model from)
-		{
-		    bool isDeep = true;
-		    OnRestoreObjectStarting(ref isDeep);
-		    Model.Update(this, from, isDeep);
-		}
-		partial void OnRestoreObjectStarting(ref bool isDeep);
-		#endregion IEditable
-		// Conversion from 'proto_model' to 'Model'
-		public static Model ConvertToVM(Proto.Config.proto_model m, Model vm) // Clone.tt Line: 163
-		{
-		    if (m == null)
-		        return vm;
-		    vm.Guid = m.Guid; // Clone.tt Line: 216
-		    vm.Name = m.Name; // Clone.tt Line: 216
-		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 216
-		    vm.Description = m.Description; // Clone.tt Line: 216
-		    vm.EnumDefaultInclusion = (EnumIncludeDefaultPolicy)m.EnumDefaultInclusion; // Clone.tt Line: 214
-		    vm.ListObjectInclusionRecords = new ObservableCollection<ObjectInclusionRecord>(); // Clone.tt Line: 178
-		    foreach(var t in m.ListObjectInclusionRecords) // Clone.tt Line: 179
-		    {
-		        var tvm = ObjectInclusionRecord.ConvertToVM(t, new ObjectInclusionRecord()); // Clone.tt Line: 184
-		        vm.ListObjectInclusionRecords.Add(tvm);
-		    }
-		    vm.ListGroupObjects = new ObservableCollection<ObjectInclusionRecord>(); // Clone.tt Line: 178
-		    foreach(var t in m.ListGroupObjects) // Clone.tt Line: 179
-		    {
-		        var tvm = ObjectInclusionRecord.ConvertToVM(t, new ObjectInclusionRecord()); // Clone.tt Line: 184
-		        vm.ListGroupObjects.Add(tvm);
-		    }
-		    vm.OnInitFromDto(); // Clone.tt Line: 221
-		    return vm;
-		}
-		// Conversion from 'Model' to 'proto_model'
-		public static Proto.Config.proto_model ConvertToProto(Model vm) // Clone.tt Line: 226
-		{
-		    Proto.Config.proto_model m = new Proto.Config.proto_model(); // Clone.tt Line: 228
-		    m.Guid = vm.Guid; // Clone.tt Line: 252
-		    m.Name = vm.Name; // Clone.tt Line: 252
-		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 252
-		    m.Description = vm.Description; // Clone.tt Line: 252
-		    m.EnumDefaultInclusion = (Proto.Config.proto_enum_include_default_policy)vm.EnumDefaultInclusion; // Clone.tt Line: 250
-		    foreach(var t in vm.ListObjectInclusionRecords) // Clone.tt Line: 231
-		        m.ListObjectInclusionRecords.Add(ObjectInclusionRecord.ConvertToProto((ObjectInclusionRecord)t)); // Clone.tt Line: 235
-		    foreach(var t in vm.ListGroupObjects) // Clone.tt Line: 231
-		        m.ListGroupObjects.Add(ObjectInclusionRecord.ConvertToProto((ObjectInclusionRecord)t)); // Clone.tt Line: 235
-		    return m;
-		}
-		
-		public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-		{
-		    if (visitor.Token.IsCancellationRequested)
-		        return;
-			visitor.Visit(this);
-			visitor.VisitEnd(this);
-		}
-		#endregion Procedures
-		#region Properties
-		
-		[PropertyOrderAttribute(5)]
-		public string Description // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_Description != value)
-				{
-					OnDescriptionChanging(_Description, value);
-					_Description = value;
-					OnDescriptionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _Description; }
-		}
-		private string _Description = "";
-		partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 141
-		partial void OnDescriptionChanged();
-		
-		[DisplayName("Default Mode")]
-		[Description("Default mode for model objects inclusion behavior")]
-		public EnumIncludeDefaultPolicy EnumDefaultInclusion // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_EnumDefaultInclusion != value)
-				{
-					OnEnumDefaultInclusionChanging(_EnumDefaultInclusion, value);
-					_EnumDefaultInclusion = value;
-					OnEnumDefaultInclusionChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _EnumDefaultInclusion; }
-		}
-		private EnumIncludeDefaultPolicy _EnumDefaultInclusion;
-		partial void OnEnumDefaultInclusionChanging(EnumIncludeDefaultPolicy from, EnumIncludeDefaultPolicy to); // Property.tt Line: 141
-		partial void OnEnumDefaultInclusionChanged();
-		
-		[BrowsableAttribute(false)]
-		public ObservableCollection<ObjectInclusionRecord> ListObjectInclusionRecords // Property.tt Line: 9
-		{ 
-			set
-			{
-				if (_ListObjectInclusionRecords != value)
-				{
-					OnListObjectInclusionRecordsChanging(_ListObjectInclusionRecords, value);
-					_ListObjectInclusionRecords = value;
-					OnListObjectInclusionRecordsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListObjectInclusionRecords; }
-		}
-		private ObservableCollection<ObjectInclusionRecord> _ListObjectInclusionRecords;
-		partial void OnListObjectInclusionRecordsChanging(ObservableCollection<ObjectInclusionRecord> from, ObservableCollection<ObjectInclusionRecord> to); // Property.tt Line: 27
-		partial void OnListObjectInclusionRecordsChanged();
-		[BrowsableAttribute(false)]
-		public IEnumerable<IObjectInclusionRecord> ListObjectInclusionRecordsI { get { foreach (var t in _ListObjectInclusionRecords) yield return t; } }
-		
-		
-		///////////////////////////////////////////////////
-		/// 
-		/// proto_object_inclusion_record test =12;
-		///////////////////////////////////////////////////
-		[BrowsableAttribute(false)]
-		[ExpandableObjectAttribute()]
-		public ObservableCollection<ObjectInclusionRecord> ListGroupObjects // Property.tt Line: 9
-		{ 
-			set
-			{
-				if (_ListGroupObjects != value)
-				{
-					OnListGroupObjectsChanging(_ListGroupObjects, value);
-					_ListGroupObjects = value;
-					OnListGroupObjectsChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _ListGroupObjects; }
-		}
-		private ObservableCollection<ObjectInclusionRecord> _ListGroupObjects;
-		partial void OnListGroupObjectsChanging(ObservableCollection<ObjectInclusionRecord> from, ObservableCollection<ObjectInclusionRecord> to); // Property.tt Line: 27
-		partial void OnListGroupObjectsChanged();
-		[BrowsableAttribute(false)]
-		public IEnumerable<IObjectInclusionRecord> ListGroupObjectsI { get { foreach (var t in _ListGroupObjects) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -9227,12 +8577,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		void Visit(Proto.Config.proto_app_solution p);
 		void Visit(Proto.Config.proto_app_project p);
 		void Visit(Proto.Config.proto_config_short_history p);
-		void Visit(Proto.Config.proto_group_list_base_configs p);
-		void Visit(Proto.Config.proto_base_config p);
+		void Visit(Proto.Config.proto_group_list_base_config_links p);
+		void Visit(Proto.Config.proto_base_config_link p);
 		void Visit(Proto.Config.proto_config p);
-		void Visit(Proto.Config.proto_group_list_models p);
-		void Visit(Proto.Config.proto_object_inclusion_record p);
-		void Visit(Proto.Config.proto_model p);
 		void Visit(Proto.Config.proto_config_model p);
 		void Visit(Proto.Config.proto_data_type p);
 		void Visit(Proto.Config.proto_group_list_common p);
@@ -9358,19 +8705,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(GroupListBaseConfigs p) // ValidationVisitor.tt Line: 15
+		protected override void OnVisit(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisitEnd(GroupListBaseConfigs p) // ValidationVisitor.tt Line: 35
+		protected override void OnVisitEnd(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 35
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisit(BaseConfig p) // ValidationVisitor.tt Line: 15
+		protected override void OnVisit(BaseConfigLink p) // ValidationVisitor.tt Line: 15
 	    {
 	        OnVisit(p as IValidatableWithSeverity);
 	    }
-		protected override void OnVisitEnd(BaseConfig p) // ValidationVisitor.tt Line: 35
+		protected override void OnVisitEnd(BaseConfigLink p) // ValidationVisitor.tt Line: 35
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
@@ -9380,34 +8727,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	        ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 29
 	    }
 		protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 35
-	    {
-	        OnVisitEnd(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisit(GroupListModels p) // ValidationVisitor.tt Line: 15
-	    {
-	        OnVisit(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisitEnd(GroupListModels p) // ValidationVisitor.tt Line: 35
-	    {
-	        OnVisitEnd(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisit(ObjectInclusionRecord p) // ValidationVisitor.tt Line: 15
-	    {
-	        OnVisit(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisitEnd(ObjectInclusionRecord p) // ValidationVisitor.tt Line: 35
-	    {
-	        OnVisitEnd(p as IValidatableWithSeverity);
-	    }
-		protected override void OnVisit(Model p) // ValidationVisitor.tt Line: 15
-	    {
-	        OnVisit(p as IValidatableWithSeverity);
-	        foreach(var t in p.ListObjectInclusionRecords) // ValidationVisitor.tt Line: 26
-	            ValidateSubAndCollectErrors(p, t);
-	        foreach(var t in p.ListGroupObjects) // ValidationVisitor.tt Line: 26
-	            ValidateSubAndCollectErrors(p, t);
-	    }
-		protected override void OnVisitEnd(Model p) // ValidationVisitor.tt Line: 35
 	    {
 	        OnVisitEnd(p as IValidatableWithSeverity);
 	    }
@@ -9754,26 +9073,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    }
 	    protected virtual void OnVisit(ConfigShortHistory p) {}
 	    protected virtual void OnVisitEnd(ConfigShortHistory p) {}
-		public void Visit(GroupListBaseConfigs p)
+		public void Visit(GroupListBaseConfigLinks p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(GroupListBaseConfigs p)
+		public void VisitEnd(GroupListBaseConfigLinks p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(GroupListBaseConfigs p) {}
-	    protected virtual void OnVisitEnd(GroupListBaseConfigs p) {}
-		public void Visit(BaseConfig p)
+	    protected virtual void OnVisit(GroupListBaseConfigLinks p) {}
+	    protected virtual void OnVisitEnd(GroupListBaseConfigLinks p) {}
+		public void Visit(BaseConfigLink p)
 	    {
 	        OnVisit(p);
 	    }
-		public void VisitEnd(BaseConfig p)
+		public void VisitEnd(BaseConfigLink p)
 	    {
 	        OnVisitEnd(p);
 	    }
-	    protected virtual void OnVisit(BaseConfig p) {}
-	    protected virtual void OnVisitEnd(BaseConfig p) {}
+	    protected virtual void OnVisit(BaseConfigLink p) {}
+	    protected virtual void OnVisitEnd(BaseConfigLink p) {}
 		public void Visit(Config p)
 	    {
 	        OnVisit(p);
@@ -9784,36 +9103,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 	    }
 	    protected virtual void OnVisit(Config p) {}
 	    protected virtual void OnVisitEnd(Config p) {}
-		public void Visit(GroupListModels p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(GroupListModels p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(GroupListModels p) {}
-	    protected virtual void OnVisitEnd(GroupListModels p) {}
-		public void Visit(ObjectInclusionRecord p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(ObjectInclusionRecord p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(ObjectInclusionRecord p) {}
-	    protected virtual void OnVisitEnd(ObjectInclusionRecord p) {}
-		public void Visit(Model p)
-	    {
-	        OnVisit(p);
-	    }
-		public void VisitEnd(Model p)
-	    {
-	        OnVisitEnd(p);
-	    }
-	    protected virtual void OnVisit(Model p) {}
-	    protected virtual void OnVisitEnd(Model p) {}
 		public void Visit(ConfigModel p)
 	    {
 	        OnVisit(p);
@@ -10117,16 +9406,12 @@ public interface IVisitorConfigNode // IVisitorConfigNode.tt Line: 7
 	void VisitEnd(AppProject p);
 	void Visit(ConfigShortHistory p);
 	void VisitEnd(ConfigShortHistory p);
-	void Visit(GroupListBaseConfigs p);
-	void VisitEnd(GroupListBaseConfigs p);
-	void Visit(BaseConfig p);
-	void VisitEnd(BaseConfig p);
+	void Visit(GroupListBaseConfigLinks p);
+	void VisitEnd(GroupListBaseConfigLinks p);
+	void Visit(BaseConfigLink p);
+	void VisitEnd(BaseConfigLink p);
 	void Visit(Config p);
 	void VisitEnd(Config p);
-	void Visit(GroupListModels p);
-	void VisitEnd(GroupListModels p);
-	void Visit(Model p);
-	void VisitEnd(Model p);
 	void Visit(ConfigModel p);
 	void VisitEnd(ConfigModel p);
 	void Visit(GroupListCommon p);

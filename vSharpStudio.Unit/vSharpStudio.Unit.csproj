@@ -162,7 +162,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SubModelsTests.cs" />
     <Compile Include="MainVmTests.cs" />
     <Compile Include="MsSqlTests.cs" />
     <Compile Include="EditorVmTests.cs" />

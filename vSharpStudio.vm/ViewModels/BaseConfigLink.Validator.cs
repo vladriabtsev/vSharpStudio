@@ -8,11 +8,11 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfig
+    public partial class BaseConfigLink
     {
-        public partial class BaseConfigValidator
+        public partial class BaseConfigLinkValidator
         {
-            public BaseConfigValidator()
+            public BaseConfigLinkValidator()
             {
                 RuleFor(x => x.RelativeConfigFilePath).NotEmpty();
                 RuleFor(x => x.RelativeConfigFilePath).Must((o, file) => {

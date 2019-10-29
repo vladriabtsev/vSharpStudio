@@ -34,10 +34,10 @@ namespace vSharpStudio.ViewModels
             //}
             if (item != null)
             {
-                if (item.GetType().FullName == typeof(Model).FullName)
-                {
+                //if (item.GetType().FullName == typeof(Model).FullName)
+                //{
 
-                }
+                //}
             }
             return DefaultTemplate;
         }
