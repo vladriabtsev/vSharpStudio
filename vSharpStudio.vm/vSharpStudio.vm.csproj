@@ -195,8 +195,8 @@
     <Compile Include="ViewModels\GroupListReports.cs" />
     <Compile Include="ViewModels\PluginRow.cs" />
     <Compile Include="ViewModels\PropertiesTab.cs" />
-    <Compile Include="ViewModels\DbIdGenerator.cs" />
-    <Compile Include="ViewModels\DbIdGenerator.Validator.cs" />
+    <Compile Include="ViewModels\DbSettings.cs" />
+    <Compile Include="ViewModels\DbSettings.Validator.cs" />
     <Compile Include="ViewModels\Journal.cs" />
     <Compile Include="ViewModels\Journal.Validator.cs" />
     <Compile Include="ViewModels\Property.cs" />

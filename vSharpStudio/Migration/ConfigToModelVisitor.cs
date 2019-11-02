@@ -37,7 +37,8 @@ namespace vSharpStudio.Migration
 
         void VisitDataType(DataType p, string name)
         {
-            var type = Type.GetType(p.ClrTypeName);
+            // https://docs.microsoft.com/en-us/dotnet/api/system.type.gettype?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Type.GetType);k(SolutionItemsProject);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
+            Type type = p.ClrType;
             _propertyBuilder = _entityBuilder.Property(type, name);
         }
         protected override void OnVisit(Constant p)

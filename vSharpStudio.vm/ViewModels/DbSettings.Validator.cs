@@ -7,11 +7,11 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class DbIdGenerator
+    public partial class DbSettings
     {
-        public partial class DbIdGeneratorValidator
+        public partial class DbSettingsValidator
         {
-            public DbIdGeneratorValidator()
+            public DbSettingsValidator()
             {
             }
         }

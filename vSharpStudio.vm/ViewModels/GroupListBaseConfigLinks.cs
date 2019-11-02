@@ -9,7 +9,7 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigs.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq}")]
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight
     {
         public override IEnumerable<object> GetChildren(object parent) { return this.ListBaseConfigLinks; }
