@@ -19,9 +19,9 @@ namespace vSharpStudio.common
         public DiffConfig(IConfig oldest_config, IConfig prev_config, IConfig current_config)
         {
             this.ConfigModel = new DiffConfigModel(
-                oldest_config?.ModelI,
-                prev_config?.ModelI,
-                current_config.ModelI);
+                oldest_config?.IModel,
+                prev_config?.IModel,
+                current_config.IModel);
             this.Config = current_config;
             this.Config[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
         }

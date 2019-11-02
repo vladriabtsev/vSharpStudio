@@ -20,9 +20,9 @@ namespace vSharpStudio.common
                 IEnumeration prev2 = dic_prev.ContainsKey(t.Guid) ? dic_prev[t.Guid] : null;
                 IEnumeration current2 = dic_curr.ContainsKey(t.Guid) ? dic_curr[t.Guid] : null;
                 DiffListEnumerationPairs diff_elements = new DiffListEnumerationPairs(
-                    oldest2?.ListEnumerationPairsI,
-                    prev2?.ListEnumerationPairsI,
-                    current2?.ListEnumerationPairsI);
+                    oldest2?.IListEnumerationPairs,
+                    prev2?.IListEnumerationPairs,
+                    current2?.IListEnumerationPairs);
                 t[DiffEnumHistoryAnnotation.DiffListEnumerationPairs.ToString()] = diff_elements;
                 if (prev2 != null && current2 != null)
                 {

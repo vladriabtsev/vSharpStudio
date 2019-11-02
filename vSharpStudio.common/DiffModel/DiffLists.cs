@@ -166,10 +166,10 @@ namespace vSharpStudio.common
                     return false;
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.CATALOGS:
-                    foreach (var t in prev.ListObjectGuidsI)
+                    foreach (var t in prev.IListObjectGuids)
                     {
                         bool is_found = false;
-                        foreach (var tt in cur.ListObjectGuidsI)
+                        foreach (var tt in cur.IListObjectGuids)
                         {
                             if (t == tt)
                             {

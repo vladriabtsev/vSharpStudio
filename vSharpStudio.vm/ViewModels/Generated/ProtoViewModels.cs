@@ -1,4 +1,4 @@
-// Auto generated on UTC 11/02/2019 15:34:42
+// Auto generated on UTC 11/02/2019 21:37:06
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -172,7 +172,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListPluginsChanging(SortedObservableCollection<Plugin> from, SortedObservableCollection<Plugin> to); // Property.tt Line: 71
 		partial void OnListPluginsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IPlugin> ListPluginsI { get { foreach (var t in _ListPlugins) yield return t; } }
+		public IEnumerable<IPlugin> IListPlugins { get { foreach (var t in _ListPlugins) yield return t; } }
 		public Plugin this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
 		public void Add(Plugin item)  // Property.tt Line: 78
 		{ 
@@ -402,7 +402,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListGeneratorsChanging(SortedObservableCollection<PluginGenerator> from, SortedObservableCollection<PluginGenerator> to); // Property.tt Line: 71
 		partial void OnListGeneratorsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IPluginGenerator> ListGeneratorsI { get { foreach (var t in _ListGenerators) yield return t; } }
+		public IEnumerable<IPluginGenerator> IListGenerators { get { foreach (var t in _ListGenerators) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -587,7 +587,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListSettingsChanging(SortedObservableCollection<PluginGeneratorSettings> from, SortedObservableCollection<PluginGeneratorSettings> to); // Property.tt Line: 71
 		partial void OnListSettingsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IPluginGeneratorSettings> ListSettingsI { get { foreach (var t in _ListSettings) yield return t; } }
+		public IEnumerable<IPluginGeneratorSettings> IListSettings { get { foreach (var t in _ListSettings) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -1641,7 +1641,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 118
 		partial void OnDefaultDbChanged();
 		[BrowsableAttribute(false)]
-		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		public IAppDbSettings IDefaultDb { get { return _DefaultDb; }}
 		
 		
 		///////////////////////////////////////////////////
@@ -1667,7 +1667,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListAppSolutionsChanging(SortedObservableCollection<AppSolution> from, SortedObservableCollection<AppSolution> to); // Property.tt Line: 71
 		partial void OnListAppSolutionsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IAppSolution> ListAppSolutionsI { get { foreach (var t in _ListAppSolutions) yield return t; } }
+		public IEnumerable<IAppSolution> IListAppSolutions { get { foreach (var t in _ListAppSolutions) yield return t; } }
 		public AppSolution this[int index] { get { return (AppSolution)this.ListAppSolutions[index]; } }
 		public void Add(AppSolution item)  // Property.tt Line: 78
 		{ 
@@ -1914,7 +1914,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 118
 		partial void OnDefaultDbChanged();
 		[BrowsableAttribute(false)]
-		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		public IAppDbSettings IDefaultDb { get { return _DefaultDb; }}
 		
 		[BrowsableAttribute(false)]
 		public ConfigNodesCollection<AppProject> ListAppProjects  // Property.tt Line: 53
@@ -1936,7 +1936,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListAppProjectsChanging(SortedObservableCollection<AppProject> from, SortedObservableCollection<AppProject> to); // Property.tt Line: 71
 		partial void OnListAppProjectsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IAppProject> ListAppProjectsI { get { foreach (var t in _ListAppProjects) yield return t; } }
+		public IEnumerable<IAppProject> IListAppProjects { get { foreach (var t in _ListAppProjects) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -2105,7 +2105,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 118
 		partial void OnDefaultDbChanged();
 		[BrowsableAttribute(false)]
-		public IAppDbSettings DefaultDbI { get { return _DefaultDb; }}
+		public IAppDbSettings IDefaultDb { get { return _DefaultDb; }}
 	
 		#endregion Properties
 	}
@@ -2233,7 +2233,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnCurrentConfigChanging(Config from, Config to); // Property.tt Line: 118
 		partial void OnCurrentConfigChanged();
 		[BrowsableAttribute(false)]
-		public IConfig CurrentConfigI { get { return _CurrentConfig; }}
+		public IConfig ICurrentConfig { get { return _CurrentConfig; }}
 		
 		public Config PrevStableConfig // Property.tt Line: 100
 		{ 
@@ -2254,7 +2254,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnPrevStableConfigChanging(Config from, Config to); // Property.tt Line: 118
 		partial void OnPrevStableConfigChanged();
 		[BrowsableAttribute(false)]
-		public IConfig PrevStableConfigI { get { return _PrevStableConfig; }}
+		public IConfig IPrevStableConfig { get { return _PrevStableConfig; }}
 		
 		public Config OldStableConfig // Property.tt Line: 100
 		{ 
@@ -2275,7 +2275,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnOldStableConfigChanging(Config from, Config to); // Property.tt Line: 118
 		partial void OnOldStableConfigChanged();
 		[BrowsableAttribute(false)]
-		public IConfig OldStableConfigI { get { return _OldStableConfig; }}
+		public IConfig IOldStableConfig { get { return _OldStableConfig; }}
 	
 		#endregion Properties
 	}
@@ -2459,7 +2459,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListBaseConfigLinksChanging(SortedObservableCollection<BaseConfigLink> from, SortedObservableCollection<BaseConfigLink> to); // Property.tt Line: 71
 		partial void OnListBaseConfigLinksChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IBaseConfigLink> ListBaseConfigLinksI { get { foreach (var t in _ListBaseConfigLinks) yield return t; } }
+		public IEnumerable<IBaseConfigLink> IListBaseConfigLinks { get { foreach (var t in _ListBaseConfigLinks) yield return t; } }
 		public BaseConfigLink this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
 		public void Add(BaseConfigLink item)  // Property.tt Line: 78
 		{ 
@@ -2627,7 +2627,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnConfigNodeChanging(Config from, Config to); // Property.tt Line: 118
 		partial void OnConfigNodeChanged();
 		[BrowsableAttribute(false)]
-		public IConfig ConfigNodeI { get { return _ConfigNode; }}
+		public IConfig IConfigNode { get { return _ConfigNode; }}
 		
 		[PropertyOrderAttribute(6)]
 		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
@@ -2913,7 +2913,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDbSettingsChanging(DbSettings from, DbSettings to); // Property.tt Line: 118
 		partial void OnDbSettingsChanged();
 		[BrowsableAttribute(false)]
-		public IDbSettings DbSettingsI { get { return _DbSettings; }}
+		public IDbSettings IDbSettings { get { return _DbSettings; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 100
@@ -2935,7 +2935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupConfigLinksChanging(GroupListBaseConfigLinks from, GroupListBaseConfigLinks to); // Property.tt Line: 118
 		partial void OnGroupConfigLinksChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListBaseConfigLinks GroupConfigLinksI { get { return _GroupConfigLinks; }}
+		public IGroupListBaseConfigLinks IGroupConfigLinks { get { return _GroupConfigLinks; }}
 		
 		[BrowsableAttribute(false)]
 		public ConfigModel Model // Property.tt Line: 100
@@ -2957,7 +2957,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnModelChanging(ConfigModel from, ConfigModel to); // Property.tt Line: 118
 		partial void OnModelChanged();
 		[BrowsableAttribute(false)]
-		public IConfigModel ModelI { get { return _Model; }}
+		public IConfigModel IModel { get { return _Model; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListPlugins GroupPlugins // Property.tt Line: 100
@@ -2979,7 +2979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPluginsChanging(GroupListPlugins from, GroupListPlugins to); // Property.tt Line: 118
 		partial void OnGroupPluginsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListPlugins GroupPluginsI { get { return _GroupPlugins; }}
+		public IGroupListPlugins IGroupPlugins { get { return _GroupPlugins; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 100
@@ -3001,7 +3001,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupAppSolutionsChanging(GroupListAppSolutions from, GroupListAppSolutions to); // Property.tt Line: 118
 		partial void OnGroupAppSolutionsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListAppSolutions GroupAppSolutionsI { get { return _GroupAppSolutions; }}
+		public IGroupListAppSolutions IGroupAppSolutions { get { return _GroupAppSolutions; }}
 	
 		#endregion Properties
 	}
@@ -3232,7 +3232,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupCommonChanging(GroupListCommon from, GroupListCommon to); // Property.tt Line: 118
 		partial void OnGroupCommonChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListCommon GroupCommonI { get { return _GroupCommon; }}
+		public IGroupListCommon IGroupCommon { get { return _GroupCommon; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListConstants GroupConstants // Property.tt Line: 100
@@ -3254,7 +3254,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupConstantsChanging(GroupListConstants from, GroupListConstants to); // Property.tt Line: 118
 		partial void OnGroupConstantsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListConstants GroupConstantsI { get { return _GroupConstants; }}
+		public IGroupListConstants IGroupConstants { get { return _GroupConstants; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListEnumerations GroupEnumerations // Property.tt Line: 100
@@ -3276,7 +3276,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupEnumerationsChanging(GroupListEnumerations from, GroupListEnumerations to); // Property.tt Line: 118
 		partial void OnGroupEnumerationsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListEnumerations GroupEnumerationsI { get { return _GroupEnumerations; }}
+		public IGroupListEnumerations IGroupEnumerations { get { return _GroupEnumerations; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListCatalogs GroupCatalogs // Property.tt Line: 100
@@ -3298,7 +3298,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupCatalogsChanging(GroupListCatalogs from, GroupListCatalogs to); // Property.tt Line: 118
 		partial void OnGroupCatalogsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListCatalogs GroupCatalogsI { get { return _GroupCatalogs; }}
+		public IGroupListCatalogs IGroupCatalogs { get { return _GroupCatalogs; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupDocuments GroupDocuments // Property.tt Line: 100
@@ -3320,7 +3320,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupDocumentsChanging(GroupDocuments from, GroupDocuments to); // Property.tt Line: 118
 		partial void OnGroupDocumentsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupDocuments GroupDocumentsI { get { return _GroupDocuments; }}
+		public IGroupDocuments IGroupDocuments { get { return _GroupDocuments; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListJournals GroupJournals // Property.tt Line: 100
@@ -3342,7 +3342,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupJournalsChanging(GroupListJournals from, GroupListJournals to); // Property.tt Line: 118
 		partial void OnGroupJournalsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListJournals GroupJournalsI { get { return _GroupJournals; }}
+		public IGroupListJournals IGroupJournals { get { return _GroupJournals; }}
 	
 		#endregion Properties
 	}
@@ -3586,7 +3586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListObjectGuidsChanging(ObservableCollection<string> from, ObservableCollection<string> to); // Property.tt Line: 27
 		partial void OnListObjectGuidsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<string> ListObjectGuidsI { get { foreach (var t in _ListObjectGuids) yield return t; } }
+		public IEnumerable<string> IListObjectGuids { get { foreach (var t in _ListObjectGuids) yield return t; } }
 		
 		[PropertyOrderAttribute(8)]
 		[DisplayName("FK Index")]
@@ -3770,7 +3770,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupRolesChanging(GroupListRoles from, GroupListRoles to); // Property.tt Line: 118
 		partial void OnGroupRolesChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListRoles GroupRolesI { get { return _GroupRoles; }}
+		public IGroupListRoles IGroupRoles { get { return _GroupRoles; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListMainViewForms GroupViewForms // Property.tt Line: 100
@@ -3792,7 +3792,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 118
 		partial void OnGroupViewFormsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListMainViewForms GroupViewFormsI { get { return _GroupViewForms; }}
+		public IGroupListMainViewForms IGroupViewForms { get { return _GroupViewForms; }}
 	
 		#endregion Properties
 	}
@@ -4099,7 +4099,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListRolesChanging(SortedObservableCollection<Role> from, SortedObservableCollection<Role> to); // Property.tt Line: 71
 		partial void OnListRolesChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IRole> ListRolesI { get { foreach (var t in _ListRoles) yield return t; } }
+		public IEnumerable<IRole> IListRoles { get { foreach (var t in _ListRoles) yield return t; } }
 		public Role this[int index] { get { return (Role)this.ListRoles[index]; } }
 		public void Add(Role item)  // Property.tt Line: 78
 		{ 
@@ -4271,7 +4271,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupListViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 118
 		partial void OnGroupListViewFormsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListMainViewForms GroupListViewFormsI { get { return _GroupListViewForms; }}
+		public IGroupListMainViewForms IGroupListViewForms { get { return _GroupListViewForms; }}
 	
 		#endregion Properties
 	}
@@ -4464,7 +4464,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListMainViewFormsChanging(SortedObservableCollection<MainViewForm> from, SortedObservableCollection<MainViewForm> to); // Property.tt Line: 71
 		partial void OnListMainViewFormsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IMainViewForm> ListMainViewFormsI { get { foreach (var t in _ListMainViewForms) yield return t; } }
+		public IEnumerable<IMainViewForm> IListMainViewForms { get { foreach (var t in _ListMainViewForms) yield return t; } }
 		public MainViewForm this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
 		public void Add(MainViewForm item)  // Property.tt Line: 78
 		{ 
@@ -4674,7 +4674,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListPropertiesTabsChanging(SortedObservableCollection<PropertiesTab> from, SortedObservableCollection<PropertiesTab> to); // Property.tt Line: 71
 		partial void OnListPropertiesTabsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IPropertiesTab> ListPropertiesTabsI { get { foreach (var t in _ListPropertiesTabs) yield return t; } }
+		public IEnumerable<IPropertiesTab> IListPropertiesTabs { get { foreach (var t in _ListPropertiesTabs) yield return t; } }
 		public PropertiesTab this[int index] { get { return (PropertiesTab)this.ListPropertiesTabs[index]; } }
 		public void Add(PropertiesTab item)  // Property.tt Line: 78
 		{ 
@@ -4855,7 +4855,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 118
 		partial void OnGroupPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListProperties GroupPropertiesI { get { return _GroupProperties; }}
+		public IGroupListProperties IGroupProperties { get { return _GroupProperties; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 100
@@ -4877,7 +4877,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 118
 		partial void OnGroupPropertiesTabsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
+		public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return _GroupPropertiesTabs; }}
 		
 		
 		///////////////////////////////////////////////////
@@ -5094,7 +5094,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListPropertiesChanging(SortedObservableCollection<Property> from, SortedObservableCollection<Property> to); // Property.tt Line: 71
 		partial void OnListPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IProperty> ListPropertiesI { get { foreach (var t in _ListProperties) yield return t; } }
+		public IEnumerable<IProperty> IListProperties { get { foreach (var t in _ListProperties) yield return t; } }
 		public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
 		public void Add(Property item)  // Property.tt Line: 78
 		{ 
@@ -5290,7 +5290,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 118
 		partial void OnDataTypeChanged();
 		[BrowsableAttribute(false)]
-		public IDataType DataTypeI { get { return _DataType; }}
+		public IDataType IDataType { get { return _DataType; }}
 		
 		
 		///////////////////////////////////////////////////
@@ -5504,7 +5504,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListConstantsChanging(SortedObservableCollection<Constant> from, SortedObservableCollection<Constant> to); // Property.tt Line: 71
 		partial void OnListConstantsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IConstant> ListConstantsI { get { foreach (var t in _ListConstants) yield return t; } }
+		public IEnumerable<IConstant> IListConstants { get { foreach (var t in _ListConstants) yield return t; } }
 		public Constant this[int index] { get { return (Constant)this.ListConstants[index]; } }
 		public void Add(Constant item)  // Property.tt Line: 78
 		{ 
@@ -5676,7 +5676,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 118
 		partial void OnDataTypeChanged();
 		[BrowsableAttribute(false)]
-		public IDataType DataTypeI { get { return _DataType; }}
+		public IDataType IDataType { get { return _DataType; }}
 	
 		#endregion Properties
 	}
@@ -5865,7 +5865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListEnumerationsChanging(SortedObservableCollection<Enumeration> from, SortedObservableCollection<Enumeration> to); // Property.tt Line: 71
 		partial void OnListEnumerationsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IEnumeration> ListEnumerationsI { get { foreach (var t in _ListEnumerations) yield return t; } }
+		public IEnumerable<IEnumeration> IListEnumerations { get { foreach (var t in _ListEnumerations) yield return t; } }
 		public Enumeration this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
 		public void Add(Enumeration item)  // Property.tt Line: 78
 		{ 
@@ -6134,7 +6134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListEnumerationPairsChanging(SortedObservableCollection<EnumerationPair> from, SortedObservableCollection<EnumerationPair> to); // Property.tt Line: 71
 		partial void OnListEnumerationPairsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IEnumerationPair> ListEnumerationPairsI { get { foreach (var t in _ListEnumerationPairs) yield return t; } }
+		public IEnumerable<IEnumerationPair> IListEnumerationPairs { get { foreach (var t in _ListEnumerationPairs) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -6451,7 +6451,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 118
 		partial void OnGroupPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListProperties GroupPropertiesI { get { return _GroupProperties; }}
+		public IGroupListProperties IGroupProperties { get { return _GroupProperties; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 100
@@ -6473,7 +6473,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 118
 		partial void OnGroupPropertiesTabsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
+		public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return _GroupPropertiesTabs; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListForms GroupForms // Property.tt Line: 100
@@ -6495,7 +6495,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 118
 		partial void OnGroupFormsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListForms GroupFormsI { get { return _GroupForms; }}
+		public IGroupListForms IGroupForms { get { return _GroupForms; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListReports GroupReports // Property.tt Line: 100
@@ -6517,7 +6517,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 118
 		partial void OnGroupReportsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListReports GroupReportsI { get { return _GroupReports; }}
+		public IGroupListReports IGroupReports { get { return _GroupReports; }}
 	
 		#endregion Properties
 	}
@@ -6706,7 +6706,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListCatalogsChanging(SortedObservableCollection<Catalog> from, SortedObservableCollection<Catalog> to); // Property.tt Line: 71
 		partial void OnListCatalogsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<ICatalog> ListCatalogsI { get { foreach (var t in _ListCatalogs) yield return t; } }
+		public IEnumerable<ICatalog> IListCatalogs { get { foreach (var t in _ListCatalogs) yield return t; } }
 		public Catalog this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
 		public void Add(Catalog item)  // Property.tt Line: 78
 		{ 
@@ -6883,7 +6883,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupSharedPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 118
 		partial void OnGroupSharedPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListProperties GroupSharedPropertiesI { get { return _GroupSharedProperties; }}
+		public IGroupListProperties IGroupSharedProperties { get { return _GroupSharedProperties; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListDocuments GroupListDocuments // Property.tt Line: 100
@@ -6905,7 +6905,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupListDocumentsChanging(GroupListDocuments from, GroupListDocuments to); // Property.tt Line: 118
 		partial void OnGroupListDocumentsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListDocuments GroupListDocumentsI { get { return _GroupListDocuments; }}
+		public IGroupListDocuments IGroupListDocuments { get { return _GroupListDocuments; }}
 	
 		#endregion Properties
 	}
@@ -7081,7 +7081,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 118
 		partial void OnGroupPropertiesChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListProperties GroupPropertiesI { get { return _GroupProperties; }}
+		public IGroupListProperties IGroupProperties { get { return _GroupProperties; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 100
@@ -7103,7 +7103,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 118
 		partial void OnGroupPropertiesTabsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListPropertiesTabs GroupPropertiesTabsI { get { return _GroupPropertiesTabs; }}
+		public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return _GroupPropertiesTabs; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListForms GroupForms // Property.tt Line: 100
@@ -7125,7 +7125,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 118
 		partial void OnGroupFormsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListForms GroupFormsI { get { return _GroupForms; }}
+		public IGroupListForms IGroupForms { get { return _GroupForms; }}
 		
 		[BrowsableAttribute(false)]
 		public GroupListReports GroupReports // Property.tt Line: 100
@@ -7147,7 +7147,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 118
 		partial void OnGroupReportsChanged();
 		[BrowsableAttribute(false)]
-		public IGroupListReports GroupReportsI { get { return _GroupReports; }}
+		public IGroupListReports IGroupReports { get { return _GroupReports; }}
 	
 		#endregion Properties
 	}
@@ -7336,7 +7336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 71
 		partial void OnListDocumentsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IDocument> ListDocumentsI { get { foreach (var t in _ListDocuments) yield return t; } }
+		public IEnumerable<IDocument> IListDocuments { get { foreach (var t in _ListDocuments) yield return t; } }
 		public Document this[int index] { get { return (Document)this.ListDocuments[index]; } }
 		public void Add(Document item)  // Property.tt Line: 78
 		{ 
@@ -7550,7 +7550,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListJournalsChanging(SortedObservableCollection<Journal> from, SortedObservableCollection<Journal> to); // Property.tt Line: 71
 		partial void OnListJournalsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IJournal> ListJournalsI { get { foreach (var t in _ListJournals) yield return t; } }
+		public IEnumerable<IJournal> IListJournals { get { foreach (var t in _ListJournals) yield return t; } }
 		public Journal this[int index] { get { return (Journal)this.ListJournals[index]; } }
 		public void Add(Journal item)  // Property.tt Line: 78
 		{ 
@@ -7764,7 +7764,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 71
 		partial void OnListDocumentsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IDocument> ListDocumentsI { get { foreach (var t in _ListDocuments) yield return t; } }
+		public IEnumerable<IDocument> IListDocuments { get { foreach (var t in _ListDocuments) yield return t; } }
 	
 		#endregion Properties
 	}
@@ -7957,7 +7957,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListFormsChanging(SortedObservableCollection<Form> from, SortedObservableCollection<Form> to); // Property.tt Line: 71
 		partial void OnListFormsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IForm> ListFormsI { get { foreach (var t in _ListForms) yield return t; } }
+		public IEnumerable<IForm> IListForms { get { foreach (var t in _ListForms) yield return t; } }
 		public Form this[int index] { get { return (Form)this.ListForms[index]; } }
 		public void Add(Form item)  // Property.tt Line: 78
 		{ 
@@ -8291,7 +8291,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnListReportsChanging(SortedObservableCollection<Report> from, SortedObservableCollection<Report> to); // Property.tt Line: 71
 		partial void OnListReportsChanged();
 		[BrowsableAttribute(false)]
-		public IEnumerable<IReport> ListReportsI { get { foreach (var t in _ListReports) yield return t; } }
+		public IEnumerable<IReport> IListReports { get { foreach (var t in _ListReports) yield return t; } }
 		public Report this[int index] { get { return (Report)this.ListReports[index]; } }
 		public void Add(Report item)  // Property.tt Line: 78
 		{ 

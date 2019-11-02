@@ -22,28 +22,28 @@ namespace vSharpStudio.common
                 bool isTypeChanged = false;
                 if (prev2 != null && current2!=null)
                 {
-                    if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum)
+                    if (current2.IDataType.DataTypeEnum != prev2.IDataType.DataTypeEnum)
                     {
                         isCanLoose = true;
                     }
-                    else if (current2.DataTypeI.DataTypeEnum == EnumDataType.STRING)
+                    else if (current2.IDataType.DataTypeEnum == EnumDataType.STRING)
                     {
-                        if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
+                        if (current2.IDataType.Length < prev2.IDataType.Length)
                             isCanLoose = true;
                     }
-                    else if (current2.DataTypeI.DataTypeEnum == EnumDataType.NUMERICAL)
+                    else if (current2.IDataType.DataTypeEnum == EnumDataType.NUMERICAL)
                     {
-                        if (current2.DataTypeI.Length < prev2.DataTypeI.Length)
+                        if (current2.IDataType.Length < prev2.IDataType.Length)
                             isCanLoose = true;
-                        if (current2.DataTypeI.Accuracy < prev2.DataTypeI.Accuracy)
+                        if (current2.IDataType.Accuracy < prev2.IDataType.Accuracy)
                             isCanLoose = true;
                     }
                     if (isCanLoose)
                         t[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = DiffEnumHistoryAnnotation.CanLooseData;
 
-                    if (current2.DataTypeI.DataTypeEnum != prev2.DataTypeI.DataTypeEnum ||
-                        current2.DataTypeI.Length != prev2.DataTypeI.Length ||
-                        current2.DataTypeI.Accuracy != prev2.DataTypeI.Accuracy
+                    if (current2.IDataType.DataTypeEnum != prev2.IDataType.DataTypeEnum ||
+                        current2.IDataType.Length != prev2.IDataType.Length ||
+                        current2.IDataType.Accuracy != prev2.IDataType.Accuracy
                         )
                     {
                         isTypeChanged = true;
@@ -51,7 +51,7 @@ namespace vSharpStudio.common
 
                     if (isTypeChanged)
                     {
-                        DiffDataType diff_data_type = new DiffDataType(prev2.DataTypeI, current2.DataTypeI);
+                        DiffDataType diff_data_type = new DiffDataType(prev2.IDataType, current2.IDataType);
                         if (!diff_data_type.IsSame())
                             t[DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString()] = diff_data_type;
                     }

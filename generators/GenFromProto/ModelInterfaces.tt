@@ -33,18 +33,18 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
    } this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
-IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
+IEnumerable<<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } else if (field.IsCsSimple()) { #>
-IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
+IEnumerable<<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } else { #>
-IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
+IEnumerable<I<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else if (field.IsAny()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>
-I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get; } // <#=Helper.FilePos() #>
+I<#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } #>
 <#       this.PopIndent();
       } #>

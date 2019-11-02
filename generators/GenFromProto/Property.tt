@@ -27,7 +27,7 @@ private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs()
 partial void On<#= field.Name.ToNameCs() #>Changing(ObservableCollection<<#= field.ToTypeCs() #>> from, ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
-public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
+public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } else if (field.IsMap) { #>
 public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
@@ -71,7 +71,7 @@ private ConfigNodesCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs(
 partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> from, SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
-public IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #>I { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
+public IEnumerable<I<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
 <# } #>
 <# if (message.Name.EndsWith(field.Name)) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
@@ -118,7 +118,7 @@ private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
-public I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #>I { get { return _<#= field.Name.ToNameCs() #>; }}
+public I<#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get { return _<#= field.Name.ToNameCs() #>; }}
 <# } else { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 

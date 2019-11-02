@@ -16,8 +16,8 @@ namespace vSharpStudio.common
             foreach (var t in this.ListAll)
             {
                 IConstant tt = (IConstant)t;
-                IDataType prev2 = dic_prev.ContainsKey(t.Guid) ? ((IConstant)dic_prev[t.Guid]).DataTypeI : null;
-                IDataType current2 = dic_curr.ContainsKey(t.Guid) ? ((IConstant)dic_curr[t.Guid]).DataTypeI : null;
+                IDataType prev2 = dic_prev.ContainsKey(t.Guid) ? ((IConstant)dic_prev[t.Guid]).IDataType : null;
+                IDataType current2 = dic_curr.ContainsKey(t.Guid) ? ((IConstant)dic_curr[t.Guid]).IDataType : null;
                 if (prev2 != null && current2 != null)
                 {
                     var res = IsCanLooseData(prev2, current2);

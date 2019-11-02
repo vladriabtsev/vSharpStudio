@@ -19,21 +19,21 @@ namespace vSharpStudio.common
         public DiffConfigModel(IConfigModel oldest_config, IConfigModel prev_config, IConfigModel current_config)
         {
             this.Constants = new DiffListConstants(
-                oldest_config?.GroupConstantsI.ListConstantsI,
-                prev_config?.GroupConstantsI.ListConstantsI,
-                current_config.GroupConstantsI.ListConstantsI);
+                oldest_config?.IGroupConstants.IListConstants,
+                prev_config?.IGroupConstants.IListConstants,
+                current_config.IGroupConstants.IListConstants);
             this.Enumerations = new DiffListEnumerations(
-                oldest_config?.GroupEnumerationsI.ListEnumerationsI,
-                prev_config?.GroupEnumerationsI.ListEnumerationsI,
-                current_config.GroupEnumerationsI.ListEnumerationsI);
+                oldest_config?.IGroupEnumerations.IListEnumerations,
+                prev_config?.IGroupEnumerations.IListEnumerations,
+                current_config.IGroupEnumerations.IListEnumerations);
             this.Catalogs = new DiffListCatalogs(
-                oldest_config?.GroupCatalogsI.ListCatalogsI,
-                prev_config?.GroupCatalogsI.ListCatalogsI,
-                current_config.GroupCatalogsI.ListCatalogsI);
+                oldest_config?.IGroupCatalogs.IListCatalogs,
+                prev_config?.IGroupCatalogs.IListCatalogs,
+                current_config.IGroupCatalogs.IListCatalogs);
             this.Documents = new DiffListDocuments(
-                oldest_config?.GroupDocumentsI,
-                prev_config?.GroupDocumentsI,
-                current_config.GroupDocumentsI);
+                oldest_config?.IGroupDocuments,
+                prev_config?.IGroupDocuments,
+                current_config.IGroupDocuments);
             //this.ConfigModel = current_config;
             //this.ConfigModel[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
         }
