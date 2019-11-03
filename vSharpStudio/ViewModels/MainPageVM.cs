@@ -55,11 +55,11 @@ namespace vSharpStudio.ViewModels
             {
                 if (configFile != null)
                 {
-                    this.Config = LoadConfig(configFile, "");
+                    this.Config = LoadConfig(configFile, "", true);
                 }
                 else if (File.Exists(CFG_FILE_PATH))
                 {
-                    this.Config = LoadConfig(CFG_FILE_PATH, "");
+                    this.Config = LoadConfig(CFG_FILE_PATH, "", true);
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace vSharpStudio.ViewModels
             //this.Model.OnProviderSelectionChanged(null);
         }
 
-        private Config LoadConfig(string file_path, string indent)
+        private Config LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             Config.IsLoading = true;
             if (!File.Exists(file_path))
@@ -130,6 +130,13 @@ namespace vSharpStudio.ViewModels
             var protoarr = File.ReadAllBytes(file_path);
             pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
+            if (isRoot)
+            {
+                if (pconfig_history.PrevStableConfig != null)
+                    cfg.PrevStableConfig = Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config());
+                if (pconfig_history.OldStableConfig != null)
+                    cfg.OldStableConfig = Config.ConvertToVM(pconfig_history.OldStableConfig, new Config());
+            }
             string ind2 = indent + "   ";
             foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {

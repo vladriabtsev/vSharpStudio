@@ -150,12 +150,21 @@ namespace vSharpStudio.common
             {
                 if (this.Parent == null)
                     return "MainConfig." + this.Name;
-                ITreeConfigNode config = this.Parent;
-                while (config.Parent != null)
-                    config = config.Parent;
-                return (config as IConfig).Name + "." + this.Name;
+                return this.GetConfig().Name + "." + this.Name;
             }
         }
+        public IConfig GetConfig()
+        {
+            if (_config==null)
+            {
+                ITreeConfigNode p = this.Parent;
+                while (p.Parent != null)
+                    p = p.Parent;
+                _config = (IConfig)p;
+            }
+            return _config;
+        }
+        private IConfig _config = null;
         [PropertyOrder(0)]
         public string Name
         {
@@ -182,13 +191,7 @@ namespace vSharpStudio.common
         {
             if (this.Parent != null)
             {
-                ITreeConfigNode config = this.Parent;
-                while (config.Parent != null)
-                    config = config.Parent;
-                if (config is IConfig)
-                    (config as IConfig).SelectedNode = node;
-                //else
-                //    throw new Exception();
+                this.GetConfig().SelectedNode = node;
             }
         }
 

@@ -10,5 +10,8 @@ namespace vSharpStudio.common
     public partial interface IConfig : IMutableAnnotatable
     {
         ITreeConfigNode SelectedNode { get; set; }
+        IConfig PrevStableConfig { get; }
+        IConfig OldStableConfig { get; }
+        Dictionary<string, ITreeConfigNode> DicNodes { get; }
     }
 }

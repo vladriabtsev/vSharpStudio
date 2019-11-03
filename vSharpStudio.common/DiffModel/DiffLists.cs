@@ -21,6 +21,11 @@ namespace vSharpStudio.common
         protected Dictionary<string, T> dic_oldest;
         protected Dictionary<string, T> dic_prev;
         protected Dictionary<string, T> dic_curr;
+
+        //public DiffLists(IConfig oldest, IConfig prev, IConfig current, ITreeConfigNode parent)
+        //{
+
+        //}
         public DiffLists(IEnumerable<T> oldest, IEnumerable<T> prev, IEnumerable<T> current)
         {
             this.ListAll = new List<T>();

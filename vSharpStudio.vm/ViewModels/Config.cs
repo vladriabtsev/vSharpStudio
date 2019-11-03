@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
-        public Dictionary<string, ITreeConfigNode> DicNodes = null;
+        public Dictionary<string, ITreeConfigNode> DicNodes { get; set; }
         public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
         //public bool HasChildren(object parent) { return this.Children.Count > 0; }
         public override bool HasChildren(object parent) { return this.Children.Count > 0; }
@@ -225,5 +225,8 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
+
+        public IConfig PrevStableConfig { get; set; }
+        public IConfig OldStableConfig { get; set; }
     }
 }

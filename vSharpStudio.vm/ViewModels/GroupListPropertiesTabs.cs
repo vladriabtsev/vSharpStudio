@@ -43,5 +43,52 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
+        [BrowsableAttribute(false)]
+        public List<IPropertiesTab> ListAnnotated
+        {
+            get
+            {
+                var cfg = (Config)this.GetConfig();
+                var p = this.Parent;
+                while (p.IsIncludableInModels == false)
+                    p = p.Parent;
+                string par = p.GetType().Name;
+                ConfigNodesCollection<PropertiesTab> curr;
+                ConfigNodesCollection<PropertiesTab> prev;
+                ConfigNodesCollection<PropertiesTab> old;
+                switch (par)
+                {
+                    case "Document":
+                        var d = (Document)cfg.DicNodes[p.Guid];
+                        curr = d.GroupPropertiesTabs.ListPropertiesTabs;
+                        d = (Document)cfg.PrevStableConfig?.DicNodes[p.Guid];
+                        prev = d?.GroupPropertiesTabs.ListPropertiesTabs;
+                        d = (Document)cfg.OldStableConfig?.DicNodes[p.Guid];
+                        old = d?.GroupPropertiesTabs.ListPropertiesTabs;
+                        break;
+                    case "PropertiesTab":
+                        var t = (PropertiesTab)cfg.DicNodes[p.Guid];
+                        curr = t.GroupPropertiesTabs.ListPropertiesTabs;
+                        t = (PropertiesTab)cfg.PrevStableConfig?.DicNodes[p.Guid];
+                        prev = t?.GroupPropertiesTabs.ListPropertiesTabs;
+                        t = (PropertiesTab)cfg.OldStableConfig?.DicNodes[p.Guid];
+                        old = t?.GroupPropertiesTabs.ListPropertiesTabs;
+                        break;
+                    case "Catalog":
+                        var c = (Catalog)cfg.DicNodes[p.Guid];
+                        curr = c.GroupPropertiesTabs.ListPropertiesTabs;
+                        c = (Catalog)cfg.PrevStableConfig?.DicNodes[p.Guid];
+                        prev = c?.GroupPropertiesTabs.ListPropertiesTabs;
+                        c = (Catalog)cfg.OldStableConfig?.DicNodes[p.Guid];
+                        old = c?.GroupPropertiesTabs.ListPropertiesTabs;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+                var diff = new DiffLists<IPropertiesTab>(old, prev, curr);
+                return diff.ListAll;
+            }
+        }
     }
 }

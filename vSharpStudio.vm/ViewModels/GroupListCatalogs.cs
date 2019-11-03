@@ -55,5 +55,20 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
+        [BrowsableAttribute(false)]
+        public List<ICatalog> ListAnnotated
+        {
+            get
+            {
+                var cfg = this.GetConfig();
+                DiffLists<ICatalog> diff = new DiffLists<ICatalog>(
+                    cfg.OldStableConfig?.IModel.IGroupCatalogs.IListCatalogs,
+                    cfg.PrevStableConfig?.IModel.IGroupCatalogs.IListCatalogs,
+                    cfg.IModel.IGroupCatalogs.IListCatalogs
+                );
+                return diff.ListAll;
+            }
+        }
     }
 }

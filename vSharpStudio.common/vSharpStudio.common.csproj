@@ -149,6 +149,9 @@
     <Compile Include="DiffModel\DiffLists.cs" />
     <Compile Include="DiffModel\IConfigModel.partial.cs" />
     <Compile Include="DiffModel\IConfig.partial.cs" />
+    <Compile Include="DiffModel\IJournal.partial.cs" />
+    <Compile Include="DiffModel\IReport.partial.cs" />
+    <Compile Include="DiffModel\IForm.partial.cs" />
     <Compile Include="DiffModel\IDataType.cs" />
     <Compile Include="DiffModel\IEnumerationPair.partial.cs" />
     <Compile Include="DiffModel\IGuid.cs" />

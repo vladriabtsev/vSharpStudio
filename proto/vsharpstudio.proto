@@ -124,6 +124,70 @@ message db_settings {
 }
 /** 
  * @exclude
+ * ####################################### C O N F I G ##########################################
+ */
+message proto_config_short_history {
+    proto_config current_config = 1;
+    proto_config prev_stable_config = 2;
+    proto_config old_stable_config = 3;
+}
+message proto_group_list_base_config_links {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_base_config_link list_base_config_links = 9;
+}
+message proto_base_config_link {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 5;
+    // @attr [BrowsableAttribute(false)]
+    proto_config config = 6;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    string relative_config_file_path = 7;
+}
+enum proto_enum_primary_key_type {
+    INT = 0;
+    LONG = 1;
+}
+// Configuration config
+message proto_config {
+    // Unique Guid for configuration (for comparison)
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editable(false)]
+    int32 version = 2;
+    string name = 3;
+    uint64 sorting_value = 4;
+    string name_ui = 5;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 6;
+    // @attr [PropertyOrderAttribute(6)]
+    google.protobuf.Timestamp last_updated = 7;
+    // @attr [PropertyOrderAttribute(7)]
+    proto_enum_primary_key_type primary_key_type = 8;
+
+    // GENERAL DB SETTINGS
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [ExpandableObjectAttribute()]
+    db_settings db_settings = 14;
+
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_base_config_links group_config_links = 101;
+    // @attr [BrowsableAttribute(false)]
+    proto_config_model model = 102;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_plugins group_plugins = 104;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_app_solutions  group_app_solutions = 105;
+}
+/** 
+ * @exclude
  * ####################################### A P P S ##########################################
  */
 // @base : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>
@@ -202,70 +266,6 @@ message proto_app_project {
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, solution settings are used")]
     proto_app_db_settings default_db = 8;
-}
-/** 
- * @exclude
- * ####################################### C O N F I G ##########################################
- */
-message proto_config_short_history {
-    proto_config current_config = 1;
-    proto_config prev_stable_config = 2;
-    proto_config old_stable_config = 3;
-}
-message proto_group_list_base_config_links {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-    string description = 5;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_base_config_link list_base_config_links = 9;
-}
-message proto_base_config_link {
-    string guid = 1;
-    string name = 2;
-    uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(5)]
-    string description = 5;
-    // @attr [BrowsableAttribute(false)]
-    proto_config config = 6;
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
-    string relative_config_file_path = 7;
-}
-enum proto_enum_primary_key_type {
-    INT = 0;
-    LONG = 1;
-}
-// Configuration config
-message proto_config {
-    // Unique Guid for configuration (for comparison)
-    string guid = 1;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editable(false)]
-    int32 version = 2;
-    string name = 3;
-    uint64 sorting_value = 4;
-    string name_ui = 5;
-    // @attr [PropertyOrderAttribute(5)]
-    string description = 6;
-    // @attr [PropertyOrderAttribute(6)]
-    google.protobuf.Timestamp last_updated = 7;
-    // @attr [PropertyOrderAttribute(7)]
-    proto_enum_primary_key_type primary_key_type = 8;
-
-    // GENERAL DB SETTINGS
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [ExpandableObjectAttribute()]
-    db_settings db_settings = 14;
-
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_base_config_links group_config_links = 101;
-    // @attr [BrowsableAttribute(false)]
-    proto_config_model model = 102;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_plugins group_plugins = 104;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_app_solutions  group_app_solutions = 105;
 }
 /** 
  * @exclude

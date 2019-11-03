@@ -112,50 +112,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		string PathToProjectWithConnectionString { get; } // ModelInterfaces.tt Line: 43
 	}
 	
-	public partial interface IAppDbSettings  // ModelInterfaces.tt Line: 26
-	{
-		string PluginGuid { get; } // ModelInterfaces.tt Line: 43
-		string PluginName { get; } // ModelInterfaces.tt Line: 43
-		string Version { get; } // ModelInterfaces.tt Line: 43
-		string PluginGenGuid { get; } // ModelInterfaces.tt Line: 43
-		string PluginGenName { get; } // ModelInterfaces.tt Line: 43
-		string ConnGuid { get; } // ModelInterfaces.tt Line: 43
-		string ConnName { get; } // ModelInterfaces.tt Line: 43
-	}
-	
-	public partial interface IGroupListAppSolutions : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
-		string Description { get; } // ModelInterfaces.tt Line: 43
-		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
-		
-		///////////////////////////////////////////////////
-		/// List NET solutions
-		///////////////////////////////////////////////////
-		IEnumerable<IAppSolution> IListAppSolutions { get; } // ModelInterfaces.tt Line: 40
-	}
-	
-	public partial interface IAppSolution : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
-		string Description { get; } // ModelInterfaces.tt Line: 43
-		
-		///////////////////////////////////////////////////
-		/// List NET projects
-		///////////////////////////////////////////////////
-		string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 43
-		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
-		IEnumerable<IAppProject> IListAppProjects { get; } // ModelInterfaces.tt Line: 40
-	}
-	
-	public partial interface IAppProject : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
-	{
-		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
-		string Description { get; } // ModelInterfaces.tt Line: 43
-		string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 43
-		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
-	}
-	
 	public partial interface IConfigShortHistory : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
 	{
 		IConfig ICurrentConfig { get; } // ModelInterfaces.tt Line: 47
@@ -199,6 +155,50 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		IConfigModel IModel { get; } // ModelInterfaces.tt Line: 47
 		IGroupListPlugins IGroupPlugins { get; } // ModelInterfaces.tt Line: 47
 		IGroupListAppSolutions IGroupAppSolutions { get; } // ModelInterfaces.tt Line: 47
+	}
+	
+	public partial interface IAppDbSettings  // ModelInterfaces.tt Line: 26
+	{
+		string PluginGuid { get; } // ModelInterfaces.tt Line: 43
+		string PluginName { get; } // ModelInterfaces.tt Line: 43
+		string Version { get; } // ModelInterfaces.tt Line: 43
+		string PluginGenGuid { get; } // ModelInterfaces.tt Line: 43
+		string PluginGenName { get; } // ModelInterfaces.tt Line: 43
+		string ConnGuid { get; } // ModelInterfaces.tt Line: 43
+		string ConnName { get; } // ModelInterfaces.tt Line: 43
+	}
+	
+	public partial interface IGroupListAppSolutions : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	{
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
+		string Description { get; } // ModelInterfaces.tt Line: 43
+		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
+		
+		///////////////////////////////////////////////////
+		/// List NET solutions
+		///////////////////////////////////////////////////
+		IEnumerable<IAppSolution> IListAppSolutions { get; } // ModelInterfaces.tt Line: 40
+	}
+	
+	public partial interface IAppSolution : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	{
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
+		string Description { get; } // ModelInterfaces.tt Line: 43
+		
+		///////////////////////////////////////////////////
+		/// List NET projects
+		///////////////////////////////////////////////////
+		string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 43
+		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
+		IEnumerable<IAppProject> IListAppProjects { get; } // ModelInterfaces.tt Line: 40
+	}
+	
+	public partial interface IAppProject : IValidatableWithSeverity, IGuid, IName  // ModelInterfaces.tt Line: 26
+	{
+		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
+		string Description { get; } // ModelInterfaces.tt Line: 43
+		string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 43
+		IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 47
 	}
 	
 	///////////////////////////////////////////////////
