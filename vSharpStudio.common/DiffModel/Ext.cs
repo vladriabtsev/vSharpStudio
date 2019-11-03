@@ -156,5 +156,10 @@ namespace vSharpStudio.common
             Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffConfig.ToString());
             return (DiffConfig)annotation?.Value;
         }
+        public static DiffListConstants GetDiffListConstants(this IConfig obj)
+        {
+            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffConfig.ToString());
+            return (DiffListConstants)annotation?.Value;
+        }
     }
 }

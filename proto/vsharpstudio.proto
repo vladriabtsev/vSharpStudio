@@ -227,7 +227,7 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    proto_config config_node = 6;
+    proto_config config = 6;
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
     string relative_config_file_path = 7;

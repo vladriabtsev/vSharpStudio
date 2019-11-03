@@ -181,7 +181,7 @@ General DB settings
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| config_node | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
+| config | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
 | relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] |
 
 

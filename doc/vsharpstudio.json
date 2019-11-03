@@ -549,7 +549,7 @@
               "defaultValue": ""
             },
             {
-              "name": "config_node",
+              "name": "config",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_config",

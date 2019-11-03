@@ -34,11 +34,11 @@ namespace vSharpStudio.common
                 oldest_config?.IGroupDocuments,
                 prev_config?.IGroupDocuments,
                 current_config.IGroupDocuments);
-            //this.ConfigModel = current_config;
-            //this.ConfigModel[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
+            this.Model = current_config;
+            //this.Model[DiffEnumHistoryAnnotation.DiffConfigModel.ToString()] = this;
         }
 
-        //public IConfigModel ConfigModel;
+        public IConfigModel Model;
         public DiffListConstants Constants;
         public DiffListEnumerations Enumerations;
         public DiffListCatalogs Catalogs;

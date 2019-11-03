@@ -9,8 +9,11 @@ namespace vSharpStudio.common
 {
     public enum DiffEnumHistoryAnnotation
     {
-        New, Deprecated, Deleted, Renamed, DiffListEnumerationPairs, DiffEnumerationType, DiffPropertyDataType,
-        CanLooseData, DiffConfig, DiffConstant, DiffEnumeration, DiffProperty, DiffPropertiesTab, DiffCatalog, DiffDocument, DiffListProperties, DiffListPropertiesTabs, DiffEnumerationPair
+        New, Deprecated, Deleted, Renamed,
+        DiffListConfigs, DiffConfig,
+        DiffListEnumerations, DiffEnumeration, DiffListEnumerationPairs,
+        DiffEnumerationType, DiffPropertyDataType,
+        CanLooseData, DiffConfigModel, DiffConstant, DiffProperty, DiffPropertiesTab, DiffCatalog, DiffDocument, DiffListProperties, DiffListPropertiesTabs, DiffEnumerationPair
     }
     public class DiffLists<T>
             where T : IGuid, IName, IMutableAnnotatable

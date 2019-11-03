@@ -23,5 +23,18 @@ namespace vSharpStudio.common
             }
             this.ClearDics();
         }
+        public IConfig Config { get { return this.ListAll[0]; } }
+        public List<IConfig> ListSubConfigs
+        {
+            get
+            {
+                List<IConfig> lst = new List<IConfig>();
+                for (int i = 1; i < this.ListAll.Count; i++)
+                {
+                    lst.Add(this.ListAll[i]);
+                }
+                return lst;
+            }
+        }
     }
 }

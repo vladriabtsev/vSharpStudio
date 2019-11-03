@@ -1,4 +1,4 @@
-// Auto generated on UTC 11/02/2019 21:37:06
+// Auto generated on UTC 11/03/2019 17:02:57
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -2493,7 +2493,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		public BaseConfigLink(ITreeConfigNode parent) : base(parent, BaseConfigLinkValidator.Validator) // Class.tt Line: 13
 	    {
 			OnInitBegin();
-			this.ConfigNode = new Config(this); // Class.tt Line: 29
+			this.Config = new Config(this); // Class.tt Line: 29
 			OnInit();
 	    }
 		partial void OnInitBegin();
@@ -2513,7 +2513,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
 		    vm.Description = from.Description; // Clone.tt Line: 62
 		    if (isDeep) // Clone.tt Line: 59
-		        vm.ConfigNode = Config.Clone(vm, from.ConfigNode, isDeep);
+		        vm.Config = Config.Clone(vm, from.Config, isDeep);
 		    vm.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 62
 		    if (isNewGuid) // Clone.tt Line: 67
 		        vm.SetNewGuid();
@@ -2526,7 +2526,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.SortingValue = from.SortingValue; // Clone.tt Line: 134
 		    to.Description = from.Description; // Clone.tt Line: 134
 		    if (isDeep) // Clone.tt Line: 131
-		        Config.Update(to.ConfigNode, from.ConfigNode, isDeep);
+		        Config.Update(to.Config, from.Config, isDeep);
 		    to.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 134
 		}
 		// Clone.tt Line: 140
@@ -2555,9 +2555,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.Name = m.Name; // Clone.tt Line: 216
 		    vm.SortingValue = m.SortingValue; // Clone.tt Line: 216
 		    vm.Description = m.Description; // Clone.tt Line: 216
-		    if (vm.ConfigNode == null) // Clone.tt Line: 204
-		        vm.ConfigNode = new Config(vm); // Clone.tt Line: 206
-		    Config.ConvertToVM(m.ConfigNode, vm.ConfigNode);
+		    if (vm.Config == null) // Clone.tt Line: 204
+		        vm.Config = new Config(vm); // Clone.tt Line: 206
+		    Config.ConvertToVM(m.Config, vm.Config);
 		    vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 216
 		    vm.OnInitFromDto(); // Clone.tt Line: 221
 		    return vm;
@@ -2570,7 +2570,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.Name = vm.Name; // Clone.tt Line: 252
 		    m.SortingValue = vm.SortingValue; // Clone.tt Line: 252
 		    m.Description = vm.Description; // Clone.tt Line: 252
-		    m.ConfigNode = Config.ConvertToProto(vm.ConfigNode); // Clone.tt Line: 246
+		    m.Config = Config.ConvertToProto(vm.Config); // Clone.tt Line: 246
 		    m.RelativeConfigFilePath = vm.RelativeConfigFilePath; // Clone.tt Line: 252
 		    return m;
 		}
@@ -2580,7 +2580,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    if (visitor.Token.IsCancellationRequested)
 		        return;
 			visitor.Visit(this);
-			this.ConfigNode.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 25
+			this.Config.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 25
 		
 			visitor.VisitEnd(this);
 		}
@@ -2608,26 +2608,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		partial void OnDescriptionChanged();
 		
 		[BrowsableAttribute(false)]
-		public Config ConfigNode // Property.tt Line: 100
+		public Config Config // Property.tt Line: 100
 		{ 
 			set
 			{
-				if (_ConfigNode != value)
+				if (_Config != value)
 				{
-					OnConfigNodeChanging(_ConfigNode, value);
-		            _ConfigNode = value;
-					OnConfigNodeChanged();
+					OnConfigChanging(_Config, value);
+		            _Config = value;
+					OnConfigChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _ConfigNode; }
+			get { return _Config; }
 		}
-		private Config _ConfigNode;
-		partial void OnConfigNodeChanging(Config from, Config to); // Property.tt Line: 118
-		partial void OnConfigNodeChanged();
+		private Config _Config;
+		partial void OnConfigChanging(Config from, Config to); // Property.tt Line: 118
+		partial void OnConfigChanged();
 		[BrowsableAttribute(false)]
-		public IConfig IConfigNode { get { return _ConfigNode; }}
+		public IConfig IConfig { get { return _Config; }}
 		
 		[PropertyOrderAttribute(6)]
 		[Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]

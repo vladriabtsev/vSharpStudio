@@ -7,8 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace vSharpStudio.common
 {
-    public partial interface IBaseConfig
+    public partial interface IConfigModel : IMutableAnnotatable
     {
-        IConfig Config { get; }
     }
 }

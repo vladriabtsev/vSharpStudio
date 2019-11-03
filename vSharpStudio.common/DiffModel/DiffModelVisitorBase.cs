@@ -64,12 +64,11 @@ namespace vSharpStudio.common
             }
             this.Model = this.modelBuilder.Model;
         }
-
         private void RunThroughConfig(IConfig t)
         {
             var diff_config = t.GetDiffConfig();
             this.Visit(t, diff_config);
-            foreach (var tt in diff_config.ConfigModel.Enumerations.ListAll)
+            foreach (var tt in diff_config.DiffConfigModel.Enumerations.ListAll)
             {
                 var diff_type = tt.GetDiffEnumerationType();
                 this.Visit(tt, diff_type);
@@ -81,13 +80,13 @@ namespace vSharpStudio.common
                     this.Visit(ttt, diff_pair);
                 }
             }
-            this.Visit(diff_config.ConfigModel.Constants.ListAll);
-            foreach (var tt in diff_config.ConfigModel.Constants.ListAll)
+            this.Visit(diff_config.DiffConfigModel.Constants.ListAll);
+            foreach (var tt in diff_config.DiffConfigModel.Constants.ListAll)
             {
                 var diff_type = tt.GetDiffDataType();
                 this.Visit(tt, diff_type);
             }
-            foreach (var tt in diff_config.ConfigModel.Catalogs.ListAll)
+            foreach (var tt in diff_config.DiffConfigModel.Catalogs.ListAll)
             {
                 var diff_catalog = tt.GetDiffCatalog();
                 this.Visit(tt, diff_catalog);
@@ -98,12 +97,12 @@ namespace vSharpStudio.common
                 var diff_tabs = tt.GetDiffListPropertiesTabs();
                 this.VisitPropertiesTabs(diff_tabs);
             }
-            foreach (var tt in diff_config.ConfigModel.Documents.ListAll)
+            foreach (var tt in diff_config.DiffConfigModel.Documents.ListAll)
             {
                 var diff_doc = tt.GetDiffDocument();
-                this.Visit(tt, diff_config.ConfigModel.Documents.DiffSharedProps, diff_doc);
+                this.Visit(tt, diff_config.DiffConfigModel.Documents.DiffSharedProps, diff_doc);
 
-                this.VisitProperties(diff_config.ConfigModel.Documents.DiffSharedProps);
+                this.VisitProperties(diff_config.DiffConfigModel.Documents.DiffSharedProps);
 
                 var diff_properties = tt.GetDiffListProperties();
                 this.VisitProperties(diff_properties);

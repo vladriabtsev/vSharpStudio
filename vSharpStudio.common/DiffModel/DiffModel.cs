@@ -31,6 +31,7 @@ namespace vSharpStudio.common
             if (cfg == null)
                 return lst;
             var dic = new Dictionary<string, IConfig>();
+            dic[cfg.Guid] = cfg;
             GetSubConfigs(cfg);
             foreach(var t in dic)
             {
@@ -42,8 +43,8 @@ namespace vSharpStudio.common
             {
                 foreach (var t in _cfg.IGroupConfigLinks.IListBaseConfigLinks)
                 {
-                    dic[t.IConfigNode.Guid] = t.IConfigNode;
-                    GetSubConfigs(t.IConfigNode);
+                    dic[t.IConfig.Guid] = t.IConfig;
+                    GetSubConfigs(t.IConfig);
                 }
             }
         }

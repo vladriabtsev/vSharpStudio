@@ -18,16 +18,16 @@ namespace vSharpStudio.common
     {
         public DiffConfig(IConfig oldest_config, IConfig prev_config, IConfig current_config)
         {
-            this.ConfigModel = new DiffConfigModel(
+            this.DiffConfigModel = new DiffConfigModel(
                 oldest_config?.IModel,
                 prev_config?.IModel,
                 current_config.IModel);
             this.Config = current_config;
-            this.Config[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
+            //this.Config[DiffEnumHistoryAnnotation.DiffConfig.ToString()] = this;
         }
 
         public IConfig Config;
-        public DiffConfigModel ConfigModel;
+        public DiffConfigModel DiffConfigModel;
 
         #region Constants
         // Renamed

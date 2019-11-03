@@ -40,7 +40,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnInit()
         {
-            this.Name = "Config";
+            if (string.IsNullOrWhiteSpace(this.Name))
+                this.Name = "Config";
             this.PrimaryKeyType = EnumPrimaryKeyType.INT;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG

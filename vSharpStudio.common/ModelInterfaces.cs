@@ -174,7 +174,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	{
 		ulong SortingValue { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
-		IConfig IConfigNode { get; } // ModelInterfaces.tt Line: 47
+		IConfig IConfig { get; } // ModelInterfaces.tt Line: 47
 		string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 43
 	}
 	
