@@ -149,6 +149,15 @@
     <Compile Include="DiffModel\DiffLists.cs" />
     <Compile Include="DiffModel\IConfigModel.partial.cs" />
     <Compile Include="DiffModel\IConfig.partial.cs" />
+    <Compile Include="DiffModel\IGroupListJournals.partial.cs" />
+    <Compile Include="DiffModel\IGroupListDocuments.partial.cs" />
+    <Compile Include="DiffModel\IGroupListConstants.partial.cs" />
+    <Compile Include="DiffModel\IGroupListForms.partial.cs" />
+    <Compile Include="DiffModel\IGroupListReports.partial.cs" />
+    <Compile Include="DiffModel\IGroupListPropertiesTabs.partial.cs" />
+    <Compile Include="DiffModel\IGroupListProperties.partial.cs" />
+    <Compile Include="DiffModel\IGroupListEnumerations.partial.cs" />
+    <Compile Include="DiffModel\IGroupListCatalogs.partial.cs" />
     <Compile Include="DiffModel\IJournal.partial.cs" />
     <Compile Include="DiffModel\IReport.partial.cs" />
     <Compile Include="DiffModel\IForm.partial.cs" />

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace vSharpStudio.common
 {
-    public partial interface IEnumeration : IMutableAnnotatable
+    public partial interface IGroupListForms
     {
-        List<IEnumerationPair> ListAnnotated { get; }
+        List<IForm> ListAnnotated { get; }
     }
 }

@@ -118,5 +118,20 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
+        [BrowsableAttribute(false)]
+        public List<IEnumerationPair> ListAnnotated
+        {
+            get
+            {
+                var cfg = this.GetConfig();
+                var diff = new DiffLists<IEnumerationPair>(
+                    (cfg.OldStableConfig?.DicNodes[this.Guid] as Enumeration).IListEnumerationPairs,
+                    (cfg.PrevStableConfig?.DicNodes[this.Guid] as Enumeration).IListEnumerationPairs,
+                    (cfg.DicNodes[this.Guid] as Enumeration).IListEnumerationPairs
+                );
+                return diff.ListAll;
+            }
+        }
     }
 }

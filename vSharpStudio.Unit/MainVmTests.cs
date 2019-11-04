@@ -130,7 +130,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
             Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
             Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
-            
+
             vm.Config.Model.GroupConstants[0].Name = "c11";
             vm.Config.Model.GroupConstants.ListConstants.RemoveAt(1);
 
@@ -167,8 +167,7 @@ namespace vSharpStudio.Unit
             c3.DataType.Length = 101;
             vm.CommandConfigSave.Execute(null);
 
-            var diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.DiffMainConfig.DiffConfigModel.Constants.ListAll.Count == 3);
+            Assert.IsTrue(vm.Config.GetDiffConstants().Count == 3);
             Assert.IsTrue(c1.IsNew());
             Assert.IsTrue(c2.IsNew());
             Assert.IsTrue(c3.IsNew());
@@ -179,13 +178,12 @@ namespace vSharpStudio.Unit
             c3.DataType.Length = 100;
             var c4 = vm.Config.Model.GroupConstants.AddConstant("c4");
             vm.Config.Model.GroupConstants.Remove(c2);
-            diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.DiffMainConfig.DiffConfigModel.Constants.ListAll.Count == 4);
+            Assert.IsTrue(vm.Config.GetDiffConstants().Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
             Assert.IsTrue(c1.GetDiffDataType() == null);
             Assert.IsTrue(c1.IsRenamed());
-            var cc2 = (from p in diff.DiffMainConfig.DiffConfigModel.Constants.ListAll where p.Name == "c2" select p).Single();
+            var cc2 = (from p in vm.Config.GetDiffConstants() where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
             Assert.IsTrue(c3.IsCanLooseData());
@@ -194,19 +192,17 @@ namespace vSharpStudio.Unit
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.DiffMainConfig.DiffConfigModel.Constants.ListAll.Count == 4);
+            Assert.IsTrue(vm.Config.GetDiffConstants().Count == 4);
             Assert.IsTrue(!c1.IsRenamed());
             Assert.IsTrue(c1.GetDiffDataType() == null);
-            cc2 = (from p in diff.DiffMainConfig.DiffConfigModel.Constants.ListAll where p.Name == "c2" select p).Single();
+            cc2 = (from p in vm.Config.GetDiffConstants() where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
             Assert.IsTrue(c3.GetDiffDataType() == null);
             Assert.IsTrue(!c4.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
-            diff = vm.GetDiffModel();
-            Assert.IsTrue(diff.DiffMainConfig.DiffConfigModel.Constants.ListAll.Count == 3); // deleted is removed
+            Assert.IsTrue(vm.Config.GetDiffConstants().Count == 3); // deleted is removed
         }
         [TestMethod]
         public void Main012_Diff_Enumerations()
@@ -333,15 +329,15 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
-            var diffc = vm.GetDiffListConfigs();
-            Assert.IsTrue(diffc.Config.Name == "main");
-            Assert.IsTrue(diffc.ListAll.Count == 2);
-            Assert.IsTrue(diffc.ListSubConfigs.Count == 1);
-            Assert.IsTrue(diffc.ListSubConfigs[0].Name == "ext");
-            Assert.IsTrue(diffc.Config.IsNew());
-            Assert.IsFalse(diffc.Config.IsDeleted());
-            Assert.IsFalse(diffc.Config.IsDeprecated());
-            Assert.IsFalse(diffc.Config.IsRenamed());
+            //var diffc = vm.GetDiffListConfigs();
+            //Assert.IsTrue(diffc.Config.Name == "main");
+            //Assert.IsTrue(diffc.ListAll.Count == 2);
+            //Assert.IsTrue(diffc.ListSubConfigs.Count == 1);
+            //Assert.IsTrue(diffc.ListSubConfigs[0].Name == "ext");
+            //Assert.IsTrue(diffc.Config.IsNew());
+            //Assert.IsFalse(diffc.Config.IsDeleted());
+            //Assert.IsFalse(diffc.Config.IsDeprecated());
+            //Assert.IsFalse(diffc.Config.IsRenamed());
         }
     }
 }

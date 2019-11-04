@@ -228,5 +228,39 @@ namespace vSharpStudio.vm.ViewModels
 
         public IConfig PrevStableConfig { get; set; }
         public IConfig OldStableConfig { get; set; }
+        public List<IConfig> ListAnnotated
+        {
+            get
+            {
+                var oldests = GetListConfigs(this.OldStableConfig);
+                var prevs = GetListConfigs(this.PrevStableConfig);
+                var currents = GetListConfigs(this);
+                var diff = new DiffLists<IConfig>(oldests, prevs, currents);
+                return diff.ListAll;
+            }
+        }
+        private static List<IConfig> GetListConfigs(IConfig cfg)
+        {
+            var lst = new List<IConfig>();
+            if (cfg == null)
+                return lst;
+            var dic = new Dictionary<string, IConfig>();
+            dic[cfg.Guid] = cfg;
+            GetSubConfigs(cfg);
+            foreach (var t in dic)
+            {
+                lst.Add(t.Value);
+            }
+            dic.Clear();
+            return lst;
+            void GetSubConfigs(IConfig _cfg)
+            {
+                foreach (var t in _cfg.IGroupConfigLinks.IListBaseConfigLinks)
+                {
+                    dic[t.IConfig.Guid] = t.IConfig;
+                    GetSubConfigs(t.IConfig);
+                }
+            }
+        }
     }
 }

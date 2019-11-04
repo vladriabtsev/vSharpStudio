@@ -13,5 +13,6 @@ namespace vSharpStudio.common
         IConfig PrevStableConfig { get; }
         IConfig OldStableConfig { get; }
         Dictionary<string, ITreeConfigNode> DicNodes { get; }
+        List<IConfig> ListAnnotated { get; }
     }
 }
