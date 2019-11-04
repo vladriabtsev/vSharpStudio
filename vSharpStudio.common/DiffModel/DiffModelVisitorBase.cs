@@ -12,6 +12,7 @@ namespace vSharpStudio.common
     {
         public IMutableModel Model;
         protected ModelBuilder modelBuilder;
+        protected IConfig cfg;
         protected bool isCreateGeneralTable;
         protected abstract void Visit(IEnumeration m, DiffEnumerationType diff_type);
         protected abstract void Visit(IEnumerationPair m, DiffEnumerationPair diff_type);
@@ -47,14 +48,15 @@ namespace vSharpStudio.common
                 this.VisitPropertiesTabs(diff_catalog_tabs);
             }
         }
-        public void Visit(DiffModel diff, ModelBuilder modelBuilder, bool isCreateGeneralTable = true)
+        public void Visit(IConfig cfg, ModelBuilder modelBuilder, bool isCreateGeneralTable = true)
         {
+            this.cfg = cfg;
             this.modelBuilder = modelBuilder;
             this.isCreateGeneralTable = isCreateGeneralTable;
 
-            RunThroughConfig(diff.DiffMainConfig.Config);
+            //RunThroughConfig(cfg);
 
-            foreach (var t in diff.DiffListSubConfigs.ListAll)
+            foreach (var t in cfg.ListAnnotated)
             {
                 //if (t.IsDeleted()) { }
                 //if (t.IsDeprecated()) { }

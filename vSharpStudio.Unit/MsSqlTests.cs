@@ -306,7 +306,7 @@ namespace vSharpStudio.Unit
         {
             Execute((vm) =>
             {
-                vm.Config.PrimaryKeyType = EnumPrimaryKeyType.LONG;
+                vm.Config.DbSettings.PKeyType = EnumPrimaryKeyType.LONG;
                 vm.Config.Name = "tst";
                 Catalog ctlg = null;
                 Property p = null;
@@ -453,7 +453,7 @@ WHERE  ct.name=@table";
         {
             Execute((vm) =>
             {
-                vm.Config.PrimaryKeyType = EnumPrimaryKeyType.LONG;
+                vm.Config.DbSettings.PKeyType = EnumPrimaryKeyType.LONG;
                 vm.Config.Name = "tst";
                 Document doc = null;
                 Property p = null;
@@ -636,17 +636,17 @@ WHERE  ct.name=@table";
 
             MigrationOperation[] operations = null;
 
-            var diff = vm.GetDiffModel();
+            //var diff = vm.GetDiffModel();
             //EnsureDeletedTestDb(connstring);
             var dgen = (MsSqlDesignGenerator)gen.Generator;
 
             EnsureDeletedTestDb(connstring);
 
-            dgen.UpdateToModel(connstring, operations, diff, () => { return true; },
-                (ex) =>
-                {
-                    throw ex;
-                });
+            //dgen.UpdateToModel(connstring, operations, diff, () => { return true; },
+            //    (ex) =>
+            //    {
+            //        throw ex;
+            //    });
 
             using (var connection = new SqlConnection(connstring))
             {

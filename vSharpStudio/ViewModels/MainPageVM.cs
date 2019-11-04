@@ -151,15 +151,15 @@ namespace vSharpStudio.ViewModels
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
         public static readonly string CFG_FILE_PATH = @".\current.vcfg";
         public static readonly string CFG_FILE_NAME = "current.vcfg";
-        public DiffModel GetDiffModel()
-        {
-            DiffModel res = new DiffModel(
-                pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig, new Config()),
-                pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config()),
-                this.Config
-            );
-            return res;
-        }
+        //public DiffModel GetDiffModel()
+        //{
+        //    DiffModel res = new DiffModel(
+        //        pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig, new Config()),
+        //        pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config()),
+        //        this.Config
+        //    );
+        //    return res;
+        //}
         //internal void OnSelectedItemChanged(object oldValue, object newValue)
         //{
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;

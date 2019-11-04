@@ -91,7 +91,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 	{
 		string DbSchema { get; } // ModelInterfaces.tt Line: 43
 		DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 43
-		string KeyType { get; } // ModelInterfaces.tt Line: 43
+		EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 43
 		string KeyName { get; } // ModelInterfaces.tt Line: 43
 		string Timestamp { get; } // ModelInterfaces.tt Line: 43
 		
@@ -145,7 +145,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 10
 		string NameUi { get; } // ModelInterfaces.tt Line: 43
 		string Description { get; } // ModelInterfaces.tt Line: 43
 		Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 43
-		EnumPrimaryKeyType PrimaryKeyType { get; } // ModelInterfaces.tt Line: 43
 		
 		///////////////////////////////////////////////////
 		/// GENERAL DB SETTINGS

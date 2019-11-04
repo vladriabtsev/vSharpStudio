@@ -1,4 +1,4 @@
-// Auto generated on UTC 11/04/2019 00:57:25
+// Auto generated on UTC 11/04/2019 02:35:02
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -967,7 +967,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    DbSettings vm = new DbSettings();
 		    vm.DbSchema = from.DbSchema; // Clone.tt Line: 62
 		    vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 62
-		    vm.KeyType = from.KeyType; // Clone.tt Line: 62
+		    vm.PKeyType = from.PKeyType; // Clone.tt Line: 62
 		    vm.KeyName = from.KeyName; // Clone.tt Line: 62
 		    vm.Timestamp = from.Timestamp; // Clone.tt Line: 62
 		    vm.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 62
@@ -979,7 +979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		{
 		    to.DbSchema = from.DbSchema; // Clone.tt Line: 134
 		    to.IdGenerator = from.IdGenerator; // Clone.tt Line: 134
-		    to.KeyType = from.KeyType; // Clone.tt Line: 134
+		    to.PKeyType = from.PKeyType; // Clone.tt Line: 134
 		    to.KeyName = from.KeyName; // Clone.tt Line: 134
 		    to.Timestamp = from.Timestamp; // Clone.tt Line: 134
 		    to.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 134
@@ -1010,7 +1010,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		        return vm;
 		    vm.DbSchema = m.DbSchema; // Clone.tt Line: 216
 		    vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 214
-		    vm.KeyType = m.KeyType; // Clone.tt Line: 216
+		    vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 214
 		    vm.KeyName = m.KeyName; // Clone.tt Line: 216
 		    vm.Timestamp = m.Timestamp; // Clone.tt Line: 216
 		    vm.IsDbFromConnectionString = m.IsDbFromConnectionString; // Clone.tt Line: 216
@@ -1024,7 +1024,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 228
 		    m.DbSchema = vm.DbSchema; // Clone.tt Line: 252
 		    m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 250
-		    m.KeyType = vm.KeyType; // Clone.tt Line: 252
+		    m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 250
 		    m.KeyName = vm.KeyName; // Clone.tt Line: 252
 		    m.Timestamp = vm.Timestamp; // Clone.tt Line: 252
 		    m.IsDbFromConnectionString = vm.IsDbFromConnectionString; // Clone.tt Line: 252
@@ -1079,24 +1079,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		
 		[PropertyOrderAttribute(3)]
 		[Description("Primary key field type")]
-		public string KeyType // Property.tt Line: 123
+		public EnumPrimaryKeyType PKeyType // Property.tt Line: 123
 		{ 
 			set
 			{
-				if (_KeyType != value)
+				if (_PKeyType != value)
 				{
-					OnKeyTypeChanging(_KeyType, value);
-					_KeyType = value;
-					OnKeyTypeChanged();
+					OnPKeyTypeChanging(_PKeyType, value);
+					_PKeyType = value;
+					OnPKeyTypeChanged();
 					NotifyPropertyChanged();
 					ValidateProperty();
 				}
 			}
-			get { return _KeyType; }
+			get { return _PKeyType; }
 		}
-		private string _KeyType = "";
-		partial void OnKeyTypeChanging(string from, string to); // Property.tt Line: 141
-		partial void OnKeyTypeChanged();
+		private EnumPrimaryKeyType _PKeyType;
+		partial void OnPKeyTypeChanging(EnumPrimaryKeyType from, EnumPrimaryKeyType to); // Property.tt Line: 141
+		partial void OnPKeyTypeChanged();
 		
 		[PropertyOrderAttribute(4)]
 		[Description("Primary key field name")]
@@ -1797,7 +1797,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.NameUi = from.NameUi; // Clone.tt Line: 62
 		    vm.Description = from.Description; // Clone.tt Line: 62
 		    vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 62
-		    vm.PrimaryKeyType = from.PrimaryKeyType; // Clone.tt Line: 62
 		    if (isDeep) // Clone.tt Line: 59
 		        vm.DbSettings = DbSettings.Clone(vm, from.DbSettings, isDeep);
 		    if (isDeep) // Clone.tt Line: 59
@@ -1821,7 +1820,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    to.NameUi = from.NameUi; // Clone.tt Line: 134
 		    to.Description = from.Description; // Clone.tt Line: 134
 		    to.LastUpdated = from.LastUpdated; // Clone.tt Line: 134
-		    to.PrimaryKeyType = from.PrimaryKeyType; // Clone.tt Line: 134
 		    if (isDeep) // Clone.tt Line: 131
 		        DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
 		    if (isDeep) // Clone.tt Line: 131
@@ -1862,7 +1860,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    vm.NameUi = m.NameUi; // Clone.tt Line: 216
 		    vm.Description = m.Description; // Clone.tt Line: 216
 		    vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 216
-		    vm.PrimaryKeyType = (EnumPrimaryKeyType)m.PrimaryKeyType; // Clone.tt Line: 214
 		    if (vm.DbSettings == null) // Clone.tt Line: 204
 		        vm.DbSettings = new DbSettings(); // Clone.tt Line: 208
 		    DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
@@ -1892,7 +1889,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		    m.NameUi = vm.NameUi; // Clone.tt Line: 252
 		    m.Description = vm.Description; // Clone.tt Line: 252
 		    m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 252
-		    m.PrimaryKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PrimaryKeyType; // Clone.tt Line: 250
 		    m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 246
 		    m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 246
 		    m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 246
@@ -1975,26 +1971,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 		private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
 		partial void OnLastUpdatedChanging(Google.Protobuf.WellKnownTypes.Timestamp from, Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 141
 		partial void OnLastUpdatedChanged();
-		
-		[PropertyOrderAttribute(7)]
-		public EnumPrimaryKeyType PrimaryKeyType // Property.tt Line: 123
-		{ 
-			set
-			{
-				if (_PrimaryKeyType != value)
-				{
-					OnPrimaryKeyTypeChanging(_PrimaryKeyType, value);
-					_PrimaryKeyType = value;
-					OnPrimaryKeyTypeChanged();
-					NotifyPropertyChanged();
-					ValidateProperty();
-				}
-			}
-			get { return _PrimaryKeyType; }
-		}
-		private EnumPrimaryKeyType _PrimaryKeyType;
-		partial void OnPrimaryKeyTypeChanging(EnumPrimaryKeyType from, EnumPrimaryKeyType to); // Property.tt Line: 141
-		partial void OnPrimaryKeyTypeChanged();
 		
 		
 		///////////////////////////////////////////////////

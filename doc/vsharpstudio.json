@@ -205,12 +205,12 @@
               "defaultValue": ""
             },
             {
-              "name": "key_type",
+              "name": "p_key_type",
               "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"Primary key field type\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_primary_key_type",
+              "longType": "proto_enum_primary_key_type",
+              "fullType": "proto_config.proto_enum_primary_key_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -747,16 +747,6 @@
               "type": "Timestamp",
               "longType": "google.protobuf.Timestamp",
               "fullType": "google.protobuf.Timestamp",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "primary_key_type",
-              "description": "@attr [PropertyOrderAttribute(7)]",
-              "label": "",
-              "type": "proto_enum_primary_key_type",
-              "longType": "proto_enum_primary_key_type",
-              "fullType": "proto_config.proto_enum_primary_key_type",
               "ismap": false,
               "defaultValue": ""
             },
