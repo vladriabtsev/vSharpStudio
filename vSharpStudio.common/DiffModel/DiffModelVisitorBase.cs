@@ -14,40 +14,18 @@ namespace vSharpStudio.common
         protected ModelBuilder modelBuilder;
         protected IConfig cfg;
         protected bool isCreateGeneralTable;
-        protected abstract void Visit(IEnumeration m, DiffEnumerationType diff_type);
-        protected abstract void Visit(IEnumerationPair m, DiffEnumerationPair diff_type);
+        protected abstract void Visit(IEnumeration en);
+        protected abstract void Visit(IEnumerationPair p);
         protected abstract void Visit(List<IConstant> diff_lst);
-        protected abstract void Visit(IConstant m, DiffDataType diff_type);
-        protected abstract void Visit(IConfig m, DiffConfig diff);
-        protected abstract void Visit(IConfigModel m, DiffConfig diff);
-        protected abstract void Visit(ICatalog m, DiffCatalog diff);
-        protected abstract void Visit(IDocument m, DiffListProperties diff_shared_prop, DiffDocument diff);
-        protected abstract void Visit(IPropertiesTab m, DiffPropertiesTab diff);
-        protected abstract void Visit(IProperty m, DiffProperty diff, DiffDataType diff_type);
-
-        private void VisitProperties(DiffListProperties diff)
-        {
-            foreach (var t in diff.ListAll)
-            {
-                var diff_property = t.GetDiffProperty();
-                var diff_data = t.GetDiffDataType();
-                this.Visit(t, diff_property, diff_data);
-            }
-        }
-        private void VisitPropertiesTabs(DiffListPropertiesTabs diff)
-        {
-            foreach (var t in diff.ListAll)
-            {
-                var diff_tab = t.GetDiffPropertiesTab();
-                this.Visit(t, diff_tab);
-
-                var diff_properties = t.GetDiffListProperties();
-                this.VisitProperties(diff_properties);
-
-                var diff_catalog_tabs = t.GetDiffListPropertiesTabs();
-                this.VisitPropertiesTabs(diff_catalog_tabs);
-            }
-        }
+        protected abstract void Visit(IConstant cn);
+        protected abstract void Visit(IConfig c);
+        protected abstract void Visit(IConfigModel m);
+        protected abstract void Visit(ICatalog ct);
+        protected abstract void Visit(IDocument d);
+        protected abstract void Visit(IPropertiesTab t);
+        protected abstract void Visit(IProperty p);
+        protected abstract void Visit(IForm p);
+        protected abstract void Visit(IReport p);
         public void Visit(IConfig cfg, ModelBuilder modelBuilder, bool isCreateGeneralTable = true)
         {
             this.cfg = cfg;
@@ -55,63 +33,105 @@ namespace vSharpStudio.common
             this.isCreateGeneralTable = isCreateGeneralTable;
 
             //RunThroughConfig(cfg);
-
             foreach (var t in cfg.ListAnnotated)
             {
-                //if (t.IsDeleted()) { }
-                //if (t.IsDeprecated()) { }
-                //if (t.IsNew()) { }
-                //if (t.IsRenamed()) { }
                 RunThroughConfig(t);
             }
             this.Model = this.modelBuilder.Model;
         }
+        private void VisitProperties(IEnumerable<IProperty> lst)
+        {
+            foreach (var t in lst)
+            {
+                this.currProp = t;
+                this.Visit(t);
+                this.currProp = null;
+            }
+        }
+        private void VisitPropertiesTabs(IEnumerable<IPropertiesTab> lst)
+        {
+            foreach (var t in lst)
+            {
+                this.Visit(t);
+                this.currPropTabStack.Push(t);
+                VisitProperties(t.GetDiffProperties());
+                VisitPropertiesTabs(t.GetDiffPropertiesTabs());
+                this.currPropTabStack.Pop();
+            }
+        }
+        private void VisitForms(IEnumerable<IForm> lst)
+        {
+            foreach (var t in lst)
+            {
+                this.currForm = t;
+                this.Visit(t);
+                this.currForm = null;
+            }
+        }
+        private void VisitReports(IEnumerable<IReport> lst)
+        {
+            foreach (var t in lst)
+            {
+                this.currRep = t;
+                this.Visit(t);
+                this.currRep = null;
+            }
+        }
+        protected IConfig currCfg = null;
+        protected IEnumeration currEnum = null;
+        //protected IEnumerationPair currEnumPair = null;
+        //protected IConstant currConst = null;
+        protected IForm currForm = null;
+        protected IReport currRep = null;
+        protected ICatalog currCat = null;
+        protected IDocument currDoc = null;
+        protected IProperty currProp = null;
+        protected Stack<IPropertiesTab> currPropTabStack = new Stack<IPropertiesTab>();
+        protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
         private void RunThroughConfig(IConfig t)
         {
-            var diff_config = t.GetDiffConfig();
-            this.Visit(t, diff_config);
-            foreach (var tt in diff_config.DiffConfigModel.Enumerations.ListAll)
+            this.currCfg = t;
+            this.Visit(t);
+            foreach (var tt in t.GetDiffEnumerations())
             {
-                var diff_type = tt.GetDiffEnumerationType();
-                this.Visit(tt, diff_type);
-
-                var diff_elements = tt.GetDiffListEnumElements();
-                foreach (var ttt in diff_elements.ListAll)
+                this.Visit(tt);
+                this.currEnum = tt;
+                foreach (var ttt in tt.GetDiffEnumerationPairs())
                 {
-                    var diff_pair = ttt.GetDiffEnumerationPair();
-                    this.Visit(ttt, diff_pair);
+                    this.Visit(ttt);
+                    //this.currEnumPair = ttt;
+                    //this.currEnumPair = null;
                 }
+                this.currEnum = null;
             }
-            this.Visit(diff_config.DiffConfigModel.Constants.ListAll);
-            foreach (var tt in diff_config.DiffConfigModel.Constants.ListAll)
+            foreach (var tt in t.GetDiffConstants())
             {
-                var diff_type = tt.GetDiffDataType();
-                this.Visit(tt, diff_type);
+                this.Visit(tt);
+                //this.currConst = tt;
+                //this.currConst = null;
             }
-            foreach (var tt in diff_config.DiffConfigModel.Catalogs.ListAll)
+            foreach (var tt in t.GetDiffCatalogs())
             {
-                var diff_catalog = tt.GetDiffCatalog();
-                this.Visit(tt, diff_catalog);
-
-                var diff_properties = tt.GetDiffListProperties();
-                this.VisitProperties(diff_properties);
-
-                var diff_tabs = tt.GetDiffListPropertiesTabs();
-                this.VisitPropertiesTabs(diff_tabs);
+                this.Visit(tt);
+                this.currCat = tt;
+                this.VisitProperties(tt.GetDiffProperties());
+                this.VisitPropertiesTabs(tt.GetDiffPropertiesTabs());
+                this.VisitForms(tt.GetDiffForms());
+                this.VisitReports(tt.GetDiffReports());
+                this.currCat = null;
             }
-            foreach (var tt in diff_config.DiffConfigModel.Documents.ListAll)
+            foreach (var tt in t.GetDiffDocuments())
             {
-                var diff_doc = tt.GetDiffDocument();
-                this.Visit(tt, diff_config.DiffConfigModel.Documents.DiffSharedProps, diff_doc);
-
-                this.VisitProperties(diff_config.DiffConfigModel.Documents.DiffSharedProps);
-
-                var diff_properties = tt.GetDiffListProperties();
-                this.VisitProperties(diff_properties);
-
-                var diff_tabs = tt.GetDiffListPropertiesTabs();
-                this.VisitPropertiesTabs(diff_tabs);
+                this.Visit(tt);
+                this.currDoc = tt;
+                this.VisitProperties(currCfg.GetDiffDocShared());
+                this.VisitProperties(tt.GetDiffProperties());
+                this.VisitPropertiesTabs(tt.GetDiffPropertiesTabs());
+                this.VisitForms(tt.GetDiffForms());
+                this.VisitReports(tt.GetDiffReports());
+                this.currDoc = null;
             }
+            currCfg = null;
         }
     }
 }

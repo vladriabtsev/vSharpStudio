@@ -24,7 +24,7 @@ namespace vSharpStudio.common
         }
         public static Type ToType(this EnumPrimaryKeyType obj)
         {
-            switch(obj)
+            switch (obj)
             {
                 case EnumPrimaryKeyType.INT:
                     return typeof(int);
@@ -76,95 +76,21 @@ namespace vSharpStudio.common
                 return false;
             return true;
         }
-        public static DiffEnumerationPair GetDiffEnumerationPair(this IEnumerationPair obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffEnumerationPair.ToString());
-            return (DiffEnumerationPair)annotation?.Value;
-        }
-        public static DiffListEnumerationPairs GetDiffListEnumElements(this IEnumeration obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListEnumerationPairs.ToString());
-            return (DiffListEnumerationPairs)annotation?.Value;
-        }
-        public static DiffEnumerationType GetDiffEnumerationType(this IEnumeration obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffEnumerationType.ToString());
-            return (DiffEnumerationType)annotation?.Value;
-        }
-        public static DiffDataType GetDiffDataType(this IConstant obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString());
-            return (DiffDataType)annotation?.Value;
-        }
-        public static DiffDataType GetDiffDataType(this IProperty obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffPropertyDataType.ToString());
-            return (DiffDataType)annotation?.Value;
-        }
-        public static DiffProperty GetDiffProperty(this IProperty obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffProperty.ToString());
-            return (DiffProperty)annotation?.Value;
-        }
-        public static DiffListProperties GetDiffListProperties(this ICatalog obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListProperties.ToString());
-            return (DiffListProperties)annotation?.Value;
-        }
-        public static DiffDocument GetDiffDocument(this IDocument obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffDocument.ToString());
-            return (DiffDocument)annotation?.Value;
-        }
-        public static DiffListProperties GetDiffListProperties(this IDocument obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListProperties.ToString());
-            return (DiffListProperties)annotation?.Value;
-        }
-        public static DiffPropertiesTab GetDiffPropertiesTab(this IPropertiesTab obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffPropertiesTab.ToString());
-            return (DiffPropertiesTab)annotation?.Value;
-        }
-        public static DiffListProperties GetDiffListProperties(this IPropertiesTab obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListProperties.ToString());
-            return (DiffListProperties)annotation?.Value;
-        }
-        public static DiffListPropertiesTabs GetDiffListPropertiesTabs(this ICatalog obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListPropertiesTabs.ToString());
-            return (DiffListPropertiesTabs)annotation?.Value;
-        }
-        public static DiffCatalog GetDiffCatalog(this ICatalog obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffCatalog.ToString());
-            return (DiffCatalog)annotation?.Value;
-        }
-        public static DiffListPropertiesTabs GetDiffListPropertiesTabs(this IDocument obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListPropertiesTabs.ToString());
-            return (DiffListPropertiesTabs)annotation?.Value;
-        }
-        public static DiffListPropertiesTabs GetDiffListPropertiesTabs(this IPropertiesTab obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffListPropertiesTabs.ToString());
-            return (DiffListPropertiesTabs)annotation?.Value;
-        }
-        public static DiffConfig GetDiffConfig(this IConfig obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffConfig.ToString());
-            return (DiffConfig)annotation?.Value;
-        }
-        public static DiffListConstants GetDiffListConstants(this IConfig obj)
-        {
-            Annotation annotation = obj.FindAnnotation(DiffEnumHistoryAnnotation.DiffConfig.ToString());
-            return (DiffListConstants)annotation?.Value;
-        }
 
 
 
         #region IConfig
+        // get Constant from Config for Guid from provided constant
+        public static IConstant GetDiffConstant(this IConfig obj, IConstant m)
+        {
+            if (obj.DicNodes.ContainsKey(m.Guid))
+                return (IConstant)obj.DicNodes[m.Guid];
+            else if (obj.PrevStableConfig != null && obj.PrevStableConfig.DicNodes.ContainsKey(m.Guid)) // renamed
+                return (IConstant)obj.PrevStableConfig.DicNodes[m.Guid];
+            else if (obj.OldStableConfig != null && obj.OldStableConfig.DicNodes.ContainsKey(m.Guid)) // deleted
+                return (IConstant)obj.OldStableConfig.DicNodes[m.Guid];
+            throw new ArgumentException();
+        }
         public static IEnumerable<IEnumeration> GetEnumerations(this IConfig obj)
         {
             return obj.IModel.IGroupEnumerations.IListEnumerations;
@@ -234,6 +160,14 @@ namespace vSharpStudio.common
         public static List<IProperty> GetDiffProperties(this IPropertiesTab obj)
         {
             return obj.IGroupProperties.ListAnnotated;
+        }
+        public static IEnumerable<IPropertiesTab> GetPropertiesTabs(this IPropertiesTab obj)
+        {
+            return obj.IGroupPropertiesTabs.IListPropertiesTabs;
+        }
+        public static List<IPropertiesTab> GetDiffPropertiesTabs(this IPropertiesTab obj)
+        {
+            return obj.IGroupPropertiesTabs.ListAnnotated;
         }
         #endregion IPropertiesTab
 

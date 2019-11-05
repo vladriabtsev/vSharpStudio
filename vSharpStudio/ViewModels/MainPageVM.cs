@@ -538,8 +538,10 @@ namespace vSharpStudio.ViewModels
             if (pconfig_history.PrevStableConfig != null)
             {
                 pconfig_history.OldStableConfig = pconfig_history.PrevStableConfig.Clone();
+                this.Config.OldStableConfig = this.Config.PrevStableConfig;
             }
             pconfig_history.PrevStableConfig = pconfig_history.CurrentConfig.Clone();
+            this.Config.PrevStableConfig = this.Config;
             pconfig_history.CurrentConfig.Version++;
             Utils.TryCall(() =>
             {

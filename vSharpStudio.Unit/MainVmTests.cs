@@ -110,46 +110,51 @@ namespace vSharpStudio.Unit
             var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
 
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListAnnotated[0].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
+            var lstAll = vm.Config.GetDiffConstants(); // Recalculate annotation
+            Assert.IsTrue(vm.Config.GetDiffConstant(c1).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeprecated());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsRenamed());
 
             // current changes are saved
             // no stable version (prev is null)
             vm.CommandConfigSave.Execute(null);
             vm = new MainPageVM(true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListAnnotated[0].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
+            lstAll = vm.Config.GetDiffConstants(); // Recalculate annotation
+            Assert.IsTrue(vm.Config.GetDiffConstant(c1).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeprecated());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsRenamed());
 
             // first stable version (prev not null, but oldest is null)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
+            lstAll = vm.Config.GetDiffConstants(); // Recalculate annotation
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeprecated());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsRenamed());
 
             vm.Config.Model.GroupConstants[0].Name = "c11";
             vm.Config.Model.GroupConstants.ListConstants.RemoveAt(1);
 
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 2);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
+            lstAll = vm.Config.GetDiffConstants(); // Recalculate annotation
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeprecated());
+            Assert.IsTrue(vm.Config.GetDiffConstant(c1).IsRenamed());
 
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[1].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[1].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[1].IsDeprecated());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[1].IsRenamed());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c2).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c2).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c2).IsDeprecated());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c2).IsRenamed());
 
             vm = new MainPageVM(true);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsNew());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeleted());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsDeprecated());
-            Assert.IsFalse(vm.Config.Model.GroupConstants.ListAnnotated[0].IsRenamed());
+            lstAll = vm.Config.GetDiffConstants(); // Recalculate annotation
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsNew());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeleted());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsDeprecated());
+            Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsRenamed());
 
         }
         [TestMethod]
@@ -181,24 +186,20 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GetDiffConstants().Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(c1.GetDiffDataType() == null);
             Assert.IsTrue(c1.IsRenamed());
             var cc2 = (from p in vm.Config.GetDiffConstants() where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
             Assert.IsTrue(c3.IsCanLooseData());
-            Assert.IsTrue(c3.GetDiffDataType() != null);
             Assert.IsTrue(c4.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             Assert.IsTrue(vm.Config.GetDiffConstants().Count == 4);
             Assert.IsTrue(!c1.IsRenamed());
-            Assert.IsTrue(c1.GetDiffDataType() == null);
             cc2 = (from p in vm.Config.GetDiffConstants() where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(c3.GetDiffDataType() == null);
             Assert.IsTrue(!c4.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
@@ -237,23 +238,19 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 4);
 
             Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(c1.GetDiffEnumerationType() == null);
             Assert.IsTrue(c1.IsRenamed());
             var cc2 = (from p in vm.Config.GetDiffEnumerations() where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
-            Assert.IsTrue(c3.GetDiffEnumerationType() != null);
             Assert.IsTrue(c4.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 4);
             Assert.IsTrue(!c1.IsRenamed());
-            Assert.IsTrue(c1.GetDiffEnumerationType() == null);
             cc2 = (from p in vm.Config.GetDiffEnumerations() where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(c3.GetDiffEnumerationType() == null);
             Assert.IsTrue(!c4.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
