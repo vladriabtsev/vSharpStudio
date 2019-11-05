@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public partial class DataTypeValidator
         {
+            IDataType prev = null;
             public DataTypeValidator()
             {
                 #region Length
@@ -171,6 +172,27 @@ namespace vSharpStudio.vm.ViewModels
                     return false;
                 }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
                 #endregion ObjectGuid
+
+                RuleFor(p => p.Length).Must((p, y) =>
+                {
+                    prev = p.GetPrevious();
+                    if (prev != null && p.DataTypeEnum != prev.DataTypeEnum)
+                        return false;
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_TYPE_DANGEROUS_CHANGE, prev?.DataTypeEnum)).WithSeverity(Severity.Warning);
+                RuleFor(p => p.Length).Must((p, y) =>
+                {
+                    prev = p.GetPrevious();
+                    if (prev != null)
+                    {
+                        if (p.DataTypeEnum != prev.DataTypeEnum)
+                            return true;
+                        if (p.Length < prev.Length)
+                            return false;
+                    }
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_LENGTH_DANGEROUS_CHANGE, prev?.Length)).WithSeverity(Severity.Warning);
+
 
                 //RuleFor(x => x.MinValueString).NotEmpty().WithMessage(Config.ValidationMessages.TYPE_MIN_EMPTY).WithSeverity(Severity.Warning);
                 //RuleFor(x => x.MaxValueString).NotEmpty().WithMessage(Config.ValidationMessages.TYPE_MAX_EMPTY).WithSeverity(Severity.Warning);

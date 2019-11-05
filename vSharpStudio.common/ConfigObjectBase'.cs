@@ -155,9 +155,11 @@ namespace vSharpStudio.common
         }
         public IConfig GetConfig()
         {
-            if (_config==null)
+            if (_config == null)
             {
                 ITreeConfigNode p = this.Parent;
+                if (p == null)
+                    return null;
                 while (p.Parent != null)
                     p = p.Parent;
                 _config = (IConfig)p;
@@ -165,6 +167,15 @@ namespace vSharpStudio.common
             return _config;
         }
         private IConfig _config = null;
+
+        public T GetPrevious()
+        {
+            T res = null;
+            if (this.GetConfig()?.PrevStableConfig != null && this.GetConfig().PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
+                res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.Guid];
+            return res;
+        }
+
         [PropertyOrder(0)]
         public string Name
         {
@@ -616,6 +627,7 @@ namespace vSharpStudio.common
         IAnnotation IAnnotatable.FindAnnotation(string name) => FindAnnotation(name);
 
         #endregion IMutableAnnotatable
+
         public virtual bool HasChildren(object parent)
         {
             return false;

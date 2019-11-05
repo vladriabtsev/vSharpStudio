@@ -17,7 +17,13 @@ namespace vSharpStudio.vm.ViewModels
     {
         public class ValidationMessages
         {
+            public const string WARNING_DATA_TYPE_DANGEROUS_CHANGE = "Potential data loss. Data type was changed from '{0}'";
+            public const string WARNING_DATA_LENGTH_DANGEROUS_CHANGE = "Potential data loss. Data length was changed from '{0}'";
+            public const string WARNING_ENUM_VALUE_DANGEROUS_CHANGE = "Potential data loss. EnumerationPair value was changed from '{0}'";
+
             public const string CONN_STR_NAME_NOT_EXISTS = "Wrong connection string name";
+
+            public const string PKEY_NAME_CANT_BE_EMPTY = "Enter primary key name";
 
             public const string FILE_IS_NOT_EXISTS = "File is not exists";
             public const string FOLDER_IS_NOT_EXISTS = "Folder is not exists";

@@ -151,6 +151,7 @@
     <Compile Include="DiffModel\IDocument.partial.cs" />
     <Compile Include="DiffModel\IPropertiesTab.partial.cs" />
     <Compile Include="DiffModel\IProperty.partial.cs" />
+    <Compile Include="IDataTypeObject.cs" />
     <Compile Include="INodes.cs" />
     <Compile Include="IParent.cs" />
     <Compile Include="ITreeConfigNode.cs" />

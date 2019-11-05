@@ -981,7 +981,7 @@ User&#39;s role
 <a name="proto_config.enum_enumeration_type"></a>
 
 ### enum_enumeration_type
-
+Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |

@@ -9,6 +9,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public partial class EnumerationValidator
         {
+            Enumeration prev = null;
             public EnumerationValidator()
             {
                 RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
@@ -31,6 +32,24 @@ namespace vSharpStudio.vm.ViewModels
                         return false;
                     return true;
                 }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
+
+                RuleFor(p => p.DataTypeLength).Must((p, y) =>
+                {
+                    prev = p.GetPrevious();
+                    if (prev != null && p.DataTypeEnum == common.EnumEnumerationType.STRING_VALUE && p.DataTypeEnum == prev.DataTypeEnum)
+                    {
+                        if (p.DataTypeLength < prev.DataTypeLength)
+                            return false;
+                    }
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_LENGTH_DANGEROUS_CHANGE, prev?.DataTypeLength)).WithSeverity(Severity.Warning);
+                RuleFor(p => p.DataTypeEnum).Must((p, y) =>
+                {
+                    prev = p.GetPrevious();
+                    if (prev != null && p.DataTypeEnum < prev.DataTypeEnum)
+                        return false;
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_TYPE_DANGEROUS_CHANGE, prev?.DataTypeEnum)).WithSeverity(Severity.Warning);
             }
             public static bool IsStartNotWithDigit(string val)
             {

@@ -9,11 +9,7 @@ namespace vSharpStudio.common
 {
     public enum DiffEnumHistoryAnnotation
     {
-        New, Deprecated, Deleted, Renamed,
-        DiffListConfigs, DiffConfig,
-        DiffListEnumerations, DiffEnumeration, DiffListEnumerationPairs,
-        DiffEnumerationType, DiffPropertyDataType,
-        CanLooseData, DiffConfigModel, DiffConstant, DiffProperty, DiffPropertiesTab, DiffCatalog, DiffDocument, DiffListProperties, DiffListPropertiesTabs, DiffEnumerationPair
+        New, Deprecated, Deleted, Renamed, CanLooseData
     }
     public class DiffLists<T>
             where T : IGuid, IName, IMutableAnnotatable
@@ -63,7 +59,7 @@ namespace vSharpStudio.common
                         throw new Exception();
                     dic_curr[t.Guid] = t;
                 }
-                // new, renamed
+                // New, Renamed
                 foreach (var t in current)
                 {
                     if (!dic_prev.ContainsKey(t.Guid))
@@ -81,19 +77,67 @@ namespace vSharpStudio.common
                     this.ListAll.Add(t);
                 }
             }
-            // deprecated
+            // Deprecated, CanLooseData
             if (prev != null)
             {
                 foreach (var t in prev)
                 {
                     if (!dic_curr.ContainsKey(t.Guid))
                     {
-                        foreach (var tt in t.GetAnnotations().ToList())
-                        {
-                            t.RemoveAnnotation(tt.Name);
-                        }
                         t[DiffEnumHistoryAnnotation.Deprecated.ToString()] = DiffEnumHistoryAnnotation.Deprecated;
                         this.ListAll.Add(t);
+                    }
+                    else
+                    {
+                        var tt = dic_curr[t.Guid];
+                        if (typeof(T).Name == typeof(IProperty).Name)
+                        {
+                            var tp = (t as IProperty).IDataType;
+                            var tc = (tt as IProperty).IDataType;
+                            if (tp.DataTypeEnum != tc.DataTypeEnum)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Property data type was changed from '" + tp.DataTypeEnum + "' to '" + tc.DataTypeEnum + "'.";
+                            }
+                            else if (tp.Length > tc.Length)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Property data type length was changed from " + tp.Length + " to " + tc.Length + ". Date type:'" + tp.DataTypeEnum + "'.";
+                            }
+                        }
+                        else if (typeof(T).Name == typeof(IConstant).Name)
+                        {
+                            var tp = (t as IConstant).IDataType;
+                            var tc = (tt as IConstant).IDataType;
+                            if (tp.DataTypeEnum != tc.DataTypeEnum)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Constant data type was changed from '" + tp.DataTypeEnum + "' to '" + tc.DataTypeEnum + "'.";
+                            }
+                            else if (tp.Length > tc.Length)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Constant data type length was changed from " + tp.Length + " to " + tc.Length + ". Date type:'" + tp.DataTypeEnum + "'.";
+                            }
+                        }
+                        else if (typeof(T).Name == typeof(IEnumeration).Name)
+                        {
+                            var tp = t as IEnumeration;
+                            var tc = tt as IEnumeration;
+                            if (tp.DataTypeEnum > tc.DataTypeEnum)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Enumeration data type was changed from '" + tp.DataTypeEnum + "' to '" + tc.DataTypeEnum + "'.";
+                            }
+                            else if (tp.DataTypeLength > tc.DataTypeLength)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Enumeration data type length was changed from " + tp.DataTypeLength + " to " + tc.DataTypeLength + ". Date type:'" + tp.DataTypeEnum + "'.";
+                            }
+                        }
+                        else if (typeof(T).Name == typeof(IEnumerationPair).Name)
+                        {
+                            var tp = t as IEnumerationPair;
+                            var tc = tt as IEnumerationPair;
+                            if (tp.Value != tc.Value)
+                            {
+                                tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "EnumerationPair value was changed from '" + tp.Value + "' to '" + tc.Value + "'.";
+                            }
+                        }
                     }
                 }
             }

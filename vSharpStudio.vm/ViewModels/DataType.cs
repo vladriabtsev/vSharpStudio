@@ -351,7 +351,7 @@ namespace vSharpStudio.vm.ViewModels
                                     return "uint" + sn;
                                 if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
                                     return "ulong" + sn;
-                                if (this.Length <= 28) 
+                                if (this.Length <= 28)
                                     return "decimal" + sn;
                                 throw new Exception("Not supported operation");
                                 //return "BigInteger" + sn;
@@ -453,6 +453,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
+
+        /// <summary>
+        /// Potential data lost analysis
+        /// </summary>
+        /// <param name="to">New data type format</param>
+        /// <returns>Description of problems. Null if there are no data lost</returns>
+        public string CanLooseData(DataType to)
+        {
+            string res = null;
+
+            return res;
+        }
 
         #region Visibility
 
@@ -575,33 +587,33 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotSupportedException();
             }
         }
-
         private void UpdateListObjects()
         {
-            ITreeConfigNode config = this.Parent;
-            while (config != null && config.Parent != null)
-                config = config.Parent;
-            if (config is Config)
+            if (this.Cfg == null)
+                return;
+            //ITreeConfigNode config = this.Parent;
+            //while (config != null && config.Parent != null)
+            //    config = config.Parent;
+            //if (config is Config)
+            //{
+            if (this.ListObjects != null)
+                this.ListObjects.Clear();
+            switch (this.DataTypeEnum)
             {
-                if (this.ListObjects != null)
-                    this.ListObjects.Clear();
-                switch (this.DataTypeEnum)
-                {
-                    case EnumDataType.ENUMERATION:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupEnumerations.ListEnumerations);
-                        break;
-                    case EnumDataType.CATALOG:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupCatalogs.ListCatalogs);
-                        break;
-                    case EnumDataType.DOCUMENT:
-                        this.ListObjects = new SortedObservableCollection<ITreeConfigNode>((config as Config).Model.GroupDocuments.GroupListDocuments.ListDocuments);
-                        break;
-                    default:
-                        break;
-                }
+                case EnumDataType.ENUMERATION:
+                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
+                    break;
+                case EnumDataType.CATALOG:
+                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    break;
+                case EnumDataType.DOCUMENT:
+                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                    break;
+                default:
+                    break;
             }
+            //}
         }
-
         partial void OnLengthChanged()
         {
             _MaxNumericalValue = 0;
@@ -630,7 +642,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(p => p.MaxValue);
             this.NotifyPropertyChanged(p => p.MinValue);
         }
-
         [BrowsableAttribute(false)]
         public Visibility VisibilityLength
         {
@@ -685,5 +696,30 @@ namespace vSharpStudio.vm.ViewModels
         private Visibility _VisibilityObjectName = Visibility.Collapsed;
 
         #endregion Visibility
+
+        public Config Cfg
+        {
+            get
+            {
+                if (cfg == null)
+                {
+                    var p = this.Parent;
+                    if (p == null)
+                        return null;
+                    while (p.Parent != null)
+                        p = p.Parent;
+                    cfg = p as Config;
+                }
+                return cfg;
+            }
+        }
+        private Config cfg = null;
+        public IDataType GetPrevious()
+        {
+            IDataType res = null;
+            if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
+                res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject).IDataType;
+            return res;
+        }
     }
 }

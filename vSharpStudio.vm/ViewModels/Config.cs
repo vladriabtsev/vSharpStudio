@@ -43,6 +43,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.Name))
                 this.Name = "Config";
             this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
+            this.DbSettings.KeyName = "Id";
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             //SubNodes.Add(this.GroupConstants, 1);

@@ -10,6 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public partial class EnumerationPairValidator
         {
+            string prevValue = null;
             public EnumerationPairValidator()
             {
                 RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
@@ -20,6 +21,18 @@ namespace vSharpStudio.vm.ViewModels
                 RuleFor(x => x.Value).Must((o, name) => { return IsValueNotEmpty(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_CANT_BE_EMPTY);
                 RuleFor(x => x.Value).Must((o, name) => { return IsUniqueValue(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_HAS_TO_BE_UNIQUE);
                 RuleFor(x => x.Value).Must((o, name) => { return IsValueConvertable(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_NOT_CONVERTABLE);
+
+                RuleFor(p => p.Value).Must((p, y) =>
+                {
+                    var prev = p.GetPrevious();
+                    if (prev != null)
+                    {
+                        prevValue = prev.Value;
+                        if (p.Value != prev.Value)
+                            return false;
+                    }
+                    return true;
+                }).WithMessage(string.Format(Config.ValidationMessages.WARNING_ENUM_VALUE_DANGEROUS_CHANGE, prevValue)).WithSeverity(Severity.Warning);
             }
             public static bool IsStartNotWithDigit(string val)
             {
@@ -99,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val.Parent == null)
                     return true;
                 Enumeration p = (Enumeration)val.Parent;
-                switch(p.DataTypeEnum)
+                switch (p.DataTypeEnum)
                 {
                     case common.EnumEnumerationType.BYTE_VALUE:
                         byte b = 0;

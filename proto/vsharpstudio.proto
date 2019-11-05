@@ -523,6 +523,7 @@ message proto_group_list_enumerations {
     // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration list_enumerations = 6;
 }
+// Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
 enum enum_enumeration_type {
     STRING_VALUE = 0;
     BYTE_VALUE = 1;

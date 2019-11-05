@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : ICanAddNode, ICanGoLeft
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft
     {
         public static readonly string DefaultName = "Property";
         partial void OnInit()

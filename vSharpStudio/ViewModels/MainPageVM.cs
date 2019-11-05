@@ -541,7 +541,7 @@ namespace vSharpStudio.ViewModels
                 this.Config.OldStableConfig = this.Config.PrevStableConfig;
             }
             pconfig_history.PrevStableConfig = pconfig_history.CurrentConfig.Clone();
-            this.Config.PrevStableConfig = this.Config;
+            this.Config.PrevStableConfig = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
             pconfig_history.CurrentConfig.Version++;
             Utils.TryCall(() =>
             {

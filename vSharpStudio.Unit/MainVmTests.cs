@@ -214,18 +214,28 @@ namespace vSharpStudio.Unit
 
             // create object and save
             var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
-            c1.AddEnumerationPair("e1", "123");
-            c1.AddEnumerationPair("e2", "124");
-            c1.AddEnumerationPair("e3", "125");
+            var p1 = c1.AddEnumerationPair("e1", "123");
+            var p2 = c1.AddEnumerationPair("e2", "124");
+            var p3 = c1.AddEnumerationPair("e3", "125");
             var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
             var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+
+            Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 3);
+            Assert.IsTrue(c1.IsNew());
+            c1.GetDiffEnumerationPairs();
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p1).IsNew());
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p2).IsNew());
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p3).IsNew());
+            Assert.IsTrue(c2.IsNew());
+            Assert.IsTrue(c3.IsNew());
+
             vm.CommandConfigSave.Execute(null);
 
             Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 3);
             Assert.IsTrue(c1.IsNew());
-            Assert.IsTrue(c1.ListEnumerationPairs[0].IsNew());
-            Assert.IsTrue(c1.ListEnumerationPairs[1].IsNew());
-            Assert.IsTrue(c1.ListEnumerationPairs[2].IsNew());
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p1).IsNew());
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p2).IsNew());
+            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p3).IsNew());
             Assert.IsTrue(c2.IsNew());
             Assert.IsTrue(c3.IsNew());
 

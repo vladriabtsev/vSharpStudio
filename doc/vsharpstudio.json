@@ -31,7 +31,7 @@
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
-          "description": "",
+          "description": "Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss",
           "values": [
             {
               "name": "STRING_VALUE",
