@@ -21,14 +21,16 @@ echo **** conn_mssql markdown
 echo **** conn_mssql json
 %protoc%  -I=%1proto --plugin=protoc-gen-doc=%protdoc% --doc_out=%1doc --doc_opt=json,%prname%.json %1proto\%prname%.proto  
 
-echo **** model vsharpstudio
-%2 model vsharpstudio %1vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs vSharpStudio.vm.ViewModels %1doc\
-echo **** interface vsharpstudio
-%2 interface vsharpstudio %1vSharpStudio.common\ModelInterfaces.cs vSharpStudio.common %1doc\
+rem SET gen=%2
+rem echo *** %gen%
+rem echo **** model vsharpstudio
+rem %gen% model vsharpstudio %1vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs vSharpStudio.vm.ViewModels %1doc\
+rem echo **** interface vsharpstudio
+rem %gen% interface vsharpstudio %1vSharpStudio.common\ModelInterfaces.cs vSharpStudio.common %1doc\
 
-echo **** model conn_mssql
-%2 model conn_mssql %1dbmodels\DbModel.MsSql\SettingsViewModels.cs vPlugin.DbModel.MsSql %1doc\
-echo **** interface conn_mssql
-%2 interface conn_mssql %1dbmodels\DbModel.MsSql\SettingsInterfaces.cs vPlugin.DbModel.MsSql %1doc\
+rem echo **** model conn_mssql
+rem %gen% model conn_mssql %1dbmodels\DbModel.MsSql\SettingsViewModels.cs vPlugin.DbModel.MsSql %1doc\
+rem echo **** interface conn_mssql
+rem %gen% interface conn_mssql %1dbmodels\DbModel.MsSql\SettingsInterfaces.cs vPlugin.DbModel.MsSql %1doc\
 
 

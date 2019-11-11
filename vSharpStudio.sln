@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio", "vSharpStudio\vSharpStudio.csproj", "{D591315D-E1AF-417C-A224-CBAA5238A862}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio", "vSharpStudio\vSharpStudio.csproj", "{D591315D-E1AF-417C-A224-CBAA5238A862}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.xUnit", "vSharpStudio.xUnit\vSharpStudio.xUnit.csproj", "{4691301C-7E12-4D46-A549-5667A189AF1D}"
 EndProject
@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C0E0B3FB-A
 		workflow.md = workflow.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenFromProto", "generators\GenFromProto\GenFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFromProto", "generators\GenFromProto\GenFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{25EA00D1-C466-4C20-8B49-9B82606CFD3E}"
 EndProject
@@ -40,28 +40,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{8AF928
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wpf", "wpf", "{E0EBA1FB-4B08-4546-BDD5-093C533713FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.wpf", "common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj", "{871161A9-567D-476E-9D3E-AA44400FB63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.wpf", "common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj", "{871161A9-567D-476E-9D3E-AA44400FB63A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.std", "common\wpf\vSharpStudio.std\vSharpStudio.std.csproj", "{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.Unit", "vSharpStudio.Unit\vSharpStudio.Unit.csproj", "{93615E76-0E83-4FCE-A6E0-554F4BB108D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.Unit", "vSharpStudio.Unit\vSharpStudio.Unit.csproj", "{93615E76-0E83-4FCE-A6E0-554F4BB108D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSharpStudio.common", "vSharpStudio.common\vSharpStudio.common.csproj", "{28A43EEA-81C6-4FD0-829F-2B0D6BD0B8E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.common", "vSharpStudio.common\vSharpStudio.common.csproj", "{28A43EEA-81C6-4FD0-829F-2B0D6BD0B8E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenTask", "generators\GenTask\GenTask.csproj", "{9E97361E-C840-45F9-9086-1C55AD1E70CF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.db", "common\vSharpStudio.db\vSharpStudio.db.csproj", "{9CF2FABF-57FC-4295-944B-A20BB5366C0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenTask", "generators\GenTask\GenTask.csproj", "{9E97361E-C840-45F9-9086-1C55AD1E70CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationLogging", "common\ApplicationLogging\ApplicationLogging.csproj", "{A70A13EF-958C-4078-BA5A-A208D90743A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppTest", "WpfAppTest\WpfAppTest.csproj", "{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppTest", "WpfAppTest\WpfAppTest.csproj", "{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj", "{99CACDA9-82F3-4748-B809-F9184A449CA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Abstractions", "submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj", "{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Analyzers", "submodules\EntityFrameworkCore\src\EFCore.Analyzers\EFCore.Analyzers.csproj", "{06706FC7-B598-497B-8616-F236AA628387}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Relational", "submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj", "{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Design", "submodules\EntityFrameworkCore\src\EFCore.Design\EFCore.Design.csproj", "{4729A766-7013-4456-9EEB-096B5380ACC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -136,12 +144,6 @@ Global
 		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E97361E-C840-45F9-9086-1C55AD1E70CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70A13EF-958C-4078-BA5A-A208D90743A4}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
@@ -154,6 +156,36 @@ Global
 		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA0A0C2-01A7-40F7-BCC7-FFA5164E3539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99CACDA9-82F3-4748-B809-F9184A449CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06706FC7-B598-497B-8616-F236AA628387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4729A766-7013-4456-9EEB-096B5380ACC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,8 +197,12 @@ Global
 		{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{72E591D6-8F83-4D8C-8F67-9C325E623234} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 		{9E97361E-C840-45F9-9086-1C55AD1E70CF} = {09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}
-		{9CF2FABF-57FC-4295-944B-A20BB5366C0F} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
 		{A70A13EF-958C-4078-BA5A-A208D90743A4} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
+		{99CACDA9-82F3-4748-B809-F9184A449CA9} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
+		{7ABE6716-305C-4A8F-B302-E9B3E5C5FBD8} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
+		{06706FC7-B598-497B-8616-F236AA628387} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
+		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
+		{4729A766-7013-4456-9EEB-096B5380ACC7} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

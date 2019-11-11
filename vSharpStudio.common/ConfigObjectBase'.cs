@@ -441,16 +441,8 @@ namespace vSharpStudio.common
 
         #region IMutableAnnotatable
 
-        private readonly Microsoft.EntityFrameworkCore.Internal.LazyRef<SortedDictionary<string, Annotation>> _annotations =
-            new Microsoft.EntityFrameworkCore.Internal.LazyRef<SortedDictionary<string, Annotation>>(() => new SortedDictionary<string, Annotation>());
-
-        /// <summary>
-        ///     Gets all annotations on the current object.
-        /// </summary>
-        public virtual IEnumerable<Annotation> GetAnnotations() =>
-            _annotations.HasValue
-                ? _annotations.Value.Values.Where(a => a.Value != null)
-                : Enumerable.Empty<Annotation>();
+        private readonly SortedDictionary<string, Annotation> _annotations =
+            new SortedDictionary<string, Annotation>();
 
         /// <summary>
         ///     Adds an annotation to this object. Throws if an annotation with the specified name already exists.
@@ -458,7 +450,7 @@ namespace vSharpStudio.common
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="value"> The value to be stored in the annotation. </param>
         /// <returns> The newly added annotation. </returns>
-        public virtual Annotation AddAnnotation(string name, object value)
+        public virtual IAnnotation AddAnnotation(string name, object value)
         {
             //Check.NotEmpty(name, nameof(name));
 
@@ -473,11 +465,11 @@ namespace vSharpStudio.common
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be added. </param>
         /// <returns> The added annotation. </returns>
-        protected virtual Annotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual IAnnotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
         {
             if (FindAnnotation(name) != null)
             {
-                throw new InvalidOperationException(Microsoft.EntityFrameworkCore.Internal.CoreStrings.DuplicateAnnotation(name));
+                throw new InvalidOperationException();
             }
 
             SetAnnotation(name, annotation);
@@ -501,11 +493,11 @@ namespace vSharpStudio.common
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be set. </param>
         /// <returns> The annotation that was set. </returns>
-        protected virtual Annotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual IAnnotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
         {
             var oldAnnotation = FindAnnotation(name);
 
-            _annotations.Value[name] = annotation;
+            _annotations[name] = annotation;
 
             return oldAnnotation != null
                    && Equals(oldAnnotation.Value, annotation.Value)
@@ -520,22 +512,9 @@ namespace vSharpStudio.common
         /// <param name="annotation"> The annotation set. </param>
         /// <param name="oldAnnotation"> The old annotation. </param>
         /// <returns> The annotation that was set. </returns>
-        protected virtual Annotation OnAnnotationSet(
-            [NotNull] string name, [CanBeNull] Annotation annotation, [CanBeNull] Annotation oldAnnotation)
+        protected virtual IAnnotation OnAnnotationSet(
+            [NotNull] string name, [CanBeNull] IAnnotation annotation, [CanBeNull] IAnnotation oldAnnotation)
             => annotation;
-
-        /// <summary>
-        ///     Adds an annotation to this object or returns the existing annotation if one with the specified name
-        ///     already exists.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to be added. </param>
-        /// <param name="value"> The value to be stored in the annotation. </param>
-        /// <returns>
-        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, the newly
-        ///     added annotation.
-        /// </returns>
-        public virtual Annotation GetOrAddAnnotation([NotNull] string name, [CanBeNull] object value)
-            => FindAnnotation(name) ?? AddAnnotation(name, value);
 
         /// <summary>
         ///     Gets the annotation with the given name, returning null if it does not exist.
@@ -544,13 +523,11 @@ namespace vSharpStudio.common
         /// <returns>
         ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
         /// </returns>
-        public virtual Annotation FindAnnotation(string name)
+        protected virtual IAnnotation FindAnnotation(string name)
         {
             //Check.NotEmpty(name, nameof(name));
 
-            return !_annotations.HasValue
-                ? null
-                : _annotations.Value.TryGetValue(name, out var annotation)
+            return _annotations.TryGetValue(name, out var annotation)
                 ? annotation
                 : null;
         }
@@ -560,7 +537,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="name"> The annotation to remove. </param>
         /// <returns> The annotation that was removed. </returns>
-        public virtual Annotation RemoveAnnotation(string name)
+        public virtual IAnnotation RemoveAnnotation(string name)
         {
             //Check.NotNull(name, nameof(name));
 
@@ -570,7 +547,7 @@ namespace vSharpStudio.common
                 return null;
             }
 
-            _annotations.Value.Remove(name);
+            _annotations.Remove(name);
 
             OnAnnotationSet(name, null, annotation);
 
@@ -625,6 +602,13 @@ namespace vSharpStudio.common
         ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
         /// </returns>
         IAnnotation IAnnotatable.FindAnnotation(string name) => FindAnnotation(name);
+        /// <summary>
+        ///     Gets all annotations on the current object.
+        /// </summary>
+        public virtual IEnumerable<Annotation> GetAnnotations() =>
+            _annotations != null
+                ? _annotations.Values.Where(a => a.Value != null)
+                : Enumerable.Empty<Annotation>();
 
         #endregion IMutableAnnotatable
 
@@ -637,6 +621,7 @@ namespace vSharpStudio.common
         {
             throw new NotImplementedException();
         }
+
         [BrowsableAttribute(false)]
         public bool IsIncludableInModels { get; protected set; }
         public List<IModelRow> ListInModels { get; protected set; }

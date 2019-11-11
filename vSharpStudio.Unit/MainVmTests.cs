@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.ViewModels;
-using vPlugin.DbModel.MsSql;
 using vSharpStudio.common;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
@@ -22,7 +21,7 @@ namespace vSharpStudio.Unit
         public MainVmTests()
         {
             ViewModelBindable.isUnitTests = true;
-            MsSqlTests.InitLogging(this);
+            EditorVmTests.InitLogging(this);
         }
         private void remove_config()
         {

@@ -5,8 +5,13 @@ using ViewModelBase;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Windows;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.common;
+using Serilog;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog.Extensions.Logging;
 
 namespace vSharpStudio.Unit
 {
@@ -16,7 +21,34 @@ namespace vSharpStudio.Unit
         public EditorVmTests()
         {
             ViewModelBindable.isUnitTests = true;
-            MsSqlTests.InitLogging(this);
+            EditorVmTests.InitLogging(this);
+        }
+        internal static void InitLogging(object type)
+        {
+            if (ApplicationLogging.LogerProvider == null)
+            {
+                //Log.Logger = new LoggerConfiguration()
+                //    .MinimumLevel.Debug()
+                //    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                //    //.WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                //    .CreateLogger().ForContext(type.GetType());
+                //var serviceCollection = new ServiceCollection();
+                //var lp = serviceCollection.AddLogging(loggingBuilder =>
+                //{
+                //    //loggingBuilder.AddFilter((p) => { return p >= LogLevel.Trace; });
+                //    //loggingBuilder.AddConsole((o) => { o.IncludeScopes = true; });
+                //    loggingBuilder.AddSerilog();
+                //    //loggingBuilder.AddConfiguration(new )
+                //    //loggingBuilder.AddDebug();
+                //}).BuildServiceProvider().GetRequiredService<ILoggerProvider>();
+                //ApplicationLogging.LogerProvider = lp;
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Debug()
+                    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                    //.WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                    .CreateLogger();
+                ApplicationLogging.LogerProvider = new SerilogLoggerProvider(Log.Logger);
+            }
         }
         #region SortedCollection
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
@@ -578,7 +610,7 @@ namespace vSharpStudio.Unit
         public void Rules002_Enumeration()
         {
             var cfg = createTree();
-            cfg.SolutionPath = @"..\..\..\";
+            cfg.SolutionPath = @"..\..\..\..\";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
@@ -657,7 +689,7 @@ namespace vSharpStudio.Unit
         public void Rules003_Constant()
         {
             var cfg = createTree();
-            cfg.SolutionPath = @"..\..\..\";
+            cfg.SolutionPath = @"..\..\..\..\";
 
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);

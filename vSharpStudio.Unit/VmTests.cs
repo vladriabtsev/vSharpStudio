@@ -23,7 +23,7 @@ namespace vSharpStudio.Unit
             //loggerFactory.AddProvider(new DebugLoggerProvider());
             //_logger = loggerFactory.CreateLogger<VmTests>();
             //_logger.LogInformation("======================  Start VmTests tests ===============================");
-            MsSqlTests.InitLogging(this);
+            EditorVmTests.InitLogging(this);
         }
         #region Editable
 
@@ -119,7 +119,7 @@ namespace vSharpStudio.Unit
             Config.ConfigValidator.Reset();
             Catalog.CatalogValidator.Reset();
             var cfg = new Config();
-            cfg.SolutionPath = @"..\..\..\";
+            cfg.SolutionPath = @"..\..\..\..\";
 
             var c = cfg.Model.GroupCatalogs.AddCatalog("test");
             Assert.IsTrue(c.Parent == cfg.Model.GroupCatalogs);
@@ -177,7 +177,7 @@ namespace vSharpStudio.Unit
         {
             Config.ConfigValidator.Reset();
             var cfg = new Config();
-            cfg.SolutionPath = @"..\..\..\";
+            cfg.SolutionPath = @"..\..\..\..\";
 
             string mes1 = "test error message";
             string mes2 = "test error message2";

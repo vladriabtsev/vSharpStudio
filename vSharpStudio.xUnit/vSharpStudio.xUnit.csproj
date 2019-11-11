@@ -1,15 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="EditorVmTests.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CompareNETObjects" Version="4.62.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.6" />
@@ -25,26 +21,21 @@
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="vSharpStudio">
       <HintPath>..\vSharpStudio\bin\Debug\vSharpStudio.exe</HintPath>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

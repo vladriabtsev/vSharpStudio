@@ -1,246 +1,73 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>vSharpStudio.vm</RootNamespace>
-    <AssemblyName>vSharpStudio.vm</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
+    <Product>vSharpStudio.vm</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
+    <Product>vSharpStudio.vm</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.8.4.0\lib\net45\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Protobuf, Version=3.9.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\..\vSharpStudio.pro\packages\Google.Protobuf.3.9.1\lib\net45\Google.Protobuf.dll</HintPath>
-    </Reference>
-    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.2.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
-    </Reference>
+    <Compile Remove="ViewModels\ObjectSubModelsEditor.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ViewModels\ObjectSubModelsEditor.xaml" />
+  </ItemGroup>
+  <!--<ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.9.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
+    <PackageReference Include="System.Buffers" Version="4.5.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
+    <PackageReference Include="System.Interactive.Async" Version="3.2.0" />
+    <PackageReference Include="System.Memory" Version="4.5.3" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
+  </ItemGroup>-->
+  <!--<ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
-    <Compile Include="Migration\ConfigCompareVisitor.cs" />
-    <Compile Include="Migration\ConfigModelBuilderVisitor.cs" />
-    <Compile Include="Migration\DiffToMsSql.cs" />
-    <Compile Include="Migration\IDatabaseModelFactoryExt.cs" />
-    <Compile Include="Migration\IDiffToDb.cs" />
-    <Compile Include="Migration\IMigration.cs" />
-    <Compile Include="Migration\Migration.cs" />
-    <Compile Include="Migration\Table.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AppDbSettings.cs" />
-    <Compile Include="ViewModels\AppProject.cs" />
-    <Compile Include="ViewModels\AppDbSettingsValidator.cs" />
-    <Compile Include="ViewModels\AppProject.Validator.cs" />
-    <Compile Include="ViewModels\BaseConfigLink.cs" />
-    <Compile Include="ViewModels\BaseConfigLink.Validator.cs" />
-    <Compile Include="ViewModels\ConfigNodesCollection%27.cs" />
-    <Compile Include="ViewModels\GroupListBaseConfigLinks.cs" />
-    <Compile Include="ViewModels\ObjectSubModelsEditor.xaml.cs">
-      <DependentUpon>ObjectSubModelsEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\AppSolution.cs" />
-    <Compile Include="ViewModels\Catalog.cs" />
-    <Compile Include="ViewModels\AppSolution.Validator.cs" />
-    <Compile Include="ViewModels\Catalog.Validator.cs" />
-    <Compile Include="ViewModels\ConfigModel.Validator.cs" />
-    <Compile Include="ViewModels\ConfigModel.cs" />
-    <Compile Include="ViewModels\Config.cs" />
-    <Compile Include="ViewModels\Config.ISqlServerModelAnnotation.cs" />
-    <Compile Include="ViewModels\Config.validation.messages.cs" />
-    <Compile Include="ViewModels\Config.Validator.cs" />
-    <Compile Include="ViewModels\ConfigExt.cs" />
-    <Compile Include="ViewModels\ConfigObjectProblem.cs" />
-    <Compile Include="ViewModels\ConnStringVM.cs" />
-    <Compile Include="ViewModels\ConnStringVMValidator.cs" />
-    <Compile Include="ViewModels\Constant.cs" />
-    <Compile Include="ViewModels\Constant.Validator.cs" />
-    <Compile Include="ViewModels\DataType.cs" />
-    <Compile Include="ViewModels\DataType.Validator.cs" />
-    <Compile Include="ViewModels\EditorAppConnStringName.cs" />
-    <Compile Include="ViewModels\EditorDataTypeObjectName.cs" />
-    <Compile Include="ViewModels\EditorDbConnSelection.cs" />
-    <Compile Include="ViewModels\EditorDbPluginGenSelection.cs" />
-    <Compile Include="ViewModels\EditorDbPluginSelection.cs" />
-    <Compile Include="ViewModels\EnumerationPair.Validator.cs" />
-    <Compile Include="ViewModels\GroupListCommon.cs" />
-    <Compile Include="ViewModels\GroupListAppSolutions.cs" />
-    <Compile Include="ViewModels\GroupListPlugins.cs" />
-    <Compile Include="ViewModels\PluginGeneratorSettings.cs" />
-    <Compile Include="ViewModels\PluginGenerator.cs" />
-    <Compile Include="ViewModels\Plugin.cs" />
-    <Compile Include="ViewModels\Document.cs" />
-    <Compile Include="ViewModels\Document.Validator.cs" />
-    <Compile Include="ViewModels\Enumeration.cs" />
-    <Compile Include="ViewModels\Enumeration.Validator.cs" />
-    <Compile Include="ViewModels\EnumerationPair.cs" />
-    <Compile Include="ViewModels\Ext.cs" />
-    <Compile Include="ViewModels\Form.cs" />
-    <Compile Include="ViewModels\Generated\ProtoViewModels.cs" />
-    <Compile Include="ViewModels\GroupDocuments.cs" />
-    <Compile Include="ViewModels\GroupListCatalogs.cs" />
-    <Compile Include="ViewModels\GroupListConstants.cs" />
-    <Compile Include="ViewModels\GroupListDocuments.cs" />
-    <Compile Include="ViewModels\GroupListEnumerations.cs" />
-    <Compile Include="ViewModels\GroupListForms.cs" />
-    <Compile Include="ViewModels\GroupListJournals.cs" />
-    <Compile Include="ViewModels\GroupListProperties.cs" />
-    <Compile Include="ViewModels\GroupListPropertiesTabs.cs" />
-    <Compile Include="ViewModels\GroupListReports.cs" />
-    <Compile Include="ViewModels\PluginRow.cs" />
-    <Compile Include="ViewModels\PropertiesTab.cs" />
-    <Compile Include="ViewModels\DbSettings.cs" />
-    <Compile Include="ViewModels\DbSettings.Validator.cs" />
-    <Compile Include="ViewModels\Journal.cs" />
-    <Compile Include="ViewModels\Journal.Validator.cs" />
-    <Compile Include="ViewModels\Property.cs" />
-    <Compile Include="ViewModels\PropertiesTab.Validator .cs" />
-    <Compile Include="ViewModels\Plugin.Validator.cs" />
-    <Compile Include="ViewModels\PluginGenerator.Validator.cs" />
-    <Compile Include="ViewModels\PluginGeneratorSettings.Validator.cs" />
-    <Compile Include="ViewModels\Property.Validator.cs" />
-    <Compile Include="ViewModels\Report.cs" />
-    <Compile Include="ViewModels\Utils.cs" />
-    <Compile Include="ViewModels\ConfigVisitor.partial.cs" />
-    <Compile Include="ViewModels\ValidationConfigVisitor.partial.cs" />
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
+    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
+    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj" />
+    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Analyzers\EFCore.Analyzers.csproj" />
+    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj" />
+    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj" />
+    <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
+    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+    <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj">
-      <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
-      <Name>vSharpStudio.std</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj">
-      <Project>{871161A9-567D-476E-9D3E-AA44400FB63A}</Project>
-      <Name>vSharpStudio.wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
-      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
-      <Name>Xceed.Wpf.Toolkit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj">
-      <Project>{28a43eea-81c6-4fd0-829f-2b0d6bd0b8e9}</Project>
-      <Name>vSharpStudio.common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj">
-      <Project>{ec5b8d66-bbc5-4183-8381-1d6b6181734e}</Project>
-      <Name>vSharpStudio.proto</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ViewModels\ObjectSubModelsEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
