@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
-using System.ComponentModel;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,17 +12,21 @@ namespace vSharpStudio.vm.ViewModels
     {
         object lockobj = new object();
         private bool isNeedInit = true;
+
         private void Init()
         {
-            isNeedInit = false;
-            lock (lockobj)
+            this.isNeedInit = false;
+            lock (this.lockobj)
             {
                 if (AppDbSettings.ListPlugins == null)
                 {
                     AppDbSettings.ListPlugins = new ObservableCollection<Plugin>();
                     IParent p = (IParent)this;
                     while (p.Parent != null)
+                    {
                         p = p.Parent;
+                    }
+
                     Config cfg = (Config)p;
                     if (cfg.DicPlugins.ContainsKey(vPluginLayerTypeEnum.DbConnection))
                     {
@@ -30,7 +34,10 @@ namespace vSharpStudio.vm.ViewModels
                         foreach (var t in lst)
                         {
                             if (AppDbSettings.ListPlugins.Contains(t.Plugin))
+                            {
                                 continue;
+                            }
+
                             AppDbSettings.ListPlugins.Add(t.Plugin);
                         }
                     }
@@ -53,12 +60,17 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
                 if (plugin == null)
+                {
                     return;
+                }
+
                 this.ListPluginGens.Clear();
                 foreach (var t in plugin.ListGenerators)
                 {
                     if (t.Generator.PluginGeneratorType == vPluginLayerTypeEnum.DbConnection)
+                    {
                         this.ListPluginGens.Add(t);
+                    }
                 }
                 if (this.PluginGenGuid.Length == 0)
                 {
@@ -76,7 +88,10 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                     if (gen == null)
+                    {
                         return;
+                    }
+
                     this.ListDbConns.Clear();
                     foreach (var t in gen.ListSettings)
                     {
@@ -85,21 +100,28 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
-        //public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
-        //public override bool HasChildren(object parent) { return this.Children.Count > 0; }
+
+        // public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
+        // public override bool HasChildren(object parent) { return this.Children.Count > 0; }
         public static ObservableCollection<Plugin> ListPlugins { get; private set; }
+
         [BrowsableAttribute(false)]
         public ObservableCollection<Plugin> ListPluginsProp
         {
             get
             {
-                if (isNeedInit)
-                    Init();
+                if (this.isNeedInit)
+                {
+                    this.Init();
+                }
+
                 return AppDbSettings.ListPlugins;
             }
         }
+
         partial void OnPluginGuidChanged()
         {
             Plugin plugin = null;
@@ -112,7 +134,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             if (plugin == null)
+            {
                 return;
+            }
+
             this.PluginName = plugin.Name;
             this.Version = plugin.Version;
 
@@ -120,7 +145,9 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in plugin.ListGenerators)
             {
                 if (t.Generator.PluginGeneratorType == vPluginLayerTypeEnum.DbConnection)
+                {
                     this.ListPluginGens.Add(t);
+                }
             }
             if (this.ListPluginGens.Count == 1)
             {
@@ -128,16 +155,21 @@ namespace vSharpStudio.vm.ViewModels
                 this.PluginGenName = this.ListPluginGens[0].Name;
             }
         }
+
         [BrowsableAttribute(false)]
         public ObservableCollection<PluginGenerator> ListPluginGens
         {
             get
             {
-                if (isNeedInit)
-                    Init();
-                return _ListPluginGens;
+                if (this.isNeedInit)
+                {
+                    this.Init();
+                }
+
+                return this._ListPluginGens;
             }
         }
+
         partial void OnPluginGenGuidChanged()
         {
             PluginGenerator gen = null;
@@ -150,7 +182,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             if (gen == null)
+            {
                 return;
+            }
+
             this.ListDbConns.Clear();
             foreach (var t in gen.ListSettings)
             {
@@ -162,17 +197,23 @@ namespace vSharpStudio.vm.ViewModels
                 this.ConnName = this.ListDbConns[0].Name;
             }
         }
+
         private ObservableCollection<PluginGenerator> _ListPluginGens = new ObservableCollection<PluginGenerator>();
+
         [BrowsableAttribute(false)]
         public ObservableCollection<PluginGeneratorSettings> ListDbConns
         {
             get
             {
-                if (isNeedInit)
-                    Init();
-                return _ListDbConns;
+                if (this.isNeedInit)
+                {
+                    this.Init();
+                }
+
+                return this._ListDbConns;
             }
         }
+
         private ObservableCollection<PluginGeneratorSettings> _ListDbConns = new ObservableCollection<PluginGeneratorSettings>();
     }
 }

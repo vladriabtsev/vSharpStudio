@@ -13,6 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         private Config cfg = null;
         private ITreeConfigNode parent = null;
+
         public ConfigNodesCollection(ITreeConfigNode parent)
         {
             this.parent = parent;
@@ -22,41 +23,55 @@ namespace vSharpStudio.vm.ViewModels
         {
             ITreeConfigNode p = parent;
             while (p.Parent != null)
+            {
                 p = p.Parent;
-            //if (p is Config)
-            cfg = (Config)p;
+            }
+            // if (p is Config)
+            this.cfg = (Config)p;
         }
 
         public new void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
-            if (cfg == null)
-                GetConfig(parent);
+            if (this.cfg == null)
+            {
+                this.GetConfig(this.parent);
+            }
+
             foreach (T item in collection)
             {
-                item.Parent = parent;
-                cfg.DicNodes[item.Guid] = item;
+                item.Parent = this.parent;
+                this.cfg.DicNodes[item.Guid] = item;
             }
             base.AddRange(collection, sortingWeight);
         }
+
         public new void Add(T item)
         {
-            if (cfg == null)
-                GetConfig(parent);
-            item.Parent = parent;
-            cfg.DicNodes[item.Guid] = item;
+            if (this.cfg == null)
+            {
+                this.GetConfig(this.parent);
+            }
+
+            item.Parent = this.parent;
+            this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, 0);
         }
+
         public new void Add(T item, ulong sortingWeight)
         {
-            if (cfg == null)
-                GetConfig(parent);
-            item.Parent = parent;
-            cfg.DicNodes[item.Guid] = item;
+            if (this.cfg == null)
+            {
+                this.GetConfig(this.parent);
+            }
+
+            item.Parent = this.parent;
+            this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, sortingWeight);
         }
+
         public new bool Remove(T item)
         {
-            cfg.DicNodes.Remove(item.Guid);
+            this.cfg.DicNodes.Remove(item.Guid);
             return base.Remove(item);
         }
     }

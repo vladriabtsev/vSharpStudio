@@ -8,25 +8,29 @@
 public void Accept<#= root.Package.ToNameCs() #>NodeVisitor(<#= root.Package.ToNameCs() #>Visitor visitor) // <#=Helper.FilePos() #>
 {
     if (visitor.Token.IsCancellationRequested)
+    {
         return;
-	visitor.Visit(this);
+    }
+    visitor.Visit(this);
 <# foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.IsCsSimple() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)
        continue;
 #>
 <# try { if (field.IsRepeated) { #>
 <# if (!field.IsAny()) { #>
-	foreach(var t in this.<#= field.Name.ToNameCs() #>)
-		t.AcceptConfigNodeVisitor(visitor);
+    foreach (var t in this.<#= field.Name.ToNameCs() #>)
+    {
+        t.AcceptConfigNodeVisitor(visitor);
+    }
 <# } #>
 <# } else if (field.MessageType.FullName == "google.protobuf.Any") { #>
-	//this.<#= field.Name.ToNameCs() #>.AcceptConfigNodeVisitor(visitor);
+    // this.<#= field.Name.ToNameCs() #>.AcceptConfigNodeVisitor(visitor);
 <# } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { #>
-	this.<#= field.Name.ToNameCs() #>.AcceptConfigNodeVisitor(visitor); // <#=Helper.FilePos() #>
+    this.<#= field.Name.ToNameCs() #>.AcceptConfigNodeVisitor(visitor); // <#=Helper.FilePos() #>
 
 <# } } catch(Exception ex) { 
 } #>
 <# } #>
-	visitor.VisitEnd(this);
+    visitor.VisitEnd(this);
 }
 <# } #>

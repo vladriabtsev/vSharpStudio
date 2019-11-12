@@ -30,7 +30,7 @@ namespace <#= nameSpace #> // <#=Helper.FilePos() #>
         void Accept<#= root.Package.ToNameCs() #>NodeVisitor(<#= root.Package.ToNameCs() #>Visitor visitor);
     }
 <#
-	this.PushIndent("\t");
+	this.PushIndent("    ");
 	foreach (var t in root.MessageTypes)
 	{
         if (t.Name.EndsWith("_nullable"))
@@ -48,9 +48,9 @@ namespace <#= nameSpace #> // <#=Helper.FilePos() #>
 	var cv = new NodeVisitor(root);
 	this.Write(cv.TransformText());
 
-	this.PopIndent();
+    var v = new IVisitorConfigNode(root);
+    this.Write(v.TransformText());
 
-   var v = new IVisitorConfigNode(root);
-   this.Write(v.TransformText());
+	this.PopIndent();
 #>
 }

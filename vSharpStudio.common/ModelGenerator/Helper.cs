@@ -12,32 +12,32 @@ namespace vSharpStudio.common.ModelGenerator
 {
     public class Helper
     {
-        //public ModelBuilder CreateConventionBuilder()
-        //{
+        // public ModelBuilder CreateConventionBuilder()
+        // {
         //    var contextServices = CreateContextServices();
 
-        //    var conventionSetBuilder = new CompositeConventionSetBuilder(
+        // var conventionSetBuilder = new CompositeConventionSetBuilder(
         //        contextServices.GetRequiredService<IEnumerable<IConventionSetBuilder>>().ToList());
         //    var conventionSet = contextServices.GetRequiredService<ICoreConventionSetBuilder>().CreateConventionSet();
         //    conventionSet = conventionSetBuilder.AddConventions(conventionSet);
         //    return new ModelBuilder(conventionSet);
-        //}
-        //public IServiceProvider CreateContextServices()
+        // }
+        // public IServiceProvider CreateContextServices()
         //    => ((IInfrastructure<IServiceProvider>)CreateContext()).Instance;
-        //public DbContext CreateContext()
+        // public DbContext CreateContext()
         //    => new DbContext(CreateOptions(CreateServiceProvider()));
-        //public DbContextOptions CreateOptions(IServiceProvider serviceProvider = null)
-        //{
+        // public DbContextOptions CreateOptions(IServiceProvider serviceProvider = null)
+        // {
         //    var optionsBuilder = new DbContextOptionsBuilder()
         //        .UseInternalServiceProvider(serviceProvider);
 
-        //    UseProviderOptions(optionsBuilder);
+        // UseProviderOptions(optionsBuilder);
 
-        //    return optionsBuilder.Options;
-        //}
-        //public IServiceProvider CreateServiceProvider(IServiceCollection customServices = null)
+        // return optionsBuilder.Options;
+        // }
+        // public IServiceProvider CreateServiceProvider(IServiceCollection customServices = null)
         //    => CreateServiceProvider(customServices, AddProviderServices);
-        //public abstract IServiceCollection AddProviderServices(IServiceCollection services);
-        //protected abstract void UseProviderOptions(DbContextOptionsBuilder optionsBuilder);
+        // public abstract IServiceCollection AddProviderServices(IServiceCollection services);
+        // protected abstract void UseProviderOptions(DbContextOptionsBuilder optionsBuilder);
     }
 }

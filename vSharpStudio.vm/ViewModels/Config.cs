@@ -25,61 +25,76 @@ namespace vSharpStudio.vm.ViewModels
     {
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
+
         public Dictionary<string, ITreeConfigNode> DicNodes { get; set; }
-        public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
-        //public bool HasChildren(object parent) { return this.Children.Count > 0; }
-        public override bool HasChildren(object parent) { return this.Children.Count > 0; }
-        //public static readonly string DefaultName = "Config";
+
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.Children;
+        }
+
+        // public bool HasChildren(object parent) { return this.Children.Count > 0; }
+        public override bool HasChildren(object parent)
+        {
+            return this.Children.Count > 0;
+        }
+
+        // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
+
         partial void OnInitBegin()
         {
             this.DicNodes = new Dictionary<string, ITreeConfigNode>(1000);
         }
+
         partial void OnInit()
         {
             if (string.IsNullOrWhiteSpace(this.Name))
+            {
                 this.Name = "Config";
+            }
+
             this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
             this.DbSettings.KeyName = "Id";
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
-            //SubNodes.Add(this.GroupConstants, 1);
+            // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupConfigLinks.Parent = this;
             this.Children.Add(this.GroupConfigLinks, 0);
-
             this.Model.Parent = this;
             this.Children.Add(this.Model, 1);
-
-            //this.Children.Add(this, 5);
-
-
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
+            {
                 this.DbSettings.DbSchema = "v";
-            //this.ListConnectionStringVMs = new List<ConnStringVM>();
-            //this.ListDbProviders = new List<string>();
-
+            }
             this.GroupPlugins.Parent = this;
             this.Children.Add(this.GroupPlugins, 9);
             this.GroupAppSolutions.Parent = this;
             this.Children.Add(this.GroupAppSolutions, 10);
         }
+
         protected override void OnInitFromDto()
         {
-            RecreateSubNodes();
+            this.RecreateSubNodes();
         }
-        public Config() : this((ITreeConfigNode)null)
+
+        public Config()
+            : this((ITreeConfigNode)null)
         {
         }
-        public Config(string configJson) : this((ITreeConfigNode)null)
+
+        public Config(string configJson)
+            : this((ITreeConfigNode)null)
         {
-            OnInitBegin();
+            this.OnInitBegin();
             var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
         }
+
         public string ExportToJson()
         {
             var pconfig = Config.ConvertToProto(this);
@@ -90,6 +105,7 @@ namespace vSharpStudio.vm.ViewModels
         #region Validation
 
         private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
+
         public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
@@ -99,22 +115,28 @@ namespace vSharpStudio.vm.ViewModels
             // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
             await Task.Run(() =>
             {
-                ValidateSubTreeFromNode(node);
+                this.ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
+
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
             if (node == null)
-                return;
-            if (cancellationSourceForValidatingFullConfig != null)
             {
-                cancellationSourceForValidatingFullConfig.Cancel();
-                //                if (logger != null && logger.IsEnabled)
+                return;
+            }
+
+            if (this.cancellationSourceForValidatingFullConfig != null)
+            {
+                this.cancellationSourceForValidatingFullConfig.Cancel();
+                // if (logger != null && logger.IsEnabled)
                 if (logger != null)
+                {
                     logger.LogInformation("=== Cancellation request ===");
+                }
             }
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
-            var token = cancellationSourceForValidatingFullConfig.Token;
+            var token = this.cancellationSourceForValidatingFullConfig.Token;
 
             var visitor = new ValidationConfigVisitor(token, logger);
             visitor.UpdateSubstructCounts(node);
@@ -137,35 +159,42 @@ namespace vSharpStudio.vm.ViewModels
 
         bool IMigration.IsDatabaseServiceOn()
         {
-            return _migration.IsDatabaseServiceOn();
+            return this._migration.IsDatabaseServiceOn();
         }
+
         Task<bool> IMigration.IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
-            return _migration.IsDatabaseServiceOnAsync(cancellationToken);
+            return this._migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
+
         bool IMigration.IsDatabaseExists()
         {
-            return _migration.IsDatabaseExists();
+            return this._migration.IsDatabaseExists();
         }
+
         Task<bool> IMigration.IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
-            return _migration.IsDatabaseExistsAsync(cancellationToken);
+            return this._migration.IsDatabaseExistsAsync(cancellationToken);
         }
+
         void IMigration.CreateDatabase()
         {
-            _migration.CreateDatabase();
+            this._migration.CreateDatabase();
         }
+
         Task IMigration.CreateDatabaseAsync(CancellationToken cancellationToken)
         {
-            return _migration.CreateDatabaseAsync(cancellationToken);
+            return this._migration.CreateDatabaseAsync(cancellationToken);
         }
+
         void IMigration.DropDatabase()
         {
-            _migration.DropDatabase();
+            this._migration.DropDatabase();
         }
+
         Task IMigration.DropDatabaseAsync(CancellationToken cancellationToken)
         {
-            return _migration.DropDatabaseAsync(cancellationToken);
+            return this._migration.DropDatabaseAsync(cancellationToken);
         }
 
         #endregion IMigration
@@ -181,54 +210,67 @@ namespace vSharpStudio.vm.ViewModels
         [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
         public string SolutionPath
         {
+            get
+            {
+                return this._SolutionPath;
+            }
             set
             {
-                _SolutionPath = value;
-                NotifyPropertyChanged();
-                //ValidateProperty();
+                this._SolutionPath = value;
+                this.NotifyPropertyChanged();
             }
-            get { return _SolutionPath; }
         }
+
         private string _SolutionPath;
+
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
         {
+            get
+            {
+                return this._SelectedNode;
+            }
+
             set
             {
-                if (_SelectedNode != value)
+                if (this._SelectedNode != value)
                 {
-                    _SelectedNode = value;
-                    NotifyPropertyChanged();
+                    this._SelectedNode = value;
+                    this.NotifyPropertyChanged();
                 }
-                if (OnSelectedNodeChanged != null)
-                    OnSelectedNodeChanged();
+                if (this.OnSelectedNodeChanged != null)
+                {
+                    this.OnSelectedNodeChanged();
+                }
             }
-            get { return _SelectedNode; }
         }
+
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
 
         #region Connection string editor
 
-        //public Action<string> OnProviderSelectionChanged = null;
-        //public List<ConnStringVM> ListConnectionStringVMs { get; set; }
-        //public List<string> ListDbProviders { get; set; }
-        //public string SelectedDbProvider
-        //{
+        // public Action<string> OnProviderSelectionChanged = null;
+        // public List<ConnStringVM> ListConnectionStringVMs { get; set; }
+        // public List<string> ListDbProviders { get; set; }
+        // public string SelectedDbProvider
+        // {
         //    get { return _SelectedDbProvider; }
         //    set
         //    {
         //        _SelectedDbProvider = value;
         //        OnProviderSelectionChanged(value);
         //    }
-        //}
-        //private string _SelectedDbProvider;
+        // }
+        // private string _SelectedDbProvider;
 
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
 
         public IConfig PrevStableConfig { get; set; }
+
         public IConfig OldStableConfig { get; set; }
+
         public List<IConfig> ListAnnotated
         {
             get
@@ -240,11 +282,15 @@ namespace vSharpStudio.vm.ViewModels
                 return diff.ListAll;
             }
         }
+
         private static List<IConfig> GetListConfigs(IConfig cfg)
         {
             var lst = new List<IConfig>();
             if (cfg == null)
+            {
                 return lst;
+            }
+
             var dic = new Dictionary<string, IConfig>();
             dic[cfg.Guid] = cfg;
             GetSubConfigs(cfg);

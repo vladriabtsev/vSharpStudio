@@ -60,35 +60,36 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tpublic void Visit(");
+            this.Write("    public void Visit(");
             
             #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p)\r\n    {\r\n        OnVisit(p);\r\n    }\r\n\tpublic void VisitEnd(");
+            this.Write(" p)\r\n    {\r\n        this.OnVisit(p);\r\n    }\r\n    public void VisitEnd(");
             
             #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p)\r\n    {\r\n        OnVisitEnd(p);\r\n    }\r\n    protected virtual void OnVisit(");
+            this.Write(" p)\r\n    {\r\n        this.OnVisitEnd(p);\r\n    }\r\n    protected virtual void OnVisi" +
+                    "t(");
             
             #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p) {}\r\n    protected virtual void OnVisitEnd(");
+            this.Write(" p) { }\r\n    protected virtual void OnVisitEnd(");
             
             #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p) {}\r\n");
+            this.Write(" p) { }\r\n");
             
             #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
  } 

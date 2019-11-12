@@ -18,6 +18,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
         }
+
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
     }

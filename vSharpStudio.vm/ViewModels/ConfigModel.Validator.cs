@@ -12,15 +12,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             public ConfigModelValidator()
             {
-                //RuleFor(x => x.SolutionPath).NotEmpty();
-                //RuleFor(x => x.SolutionPath).Must((o, path) =>
-                //{
+                // RuleFor(x => x.SolutionPath).NotEmpty();
+                // RuleFor(x => x.SolutionPath).Must((o, path) =>
+                // {
                 //    if (string.IsNullOrWhiteSpace(path))
                 //        return true;
                 //    return Directory.Exists(path);
-                //}).WithMessage(Config.ValidationMessages.FOLDER_IS_NOT_EXISTS);
-                //RuleFor(x => x.SolutionPath).Must((o, path) =>
-                //{
+                // }).WithMessage(Config.ValidationMessages.FOLDER_IS_NOT_EXISTS);
+                // RuleFor(x => x.SolutionPath).Must((o, path) =>
+                // {
                 //    if (string.IsNullOrWhiteSpace(path))
                 //        return true;
                 //    if (!Directory.Exists(path))
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
                 //    if (n.MoveNext())
                 //        return true;
                 //    return false;
-                //}).WithMessage(Config.ValidationMessages.SOLUTION_FOLDER_IS_NOT_EXISTS);
+                // }).WithMessage(Config.ValidationMessages.SOLUTION_FOLDER_IS_NOT_EXISTS);
             }
         }
     }

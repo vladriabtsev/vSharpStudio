@@ -14,8 +14,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
     public partial class GroupListPlugins : ITreeModel, ICanGoRight
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListPlugins; }
-        public override bool HasChildren(object parent) { return this.ListPlugins.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListPlugins;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListPlugins.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = "Plugins";

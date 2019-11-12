@@ -9,12 +9,13 @@
 
     public enum DiffEnumHistoryAnnotation
     {
-        New, 
-        Deprecated, 
-        Deleted, 
-        Renamed, 
+        New,
+        Deprecated,
+        Deleted,
+        Renamed,
         CanLooseData,
     }
+
     public class DiffLists<T>
             where T : IGuid, IName, IMutableAnnotatable
     {
@@ -22,35 +23,41 @@
         protected Dictionary<string, T> dic_prev;
         protected Dictionary<string, T> dic_curr;
 
-        //public DiffLists(IConfig oldest, IConfig prev, IConfig current, ITreeConfigNode parent)
-        //{
+        // public DiffLists(IConfig oldest, IConfig prev, IConfig current, ITreeConfigNode parent)
+        // {
 
-        //}
+        // }
         public DiffLists(IEnumerable<T> oldest, IEnumerable<T> prev, IEnumerable<T> current)
         {
             this.ListAll = new List<T>();
 
-            dic_oldest = new Dictionary<string, T>();
+            this.dic_oldest = new Dictionary<string, T>();
             if (oldest != null)
             {
                 foreach (var t in oldest)
                 {
-                    if (dic_oldest.ContainsKey(t.Guid))
+                    if (this.dic_oldest.ContainsKey(t.Guid))
+                    {
                         throw new Exception();
-                    dic_oldest[t.Guid] = t;
+                    }
+
+                    this.dic_oldest[t.Guid] = t;
                 }
             }
-            dic_prev = new Dictionary<string, T>();
+            this.dic_prev = new Dictionary<string, T>();
             if (prev != null)
             {
                 foreach (var t in prev)
                 {
-                    if (dic_prev.ContainsKey(t.Guid))
+                    if (this.dic_prev.ContainsKey(t.Guid))
+                    {
                         throw new Exception();
-                    dic_prev[t.Guid] = t;
+                    }
+
+                    this.dic_prev[t.Guid] = t;
                 }
             }
-            dic_curr = new Dictionary<string, T>();
+            this.dic_curr = new Dictionary<string, T>();
             if (current != null)
             {
                 foreach (var t in current)
@@ -59,25 +66,28 @@
                     {
                         t.RemoveAnnotation(tt.Name);
                     }
-                    if (dic_curr.ContainsKey(t.Guid))
+                    if (this.dic_curr.ContainsKey(t.Guid))
+                    {
                         throw new Exception();
-                    dic_curr[t.Guid] = t;
+                    }
+
+                    this.dic_curr[t.Guid] = t;
                 }
                 // New, Renamed
                 foreach (var t in current)
                 {
-                    if (!dic_prev.ContainsKey(t.Guid))
+                    if (!this.dic_prev.ContainsKey(t.Guid))
                     {
                         t[DiffEnumHistoryAnnotation.New.ToString()] = DiffEnumHistoryAnnotation.New;
                     }
-                    else if (t.Name != dic_prev[t.Guid].Name)
+                    else if (t.Name != this.dic_prev[t.Guid].Name)
                     {
                         t[DiffEnumHistoryAnnotation.Renamed.ToString()] = DiffEnumHistoryAnnotation.Renamed;
                     }
-                    else
-                    {
+                    //else
+                    //{
 
-                    }
+                    //}
                     this.ListAll.Add(t);
                 }
             }
@@ -86,14 +96,14 @@
             {
                 foreach (var t in prev)
                 {
-                    if (!dic_curr.ContainsKey(t.Guid))
+                    if (!this.dic_curr.ContainsKey(t.Guid))
                     {
                         t[DiffEnumHistoryAnnotation.Deprecated.ToString()] = DiffEnumHistoryAnnotation.Deprecated;
                         this.ListAll.Add(t);
                     }
                     else
                     {
-                        var tt = dic_curr[t.Guid];
+                        var tt = this.dic_curr[t.Guid];
                         if (typeof(T).Name == typeof(IProperty).Name)
                         {
                             var tp = (t as IProperty).IDataType;
@@ -150,7 +160,7 @@
             {
                 foreach (var t in oldest)
                 {
-                    if (!dic_prev.ContainsKey(t.Guid))
+                    if (!this.dic_prev.ContainsKey(t.Guid))
                     {
                         foreach (var tt in t.GetAnnotations().ToList())
                         {
@@ -162,22 +172,28 @@
                 }
             }
         }
+
         // string is a current namespace plus name
-        //public static Dictionary<string, DiffConstant> DicTypeChanged { get; private set; }
+        // public static Dictionary<string, DiffConstant> DicTypeChanged { get; private set; }
         public List<T> ListAll { get; private set; }
+
         protected void ClearDics()
         {
-            dic_oldest.Clear();
-            dic_oldest = null;
-            dic_prev.Clear();
-            dic_prev = null;
-            dic_curr.Clear();
-            dic_curr = null;
+            this.dic_oldest.Clear();
+            this.dic_oldest = null;
+            this.dic_prev.Clear();
+            this.dic_prev = null;
+            this.dic_curr.Clear();
+            this.dic_curr = null;
         }
+
         protected bool? IsCanLooseData(IDataType prev, IDataType cur)
         {
             if (cur.DataTypeEnum != prev.DataTypeEnum)
+            {
                 return true;
+            }
+
             switch (cur.DataTypeEnum)
             {
                 case EnumDataType.ANY:
@@ -190,7 +206,10 @@
                     if (cur.Length != prev.Length)
                     {
                         if (cur.Length < prev.Length || prev.Length == 0)
+                        {
                             return true;
+                        }
+
                         return false;
                     }
                     break;
@@ -198,19 +217,28 @@
                     if (cur.IsPositive != prev.IsPositive)
                     {
                         if (cur.IsPositive)
+                        {
                             return true;
+                        }
+
                         return false;
                     }
                     if (cur.Length != prev.Length)
                     {
                         if (cur.Length < prev.Length)
+                        {
                             return true;
+                        }
+
                         return false;
                     }
                     if (cur.Accuracy != prev.Accuracy)
                     {
                         if (cur.Accuracy < prev.Accuracy)
+                        {
                             return true;
+                        }
+
                         return false;
                     }
                     break;
@@ -218,7 +246,10 @@
                 case EnumDataType.DOCUMENT:
                 case EnumDataType.CATALOG:
                     if (cur.ObjectGuid != prev.ObjectGuid)
+                    {
                         return true;
+                    }
+
                     return false;
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.CATALOGS:
@@ -234,7 +265,9 @@
                             }
                         }
                         if (!is_found)
+                        {
                             return true;
+                        }
                     }
                     return false;
                 default:

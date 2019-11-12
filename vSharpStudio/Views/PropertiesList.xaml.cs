@@ -24,12 +24,12 @@ namespace vSharpStudio.Views
     {
         public PropertiesList()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void PropertyGrid_IsPropertyBrowsable(object sender, Xceed.Wpf.Toolkit.PropertyGrid.IsPropertyBrowsableArgs e)
         {
-           switch(e.PropertyDescriptor.Name)
+           switch (e.PropertyDescriptor.Name)
             {
                 case "Description":
                 case "Guid":
@@ -48,8 +48,7 @@ namespace vSharpStudio.Views
                         grd.SelectedObject is GroupListProperties ||
                         grd.SelectedObject is GroupListPropertiesTabs ||
                         grd.SelectedObject is GroupListReports ||
-                        grd.SelectedObject is PropertiesTab
-                        )
+                        grd.SelectedObject is PropertiesTab)
                     {
                         e.IsBrowsable = false;
                     }

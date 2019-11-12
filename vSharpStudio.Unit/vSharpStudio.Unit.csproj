@@ -96,4 +96,7 @@
     <Compile Remove="DbCompareTests.cs" />
     <Compile Remove="MsSqlTests.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
 </Project>

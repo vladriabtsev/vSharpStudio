@@ -24,6 +24,9 @@
     <None Remove="ViewModels\ObjectSubModelsEditor.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj" />

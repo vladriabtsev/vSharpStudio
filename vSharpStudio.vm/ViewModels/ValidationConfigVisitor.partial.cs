@@ -11,8 +11,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class ValidationConfigVisitor
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
+
         private int _level = -1;
         private ILogger _logger = null;
+
         public ValidationConfigVisitor(CancellationToken cancellationToken, ILogger logger = null)
         {
             this._cancellationToken = cancellationToken;
@@ -20,6 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Result = new SortedObservableCollection<ValidationMessage>();
             this.Result.SortDirection = SortDirection.Descending;
         }
+
         public void UpdateSubstructCounts(ITreeConfigNode p)
         {
             var pp = p;
@@ -31,6 +34,7 @@ namespace vSharpStudio.vm.ViewModels
                 pp.CountInfos -= p.CountInfos;
             }
         }
+
         private void UpdateAddCounts(ITreeConfigNode p, ValidationMessage m)
         {
             switch (m.Severity)
@@ -63,10 +67,11 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
+
         private void AddMessage(ITreeConfigNode p, ValidationMessage t)
         {
-            UpdateAddCounts(p, t);
-            t.RaiseSeverityLevel(_level);
+            this.UpdateAddCounts(p, t);
+            t.RaiseSeverityLevel(this._level);
             ulong weight = 0;
             ITreeConfigNode nnode = p;
             while (nnode.Parent != null)
@@ -75,31 +80,42 @@ namespace vSharpStudio.vm.ViewModels
                 nnode = nnode.Parent;
             }
             if (weight > ViewModelBindable.MaxSortingWeight)
+            {
                 throw new Exception();
-            Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
+            }
+
+            this.Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
         }
+
         private void ValidateSubAndCollectErrors(ITreeConfigNode p, IValidatableWithSeverity sub)
         {
             if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
-                node = p;
+            {
+                this.node = p;
+            }
+
             sub.Validate();
             foreach (var t in sub.ValidationCollection)
             {
-                t.Model = node;
-                AddMessage(p, t);
+                t.Model = this.node;
+                this.AddMessage(p, t);
             }
         }
+
         partial void OnVisit(IValidatableWithSeverity p)
         {
-            //if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
+            // if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
             //    node = p;
-            _level++;
+            this._level++;
             if (!(p is ITreeConfigNode))
-                throw new ArgumentException();
-            var pp = p as ITreeConfigNode;
-            if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                throw new ArgumentException();
+            }
+
+            var pp = p as ITreeConfigNode;
+            if (this._logger != null)
+            {
+                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
             }
             p.ValidationCollection.Clear();
             p.CountErrors = 0;
@@ -110,21 +126,26 @@ namespace vSharpStudio.vm.ViewModels
 
             foreach (var t in p.ValidationCollection)
             {
-                //                t.Model = node;
-                AddMessage(pp, t);
+                // t.Model = node;
+                this.AddMessage(pp, t);
             }
         }
+
         private object node = null;
+
         partial void OnVisitEnd(IValidatableWithSeverity p)
         {
             if (!(p is ITreeConfigNode))
-                throw new ArgumentException();
-            var pp = p as ITreeConfigNode;
-            if (_logger != null)
             {
-                _logger.LogInformation("".PadRight(_level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                throw new ArgumentException();
             }
-            _level--;
+
+            var pp = p as ITreeConfigNode;
+            if (this._logger != null)
+            {
+                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
+            }
+            this._level--;
         }
     }
 }

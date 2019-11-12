@@ -17,13 +17,14 @@ namespace vSharpStudio
     /// </summary>
     public partial class App : Application
     {
-        public ILogger Logger;
         public static IServiceCollection ServiceCollection;
+        private ILogger logger;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            Logger = loggerFactory.CreateLogger<App>();
-            Logger.LogInformation("Application is starting");
+            this.logger = loggerFactory.CreateLogger<App>();
+            this.logger.LogInformation("Application is starting");
 
             #region DI services
 
@@ -31,7 +32,7 @@ namespace vSharpStudio
             // https://msdn.microsoft.com/en-us/magazine/mt707534.aspx
             App.ServiceCollection = new ServiceCollection();
             App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
-            Logger.LogInformation("ILoggerFactory is added in servce collection");
+            this.logger.LogInformation("ILoggerFactory is added in servce collection");
 
             #endregion DI services
 
@@ -39,7 +40,7 @@ namespace vSharpStudio
             wnd.Show();
             if (e.Args.Length == 1)
             {
-                Logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);
+                this.logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);
                 MainPage.MainPageVM.Config.SolutionPath = e.Args[0];
             }
         }

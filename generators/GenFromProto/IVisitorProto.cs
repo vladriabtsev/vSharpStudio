@@ -18,7 +18,7 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class IVisitorProto : IVisitorProtoBase
     {
@@ -30,14 +30,14 @@ namespace GenFromProto
         {
             this.Write("\r\npublic interface IVisitorProto // ");
             
-            #line 7 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 9 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+            #line 9 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
  foreach (var message in root.MessageTypes) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -45,23 +45,23 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tvoid Visit(");
+            this.Write("    void Visit(");
             
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+            #line 13 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.protoNameSpace));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+            #line 13 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
             
             #line default
             #line hidden
             this.Write(" p);\r\n");
             
-            #line 14 "C:\dev\vsharpstudio\generators\GenFromProto\IVisitorProto.tt"
+            #line 14 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
  } 
             
             #line default

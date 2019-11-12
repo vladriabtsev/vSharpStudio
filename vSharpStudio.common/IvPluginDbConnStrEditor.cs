@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata;
-//using Microsoft.EntityFrameworkCore.Migrations.Operations;
-//using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+// using Microsoft.EntityFrameworkCore.Migrations.Operations;
+// using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.common
@@ -15,8 +15,8 @@ namespace vSharpStudio.common
     /// <summary>
     /// Interface for DbDesign type of plugins
     /// </summary>
-    //public interface IvPluginDbConnStrEditor : IvPluginGenerator
-    //{
+    // public interface IvPluginDbConnStrEditor : IvPluginGenerator
+    // {
     //    string ProviderName { get; }
-    //}
+    // }
 }

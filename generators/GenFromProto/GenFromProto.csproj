@@ -23,8 +23,7 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
-
+    <PostBuildEvent>$(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
@@ -32,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.10.1" />
-    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.10.0" />
   </ItemGroup>
   <ItemGroup>
     <!--<Reference Include="Google.Protobuf, Version=3.9.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
@@ -166,4 +164,19 @@
   <ItemGroup>
     <Compile Remove="GenFromProto.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <!-- Add support for Layer validation 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.10.0" />
+    Include the layer model as an additional file that will be passed to the analyzer
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)Architecture\DependencyValidation.layerdiagram">
+      <Link>DependencyValidation1.layerdiagram</Link>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+  </ItemGroup> -->
 </Project>

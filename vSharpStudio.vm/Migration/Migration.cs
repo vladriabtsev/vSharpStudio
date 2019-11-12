@@ -6,8 +6,8 @@ namespace vSharpStudio.vm.Migration
 {
     class Migration
     {
-        //protected virtual MigrationsModelDiffer CreateModelDiffer(IModel model)
-        //{
-        //}
+        // protected virtual MigrationsModelDiffer CreateModelDiffer(IModel model)
+        // {
+        // }
     }
 }

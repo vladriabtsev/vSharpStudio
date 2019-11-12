@@ -15,14 +15,15 @@ namespace vSharpStudio.Unit
     public class VmTests
     {
         ILogger _logger = null;
-        //public VmTests(ITestOutputHelper output)
+
+        // public VmTests(ITestOutputHelper output)
         public VmTests()
         {
             ViewModelBindable.isUnitTests = true;
-            //ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            //loggerFactory.AddProvider(new DebugLoggerProvider());
-            //_logger = loggerFactory.CreateLogger<VmTests>();
-            //_logger.LogInformation("======================  Start VmTests tests ===============================");
+            // ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            // loggerFactory.AddProvider(new DebugLoggerProvider());
+            // _logger = loggerFactory.CreateLogger<VmTests>();
+            // _logger.LogInformation("======================  Start VmTests tests ===============================");
             EditorVmTests.InitLogging(this);
         }
         #region Editable
@@ -40,9 +41,10 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Name == "test1");
             Assert.IsTrue(cfg.DbSettings.DbSchema == "schema1");
         }
-        //[TestMethod]
-        //public void Editable012CanCancelSameLevelNullable()
-        //{
+
+        // [TestMethod]
+        // public void Editable012CanCancelSameLevelNullable()
+        // {
         //    Catalog vm = new Catalog
         //    {
         //    };
@@ -53,7 +55,7 @@ namespace vSharpStudio.Unit
         //    vm.DbIdGenerator.IsPrimaryKeyClustered = false;
         //    vm.CancelEdit();
         //    Assert.IsTrue(vm.DbIdGenerator.IsPrimaryKeyClustered ?? false);
-        //}
+        // }
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
@@ -64,6 +66,7 @@ namespace vSharpStudio.Unit
             vm.CancelEdit();
             Assert.IsTrue(vm.Name == "test1");
         }
+
         [TestMethod]
         public void Editable014CanCancelSecondLevelCollection()
         {
@@ -81,6 +84,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.GroupProperties.Count() == 1);
             Assert.IsTrue(vm.GroupProperties[0].Name == "test1");
         }
+
         [TestMethod]
         public void Editable021CanCancelCatalogPropertiy()
         {
@@ -113,6 +117,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.ValidationCollection != null);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
         }
+
         [TestMethod]
         public void Validation002_ValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
@@ -136,7 +141,7 @@ namespace vSharpStudio.Unit
 
             cfg.Validate();
 
-            cfg.ValidateSubTreeFromNode(c, _logger); //.ConfigureAwait(continueOnCapturedContext: false);
+            cfg.ValidateSubTreeFromNode(c, this._logger); // .ConfigureAwait(continueOnCapturedContext: false);
 
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(c.ValidationCollection.Count == 4);
@@ -169,9 +174,10 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, cfg.CountWarnings);
             Assert.AreEqual(1, cfg.CountInfos);
 
-            cfg.ValidateSubTreeFromNode(cfg, _logger); //.ConfigureAwait(continueOnCapturedContext: false);
+            cfg.ValidateSubTreeFromNode(cfg, this._logger); // .ConfigureAwait(continueOnCapturedContext: false);
             Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
+
         [TestMethod]
         public void Validation007_Propagation()
         {

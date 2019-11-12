@@ -10,7 +10,9 @@ namespace vSharpStudio.ViewModels
 {
     public static class Utils
     {
-        public static void TryCall(Action action, string onErrorMessage,
+        public static void TryCall(
+            Action action,
+            string onErrorMessage,
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
             [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = "",
             [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)
@@ -19,7 +21,7 @@ namespace vSharpStudio.ViewModels
             {
                 action();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine(onErrorMessage);

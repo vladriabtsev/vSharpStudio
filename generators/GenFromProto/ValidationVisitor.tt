@@ -12,9 +12,9 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
-	protected override void OnVisit(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
+    protected override void OnVisit(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
     {
-        OnVisit(p as IValidatableWithSeverity);
+        this.OnVisit(p as IValidatableWithSeverity);
 <# foreach (var field in message.Fields.InDeclarationOrder()) { 
      if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
        continue;
@@ -23,7 +23,7 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
 #>
 <# if (!field.IsAny() && !field.IsCsSimple() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
 <# if (field.IsRepeated) { #>
-        foreach(var t in p.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
+        foreach (var t in p.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
             ValidateSubAndCollectErrors(p, t);
 <# } else { #>
         ValidateSubAndCollectErrors(p, p.<#= field.Name.ToNameCs() #>); // <#=Helper.FilePos() #>
@@ -32,9 +32,9 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
 <# } #>
 <# } #>
     }
-	protected override void OnVisitEnd(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
+    protected override void OnVisitEnd(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
     {
-        OnVisitEnd(p as IValidatableWithSeverity);
+        this.OnVisitEnd(p as IValidatableWithSeverity);
     }
 <# } #>
 }

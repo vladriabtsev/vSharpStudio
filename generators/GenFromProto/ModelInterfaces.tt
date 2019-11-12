@@ -9,28 +9,31 @@ using ViewModelBase;
 
 namespace vSharpStudio.common // <#=Helper.FilePos() #>
 {
-<# foreach(var t in root.EnumTypes) { this.PushIndent("\t"); #>
-public enum <#= t.Name.ToNameCs() #> { // <#=Helper.FilePos() #>
-<#    foreach (var tt in t.Values) { this.PushIndent("\t"); #>
-<#= tt.Name #> = <#= tt.Number #>,
-<#    this.PopIndent(); } #>
+<# foreach (var t in root.EnumTypes) { 
+     this.PushIndent("    "); #>
+public enum <#= t.Name.ToNameCs() #> // <#=Helper.FilePos() #>
+{
+<#   foreach (var tt in t.Values) { #>
+    <#= tt.Name #> = <#= tt.Number #>,
+<#   } #>
 }
-<# this.PopIndent(); }
+<#   this.PopIndent(); #>
+<# }
    foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
-     this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name];
-     this.PushIndent("\t");
-#>
+     this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name]; 
+     this.PushIndent("    "); #>
 <#= this.MessageDoc.Comments #>
-public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IValidatableWithSeverity, IGuid, IName<# } #>  // <#=Helper.FilePos() #>
+public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IValidatableWithSeverity, IGuid, IName<# } #> // <#=Helper.FilePos() #>
 {
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
-         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name]; #>
-<# if (MessageDoc.IsDefaultBase) {
-     if (field.Name=="guid") continue;
-     if (field.Name=="name") continue;
-   } this.PushIndent("\t"); #>
+        this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
+        if (MessageDoc.IsDefaultBase) {
+          if (field.Name=="guid") continue;
+          if (field.Name=="name") continue;
+         } 
+         this.PushIndent("    "); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
 IEnumerable<<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
@@ -46,8 +49,8 @@ IEnumerable<I<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // 
 <#       } else { #>
 I<#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } #>
-<#       this.PopIndent();
-      } #>
+<#       this.PopIndent(); #>
+<#   } #>
 }
 <#    
       this.PopIndent();

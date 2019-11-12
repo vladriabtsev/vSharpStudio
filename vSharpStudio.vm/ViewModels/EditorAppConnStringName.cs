@@ -15,19 +15,22 @@ namespace vSharpStudio.vm.ViewModels
         {
             IParent p = (IParent)propertyItem.Instance;
             while (p.Parent != null)
+            {
                 p = p.Parent;
+            }
+
             Config cfg = (Config)p;
             ComboBox cbx = new ComboBox();
-            //cbx.IsSynchronizedWithCurrentItem = true;
+            // cbx.IsSynchronizedWithCurrentItem = true;
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Name";
-            var _binding_lst = new Binding("ListConnectionStringVMs"); //bind to the Value property of the PropertyItem
+            var _binding_lst = new Binding("ListConnectionStringVMs"); // bind to the Value property of the PropertyItem
             _binding_lst.Source = cfg;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
+            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;
             _binding.ValidatesOnDataErrors = true;

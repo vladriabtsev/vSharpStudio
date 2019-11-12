@@ -13,15 +13,15 @@ public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Pa
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
-	public void Visit(<#= message.Name.ToNameCs() #> p)
+    public void Visit(<#= message.Name.ToNameCs() #> p)
     {
-        OnVisit(p);
+        this.OnVisit(p);
     }
-	public void VisitEnd(<#= message.Name.ToNameCs() #> p)
+    public void VisitEnd(<#= message.Name.ToNameCs() #> p)
     {
-        OnVisitEnd(p);
+        this.OnVisitEnd(p);
     }
-    protected virtual void OnVisit(<#= message.Name.ToNameCs() #> p) {}
-    protected virtual void OnVisitEnd(<#= message.Name.ToNameCs() #> p) {}
+    protected virtual void OnVisit(<#= message.Name.ToNameCs() #> p) { }
+    protected virtual void OnVisitEnd(<#= message.Name.ToNameCs() #> p) { }
 <# } #>
 }

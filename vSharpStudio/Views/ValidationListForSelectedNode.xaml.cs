@@ -21,11 +21,12 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class ValidationListForSelectedNode : UserControl
     {
-        MainPageVM vm = null;
+        private MainPageVM vm = null;
+
         public ValidationListForSelectedNode()
         {
-            InitializeComponent();
-            vm = (MainPageVM)this.DataContext;
+            this.InitializeComponent();
+            this.vm = (MainPageVM)this.DataContext;
         }
     }
 }

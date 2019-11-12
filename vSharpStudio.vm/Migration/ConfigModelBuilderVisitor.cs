@@ -8,13 +8,13 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.Migration
 {
-    //public partial class ConfigModelBuilderVisitor : IVisitorConfigNode
-    //{
+    // public partial class ConfigModelBuilderVisitor : IVisitorConfigNode
+    // {
     //    private ModelBuilder _modelBuilder = null;
 
-    //    CancellationToken IVisitorConfigNode.Token => throw new NotImplementedException();
+    // CancellationToken IVisitorConfigNode.Token => throw new NotImplementedException();
 
-    //    //public ConfigModelBuilderVisitor(ModelBuilder modelBuilder)
+    // //public ConfigModelBuilderVisitor(ModelBuilder modelBuilder)
     //    //{
     //    //    _modelBuilder = modelBuilder;
     //    //}
@@ -22,19 +22,19 @@ namespace vSharpStudio.vm.Migration
     //    {
     //    }
 
-    //    void IVisitorConfigNode.Visit(Property m)
+    // void IVisitorConfigNode.Visit(Property m)
     //    {
     //    }
 
-    //    void IVisitorConfigNode.Visit(Constant m)
+    // void IVisitorConfigNode.Visit(Constant m)
     //    {
     //    }
 
-    //    void IVisitorConfigNode.Visit(Enumeration m)
+    // void IVisitorConfigNode.Visit(Enumeration m)
     //    {
     //    }
 
-    //    void IVisitorConfigNode.Visit(Catalog m)
+    // void IVisitorConfigNode.Visit(Catalog m)
     //    {
     //        //var c = _modelBuilder.Entity((m as ITreeConfigNode).Name, x =>
     //        //{
@@ -65,209 +65,209 @@ namespace vSharpStudio.vm.Migration
     //        //});
     //    }
 
-    //    void IVisitorConfigNode.Visit(EnumerationPair m)
+    // void IVisitorConfigNode.Visit(EnumerationPair m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(Document p)
+    // void IVisitorConfigNode.Visit(Document p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(Journal p)
+    // void IVisitorConfigNode.Visit(Journal p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupDocuments p)
+    // void IVisitorConfigNode.Visit(GroupDocuments p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(ConfigTree p)
+    // void IVisitorConfigNode.Visit(ConfigTree p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupConfigs p)
+    // void IVisitorConfigNode.Visit(GroupConfigs p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListDocuments p)
+    // void IVisitorConfigNode.Visit(GroupListDocuments p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(Form p)
+    // void IVisitorConfigNode.Visit(Form p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(Report p)
+    // void IVisitorConfigNode.Visit(Report p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListCatalogs p)
+    // void IVisitorConfigNode.Visit(GroupListCatalogs p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListProperties p)
+    // void IVisitorConfigNode.Visit(GroupListProperties p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListConstants p)
+    // void IVisitorConfigNode.Visit(GroupListConstants p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListEnumerations p)
+    // void IVisitorConfigNode.Visit(GroupListEnumerations p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListJournals p)
+    // void IVisitorConfigNode.Visit(GroupListJournals p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListForms p)
+    // void IVisitorConfigNode.Visit(GroupListForms p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListReports p)
+    // void IVisitorConfigNode.Visit(GroupListReports p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupPropertiesTab p)
+    // void IVisitorConfigNode.Visit(GroupPropertiesTab p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.Visit(GroupListPropertiesTabs p)
+    // void IVisitorConfigNode.Visit(GroupListPropertiesTabs p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Config m)
+    // void IVisitorConfigNode.VisitEnd(Config m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Property m)
+    // void IVisitorConfigNode.VisitEnd(Property m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Constant m)
+    // void IVisitorConfigNode.VisitEnd(Constant m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(EnumerationPair m)
+    // void IVisitorConfigNode.VisitEnd(EnumerationPair m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Enumeration m)
+    // void IVisitorConfigNode.VisitEnd(Enumeration m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Catalog m)
+    // void IVisitorConfigNode.VisitEnd(Catalog m)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Document p)
+    // void IVisitorConfigNode.VisitEnd(Document p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Journal p)
+    // void IVisitorConfigNode.VisitEnd(Journal p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupDocuments p)
+    // void IVisitorConfigNode.VisitEnd(GroupDocuments p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(ConfigTree p)
+    // void IVisitorConfigNode.VisitEnd(ConfigTree p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupConfigs p)
+    // void IVisitorConfigNode.VisitEnd(GroupConfigs p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListDocuments p)
+    // void IVisitorConfigNode.VisitEnd(GroupListDocuments p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Form p)
+    // void IVisitorConfigNode.VisitEnd(Form p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(Report p)
+    // void IVisitorConfigNode.VisitEnd(Report p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListCatalogs p)
+    // void IVisitorConfigNode.VisitEnd(GroupListCatalogs p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListProperties p)
+    // void IVisitorConfigNode.VisitEnd(GroupListProperties p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListConstants p)
+    // void IVisitorConfigNode.VisitEnd(GroupListConstants p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListEnumerations p)
+    // void IVisitorConfigNode.VisitEnd(GroupListEnumerations p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListJournals p)
+    // void IVisitorConfigNode.VisitEnd(GroupListJournals p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListForms p)
+    // void IVisitorConfigNode.VisitEnd(GroupListForms p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListReports p)
+    // void IVisitorConfigNode.VisitEnd(GroupListReports p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupPropertiesTab p)
+    // void IVisitorConfigNode.VisitEnd(GroupPropertiesTab p)
     //    {
     //        throw new NotImplementedException();
     //    }
 
-    //    void IVisitorConfigNode.VisitEnd(GroupListPropertiesTabs p)
+    // void IVisitorConfigNode.VisitEnd(GroupListPropertiesTabs p)
     //    {
     //        throw new NotImplementedException();
     //    }
-    //}
+    // }
 }

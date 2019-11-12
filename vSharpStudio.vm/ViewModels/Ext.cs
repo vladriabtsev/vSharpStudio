@@ -6,8 +6,8 @@ namespace vSharpStudio.vm.ViewModels
 {
     public static class Ext
     {
-        //public static Proto.Attr.ModelData GetDicAttributes()
-        //{
+        // public static Proto.Attr.ModelData GetDicAttributes()
+        // {
         //    if (Ext.res != null)
         //        return Ext.res;
         //    Ext.res = new Proto.Attr.ModelData();
@@ -29,8 +29,8 @@ namespace vSharpStudio.vm.ViewModels
         //    Ext.res.DicByClass[typeof(Journal).Name] = Journal.GetDicPropertyAttributes();
         //    Ext.res.DicByClass[typeof(Property).Name] = Property.GetDicPropertyAttributes();
         //    return Ext.res;
-        //}
-        //private static Proto.Attr.ModelData res = null;
+        // }
+        // private static Proto.Attr.ModelData res = null;
 
         internal static StringBuilder BrowsableAttribute(this StringBuilder prev, bool flag)
         {
@@ -39,6 +39,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder CategoryAttribute(this StringBuilder prev, string category)
         {
             prev.Append("[Category(\"");
@@ -46,6 +47,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("\"]");
             return prev;
         }
+
         internal static StringBuilder CategoryOrderAttribute(this StringBuilder prev, string category, int order)
         {
             prev.Append("[CategoryOrder(\"");
@@ -55,6 +57,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, bool value)
         {
             prev.Append("[DefaultValue(");
@@ -62,6 +65,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, byte value)
         {
             prev.Append("[DefaultValue(");
@@ -69,6 +73,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, char value)
         {
             prev.Append("[DefaultValue('");
@@ -76,6 +81,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("')]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, double value)
         {
             prev.Append("[DefaultValue(");
@@ -83,6 +89,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, short value)
         {
             prev.Append("[DefaultValue(");
@@ -90,6 +97,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, int value)
         {
             prev.Append("[DefaultValue(");
@@ -97,6 +105,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, long value)
         {
             prev.Append("[DefaultValue(");
@@ -104,13 +113,14 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
-        //internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, object value)
-        //{
+
+        // internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, object value)
+        // {
         //    prev.Append("[DefaultValue(");
         //    prev.Append(value);
         //    prev.AppendLine(")]");
         //    return prev;
-        //}
+        // }
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, float value)
         {
             prev.Append("[DefaultValue(");
@@ -118,6 +128,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, string value)
         {
             prev.Append("[DefaultValue(\"");
@@ -125,6 +136,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("\")]");
             return prev;
         }
+
         internal static StringBuilder DefaultValueAttribute(this StringBuilder prev, Type type, string value)
         {
             prev.Append("[DefaultValue(");
@@ -134,6 +146,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("\")]");
             return prev;
         }
+
         internal static StringBuilder DescriptionAttribute(this StringBuilder prev, string description)
         {
             prev.Append("[Description(\"");
@@ -141,6 +154,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("\")]");
             return prev;
         }
+
         internal static StringBuilder DisplayNameAttribute(this StringBuilder prev, string displayName)
         {
             prev.Append("[DisplayName(\"");
@@ -148,11 +162,13 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine("\")]");
             return prev;
         }
+
         internal static StringBuilder EditorAttribute(this StringBuilder prev)
         {
             prev.AppendLine("[Editor()]");
             return prev;
         }
+
         internal static StringBuilder EditorAttribute(this StringBuilder prev, string typeName, string baseTypeName)
         {
             prev.Append("[Editor(");
@@ -162,6 +178,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder EditorAttribute(this StringBuilder prev, string typeName, Type baseType)
         {
             prev.Append("[Editor(");
@@ -171,6 +188,7 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder EditorAttribute(this StringBuilder prev, Type type, Type baseType)
         {
             prev.Append("[Editor(");
@@ -180,11 +198,13 @@ namespace vSharpStudio.vm.ViewModels
             prev.AppendLine(")]");
             return prev;
         }
+
         internal static StringBuilder ExpandableObjectAttribute(this StringBuilder prev)
         {
             prev.AppendLine("[ExpandableObject()]");
             return prev;
         }
+
         internal static StringBuilder PropertyOrderAttribute(this StringBuilder prev, int order)
         {
             prev.Append("[PropertyOrder(");

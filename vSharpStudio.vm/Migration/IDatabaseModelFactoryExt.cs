@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.vm.Migration
 {
-    public interface IDatabaseModelFactoryExt //: Microsoft.EntityFrameworkCore.Scaffolding.IDatabaseModelFactory
+    public interface IDatabaseModelFactoryExt // : Microsoft.EntityFrameworkCore.Scaffolding.IDatabaseModelFactory
     {
     }
 }

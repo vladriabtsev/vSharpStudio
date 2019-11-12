@@ -17,13 +17,13 @@ namespace vSharpStudio.vm.ViewModels
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";
-            var _binding_lst = new Binding("ListPluginsProp"); //bind to the Value property of the PropertyItem
+            var _binding_lst = new Binding("ListPluginsProp"); // bind to the Value property of the PropertyItem
             _binding_lst.Source = instance;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
+            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;
             _binding.ValidatesOnDataErrors = true;

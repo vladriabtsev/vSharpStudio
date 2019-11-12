@@ -13,26 +13,31 @@ namespace vSharpStudio.DbModels
     {
         private ModelBuilder _modelBuilder = null;
         private Config _config = null;
-        public MsSqlModelBuilderVisitor(CancellationToken cancellationToken, ILogger logger = null) : base(cancellationToken, logger)
+
+        public MsSqlModelBuilderVisitor(CancellationToken cancellationToken, ILogger logger = null)
+            : base(cancellationToken, logger)
         {
         }
+
         public Microsoft.EntityFrameworkCore.Metadata.IModel GetModel()
         {
             if (this._model == null)
             {
-                this._model = _modelBuilder.FinalizeModel();
+                this._model = this._modelBuilder.FinalizeModel();
             }
             return this._model;
         }
+
         private Microsoft.EntityFrameworkCore.Metadata.IModel _model = null;
 
         protected override void OnVisit(Config m)
         {
             this._model = null;
             this._config = m;
-            //if (this._config.IdDbGenerator.IsSequenceHiLo ?? false)
+
+            // if (this._config.IdDbGenerator.IsSequenceHiLo ?? false)
             //    this._modelBuilder.ForSqlServerUseSequenceHiLo(this._config.IdDbGenerator.HiLoSequenceName, this._config.IdDbGenerator.HiLoSchema);
-            //else
+            // else
             //    this._modelBuilder.ForSqlServerUseIdentityColumns();
         }
 
@@ -53,7 +58,7 @@ namespace vSharpStudio.DbModels
 
         protected override void OnVisit(Catalog m)
         {
-            //this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
+            // this._modelBuilder.Entity(typeof(Catalog).Name + "." + m.Name, x =>
             //   {
             //       x.HasKey(new string[] { this._config.PrimaryKeyName }).ForSqlServerIsClustered(m.IsPrimaryKeyClustered ?? this._config.IsPrimaryKeyClustered);
             //       x.ForSqlServerIsMemoryOptimized(m.IsMemoryOptimized ?? this._config.IsMemoryOptimized);

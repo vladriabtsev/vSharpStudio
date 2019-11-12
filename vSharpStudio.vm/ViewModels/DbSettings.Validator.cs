@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
-using ViewModelBase;
 using FluentValidation;
+using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             public DbSettingsValidator()
             {
-                RuleFor(x => x.KeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
+                this.RuleFor(x => x.KeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
             }
         }
     }

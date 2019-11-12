@@ -23,23 +23,28 @@ namespace vSharpStudio.Unit
             ViewModelBindable.isUnitTests = true;
             EditorVmTests.InitLogging(this);
         }
+
         private void remove_config()
         {
             if (File.Exists(MainPageVM.CFG_FILE_PATH))
+            {
                 File.Delete(MainPageVM.CFG_FILE_PATH);
+            }
         }
+
         [TestMethod]
         public void Main001StartWithEmptyConfig()
         {
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
             Assert.IsTrue(vm.pconfig_history == null);
         }
+
         [TestMethod]
         public void Main002CanSaveConfigAndCreateVersions()
         {
             // empty config
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
             Assert.IsTrue(vm.pconfig_history == null);
 
@@ -79,7 +84,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history.PrevStableConfig.Version == 0);
             Assert.IsTrue(vm.pconfig_history.OldStableConfig == null);
             // migration code is created?
-            //Assert.IsTrue(false);
+            // Assert.IsTrue(false);
 
             // create next stable version
             vm.CommandConfigCreateStableVersion.Execute(null);
@@ -96,13 +101,14 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history.OldStableConfig != null);
             Assert.IsTrue(vm.pconfig_history.OldStableConfig.Version == 0);
             // old migration code is kept?
-            //Assert.IsTrue(false);
+            // Assert.IsTrue(false);
         }
+
         [TestMethod]
         public void Main003_DiffList()
         {
             // new config, not saved yet
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
             vm.Config.Name = "main";
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
@@ -156,11 +162,12 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.GetDiffConstant(c1).IsRenamed());
 
         }
+
         [TestMethod]
         public void Main011_Diff_Constants()
         {
             // empty config
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
 
             // create object and save
@@ -204,11 +211,12 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             Assert.IsTrue(vm.Config.GetDiffConstants().Count == 3); // deleted is removed
         }
+
         [TestMethod]
         public void Main012_Diff_Enumerations()
         {
             // empty config
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
 
             // create object and save
@@ -265,11 +273,12 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 3); // deleted is removed
         }
+
         [TestMethod]
         public void Main081_BaseConfigLoading()
         {
             // empty config
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
@@ -279,7 +288,10 @@ namespace vSharpStudio.Unit
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             var path = @".\extcfg\";
             if (!Directory.Exists(path))
+            {
                 Directory.CreateDirectory(path);
+            }
+
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
@@ -297,11 +309,12 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Name == "ext");
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
         }
+
         [TestMethod]
         public void Main082_BaseConfigDiff()
         {
             // empty config
-            remove_config();
+            this.remove_config();
             var vm = new MainPageVM(true);
             vm.Config.Name = "main";
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
@@ -313,7 +326,10 @@ namespace vSharpStudio.Unit
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             var path = @".\extcfg\";
             if (!Directory.Exists(path))
+            {
                 Directory.CreateDirectory(path);
+            }
+
             vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
 
             // create object and save
@@ -323,15 +339,15 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
-            //var diffc = vm.GetDiffListConfigs();
-            //Assert.IsTrue(diffc.Config.Name == "main");
-            //Assert.IsTrue(diffc.ListAll.Count == 2);
-            //Assert.IsTrue(diffc.ListSubConfigs.Count == 1);
-            //Assert.IsTrue(diffc.ListSubConfigs[0].Name == "ext");
-            //Assert.IsTrue(diffc.Config.IsNew());
-            //Assert.IsFalse(diffc.Config.IsDeleted());
-            //Assert.IsFalse(diffc.Config.IsDeprecated());
-            //Assert.IsFalse(diffc.Config.IsRenamed());
+            // var diffc = vm.GetDiffListConfigs();
+            // Assert.IsTrue(diffc.Config.Name == "main");
+            // Assert.IsTrue(diffc.ListAll.Count == 2);
+            // Assert.IsTrue(diffc.ListSubConfigs.Count == 1);
+            // Assert.IsTrue(diffc.ListSubConfigs[0].Name == "ext");
+            // Assert.IsTrue(diffc.Config.IsNew());
+            // Assert.IsFalse(diffc.Config.IsDeleted());
+            // Assert.IsFalse(diffc.Config.IsDeprecated());
+            // Assert.IsFalse(diffc.Config.IsRenamed());
         }
     }
 }

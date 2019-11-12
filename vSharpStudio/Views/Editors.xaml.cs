@@ -22,13 +22,13 @@ namespace vSharpStudio.Views
     {
         public Editors()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            cc.Height = e.NewSize.Height;
-            cc.Width = e.NewSize.Width;
+            this.cc.Height = e.NewSize.Height;
+            this.cc.Width = e.NewSize.Width;
         }
     }
 }

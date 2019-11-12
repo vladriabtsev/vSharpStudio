@@ -11,42 +11,64 @@ namespace vSharpStudio.vm.ViewModels
     public class ConnStringVM : ViewModelValidatableWithSeverity<ConnStringVM, ConnStringVMValidator>
     {
         private ILogger logger;
-        public ConnStringVM() : base(ConnStringVMValidator.Validator)
+
+        public ConnStringVM()
+            : base(ConnStringVMValidator.Validator)
         {
         }
-        public ConnStringVM(ILogger logger) : this()
+
+        public ConnStringVM(ILogger logger)
+            : this()
         {
             this.logger = logger;
         }
+
         public string Name
         {
-            get { return _Name; }
+            get
+            {
+                return this._Name;
+            }
+
             set
             {
-                _Name = value;
-                NotifyPropertyChanged();
+                this._Name = value;
+                this.NotifyPropertyChanged();
             }
         }
+
         private string _Name;
+
         public string ConnectionString
         {
-            get { return _ConnectionString; }
+            get
+            {
+                return this._ConnectionString;
+            }
+
             set
             {
-                _ConnectionString = value;
-                NotifyPropertyChanged();
+                this._ConnectionString = value;
+                this.NotifyPropertyChanged();
             }
         }
+
         private string _ConnectionString;
+
         public string Provider
         {
-            get { return _Provider; }
+            get
+            {
+                return this._Provider;
+            }
+
             set
             {
-                _Provider = value;
-                NotifyPropertyChanged();
+                this._Provider = value;
+                this.NotifyPropertyChanged();
             }
         }
+
         private string _Provider;
     }
 }

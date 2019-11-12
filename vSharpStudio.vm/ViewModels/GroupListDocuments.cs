@@ -13,8 +13,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq}")]
     public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListDocuments; }
-        public override bool HasChildren(object parent) { return this.ListDocuments.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListDocuments;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListDocuments.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = "Documents";
@@ -28,17 +36,26 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Document node = null;
             if (node_impl == null)
+            {
                 node = new Document(this);
+            }
             else
+            {
                 node = (Document)node_impl;
+            }
+
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(Document.DefaultName, node, this.ListDocuments);
-            SetSelected(node);
+            {
+                this.GetUniqueName(Document.DefaultName, node, this.ListDocuments);
+            }
+
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
@@ -52,8 +69,7 @@ namespace vSharpStudio.vm.ViewModels
                 DiffLists<IDocument> diff = new DiffLists<IDocument>(
                     cfg.OldStableConfig?.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments,
                     cfg.PrevStableConfig?.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments,
-                    cfg.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments
-                );
+                    cfg.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments);
                 return diff.ListAll;
             }
         }

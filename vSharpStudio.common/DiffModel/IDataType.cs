@@ -10,6 +10,7 @@ namespace vSharpStudio.common
     public partial interface IDataType
     {
         string ClrTypeName { get; }
+
         Type ClrType { get; }
     }
 }

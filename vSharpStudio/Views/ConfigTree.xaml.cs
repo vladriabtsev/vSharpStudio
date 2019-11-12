@@ -23,14 +23,16 @@ namespace vSharpStudio.Views
     {
         public ConfigTree()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
                 return;
+            }
         }
 
-        //private void ConfigTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        //{
+        // private void ConfigTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        // {
         //    (DataContext as MainPageVM).OnSelectedItemChanged(e.OldValue, e.NewValue);
-        //}
+        // }
     }
 }

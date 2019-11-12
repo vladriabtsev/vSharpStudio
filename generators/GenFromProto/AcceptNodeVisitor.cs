@@ -18,7 +18,7 @@ namespace GenFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+    #line 1 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AcceptNodeVisitor : AcceptNodeVisitorBase
     {
@@ -29,36 +29,36 @@ namespace GenFromProto
         public virtual string TransformText()
         {
             
-            #line 6 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
             
             #line default
             #line hidden
             this.Write("\r\npublic void Accept");
             
-            #line 8 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("NodeVisitor(");
             
-            #line 8 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor visitor) // ");
             
-            #line 8 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    if (visitor.Token.IsCancellationRequested)\r\n        return;\r\n\tvisitor.Vi" +
-                    "sit(this);\r\n");
+            this.Write("\r\n{\r\n    if (visitor.Token.IsCancellationRequested)\r\n    {\r\n        return;\r\n    " +
+                    "}\r\n    visitor.Visit(this);\r\n");
             
-            #line 13 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.IsCsSimple() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)
        continue;
@@ -67,82 +67,82 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 17 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  try { if (field.IsRepeated) { 
             
             #line default
             #line hidden
             
-            #line 18 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  if (!field.IsAny()) { 
             
             #line default
             #line hidden
-            this.Write("\tforeach(var t in this.");
+            this.Write("    foreach (var t in this.");
             
-            #line 19 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 21 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tt.AcceptConfigNodeVisitor(visitor);\r\n");
+            this.Write(")\r\n    {\r\n        t.AcceptConfigNodeVisitor(visitor);\r\n    }\r\n");
             
-            #line 21 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 22 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } else if (field.MessageType.FullName == "google.protobuf.Any") { 
             
             #line default
             #line hidden
-            this.Write("\t//this.");
+            this.Write("    // this.");
             
-            #line 23 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".AcceptConfigNodeVisitor(visitor);\r\n");
             
-            #line 24 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { 
             
             #line default
             #line hidden
-            this.Write("\tthis.");
+            this.Write("    this.");
             
-            #line 25 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".AcceptConfigNodeVisitor(visitor); // ");
             
-            #line 25 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 27 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } } catch(Exception ex) { 
 } 
             
             #line default
             #line hidden
             
-            #line 29 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 33 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("\tvisitor.VisitEnd(this);\r\n}\r\n");
+            this.Write("    visitor.VisitEnd(this);\r\n}\r\n");
             
-            #line 32 "C:\dev\vsharpstudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            #line 36 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } 
             
             #line default

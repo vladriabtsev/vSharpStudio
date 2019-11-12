@@ -10,12 +10,17 @@ namespace vSharpStudio.vm.Migration
     // Only to test(or not?)
     // return true if OK
     bool CompareConfigWithDb(Config oldConfig);
+
     void MigrateDbStructure(Config newConfig);
+
     void RemoveIndexes();
+
     void CreateIndexes(Config newConfig);
+
     // TODO rename, create new, migrate data ???
     // TODO data to protobuf format in file ???
     void BackupDb();
+
     void RestoreDb();
   }
 }

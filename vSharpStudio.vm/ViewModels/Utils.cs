@@ -4,8 +4,8 @@ using System.Text;
 
 namespace vSharpStudio.vm.ViewModels
 {
-  class Utils
-  {
+    class Utils
+    {
 
-  }
+    }
 }

@@ -14,7 +14,7 @@ public void AcceptValidator(VisitorConfigNode visitor) // <#=Helper.FilePos() #>
        continue;
 #>
 <# if (field.IsRepeated) { #>
-	foreach(var t in this.<#= field.Name.ToNameCs() #>)
+	foreach (var t in this.<#= field.Name.ToNameCs() #>)
 		t.AcceptConfigNode(visitor); // <#=Helper.FilePos() #>
 <# } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { #>
 	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor); // <#=Helper.FilePos() #>

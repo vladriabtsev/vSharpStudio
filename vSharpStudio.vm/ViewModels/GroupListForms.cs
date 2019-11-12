@@ -13,8 +13,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListForms.Count,nq}")]
     public partial class GroupListForms : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListForms; }
-        public override bool HasChildren(object parent) { return this.ListForms.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListForms;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListForms.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = "Forms";
@@ -26,17 +34,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NodeAddNewSubNode(node);
         }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Form node = null;
             if (node_impl == null)
+            {
                 node = new Form(this);
+            }
             else
+            {
                 node = (Form)node_impl;
+            }
+
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(Form.DefaultName, node, this.ListForms);
-            SetSelected(node);
+            {
+                this.GetUniqueName(Form.DefaultName, node, this.ListForms);
+            }
+
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
@@ -49,7 +66,10 @@ namespace vSharpStudio.vm.ViewModels
                 var cfg = (Config)this.GetConfig();
                 var p = this.Parent;
                 while (p.IsIncludableInModels == false)
+                {
                     p = p.Parent;
+                }
+
                 string par = p.GetType().Name;
                 ConfigNodesCollection<Form> curr;
                 ConfigNodesCollection<Form> prev;

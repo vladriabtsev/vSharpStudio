@@ -11,8 +11,11 @@ namespace vSharpStudio.common
     {
         ITreeConfigNode SelectedNode { get; set; }
         IConfig PrevStableConfig { get; }
+
         IConfig OldStableConfig { get; }
+
         Dictionary<string, ITreeConfigNode> DicNodes { get; }
+
         List<IConfig> ListAnnotated { get; }
     }
 }

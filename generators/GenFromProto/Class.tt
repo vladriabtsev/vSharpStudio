@@ -5,67 +5,67 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
-	public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=Helper.FilePos() #>
-	#region CTOR
+    public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=Helper.FilePos() #>
+    #region CTOR
 <# if (this.Doc.IsDefaultBase) { #>
-	//public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : this() { this.Parent = parent; } // <#=Helper.FilePos() #>
-	//public <#= message.Name.ToNameCs() #>() : base(<#= message.Name.ToNameCs() #>Validator.Validator)
-	public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 
+        : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>
     {
-		OnInitBegin();
+        this.OnInitBegin();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.IsCsSimple())
-         continue;
-		if (t.IsRepeated) {#>
+        if (t.IsCsSimple())
+            continue;
+        if (t.IsRepeated) {#>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
-<#		} else if (t.IsMessage()) { #>
+<#    } else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
-		OnInit();
+        this.OnInit();
     }
 <# } else { #>
-	public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=Helper.FilePos() #>
-	{
-		OnInitBegin();
+    public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=Helper.FilePos() #>
+    {
+        this.OnInitBegin();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-       if (t.IsCsSimple() && !t.IsRepeated)
-         continue;
+        if (t.IsCsSimple() && !t.IsRepeated)
+           continue;
 		if (t.IsRepeated) {#>
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } else { #>
-		this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
+        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
-		OnInit();
-	}
+        this.OnInit();
+    }
 <# } #>
-	partial void OnInitBegin();
-	partial void OnInit();
-	#endregion CTOR
-	#region Procedures
+    partial void OnInitBegin();
+    partial void OnInit();
+    #endregion CTOR
+    #region Procedures
 <#	
-	this.PushIndent("\t");
+	this.PushIndent("    ");
 	
     var cloner = new Clone(root, message, nameSpace, protoNameSpace);
 	this.Write(cloner.TransformText());
@@ -79,9 +79,9 @@
     }*/
 
 	this.PopIndent(); #>
-	#endregion Procedures
-	#region Properties
-<#	this.PushIndent("\t");
+    #endregion Procedures
+    #region Properties
+<#	this.PushIndent("    ");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
         if (this.Doc.IsDefaultBase)
@@ -96,5 +96,5 @@
 	}
 	this.PopIndent(); #>
 
-	#endregion Properties
+    #endregion Properties
 }

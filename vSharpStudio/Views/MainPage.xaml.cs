@@ -23,19 +23,23 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class MainPage : UserControl
     {
-        public static MainPageVM MainPageVM;
+        public static MainPageVM MainPageVM { get; set; }
+
         private MainPageVM _model = null;
+
         public MainPage()
         {
             // https://www.abhishekshukla.com/wpf/advanced-wpf-part-4-threading-in-windows-presentation-foundation/
             ViewModelBindable.AppDispatcher = UIDispatcher.Current;
-            InitializeComponent();
+            this.InitializeComponent();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
                 return;
+            }
 #if DEBUG
-            _model = new MainPageVM(true);
-            _model.Compose();
-            this.DataContext = _model;
+            this._model = new MainPageVM(true);
+            this._model.Compose();
+            this.DataContext = this._model;
 #else
             _model = new MainPageVM();
             Task task = Task.Run(() =>
@@ -44,7 +48,7 @@ namespace vSharpStudio.Views
                 this.DataContext = _model;
             });
 #endif
-            MainPage.MainPageVM = _model;
+            MainPage.MainPageVM = this._model;
         }
     }
 }

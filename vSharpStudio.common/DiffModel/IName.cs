@@ -9,6 +9,7 @@ namespace vSharpStudio.common
     public interface IName
     {
         string Name { get; }
+
         string FullName { get; }
     }
 }

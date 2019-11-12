@@ -17,11 +17,13 @@ namespace vSharpStudio.common
     /// </summary>
     public interface IvPluginDbGenerator : IvPluginGenerator
     {
-        ILoggerFactory LoggerFactory { set; get; }
+        ILoggerFactory LoggerFactory { get; set; }
+
         string ProviderName { get; }
+
         int GetMigrationVersion();
-        //DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
-        //void UpdateToModel(IModel model);
+        // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
+        // void UpdateToModel(IModel model);
 
         /// <summary>
         /// Return last proto model which was used last time for migration
@@ -37,9 +39,9 @@ namespace vSharpStudio.common
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
         void UpdateToModel(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
-        //void Backup(string filePath);
-        //void Restore(string filePath);
-        //void Export(string filePath);
-        //void Import(string filePath);
+        // void Backup(string filePath);
+        // void Restore(string filePath);
+        // void Export(string filePath);
+        // void Import(string filePath);
     }
 }

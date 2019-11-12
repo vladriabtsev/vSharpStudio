@@ -13,8 +13,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListAppSolutions.Count,nq}")]
     public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListAppSolutions; }
-        public override bool HasChildren(object parent) { return this.ListAppSolutions.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListAppSolutions;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListAppSolutions.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = "Apps";
@@ -27,17 +35,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NodeAddNewSubNode(node);
         }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             AppSolution node = null;
             if (node_impl == null)
+            {
                 node = new AppSolution(this);
+            }
             else
+            {
                 node = (AppSolution)node_impl;
+            }
+
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(AppSolution.DefaultName, node, this.ListAppSolutions);
-            SetSelected(node);
+            {
+                this.GetUniqueName(AppSolution.DefaultName, node, this.ListAppSolutions);
+            }
+
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations

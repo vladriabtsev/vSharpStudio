@@ -12,7 +12,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
     public partial class PluginGenerator : ICanGoLeft, ICanGoRight, ICanAddSubNode
     {
-        public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin) : this(parent)
+        public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
+            : this(parent)
         {
             this.Guid = plugin.Guid.ToString();
             this.Name = plugin.Name;
@@ -20,6 +21,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Generator = plugin;
             this.IsEditable = false;
         }
+
         partial void OnInit()
         {
             this.IsEditable = false;
@@ -27,6 +29,7 @@ namespace vSharpStudio.vm.ViewModels
 
         [BrowsableAttribute(false)]
         public IvPluginGenerator Generator { get; private set; }
+
         public void SetGenerator(IvPluginGenerator generator)
         {
             this.Generator = generator;
@@ -36,26 +39,28 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PluginGeneratorSettings pgs = null;
-            //switch (this.Generator.PluginGeneratorType)
-            //{
+            // switch (this.Generator.PluginGeneratorType)
+            // {
             //    case vPluginLayerTypeEnum.DbDesign:
             var settings = this.Generator.GetSettingsMvvm(null);
             pgs = new PluginGeneratorSettings(this, settings);
             pgs.SetGuid(this.Generator.Guid.ToString());
-            GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
+            this.GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
             pgs.Parent = this;
             this.ListSettings.Add(pgs);
-            SetSelected(pgs);
-            //break;
+            this.SetSelected(pgs);
+            // break;
             //    default:
             //        throw new NotImplementedException();
-            //}
+            // }
             return pgs;
         }
+
         public override bool NodeCanRemove()
         {
             return this.Generator == null || string.IsNullOrWhiteSpace(this.Guid);
         }
+
         public override void NodeRemove()
         {
             (this.Parent as Plugin).ListGenerators.Remove(this);

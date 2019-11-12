@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace vSharpStudio.vm.Migration
@@ -19,6 +19,7 @@ namespace vSharpStudio.vm.Migration
     public bool Ignore;
     public bool IsGeneratedUniqueIdentifier;
   }
+
   public class Key
   {
     public string Name;
@@ -27,6 +28,7 @@ namespace vSharpStudio.vm.Migration
     public string ReferencingTableName;
     public string ReferencingTableColumnName;
   }
+
   public class Table
   {
     public List<Column> Columns;
@@ -43,28 +45,32 @@ namespace vSharpStudio.vm.Migration
 
     public Column GetColumn(string columnName)
     {
-      return Columns.Single(x => string.Compare(x.Name, columnName, true) == 0);
+      return this.Columns.Single(x => string.Compare(x.Name, columnName, true) == 0);
     }
+
     public Column this[string columnName]
     {
       get
       {
-        return GetColumn(columnName);
+        return this.GetColumn(columnName);
       }
     }
   }
+
   public class Tables : List<Table>
   {
     public Tables()
     {
     }
+
     public Table GetTable(string tableName)
     {
       return this.Single(x => string.Compare(x.Name, tableName, true) == 0);
     }
+
     public Table this[string tableName]
     {
-      get { return GetTable(tableName); }
+      get { return this.GetTable(tableName); }
     }
   }
 }

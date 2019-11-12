@@ -6,5 +6,14 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public enum vPluginLayerTypeEnum { DbConnection, DbDesign, DbAccess, ServerService, ClientService, ViewModel, UI }
+    public enum vPluginLayerTypeEnum
+    {
+        DbConnection,
+        DbDesign,
+        DbAccess, 
+        ServerService, 
+        ClientService, 
+        ViewModel, 
+        UI,
+    }
 }

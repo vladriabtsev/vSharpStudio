@@ -60,7 +60,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tprotected override void OnVisit(");
+            this.Write("    protected override void OnVisit(");
             
             #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -74,7 +74,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    {\r\n        OnVisit(p as IValidatableWithSeverity);\r\n");
+            this.Write("\r\n    {\r\n        this.OnVisit(p as IValidatableWithSeverity);\r\n");
             
             #line 18 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
  foreach (var field in message.Fields.InDeclarationOrder()) { 
@@ -98,7 +98,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        foreach(var t in p.");
+            this.Write("        foreach (var t in p.");
             
             #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -158,7 +158,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    }\r\n\tprotected override void OnVisitEnd(");
+            this.Write("    }\r\n    protected override void OnVisitEnd(");
             
             #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -172,7 +172,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    {\r\n        OnVisitEnd(p as IValidatableWithSeverity);\r\n    }\r\n");
+            this.Write("\r\n    {\r\n        this.OnVisitEnd(p as IValidatableWithSeverity);\r\n    }\r\n");
             
             #line 39 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
  } 

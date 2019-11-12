@@ -16,13 +16,21 @@ namespace vSharpStudio.common
     public interface IvPlugin
     {
         string Guid { get; }
+
         string Version { get; }
+
         string Name { get; }
+
         string NameUI { get; }
+
         string Description { get; }
+
         string Author { get; }
+
         string Url { get; }
+
         string Licence { get; }
+
         List<IvPluginGenerator> ListGenerators { get; }
     }
 }

@@ -14,8 +14,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
     public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListPropertiesTabs; }
-        public override bool HasChildren(object parent) { return this.ListPropertiesTabs.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListPropertiesTabs;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListPropertiesTabs.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = "Tabs";
@@ -29,17 +37,26 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PropertiesTab node = null;
             if (node_impl == null)
+            {
                 node = new PropertiesTab(this);
+            }
             else
+            {
                 node = (PropertiesTab)node_impl;
+            }
+
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(PropertiesTab.DefaultName, node, this.ListPropertiesTabs);
-            SetSelected(node);
+            {
+                this.GetUniqueName(PropertiesTab.DefaultName, node, this.ListPropertiesTabs);
+            }
+
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
@@ -52,7 +69,10 @@ namespace vSharpStudio.vm.ViewModels
                 var cfg = (Config)this.GetConfig();
                 var p = this.Parent;
                 while (p.IsIncludableInModels == false)
+                {
                     p = p.Parent;
+                }
+
                 string par = p.GetType().Name;
                 ConfigNodesCollection<PropertiesTab> curr;
                 ConfigNodesCollection<PropertiesTab> prev;

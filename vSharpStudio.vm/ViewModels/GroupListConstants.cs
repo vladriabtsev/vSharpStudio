@@ -13,8 +13,16 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListConstants.Count,nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoRight
     {
-        public override IEnumerable<object> GetChildren(object parent) { return this.ListConstants; }
-        public override bool HasChildren(object parent) { return this.ListConstants.Count > 0; }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListConstants;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListConstants.Count > 0;
+        }
+
         partial void OnInit()
         {
             this.Name = Defaults.ConstantsGroupName;
@@ -28,17 +36,26 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Constant node = null;
             if (node_impl == null)
+            {
                 node = new Constant(this);
+            }
             else
+            {
                 node = (Constant)node_impl;
+            }
+
             this.Add(node);
             if (node_impl == null)
-                GetUniqueName(Constant.DefaultName, node, this.ListConstants);
-            SetSelected(node);
+            {
+                this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
+            }
+
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
@@ -52,8 +69,7 @@ namespace vSharpStudio.vm.ViewModels
                 DiffLists<IConstant> diff = new DiffLists<IConstant>(
                     cfg.OldStableConfig?.IModel.IGroupConstants.IListConstants,
                     cfg.PrevStableConfig?.IModel.IGroupConstants.IListConstants,
-                    cfg.IModel.IGroupConstants.IListConstants
-                );
+                    cfg.IModel.IGroupConstants.IListConstants);
                 return diff.ListAll;
             }
         }

@@ -12,81 +12,101 @@ namespace vSharpStudio.vm.ViewModels
     public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft
     {
         public static readonly string DefaultName = "Tab";
+
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
-            Children.Add(this.GroupProperties, 7);
+            this.Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
-            Children.Add(this.GroupPropertiesTabs, 9);
+            this.Children.Add(this.GroupPropertiesTabs, 9);
         }
 
         #region Tree operations
         public override bool NodeCanUp()
         {
-            if (NodeCanAddClone())
+            if (this.NodeCanAddClone())
             {
                 if ((this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.CanUp(this))
+                {
                     return true;
+                }
             }
             return false;
         }
+
         public override void NodeUp()
         {
             var prev = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetPrev(this);
             if (prev == null)
+            {
                 return;
-            SetSelected(prev);
+            }
+
+            this.SetSelected(prev);
         }
+
         public override void NodeMoveUp()
         {
             (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveUp(this);
-            SetSelected(this);
+            this.SetSelected(this);
         }
+
         public override bool NodeCanDown()
         {
-            if (NodeCanAddClone())
+            if (this.NodeCanAddClone())
             {
                 if ((this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.CanDown(this))
+                {
                     return true;
+                }
             }
             return false;
         }
+
         public override void NodeDown()
         {
             var next = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetNext(this);
             if (next == null)
+            {
                 return;
-            SetSelected(next);
+            }
+
+            this.SetSelected(next);
         }
+
         public override void NodeMoveDown()
         {
             (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveDown(this);
-            SetSelected(this);
+            this.SetSelected(this);
         }
+
         public override void NodeRemove()
         {
             (this.Parent as GroupListPropertiesTabs).Remove(this);
             this.Parent = null;
         }
+
         public override ITreeConfigNode NodeAddClone()
         {
             var node = PropertiesTab.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListPropertiesTabs).Add(node);
             this.Name = this.Name + "2";
-            SetSelected(node);
+            this.SetSelected(node);
             return node;
         }
+
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new PropertiesTab(this.Parent);
             (this.Parent as GroupListPropertiesTabs).Add(node);
-            GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
-            SetSelected(node);
+            this.GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
+            this.SetSelected(node);
             return node;
         }
         #endregion Tree operations

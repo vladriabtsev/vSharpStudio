@@ -27,17 +27,21 @@ namespace vSharpStudio.ViewModels
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public ILogger Logger;
-        public MainPageVM() : base(MainPageVMValidator.Validator)
+
+        public MainPageVM()
+            : base(MainPageVMValidator.Validator)
         {
         }
-        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null) : base(MainPageVMValidator.Validator)
+
+        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
+            : base(MainPageVMValidator.Validator)
         {
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
-                //Catalog c = new Catalog();
-                //this.Model = new ConfigRoot();
-                //this.Model.Catalogs.ListCatalogs.Add(c);
+                // Catalog c = new Catalog();
+                // this.Model = new ConfigRoot();
+                // this.Model.Catalogs.ListCatalogs.Add(c);
                 return;
             }
 
@@ -48,33 +52,34 @@ namespace vSharpStudio.ViewModels
                 App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
             }
             var Services = App.ServiceCollection.BuildServiceProvider();
-            Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
-            Logger.LogInformation("Application is starting.");
+            this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
+            this.Logger.LogInformation("Application is starting.");
 
             if (isLoadConfig)
             {
                 if (configFile != null)
                 {
-                    this.Config = LoadConfig(configFile, "", true);
+                    this.Config = this.LoadConfig(configFile, string.Empty, true);
                 }
                 else if (File.Exists(CFG_FILE_PATH))
                 {
-                    this.Config = LoadConfig(CFG_FILE_PATH, "", true);
+                    this.Config = this.LoadConfig(CFG_FILE_PATH, string.Empty, true);
                 }
                 else
                 {
-                    Logger.LogInformation("Creating empty Configuration");
+                    this.Logger.LogInformation("Creating empty Configuration");
                     this.Config = new Config();
                 }
             }
             else
             {
-                Logger.LogInformation("Creating empty Configuration");
+                this.Logger.LogInformation("Creating empty Configuration");
                 this.Config = new Config();
             }
-            //this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
-            //this.Model.OnProviderSelectionChanged = (provider) =>
-            //{
+
+            // this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
+            // this.Model.OnProviderSelectionChanged = (provider) =>
+            // {
             //    this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
             //    this.Model.ListConnectionStringVMs.Clear();
             //    this.Model.ListDbProviders.Clear();
@@ -117,53 +122,65 @@ namespace vSharpStudio.ViewModels
             //            }); ;
             //        }
             //    }
-            //};
-            //this.Model.OnProviderSelectionChanged(null);
+            // };
+            // this.Model.OnProviderSelectionChanged(null);
         }
 
         private Config LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             Config.IsLoading = true;
             if (!File.Exists(file_path))
+            {
                 throw new ArgumentException("Configuration data are not found in the file: " + file_path);
-            Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
+            }
+
+            this.Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
             var protoarr = File.ReadAllBytes(file_path);
-            pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
-            var cfg = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
+            this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
+            var cfg = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             if (isRoot)
             {
-                if (pconfig_history.PrevStableConfig != null)
-                    cfg.PrevStableConfig = Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config());
-                if (pconfig_history.OldStableConfig != null)
-                    cfg.OldStableConfig = Config.ConvertToVM(pconfig_history.OldStableConfig, new Config());
+                if (this.pconfig_history.PrevStableConfig != null)
+                {
+                    cfg.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
+                }
+
+                if (this.pconfig_history.OldStableConfig != null)
+                {
+                    cfg.OldStableConfig = Config.ConvertToVM(this.pconfig_history.OldStableConfig, new Config());
+                }
             }
             string ind2 = indent + "   ";
             foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
-                t.Config = LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
+                t.Config = this.LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
                 t.Name = t.Config.Name;
             }
-            //string json = File.ReadAllText(CFG_PATH);
-            //this.Model = new Config(json);
+
+            // string json = File.ReadAllText(CFG_PATH);
+            // this.Model = new Config(json);
             Config.IsLoading = false;
             return cfg;
         }
+
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
+
         public static readonly string CFG_FILE_PATH = @".\current.vcfg";
         public static readonly string CFG_FILE_NAME = "current.vcfg";
-        //public DiffModel GetDiffModel()
-        //{
+
+        // public DiffModel GetDiffModel()
+        // {
         //    DiffModel res = new DiffModel(
         //        pconfig_history?.OldStableConfig == null ? null : Config.ConvertToVM(pconfig_history.OldStableConfig, new Config()),
         //        pconfig_history?.PrevStableConfig == null ? null : Config.ConvertToVM(pconfig_history.PrevStableConfig, new Config()),
         //        this.Config
         //    );
         //    return res;
-        //}
-        //internal void OnSelectedItemChanged(object oldValue, object newValue)
-        //{
+        // }
+        // internal void OnSelectedItemChanged(object oldValue, object newValue)
+        // {
         //    this.Model.SelectedNode = (ITreeConfigNode)newValue;
-        //}
+        // }
         public static Config ConfigInstance;
 
         #region Plugins
@@ -172,19 +189,25 @@ namespace vSharpStudio.ViewModels
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
-        IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins;
-        Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
+        private IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins;
+        private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
+
         public void OnImportsSatisfied()
         {
-            Logger.LogInformation("Loaded " + _plugins.Count() + " plugins");
-            if (onImportsSatisfied != null)
-                onImportsSatisfied(this, _plugins);
+            this.Logger.LogInformation("Loaded " + this._plugins.Count() + " plugins");
+            if (this.onImportsSatisfied != null)
+            {
+                this.onImportsSatisfied(this, this._plugins);
+            }
+
             List<PluginRow> lstGens = new List<PluginRow>();
-            //List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
-            foreach (var t in _plugins)
+
+            // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
+            foreach (var t in this._plugins)
             {
                 Plugin p = null;
                 bool is_found = false;
+
                 // attaching plugin
                 foreach (var tt in this.Config.GroupPlugins.ListPlugins)
                 {
@@ -242,14 +265,16 @@ namespace vSharpStudio.ViewModels
                         {
                             if (tttt.IsPrivate)
                             {
-                                Utils.TryCall(() =>
-                                {
-                                    tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
-                                }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
+                                Utils.TryCall(
+                                    () =>
+                                    {
+                                        tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
+                                    }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
                             }
                             else
                             {
-                                Utils.TryCall(() =>
+                                Utils.TryCall(
+                                    () =>
                                 {
                                     tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
                                 }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
@@ -266,58 +291,90 @@ namespace vSharpStudio.ViewModels
                 foreach (var tt in lstGens)
                 {
                     if (tt.GeneratorType == gt)
+                    {
                         lst.Add(tt);
+                    }
                 }
                 dic[gt] = lst;
             }
             if (this.DicPlugins != null)
+            {
                 this.DicPlugins.Clear();
+            }
+
             this.DicPlugins = dic;
             this.Config.DicPlugins = dic;
         }
+
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins
         {
-            get { return _DicPlugins; }
+            get
+            {
+                return this._DicPlugins;
+            }
+
             set
             {
-                _DicPlugins = value;
-                NotifyPropertyChanged();
+                this._DicPlugins = value;
+                this.NotifyPropertyChanged();
             }
         }
+
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> _DicPlugins;
+
         public List<IvPluginDbGenerator> ListDbDesignPlugins
         {
-            get { return _ListDbDesignPlugins; }
+            get
+            {
+                return this._ListDbDesignPlugins;
+            }
+
             set
             {
-                _ListDbDesignPlugins = value;
-                NotifyPropertyChanged();
+                this._ListDbDesignPlugins = value;
+                this.NotifyPropertyChanged();
             }
         }
+
         public List<IvPluginDbGenerator> _ListDbDesignPlugins;
+
         public PluginRow SelectedDbDesignPlugin
         {
-            get { return _SelectedDbDesignPlugin; }
+            get
+            {
+                return this._SelectedDbDesignPlugin;
+            }
+
             set
             {
-                _SelectedDbDesignPlugin = value;
-                NotifyPropertyChanged();
-                //this.Model.GroupSettings.
-                //var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
+                this._SelectedDbDesignPlugin = value;
+                this.NotifyPropertyChanged();
+
+                // this.Model.GroupSettings.
+                // var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
             }
         }
+
         private PluginRow _SelectedDbDesignPlugin;
+
         public INotifyPropertyChanged SelectedDbDesignPluginSettings
         {
-            get { return _SelectedDbDesignPluginSettings; }
+            get
+            {
+                return this._SelectedDbDesignPluginSettings;
+            }
+
             set
             {
-                _SelectedDbDesignPluginSettings = value;
-                NotifyPropertyChanged();
-                //InitConnectionString();
+                this._SelectedDbDesignPluginSettings = value;
+                this.NotifyPropertyChanged();
+
+                // InitConnectionString();
             }
         }
+
         private INotifyPropertyChanged _SelectedDbDesignPluginSettings;
+
         private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
         {
             var dirs = Directory.GetDirectories(dir);
@@ -325,15 +382,19 @@ namespace vSharpStudio.ViewModels
             {
                 DirectoryCatalog dirCatalog = new DirectoryCatalog(t, search);
                 if (dirCatalog.Parts.Count() > 0)
+                {
                     catalog.Catalogs.Add(dirCatalog);
-                AgregateCatalogs(t, search, catalog);
+                }
+
+                this.AgregateCatalogs(t, search, catalog);
             }
         }
+
         public void Compose()
         {
-            Logger.LogInformation("Loading plugins");
+            this.Logger.LogInformation("Loading plugins");
             AggregateCatalog catalog = new AggregateCatalog();
-            AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
+            this.AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
             CompositionContainer container = new CompositionContainer(catalog);
             container.SatisfyImportsOnce(this);
         }
@@ -342,29 +403,34 @@ namespace vSharpStudio.ViewModels
 
         public Config Config
         {
+            get
+            {
+                return this._Config;
+            }
+
             set
             {
-                _Config = value;
+                this._Config = value;
                 MainPageVM.ConfigInstance = value;
-                NotifyPropertyChanged();
-                ValidateProperty();
-                _Config.OnSelectedNodeChanged = () =>
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+                this._Config.OnSelectedNodeChanged = () =>
                 {
-                    CommandAddNew.RaiseCanExecuteChanged();
-                    CommandAddNewChild.RaiseCanExecuteChanged();
-                    CommandAddClone.RaiseCanExecuteChanged();
-                    CommandMoveDown.RaiseCanExecuteChanged();
-                    CommandMoveUp.RaiseCanExecuteChanged();
-                    CommandDelete.RaiseCanExecuteChanged();
-                    CommandSelectionLeft.RaiseCanExecuteChanged();
-                    CommandSelectionRight.RaiseCanExecuteChanged();
-                    CommandSelectionDown.RaiseCanExecuteChanged();
-                    CommandSelectionUp.RaiseCanExecuteChanged();
-                    _Config.ValidateSubTreeFromNode(_Config.SelectedNode);
+                    this.CommandAddNew.RaiseCanExecuteChanged();
+                    this.CommandAddNewChild.RaiseCanExecuteChanged();
+                    this.CommandAddClone.RaiseCanExecuteChanged();
+                    this.CommandMoveDown.RaiseCanExecuteChanged();
+                    this.CommandMoveUp.RaiseCanExecuteChanged();
+                    this.CommandDelete.RaiseCanExecuteChanged();
+                    this.CommandSelectionLeft.RaiseCanExecuteChanged();
+                    this.CommandSelectionRight.RaiseCanExecuteChanged();
+                    this.CommandSelectionDown.RaiseCanExecuteChanged();
+                    this.CommandSelectionUp.RaiseCanExecuteChanged();
+                    this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
                 };
             }
-            get { return _Config; }
         }
+
         private Config _Config;
 
         public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
@@ -380,172 +446,207 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return _CommandConfigSave ?? (_CommandConfigSave = vCommand.Create(
+                return this._CommandConfigSave ?? (this._CommandConfigSave = vCommand.Create(
                     (o) => { this.Save(); },
                     (o) => { return this.Config != null; }));
             }
         }
+
         private vCommand _CommandConfigSave;
+
         private void PluginSettingsToModel()
         {
-            foreach (var t in _Config.GroupPlugins.ListPlugins)
+            foreach (var t in this._Config.GroupPlugins.ListPlugins)
             {
                 foreach (var tt in t.ListGenerators)
                 {
                     foreach (var ttt in tt.ListSettings)
                     {
-                        Utils.TryCall(() =>
+                        Utils.TryCall(
+                            () =>
                         {
                             ttt.GeneratorSettings = ttt.VM.Settings;
                         }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
                         if (ttt.IsPrivate)
                         {
-                            Utils.TryCall(() =>
+                            Utils.TryCall(
+                                () =>
                             {
                                 File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
                             }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-                            ttt.GeneratorSettings = "";
+                            ttt.GeneratorSettings = string.Empty;
                         }
                     }
                 }
             }
         }
+
         internal void SavePrepare()
         {
-            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Config);
+            this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(this._Config);
             if (this.pconfig_history == null)
+            {
                 this.pconfig_history = new Proto.Config.proto_config_short_history();
+            }
+
             this.pconfig_history.CurrentConfig = proto;
         }
+
         public void SaveConfigAsForTests(string file_path)
         {
-            PluginSettingsToModel();
-            SavePrepare();
+            this.PluginSettingsToModel();
+            this.SavePrepare();
             File.WriteAllBytes(file_path, this.pconfig_history.ToByteArray());
         }
+
         internal void Save()
         {
-            PluginSettingsToModel();
-            SavePrepare();
-            Utils.TryCall(() =>
+            this.PluginSettingsToModel();
+            this.SavePrepare();
+            Utils.TryCall(
+                () =>
             {
                 File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
             this.ConnectionStringSettingsSave();
-            //var json = JsonFormatter.Default.Format(proto);
-            //File.WriteAllText(CFG_PATH, json);
+
+            // var json = JsonFormatter.Default.Format(proto);
+            // File.WriteAllText(CFG_PATH, json);
 #if DEBUG
-            //CompareSaved(json);
+            // CompareSaved(json);
 #endif
         }
+
         public vCommand CommandConfigSaveAs
         {
             get
             {
-                return _CommandConfigSaveAs ?? (_CommandConfigSaveAs = vCommand.Create(
+                return this._CommandConfigSaveAs ?? (this._CommandConfigSaveAs = vCommand.Create(
                     (o) => { this.SaveAs(); },
                     (o) => { return this.Config != null; }));
             }
         }
+
         private vCommand _CommandConfigSaveAs;
+
         internal void SaveAs()
         {
             // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
-            //openFileDialog.InitialDirectory = @"c:\temp\";
-            //openFileDialog.Multiselect = true;
-            if (!string.IsNullOrEmpty(_FilePathSaveAs))
+
+            // openFileDialog.InitialDirectory = @"c:\temp\";
+            // openFileDialog.Multiselect = true;
+            if (!string.IsNullOrEmpty(this._FilePathSaveAs))
             {
-                openFileDialog.InitialDirectory = Path.GetDirectoryName(_FilePathSaveAs);
+                openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
             }
             if (openFileDialog.ShowDialog() == true)
             {
-                FilePathSaveAs = openFileDialog.FileName;
-                PluginSettingsToModel();
-                SavePrepare();
-                Utils.TryCall(() =>
+                this.FilePathSaveAs = openFileDialog.FileName;
+                this.PluginSettingsToModel();
+                this.SavePrepare();
+                Utils.TryCall(
+                    () =>
                 {
-                    File.WriteAllBytes(FilePathSaveAs, this.pconfig_history.ToByteArray());
-                }, "Can't save configuration. File path: '" + FilePathSaveAs + "'");
-                //var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-                //File.WriteAllText(FilePathSaveAs, json);
+                    File.WriteAllBytes(this.FilePathSaveAs, this.pconfig_history.ToByteArray());
+                }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+
+                // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+                // File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
-                //CompareSaved(json);
+                // CompareSaved(json);
 #endif
             }
         }
+
         private void CompareSaved(string json)
         {
             return;
 
-            //KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
-            //var model = new Config(json);
-            //KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
-            //if (!result.AreEqual)
-            //{
+            // KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
+            // var model = new Config(json);
+            // KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
+            // if (!result.AreEqual)
+            // {
             //    Console.WriteLine(result.DifferencesString);
             //    throw new Exception();
-            //}
+            // }
         }
 
         public string FilePathSaveAs
         {
-            get { return _FilePathSaveAs; }
+            get
+            {
+                return this._FilePathSaveAs;
+            }
+
             set
             {
-                _FilePathSaveAs = value;
-                NotifyPropertyChanged();
-                SaveToolTip = _saveBaseToolTip + " as " + _FilePathSaveAs;
+                this._FilePathSaveAs = value;
+                this.NotifyPropertyChanged();
+                this.SaveToolTip = _saveBaseToolTip + " as " + this._FilePathSaveAs;
             }
         }
+
         private string _FilePathSaveAs;
+
         public string SaveToolTip
         {
-            get { return _SaveToolTip; }
+            get
+            {
+                return this._SaveToolTip;
+            }
+
             set
             {
-                _SaveToolTip = value;
-                NotifyPropertyChanged();
+                this._SaveToolTip = value;
+                this.NotifyPropertyChanged();
             }
         }
-        private string _SaveToolTip = _saveBaseToolTip;
+
         private const string _saveBaseToolTip = "Ctrl-S - save config";
+        private string _SaveToolTip = _saveBaseToolTip;
+
         public vCommand CommandConfigCreateStableVersion
         {
             get
             {
-                return _CommandConfigCreateStableVersion ?? (_CommandConfigCreateStableVersion = vCommand.Create(
+                return this._CommandConfigCreateStableVersion ?? (this._CommandConfigCreateStableVersion = vCommand.Create(
                 (o) => { this.CreateStableVersion(); },
                 (o) => { return this.Config != null; }));
             }
         }
+
         private vCommand _CommandConfigCreateStableVersion;
 
         private void CreateStableVersion()
         {
-            if (pconfig_history == null)
-                throw new NotSupportedException();
-            PluginSettingsToModel();
-            //todo check if model has DB connected changes. Return if not.
-
-            //todo create migration code
-
-            _Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(_Config);
-            pconfig_history.CurrentConfig = proto;
-            if (pconfig_history.PrevStableConfig != null)
+            if (this.pconfig_history == null)
             {
-                pconfig_history.OldStableConfig = pconfig_history.PrevStableConfig.Clone();
+                throw new NotSupportedException();
+            }
+
+            this.PluginSettingsToModel();
+
+            // todo check if model has DB connected changes. Return if not.
+            // todo create migration code
+            this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            var proto = Config.ConvertToProto(this._Config);
+            this.pconfig_history.CurrentConfig = proto;
+            if (this.pconfig_history.PrevStableConfig != null)
+            {
+                this.pconfig_history.OldStableConfig = this.pconfig_history.PrevStableConfig.Clone();
                 this.Config.OldStableConfig = this.Config.PrevStableConfig;
             }
-            pconfig_history.PrevStableConfig = pconfig_history.CurrentConfig.Clone();
-            this.Config.PrevStableConfig = Config.ConvertToVM(pconfig_history.CurrentConfig, new Config());
-            pconfig_history.CurrentConfig.Version++;
-            Utils.TryCall(() =>
+            this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
+            this.Config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            this.pconfig_history.CurrentConfig.Version++;
+            Utils.TryCall(
+                () =>
             {
-                File.WriteAllBytes(CFG_FILE_PATH, pconfig_history.ToByteArray());
+                File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
         }
 
@@ -557,101 +658,120 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return _CommandAddNew ?? (_CommandAddNew = vCommand.Create(
+                return this._CommandAddNew ?? (this._CommandAddNew = vCommand.Create(
                 (o) => { Utils.TryCall(() => { this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
             }
         }
+
         private vCommand _CommandAddNew;
+
         public vCommand CommandAddNewChild
         {
             get
             {
-                return _CommandAddNewChild ?? (_CommandAddNewChild = vCommand.Create(
+                return this._CommandAddNewChild ?? (this._CommandAddNewChild = vCommand.Create(
                 (o) => { Utils.TryCall(() => { this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
+
         private vCommand _CommandAddNewChild;
+
         public vCommand CommandAddClone
         {
             get
             {
-                return _CommandAddClone ?? (_CommandAddClone = vCommand.Create(
+                return this._CommandAddClone ?? (this._CommandAddClone = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeAddClone(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
             }
         }
+
         private vCommand _CommandAddClone;
+
         public vCommand CommandMoveDown
         {
             get
             {
-                return _CommandMoveDown ?? (_CommandMoveDown = vCommand.Create(
+                return this._CommandMoveDown ?? (this._CommandMoveDown = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeMoveDown(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
             }
         }
+
         private vCommand _CommandMoveDown;
+
         public vCommand CommandMoveUp
         {
             get
             {
-                return _CommandMoveUp ?? (_CommandMoveUp = vCommand.Create(
+                return this._CommandMoveUp ?? (this._CommandMoveUp = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeMoveUp(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
             }
         }
+
         private vCommand _CommandMoveUp;
+
         public vCommand CommandDelete
         {
             get
             {
-                return _CommandDelete ?? (_CommandDelete = vCommand.Create(
+                return this._CommandDelete ?? (this._CommandDelete = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeRemove(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRemove(); }));
             }
         }
+
         private vCommand _CommandDelete;
+
         public vCommand CommandSelectionLeft
         {
             get
             {
-                return _CommandSelectionLeft ?? (_CommandSelectionLeft = vCommand.Create(
+                return this._CommandSelectionLeft ?? (this._CommandSelectionLeft = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeLeft(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
             }
         }
+
         private vCommand _CommandSelectionLeft;
+
         public vCommand CommandSelectionRight
         {
             get
             {
-                return _CommandSelectionRight ?? (_CommandSelectionRight = vCommand.Create(
+                return this._CommandSelectionRight ?? (this._CommandSelectionRight = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeRight(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
             }
         }
+
         private vCommand _CommandSelectionRight;
+
         public vCommand CommandSelectionDown
         {
             get
             {
-                return _CommandSelectionDown ?? (_CommandSelectionDown = vCommand.Create(
+                return this._CommandSelectionDown ?? (this._CommandSelectionDown = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeDown(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
             }
         }
+
         private vCommand _CommandSelectionDown;
+
         public vCommand CommandSelectionUp
         {
             get
             {
-                return _CommandSelectionUp ?? (_CommandSelectionUp = vCommand.Create(
+                return this._CommandSelectionUp ?? (this._CommandSelectionUp = vCommand.Create(
                 (o) => { this.Config.SelectedNode.NodeUp(); },
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
             }
         }
+
         private vCommand _CommandSelectionUp;
 
         #endregion ConfigTree
@@ -659,18 +779,27 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return _CommandFromErrorToSelection ?? (_CommandFromErrorToSelection = vCommand.Create(
-                (o) => { if (o == null) return; this.Config.SelectedNode = (ITreeConfigNode)(o as ValidationMessage).Model; },
+                return this._CommandFromErrorToSelection ?? (this._CommandFromErrorToSelection = vCommand.Create(
+                (o) =>
+                {
+                    if (o == null)
+                    {
+                        return;
+                    }
+                    this.Config.SelectedNode = (ITreeConfigNode)(o as ValidationMessage).Model;
+                },
                 (o) => { return this.Config != null; }));
             }
         }
+
         private vCommand _CommandFromErrorToSelection;
 
         #region ConnectionString
+
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
-
         internal ConnectionStringSettingsCollection ConnectionStringSettings = null;
+
         private void ConnectionStringSettingsSave()
         {
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -683,27 +812,30 @@ namespace vSharpStudio.ViewModels
                     conns.Add(this.ConnectionStringSettings[i]);
                 }
             }
-            //var settings = configFile.AppSettings.Settings;
-            //if (settings[key] == null)
-            //{
+
+            // var settings = configFile.AppSettings.Settings;
+            // if (settings[key] == null)
+            // {
             //    settings.Add(key, value);
-            //}
-            //else
-            //{
+            // }
+            // else
+            // {
             //    settings[key].Value = value;
-            //}
-            Utils.TryCall(() =>
+            // }
+            Utils.TryCall(
+                () =>
             {
                 configFile.Save(ConfigurationSaveMode.Modified);
             }, "Error writing app settings");
-            //ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+
+            // ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
         }
 
-        //string GetConnectionString(ref string connectionStringName, out string providerName)
-        //{
+        // string GetConnectionString(ref string connectionStringName, out string providerName)
+        // {
         //    providerName = null;
 
-        //    string result = "";
+        // string result = "";
         //    ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
         //    string configPath = this.PathToProjectWithConnectionString + @"\App.config";
         //    if (File.Exists(configPath))
@@ -720,12 +852,10 @@ namespace vSharpStudio.ViewModels
         //    }
         //    if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
         //        throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
-
-
-        //    var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+        // var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
         //    var connSection = config.ConnectionStrings;
 
-        //    //if the connectionString is empty - which is the defauls
+        // //if the connectionString is empty - which is the defauls
         //    //look for count-1 - this is the last connection string
         //    //and takes into account AppServices and LocalSqlServer
         //    if (string.IsNullOrEmpty(connectionStringName))
@@ -750,16 +880,16 @@ namespace vSharpStudio.ViewModels
         //        }
         //    }
 
-        //    //	if (String.IsNullOrEmpty(providerName))
-        //    //		providerName="System.Data.SqlClient";
+        // //if (String.IsNullOrEmpty(providerName))
+        //    //providerName="System.Data.SqlClient";
 
-        //    return result;
-        //}
-        //string GetConnectionString(out string providerName)
-        //{
+        // return result;
+        // }
+        // string GetConnectionString(out string providerName)
+        // {
         //    providerName = null;
 
-        //    string result = "";
+        // string result = "";
         //    ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
         //    string configPath = this.PathToProjectWithConnectionString + @"\App.config";
         //    if (File.Exists(configPath))
@@ -776,12 +906,10 @@ namespace vSharpStudio.ViewModels
         //    }
         //    if (string.IsNullOrEmpty(configFile.ExeConfigFilename))
         //        throw new ArgumentNullException("The project does not contain App.config or Web.config file.");
-
-
-        //    var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+        // var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
         //    var connSection = config.ConnectionStrings;
 
-        //    try
+        // try
         //    {
         //        result = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ConnectionString;
         //        providerName = connSection.ConnectionStrings[this.SelectedDbDesignPlugin.Name + "Admin"].ProviderName;
@@ -791,13 +919,13 @@ namespace vSharpStudio.ViewModels
         //        result = "There is no connection string name called '" + this.SelectedDbDesignPlugin.Name + "Admin" + "'";
         //    }
 
-        //    //	if (String.IsNullOrEmpty(providerName))
-        //    //		providerName="System.Data.SqlClient";
+        // //if (String.IsNullOrEmpty(providerName))
+        //    //providerName="System.Data.SqlClient";
 
-        //    return result;
-        //}
-        //public string PathToProjectWithConnectionString
-        //{
+        // return result;
+        // }
+        // public string PathToProjectWithConnectionString
+        // {
         //    set
         //    {
         //        if (_PathToProjectWithConnectionString != value)
@@ -807,20 +935,20 @@ namespace vSharpStudio.ViewModels
         //        }
         //    }
         //    get { return _PathToProjectWithConnectionString; }
-        //}
-        //private string _PathToProjectWithConnectionString = "";
-        //public string ConnectionString
-        //{
+        // }
+        // private string _PathToProjectWithConnectionString = "";
+        // public string ConnectionString
+        // {
         //    get { return _ConnectionString; }
         //    set
         //    {
         //        _ConnectionString = value;
         //        NotifyPropertyChanged();
         //    }
-        //}
-        //private string _ConnectionString;
-        //void InitConnectionString()
-        //{
+        // }
+        // private string _ConnectionString;
+        // void InitConnectionString()
+        // {
         //    this.ConnectionString = GetConnectionString(out _providerName);
         //    // https://www.connectionstrings.com/sqlconnection/
         //    if (this.ConnectionString != null && this.ConnectionString.Contains("|DataDirectory|"))
@@ -829,20 +957,20 @@ namespace vSharpStudio.ViewModels
         //        string dataFilePath = this.PathToProjectWithConnectionString + "\\App_Data\\";
         //        this.ConnectionString = this.ConnectionString.Replace("|DataDirectory|", dataFilePath);
         //    }
-        //}
-        //public string ProviderName
-        //{
+        // }
+        // public string ProviderName
+        // {
         //    get
         //    {
         //        InitConnectionString();
         //        return _providerName;
         //    }
-        //}
-        //string _providerName = "";
-        //public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
-        //public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
-        //public const string PROVIDER_NAME_MYSQL = "MySql.Data";
-        //public const string PROVIDER_NAME_NPGSQL = "Npgsql";
+        // }
+        // string _providerName = "";
+        // public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
+        // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
+        // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
+        // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
         #endregion
     }
 }

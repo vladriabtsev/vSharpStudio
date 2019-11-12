@@ -35,6 +35,7 @@ namespace vSharpStudio.ViewModels
             }
             return null;
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();

@@ -10,6 +10,6 @@ public interface IVisitorProto // <#=Helper.FilePos() #>
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
-	void Visit(<#= this.protoNameSpace #>.<#= message.Name #> p);
+    void Visit(<#= this.protoNameSpace #>.<#= message.Name #> p);
 <# } #>
 }

@@ -52,14 +52,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tvoid Visit(");
+            this.Write("    void Visit(");
             
             #line 14 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" p);\r\n\tvoid VisitEnd(");
+            this.Write(" p);\r\n    void VisitEnd(");
             
             #line 15 "C:\dev\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

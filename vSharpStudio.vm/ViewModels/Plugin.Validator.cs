@@ -11,8 +11,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             public PluginValidator()
             {
-                RuleFor(x => x.VPlugin).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_WAS_NOT_FOUND);
-                RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
+                this.RuleFor(x => x.VPlugin).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_WAS_NOT_FOUND);
+                this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             }
         }
     }

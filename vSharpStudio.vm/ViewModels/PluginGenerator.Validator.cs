@@ -12,27 +12,41 @@ namespace vSharpStudio.vm.ViewModels
         {
             public PluginGeneratorValidator()
             {
-                RuleFor(x => x.Generator).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_GENERATOR_WAS_NOT_FOUND);
-                RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_NOT_UNIQUE);
-                RuleFor(x => x.Guid).Must((x, guid) => {
+                this.RuleFor(x => x.Generator).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_GENERATOR_WAS_NOT_FOUND);
+                this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_NOT_UNIQUE);
+                this.RuleFor(x => x.Guid).Must((x, guid) => {
                     if (x.Parent == null)
+                    {
                         return true;
+                    }
+
                     GroupListPlugins lst = (GroupListPlugins)x.Parent.Parent;
                     int count = 0;
                     foreach (var tt in lst.ListPlugins)
                     {
                         foreach (var t in tt.ListGenerators)
-                            if (t.Guid == guid) count++;
+                        {
+                            if (t.Guid == guid)
+                            {
+                                count++;
+                            }
+                        }
                     }
                     if (count > 1)
+                    {
                         return false;
+                    }
+
                     return true;
                 }).WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
                 string message = "wrong validation rule";
-                RuleFor(x => x).Must((o, name) => {
+                this.RuleFor(x => x).Must((o, name) => {
                     if (o.Generator == null)
+                    {
                         return true;
-                    switch(o.Generator.PluginGeneratorType)
+                    }
+
+                    switch (o.Generator.PluginGeneratorType)
                     {
                         case common.vPluginLayerTypeEnum.DbDesign:
                             if (!(o.Generator is IvPluginDbGenerator))

@@ -14,12 +14,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             public BaseConfigLinkValidator()
             {
-                RuleFor(x => x.RelativeConfigFilePath).NotEmpty();
-                RuleFor(x => x.RelativeConfigFilePath).Must((o, file) => {
-                    if (string.IsNullOrWhiteSpace(file))
-                        return true;
-                    return File.Exists(file); }
-                ).WithMessage(Config.ValidationMessages.FILE_IS_NOT_EXISTS);
+                this.RuleFor(x => x.RelativeConfigFilePath).NotEmpty();
+                this.RuleFor(x => x.RelativeConfigFilePath).Must((o, file) =>
+                    {
+                        if (string.IsNullOrWhiteSpace(file))
+                        {
+                            return true;
+                        }
+                        return File.Exists(file);
+                    })
+                .WithMessage(Config.ValidationMessages.FILE_IS_NOT_EXISTS);
             }
         }
     }

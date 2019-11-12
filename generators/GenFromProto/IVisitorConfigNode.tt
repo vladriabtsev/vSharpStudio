@@ -11,7 +11,7 @@ public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos
      if (message.Name.EndsWith("_nullable"))
        continue;
 #>
-	void Visit(<#= message.Name.ToNameCs() #> p);
-	void VisitEnd(<#= message.Name.ToNameCs() #> p);
+    void Visit(<#= message.Name.ToNameCs() #> p);
+    void VisitEnd(<#= message.Name.ToNameCs() #> p);
 <# } #>
 }

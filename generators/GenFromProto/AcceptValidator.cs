@@ -52,7 +52,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\tforeach(var t in this.");
+            this.Write("\tforeach (var t in this.");
             
             #line 17 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
