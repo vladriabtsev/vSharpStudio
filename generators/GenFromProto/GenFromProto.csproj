@@ -23,7 +23,7 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
+    <PostBuildEvent>$(SolutionDir)GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
 
 </PostBuildEvent>
   </PropertyGroup>

@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-namespace vSharpStudio.common
+﻿namespace vSharpStudio.common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore.Metadata;
+
     public enum DiffEnumHistoryAnnotation
     {
-        New, Deprecated, Deleted, Renamed, CanLooseData
+        New, 
+        Deprecated, 
+        Deleted, 
+        Renamed, 
+        CanLooseData,
     }
     public class DiffLists<T>
             where T : IGuid, IName, IMutableAnnotatable
