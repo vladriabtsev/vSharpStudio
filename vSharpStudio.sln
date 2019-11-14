@@ -71,6 +71,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Relational", "submod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.Design", "submodules\EntityFrameworkCore\src\EFCore.Design\EFCore.Design.csproj", "{4729A766-7013-4456-9EEB-096B5380ACC7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.core", "common\vSharpStudio.core\vSharpStudio.core.csproj", "{7A0BD212-E3D4-4419-B947-82B78E07ADAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +188,12 @@ Global
 		{4729A766-7013-4456-9EEB-096B5380ACC7}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{4729A766-7013-4456-9EEB-096B5380ACC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4729A766-7013-4456-9EEB-096B5380ACC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,6 +211,7 @@ Global
 		{06706FC7-B598-497B-8616-F236AA628387} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
 		{119936B5-D2B3-4AF8-8D06-9B4FF14BF6B6} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
 		{4729A766-7013-4456-9EEB-096B5380ACC7} = {25EA00D1-C466-4C20-8B49-9B82606CFD3E}
+		{7A0BD212-E3D4-4419-B947-82B78E07ADAC} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

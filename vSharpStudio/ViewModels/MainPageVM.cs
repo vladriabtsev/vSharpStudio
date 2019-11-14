@@ -189,7 +189,7 @@ namespace vSharpStudio.ViewModels
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
-        private IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins;
+        private IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
         private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
 
         public void OnImportsSatisfied()
