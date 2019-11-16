@@ -39,7 +39,7 @@ namespace vSharpStudio.common
 
         protected abstract void Visit(IReport p);
 
-        public void Visit(IConfig cfg, ModelBuilder modelBuilder, bool isCreateGeneralTable = true)
+        public void Visit(IConfig cfg, ModelBuilder modelBuilder, bool isCreateGeneralTable = false)
         {
             this.cfg = cfg;
             this.modelBuilder = modelBuilder;
