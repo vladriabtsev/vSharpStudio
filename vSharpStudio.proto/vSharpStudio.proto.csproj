@@ -13,9 +13,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="..\proto\conn_mssql.proto" GrpcServices="Client">
-      <Link>proto\conn_mssql.proto</Link>
-    </Protobuf>
     <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
       <Link>proto\proto_doc.proto</Link>
     </Protobuf>

@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 
+// https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
+// https://docs.microsoft.com/en-us/dotnet/framework/mef/
+
 namespace vSharpStudio.common
 {
     /// <summary>

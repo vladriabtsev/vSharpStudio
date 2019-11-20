@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
@@ -26,10 +27,11 @@ namespace vSharpStudio.common
         // void UpdateToModel(IModel model);
 
         /// <summary>
-        /// Return last proto model which was used last time for migration
+        /// Generate DatabaseModel of a current DB
         /// </summary>
-        /// <returns>json version of IConfig</returns>
-        string GetLastModel();
+        /// <returns>Return DatabaseModel of a current DB</returns>
+        DatabaseModel GetDbModel(string connectionString, Action<Exception> onError = null);
+        DatabaseModel GetDbModel(DbContext context, Action<Exception> onError = null);
         /// <summary>
         /// 
         /// </summary>
@@ -38,7 +40,9 @@ namespace vSharpStudio.common
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
-        void UpdateToModel(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
+        IMutableModel UpdateToModel(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
+        IMutableModel UpdateToModel(DbContext context, MigrationOperation[] operations, IConfig cfg, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
+        // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);
         // void Export(string filePath);

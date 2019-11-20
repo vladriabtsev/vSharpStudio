@@ -395,7 +395,7 @@ namespace vSharpStudio.ViewModels
             this.Logger.LogInformation("Loading plugins");
             AggregateCatalog catalog = new AggregateCatalog();
             this.AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
-            CompositionContainer container = new CompositionContainer(catalog);
+            CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
             container.SatisfyImportsOnce(this);
         }
 

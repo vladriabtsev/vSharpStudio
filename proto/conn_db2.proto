@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-package proto_conn_db2;
-option csharp_namespace = "Proto.Config.Connection";
-
-}

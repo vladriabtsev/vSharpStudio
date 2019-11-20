@@ -30,7 +30,7 @@ namespace GenFromProto
                 var ncs = protofilename.ToNameCs();
                 string reflectionClass = ncs + "Reflection";
                 //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
-                var types = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetTypes();
+                var types = typeof(Proto.Doc.ProtoDocReflection).Assembly.GetTypes();
                 Type reflection = null;
                 foreach (var t in types)
                 {

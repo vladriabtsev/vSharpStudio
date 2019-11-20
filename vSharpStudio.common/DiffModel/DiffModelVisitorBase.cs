@@ -15,28 +15,24 @@ namespace vSharpStudio.common
         protected IConfig cfg;
         protected bool isCreateGeneralTable;
 
-        protected abstract void Visit(IEnumeration en);
-
-        protected abstract void Visit(IEnumerationPair p);
-
-        protected abstract void Visit(List<IConstant> diff_lst);
-
-        protected abstract void Visit(IConstant cn);
-
         protected abstract void Visit(IConfig c);
-
         protected abstract void Visit(IConfigModel m);
-
+        protected abstract void Visit(IEnumerable<IConstant> diff_lst);
+        protected abstract void Visit(IConstant cn);
+        protected abstract void Visit(IEnumerable<IEnumeration> diff_lst);
+        protected abstract void Visit(IEnumeration en);
+        protected abstract void Visit(IEnumerationPair p);
+        protected abstract void Visit(IEnumerable<ICatalog> diff_lst);
         protected abstract void Visit(ICatalog ct);
-
+        protected abstract void Visit(IEnumerable<IDocument> diff_lst);
         protected abstract void Visit(IDocument d);
-
-        protected abstract void Visit(IPropertiesTab t);
-
+        protected abstract void Visit(IEnumerable<IProperty> diff_lst);
         protected abstract void Visit(IProperty p);
-
+        protected abstract void Visit(IEnumerable<IPropertiesTab> diff_lst);
+        protected abstract void Visit(IPropertiesTab t);
+        protected abstract void Visit(IEnumerable<IForm> diff_lst);
         protected abstract void Visit(IForm p);
-
+        protected abstract void Visit(IEnumerable<IReport> diff_lst);
         protected abstract void Visit(IReport p);
 
         public void Visit(IConfig cfg, ModelBuilder modelBuilder, bool isCreateGeneralTable = false)
@@ -52,9 +48,9 @@ namespace vSharpStudio.common
             }
             this.Model = this.modelBuilder.Model;
         }
-
         private void VisitProperties(IEnumerable<IProperty> lst)
         {
+            this.Visit(lst);
             foreach (var t in lst)
             {
                 this.currProp = t;
@@ -65,6 +61,7 @@ namespace vSharpStudio.common
 
         private void VisitPropertiesTabs(IEnumerable<IPropertiesTab> lst)
         {
+            this.Visit(lst);
             foreach (var t in lst)
             {
                 this.Visit(t);
@@ -77,6 +74,7 @@ namespace vSharpStudio.common
 
         private void VisitForms(IEnumerable<IForm> lst)
         {
+            this.Visit(lst);
             foreach (var t in lst)
             {
                 this.currForm = t;
@@ -87,6 +85,7 @@ namespace vSharpStudio.common
 
         private void VisitReports(IEnumerable<IReport> lst)
         {
+            this.Visit(lst);
             foreach (var t in lst)
             {
                 this.currRep = t;
@@ -110,6 +109,12 @@ namespace vSharpStudio.common
         {
             this.currCfg = t;
             this.Visit(t);
+            this.Visit(t.GetDiffConstants());
+            foreach (var tt in t.GetDiffConstants())
+            {
+                this.Visit(tt);
+            }
+            this.Visit(t.GetDiffEnumerations());
             foreach (var tt in t.GetDiffEnumerations())
             {
                 this.Visit(tt);
@@ -120,10 +125,7 @@ namespace vSharpStudio.common
                 }
                 this.currEnum = null;
             }
-            foreach (var tt in t.GetDiffConstants())
-            {
-                this.Visit(tt);
-            }
+            this.Visit(t.GetDiffCatalogs());
             foreach (var tt in t.GetDiffCatalogs())
             {
                 this.Visit(tt);
@@ -134,6 +136,7 @@ namespace vSharpStudio.common
                 this.VisitReports(tt.GetDiffReports());
                 this.currCat = null;
             }
+            this.Visit(t.GetDiffDocuments());
             foreach (var tt in t.GetDiffDocuments())
             {
                 this.Visit(tt);
