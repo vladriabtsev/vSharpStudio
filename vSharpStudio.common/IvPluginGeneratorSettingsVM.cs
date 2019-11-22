@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>
-        string Settings { get; }
+        string SettingsAsJson { get; }
         /// <summary>
         /// Generate code for current settings (if applicable for generator)
         /// </summary>

@@ -276,7 +276,7 @@ namespace vSharpStudio.ViewModels
                                 Utils.TryCall(
                                     () =>
                                 {
-                                    tttt.SetVM(ttt.Generator.GetSettingsMvvm(tttt.GeneratorSettings));
+                                    tttt.SetVM(ttt.Generator.GetSettingsMvvmFromJson(tttt.GeneratorSettings));
                                 }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
                             }
                         }
@@ -465,7 +465,7 @@ namespace vSharpStudio.ViewModels
                         Utils.TryCall(
                             () =>
                         {
-                            ttt.GeneratorSettings = ttt.VM.Settings;
+                            ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
                         }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
                         if (ttt.IsPrivate)
                         {

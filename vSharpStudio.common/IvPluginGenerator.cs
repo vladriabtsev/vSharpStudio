@@ -33,6 +33,6 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings, json format"></param>
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
-        IvPluginGeneratorSettingsVM GetSettingsMvvm(string settings);
+        IvPluginGeneratorSettingsVM GetSettingsMvvmFromJson(string settings);
     }
 }
