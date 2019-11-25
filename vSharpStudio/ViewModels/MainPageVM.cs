@@ -276,7 +276,7 @@ namespace vSharpStudio.ViewModels
                                 Utils.TryCall(
                                     () =>
                                 {
-                                    tttt.SetVM(ttt.Generator.GetSettingsMvvmFromJson(tttt.GeneratorSettings));
+                                    tttt.SetVM(ttt.Generator.GetGenerationSettingsMvvmFromJson(tttt.GeneratorSettings));
                                 }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
                             }
                         }

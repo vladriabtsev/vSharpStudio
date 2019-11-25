@@ -396,5 +396,15 @@ namespace ViewModelBase
             get { return _infos.Count > 0; }
         }
         #endregion
+
+        public void ValidateSubAndCollectErrors(IValidatableWithSeverity sub)
+        {
+            sub.Validate();
+            //foreach (var t in sub.ValidationCollection)
+            //{
+            //    this.ValidationCollection.Add(t);
+            //}
+            this.ValidationCollection.AddRange(sub.ValidationCollection);
+        }
     }
 }

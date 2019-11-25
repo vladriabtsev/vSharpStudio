@@ -24,7 +24,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
 <#    } #>
 }
 <# } #>
-public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
+public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase()) { #>ITreeConfigNode parent, <# } #><#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
 {
 <# if (message.IsDefaultBase()) { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent);
@@ -43,11 +43,11 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
 <# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
-        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } else { #>
     vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
-        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(vm, (<#= field.ToTypeCs() #>)t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } #>
 <#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
@@ -57,7 +57,7 @@ public static <#= message.Name.ToNameCs() #> Clone(ITreeConfigNode parent, <#= m
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone(); // <#=Helper.FilePos() #>
 <#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
     if (isDeep) // <#=Helper.FilePos() #>
-        vm.<#= field.Name.ToNameCs() #> = <#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
+        vm.<#= field.Name.ToNameCs() #> = <#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
 <#      } 
@@ -144,9 +144,9 @@ public override <#= message.Name.ToNameCs() #> Backup()
     bool isDeep = true;
     this.OnBackupObjectStarting(ref isDeep);
 <# if (message.IsDefaultBase()) { #>
-    return <#= message.Name.ToNameCs() #>.Clone(this.Parent, this);
+    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>this.Parent, <# } #>this);
 <# } else { #>
-    return <#= message.Name.ToNameCs() #>.Clone(null, this);
+    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>null, <# } #>this);
 <# } #>
 }
 partial void OnBackupObjectStarting(ref bool isDeep);
@@ -209,7 +209,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 <# } else { #>
         vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } #>
-    <#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>);
+    <#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>); // <#=Helper.FilePos() #>
 <#      } else if (field.IsBytes()) { #>
     vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.ToByteArray(); // <#=Helper.FilePos() #>
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>

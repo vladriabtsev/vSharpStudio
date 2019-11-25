@@ -10,13 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
 		proto\attr.proto = proto\attr.proto
-		proto\conn_db2.proto = proto\conn_db2.proto
-		proto\conn_mssql.proto = proto\conn_mssql.proto
-		proto\conn_mysql.proto = proto\conn_mysql.proto
-		proto\conn_npgsql.proto = proto\conn_npgsql.proto
-		proto\conn_oracle.proto = proto\conn_oracle.proto
-		proto\conn_sqlite.proto = proto\conn_sqlite.proto
-		proto\connections.proto = proto\connections.proto
 		proto\proto_doc.proto = proto\proto_doc.proto
 		proto\vsharpstudio.proto = proto\vsharpstudio.proto
 	EndProjectSection

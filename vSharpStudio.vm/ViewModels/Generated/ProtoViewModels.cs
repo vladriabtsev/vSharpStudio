@@ -1,4 +1,4 @@
-// Auto generated on UTC 11/22/2019 18:37:57
+// Auto generated on UTC 11/25/2019 01:46:57
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1023,7 +1023,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static DbSettings Clone(ITreeConfigNode parent, DbSettings from, bool isDeep = true) // Clone.tt Line: 27
+        public static DbSettings Clone(DbSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             DbSettings vm = new DbSettings();
             vm.DbSchema = from.DbSchema; // Clone.tt Line: 62
@@ -1053,7 +1053,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return DbSettings.Clone(null, this);
+            return DbSettings.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(DbSettings from)
@@ -1372,13 +1372,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             if (vm.CurrentConfig == null) // Clone.tt Line: 206
                 vm.CurrentConfig = new Config(vm); // Clone.tt Line: 208
-            Config.ConvertToVM(m.CurrentConfig, vm.CurrentConfig);
+            Config.ConvertToVM(m.CurrentConfig, vm.CurrentConfig); // Clone.tt Line: 212
             if (vm.PrevStableConfig == null) // Clone.tt Line: 206
                 vm.PrevStableConfig = new Config(vm); // Clone.tt Line: 208
-            Config.ConvertToVM(m.PrevStableConfig, vm.PrevStableConfig);
+            Config.ConvertToVM(m.PrevStableConfig, vm.PrevStableConfig); // Clone.tt Line: 212
             if (vm.OldStableConfig == null) // Clone.tt Line: 206
                 vm.OldStableConfig = new Config(vm); // Clone.tt Line: 208
-            Config.ConvertToVM(m.OldStableConfig, vm.OldStableConfig);
+            Config.ConvertToVM(m.OldStableConfig, vm.OldStableConfig); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -1774,7 +1774,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.Config == null) // Clone.tt Line: 206
                 vm.Config = new Config(vm); // Clone.tt Line: 208
-            Config.ConvertToVM(m.Config, vm.Config);
+            Config.ConvertToVM(m.Config, vm.Config); // Clone.tt Line: 212
             vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 218
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
@@ -1919,7 +1919,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 62
             vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DbSettings = DbSettings.Clone(vm, from.DbSettings, isDeep);
+                vm.DbSettings = DbSettings.Clone(from.DbSettings, isDeep);
             if (isDeep) // Clone.tt Line: 59
                 vm.GroupConfigLinks = GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 59
@@ -1985,19 +1985,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 218
             if (vm.DbSettings == null) // Clone.tt Line: 206
                 vm.DbSettings = new DbSettings(); // Clone.tt Line: 210
-            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings);
+            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings); // Clone.tt Line: 212
             if (vm.GroupConfigLinks == null) // Clone.tt Line: 206
                 vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 208
-            GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks);
+            GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks); // Clone.tt Line: 212
             if (vm.Model == null) // Clone.tt Line: 206
                 vm.Model = new ConfigModel(vm); // Clone.tt Line: 208
-            ConfigModel.ConvertToVM(m.Model, vm.Model);
+            ConfigModel.ConvertToVM(m.Model, vm.Model); // Clone.tt Line: 212
             if (vm.GroupPlugins == null) // Clone.tt Line: 206
                 vm.GroupPlugins = new GroupListPlugins(vm); // Clone.tt Line: 208
-            GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins);
+            GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins); // Clone.tt Line: 212
             if (vm.GroupAppSolutions == null) // Clone.tt Line: 206
                 vm.GroupAppSolutions = new GroupListAppSolutions(vm); // Clone.tt Line: 208
-            GroupListAppSolutions.ConvertToVM(m.GroupAppSolutions, vm.GroupAppSolutions);
+            GroupListAppSolutions.ConvertToVM(m.GroupAppSolutions, vm.GroupAppSolutions); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -2252,7 +2252,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static AppDbSettings Clone(ITreeConfigNode parent, AppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
+        public static AppDbSettings Clone(AppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             AppDbSettings vm = new AppDbSettings();
             vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 62
@@ -2280,7 +2280,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return AppDbSettings.Clone(null, this);
+            return AppDbSettings.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(AppDbSettings from)
@@ -2528,7 +2528,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
             vm.Description = from.Description; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
+                vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
             vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 48
             foreach (var t in from.ListAppSolutions) // Clone.tt Line: 49
                 vm.ListAppSolutions.Add(AppSolution.Clone(vm, (AppSolution)t, isDeep));
@@ -2611,7 +2611,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.DefaultDb == null) // Clone.tt Line: 206
                 vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb);
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
             vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 190
             foreach (var t in m.ListAppSolutions) // Clone.tt Line: 191
             {
@@ -2786,7 +2786,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 62
             vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
+                vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 48
             foreach (var t in from.ListAppProjects) // Clone.tt Line: 49
                 vm.ListAppProjects.Add(AppProject.Clone(vm, (AppProject)t, isDeep));
@@ -2871,7 +2871,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 218
             if (vm.DefaultDb == null) // Clone.tt Line: 206
                 vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb);
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 190
             foreach (var t in m.ListAppProjects) // Clone.tt Line: 191
             {
@@ -3047,7 +3047,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 62
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
+                vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
             if (isNewGuid) // Clone.tt Line: 67
                 vm.SetNewGuid();
             return vm;
@@ -3093,7 +3093,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 218
             if (vm.DefaultDb == null) // Clone.tt Line: 206
                 vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb);
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -3306,22 +3306,22 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupCommon == null) // Clone.tt Line: 206
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 208
-            GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon);
+            GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon); // Clone.tt Line: 212
             if (vm.GroupConstants == null) // Clone.tt Line: 206
                 vm.GroupConstants = new GroupListConstants(vm); // Clone.tt Line: 208
-            GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants);
+            GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants); // Clone.tt Line: 212
             if (vm.GroupEnumerations == null) // Clone.tt Line: 206
                 vm.GroupEnumerations = new GroupListEnumerations(vm); // Clone.tt Line: 208
-            GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations);
+            GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations); // Clone.tt Line: 212
             if (vm.GroupCatalogs == null) // Clone.tt Line: 206
                 vm.GroupCatalogs = new GroupListCatalogs(vm); // Clone.tt Line: 208
-            GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs);
+            GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs); // Clone.tt Line: 212
             if (vm.GroupDocuments == null) // Clone.tt Line: 206
                 vm.GroupDocuments = new GroupDocuments(vm); // Clone.tt Line: 208
-            GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments);
+            GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments); // Clone.tt Line: 212
             if (vm.GroupJournals == null) // Clone.tt Line: 206
                 vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 208
-            GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals);
+            GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -3582,7 +3582,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static DataType Clone(ITreeConfigNode parent, DataType from, bool isDeep = true) // Clone.tt Line: 27
+        public static DataType Clone(DataType from, bool isDeep = true) // Clone.tt Line: 27
         {
             DataType vm = new DataType();
             vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 62
@@ -3617,7 +3617,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return DataType.Clone(null, this);
+            return DataType.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(DataType from)
@@ -3944,10 +3944,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupRoles == null) // Clone.tt Line: 206
                 vm.GroupRoles = new GroupListRoles(vm); // Clone.tt Line: 208
-            GroupListRoles.ConvertToVM(m.GroupRoles, vm.GroupRoles);
+            GroupListRoles.ConvertToVM(m.GroupRoles, vm.GroupRoles); // Clone.tt Line: 212
             if (vm.GroupViewForms == null) // Clone.tt Line: 206
                 vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 208
-            GroupListMainViewForms.ConvertToVM(m.GroupViewForms, vm.GroupViewForms);
+            GroupListMainViewForms.ConvertToVM(m.GroupViewForms, vm.GroupViewForms); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -4480,7 +4480,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupListViewForms == null) // Clone.tt Line: 206
                 vm.GroupListViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 208
-            GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, vm.GroupListViewForms);
+            GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, vm.GroupListViewForms); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -5089,10 +5089,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupProperties == null) // Clone.tt Line: 206
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
             if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
                 vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 218
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
@@ -5509,7 +5509,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 62
             vm.Description = from.Description; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DataType = DataType.Clone(vm, from.DataType, isDeep);
+                vm.DataType = DataType.Clone(from.DataType, isDeep);
             vm.Position = from.Position; // Clone.tt Line: 62
             if (isNewGuid) // Clone.tt Line: 67
                 vm.SetNewGuid();
@@ -5557,7 +5557,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.DataType == null) // Clone.tt Line: 206
                 vm.DataType = new DataType(); // Clone.tt Line: 210
-            DataType.ConvertToVM(m.DataType, vm.DataType);
+            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 212
             vm.Position = m.Position; // Clone.tt Line: 218
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
@@ -5922,7 +5922,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 62
             vm.Description = from.Description; // Clone.tt Line: 62
             if (isDeep) // Clone.tt Line: 59
-                vm.DataType = DataType.Clone(vm, from.DataType, isDeep);
+                vm.DataType = DataType.Clone(from.DataType, isDeep);
             if (isNewGuid) // Clone.tt Line: 67
                 vm.SetNewGuid();
             return vm;
@@ -5968,7 +5968,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.DataType == null) // Clone.tt Line: 206
                 vm.DataType = new DataType(); // Clone.tt Line: 210
-            DataType.ConvertToVM(m.DataType, vm.DataType);
+            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -6775,16 +6775,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupProperties == null) // Clone.tt Line: 206
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
             if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
                 vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
             if (vm.GroupForms == null) // Clone.tt Line: 206
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 208
-            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
+            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 212
             if (vm.GroupReports == null) // Clone.tt Line: 206
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 208
-            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
+            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -7246,10 +7246,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupSharedProperties == null) // Clone.tt Line: 206
                 vm.GroupSharedProperties = new GroupListProperties(vm); // Clone.tt Line: 208
-            GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties);
+            GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties); // Clone.tt Line: 212
             if (vm.GroupListDocuments == null) // Clone.tt Line: 206
                 vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 208
-            GroupListDocuments.ConvertToVM(m.GroupListDocuments, vm.GroupListDocuments);
+            GroupListDocuments.ConvertToVM(m.GroupListDocuments, vm.GroupListDocuments); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -7446,16 +7446,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 218
             if (vm.GroupProperties == null) // Clone.tt Line: 206
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties);
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
             if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
                 vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs);
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
             if (vm.GroupForms == null) // Clone.tt Line: 206
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 208
-            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms);
+            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 212
             if (vm.GroupReports == null) // Clone.tt Line: 206
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 208
-            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports);
+            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 223
             return vm;
         }
@@ -8981,7 +8981,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static ModelRow Clone(ITreeConfigNode parent, ModelRow from, bool isDeep = true) // Clone.tt Line: 27
+        public static ModelRow Clone(ModelRow from, bool isDeep = true) // Clone.tt Line: 27
         {
             ModelRow vm = new ModelRow();
             vm.GroupName = from.GroupName; // Clone.tt Line: 62
@@ -9164,7 +9164,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListPlugins p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListPlugins p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9172,7 +9172,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Plugin p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Plugin p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9180,7 +9180,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(PluginGenerator p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(PluginGenerator p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9188,7 +9188,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9196,7 +9196,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(SettingsConfig p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(SettingsConfig p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9204,7 +9204,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9212,7 +9212,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(ConfigShortHistory p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(ConfigShortHistory p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9220,7 +9220,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9228,16 +9228,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(BaseConfigLink p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(BaseConfigLink p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Config p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9245,34 +9245,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(AppDbSettings p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(AppDbSettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListAppSolutions p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(GroupListAppSolutions p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListAppSolutions p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppSolution p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(AppSolution p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(AppSolution p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppProject p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DefaultDb); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(AppProject p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(AppProject p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9280,7 +9280,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(ConfigModel p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(ConfigModel p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9288,7 +9288,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(DataType p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(DataType p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9296,7 +9296,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListCommon p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListCommon p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9304,7 +9304,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Role p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Role p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9312,7 +9312,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListRoles p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListRoles p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9320,7 +9320,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(MainViewForm p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(MainViewForm p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9328,7 +9328,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListMainViewForms p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListMainViewForms p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9336,7 +9336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9344,7 +9344,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(PropertiesTab p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(PropertiesTab p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9352,16 +9352,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9369,16 +9369,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListConstants p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListConstants p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Constant p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 29
+            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 30
         }
-        protected override void OnVisitEnd(Constant p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Constant p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9386,7 +9386,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListEnumerations p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListEnumerations p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9394,7 +9394,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Enumeration p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Enumeration p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9402,7 +9402,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(EnumerationPair p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(EnumerationPair p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9410,7 +9410,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9418,7 +9418,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9426,7 +9426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupDocuments p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupDocuments p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9434,7 +9434,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Document p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Document p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9442,7 +9442,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListDocuments p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListDocuments p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9450,7 +9450,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListJournals p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListJournals p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9458,7 +9458,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Journal p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Journal p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9466,7 +9466,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9474,7 +9474,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Form p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Form p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9482,7 +9482,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListReports p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(GroupListReports p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9490,7 +9490,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(Report p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(Report p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -9498,7 +9498,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(ModelRow p) // ValidationVisitor.tt Line: 35
+        protected override void OnVisitEnd(ModelRow p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }

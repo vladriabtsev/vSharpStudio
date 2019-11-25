@@ -88,93 +88,177 @@ namespace GenFromProto
             #line hidden
             
             #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- if (!field.IsAny() && !field.IsCsSimple() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+ if (message.IsDefaultBase()) { 
             
             #line default
             #line hidden
             
             #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- if (field.IsRepeated) { 
+   if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+     if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("        foreach (var t in p.");
             
-            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(") // ");
             
-            #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n            ValidateSubAndCollectErrors(p, t);\r\n");
             
-            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } else { 
+            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+     } else { 
             
             #line default
             #line hidden
             this.Write("        ValidateSubAndCollectErrors(p, p.");
             
-            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("); // ");
             
-            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } 
-            
-            #line default
-            #line hidden
-            
             #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } else { 
+     } 
             
             #line default
             #line hidden
             
             #line 32 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- } 
+   } else { 
             
             #line default
             #line hidden
             
             #line 33 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+   } 
+            
+            #line default
+            #line hidden
+            
+            #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            
+            #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+   if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 36 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+     if (field.IsRepeated) { 
+            
+            #line default
+            #line hidden
+            this.Write("        foreach (var t in p.");
+            
+            #line 37 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(") // ");
+            
+            #line 37 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n            p.ValidateSubAndCollectErrors(t);\r\n");
+            
+            #line 39 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+     } else { 
+            
+            #line default
+            #line hidden
+            this.Write("        p.ValidateSubAndCollectErrors(p.");
+            
+            #line 40 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("); // ");
+            
+            #line 40 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 41 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+     } 
+            
+            #line default
+            #line hidden
+            
+            #line 42 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+   } else { 
+            
+            #line default
+            #line hidden
+            
+            #line 43 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+   } 
+            
+            #line default
+            #line hidden
+            
+            #line 44 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 45 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
  } 
             
             #line default
             #line hidden
             this.Write("    }\r\n    protected override void OnVisitEnd(");
             
-            #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 47 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p) // ");
             
-            #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 47 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        this.OnVisitEnd(p as IValidatableWithSeverity);\r\n    }\r\n");
             
-            #line 39 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
+            #line 51 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
  } 
             
             #line default
