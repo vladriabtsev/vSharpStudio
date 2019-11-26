@@ -195,6 +195,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_app_project_generator"><span class="badge">M</span>proto_app_project_generator</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_app_solution"><span class="badge">M</span>proto_app_solution</a>
                 </li>
               
@@ -328,6 +332,10 @@
               
                 <li>
                   <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugins_group"><span class="badge">M</span>proto_plugins_group</a>
                 </li>
               
                 <li>
@@ -529,7 +537,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -537,7 +545,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -554,7 +562,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(5)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -571,7 +579,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
             </tbody>
@@ -637,6 +645,88 @@ it will override previous settings
 @attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_app_project_generators</td>
+                  <td><a href="#proto_config.proto_app_project_generator">proto_app_project_generator</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_app_project_generator">proto_app_project_generator</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_plugins_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugin_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generator_settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_path_to_generated_file</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+@attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -688,7 +778,9 @@ it will override previous settings
                   <td></td>
                   <td><p>List NET projects
 @attr [PropertyOrderAttribute(6)]
-@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] </p></td>
+@attr [DisplayName(&#34;Path&#34;)]
+@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+@attr [Description(&#34;Relative path to solution folder&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -706,6 +798,36 @@ it will override previous settings
                   <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugins_group1</td>
+                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Group 1&#34;)]
+@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugins_group2</td>
+                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Group 2&#34;)]
+@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugins_group3</td>
+                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Group 3&#34;)]
+@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
             </tbody>
@@ -878,7 +1000,7 @@ it will override previous settings
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -982,7 +1104,7 @@ it will override previous settings
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -1595,7 +1717,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2273,7 +2395,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>Last generated Protobuf field position
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
             </tbody>
@@ -2644,28 +2766,28 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2680,6 +2802,27 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_plugin_generator">proto_plugin_generator</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
             </tbody>
@@ -2703,21 +2846,21 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Editable(false)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2773,7 +2916,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td></td>
                   <td><p>This Description is taken from Plugin Generator
 @attr [PropertyOrderAttribute(2)]
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2805,6 +2948,53 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugins_group">proto_plugins_group</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>plugins_group_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Group&#34;)]
+@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
+@attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugins_group_info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Info&#34;)]
+@attr [Description(&#34;Plugin short information&#34;)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugins_global_settins</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Settings&#34;)]
+@attr [Description(&#34;Global settings for plugin generators&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
             </tbody>
@@ -2950,7 +3140,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td></td>
                   <td><p>Protobuf field position
 Reserved positions: 1 - primary key
-@attr [Editable(false)] </p></td>
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
             </tbody>

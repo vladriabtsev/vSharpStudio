@@ -214,6 +214,9 @@ namespace vSharpStudio.ViewModels
                     if (tt.Guid == t.Value.Guid && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                     {
                         tt.SetVPlugin(t.Value);
+                        tt.GroupGuid = t.Value.GroupGuid;
+                        tt.GroupVersion = t.Value.GroupVersion;
+                        tt.GroupInfo = t.Value.GroupInfo;
                         tt.Name = t.Value.Name;
                         tt.Description = t.Value.Description;
                         tt.Version = t.Value.Version;

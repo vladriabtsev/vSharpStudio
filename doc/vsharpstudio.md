@@ -8,6 +8,7 @@
     - [db_settings](#proto_config.db_settings)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
+    - [proto_app_project_generator](#proto_config.proto_app_project_generator)
     - [proto_app_solution](#proto_config.proto_app_solution)
     - [proto_base_config_link](#proto_config.proto_base_config_link)
     - [proto_catalog](#proto_config.proto_catalog)
@@ -42,6 +43,7 @@
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
+    - [proto_plugins_group](#proto_config.proto_plugins_group)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
@@ -116,12 +118,12 @@ General DB settings
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | plugin_guid | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))] @attr [Description(&#34;Default DB Plugin&#34;)] |
-| plugin_name | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [Editable(false)] |
-| version | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editable(false)] |
+| plugin_name | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
+| version | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | plugin_gen_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))] @attr [Description(&#34;Default DB Plugin generator&#34;)] |
-| plugin_gen_name | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Editable(false)] |
+| plugin_gen_name | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [ReadOnly(true)] |
 | conn_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))] @attr [Description(&#34;Default DB connection string&#34;)] |
-| conn_name | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [Editable(false)] |
+| conn_name | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [ReadOnly(true)] |
 
 
 
@@ -142,6 +144,29 @@ General DB settings
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] |
+| list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_app_project_generator"></a>
+
+### proto_app_project_generator
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| group_plugins_guid | [string](#string) |  |  |
+| plugin_guid | [string](#string) |  |  |
+| generator_settings | [string](#string) |  |  |
+| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 
@@ -160,9 +185,12 @@ General DB settings
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
+| relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;Relative path to solution folder&#34;)] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
+| plugins_group1 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Group 1&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
+| plugins_group2 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Group 2&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
+| plugins_group3 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Group 3&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
 
 
 
@@ -221,7 +249,7 @@ Configuration config
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
-| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [Editable(false)] |
+| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  |  |
@@ -247,7 +275,7 @@ Configuration model
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
-| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [Editable(false)] |
+| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  |  |
@@ -438,7 +466,7 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Editable(false)] |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
@@ -660,7 +688,7 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
-| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [Editable(false)] |
+| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 
 
 
@@ -793,12 +821,15 @@ main view forms hierarchy parent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Editable(false)] |
-| version | [string](#string) |  | @attr [Editable(false)] |
-| name | [string](#string) |  | @attr [Editable(false)] |
-| description | [string](#string) |  | @attr [Editable(false)] |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| version | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [ReadOnly(true)] |
+| description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
+| group_guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| group_version | [string](#string) |  | @attr [ReadOnly(true)] |
+| group_info | [string](#string) |  | @attr [ReadOnly(true)] |
 
 
 
@@ -813,9 +844,9 @@ main view forms hierarchy parent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Editable(false)] |
-| name | [string](#string) |  | @attr [Editable(false)] |
-| description | [string](#string) |  | @attr [Editable(false)] |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [ReadOnly(true)] |
+| description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -834,11 +865,28 @@ main view forms hierarchy parent
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | This Guid is taken from Plugin Generator @attr [BrowsableAttribute(false)] |
 | name | [string](#string) |  | This Name is taken from Plugin Generator @attr [PropertyOrderAttribute(1)] |
-| description | [string](#string) |  | This Description is taken from Plugin Generator @attr [PropertyOrderAttribute(2)] @attr [Editable(false)] |
+| description | [string](#string) |  | This Description is taken from Plugin Generator @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
 | file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+
+
+
+
+
+
+<a name="proto_config.proto_plugins_group"></a>
+
+### proto_plugins_group
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| plugins_group_guid | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Group&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))] |
+| plugins_group_info | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Info&#34;)] @attr [Description(&#34;Plugin short information&#34;)] @attr [ReadOnly(true)] |
+| plugins_global_settins | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Settings&#34;)] @attr [Description(&#34;Global settings for plugin generators&#34;)] @attr [ExpandableObjectAttribute()] |
 
 
 
@@ -881,7 +929,7 @@ main view forms hierarchy parent
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Type&#34;)] |
-| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [Editable(false)] |
+| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 
 
 

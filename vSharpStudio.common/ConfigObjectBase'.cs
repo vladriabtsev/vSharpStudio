@@ -162,7 +162,7 @@
 
         #endregion Sort
 
-        [Editable(false)]
+        [ReadOnly(true)]
         public string Guid
         {
             get

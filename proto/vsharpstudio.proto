@@ -25,25 +25,31 @@ message proto_group_list_plugins {
     repeated proto_plugin list_plugins = 4;
 }
 message proto_plugin {
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string guid = 1;
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string version = 2;
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string name = 3;
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string description = 4;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator list_generators = 6;
+    // @attr [ReadOnly(true)]
+    string group_guid = 7;
+    // @attr [ReadOnly(true)]
+    string group_version = 8;
+    // @attr [ReadOnly(true)]
+    string group_info = 9;
 }
 message proto_plugin_generator {
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string guid = 1;
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string name = 2;
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
@@ -59,7 +65,7 @@ message proto_plugin_generator_settings {
     string name = 2;
     // This Description is taken from Plugin Generator
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
@@ -68,10 +74,11 @@ message proto_plugin_generator_settings {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
     bool is_private = 6;
-    // @attr [PropertyOrderAttribute(4)]
+        // @attr [PropertyOrderAttribute(4)]
     // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
-    string file_path = 7;
+    string file_path = 9;
+
 }
 message proto_settings_config {
     string guid = 1;
@@ -160,7 +167,7 @@ message proto_config {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     int32 version = 2;
     string name = 3;
     uint64 sorting_value = 4;
@@ -195,28 +202,28 @@ message proto_app_db_settings {
     // @attr [Description("Default DB Plugin")]
     string plugin_guid = 1;
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string plugin_name = 2;
     // @attr [PropertyOrderAttribute(3)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string version = 3;
     // @attr [PropertyOrderAttribute(4)]
     // @attr [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
     // @attr [Description("Default DB Plugin generator")]
     string plugin_gen_guid = 4;
     // @attr [PropertyOrderAttribute(5)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string plugin_gen_name = 5;
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
     // @attr [Description("Default DB connection string")]
     string conn_guid = 6;
     // @attr [PropertyOrderAttribute(7)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string conn_name = 7;
 }
 message proto_group_list_app_solutions {
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
@@ -232,38 +239,101 @@ message proto_group_list_app_solutions {
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
 }
+message proto_plugins_group {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Group")]
+    // @attr [Description("Group compatible plugins of one vendor")]
+    // @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]
+    string plugins_group_guid = 1;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Info")]
+    // @attr [Description("Plugin short information")]
+    // @attr [ReadOnly(true)]
+    string plugins_group_info = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Settings")]
+    // @attr [Description("Global settings for plugin generators")]
+    // @attr [ExpandableObjectAttribute()]
+    string plugins_global_settins = 3;
+}
 message proto_app_solution {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
+
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
+
     // List NET projects
     // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    // @attr [Description("Relative path to solution folder")]
     string relative_app_solution_path = 7;
+
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, all solutions settings are used")]
     proto_app_db_settings default_db = 8;
+    
     // @attr [BrowsableAttribute(false)]
-    repeated proto_app_project list_app_projects = 9;
+    repeated proto_app_project list_app_projects = 10;
+
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Group 1")]
+    // @attr [Description("Group compatible plugins of one vendor")]
+    // @attr [ExpandableObjectAttribute()]
+    proto_plugins_group plugins_group1 = 11;
+
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Group 2")]
+    // @attr [Description("Group compatible plugins of one vendor")]
+    // @attr [ExpandableObjectAttribute()]
+    proto_plugins_group plugins_group2 = 12;
+
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Group 3")]
+    // @attr [Description("Group compatible plugins of one vendor")]
+    // @attr [ExpandableObjectAttribute()]
+    proto_plugins_group plugins_group3 = 13;
+
 }
 message proto_app_project {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
+
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
+
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
     string relative_app_project_path = 7;
+
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, solution settings are used")]
     proto_app_db_settings default_db = 8;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_app_project_generator list_app_project_generators = 10;
+}
+message proto_app_project_generator {
+    string guid = 1;
+    string name = 2;
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(5)]
+    string description = 5;
+    
+    string group_plugins_guid = 6;
+    string plugin_guid = 7;
+    string generator_settings = 8;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    // @attr [Description("File path to store connection string settings in private place.")]
+    string relative_path_to_generated_file = 9;
 }
 /** 
  * @exclude
@@ -274,7 +344,7 @@ message proto_config_model {
     // Unique Guid for configuration (for comparison)
     string guid = 1;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     int32 version = 2;
     string name = 3;
     uint64 sorting_value = 4;
@@ -454,7 +524,7 @@ message proto_group_list_properties {
     // @attr [BrowsableAttribute(false)]
     repeated proto_property list_properties = 6;
     // Last generated Protobuf field position
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
 }
 message proto_property {
@@ -473,7 +543,7 @@ message proto_property {
 
     // Protobuf field position
     // Reserved positions: 1 - primary key
-    // @attr [Editable(false)]
+    // @attr [ReadOnly(true)]
     uint32 position = 15;
 }
 /** 

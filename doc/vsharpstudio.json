@@ -287,7 +287,7 @@
             },
             {
               "name": "plugin_name",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -297,7 +297,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -317,7 +317,7 @@
             },
             {
               "name": "plugin_gen_name",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -337,7 +337,7 @@
             },
             {
               "name": "conn_name",
-              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -415,6 +415,107 @@
               "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_app_project_generators",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_app_project_generator",
+              "longType": "proto_app_project_generator",
+              "fullType": "proto_config.proto_app_project_generator",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_app_project_generator",
+          "longName": "proto_app_project_generator",
+          "fullName": "proto_config.proto_app_project_generator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(5)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_plugins_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "generator_settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relative_path_to_generated_file",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -469,7 +570,7 @@
             },
             {
               "name": "relative_app_solution_path",
-              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]",
+              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"Relative path to solution folder\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -494,6 +595,36 @@
               "type": "proto_app_project",
               "longType": "proto_app_project",
               "fullType": "proto_config.proto_app_project",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugins_group1",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Group 1\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_plugins_group",
+              "longType": "proto_plugins_group",
+              "fullType": "proto_config.proto_plugins_group",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugins_group2",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Group 2\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_plugins_group",
+              "longType": "proto_plugins_group",
+              "fullType": "proto_config.proto_plugins_group",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugins_group3",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Group 3\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_plugins_group",
+              "longType": "proto_plugins_group",
+              "fullType": "proto_config.proto_plugins_group",
               "ismap": false,
               "defaultValue": ""
             }
@@ -692,7 +823,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -823,7 +954,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editable(false)]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -1552,7 +1683,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2353,7 +2484,7 @@
             },
             {
               "name": "last_gen_position",
-              "description": "Last generated Protobuf field position\n@attr [Editable(false)]",
+              "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -2780,7 +2911,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2790,7 +2921,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2800,7 +2931,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2810,7 +2941,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2837,6 +2968,36 @@
               "fullType": "proto_config.proto_plugin_generator",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "group_guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_version",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_info",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -2851,7 +3012,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2861,7 +3022,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2871,7 +3032,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Editable(false)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2932,7 +3093,7 @@
             },
             {
               "name": "description",
-              "description": "This Description is taken from Plugin Generator\n@attr [PropertyOrderAttribute(2)]\n@attr [Editable(false)]",
+              "description": "This Description is taken from Plugin Generator\n@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2973,6 +3134,47 @@
             {
               "name": "file_path",
               "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugins_group",
+          "longName": "proto_plugins_group",
+          "fullName": "proto_config.proto_plugins_group",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugins_group_guid",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Group\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugins_group_info",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Info\")]\n@attr [Description(\"Plugin short information\")]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugins_global_settins",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Settings\")]\n@attr [Description(\"Global settings for plugin generators\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3144,7 +3346,7 @@
             },
             {
               "name": "position",
-              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [Editable(false)]",
+              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
