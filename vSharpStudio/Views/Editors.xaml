@@ -34,6 +34,30 @@
                             <TextBlock Text="GroupListPlugins" />
                         </StackPanel>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type bvm:AppProject}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="App Project" />
+                            <DataGrid Grid.Row="1">
+                                <DataGrid.Columns>
+                                    <DataGridComboBoxColumn Header="Plugin group" />
+                                    <DataGridComboBoxColumn Header="Generator" />
+                                    <DataGridTextColumn Header="Name" />
+                                    <!--<DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Type" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>-->
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </DataTemplate>
                 </ContentControl.Resources>
                 <!--<ContentControl.ContentTemplateSelector>
                     <Binding Mode="OneWay" Source="{StaticResource editorTemplateSelector}"/>
