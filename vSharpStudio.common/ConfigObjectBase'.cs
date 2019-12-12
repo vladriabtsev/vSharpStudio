@@ -9,13 +9,11 @@
     using System.Text;
     using FluentValidation;
     using JetBrains.Annotations;
-    using Microsoft.EntityFrameworkCore.Infrastructure;
-    using Microsoft.EntityFrameworkCore.Metadata;
     using ViewModelBase;
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode, IMutableAnnotatable
+    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode , IObjectAnnotatable
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
@@ -604,7 +602,7 @@
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="value"> The value to be stored in the annotation. </param>
         /// <returns> The newly added annotation. </returns>
-        public virtual IAnnotation AddAnnotation(string name, object value)
+        public virtual Annotation AddAnnotation(string name, object value)
         {
             // Check.NotEmpty(name, nameof(name));
 
@@ -619,7 +617,7 @@
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be added. </param>
         /// <returns> The added annotation. </returns>
-        protected virtual IAnnotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual Annotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
         {
             if (this.FindAnnotation(name) != null)
             {
@@ -647,7 +645,7 @@
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be set. </param>
         /// <returns> The annotation that was set. </returns>
-        protected virtual IAnnotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual Annotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
         {
             var oldAnnotation = this.FindAnnotation(name);
 
@@ -666,8 +664,8 @@
         /// <param name="annotation"> The annotation set. </param>
         /// <param name="oldAnnotation"> The old annotation. </param>
         /// <returns> The annotation that was set. </returns>
-        protected virtual IAnnotation OnAnnotationSet(
-            [NotNull] string name, [CanBeNull] IAnnotation annotation, [CanBeNull] IAnnotation oldAnnotation)
+        protected virtual Annotation OnAnnotationSet(
+            [NotNull] string name, [CanBeNull] Annotation annotation, [CanBeNull] Annotation oldAnnotation)
             => annotation;
 
         /// <summary>
@@ -677,7 +675,7 @@
         /// <returns>
         ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
         /// </returns>
-        protected virtual IAnnotation FindAnnotation(string name)
+        protected virtual Annotation FindAnnotation(string name)
         {
             // Check.NotEmpty(name, nameof(name));
 
@@ -691,7 +689,7 @@
         /// </summary>
         /// <param name="name"> The annotation to remove. </param>
         /// <returns> The annotation that was removed. </returns>
-        public virtual IAnnotation RemoveAnnotation(string name)
+        public virtual Annotation RemoveAnnotation(string name)
         {
             // Check.NotNull(name, nameof(name));
 
@@ -746,7 +744,7 @@
         /// <summary>
         ///     Gets all annotations on the current object.
         /// </summary>
-        IEnumerable<IAnnotation> IAnnotatable.GetAnnotations() => this.GetAnnotations();
+        IEnumerable<Annotation> IObjectAnnotatable.GetAnnotations() => this.GetAnnotations();
 
         /// <summary>
         ///     Gets the annotation with the given name, returning null if it does not exist.
@@ -755,7 +753,7 @@
         /// <returns>
         ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
         /// </returns>
-        IAnnotation IAnnotatable.FindAnnotation(string name) => this.FindAnnotation(name);
+        Annotation IObjectAnnotatable.FindAnnotation(string name) => this.FindAnnotation(name);
         /// <summary>
         ///     Gets all annotations on the current object.
         /// </summary>

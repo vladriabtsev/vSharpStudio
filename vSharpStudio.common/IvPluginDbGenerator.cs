@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.common
@@ -32,22 +28,28 @@ namespace vSharpStudio.common
         /// Generate DatabaseModel of a current DB
         /// </summary>
         /// <returns>Return DatabaseModel of a current DB</returns>
-        DatabaseModel GetDbModel(string connectionString, Action<Exception> onError = null);
-        DatabaseModel GetDbModel(DbContext context, Action<Exception> onError = null);
+        object GetDbModel(string connectionString, Action<Exception> onError = null);
         /// <summary>
         /// 
+        /// </summary>
+        /// <param name="context">DbContext type</param>
+        /// <param name="onError"></param>
+        /// <returns></returns>
+        object GetDbModel(object context, Action<Exception> onError = null);
+        /// <summary>
+        /// Return IMutableModel
         /// </summary>
         /// <param name="connectionString"></param>
         /// <param name="operations">To do what model differ will not capable to do. Probably renaming tables and fields propery</param>
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
-        IMutableModel UpdateToModel(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
-        IMutableModel UpdateToModel(DbContext context, MigrationOperation[] operations, IConfig cfg, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
+        object UpdateToModel(string connectionString, IConfig config, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);
         // void Export(string filePath);
         // void Import(string filePath);
+        void EnsureDbDeletedAndCreated(string connectionString);
     }
 }

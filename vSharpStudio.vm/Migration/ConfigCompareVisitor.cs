@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using ViewModelBase;
 using vSharpStudio.vm.ViewModels;
 

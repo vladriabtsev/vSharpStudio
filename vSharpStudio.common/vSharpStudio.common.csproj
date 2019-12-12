@@ -39,7 +39,6 @@
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.6.0" />
     <PackageReference Include="System.Interactive.Async" Version="4.0.0" />
     <PackageReference Include="System.Memory" Version="4.5.3" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
@@ -47,10 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Analyzers\EFCore.Analyzers.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj" />
     <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
   </ItemGroup>
 </Project>

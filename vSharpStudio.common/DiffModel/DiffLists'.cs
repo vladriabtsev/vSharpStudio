@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore.Metadata;
 
     public enum DiffEnumHistoryAnnotation
     {
@@ -17,7 +16,7 @@
     }
 
     public class DiffLists<T>
-            where T : IGuid, IName, IMutableAnnotatable
+            where T : IGuid, IName, IObjectAnnotatable
     {
         protected Dictionary<string, T> dic_oldest;
         protected Dictionary<string, T> dic_prev;

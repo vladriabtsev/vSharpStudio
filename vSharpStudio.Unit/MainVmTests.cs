@@ -9,8 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.ViewModels;
 using vSharpStudio.common;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Microsoft.EntityFrameworkCore.Metadata;
 using System.IO;
 
 namespace vSharpStudio.Unit

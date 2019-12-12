@@ -9,8 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using Google.Protobuf;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;

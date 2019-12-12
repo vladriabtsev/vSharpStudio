@@ -23,6 +23,9 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="DbModels\MsSqlModelBuilderVisitor.cs" />
+    <Compile Remove="Migration\ConfigToModelVisitor.cs" />
+    <Compile Remove="Migration\DbMigration.cs" />
     <Compile Remove="start\OperationReporter.cs" />
     <Compile Remove="start\StartServices.cs" />
   </ItemGroup>
@@ -120,6 +123,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DbModels\" />
     <Folder Include="start\" />
   </ItemGroup>
 </Project>

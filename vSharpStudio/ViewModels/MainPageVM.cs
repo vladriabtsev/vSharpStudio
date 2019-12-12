@@ -436,12 +436,12 @@ namespace vSharpStudio.ViewModels
 
         private Config _Config;
 
-        public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
-        {
-            Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
-            this.Config.AcceptConfigNodeVisitor(visitor);
-            return visitor.Result;
-        }
+        //public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
+        //{
+        //    Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
+        //    this.Config.AcceptConfigNodeVisitor(visitor);
+        //    return visitor.Result;
+        //}
 
         #region Main
 

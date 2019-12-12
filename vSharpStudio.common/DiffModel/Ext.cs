@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using vSharpStudio.common;
 
 namespace vSharpStudio.common
@@ -36,7 +34,7 @@ namespace vSharpStudio.common
         }
 
         #region Annotation
-        public static bool IsNew(this IMutableAnnotatable obj)
+        public static bool IsNew(this IObjectAnnotatable obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.New.ToString()) == null)
             {
@@ -45,7 +43,7 @@ namespace vSharpStudio.common
 
             return true;
         }
-        public static bool IsDeprecated(this IMutableAnnotatable obj)
+        public static bool IsDeprecated(this IObjectAnnotatable obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.Deprecated.ToString()) == null)
             {
@@ -55,7 +53,7 @@ namespace vSharpStudio.common
             return true;
         }
 
-        public static bool IsDeleted(this IMutableAnnotatable obj)
+        public static bool IsDeleted(this IObjectAnnotatable obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.Deleted.ToString()) == null)
             {
@@ -65,7 +63,7 @@ namespace vSharpStudio.common
             return true;
         }
 
-        public static bool IsRenamed(this IMutableAnnotatable obj)
+        public static bool IsRenamed(this IObjectAnnotatable obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.Renamed.ToString()) == null)
             {
