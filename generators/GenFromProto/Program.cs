@@ -107,6 +107,10 @@ namespace GenFromProto
         }
         public static bool IsDefaultBase(this Google.Protobuf.Reflection.MessageDescriptor from)
         {
+            if (from.Name.EndsWith("_nullable"))
+                return false;
+            if (from.Name.EndsWith("_nullable_enum"))
+                return false;
             var doc = JsonDoc.Files[from.File.Name].Messages[from.Name];
             if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
                 return true;
@@ -114,6 +118,13 @@ namespace GenFromProto
         }
         public static bool IsDefaultBase(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
+            if (from.IsMessage())
+            {
+                if (from.MessageType.Name.EndsWith("_nullable"))
+                    return false;
+                if (from.MessageType.Name.EndsWith("_nullable_enum"))
+                    return false;
+            }
             var doc = JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
             if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
                 return true;
@@ -271,8 +282,25 @@ namespace GenFromProto
                     sb.Append(field.ToTypeCs());
                     sb.Append(")");
                     sb.Append(from_proto);
+                    sb.Append(".");
                     sb.Append(field.Name.ToNameCs());
-                    sb.Append(".Value : (");
+                    switch (field.MessageType.Name)
+                    {
+                        //case "Any":
+                        //    return "Google.Protobuf.WellKnownTypes.Any";
+                        case "time_span_nullable":
+                            sb.Append(".Value.ToTimeSpan() : (");
+                            break;
+                        case "date_time_nullable":
+                            sb.Append(".Value.ToDateTime() : (");
+                            break;
+                        default:
+                            sb.Append(".Value : (");
+                            //sb.Append("/*");
+                            //sb.Append(field.MessageType.Name);
+                            //sb.Append("*/");
+                            break;
+                    }
                     sb.Append(field.ToTypeCs());
                     sb.Append(")null");
                 }
@@ -309,6 +337,84 @@ namespace GenFromProto
             }
             return sb.ToString();
         }
+        //public static string ConvertToProto(this Google.Protobuf.Reflection.FieldDescriptor field, string from_proto)
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+        //    if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message)
+        //    {
+        //        if (field.IsNullable())
+        //        {
+        //            //sb.Append(from_proto);
+        //            //sb.Append(".");
+        //            //sb.Append(field.Name.ToNameCs());
+        //            //sb.Append(".HasValue ? (");
+        //            //sb.Append(field.ToTypeCs());
+        //            //sb.Append(")");
+        //            //sb.Append(from_proto);
+        //            //sb.Append(".");
+        //            //sb.Append(field.Name.ToNameCs());
+        //            switch (field.MessageType.Name)
+        //            {
+        //                //case "Any":
+        //                //    return "Google.Protobuf.WellKnownTypes.Any";
+        //                case "time_span_nullable":
+        //                    sb.Append("Google.Protobuf.WellKnownTypes.Duration.FromTimeSpan(");
+        //                    sb.Append(from_proto);
+        //                    sb.Append(".");
+        //                    sb.Append(field.Name.ToNameCs());
+        //                    sb.Append(".Value)");
+        //                    break;
+        //                case "date_time_nullable":
+        //                    sb.Append("Google.Protobuf.WellKnownTypes.Duration.FromDateTime(");
+        //                    sb.Append(from_proto);
+        //                    sb.Append(".");
+        //                    sb.Append(field.Name.ToNameCs());
+        //                    sb.Append(".Value)");
+        //                    break;
+        //                default:
+        //                    sb.Append(".Value : (");
+        //                    //sb.Append("/*");
+        //                    //sb.Append(field.MessageType.Name);
+        //                    //sb.Append("*/");
+        //                    break;
+        //            }
+        //            //sb.Append(field.ToTypeCs());
+        //            //sb.Append(")null");
+        //        }
+        //        else
+        //        {
+        //            switch (field.MessageType.Name)
+        //            {
+        //                case "Any":
+        //                    sb.Append("Google.Protobuf.WellKnownTypes.Any");
+        //                    break;
+        //                default:
+        //                    sb.Append(from_proto);
+        //                    sb.Append(".");
+        //                    sb.Append(field.Name.ToNameCs());
+        //                    break;
+        //            }
+        //        }
+
+        //    }
+        //    else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum)
+        //    {
+        //        sb.Append("(");
+        //        sb.Append(field.EnumType.Name.ToNameCs());
+        //        sb.Append(")");
+        //        sb.Append(from_proto);
+        //        sb.Append(".");
+        //        sb.Append(field.Name.ToNameCs());
+        //    }
+        //    else
+        //    {
+        //        sb.Append(from_proto);
+        //        sb.Append(".");
+        //        sb.Append(field.Name.ToNameCs());
+        //    }
+        //    return sb.ToString();
+        //}
         public static string FieldTypeSimpleToTypeCs(Google.Protobuf.Reflection.FieldType from)
         {
             switch (from)
