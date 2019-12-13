@@ -107,7 +107,7 @@ namespace GenFromProto
         }
         public static bool IsDefaultBase(this Google.Protobuf.Reflection.MessageDescriptor from)
         {
-            var doc=JsonDoc.Files[from.File.Name].Messages[from.Name];
+            var doc = JsonDoc.Files[from.File.Name].Messages[from.Name];
             if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
                 return true;
             return false;
@@ -144,6 +144,14 @@ namespace GenFromProto
                 default:
                     return false;
             }
+        }
+        public static bool IsNullable(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            if (from.MessageType.Name.EndsWith("_nullable"))
+                return true;
+            if (from.MessageType.Name.EndsWith("_nullable_enum"))
+                return true;
+            return false;
         }
         public static bool IsAny(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
@@ -194,8 +202,11 @@ namespace GenFromProto
                         case "long_nullable":
                         case "string_nullable":
                         case "Timestamp":
+                        case "Duration":
                             return true;
                         default:
+                            if (from.MessageType.Name.EndsWith("_nullable_enum"))
+                                return true;
                             return false;
                     }
                 default:
@@ -232,6 +243,10 @@ namespace GenFromProto
                     case "Timestamp":
                         return "Google.Protobuf.WellKnownTypes.Timestamp";
                     default:
+                        if (from.MessageType.Name.EndsWith("_nullable"))
+                            return from.MessageType.Name.Replace("_nullable", "").ToNameCs() + "?";
+                        if (from.MessageType.Name.EndsWith("_nullable_enum"))
+                            return from.MessageType.Name.Replace("_nullable_enum", "").ToNameCs() + "?";
                         return from.MessageType.Name.ToNameCs();
                 }
             }
@@ -240,6 +255,59 @@ namespace GenFromProto
                 return from.EnumType.Name.ToNameCs();
             }
             return FieldTypeSimpleToTypeCs(from.FieldType);
+        }
+        public static string ConvertToVm(this Google.Protobuf.Reflection.FieldDescriptor field, string from_proto)
+        {
+            StringBuilder sb = new StringBuilder();
+            // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+            if (field.FieldType == Google.Protobuf.Reflection.FieldType.Message)
+            {
+                if (field.IsNullable())
+                {
+                    sb.Append(from_proto);
+                    sb.Append(".");
+                    sb.Append(field.Name.ToNameCs());
+                    sb.Append(".HasValue ? (");
+                    sb.Append(field.ToTypeCs());
+                    sb.Append(")");
+                    sb.Append(from_proto);
+                    sb.Append(field.Name.ToNameCs());
+                    sb.Append(".Value : (");
+                    sb.Append(field.ToTypeCs());
+                    sb.Append(")null");
+                }
+                else
+                {
+                    switch (field.MessageType.Name)
+                    {
+                        case "Any":
+                            sb.Append("Google.Protobuf.WellKnownTypes.Any");
+                            break;
+                        default:
+                            sb.Append(from_proto);
+                            sb.Append(".");
+                            sb.Append(field.Name.ToNameCs());
+                            break;
+                    }
+                }
+
+            }
+            else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum)
+            {
+                sb.Append("(");
+                sb.Append(field.EnumType.Name.ToNameCs());
+                sb.Append(")");
+                sb.Append(from_proto);
+                sb.Append(".");
+                sb.Append(field.Name.ToNameCs());
+            }
+            else
+            {
+                sb.Append(from_proto);
+                sb.Append(".");
+                sb.Append(field.Name.ToNameCs());
+            }
+            return sb.ToString();
         }
         public static string FieldTypeSimpleToTypeCs(Google.Protobuf.Reflection.FieldType from)
         {

@@ -130,7 +130,7 @@ private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
 [BrowsableAttribute(false)]
-public I<#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+public <# if (!field.IsNullable()) { #>I<# } #><#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <# } else { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 

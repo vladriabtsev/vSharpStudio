@@ -170,53 +170,47 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
         if (field.IsAny())
             continue;
         if (field.IsRepeated) { #>
-<# if (field.IsCsSimple()) { #>
+<#        if (field.IsCsSimple()) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
-<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<# if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
-<# } #>
+<#          } #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>()); // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
-<# } else { #>
+<#        } else { #>
     vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<# if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
-<# } else { #>
+<#          } else { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t); // <#=Helper.FilePos() #>
-<# } #>
+<#          } #>
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
-<# } #>
-<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
-    vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : ""; // <#=Helper.FilePos() #>
-<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
-    vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.HasValue ? m.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; // <#=Helper.FilePos() #>
-<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
-    if (vm.<#= field.Name.ToNameCs() #> == null) // <#=Helper.FilePos() #>
-<# if (field.IsDefaultBase()) { #>
-        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(vm); // <#=Helper.FilePos() #>
-<# } else { #>
-        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=Helper.FilePos() #>
-<# } #>
-    <#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>); // <#=Helper.FilePos() #>
-<#      } else if (field.IsBytes()) { #>
-    vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>.ToByteArray(); // <#=Helper.FilePos() #>
-<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>
-    vm.<#= field.Name.ToNameCs() #> = (<#= field.ToTypeCs() #>)m.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
+<#        } #>
 <#      } else { #>
-    vm.<#= field.Name.ToNameCs() #> = m.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
-<#      } 
+<#        if (!field.IsCsSimple() && field.IsMessage()) { #>
+    if (vm.<#= field.Name.ToNameCs() #> == null) // <#=Helper.FilePos() #>
+<#          if (field.IsDefaultBase()) { #>
+        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(vm); // <#=Helper.FilePos() #>
+<#          } else { #>
+        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=Helper.FilePos() #>
+<#          } #>
+    <#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, vm.<#= field.Name.ToNameCs() #>); // <#=Helper.FilePos() #>
+<#        } else { #>
+    vm.<#= field.Name.ToNameCs() #> = <#= field.ConvertToVm("m") #>; // <#=Helper.FilePos() #>
+<#        } 
+        } 
      } 
      #>
 <# if (this.Doc.IsDefaultBase) { #>

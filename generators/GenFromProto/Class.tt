@@ -50,6 +50,7 @@
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
+<# } else if (t.IsNullable()) { #>
 <# } else { #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>

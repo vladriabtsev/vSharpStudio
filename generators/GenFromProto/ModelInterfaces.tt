@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using System;
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
@@ -44,7 +45,7 @@ IEnumerable<I<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get; } // 
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
-<#       } else if (field.IsAny()) { #>
+<#       } else if (field.IsAny() || field.IsNullable()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>
 I<#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>

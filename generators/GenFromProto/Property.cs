@@ -730,7 +730,20 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changed();\r\n[BrowsableAttribute(false)]\r\npublic I");
+            this.Write("Changed();\r\n[BrowsableAttribute(false)]\r\npublic ");
+            
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ if (!field.IsNullable()) { 
+            
+            #line default
+            #line hidden
+            this.Write("I");
+            
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ } 
+            
+            #line default
+            #line hidden
             
             #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
