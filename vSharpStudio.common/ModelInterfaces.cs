@@ -187,12 +187,25 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         IEnumerable<IAppSolution> IListAppSolutions { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IPluginsGroup : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
-    {
-        string PluginsGroupGuid { get; } // ModelInterfaces.tt Line: 47
-        string PluginsGroupInfo { get; } // ModelInterfaces.tt Line: 47
-        string PluginsGlobalSettins { get; } // ModelInterfaces.tt Line: 47
-    }
+    ///////////////////////////////////////////////////
+    /// message proto_plugins_group {
+    /// // @attr [PropertyOrderAttribute(1)]
+    /// // @attr [DisplayName("Group")]
+    /// // @attr [Description("Group compatible plugins of one vendor")]
+    /// // @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]
+    /// string plugins_group_guid = 1;
+    /// // @attr [PropertyOrderAttribute(2)]
+    /// // @attr [DisplayName("Info")]
+    /// // @attr [Description("Plugin short information")]
+    /// // @attr [ReadOnly(true)]
+    /// string plugins_group_info = 2;
+    /// // @attr [PropertyOrderAttribute(3)]
+    /// // @attr [DisplayName("Settings")]
+    /// // @attr [Description("Global settings for plugin generators")]
+    /// // @attr [ExpandableObjectAttribute()]
+    /// string plugins_global_settins = 3;
+    /// }
+    ///////////////////////////////////////////////////
     
     public partial interface IAppSolution : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
@@ -205,9 +218,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 51
         IEnumerable<IAppProject> IListAppProjects { get; } // ModelInterfaces.tt Line: 44
-        IPluginsGroup IPluginsGroup1 { get; } // ModelInterfaces.tt Line: 51
-        IPluginsGroup IPluginsGroup2 { get; } // ModelInterfaces.tt Line: 51
-        IPluginsGroup IPluginsGroup3 { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IAppProject : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -223,10 +233,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        string GroupPluginsGuid { get; } // ModelInterfaces.tt Line: 47
         string PluginGuid { get; } // ModelInterfaces.tt Line: 47
-        string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
+        string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
         string RelativePathToGeneratedFile { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// 
+        ///////////////////////////////////////////////////
+        string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////

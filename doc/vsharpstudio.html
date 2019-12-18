@@ -335,10 +335,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_plugins_group"><span class="badge">M</span>proto_plugins_group</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_properties_tab"><span class="badge">M</span>proto_properties_tab</a>
                 </li>
               
@@ -694,37 +690,46 @@ it will override previous settings
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_plugins_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
                 </tr>
               
                 <tr>
                   <td>plugin_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Plugin&#34;)]
+@attr [Description(&#34;Plugins with generators&#34;)]
+@attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))] </p></td>
                 </tr>
               
                 <tr>
-                  <td>generator_settings</td>
+                  <td>plugin_generator_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [DisplayName(&#34;Generator&#34;)]
+@attr [Description(&#34;Plugin generator&#34;)]
+@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] </p></td>
                 </tr>
               
                 <tr>
                   <td>relative_path_to_generated_file</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Output&#34;)]
 @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generator_settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
             </tbody>
@@ -735,7 +740,7 @@ it will override previous settings
         
       
         <h3 id="proto_config.proto_app_solution">proto_app_solution</h3>
-        <p></p>
+        <p>message proto_plugins_group {</p><p>// @attr [PropertyOrderAttribute(1)]</p><p>// @attr [DisplayName("Group")]</p><p>// @attr [Description("Group compatible plugins of one vendor")]</p><p>// @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]</p><p>string plugins_group_guid = 1;</p><p>// @attr [PropertyOrderAttribute(2)]</p><p>// @attr [DisplayName("Info")]</p><p>// @attr [Description("Plugin short information")]</p><p>// @attr [ReadOnly(true)]</p><p>string plugins_group_info = 2;</p><p>// @attr [PropertyOrderAttribute(3)]</p><p>// @attr [DisplayName("Settings")]</p><p>// @attr [Description("Global settings for plugin generators")]</p><p>// @attr [ExpandableObjectAttribute()]</p><p>string plugins_global_settins = 3;</p><p>}</p>
 
         
           <table class="field-table">
@@ -798,36 +803,6 @@ it will override previous settings
                   <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>plugins_group1</td>
-                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(11)]
-@attr [DisplayName(&#34;Group 1&#34;)]
-@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>plugins_group2</td>
-                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(12)]
-@attr [DisplayName(&#34;Group 2&#34;)]
-@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>plugins_group3</td>
-                  <td><a href="#proto_config.proto_plugins_group">proto_plugins_group</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(13)]
-@attr [DisplayName(&#34;Group 3&#34;)]
-@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
             </tbody>
@@ -2948,53 +2923,6 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_plugins_group">proto_plugins_group</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>plugins_group_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Group&#34;)]
-@attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
-@attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>plugins_group_info</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Info&#34;)]
-@attr [Description(&#34;Plugin short information&#34;)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>plugins_global_settins</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Settings&#34;)]
-@attr [Description(&#34;Global settings for plugin generators&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
                 </tr>
               
             </tbody>

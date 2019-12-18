@@ -8,20 +8,20 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class PluginsGroup
     {
-        public override string ToString()
-        {
-            if (string.IsNullOrWhiteSpace(this.PluginsGroupInfo))
-                return "Select plugin group";
-            return this.PluginsGroupInfo;
-        }
-        public List<Plugin> ListPluginsGroups
-        {
-            get
-            {
-                var cfg = (Config)this.GetConfig();
-                return (from p in cfg.GroupPlugins.ListPlugins select p).Distinct(new PluginGroupEqualityComparer()).ToList();
-            }
-        }
+        //public override string ToString()
+        //{
+        //    if (string.IsNullOrWhiteSpace(this.PluginsGroupInfo))
+        //        return "Select plugin group";
+        //    return this.PluginsGroupInfo;
+        //}
+        //public List<Plugin> ListPluginsGroups
+        //{
+        //    get
+        //    {
+        //        var cfg = (Config)this.GetConfig();
+        //        return (from p in cfg.GroupPlugins.ListPlugins select p).Distinct(new PluginGroupEqualityComparer()).ToList();
+        //    }
+        //}
     }
     class PluginGroupEqualityComparer : IEqualityComparer<Plugin>
     {

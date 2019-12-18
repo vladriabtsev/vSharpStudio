@@ -239,6 +239,7 @@ message proto_group_list_app_solutions {
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
 }
+/*
 message proto_plugins_group {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Group")]
@@ -256,6 +257,7 @@ message proto_plugins_group {
     // @attr [ExpandableObjectAttribute()]
     string plugins_global_settins = 3;
 }
+*/
 message proto_app_solution {
     string guid = 1;
     string name = 2;
@@ -280,6 +282,7 @@ message proto_app_solution {
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project list_app_projects = 10;
 
+    /*
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("Group 1")]
     // @attr [Description("Group compatible plugins of one vendor")]
@@ -297,7 +300,7 @@ message proto_app_solution {
     // @attr [Description("Group compatible plugins of one vendor")]
     // @attr [ExpandableObjectAttribute()]
     proto_plugins_group plugins_group3 = 13;
-
+    */
 }
 message proto_app_project {
     string guid = 1;
@@ -324,16 +327,26 @@ message proto_app_project_generator {
     string guid = 1;
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    
-    string group_plugins_guid = 6;
-    string plugin_guid = 7;
-    string generator_settings = 8;
     // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Plugin")]
+    // @attr [Description("Plugins with generators")]
+    // @attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))]
+   string plugin_guid = 6;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Generator")]
+    // @attr [Description("Plugin generator")]
+    // @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]
+   string plugin_generator_guid = 7;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Output")]
     // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
-    string relative_path_to_generated_file = 9;
+    string relative_path_to_generated_file = 8;
+    // @attr [PropertyOrderAttribute(7)]
+    string generator_settings = 9;
+    // @attr [ReadOnly(true)]
 }
 /** 
  * @exclude

@@ -16,6 +16,7 @@ namespace vSharpStudio.common
     {
         ILoggerFactory LoggerFactory { get; set; }
 
+        // Provider name as from connection string
         string ProviderName { get; }
 
         IvPluginGeneratorSettingsVM GetConnectionStringMvvm(string provider, string connectionString);

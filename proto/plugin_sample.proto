@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package proto_plugin_sample;
+option csharp_namespace = "Proto.Plugin";
+
+
+// @base : ViewModelValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettings.GeneratorDbSchemaSettingsValidator>
+message proto_generator_db_schema_settings {
+    bool is_schema_param1 = 1;
+    bool_nullable is_schema_param2 = 2;
+    string schema_param3 = 3;
+}
+
+// @base : ViewModelValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettings.GeneratorDbAccessSettingsValidator>
+message proto_generator_db_access_settings {
+    bool is_access_param1 = 1;
+    bool_nullable is_access_param2 = 2;
+    string access_param3 = 3;
+}
+
+// all simple nullable (generator check suffics '_nullable')
+message bool_nullable {
+    bool has_value = 1;
+    bool value = 2;
+}

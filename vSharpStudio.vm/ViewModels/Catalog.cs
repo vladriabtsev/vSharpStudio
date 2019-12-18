@@ -31,6 +31,9 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupForms, 4);
             this.GroupReports.Parent = this;
             this.Children.Add(this.GroupReports, 5);
+            this.Setting = new System.Dynamic.ExpandoObject();
+            this.Setting.Kuku = "kuku";
+            ((IDictionary<string, object>)this.Setting)["Date"] = new DateTime();
         }
 
         public Catalog(ITreeConfigNode parent, string name)
@@ -133,5 +136,7 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        [ExpandableObjectAttribute()]
+        public dynamic Setting { get; set; }
     }
 }

@@ -21,9 +21,7 @@ namespace vSharpStudio.common
         /// Default setings name
         /// </summary>
         string DefaultSettingsName { get; }
-
         string Description { get; }
-
         vPluginLayerTypeEnum PluginGeneratorType { get; }
         // MVVM settings model (if settings == null then empty model will be created)
         /// <summary>

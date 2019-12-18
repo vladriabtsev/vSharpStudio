@@ -87,6 +87,7 @@
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Design\EFCore.Design.csproj" />
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj" />
     <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj" />
+    <ProjectReference Include="..\vPlugin.Sample\vPlugin.Sample.csproj" />
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />

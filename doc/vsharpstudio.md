@@ -43,7 +43,6 @@
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
-    - [proto_plugins_group](#proto_config.proto_plugins_group)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
@@ -162,11 +161,13 @@ General DB settings
 | guid | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| group_plugins_guid | [string](#string) |  |  |
-| plugin_guid | [string](#string) |  |  |
-| generator_settings | [string](#string) |  |  |
-| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| plugin_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Plugin&#34;)] @attr [Description(&#34;Plugins with generators&#34;)] @attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))] |
+| plugin_generator_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Generator&#34;)] @attr [Description(&#34;Plugin generator&#34;)] @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] |
+| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Output&#34;)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| generator_settings | [string](#string) |  | @attr [PropertyOrderAttribute(7)]
+
+@attr [ReadOnly(true)] |
 
 
 
@@ -176,7 +177,23 @@ General DB settings
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
-
+message proto_plugins_group {
+// @attr [PropertyOrderAttribute(1)]
+// @attr [DisplayName(&#34;Group&#34;)]
+// @attr [Description(&#34;Group compatible plugins of one vendor&#34;)]
+// @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]
+string plugins_group_guid = 1;
+// @attr [PropertyOrderAttribute(2)]
+// @attr [DisplayName(&#34;Info&#34;)]
+// @attr [Description(&#34;Plugin short information&#34;)]
+// @attr [ReadOnly(true)]
+string plugins_group_info = 2;
+// @attr [PropertyOrderAttribute(3)]
+// @attr [DisplayName(&#34;Settings&#34;)]
+// @attr [Description(&#34;Global settings for plugin generators&#34;)]
+// @attr [ExpandableObjectAttribute()]
+string plugins_global_settins = 3;
+}
 
 
 | Field | Type | Label | Description |
@@ -188,9 +205,6 @@ General DB settings
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;Relative path to solution folder&#34;)] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
-| plugins_group1 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Group 1&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
-| plugins_group2 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Group 2&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
-| plugins_group3 | [proto_plugins_group](#proto_config.proto_plugins_group) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Group 3&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [ExpandableObjectAttribute()] |
 
 
 
@@ -870,23 +884,6 @@ main view forms hierarchy parent
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
 | file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
-
-
-
-
-
-
-<a name="proto_config.proto_plugins_group"></a>
-
-### proto_plugins_group
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plugins_group_guid | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Group&#34;)] @attr [Description(&#34;Group compatible plugins of one vendor&#34;)] @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))] |
-| plugins_group_info | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Info&#34;)] @attr [Description(&#34;Plugin short information&#34;)] @attr [ReadOnly(true)] |
-| plugins_global_settins | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Settings&#34;)] @attr [Description(&#34;Global settings for plugin generators&#34;)] @attr [ExpandableObjectAttribute()] |
 
 
 

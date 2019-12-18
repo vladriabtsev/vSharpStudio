@@ -16,6 +16,9 @@
     <Protobuf Include="..\proto\nullable.proto">
       <Link>nullable.proto</Link>
     </Protobuf>
+    <Protobuf Include="..\proto\plugin_sample.proto">
+      <Link>plugin_sample.proto</Link>
+    </Protobuf>
     <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
       <Link>proto\proto_doc.proto</Link>
     </Protobuf>

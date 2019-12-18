@@ -4,7 +4,28 @@
 
     <!--https://docs.microsoft.com/en-us/dotnet/framework/wpf/graphics-multimedia/path-markup-syntax-->
     <!--http://blackwasp.co.uk/WPFPathMarkupSyntax.aspx-->
-
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\GenerateFile-->
+    <ControlTemplate x:Key="iconGenerateFile">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M2.9997,-0.000199999999999534L2.9997,3.0008 -0.000300000000000189,3.0008 -0.000300000000000189,5.9998 2.9997,5.9998 2.9997,15.9998 16.0007,15.9998 16.0007,4.3788 11.6207,-0.000199999999999534z" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M10,6L10,2 6.996,2 9.496,4.5 5,8.996 5,14 14,14 14,6z M13.793,5L11,5 11,2.207z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M11,5L11,2.207 13.793,5z M11.207,1L5.996,1 6.996,2 10,2 10,6 14,6 14,14 5,14 5,8.996 4.979,9.018 4,8.039 4,15 15,15 15,4.793z" />
+                                    <GeometryDrawing Brush="#FF00529C" Geometry="F1M8.082,4.5L4.978,7.604 4.271,6.896 6.168,5 1,5 1,4 6.168,4 4.271,2.104 4.978,1.396z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\3DScene-->
     <ControlTemplate x:Key="icon3DScene">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -350,23 +371,23 @@
     <!--C:\ext\icons\VS2017 Image Library\VS2017\ApplicationGroup-->
     <ControlTemplate x:Key="iconApplicationGroup">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-        <Rectangle Width="16" Height="16">
-            <Rectangle.Fill>
-                <DrawingBrush>
-                    <DrawingBrush.Drawing>
-                        <DrawingGroup>
-                            <DrawingGroup.Children>
-                                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
-                                <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M5.0004,-0.000199999999999534L5.0004,4.9998 0.000399999999999956,4.9998 0.000399999999999956,15.9998 10.9994,15.9998 10.9994,10.9998 16.0004,10.9998 16.0004,-0.000199999999999534z" />
-                                <GeometryDrawing Brush="#FF424242" Geometry="F1M15,1L15,10 11,10 11,9 14,9 14,4 7,4 7,5 6,5 6,1z M2,9L9,9 9,14 2,14z M1,15L10,15 10,6 1,6z" />
-                                <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M7,4L7,5 11,5 11,9 14,9 14,4z M2,9L9,9 9,14 2,14z" />
-                            </DrawingGroup.Children>
-                        </DrawingGroup>
-                    </DrawingBrush.Drawing>
-                </DrawingBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-    </Viewbox>
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M5.0004,-0.000199999999999534L5.0004,4.9998 0.000399999999999956,4.9998 0.000399999999999956,15.9998 10.9994,15.9998 10.9994,10.9998 16.0004,10.9998 16.0004,-0.000199999999999534z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M15,1L15,10 11,10 11,9 14,9 14,4 7,4 7,5 6,5 6,1z M2,9L9,9 9,14 2,14z M1,15L10,15 10,6 1,6z" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M7,4L7,5 11,5 11,9 14,9 14,4z M2,9L9,9 9,14 2,14z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
     </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\Cancel-->
     <ControlTemplate x:Key="iconCancel">

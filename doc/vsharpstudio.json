@@ -469,17 +469,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(5)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_plugins_guid",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -489,7 +479,7 @@
             },
             {
               "name": "plugin_guid",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Plugin\")]\n@attr [Description(\"Plugins with generators\")]\n@attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -498,8 +488,8 @@
               "defaultValue": ""
             },
             {
-              "name": "generator_settings",
-              "description": "",
+              "name": "plugin_generator_guid",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Generator\")]\n@attr [Description(\"Plugin generator\")]\n@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -509,7 +499,17 @@
             },
             {
               "name": "relative_path_to_generated_file",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "generator_settings",
+              "description": "@attr [PropertyOrderAttribute(7)]\n\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -523,7 +523,7 @@
           "name": "proto_app_solution",
           "longName": "proto_app_solution",
           "fullName": "proto_config.proto_app_solution",
-          "description": "",
+          "description": "message proto_plugins_group {\n// @attr [PropertyOrderAttribute(1)]\n// @attr [DisplayName(\"Group\")]\n// @attr [Description(\"Group compatible plugins of one vendor\")]\n// @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]\nstring plugins_group_guid = 1;\n// @attr [PropertyOrderAttribute(2)]\n// @attr [DisplayName(\"Info\")]\n// @attr [Description(\"Plugin short information\")]\n// @attr [ReadOnly(true)]\nstring plugins_group_info = 2;\n// @attr [PropertyOrderAttribute(3)]\n// @attr [DisplayName(\"Settings\")]\n// @attr [Description(\"Global settings for plugin generators\")]\n// @attr [ExpandableObjectAttribute()]\nstring plugins_global_settins = 3;\n}",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -595,36 +595,6 @@
               "type": "proto_app_project",
               "longType": "proto_app_project",
               "fullType": "proto_config.proto_app_project",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "plugins_group1",
-              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Group 1\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_plugins_group",
-              "longType": "proto_plugins_group",
-              "fullType": "proto_config.proto_plugins_group",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "plugins_group2",
-              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Group 2\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_plugins_group",
-              "longType": "proto_plugins_group",
-              "fullType": "proto_config.proto_plugins_group",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "plugins_group3",
-              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Group 3\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_plugins_group",
-              "longType": "proto_plugins_group",
-              "fullType": "proto_config.proto_plugins_group",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3134,47 +3104,6 @@
             {
               "name": "file_path",
               "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_plugins_group",
-          "longName": "proto_plugins_group",
-          "fullName": "proto_config.proto_plugins_group",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "plugins_group_guid",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Group\")]\n@attr [Description(\"Group compatible plugins of one vendor\")]\n@attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "plugins_group_info",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Info\")]\n@attr [Description(\"Plugin short information\")]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "plugins_global_settins",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Settings\")]\n@attr [Description(\"Global settings for plugin generators\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
               "type": "string",
               "longType": "string",

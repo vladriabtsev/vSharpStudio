@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ResultFiles Include="$(TargetDir)*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\vSharpStudio.proto\obj\Debug\netstandard2.0\PluginSample.cs" Link="PluginSample.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+  </ItemGroup>
+  <Target Name="CopyPlugin" AfterTargets="PostBuildEvent">
+    <!--<Message Text="**********" Importance="high" />
+    <Message Text="@(ResultFiles)" Importance="high" />
+    <Message Text="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" Importance="high" />
+    <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
+    <Message Text="**********" Importance="high" />-->
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
+  </Target>
+</Project>
