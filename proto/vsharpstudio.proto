@@ -37,12 +37,12 @@ message proto_plugin {
     uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator list_generators = 6;
-    // @attr [ReadOnly(true)]
-    string group_guid = 7;
-    // @attr [ReadOnly(true)]
-    string group_version = 8;
-    // @attr [ReadOnly(true)]
-    string group_info = 9;
+    // attr [ReadOnly(true)]
+    //string group_guid = 7;
+    // attr [ReadOnly(true)]
+    //string group_version = 8;
+    // attr [ReadOnly(true)]
+    //string group_info = 9;
 }
 message proto_plugin_generator {
     // @attr [ReadOnly(true)]
@@ -333,19 +333,27 @@ message proto_app_project_generator {
     // @attr [DisplayName("Plugin")]
     // @attr [Description("Plugins with generators")]
     // @attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))]
-   string plugin_guid = 6;
+    string plugin_guid = 6;
     // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Description")]
+    // @attr [ReadOnly(true)]
+    string description_plugin = 7;
+    // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Generator")]
     // @attr [Description("Plugin generator")]
     // @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]
-   string plugin_generator_guid = 7;
-    // @attr [PropertyOrderAttribute(6)]
+   string plugin_generator_guid = 8;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Description")]
+    // @attr [ReadOnly(true)]
+    string description_generator = 9;
+    // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Output")]
     // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
-    string relative_path_to_generated_file = 8;
-    // @attr [PropertyOrderAttribute(7)]
-    string generator_settings = 9;
+    string relative_path_to_generated_file = 10;
+    // @attr [BrowsableAttribute(false)]
+    string generator_settings = 11;
     // @attr [ReadOnly(true)]
 }
 /** 

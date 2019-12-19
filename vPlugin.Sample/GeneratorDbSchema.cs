@@ -38,7 +38,7 @@ namespace vPlugin.Sample
         {
             if (gen_settings != null)
                 return gen_settings;
-            if (settings == null)
+            if (string.IsNullOrWhiteSpace(settings))
                 gen_settings = new GeneratorDbSchemaSettings();
             else
             {

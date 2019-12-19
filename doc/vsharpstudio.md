@@ -163,9 +163,11 @@ General DB settings
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | plugin_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Plugin&#34;)] @attr [Description(&#34;Plugins with generators&#34;)] @attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))] |
-| plugin_generator_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Generator&#34;)] @attr [Description(&#34;Plugin generator&#34;)] @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] |
-| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Output&#34;)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
-| generator_settings | [string](#string) |  | @attr [PropertyOrderAttribute(7)]
+| description_plugin | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Description&#34;)] @attr [ReadOnly(true)] |
+| plugin_generator_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Generator&#34;)] @attr [Description(&#34;Plugin generator&#34;)] @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] |
+| description_generator | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Description&#34;)] @attr [ReadOnly(true)] |
+| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output&#34;)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)]
 
 @attr [ReadOnly(true)] |
 
@@ -840,10 +842,9 @@ main view forms hierarchy parent
 | name | [string](#string) |  | @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
-| group_guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| group_version | [string](#string) |  | @attr [ReadOnly(true)] |
-| group_info | [string](#string) |  | @attr [ReadOnly(true)] |
+| list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)]
+
+attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_version = 8; attr [ReadOnly(true)] string group_info = 9; |
 
 
 

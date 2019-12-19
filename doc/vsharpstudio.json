@@ -488,8 +488,28 @@
               "defaultValue": ""
             },
             {
+              "name": "description_plugin",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Description\")]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "plugin_generator_guid",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Generator\")]\n@attr [Description(\"Plugin generator\")]\n@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Generator\")]\n@attr [Description(\"Plugin generator\")]\n@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description_generator",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Description\")]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -499,7 +519,7 @@
             },
             {
               "name": "relative_path_to_generated_file",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -509,7 +529,7 @@
             },
             {
               "name": "generator_settings",
-              "description": "@attr [PropertyOrderAttribute(7)]\n\n@attr [ReadOnly(true)]",
+              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2931,41 +2951,11 @@
             },
             {
               "name": "list_generators",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [BrowsableAttribute(false)]\n\nattr [ReadOnly(true)]\nstring group_guid = 7;\nattr [ReadOnly(true)]\nstring group_version = 8;\nattr [ReadOnly(true)]\nstring group_info = 9;",
               "label": "repeated",
               "type": "proto_plugin_generator",
               "longType": "proto_plugin_generator",
               "fullType": "proto_config.proto_plugin_generator",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_version",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_info",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }

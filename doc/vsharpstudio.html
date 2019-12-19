@@ -704,20 +704,38 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>plugin_generator_guid</td>
+                  <td>description_plugin</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>plugin_generator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Generator&#34;)]
 @attr [Description(&#34;Plugin generator&#34;)]
 @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] </p></td>
                 </tr>
               
                 <tr>
+                  <td>description_generator</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>relative_path_to_generated_file</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(6)]
+                  <td><p>@attr [PropertyOrderAttribute(8)]
 @attr [DisplayName(&#34;Output&#34;)]
 @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
@@ -727,7 +745,7 @@ it will override previous settings
                   <td>generator_settings</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
+                  <td><p>@attr [BrowsableAttribute(false)]
 
 @attr [ReadOnly(true)] </p></td>
                 </tr>
@@ -2776,28 +2794,14 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators</td>
                   <td><a href="#proto_config.proto_plugin_generator">proto_plugin_generator</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_version</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_info</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+attr [ReadOnly(true)]
+string group_guid = 7;
+attr [ReadOnly(true)]
+string group_version = 8;
+attr [ReadOnly(true)]
+string group_info = 9; </p></td>
                 </tr>
               
             </tbody>

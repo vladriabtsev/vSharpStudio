@@ -33,10 +33,10 @@ namespace vPlugin.Sample
         public string Licence { get; protected set; }
         public List<IvPluginGenerator> ListGenerators { get; protected set; }
 
-        public string GroupGuid => throw new NotImplementedException();
+        //public string GroupGuid => throw new NotImplementedException();
 
-        public string GroupVersion => throw new NotImplementedException();
+        //public string GroupVersion => throw new NotImplementedException();
 
-        public string GroupInfo => throw new NotImplementedException();
+        //public string GroupInfo => throw new NotImplementedException();
     }
 }

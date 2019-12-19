@@ -211,12 +211,12 @@ namespace vSharpStudio.ViewModels
                 // attaching plugin
                 foreach (var tt in this.Config.GroupPlugins.ListPlugins)
                 {
-                    if (tt.Guid == t.Value.Guid && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
+                    if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                     {
                         tt.SetVPlugin(t.Value);
-                        tt.GroupGuid = t.Value.GroupGuid;
-                        tt.GroupVersion = t.Value.GroupVersion;
-                        tt.GroupInfo = t.Value.GroupInfo;
+                        //tt.GroupGuid = t.Value.GroupGuid;
+                        //tt.GroupVersion = t.Value.GroupVersion;
+                        //tt.GroupInfo = t.Value.GroupInfo;
                         tt.Name = t.Value.Name;
                         tt.Description = t.Value.Description;
                         tt.Version = t.Value.Version;
@@ -307,6 +307,17 @@ namespace vSharpStudio.ViewModels
 
             this.DicPlugins = dic;
             this.Config.DicPlugins = dic;
+            // Create Settings VM for all project generators
+            foreach(var t in this.Config.GroupAppSolutions.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        ttt.CreateGenSettings();
+                    }
+                }
+            }
         }
 
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins
@@ -396,10 +407,17 @@ namespace vSharpStudio.ViewModels
         public void Compose()
         {
             this.Logger.LogInformation("Loading plugins");
-            AggregateCatalog catalog = new AggregateCatalog();
-            this.AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
-            CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
-            container.SatisfyImportsOnce(this);
+            try
+            {
+                AggregateCatalog catalog = new AggregateCatalog();
+                this.AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
+                CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
+                container.SatisfyImportsOnce(this);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         #endregion Plugins
@@ -459,29 +477,57 @@ namespace vSharpStudio.ViewModels
 
         private void PluginSettingsToModel()
         {
-            foreach (var t in this._Config.GroupPlugins.ListPlugins)
+            foreach (var t in this._Config.GroupAppSolutions.ListAppSolutions)
             {
-                foreach (var tt in t.ListGenerators)
+                foreach (var tt in t.ListAppProjects)
                 {
-                    foreach (var ttt in tt.ListSettings)
+                    foreach (var ttt in tt.ListAppProjectGenerators)
                     {
+#if RELEASE
                         Utils.TryCall(
                             () =>
-                        {
-                            ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
-                        }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
-                        if (ttt.IsPrivate)
-                        {
-                            Utils.TryCall(
-                                () =>
                             {
-                                File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
-                            }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-                            ttt.GeneratorSettings = string.Empty;
-                        }
+#endif
+                                if (ttt.Settings != null && ttt.Settings is IvPluginGeneratorSettingsVM)
+                                    ttt.GeneratorSettings = (ttt.Settings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+#if RELEASE
+                            }, "Can't get PROTO settings from Plugin");
+#endif
+                        //if (ttt.IsPrivate)
+                        //{
+                        //    Utils.TryCall(
+                        //        () =>
+                        //        {
+                        //            File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
+                        //        }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
+                        //    ttt.GeneratorSettings = string.Empty;
+                        //}
                     }
                 }
             }
+            //foreach (var t in this._Config.GroupPlugins.ListPlugins)
+            //{
+            //    foreach (var tt in t.ListGenerators)
+            //    {
+            //        foreach (var ttt in tt.ListSettings)
+            //        {
+            //            Utils.TryCall(
+            //                () =>
+            //            {
+            //                ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
+            //            }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
+            //            if (ttt.IsPrivate)
+            //            {
+            //                Utils.TryCall(
+            //                    () =>
+            //                {
+            //                    File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
+            //                }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
+            //                ttt.GeneratorSettings = string.Empty;
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         internal void SavePrepare()
@@ -653,9 +699,9 @@ namespace vSharpStudio.ViewModels
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
         }
 
-        #endregion Main
+#endregion Main
 
-        #region ConfigTree
+#region ConfigTree
 
         public vCommand CommandAddNew
         {
@@ -777,7 +823,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandSelectionUp;
 
-        #endregion ConfigTree
+#endregion ConfigTree
         public vCommand CommandFromErrorToSelection
         {
             get
@@ -797,7 +843,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandFromErrorToSelection;
 
-        #region ConnectionString
+#region ConnectionString
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
@@ -974,6 +1020,6 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
         // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
-        #endregion
+#endregion
     }
 }

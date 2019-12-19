@@ -49,10 +49,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string Version { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// 
+        /// attr [ReadOnly(true)]
+        /// string group_guid = 7;
+        /// attr [ReadOnly(true)]
+        /// string group_version = 8;
+        /// attr [ReadOnly(true)]
+        /// string group_info = 9;
+        ///////////////////////////////////////////////////
         IEnumerable<IPluginGenerator> IListGenerators { get; } // ModelInterfaces.tt Line: 44
-        string GroupGuid { get; } // ModelInterfaces.tt Line: 47
-        string GroupVersion { get; } // ModelInterfaces.tt Line: 47
-        string GroupInfo { get; } // ModelInterfaces.tt Line: 47
     }
     
     public partial interface IPluginGenerator : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -234,7 +241,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
         string PluginGuid { get; } // ModelInterfaces.tt Line: 47
+        string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 47
         string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
+        string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 47
         string RelativePathToGeneratedFile { get; } // ModelInterfaces.tt Line: 47
         
         ///////////////////////////////////////////////////

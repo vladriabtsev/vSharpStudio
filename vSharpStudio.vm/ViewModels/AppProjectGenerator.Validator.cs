@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -41,8 +42,29 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }
         }
-
         public static readonly string DefaultName = "Generator";
+        [ExpandableObjectAttribute()]
+        public object Settings
+        {
+            get
+            {
+                return this._Settings;
+            }
+            set
+            {
+                if (this._Settings != value)
+                {
+                    this._Settings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private object _Settings;
+        public void CreateGenSettings()
+        {
+            OnPluginGeneratorGuidChanged();
+        }
         partial void OnPluginGuidChanged()
         {
             this.PluginGeneratorGuid = "";
@@ -50,6 +72,26 @@ namespace vSharpStudio.vm.ViewModels
             Plugin plg = (Plugin)cnfg.DicNodes[this.PluginGuid];
             EditorPluginSelection.ListGenerators.Clear();
             EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
+            this.DescriptionPlugin = plg.Description;
+        }
+        partial void OnPluginGeneratorGuidChanged()
+        {
+            if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
+            {
+                this.GeneratorSettings = string.Empty;
+                return;
+            }
+            Config cnfg = (Config)this.GetConfig();
+            PluginGenerator gen = (PluginGenerator)cnfg.DicNodes[this.PluginGeneratorGuid];
+            try
+            {
+                this.Settings = gen?.Generator?.GetGenerationSettingsMvvmFromJson(this.GeneratorSettings);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            this.DescriptionGenerator = gen.Description;
         }
     }
 }

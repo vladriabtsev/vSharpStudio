@@ -19,12 +19,12 @@ namespace vPlugin.Sample
         {
             if (gen_settings != null)
                 return gen_settings;
-            if (settings == null)
+            if (string.IsNullOrWhiteSpace(settings))
                 gen_settings = new GeneratorDbAccessSettings();
             else
             {
                 proto_generator_db_access_settings proto = proto_generator_db_access_settings.Parser.ParseJson(settings);
-                gen_settings = GeneratorDbAccessSettings.ConvertToVM(proto, null);
+                gen_settings = GeneratorDbAccessSettings.ConvertToVM(proto, new GeneratorDbAccessSettings());
             }
             return gen_settings;
         }

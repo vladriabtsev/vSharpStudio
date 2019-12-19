@@ -1,4 +1,4 @@
-// Auto generated on UTC 12/18/2019 01:58:30
+// Auto generated on UTC 12/18/2019 20:06:39
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -239,9 +239,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 48
             foreach (var t in from.ListGenerators) // Clone.tt Line: 49
                 vm.ListGenerators.Add(PluginGenerator.Clone(vm, (PluginGenerator)t, isDeep));
-            vm.GroupGuid = from.GroupGuid; // Clone.tt Line: 62
-            vm.GroupVersion = from.GroupVersion; // Clone.tt Line: 62
-            vm.GroupInfo = from.GroupInfo; // Clone.tt Line: 62
             if (isNewGuid) // Clone.tt Line: 67
                 vm.SetNewGuid();
             return vm;
@@ -289,9 +286,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                 }
             }
-            to.GroupGuid = from.GroupGuid; // Clone.tt Line: 134
-            to.GroupVersion = from.GroupVersion; // Clone.tt Line: 134
-            to.GroupInfo = from.GroupInfo; // Clone.tt Line: 134
         }
         // Clone.tt Line: 140
         #region IEditable
@@ -328,9 +322,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGenerator.ConvertToVM(t, new PluginGenerator(vm)); // Clone.tt Line: 194
                 vm.ListGenerators.Add(tvm);
             }
-            vm.GroupGuid = m.GroupGuid; // Clone.tt Line: 211
-            vm.GroupVersion = m.GroupVersion; // Clone.tt Line: 211
-            vm.GroupInfo = m.GroupInfo; // Clone.tt Line: 211
             vm.OnInitFromDto(); // Clone.tt Line: 217
             return vm;
         }
@@ -345,9 +336,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
             foreach (var t in vm.ListGenerators) // Clone.tt Line: 227
                 m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // Clone.tt Line: 231
-            m.GroupGuid = vm.GroupGuid; // Clone.tt Line: 261
-            m.GroupVersion = vm.GroupVersion; // Clone.tt Line: 261
-            m.GroupInfo = vm.GroupInfo; // Clone.tt Line: 261
             return m;
         }
         
@@ -413,6 +401,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
         partial void OnDescriptionChanged();
         
+        
+        ///////////////////////////////////////////////////
+        /// 
+        /// attr [ReadOnly(true)]
+        /// string group_guid = 7;
+        /// attr [ReadOnly(true)]
+        /// string group_version = 8;
+        /// attr [ReadOnly(true)]
+        /// string group_info = 9;
+        ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGenerator> ListGenerators // Property.tt Line: 59
         { 
@@ -437,75 +435,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGeneratorsChanged();
         [BrowsableAttribute(false)]
         public IEnumerable<IPluginGenerator> IListGenerators { get { foreach (var t in this._ListGenerators) yield return t; } }
-        
-        [ReadOnly(true)]
-        public string GroupGuid // Property.tt Line: 135
-        { 
-            get 
-            { 
-                return this._GroupGuid; 
-            }
-            set
-            {
-                if (this._GroupGuid != value)
-                {
-                    this.OnGroupGuidChanging(this._GroupGuid, value);
-                    this._GroupGuid = value;
-                    this.OnGroupGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private string _GroupGuid = string.Empty;
-        partial void OnGroupGuidChanging(string from, string to); // Property.tt Line: 156
-        partial void OnGroupGuidChanged();
-        
-        [ReadOnly(true)]
-        public string GroupVersion // Property.tt Line: 135
-        { 
-            get 
-            { 
-                return this._GroupVersion; 
-            }
-            set
-            {
-                if (this._GroupVersion != value)
-                {
-                    this.OnGroupVersionChanging(this._GroupVersion, value);
-                    this._GroupVersion = value;
-                    this.OnGroupVersionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private string _GroupVersion = string.Empty;
-        partial void OnGroupVersionChanging(string from, string to); // Property.tt Line: 156
-        partial void OnGroupVersionChanged();
-        
-        [ReadOnly(true)]
-        public string GroupInfo // Property.tt Line: 135
-        { 
-            get 
-            { 
-                return this._GroupInfo; 
-            }
-            set
-            {
-                if (this._GroupInfo != value)
-                {
-                    this.OnGroupInfoChanging(this._GroupInfo, value);
-                    this._GroupInfo = value;
-                    this.OnGroupInfoChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private string _GroupInfo = string.Empty;
-        partial void OnGroupInfoChanging(string from, string to); // Property.tt Line: 156
-        partial void OnGroupInfoChanged();
     
         #endregion Properties
     }
@@ -3409,7 +3338,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
             vm.Description = from.Description; // Clone.tt Line: 62
             vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 62
+            vm.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 62
             vm.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 62
+            vm.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 62
             vm.RelativePathToGeneratedFile = from.RelativePathToGeneratedFile; // Clone.tt Line: 62
             vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 62
             if (isNewGuid) // Clone.tt Line: 67
@@ -3423,7 +3354,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.SortingValue = from.SortingValue; // Clone.tt Line: 134
             to.Description = from.Description; // Clone.tt Line: 134
             to.PluginGuid = from.PluginGuid; // Clone.tt Line: 134
+            to.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 134
             to.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 134
+            to.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 134
             to.RelativePathToGeneratedFile = from.RelativePathToGeneratedFile; // Clone.tt Line: 134
             to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 134
         }
@@ -3456,7 +3389,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
             vm.Description = m.Description; // Clone.tt Line: 211
             vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 211
+            vm.DescriptionPlugin = m.DescriptionPlugin; // Clone.tt Line: 211
             vm.PluginGeneratorGuid = m.PluginGeneratorGuid; // Clone.tt Line: 211
+            vm.DescriptionGenerator = m.DescriptionGenerator; // Clone.tt Line: 211
             vm.RelativePathToGeneratedFile = m.RelativePathToGeneratedFile; // Clone.tt Line: 211
             vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 211
             vm.OnInitFromDto(); // Clone.tt Line: 217
@@ -3471,7 +3406,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
             m.Description = vm.Description; // Clone.tt Line: 261
             m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 261
+            m.DescriptionPlugin = vm.DescriptionPlugin; // Clone.tt Line: 261
             m.PluginGeneratorGuid = vm.PluginGeneratorGuid; // Clone.tt Line: 261
+            m.DescriptionGenerator = vm.DescriptionGenerator; // Clone.tt Line: 261
             m.RelativePathToGeneratedFile = vm.RelativePathToGeneratedFile; // Clone.tt Line: 261
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 261
             return m;
@@ -3539,6 +3476,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPluginGuidChanged();
         
         [PropertyOrderAttribute(5)]
+        [DisplayName("Description")]
+        [ReadOnly(true)]
+        public string DescriptionPlugin // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._DescriptionPlugin; 
+            }
+            set
+            {
+                if (this._DescriptionPlugin != value)
+                {
+                    this.OnDescriptionPluginChanging(this._DescriptionPlugin, value);
+                    this._DescriptionPlugin = value;
+                    this.OnDescriptionPluginChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private string _DescriptionPlugin = string.Empty;
+        partial void OnDescriptionPluginChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionPluginChanged();
+        
+        [PropertyOrderAttribute(6)]
         [DisplayName("Generator")]
         [Description("Plugin generator")]
         [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]
@@ -3564,7 +3526,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPluginGeneratorGuidChanging(string from, string to); // Property.tt Line: 156
         partial void OnPluginGeneratorGuidChanged();
         
-        [PropertyOrderAttribute(6)]
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Description")]
+        [ReadOnly(true)]
+        public string DescriptionGenerator // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._DescriptionGenerator; 
+            }
+            set
+            {
+                if (this._DescriptionGenerator != value)
+                {
+                    this.OnDescriptionGeneratorChanging(this._DescriptionGenerator, value);
+                    this._DescriptionGenerator = value;
+                    this.OnDescriptionGeneratorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private string _DescriptionGenerator = string.Empty;
+        partial void OnDescriptionGeneratorChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionGeneratorChanged();
+        
+        [PropertyOrderAttribute(8)]
         [DisplayName("Output")]
         [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
@@ -3594,7 +3581,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         /// 
         ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(7)]
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string GeneratorSettings // Property.tt Line: 135
         { 

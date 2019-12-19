@@ -23,23 +23,23 @@ namespace vSharpStudio.vm.ViewModels
         //    }
         //}
     }
-    class PluginGroupEqualityComparer : IEqualityComparer<Plugin>
-    {
-        public bool Equals(Plugin b1, Plugin b2)
-        {
-            if (b2 == null && b1 == null)
-                return true;
-            else if (b1 == null || b2 == null)
-                return false;
-            else if (b1.GroupGuid == b2.GroupGuid)
-                return true;
-            else
-                return false;
-        }
+    //class PluginGroupEqualityComparer : IEqualityComparer<Plugin>
+    //{
+    //    public bool Equals(Plugin b1, Plugin b2)
+    //    {
+    //        if (b2 == null && b1 == null)
+    //            return true;
+    //        else if (b1 == null || b2 == null)
+    //            return false;
+    //        else if (b1.GroupGuid == b2.GroupGuid)
+    //            return true;
+    //        else
+    //            return false;
+    //    }
 
-        public int GetHashCode(Plugin bx)
-        {
-            return bx.GroupGuid.GetHashCode();
-        }
-    }
+    //    public int GetHashCode(Plugin bx)
+    //    {
+    //        return bx.GroupGuid.GetHashCode();
+    //    }
+    //}
 }

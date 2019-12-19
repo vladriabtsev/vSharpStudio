@@ -12,10 +12,10 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGroup
-    {
-        string GroupGuid { get; }
-        string GroupVersion { get; }
-        string GroupInfo { get; }
-    }
+    //public interface IvPluginGroup
+    //{
+    //    string GroupGuid { get; }
+    //    string GroupVersion { get; }
+    //    string GroupInfo { get; }
+    //}
 }
