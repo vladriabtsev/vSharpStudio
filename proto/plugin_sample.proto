@@ -17,6 +17,16 @@ message proto_generator_db_access_settings {
     bool_nullable is_access_param2 = 2;
     string access_param3 = 3;
 }
+// @attr [NodeParameter("Property")]
+// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
+message proto_generator_db_access_node_property_settings {
+    bool is_property_param1 = 1;
+}
+// @attr [NodeParameter("Catalog.Form")]
+// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
+message proto_generator_db_access_node_catalog_form_settings {
+    bool is_catalog_form_param1 = 1;
+}
 
 // all simple nullable (generator check suffics '_nullable')
 message bool_nullable {

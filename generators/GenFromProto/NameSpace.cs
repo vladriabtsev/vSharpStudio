@@ -108,7 +108,7 @@ namespace ");
 	{
         if (t.Name.EndsWith("_nullable"))
            continue;
-		var cl = new Class(root, t, dicParents, nameSpace, protoNameSpace);
+		var cl = new Class(root, t, dicParents, nameSpace, protoNameSpace, defaultBaseClass);
 		this.Write(cl.TransformText());
 	}
 

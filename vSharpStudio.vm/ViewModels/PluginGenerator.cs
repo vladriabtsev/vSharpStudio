@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             // switch (this.Generator.PluginGeneratorType)
             // {
             //    case vPluginLayerTypeEnum.DbDesign:
-            var settings = this.Generator.GetGenerationSettingsMvvmFromJson(null);
+            var settings = this.Generator.GetAppGenerationSettingsVmFromJson(null);
             pgs = new PluginGeneratorSettings(this, settings);
             pgs.SetGuid(this.Generator.Guid.ToString());
             this.GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
@@ -66,5 +66,6 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as Plugin).ListGenerators.Remove(this);
         }
         #endregion Tree operations
+
     }
 }

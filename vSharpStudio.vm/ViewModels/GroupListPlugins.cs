@@ -28,6 +28,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Plugins";
             this.IsEditable = false;
+            this.ListPlugins.CollectionChanged += ListPlugins_CollectionChanged;
+        }
+
+        private void ListPlugins_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
     }
 }

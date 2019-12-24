@@ -30,7 +30,7 @@ namespace GenFromProto
         {
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
- if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
+ if (this.message.IsDefaultBase()) { 
             
             #line default
             #line hidden
@@ -108,7 +108,7 @@ namespace GenFromProto
             this.Write(".AcceptConfigNodeVisitor(visitor);\r\n");
             
             #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
- } else if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "") { 
+ } else if (this.message.IsDefaultBase()) { 
             
             #line default
             #line hidden

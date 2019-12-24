@@ -219,11 +219,14 @@ namespace vSharpStudio.Unit
 
             // create object and save
             var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
             var p1 = c1.AddEnumerationPair("e1", "123");
             var p2 = c1.AddEnumerationPair("e2", "124");
             var p3 = c1.AddEnumerationPair("e3", "125");
             var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c2.Guid));
             var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
 
             Assert.IsTrue(vm.Config.GetDiffEnumerations().Count == 3);
             Assert.IsTrue(c1.IsNew());
@@ -244,6 +247,10 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(c2.IsNew());
             Assert.IsTrue(c3.IsNew());
 
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c2.Guid));
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
+
             // create stable version (first prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
             c1.Name = "c1r";
@@ -258,6 +265,11 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cc2.IsDeprecated());
             Assert.IsTrue(!c3.IsNew());
             Assert.IsTrue(c4.IsNew());
+
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
+            Assert.IsTrue(!vm.Config.DicNodes.ContainsKey(c2.Guid));
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c4.Guid));
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);

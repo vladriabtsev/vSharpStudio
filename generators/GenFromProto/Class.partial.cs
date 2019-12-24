@@ -17,7 +17,8 @@ namespace GenFromProto
         string protoNameSpace;
 
         Dictionary<string, List<MessageDescriptor>> dicParents;
-        public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents, string destNS, string protoNS)
+        public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents, 
+            string destNS, string protoNS, string defaultBaseClass)
         {
             this.root = root;
             this.message = message;
@@ -33,7 +34,7 @@ namespace GenFromProto
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
             if (this.Doc.BaseClass == "")
             {
-                this.Doc.BaseClass = " : ConfigObjectBase<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                this.Doc.BaseClass = " : "+ defaultBaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
             else

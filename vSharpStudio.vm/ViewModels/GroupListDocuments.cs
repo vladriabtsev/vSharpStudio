@@ -11,7 +11,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq}")]
-    public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight
+    public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -27,6 +27,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Documents";
             this.IsEditable = false;
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
+        }
+
+        private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         #region Tree operations

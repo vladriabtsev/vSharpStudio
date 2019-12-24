@@ -9,7 +9,8 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq} sub:{ListSubPropertiesGroups.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class PropertiesTab : 
+        ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public static readonly string DefaultName = "Tab";
 
@@ -25,6 +26,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
             this.Children.Add(this.GroupPropertiesTabs, 9);
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         #region Tree operations

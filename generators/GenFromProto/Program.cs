@@ -17,15 +17,16 @@ namespace GenFromProto
             try
             {
                 int ii = 0;
-                if (args.Count() > 5)
+                if (args.Count() > 6)
                     ii = 1;
-                if (args.Count() < 4)
+                if (args.Count() < 5)
                     Debugger.Launch();
                 string gen = args[0 + ii]; // args[0] model/interface
                 string protofilename = args[1 + ii]; // args[1] proto file name (without extention)
                 string destfile = args[2 + ii]; // args[2] destination file
                 string destNS = args[3 + ii]; // args[3] destination namespace
                 string json_doc_folder = args[4 + ii]; // args[4] 
+                string default_base_class = args.Length == 5 + ii + 1 ? args[5 + ii] : null; // args[5] 
 
                 var ncs = protofilename.ToNameCs();
                 string reflectionClass = ncs + "Reflection";
@@ -56,7 +57,7 @@ namespace GenFromProto
                 string res = null;
                 if (gen == "model")
                 {
-                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS, protoNS);
+                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS, protoNS, default_base_class);
                     res = ns.TransformText();
                 }
                 else
@@ -112,7 +113,7 @@ namespace GenFromProto
             if (from.Name.EndsWith("_nullable_enum"))
                 return false;
             var doc = JsonDoc.Files[from.File.Name].Messages[from.Name];
-            if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
+            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectBase<") || doc.BaseClass.StartsWith(" : ConfigObjectSubBase<"))
                 return true;
             return false;
         }
@@ -126,7 +127,7 @@ namespace GenFromProto
                     return false;
             }
             var doc = JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
-            if (doc.BaseClass == "" || doc.BaseClass.StartsWith(" : ConfigObjectBase<"))
+            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectBase<") || doc.BaseClass.StartsWith(" : ConfigObjectSubBase<"))
                 return true;
             return false;
         }

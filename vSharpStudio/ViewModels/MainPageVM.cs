@@ -194,129 +194,150 @@ namespace vSharpStudio.ViewModels
 
         public void OnImportsSatisfied()
         {
-            this.Logger.LogInformation("Loaded " + this._plugins.Count() + " plugins");
-            if (this.onImportsSatisfied != null)
+            try
             {
-                this.onImportsSatisfied(this, this._plugins);
-            }
-
-            List<PluginRow> lstGens = new List<PluginRow>();
-
-            // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
-            foreach (var t in this._plugins)
-            {
-                Plugin p = null;
-                bool is_found = false;
-
-                // attaching plugin
-                foreach (var tt in this.Config.GroupPlugins.ListPlugins)
+                this.Logger.LogInformation("Loaded " + this._plugins.Count() + " plugins");
+                if (this.onImportsSatisfied != null)
                 {
-                    if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
-                    {
-                        tt.SetVPlugin(t.Value);
-                        //tt.GroupGuid = t.Value.GroupGuid;
-                        //tt.GroupVersion = t.Value.GroupVersion;
-                        //tt.GroupInfo = t.Value.GroupInfo;
-                        tt.Name = t.Value.Name;
-                        tt.Description = t.Value.Description;
-                        tt.Version = t.Value.Version;
-                        p = tt;
-                        is_found = true;
-                        break;
-                    }
-                }
-                if (!is_found)
-                {
-                    p = new Plugin(this.Config.GroupPlugins, t.Value);
-                    this.Config.GroupPlugins.ListPlugins.Add(p);
+                    this.onImportsSatisfied(this, this._plugins);
                 }
 
-                // attaching plugin generators
-                foreach (var tt in t.Value.ListGenerators)
+                List<PluginRow> lstGens = new List<PluginRow>();
+
+                // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
+                foreach (var t in this._plugins)
                 {
-                    PluginGenerator pg = null;
-                    is_found = false;
-                    foreach (var ttt in p.ListGenerators)
+                    Plugin p = null;
+                    bool is_found = false;
+
+                    // attaching plugin
+                    foreach (var tt in this.Config.GroupPlugins.ListPlugins)
                     {
-                        if (ttt.Guid == tt.Guid)
+                        if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                         {
-                            ttt.SetGenerator(tt);
-                            ttt.Name = tt.Name;
-                            ttt.Description = tt.Description;
-                            pg = ttt;
+                            tt.SetVPlugin(t.Value);
+                            //tt.GroupGuid = t.Value.GroupGuid;
+                            //tt.GroupVersion = t.Value.GroupVersion;
+                            //tt.GroupInfo = t.Value.GroupInfo;
+                            tt.Name = t.Value.Name;
+                            tt.Description = t.Value.Description;
+                            tt.Version = t.Value.Version;
+                            p = tt;
                             is_found = true;
                             break;
                         }
                     }
                     if (!is_found)
                     {
-                        pg = new PluginGenerator(p, tt);
-                        p.ListGenerators.Add(pg);
+                        p = new Plugin(this.Config.GroupPlugins, t.Value);
+                        this.Config.GroupPlugins.ListPlugins.Add(p);
                     }
-                    lstGens.Add(new PluginRow()
+
+                    // attaching plugin generators
+                    foreach (var tt in t.Value.ListGenerators)
                     {
-                        GeneratorType = tt.PluginGeneratorType,
-                        Plugin = p,
-                        PluginGenerator = pg
-                    });
-                }
-                foreach (var ttt in p.ListGenerators)
-                {
-                    foreach (var tttt in ttt.ListSettings)
-                    {
-                        if (ttt.Generator != null)
+                        PluginGenerator pg = null;
+                        is_found = false;
+                        foreach (var ttt in p.ListGenerators)
                         {
-                            if (tttt.IsPrivate)
+                            if (ttt.Guid == tt.Guid)
                             {
-                                Utils.TryCall(
-                                    () =>
-                                    {
-                                        tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
-                                    }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
+                                ttt.SetGenerator(tt);
+                                ttt.Name = tt.Name;
+                                ttt.Description = tt.Description;
+                                pg = ttt;
+                                is_found = true;
+                                break;
                             }
-                            else
+                        }
+                        if (!is_found)
+                        {
+                            pg = new PluginGenerator(p, tt);
+                            p.ListGenerators.Add(pg);
+                        }
+                        lstGens.Add(new PluginRow()
+                        {
+                            GeneratorType = tt.PluginGeneratorType,
+                            Plugin = p,
+                            PluginGenerator = pg
+                        });
+                    }
+                    foreach (var ttt in p.ListGenerators)
+                    {
+                        foreach (var tttt in ttt.ListSettings)
+                        {
+                            if (ttt.Generator != null)
                             {
-                                Utils.TryCall(
-                                    () =>
+                                if (tttt.IsPrivate)
                                 {
-                                    tttt.SetVM(ttt.Generator.GetGenerationSettingsMvvmFromJson(tttt.GeneratorSettings));
-                                }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
+                                    Utils.TryCall(
+                                        () =>
+                                        {
+                                            tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
+                                        }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
+                                }
+                                else
+                                {
+                                    Utils.TryCall(
+                                        () =>
+                                    {
+                                        tttt.SetVM(ttt.Generator.GetAppGenerationSettingsVmFromJson(tttt.GeneratorSettings));
+                                    }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
+                                }
                             }
                         }
                     }
                 }
-            }
-            var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
-            foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
-            {
-                vPluginLayerTypeEnum gt = (vPluginLayerTypeEnum)t;
-                List<PluginRow> lst = new List<PluginRow>();
-                foreach (var tt in lstGens)
+                var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
+                foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
                 {
-                    if (tt.GeneratorType == gt)
+                    vPluginLayerTypeEnum gt = (vPluginLayerTypeEnum)t;
+                    List<PluginRow> lst = new List<PluginRow>();
+                    foreach (var tt in lstGens)
                     {
-                        lst.Add(tt);
+                        if (tt.GeneratorType == gt)
+                        {
+                            lst.Add(tt);
+                        }
                     }
+                    dic[gt] = lst;
                 }
-                dic[gt] = lst;
-            }
-            if (this.DicPlugins != null)
-            {
-                this.DicPlugins.Clear();
-            }
+                if (this.DicPlugins != null)
+                {
+                    this.DicPlugins.Clear();
+                }
 
-            this.DicPlugins = dic;
-            this.Config.DicPlugins = dic;
-            // Create Settings VM for all project generators
-            foreach(var t in this.Config.GroupAppSolutions.ListAppSolutions)
-            {
-                foreach (var tt in t.ListAppProjects)
+                this.DicPlugins = dic;
+                this.Config.DicPlugins = dic;
+
+                // Generators
+                this.Config.DicGenerators = new Dictionary<string, IvPluginGenerator>();
+                foreach (var t in lstGens)
                 {
-                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    this.Config.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
+                }
+
+                // Create Settings VM for all project generators
+                foreach (var t in this.Config.GroupAppSolutions.ListAppSolutions)
+                {
+                    foreach (var tt in t.ListAppProjects)
                     {
-                        ttt.CreateGenSettings();
+                        foreach (var ttt in tt.ListAppProjectGenerators)
+                        {
+                            ttt.CreateGenSettings();
+                        }
                     }
                 }
+                // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
+                var nv = new NodeGenSettingsModelVisitor();
+                nv.NodeGenSettingsApplyAction(this.Config, (p) =>
+                {
+                    p.RestoreNodeAppGenSettingsVm();
+                });
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
@@ -414,7 +435,7 @@ namespace vSharpStudio.ViewModels
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -488,8 +509,8 @@ namespace vSharpStudio.ViewModels
                             () =>
                             {
 #endif
-                                if (ttt.Settings != null && ttt.Settings is IvPluginGeneratorSettingsVM)
-                                    ttt.GeneratorSettings = (ttt.Settings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.Settings != null && ttt.Settings is IvPluginGeneratorSettingsVM)
+                            ttt.GeneratorSettings = (ttt.Settings as IvPluginGeneratorSettingsVM).SettingsAsJson;
 #if RELEASE
                             }, "Can't get PROTO settings from Plugin");
 #endif
@@ -505,6 +526,12 @@ namespace vSharpStudio.ViewModels
                     }
                 }
             }
+            // Save Node Settings VM for all nodes, which are supporting INodeGenSettings
+            var nv = new NodeGenSettingsModelVisitor();
+            nv.NodeGenSettingsApplyAction(this.Config, (p) =>
+            {
+                p.SaveNodeAppGenSettings();
+            });
             //foreach (var t in this._Config.GroupPlugins.ListPlugins)
             //{
             //    foreach (var tt in t.ListGenerators)
@@ -699,9 +726,9 @@ namespace vSharpStudio.ViewModels
             }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
         }
 
-#endregion Main
+        #endregion Main
 
-#region ConfigTree
+        #region ConfigTree
 
         public vCommand CommandAddNew
         {
@@ -823,7 +850,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandSelectionUp;
 
-#endregion ConfigTree
+        #endregion ConfigTree
         public vCommand CommandFromErrorToSelection
         {
             get
@@ -843,7 +870,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandFromErrorToSelection;
 
-#region ConnectionString
+        #region ConnectionString
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
@@ -1020,6 +1047,6 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
         // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
-#endregion
+        #endregion
     }
 }

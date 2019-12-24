@@ -9,13 +9,14 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Form:{Name,nq}")]
-    public partial class Form : ICanGoLeft, ICanAddNode
+    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Form";
 
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         #region Tree operations

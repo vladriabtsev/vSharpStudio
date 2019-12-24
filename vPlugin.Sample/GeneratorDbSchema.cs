@@ -9,6 +9,10 @@ namespace vPlugin.Sample
 {
     public class GeneratorDbSchema : IvPluginDbGenerator
     {
+        public GeneratorDbSchema()
+        {
+            this.DicPathTypes = new Dictionary<string, List<string>>();
+        }
         public ILoggerFactory LoggerFactory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string ProviderName => "AbstractDbProviderName";
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
@@ -34,7 +38,7 @@ namespace vPlugin.Sample
             throw new NotImplementedException();
         }
         private GeneratorDbSchemaSettings gen_settings = null;
-        public IvPluginGeneratorSettingsVM GetGenerationSettingsMvvmFromJson(string settings)
+        public IvPluginGeneratorSettingsVM GetAppGenerationSettingsVmFromJson(string settings)
         {
             if (gen_settings != null)
                 return gen_settings;
@@ -47,10 +51,10 @@ namespace vPlugin.Sample
             }
             return gen_settings;
         }
-        public IvPluginGeneratorSettingsVM GetGlobalAppGenerationSettingsMvvmFromJson(string settings)
+        public Dictionary<string, List<string>> DicPathTypes { get; private set; }
+        public IvPluginGeneratorSettingsVM GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {
-            throw new NotImplementedException();
-        }
+            return null;        }
         public int GetMigrationVersion()
         {
             throw new NotImplementedException();

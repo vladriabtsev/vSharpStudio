@@ -23,7 +23,32 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
+            this.ListAppProjectGenerators.CollectionChanged += ListAppProjectGenerators_CollectionChanged;
         }
+
+        private void ListAppProjectGenerators_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Config cfg = (Config)this.GetConfig();
+            switch (e.Action)
+            {
+                // add is implemented when PluginGeneratorGuid is changed
+
+                //case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                //    foreach (var t in e.NewItems)
+                //    {
+                //        var tt = t as AppProjectGenerator;
+                //        DicAppGenerators[tt.Guid] = cfg.DicGenerators[tt.PluginGeneratorGuid];
+                //    }
+                //    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    foreach (var t in e.OldItems)
+                    {
+                        DicAppGenerators.Remove((t as AppProjectGenerator).Guid);
+                    }
+                    break;
+            }
+        }
+
         public AppProject(ITreeConfigNode parent, string name, string relativeToSolutionProjectPath)
             : this(parent)
         {
@@ -87,6 +112,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as AppSolution).ListAppProjects.Remove(this);
             this.Parent = null;
+            var nv = new NodeGenSettingsModelVisitor();
+            foreach (var t in this.ListAppProjectGenerators)
+            {
+                nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+                {
+                    p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
+                });
+            }
+            this.RefillDicGenerators();
         }
         public override ITreeConfigNode NodeAddClone()
         {

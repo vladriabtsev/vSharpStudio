@@ -33,6 +33,12 @@ namespace vSharpStudio.vm.ViewModels
             // Children.Add(this.GroupSharedProperties, 7);
             // this.GroupListDocuments.Parent = this;
             // Children.Add(this.GroupListDocuments, 8);
+            this.ListBaseConfigLinks.CollectionChanged += ListBaseConfigLinks_CollectionChanged;
+        }
+
+        private void ListBaseConfigLinks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         #region Tree operations

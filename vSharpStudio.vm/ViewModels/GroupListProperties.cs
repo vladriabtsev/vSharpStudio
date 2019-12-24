@@ -12,7 +12,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -36,6 +36,12 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.IsEditable = false;
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
+        }
+        private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         protected override void OnParentChanged()
@@ -122,11 +128,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var cfg = (Config)this.GetConfig();
                 var p = this.Parent;
-                while (p.IsIncludableInModels == false)
+                while (p != null && p.IsIncludableInModels == false)
                 {
                     p = p.Parent;
                 }
 
+                if (p == null)
+                    return new List<IProperty>();
                 string par = p.GetType().Name;
                 ConfigNodesCollection<Property> curr;
                 ConfigNodesCollection<Property> prev;

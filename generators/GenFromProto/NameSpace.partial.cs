@@ -13,17 +13,20 @@ namespace GenFromProto
     {
         FileDescriptor root;
         string nameSpace;
+        string defaultBaseClass = "ConfigObjectBase";
         string protoNameSpace;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
 
         public NameSpace(FileDescriptor root, List<MessageDescriptor> messages,
-            Dictionary<string, List<MessageDescriptor>> dicParents, 
-            string destNS, string protoNS)
+            Dictionary<string, List<MessageDescriptor>> dicParents,
+            string destNS, string protoNS, string defaultBaseClass)
         {
             this.root = root;
             this.nameSpace = destNS;
             this.protoNameSpace = protoNS;
+            if (defaultBaseClass != null)
+                this.defaultBaseClass = defaultBaseClass;
             this.messages = messages;
             this.dicParents = dicParents;
         }

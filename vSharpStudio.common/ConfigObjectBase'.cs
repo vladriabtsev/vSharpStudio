@@ -13,7 +13,7 @@
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode , IObjectAnnotatable
+    public partial class ConfigObjectBase<T, TValidator> : ViewModelValidatableWithSeverity<T, TValidator>, IComparable<T>, ISortingValue, ITreeConfigNode, IObjectAnnotatable
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
@@ -186,7 +186,18 @@
         {
             this._Guid = System.Guid.NewGuid().ToString();
         }
-
+        public string ModelPath
+        {
+            get
+            {
+                if (_ModelPath == null)
+                {
+                    _ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this.GetType().Name;
+                }
+                return _ModelPath;
+            }
+        }
+        private string _ModelPath = null;
         public string FullName
         {
             get
@@ -593,6 +604,10 @@
 
         #region IMutableAnnotatable
 
+        public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
+        {
+            return this.FindAnnotation(projectGenerator.Guid);
+        }
         private readonly SortedDictionary<string, Annotation> _annotations =
             new SortedDictionary<string, Annotation>();
 

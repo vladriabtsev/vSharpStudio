@@ -63,7 +63,21 @@ namespace vSharpStudio.vm.ViewModels
         private object _Settings;
         public void CreateGenSettings()
         {
-            OnPluginGeneratorGuidChanged();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
+                {
+                    this.GeneratorSettings = string.Empty;
+                    return;
+                }
+                Config cnfg = (Config)this.GetConfig();
+                PluginGenerator gen = (PluginGenerator)cnfg.DicNodes[this.PluginGeneratorGuid];
+                this.Settings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         partial void OnPluginGuidChanged()
         {
@@ -73,6 +87,15 @@ namespace vSharpStudio.vm.ViewModels
             EditorPluginSelection.ListGenerators.Clear();
             EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
             this.DescriptionPlugin = plg.Description;
+
+            if (!Config.IsLoading)
+            {
+                var nv = new NodeGenSettingsModelVisitor();
+                nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+                {
+                    p.RemoveNodeAppGenSettings(this.Guid);
+                });
+            }
         }
         partial void OnPluginGeneratorGuidChanged()
         {
@@ -85,13 +108,118 @@ namespace vSharpStudio.vm.ViewModels
             PluginGenerator gen = (PluginGenerator)cnfg.DicNodes[this.PluginGeneratorGuid];
             try
             {
-                this.Settings = gen?.Generator?.GetGenerationSettingsMvvmFromJson(this.GeneratorSettings);
+                this.Settings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                this.DescriptionGenerator = gen.Description;
+                if (!Config.IsLoading)
+                {
+                    //DicAppGenerators[this.Guid] = cnfg.DicGenerators[this.PluginGeneratorGuid];
+                    var nv = new NodeGenSettingsModelVisitor();
+                    nv.NodeGenSettingsApplyAction(cnfg, (p) =>
+                    {
+                        p.RemoveNodeAppGenSettings(this.Guid);
+                    });
+                    this.RefillDicGenerators();
+                    nv.NodeGenSettingsApplyAction(cnfg, (p) =>
+                    {
+                        p.AddNodeAppGenSettings(this.Guid);
+                    });
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
-            this.DescriptionGenerator = gen.Description;
         }
+        #region Tree operations
+        public override bool NodeCanUp()
+        {
+            if (this.NodeCanAddClone())
+            {
+                if ((this.Parent as AppProject).ListAppProjectGenerators.CanUp(this))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override void NodeUp()
+        {
+            var prev = (AppProject)(this.Parent as AppProject).ListAppProjectGenerators.GetPrev(this);
+            if (prev == null)
+            {
+                return;
+            }
+
+            this.SetSelected(prev);
+        }
+
+        public override void NodeMoveUp()
+        {
+            (this.Parent as AppProject).ListAppProjectGenerators.MoveUp(this);
+            this.SetSelected(this);
+        }
+
+        public override bool NodeCanDown()
+        {
+            if (this.NodeCanAddClone())
+            {
+                if ((this.Parent as AppProject).ListAppProjectGenerators.CanDown(this))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override void NodeDown()
+        {
+            var next = (AppProject)(this.Parent as AppProject).ListAppProjectGenerators.GetNext(this);
+            if (next == null)
+            {
+                return;
+            }
+
+            this.SetSelected(next);
+        }
+
+        public override void NodeMoveDown()
+        {
+            (this.Parent as AppProject).ListAppProjectGenerators.MoveDown(this);
+            this.SetSelected(this);
+        }
+
+        public override void NodeRemove()
+        {
+            (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
+            this.Parent = null;
+            var nv = new NodeGenSettingsModelVisitor();
+            nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+            {
+                p.RemoveNodeAppGenSettings(this.PluginGeneratorGuid);
+            });
+            this.RefillDicGenerators();
+        }
+
+        public override ITreeConfigNode NodeAddClone()
+        {
+            var node = AppProjectGenerator.Clone(this.Parent, this, true, true);
+            node.Parent = this.Parent;
+            (this.Parent as AppProject).ListAppProjectGenerators.Add(node);
+            this.Name = this.Name + "2";
+            this.SetSelected(node);
+            return node;
+        }
+
+        public override ITreeConfigNode NodeAddNew()
+        {
+            var node = new AppProjectGenerator(this.Parent);
+            (this.Parent as AppProject).ListAppProjectGenerators.Add(node);
+            this.GetUniqueName(AppProjectGenerator.DefaultName, node, (this.Parent as AppProject).ListAppProjectGenerators);
+            this.SetSelected(node);
+            return node;
+        }
+
+        #endregion Tree operations
     }
 }

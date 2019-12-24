@@ -11,7 +11,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -31,6 +31,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.NameUi = "Sub Catalogs";
             }
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
+        }
+
+        private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         protected override void OnInitFromDto()

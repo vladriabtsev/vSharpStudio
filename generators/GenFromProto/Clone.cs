@@ -137,7 +137,7 @@ namespace GenFromProto
             this.Write(" from, bool isDeep = true");
             
             #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { 
+ if (message.IsDefaultBase()) { 
             
             #line default
             #line hidden

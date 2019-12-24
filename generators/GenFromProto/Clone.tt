@@ -24,7 +24,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
 <#    } #>
 }
 <# } #>
-public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase()) { #>ITreeConfigNode parent, <# } #><#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (this.Doc.BaseClass.StartsWith(" : ConfigObjectBase")) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
+public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase()) { #>ITreeConfigNode parent, <# } #><#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
 {
 <# if (message.IsDefaultBase()) { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent);

@@ -105,6 +105,18 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListAppSolutions).Remove(this);
             this.Parent = null;
+            var nv = new NodeGenSettingsModelVisitor();
+            foreach (var t in this.ListAppProjects)
+            {
+                foreach (var tt in t.ListAppProjectGenerators)
+                {
+                    nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+                    {
+                        p.RemoveNodeAppGenSettings(tt.PluginGeneratorGuid);
+                    });
+                }
+            }
+            this.RefillDicGenerators();
         }
 
         public override ITreeConfigNode NodeAddClone()

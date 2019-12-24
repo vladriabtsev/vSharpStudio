@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Catalog";
 
@@ -31,9 +31,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupForms, 4);
             this.GroupReports.Parent = this;
             this.Children.Add(this.GroupReports, 5);
-            this.Setting = new System.Dynamic.ExpandoObject();
-            this.Setting.Kuku = "kuku";
-            ((IDictionary<string, object>)this.Setting)["Date"] = new DateTime();
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         public Catalog(ITreeConfigNode parent, string name)

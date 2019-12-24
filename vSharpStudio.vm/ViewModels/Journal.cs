@@ -7,13 +7,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public static readonly string DefaultName = "Journal";
 
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         #region Tree operations

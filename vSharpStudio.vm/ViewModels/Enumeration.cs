@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft
+    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public static readonly string DefaultName = "Enumeration";
 
@@ -20,6 +20,13 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListEnumerationPairs.CollectionChanged += ListEnumerationPairs_CollectionChanged;
+        }
+
+        private void ListEnumerationPairs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         public static string GetTypeDesc(Enumeration p)

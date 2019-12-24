@@ -11,13 +11,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Constant";
 
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)

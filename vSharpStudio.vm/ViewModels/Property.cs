@@ -13,13 +13,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings
     {
         public static readonly string DefaultName = "Property";
 
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
@@ -143,6 +144,5 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-
     }
 }

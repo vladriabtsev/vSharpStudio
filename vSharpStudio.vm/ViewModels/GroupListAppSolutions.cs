@@ -28,6 +28,12 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = "Apps";
             this.IsEditable = false;
             this.DefaultDb.Parent = this;
+            this.ListAppSolutions.CollectionChanged += ListAppSolutions_CollectionChanged;
+        }
+
+        private void ListAppSolutions_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         #region Tree operations

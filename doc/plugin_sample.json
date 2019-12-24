@@ -43,6 +43,48 @@
           ]
         },
         {
+          "name": "proto_generator_db_access_node_catalog_form_settings",
+          "longName": "proto_generator_db_access_node_catalog_form_settings",
+          "fullName": "proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings",
+          "description": "@attr [NodeParameter(\"Catalog.Form\")]\nbase : ViewModelValidatableWithSeverity\u003cGeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_catalog_form_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_generator_db_access_node_property_settings",
+          "longName": "proto_generator_db_access_node_property_settings",
+          "fullName": "proto_plugin_sample.proto_generator_db_access_node_property_settings",
+          "description": "@attr [NodeParameter(\"Property\")]\nbase : ViewModelValidatableWithSeverity\u003cGeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator\u003e",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_property_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_generator_db_access_settings",
           "longName": "proto_generator_db_access_settings",
           "fullName": "proto_plugin_sample.proto_generator_db_access_settings",

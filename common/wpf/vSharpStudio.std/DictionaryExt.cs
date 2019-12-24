@@ -6,11 +6,15 @@ namespace ViewModelBase
 {
     public class DictionaryExt<TKey, TValue> : Dictionary<TKey, TValue>
     {
-        public DictionaryExt(Action<TKey, TValue> onAddValue, Action<TKey, TValue> onRemoveValue, Action onClear)
+        private bool isReturnDefaultWhenNotInDictionary;
+        public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false, Action<TKey, TValue> onAddValue = null,
+            Action<TKey, TValue> onRemoveValue = null, Action onClear = null) : base(initialSize)
         {
+            this.IsActivateActions = isActivateActions;
             this.OnAddValue = onAddValue;
             this.OnRemoveValue = onRemoveValue;
             this.OnClear = onClear;
+            this.isReturnDefaultWhenNotInDictionary = isReturnDefaultWhenNotInDictionary;
         }
         public bool IsActivateActions { get; set; }
         public Action<TKey, TValue> OnAddValue { get; set; }
@@ -20,6 +24,12 @@ namespace ViewModelBase
         {
             get
             {
+                if (isReturnDefaultWhenNotInDictionary)
+                {
+                    if (this.ContainsKey(key))
+                        return base[key];
+                    return default(TValue);
+                }
                 return base[key];
             }
             set

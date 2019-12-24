@@ -12,7 +12,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
-    public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -28,6 +28,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Tabs";
             this.IsEditable = false;
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListPropertiesTabs.CollectionChanged += ListPropertiesTabs_CollectionChanged;
+        }
+
+        private void ListPropertiesTabs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         #region Tree operations

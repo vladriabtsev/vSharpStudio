@@ -11,13 +11,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Report:{Name,nq}")]
-    public partial class Report : ICanGoLeft, ICanAddNode
+    public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Report";
 
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
 
         #region Tree operations

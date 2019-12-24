@@ -11,7 +11,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListConstants.Count,nq}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoRight
+    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -27,6 +27,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
+            this.AddAllAppGenSettingsVmsToNewNode();
+            this.ListConstants.CollectionChanged += ListConstants_CollectionChanged;
+        }
+
+        private void ListConstants_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnAddRemoveNode(e);
         }
 
         #region Tree operations

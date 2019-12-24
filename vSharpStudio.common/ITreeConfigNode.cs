@@ -11,6 +11,7 @@ namespace vSharpStudio.common
     {
         string Guid { get; }
         string Name { get; set; }
+        string ModelPath { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         // ITreeConfigNode Parent { get; set; }

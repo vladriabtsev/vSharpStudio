@@ -356,6 +356,14 @@ message proto_app_project_generator {
     string generator_settings = 11;
     // @attr [ReadOnly(true)]
 }
+message proto_generator_settings {
+    string app_generator_guid = 1;
+    repeated proto_type_settings list_type_settings = 2; 
+}
+message proto_type_settings {
+    string full_type_name = 1;
+    string settings = 2; 
+}
 /** 
  * @exclude
  * ####################################### M O D E L ##########################################
@@ -515,6 +523,7 @@ message proto_group_list_properties_tabs {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_properties_tab list_properties_tabs = 6;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_properties_tab {
     string guid = 1;
@@ -532,6 +541,7 @@ message proto_properties_tab {
     // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(4)]
     bool is_index_fk = 8;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_group_list_properties {
     string guid = 1;
@@ -547,6 +557,7 @@ message proto_group_list_properties {
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_property {
     string guid = 1;
@@ -566,6 +577,7 @@ message proto_property {
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
     uint32 position = 15;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -582,6 +594,7 @@ message proto_group_list_constants {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_constant list_constants = 6;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 //
 // Constant application wise value
@@ -597,6 +610,7 @@ message proto_constant {
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -613,6 +627,7 @@ message proto_group_list_enumerations {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration list_enumerations = 6;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 // Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
 enum enum_enumeration_type {
@@ -641,6 +656,7 @@ message proto_enumeration {
     // @attr [DisplayName("Elements")]
     // @attr [NewItemTypes(typeof(EnumerationPair))]
     repeated proto_enumeration_pair list_enumeration_pairs = 8;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_enumeration_pair {
     string guid = 1;
@@ -675,6 +691,7 @@ message proto_catalog {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
+    repeated proto_generator_settings list_generators_settings = 19;
 }
 message proto_group_list_catalogs {
     string guid = 1;
@@ -687,6 +704,7 @@ message proto_group_list_catalogs {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -705,6 +723,7 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_documents group_list_documents = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_document {
     string guid = 1;
@@ -723,6 +742,7 @@ message proto_document {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
+    repeated proto_generator_settings list_generators_settings = 19;
 }
 message proto_group_list_documents {
     string guid = 1;
@@ -735,6 +755,7 @@ message proto_group_list_documents {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 6;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -752,6 +773,7 @@ message proto_group_list_journals {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_journal list_journals = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_journal {
     string guid = 1;
@@ -765,6 +787,7 @@ message proto_journal {
     //repeated proto_group_properties list_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -782,6 +805,7 @@ message proto_group_list_forms {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_form list_forms = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_form {
     string guid = 1;
@@ -794,6 +818,7 @@ message proto_form {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude
@@ -811,6 +836,7 @@ message proto_group_list_reports {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_report list_reports = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_report {
     string guid = 1;
@@ -823,6 +849,7 @@ message proto_report {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
+    repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
  * @exclude

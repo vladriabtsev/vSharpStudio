@@ -10,7 +10,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -34,6 +34,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
+            this.AddAllAppGenSettingsVmsToNewNode();
         }
     }
 }

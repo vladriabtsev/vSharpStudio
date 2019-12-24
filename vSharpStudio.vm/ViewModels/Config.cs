@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
 
-        public Dictionary<string, ITreeConfigNode> DicNodes { get; set; }
+        public DictionaryExt<string, ITreeConfigNode> DicNodes { get; set; }
 
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInitBegin()
         {
-            this.DicNodes = new Dictionary<string, ITreeConfigNode>(1000);
+            this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true);
         }
 
         partial void OnInit()
@@ -73,11 +73,13 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupPlugins, 9);
             this.GroupAppSolutions.Parent = this;
             this.Children.Add(this.GroupAppSolutions, 10);
+            this.RefillDicGenerators();
         }
 
         protected override void OnInitFromDto()
         {
             this.RecreateSubNodes();
+            this.RefillDicGenerators();
         }
 
         public Config()
@@ -264,6 +266,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
+        public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
 
         public IConfig PrevStableConfig { get; set; }
 
