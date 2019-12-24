@@ -6,12 +6,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.ViewModels;
 using vSharpStudio.common;
 using System.IO;
+//using Serilog;
+//using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.Unit
 {
     [TestClass]
     public class PluginTests
     {
+        private static Microsoft.Extensions.Logging.ILogger _logger = Logger.CreateLogger<PluginTests>();
+
         [TestMethod]
         public void Plugin001CanLoadPlugin()
         {
@@ -76,6 +80,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Plugin003WorkWithNodeGeneratorSettings()
         {
+            //_logger.LogTrace("".CallerInfo());
             var vm = new MainPageVM(false);
             vm.Compose();
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();

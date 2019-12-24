@@ -78,6 +78,7 @@ namespace vSharpStudio.vm.ViewModels
 
         protected override void OnInitFromDto()
         {
+            base.OnInitFromDto();
             this.RecreateSubNodes();
             this.RefillDicGenerators();
         }

@@ -44,7 +44,7 @@ namespace vSharpStudio.Unit
                 // }).BuildServiceProvider().GetRequiredService<ILoggerProvider>();
                 // ApplicationLogging.LogerProvider = lp;
                 Log.Logger = new LoggerConfiguration()
-                    .MinimumLevel.Debug()
+                    .MinimumLevel.Verbose()
                     .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
                     // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
                     .CreateLogger();

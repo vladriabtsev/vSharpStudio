@@ -9,6 +9,7 @@
     using System.Text;
     using FluentValidation;
     using JetBrains.Annotations;
+    using Microsoft.Extensions.Logging;
     using ViewModelBase;
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -17,15 +18,18 @@
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
+        protected ILogger _logger;
         public ConfigObjectBase(ITreeConfigNode parent, TValidator validator)
             : base(validator)
         {
+            this._logger = Logger.CreateLogger<T>();
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
         }
 
         protected virtual void OnInitFromDto()
         {
+            this._logger.LogTrace("".CallerInfo());
         }
 
         private static int _maxlen = 0;
