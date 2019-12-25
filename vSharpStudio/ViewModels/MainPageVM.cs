@@ -26,15 +26,16 @@ namespace vSharpStudio.ViewModels
 {
     public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
-        public ILogger Logger;
+        private static ILogger _logger;
 
         public MainPageVM()
             : base(MainPageVMValidator.Validator)
         {
+            _logger = Logger.CreateLogger<MainPageVM>();
         }
 
         public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
-            : base(MainPageVMValidator.Validator)
+            : this()
         {
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
@@ -45,35 +46,38 @@ namespace vSharpStudio.ViewModels
                 return;
             }
 
-            if (App.ServiceCollection == null)
-            {
-                ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-                App.ServiceCollection = new ServiceCollection();
-                App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
-            }
-            var Services = App.ServiceCollection.BuildServiceProvider();
-            this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
-            this.Logger.LogInformation("Application is starting.");
+            //if (App.ServiceCollection == null)
+            //{
+            //    ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            //    App.ServiceCollection = new ServiceCollection();
+            //    App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
+            //}
+            //var Services = App.ServiceCollection.BuildServiceProvider();
+            //this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
+            //this.Logger.LogInformation("Application is starting.");
+            _logger.LogDebug("*** Application is starting. ***".CallerInfo());
 
             if (isLoadConfig)
             {
                 if (configFile != null)
                 {
+                    _logger.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
                     this.Config = this.LoadConfig(configFile, string.Empty, true);
                 }
                 else if (File.Exists(CFG_FILE_PATH))
                 {
+                    _logger.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CFG_FILE_PATH);
                     this.Config = this.LoadConfig(CFG_FILE_PATH, string.Empty, true);
                 }
                 else
                 {
-                    this.Logger.LogInformation("Creating empty Configuration");
+                    _logger.LogDebug("Creating empty Configuration".CallerInfo());
                     this.Config = new Config();
                 }
             }
             else
             {
-                this.Logger.LogInformation("Creating empty Configuration");
+                _logger.LogDebug("Creating empty Configuration".CallerInfo());
                 this.Config = new Config();
             }
 
@@ -131,28 +135,32 @@ namespace vSharpStudio.ViewModels
             Config.IsLoading = true;
             if (!File.Exists(file_path))
             {
-                throw new ArgumentException("Configuration data are not found in the file: " + file_path);
+                var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
+                _logger.LogCritical(ex, "".CallerInfo());
+                throw ex;
             }
-
-            this.Logger.LogInformation(indent + "Configuration data are found in the file: " + file_path);
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
+            _logger.LogDebug("ConvertToVM Main Config".CallerInfo());
             var cfg = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             if (isRoot)
             {
                 if (this.pconfig_history.PrevStableConfig != null)
                 {
+                    _logger.LogDebug("ConvertToVM Prev Config".CallerInfo());
                     cfg.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
                 }
 
                 if (this.pconfig_history.OldStableConfig != null)
                 {
+                    _logger.LogDebug("ConvertToVM Old Config".CallerInfo());
                     cfg.OldStableConfig = Config.ConvertToVM(this.pconfig_history.OldStableConfig, new Config());
                 }
             }
             string ind2 = indent + "   ";
             foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
+                _logger.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
                 t.Config = this.LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
                 t.Name = t.Config.Name;
             }
@@ -196,7 +204,7 @@ namespace vSharpStudio.ViewModels
         {
             try
             {
-                this.Logger.LogInformation("Loaded " + this._plugins.Count() + " plugins");
+                _logger.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
                 if (this.onImportsSatisfied != null)
                 {
                     this.onImportsSatisfied(this, this._plugins);
@@ -328,6 +336,7 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                 }
+                this.Config.RefillDicGenerators();
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new NodeGenSettingsModelVisitor();
                 nv.NodeGenSettingsApplyAction(this.Config, (p) =>
@@ -337,6 +346,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
+                _logger.LogCritical(ex, "".CallerInfo());
                 throw;
             }
         }
@@ -427,7 +437,7 @@ namespace vSharpStudio.ViewModels
 
         public void Compose()
         {
-            this.Logger.LogInformation("Loading plugins");
+            _logger.LogDebug("Loading plugins".CallerInfo());
             try
             {
                 AggregateCatalog catalog = new AggregateCatalog();
@@ -437,6 +447,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
+                _logger.LogCritical(ex, "".CallerInfo());
                 throw;
             }
         }
@@ -701,7 +712,9 @@ namespace vSharpStudio.ViewModels
         {
             if (this.pconfig_history == null)
             {
-                throw new NotSupportedException();
+                var ex = new NotSupportedException();
+                _logger.LogCritical(ex, "".CallerInfo());
+                throw ex;
             }
 
             this.PluginSettingsToModel();

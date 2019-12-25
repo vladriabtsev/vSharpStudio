@@ -116,7 +116,7 @@ namespace vSharpStudio.vm.ViewModels
                     });
                 }
             }
-            this.RefillDicGenerators();
+            //this.RefillDicGenerators();
         }
 
         public override ITreeConfigNode NodeAddClone()

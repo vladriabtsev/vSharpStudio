@@ -30,7 +30,7 @@
     <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.11.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.2" />
   </ItemGroup>
   <ItemGroup>
     <!--<Reference Include="Google.Protobuf, Version=3.9.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">

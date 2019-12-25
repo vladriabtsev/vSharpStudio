@@ -18,18 +18,18 @@
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
-        protected ILogger _logger;
+        protected static ILogger _logger;
         public ConfigObjectBase(ITreeConfigNode parent, TValidator validator)
             : base(validator)
         {
-            this._logger = Logger.CreateLogger<T>();
+            if (_logger == null)
+                _logger = Logger.CreateLogger<T>();
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
         }
 
         protected virtual void OnInitFromDto()
         {
-            this._logger.LogTrace("".CallerInfo());
         }
 
         private static int _maxlen = 0;
@@ -217,25 +217,18 @@
 
         public IConfig GetConfig()
         {
-            if (this._config == null)
+            ITreeConfigNode p = this.Parent;
+            if (p == null)
             {
-                ITreeConfigNode p = this.Parent;
-                if (p == null)
-                {
-                    return null;
-                }
-
-                while (p.Parent != null)
-                {
-                    p = p.Parent;
-                }
-
-                this._config = (IConfig)p;
+                return null;
             }
-            return this._config;
-        }
 
-        private IConfig _config = null;
+            while (p.Parent != null)
+            {
+                p = p.Parent;
+            }
+            return (IConfig)p;
+        }
 
         public T GetPrevious()
         {

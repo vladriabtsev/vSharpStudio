@@ -30,6 +30,10 @@ namespace ViewModelBase
                         return base[key];
                     return default(TValue);
                 }
+#if DEBUG
+                if (!this.ContainsKey(key))
+                    return base[key];
+#endif
                 return base[key];
             }
             set

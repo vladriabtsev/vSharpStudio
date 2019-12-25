@@ -138,8 +138,8 @@ namespace ViewModelBase
             lock (_lock)
             {
                 base.Add(item);
-                if (OnAddAction != null)
-                    OnAddAction(item);
+                if (OnAddedAction != null)
+                    OnAddedAction(item);
                 InternalSort();
             }
         }
@@ -147,10 +147,9 @@ namespace ViewModelBase
         {
             lock (_lock)
             {
-                var ifrom = IndexOf(item);
                 var res = base.Remove(item);
-                if (OnRemoveAction != null)
-                    OnRemoveAction(ifrom);
+                if (OnRemovedAction != null)
+                    OnRemovedAction(item);
                 InternalSort();
                 return res;
             }
@@ -162,15 +161,15 @@ namespace ViewModelBase
                 foreach (T itm in collection)
                 {
                     this.Add(itm, sortingWeight);
-                    if (OnAddAction != null)
-                        OnAddAction(itm);
+                    if (OnAddedAction != null)
+                        OnAddedAction(itm);
                 }
                 InternalSort();
             }
         }
-        public Action<int> OnRemoveAction;
-        public Action<T> OnAddAction;
-        public Action<int, int> OnSortAction;
+        public Action<T> OnRemovedAction { get; set; }
+        public Action<T> OnAddedAction;
+        public Action<int, int> OnSortMovedAction;
         #region Sort
         /// <summary>
         /// Sorts the items of the collection in descending order according to a key.
@@ -225,8 +224,8 @@ namespace ViewModelBase
                 var ifrom = IndexOf(item);
                 var ito = sortedItemsList.IndexOf(item);
                 base.MoveItem(ifrom, ito);
-                if (OnSortAction != null)
-                    OnSortAction(ifrom, ito);
+                if (OnSortMovedAction != null)
+                    OnSortMovedAction(ifrom, ito);
             }
             OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
         }

@@ -7,6 +7,7 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -23,30 +24,12 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.ListAppProjectGenerators.CollectionChanged += ListAppProjectGenerators_CollectionChanged;
-        }
-
-        private void ListAppProjectGenerators_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Config cfg = (Config)this.GetConfig();
-            switch (e.Action)
-            {
-                // add is implemented when PluginGeneratorGuid is changed
-
-                //case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                //    foreach (var t in e.NewItems)
-                //    {
-                //        var tt = t as AppProjectGenerator;
-                //        DicAppGenerators[tt.Guid] = cfg.DicGenerators[tt.PluginGeneratorGuid];
-                //    }
-                //    break;
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    foreach (var t in e.OldItems)
-                    {
-                        DicAppGenerators.Remove((t as AppProjectGenerator).Guid);
-                    }
-                    break;
-            }
+            //this.ListAppProjectGenerators.OnRemovedAction = (item) => {
+            //    this.RemoveNodeAppGenSettings(item.Guid);
+            //    var cfg = (Config)this.GetConfig();
+            //    cfg.DicAppGenerators.Remove(item.Guid);
+            //    _logger.LogTrace("{DicAppGenerators}", cfg.DicAppGenerators);
+            //};
         }
 
         public AppProject(ITreeConfigNode parent, string name, string relativeToSolutionProjectPath)
@@ -120,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
                     p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
                 });
             }
-            this.RefillDicGenerators();
+            //this.RefillDicGenerators();
         }
         public override ITreeConfigNode NodeAddClone()
         {

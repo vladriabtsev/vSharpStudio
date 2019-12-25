@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
 
@@ -32,48 +33,18 @@ namespace vSharpStudio.vm.ViewModels
         #region Node App Generator Settings
 
         // App project generator Guid, 
-        protected static DictionaryExt<string, IvPluginGenerator> DicAppGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
-            (ki, v) =>
-            {
-            }, (kr, v) =>
-            {
-            }, () =>
-            {
-            });
-        protected void RefillDicGenerators()
-        {
-            Config cfg = (Config)this.GetConfig();
-            if (cfg == null || cfg.IGroupAppSolutions == null)
-                return;
-            DicAppGenerators.Clear();
-            foreach (var t in cfg.IGroupAppSolutions.IListAppSolutions)
-            {
-                foreach (var tt in t.IListAppProjects)
-                {
-                    foreach (var ttt in tt.IListAppProjectGenerators)
-                    {
-#if DEBUG
-                        if (string.IsNullOrWhiteSpace(ttt.Guid))
-                            throw new Exception("PluginGeneratorGuid is empty");
-#endif
-                        if (!DicAppGenerators.ContainsKey(ttt.Guid))
-                        {
-                            AppProjectGenerator g = (AppProjectGenerator)cfg.DicNodes[ttt.Guid];
-                            DicAppGenerators[ttt.Guid] = cfg.DicGenerators[g.PluginGeneratorGuid];
-                        }
-                    }
-                }
-            }
-        }
         public void AddAllAppGenSettingsVmsToNewNode()
         {
-            //var cnfg = this.GetConfig();
             var ngs = (INodeGenSettings)this;
 #if DEBUG
             if (ngs.ListGeneratorsSettings.Count > 0)
                 throw new Exception();
 #endif
-            foreach (var dg in DicAppGenerators)
+            var cfg = (Config)this.GetConfig();
+            if (cfg == null)
+                return;
+            _logger.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicAppGenerators.Count);
+            foreach (var dg in cfg.DicAppGenerators)
             {
                 var gen = dg.Value;
                 foreach (var t in gen.DicPathTypes)
@@ -99,6 +70,7 @@ namespace vSharpStudio.vm.ViewModels
 
                     if (is_found)
                     {
+                        _logger.LogTrace("Adding Node Settings. {Path}".CallerInfo(), t.Key);
                         GeneratorSettings gs = new GeneratorSettings(this);
                         ngs.ListGeneratorsSettings.Add(gs);
                         gs.AppGeneratorGuid = dg.Key;
@@ -116,18 +88,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreNodeAppGenSettingsVm()
         {
+            _logger.LogTrace();
             var ngs = (INodeGenSettings)this;
+            var cfg = (Config)this.GetConfig();
             foreach (var t in ngs.ListGeneratorsSettings)
             {
-                var gen = DicAppGenerators[t.AppGeneratorGuid];
-                foreach (var tt in t.ListTypeSettings)
+                if (cfg.DicAppGenerators.ContainsKey(t.AppGeneratorGuid))
                 {
-                    tt.SettingsVm = gen.GetNodeGenerationSettingsVmFromJson(tt.FullTypeName, tt.Settings);
+                    var gen = cfg.DicAppGenerators[t.AppGeneratorGuid];
+                    foreach (var tt in t.ListTypeSettings)
+                    {
+                        tt.SettingsVm = gen.GetNodeGenerationSettingsVmFromJson(tt.FullTypeName, tt.Settings);
+                    }
                 }
             }
         }
         public void SaveNodeAppGenSettings()
         {
+            _logger.LogTrace();
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListGeneratorsSettings)
             {
@@ -139,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
         {
+            _logger.LogTrace();
             var ngs = (INodeGenSettings)this;
             for (int i = ngs.ListGeneratorsSettings.Count - 1; i > 0; i--)
             {
@@ -152,6 +131,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void AddNodeAppGenSettings(string appGenGuid)
         {
+            _logger.LogTrace();
             //var cnfg = this.GetConfig();
             var ngs = (INodeGenSettings)this;
 #if DEBUG
@@ -161,7 +141,8 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception();
             }
 #endif
-            var gen = DicAppGenerators[appGenGuid];
+            var cfg = (Config)this.GetConfig();
+            var gen = cfg.DicAppGenerators[appGenGuid];
             foreach (var t in gen.DicPathTypes)
             {
                 if (this.FullName.Contains(t.Key))

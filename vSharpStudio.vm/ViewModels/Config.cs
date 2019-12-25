@@ -25,6 +25,14 @@ namespace vSharpStudio.vm.ViewModels
         public static bool IsLoading;
 
         public DictionaryExt<string, ITreeConfigNode> DicNodes { get; set; }
+        public DictionaryExt<string, IvPluginGenerator> DicAppGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+            (ki, v) =>
+            {
+            }, (kr, v) =>
+            {
+            }, () =>
+            {
+            });
 
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -45,11 +53,13 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInitBegin()
         {
+            _logger.LogTrace();
             this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true);
         }
 
         partial void OnInit()
         {
+            _logger.LogTrace();
             if (string.IsNullOrWhiteSpace(this.Name))
             {
                 this.Name = "Config";
@@ -73,14 +83,13 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupPlugins, 9);
             this.GroupAppSolutions.Parent = this;
             this.Children.Add(this.GroupAppSolutions, 10);
-            this.RefillDicGenerators();
         }
 
         protected override void OnInitFromDto()
         {
+            _logger.LogTrace();
             base.OnInitFromDto();
             this.RecreateSubNodes();
-            this.RefillDicGenerators();
         }
 
         public Config()
@@ -98,6 +107,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public string ExportToJson()
         {
+            _logger.LogTrace();
             var pconfig = Config.ConvertToProto(this);
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
@@ -122,6 +132,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
+            _logger.LogTrace();
             if (node == null)
             {
                 return;
@@ -310,6 +321,32 @@ namespace vSharpStudio.vm.ViewModels
                     GetSubConfigs(t.IConfig);
                 }
             }
+        }
+        public void RefillDicGenerators()
+        {
+            //_logger.LogTrace("".StackInfo());
+            _logger.LogTrace();
+            this.DicAppGenerators.Clear();
+            _logger.LogTrace("{DicAppGenerators}", this.DicAppGenerators);
+            foreach (var t in this.GroupAppSolutions.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+#if DEBUG
+                        if (string.IsNullOrWhiteSpace(ttt.Guid))
+                            throw new Exception("PluginGeneratorGuid is empty");
+#endif
+                        if (!this.DicAppGenerators.ContainsKey(ttt.Guid))
+                        {
+                            AppProjectGenerator g = (AppProjectGenerator)this.DicNodes[ttt.Guid];
+                            this.DicAppGenerators[ttt.Guid] = this.DicGenerators[g.PluginGeneratorGuid];
+                        }
+                    }
+                }
+            }
+            _logger.LogTrace("{DicAppGenerators}", this.DicAppGenerators);
         }
     }
 }

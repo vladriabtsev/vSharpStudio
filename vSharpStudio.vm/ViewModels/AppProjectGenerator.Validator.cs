@@ -104,8 +104,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.GeneratorSettings = string.Empty;
                 return;
             }
-            Config cnfg = (Config)this.GetConfig();
-            PluginGenerator gen = (PluginGenerator)cnfg.DicNodes[this.PluginGeneratorGuid];
+            Config cfg = (Config)this.GetConfig();
+            PluginGenerator gen = (PluginGenerator)cfg.DicNodes[this.PluginGeneratorGuid];
             try
             {
                 this.Settings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
@@ -114,12 +114,17 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     //DicAppGenerators[this.Guid] = cnfg.DicGenerators[this.PluginGeneratorGuid];
                     var nv = new NodeGenSettingsModelVisitor();
-                    nv.NodeGenSettingsApplyAction(cnfg, (p) =>
+                    nv.NodeGenSettingsApplyAction(cfg, (p) =>
                     {
                         p.RemoveNodeAppGenSettings(this.Guid);
                     });
-                    this.RefillDicGenerators();
-                    nv.NodeGenSettingsApplyAction(cnfg, (p) =>
+                    if (!cfg.DicAppGenerators.ContainsKey(this.Guid))
+                    {
+                        AppProjectGenerator g = (AppProjectGenerator)cfg.DicNodes[this.Guid];
+                        cfg.DicAppGenerators[this.Guid] = cfg.DicGenerators[g.PluginGeneratorGuid];
+                    }
+                    //this.RefillDicGenerators();
+                    nv.NodeGenSettingsApplyAction(cfg, (p) =>
                     {
                         p.AddNodeAppGenSettings(this.Guid);
                     });
@@ -191,14 +196,20 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeRemove()
         {
+            var cfg = (Config)this.GetConfig();
+            var nv = new NodeGenSettingsModelVisitor();
+            nv.NodeGenSettingsApplyAction(cfg, (p) =>
+            {
+                p.RemoveNodeAppGenSettings(this.Guid);
+            });
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-            var nv = new NodeGenSettingsModelVisitor();
-            nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
-            {
-                p.RemoveNodeAppGenSettings(this.PluginGeneratorGuid);
-            });
-            this.RefillDicGenerators();
+            cfg.DicAppGenerators.Remove(this.Guid);
+            //this.RefillDicGenerators();
+            //    this.RemoveNodeAppGenSettings(item.Guid);
+            //    var cfg = (Config)this.GetConfig();
+            //    cfg.DicAppGenerators.Remove(item.Guid);
+            //    _logger.LogTrace("{DicAppGenerators}", cfg.DicAppGenerators);
         }
 
         public override ITreeConfigNode NodeAddClone()

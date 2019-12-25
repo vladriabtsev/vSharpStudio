@@ -18,10 +18,17 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class EditorVmTests
     {
+        static EditorVmTests()
+        {
+            LoggerInit.Init();
+        }
+        private static Microsoft.Extensions.Logging.ILogger _logger;
         public EditorVmTests()
         {
             ViewModelBindable.isUnitTests = true;
-            EditorVmTests.InitLogging(this);
+            if (_logger == null)
+                //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
+                _logger = Logger.CreateLogger<PluginTests>();
         }
 
         internal static void InitLogging(object type)
