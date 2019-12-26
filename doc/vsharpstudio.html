@@ -506,7 +506,7 @@ if no:
                   <td><p>path to project with config file containing connection string. Usefull for UNIT tests.
 it will override previous settings
 @attr [PropertyOrderAttribute(4)]
-@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
                 </tr>
               
@@ -636,7 +636,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
-@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] </p></td>
+@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] </p></td>
                 </tr>
               
                 <tr>
@@ -745,7 +745,7 @@ it will override previous settings
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(8)]
 @attr [DisplayName(&#34;Output&#34;)]
-@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
                 </tr>
               
@@ -810,7 +810,7 @@ it will override previous settings
                   <td><p>List NET projects
 @attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Path&#34;)]
-@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
 @attr [Description(&#34;Relative path to solution folder&#34;)] </p></td>
                 </tr>
               
@@ -888,7 +888,7 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
-@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] </p></td>
+@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -976,7 +976,7 @@ it will override previous settings
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1287,7 +1287,7 @@ it will override previous settings
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1453,7 +1453,7 @@ it will override previous settings
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1539,7 +1539,7 @@ it will override previous settings
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1660,7 +1660,8 @@ it will override previous settings
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
                   <td><p>repeated proto_group_properties list_properties = 6;
-repeated proto_document list_forms = 7; </p></td>
+repeated proto_document list_forms = 7;
+@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1765,7 +1766,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -1946,7 +1947,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2080,7 +2081,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2147,7 +2148,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2214,7 +2215,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2282,7 +2283,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2350,7 +2351,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2516,7 +2517,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2583,7 +2584,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2651,7 +2652,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -2779,7 +2780,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -3074,7 +3075,7 @@ string group_info = 9; </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
 @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
                 </tr>
               
@@ -3157,7 +3158,7 @@ string group_info = 9; </p></td>
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -3235,7 +3236,7 @@ Reserved positions: 1 - primary key
                   <td>list_generators_settings</td>
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>
@@ -3296,7 +3297,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
                   <td>repeated</td>
                   <td><p>repeated proto_group_properties list_properties = 6;
-repeated proto_document list_documents = 7; </p></td>
+repeated proto_document list_documents = 7;
+@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
                 </tr>
               
             </tbody>

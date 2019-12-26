@@ -15,7 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Catalog";
-
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         partial void OnInit()

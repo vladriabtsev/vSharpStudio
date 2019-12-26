@@ -13,8 +13,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Report:{Name,nq}")]
     public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public static readonly string DefaultName = "Report";
-
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

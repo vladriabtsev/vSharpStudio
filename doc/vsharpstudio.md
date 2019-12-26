@@ -103,7 +103,7 @@ General DB settings
 | timestamp | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;Record data version/timestamp field name&#34;)] |
 | is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
 | connection_string_name | [string](#string) |  |  |
-| path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 
@@ -143,7 +143,7 @@ General DB settings
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] |
+| relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)] |
 | list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -168,7 +168,7 @@ General DB settings
 | description_plugin | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Description&#34;)] @attr [ReadOnly(true)] |
 | plugin_generator_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Generator&#34;)] @attr [Description(&#34;Plugin generator&#34;)] @attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] |
 | description_generator | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Description&#34;)] @attr [ReadOnly(true)] |
-| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output&#34;)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| relative_path_to_generated_file | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output&#34;)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)]
 
 @attr [ReadOnly(true)] |
@@ -206,7 +206,7 @@ string plugins_global_settins = 3;
 | name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;Relative path to solution folder&#34;)] |
+| relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;Relative path to solution folder&#34;)] |
 | default_db | [proto_app_db_settings](#proto_config.proto_app_db_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Default DB&#34;)] @attr [Description(&#34;Database connection. If empty, all solutions settings are used&#34;)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -228,7 +228,7 @@ string plugins_global_settins = 3;
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | config | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
-| relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] |
+| relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] |
 
 
 
@@ -252,7 +252,7 @@ string plugins_global_settins = 3;
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -342,7 +342,7 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -388,7 +388,7 @@ Constant application wise value
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -411,7 +411,7 @@ Constant application wise value
 | data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | Enumeration element type @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Type&#34;)] |
 | data_type_length | [int32](#int32) |  | Length of string if &#39;STRING&#39; is selected as enumeration element type @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Length&#34;)] |
 | list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)] @attr [NewItemTypes(typeof(EnumerationPair))] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -451,7 +451,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -489,7 +489,7 @@ Constant application wise value
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -549,7 +549,7 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -591,7 +591,7 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_constants | [proto_constant](#proto_config.proto_constant) | repeated | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -612,7 +612,7 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -633,7 +633,7 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -654,7 +654,7 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_forms | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -675,7 +675,7 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -733,7 +733,7 @@ main view forms hierarchy node with children
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -754,7 +754,7 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties_tabs | [proto_properties_tab](#proto_config.proto_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -775,7 +775,7 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -816,7 +816,7 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -916,7 +916,7 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
-| file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
+| file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 
@@ -939,7 +939,7 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | is_index_fk | [bool](#bool) |  | Create Index for foreign key navigation property @attr [PropertyOrderAttribute(4)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -961,7 +961,7 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Type&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated |  |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 
@@ -981,7 +981,7 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; |
+| list_generators_settings | [proto_generator_settings](#proto_config.proto_generator_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] |
 
 
 

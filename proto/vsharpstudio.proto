@@ -74,8 +74,8 @@ message proto_plugin_generator_settings {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
     bool is_private = 6;
-        // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
     string file_path = 9;
 
@@ -125,7 +125,7 @@ message db_settings {
     // path to project with config file containing connection string. Usefull for UNIT tests.
     // it will override previous settings
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
     string path_to_project_with_connection_string = 19;
 }
@@ -155,7 +155,7 @@ message proto_base_config_link {
     // @attr [BrowsableAttribute(false)]
     proto_config config = 6;
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
     string relative_config_file_path = 7;
 }
 enum proto_enum_primary_key_type {
@@ -269,7 +269,7 @@ message proto_app_solution {
     // List NET projects
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Path")]
-    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
     // @attr [Description("Relative path to solution folder")]
     string relative_app_solution_path = 7;
 
@@ -311,7 +311,7 @@ message proto_app_project {
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
     string relative_app_project_path = 7;
 
     // @attr [PropertyOrderAttribute(8)]
@@ -349,7 +349,7 @@ message proto_app_project_generator {
     string description_generator = 9;
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Output")]
-    // @attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
     string relative_path_to_generated_file = 10;
     // @attr [BrowsableAttribute(false)]
@@ -523,6 +523,7 @@ message proto_group_list_properties_tabs {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_properties_tab list_properties_tabs = 6;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_properties_tab {
@@ -541,6 +542,7 @@ message proto_properties_tab {
     // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(4)]
     bool is_index_fk = 8;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_group_list_properties {
@@ -557,6 +559,7 @@ message proto_group_list_properties {
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_property {
@@ -577,6 +580,7 @@ message proto_property {
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
     uint32 position = 15;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -594,6 +598,7 @@ message proto_group_list_constants {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_constant list_constants = 6;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 //
@@ -610,6 +615,7 @@ message proto_constant {
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -627,6 +633,7 @@ message proto_group_list_enumerations {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration list_enumerations = 6;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 // Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
@@ -656,6 +663,7 @@ message proto_enumeration {
     // @attr [DisplayName("Elements")]
     // @attr [NewItemTypes(typeof(EnumerationPair))]
     repeated proto_enumeration_pair list_enumeration_pairs = 8;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_enumeration_pair {
@@ -691,6 +699,7 @@ message proto_catalog {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 19;
 }
 message proto_group_list_catalogs {
@@ -704,6 +713,7 @@ message proto_group_list_catalogs {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -723,6 +733,7 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_documents group_list_documents = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_document {
@@ -742,6 +753,7 @@ message proto_document {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 19;
 }
 message proto_group_list_documents {
@@ -755,6 +767,7 @@ message proto_group_list_documents {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 6;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -773,6 +786,7 @@ message proto_group_list_journals {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_journal list_journals = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_journal {
@@ -787,6 +801,7 @@ message proto_journal {
     //repeated proto_group_properties list_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -805,6 +820,7 @@ message proto_group_list_forms {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_form list_forms = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_form {
@@ -818,6 +834,7 @@ message proto_form {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 
@@ -836,6 +853,7 @@ message proto_group_list_reports {
     //repeated proto_property list_shared_properties = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_report list_reports = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 message proto_report {
@@ -849,6 +867,7 @@ message proto_report {
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
+    // @attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
     repeated proto_generator_settings list_generators_settings = 16;
 }
 /** 

@@ -7,22 +7,25 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq}")]
     public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListDocuments;
         }
-
         public override bool HasChildren(object parent)
         {
             return this.ListDocuments.Count > 0;
         }
-
         partial void OnInit()
         {
             this.Name = "Documents";
@@ -30,7 +33,6 @@ namespace vSharpStudio.vm.ViewModels
             this.AddAllAppGenSettingsVmsToNewNode();
             this.ListDocuments.CollectionChanged += ListDocuments_CollectionChanged;
         }
-
         private void ListDocuments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.OnAddRemoveNode(e);

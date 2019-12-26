@@ -114,6 +114,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
             vm.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
             var gen = vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            gen.Name = "AppGenName";
+            gen.NameUi = "App Gen Name";
             string genFolder = "Generated";
             gen.RelativePathToGeneratedFile = genFolder + "\\test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
@@ -131,6 +133,8 @@ namespace vSharpStudio.Unit
             // if new node is added, settings are attached to new node
             vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings.Count);
+            Assert.AreEqual(gen.Name, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings[0].Name);
+            Assert.AreEqual(gen.NameUi, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings[0].NameUi);
             vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListGeneratorsSettings.Count);
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,7 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Form";
-
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

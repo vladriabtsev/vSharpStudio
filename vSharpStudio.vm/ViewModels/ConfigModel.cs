@@ -15,6 +15,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
@@ -289,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Objects
 
-        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         public string SolutionPath
         {
             get
@@ -349,5 +350,25 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
+        [ExpandableObjectAttribute()]
+        public object TestSettings { get { return _TestSettings; } }
+        private Test1 _TestSettings = new Test1();
+    }
+    public class Test1
+    {
+        public Test1()
+        {
+            this.Prop1 = new Test2();
+            this.Prop2 = new Test2();
+        }
+        [ExpandableObjectAttribute()]
+        public object Prop1 { get; set; }
+        [ExpandableObjectAttribute()]
+        public object Prop2 { get; set; }
+    }
+    public class Test2
+    {
+        public string Prop21 { get; set; }
+        public int Prop22 { get; set; }
     }
 }

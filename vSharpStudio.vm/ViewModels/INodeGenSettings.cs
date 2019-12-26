@@ -6,12 +6,13 @@ namespace vSharpStudio.vm.ViewModels
 {
     public interface INodeGenSettings
     {
+        object GenSettings { get; set; }
         ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings { get; }
-        //string GetNodeGenTypeSettings(AppProjectGenerator appgen, Type type);
         void AddAllAppGenSettingsVmsToNewNode();
         void RestoreNodeAppGenSettingsVm();
         void SaveNodeAppGenSettings();
         void RemoveNodeAppGenSettings(string appGenGuid);
         void AddNodeAppGenSettings(string appGenGuid);
+        void CreatePropertyGridNodeGenSettings(INodeGenSettings p);
     }
 }

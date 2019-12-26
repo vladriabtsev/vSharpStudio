@@ -6,22 +6,25 @@ using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq}")]
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.Children;
         }
-
         public override bool HasChildren(object parent)
         {
             return this.Children.Count > 0;
         }
-
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 

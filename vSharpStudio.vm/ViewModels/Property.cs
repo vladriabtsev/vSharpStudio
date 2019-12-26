@@ -15,21 +15,22 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public static readonly string DefaultName = "Property";
-
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
             this.AddAllAppGenSettingsVmsToNewNode();
         }
-
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
         {
             this.Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
-
         public Property(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {

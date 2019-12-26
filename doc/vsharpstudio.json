@@ -256,7 +256,7 @@
             },
             {
               "name": "path_to_project_with_connection_string",
-              "description": "path to project with config file containing connection string. Usefull for UNIT tests.\nit will override previous settings\n@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "description": "path to project with config file containing connection string. Usefull for UNIT tests.\nit will override previous settings\n@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -398,7 +398,7 @@
             },
             {
               "name": "relative_app_project_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -519,7 +519,7 @@
             },
             {
               "name": "relative_path_to_generated_file",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -590,7 +590,7 @@
             },
             {
               "name": "relative_app_solution_path",
-              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"Relative path to solution folder\")]",
+              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"Relative path to solution folder\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -681,7 +681,7 @@
             },
             {
               "name": "relative_config_file_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -792,7 +792,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1176,7 +1176,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1378,7 +1378,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1479,7 +1479,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1621,7 +1621,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;",
+              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;\n@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1743,7 +1743,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -1956,7 +1956,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2118,7 +2118,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2199,7 +2199,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2280,7 +2280,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2361,7 +2361,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2442,7 +2442,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2635,7 +2635,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2716,7 +2716,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2797,7 +2797,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -2949,7 +2949,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -3284,7 +3284,7 @@
             },
             {
               "name": "file_path",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3385,7 +3385,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -3476,7 +3476,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "",
+              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",
@@ -3547,7 +3547,7 @@
             },
             {
               "name": "list_generators_settings",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;",
+              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;\n@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
               "label": "repeated",
               "type": "proto_generator_settings",
               "longType": "proto_generator_settings",

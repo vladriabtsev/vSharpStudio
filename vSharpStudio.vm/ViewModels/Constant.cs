@@ -14,7 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Constant";
-
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

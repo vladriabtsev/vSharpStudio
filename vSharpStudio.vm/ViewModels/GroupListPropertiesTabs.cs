@@ -8,22 +8,25 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
     public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListPropertiesTabs;
         }
-
         public override bool HasChildren(object parent)
         {
             return this.ListPropertiesTabs.Count > 0;
         }
-
         partial void OnInit()
         {
             this.Name = "Tabs";
@@ -31,7 +34,6 @@ namespace vSharpStudio.vm.ViewModels
             this.AddAllAppGenSettingsVmsToNewNode();
             this.ListPropertiesTabs.CollectionChanged += ListPropertiesTabs_CollectionChanged;
         }
-
         private void ListPropertiesTabs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.OnAddRemoveNode(e);

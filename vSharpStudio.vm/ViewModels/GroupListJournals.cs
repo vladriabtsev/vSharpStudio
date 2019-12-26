@@ -6,22 +6,25 @@ using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListJournals.Count,nq}")]
     public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListJournals;
         }
-
         public override bool HasChildren(object parent)
         {
             return this.ListJournals.Count > 0;
         }
-
         partial void OnInit()
         {
             this.Name = "Journals";
@@ -29,7 +32,6 @@ namespace vSharpStudio.vm.ViewModels
             this.AddAllAppGenSettingsVmsToNewNode();
             this.ListJournals.CollectionChanged += ListJournals_CollectionChanged;
         }
-
         private void ListJournals_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.OnAddRemoveNode(e);

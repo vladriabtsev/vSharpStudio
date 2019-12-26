@@ -219,7 +219,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion ITreeNode
 
-        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         public string SolutionPath
         {
             get
@@ -247,6 +247,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this._SelectedNode != value)
                 {
+                    if (this.OnSelectedNodeChanging != null)
+                    {
+                        this.OnSelectedNodeChanging(this._SelectedNode, value);
+                    }
                     this._SelectedNode = value;
                     this.NotifyPropertyChanged();
                 }
@@ -259,6 +263,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged;
+        public Action<ITreeConfigNode, ITreeConfigNode> OnSelectedNodeChanging;
 
         #region Connection string editor
 

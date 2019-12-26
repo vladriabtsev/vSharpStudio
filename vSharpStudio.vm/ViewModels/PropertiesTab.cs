@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,11 +13,13 @@ namespace vSharpStudio.vm.ViewModels
     public partial class PropertiesTab : 
         ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public static readonly string DefaultName = "Tab";
-
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
-
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

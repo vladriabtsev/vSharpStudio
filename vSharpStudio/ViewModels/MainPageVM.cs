@@ -467,6 +467,18 @@ namespace vSharpStudio.ViewModels
                 MainPageVM.ConfigInstance = value;
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
+                this._Config.OnSelectedNodeChanging = (from, to) =>
+                {
+                    if (to is INodeGenSettings)
+                    {
+                        var t = to as INodeGenSettings;
+                        t.CreatePropertyGridNodeGenSettings(t);
+                    }
+                    else
+                    {
+                        //TODO remove property without node settings from PropertyGrid
+                    }
+                };
                 this._Config.OnSelectedNodeChanged = () =>
                 {
                     this.CommandAddNew.RaiseCanExecuteChanged();

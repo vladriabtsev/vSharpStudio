@@ -14,7 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
         public static readonly string DefaultName = "Enumeration";
-
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

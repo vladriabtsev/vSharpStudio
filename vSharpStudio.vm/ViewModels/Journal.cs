@@ -9,8 +9,11 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        public object GenSettings { get; set; }
         public static readonly string DefaultName = "Journal";
-
         partial void OnInit()
         {
             this.IsIncludableInModels = true;

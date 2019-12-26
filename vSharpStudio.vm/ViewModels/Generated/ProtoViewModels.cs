@@ -1,4 +1,4 @@
-// Auto generated on UTC 12/25/2019 20:52:17
+// Auto generated on UTC 12/26/2019 02:49:59
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -813,7 +813,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsPrivateChanged();
         
         [PropertyOrderAttribute(4)]
-        [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
         public string FilePath // Property.tt Line: 135
         { 
@@ -1286,7 +1286,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// it will override previous settings
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(4)]
-        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
         public string PathToProjectWithConnectionString // Property.tt Line: 135
         { 
@@ -1865,7 +1865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public IConfig IConfig { get { return this._Config; } }
         
         [PropertyOrderAttribute(6)]
-        [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
         public string RelativeConfigFilePath // Property.tt Line: 135
         { 
             get 
@@ -2975,7 +2975,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
         [DisplayName("Path")]
-        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         [Description("Relative path to solution folder")]
         public string RelativeAppSolutionPath // Property.tt Line: 135
         { 
@@ -3237,7 +3237,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
-        [Editor(typeof(FolderPickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         public string RelativeAppProjectPath // Property.tt Line: 135
         { 
             get 
@@ -3557,7 +3557,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(8)]
         [DisplayName("Output")]
-        [Editor(typeof(FilePickerEditor), typeof(ITypeEditor))]
+        [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
         public string RelativePathToGeneratedFile // Property.tt Line: 135
         { 
@@ -5784,6 +5784,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -6086,6 +6087,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsIndexFkChanging(bool from, bool to); // Property.tt Line: 156
         partial void OnIsIndexFkChanged();
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -6418,6 +6420,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnLastGenPositionChanging(uint from, uint to); // Property.tt Line: 156
         partial void OnLastGenPositionChanged();
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -6685,6 +6688,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPositionChanging(uint from, uint to); // Property.tt Line: 156
         partial void OnPositionChanged();
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -6986,6 +6990,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -7225,6 +7230,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IDataType IDataType { get { return this._DataType; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -7526,6 +7532,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -7871,6 +7878,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IEnumerable<IEnumerationPair> IListEnumerationPairs { get { foreach (var t in this._ListEnumerationPairs) yield return t; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -8364,6 +8372,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IGroupListReports IGroupReports { get { return this._GroupReports; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -8665,6 +8674,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -8936,6 +8946,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IGroupListDocuments IGroupListDocuments { get { return this._GroupListDocuments; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -9279,6 +9290,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IGroupListReports IGroupReports { get { return this._GroupReports; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -9580,6 +9592,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -9885,6 +9898,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -10169,6 +10183,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [BrowsableAttribute(false)]
         public IEnumerable<IDocument> IListDocuments { get { foreach (var t in this._ListDocuments) yield return t; } }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -10474,6 +10489,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -10678,6 +10694,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// repeated proto_group_properties list_properties = 6;
         /// repeated proto_document list_forms = 7;
         ///////////////////////////////////////////////////
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -10983,6 +11000,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
@@ -11187,6 +11205,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// repeated proto_group_properties list_properties = 6;
         /// repeated proto_document list_documents = 7;
         ///////////////////////////////////////////////////
+        [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
         public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
         { 
             get 
