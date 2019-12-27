@@ -10,13 +10,6 @@ namespace vPlugin.Sample
     {
         public GeneratorDbAccess()
         {
-            this.DicPathTypes = new Dictionary<string, List<string>>();
-            var lst = new List<string>();
-            this.DicPathTypes["Property"] = lst;
-            lst.Add(typeof(GeneratorDbAccessNodePropertySettings).FullName);
-            lst = new List<string>();
-            this.DicPathTypes["Catalog.*.Form"] = lst;
-            lst.Add(typeof(GeneratorDbAccessNodeCatalogFormSettings).FullName);
         }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
         public string Name => "DbAccess";
@@ -38,24 +31,13 @@ namespace vPlugin.Sample
             }
             return gen_settings;
         }
-        public Dictionary<string, List<string>> DicPathTypes { get; private set; }
-        public IvPluginGeneratorSettingsVM GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
+
+        public List<IvPluginNodeSettings> GetListNodeGenerationSettings()
         {
-            if (fullTypeName == typeof(GeneratorDbAccessNodePropertySettings).FullName)
-            {
-                if (string.IsNullOrWhiteSpace(settings))
-                    return new GeneratorDbAccessNodePropertySettings(null);
-                proto_generator_db_access_node_property_settings proto = proto_generator_db_access_node_property_settings.Parser.ParseJson(settings);
-                return GeneratorDbAccessNodePropertySettings.ConvertToVM(proto, new GeneratorDbAccessNodePropertySettings((ITreeConfigNode)null));
-            }
-            else if (fullTypeName == typeof(GeneratorDbAccessNodeCatalogFormSettings).FullName)
-            {
-                if (string.IsNullOrWhiteSpace(settings))
-                    return new GeneratorDbAccessNodeCatalogFormSettings(null);
-                proto_generator_db_access_node_catalog_form_settings proto = proto_generator_db_access_node_catalog_form_settings.Parser.ParseJson(settings);
-                return GeneratorDbAccessNodeCatalogFormSettings.ConvertToVM(proto, new GeneratorDbAccessNodeCatalogFormSettings((ITreeConfigNode)null));
-            }
-            throw new ArgumentException("Unsupported type: " + fullTypeName);
+            List<IvPluginNodeSettings> res = new List<IvPluginNodeSettings>();
+            res.Add(new GeneratorDbAccessNodePropertySettings());
+            res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
+            return res;
         }
     }
 }

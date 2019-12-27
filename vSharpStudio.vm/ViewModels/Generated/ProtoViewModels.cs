@@ -1,4 +1,4 @@
-// Auto generated on UTC 12/26/2019 02:49:59
+// Auto generated on UTC 12/27/2019 17:40:30
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3619,7 +3619,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             : base(parent, GeneratorSettingsValidator.Validator) // Class.tt Line: 12
         {
             this.OnInitBegin();
-            this.ListTypeSettings = new ConfigNodesCollection<TypeSettings>(this); // Class.tt Line: 22
             this.OnInit();
         }
         partial void OnInitBegin();
@@ -3629,18 +3628,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            if (type == typeof(TypeSettings)) // Clone.tt Line: 15
-            {
-                this.ListTypeSettings.Sort();
-            }
+            // throw new Exception();
         }
         public static GeneratorSettings Clone(ITreeConfigNode parent, GeneratorSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GeneratorSettings vm = new GeneratorSettings(parent);
             vm.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 62
-            vm.ListTypeSettings = new ConfigNodesCollection<TypeSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListTypeSettings) // Clone.tt Line: 49
-                vm.ListTypeSettings.Add(TypeSettings.Clone(vm, (TypeSettings)t, isDeep));
+            vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 62
+            vm.Settings = from.Settings; // Clone.tt Line: 62
             if (isNewGuid) // Clone.tt Line: 67
                 vm.SetNewGuid();
             return vm;
@@ -3648,42 +3643,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static void Update(GeneratorSettings to, GeneratorSettings from, bool isDeep = true) // Clone.tt Line: 72
         {
             to.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
-            {
-                foreach (var t in to.ListTypeSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListTypeSettings)
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            TypeSettings.Update((TypeSettings)t, (TypeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListTypeSettings.Remove(t);
-                }
-                foreach (var tt in from.ListTypeSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListTypeSettings.ToList())
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new TypeSettings(to); // Clone.tt Line: 110
-                        TypeSettings.Update(p, (TypeSettings)tt, isDeep);
-                        to.ListTypeSettings.Add(p);
-                    }
-                }
-            }
+            to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 134
+            to.Settings = from.Settings; // Clone.tt Line: 134
         }
         // Clone.tt Line: 140
         #region IEditable
@@ -3710,12 +3671,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return vm;
             }
             vm.AppGeneratorGuid = m.AppGeneratorGuid; // Clone.tt Line: 211
-            vm.ListTypeSettings = new ConfigNodesCollection<TypeSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListTypeSettings) // Clone.tt Line: 191
-            {
-                var tvm = TypeSettings.ConvertToVM(t, new TypeSettings(vm)); // Clone.tt Line: 194
-                vm.ListTypeSettings.Add(tvm);
-            }
+            vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 211
+            vm.Settings = m.Settings; // Clone.tt Line: 211
             vm.OnInitFromDto(); // Clone.tt Line: 217
             return vm;
         }
@@ -3724,8 +3681,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Proto.Config.proto_generator_settings m = new Proto.Config.proto_generator_settings(); // Clone.tt Line: 224
             m.AppGeneratorGuid = vm.AppGeneratorGuid; // Clone.tt Line: 261
-            foreach (var t in vm.ListTypeSettings) // Clone.tt Line: 227
-                m.ListTypeSettings.Add(TypeSettings.ConvertToProto((TypeSettings)t)); // Clone.tt Line: 231
+            m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 261
+            m.Settings = vm.Settings; // Clone.tt Line: 261
             return m;
         }
         
@@ -3736,15 +3693,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
-            foreach (var t in this.ListTypeSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
+        
+        ///////////////////////////////////////////////////
+        /// Guid is plugin guid
+        /// AppGeneratorGuid is Guid for file generator
+        ///////////////////////////////////////////////////
         public string AppGeneratorGuid // Property.tt Line: 135
         { 
             get 
@@ -3767,136 +3725,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnAppGeneratorGuidChanging(string from, string to); // Property.tt Line: 156
         partial void OnAppGeneratorGuidChanged();
         
-        public ConfigNodesCollection<TypeSettings> ListTypeSettings // Property.tt Line: 59
+        public string NodeSettingsVmGuid // Property.tt Line: 135
         { 
             get 
             { 
-                return this._ListTypeSettings; 
+                return this._NodeSettingsVmGuid; 
             }
             set
             {
-                if (this._ListTypeSettings != value)
+                if (this._NodeSettingsVmGuid != value)
                 {
-                    this.OnListTypeSettingsChanging(this._ListTypeSettings, value);
-                    this._ListTypeSettings = value;
-                    this.OnListTypeSettingsChanged();
+                    this.OnNodeSettingsVmGuidChanging(this._NodeSettingsVmGuid, value);
+                    this._NodeSettingsVmGuid = value;
+                    this.OnNodeSettingsVmGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private ConfigNodesCollection<TypeSettings> _ListTypeSettings;
-        partial void OnListTypeSettingsChanging(SortedObservableCollection<TypeSettings> from, SortedObservableCollection<TypeSettings> to); // Property.tt Line: 80
-        partial void OnListTypeSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<ITypeSettings> IListTypeSettings { get { foreach (var t in this._ListTypeSettings) yield return t; } }
-    
-        #endregion Properties
-    }
-    public partial class TypeSettings : ConfigObjectSubBase<TypeSettings, TypeSettings.TypeSettingsValidator>, IComparable<TypeSettings>, IConfigAcceptVisitor, ITypeSettings // Class.tt Line: 6
-    {
-        public partial class TypeSettingsValidator : ValidatorBase<TypeSettings, TypeSettingsValidator> { } // Class.tt Line: 8
-        #region CTOR
-        public TypeSettings(ITreeConfigNode parent) 
-            : base(parent, TypeSettingsValidator.Validator) // Class.tt Line: 12
-        {
-            this.OnInitBegin();
-            this.OnInit();
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        
-        public override void Sort(Type type) // Clone.tt Line: 8
-        {
-            // throw new Exception();
-        }
-        public static TypeSettings Clone(ITreeConfigNode parent, TypeSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
-        {
-            TypeSettings vm = new TypeSettings(parent);
-            vm.FullTypeName = from.FullTypeName; // Clone.tt Line: 62
-            vm.Settings = from.Settings; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
-                vm.SetNewGuid();
-            return vm;
-        }
-        public static void Update(TypeSettings to, TypeSettings from, bool isDeep = true) // Clone.tt Line: 72
-        {
-            to.FullTypeName = from.FullTypeName; // Clone.tt Line: 134
-            to.Settings = from.Settings; // Clone.tt Line: 134
-        }
-        // Clone.tt Line: 140
-        #region IEditable
-        public override TypeSettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return TypeSettings.Clone(this.Parent, this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(TypeSettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            TypeSettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_type_settings' to 'TypeSettings'
-        public static TypeSettings ConvertToVM(Proto.Config.proto_type_settings m, TypeSettings vm) // Clone.tt Line: 163
-        {
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.FullTypeName = m.FullTypeName; // Clone.tt Line: 211
-            vm.Settings = m.Settings; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
-            return vm;
-        }
-        // Conversion from 'TypeSettings' to 'proto_type_settings'
-        public static Proto.Config.proto_type_settings ConvertToProto(TypeSettings vm) // Clone.tt Line: 222
-        {
-            Proto.Config.proto_type_settings m = new Proto.Config.proto_type_settings(); // Clone.tt Line: 224
-            m.FullTypeName = vm.FullTypeName; // Clone.tt Line: 261
-            m.Settings = vm.Settings; // Clone.tt Line: 261
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        public string FullTypeName // Property.tt Line: 135
-        { 
-            get 
-            { 
-                return this._FullTypeName; 
-            }
-            set
-            {
-                if (this._FullTypeName != value)
-                {
-                    this.OnFullTypeNameChanging(this._FullTypeName, value);
-                    this._FullTypeName = value;
-                    this.OnFullTypeNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private string _FullTypeName = string.Empty;
-        partial void OnFullTypeNameChanging(string from, string to); // Property.tt Line: 156
-        partial void OnFullTypeNameChanged();
+        private string _NodeSettingsVmGuid = string.Empty;
+        partial void OnNodeSettingsVmGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnNodeSettingsVmGuidChanged();
         
         public string Settings // Property.tt Line: 135
         { 
@@ -11392,7 +11241,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_app_project p);
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_generator_settings p);
-        void Visit(Proto.Config.proto_type_settings p);
         void Visit(Proto.Config.proto_config_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
@@ -11556,14 +11404,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorSettings p) // ValidationVisitor.tt Line: 47
-        {
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(TypeSettings p) // ValidationVisitor.tt Line: 15
-        {
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(TypeSettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -11960,16 +11800,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(GeneratorSettings p) { }
         protected virtual void OnVisitEnd(GeneratorSettings p) { }
-        public void Visit(TypeSettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(TypeSettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(TypeSettings p) { }
-        protected virtual void OnVisitEnd(TypeSettings p) { }
         public void Visit(ConfigModel p)
         {
             this.OnVisit(p);
@@ -12283,8 +12113,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void VisitEnd(AppProjectGenerator p);
         void Visit(GeneratorSettings p);
         void VisitEnd(GeneratorSettings p);
-        void Visit(TypeSettings p);
-        void VisitEnd(TypeSettings p);
         void Visit(ConfigModel p);
         void VisitEnd(ConfigModel p);
         void Visit(GroupListCommon p);

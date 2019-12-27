@@ -44,8 +44,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings"></a>
 
 ### proto_generator_db_access_node_catalog_form_settings
-@attr [NodeParameter(&#34;Catalog.Form&#34;)]
-base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -60,8 +59,7 @@ base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessNodeSettings, Genera
 <a name="proto_plugin_sample.proto_generator_db_access_node_property_settings"></a>
 
 ### proto_generator_db_access_node_property_settings
-@attr [NodeParameter(&#34;Property&#34;)]
-base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -76,7 +74,7 @@ base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessNodeSettings, Genera
 <a name="proto_plugin_sample.proto_generator_db_access_settings"></a>
 
 ### proto_generator_db_access_settings
-@base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessSettings, GeneratorDbAccessSettings.GeneratorDbAccessSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -93,7 +91,7 @@ base : ViewModelValidatableWithSeverity&lt;GeneratorDbAccessNodeSettings, Genera
 <a name="proto_plugin_sample.proto_generator_db_schema_settings"></a>
 
 ### proto_generator_db_schema_settings
-@base : ViewModelValidatableWithSeverity&lt;GeneratorDbSchemaSettings, GeneratorDbSchemaSettings.GeneratorDbSchemaSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |

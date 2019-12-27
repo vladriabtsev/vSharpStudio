@@ -53,13 +53,13 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInitBegin()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true);
         }
 
         partial void OnInit()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             if (string.IsNullOrWhiteSpace(this.Name))
             {
                 this.Name = "Config";
@@ -87,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels
 
         protected override void OnInitFromDto()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             base.OnInitFromDto();
             this.RecreateSubNodes();
         }
@@ -107,7 +107,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public string ExportToJson()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             var pconfig = Config.ConvertToProto(this);
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
@@ -132,7 +132,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
-            _logger.LogTrace();
+            _logger.Trace();
             if (node == null)
             {
                 return;
@@ -330,7 +330,7 @@ namespace vSharpStudio.vm.ViewModels
         public void RefillDicGenerators()
         {
             //_logger.LogTrace("".StackInfo());
-            _logger.LogTrace();
+            _logger.Trace();
             this.DicAppGenerators.Clear();
             _logger.LogTrace("{DicAppGenerators}", this.DicAppGenerators);
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)

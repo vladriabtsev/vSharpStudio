@@ -20,20 +20,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string AccessParam3 { get; } // ModelInterfaces.tt Line: 47
     }
     
-    ///////////////////////////////////////////////////
-    /// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
-    ///////////////////////////////////////////////////
-    
-    public partial interface IGeneratorDbAccessNodePropertySettings : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGeneratorDbAccessNodePropertySettings // ModelInterfaces.tt Line: 29
     {
         bool IsPropertyParam1 { get; } // ModelInterfaces.tt Line: 47
     }
     
-    ///////////////////////////////////////////////////
-    /// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
-    ///////////////////////////////////////////////////
-    
-    public partial interface IGeneratorDbAccessNodeCatalogFormSettings : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGeneratorDbAccessNodeCatalogFormSettings // ModelInterfaces.tt Line: 29
     {
         bool IsCatalogFormParam1 { get; } // ModelInterfaces.tt Line: 47
     }

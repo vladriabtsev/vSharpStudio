@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Google.Protobuf.Reflection;
+using Microsoft.Extensions.Logging;
 
 namespace GenFromProto
 {
@@ -14,8 +15,13 @@ namespace GenFromProto
     {
         static void Main(string[] args)
         {
+            LoggerInit.Init();
+            var _logger = Logger.CreateLogger<Program>();
             try
             {
+                _logger.LogInformation("***  App Starting {@Args}".CallerInfo(), args.Aggregate((s1, s2)=> {
+                    return s1 + " " + s2;
+                }));
                 int ii = 0;
                 if (args.Count() > 6)
                     ii = 1;

@@ -51,6 +51,13 @@ namespace vPlugin.Sample
             }
             return gen_settings;
         }
+        public List<IvPluginNodeSettings> GetListNodeGenerationSettings()
+        {
+            List<IvPluginNodeSettings> res = new List<IvPluginNodeSettings>();
+            res.Add(new GeneratorDbAccessNodePropertySettings());
+            res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
+            return res;
+        }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
         public IvPluginGeneratorSettingsVM GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {

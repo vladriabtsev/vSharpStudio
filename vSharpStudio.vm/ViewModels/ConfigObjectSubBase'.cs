@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
@@ -7,6 +8,7 @@ using FluentValidation;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -43,30 +45,67 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception();
 #endif
             var cfg = (Config)this.GetConfig();
-            if (cfg == null)
+            if (cfg == null || cfg.GroupAppSolutions == null)
                 return;
             _logger.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicAppGenerators.Count);
-            foreach (var dg in cfg.DicAppGenerators)
+            foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
-                var gen = dg.Value;
-                SearchPathAndAdd(dg.Key, ngs, gen);
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (cfg.DicAppGenerators.ContainsKey(ttt.Guid))
+                        {
+                            var gen = (IvPluginGenerator)cfg.DicAppGenerators[ttt.Guid];
+                            SearchPathAndAdd(ttt, ngs, gen);
+                        }
+                    }
+                }
             }
         }
-        private void SearchPathAndAdd(string keyguid, INodeGenSettings ngs, IvPluginGenerator gen)
+        private void SearchPathAndAdd(AppProjectGenerator appgen, INodeGenSettings ngs, IvPluginGenerator gen)
         {
-            foreach (var t in gen.DicPathTypes)
+            foreach (var t in gen.GetListNodeGenerationSettings())
             {
-                string ss = this.ModelPath;
-                var sp = t.Key.Split(".*.");
-                bool is_found = true;
+                string modelPath = this.ModelPath;
+                var searchPattern = t.SearchPathInModel;
+                var is_found = SearchInModelPathByPattern(modelPath, searchPattern);
+
+                if (is_found)
+                {
+                    GeneratorSettings gs = new GeneratorSettings(this);
+                    gs.NodeSettingsVmGuid = t.Guid;
+                    gs.AppGeneratorGuid = appgen.Guid;
+                    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appgen.Name);
+#if DEBUG
+                    foreach (var ttt in ngs.ListGeneratorsSettings)
+                    {
+                        if (ttt.AppGeneratorGuid == appgen.Guid)
+                            throw new Exception();
+                    }
+#endif
+                    ngs.ListGeneratorsSettings.Add(gs);
+                    gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
+                    break;
+                }
+            }
+        }
+        public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
+        {
+            var subPatterns = searchPattern.Split(";");
+            bool is_found = true;
+            foreach (var t in subPatterns)
+            {
+                var sp = t.Split(".*.");
+                is_found = true;
                 int indx = 0;
                 foreach (var s in sp)
                 {
                     var sd = "." + s;
-                    if (ss.Contains(s))
+                    if (modelPath.Contains(s))
                     {
-                        indx = ss.IndexOf(sd) + sd.Length;
-                        ss = ss.Substring(indx);
+                        indx = modelPath.IndexOf(sd) + sd.Length;
+                        modelPath = modelPath.Substring(indx);
                     }
                     else
                     {
@@ -74,27 +113,16 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     }
                 }
-
+                if (modelPath.Length > 0)
+                    is_found = false;
                 if (is_found)
-                {
-                    _logger.LogTrace("Adding Node Settings. {Path}".CallerInfo(), t.Key);
-                    GeneratorSettings gs = new GeneratorSettings(this);
-                    ngs.ListGeneratorsSettings.Add(gs);
-                    gs.AppGeneratorGuid = keyguid;
-                    foreach (var tt in t.Value)
-                    {
-                        TypeSettings ts = new TypeSettings(this);
-                        gs.ListTypeSettings.Add(ts);
-                        ts.FullTypeName = tt;
-                        ts.SettingsVm = gen.GetNodeGenerationSettingsVmFromJson(ts.FullTypeName, ts.Settings);
-                    }
                     break;
-                }
             }
+            return is_found;
         }
         public void RestoreNodeAppGenSettingsVm()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             var ngs = (INodeGenSettings)this;
             var cfg = (Config)this.GetConfig();
             foreach (var t in ngs.ListGeneratorsSettings)
@@ -102,28 +130,35 @@ namespace vSharpStudio.vm.ViewModels
                 if (cfg.DicAppGenerators.ContainsKey(t.AppGeneratorGuid))
                 {
                     var gen = cfg.DicAppGenerators[t.AppGeneratorGuid];
-                    foreach (var tt in t.ListTypeSettings)
+                    bool is_found = false;
+                    foreach (var tt in gen.GetListNodeGenerationSettings())
                     {
-                        tt.SettingsVm = gen.GetNodeGenerationSettingsVmFromJson(tt.FullTypeName, tt.Settings);
+                        if (tt.Guid == t.NodeSettingsVmGuid)
+                        {
+                            t.SettingsVm = tt.GetAppGenerationNodeSettingsVm(t.Settings);
+                            is_found = true;
+                            break;
+                        }
                     }
+                    if (!is_found)
+                        throw new Exception();
                 }
+                else
+                    throw new Exception();
             }
         }
         public void SaveNodeAppGenSettings()
         {
-            _logger.LogTrace();
+            _logger.Trace();
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListGeneratorsSettings)
             {
-                foreach (var tt in t.ListTypeSettings)
-                {
-                    tt.Settings = tt.SettingsVm.SettingsAsJson;
-                }
+                t.Settings = t.SettingsVm.SettingsAsJson;
             }
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
         {
-            _logger.LogTrace();
+            _logger.Trace();
             var ngs = (INodeGenSettings)this;
             for (int i = ngs.ListGeneratorsSettings.Count - 1; i > 0; i--)
             {
@@ -137,7 +172,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void AddNodeAppGenSettings(string appGenGuid)
         {
-            _logger.LogTrace();
+            _logger.Trace();
             //var cnfg = this.GetConfig();
             var ngs = (INodeGenSettings)this;
 #if DEBUG
@@ -148,10 +183,10 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             var cfg = (Config)this.GetConfig();
+            var appgen = (AppProjectGenerator)cfg.DicNodes[appGenGuid];
             var gen = cfg.DicAppGenerators[appGenGuid];
-            SearchPathAndAdd(appGenGuid, ngs, gen);
+            SearchPathAndAdd(appgen, ngs, gen);
         }
-
         public void CreatePropertyGridNodeGenSettings(INodeGenSettings p)
         {
             // create a dynamic assembly and module 
@@ -164,52 +199,54 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = (Config)this.GetConfig();
             foreach (var t in p.ListGeneratorsSettings)
             {
-                foreach (var tt in t.ListTypeSettings)
-                {
-                    var propType = typeof(object);
-                    var appGen = cfg.DicNodes[t.Guid];
-                    // Generate a private field for the property
-                    FieldBuilder fldBldr = typeBldr.DefineField("_" + t.Name, propType, FieldAttributes.Private);
-                    // Generate a public property
-                    PropertyBuilder prptyBldr = typeBldr.DefineProperty(t.Name, PropertyAttributes.None, propType, new Type[] { propType });
+                var propType = typeof(object);
+                var appGen = cfg.DicNodes[t.AppGeneratorGuid];
+                // Generate a private field for the property
+                FieldBuilder fldBldr = typeBldr.DefineField("_" + t.Name, propType, FieldAttributes.Private);
+                // Generate a public property
+                PropertyBuilder prptyBldr = typeBldr.DefineProperty(t.Name, PropertyAttributes.None, propType, new Type[] { propType });
 
-                    // The property set and property get methods need the following attributes:
-                    MethodAttributes GetSetAttr = MethodAttributes.Public | MethodAttributes.HideBySig;
-                    // Define the "get" accessor method for newly created private field.
-                    MethodBuilder currGetPropMthdBldr = typeBldr.DefineMethod("get_value", GetSetAttr, propType, null);
+                // The property set and property get methods need the following attributes:
+                MethodAttributes GetSetAttr = MethodAttributes.Public | MethodAttributes.HideBySig;
+                // Define the "get" accessor method for newly created private field.
+                MethodBuilder currGetPropMthdBldr = typeBldr.DefineMethod("get_value", GetSetAttr, propType, null);
 
-                    // Intermediate Language stuff... as per MS
-                    ILGenerator currGetIL = currGetPropMthdBldr.GetILGenerator();
-                    currGetIL.Emit(OpCodes.Ldarg_0);
-                    currGetIL.Emit(OpCodes.Ldfld, fldBldr);
-                    currGetIL.Emit(OpCodes.Ret);
+                // Intermediate Language stuff... as per MS
+                ILGenerator currGetIL = currGetPropMthdBldr.GetILGenerator();
+                currGetIL.Emit(OpCodes.Ldarg_0);
+                currGetIL.Emit(OpCodes.Ldfld, fldBldr);
+                currGetIL.Emit(OpCodes.Ret);
 
-                    // Define the "set" accessor method for the newly created private field.
-                    MethodBuilder currSetPropMthdBldr = typeBldr.DefineMethod("set_value", GetSetAttr, null, new Type[] { propType });
+                // Define the "set" accessor method for the newly created private field.
+                MethodBuilder currSetPropMthdBldr = typeBldr.DefineMethod("set_value", GetSetAttr, null, new Type[] { propType });
 
-                    // More Intermediate Language stuff...
-                    ILGenerator currSetIL = currSetPropMthdBldr.GetILGenerator();
-                    currSetIL.Emit(OpCodes.Ldarg_0);
-                    currSetIL.Emit(OpCodes.Ldarg_1);
-                    currSetIL.Emit(OpCodes.Stfld, fldBldr);
-                    currSetIL.Emit(OpCodes.Ret);
+                // More Intermediate Language stuff...
+                ILGenerator currSetIL = currSetPropMthdBldr.GetILGenerator();
+                currSetIL.Emit(OpCodes.Ldarg_0);
+                currSetIL.Emit(OpCodes.Ldarg_1);
+                currSetIL.Emit(OpCodes.Stfld, fldBldr);
+                currSetIL.Emit(OpCodes.Ret);
 
-                    // Assign the two methods created above to the PropertyBuilder's Set and Get
-                    prptyBldr.SetGetMethod(currGetPropMthdBldr);
-                    prptyBldr.SetSetMethod(currSetPropMthdBldr);
-                }
+                // Assign the two methods created above to the PropertyBuilder's Set and Get
+                prptyBldr.SetGetMethod(currGetPropMthdBldr);
+                prptyBldr.SetSetMethod(currSetPropMthdBldr);
+
+                ConstructorInfo cons = typeof(ExpandableObjectAttribute).GetConstructor(new Type[] { });
+                CustomAttributeBuilder attribute = new CustomAttributeBuilder(cons, new object[] { }, new FieldInfo[] { }, new object[] { });
+                prptyBldr.SetCustomAttribute(attribute);
+
+                cons = typeof(DescriptionAttribute).GetConstructor(new Type[] { typeof(string) });
+                attribute = new CustomAttributeBuilder(cons, new object[] { t.Description }, new FieldInfo[] { }, new object[] { });
+                prptyBldr.SetCustomAttribute(attribute);
             }
             var dynamicType = typeBldr.CreateType();
-            var newGenSettings = Activator.CreateInstance(dynamicType);
-            dynamic newClass = newGenSettings;
+            var instance = Activator.CreateInstance(dynamicType);
             foreach (var t in p.ListGeneratorsSettings)
             {
-                foreach (var tt in t.ListTypeSettings)
-                {
-                    newClass[tt.Name] = tt.SettingsVm;
-                }
+                PropertyInfo prop = dynamicType.GetProperty(t.Name);
+                prop.SetValue(instance, t.SettingsVm, null);
             }
-            p.GenSettings = newGenSettings;
+            p.GenSettings = instance;
         }
 
         #endregion Node App Generator Settings

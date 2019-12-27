@@ -4,26 +4,24 @@ package proto_plugin_sample;
 option csharp_namespace = "Proto.Plugin";
 
 
-// @base : ViewModelValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettings.GeneratorDbSchemaSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_generator_db_schema_settings {
     bool is_schema_param1 = 1;
     bool_nullable is_schema_param2 = 2;
     string schema_param3 = 3;
 }
 
-// @base : ViewModelValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettings.GeneratorDbAccessSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_settings {
     bool is_access_param1 = 1;
     bool_nullable is_access_param2 = 2;
     string access_param3 = 3;
 }
-// @attr [NodeParameter("Property")]
-// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_node_property_settings {
     bool is_property_param1 = 1;
 }
-// @attr [NodeParameter("Catalog.Form")]
-// base : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_node_catalog_form_settings {
     bool is_catalog_form_param1 = 1;
 }

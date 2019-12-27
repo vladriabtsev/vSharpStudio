@@ -49,7 +49,6 @@
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
-    - [proto_type_settings](#proto_config.proto_type_settings)
     - [string_nullable](#proto_config.string_nullable)
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
@@ -91,7 +90,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 
 ### db_settings
 General DB settings
-@base : ViewModelValidatableWithSeverity&lt;DbSettings, DbSettings.DbSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -113,7 +112,7 @@ General DB settings
 <a name="proto_config.proto_app_db_settings"></a>
 
 ### proto_app_db_settings
-@base : ViewModelValidatableWithSeverity&lt;AppDbSettings, AppDbSettings.AppDbSettingsValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -352,7 +351,7 @@ Constant application wise value
 <a name="proto_config.proto_data_type"></a>
 
 ### proto_data_type
-@base : ViewModelValidatableWithSeverity&lt;DataType, DataType.DataTypeValidator&gt;
+@base ViewModelValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -466,8 +465,9 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| app_generator_guid | [string](#string) |  |  |
-| list_type_settings | [proto_type_settings](#proto_config.proto_type_settings) | repeated |  |
+| app_generator_guid | [string](#string) |  | Guid is plugin guid AppGeneratorGuid is Guid for file generator |
+| node_settings_vm_guid | [string](#string) |  |  |
+| settings | [string](#string) |  |  |
 
 
 
@@ -846,7 +846,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_model_row"></a>
 
 ### proto_model_row
-@base : ViewModelBindable&lt;ModelRow&gt;
+@base ViewModelBindable
 
 
 | Field | Type | Label | Description |
@@ -1021,22 +1021,6 @@ User&#39;s role
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
-
-
-
-
-
-
-<a name="proto_config.proto_type_settings"></a>
-
-### proto_type_settings
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| full_type_name | [string](#string) |  |  |
-| settings | [string](#string) |  |  |
 
 
 

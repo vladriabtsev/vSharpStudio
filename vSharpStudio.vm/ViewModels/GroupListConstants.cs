@@ -17,6 +17,7 @@ namespace vSharpStudio.vm.ViewModels
         [DisplayName("Generators")]
         [Description("Expandable Attached Node Settings for App Project Generators")]
         [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
         public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {

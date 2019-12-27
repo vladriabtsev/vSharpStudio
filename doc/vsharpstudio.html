@@ -359,10 +359,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_type_settings"><span class="badge">M</span>proto_type_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.string_nullable"><span class="badge">M</span>string_nullable</a>
                 </li>
               
@@ -432,7 +428,7 @@
         
       
         <h3 id="proto_config.db_settings">db_settings</h3>
-        <p>General DB settings</p><p>@base : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator></p>
+        <p>General DB settings</p><p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -518,7 +514,7 @@ it will override previous settings
         
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
-        <p>@base : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator></p>
+        <p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -1298,7 +1294,7 @@ it will override previous settings
         
       
         <h3 id="proto_config.proto_data_type">proto_data_type</h3>
-        <p>@base : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator></p>
+        <p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -1685,13 +1681,21 @@ repeated proto_document list_forms = 7;
                   <td>app_generator_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p>Guid is plugin guid
+AppGeneratorGuid is Guid for file generator </p></td>
+                </tr>
+              
+                <tr>
+                  <td>node_settings_vm_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_type_settings</td>
-                  <td><a href="#proto_config.proto_type_settings">proto_type_settings</a></td>
-                  <td>repeated</td>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2851,7 +2855,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_model_row">proto_model_row</h3>
-        <p>@base : ViewModelBindable<ModelRow></p>
+        <p>@base ViewModelBindable</p>
 
         
           <table class="field-table">
@@ -3411,37 +3415,6 @@ repeated proto_document list_documents = 7;
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>min version supported by current version for migration </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_type_settings">proto_type_settings</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>full_type_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>

@@ -10,6 +10,7 @@ using vSharpStudio.ViewModels;
 using vSharpStudio.common;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
+using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.Unit
 {

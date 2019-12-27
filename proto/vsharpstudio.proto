@@ -98,7 +98,7 @@ enum db_id_generator_method
     HiLo = 1;
 }
 // General DB settings
-// @base : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("DB schema name for all object in this configuration")]
@@ -195,7 +195,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
-// @base : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -357,12 +357,11 @@ message proto_app_project_generator {
     // @attr [ReadOnly(true)]
 }
 message proto_generator_settings {
+    // Guid is plugin guid
+    // AppGeneratorGuid is Guid for file generator
     string app_generator_guid = 1;
-    repeated proto_type_settings list_type_settings = 2; 
-}
-message proto_type_settings {
-    string full_type_name = 1;
-    string settings = 2; 
+    string node_settings_vm_guid = 2;
+    string settings = 3; 
 }
 /** 
  * @exclude
@@ -415,7 +414,7 @@ enum proto_enum_data_type {
 
     ANY = 15;
 }
-// @base : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>
+// @base ViewModelValidatableWithSeverity
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
@@ -881,7 +880,7 @@ message proto_item_name_value {
     uint64 sorting_value = 3;
 }
 */
-// @base : ViewModelBindable<ModelRow>
+// @base ViewModelBindable
 message proto_model_row {
     string group_name = 1;
     string name = 2;

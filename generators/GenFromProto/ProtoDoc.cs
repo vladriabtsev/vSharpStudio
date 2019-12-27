@@ -161,7 +161,10 @@ namespace GenFromProto
                     {
                         if (base0 != "")
                             throw new Exception("@base is specified more than one time for message:" + name);
-                        base0 = t.Substring(5);
+                        if (t.Contains(":"))
+                            base0 = t.Substring(5);
+                        else
+                            base0 = t.Substring(6);
                     }
                     else
                     {

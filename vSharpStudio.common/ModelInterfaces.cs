@@ -254,13 +254,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IGeneratorSettings : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
+        
+        ///////////////////////////////////////////////////
+        /// Guid is plugin guid
+        /// AppGeneratorGuid is Guid for file generator
+        ///////////////////////////////////////////////////
         string AppGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<ITypeSettings> IListTypeSettings { get; } // ModelInterfaces.tt Line: 44
-    }
-    
-    public partial interface ITypeSettings : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
-    {
-        string FullTypeName { get; } // ModelInterfaces.tt Line: 47
+        string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 47
         string Settings { get; } // ModelInterfaces.tt Line: 47
     }
     

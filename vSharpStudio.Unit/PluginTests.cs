@@ -8,6 +8,7 @@ using vSharpStudio.common;
 using System.IO;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {
@@ -27,7 +28,23 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
-        public void Plugin001CanLoadPlugin()
+        public void Plugin001SearchInPath()
+        {
+            var vm = new MainPageVM(false);
+            vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
+            var cat = vm.Config.Model.GroupCatalogs[0];
+            cat.GroupProperties.NodeAddNewSubNode();
+            var prop = cat.GroupProperties[0];
+            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Property"));
+            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test;Property"));
+            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Property"));
+
+            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog"));
+            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Test"));
+            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test.*.Property"));
+        }
+        [TestMethod]
+        public void Plugin003CanLoadPlugin()
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
@@ -43,7 +60,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
-        public void Plugin002WorkWithAppGeneratorSettings()
+        public void Plugin004WorkWithAppGeneratorSettings()
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
@@ -92,7 +109,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
-        public void Plugin003WorkWithNodeGeneratorSettings()
+        public void Plugin005WorkWithNodeGeneratorSettings()
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
@@ -113,14 +130,14 @@ namespace vSharpStudio.Unit
             Directory.CreateDirectory(solDir + "\\" + prjFolder);
             Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
             vm.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
-            var gen = vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            gen.Name = "AppGenName";
-            gen.NameUi = "App Gen Name";
+            var appGen = vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            appGen.Name = "AppGenName";
+            appGen.NameUi = "App Gen Name";
             string genFolder = "Generated";
-            gen.RelativePathToGeneratedFile = genFolder + "\\test_file.cs";
-            gen.PluginGuid = pluginNode.Guid;
+            appGen.RelativePathToGeneratedFile = genFolder + "\\test_file.cs";
+            appGen.PluginGuid = pluginNode.Guid;
             // Expect attached settings for Property and Catalog.Form
-            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            appGen.PluginGeneratorGuid = genDbAccess.Guid;
             Assert.AreEqual(1, vm.Config.DicAppGenerators.Count);
 
             vm.Config.Model.GroupEnumerations.NodeAddNewSubNode();
@@ -133,8 +150,15 @@ namespace vSharpStudio.Unit
             // if new node is added, settings are attached to new node
             vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings.Count);
-            Assert.AreEqual(gen.Name, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings[0].Name);
-            Assert.AreEqual(gen.NameUi, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings[0].NameUi);
+            var stt = vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings[0];
+            Assert.AreEqual(appGen.Guid, stt.AppGeneratorGuid);
+            foreach (var t in genDbAccess.GetListNodeGenerationSettings())
+            {
+                if (t.SearchPathInModel == "Property")
+                    Assert.AreEqual(t.Guid, stt.NodeSettingsVmGuid);
+            }
+            Assert.AreEqual(appGen.Name, stt.Name);
+            Assert.AreEqual(appGen.NameUi, stt.NameUi);
             vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListGeneratorsSettings.Count);
 
@@ -166,22 +190,22 @@ namespace vSharpStudio.Unit
             var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             Assert.AreEqual(1, vm2.Config.DicAppGenerators.Count);
             vm2.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
-            gen = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
-            gen.RelativePathToGeneratedFile = genFolder + "\\test_file2.cs";
-            gen.PluginGuid = pluginNode.Guid;
+            appGen = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
+            appGen.RelativePathToGeneratedFile = genFolder + "\\test_file2.cs";
+            appGen.PluginGuid = pluginNode.Guid;
             // Expect attached settings for Property and Catalog.Form
-            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            appGen.PluginGeneratorGuid = genDbAccess.Guid;
             Assert.AreEqual(2, vm2.Config.DicAppGenerators.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupEnumerations[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupConstants[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupCatalogs[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListGeneratorsSettings.Count);
 
             // if app progect generator is removed, attached seetings are removed from appropriate nodes as well
-            gen.NodeRemove();
+            appGen.NodeRemove();
             Assert.AreEqual(1, vm2.Config.DicAppGenerators.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupEnumerations[0].ListGeneratorsSettings.Count);
             Assert.AreEqual(0, vm2.Config.Model.GroupConstants[0].ListGeneratorsSettings.Count);

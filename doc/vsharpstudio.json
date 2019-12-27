@@ -179,7 +179,7 @@
           "name": "db_settings",
           "longName": "db_settings",
           "fullName": "proto_config.db_settings",
-          "description": "General DB settings\n@base : ViewModelValidatableWithSeverity\u003cDbSettings, DbSettings.DbSettingsValidator\u003e",
+          "description": "General DB settings\n@base ViewModelValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -270,7 +270,7 @@
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
-          "description": "@base : ViewModelValidatableWithSeverity\u003cAppDbSettings, AppDbSettings.AppDbSettingsValidator\u003e",
+          "description": "@base ViewModelValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1190,7 +1190,7 @@
           "name": "proto_data_type",
           "longName": "proto_data_type",
           "fullName": "proto_config.proto_data_type",
-          "description": "@base : ViewModelValidatableWithSeverity\u003cDataType, DataType.DataTypeValidator\u003e",
+          "description": "@base ViewModelValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1642,6 +1642,16 @@
           "fields": [
             {
               "name": "app_generator_guid",
+              "description": "Guid is plugin guid\nAppGeneratorGuid is Guid for file generator",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "node_settings_vm_guid",
               "description": "",
               "label": "",
               "type": "string",
@@ -1651,12 +1661,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_type_settings",
+              "name": "settings",
               "description": "",
-              "label": "repeated",
-              "type": "proto_type_settings",
-              "longType": "proto_type_settings",
-              "fullType": "proto_config.proto_type_settings",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3034,7 +3044,7 @@
           "name": "proto_model_row",
           "longName": "proto_model_row",
           "fullName": "proto_config.proto_model_row",
-          "description": "@base : ViewModelBindable\u003cModelRow\u003e",
+          "description": "@base ViewModelBindable",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3684,37 +3694,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_type_settings",
-          "longName": "proto_type_settings",
-          "fullName": "proto_config.proto_type_settings",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "full_type_name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
