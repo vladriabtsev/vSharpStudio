@@ -39,6 +39,7 @@ namespace vSharpStudio.vm.ViewModels
             this.DataType = new DataType(type, length, accuracy);
         }
 
+        public IDataType IDataType { get { return this._DataType; } }
         #region IConfigObject
         // public void Create()
         // {

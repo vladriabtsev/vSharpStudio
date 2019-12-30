@@ -1,4 +1,4 @@
-// Auto generated on UTC 12/27/2019 17:40:30
+// Auto generated on UTC 12/30/2019 00:38:52
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Plugin> ListPlugins // Property.tt Line: 59
+        public ConfigNodesCollection<Plugin> ListPlugins // Property.tt Line: 58
         { 
             get 
             { 
@@ -177,12 +177,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Plugin> _ListPlugins;
-        partial void OnListPluginsChanging(SortedObservableCollection<Plugin> from, SortedObservableCollection<Plugin> to); // Property.tt Line: 80
+        partial void OnListPluginsChanging(SortedObservableCollection<Plugin> from, SortedObservableCollection<Plugin> to); // Property.tt Line: 79
         partial void OnListPluginsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IPlugin> IListPlugins { get { foreach (var t in this._ListPlugins) yield return t; } }
+        IEnumerable<IPlugin> IGroupListPlugins.ListPlugins { get { return this._ListPlugins; } }
         public Plugin this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
-        public void Add(Plugin item) // Property.tt Line: 87
+        public void Add(Plugin item) // Property.tt Line: 85
         { 
             this.ListPlugins.Add(item); 
             item.Parent = this;
@@ -356,7 +355,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Version // Property.tt Line: 135
+        public string Version // Property.tt Line: 132
         { 
             get 
             { 
@@ -375,11 +374,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnVersionChanging(string from, string to); // Property.tt Line: 153
         partial void OnVersionChanged();
+        string IPlugin.Version { get { return this._Version; } }
         
         [ReadOnly(true)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -398,8 +398,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IPlugin.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
@@ -412,7 +413,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// string group_info = 9;
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PluginGenerator> ListGenerators // Property.tt Line: 59
+        public ConfigNodesCollection<PluginGenerator> ListGenerators // Property.tt Line: 58
         { 
             get 
             { 
@@ -431,10 +432,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<PluginGenerator> _ListGenerators;
-        partial void OnListGeneratorsChanging(SortedObservableCollection<PluginGenerator> from, SortedObservableCollection<PluginGenerator> to); // Property.tt Line: 80
+        partial void OnListGeneratorsChanging(SortedObservableCollection<PluginGenerator> from, SortedObservableCollection<PluginGenerator> to); // Property.tt Line: 79
         partial void OnListGeneratorsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IPluginGenerator> IListGenerators { get { foreach (var t in this._ListGenerators) yield return t; } }
+        IEnumerable<IPluginGenerator> IPlugin.ListGenerators { get { return this._ListGenerators; } }
     
         #endregion Properties
     }
@@ -585,7 +585,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -604,11 +604,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IPluginGenerator.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PluginGeneratorSettings> ListSettings // Property.tt Line: 59
+        public ConfigNodesCollection<PluginGeneratorSettings> ListSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -627,10 +628,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<PluginGeneratorSettings> _ListSettings;
-        partial void OnListSettingsChanging(SortedObservableCollection<PluginGeneratorSettings> from, SortedObservableCollection<PluginGeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListSettingsChanging(SortedObservableCollection<PluginGeneratorSettings> from, SortedObservableCollection<PluginGeneratorSettings> to); // Property.tt Line: 79
         partial void OnListSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IPluginGeneratorSettings> IListSettings { get { foreach (var t in this._ListSettings) yield return t; } }
+        IEnumerable<IPluginGeneratorSettings> IPluginGenerator.ListSettings { get { return this._ListSettings; } }
     
         #endregion Properties
     }
@@ -743,7 +743,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -762,11 +762,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IPluginGeneratorSettings.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public string GeneratorSettings // Property.tt Line: 135
+        public string GeneratorSettings // Property.tt Line: 132
         { 
             get 
             { 
@@ -785,12 +786,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GeneratorSettings = string.Empty;
-        partial void OnGeneratorSettingsChanging(string from, string to); // Property.tt Line: 156
+        partial void OnGeneratorSettingsChanging(string from, string to); // Property.tt Line: 153
         partial void OnGeneratorSettingsChanged();
+        string IPluginGeneratorSettings.GeneratorSettings { get { return this._GeneratorSettings; } }
         
         [PropertyOrderAttribute(3)]
         [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
-        public bool IsPrivate // Property.tt Line: 135
+        public bool IsPrivate // Property.tt Line: 132
         { 
             get 
             { 
@@ -809,13 +811,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsPrivate;
-        partial void OnIsPrivateChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsPrivateChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsPrivateChanged();
+        bool IPluginGeneratorSettings.IsPrivate { get { return this._IsPrivate; } }
         
         [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
-        public string FilePath // Property.tt Line: 135
+        public string FilePath // Property.tt Line: 132
         { 
             get 
             { 
@@ -834,8 +837,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _FilePath = string.Empty;
-        partial void OnFilePathChanging(string from, string to); // Property.tt Line: 156
+        partial void OnFilePathChanging(string from, string to); // Property.tt Line: 153
         partial void OnFilePathChanged();
+        string IPluginGeneratorSettings.FilePath { get { return this._FilePath; } }
     
         #endregion Properties
     }
@@ -939,7 +943,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -958,14 +962,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string ISettingsConfig.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// current migration version, increased by one on each deployment
         ///////////////////////////////////////////////////
-        public int VersionMigrationCurrent // Property.tt Line: 135
+        public int VersionMigrationCurrent // Property.tt Line: 132
         { 
             get 
             { 
@@ -984,14 +989,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _VersionMigrationCurrent;
-        partial void OnVersionMigrationCurrentChanging(int from, int to); // Property.tt Line: 156
+        partial void OnVersionMigrationCurrentChanging(int from, int to); // Property.tt Line: 153
         partial void OnVersionMigrationCurrentChanged();
+        int ISettingsConfig.VersionMigrationCurrent { get { return this._VersionMigrationCurrent; } }
         
         
         ///////////////////////////////////////////////////
         /// min version supported by current version for migration
         ///////////////////////////////////////////////////
-        public int VersionMigrationSupportFromMin // Property.tt Line: 135
+        public int VersionMigrationSupportFromMin // Property.tt Line: 132
         { 
             get 
             { 
@@ -1010,8 +1016,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _VersionMigrationSupportFromMin;
-        partial void OnVersionMigrationSupportFromMinChanging(int from, int to); // Property.tt Line: 156
+        partial void OnVersionMigrationSupportFromMinChanging(int from, int to); // Property.tt Line: 153
         partial void OnVersionMigrationSupportFromMinChanged();
+        int ISettingsConfig.VersionMigrationSupportFromMin { get { return this._VersionMigrationSupportFromMin; } }
     
         #endregion Properties
     }
@@ -1110,7 +1117,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(1)]
         [Description("DB schema name for all object in this configuration")]
-        public string DbSchema // Property.tt Line: 135
+        public string DbSchema // Property.tt Line: 132
         { 
             get 
             { 
@@ -1129,12 +1136,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DbSchema = string.Empty;
-        partial void OnDbSchemaChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDbSchemaChanging(string from, string to); // Property.tt Line: 153
         partial void OnDbSchemaChanged();
+        string IDbSettings.DbSchema { get { return this._DbSchema; } }
         
         [PropertyOrderAttribute(2)]
         [Description("Primary key generation method")]
-        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 135
+        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 132
         { 
             get 
             { 
@@ -1153,12 +1161,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DbIdGeneratorMethod _IdGenerator;
-        partial void OnIdGeneratorChanging(DbIdGeneratorMethod from, DbIdGeneratorMethod to); // Property.tt Line: 156
+        partial void OnIdGeneratorChanging(DbIdGeneratorMethod from, DbIdGeneratorMethod to); // Property.tt Line: 153
         partial void OnIdGeneratorChanged();
+        DbIdGeneratorMethod IDbSettings.IdGenerator { get { return this._IdGenerator; } }
         
         [PropertyOrderAttribute(3)]
         [Description("Primary key field type")]
-        public EnumPrimaryKeyType PKeyType // Property.tt Line: 135
+        public EnumPrimaryKeyType PKeyType // Property.tt Line: 132
         { 
             get 
             { 
@@ -1177,12 +1186,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumPrimaryKeyType _PKeyType;
-        partial void OnPKeyTypeChanging(EnumPrimaryKeyType from, EnumPrimaryKeyType to); // Property.tt Line: 156
+        partial void OnPKeyTypeChanging(EnumPrimaryKeyType from, EnumPrimaryKeyType to); // Property.tt Line: 153
         partial void OnPKeyTypeChanged();
+        EnumPrimaryKeyType IDbSettings.PKeyType { get { return this._PKeyType; } }
         
         [PropertyOrderAttribute(4)]
         [Description("Primary key field name")]
-        public string KeyName // Property.tt Line: 135
+        public string KeyName // Property.tt Line: 132
         { 
             get 
             { 
@@ -1201,12 +1211,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _KeyName = string.Empty;
-        partial void OnKeyNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnKeyNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnKeyNameChanged();
+        string IDbSettings.KeyName { get { return this._KeyName; } }
         
         [PropertyOrderAttribute(5)]
         [Description("Record data version/timestamp field name")]
-        public string Timestamp // Property.tt Line: 135
+        public string Timestamp // Property.tt Line: 132
         { 
             get 
             { 
@@ -1225,8 +1236,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Timestamp = string.Empty;
-        partial void OnTimestampChanging(string from, string to); // Property.tt Line: 156
+        partial void OnTimestampChanging(string from, string to); // Property.tt Line: 153
         partial void OnTimestampChanged();
+        string IDbSettings.Timestamp { get { return this._Timestamp; } }
         
         
         ///////////////////////////////////////////////////
@@ -1236,7 +1248,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///    1. Find DB type from 
         ///    2. Create connection string from db_server, db_database_name, db_user
         ///////////////////////////////////////////////////
-        public bool IsDbFromConnectionString // Property.tt Line: 135
+        public bool IsDbFromConnectionString // Property.tt Line: 132
         { 
             get 
             { 
@@ -1255,10 +1267,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsDbFromConnectionString;
-        partial void OnIsDbFromConnectionStringChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsDbFromConnectionStringChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsDbFromConnectionStringChanged();
+        bool IDbSettings.IsDbFromConnectionString { get { return this._IsDbFromConnectionString; } }
         
-        public string ConnectionStringName // Property.tt Line: 135
+        public string ConnectionStringName // Property.tt Line: 132
         { 
             get 
             { 
@@ -1277,8 +1290,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnectionStringName = string.Empty;
-        partial void OnConnectionStringNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnConnectionStringNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnConnectionStringNameChanged();
+        string IDbSettings.ConnectionStringName { get { return this._ConnectionStringName; } }
         
         
         ///////////////////////////////////////////////////
@@ -1288,7 +1302,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
-        public string PathToProjectWithConnectionString // Property.tt Line: 135
+        public string PathToProjectWithConnectionString // Property.tt Line: 132
         { 
             get 
             { 
@@ -1307,8 +1321,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PathToProjectWithConnectionString = string.Empty;
-        partial void OnPathToProjectWithConnectionStringChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPathToProjectWithConnectionStringChanging(string from, string to); // Property.tt Line: 153
         partial void OnPathToProjectWithConnectionStringChanged();
+        string IDbSettings.PathToProjectWithConnectionString { get { return this._PathToProjectWithConnectionString; } }
     
         #endregion Properties
     }
@@ -1420,7 +1435,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public Config CurrentConfig // Property.tt Line: 109
+        public Config CurrentConfig // Property.tt Line: 107
         { 
             get 
             { 
@@ -1439,12 +1454,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _CurrentConfig;
-        partial void OnCurrentConfigChanging(Config from, Config to); // Property.tt Line: 130
+        partial void OnCurrentConfigChanging(Config from, Config to); // Property.tt Line: 128
         partial void OnCurrentConfigChanged();
-        [BrowsableAttribute(false)]
-        public IConfig ICurrentConfig { get { return this._CurrentConfig; } }
+        IConfig IConfigShortHistory.CurrentConfig { get { return this._CurrentConfig; } }
         
-        public Config PrevStableConfig // Property.tt Line: 109
+        public Config PrevStableConfig // Property.tt Line: 107
         { 
             get 
             { 
@@ -1463,12 +1477,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _PrevStableConfig;
-        partial void OnPrevStableConfigChanging(Config from, Config to); // Property.tt Line: 130
+        partial void OnPrevStableConfigChanging(Config from, Config to); // Property.tt Line: 128
         partial void OnPrevStableConfigChanged();
-        [BrowsableAttribute(false)]
-        public IConfig IPrevStableConfig { get { return this._PrevStableConfig; } }
+        IConfig IConfigShortHistory.PrevStableConfig { get { return this._PrevStableConfig; } }
         
-        public Config OldStableConfig // Property.tt Line: 109
+        public Config OldStableConfig // Property.tt Line: 107
         { 
             get 
             { 
@@ -1487,10 +1500,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _OldStableConfig;
-        partial void OnOldStableConfigChanging(Config from, Config to); // Property.tt Line: 130
+        partial void OnOldStableConfigChanging(Config from, Config to); // Property.tt Line: 128
         partial void OnOldStableConfigChanged();
-        [BrowsableAttribute(false)]
-        public IConfig IOldStableConfig { get { return this._OldStableConfig; } }
+        IConfig IConfigShortHistory.OldStableConfig { get { return this._OldStableConfig; } }
     
         #endregion Properties
     }
@@ -1640,7 +1652,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -1659,11 +1671,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListBaseConfigLinks.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<BaseConfigLink> ListBaseConfigLinks // Property.tt Line: 59
+        public ConfigNodesCollection<BaseConfigLink> ListBaseConfigLinks // Property.tt Line: 58
         { 
             get 
             { 
@@ -1682,12 +1695,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<BaseConfigLink> _ListBaseConfigLinks;
-        partial void OnListBaseConfigLinksChanging(SortedObservableCollection<BaseConfigLink> from, SortedObservableCollection<BaseConfigLink> to); // Property.tt Line: 80
+        partial void OnListBaseConfigLinksChanging(SortedObservableCollection<BaseConfigLink> from, SortedObservableCollection<BaseConfigLink> to); // Property.tt Line: 79
         partial void OnListBaseConfigLinksChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IBaseConfigLink> IListBaseConfigLinks { get { foreach (var t in this._ListBaseConfigLinks) yield return t; } }
+        IEnumerable<IBaseConfigLink> IGroupListBaseConfigLinks.ListBaseConfigLinks { get { return this._ListBaseConfigLinks; } }
         public BaseConfigLink this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
-        public void Add(BaseConfigLink item) // Property.tt Line: 87
+        public void Add(BaseConfigLink item) // Property.tt Line: 85
         { 
             this.ListBaseConfigLinks.Add(item); 
             item.Parent = this;
@@ -1817,7 +1829,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -1836,11 +1848,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IBaseConfigLink.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public Config Config // Property.tt Line: 109
+        public Config Config // Property.tt Line: 107
         { 
             get 
             { 
@@ -1859,14 +1872,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _Config;
-        partial void OnConfigChanging(Config from, Config to); // Property.tt Line: 130
+        partial void OnConfigChanging(Config from, Config to); // Property.tt Line: 128
         partial void OnConfigChanged();
-        [BrowsableAttribute(false)]
-        public IConfig IConfig { get { return this._Config; } }
+        IConfig IBaseConfigLink.Config { get { return this._Config; } }
         
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-        public string RelativeConfigFilePath // Property.tt Line: 135
+        public string RelativeConfigFilePath // Property.tt Line: 132
         { 
             get 
             { 
@@ -1885,8 +1897,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeConfigFilePath = string.Empty;
-        partial void OnRelativeConfigFilePathChanging(string from, string to); // Property.tt Line: 156
+        partial void OnRelativeConfigFilePathChanging(string from, string to); // Property.tt Line: 153
         partial void OnRelativeConfigFilePathChanged();
+        string IBaseConfigLink.RelativeConfigFilePath { get { return this._RelativeConfigFilePath; } }
     
         #endregion Properties
     }
@@ -2052,7 +2065,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(4)]
         [ReadOnly(true)]
-        public int Version // Property.tt Line: 135
+        public int Version // Property.tt Line: 132
         { 
             get 
             { 
@@ -2071,11 +2084,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _Version;
-        partial void OnVersionChanging(int from, int to); // Property.tt Line: 156
+        partial void OnVersionChanging(int from, int to); // Property.tt Line: 153
         partial void OnVersionChanged();
+        int IConfig.Version { get { return this._Version; } }
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -2094,11 +2108,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IConfig.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(6)]
-        public Google.Protobuf.WellKnownTypes.Timestamp LastUpdated // Property.tt Line: 135
+        public Google.Protobuf.WellKnownTypes.Timestamp LastUpdated // Property.tt Line: 132
         { 
             get 
             { 
@@ -2117,8 +2132,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
-        partial void OnLastUpdatedChanging(Google.Protobuf.WellKnownTypes.Timestamp from, Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 156
+        partial void OnLastUpdatedChanging(Google.Protobuf.WellKnownTypes.Timestamp from, Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 153
         partial void OnLastUpdatedChanged();
+        Google.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } }
         
         
         ///////////////////////////////////////////////////
@@ -2126,7 +2142,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
-        public DbSettings DbSettings // Property.tt Line: 109
+        public DbSettings DbSettings // Property.tt Line: 107
         { 
             get 
             { 
@@ -2145,13 +2161,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DbSettings _DbSettings;
-        partial void OnDbSettingsChanging(DbSettings from, DbSettings to); // Property.tt Line: 130
+        partial void OnDbSettingsChanging(DbSettings from, DbSettings to); // Property.tt Line: 128
         partial void OnDbSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IDbSettings IDbSettings { get { return this._DbSettings; } }
+        IDbSettings IConfig.DbSettings { get { return this._DbSettings; } }
         
         [BrowsableAttribute(false)]
-        public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 109
+        public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 107
         { 
             get 
             { 
@@ -2170,13 +2185,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListBaseConfigLinks _GroupConfigLinks;
-        partial void OnGroupConfigLinksChanging(GroupListBaseConfigLinks from, GroupListBaseConfigLinks to); // Property.tt Line: 130
+        partial void OnGroupConfigLinksChanging(GroupListBaseConfigLinks from, GroupListBaseConfigLinks to); // Property.tt Line: 128
         partial void OnGroupConfigLinksChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListBaseConfigLinks IGroupConfigLinks { get { return this._GroupConfigLinks; } }
+        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return this._GroupConfigLinks; } }
         
         [BrowsableAttribute(false)]
-        public ConfigModel Model // Property.tt Line: 109
+        public ConfigModel Model // Property.tt Line: 107
         { 
             get 
             { 
@@ -2195,13 +2209,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigModel _Model;
-        partial void OnModelChanging(ConfigModel from, ConfigModel to); // Property.tt Line: 130
+        partial void OnModelChanging(ConfigModel from, ConfigModel to); // Property.tt Line: 128
         partial void OnModelChanged();
-        [BrowsableAttribute(false)]
-        public IConfigModel IModel { get { return this._Model; } }
+        IConfigModel IConfig.Model { get { return this._Model; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPlugins GroupPlugins // Property.tt Line: 109
+        public GroupListPlugins GroupPlugins // Property.tt Line: 107
         { 
             get 
             { 
@@ -2220,13 +2233,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPlugins _GroupPlugins;
-        partial void OnGroupPluginsChanging(GroupListPlugins from, GroupListPlugins to); // Property.tt Line: 130
+        partial void OnGroupPluginsChanging(GroupListPlugins from, GroupListPlugins to); // Property.tt Line: 128
         partial void OnGroupPluginsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListPlugins IGroupPlugins { get { return this._GroupPlugins; } }
+        IGroupListPlugins IConfig.GroupPlugins { get { return this._GroupPlugins; } }
         
         [BrowsableAttribute(false)]
-        public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 109
+        public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 107
         { 
             get 
             { 
@@ -2245,10 +2257,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListAppSolutions _GroupAppSolutions;
-        partial void OnGroupAppSolutionsChanging(GroupListAppSolutions from, GroupListAppSolutions to); // Property.tt Line: 130
+        partial void OnGroupAppSolutionsChanging(GroupListAppSolutions from, GroupListAppSolutions to); // Property.tt Line: 128
         partial void OnGroupAppSolutionsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListAppSolutions IGroupAppSolutions { get { return this._GroupAppSolutions; } }
+        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
     
         #endregion Properties
     }
@@ -2340,7 +2351,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(1)]
         [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
         [Description("Default DB Plugin")]
-        public string PluginGuid // Property.tt Line: 135
+        public string PluginGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -2359,12 +2370,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginGuidChanged();
+        string IAppDbSettings.PluginGuid { get { return this._PluginGuid; } }
         
         [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
-        public string PluginName // Property.tt Line: 135
+        public string PluginName // Property.tt Line: 132
         { 
             get 
             { 
@@ -2383,12 +2395,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginName = string.Empty;
-        partial void OnPluginNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginNameChanged();
+        string IAppDbSettings.PluginName { get { return this._PluginName; } }
         
         [PropertyOrderAttribute(3)]
         [ReadOnly(true)]
-        public string Version // Property.tt Line: 135
+        public string Version // Property.tt Line: 132
         { 
             get 
             { 
@@ -2407,13 +2420,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnVersionChanging(string from, string to); // Property.tt Line: 153
         partial void OnVersionChanged();
+        string IAppDbSettings.Version { get { return this._Version; } }
         
         [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
         [Description("Default DB Plugin generator")]
-        public string PluginGenGuid // Property.tt Line: 135
+        public string PluginGenGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -2432,12 +2446,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGenGuid = string.Empty;
-        partial void OnPluginGenGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginGenGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginGenGuidChanged();
+        string IAppDbSettings.PluginGenGuid { get { return this._PluginGenGuid; } }
         
         [PropertyOrderAttribute(5)]
         [ReadOnly(true)]
-        public string PluginGenName // Property.tt Line: 135
+        public string PluginGenName // Property.tt Line: 132
         { 
             get 
             { 
@@ -2456,13 +2471,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGenName = string.Empty;
-        partial void OnPluginGenNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginGenNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginGenNameChanged();
+        string IAppDbSettings.PluginGenName { get { return this._PluginGenName; } }
         
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
         [Description("Default DB connection string")]
-        public string ConnGuid // Property.tt Line: 135
+        public string ConnGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -2481,12 +2497,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnGuid = string.Empty;
-        partial void OnConnGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnConnGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnConnGuidChanged();
+        string IAppDbSettings.ConnGuid { get { return this._ConnGuid; } }
         
         [PropertyOrderAttribute(7)]
         [ReadOnly(true)]
-        public string ConnName // Property.tt Line: 135
+        public string ConnName // Property.tt Line: 132
         { 
             get 
             { 
@@ -2505,8 +2522,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnName = string.Empty;
-        partial void OnConnNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnConnNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnConnNameChanged();
+        string IAppDbSettings.ConnName { get { return this._ConnName; } }
     
         #endregion Properties
     }
@@ -2666,7 +2684,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(2)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -2685,13 +2703,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListAppSolutions.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(3)]
         [ExpandableObjectAttribute()]
         [DisplayName("Default DB")]
-        public AppDbSettings DefaultDb // Property.tt Line: 109
+        public AppDbSettings DefaultDb // Property.tt Line: 107
         { 
             get 
             { 
@@ -2710,17 +2729,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 130
+        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 128
         partial void OnDefaultDbChanged();
-        [BrowsableAttribute(false)]
-        public IAppDbSettings IDefaultDb { get { return this._DefaultDb; } }
+        IAppDbSettings IGroupListAppSolutions.DefaultDb { get { return this._DefaultDb; } }
         
         
         ///////////////////////////////////////////////////
         /// List NET solutions
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<AppSolution> ListAppSolutions // Property.tt Line: 59
+        public ConfigNodesCollection<AppSolution> ListAppSolutions // Property.tt Line: 58
         { 
             get 
             { 
@@ -2739,12 +2757,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<AppSolution> _ListAppSolutions;
-        partial void OnListAppSolutionsChanging(SortedObservableCollection<AppSolution> from, SortedObservableCollection<AppSolution> to); // Property.tt Line: 80
+        partial void OnListAppSolutionsChanging(SortedObservableCollection<AppSolution> from, SortedObservableCollection<AppSolution> to); // Property.tt Line: 79
         partial void OnListAppSolutionsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IAppSolution> IListAppSolutions { get { foreach (var t in this._ListAppSolutions) yield return t; } }
+        IEnumerable<IAppSolution> IGroupListAppSolutions.ListAppSolutions { get { return this._ListAppSolutions; } }
         public AppSolution this[int index] { get { return (AppSolution)this.ListAppSolutions[index]; } }
-        public void Add(AppSolution item) // Property.tt Line: 87
+        public void Add(AppSolution item) // Property.tt Line: 85
         { 
             this.ListAppSolutions.Add(item); 
             item.Parent = this;
@@ -2947,7 +2964,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -2966,8 +2983,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IAppSolution.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
@@ -2977,7 +2995,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [DisplayName("Path")]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         [Description("Relative path to solution folder")]
-        public string RelativeAppSolutionPath // Property.tt Line: 135
+        public string RelativeAppSolutionPath // Property.tt Line: 132
         { 
             get 
             { 
@@ -2996,14 +3014,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeAppSolutionPath = string.Empty;
-        partial void OnRelativeAppSolutionPathChanging(string from, string to); // Property.tt Line: 156
+        partial void OnRelativeAppSolutionPathChanging(string from, string to); // Property.tt Line: 153
         partial void OnRelativeAppSolutionPathChanged();
+        string IAppSolution.RelativeAppSolutionPath { get { return this._RelativeAppSolutionPath; } }
         
         [PropertyOrderAttribute(8)]
         [ExpandableObjectAttribute()]
         [DisplayName("Default DB")]
         [Description("Database connection. If empty, all solutions settings are used")]
-        public AppDbSettings DefaultDb // Property.tt Line: 109
+        public AppDbSettings DefaultDb // Property.tt Line: 107
         { 
             get 
             { 
@@ -3022,13 +3041,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 130
+        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 128
         partial void OnDefaultDbChanged();
-        [BrowsableAttribute(false)]
-        public IAppDbSettings IDefaultDb { get { return this._DefaultDb; } }
+        IAppDbSettings IAppSolution.DefaultDb { get { return this._DefaultDb; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 59
+        public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 58
         { 
             get 
             { 
@@ -3047,10 +3065,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<AppProject> _ListAppProjects;
-        partial void OnListAppProjectsChanging(SortedObservableCollection<AppProject> from, SortedObservableCollection<AppProject> to); // Property.tt Line: 80
+        partial void OnListAppProjectsChanging(SortedObservableCollection<AppProject> from, SortedObservableCollection<AppProject> to); // Property.tt Line: 79
         partial void OnListAppProjectsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IAppProject> IListAppProjects { get { foreach (var t in this._ListAppProjects) yield return t; } }
+        IEnumerable<IAppProject> IAppSolution.ListAppProjects { get { return this._ListAppProjects; } }
     
         #endregion Properties
     }
@@ -3214,7 +3231,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -3233,12 +3250,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IAppProject.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        public string RelativeAppProjectPath // Property.tt Line: 135
+        public string RelativeAppProjectPath // Property.tt Line: 132
         { 
             get 
             { 
@@ -3257,14 +3275,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeAppProjectPath = string.Empty;
-        partial void OnRelativeAppProjectPathChanging(string from, string to); // Property.tt Line: 156
+        partial void OnRelativeAppProjectPathChanging(string from, string to); // Property.tt Line: 153
         partial void OnRelativeAppProjectPathChanged();
+        string IAppProject.RelativeAppProjectPath { get { return this._RelativeAppProjectPath; } }
         
         [PropertyOrderAttribute(8)]
         [ExpandableObjectAttribute()]
         [DisplayName("Default DB")]
         [Description("Database connection. If empty, solution settings are used")]
-        public AppDbSettings DefaultDb // Property.tt Line: 109
+        public AppDbSettings DefaultDb // Property.tt Line: 107
         { 
             get 
             { 
@@ -3283,13 +3302,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 130
+        partial void OnDefaultDbChanging(AppDbSettings from, AppDbSettings to); // Property.tt Line: 128
         partial void OnDefaultDbChanged();
-        [BrowsableAttribute(false)]
-        public IAppDbSettings IDefaultDb { get { return this._DefaultDb; } }
+        IAppDbSettings IAppProject.DefaultDb { get { return this._DefaultDb; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<AppProjectGenerator> ListAppProjectGenerators // Property.tt Line: 59
+        public ConfigNodesCollection<AppProjectGenerator> ListAppProjectGenerators // Property.tt Line: 58
         { 
             get 
             { 
@@ -3308,10 +3326,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<AppProjectGenerator> _ListAppProjectGenerators;
-        partial void OnListAppProjectGeneratorsChanging(SortedObservableCollection<AppProjectGenerator> from, SortedObservableCollection<AppProjectGenerator> to); // Property.tt Line: 80
+        partial void OnListAppProjectGeneratorsChanging(SortedObservableCollection<AppProjectGenerator> from, SortedObservableCollection<AppProjectGenerator> to); // Property.tt Line: 79
         partial void OnListAppProjectGeneratorsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IAppProjectGenerator> IListAppProjectGenerators { get { foreach (var t in this._ListAppProjectGenerators) yield return t; } }
+        IEnumerable<IAppProjectGenerator> IAppProject.ListAppProjectGenerators { get { return this._ListAppProjectGenerators; } }
     
         #endregion Properties
     }
@@ -3431,7 +3448,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -3450,14 +3467,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IAppProjectGenerator.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Plugin")]
         [Description("Plugins with generators")]
         [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))]
-        public string PluginGuid // Property.tt Line: 135
+        public string PluginGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -3476,13 +3494,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginGuidChanged();
+        string IAppProjectGenerator.PluginGuid { get { return this._PluginGuid; } }
         
         [PropertyOrderAttribute(5)]
         [DisplayName("Description")]
         [ReadOnly(true)]
-        public string DescriptionPlugin // Property.tt Line: 135
+        public string DescriptionPlugin // Property.tt Line: 132
         { 
             get 
             { 
@@ -3501,14 +3520,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DescriptionPlugin = string.Empty;
-        partial void OnDescriptionPluginChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionPluginChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionPluginChanged();
+        string IAppProjectGenerator.DescriptionPlugin { get { return this._DescriptionPlugin; } }
         
         [PropertyOrderAttribute(6)]
         [DisplayName("Generator")]
         [Description("Plugin generator")]
         [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]
-        public string PluginGeneratorGuid // Property.tt Line: 135
+        public string PluginGeneratorGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -3527,13 +3547,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGeneratorGuid = string.Empty;
-        partial void OnPluginGeneratorGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnPluginGeneratorGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnPluginGeneratorGuidChanged();
+        string IAppProjectGenerator.PluginGeneratorGuid { get { return this._PluginGeneratorGuid; } }
         
         [PropertyOrderAttribute(7)]
         [DisplayName("Description")]
         [ReadOnly(true)]
-        public string DescriptionGenerator // Property.tt Line: 135
+        public string DescriptionGenerator // Property.tt Line: 132
         { 
             get 
             { 
@@ -3552,14 +3573,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DescriptionGenerator = string.Empty;
-        partial void OnDescriptionGeneratorChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionGeneratorChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionGeneratorChanged();
+        string IAppProjectGenerator.DescriptionGenerator { get { return this._DescriptionGenerator; } }
         
         [PropertyOrderAttribute(8)]
         [DisplayName("Output")]
         [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
         [Description("File path to store connection string settings in private place.")]
-        public string RelativePathToGeneratedFile // Property.tt Line: 135
+        public string RelativePathToGeneratedFile // Property.tt Line: 132
         { 
             get 
             { 
@@ -3578,8 +3600,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativePathToGeneratedFile = string.Empty;
-        partial void OnRelativePathToGeneratedFileChanging(string from, string to); // Property.tt Line: 156
+        partial void OnRelativePathToGeneratedFileChanging(string from, string to); // Property.tt Line: 153
         partial void OnRelativePathToGeneratedFileChanged();
+        string IAppProjectGenerator.RelativePathToGeneratedFile { get { return this._RelativePathToGeneratedFile; } }
         
         
         ///////////////////////////////////////////////////
@@ -3587,7 +3610,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
         [ReadOnly(true)]
-        public string GeneratorSettings // Property.tt Line: 135
+        public string GeneratorSettings // Property.tt Line: 132
         { 
             get 
             { 
@@ -3606,8 +3629,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GeneratorSettings = string.Empty;
-        partial void OnGeneratorSettingsChanging(string from, string to); // Property.tt Line: 156
+        partial void OnGeneratorSettingsChanging(string from, string to); // Property.tt Line: 153
         partial void OnGeneratorSettingsChanged();
+        string IAppProjectGenerator.GeneratorSettings { get { return this._GeneratorSettings; } }
     
         #endregion Properties
     }
@@ -3703,7 +3727,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Guid is plugin guid
         /// AppGeneratorGuid is Guid for file generator
         ///////////////////////////////////////////////////
-        public string AppGeneratorGuid // Property.tt Line: 135
+        public string AppGeneratorGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -3722,10 +3746,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _AppGeneratorGuid = string.Empty;
-        partial void OnAppGeneratorGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnAppGeneratorGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnAppGeneratorGuidChanged();
+        string IGeneratorSettings.AppGeneratorGuid { get { return this._AppGeneratorGuid; } }
         
-        public string NodeSettingsVmGuid // Property.tt Line: 135
+        public string NodeSettingsVmGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -3744,10 +3769,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _NodeSettingsVmGuid = string.Empty;
-        partial void OnNodeSettingsVmGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnNodeSettingsVmGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnNodeSettingsVmGuidChanged();
+        string IGeneratorSettings.NodeSettingsVmGuid { get { return this._NodeSettingsVmGuid; } }
         
-        public string Settings // Property.tt Line: 135
+        public string Settings // Property.tt Line: 132
         { 
             get 
             { 
@@ -3766,8 +3792,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(string from, string to); // Property.tt Line: 156
+        partial void OnSettingsChanging(string from, string to); // Property.tt Line: 153
         partial void OnSettingsChanged();
+        string IGeneratorSettings.Settings { get { return this._Settings; } }
     
         #endregion Properties
     }
@@ -3942,7 +3969,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(4)]
         [ReadOnly(true)]
-        public int Version // Property.tt Line: 135
+        public int Version // Property.tt Line: 132
         { 
             get 
             { 
@@ -3961,11 +3988,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _Version;
-        partial void OnVersionChanging(int from, int to); // Property.tt Line: 156
+        partial void OnVersionChanging(int from, int to); // Property.tt Line: 153
         partial void OnVersionChanged();
+        int IConfigModel.Version { get { return this._Version; } }
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -3984,11 +4012,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IConfigModel.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListCommon GroupCommon // Property.tt Line: 109
+        public GroupListCommon GroupCommon // Property.tt Line: 107
         { 
             get 
             { 
@@ -4007,13 +4036,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCommon _GroupCommon;
-        partial void OnGroupCommonChanging(GroupListCommon from, GroupListCommon to); // Property.tt Line: 130
+        partial void OnGroupCommonChanging(GroupListCommon from, GroupListCommon to); // Property.tt Line: 128
         partial void OnGroupCommonChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListCommon IGroupCommon { get { return this._GroupCommon; } }
+        IGroupListCommon IConfigModel.GroupCommon { get { return this._GroupCommon; } }
         
         [BrowsableAttribute(false)]
-        public GroupListConstants GroupConstants // Property.tt Line: 109
+        public GroupListConstants GroupConstants // Property.tt Line: 107
         { 
             get 
             { 
@@ -4032,13 +4060,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListConstants _GroupConstants;
-        partial void OnGroupConstantsChanging(GroupListConstants from, GroupListConstants to); // Property.tt Line: 130
+        partial void OnGroupConstantsChanging(GroupListConstants from, GroupListConstants to); // Property.tt Line: 128
         partial void OnGroupConstantsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListConstants IGroupConstants { get { return this._GroupConstants; } }
+        IGroupListConstants IConfigModel.GroupConstants { get { return this._GroupConstants; } }
         
         [BrowsableAttribute(false)]
-        public GroupListEnumerations GroupEnumerations // Property.tt Line: 109
+        public GroupListEnumerations GroupEnumerations // Property.tt Line: 107
         { 
             get 
             { 
@@ -4057,13 +4084,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListEnumerations _GroupEnumerations;
-        partial void OnGroupEnumerationsChanging(GroupListEnumerations from, GroupListEnumerations to); // Property.tt Line: 130
+        partial void OnGroupEnumerationsChanging(GroupListEnumerations from, GroupListEnumerations to); // Property.tt Line: 128
         partial void OnGroupEnumerationsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListEnumerations IGroupEnumerations { get { return this._GroupEnumerations; } }
+        IGroupListEnumerations IConfigModel.GroupEnumerations { get { return this._GroupEnumerations; } }
         
         [BrowsableAttribute(false)]
-        public GroupListCatalogs GroupCatalogs // Property.tt Line: 109
+        public GroupListCatalogs GroupCatalogs // Property.tt Line: 107
         { 
             get 
             { 
@@ -4082,13 +4108,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCatalogs _GroupCatalogs;
-        partial void OnGroupCatalogsChanging(GroupListCatalogs from, GroupListCatalogs to); // Property.tt Line: 130
+        partial void OnGroupCatalogsChanging(GroupListCatalogs from, GroupListCatalogs to); // Property.tt Line: 128
         partial void OnGroupCatalogsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListCatalogs IGroupCatalogs { get { return this._GroupCatalogs; } }
+        IGroupListCatalogs IConfigModel.GroupCatalogs { get { return this._GroupCatalogs; } }
         
         [BrowsableAttribute(false)]
-        public GroupDocuments GroupDocuments // Property.tt Line: 109
+        public GroupDocuments GroupDocuments // Property.tt Line: 107
         { 
             get 
             { 
@@ -4107,13 +4132,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupDocuments _GroupDocuments;
-        partial void OnGroupDocumentsChanging(GroupDocuments from, GroupDocuments to); // Property.tt Line: 130
+        partial void OnGroupDocumentsChanging(GroupDocuments from, GroupDocuments to); // Property.tt Line: 128
         partial void OnGroupDocumentsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupDocuments IGroupDocuments { get { return this._GroupDocuments; } }
+        IGroupDocuments IConfigModel.GroupDocuments { get { return this._GroupDocuments; } }
         
         [BrowsableAttribute(false)]
-        public GroupListJournals GroupJournals // Property.tt Line: 109
+        public GroupListJournals GroupJournals // Property.tt Line: 107
         { 
             get 
             { 
@@ -4132,10 +4156,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListJournals _GroupJournals;
-        partial void OnGroupJournalsChanging(GroupListJournals from, GroupListJournals to); // Property.tt Line: 130
+        partial void OnGroupJournalsChanging(GroupListJournals from, GroupListJournals to); // Property.tt Line: 128
         partial void OnGroupJournalsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListJournals IGroupJournals { get { return this._GroupJournals; } }
+        IGroupListJournals IConfigModel.GroupJournals { get { return this._GroupJournals; } }
     
         #endregion Properties
     }
@@ -4241,7 +4264,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Type")]
-        public EnumDataType DataTypeEnum // Property.tt Line: 135
+        public EnumDataType DataTypeEnum // Property.tt Line: 132
         { 
             get 
             { 
@@ -4260,11 +4283,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumDataType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(EnumDataType from, EnumDataType to); // Property.tt Line: 156
+        partial void OnDataTypeEnumChanging(EnumDataType from, EnumDataType to); // Property.tt Line: 153
         partial void OnDataTypeEnumChanged();
+        EnumDataType IDataType.DataTypeEnum { get { return this._DataTypeEnum; } }
         
         [PropertyOrderAttribute(5)]
-        public uint Length // Property.tt Line: 135
+        public uint Length // Property.tt Line: 132
         { 
             get 
             { 
@@ -4283,11 +4307,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Length;
-        partial void OnLengthChanging(uint from, uint to); // Property.tt Line: 156
+        partial void OnLengthChanging(uint from, uint to); // Property.tt Line: 153
         partial void OnLengthChanged();
+        uint IDataType.Length { get { return this._Length; } }
         
         [PropertyOrderAttribute(7)]
-        public uint Accuracy // Property.tt Line: 135
+        public uint Accuracy // Property.tt Line: 132
         { 
             get 
             { 
@@ -4306,12 +4331,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Accuracy;
-        partial void OnAccuracyChanging(uint from, uint to); // Property.tt Line: 156
+        partial void OnAccuracyChanging(uint from, uint to); // Property.tt Line: 153
         partial void OnAccuracyChanged();
+        uint IDataType.Accuracy { get { return this._Accuracy; } }
         
         [PropertyOrderAttribute(6)]
         [DisplayName("Is positive")]
-        public bool IsPositive // Property.tt Line: 135
+        public bool IsPositive // Property.tt Line: 132
         { 
             get 
             { 
@@ -4330,12 +4356,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsPositive;
-        partial void OnIsPositiveChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsPositiveChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsPositiveChanged();
+        bool IDataType.IsPositive { get { return this._IsPositive; } }
         
         [PropertyOrderAttribute(3)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-        public string ObjectGuid // Property.tt Line: 135
+        public string ObjectGuid // Property.tt Line: 132
         { 
             get 
             { 
@@ -4354,11 +4381,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ObjectGuid = string.Empty;
-        partial void OnObjectGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnObjectGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnObjectGuidChanged();
+        string IDataType.ObjectGuid { get { return this._ObjectGuid; } }
         
         [PropertyOrderAttribute(2)]
-        public bool IsNullable // Property.tt Line: 135
+        public bool IsNullable // Property.tt Line: 132
         { 
             get 
             { 
@@ -4377,8 +4405,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNullable;
-        partial void OnIsNullableChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsNullableChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsNullableChanged();
+        bool IDataType.IsNullable { get { return this._IsNullable; } }
         
         [PropertyOrderAttribute(4)]
         public ObservableCollection<string> ListObjectGuids // Property.tt Line: 9
@@ -4402,13 +4431,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private ObservableCollection<string> _ListObjectGuids;
         partial void OnListObjectGuidsChanging(ObservableCollection<string> from, ObservableCollection<string> to); // Property.tt Line: 30
         partial void OnListObjectGuidsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<string> IListObjectGuids { get { foreach (var t in _ListObjectGuids) yield return t; } }
+        IEnumerable<string> IDataType.ListObjectGuids { get { return this._ListObjectGuids; } }
         
         [PropertyOrderAttribute(8)]
         [DisplayName("FK Index")]
         [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
-        public bool IsIndexFk // Property.tt Line: 135
+        public bool IsIndexFk // Property.tt Line: 132
         { 
             get 
             { 
@@ -4427,8 +4455,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsIndexFkChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsIndexFkChanged();
+        bool IDataType.IsIndexFk { get { return this._IsIndexFk; } }
     
         #endregion Properties
     }
@@ -4554,7 +4583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -4573,11 +4602,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListCommon.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListRoles GroupRoles // Property.tt Line: 109
+        public GroupListRoles GroupRoles // Property.tt Line: 107
         { 
             get 
             { 
@@ -4596,13 +4626,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListRoles _GroupRoles;
-        partial void OnGroupRolesChanging(GroupListRoles from, GroupListRoles to); // Property.tt Line: 130
+        partial void OnGroupRolesChanging(GroupListRoles from, GroupListRoles to); // Property.tt Line: 128
         partial void OnGroupRolesChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListRoles IGroupRoles { get { return this._GroupRoles; } }
+        IGroupListRoles IGroupListCommon.GroupRoles { get { return this._GroupRoles; } }
         
         [BrowsableAttribute(false)]
-        public GroupListMainViewForms GroupViewForms // Property.tt Line: 109
+        public GroupListMainViewForms GroupViewForms // Property.tt Line: 107
         { 
             get 
             { 
@@ -4621,10 +4650,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListMainViewForms _GroupViewForms;
-        partial void OnGroupViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 130
+        partial void OnGroupViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 128
         partial void OnGroupViewFormsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListMainViewForms IGroupViewForms { get { return this._GroupViewForms; } }
+        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
     
         #endregion Properties
     }
@@ -4728,7 +4756,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -4747,8 +4775,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IRole.Description { get { return this._Description; } }
     
         #endregion Properties
     }
@@ -4903,7 +4932,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -4922,11 +4951,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListRoles.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Role> ListRoles // Property.tt Line: 59
+        public ConfigNodesCollection<Role> ListRoles // Property.tt Line: 58
         { 
             get 
             { 
@@ -4945,12 +4975,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Role> _ListRoles;
-        partial void OnListRolesChanging(SortedObservableCollection<Role> from, SortedObservableCollection<Role> to); // Property.tt Line: 80
+        partial void OnListRolesChanging(SortedObservableCollection<Role> from, SortedObservableCollection<Role> to); // Property.tt Line: 79
         partial void OnListRolesChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IRole> IListRoles { get { foreach (var t in this._ListRoles) yield return t; } }
+        IEnumerable<IRole> IGroupListRoles.ListRoles { get { return this._ListRoles; } }
         public Role this[int index] { get { return (Role)this.ListRoles[index]; } }
-        public void Add(Role item) // Property.tt Line: 87
+        public void Add(Role item) // Property.tt Line: 85
         { 
             this.ListRoles.Add(item); 
             item.Parent = this;
@@ -5084,7 +5113,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -5103,11 +5132,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IMainViewForm.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListMainViewForms GroupListViewForms // Property.tt Line: 109
+        public GroupListMainViewForms GroupListViewForms // Property.tt Line: 107
         { 
             get 
             { 
@@ -5126,10 +5156,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListMainViewForms _GroupListViewForms;
-        partial void OnGroupListViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 130
+        partial void OnGroupListViewFormsChanging(GroupListMainViewForms from, GroupListMainViewForms to); // Property.tt Line: 128
         partial void OnGroupListViewFormsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListMainViewForms IGroupListViewForms { get { return this._GroupListViewForms; } }
+        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return this._GroupListViewForms; } }
     
         #endregion Properties
     }
@@ -5288,7 +5317,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -5307,11 +5336,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListMainViewForms.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<MainViewForm> ListMainViewForms // Property.tt Line: 59
+        public ConfigNodesCollection<MainViewForm> ListMainViewForms // Property.tt Line: 58
         { 
             get 
             { 
@@ -5330,12 +5360,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<MainViewForm> _ListMainViewForms;
-        partial void OnListMainViewFormsChanging(SortedObservableCollection<MainViewForm> from, SortedObservableCollection<MainViewForm> to); // Property.tt Line: 80
+        partial void OnListMainViewFormsChanging(SortedObservableCollection<MainViewForm> from, SortedObservableCollection<MainViewForm> to); // Property.tt Line: 79
         partial void OnListMainViewFormsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IMainViewForm> IListMainViewForms { get { foreach (var t in this._ListMainViewForms) yield return t; } }
+        IEnumerable<IMainViewForm> IGroupListMainViewForms.ListMainViewForms { get { return this._ListMainViewForms; } }
         public MainViewForm this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
-        public void Add(MainViewForm item) // Property.tt Line: 87
+        public void Add(MainViewForm item) // Property.tt Line: 85
         { 
             this.ListMainViewForms.Add(item); 
             item.Parent = this;
@@ -5565,7 +5594,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -5584,11 +5613,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListPropertiesTabs.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PropertiesTab> ListPropertiesTabs // Property.tt Line: 59
+        public ConfigNodesCollection<PropertiesTab> ListPropertiesTabs // Property.tt Line: 58
         { 
             get 
             { 
@@ -5607,12 +5637,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<PropertiesTab> _ListPropertiesTabs;
-        partial void OnListPropertiesTabsChanging(SortedObservableCollection<PropertiesTab> from, SortedObservableCollection<PropertiesTab> to); // Property.tt Line: 80
+        partial void OnListPropertiesTabsChanging(SortedObservableCollection<PropertiesTab> from, SortedObservableCollection<PropertiesTab> to); // Property.tt Line: 79
         partial void OnListPropertiesTabsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IPropertiesTab> IListPropertiesTabs { get { foreach (var t in this._ListPropertiesTabs) yield return t; } }
+        IEnumerable<IPropertiesTab> IGroupListPropertiesTabs.ListPropertiesTabs { get { return this._ListPropertiesTabs; } }
         public PropertiesTab this[int index] { get { return (PropertiesTab)this.ListPropertiesTabs[index]; } }
-        public void Add(PropertiesTab item) // Property.tt Line: 87
+        public void Add(PropertiesTab item) // Property.tt Line: 85
         { 
             this.ListPropertiesTabs.Add(item); 
             item.Parent = this;
@@ -5634,7 +5663,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -5653,10 +5682,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListPropertiesTabs.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -5837,7 +5865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -5856,11 +5884,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IPropertiesTab.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 109
+        public GroupListProperties GroupProperties // Property.tt Line: 107
         { 
             get 
             { 
@@ -5879,13 +5908,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 130
+        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 128
         partial void OnGroupPropertiesChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
+        IGroupListProperties IPropertiesTab.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 109
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 107
         { 
             get 
             { 
@@ -5904,17 +5932,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 130
+        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 128
         partial void OnGroupPropertiesTabsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
         
         ///////////////////////////////////////////////////
         /// Create Index for foreign key navigation property
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(4)]
-        public bool IsIndexFk // Property.tt Line: 135
+        public bool IsIndexFk // Property.tt Line: 132
         { 
             get 
             { 
@@ -5933,11 +5960,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsIndexFkChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsIndexFkChanged();
+        bool IPropertiesTab.IsIndexFk { get { return this._IsIndexFk; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -5956,10 +5984,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IPropertiesTab.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -6174,7 +6201,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -6193,11 +6220,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListProperties.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Property> ListProperties // Property.tt Line: 59
+        public ConfigNodesCollection<Property> ListProperties // Property.tt Line: 58
         { 
             get 
             { 
@@ -6216,12 +6244,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Property> _ListProperties;
-        partial void OnListPropertiesChanging(SortedObservableCollection<Property> from, SortedObservableCollection<Property> to); // Property.tt Line: 80
+        partial void OnListPropertiesChanging(SortedObservableCollection<Property> from, SortedObservableCollection<Property> to); // Property.tt Line: 79
         partial void OnListPropertiesChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IProperty> IListProperties { get { foreach (var t in this._ListProperties) yield return t; } }
+        IEnumerable<IProperty> IGroupListProperties.ListProperties { get { return this._ListProperties; } }
         public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
-        public void Add(Property item) // Property.tt Line: 87
+        public void Add(Property item) // Property.tt Line: 85
         { 
             this.ListProperties.Add(item); 
             item.Parent = this;
@@ -6247,7 +6274,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Last generated Protobuf field position
         ///////////////////////////////////////////////////
         [ReadOnly(true)]
-        public uint LastGenPosition // Property.tt Line: 135
+        public uint LastGenPosition // Property.tt Line: 132
         { 
             get 
             { 
@@ -6266,11 +6293,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _LastGenPosition;
-        partial void OnLastGenPositionChanging(uint from, uint to); // Property.tt Line: 156
+        partial void OnLastGenPositionChanging(uint from, uint to); // Property.tt Line: 153
         partial void OnLastGenPositionChanged();
+        uint IGroupListProperties.LastGenPosition { get { return this._LastGenPosition; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -6289,10 +6317,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListProperties.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -6460,7 +6487,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -6479,13 +6506,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IProperty.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Type")]
-        public DataType DataType // Property.tt Line: 109
+        public DataType DataType // Property.tt Line: 107
         { 
             get 
             { 
@@ -6504,10 +6532,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DataType _DataType;
-        partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 130
+        partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 128
         partial void OnDataTypeChanged();
-        [BrowsableAttribute(false)]
-        public IDataType IDataType { get { return this._DataType; } }
+        IDataType IProperty.DataType { get { return this._DataType; } }
         
         
         ///////////////////////////////////////////////////
@@ -6515,7 +6542,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Reserved positions: 1 - primary key
         ///////////////////////////////////////////////////
         [ReadOnly(true)]
-        public uint Position // Property.tt Line: 135
+        public uint Position // Property.tt Line: 132
         { 
             get 
             { 
@@ -6534,11 +6561,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Position;
-        partial void OnPositionChanging(uint from, uint to); // Property.tt Line: 156
+        partial void OnPositionChanging(uint from, uint to); // Property.tt Line: 153
         partial void OnPositionChanged();
+        uint IProperty.Position { get { return this._Position; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -6557,10 +6585,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IProperty.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -6771,7 +6798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -6790,11 +6817,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListConstants.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Constant> ListConstants // Property.tt Line: 59
+        public ConfigNodesCollection<Constant> ListConstants // Property.tt Line: 58
         { 
             get 
             { 
@@ -6813,12 +6841,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Constant> _ListConstants;
-        partial void OnListConstantsChanging(SortedObservableCollection<Constant> from, SortedObservableCollection<Constant> to); // Property.tt Line: 80
+        partial void OnListConstantsChanging(SortedObservableCollection<Constant> from, SortedObservableCollection<Constant> to); // Property.tt Line: 79
         partial void OnListConstantsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IConstant> IListConstants { get { foreach (var t in this._ListConstants) yield return t; } }
+        IEnumerable<IConstant> IGroupListConstants.ListConstants { get { return this._ListConstants; } }
         public Constant this[int index] { get { return (Constant)this.ListConstants[index]; } }
-        public void Add(Constant item) // Property.tt Line: 87
+        public void Add(Constant item) // Property.tt Line: 85
         { 
             this.ListConstants.Add(item); 
             item.Parent = this;
@@ -6840,7 +6867,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -6859,10 +6886,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListConstants.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -7030,7 +7056,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -7049,13 +7075,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IConstant.Description { get { return this._Description; } }
         
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Type")]
-        public DataType DataType // Property.tt Line: 109
+        public DataType DataType // Property.tt Line: 107
         { 
             get 
             { 
@@ -7074,13 +7101,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DataType _DataType;
-        partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 130
+        partial void OnDataTypeChanging(DataType from, DataType to); // Property.tt Line: 128
         partial void OnDataTypeChanged();
-        [BrowsableAttribute(false)]
-        public IDataType IDataType { get { return this._DataType; } }
+        IDataType IConstant.DataType { get { return this._DataType; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -7099,10 +7125,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IConstant.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -7313,7 +7338,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -7332,11 +7357,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListEnumerations.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Enumeration> ListEnumerations // Property.tt Line: 59
+        public ConfigNodesCollection<Enumeration> ListEnumerations // Property.tt Line: 58
         { 
             get 
             { 
@@ -7355,12 +7381,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Enumeration> _ListEnumerations;
-        partial void OnListEnumerationsChanging(SortedObservableCollection<Enumeration> from, SortedObservableCollection<Enumeration> to); // Property.tt Line: 80
+        partial void OnListEnumerationsChanging(SortedObservableCollection<Enumeration> from, SortedObservableCollection<Enumeration> to); // Property.tt Line: 79
         partial void OnListEnumerationsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IEnumeration> IListEnumerations { get { foreach (var t in this._ListEnumerations) yield return t; } }
+        IEnumerable<IEnumeration> IGroupListEnumerations.ListEnumerations { get { return this._ListEnumerations; } }
         public Enumeration this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
-        public void Add(Enumeration item) // Property.tt Line: 87
+        public void Add(Enumeration item) // Property.tt Line: 85
         { 
             this.ListEnumerations.Add(item); 
             item.Parent = this;
@@ -7382,7 +7407,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -7401,10 +7426,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListEnumerations.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -7623,7 +7647,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -7642,8 +7666,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IEnumeration.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
@@ -7651,7 +7676,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(4)]
         [DisplayName("Type")]
-        public EnumEnumerationType DataTypeEnum // Property.tt Line: 135
+        public EnumEnumerationType DataTypeEnum // Property.tt Line: 132
         { 
             get 
             { 
@@ -7670,8 +7695,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumEnumerationType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(EnumEnumerationType from, EnumEnumerationType to); // Property.tt Line: 156
+        partial void OnDataTypeEnumChanging(EnumEnumerationType from, EnumEnumerationType to); // Property.tt Line: 153
         partial void OnDataTypeEnumChanged();
+        EnumEnumerationType IEnumeration.DataTypeEnum { get { return this._DataTypeEnum; } }
         
         
         ///////////////////////////////////////////////////
@@ -7679,7 +7705,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(5)]
         [DisplayName("Length")]
-        public int DataTypeLength // Property.tt Line: 135
+        public int DataTypeLength // Property.tt Line: 132
         { 
             get 
             { 
@@ -7698,12 +7724,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _DataTypeLength;
-        partial void OnDataTypeLengthChanging(int from, int to); // Property.tt Line: 156
+        partial void OnDataTypeLengthChanging(int from, int to); // Property.tt Line: 153
         partial void OnDataTypeLengthChanged();
+        int IEnumeration.DataTypeLength { get { return this._DataTypeLength; } }
         
         [DisplayName("Elements")]
         [NewItemTypes(typeof(EnumerationPair))]
-        public ConfigNodesCollection<EnumerationPair> ListEnumerationPairs // Property.tt Line: 59
+        public ConfigNodesCollection<EnumerationPair> ListEnumerationPairs // Property.tt Line: 58
         { 
             get 
             { 
@@ -7722,13 +7749,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<EnumerationPair> _ListEnumerationPairs;
-        partial void OnListEnumerationPairsChanging(SortedObservableCollection<EnumerationPair> from, SortedObservableCollection<EnumerationPair> to); // Property.tt Line: 80
+        partial void OnListEnumerationPairsChanging(SortedObservableCollection<EnumerationPair> from, SortedObservableCollection<EnumerationPair> to); // Property.tt Line: 79
         partial void OnListEnumerationPairsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IEnumerationPair> IListEnumerationPairs { get { foreach (var t in this._ListEnumerationPairs) yield return t; } }
+        IEnumerable<IEnumerationPair> IEnumeration.ListEnumerationPairs { get { return this._ListEnumerationPairs; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -7747,10 +7773,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IEnumeration.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -7854,7 +7879,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -7873,14 +7898,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IEnumerationPair.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// TODO struct for different types, at least INTEGER
         ///////////////////////////////////////////////////
-        public string Value // Property.tt Line: 135
+        public string Value // Property.tt Line: 132
         { 
             get 
             { 
@@ -7899,8 +7925,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Value = string.Empty;
-        partial void OnValueChanging(string from, string to); // Property.tt Line: 156
+        partial void OnValueChanging(string from, string to); // Property.tt Line: 153
         partial void OnValueChanged();
+        string IEnumerationPair.Value { get { return this._Value; } }
     
         #endregion Properties
     }
@@ -8099,7 +8126,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -8118,11 +8145,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string ICatalog.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 109
+        public GroupListProperties GroupProperties // Property.tt Line: 107
         { 
             get 
             { 
@@ -8141,13 +8169,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 130
+        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 128
         partial void OnGroupPropertiesChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
+        IGroupListProperties ICatalog.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 109
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 107
         { 
             get 
             { 
@@ -8166,13 +8193,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 130
+        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 128
         partial void OnGroupPropertiesTabsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
         [BrowsableAttribute(false)]
-        public GroupListForms GroupForms // Property.tt Line: 109
+        public GroupListForms GroupForms // Property.tt Line: 107
         { 
             get 
             { 
@@ -8191,13 +8217,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListForms _GroupForms;
-        partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 130
+        partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 128
         partial void OnGroupFormsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListForms IGroupForms { get { return this._GroupForms; } }
+        IGroupListForms ICatalog.GroupForms { get { return this._GroupForms; } }
         
         [BrowsableAttribute(false)]
-        public GroupListReports GroupReports // Property.tt Line: 109
+        public GroupListReports GroupReports // Property.tt Line: 107
         { 
             get 
             { 
@@ -8216,13 +8241,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListReports _GroupReports;
-        partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 130
+        partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 128
         partial void OnGroupReportsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListReports IGroupReports { get { return this._GroupReports; } }
+        IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -8241,10 +8265,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> ICatalog.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -8455,7 +8478,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -8474,11 +8497,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListCatalogs.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Catalog> ListCatalogs // Property.tt Line: 59
+        public ConfigNodesCollection<Catalog> ListCatalogs // Property.tt Line: 58
         { 
             get 
             { 
@@ -8497,12 +8521,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Catalog> _ListCatalogs;
-        partial void OnListCatalogsChanging(SortedObservableCollection<Catalog> from, SortedObservableCollection<Catalog> to); // Property.tt Line: 80
+        partial void OnListCatalogsChanging(SortedObservableCollection<Catalog> from, SortedObservableCollection<Catalog> to); // Property.tt Line: 79
         partial void OnListCatalogsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<ICatalog> IListCatalogs { get { foreach (var t in this._ListCatalogs) yield return t; } }
+        IEnumerable<ICatalog> IGroupListCatalogs.ListCatalogs { get { return this._ListCatalogs; } }
         public Catalog this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
-        public void Add(Catalog item) // Property.tt Line: 87
+        public void Add(Catalog item) // Property.tt Line: 85
         { 
             this.ListCatalogs.Add(item); 
             item.Parent = this;
@@ -8524,7 +8547,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -8543,10 +8566,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListCatalogs.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -8723,7 +8745,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -8742,11 +8764,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupDocuments.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupSharedProperties // Property.tt Line: 109
+        public GroupListProperties GroupSharedProperties // Property.tt Line: 107
         { 
             get 
             { 
@@ -8765,13 +8788,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupSharedProperties;
-        partial void OnGroupSharedPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 130
+        partial void OnGroupSharedPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 128
         partial void OnGroupSharedPropertiesChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListProperties IGroupSharedProperties { get { return this._GroupSharedProperties; } }
+        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return this._GroupSharedProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListDocuments GroupListDocuments // Property.tt Line: 109
+        public GroupListDocuments GroupListDocuments // Property.tt Line: 107
         { 
             get 
             { 
@@ -8790,13 +8812,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListDocuments _GroupListDocuments;
-        partial void OnGroupListDocumentsChanging(GroupListDocuments from, GroupListDocuments to); // Property.tt Line: 130
+        partial void OnGroupListDocumentsChanging(GroupListDocuments from, GroupListDocuments to); // Property.tt Line: 128
         partial void OnGroupListDocumentsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListDocuments IGroupListDocuments { get { return this._GroupListDocuments; } }
+        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -8815,10 +8836,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupDocuments.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -9017,7 +9037,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -9036,11 +9056,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IDocument.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 109
+        public GroupListProperties GroupProperties // Property.tt Line: 107
         { 
             get 
             { 
@@ -9059,13 +9080,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 130
+        partial void OnGroupPropertiesChanging(GroupListProperties from, GroupListProperties to); // Property.tt Line: 128
         partial void OnGroupPropertiesChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
+        IGroupListProperties IDocument.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 109
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 107
         { 
             get 
             { 
@@ -9084,13 +9104,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 130
+        partial void OnGroupPropertiesTabsChanging(GroupListPropertiesTabs from, GroupListPropertiesTabs to); // Property.tt Line: 128
         partial void OnGroupPropertiesTabsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListPropertiesTabs IGroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
         [BrowsableAttribute(false)]
-        public GroupListForms GroupForms // Property.tt Line: 109
+        public GroupListForms GroupForms // Property.tt Line: 107
         { 
             get 
             { 
@@ -9109,13 +9128,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListForms _GroupForms;
-        partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 130
+        partial void OnGroupFormsChanging(GroupListForms from, GroupListForms to); // Property.tt Line: 128
         partial void OnGroupFormsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListForms IGroupForms { get { return this._GroupForms; } }
+        IGroupListForms IDocument.GroupForms { get { return this._GroupForms; } }
         
         [BrowsableAttribute(false)]
-        public GroupListReports GroupReports // Property.tt Line: 109
+        public GroupListReports GroupReports // Property.tt Line: 107
         { 
             get 
             { 
@@ -9134,13 +9152,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListReports _GroupReports;
-        partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 130
+        partial void OnGroupReportsChanging(GroupListReports from, GroupListReports to); // Property.tt Line: 128
         partial void OnGroupReportsChanged();
-        [BrowsableAttribute(false)]
-        public IGroupListReports IGroupReports { get { return this._GroupReports; } }
+        IGroupListReports IDocument.GroupReports { get { return this._GroupReports; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -9159,10 +9176,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IDocument.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -9373,7 +9389,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -9392,11 +9408,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListDocuments.Description { get { return this._Description; } }
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 59
+        public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 58
         { 
             get 
             { 
@@ -9415,12 +9432,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Document> _ListDocuments;
-        partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 80
+        partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 79
         partial void OnListDocumentsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IDocument> IListDocuments { get { foreach (var t in this._ListDocuments) yield return t; } }
+        IEnumerable<IDocument> IGroupListDocuments.ListDocuments { get { return this._ListDocuments; } }
         public Document this[int index] { get { return (Document)this.ListDocuments[index]; } }
-        public void Add(Document item) // Property.tt Line: 87
+        public void Add(Document item) // Property.tt Line: 85
         { 
             this.ListDocuments.Add(item); 
             item.Parent = this;
@@ -9442,7 +9458,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -9461,10 +9477,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListDocuments.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -9675,7 +9690,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -9694,15 +9709,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListJournals.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Journal> ListJournals // Property.tt Line: 59
+        public ConfigNodesCollection<Journal> ListJournals // Property.tt Line: 58
         { 
             get 
             { 
@@ -9721,12 +9737,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Journal> _ListJournals;
-        partial void OnListJournalsChanging(SortedObservableCollection<Journal> from, SortedObservableCollection<Journal> to); // Property.tt Line: 80
+        partial void OnListJournalsChanging(SortedObservableCollection<Journal> from, SortedObservableCollection<Journal> to); // Property.tt Line: 79
         partial void OnListJournalsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IJournal> IListJournals { get { foreach (var t in this._ListJournals) yield return t; } }
+        IEnumerable<IJournal> IGroupListJournals.ListJournals { get { return this._ListJournals; } }
         public Journal this[int index] { get { return (Journal)this.ListJournals[index]; } }
-        public void Add(Journal item) // Property.tt Line: 87
+        public void Add(Journal item) // Property.tt Line: 85
         { 
             this.ListJournals.Add(item); 
             item.Parent = this;
@@ -9748,7 +9763,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -9767,10 +9782,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListJournals.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -9981,7 +9995,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -10000,15 +10014,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IJournal.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// repeated proto_group_properties list_properties = 6;
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 59
+        public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 58
         { 
             get 
             { 
@@ -10027,13 +10042,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Document> _ListDocuments;
-        partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 80
+        partial void OnListDocumentsChanging(SortedObservableCollection<Document> from, SortedObservableCollection<Document> to); // Property.tt Line: 79
         partial void OnListDocumentsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IDocument> IListDocuments { get { foreach (var t in this._ListDocuments) yield return t; } }
+        IEnumerable<IDocument> IJournal.ListDocuments { get { return this._ListDocuments; } }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -10052,10 +10066,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IJournal.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -10266,7 +10279,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -10285,15 +10298,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListForms.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Form> ListForms // Property.tt Line: 59
+        public ConfigNodesCollection<Form> ListForms // Property.tt Line: 58
         { 
             get 
             { 
@@ -10312,12 +10326,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Form> _ListForms;
-        partial void OnListFormsChanging(SortedObservableCollection<Form> from, SortedObservableCollection<Form> to); // Property.tt Line: 80
+        partial void OnListFormsChanging(SortedObservableCollection<Form> from, SortedObservableCollection<Form> to); // Property.tt Line: 79
         partial void OnListFormsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IForm> IListForms { get { foreach (var t in this._ListForms) yield return t; } }
+        IEnumerable<IForm> IGroupListForms.ListForms { get { return this._ListForms; } }
         public Form this[int index] { get { return (Form)this.ListForms[index]; } }
-        public void Add(Form item) // Property.tt Line: 87
+        public void Add(Form item) // Property.tt Line: 85
         { 
             this.ListForms.Add(item); 
             item.Parent = this;
@@ -10339,7 +10352,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -10358,10 +10371,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListForms.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -10516,7 +10528,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -10535,8 +10547,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IForm.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
@@ -10544,7 +10557,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// repeated proto_document list_forms = 7;
         ///////////////////////////////////////////////////
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -10563,10 +10576,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IForm.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -10777,7 +10789,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -10796,15 +10808,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IGroupListReports.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<Report> ListReports // Property.tt Line: 59
+        public ConfigNodesCollection<Report> ListReports // Property.tt Line: 58
         { 
             get 
             { 
@@ -10823,12 +10836,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<Report> _ListReports;
-        partial void OnListReportsChanging(SortedObservableCollection<Report> from, SortedObservableCollection<Report> to); // Property.tt Line: 80
+        partial void OnListReportsChanging(SortedObservableCollection<Report> from, SortedObservableCollection<Report> to); // Property.tt Line: 79
         partial void OnListReportsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IReport> IListReports { get { foreach (var t in this._ListReports) yield return t; } }
+        IEnumerable<IReport> IGroupListReports.ListReports { get { return this._ListReports; } }
         public Report this[int index] { get { return (Report)this.ListReports[index]; } }
-        public void Add(Report item) // Property.tt Line: 87
+        public void Add(Report item) // Property.tt Line: 85
         { 
             this.ListReports.Add(item); 
             item.Parent = this;
@@ -10850,7 +10862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -10869,10 +10881,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IGroupListReports.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -11027,7 +11038,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 135
+        public string Description // Property.tt Line: 132
         { 
             get 
             { 
@@ -11046,8 +11057,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 156
+        partial void OnDescriptionChanging(string from, string to); // Property.tt Line: 153
         partial void OnDescriptionChanged();
+        string IReport.Description { get { return this._Description; } }
         
         
         ///////////////////////////////////////////////////
@@ -11055,7 +11067,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// repeated proto_document list_documents = 7;
         ///////////////////////////////////////////////////
         [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]
-        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 59
+        public ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings // Property.tt Line: 58
         { 
             get 
             { 
@@ -11074,10 +11086,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<GeneratorSettings> _ListGeneratorsSettings;
-        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 80
+        partial void OnListGeneratorsSettingsChanging(SortedObservableCollection<GeneratorSettings> from, SortedObservableCollection<GeneratorSettings> to); // Property.tt Line: 79
         partial void OnListGeneratorsSettingsChanged();
-        [BrowsableAttribute(false)]
-        public IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get { foreach (var t in this._ListGeneratorsSettings) yield return t; } }
+        IEnumerable<IGeneratorSettings> IReport.ListGeneratorsSettings { get { return this._ListGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -11136,7 +11147,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public string GroupName // Property.tt Line: 135
+        public string GroupName // Property.tt Line: 132
         { 
             get 
             { 
@@ -11154,10 +11165,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GroupName = string.Empty;
-        partial void OnGroupNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnGroupNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnGroupNameChanged();
+        string IModelRow.GroupName { get { return this._GroupName; } }
         
-        public string Name // Property.tt Line: 135
+        public string Name // Property.tt Line: 132
         { 
             get 
             { 
@@ -11175,10 +11187,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(string from, string to); // Property.tt Line: 156
+        partial void OnNameChanging(string from, string to); // Property.tt Line: 153
         partial void OnNameChanged();
+        string IModelRow.Name { get { return this._Name; } }
         
-        public string Guid // Property.tt Line: 135
+        public string Guid // Property.tt Line: 132
         { 
             get 
             { 
@@ -11196,10 +11209,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(string from, string to); // Property.tt Line: 156
+        partial void OnGuidChanging(string from, string to); // Property.tt Line: 153
         partial void OnGuidChanged();
+        string IModelRow.Guid { get { return this._Guid; } }
         
-        public bool IsIncluded // Property.tt Line: 135
+        public bool IsIncluded // Property.tt Line: 132
         { 
             get 
             { 
@@ -11217,8 +11231,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIncluded;
-        partial void OnIsIncludedChanging(bool from, bool to); // Property.tt Line: 156
+        partial void OnIsIncludedChanging(bool from, bool to); // Property.tt Line: 153
         partial void OnIsIncludedChanged();
+        bool IModelRow.IsIncluded { get { return this._IsIncluded; } }
     
         #endregion Properties
     }

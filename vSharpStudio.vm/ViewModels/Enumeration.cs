@@ -167,9 +167,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var cfg = this.GetConfig();
                 var diff = new DiffLists<IEnumerationPair>(
-                    (cfg.OldStableConfig?.DicNodes[this.Guid] as Enumeration)?.IListEnumerationPairs,
-                    (cfg.PrevStableConfig?.DicNodes[this.Guid] as Enumeration)?.IListEnumerationPairs,
-                    (cfg.DicNodes[this.Guid] as Enumeration).IListEnumerationPairs);
+                    (cfg.DicNodes[this.Guid] as Enumeration).ListEnumerationPairs,
+                    (cfg.PrevStableConfig?.DicNodes[this.Guid] as Enumeration)?.ListEnumerationPairs,
+                    (cfg.OldStableConfig?.DicNodes[this.Guid] as Enumeration)?.ListEnumerationPairs);
                 return diff.ListAll;
             }
         }

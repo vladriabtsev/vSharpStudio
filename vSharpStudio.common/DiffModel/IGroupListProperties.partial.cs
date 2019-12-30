@@ -8,6 +8,5 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListProperties
     {
-        List<IProperty> ListAnnotated { get; }
     }
 }

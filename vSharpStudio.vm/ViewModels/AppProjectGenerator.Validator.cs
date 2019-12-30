@@ -90,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
 
             if (!Config.IsLoading)
             {
-                var nv = new NodeGenSettingsModelVisitor();
+                var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
                 {
                     p.RemoveNodeAppGenSettings(this.Guid);
@@ -113,7 +113,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!Config.IsLoading)
                 {
                     //DicAppGenerators[this.Guid] = cnfg.DicGenerators[this.PluginGeneratorGuid];
-                    var nv = new NodeGenSettingsModelVisitor();
+                    var nv = new ModelVisitorNodeGenSettings();
                     nv.NodeGenSettingsApplyAction(cfg, (p) =>
                     {
                         p.RemoveNodeAppGenSettings(this.Guid);
@@ -197,7 +197,7 @@ namespace vSharpStudio.vm.ViewModels
         public override void NodeRemove()
         {
             var cfg = (Config)this.GetConfig();
-            var nv = new NodeGenSettingsModelVisitor();
+            var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
                 p.RemoveNodeAppGenSettings(this.Guid);

@@ -67,47 +67,5 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-
-        [BrowsableAttribute(false)]
-        public List<IForm> ListAnnotated
-        {
-            get
-            {
-                var cfg = (Config)this.GetConfig();
-                var p = this.Parent;
-                while (p.IsIncludableInModels == false)
-                {
-                    p = p.Parent;
-                }
-
-                string par = p.GetType().Name;
-                ConfigNodesCollection<Form> curr;
-                ConfigNodesCollection<Form> prev;
-                ConfigNodesCollection<Form> old;
-                switch (par)
-                {
-                    case "Document":
-                        var d = (Document)cfg.DicNodes[p.Guid];
-                        curr = d.GroupForms.ListForms;
-                        d = (Document)cfg.PrevStableConfig?.DicNodes[p.Guid];
-                        prev = d?.GroupForms.ListForms;
-                        d = (Document)cfg.OldStableConfig?.DicNodes[p.Guid];
-                        old = d?.GroupForms.ListForms;
-                        break;
-                    case "Catalog":
-                        var c = (Catalog)cfg.DicNodes[p.Guid];
-                        curr = c.GroupForms.ListForms;
-                        c = (Catalog)cfg.PrevStableConfig?.DicNodes[p.Guid];
-                        prev = c?.GroupForms.ListForms;
-                        c = (Catalog)cfg.OldStableConfig?.DicNodes[p.Guid];
-                        old = c?.GroupForms.ListForms;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-                var diff = new DiffLists<IForm>(old, prev, curr);
-                return diff.ListAll;
-            }
-        }
     }
 }

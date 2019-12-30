@@ -21,12 +21,12 @@ namespace vSharpStudio.vm.ViewModels
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";
             var _binding_lst = new Binding("IListPlugins"); // bind to the Value property of the PropertyItem
-            _binding_lst.Source = cnfg.IGroupPlugins;
+            _binding_lst.Source = cnfg.GroupPlugins;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var en = cnfg.IGroupPlugins.IListPlugins.GetEnumerator();
+            var en = cnfg.GroupPlugins.ListPlugins.GetEnumerator();
             if (en.MoveNext())
             {
                 var plg = en.Current;

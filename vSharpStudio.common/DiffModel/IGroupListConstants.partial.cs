@@ -8,6 +8,5 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListConstants
     {
-        List<IConstant> ListAnnotated { get; }
     }
 }

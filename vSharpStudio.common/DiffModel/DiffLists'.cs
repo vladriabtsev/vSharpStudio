@@ -13,6 +13,8 @@
         Deleted,
         Renamed,
         CanLooseData,
+        PrevVersion,
+        OldVersion,
     }
 
     public class DiffLists<T>
@@ -26,7 +28,7 @@
         // {
 
         // }
-        public DiffLists(IEnumerable<T> oldest, IEnumerable<T> prev, IEnumerable<T> current)
+        public DiffLists(IEnumerable<T> current, IEnumerable<T> prev, IEnumerable<T> oldest)
         {
             this.ListAll = new List<T>();
 
@@ -87,6 +89,14 @@
                     //{
 
                     //}
+                    if (this.dic_prev.ContainsKey(t.Guid))
+                        t[DiffEnumHistoryAnnotation.PrevVersion.ToString()] = this.dic_prev[t.Guid];
+                    else
+                        t[DiffEnumHistoryAnnotation.PrevVersion.ToString()] = null;
+                    if (this.dic_oldest.ContainsKey(t.Guid))
+                        t[DiffEnumHistoryAnnotation.OldVersion.ToString()] = this.dic_oldest[t.Guid];
+                    else
+                        t[DiffEnumHistoryAnnotation.OldVersion.ToString()] = null;
                     this.ListAll.Add(t);
                 }
             }
@@ -98,6 +108,9 @@
                     if (!this.dic_curr.ContainsKey(t.Guid))
                     {
                         t[DiffEnumHistoryAnnotation.Deprecated.ToString()] = DiffEnumHistoryAnnotation.Deprecated;
+                        // no need history
+                        t[DiffEnumHistoryAnnotation.PrevVersion.ToString()] = null;
+                        t[DiffEnumHistoryAnnotation.OldVersion.ToString()] = null;
                         this.ListAll.Add(t);
                     }
                     else
@@ -105,8 +118,8 @@
                         var tt = this.dic_curr[t.Guid];
                         if (typeof(T).Name == typeof(IProperty).Name)
                         {
-                            var tp = (t as IProperty).IDataType;
-                            var tc = (tt as IProperty).IDataType;
+                            var tp = (t as IProperty).DataType;
+                            var tc = (tt as IProperty).DataType;
                             if (tp.DataTypeEnum != tc.DataTypeEnum)
                             {
                                 tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Property data type was changed from '" + tp.DataTypeEnum + "' to '" + tc.DataTypeEnum + "'.";
@@ -118,8 +131,8 @@
                         }
                         else if (typeof(T).Name == typeof(IConstant).Name)
                         {
-                            var tp = (t as IConstant).IDataType;
-                            var tc = (tt as IConstant).IDataType;
+                            var tp = (t as IConstant).DataType;
+                            var tc = (tt as IConstant).DataType;
                             if (tp.DataTypeEnum != tc.DataTypeEnum)
                             {
                                 tt[DiffEnumHistoryAnnotation.CanLooseData.ToString()] = "Constant data type was changed from '" + tp.DataTypeEnum + "' to '" + tc.DataTypeEnum + "'.";
@@ -166,6 +179,8 @@
                             t.RemoveAnnotation(tt.Name);
                         }
                         t[DiffEnumHistoryAnnotation.Deleted.ToString()] = DiffEnumHistoryAnnotation.Deleted;
+                        t[DiffEnumHistoryAnnotation.PrevVersion.ToString()] = null;
+                        t[DiffEnumHistoryAnnotation.OldVersion.ToString()] = null;
                         this.ListAll.Add(t);
                     }
                 }
@@ -252,10 +267,10 @@
                     return false;
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.CATALOGS:
-                    foreach (var t in prev.IListObjectGuids)
+                    foreach (var t in prev.ListObjectGuids)
                     {
                         bool is_found = false;
-                        foreach (var tt in cur.IListObjectGuids)
+                        foreach (var tt in cur.ListObjectGuids)
                         {
                             if (t == tt)
                             {

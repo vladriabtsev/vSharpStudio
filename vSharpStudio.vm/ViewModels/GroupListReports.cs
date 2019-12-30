@@ -67,47 +67,5 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-
-        [BrowsableAttribute(false)]
-        public List<IReport> ListAnnotated
-        {
-            get
-            {
-                var cfg = (Config)this.GetConfig();
-                var p = this.Parent;
-                while (p.IsIncludableInModels == false)
-                {
-                    p = p.Parent;
-                }
-
-                string par = p.GetType().Name;
-                ConfigNodesCollection<Report> curr;
-                ConfigNodesCollection<Report> prev;
-                ConfigNodesCollection<Report> old;
-                switch (par)
-                {
-                    case "Document":
-                        var d = (Document)cfg.DicNodes[p.Guid];
-                        curr = d.GroupReports.ListReports;
-                        d = (Document)cfg.PrevStableConfig?.DicNodes[p.Guid];
-                        prev = d?.GroupReports.ListReports;
-                        d = (Document)cfg.OldStableConfig?.DicNodes[p.Guid];
-                        old = d?.GroupReports.ListReports;
-                        break;
-                    case "Catalog":
-                        var c = (Catalog)cfg.DicNodes[p.Guid];
-                        curr = c.GroupReports.ListReports;
-                        c = (Catalog)cfg.PrevStableConfig?.DicNodes[p.Guid];
-                        prev = c?.GroupReports.ListReports;
-                        c = (Catalog)cfg.OldStableConfig?.DicNodes[p.Guid];
-                        old = c?.GroupReports.ListReports;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-                var diff = new DiffLists<IReport>(old, prev, curr);
-                return diff.ListAll;
-            }
-        }
     }
 }

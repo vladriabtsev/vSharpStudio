@@ -16,6 +16,7 @@ namespace vSharpStudio.common
 
         DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
 
-        List<IConfig> ListAnnotated { get; }
+        //List<IConfig> SetAnnotations(IConfig prev, IConfig old);
+        List<IConfig> GetListConfigs();
     }
 }

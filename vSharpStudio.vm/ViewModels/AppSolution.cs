@@ -105,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListAppSolutions).Remove(this);
             this.Parent = null;
-            var nv = new NodeGenSettingsModelVisitor();
+            var nv = new ModelVisitorNodeGenSettings();
             foreach (var t in this.ListAppProjects)
             {
                 foreach (var tt in t.ListAppProjectGenerators)

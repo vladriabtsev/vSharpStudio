@@ -95,10 +95,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as AppSolution).ListAppProjects.Remove(this);
             this.Parent = null;
-            var nv = new NodeGenSettingsModelVisitor();
+            var nv = new ModelVisitorNodeGenSettings();
+            var cfg = (Config)this.GetConfig();
             foreach (var t in this.ListAppProjectGenerators)
             {
-                nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+                nv.NodeGenSettingsApplyAction(cfg, (p) =>
                 {
                     p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
                 });

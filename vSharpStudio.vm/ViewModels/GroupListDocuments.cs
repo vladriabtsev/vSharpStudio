@@ -69,19 +69,5 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-
-        [BrowsableAttribute(false)]
-        public List<IDocument> ListAnnotated
-        {
-            get
-            {
-                var cfg = this.GetConfig();
-                DiffLists<IDocument> diff = new DiffLists<IDocument>(
-                    cfg.OldStableConfig?.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments,
-                    cfg.PrevStableConfig?.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments,
-                    cfg.IModel.IGroupDocuments.IGroupListDocuments.IListDocuments);
-                return diff.ListAll;
-            }
-        }
     }
 }

@@ -41,7 +41,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IGroupListPlugins : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IPlugin> IListPlugins { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPlugin : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -59,14 +59,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// attr [ReadOnly(true)]
         /// string group_info = 9;
         ///////////////////////////////////////////////////
-        IEnumerable<IPluginGenerator> IListGenerators { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGenerator : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
         string Description { get; } // ModelInterfaces.tt Line: 47
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IPluginGeneratorSettings> IListSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPluginGeneratorSettings> ListSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGeneratorSettings : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -129,23 +129,23 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IConfigShortHistory : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
-        IConfig ICurrentConfig { get; } // ModelInterfaces.tt Line: 51
-        IConfig IPrevStableConfig { get; } // ModelInterfaces.tt Line: 51
-        IConfig IOldStableConfig { get; } // ModelInterfaces.tt Line: 51
+        IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 51
+        IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 51
+        IConfig OldStableConfig { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListBaseConfigLinks : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IBaseConfigLink> IListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IBaseConfigLink : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IConfig IConfig { get; } // ModelInterfaces.tt Line: 51
+        IConfig Config { get; } // ModelInterfaces.tt Line: 51
         string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 47
     }
     
@@ -164,11 +164,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         /// GENERAL DB SETTINGS
         ///////////////////////////////////////////////////
-        IDbSettings IDbSettings { get; } // ModelInterfaces.tt Line: 51
-        IGroupListBaseConfigLinks IGroupConfigLinks { get; } // ModelInterfaces.tt Line: 51
-        IConfigModel IModel { get; } // ModelInterfaces.tt Line: 51
-        IGroupListPlugins IGroupPlugins { get; } // ModelInterfaces.tt Line: 51
-        IGroupListAppSolutions IGroupAppSolutions { get; } // ModelInterfaces.tt Line: 51
+        IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 51
+        IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 51
+        IConfigModel Model { get; } // ModelInterfaces.tt Line: 51
+        IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 51
+        IGroupListAppSolutions GroupAppSolutions { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IAppDbSettings // ModelInterfaces.tt Line: 29
@@ -186,12 +186,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 51
+        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
         
         ///////////////////////////////////////////////////
         /// List NET solutions
         ///////////////////////////////////////////////////
-        IEnumerable<IAppSolution> IListAppSolutions { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -223,8 +223,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// List NET projects
         ///////////////////////////////////////////////////
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IAppProject> IListAppProjects { get; } // ModelInterfaces.tt Line: 44
+        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IAppProject : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -232,8 +232,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
         string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings IDefaultDb { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IAppProjectGenerator> IListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
+        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IAppProjectGenerator : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -274,12 +274,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListCommon IGroupCommon { get; } // ModelInterfaces.tt Line: 51
-        IGroupListConstants IGroupConstants { get; } // ModelInterfaces.tt Line: 51
-        IGroupListEnumerations IGroupEnumerations { get; } // ModelInterfaces.tt Line: 51
-        IGroupListCatalogs IGroupCatalogs { get; } // ModelInterfaces.tt Line: 51
-        IGroupDocuments IGroupDocuments { get; } // ModelInterfaces.tt Line: 51
-        IGroupListJournals IGroupJournals { get; } // ModelInterfaces.tt Line: 51
+        IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 51
+        IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 51
+        IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 51
+        IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 51
+        IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 51
+        IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 29
@@ -290,7 +290,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         bool IsPositive { get; } // ModelInterfaces.tt Line: 47
         string ObjectGuid { get; } // ModelInterfaces.tt Line: 47
         bool IsNullable { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<string> IListObjectGuids { get; } // ModelInterfaces.tt Line: 42
+        IEnumerable<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
         bool IsIndexFk { get; } // ModelInterfaces.tt Line: 47
     }
     
@@ -303,8 +303,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListRoles IGroupRoles { get; } // ModelInterfaces.tt Line: 51
-        IGroupListMainViewForms IGroupViewForms { get; } // ModelInterfaces.tt Line: 51
+        IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 51
+        IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -323,7 +323,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IRole> IListRoles { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -335,7 +335,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListMainViewForms IGroupListViewForms { get; } // ModelInterfaces.tt Line: 51
+        IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -347,7 +347,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IMainViewForm> IListMainViewForms { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListPropertiesTabs : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -355,8 +355,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IPropertiesTab> IListPropertiesTabs { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPropertiesTab> ListPropertiesTabs { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPropertiesTab : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -364,14 +364,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListProperties IGroupProperties { get; } // ModelInterfaces.tt Line: 51
-        IGroupListPropertiesTabs IGroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
+        IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 51
+        IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
         
         ///////////////////////////////////////////////////
         /// Create Index for foreign key navigation property
         ///////////////////////////////////////////////////
         bool IsIndexFk { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListProperties : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -379,13 +379,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IProperty> IListProperties { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IProperty> ListProperties { get; } // ModelInterfaces.tt Line: 44
         
         ///////////////////////////////////////////////////
         /// Last generated Protobuf field position
         ///////////////////////////////////////////////////
         uint LastGenPosition { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IProperty : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -393,14 +393,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IDataType IDataType { get; } // ModelInterfaces.tt Line: 51
+        IDataType DataType { get; } // ModelInterfaces.tt Line: 51
         
         ///////////////////////////////////////////////////
         /// Protobuf field position
         /// Reserved positions: 1 - primary key
         ///////////////////////////////////////////////////
         uint Position { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListConstants : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -408,8 +408,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IConstant> IListConstants { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -421,8 +421,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IDataType IDataType { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IDataType DataType { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListEnumerations : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -430,8 +430,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IEnumeration> IListEnumerations { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IEnumeration : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -449,8 +449,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// Length of string if 'STRING' is selected as enumeration element type
         ///////////////////////////////////////////////////
         int DataTypeLength { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IEnumerationPair> IListEnumerationPairs { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IEnumerationPair : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -470,11 +470,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListProperties IGroupProperties { get; } // ModelInterfaces.tt Line: 51
-        IGroupListPropertiesTabs IGroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
-        IGroupListForms IGroupForms { get; } // ModelInterfaces.tt Line: 51
-        IGroupListReports IGroupReports { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 51
+        IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
+        IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 51
+        IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListCatalogs : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -482,8 +482,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<ICatalog> IListCatalogs { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupDocuments : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -491,9 +491,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListProperties IGroupSharedProperties { get; } // ModelInterfaces.tt Line: 51
-        IGroupListDocuments IGroupListDocuments { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 51
+        IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IDocument : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -501,11 +501,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IGroupListProperties IGroupProperties { get; } // ModelInterfaces.tt Line: 51
-        IGroupListPropertiesTabs IGroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
-        IGroupListForms IGroupForms { get; } // ModelInterfaces.tt Line: 51
-        IGroupListReports IGroupReports { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 51
+        IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 51
+        IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 51
+        IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 51
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListDocuments : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -513,8 +513,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IDocument> IListDocuments { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListJournals : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -526,8 +526,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        IEnumerable<IJournal> IListJournals { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IJournal : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -539,8 +539,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         /// repeated proto_group_properties list_properties = 6;
         ///////////////////////////////////////////////////
-        IEnumerable<IDocument> IListDocuments { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListForms : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -552,8 +552,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        IEnumerable<IForm> IListForms { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IForm> ListForms { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IForm : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -566,7 +566,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// repeated proto_group_properties list_properties = 6;
         /// repeated proto_document list_forms = 7;
         ///////////////////////////////////////////////////
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListReports : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -578,8 +578,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        IEnumerable<IReport> IListReports { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IReport> ListReports { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IReport : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
@@ -592,7 +592,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// repeated proto_group_properties list_properties = 6;
         /// repeated proto_document list_documents = 7;
         ///////////////////////////////////////////////////
-        IEnumerable<IGeneratorSettings> IListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IGeneratorSettings> ListGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IModelRow // ModelInterfaces.tt Line: 29

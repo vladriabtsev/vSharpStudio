@@ -8,6 +8,5 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListCatalogs
     {
-        List<ICatalog> ListAnnotated { get; }
     }
 }

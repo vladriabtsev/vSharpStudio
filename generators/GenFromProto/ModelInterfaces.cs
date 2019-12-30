@@ -175,7 +175,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("> I");
+            this.Write("> ");
             
             #line 40 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -203,7 +203,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("> I");
+            this.Write("> ");
             
             #line 42 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -231,7 +231,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("> I");
+            this.Write("> ");
             
             #line 44 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -319,7 +319,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" I");
+            this.Write(" ");
             
             #line 51 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

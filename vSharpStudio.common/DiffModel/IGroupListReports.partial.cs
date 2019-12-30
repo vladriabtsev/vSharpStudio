@@ -8,6 +8,5 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListReports
     {
-        List<IReport> ListAnnotated { get; }
     }
 }

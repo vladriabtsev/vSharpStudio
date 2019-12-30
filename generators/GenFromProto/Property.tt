@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
-<# if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { #>
+<#   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { #>
 public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 
@@ -20,18 +20,17 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
             _<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<# if (this.DocMes.IsValidatableBase) { #>
+<#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
-<# } #>
+<#     } #>
         }
     }
 }
 private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(ObservableCollection<<#= field.ToTypeCs() #>> from, ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-[BrowsableAttribute(false)]
-public IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get { foreach (var t in _<#= field.Name.ToNameCs() #>) yield return t; } }
-<# } else if (field.IsMap) { #>
+IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+<#   } else if (field.IsMap) { #>
 public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 
@@ -46,16 +45,16 @@ public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=He
             this._<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<# if (this.DocMes.IsValidatableBase) { #>
+<#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
-<# } #>
+<#     } #>
         }
     }
 }
 private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-<# } else { #>
+<#   } else { #>
 public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 
@@ -70,19 +69,18 @@ public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() 
             this._<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<# if (this.DocMes.IsValidatableBase) { #>
+<#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
-<# } #>
+<#     } #>
         }
     }
 }
 private ConfigNodesCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> from, SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-[BrowsableAttribute(false)]
-public IEnumerable<I<#= field.ToTypeCs() #>> I<#= field.Name.ToNameCs() #> { get { foreach (var t in this._<#= field.Name.ToNameCs() #>) yield return t; } }
-<# } #>
-<# if (message.Name.EndsWith(field.Name)) { #>
+IEnumerable<I<#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+<#   } #>
+<#   if (message.Name.EndsWith(field.Name)) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
 { 
@@ -104,7 +102,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     this.<#= field.Name.ToNameCs() #>.Remove(item); 
     item.Parent = null;
 }
-<# } #>
+<#   } #>
 <# } else if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
@@ -120,17 +118,16 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
             this._<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<# if (this.DocMes.IsValidatableBase) { #>
+<#   if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
-<# } #>
+<#   } #>
         }
     }
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-[BrowsableAttribute(false)]
-public <# if (!field.IsNullable()) { #>I<# } #><#= field.ToTypeCs() #> I<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+<# if (!field.IsNullable()) { #>I<# } #><#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <# } else { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
@@ -146,13 +143,14 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
             this._<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<# if (this.DocMes.IsValidatableBase) { #>
+<#   if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
-<# } #>
+<#   } #>
         }
     }
 }
 private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string") { #> = string.Empty<# } #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(<#= field.ToTypeCs() #> from, <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
+<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <# } #>

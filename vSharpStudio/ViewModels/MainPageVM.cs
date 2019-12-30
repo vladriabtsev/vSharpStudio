@@ -143,6 +143,7 @@ namespace vSharpStudio.ViewModels
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             _logger.LogDebug("ConvertToVM Main Config".CallerInfo());
             var cfg = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            cfg.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             if (isRoot)
             {
                 if (this.pconfig_history.PrevStableConfig != null)
@@ -338,7 +339,7 @@ namespace vSharpStudio.ViewModels
                 }
                 this.Config.RefillDicGenerators();
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
-                var nv = new NodeGenSettingsModelVisitor();
+                var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(this.Config, (p) =>
                 {
                     p.RestoreNodeAppGenSettingsVm();
@@ -550,7 +551,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
             // Save Node Settings VM for all nodes, which are supporting INodeGenSettings
-            var nv = new NodeGenSettingsModelVisitor();
+            var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(this.Config, (p) =>
             {
                 p.SaveNodeAppGenSettings();
@@ -708,6 +709,63 @@ namespace vSharpStudio.ViewModels
         private const string _saveBaseToolTip = "Ctrl-S - save config";
         private string _SaveToolTip = _saveBaseToolTip;
 
+        public vCommand CommandConfigCurrentUpdate
+        {
+            get
+            {
+                return this._CommandConfigCurrentUpdate ?? (this._CommandConfigCurrentUpdate = vCommand.Create(
+                (o) => { this.UpdateCurrentVersion(); },
+                (o) => { return this.Config != null; }));
+            }
+        }
+        private vCommand _CommandConfigCurrentUpdate;
+        private void UpdateCurrentVersion()
+        {
+            if (this.pconfig_history == null)
+            {
+                var ex = new NotSupportedException();
+                _logger.LogCritical(ex, "".CallerInfo());
+                throw ex;
+            }
+            this.PluginSettingsToModel();
+            try
+            {
+                //TODO roll back if Exception
+
+                this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                var proto = Config.ConvertToProto(this._Config);
+                this.pconfig_history.CurrentConfig = proto;
+                //this.Config.OldStableConfig;
+                //this.Config.PrevStableConfig;
+                Utils.TryCall(
+                    () =>
+                    {
+                        File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
+                    }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
+
+                var mvr = new ModelVisitorForRenamer();
+                var lstrd = mvr.GetListRenameData(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                {
+                    //TODO implement renamer
+                    //Microsoft.CodeAnalysis.Solution
+                    foreach (var tr in lstrd)
+                    {
+                        // Get associated names for renamer
+                        //tg.Generator.GetAccosiatedNamesFoRenamer(tr)
+                        //Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync()
+
+                    }
+                }
+                this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
+            }
+            catch (Exception ex)
+            {
+                //TODO roll back if Exception
+
+            }
+        }
+
         public vCommand CommandConfigCreateStableVersion
         {
             get
@@ -717,9 +775,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null; }));
             }
         }
-
         private vCommand _CommandConfigCreateStableVersion;
-
         private void CreateStableVersion()
         {
             if (this.pconfig_history == null)
@@ -876,6 +932,7 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandSelectionUp;
 
         #endregion ConfigTree
+
         public vCommand CommandFromErrorToSelection
         {
             get

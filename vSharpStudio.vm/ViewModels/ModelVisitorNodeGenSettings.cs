@@ -5,24 +5,24 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class NodeGenSettingsModelVisitor : ModelVisitorBase
+    public class ModelVisitorNodeGenSettings : DiffModelVisitorBase
     {
         Action<INodeGenSettings> _act = null;
-        public void NodeGenSettingsApplyAction(IConfig c, Action<INodeGenSettings> act)
+        public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
             _act = act;
-            this.RunThroughConfig(c);
+            this.RunThroughConfig(curr, null, null, null);
         }
-        protected override void Visit(IConfig c)
-        {
-            if (c is INodeGenSettings)
-                _act(c as INodeGenSettings);
-        }
-        protected override void Visit(IConfigModel m)
-        {
-            if (m is INodeGenSettings)
-                _act(m as INodeGenSettings);
-        }
+        //protected override void Visit(IConfig c)
+        //{
+        //    if (c is INodeGenSettings)
+        //        _act(c as INodeGenSettings);
+        //}
+        //protected override void Visit(IConfigModel m)
+        //{
+        //    if (m is INodeGenSettings)
+        //        _act(m as INodeGenSettings);
+        //}
         protected override void Visit(IConstant cn)
         {
             if (cn is INodeGenSettings)

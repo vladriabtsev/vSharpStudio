@@ -285,45 +285,37 @@ namespace vSharpStudio.vm.ViewModels
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
         public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
 
+        public IConfig PrevCurrentConfig { get; set; }
         public IConfig PrevStableConfig { get; set; }
-
         public IConfig OldStableConfig { get; set; }
 
-        public List<IConfig> ListAnnotated
-        {
-            get
-            {
-                var oldests = GetListConfigs(this.OldStableConfig);
-                var prevs = GetListConfigs(this.PrevStableConfig);
-                var currents = GetListConfigs(this);
-                var diff = new DiffLists<IConfig>(oldests, prevs, currents);
-                return diff.ListAll;
-            }
-        }
+        //public List<IConfig> SetAnnotations(IConfig prev, IConfig old)
+        //{
+        //    var oldests = GetListConfigs(old);
+        //    var prevs = GetListConfigs(prev);
+        //    var currents = GetListConfigs(this);
+        //    var diff = new DiffLists<IConfig>(oldests, prevs, currents);
+        //    return diff.ListAll;
+        //}
 
-        private static List<IConfig> GetListConfigs(IConfig cfg)
+        public List<IConfig> GetListConfigs()
         {
             var lst = new List<IConfig>();
-            if (cfg == null)
-            {
-                return lst;
-            }
-
             var dic = new Dictionary<string, IConfig>();
-            dic[cfg.Guid] = cfg;
-            GetSubConfigs(cfg);
+            dic[this.Guid] = this;
+            GetSubConfigs(this);
             foreach (var t in dic)
             {
                 lst.Add(t.Value);
             }
             dic.Clear();
             return lst;
-            void GetSubConfigs(IConfig _cfg)
+            void GetSubConfigs(IConfig cfg)
             {
-                foreach (var t in _cfg.IGroupConfigLinks.IListBaseConfigLinks)
+                foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks)
                 {
-                    dic[t.IConfig.Guid] = t.IConfig;
-                    GetSubConfigs(t.IConfig);
+                    dic[t.Config.Guid] = t.Config;
+                    GetSubConfigs(t.Config);
                 }
             }
         }
