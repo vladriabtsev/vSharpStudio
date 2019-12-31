@@ -719,7 +719,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        private void UpdateCurrentVersion()
+        private async void UpdateCurrentVersion(CancellationToken cancellationToken = default)
         {
             if (this.pconfig_history == null)
             {
@@ -744,17 +744,55 @@ namespace vSharpStudio.ViewModels
                     }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
 
                 var mvr = new ModelVisitorForRenamer();
-                var lstrd = mvr.GetListRenameData(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                //Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+                Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();
+                var curDir = Directory.GetCurrentDirectory();
                 foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                 {
+                    //TODO implement backup
+                    //ts.RelativeAppSolutionPath
                     //TODO implement renamer
-                    //Microsoft.CodeAnalysis.Solution
-                    foreach (var tr in lstrd)
+                    // Open the solution within the workspace.
+                    Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync("");
+                    foreach (var tp in ts.ListAppProjects)
                     {
-                        // Get associated names for renamer
-                        //tg.Generator.GetAccosiatedNamesFoRenamer(tr)
-                        //Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync()
-
+                        bool isProjectFound = false;
+                        foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
+                        {
+                            // Look up the snapshot for the original project in the latest forked solution.
+                            Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
+                            if (project.FilePath == tp.RelativeAppProjectPath)
+                            {
+                                isProjectFound = true;
+                                foreach (var tg in tp.ListAppProjectGenerators)
+                                {
+                                    var generator = this._Config.DicGenerators[tg.Guid];
+                                    List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                    foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
+                                    {
+                                        // Look up the snapshot for the original document in the latest forked solution.
+                                        Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
+                                        //tg.RelativePathToGeneratedFile
+                                        if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                                        {
+                                            if (Path.GetExtension(document.FilePath) == "cs")
+                                            {
+                                                await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
+                                            }
+                                            else if (Path.GetExtension(document.FilePath) == "vb")
+                                            {
+                                                CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
+                                            }
+                                            else
+                                                throw new NotSupportedException();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (!isProjectFound)
+                            throw new Exception("Project not found");
                     }
                 }
                 this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());

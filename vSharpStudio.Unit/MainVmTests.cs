@@ -122,7 +122,8 @@ namespace vSharpStudio.Unit
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
 
             var mod = new ModelVisitorForRenamer();
-            mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            var cfg = mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(c1, (Constant)cfg.DicNodes[c1.Guid]);
             Assert.IsTrue(c1.IsNew());
             Assert.IsFalse(c1.IsDeleted());
             Assert.IsFalse(c1.IsDeprecated());
@@ -132,9 +133,9 @@ namespace vSharpStudio.Unit
             // no stable version (prev is null)
             vm.CommandConfigSave.Execute(null);
             vm = new MainPageVM(true);
+            c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
+            c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
             mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            c1 = vm.Config.Model.GroupConstants[0];
-            c2 = vm.Config.Model.GroupConstants[1];
             Assert.IsTrue(c1.IsNew());
             Assert.IsFalse(c1.IsDeleted());
             Assert.IsFalse(c1.IsDeprecated());
@@ -142,17 +143,18 @@ namespace vSharpStudio.Unit
 
             // first stable version (prev not null, but oldest is null)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            cfg = mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
             Assert.IsFalse(c1.IsNew());
             Assert.IsFalse(c1.IsDeleted());
             Assert.IsFalse(c1.IsDeprecated());
             Assert.IsFalse(c1.IsRenamed());
 
-            vm.Config.Model.GroupConstants[0].Name = "c11";
-            vm.Config.Model.GroupConstants.ListConstants.RemoveAt(1);
+            ((Constant)vm.Config.DicNodes[c1.Guid]).Name = "c11";
+            vm.Config.Model.GroupConstants.ListConstants.Remove((Constant)vm.Config.DicNodes[c2.Guid]);
 
-            Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 2);
-            mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(2, vm.Config.Model.GroupConstants.Count());
+            cfg = mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(3, cfg.Model.GroupConstants.Count());
             Assert.IsFalse(c1.IsNew());
             Assert.IsFalse(c1.IsDeleted());
             Assert.IsFalse(c1.IsDeprecated());
@@ -164,13 +166,13 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c2.IsRenamed());
 
             vm = new MainPageVM(true);
+            c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
+            c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
             mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            c1 = vm.Config.Model.GroupConstants[0];
             Assert.IsFalse(c1.IsNew());
             Assert.IsFalse(c1.IsDeleted());
             Assert.IsFalse(c1.IsDeprecated());
             Assert.IsFalse(c1.IsRenamed());
-
         }
 
         [TestMethod]

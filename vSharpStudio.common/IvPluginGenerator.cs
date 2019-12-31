@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
@@ -33,5 +34,6 @@ namespace vSharpStudio.common
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
         IvPluginGeneratorSettingsVM GetAppGenerationSettingsVmFromJson(string settings);
         List<IvPluginNodeSettings> GetListNodeGenerationSettings();
+        List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes);
     }
 }

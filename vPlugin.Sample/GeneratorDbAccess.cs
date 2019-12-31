@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Proto.Plugin;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 
 namespace vPlugin.Sample
 {
@@ -38,6 +39,11 @@ namespace vPlugin.Sample
             res.Add(new GeneratorDbAccessNodePropertySettings());
             res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
             return res;
+        }
+
+        public List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes)
+        {
+            throw new NotImplementedException();
         }
     }
 }

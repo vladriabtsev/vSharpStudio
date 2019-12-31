@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Proto.Plugin;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 
 namespace vPlugin.Sample
 {
@@ -67,6 +68,11 @@ namespace vPlugin.Sample
             throw new NotImplementedException();
         }
         public object UpdateToModel(string connectionString, IConfig config, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes)
         {
             throw new NotImplementedException();
         }
