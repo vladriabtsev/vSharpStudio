@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,19 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfigLink 
+    public partial class BaseConfigLink
     {
         public static readonly string DefaultName = "BaseConfig";
+        partial void OnRelativeConfigFilePathChanged()
+        {
+            if (string.IsNullOrWhiteSpace(this._RelativeConfigFilePath))
+                throw new Exception();
+            var cfg = this.GetConfig();
+            if (string.IsNullOrWhiteSpace(cfg.CurrentCfgFolderPath))
+                return;
+            string path = Path.GetFullPath(this._RelativeConfigFilePath);
+            this._RelativeConfigFilePath = Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+
+        }
     }
 }

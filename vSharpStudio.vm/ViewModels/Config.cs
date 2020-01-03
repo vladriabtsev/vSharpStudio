@@ -219,6 +219,8 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion ITreeNode
 
+        [BrowsableAttribute(false)]
+        public string CurrentCfgFolderPath { get; set; }
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         public string SolutionPath
         {

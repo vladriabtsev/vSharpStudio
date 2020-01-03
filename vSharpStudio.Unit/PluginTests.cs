@@ -216,5 +216,23 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListGeneratorsSettings.Count);
             _logger.LogTrace("End test".CallerInfo());
         }
+        [TestMethod]
+        public void Plugin011CanProduceCodeFile()
+        {
+            var vm = new MainPageVM(false);
+            //Assert.AreEqual(0, vm.ListConfigPathHistory.Count);
+            //vm.Config.Name = "test1";
+            //vm.SaveConfigAsForTests(@"..\..\..\TestApps");
+            //vm = new MainPageVM(true);
+            //// Load from previous save
+            //Assert.AreEqual(1, vm.ListConfigPathHistory.Count);
+            Assert.AreEqual("test1", vm.Config.Name);
+        }
+        [TestMethod]
+        public void Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem()
+        {
+            var vm = new MainPageVM(false);
+            Assert.IsTrue(false);
+        }
     }
 }

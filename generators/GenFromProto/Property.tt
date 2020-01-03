@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
-<#   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { #>
+<#   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())) { #>
 public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 

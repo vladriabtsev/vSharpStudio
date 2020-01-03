@@ -49,7 +49,7 @@ namespace GenFromProto
             #line hidden
             
             #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)) { 
+   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())) { 
             
             #line default
             #line hidden

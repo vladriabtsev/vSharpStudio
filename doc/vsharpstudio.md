@@ -49,6 +49,8 @@
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
+    - [proto_user_settings](#proto_config.proto_user_settings)
+    - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
     - [string_nullable](#proto_config.string_nullable)
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
@@ -1021,6 +1023,37 @@ User&#39;s role
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |
+
+
+
+
+
+
+<a name="proto_config.proto_user_settings"></a>
+
+### proto_user_settings
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| list_open_config_history | [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_user_settings_opened_config"></a>
+
+### proto_user_settings_opened_config
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| opened_last_time_on | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [BrowsableAttribute(false)] |
+| config_path | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 
 
 

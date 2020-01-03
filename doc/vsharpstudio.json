@@ -3700,6 +3700,58 @@
           ]
         },
         {
+          "name": "proto_user_settings",
+          "longName": "proto_user_settings",
+          "fullName": "proto_config.proto_user_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "list_open_config_history",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_user_settings_opened_config",
+              "longType": "proto_user_settings_opened_config",
+              "fullType": "proto_config.proto_user_settings_opened_config",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_user_settings_opened_config",
+          "longName": "proto_user_settings_opened_config",
+          "fullName": "proto_config.proto_user_settings_opened_config",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "opened_last_time_on",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config_path",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "string_nullable",
           "longName": "string_nullable",
           "fullName": "proto_config.string_nullable",

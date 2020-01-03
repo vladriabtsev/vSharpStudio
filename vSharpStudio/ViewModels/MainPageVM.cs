@@ -37,6 +37,21 @@ namespace vSharpStudio.ViewModels
         public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
             : this()
         {
+            if (File.Exists(USER_SETTINGS_FILE_PATH))
+            {
+                var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
+                var us = Proto.Config.proto_user_settings.Parser.ParseFrom(user_settings);
+                this.UserSettings = UserSettings.ConvertToVM(us, new UserSettings());
+                if (!string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) && File.Exists(this.UserSettings.ListOpenConfigHistory[0].ConfigPath))
+                    this.CurrentCfgFilePath = this.UserSettings.ListOpenConfigHistory[0].ConfigPath;
+                else
+                    this.UserSettings = new UserSettings();
+            }
+            else
+            {
+                this.UserSettings = new UserSettings();
+            }
+
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
@@ -64,10 +79,10 @@ namespace vSharpStudio.ViewModels
                     _logger.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
                     this.Config = this.LoadConfig(configFile, string.Empty, true);
                 }
-                else if (File.Exists(CFG_FILE_PATH))
+                else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
                 {
-                    _logger.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CFG_FILE_PATH);
-                    this.Config = this.LoadConfig(CFG_FILE_PATH, string.Empty, true);
+                    _logger.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CurrentCfgFilePath);
+                    this.Config = this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
                 }
                 else
                 {
@@ -143,6 +158,7 @@ namespace vSharpStudio.ViewModels
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             _logger.LogDebug("ConvertToVM Main Config".CallerInfo());
             var cfg = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            cfg.CurrentCfgFolderPath = Path.GetDirectoryName(this.CurrentCfgFilePath);
             cfg.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             if (isRoot)
             {
@@ -162,7 +178,7 @@ namespace vSharpStudio.ViewModels
             foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
                 _logger.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
-                t.Config = this.LoadConfig(t.RelativeConfigFilePath + CFG_FILE_NAME, ind2);
+                t.Config = this.LoadConfig(Path.Combine(cfg.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                 t.Name = t.Config.Name;
             }
 
@@ -173,9 +189,26 @@ namespace vSharpStudio.ViewModels
         }
 
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
+        public UserSettings UserSettings { get; private set; }
 
-        public static readonly string CFG_FILE_PATH = @".\current.vcfg";
-        public static readonly string CFG_FILE_NAME = "current.vcfg";
+        public static readonly string USER_SETTINGS_FILE_PATH = @".\.vSharpStudio.settings";
+        public static readonly string DEFAULT_CFG_FILE_NAME = "vSharpStudio.vcfg";
+        public static string CurrentCfgFolderPath { get; private set; }
+        public string CurrentCfgFilePath
+        {
+            get { return this._CurrentCfgFilePath; }
+            private set
+            {
+                var path = value;
+                if (!Path.GetFileName(path).ToLower().EndsWith(".vcfg"))
+                    path = Path.Combine(path, DEFAULT_CFG_FILE_NAME);
+                this._CurrentCfgFilePath = Path.GetFullPath(path);
+                if (this.Config != null)
+                    this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath)+"\\";
+                this.NotifyPropertyChanged();
+            }
+        }
+        private string _CurrentCfgFilePath;
 
         // public DiffModel GetDiffModel()
         // {
@@ -468,6 +501,7 @@ namespace vSharpStudio.ViewModels
                 MainPageVM.ConfigInstance = value;
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
+                this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath);
                 this._Config.OnSelectedNodeChanging = (from, to) =>
                 {
                     if (to is INodeGenSettings)
@@ -514,7 +548,7 @@ namespace vSharpStudio.ViewModels
             {
                 return this._CommandConfigSave ?? (this._CommandConfigSave = vCommand.Create(
                     (o) => { this.Save(); },
-                    (o) => { return this.Config != null; }));
+                    (o) => { return this.Config != null && CurrentCfgFilePath != null; }));
             }
         }
 
@@ -593,12 +627,12 @@ namespace vSharpStudio.ViewModels
             this.pconfig_history.CurrentConfig = proto;
         }
 
-        public void SaveConfigAsForTests(string file_path)
-        {
-            this.PluginSettingsToModel();
-            this.SavePrepare();
-            File.WriteAllBytes(file_path, this.pconfig_history.ToByteArray());
-        }
+        //public void SaveConfigAsForTests(string file_path)
+        //{
+        //    this.PluginSettingsToModel();
+        //    this.SavePrepare();
+        //    File.WriteAllBytes(file_path, this.pconfig_history.ToByteArray());
+        //}
 
         internal void Save()
         {
@@ -607,8 +641,15 @@ namespace vSharpStudio.ViewModels
             Utils.TryCall(
                 () =>
             {
-                File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
-            }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
+                Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                UpdateUserSettingsSaveConfigs();
+                //if (this.UserSettings.ListOpenConfigHistory.Count > 0)
+                //    this.UserSettings.ListOpenConfigHistory[0].OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                //else
+                //    throw new Exception();
+                File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+            }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             this.ConnectionStringSettingsSave();
 
             // var json = JsonFormatter.Default.Format(proto);
@@ -623,16 +664,15 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandConfigSaveAs ?? (this._CommandConfigSaveAs = vCommand.Create(
-                    (o) => { this.SaveAs(); },
+                    (o) => { this.SaveAs((string)o); },
                     (o) => { return this.Config != null; }));
             }
         }
 
         private vCommand _CommandConfigSaveAs;
 
-        internal void SaveAs()
+        internal void SaveAs(string filePath = null)
         {
-            // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
 
@@ -642,22 +682,62 @@ namespace vSharpStudio.ViewModels
             {
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
             }
-            if (openFileDialog.ShowDialog() == true)
+            // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
+            if (filePath != null || openFileDialog.ShowDialog() == true)
             {
-                this.FilePathSaveAs = openFileDialog.FileName;
+                this.FilePathSaveAs = filePath == null ? openFileDialog.FileName : Path.GetFullPath(filePath);
                 this.PluginSettingsToModel();
                 this.SavePrepare();
                 Utils.TryCall(
                     () =>
-                {
-                    File.WriteAllBytes(this.FilePathSaveAs, this.pconfig_history.ToByteArray());
-                }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+                    {
+                        this.CurrentCfgFilePath = this.FilePathSaveAs;
+                        Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                        File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                        UpdateUserSettingsSaveConfigs();
+                        File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                    }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
 
                 // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
                 // File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
                 // CompareSaved(json);
 #endif
+            }
+        }
+
+        private void UpdateUserSettingsSaveConfigs()
+        {
+            if (this.UserSettings.ListOpenConfigHistory.Count > 0)
+            {
+                // same file as last
+                if (this.UserSettings.ListOpenConfigHistory[0].ConfigPath == this.CurrentCfgFilePath)
+                    this.UserSettings.ListOpenConfigHistory[0].OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                else
+                {
+                    // remove previous
+                    for (int i = this.UserSettings.ListOpenConfigHistory.Count; i > 0; i--)
+                    {
+                        if (this.UserSettings.ListOpenConfigHistory[i].ConfigPath == this.CurrentCfgFilePath)
+                            this.UserSettings.ListOpenConfigHistory.RemoveAt(i);
+                    }
+                    var us = new UserSettingsOpenedConfig()
+                    {
+                        OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow),
+                        ConfigPath = this.CurrentCfgFilePath
+                    };
+                    // insert as first
+                    this.UserSettings.ListOpenConfigHistory.Insert(0, us);
+                }
+            }
+            else // first file
+            {
+                var us = new UserSettingsOpenedConfig()
+                {
+                    OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow),
+                    ConfigPath = this.CurrentCfgFilePath
+                };
+                this.UserSettings.ListOpenConfigHistory.Add(us);
             }
         }
 
@@ -740,8 +820,8 @@ namespace vSharpStudio.ViewModels
                 Utils.TryCall(
                     () =>
                     {
-                        File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
-                    }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
+                        File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                    }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
 
                 var mvr = new ModelVisitorForRenamer();
                 mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
@@ -841,8 +921,8 @@ namespace vSharpStudio.ViewModels
             Utils.TryCall(
                 () =>
             {
-                File.WriteAllBytes(CFG_FILE_PATH, this.pconfig_history.ToByteArray());
-            }, "Can't save configuration. File path: '" + CFG_FILE_PATH + "'");
+                File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+            }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
         }
 
         #endregion Main

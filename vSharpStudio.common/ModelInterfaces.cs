@@ -38,6 +38,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         INTEGER_VALUE = 3,
     }
     
+    public partial interface IUserSettings // ModelInterfaces.tt Line: 29
+    {
+        IEnumerable<IUserSettingsOpenedConfig> ListOpenConfigHistory { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IUserSettingsOpenedConfig // ModelInterfaces.tt Line: 29
+    {
+        Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } // ModelInterfaces.tt Line: 47
+        string ConfigPath { get; } // ModelInterfaces.tt Line: 47
+    }
+    
     public partial interface IGroupListPlugins : IValidatableWithSeverity, IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47

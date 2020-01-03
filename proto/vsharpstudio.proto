@@ -16,7 +16,23 @@ option csharp_namespace = "Proto.Config";
  *    ##### IMPORTANT #####
  * use 'proto_' prefix for all messages !!!
  * if repeated property name is ending message name, than c# class will implement indexer to access such property elements 
- * ####################################### S E T T I N G S ##################################
+ * ####################################### U S E R   S E T T I N G S ##################################
+ */
+// @base ViewModelValidatableWithSeverity
+message proto_user_settings {
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_user_settings_opened_config list_open_config_history = 11;
+}
+// @base ViewModelValidatableWithSeverity
+message proto_user_settings_opened_config {
+    // @attr [BrowsableAttribute(false)]
+    google.protobuf.Timestamp opened_last_time_on = 1;
+    // @attr [BrowsableAttribute(false)]
+    string config_path = 2;
+}
+/** 
+ * @exclude
+ * ####################################### P L U G I N S ##################################
  */
 message proto_group_list_plugins {
     // @attr [BrowsableAttribute(false)]

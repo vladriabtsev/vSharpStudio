@@ -17,6 +17,8 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class MainVmTests
     {
+        string pathExt = @".\extcfg\";
+
         static MainVmTests()
         {
             LoggerInit.Init();
@@ -32,9 +34,13 @@ namespace vSharpStudio.Unit
 
         private void remove_config()
         {
-            if (File.Exists(MainPageVM.CFG_FILE_PATH))
+            if (File.Exists(MainPageVM.USER_SETTINGS_FILE_PATH))
             {
-                File.Delete(MainPageVM.CFG_FILE_PATH);
+                File.Delete(MainPageVM.USER_SETTINGS_FILE_PATH);
+            }
+            if (Directory.Exists(pathExt))
+            {
+                Directory.Delete(pathExt, true);
             }
         }
 
@@ -58,7 +64,7 @@ namespace vSharpStudio.Unit
             vm.Config.Model.GroupConstants.NodeAddNewSubNode();
             var cnst = (Constant)vm.Config.SelectedNode;
             var ct = DateTime.UtcNow;
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsTrue(vm.Config.LastUpdated != null);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
@@ -109,9 +115,21 @@ namespace vSharpStudio.Unit
             // old migration code is kept?
             // Assert.IsTrue(false);
         }
-
         [TestMethod]
-        public void Main003_DiffList()
+        public void Main003CanSaveConfigInSelectedSolutionFolderAndReloadFromThisFolderByDefault()
+        {
+            this.remove_config();
+            var vm = new MainPageVM(false);
+            Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
+            vm.Config.Name = "test1";
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+            vm = new MainPageVM(true);
+            // Load from previous save
+            Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.AreEqual("test1", vm.Config.Name);
+        }
+        [TestMethod]
+        public void Main010_DiffList()
         {
             // new config, not saved yet
             this.remove_config();
@@ -131,7 +149,7 @@ namespace vSharpStudio.Unit
 
             // current changes are saved
             // no stable version (prev is null)
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             vm = new MainPageVM(true);
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
@@ -188,7 +206,7 @@ namespace vSharpStudio.Unit
             //new Constant(vm.Config.Model.GroupConstants) { Name = "c3" };
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
             c3.DataType.Length = 101;
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
 
             var mod = new ModelVisitorForRenamer();
             var cfg = mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
@@ -235,6 +253,7 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
 
             // create object and save
             var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
@@ -320,16 +339,16 @@ namespace vSharpStudio.Unit
             var vmb = new MainPageVM(false);
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
-            var path = @".\extcfg\";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+            vmb.CommandConfigSaveAs.Execute(pathExt + "kuku.vcfg");
 
-            vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
+            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = path };
+            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = pathExt + "kuku.vcfg" };
             vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
@@ -358,21 +377,22 @@ namespace vSharpStudio.Unit
             var vmb = new MainPageVM(false);
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
-            var path = @".\extcfg\";
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(pathExt))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(pathExt);
             }
+            vmb.CommandConfigSaveAs.Execute(pathExt + "kuku.vcfg");
 
-            vmb.SaveConfigAsForTests(path + MainPageVM.CFG_FILE_NAME);
+            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = path };
+            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = pathExt + "kuku.vcfg" };
             vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
+            //TODO diff test implementation
             // var diffc = vm.GetDiffListConfigs();
             // Assert.IsTrue(diffc.Config.Name == "main");
             // Assert.IsTrue(diffc.ListAll.Count == 2);

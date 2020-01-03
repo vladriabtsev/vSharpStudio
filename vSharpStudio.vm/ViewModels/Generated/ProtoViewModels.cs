@@ -1,4 +1,4 @@
-// Auto generated on UTC 12/30/2019 20:30:20
+// Auto generated on UTC 01/02/2020 13:52:15
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -22,6 +22,252 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     public interface IConfigAcceptVisitor // NameSpace.tt Line: 28
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
+    }
+    public partial class UserSettings : ViewModelValidatableWithSeverity<UserSettings, UserSettings.UserSettingsValidator>, IUserSettings // Class.tt Line: 6
+    {
+        public partial class UserSettingsValidator : ValidatorBase<UserSettings, UserSettingsValidator> { } // Class.tt Line: 8
+        #region CTOR
+        public UserSettings() 
+            : base(UserSettingsValidator.Validator) // Class.tt Line: 38
+        {
+            this.OnInitBegin();
+            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 46
+            this.OnInit();
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static UserSettings Clone(UserSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            UserSettings vm = new UserSettings();
+            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 44
+            foreach (var t in from.ListOpenConfigHistory) // Clone.tt Line: 45
+                vm.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.Clone((UserSettingsOpenedConfig)t, isDeep));
+            return vm;
+        }
+        public static void Update(UserSettings to, UserSettings from, bool isDeep = true) // Clone.tt Line: 72
+        {
+            if (isDeep) // Clone.tt Line: 79
+            {
+                foreach (var t in to.ListOpenConfigHistory.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListOpenConfigHistory)
+                    {
+                        if (t == tt)
+                        {
+                            isfound = true;
+                            UserSettingsOpenedConfig.Update((UserSettingsOpenedConfig)t, (UserSettingsOpenedConfig)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListOpenConfigHistory.Remove(t);
+                }
+                foreach (var tt in from.ListOpenConfigHistory)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListOpenConfigHistory.ToList())
+                    {
+                        if (t == tt)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new UserSettingsOpenedConfig(); // Clone.tt Line: 112
+                        UserSettingsOpenedConfig.Update(p, (UserSettingsOpenedConfig)tt, isDeep);
+                        to.ListOpenConfigHistory.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 140
+        #region IEditable
+        public override UserSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return UserSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(UserSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            UserSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_user_settings' to 'UserSettings'
+        public static UserSettings ConvertToVM(Proto.Config.proto_user_settings m, UserSettings vm) // Clone.tt Line: 163
+        {
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 180
+            foreach (var t in m.ListOpenConfigHistory) // Clone.tt Line: 181
+            {
+                var tvm = UserSettingsOpenedConfig.ConvertToVM(t, new UserSettingsOpenedConfig()); // Clone.tt Line: 186
+                vm.ListOpenConfigHistory.Add(tvm);
+            }
+            return vm;
+        }
+        // Conversion from 'UserSettings' to 'proto_user_settings'
+        public static Proto.Config.proto_user_settings ConvertToProto(UserSettings vm) // Clone.tt Line: 222
+        {
+            Proto.Config.proto_user_settings m = new Proto.Config.proto_user_settings(); // Clone.tt Line: 224
+            foreach (var t in vm.ListOpenConfigHistory) // Clone.tt Line: 227
+                m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // Clone.tt Line: 231
+            return m;
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<UserSettingsOpenedConfig> ListOpenConfigHistory // Property.tt Line: 9
+        { 
+            get 
+            { 
+                return this._ListOpenConfigHistory; 
+            }
+            set
+            {
+                if (this._ListOpenConfigHistory != value)
+                {
+                    this.OnListOpenConfigHistoryChanging(this._ListOpenConfigHistory, value);
+                    _ListOpenConfigHistory = value;
+                    this.OnListOpenConfigHistoryChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<UserSettingsOpenedConfig> _ListOpenConfigHistory;
+        partial void OnListOpenConfigHistoryChanging(ObservableCollection<UserSettingsOpenedConfig> from, ObservableCollection<UserSettingsOpenedConfig> to); // Property.tt Line: 30
+        partial void OnListOpenConfigHistoryChanged();
+        IEnumerable<IUserSettingsOpenedConfig> IUserSettings.ListOpenConfigHistory { get { return this._ListOpenConfigHistory; } }
+    
+        #endregion Properties
+    }
+    public partial class UserSettingsOpenedConfig : ViewModelValidatableWithSeverity<UserSettingsOpenedConfig, UserSettingsOpenedConfig.UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // Class.tt Line: 6
+    {
+        public partial class UserSettingsOpenedConfigValidator : ValidatorBase<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator> { } // Class.tt Line: 8
+        #region CTOR
+        public UserSettingsOpenedConfig() 
+            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 38
+        {
+            this.OnInitBegin();
+            this.OnInit();
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static UserSettingsOpenedConfig Clone(UserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            UserSettingsOpenedConfig vm = new UserSettingsOpenedConfig();
+            vm.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 62
+            vm.ConfigPath = from.ConfigPath; // Clone.tt Line: 62
+            return vm;
+        }
+        public static void Update(UserSettingsOpenedConfig to, UserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 72
+        {
+            to.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 134
+            to.ConfigPath = from.ConfigPath; // Clone.tt Line: 134
+        }
+        // Clone.tt Line: 140
+        #region IEditable
+        public override UserSettingsOpenedConfig Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return UserSettingsOpenedConfig.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(UserSettingsOpenedConfig from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            UserSettingsOpenedConfig.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_user_settings_opened_config' to 'UserSettingsOpenedConfig'
+        public static UserSettingsOpenedConfig ConvertToVM(Proto.Config.proto_user_settings_opened_config m, UserSettingsOpenedConfig vm) // Clone.tt Line: 163
+        {
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.OpenedLastTimeOn = m.OpenedLastTimeOn; // Clone.tt Line: 211
+            vm.ConfigPath = m.ConfigPath; // Clone.tt Line: 211
+            return vm;
+        }
+        // Conversion from 'UserSettingsOpenedConfig' to 'proto_user_settings_opened_config'
+        public static Proto.Config.proto_user_settings_opened_config ConvertToProto(UserSettingsOpenedConfig vm) // Clone.tt Line: 222
+        {
+            Proto.Config.proto_user_settings_opened_config m = new Proto.Config.proto_user_settings_opened_config(); // Clone.tt Line: 224
+            m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // Clone.tt Line: 261
+            m.ConfigPath = vm.ConfigPath; // Clone.tt Line: 261
+            return m;
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [BrowsableAttribute(false)]
+        public Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn // Property.tt Line: 132
+        { 
+            get 
+            { 
+                return this._OpenedLastTimeOn; 
+            }
+            set
+            {
+                if (this._OpenedLastTimeOn != value)
+                {
+                    this.OnOpenedLastTimeOnChanging(this._OpenedLastTimeOn, value);
+                    this._OpenedLastTimeOn = value;
+                    this.OnOpenedLastTimeOnChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private Google.Protobuf.WellKnownTypes.Timestamp _OpenedLastTimeOn;
+        partial void OnOpenedLastTimeOnChanging(Google.Protobuf.WellKnownTypes.Timestamp from, Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 153
+        partial void OnOpenedLastTimeOnChanged();
+        Google.Protobuf.WellKnownTypes.Timestamp IUserSettingsOpenedConfig.OpenedLastTimeOn { get { return this._OpenedLastTimeOn; } }
+        
+        [BrowsableAttribute(false)]
+        public string ConfigPath // Property.tt Line: 132
+        { 
+            get 
+            { 
+                return this._ConfigPath; 
+            }
+            set
+            {
+                if (this._ConfigPath != value)
+                {
+                    this.OnConfigPathChanging(this._ConfigPath, value);
+                    this._ConfigPath = value;
+                    this.OnConfigPathChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private string _ConfigPath = string.Empty;
+        partial void OnConfigPathChanging(string from, string to); // Property.tt Line: 153
+        partial void OnConfigPathChanged();
+        string IUserSettingsOpenedConfig.ConfigPath { get { return this._ConfigPath; } }
+    
+        #endregion Properties
     }
     public partial class GroupListPlugins : ConfigObjectSubBase<GroupListPlugins, GroupListPlugins.GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 6
     {
@@ -11240,6 +11486,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
     public interface IVisitorProto // IVisitorProto.tt Line: 7
     {
+        void Visit(Proto.Config.proto_user_settings p);
+        void Visit(Proto.Config.proto_user_settings_opened_config p);
         void Visit(Proto.Config.proto_group_list_plugins p);
         void Visit(Proto.Config.proto_plugin p);
         void Visit(Proto.Config.proto_plugin_generator p);
@@ -11290,6 +11538,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         partial void OnVisit(IValidatableWithSeverity p);
         partial void OnVisitEnd(IValidatableWithSeverity p);
+        protected override void OnVisit(UserSettings p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit(p as IValidatableWithSeverity);
+            foreach (var t in p.ListOpenConfigHistory) // ValidationVisitor.tt Line: 37
+                p.ValidateSubAndCollectErrors(t);
+        }
+        protected override void OnVisitEnd(UserSettings p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(UserSettingsOpenedConfig p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(UserSettingsOpenedConfig p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(GroupListPlugins p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit(p as IValidatableWithSeverity);
@@ -11655,6 +11921,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
     
+        public void Visit(UserSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(UserSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(UserSettings p) { }
+        protected virtual void OnVisitEnd(UserSettings p) { }
+        public void Visit(UserSettingsOpenedConfig p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(UserSettingsOpenedConfig p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(UserSettingsOpenedConfig p) { }
+        protected virtual void OnVisitEnd(UserSettingsOpenedConfig p) { }
         public void Visit(GroupListPlugins p)
         {
             this.OnVisit(p);
