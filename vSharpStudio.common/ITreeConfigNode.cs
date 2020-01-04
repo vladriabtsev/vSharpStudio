@@ -38,7 +38,11 @@ namespace vSharpStudio.common
         bool NodeCanDown();
         void NodeDown();
         IConfig GetConfig();
-       // if true, object can be included in submodel
+        // Get path relative to config file path
+        string GetRelativeToConfigDiskPath(string path);
+        // Get combined config and relative path
+        string GetCombinedPath(string relative_path);
+        // if true, object can be included in submodel
         // if false, this is group of objects. Can't be included in submodel, but show inclusion of objects in the group
         bool IsIncludableInModels { get; }
         List<IModelRow> ListInModels { get; }

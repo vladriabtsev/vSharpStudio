@@ -204,7 +204,7 @@ namespace vSharpStudio.ViewModels
                     path = Path.Combine(path, DEFAULT_CFG_FILE_NAME);
                 this._CurrentCfgFilePath = Path.GetFullPath(path);
                 if (this.Config != null)
-                    this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath)+"\\";
+                    this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
                 this.NotifyPropertyChanged();
             }
         }
@@ -716,7 +716,7 @@ namespace vSharpStudio.ViewModels
                 else
                 {
                     // remove previous
-                    for (int i = this.UserSettings.ListOpenConfigHistory.Count; i > 0; i--)
+                    for (int i = this.UserSettings.ListOpenConfigHistory.Count - 1; i > 0; i--)
                     {
                         if (this.UserSettings.ListOpenConfigHistory[i].ConfigPath == this.CurrentCfgFilePath)
                             this.UserSettings.ListOpenConfigHistory.RemoveAt(i);
@@ -807,7 +807,7 @@ namespace vSharpStudio.ViewModels
                 _logger.LogCritical(ex, "".CallerInfo());
                 throw ex;
             }
-            this.PluginSettingsToModel();
+            //this.PluginSettingsToModel();
             try
             {
                 //TODO roll back if Exception
@@ -817,70 +817,90 @@ namespace vSharpStudio.ViewModels
                 this.pconfig_history.CurrentConfig = proto;
                 //this.Config.OldStableConfig;
                 //this.Config.PrevStableConfig;
-                Utils.TryCall(
-                    () =>
-                    {
-                        File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-                    }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
+                this.Save();
+                //Utils.TryCall(
+                //    () =>
+                //    {
+                //        File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                //    }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
 
                 var mvr = new ModelVisitorForRenamer();
                 mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                //var lstVS = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances();
+                //var en = lstVS.GetEnumerator();
+                //en.MoveNext();
+                //Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(en.Current);
                 //Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-                Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();
-                var curDir = Directory.GetCurrentDirectory();
-                foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\3.1.100\");
+                var properties = new Dictionary<string, string>
                 {
-                    //TODO implement backup
-                    //ts.RelativeAppSolutionPath
-                    //TODO implement renamer
-                    // Open the solution within the workspace.
-                    Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync("");
-                    foreach (var tp in ts.ListAppProjects)
-                    {
-                        bool isProjectFound = false;
-                        foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
+                // Use the latest language version to force the full set of available analyzers to run on the project.
+                { "LangVersion", "latest" },};
+                //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create(properties))
+                //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
+                using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
+                {
+                    //try
+                    //{
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
-                            // Look up the snapshot for the original project in the latest forked solution.
-                            Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
-                            if (project.FilePath == tp.RelativeAppProjectPath)
+                            //TODO implement backup
+                            //ts.RelativeAppSolutionPath
+                            //TODO implement renamer
+                            // Open the solution within the workspace.
+                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync("");
+                            foreach (var tp in ts.ListAppProjects)
                             {
-                                isProjectFound = true;
-                                foreach (var tg in tp.ListAppProjectGenerators)
+                                bool isProjectFound = false;
+                                foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                                 {
-                                    var generator = this._Config.DicGenerators[tg.Guid];
-                                    List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
-                                    foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
+                                    // Look up the snapshot for the original project in the latest forked solution.
+                                    Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
+                                    if (project.FilePath == tp.RelativeAppProjectPath)
                                     {
-                                        // Look up the snapshot for the original document in the latest forked solution.
-                                        Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
-                                        //tg.RelativePathToGeneratedFile
-                                        if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                                        isProjectFound = true;
+                                        foreach (var tg in tp.ListAppProjectGenerators)
                                         {
-                                            if (Path.GetExtension(document.FilePath) == "cs")
+                                            var generator = this._Config.DicGenerators[tg.Guid];
+                                            List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                            foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
                                             {
-                                                await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
+                                                // Look up the snapshot for the original document in the latest forked solution.
+                                                Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
+                                                //tg.RelativePathToGeneratedFile
+                                                if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                                                {
+                                                    if (Path.GetExtension(document.FilePath) == "cs")
+                                                    {
+                                                        await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
+                                                    }
+                                                    else if (Path.GetExtension(document.FilePath) == "vb")
+                                                    {
+                                                        CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
+                                                    }
+                                                    else
+                                                        throw new NotSupportedException();
+                                                }
                                             }
-                                            else if (Path.GetExtension(document.FilePath) == "vb")
-                                            {
-                                                CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
-                                            }
-                                            else
-                                                throw new NotSupportedException();
                                         }
                                     }
                                 }
+                                if (!isProjectFound)
+                                    throw new Exception("Project not found");
                             }
                         }
-                        if (!isProjectFound)
-                            throw new Exception("Project not found");
-                    }
+                    //}
+                    //catch (Exception ex2)
+                    //{
+                    //    throw;
+                    //}
                 }
                 this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
             }
             catch (Exception ex)
             {
+                throw ex;
                 //TODO roll back if Exception
-
             }
         }
 

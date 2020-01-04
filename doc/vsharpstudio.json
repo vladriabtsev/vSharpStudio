@@ -398,7 +398,7 @@
             },
             {
               "name": "relative_app_project_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]\n@attr [Description(\"Relative path from configuration file folder to .net project\")]\nRelative path from configuration file folder to .net project",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -518,8 +518,18 @@
               "defaultValue": ""
             },
             {
-              "name": "relative_path_to_generated_file",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output\")]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
+              "name": "relative_path_to_gen_folder",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output Folder\")]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"Relative path from configuration file folder to folder for generated file\")]\nRelative path from configuration file folder to folder for generated file",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gen_file_name",
+              "description": "@attr [DisplayName(\"Output File\")]\n@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Generator output file name\")]\nGenerator output file name",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -590,7 +600,7 @@
             },
             {
               "name": "relative_app_solution_path",
-              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"Relative path to solution folder\")]",
+              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]\n@attr [Description(\"Relative path from configuration file folder to .net solution\")]\nRelative path from configuration file folder to .net solution",
               "label": "",
               "type": "string",
               "longType": "string",

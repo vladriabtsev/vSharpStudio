@@ -1,4 +1,4 @@
-// Auto generated on UTC 01/02/2020 13:52:16
+// Auto generated on UTC 01/04/2020 00:59:48
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -40,18 +40,20 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         public static GeneratorDbSchemaSettings Clone(GeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             GeneratorDbSchemaSettings vm = new GeneratorDbSchemaSettings();
-            vm.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 62
-            vm.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 55
-            vm.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 63
+            vm.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 56
+            vm.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GeneratorDbSchemaSettings to, GeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GeneratorDbSchemaSettings to, GeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 134
-            to.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 129
-            to.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 134
+            to.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 136
+            to.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 131
+            to.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GeneratorDbSchemaSettings Backup()
         {
@@ -69,27 +71,29 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_schema_settings' to 'GeneratorDbSchemaSettings'
-        public static GeneratorDbSchemaSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_settings m, GeneratorDbSchemaSettings vm) // Clone.tt Line: 163
+        public static GeneratorDbSchemaSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_settings m, GeneratorDbSchemaSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 211
-            vm.IsSchemaParam2 = m.IsSchemaParam2.HasValue ? (bool?)m.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 211
-            vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 214
+            vm.IsSchemaParam2 = m.IsSchemaParam2.HasValue ? (bool?)m.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 214
+            vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GeneratorDbSchemaSettings' to 'proto_generator_db_schema_settings'
-        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 222
+        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 226
         {
-            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 224
-            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 261
-            m.IsSchemaParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 238
+            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 228
+            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 265
+            m.IsSchemaParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 242
             m.IsSchemaParam2.HasValue = vm.IsSchemaParam2.HasValue;
             if (vm.IsSchemaParam2.HasValue)
                 m.IsSchemaParam2.Value = vm.IsSchemaParam2.Value;
-            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 261
+            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -183,18 +187,22 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         public static GeneratorDbAccessSettings Clone(GeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             GeneratorDbAccessSettings vm = new GeneratorDbAccessSettings();
-            vm.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 62
-            vm.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 55
-            vm.AccessParam3 = from.AccessParam3; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 63
+            vm.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 56
+            vm.AccessParam3 = from.AccessParam3; // Clone.tt Line: 63
+            vm.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GeneratorDbAccessSettings to, GeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GeneratorDbAccessSettings to, GeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 134
-            to.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 129
-            to.AccessParam3 = from.AccessParam3; // Clone.tt Line: 134
+            to.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 136
+            to.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 131
+            to.AccessParam3 = from.AccessParam3; // Clone.tt Line: 136
+            to.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GeneratorDbAccessSettings Backup()
         {
@@ -212,27 +220,31 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_settings' to 'GeneratorDbAccessSettings'
-        public static GeneratorDbAccessSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_settings m, GeneratorDbAccessSettings vm) // Clone.tt Line: 163
+        public static GeneratorDbAccessSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_settings m, GeneratorDbAccessSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 211
-            vm.IsAccessParam2 = m.IsAccessParam2.HasValue ? (bool?)m.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 211
-            vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 214
+            vm.IsAccessParam2 = m.IsAccessParam2.HasValue ? (bool?)m.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 214
+            vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 214
+            vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessSettings' to 'proto_generator_db_access_settings'
-        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 222
+        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 226
         {
-            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 224
-            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 261
-            m.IsAccessParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 238
+            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 228
+            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 265
+            m.IsAccessParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 242
             m.IsAccessParam2.HasValue = vm.IsAccessParam2.HasValue;
             if (vm.IsAccessParam2.HasValue)
                 m.IsAccessParam2.Value = vm.IsAccessParam2.Value;
-            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 261
+            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 265
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -306,6 +318,29 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnAccessParam3Changing(string from, string to); // Property.tt Line: 153
         partial void OnAccessParam3Changed();
         string IGeneratorDbAccessSettings.AccessParam3 { get { return this._AccessParam3; } }
+        
+        public bool IsGenerateNotValidCode // Property.tt Line: 132
+        { 
+            get 
+            { 
+                return this._IsGenerateNotValidCode; 
+            }
+            set
+            {
+                if (this._IsGenerateNotValidCode != value)
+                {
+                    this.OnIsGenerateNotValidCodeChanging(this._IsGenerateNotValidCode, value);
+                    this._IsGenerateNotValidCode = value;
+                    this.OnIsGenerateNotValidCodeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private bool _IsGenerateNotValidCode;
+        partial void OnIsGenerateNotValidCodeChanging(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsGenerateNotValidCodeChanged();
+        bool IGeneratorDbAccessSettings.IsGenerateNotValidCode { get { return this._IsGenerateNotValidCode; } }
     
         #endregion Properties
     }
@@ -326,14 +361,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         public static GeneratorDbAccessNodePropertySettings Clone(GeneratorDbAccessNodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             GeneratorDbAccessNodePropertySettings vm = new GeneratorDbAccessNodePropertySettings();
-            vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GeneratorDbAccessNodePropertySettings to, GeneratorDbAccessNodePropertySettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GeneratorDbAccessNodePropertySettings to, GeneratorDbAccessNodePropertySettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 134
+            to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GeneratorDbAccessNodePropertySettings Backup()
         {
@@ -351,20 +388,22 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_node_property_settings' to 'GeneratorDbAccessNodePropertySettings'
-        public static GeneratorDbAccessNodePropertySettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_property_settings m, GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 163
+        public static GeneratorDbAccessNodePropertySettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_property_settings m, GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodePropertySettings' to 'proto_generator_db_access_node_property_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_property_settings ConvertToProto(GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 222
+        public static Proto.Plugin.proto_generator_db_access_node_property_settings ConvertToProto(GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 226
         {
-            Proto.Plugin.proto_generator_db_access_node_property_settings m = new Proto.Plugin.proto_generator_db_access_node_property_settings(); // Clone.tt Line: 224
-            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 261
+            Proto.Plugin.proto_generator_db_access_node_property_settings m = new Proto.Plugin.proto_generator_db_access_node_property_settings(); // Clone.tt Line: 228
+            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -412,14 +451,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         public static GeneratorDbAccessNodeCatalogFormSettings Clone(GeneratorDbAccessNodeCatalogFormSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             GeneratorDbAccessNodeCatalogFormSettings vm = new GeneratorDbAccessNodeCatalogFormSettings();
-            vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GeneratorDbAccessNodeCatalogFormSettings to, GeneratorDbAccessNodeCatalogFormSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GeneratorDbAccessNodeCatalogFormSettings to, GeneratorDbAccessNodeCatalogFormSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 134
+            to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GeneratorDbAccessNodeCatalogFormSettings Backup()
         {
@@ -437,20 +478,22 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_node_catalog_form_settings' to 'GeneratorDbAccessNodeCatalogFormSettings'
-        public static GeneratorDbAccessNodeCatalogFormSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m, GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 163
+        public static GeneratorDbAccessNodeCatalogFormSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m, GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodeCatalogFormSettings' to 'proto_generator_db_access_node_catalog_form_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_catalog_form_settings ConvertToProto(GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 222
+        public static Proto.Plugin.proto_generator_db_access_node_catalog_form_settings ConvertToProto(GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 226
         {
-            Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 224
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 261
+            Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 228
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures

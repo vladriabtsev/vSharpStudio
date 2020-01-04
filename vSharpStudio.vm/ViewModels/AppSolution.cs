@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -40,6 +41,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.ListAppProjects.Add(t);
             }
+        }
+
+        partial void OnRelativeAppSolutionPathChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (!string.IsNullOrWhiteSpace(this._RelativeAppSolutionPath))
+                this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
         }
 
         #region Tree operations

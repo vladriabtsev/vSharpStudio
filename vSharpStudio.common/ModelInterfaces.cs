@@ -232,6 +232,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         
         ///////////////////////////////////////////////////
         /// List NET projects
+        /// Relative path from configuration file folder to .net solution
         ///////////////////////////////////////////////////
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
@@ -242,6 +243,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// Relative path from configuration file folder to .net project
+        ///////////////////////////////////////////////////
         string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
         IEnumerable<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
@@ -255,7 +260,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 47
         string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
         string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 47
-        string RelativePathToGeneratedFile { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// Relative path from configuration file folder to folder for generated file
+        ///////////////////////////////////////////////////
+        string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// Generator output file name
+        ///////////////////////////////////////////////////
+        string GenFileName { get; } // ModelInterfaces.tt Line: 47
         
         ///////////////////////////////////////////////////
         /// 

@@ -16,6 +16,7 @@ message proto_generator_db_access_settings {
     bool is_access_param1 = 1;
     bool_nullable is_access_param2 = 2;
     string access_param3 = 3;
+    bool is_generate_not_valid_code = 4;
 }
 // @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_node_property_settings {

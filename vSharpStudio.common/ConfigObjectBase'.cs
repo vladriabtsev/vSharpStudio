@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using FluentValidation;
@@ -215,6 +216,20 @@
             }
         }
 
+        public string GetRelativeToConfigDiskPath(string path)
+        {
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                return path;
+            return Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+        }
+        public string GetCombinedPath(string relative_path)
+        {
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                return relative_path;
+            return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
+        }
         public IConfig GetConfig()
         {
             ITreeConfigNode p = this.Parent;

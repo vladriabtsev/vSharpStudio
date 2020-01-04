@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using FluentValidation;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -23,6 +25,23 @@ namespace vSharpStudio.vm.ViewModels
                 this.RuleFor(x => x.Name)
                     .Must((o, name) => { return this.IsUnique(o); })
                     .WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+                this.RuleFor(x => x.RelativeAppSolutionPath)
+                    .NotEmpty()
+                    .WithMessage("Solution is not selected");
+                this.RuleFor(x => x.RelativeAppSolutionPath)
+                    .Must((o, path) =>
+                    {
+                        if (string.IsNullOrEmpty(path))
+                            return true;
+                        return File.Exists(o.GetCombinedPath(path));
+                    })
+                    .WithMessage("Solution file was not found");
+                this.RuleFor(x => x.ListAppProjects)
+                    .Must((o, lst) =>
+                    {
+                        return lst != null && lst.Count > 0;
+                    })
+                    .WithMessage("Projects are not created yet").WithSeverity(Severity.Warning);
                 //this.RuleFor(x => x.PluginsGroup1)
                 //    .Must((x, g) =>
                 //    {

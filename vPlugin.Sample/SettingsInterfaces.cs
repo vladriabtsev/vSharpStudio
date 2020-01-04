@@ -18,6 +18,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         bool IsAccessParam1 { get; } // ModelInterfaces.tt Line: 47
         bool? IsAccessParam2 { get; } // ModelInterfaces.tt Line: 47
         string AccessParam3 { get; } // ModelInterfaces.tt Line: 47
+        bool IsGenerateNotValidCode { get; } // ModelInterfaces.tt Line: 47
     }
     
     public partial interface IGeneratorDbAccessNodePropertySettings // ModelInterfaces.tt Line: 29

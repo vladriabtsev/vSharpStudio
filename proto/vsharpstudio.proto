@@ -285,8 +285,9 @@ message proto_app_solution {
     // List NET projects
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Path")]
-    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-    // @attr [Description("Relative path to solution folder")]
+    // @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
+    // @attr [Description("Relative path from configuration file folder to .net solution")]
+    // Relative path from configuration file folder to .net solution
     string relative_app_solution_path = 7;
 
     // @attr [PropertyOrderAttribute(8)]
@@ -327,7 +328,9 @@ message proto_app_project {
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
+    // @attr [Description("Relative path from configuration file folder to .net project")]
+    // Relative path from configuration file folder to .net project
     string relative_app_project_path = 7;
 
     // @attr [PropertyOrderAttribute(8)]
@@ -364,12 +367,18 @@ message proto_app_project_generator {
     // @attr [ReadOnly(true)]
     string description_generator = 9;
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Output")]
-    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-    // @attr [Description("File path to store connection string settings in private place.")]
-    string relative_path_to_generated_file = 10;
+    // @attr [DisplayName("Output Folder")]
+    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+    // @attr [Description("Relative path from configuration file folder to folder for generated file")]
+    // Relative path from configuration file folder to folder for generated file
+    string relative_path_to_gen_folder = 10;
+    // @attr [DisplayName("Output File")]
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [Description("Generator output file name")]
+    // Generator output file name
+    string gen_file_name = 11;
     // @attr [BrowsableAttribute(false)]
-    string generator_settings = 11;
+    string generator_settings = 15;
     // @attr [ReadOnly(true)]
 }
 message proto_generator_settings {

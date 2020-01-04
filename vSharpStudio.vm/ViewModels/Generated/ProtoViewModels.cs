@@ -1,4 +1,4 @@
-// Auto generated on UTC 01/02/2020 13:52:15
+// Auto generated on UTC 01/04/2020 00:59:47
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -41,14 +41,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static UserSettings Clone(UserSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             UserSettings vm = new UserSettings();
-            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 44
-            foreach (var t in from.ListOpenConfigHistory) // Clone.tt Line: 45
+            vm.IsNotNotifying = true;
+            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 45
+            foreach (var t in from.ListOpenConfigHistory) // Clone.tt Line: 46
                 vm.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.Clone((UserSettingsOpenedConfig)t, isDeep));
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(UserSettings to, UserSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(UserSettings to, UserSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListOpenConfigHistory.ToList())
                 {
@@ -78,14 +80,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new UserSettingsOpenedConfig(); // Clone.tt Line: 112
+                        var p = new UserSettingsOpenedConfig(); // Clone.tt Line: 114
                         UserSettingsOpenedConfig.Update(p, (UserSettingsOpenedConfig)tt, isDeep);
                         to.ListOpenConfigHistory.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override UserSettings Backup()
         {
@@ -103,26 +105,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_user_settings' to 'UserSettings'
-        public static UserSettings ConvertToVM(Proto.Config.proto_user_settings m, UserSettings vm) // Clone.tt Line: 163
+        public static UserSettings ConvertToVM(Proto.Config.proto_user_settings m, UserSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 180
-            foreach (var t in m.ListOpenConfigHistory) // Clone.tt Line: 181
+            vm.IsNotNotifying = true;
+            vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 183
+            foreach (var t in m.ListOpenConfigHistory) // Clone.tt Line: 184
             {
-                var tvm = UserSettingsOpenedConfig.ConvertToVM(t, new UserSettingsOpenedConfig()); // Clone.tt Line: 186
+                var tvm = UserSettingsOpenedConfig.ConvertToVM(t, new UserSettingsOpenedConfig()); // Clone.tt Line: 189
                 vm.ListOpenConfigHistory.Add(tvm);
             }
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'UserSettings' to 'proto_user_settings'
-        public static Proto.Config.proto_user_settings ConvertToProto(UserSettings vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_user_settings ConvertToProto(UserSettings vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_user_settings m = new Proto.Config.proto_user_settings(); // Clone.tt Line: 224
-            foreach (var t in vm.ListOpenConfigHistory) // Clone.tt Line: 227
-                m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // Clone.tt Line: 231
+            Proto.Config.proto_user_settings m = new Proto.Config.proto_user_settings(); // Clone.tt Line: 228
+            foreach (var t in vm.ListOpenConfigHistory) // Clone.tt Line: 231
+                m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // Clone.tt Line: 235
             return m;
         }
         #endregion Procedures
@@ -171,16 +175,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static UserSettingsOpenedConfig Clone(UserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 27
         {
             UserSettingsOpenedConfig vm = new UserSettingsOpenedConfig();
-            vm.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 62
-            vm.ConfigPath = from.ConfigPath; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 63
+            vm.ConfigPath = from.ConfigPath; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(UserSettingsOpenedConfig to, UserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(UserSettingsOpenedConfig to, UserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 134
-            to.ConfigPath = from.ConfigPath; // Clone.tt Line: 134
+            to.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 136
+            to.ConfigPath = from.ConfigPath; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override UserSettingsOpenedConfig Backup()
         {
@@ -198,22 +204,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_user_settings_opened_config' to 'UserSettingsOpenedConfig'
-        public static UserSettingsOpenedConfig ConvertToVM(Proto.Config.proto_user_settings_opened_config m, UserSettingsOpenedConfig vm) // Clone.tt Line: 163
+        public static UserSettingsOpenedConfig ConvertToVM(Proto.Config.proto_user_settings_opened_config m, UserSettingsOpenedConfig vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.OpenedLastTimeOn = m.OpenedLastTimeOn; // Clone.tt Line: 211
-            vm.ConfigPath = m.ConfigPath; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.OpenedLastTimeOn = m.OpenedLastTimeOn; // Clone.tt Line: 214
+            vm.ConfigPath = m.ConfigPath; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'UserSettingsOpenedConfig' to 'proto_user_settings_opened_config'
-        public static Proto.Config.proto_user_settings_opened_config ConvertToProto(UserSettingsOpenedConfig vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_user_settings_opened_config ConvertToProto(UserSettingsOpenedConfig vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_user_settings_opened_config m = new Proto.Config.proto_user_settings_opened_config(); // Clone.tt Line: 224
-            m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // Clone.tt Line: 261
-            m.ConfigPath = vm.ConfigPath; // Clone.tt Line: 261
+            Proto.Config.proto_user_settings_opened_config m = new Proto.Config.proto_user_settings_opened_config(); // Clone.tt Line: 228
+            m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // Clone.tt Line: 265
+            m.ConfigPath = vm.ConfigPath; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -295,18 +303,20 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListPlugins Clone(ITreeConfigNode parent, GroupListPlugins from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListPlugins vm = new GroupListPlugins(parent);
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.ListPlugins = new ConfigNodesCollection<Plugin>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListPlugins) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.ListPlugins = new ConfigNodesCollection<Plugin>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListPlugins) // Clone.tt Line: 50
                 vm.ListPlugins.Add(Plugin.Clone(vm, (Plugin)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListPlugins to, GroupListPlugins from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListPlugins to, GroupListPlugins from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListPlugins.ToList())
                 {
@@ -336,14 +346,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Plugin(to); // Clone.tt Line: 110
+                        var p = new Plugin(to); // Clone.tt Line: 112
                         Plugin.Update(p, (Plugin)tt, isDeep);
                         to.ListPlugins.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListPlugins Backup()
         {
@@ -361,29 +371,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_plugins' to 'GroupListPlugins'
-        public static GroupListPlugins ConvertToVM(Proto.Config.proto_group_list_plugins m, GroupListPlugins vm) // Clone.tt Line: 163
+        public static GroupListPlugins ConvertToVM(Proto.Config.proto_group_list_plugins m, GroupListPlugins vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.ListPlugins = new ConfigNodesCollection<Plugin>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListPlugins) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.ListPlugins = new ConfigNodesCollection<Plugin>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListPlugins) // Clone.tt Line: 194
             {
-                var tvm = Plugin.ConvertToVM(t, new Plugin(vm)); // Clone.tt Line: 194
+                var tvm = Plugin.ConvertToVM(t, new Plugin(vm)); // Clone.tt Line: 197
                 vm.ListPlugins.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListPlugins' to 'proto_group_list_plugins'
-        public static Proto.Config.proto_group_list_plugins ConvertToProto(GroupListPlugins vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_plugins ConvertToProto(GroupListPlugins vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_plugins m = new Proto.Config.proto_group_list_plugins(); // Clone.tt Line: 224
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            foreach (var t in vm.ListPlugins) // Clone.tt Line: 227
-                m.ListPlugins.Add(Plugin.ConvertToProto((Plugin)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_plugins m = new Proto.Config.proto_group_list_plugins(); // Clone.tt Line: 228
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            foreach (var t in vm.ListPlugins) // Clone.tt Line: 231
+                m.ListPlugins.Add(Plugin.ConvertToProto((Plugin)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -476,26 +488,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Plugin Clone(ITreeConfigNode parent, Plugin from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Plugin vm = new Plugin(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Version = from.Version; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGenerators) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Version = from.Version; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGenerators) // Clone.tt Line: 50
                 vm.ListGenerators.Add(PluginGenerator.Clone(vm, (PluginGenerator)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Plugin to, Plugin from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Plugin to, Plugin from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Version = from.Version; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Version = from.Version; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGenerators.ToList())
                 {
@@ -525,14 +539,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new PluginGenerator(to); // Clone.tt Line: 110
+                        var p = new PluginGenerator(to); // Clone.tt Line: 112
                         PluginGenerator.Update(p, (PluginGenerator)tt, isDeep);
                         to.ListGenerators.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Plugin Backup()
         {
@@ -550,37 +564,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugin' to 'Plugin'
-        public static Plugin ConvertToVM(Proto.Config.proto_plugin m, Plugin vm) // Clone.tt Line: 163
+        public static Plugin ConvertToVM(Proto.Config.proto_plugin m, Plugin vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Version = m.Version; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGenerators) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Version = m.Version; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGenerators) // Clone.tt Line: 194
             {
-                var tvm = PluginGenerator.ConvertToVM(t, new PluginGenerator(vm)); // Clone.tt Line: 194
+                var tvm = PluginGenerator.ConvertToVM(t, new PluginGenerator(vm)); // Clone.tt Line: 197
                 vm.ListGenerators.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Plugin' to 'proto_plugin'
-        public static Proto.Config.proto_plugin ConvertToProto(Plugin vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_plugin ConvertToProto(Plugin vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_plugin m = new Proto.Config.proto_plugin(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Version = vm.Version; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            foreach (var t in vm.ListGenerators) // Clone.tt Line: 227
-                m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // Clone.tt Line: 231
+            Proto.Config.proto_plugin m = new Proto.Config.proto_plugin(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Version = vm.Version; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            foreach (var t in vm.ListGenerators) // Clone.tt Line: 231
+                m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -710,24 +726,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static PluginGenerator Clone(ITreeConfigNode parent, PluginGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             PluginGenerator vm = new PluginGenerator(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.ListSettings = new ConfigNodesCollection<PluginGeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListSettings) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.ListSettings = new ConfigNodesCollection<PluginGeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListSettings) // Clone.tt Line: 50
                 vm.ListSettings.Add(PluginGeneratorSettings.Clone(vm, (PluginGeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(PluginGenerator to, PluginGenerator from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(PluginGenerator to, PluginGenerator from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListSettings.ToList())
                 {
@@ -757,14 +775,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new PluginGeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new PluginGeneratorSettings(to); // Clone.tt Line: 112
                         PluginGeneratorSettings.Update(p, (PluginGeneratorSettings)tt, isDeep);
                         to.ListSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override PluginGenerator Backup()
         {
@@ -782,35 +800,37 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugin_generator' to 'PluginGenerator'
-        public static PluginGenerator ConvertToVM(Proto.Config.proto_plugin_generator m, PluginGenerator vm) // Clone.tt Line: 163
+        public static PluginGenerator ConvertToVM(Proto.Config.proto_plugin_generator m, PluginGenerator vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.ListSettings = new ConfigNodesCollection<PluginGeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.ListSettings = new ConfigNodesCollection<PluginGeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListSettings) // Clone.tt Line: 194
             {
-                var tvm = PluginGeneratorSettings.ConvertToVM(t, new PluginGeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = PluginGeneratorSettings.ConvertToVM(t, new PluginGeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'PluginGenerator' to 'proto_plugin_generator'
-        public static Proto.Config.proto_plugin_generator ConvertToProto(PluginGenerator vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_plugin_generator ConvertToProto(PluginGenerator vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_plugin_generator m = new Proto.Config.proto_plugin_generator(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            foreach (var t in vm.ListSettings) // Clone.tt Line: 227
-                m.ListSettings.Add(PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_plugin_generator m = new Proto.Config.proto_plugin_generator(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            foreach (var t in vm.ListSettings) // Clone.tt Line: 231
+                m.ListSettings.Add(PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -902,28 +922,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static PluginGeneratorSettings Clone(ITreeConfigNode parent, PluginGeneratorSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             PluginGeneratorSettings vm = new PluginGeneratorSettings(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 62
-            vm.IsPrivate = from.IsPrivate; // Clone.tt Line: 62
-            vm.FilePath = from.FilePath; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 63
+            vm.IsPrivate = from.IsPrivate; // Clone.tt Line: 63
+            vm.FilePath = from.FilePath; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(PluginGeneratorSettings to, PluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(PluginGeneratorSettings to, PluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 134
-            to.IsPrivate = from.IsPrivate; // Clone.tt Line: 134
-            to.FilePath = from.FilePath; // Clone.tt Line: 134
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 136
+            to.IsPrivate = from.IsPrivate; // Clone.tt Line: 136
+            to.FilePath = from.FilePath; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override PluginGeneratorSettings Backup()
         {
@@ -941,33 +963,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugin_generator_settings' to 'PluginGeneratorSettings'
-        public static PluginGeneratorSettings ConvertToVM(Proto.Config.proto_plugin_generator_settings m, PluginGeneratorSettings vm) // Clone.tt Line: 163
+        public static PluginGeneratorSettings ConvertToVM(Proto.Config.proto_plugin_generator_settings m, PluginGeneratorSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 211
-            vm.IsPrivate = m.IsPrivate; // Clone.tt Line: 211
-            vm.FilePath = m.FilePath; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 214
+            vm.IsPrivate = m.IsPrivate; // Clone.tt Line: 214
+            vm.FilePath = m.FilePath; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'PluginGeneratorSettings' to 'proto_plugin_generator_settings'
-        public static Proto.Config.proto_plugin_generator_settings ConvertToProto(PluginGeneratorSettings vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_plugin_generator_settings ConvertToProto(PluginGeneratorSettings vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_plugin_generator_settings m = new Proto.Config.proto_plugin_generator_settings(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 261
-            m.IsPrivate = vm.IsPrivate; // Clone.tt Line: 261
-            m.FilePath = vm.FilePath; // Clone.tt Line: 261
+            Proto.Config.proto_plugin_generator_settings m = new Proto.Config.proto_plugin_generator_settings(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 265
+            m.IsPrivate = vm.IsPrivate; // Clone.tt Line: 265
+            m.FilePath = vm.FilePath; // Clone.tt Line: 265
             return m;
         }
         
@@ -1111,26 +1135,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static SettingsConfig Clone(ITreeConfigNode parent, SettingsConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             SettingsConfig vm = new SettingsConfig(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.VersionMigrationCurrent = from.VersionMigrationCurrent; // Clone.tt Line: 62
-            vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.VersionMigrationCurrent = from.VersionMigrationCurrent; // Clone.tt Line: 63
+            vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(SettingsConfig to, SettingsConfig from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(SettingsConfig to, SettingsConfig from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.VersionMigrationCurrent = from.VersionMigrationCurrent; // Clone.tt Line: 134
-            to.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin; // Clone.tt Line: 134
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.VersionMigrationCurrent = from.VersionMigrationCurrent; // Clone.tt Line: 136
+            to.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override SettingsConfig Backup()
         {
@@ -1148,31 +1174,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_settings_config' to 'SettingsConfig'
-        public static SettingsConfig ConvertToVM(Proto.Config.proto_settings_config m, SettingsConfig vm) // Clone.tt Line: 163
+        public static SettingsConfig ConvertToVM(Proto.Config.proto_settings_config m, SettingsConfig vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.VersionMigrationCurrent = m.VersionMigrationCurrent; // Clone.tt Line: 211
-            vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.VersionMigrationCurrent = m.VersionMigrationCurrent; // Clone.tt Line: 214
+            vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'SettingsConfig' to 'proto_settings_config'
-        public static Proto.Config.proto_settings_config ConvertToProto(SettingsConfig vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_settings_config ConvertToProto(SettingsConfig vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_settings_config m = new Proto.Config.proto_settings_config(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.VersionMigrationCurrent = vm.VersionMigrationCurrent; // Clone.tt Line: 261
-            m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin; // Clone.tt Line: 261
+            Proto.Config.proto_settings_config m = new Proto.Config.proto_settings_config(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.VersionMigrationCurrent = vm.VersionMigrationCurrent; // Clone.tt Line: 265
+            m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin; // Clone.tt Line: 265
             return m;
         }
         
@@ -1289,28 +1317,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static DbSettings Clone(DbSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             DbSettings vm = new DbSettings();
-            vm.DbSchema = from.DbSchema; // Clone.tt Line: 62
-            vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 62
-            vm.PKeyType = from.PKeyType; // Clone.tt Line: 62
-            vm.KeyName = from.KeyName; // Clone.tt Line: 62
-            vm.Timestamp = from.Timestamp; // Clone.tt Line: 62
-            vm.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 62
-            vm.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 62
-            vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.DbSchema = from.DbSchema; // Clone.tt Line: 63
+            vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 63
+            vm.PKeyType = from.PKeyType; // Clone.tt Line: 63
+            vm.KeyName = from.KeyName; // Clone.tt Line: 63
+            vm.Timestamp = from.Timestamp; // Clone.tt Line: 63
+            vm.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 63
+            vm.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 63
+            vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(DbSettings to, DbSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(DbSettings to, DbSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.DbSchema = from.DbSchema; // Clone.tt Line: 134
-            to.IdGenerator = from.IdGenerator; // Clone.tt Line: 134
-            to.PKeyType = from.PKeyType; // Clone.tt Line: 134
-            to.KeyName = from.KeyName; // Clone.tt Line: 134
-            to.Timestamp = from.Timestamp; // Clone.tt Line: 134
-            to.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 134
-            to.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 134
-            to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 134
+            to.DbSchema = from.DbSchema; // Clone.tt Line: 136
+            to.IdGenerator = from.IdGenerator; // Clone.tt Line: 136
+            to.PKeyType = from.PKeyType; // Clone.tt Line: 136
+            to.KeyName = from.KeyName; // Clone.tt Line: 136
+            to.Timestamp = from.Timestamp; // Clone.tt Line: 136
+            to.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 136
+            to.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 136
+            to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override DbSettings Backup()
         {
@@ -1328,34 +1358,36 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'db_settings' to 'DbSettings'
-        public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm) // Clone.tt Line: 163
+        public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.DbSchema = m.DbSchema; // Clone.tt Line: 211
-            vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 211
-            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 211
-            vm.KeyName = m.KeyName; // Clone.tt Line: 211
-            vm.Timestamp = m.Timestamp; // Clone.tt Line: 211
-            vm.IsDbFromConnectionString = m.IsDbFromConnectionString; // Clone.tt Line: 211
-            vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 211
-            vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.DbSchema = m.DbSchema; // Clone.tt Line: 214
+            vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 214
+            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 214
+            vm.KeyName = m.KeyName; // Clone.tt Line: 214
+            vm.Timestamp = m.Timestamp; // Clone.tt Line: 214
+            vm.IsDbFromConnectionString = m.IsDbFromConnectionString; // Clone.tt Line: 214
+            vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 214
+            vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'DbSettings' to 'db_settings'
-        public static Proto.Config.db_settings ConvertToProto(DbSettings vm) // Clone.tt Line: 222
+        public static Proto.Config.db_settings ConvertToProto(DbSettings vm) // Clone.tt Line: 226
         {
-            Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 224
-            m.DbSchema = vm.DbSchema; // Clone.tt Line: 261
-            m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 259
-            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 259
-            m.KeyName = vm.KeyName; // Clone.tt Line: 261
-            m.Timestamp = vm.Timestamp; // Clone.tt Line: 261
-            m.IsDbFromConnectionString = vm.IsDbFromConnectionString; // Clone.tt Line: 261
-            m.ConnectionStringName = vm.ConnectionStringName; // Clone.tt Line: 261
-            m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString; // Clone.tt Line: 261
+            Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 228
+            m.DbSchema = vm.DbSchema; // Clone.tt Line: 265
+            m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 263
+            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 263
+            m.KeyName = vm.KeyName; // Clone.tt Line: 265
+            m.Timestamp = vm.Timestamp; // Clone.tt Line: 265
+            m.IsDbFromConnectionString = vm.IsDbFromConnectionString; // Clone.tt Line: 265
+            m.ConnectionStringName = vm.ConnectionStringName; // Clone.tt Line: 265
+            m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -1598,26 +1630,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static ConfigShortHistory Clone(ITreeConfigNode parent, ConfigShortHistory from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             ConfigShortHistory vm = new ConfigShortHistory(parent);
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            if (isDeep) // Clone.tt Line: 60
                 vm.CurrentConfig = Config.Clone(vm, from.CurrentConfig, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.PrevStableConfig = Config.Clone(vm, from.PrevStableConfig, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.OldStableConfig = Config.Clone(vm, from.OldStableConfig, isDeep);
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(ConfigShortHistory to, ConfigShortHistory from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(ConfigShortHistory to, ConfigShortHistory from, bool isDeep = true) // Clone.tt Line: 74
         {
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 Config.Update(to.CurrentConfig, from.CurrentConfig, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 Config.Update(to.PrevStableConfig, from.PrevStableConfig, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 Config.Update(to.OldStableConfig, from.OldStableConfig, isDeep);
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override ConfigShortHistory Backup()
         {
@@ -1635,31 +1669,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_config_short_history' to 'ConfigShortHistory'
-        public static ConfigShortHistory ConvertToVM(Proto.Config.proto_config_short_history m, ConfigShortHistory vm) // Clone.tt Line: 163
+        public static ConfigShortHistory ConvertToVM(Proto.Config.proto_config_short_history m, ConfigShortHistory vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            if (vm.CurrentConfig == null) // Clone.tt Line: 203
-                vm.CurrentConfig = new Config(vm); // Clone.tt Line: 205
-            Config.ConvertToVM(m.CurrentConfig, vm.CurrentConfig); // Clone.tt Line: 209
-            if (vm.PrevStableConfig == null) // Clone.tt Line: 203
-                vm.PrevStableConfig = new Config(vm); // Clone.tt Line: 205
-            Config.ConvertToVM(m.PrevStableConfig, vm.PrevStableConfig); // Clone.tt Line: 209
-            if (vm.OldStableConfig == null) // Clone.tt Line: 203
-                vm.OldStableConfig = new Config(vm); // Clone.tt Line: 205
-            Config.ConvertToVM(m.OldStableConfig, vm.OldStableConfig); // Clone.tt Line: 209
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            if (vm.CurrentConfig == null) // Clone.tt Line: 206
+                vm.CurrentConfig = new Config(vm); // Clone.tt Line: 208
+            Config.ConvertToVM(m.CurrentConfig, vm.CurrentConfig); // Clone.tt Line: 212
+            if (vm.PrevStableConfig == null) // Clone.tt Line: 206
+                vm.PrevStableConfig = new Config(vm); // Clone.tt Line: 208
+            Config.ConvertToVM(m.PrevStableConfig, vm.PrevStableConfig); // Clone.tt Line: 212
+            if (vm.OldStableConfig == null) // Clone.tt Line: 206
+                vm.OldStableConfig = new Config(vm); // Clone.tt Line: 208
+            Config.ConvertToVM(m.OldStableConfig, vm.OldStableConfig); // Clone.tt Line: 212
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'ConfigShortHistory' to 'proto_config_short_history'
-        public static Proto.Config.proto_config_short_history ConvertToProto(ConfigShortHistory vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_config_short_history ConvertToProto(ConfigShortHistory vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_config_short_history m = new Proto.Config.proto_config_short_history(); // Clone.tt Line: 224
-            m.CurrentConfig = Config.ConvertToProto(vm.CurrentConfig); // Clone.tt Line: 255
-            m.PrevStableConfig = Config.ConvertToProto(vm.PrevStableConfig); // Clone.tt Line: 255
-            m.OldStableConfig = Config.ConvertToProto(vm.OldStableConfig); // Clone.tt Line: 255
+            Proto.Config.proto_config_short_history m = new Proto.Config.proto_config_short_history(); // Clone.tt Line: 228
+            m.CurrentConfig = Config.ConvertToProto(vm.CurrentConfig); // Clone.tt Line: 259
+            m.PrevStableConfig = Config.ConvertToProto(vm.PrevStableConfig); // Clone.tt Line: 259
+            m.OldStableConfig = Config.ConvertToProto(vm.OldStableConfig); // Clone.tt Line: 259
             return m;
         }
         
@@ -1778,24 +1814,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListBaseConfigLinks Clone(ITreeConfigNode parent, GroupListBaseConfigLinks from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListBaseConfigLinks vm = new GroupListBaseConfigLinks(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListBaseConfigLinks) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListBaseConfigLinks) // Clone.tt Line: 50
                 vm.ListBaseConfigLinks.Add(BaseConfigLink.Clone(vm, (BaseConfigLink)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListBaseConfigLinks to, GroupListBaseConfigLinks from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListBaseConfigLinks to, GroupListBaseConfigLinks from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListBaseConfigLinks.ToList())
                 {
@@ -1825,14 +1863,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new BaseConfigLink(to); // Clone.tt Line: 110
+                        var p = new BaseConfigLink(to); // Clone.tt Line: 112
                         BaseConfigLink.Update(p, (BaseConfigLink)tt, isDeep);
                         to.ListBaseConfigLinks.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListBaseConfigLinks Backup()
         {
@@ -1850,35 +1888,37 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_base_config_links' to 'GroupListBaseConfigLinks'
-        public static GroupListBaseConfigLinks ConvertToVM(Proto.Config.proto_group_list_base_config_links m, GroupListBaseConfigLinks vm) // Clone.tt Line: 163
+        public static GroupListBaseConfigLinks ConvertToVM(Proto.Config.proto_group_list_base_config_links m, GroupListBaseConfigLinks vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListBaseConfigLinks) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListBaseConfigLinks) // Clone.tt Line: 194
             {
-                var tvm = BaseConfigLink.ConvertToVM(t, new BaseConfigLink(vm)); // Clone.tt Line: 194
+                var tvm = BaseConfigLink.ConvertToVM(t, new BaseConfigLink(vm)); // Clone.tt Line: 197
                 vm.ListBaseConfigLinks.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListBaseConfigLinks' to 'proto_group_list_base_config_links'
-        public static Proto.Config.proto_group_list_base_config_links ConvertToProto(GroupListBaseConfigLinks vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_base_config_links ConvertToProto(GroupListBaseConfigLinks vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_base_config_links m = new Proto.Config.proto_group_list_base_config_links(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListBaseConfigLinks) // Clone.tt Line: 227
-                m.ListBaseConfigLinks.Add(BaseConfigLink.ConvertToProto((BaseConfigLink)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_base_config_links m = new Proto.Config.proto_group_list_base_config_links(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListBaseConfigLinks) // Clone.tt Line: 231
+                m.ListBaseConfigLinks.Add(BaseConfigLink.ConvertToProto((BaseConfigLink)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -1991,28 +2031,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static BaseConfigLink Clone(ITreeConfigNode parent, BaseConfigLink from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             BaseConfigLink vm = new BaseConfigLink(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.Config = Config.Clone(vm, from.Config, isDeep);
-            vm.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(BaseConfigLink to, BaseConfigLink from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(BaseConfigLink to, BaseConfigLink from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 Config.Update(to.Config, from.Config, isDeep);
-            to.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 134
+            to.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override BaseConfigLink Backup()
         {
@@ -2030,33 +2072,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_base_config_link' to 'BaseConfigLink'
-        public static BaseConfigLink ConvertToVM(Proto.Config.proto_base_config_link m, BaseConfigLink vm) // Clone.tt Line: 163
+        public static BaseConfigLink ConvertToVM(Proto.Config.proto_base_config_link m, BaseConfigLink vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.Config == null) // Clone.tt Line: 203
-                vm.Config = new Config(vm); // Clone.tt Line: 205
-            Config.ConvertToVM(m.Config, vm.Config); // Clone.tt Line: 209
-            vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.Config == null) // Clone.tt Line: 206
+                vm.Config = new Config(vm); // Clone.tt Line: 208
+            Config.ConvertToVM(m.Config, vm.Config); // Clone.tt Line: 212
+            vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'BaseConfigLink' to 'proto_base_config_link'
-        public static Proto.Config.proto_base_config_link ConvertToProto(BaseConfigLink vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_base_config_link ConvertToProto(BaseConfigLink vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_base_config_link m = new Proto.Config.proto_base_config_link(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.Config = Config.ConvertToProto(vm.Config); // Clone.tt Line: 255
-            m.RelativeConfigFilePath = vm.RelativeConfigFilePath; // Clone.tt Line: 261
+            Proto.Config.proto_base_config_link m = new Proto.Config.proto_base_config_link(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.Config = Config.ConvertToProto(vm.Config); // Clone.tt Line: 259
+            m.RelativeConfigFilePath = vm.RelativeConfigFilePath; // Clone.tt Line: 265
             return m;
         }
         
@@ -2180,48 +2224,50 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Config Clone(ITreeConfigNode parent, Config from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Config vm = new Config(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Version = from.Version; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Version = from.Version; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DbSettings = DbSettings.Clone(from.DbSettings, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupConfigLinks = GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.Model = ConfigModel.Clone(vm, from.Model, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupPlugins = GroupListPlugins.Clone(vm, from.GroupPlugins, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupAppSolutions = GroupListAppSolutions.Clone(vm, from.GroupAppSolutions, isDeep);
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Config to, Config from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Config to, Config from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Version = from.Version; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.LastUpdated = from.LastUpdated; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Version = from.Version; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.LastUpdated = from.LastUpdated; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListBaseConfigLinks.Update(to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 ConfigModel.Update(to.Model, from.Model, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListPlugins.Update(to.GroupPlugins, from.GroupPlugins, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListAppSolutions.Update(to.GroupAppSolutions, from.GroupAppSolutions, isDeep);
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Config Backup()
         {
@@ -2239,53 +2285,55 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_config' to 'Config'
-        public static Config ConvertToVM(Proto.Config.proto_config m, Config vm) // Clone.tt Line: 163
+        public static Config ConvertToVM(Proto.Config.proto_config m, Config vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Version = m.Version; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 211
-            if (vm.DbSettings == null) // Clone.tt Line: 203
-                vm.DbSettings = new DbSettings(); // Clone.tt Line: 207
-            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings); // Clone.tt Line: 209
-            if (vm.GroupConfigLinks == null) // Clone.tt Line: 203
-                vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 205
-            GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks); // Clone.tt Line: 209
-            if (vm.Model == null) // Clone.tt Line: 203
-                vm.Model = new ConfigModel(vm); // Clone.tt Line: 205
-            ConfigModel.ConvertToVM(m.Model, vm.Model); // Clone.tt Line: 209
-            if (vm.GroupPlugins == null) // Clone.tt Line: 203
-                vm.GroupPlugins = new GroupListPlugins(vm); // Clone.tt Line: 205
-            GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins); // Clone.tt Line: 209
-            if (vm.GroupAppSolutions == null) // Clone.tt Line: 203
-                vm.GroupAppSolutions = new GroupListAppSolutions(vm); // Clone.tt Line: 205
-            GroupListAppSolutions.ConvertToVM(m.GroupAppSolutions, vm.GroupAppSolutions); // Clone.tt Line: 209
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Version = m.Version; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 214
+            if (vm.DbSettings == null) // Clone.tt Line: 206
+                vm.DbSettings = new DbSettings(); // Clone.tt Line: 210
+            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings); // Clone.tt Line: 212
+            if (vm.GroupConfigLinks == null) // Clone.tt Line: 206
+                vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 208
+            GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks); // Clone.tt Line: 212
+            if (vm.Model == null) // Clone.tt Line: 206
+                vm.Model = new ConfigModel(vm); // Clone.tt Line: 208
+            ConfigModel.ConvertToVM(m.Model, vm.Model); // Clone.tt Line: 212
+            if (vm.GroupPlugins == null) // Clone.tt Line: 206
+                vm.GroupPlugins = new GroupListPlugins(vm); // Clone.tt Line: 208
+            GroupListPlugins.ConvertToVM(m.GroupPlugins, vm.GroupPlugins); // Clone.tt Line: 212
+            if (vm.GroupAppSolutions == null) // Clone.tt Line: 206
+                vm.GroupAppSolutions = new GroupListAppSolutions(vm); // Clone.tt Line: 208
+            GroupListAppSolutions.ConvertToVM(m.GroupAppSolutions, vm.GroupAppSolutions); // Clone.tt Line: 212
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Config' to 'proto_config'
-        public static Proto.Config.proto_config ConvertToProto(Config vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_config ConvertToProto(Config vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_config m = new Proto.Config.proto_config(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Version = vm.Version; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 261
-            m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 255
-            m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 255
-            m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 255
-            m.GroupPlugins = GroupListPlugins.ConvertToProto(vm.GroupPlugins); // Clone.tt Line: 255
-            m.GroupAppSolutions = GroupListAppSolutions.ConvertToProto(vm.GroupAppSolutions); // Clone.tt Line: 255
+            Proto.Config.proto_config m = new Proto.Config.proto_config(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Version = vm.Version; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 265
+            m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 259
+            m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 259
+            m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 259
+            m.GroupPlugins = GroupListPlugins.ConvertToProto(vm.GroupPlugins); // Clone.tt Line: 259
+            m.GroupAppSolutions = GroupListAppSolutions.ConvertToProto(vm.GroupAppSolutions); // Clone.tt Line: 259
             return m;
         }
         
@@ -2526,26 +2574,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static AppDbSettings Clone(AppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
             AppDbSettings vm = new AppDbSettings();
-            vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 62
-            vm.PluginName = from.PluginName; // Clone.tt Line: 62
-            vm.Version = from.Version; // Clone.tt Line: 62
-            vm.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 62
-            vm.PluginGenName = from.PluginGenName; // Clone.tt Line: 62
-            vm.ConnGuid = from.ConnGuid; // Clone.tt Line: 62
-            vm.ConnName = from.ConnName; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 63
+            vm.PluginName = from.PluginName; // Clone.tt Line: 63
+            vm.Version = from.Version; // Clone.tt Line: 63
+            vm.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 63
+            vm.PluginGenName = from.PluginGenName; // Clone.tt Line: 63
+            vm.ConnGuid = from.ConnGuid; // Clone.tt Line: 63
+            vm.ConnName = from.ConnName; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(AppDbSettings to, AppDbSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(AppDbSettings to, AppDbSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.PluginGuid = from.PluginGuid; // Clone.tt Line: 134
-            to.PluginName = from.PluginName; // Clone.tt Line: 134
-            to.Version = from.Version; // Clone.tt Line: 134
-            to.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 134
-            to.PluginGenName = from.PluginGenName; // Clone.tt Line: 134
-            to.ConnGuid = from.ConnGuid; // Clone.tt Line: 134
-            to.ConnName = from.ConnName; // Clone.tt Line: 134
+            to.PluginGuid = from.PluginGuid; // Clone.tt Line: 136
+            to.PluginName = from.PluginName; // Clone.tt Line: 136
+            to.Version = from.Version; // Clone.tt Line: 136
+            to.PluginGenGuid = from.PluginGenGuid; // Clone.tt Line: 136
+            to.PluginGenName = from.PluginGenName; // Clone.tt Line: 136
+            to.ConnGuid = from.ConnGuid; // Clone.tt Line: 136
+            to.ConnName = from.ConnName; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override AppDbSettings Backup()
         {
@@ -2563,32 +2613,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_app_db_settings' to 'AppDbSettings'
-        public static AppDbSettings ConvertToVM(Proto.Config.proto_app_db_settings m, AppDbSettings vm) // Clone.tt Line: 163
+        public static AppDbSettings ConvertToVM(Proto.Config.proto_app_db_settings m, AppDbSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 211
-            vm.PluginName = m.PluginName; // Clone.tt Line: 211
-            vm.Version = m.Version; // Clone.tt Line: 211
-            vm.PluginGenGuid = m.PluginGenGuid; // Clone.tt Line: 211
-            vm.PluginGenName = m.PluginGenName; // Clone.tt Line: 211
-            vm.ConnGuid = m.ConnGuid; // Clone.tt Line: 211
-            vm.ConnName = m.ConnName; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 214
+            vm.PluginName = m.PluginName; // Clone.tt Line: 214
+            vm.Version = m.Version; // Clone.tt Line: 214
+            vm.PluginGenGuid = m.PluginGenGuid; // Clone.tt Line: 214
+            vm.PluginGenName = m.PluginGenName; // Clone.tt Line: 214
+            vm.ConnGuid = m.ConnGuid; // Clone.tt Line: 214
+            vm.ConnName = m.ConnName; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'AppDbSettings' to 'proto_app_db_settings'
-        public static Proto.Config.proto_app_db_settings ConvertToProto(AppDbSettings vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_app_db_settings ConvertToProto(AppDbSettings vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_app_db_settings m = new Proto.Config.proto_app_db_settings(); // Clone.tt Line: 224
-            m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 261
-            m.PluginName = vm.PluginName; // Clone.tt Line: 261
-            m.Version = vm.Version; // Clone.tt Line: 261
-            m.PluginGenGuid = vm.PluginGenGuid; // Clone.tt Line: 261
-            m.PluginGenName = vm.PluginGenName; // Clone.tt Line: 261
-            m.ConnGuid = vm.ConnGuid; // Clone.tt Line: 261
-            m.ConnName = vm.ConnName; // Clone.tt Line: 261
+            Proto.Config.proto_app_db_settings m = new Proto.Config.proto_app_db_settings(); // Clone.tt Line: 228
+            m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 265
+            m.PluginName = vm.PluginName; // Clone.tt Line: 265
+            m.Version = vm.Version; // Clone.tt Line: 265
+            m.PluginGenGuid = vm.PluginGenGuid; // Clone.tt Line: 265
+            m.PluginGenName = vm.PluginGenName; // Clone.tt Line: 265
+            m.ConnGuid = vm.ConnGuid; // Clone.tt Line: 265
+            m.ConnName = vm.ConnName; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -2801,28 +2853,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListAppSolutions Clone(ITreeConfigNode parent, GroupListAppSolutions from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListAppSolutions vm = new GroupListAppSolutions(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
-            vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListAppSolutions) // Clone.tt Line: 49
+            vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListAppSolutions) // Clone.tt Line: 50
                 vm.ListAppSolutions.Add(AppSolution.Clone(vm, (AppSolution)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListAppSolutions to, GroupListAppSolutions from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListAppSolutions to, GroupListAppSolutions from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListAppSolutions.ToList())
                 {
@@ -2852,14 +2906,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new AppSolution(to); // Clone.tt Line: 110
+                        var p = new AppSolution(to); // Clone.tt Line: 112
                         AppSolution.Update(p, (AppSolution)tt, isDeep);
                         to.ListAppSolutions.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListAppSolutions Backup()
         {
@@ -2877,39 +2931,41 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_app_solutions' to 'GroupListAppSolutions'
-        public static GroupListAppSolutions ConvertToVM(Proto.Config.proto_group_list_app_solutions m, GroupListAppSolutions vm) // Clone.tt Line: 163
+        public static GroupListAppSolutions ConvertToVM(Proto.Config.proto_group_list_app_solutions m, GroupListAppSolutions vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.DefaultDb == null) // Clone.tt Line: 203
-                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 207
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 209
-            vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListAppSolutions) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.DefaultDb == null) // Clone.tt Line: 206
+                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
+            vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListAppSolutions) // Clone.tt Line: 194
             {
-                var tvm = AppSolution.ConvertToVM(t, new AppSolution(vm)); // Clone.tt Line: 194
+                var tvm = AppSolution.ConvertToVM(t, new AppSolution(vm)); // Clone.tt Line: 197
                 vm.ListAppSolutions.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListAppSolutions' to 'proto_group_list_app_solutions'
-        public static Proto.Config.proto_group_list_app_solutions ConvertToProto(GroupListAppSolutions vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_app_solutions ConvertToProto(GroupListAppSolutions vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_app_solutions m = new Proto.Config.proto_group_list_app_solutions(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 255
-            foreach (var t in vm.ListAppSolutions) // Clone.tt Line: 227
-                m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_app_solutions m = new Proto.Config.proto_group_list_app_solutions(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 259
+            foreach (var t in vm.ListAppSolutions) // Clone.tt Line: 231
+                m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -3077,30 +3133,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static AppSolution Clone(ITreeConfigNode parent, AppSolution from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             AppSolution vm = new AppSolution(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
-            vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListAppProjects) // Clone.tt Line: 49
+            vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListAppProjects) // Clone.tt Line: 50
                 vm.ListAppProjects.Add(AppProject.Clone(vm, (AppProject)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(AppSolution to, AppSolution from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(AppSolution to, AppSolution from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListAppProjects.ToList())
                 {
@@ -3130,14 +3188,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new AppProject(to); // Clone.tt Line: 110
+                        var p = new AppProject(to); // Clone.tt Line: 112
                         AppProject.Update(p, (AppProject)tt, isDeep);
                         to.ListAppProjects.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override AppSolution Backup()
         {
@@ -3155,41 +3213,43 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_app_solution' to 'AppSolution'
-        public static AppSolution ConvertToVM(Proto.Config.proto_app_solution m, AppSolution vm) // Clone.tt Line: 163
+        public static AppSolution ConvertToVM(Proto.Config.proto_app_solution m, AppSolution vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 211
-            if (vm.DefaultDb == null) // Clone.tt Line: 203
-                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 207
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 209
-            vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListAppProjects) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 214
+            if (vm.DefaultDb == null) // Clone.tt Line: 206
+                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
+            vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListAppProjects) // Clone.tt Line: 194
             {
-                var tvm = AppProject.ConvertToVM(t, new AppProject(vm)); // Clone.tt Line: 194
+                var tvm = AppProject.ConvertToVM(t, new AppProject(vm)); // Clone.tt Line: 197
                 vm.ListAppProjects.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'AppSolution' to 'proto_app_solution'
-        public static Proto.Config.proto_app_solution ConvertToProto(AppSolution vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_app_solution ConvertToProto(AppSolution vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_app_solution m = new Proto.Config.proto_app_solution(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 261
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 255
-            foreach (var t in vm.ListAppProjects) // Clone.tt Line: 227
-                m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // Clone.tt Line: 231
+            Proto.Config.proto_app_solution m = new Proto.Config.proto_app_solution(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 265
+            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 259
+            foreach (var t in vm.ListAppProjects) // Clone.tt Line: 231
+                m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -3236,11 +3296,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         ///////////////////////////////////////////////////
         /// List NET projects
+        /// Relative path from configuration file folder to .net solution
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
         [DisplayName("Path")]
-        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        [Description("Relative path to solution folder")]
+        [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
+        [Description("Relative path from configuration file folder to .net solution")]
         public string RelativeAppSolutionPath // Property.tt Line: 132
         { 
             get 
@@ -3344,30 +3405,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static AppProject Clone(ITreeConfigNode parent, AppProject from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             AppProject vm = new AppProject(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DefaultDb = AppDbSettings.Clone(from.DefaultDb, isDeep);
-            vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 49
+            vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 50
                 vm.ListAppProjectGenerators.Add(AppProjectGenerator.Clone(vm, (AppProjectGenerator)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(AppProject to, AppProject from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(AppProject to, AppProject from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListAppProjectGenerators.ToList())
                 {
@@ -3397,14 +3460,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new AppProjectGenerator(to); // Clone.tt Line: 110
+                        var p = new AppProjectGenerator(to); // Clone.tt Line: 112
                         AppProjectGenerator.Update(p, (AppProjectGenerator)tt, isDeep);
                         to.ListAppProjectGenerators.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override AppProject Backup()
         {
@@ -3422,41 +3485,43 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_app_project' to 'AppProject'
-        public static AppProject ConvertToVM(Proto.Config.proto_app_project m, AppProject vm) // Clone.tt Line: 163
+        public static AppProject ConvertToVM(Proto.Config.proto_app_project m, AppProject vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 211
-            if (vm.DefaultDb == null) // Clone.tt Line: 203
-                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 207
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 209
-            vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 214
+            if (vm.DefaultDb == null) // Clone.tt Line: 206
+                vm.DefaultDb = new AppDbSettings(); // Clone.tt Line: 210
+            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
+            vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 194
             {
-                var tvm = AppProjectGenerator.ConvertToVM(t, new AppProjectGenerator(vm)); // Clone.tt Line: 194
+                var tvm = AppProjectGenerator.ConvertToVM(t, new AppProjectGenerator(vm)); // Clone.tt Line: 197
                 vm.ListAppProjectGenerators.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'AppProject' to 'proto_app_project'
-        public static Proto.Config.proto_app_project ConvertToProto(AppProject vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_app_project ConvertToProto(AppProject vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_app_project m = new Proto.Config.proto_app_project(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 261
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 255
-            foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 227
-                m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 231
+            Proto.Config.proto_app_project m = new Proto.Config.proto_app_project(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 265
+            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 259
+            foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 231
+                m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -3500,8 +3565,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanged();
         string IAppProject.Description { get { return this._Description; } }
         
+        
+        ///////////////////////////////////////////////////
+        /// Relative path from configuration file folder to .net project
+        ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
-        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+        [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
+        [Description("Relative path from configuration file folder to .net project")]
         public string RelativeAppProjectPath // Property.tt Line: 132
         { 
             get 
@@ -3600,34 +3670,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static AppProjectGenerator Clone(ITreeConfigNode parent, AppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             AppProjectGenerator vm = new AppProjectGenerator(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 62
-            vm.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 62
-            vm.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 62
-            vm.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 62
-            vm.RelativePathToGeneratedFile = from.RelativePathToGeneratedFile; // Clone.tt Line: 62
-            vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 63
+            vm.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 63
+            vm.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 63
+            vm.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 63
+            vm.RelativePathToGenFolder = from.RelativePathToGenFolder; // Clone.tt Line: 63
+            vm.GenFileName = from.GenFileName; // Clone.tt Line: 63
+            vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(AppProjectGenerator to, AppProjectGenerator from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(AppProjectGenerator to, AppProjectGenerator from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.PluginGuid = from.PluginGuid; // Clone.tt Line: 134
-            to.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 134
-            to.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 134
-            to.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 134
-            to.RelativePathToGeneratedFile = from.RelativePathToGeneratedFile; // Clone.tt Line: 134
-            to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 134
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.PluginGuid = from.PluginGuid; // Clone.tt Line: 136
+            to.DescriptionPlugin = from.DescriptionPlugin; // Clone.tt Line: 136
+            to.PluginGeneratorGuid = from.PluginGeneratorGuid; // Clone.tt Line: 136
+            to.DescriptionGenerator = from.DescriptionGenerator; // Clone.tt Line: 136
+            to.RelativePathToGenFolder = from.RelativePathToGenFolder; // Clone.tt Line: 136
+            to.GenFileName = from.GenFileName; // Clone.tt Line: 136
+            to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override AppProjectGenerator Backup()
         {
@@ -3645,39 +3719,43 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_app_project_generator' to 'AppProjectGenerator'
-        public static AppProjectGenerator ConvertToVM(Proto.Config.proto_app_project_generator m, AppProjectGenerator vm) // Clone.tt Line: 163
+        public static AppProjectGenerator ConvertToVM(Proto.Config.proto_app_project_generator m, AppProjectGenerator vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 211
-            vm.DescriptionPlugin = m.DescriptionPlugin; // Clone.tt Line: 211
-            vm.PluginGeneratorGuid = m.PluginGeneratorGuid; // Clone.tt Line: 211
-            vm.DescriptionGenerator = m.DescriptionGenerator; // Clone.tt Line: 211
-            vm.RelativePathToGeneratedFile = m.RelativePathToGeneratedFile; // Clone.tt Line: 211
-            vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 214
+            vm.DescriptionPlugin = m.DescriptionPlugin; // Clone.tt Line: 214
+            vm.PluginGeneratorGuid = m.PluginGeneratorGuid; // Clone.tt Line: 214
+            vm.DescriptionGenerator = m.DescriptionGenerator; // Clone.tt Line: 214
+            vm.RelativePathToGenFolder = m.RelativePathToGenFolder; // Clone.tt Line: 214
+            vm.GenFileName = m.GenFileName; // Clone.tt Line: 214
+            vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'AppProjectGenerator' to 'proto_app_project_generator'
-        public static Proto.Config.proto_app_project_generator ConvertToProto(AppProjectGenerator vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_app_project_generator ConvertToProto(AppProjectGenerator vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_app_project_generator m = new Proto.Config.proto_app_project_generator(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 261
-            m.DescriptionPlugin = vm.DescriptionPlugin; // Clone.tt Line: 261
-            m.PluginGeneratorGuid = vm.PluginGeneratorGuid; // Clone.tt Line: 261
-            m.DescriptionGenerator = vm.DescriptionGenerator; // Clone.tt Line: 261
-            m.RelativePathToGeneratedFile = vm.RelativePathToGeneratedFile; // Clone.tt Line: 261
-            m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 261
+            Proto.Config.proto_app_project_generator m = new Proto.Config.proto_app_project_generator(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 265
+            m.DescriptionPlugin = vm.DescriptionPlugin; // Clone.tt Line: 265
+            m.PluginGeneratorGuid = vm.PluginGeneratorGuid; // Clone.tt Line: 265
+            m.DescriptionGenerator = vm.DescriptionGenerator; // Clone.tt Line: 265
+            m.RelativePathToGenFolder = vm.RelativePathToGenFolder; // Clone.tt Line: 265
+            m.GenFileName = vm.GenFileName; // Clone.tt Line: 265
+            m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 265
             return m;
         }
         
@@ -3823,32 +3901,66 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionGeneratorChanged();
         string IAppProjectGenerator.DescriptionGenerator { get { return this._DescriptionGenerator; } }
         
+        
+        ///////////////////////////////////////////////////
+        /// Relative path from configuration file folder to folder for generated file
+        ///////////////////////////////////////////////////
         [PropertyOrderAttribute(8)]
-        [DisplayName("Output")]
-        [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-        [Description("File path to store connection string settings in private place.")]
-        public string RelativePathToGeneratedFile // Property.tt Line: 132
+        [DisplayName("Output Folder")]
+        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+        [Description("Relative path from configuration file folder to folder for generated file")]
+        public string RelativePathToGenFolder // Property.tt Line: 132
         { 
             get 
             { 
-                return this._RelativePathToGeneratedFile; 
+                return this._RelativePathToGenFolder; 
             }
             set
             {
-                if (this._RelativePathToGeneratedFile != value)
+                if (this._RelativePathToGenFolder != value)
                 {
-                    this.OnRelativePathToGeneratedFileChanging(this._RelativePathToGeneratedFile, value);
-                    this._RelativePathToGeneratedFile = value;
-                    this.OnRelativePathToGeneratedFileChanged();
+                    this.OnRelativePathToGenFolderChanging(this._RelativePathToGenFolder, value);
+                    this._RelativePathToGenFolder = value;
+                    this.OnRelativePathToGenFolderChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private string _RelativePathToGeneratedFile = string.Empty;
-        partial void OnRelativePathToGeneratedFileChanging(string from, string to); // Property.tt Line: 153
-        partial void OnRelativePathToGeneratedFileChanged();
-        string IAppProjectGenerator.RelativePathToGeneratedFile { get { return this._RelativePathToGeneratedFile; } }
+        private string _RelativePathToGenFolder = string.Empty;
+        partial void OnRelativePathToGenFolderChanging(string from, string to); // Property.tt Line: 153
+        partial void OnRelativePathToGenFolderChanged();
+        string IAppProjectGenerator.RelativePathToGenFolder { get { return this._RelativePathToGenFolder; } }
+        
+        
+        ///////////////////////////////////////////////////
+        /// Generator output file name
+        ///////////////////////////////////////////////////
+        [DisplayName("Output File")]
+        [PropertyOrderAttribute(9)]
+        [Description("Generator output file name")]
+        public string GenFileName // Property.tt Line: 132
+        { 
+            get 
+            { 
+                return this._GenFileName; 
+            }
+            set
+            {
+                if (this._GenFileName != value)
+                {
+                    this.OnGenFileNameChanging(this._GenFileName, value);
+                    this._GenFileName = value;
+                    this.OnGenFileNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private string _GenFileName = string.Empty;
+        partial void OnGenFileNameChanging(string from, string to); // Property.tt Line: 153
+        partial void OnGenFileNameChanged();
+        string IAppProjectGenerator.GenFileName { get { return this._GenFileName; } }
         
         
         ///////////////////////////////////////////////////
@@ -3903,20 +4015,22 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GeneratorSettings Clone(ITreeConfigNode parent, GeneratorSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GeneratorSettings vm = new GeneratorSettings(parent);
-            vm.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 62
-            vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 62
-            vm.Settings = from.Settings; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 63
+            vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 63
+            vm.Settings = from.Settings; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GeneratorSettings to, GeneratorSettings from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GeneratorSettings to, GeneratorSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 134
-            to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 134
-            to.Settings = from.Settings; // Clone.tt Line: 134
+            to.AppGeneratorGuid = from.AppGeneratorGuid; // Clone.tt Line: 136
+            to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 136
+            to.Settings = from.Settings; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GeneratorSettings Backup()
         {
@@ -3934,25 +4048,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_settings' to 'GeneratorSettings'
-        public static GeneratorSettings ConvertToVM(Proto.Config.proto_generator_settings m, GeneratorSettings vm) // Clone.tt Line: 163
+        public static GeneratorSettings ConvertToVM(Proto.Config.proto_generator_settings m, GeneratorSettings vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.AppGeneratorGuid = m.AppGeneratorGuid; // Clone.tt Line: 211
-            vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 211
-            vm.Settings = m.Settings; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.AppGeneratorGuid = m.AppGeneratorGuid; // Clone.tt Line: 214
+            vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 214
+            vm.Settings = m.Settings; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GeneratorSettings' to 'proto_generator_settings'
-        public static Proto.Config.proto_generator_settings ConvertToProto(GeneratorSettings vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_generator_settings ConvertToProto(GeneratorSettings vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_generator_settings m = new Proto.Config.proto_generator_settings(); // Clone.tt Line: 224
-            m.AppGeneratorGuid = vm.AppGeneratorGuid; // Clone.tt Line: 261
-            m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 261
-            m.Settings = vm.Settings; // Clone.tt Line: 261
+            Proto.Config.proto_generator_settings m = new Proto.Config.proto_generator_settings(); // Clone.tt Line: 228
+            m.AppGeneratorGuid = vm.AppGeneratorGuid; // Clone.tt Line: 265
+            m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 265
+            m.Settings = vm.Settings; // Clone.tt Line: 265
             return m;
         }
         
@@ -4076,50 +4192,52 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static ConfigModel Clone(ITreeConfigNode parent, ConfigModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             ConfigModel vm = new ConfigModel(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Version = from.Version; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Version = from.Version; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupCommon = GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupConstants = GroupListConstants.Clone(vm, from.GroupConstants, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupEnumerations = GroupListEnumerations.Clone(vm, from.GroupEnumerations, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupCatalogs = GroupListCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupDocuments = GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupJournals = GroupListJournals.Clone(vm, from.GroupJournals, isDeep);
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(ConfigModel to, ConfigModel from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(ConfigModel to, ConfigModel from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Version = from.Version; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Version = from.Version; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListCommon.Update(to.GroupCommon, from.GroupCommon, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListConstants.Update(to.GroupConstants, from.GroupConstants, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListEnumerations.Update(to.GroupEnumerations, from.GroupEnumerations, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListCatalogs.Update(to.GroupCatalogs, from.GroupCatalogs, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListJournals.Update(to.GroupJournals, from.GroupJournals, isDeep);
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override ConfigModel Backup()
         {
@@ -4137,55 +4255,57 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_config_model' to 'ConfigModel'
-        public static ConfigModel ConvertToVM(Proto.Config.proto_config_model m, ConfigModel vm) // Clone.tt Line: 163
+        public static ConfigModel ConvertToVM(Proto.Config.proto_config_model m, ConfigModel vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Version = m.Version; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupCommon == null) // Clone.tt Line: 203
-                vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 205
-            GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon); // Clone.tt Line: 209
-            if (vm.GroupConstants == null) // Clone.tt Line: 203
-                vm.GroupConstants = new GroupListConstants(vm); // Clone.tt Line: 205
-            GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants); // Clone.tt Line: 209
-            if (vm.GroupEnumerations == null) // Clone.tt Line: 203
-                vm.GroupEnumerations = new GroupListEnumerations(vm); // Clone.tt Line: 205
-            GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations); // Clone.tt Line: 209
-            if (vm.GroupCatalogs == null) // Clone.tt Line: 203
-                vm.GroupCatalogs = new GroupListCatalogs(vm); // Clone.tt Line: 205
-            GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs); // Clone.tt Line: 209
-            if (vm.GroupDocuments == null) // Clone.tt Line: 203
-                vm.GroupDocuments = new GroupDocuments(vm); // Clone.tt Line: 205
-            GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments); // Clone.tt Line: 209
-            if (vm.GroupJournals == null) // Clone.tt Line: 203
-                vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 205
-            GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 209
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Version = m.Version; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupCommon == null) // Clone.tt Line: 206
+                vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 208
+            GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon); // Clone.tt Line: 212
+            if (vm.GroupConstants == null) // Clone.tt Line: 206
+                vm.GroupConstants = new GroupListConstants(vm); // Clone.tt Line: 208
+            GroupListConstants.ConvertToVM(m.GroupConstants, vm.GroupConstants); // Clone.tt Line: 212
+            if (vm.GroupEnumerations == null) // Clone.tt Line: 206
+                vm.GroupEnumerations = new GroupListEnumerations(vm); // Clone.tt Line: 208
+            GroupListEnumerations.ConvertToVM(m.GroupEnumerations, vm.GroupEnumerations); // Clone.tt Line: 212
+            if (vm.GroupCatalogs == null) // Clone.tt Line: 206
+                vm.GroupCatalogs = new GroupListCatalogs(vm); // Clone.tt Line: 208
+            GroupListCatalogs.ConvertToVM(m.GroupCatalogs, vm.GroupCatalogs); // Clone.tt Line: 212
+            if (vm.GroupDocuments == null) // Clone.tt Line: 206
+                vm.GroupDocuments = new GroupDocuments(vm); // Clone.tt Line: 208
+            GroupDocuments.ConvertToVM(m.GroupDocuments, vm.GroupDocuments); // Clone.tt Line: 212
+            if (vm.GroupJournals == null) // Clone.tt Line: 206
+                vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 208
+            GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 212
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'ConfigModel' to 'proto_config_model'
-        public static Proto.Config.proto_config_model ConvertToProto(ConfigModel vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_config_model ConvertToProto(ConfigModel vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_config_model m = new Proto.Config.proto_config_model(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Version = vm.Version; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupCommon = GroupListCommon.ConvertToProto(vm.GroupCommon); // Clone.tt Line: 255
-            m.GroupConstants = GroupListConstants.ConvertToProto(vm.GroupConstants); // Clone.tt Line: 255
-            m.GroupEnumerations = GroupListEnumerations.ConvertToProto(vm.GroupEnumerations); // Clone.tt Line: 255
-            m.GroupCatalogs = GroupListCatalogs.ConvertToProto(vm.GroupCatalogs); // Clone.tt Line: 255
-            m.GroupDocuments = GroupDocuments.ConvertToProto(vm.GroupDocuments); // Clone.tt Line: 255
-            m.GroupJournals = GroupListJournals.ConvertToProto(vm.GroupJournals); // Clone.tt Line: 255
+            Proto.Config.proto_config_model m = new Proto.Config.proto_config_model(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Version = vm.Version; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupCommon = GroupListCommon.ConvertToProto(vm.GroupCommon); // Clone.tt Line: 259
+            m.GroupConstants = GroupListConstants.ConvertToProto(vm.GroupConstants); // Clone.tt Line: 259
+            m.GroupEnumerations = GroupListEnumerations.ConvertToProto(vm.GroupEnumerations); // Clone.tt Line: 259
+            m.GroupCatalogs = GroupListCatalogs.ConvertToProto(vm.GroupCatalogs); // Clone.tt Line: 259
+            m.GroupDocuments = GroupDocuments.ConvertToProto(vm.GroupDocuments); // Clone.tt Line: 259
+            m.GroupJournals = GroupListJournals.ConvertToProto(vm.GroupJournals); // Clone.tt Line: 259
             return m;
         }
         
@@ -4426,33 +4546,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static DataType Clone(DataType from, bool isDeep = true) // Clone.tt Line: 27
         {
             DataType vm = new DataType();
-            vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 62
-            vm.Length = from.Length; // Clone.tt Line: 62
-            vm.Accuracy = from.Accuracy; // Clone.tt Line: 62
-            vm.IsPositive = from.IsPositive; // Clone.tt Line: 62
-            vm.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 62
-            vm.IsNullable = from.IsNullable; // Clone.tt Line: 62
-            foreach (var t in from.ListObjectGuids) // Clone.tt Line: 41
+            vm.IsNotNotifying = true;
+            vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 63
+            vm.Length = from.Length; // Clone.tt Line: 63
+            vm.Accuracy = from.Accuracy; // Clone.tt Line: 63
+            vm.IsPositive = from.IsPositive; // Clone.tt Line: 63
+            vm.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 63
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 63
+            foreach (var t in from.ListObjectGuids) // Clone.tt Line: 42
                 vm.ListObjectGuids.Add(t);
-            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 62
+            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(DataType to, DataType from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(DataType to, DataType from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 134
-            to.Length = from.Length; // Clone.tt Line: 134
-            to.Accuracy = from.Accuracy; // Clone.tt Line: 134
-            to.IsPositive = from.IsPositive; // Clone.tt Line: 134
-            to.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 134
-            to.IsNullable = from.IsNullable; // Clone.tt Line: 134
-                to.ListObjectGuids.Clear(); // Clone.tt Line: 120
+            to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 136
+            to.Length = from.Length; // Clone.tt Line: 136
+            to.Accuracy = from.Accuracy; // Clone.tt Line: 136
+            to.IsPositive = from.IsPositive; // Clone.tt Line: 136
+            to.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 136
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 136
+                to.ListObjectGuids.Clear(); // Clone.tt Line: 122
                 foreach (var tt in from.ListObjectGuids)
                 {
                     to.ListObjectGuids.Add(tt);
                 }
-            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 134
+            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override DataType Backup()
         {
@@ -4470,39 +4592,41 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_data_type' to 'DataType'
-        public static DataType ConvertToVM(Proto.Config.proto_data_type m, DataType vm) // Clone.tt Line: 163
+        public static DataType ConvertToVM(Proto.Config.proto_data_type m, DataType vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 211
-            vm.Length = m.Length; // Clone.tt Line: 211
-            vm.Accuracy = m.Accuracy; // Clone.tt Line: 211
-            vm.IsPositive = m.IsPositive; // Clone.tt Line: 211
-            vm.ObjectGuid = m.ObjectGuid; // Clone.tt Line: 211
-            vm.IsNullable = m.IsNullable; // Clone.tt Line: 211
-            vm.ListObjectGuids = new ObservableCollection<string>(); // Clone.tt Line: 174
-            foreach (var t in m.ListObjectGuids) // Clone.tt Line: 175
+            vm.IsNotNotifying = true;
+            vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 214
+            vm.Length = m.Length; // Clone.tt Line: 214
+            vm.Accuracy = m.Accuracy; // Clone.tt Line: 214
+            vm.IsPositive = m.IsPositive; // Clone.tt Line: 214
+            vm.ObjectGuid = m.ObjectGuid; // Clone.tt Line: 214
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 214
+            vm.ListObjectGuids = new ObservableCollection<string>(); // Clone.tt Line: 177
+            foreach (var t in m.ListObjectGuids) // Clone.tt Line: 178
             {
                 vm.ListObjectGuids.Add(t);
             }
-            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 211
+            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'DataType' to 'proto_data_type'
-        public static Proto.Config.proto_data_type ConvertToProto(DataType vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_data_type ConvertToProto(DataType vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // Clone.tt Line: 224
-            m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 259
-            m.Length = vm.Length; // Clone.tt Line: 261
-            m.Accuracy = vm.Accuracy; // Clone.tt Line: 261
-            m.IsPositive = vm.IsPositive; // Clone.tt Line: 261
-            m.ObjectGuid = vm.ObjectGuid; // Clone.tt Line: 261
-            m.IsNullable = vm.IsNullable; // Clone.tt Line: 261
-            foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 227
-                m.ListObjectGuids.Add(t); // Clone.tt Line: 229
-            m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 261
+            Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // Clone.tt Line: 228
+            m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 263
+            m.Length = vm.Length; // Clone.tt Line: 265
+            m.Accuracy = vm.Accuracy; // Clone.tt Line: 265
+            m.IsPositive = vm.IsPositive; // Clone.tt Line: 265
+            m.ObjectGuid = vm.ObjectGuid; // Clone.tt Line: 265
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 265
+            foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 231
+                m.ListObjectGuids.Add(t); // Clone.tt Line: 233
+            m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures
@@ -4735,32 +4859,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListCommon Clone(ITreeConfigNode parent, GroupListCommon from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListCommon vm = new GroupListCommon(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupRoles = GroupListRoles.Clone(vm, from.GroupRoles, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupViewForms = GroupListMainViewForms.Clone(vm, from.GroupViewForms, isDeep);
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListCommon to, GroupListCommon from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListCommon to, GroupListCommon from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListRoles.Update(to.GroupRoles, from.GroupRoles, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListMainViewForms.Update(to.GroupViewForms, from.GroupViewForms, isDeep);
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListCommon Backup()
         {
@@ -4778,37 +4904,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_common' to 'GroupListCommon'
-        public static GroupListCommon ConvertToVM(Proto.Config.proto_group_list_common m, GroupListCommon vm) // Clone.tt Line: 163
+        public static GroupListCommon ConvertToVM(Proto.Config.proto_group_list_common m, GroupListCommon vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupRoles == null) // Clone.tt Line: 203
-                vm.GroupRoles = new GroupListRoles(vm); // Clone.tt Line: 205
-            GroupListRoles.ConvertToVM(m.GroupRoles, vm.GroupRoles); // Clone.tt Line: 209
-            if (vm.GroupViewForms == null) // Clone.tt Line: 203
-                vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 205
-            GroupListMainViewForms.ConvertToVM(m.GroupViewForms, vm.GroupViewForms); // Clone.tt Line: 209
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupRoles == null) // Clone.tt Line: 206
+                vm.GroupRoles = new GroupListRoles(vm); // Clone.tt Line: 208
+            GroupListRoles.ConvertToVM(m.GroupRoles, vm.GroupRoles); // Clone.tt Line: 212
+            if (vm.GroupViewForms == null) // Clone.tt Line: 206
+                vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 208
+            GroupListMainViewForms.ConvertToVM(m.GroupViewForms, vm.GroupViewForms); // Clone.tt Line: 212
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListCommon' to 'proto_group_list_common'
-        public static Proto.Config.proto_group_list_common ConvertToProto(GroupListCommon vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_common ConvertToProto(GroupListCommon vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_common m = new Proto.Config.proto_group_list_common(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupRoles = GroupListRoles.ConvertToProto(vm.GroupRoles); // Clone.tt Line: 255
-            m.GroupViewForms = GroupListMainViewForms.ConvertToProto(vm.GroupViewForms); // Clone.tt Line: 255
+            Proto.Config.proto_group_list_common m = new Proto.Config.proto_group_list_common(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupRoles = GroupListRoles.ConvertToProto(vm.GroupRoles); // Clone.tt Line: 259
+            m.GroupViewForms = GroupListMainViewForms.ConvertToProto(vm.GroupViewForms); // Clone.tt Line: 259
             return m;
         }
         
@@ -4928,24 +5056,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Role Clone(ITreeConfigNode parent, Role from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Role vm = new Role(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Role to, Role from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Role to, Role from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Role Backup()
         {
@@ -4963,29 +5093,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_role' to 'Role'
-        public static Role ConvertToVM(Proto.Config.proto_role m, Role vm) // Clone.tt Line: 163
+        public static Role ConvertToVM(Proto.Config.proto_role m, Role vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Role' to 'proto_role'
-        public static Proto.Config.proto_role ConvertToProto(Role vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_role ConvertToProto(Role vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_role m = new Proto.Config.proto_role(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
+            Proto.Config.proto_role m = new Proto.Config.proto_role(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
             return m;
         }
         
@@ -5053,26 +5185,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListRoles Clone(ITreeConfigNode parent, GroupListRoles from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListRoles vm = new GroupListRoles(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListRoles = new ConfigNodesCollection<Role>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListRoles) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListRoles = new ConfigNodesCollection<Role>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListRoles) // Clone.tt Line: 50
                 vm.ListRoles.Add(Role.Clone(vm, (Role)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListRoles to, GroupListRoles from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListRoles to, GroupListRoles from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListRoles.ToList())
                 {
@@ -5102,14 +5236,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Role(to); // Clone.tt Line: 110
+                        var p = new Role(to); // Clone.tt Line: 112
                         Role.Update(p, (Role)tt, isDeep);
                         to.ListRoles.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListRoles Backup()
         {
@@ -5127,37 +5261,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_roles' to 'GroupListRoles'
-        public static GroupListRoles ConvertToVM(Proto.Config.proto_group_list_roles m, GroupListRoles vm) // Clone.tt Line: 163
+        public static GroupListRoles ConvertToVM(Proto.Config.proto_group_list_roles m, GroupListRoles vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListRoles = new ConfigNodesCollection<Role>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListRoles) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListRoles = new ConfigNodesCollection<Role>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListRoles) // Clone.tt Line: 194
             {
-                var tvm = Role.ConvertToVM(t, new Role(vm)); // Clone.tt Line: 194
+                var tvm = Role.ConvertToVM(t, new Role(vm)); // Clone.tt Line: 197
                 vm.ListRoles.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListRoles' to 'proto_group_list_roles'
-        public static Proto.Config.proto_group_list_roles ConvertToProto(GroupListRoles vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_roles ConvertToProto(GroupListRoles vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_roles m = new Proto.Config.proto_group_list_roles(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListRoles) // Clone.tt Line: 227
-                m.ListRoles.Add(Role.ConvertToProto((Role)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_roles m = new Proto.Config.proto_group_list_roles(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListRoles) // Clone.tt Line: 231
+                m.ListRoles.Add(Role.ConvertToProto((Role)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -5275,28 +5411,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static MainViewForm Clone(ITreeConfigNode parent, MainViewForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             MainViewForm vm = new MainViewForm(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupListViewForms = GroupListMainViewForms.Clone(vm, from.GroupListViewForms, isDeep);
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(MainViewForm to, MainViewForm from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(MainViewForm to, MainViewForm from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListMainViewForms.Update(to.GroupListViewForms, from.GroupListViewForms, isDeep);
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override MainViewForm Backup()
         {
@@ -5314,33 +5452,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_main_view_form' to 'MainViewForm'
-        public static MainViewForm ConvertToVM(Proto.Config.proto_main_view_form m, MainViewForm vm) // Clone.tt Line: 163
+        public static MainViewForm ConvertToVM(Proto.Config.proto_main_view_form m, MainViewForm vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupListViewForms == null) // Clone.tt Line: 203
-                vm.GroupListViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 205
-            GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, vm.GroupListViewForms); // Clone.tt Line: 209
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupListViewForms == null) // Clone.tt Line: 206
+                vm.GroupListViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 208
+            GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, vm.GroupListViewForms); // Clone.tt Line: 212
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'MainViewForm' to 'proto_main_view_form'
-        public static Proto.Config.proto_main_view_form ConvertToProto(MainViewForm vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_main_view_form ConvertToProto(MainViewForm vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_main_view_form m = new Proto.Config.proto_main_view_form(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupListViewForms = GroupListMainViewForms.ConvertToProto(vm.GroupListViewForms); // Clone.tt Line: 255
+            Proto.Config.proto_main_view_form m = new Proto.Config.proto_main_view_form(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupListViewForms = GroupListMainViewForms.ConvertToProto(vm.GroupListViewForms); // Clone.tt Line: 259
             return m;
         }
         
@@ -5438,26 +5578,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListMainViewForms Clone(ITreeConfigNode parent, GroupListMainViewForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListMainViewForms vm = new GroupListMainViewForms(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListMainViewForms) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListMainViewForms) // Clone.tt Line: 50
                 vm.ListMainViewForms.Add(MainViewForm.Clone(vm, (MainViewForm)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListMainViewForms to, GroupListMainViewForms from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListMainViewForms to, GroupListMainViewForms from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListMainViewForms.ToList())
                 {
@@ -5487,14 +5629,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new MainViewForm(to); // Clone.tt Line: 110
+                        var p = new MainViewForm(to); // Clone.tt Line: 112
                         MainViewForm.Update(p, (MainViewForm)tt, isDeep);
                         to.ListMainViewForms.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListMainViewForms Backup()
         {
@@ -5512,37 +5654,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_main_view_forms' to 'GroupListMainViewForms'
-        public static GroupListMainViewForms ConvertToVM(Proto.Config.proto_group_list_main_view_forms m, GroupListMainViewForms vm) // Clone.tt Line: 163
+        public static GroupListMainViewForms ConvertToVM(Proto.Config.proto_group_list_main_view_forms m, GroupListMainViewForms vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListMainViewForms) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListMainViewForms) // Clone.tt Line: 194
             {
-                var tvm = MainViewForm.ConvertToVM(t, new MainViewForm(vm)); // Clone.tt Line: 194
+                var tvm = MainViewForm.ConvertToVM(t, new MainViewForm(vm)); // Clone.tt Line: 197
                 vm.ListMainViewForms.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListMainViewForms' to 'proto_group_list_main_view_forms'
-        public static Proto.Config.proto_group_list_main_view_forms ConvertToProto(GroupListMainViewForms vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_main_view_forms ConvertToProto(GroupListMainViewForms vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_main_view_forms m = new Proto.Config.proto_group_list_main_view_forms(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListMainViewForms) // Clone.tt Line: 227
-                m.ListMainViewForms.Add(MainViewForm.ConvertToProto((MainViewForm)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_main_view_forms m = new Proto.Config.proto_group_list_main_view_forms(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListMainViewForms) // Clone.tt Line: 231
+                m.ListMainViewForms.Add(MainViewForm.ConvertToProto((MainViewForm)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -5664,29 +5808,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListPropertiesTabs Clone(ITreeConfigNode parent, GroupListPropertiesTabs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListPropertiesTabs vm = new GroupListPropertiesTabs(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListPropertiesTabs) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListPropertiesTabs) // Clone.tt Line: 50
                 vm.ListPropertiesTabs.Add(PropertiesTab.Clone(vm, (PropertiesTab)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListPropertiesTabs to, GroupListPropertiesTabs from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListPropertiesTabs to, GroupListPropertiesTabs from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListPropertiesTabs.ToList())
                 {
@@ -5716,13 +5862,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new PropertiesTab(to); // Clone.tt Line: 110
+                        var p = new PropertiesTab(to); // Clone.tt Line: 112
                         PropertiesTab.Update(p, (PropertiesTab)tt, isDeep);
                         to.ListPropertiesTabs.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -5752,14 +5898,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListPropertiesTabs Backup()
         {
@@ -5777,45 +5923,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_properties_tabs' to 'GroupListPropertiesTabs'
-        public static GroupListPropertiesTabs ConvertToVM(Proto.Config.proto_group_list_properties_tabs m, GroupListPropertiesTabs vm) // Clone.tt Line: 163
+        public static GroupListPropertiesTabs ConvertToVM(Proto.Config.proto_group_list_properties_tabs m, GroupListPropertiesTabs vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListPropertiesTabs) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListPropertiesTabs) // Clone.tt Line: 194
             {
-                var tvm = PropertiesTab.ConvertToVM(t, new PropertiesTab(vm)); // Clone.tt Line: 194
+                var tvm = PropertiesTab.ConvertToVM(t, new PropertiesTab(vm)); // Clone.tt Line: 197
                 vm.ListPropertiesTabs.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListPropertiesTabs' to 'proto_group_list_properties_tabs'
-        public static Proto.Config.proto_group_list_properties_tabs ConvertToProto(GroupListPropertiesTabs vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_properties_tabs ConvertToProto(GroupListPropertiesTabs vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_properties_tabs m = new Proto.Config.proto_group_list_properties_tabs(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListPropertiesTabs) // Clone.tt Line: 227
-                m.ListPropertiesTabs.Add(PropertiesTab.ConvertToProto((PropertiesTab)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_properties_tabs m = new Proto.Config.proto_group_list_properties_tabs(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListPropertiesTabs) // Clone.tt Line: 231
+                m.ListPropertiesTabs.Add(PropertiesTab.ConvertToProto((PropertiesTab)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -5962,36 +6110,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static PropertiesTab Clone(ITreeConfigNode parent, PropertiesTab from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             PropertiesTab vm = new PropertiesTab(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupProperties = GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupPropertiesTabs = GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
-            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 62
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 63
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(PropertiesTab to, PropertiesTab from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(PropertiesTab to, PropertiesTab from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
-            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -6021,14 +6171,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override PropertiesTab Backup()
         {
@@ -6046,47 +6196,49 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_properties_tab' to 'PropertiesTab'
-        public static PropertiesTab ConvertToVM(Proto.Config.proto_properties_tab m, PropertiesTab vm) // Clone.tt Line: 163
+        public static PropertiesTab ConvertToVM(Proto.Config.proto_properties_tab m, PropertiesTab vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupProperties == null) // Clone.tt Line: 203
-                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 205
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 209
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 203
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 205
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 209
-            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 211
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupProperties == null) // Clone.tt Line: 206
+                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
+            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
+                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
+            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 214
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'PropertiesTab' to 'proto_properties_tab'
-        public static Proto.Config.proto_properties_tab ConvertToProto(PropertiesTab vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_properties_tab ConvertToProto(PropertiesTab vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_properties_tab m = new Proto.Config.proto_properties_tab(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 255
-            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 255
-            m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 261
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_properties_tab m = new Proto.Config.proto_properties_tab(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 259
+            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 259
+            m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 265
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -6267,30 +6419,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListProperties Clone(ITreeConfigNode parent, GroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListProperties vm = new GroupListProperties(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListProperties) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListProperties) // Clone.tt Line: 50
                 vm.ListProperties.Add(Property.Clone(vm, (Property)t, isDeep));
-            vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 62
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 63
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListProperties to, GroupListProperties from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListProperties to, GroupListProperties from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListProperties.ToList())
                 {
@@ -6320,14 +6474,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Property(to); // Clone.tt Line: 110
+                        var p = new Property(to); // Clone.tt Line: 112
                         Property.Update(p, (Property)tt, isDeep);
                         to.ListProperties.Add(p);
                     }
                 }
             }
-            to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -6357,14 +6511,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListProperties Backup()
         {
@@ -6382,47 +6536,49 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_properties' to 'GroupListProperties'
-        public static GroupListProperties ConvertToVM(Proto.Config.proto_group_list_properties m, GroupListProperties vm) // Clone.tt Line: 163
+        public static GroupListProperties ConvertToVM(Proto.Config.proto_group_list_properties m, GroupListProperties vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListProperties) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListProperties) // Clone.tt Line: 194
             {
-                var tvm = Property.ConvertToVM(t, new Property(vm)); // Clone.tt Line: 194
+                var tvm = Property.ConvertToVM(t, new Property(vm)); // Clone.tt Line: 197
                 vm.ListProperties.Add(tvm);
             }
-            vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 211
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 214
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListProperties' to 'proto_group_list_properties'
-        public static Proto.Config.proto_group_list_properties ConvertToProto(GroupListProperties vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_properties ConvertToProto(GroupListProperties vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListProperties) // Clone.tt Line: 227
-                m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 231
-            m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 261
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListProperties) // Clone.tt Line: 231
+                m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 235
+            m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 265
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -6596,32 +6752,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Property Clone(ITreeConfigNode parent, Property from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Property vm = new Property(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DataType = DataType.Clone(from.DataType, isDeep);
-            vm.Position = from.Position; // Clone.tt Line: 62
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.Position = from.Position; // Clone.tt Line: 63
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Property to, Property from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Property to, Property from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 DataType.Update(to.DataType, from.DataType, isDeep);
-            to.Position = from.Position; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Position = from.Position; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -6651,14 +6809,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Property Backup()
         {
@@ -6676,43 +6834,45 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_property' to 'Property'
-        public static Property ConvertToVM(Proto.Config.proto_property m, Property vm) // Clone.tt Line: 163
+        public static Property ConvertToVM(Proto.Config.proto_property m, Property vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.DataType == null) // Clone.tt Line: 203
-                vm.DataType = new DataType(); // Clone.tt Line: 207
-            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 209
-            vm.Position = m.Position; // Clone.tt Line: 211
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.DataType == null) // Clone.tt Line: 206
+                vm.DataType = new DataType(); // Clone.tt Line: 210
+            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 212
+            vm.Position = m.Position; // Clone.tt Line: 214
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Property' to 'proto_property'
-        public static Proto.Config.proto_property ConvertToProto(Property vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_property ConvertToProto(Property vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_property m = new Proto.Config.proto_property(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.DataType = DataType.ConvertToProto(vm.DataType); // Clone.tt Line: 255
-            m.Position = vm.Position; // Clone.tt Line: 261
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_property m = new Proto.Config.proto_property(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.DataType = DataType.ConvertToProto(vm.DataType); // Clone.tt Line: 259
+            m.Position = vm.Position; // Clone.tt Line: 265
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -6868,29 +7028,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListConstants Clone(ITreeConfigNode parent, GroupListConstants from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListConstants vm = new GroupListConstants(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListConstants = new ConfigNodesCollection<Constant>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListConstants) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListConstants = new ConfigNodesCollection<Constant>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListConstants) // Clone.tt Line: 50
                 vm.ListConstants.Add(Constant.Clone(vm, (Constant)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListConstants to, GroupListConstants from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListConstants to, GroupListConstants from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListConstants.ToList())
                 {
@@ -6920,13 +7082,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Constant(to); // Clone.tt Line: 110
+                        var p = new Constant(to); // Clone.tt Line: 112
                         Constant.Update(p, (Constant)tt, isDeep);
                         to.ListConstants.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -6956,14 +7118,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListConstants Backup()
         {
@@ -6981,45 +7143,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_constants' to 'GroupListConstants'
-        public static GroupListConstants ConvertToVM(Proto.Config.proto_group_list_constants m, GroupListConstants vm) // Clone.tt Line: 163
+        public static GroupListConstants ConvertToVM(Proto.Config.proto_group_list_constants m, GroupListConstants vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListConstants = new ConfigNodesCollection<Constant>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListConstants) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListConstants = new ConfigNodesCollection<Constant>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListConstants) // Clone.tt Line: 194
             {
-                var tvm = Constant.ConvertToVM(t, new Constant(vm)); // Clone.tt Line: 194
+                var tvm = Constant.ConvertToVM(t, new Constant(vm)); // Clone.tt Line: 197
                 vm.ListConstants.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListConstants' to 'proto_group_list_constants'
-        public static Proto.Config.proto_group_list_constants ConvertToProto(GroupListConstants vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_constants ConvertToProto(GroupListConstants vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_constants m = new Proto.Config.proto_group_list_constants(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListConstants) // Clone.tt Line: 227
-                m.ListConstants.Add(Constant.ConvertToProto((Constant)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_constants m = new Proto.Config.proto_group_list_constants(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListConstants) // Clone.tt Line: 231
+                m.ListConstants.Add(Constant.ConvertToProto((Constant)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -7169,30 +7333,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Constant Clone(ITreeConfigNode parent, Constant from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Constant vm = new Constant(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.DataType = DataType.Clone(from.DataType, isDeep);
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Constant to, Constant from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Constant to, Constant from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 DataType.Update(to.DataType, from.DataType, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -7222,14 +7388,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Constant Backup()
         {
@@ -7247,41 +7413,43 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_constant' to 'Constant'
-        public static Constant ConvertToVM(Proto.Config.proto_constant m, Constant vm) // Clone.tt Line: 163
+        public static Constant ConvertToVM(Proto.Config.proto_constant m, Constant vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.DataType == null) // Clone.tt Line: 203
-                vm.DataType = new DataType(); // Clone.tt Line: 207
-            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 209
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.DataType == null) // Clone.tt Line: 206
+                vm.DataType = new DataType(); // Clone.tt Line: 210
+            DataType.ConvertToVM(m.DataType, vm.DataType); // Clone.tt Line: 212
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Constant' to 'proto_constant'
-        public static Proto.Config.proto_constant ConvertToProto(Constant vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_constant ConvertToProto(Constant vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_constant m = new Proto.Config.proto_constant(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.DataType = DataType.ConvertToProto(vm.DataType); // Clone.tt Line: 255
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_constant m = new Proto.Config.proto_constant(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.DataType = DataType.ConvertToProto(vm.DataType); // Clone.tt Line: 259
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -7408,29 +7576,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListEnumerations Clone(ITreeConfigNode parent, GroupListEnumerations from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListEnumerations vm = new GroupListEnumerations(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListEnumerations = new ConfigNodesCollection<Enumeration>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListEnumerations) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListEnumerations = new ConfigNodesCollection<Enumeration>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListEnumerations) // Clone.tt Line: 50
                 vm.ListEnumerations.Add(Enumeration.Clone(vm, (Enumeration)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListEnumerations to, GroupListEnumerations from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListEnumerations to, GroupListEnumerations from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListEnumerations.ToList())
                 {
@@ -7460,13 +7630,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Enumeration(to); // Clone.tt Line: 110
+                        var p = new Enumeration(to); // Clone.tt Line: 112
                         Enumeration.Update(p, (Enumeration)tt, isDeep);
                         to.ListEnumerations.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -7496,14 +7666,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListEnumerations Backup()
         {
@@ -7521,45 +7691,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_enumerations' to 'GroupListEnumerations'
-        public static GroupListEnumerations ConvertToVM(Proto.Config.proto_group_list_enumerations m, GroupListEnumerations vm) // Clone.tt Line: 163
+        public static GroupListEnumerations ConvertToVM(Proto.Config.proto_group_list_enumerations m, GroupListEnumerations vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListEnumerations = new ConfigNodesCollection<Enumeration>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListEnumerations) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListEnumerations = new ConfigNodesCollection<Enumeration>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListEnumerations) // Clone.tt Line: 194
             {
-                var tvm = Enumeration.ConvertToVM(t, new Enumeration(vm)); // Clone.tt Line: 194
+                var tvm = Enumeration.ConvertToVM(t, new Enumeration(vm)); // Clone.tt Line: 197
                 vm.ListEnumerations.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListEnumerations' to 'proto_group_list_enumerations'
-        public static Proto.Config.proto_group_list_enumerations ConvertToProto(GroupListEnumerations vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_enumerations ConvertToProto(GroupListEnumerations vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_enumerations m = new Proto.Config.proto_group_list_enumerations(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListEnumerations) // Clone.tt Line: 227
-                m.ListEnumerations.Add(Enumeration.ConvertToProto((Enumeration)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_enumerations m = new Proto.Config.proto_group_list_enumerations(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListEnumerations) // Clone.tt Line: 231
+                m.ListEnumerations.Add(Enumeration.ConvertToProto((Enumeration)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -7709,33 +7881,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Enumeration Clone(ITreeConfigNode parent, Enumeration from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Enumeration vm = new Enumeration(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 62
-            vm.DataTypeLength = from.DataTypeLength; // Clone.tt Line: 62
-            vm.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListEnumerationPairs) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 63
+            vm.DataTypeLength = from.DataTypeLength; // Clone.tt Line: 63
+            vm.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListEnumerationPairs) // Clone.tt Line: 50
                 vm.ListEnumerationPairs.Add(EnumerationPair.Clone(vm, (EnumerationPair)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Enumeration to, Enumeration from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Enumeration to, Enumeration from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 134
-            to.DataTypeLength = from.DataTypeLength; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 136
+            to.DataTypeLength = from.DataTypeLength; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListEnumerationPairs.ToList())
                 {
@@ -7765,13 +7939,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new EnumerationPair(to); // Clone.tt Line: 110
+                        var p = new EnumerationPair(to); // Clone.tt Line: 112
                         EnumerationPair.Update(p, (EnumerationPair)tt, isDeep);
                         to.ListEnumerationPairs.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -7801,14 +7975,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Enumeration Backup()
         {
@@ -7826,49 +8000,51 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_enumeration' to 'Enumeration'
-        public static Enumeration ConvertToVM(Proto.Config.proto_enumeration m, Enumeration vm) // Clone.tt Line: 163
+        public static Enumeration ConvertToVM(Proto.Config.proto_enumeration m, Enumeration vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.DataTypeEnum = (EnumEnumerationType)m.DataTypeEnum; // Clone.tt Line: 211
-            vm.DataTypeLength = m.DataTypeLength; // Clone.tt Line: 211
-            vm.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListEnumerationPairs) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.DataTypeEnum = (EnumEnumerationType)m.DataTypeEnum; // Clone.tt Line: 214
+            vm.DataTypeLength = m.DataTypeLength; // Clone.tt Line: 214
+            vm.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListEnumerationPairs) // Clone.tt Line: 194
             {
-                var tvm = EnumerationPair.ConvertToVM(t, new EnumerationPair(vm)); // Clone.tt Line: 194
+                var tvm = EnumerationPair.ConvertToVM(t, new EnumerationPair(vm)); // Clone.tt Line: 197
                 vm.ListEnumerationPairs.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Enumeration' to 'proto_enumeration'
-        public static Proto.Config.proto_enumeration ConvertToProto(Enumeration vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_enumeration ConvertToProto(Enumeration vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_enumeration m = new Proto.Config.proto_enumeration(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.DataTypeEnum = (Proto.Config.enum_enumeration_type)vm.DataTypeEnum; // Clone.tt Line: 259
-            m.DataTypeLength = vm.DataTypeLength; // Clone.tt Line: 261
-            foreach (var t in vm.ListEnumerationPairs) // Clone.tt Line: 227
-                m.ListEnumerationPairs.Add(EnumerationPair.ConvertToProto((EnumerationPair)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_enumeration m = new Proto.Config.proto_enumeration(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.DataTypeEnum = (Proto.Config.enum_enumeration_type)vm.DataTypeEnum; // Clone.tt Line: 263
+            m.DataTypeLength = vm.DataTypeLength; // Clone.tt Line: 265
+            foreach (var t in vm.ListEnumerationPairs) // Clone.tt Line: 231
+                m.ListEnumerationPairs.Add(EnumerationPair.ConvertToProto((EnumerationPair)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -8047,26 +8223,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static EnumerationPair Clone(ITreeConfigNode parent, EnumerationPair from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             EnumerationPair vm = new EnumerationPair(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.Value = from.Value; // Clone.tt Line: 62
-            if (isNewGuid) // Clone.tt Line: 67
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.Value = from.Value; // Clone.tt Line: 63
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(EnumerationPair to, EnumerationPair from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(EnumerationPair to, EnumerationPair from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            to.Value = from.Value; // Clone.tt Line: 134
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            to.Value = from.Value; // Clone.tt Line: 136
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override EnumerationPair Backup()
         {
@@ -8084,31 +8262,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_enumeration_pair' to 'EnumerationPair'
-        public static EnumerationPair ConvertToVM(Proto.Config.proto_enumeration_pair m, EnumerationPair vm) // Clone.tt Line: 163
+        public static EnumerationPair ConvertToVM(Proto.Config.proto_enumeration_pair m, EnumerationPair vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.Value = m.Value; // Clone.tt Line: 211
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.Value = m.Value; // Clone.tt Line: 214
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'EnumerationPair' to 'proto_enumeration_pair'
-        public static Proto.Config.proto_enumeration_pair ConvertToProto(EnumerationPair vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_enumeration_pair ConvertToProto(EnumerationPair vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_enumeration_pair m = new Proto.Config.proto_enumeration_pair(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.Value = vm.Value; // Clone.tt Line: 261
+            Proto.Config.proto_enumeration_pair m = new Proto.Config.proto_enumeration_pair(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.Value = vm.Value; // Clone.tt Line: 265
             return m;
         }
         
@@ -8207,42 +8387,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Catalog Clone(ITreeConfigNode parent, Catalog from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Catalog vm = new Catalog(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupProperties = GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupPropertiesTabs = GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupForms = GroupListForms.Clone(vm, from.GroupForms, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupReports = GroupListReports.Clone(vm, from.GroupReports, isDeep);
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Catalog to, Catalog from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Catalog to, Catalog from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListForms.Update(to.GroupForms, from.GroupForms, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListReports.Update(to.GroupReports, from.GroupReports, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -8272,14 +8454,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Catalog Backup()
         {
@@ -8297,53 +8479,55 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_catalog' to 'Catalog'
-        public static Catalog ConvertToVM(Proto.Config.proto_catalog m, Catalog vm) // Clone.tt Line: 163
+        public static Catalog ConvertToVM(Proto.Config.proto_catalog m, Catalog vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupProperties == null) // Clone.tt Line: 203
-                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 205
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 209
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 203
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 205
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 209
-            if (vm.GroupForms == null) // Clone.tt Line: 203
-                vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 205
-            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 209
-            if (vm.GroupReports == null) // Clone.tt Line: 203
-                vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 205
-            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 209
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupProperties == null) // Clone.tt Line: 206
+                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
+            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
+                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
+            if (vm.GroupForms == null) // Clone.tt Line: 206
+                vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 208
+            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 212
+            if (vm.GroupReports == null) // Clone.tt Line: 206
+                vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 208
+            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 212
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Catalog' to 'proto_catalog'
-        public static Proto.Config.proto_catalog ConvertToProto(Catalog vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_catalog ConvertToProto(Catalog vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_catalog m = new Proto.Config.proto_catalog(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 255
-            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 255
-            m.GroupForms = GroupListForms.ConvertToProto(vm.GroupForms); // Clone.tt Line: 255
-            m.GroupReports = GroupListReports.ConvertToProto(vm.GroupReports); // Clone.tt Line: 255
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_catalog m = new Proto.Config.proto_catalog(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 259
+            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 259
+            m.GroupForms = GroupListForms.ConvertToProto(vm.GroupForms); // Clone.tt Line: 259
+            m.GroupReports = GroupListReports.ConvertToProto(vm.GroupReports); // Clone.tt Line: 259
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -8548,29 +8732,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListCatalogs Clone(ITreeConfigNode parent, GroupListCatalogs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListCatalogs vm = new GroupListCatalogs(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListCatalogs) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListCatalogs) // Clone.tt Line: 50
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListCatalogs to, GroupListCatalogs from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListCatalogs to, GroupListCatalogs from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListCatalogs.ToList())
                 {
@@ -8600,13 +8786,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Catalog(to); // Clone.tt Line: 110
+                        var p = new Catalog(to); // Clone.tt Line: 112
                         Catalog.Update(p, (Catalog)tt, isDeep);
                         to.ListCatalogs.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -8636,14 +8822,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListCatalogs Backup()
         {
@@ -8661,45 +8847,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_catalogs' to 'GroupListCatalogs'
-        public static GroupListCatalogs ConvertToVM(Proto.Config.proto_group_list_catalogs m, GroupListCatalogs vm) // Clone.tt Line: 163
+        public static GroupListCatalogs ConvertToVM(Proto.Config.proto_group_list_catalogs m, GroupListCatalogs vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListCatalogs) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListCatalogs) // Clone.tt Line: 194
             {
-                var tvm = Catalog.ConvertToVM(t, new Catalog(vm)); // Clone.tt Line: 194
+                var tvm = Catalog.ConvertToVM(t, new Catalog(vm)); // Clone.tt Line: 197
                 vm.ListCatalogs.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListCatalogs' to 'proto_group_list_catalogs'
-        public static Proto.Config.proto_group_list_catalogs ConvertToProto(GroupListCatalogs vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_catalogs ConvertToProto(GroupListCatalogs vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_catalogs m = new Proto.Config.proto_group_list_catalogs(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListCatalogs) // Clone.tt Line: 227
-                m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_catalogs m = new Proto.Config.proto_group_list_catalogs(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListCatalogs) // Clone.tt Line: 231
+                m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -8846,34 +9034,36 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupDocuments Clone(ITreeConfigNode parent, GroupDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupDocuments vm = new GroupDocuments(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupSharedProperties = GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupListDocuments = GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupDocuments to, GroupDocuments from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupDocuments to, GroupDocuments from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListProperties.Update(to.GroupSharedProperties, from.GroupSharedProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListDocuments.Update(to.GroupListDocuments, from.GroupListDocuments, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -8903,14 +9093,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupDocuments Backup()
         {
@@ -8928,45 +9118,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_documents' to 'GroupDocuments'
-        public static GroupDocuments ConvertToVM(Proto.Config.proto_group_documents m, GroupDocuments vm) // Clone.tt Line: 163
+        public static GroupDocuments ConvertToVM(Proto.Config.proto_group_documents m, GroupDocuments vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupSharedProperties == null) // Clone.tt Line: 203
-                vm.GroupSharedProperties = new GroupListProperties(vm); // Clone.tt Line: 205
-            GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties); // Clone.tt Line: 209
-            if (vm.GroupListDocuments == null) // Clone.tt Line: 203
-                vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 205
-            GroupListDocuments.ConvertToVM(m.GroupListDocuments, vm.GroupListDocuments); // Clone.tt Line: 209
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupSharedProperties == null) // Clone.tt Line: 206
+                vm.GroupSharedProperties = new GroupListProperties(vm); // Clone.tt Line: 208
+            GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties); // Clone.tt Line: 212
+            if (vm.GroupListDocuments == null) // Clone.tt Line: 206
+                vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 208
+            GroupListDocuments.ConvertToVM(m.GroupListDocuments, vm.GroupListDocuments); // Clone.tt Line: 212
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupDocuments' to 'proto_group_documents'
-        public static Proto.Config.proto_group_documents ConvertToProto(GroupDocuments vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_documents ConvertToProto(GroupDocuments vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_documents m = new Proto.Config.proto_group_documents(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupSharedProperties = GroupListProperties.ConvertToProto(vm.GroupSharedProperties); // Clone.tt Line: 255
-            m.GroupListDocuments = GroupListDocuments.ConvertToProto(vm.GroupListDocuments); // Clone.tt Line: 255
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_documents m = new Proto.Config.proto_group_documents(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupSharedProperties = GroupListProperties.ConvertToProto(vm.GroupSharedProperties); // Clone.tt Line: 259
+            m.GroupListDocuments = GroupListDocuments.ConvertToProto(vm.GroupListDocuments); // Clone.tt Line: 259
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -9118,42 +9310,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Document Clone(ITreeConfigNode parent, Document from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Document vm = new Document(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            if (isDeep) // Clone.tt Line: 59
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupProperties = GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupPropertiesTabs = GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupForms = GroupListForms.Clone(vm, from.GroupForms, isDeep);
-            if (isDeep) // Clone.tt Line: 59
+            if (isDeep) // Clone.tt Line: 60
                 vm.GroupReports = GroupListReports.Clone(vm, from.GroupReports, isDeep);
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Document to, Document from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Document to, Document from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 131
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 133
                 GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListForms.Update(to.GroupForms, from.GroupForms, isDeep);
-            if (isDeep) // Clone.tt Line: 131
+            if (isDeep) // Clone.tt Line: 133
                 GroupListReports.Update(to.GroupReports, from.GroupReports, isDeep);
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -9183,14 +9377,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Document Backup()
         {
@@ -9208,53 +9402,55 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_document' to 'Document'
-        public static Document ConvertToVM(Proto.Config.proto_document m, Document vm) // Clone.tt Line: 163
+        public static Document ConvertToVM(Proto.Config.proto_document m, Document vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            if (vm.GroupProperties == null) // Clone.tt Line: 203
-                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 205
-            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 209
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 203
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 205
-            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 209
-            if (vm.GroupForms == null) // Clone.tt Line: 203
-                vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 205
-            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 209
-            if (vm.GroupReports == null) // Clone.tt Line: 203
-                vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 205
-            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 209
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            if (vm.GroupProperties == null) // Clone.tt Line: 206
+                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 208
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 212
+            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 206
+                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 208
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 212
+            if (vm.GroupForms == null) // Clone.tt Line: 206
+                vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 208
+            GroupListForms.ConvertToVM(m.GroupForms, vm.GroupForms); // Clone.tt Line: 212
+            if (vm.GroupReports == null) // Clone.tt Line: 206
+                vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 208
+            GroupListReports.ConvertToVM(m.GroupReports, vm.GroupReports); // Clone.tt Line: 212
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Document' to 'proto_document'
-        public static Proto.Config.proto_document ConvertToProto(Document vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_document ConvertToProto(Document vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_document m = new Proto.Config.proto_document(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 255
-            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 255
-            m.GroupForms = GroupListForms.ConvertToProto(vm.GroupForms); // Clone.tt Line: 255
-            m.GroupReports = GroupListReports.ConvertToProto(vm.GroupReports); // Clone.tt Line: 255
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_document m = new Proto.Config.proto_document(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 259
+            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 259
+            m.GroupForms = GroupListForms.ConvertToProto(vm.GroupForms); // Clone.tt Line: 259
+            m.GroupReports = GroupListReports.ConvertToProto(vm.GroupReports); // Clone.tt Line: 259
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -9459,29 +9655,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListDocuments Clone(ITreeConfigNode parent, GroupListDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListDocuments vm = new GroupListDocuments(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListDocuments) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListDocuments) // Clone.tt Line: 50
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListDocuments to, GroupListDocuments from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListDocuments to, GroupListDocuments from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListDocuments.ToList())
                 {
@@ -9511,13 +9709,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Document(to); // Clone.tt Line: 110
+                        var p = new Document(to); // Clone.tt Line: 112
                         Document.Update(p, (Document)tt, isDeep);
                         to.ListDocuments.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -9547,14 +9745,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListDocuments Backup()
         {
@@ -9572,45 +9770,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_documents' to 'GroupListDocuments'
-        public static GroupListDocuments ConvertToVM(Proto.Config.proto_group_list_documents m, GroupListDocuments vm) // Clone.tt Line: 163
+        public static GroupListDocuments ConvertToVM(Proto.Config.proto_group_list_documents m, GroupListDocuments vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListDocuments) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListDocuments) // Clone.tt Line: 194
             {
-                var tvm = Document.ConvertToVM(t, new Document(vm)); // Clone.tt Line: 194
+                var tvm = Document.ConvertToVM(t, new Document(vm)); // Clone.tt Line: 197
                 vm.ListDocuments.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListDocuments' to 'proto_group_list_documents'
-        public static Proto.Config.proto_group_list_documents ConvertToProto(GroupListDocuments vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_documents ConvertToProto(GroupListDocuments vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_documents m = new Proto.Config.proto_group_list_documents(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListDocuments) // Clone.tt Line: 227
-                m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_documents m = new Proto.Config.proto_group_list_documents(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListDocuments) // Clone.tt Line: 231
+                m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -9760,29 +9960,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListJournals Clone(ITreeConfigNode parent, GroupListJournals from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListJournals vm = new GroupListJournals(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListJournals = new ConfigNodesCollection<Journal>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListJournals) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListJournals = new ConfigNodesCollection<Journal>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListJournals) // Clone.tt Line: 50
                 vm.ListJournals.Add(Journal.Clone(vm, (Journal)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListJournals to, GroupListJournals from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListJournals to, GroupListJournals from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListJournals.ToList())
                 {
@@ -9812,13 +10014,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Journal(to); // Clone.tt Line: 110
+                        var p = new Journal(to); // Clone.tt Line: 112
                         Journal.Update(p, (Journal)tt, isDeep);
                         to.ListJournals.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -9848,14 +10050,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListJournals Backup()
         {
@@ -9873,45 +10075,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_journals' to 'GroupListJournals'
-        public static GroupListJournals ConvertToVM(Proto.Config.proto_group_list_journals m, GroupListJournals vm) // Clone.tt Line: 163
+        public static GroupListJournals ConvertToVM(Proto.Config.proto_group_list_journals m, GroupListJournals vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListJournals = new ConfigNodesCollection<Journal>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListJournals) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListJournals = new ConfigNodesCollection<Journal>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListJournals) // Clone.tt Line: 194
             {
-                var tvm = Journal.ConvertToVM(t, new Journal(vm)); // Clone.tt Line: 194
+                var tvm = Journal.ConvertToVM(t, new Journal(vm)); // Clone.tt Line: 197
                 vm.ListJournals.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListJournals' to 'proto_group_list_journals'
-        public static Proto.Config.proto_group_list_journals ConvertToProto(GroupListJournals vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_journals ConvertToProto(GroupListJournals vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_journals m = new Proto.Config.proto_group_list_journals(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListJournals) // Clone.tt Line: 227
-                m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_journals m = new Proto.Config.proto_group_list_journals(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListJournals) // Clone.tt Line: 231
+                m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -10065,29 +10269,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Journal Clone(ITreeConfigNode parent, Journal from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Journal vm = new Journal(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListDocuments) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListDocuments) // Clone.tt Line: 50
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Journal to, Journal from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Journal to, Journal from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListDocuments.ToList())
                 {
@@ -10117,13 +10323,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Document(to); // Clone.tt Line: 110
+                        var p = new Document(to); // Clone.tt Line: 112
                         Document.Update(p, (Document)tt, isDeep);
                         to.ListDocuments.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -10153,14 +10359,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Journal Backup()
         {
@@ -10178,45 +10384,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_journal' to 'Journal'
-        public static Journal ConvertToVM(Proto.Config.proto_journal m, Journal vm) // Clone.tt Line: 163
+        public static Journal ConvertToVM(Proto.Config.proto_journal m, Journal vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListDocuments) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListDocuments) // Clone.tt Line: 194
             {
-                var tvm = Document.ConvertToVM(t, new Document(vm)); // Clone.tt Line: 194
+                var tvm = Document.ConvertToVM(t, new Document(vm)); // Clone.tt Line: 197
                 vm.ListDocuments.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Journal' to 'proto_journal'
-        public static Proto.Config.proto_journal ConvertToProto(Journal vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_journal ConvertToProto(Journal vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_journal m = new Proto.Config.proto_journal(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListDocuments) // Clone.tt Line: 227
-                m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_journal m = new Proto.Config.proto_journal(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListDocuments) // Clone.tt Line: 231
+                m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -10349,29 +10557,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListForms Clone(ITreeConfigNode parent, GroupListForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListForms vm = new GroupListForms(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListForms = new ConfigNodesCollection<Form>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListForms) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListForms = new ConfigNodesCollection<Form>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListForms) // Clone.tt Line: 50
                 vm.ListForms.Add(Form.Clone(vm, (Form)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListForms to, GroupListForms from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListForms to, GroupListForms from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListForms.ToList())
                 {
@@ -10401,13 +10611,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Form(to); // Clone.tt Line: 110
+                        var p = new Form(to); // Clone.tt Line: 112
                         Form.Update(p, (Form)tt, isDeep);
                         to.ListForms.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -10437,14 +10647,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListForms Backup()
         {
@@ -10462,45 +10672,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_forms' to 'GroupListForms'
-        public static GroupListForms ConvertToVM(Proto.Config.proto_group_list_forms m, GroupListForms vm) // Clone.tt Line: 163
+        public static GroupListForms ConvertToVM(Proto.Config.proto_group_list_forms m, GroupListForms vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListForms = new ConfigNodesCollection<Form>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListForms) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListForms = new ConfigNodesCollection<Form>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListForms) // Clone.tt Line: 194
             {
-                var tvm = Form.ConvertToVM(t, new Form(vm)); // Clone.tt Line: 194
+                var tvm = Form.ConvertToVM(t, new Form(vm)); // Clone.tt Line: 197
                 vm.ListForms.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListForms' to 'proto_group_list_forms'
-        public static Proto.Config.proto_group_list_forms ConvertToProto(GroupListForms vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_forms ConvertToProto(GroupListForms vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_forms m = new Proto.Config.proto_group_list_forms(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListForms) // Clone.tt Line: 227
-                m.ListForms.Add(Form.ConvertToProto((Form)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_forms m = new Proto.Config.proto_group_list_forms(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListForms) // Clone.tt Line: 231
+                m.ListForms.Add(Form.ConvertToProto((Form)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -10649,26 +10861,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Form Clone(ITreeConfigNode parent, Form from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Form vm = new Form(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Form to, Form from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Form to, Form from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -10698,14 +10912,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Form Backup()
         {
@@ -10723,37 +10937,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_form' to 'Form'
-        public static Form ConvertToVM(Proto.Config.proto_form m, Form vm) // Clone.tt Line: 163
+        public static Form ConvertToVM(Proto.Config.proto_form m, Form vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Form' to 'proto_form'
-        public static Proto.Config.proto_form ConvertToProto(Form vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_form ConvertToProto(Form vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_form m = new Proto.Config.proto_form(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_form m = new Proto.Config.proto_form(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -10859,29 +11075,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static GroupListReports Clone(ITreeConfigNode parent, GroupListReports from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             GroupListReports vm = new GroupListReports(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListReports = new ConfigNodesCollection<Report>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListReports) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListReports = new ConfigNodesCollection<Report>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListReports) // Clone.tt Line: 50
                 vm.ListReports.Add(Report.Clone(vm, (Report)t, isDeep));
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(GroupListReports to, GroupListReports from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(GroupListReports to, GroupListReports from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListReports.ToList())
                 {
@@ -10911,13 +11129,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new Report(to); // Clone.tt Line: 110
+                        var p = new Report(to); // Clone.tt Line: 112
                         Report.Update(p, (Report)tt, isDeep);
                         to.ListReports.Add(p);
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 79
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -10947,14 +11165,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override GroupListReports Backup()
         {
@@ -10972,45 +11190,47 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_group_list_reports' to 'GroupListReports'
-        public static GroupListReports ConvertToVM(Proto.Config.proto_group_list_reports m, GroupListReports vm) // Clone.tt Line: 163
+        public static GroupListReports ConvertToVM(Proto.Config.proto_group_list_reports m, GroupListReports vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListReports = new ConfigNodesCollection<Report>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListReports) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListReports = new ConfigNodesCollection<Report>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListReports) // Clone.tt Line: 194
             {
-                var tvm = Report.ConvertToVM(t, new Report(vm)); // Clone.tt Line: 194
+                var tvm = Report.ConvertToVM(t, new Report(vm)); // Clone.tt Line: 197
                 vm.ListReports.Add(tvm);
             }
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'GroupListReports' to 'proto_group_list_reports'
-        public static Proto.Config.proto_group_list_reports ConvertToProto(GroupListReports vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_group_list_reports ConvertToProto(GroupListReports vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_group_list_reports m = new Proto.Config.proto_group_list_reports(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListReports) // Clone.tt Line: 227
-                m.ListReports.Add(Report.ConvertToProto((Report)t)); // Clone.tt Line: 231
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_group_list_reports m = new Proto.Config.proto_group_list_reports(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListReports) // Clone.tt Line: 231
+                m.ListReports.Add(Report.ConvertToProto((Report)t)); // Clone.tt Line: 235
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -11159,26 +11379,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static Report Clone(ITreeConfigNode parent, Report from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Report vm = new Report(parent);
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 62
-            vm.NameUi = from.NameUi; // Clone.tt Line: 62
-            vm.Description = from.Description; // Clone.tt Line: 62
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 48
-            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 49
+            vm.IsNotNotifying = true;
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 63
+            vm.NameUi = from.NameUi; // Clone.tt Line: 63
+            vm.Description = from.Description; // Clone.tt Line: 63
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 49
+            foreach (var t in from.ListGeneratorsSettings) // Clone.tt Line: 50
                 vm.ListGeneratorsSettings.Add(GeneratorSettings.Clone(vm, (GeneratorSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 67
+            if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(Report to, Report from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(Report to, Report from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 134
-            to.NameUi = from.NameUi; // Clone.tt Line: 134
-            to.Description = from.Description; // Clone.tt Line: 134
-            if (isDeep) // Clone.tt Line: 79
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 136
+            to.NameUi = from.NameUi; // Clone.tt Line: 136
+            to.Description = from.Description; // Clone.tt Line: 136
+            if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListGeneratorsSettings.ToList())
                 {
@@ -11208,14 +11430,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                     if (!isfound)
                     {
-                        var p = new GeneratorSettings(to); // Clone.tt Line: 110
+                        var p = new GeneratorSettings(to); // Clone.tt Line: 112
                         GeneratorSettings.Update(p, (GeneratorSettings)tt, isDeep);
                         to.ListGeneratorsSettings.Add(p);
                     }
                 }
             }
         }
-        // Clone.tt Line: 140
+        // Clone.tt Line: 142
         #region IEditable
         public override Report Backup()
         {
@@ -11233,37 +11455,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_report' to 'Report'
-        public static Report ConvertToVM(Proto.Config.proto_report m, Report vm) // Clone.tt Line: 163
+        public static Report ConvertToVM(Proto.Config.proto_report m, Report vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 211
-            vm.NameUi = m.NameUi; // Clone.tt Line: 211
-            vm.Description = m.Description; // Clone.tt Line: 211
-            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 190
-            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 191
+            vm.IsNotNotifying = true;
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 214
+            vm.NameUi = m.NameUi; // Clone.tt Line: 214
+            vm.Description = m.Description; // Clone.tt Line: 214
+            vm.ListGeneratorsSettings = new ConfigNodesCollection<GeneratorSettings>(vm); // Clone.tt Line: 193
+            foreach (var t in m.ListGeneratorsSettings) // Clone.tt Line: 194
             {
-                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 194
+                var tvm = GeneratorSettings.ConvertToVM(t, new GeneratorSettings(vm)); // Clone.tt Line: 197
                 vm.ListGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 217
+            vm.OnInitFromDto(); // Clone.tt Line: 220
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'Report' to 'proto_report'
-        public static Proto.Config.proto_report ConvertToProto(Report vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_report ConvertToProto(Report vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_report m = new Proto.Config.proto_report(); // Clone.tt Line: 224
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 261
-            m.NameUi = vm.NameUi; // Clone.tt Line: 261
-            m.Description = vm.Description; // Clone.tt Line: 261
-            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 227
-                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 231
+            Proto.Config.proto_report m = new Proto.Config.proto_report(); // Clone.tt Line: 228
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 265
+            m.NameUi = vm.NameUi; // Clone.tt Line: 265
+            m.Description = vm.Description; // Clone.tt Line: 265
+            foreach (var t in vm.ListGeneratorsSettings) // Clone.tt Line: 231
+                m.ListGeneratorsSettings.Add(GeneratorSettings.ConvertToProto((GeneratorSettings)t)); // Clone.tt Line: 235
             return m;
         }
         
@@ -11354,40 +11578,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static ModelRow Clone(ModelRow from, bool isDeep = true) // Clone.tt Line: 27
         {
             ModelRow vm = new ModelRow();
-            vm.GroupName = from.GroupName; // Clone.tt Line: 62
-            vm.Name = from.Name; // Clone.tt Line: 62
-            vm.Guid = from.Guid; // Clone.tt Line: 62
-            vm.IsIncluded = from.IsIncluded; // Clone.tt Line: 62
+            vm.IsNotNotifying = true;
+            vm.GroupName = from.GroupName; // Clone.tt Line: 63
+            vm.Name = from.Name; // Clone.tt Line: 63
+            vm.Guid = from.Guid; // Clone.tt Line: 63
+            vm.IsIncluded = from.IsIncluded; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
             return vm;
         }
-        public static void Update(ModelRow to, ModelRow from, bool isDeep = true) // Clone.tt Line: 72
+        public static void Update(ModelRow to, ModelRow from, bool isDeep = true) // Clone.tt Line: 74
         {
-            to.GroupName = from.GroupName; // Clone.tt Line: 134
-            to.Name = from.Name; // Clone.tt Line: 134
-            to.Guid = from.Guid; // Clone.tt Line: 134
-            to.IsIncluded = from.IsIncluded; // Clone.tt Line: 134
+            to.GroupName = from.GroupName; // Clone.tt Line: 136
+            to.Name = from.Name; // Clone.tt Line: 136
+            to.Guid = from.Guid; // Clone.tt Line: 136
+            to.IsIncluded = from.IsIncluded; // Clone.tt Line: 136
         }
         // Conversion from 'proto_model_row' to 'ModelRow'
-        public static ModelRow ConvertToVM(Proto.Config.proto_model_row m, ModelRow vm) // Clone.tt Line: 163
+        public static ModelRow ConvertToVM(Proto.Config.proto_model_row m, ModelRow vm) // Clone.tt Line: 165
         {
             if (m == null)
             {
                 return vm;
             }
-            vm.GroupName = m.GroupName; // Clone.tt Line: 211
-            vm.Name = m.Name; // Clone.tt Line: 211
-            vm.Guid = m.Guid; // Clone.tt Line: 211
-            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 211
+            vm.IsNotNotifying = true;
+            vm.GroupName = m.GroupName; // Clone.tt Line: 214
+            vm.Name = m.Name; // Clone.tt Line: 214
+            vm.Guid = m.Guid; // Clone.tt Line: 214
+            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 214
+            vm.IsNotNotifying = true;
             return vm;
         }
         // Conversion from 'ModelRow' to 'proto_model_row'
-        public static Proto.Config.proto_model_row ConvertToProto(ModelRow vm) // Clone.tt Line: 222
+        public static Proto.Config.proto_model_row ConvertToProto(ModelRow vm) // Clone.tt Line: 226
         {
-            Proto.Config.proto_model_row m = new Proto.Config.proto_model_row(); // Clone.tt Line: 224
-            m.GroupName = vm.GroupName; // Clone.tt Line: 261
-            m.Name = vm.Name; // Clone.tt Line: 261
-            m.Guid = vm.Guid; // Clone.tt Line: 261
-            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 261
+            Proto.Config.proto_model_row m = new Proto.Config.proto_model_row(); // Clone.tt Line: 228
+            m.GroupName = vm.GroupName; // Clone.tt Line: 265
+            m.Name = vm.Name; // Clone.tt Line: 265
+            m.Guid = vm.Guid; // Clone.tt Line: 265
+            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 265
             return m;
         }
         #endregion Procedures

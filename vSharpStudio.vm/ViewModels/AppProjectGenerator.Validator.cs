@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
@@ -17,6 +18,26 @@ namespace vSharpStudio.vm.ViewModels
                 this.RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
                 this.RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
                 this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+                this.RuleFor(x => x.RelativePathToGenFolder)
+                    .NotEmpty()
+                    .WithMessage("Output generation folder is not selected");
+                this.RuleFor(x => x.RelativePathToGenFolder)
+                    .Must((o, path) =>
+                    {
+                        if (string.IsNullOrEmpty(path))
+                            return true;
+                        return Directory.Exists(o.GetCombinedPath(path));
+                    })
+                    .WithMessage("Output generation folder was not found");
+                this.RuleFor(x => x.GenFileName)
+                    .NotEmpty()
+                    .WithMessage("Output file name is empty");
+                this.RuleFor(x => x.PluginGuid)
+                    .NotEmpty()
+                    .WithMessage("Plugin is not selected");
+                this.RuleFor(x => x.PluginGeneratorGuid)
+                    .NotEmpty()
+                    .WithMessage("Generator is not selected");
             }
 
             private bool IsUnique(AppProjectGenerator val)
@@ -81,6 +102,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGuidChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             this.PluginGeneratorGuid = "";
             Config cnfg = (Config)this.GetConfig();
             Plugin plg = (Plugin)cnfg.DicNodes[this.PluginGuid];
@@ -99,6 +122,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
             {
                 this.GeneratorSettings = string.Empty;
@@ -134,6 +159,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 throw;
             }
+        }
+        partial void OnRelativePathToGenFolderChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (!string.IsNullOrWhiteSpace(this._RelativePathToGenFolder))
+                this._RelativePathToGenFolder = this.GetRelativeToConfigDiskPath(this._RelativePathToGenFolder);
         }
         #region Tree operations
         public override bool NodeCanUp()

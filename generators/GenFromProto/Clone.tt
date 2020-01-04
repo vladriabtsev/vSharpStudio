@@ -31,6 +31,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <# } else { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <# } #>
+    vm.IsNotNotifying = true;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
@@ -67,6 +68,7 @@ if (this.Doc.IsDefaultBase) {
     if (isNewGuid) // <#=Helper.FilePos() #>
         vm.SetNewGuid();
 <# } #>
+    vm.IsNotNotifying = false;
     return vm;
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true) // <#=Helper.FilePos() #>
@@ -166,6 +168,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         return vm;
     }
+    vm.IsNotNotifying = true;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
             continue;
@@ -216,6 +219,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 <# if (this.Doc.IsDefaultBase) { #>
     vm.OnInitFromDto(); // <#=Helper.FilePos() #>
 <# } #>
+    vm.IsNotNotifying = true;
     return vm;
 }
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'

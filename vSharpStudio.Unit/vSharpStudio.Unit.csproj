@@ -85,11 +85,6 @@
     <ProjectReference Include="..\common\ApplicationLogging\ApplicationLogging.csproj" />
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Abstractions\EFCore.Abstractions.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Analyzers\EFCore.Analyzers.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Design\EFCore.Design.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore.Relational\EFCore.Relational.csproj" />
-    <ProjectReference Include="..\submodules\EntityFrameworkCore\src\EFCore\EFCore.csproj" />
     <ProjectReference Include="..\vPlugin.Sample\vPlugin.Sample.csproj" />
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />

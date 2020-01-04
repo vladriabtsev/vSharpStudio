@@ -640,7 +640,9 @@ it will override previous settings
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
-@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] </p></td>
+@attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
+@attr [Description(&#34;Relative path from configuration file folder to .net project&#34;)]
+Relative path from configuration file folder to .net project </p></td>
                 </tr>
               
                 <tr>
@@ -744,13 +746,24 @@ it will override previous settings
                 </tr>
               
                 <tr>
-                  <td>relative_path_to_generated_file</td>
+                  <td>relative_path_to_gen_folder</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Output&#34;)]
-@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-@attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
+@attr [DisplayName(&#34;Output Folder&#34;)]
+@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+@attr [Description(&#34;Relative path from configuration file folder to folder for generated file&#34;)]
+Relative path from configuration file folder to folder for generated file </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gen_file_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Output File&#34;)]
+@attr [PropertyOrderAttribute(9)]
+@attr [Description(&#34;Generator output file name&#34;)]
+Generator output file name </p></td>
                 </tr>
               
                 <tr>
@@ -814,8 +827,9 @@ it will override previous settings
                   <td><p>List NET projects
 @attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Path&#34;)]
-@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-@attr [Description(&#34;Relative path to solution folder&#34;)] </p></td>
+@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
+@attr [Description(&#34;Relative path from configuration file folder to .net solution&#34;)]
+Relative path from configuration file folder to .net solution </p></td>
                 </tr>
               
                 <tr>

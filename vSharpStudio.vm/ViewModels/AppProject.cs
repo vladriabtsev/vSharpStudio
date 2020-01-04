@@ -38,6 +38,15 @@ namespace vSharpStudio.vm.ViewModels
             (this as ITreeConfigNode).Name = name;
             this.RelativeAppProjectPath = relativeToSolutionProjectPath;
         }
+
+        partial void OnRelativeAppProjectPathChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (!string.IsNullOrWhiteSpace(this._RelativeAppProjectPath))
+                this._RelativeAppProjectPath = this.GetRelativeToConfigDiskPath(this._RelativeAppProjectPath);
+        }
+
         #region Tree operations
         public override bool NodeCanUp()
         {

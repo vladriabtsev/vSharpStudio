@@ -193,6 +193,8 @@ namespace ViewModelBase
         //	if (propField != newValue)
         //	{
         //		propField = newValue;
+        //      if (IsNotNotifying)
+        //          return;
         //		VMHelpers.InternalNotifyPropertyChanged(propName, this, this.PropertyChanged, this.Dispatcher);
         //	}
         //}
@@ -201,6 +203,8 @@ namespace ViewModelBase
         //  if (!EqualityComparer<Tprop>.Default.Equals(propField, newValue))
         //  {
         //    propField = newValue;
+        //      if (IsNotNotifying)
+        //          return;
         //    VMHelpers.InternalNotifyPropertyChanged(propName, this, this.PropertyChanged, this.Dispatcher);
         //    IsChanged = true;
         //    return true;
@@ -213,6 +217,8 @@ namespace ViewModelBase
             {
                 Tprop prevValue = propField;
                 propField = newValue;
+                if (IsNotNotifying)
+                    return false;
                 VMHelpers.InternalNotifyPropertyChanged(propName, this, this.PropertyChanged, this.Dispatcher);
                 onChanged?.Invoke();
                 IsChanged = true;
@@ -226,10 +232,14 @@ namespace ViewModelBase
 
         public void RaisePropertyChanged(string propertyName)
         {
+            if (IsNotNotifying)
+                return;
             VMHelpers.InternalNotifyPropertyChanged(propertyName, this, this.PropertyChanged, this.Dispatcher);
         }
         protected void NotifyPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+            if (IsNotNotifying)
+                return;
             VMHelpers.InternalNotifyPropertyChanged(propertyName, this, this.PropertyChanged, this.Dispatcher);
         }
         protected IDispatcher Dispatcher { get { return ViewModelBindable.AppDispatcher; } }
@@ -253,5 +263,6 @@ namespace ViewModelBase
             else
                 Dispatcher.BeginInvoke(() => action());
         }
+        public bool IsNotNotifying { get; set; }
     }
 }

@@ -82,6 +82,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | is_access_param1 | [bool](#bool) |  |  |
 | is_access_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
 | access_param3 | [string](#string) |  |  |
+| is_generate_not_valid_code | [bool](#bool) |  |  |
 
 
 
