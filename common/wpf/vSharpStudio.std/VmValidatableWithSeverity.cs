@@ -9,12 +9,11 @@ using System.Threading;
 
 namespace ViewModelBase
 {
-    public class ViewModelValidatableWithSeverity<T, TValidator>
-        : ViewModelEditable<T>, INotifyDataErrorInfo, IValidatableWithSeverity//, IComparable
-      where TValidator : AbstractValidator<T>
-      where T : ViewModelValidatableWithSeverity<T, TValidator>//, IComparable<T>
+    public class VmValidatableWithSeverity<T, TValidator> : VmEditable, INotifyDataErrorInfo, IValidatableWithSeverity//, IComparable
+        where TValidator : AbstractValidator<VmValidatableWithSeverity<T, TValidator>>
+        where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
-        public ViewModelValidatableWithSeverity(TValidator validator)
+        public VmValidatableWithSeverity(TValidator validator)
         {
             this._validator = validator;
             this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
@@ -131,31 +130,27 @@ namespace ViewModelBase
         {
             var res = this._validator.Validate(this);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(m => m.HasErrors);
-            NotifyPropertyChanged(m => m.HasWarnings);
-            NotifyPropertyChanged(m => m.HasInfos);
+            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(() => this.HasWarnings);
+            NotifyPropertyChanged(() => this.HasInfos);
             return isValid;
         }
         public async void ValidateAsync()
         {
             var res = await this._validator.ValidateAsync(this);
             ValidationChange(res);
-            NotifyPropertyChanged(m => m.HasErrors);
-            NotifyPropertyChanged(m => m.HasWarnings);
-            NotifyPropertyChanged(m => m.HasInfos);
+            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(() => this.HasWarnings);
+            NotifyPropertyChanged(() => this.HasInfos);
         }
-        protected virtual void ValidateProperty<TResult>
-            (Expression<Func<T, TResult>> property)
+        protected void ValidateProperty<T>
+            (Expression<Func<T>> property)
         {
-            string propertyName = ((MemberExpression)property.Body).Member.Name;
+            var propertyName = this.GetPropertyName<T>(property);
             ValidateProperty(propertyName);
         }
-        protected override bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
-#if DEBUG
-            if (isNotValidateForUnitTests)
-                return true;
-#endif
             var res = this._validator.Validate(this);
             bool found = false;
             foreach (var t in res.Errors)
@@ -206,100 +201,11 @@ namespace ViewModelBase
             }
             return res.IsValid;
         }
-        //protected async override void OnValidateProperty(string propertyName)
-        //{
-        //    var res = await this._validator.ValidateAsync(this);
-        //    if (!res.IsValid)
-        //    {
-        //        bool found = false;
-        //        foreach (var t in res.Errors)
-        //        {
-        //            if (t.PropertyName != propertyName)
-        //                continue;
-        //            found = true;
-        //            switch (t.Severity)
-        //            {
-        //                case Severity.Error:
-        //                    if (!_errors.ContainsKey(t.PropertyName))
-        //                        _errors[t.PropertyName] = new List<string>();
-        //                    _errors[t.PropertyName].Add(t.ErrorMessage);
-        //                    break;
-        //                case Severity.Warning:
-        //                    if (!_warnings.ContainsKey(t.PropertyName))
-        //                        _warnings[t.PropertyName] = new List<string>();
-        //                    _warnings[t.PropertyName].Add(t.ErrorMessage);
-        //                    break;
-        //                case Severity.Info:
-        //                    if (!_infos.ContainsKey(t.PropertyName))
-        //                        _infos[t.PropertyName] = new List<string>();
-        //                    _infos[t.PropertyName].Add(t.ErrorMessage);
-        //                    break;
-        //            }
-        //        }
-        //        if (found)
-        //        {
-        //            RaiseErrorsChanged(propertyName);
-        //        }
-        //        else if (_errors.ContainsKey(propertyName))
-        //        {
-        //            _errors.Remove(propertyName);
-        //            RaiseErrorsChanged(propertyName);
-        //        }
-        //        else if (_warnings.ContainsKey(propertyName))
-        //        {
-        //            _warnings.Remove(propertyName);
-        //            RaiseErrorsChanged(propertyName);
-        //        }
-        //        else if (_infos.ContainsKey(propertyName))
-        //        {
-        //            _infos.Remove(propertyName);
-        //            RaiseErrorsChanged(propertyName);
-        //        }
-        //    }
-        //}
-        public override void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
-        public override T Backup() { throw new NotImplementedException("Please override Backup method"); }
 
         #region INotifyDataErrorInfo methods and helpers
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, List<string>> _warnings = new Dictionary<string, List<string>>();
         private readonly Dictionary<string, List<string>> _infos = new Dictionary<string, List<string>>();
-        // than higher weight than higher importance of the message
-        //public void SetError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        //{
-        //    if (!_errors.ContainsKey(propertyName))
-        //        _errors.Add(propertyName, new List<string> { errorMessage });
-        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Error, weight, errorMessage);
-        //    ValidationCollection.Add(msg);
-        //    RaiseErrorsChanged(propertyName);
-        //    NotifyPropertyChanged(m => m.HasErrors);
-        //}
-        //// than higher weight than higher importance of the message
-        //public void SetWarning(string warningMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        //{
-        //    if (!_warnings.ContainsKey(propertyName))
-        //        _warnings.Add(propertyName, new List<string> { warningMessage });
-        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Warning, weight, warningMessage);
-        //    ValidationCollection.Add(msg);
-        //    RaiseErrorsChanged(propertyName);
-        //    NotifyPropertyChanged(m => m.HasWarnings);
-        //}
-        //// than higher weight than higher importance of the message
-        //public void SetInfo(string infoMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        //{
-        //    if (!_infos.ContainsKey(propertyName))
-        //        _infos.Add(propertyName, new List<string> { infoMessage });
-        //    var msg = new ValidationMessage<T>((T)this, propertyName, FluentValidation.Severity.Info, weight, infoMessage);
-        //    ValidationCollection.Add(msg);
-        //    RaiseErrorsChanged(propertyName);
-        //    NotifyPropertyChanged(m => m.HasInfos);
-        //}
-        // than higher weight than higher importance of the message
-        //public void SetOneError(string errorMessage, byte weight = 0, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        //{
-        //    ClearError(propertyName);
-        //    SetError(errorMessage, weight, propertyName);
-        //}
         protected void ClearError(string propertyName)
         {
             if (_errors.ContainsKey(propertyName))
@@ -310,9 +216,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(m => m.HasErrors);
-            NotifyPropertyChanged(m => m.HasWarnings);
-            NotifyPropertyChanged(m => m.HasInfos);
+            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(() => this.HasWarnings);
+            NotifyPropertyChanged(() => this.HasInfos);
         }
         protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
@@ -324,9 +230,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(m => m.HasErrors);
-            NotifyPropertyChanged(m => m.HasWarnings);
-            NotifyPropertyChanged(m => m.HasInfos);
+            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(() => this.HasWarnings);
+            NotifyPropertyChanged(() => this.HasInfos);
         }
         protected void ClearAllErrors()
         {
@@ -370,14 +276,6 @@ namespace ViewModelBase
             return _infos.ContainsKey(propertyName)
                 ? _infos[propertyName]
                 : null;
-        }
-
-        public virtual int CompareToById(T other) { throw new NotImplementedException("Please override CompareToById method"); }
-        public int CompareTo(object obj)
-        {
-            int res = obj.GetType().Name.CompareTo(typeof(T).Name);
-            if (res != 0) return res;
-            return CompareToById((T)obj);
         }
 
         [BrowsableAttribute(false)]

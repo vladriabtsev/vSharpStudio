@@ -18,9 +18,9 @@ namespace vSharpStudio.common.DiffModel
     }
     public class RenamePropertyData
     {
-        public RenamePropertyData(string propName, string propNameNew)
+        public RenamePropertyData(string propNamePrev, string propNameNew)
         {
-            this.PropName = propName;
+            this.PropName = propNamePrev;
             this.PropNameNew = propNameNew;
         }
         public string PropName { get; private set; }

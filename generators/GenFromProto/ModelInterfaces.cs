@@ -123,7 +123,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" : IValidatableWithSeverity, IGuid, IName");
+            this.Write(" : IGuid, IName");
             
             #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  } 

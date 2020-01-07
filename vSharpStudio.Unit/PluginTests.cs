@@ -258,14 +258,45 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "test";
             vm.CommandConfigSave.Execute(null);
 
+            var genFilePath = genFolder + genFile;
+            if (File.Exists(genFilePath))
+                File.Delete(genFilePath);
+
+            // Can recognize not valid Config
+            #region not valid Config
+            vm.Config.ValidateSubTreeFromNode(vm.Config);
+            Assert.IsTrue(vm.Config.CountErrors == 0);
+            // Introduce error
+
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            Assert.IsTrue(vm.Config.CountErrors > 0);
+            Assert.IsTrue(File.Exists(genFilePath));
+            #endregion not valid Config
+
+            // Can recognize not compilible code before rename
+
+            // Accept not compilible code if there are no renames
+
+            // Can rename
+
+            // Can roll back if rename is fauld
+
+            // Can generate code
             #region generate valid code
-            if (File.Exists(genFolder + genFile))
-                File.Delete(genFolder + genFile);
+            if (File.Exists(genFilePath))
+                File.Delete(genFilePath);
             prms.IsGenerateNotValidCode = false;
+            //vm.CommandConfigCurrentUpdate.ExecuteWithException(null);
             vm.CommandConfigCurrentUpdate.Execute(null);
 
             Assert.IsTrue(File.Exists(genFolder + genFile));
             #endregion generate valid code
+
+            // Can recognize errors when compiling generated code
+
+            // Can compile generated code
+
+            // Can run unit test for generated code
 
             #region generate not valid code
             #endregion generate not valid code

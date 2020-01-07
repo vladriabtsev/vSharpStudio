@@ -26,7 +26,7 @@ public enum <#= t.Name.ToNameCs() #> // <#=Helper.FilePos() #>
      this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name]; 
      this.PushIndent("    "); #>
 <#= this.MessageDoc.Comments #>
-public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IValidatableWithSeverity, IGuid, IName<# } #> // <#=Helper.FilePos() #>
+public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #> // <#=Helper.FilePos() #>
 {
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  

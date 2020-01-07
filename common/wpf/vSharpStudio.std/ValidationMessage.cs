@@ -6,29 +6,31 @@ using FluentValidation;
 
 namespace ViewModelBase
 {
-    [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
-    public class ValidationMessage<T> : ValidationMessage
-      where T : class
-    {
-        // then higher weight than higher importance of the message
-        public ValidationMessage(T model, string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
-            : base(propertyName, severity, weight, message)
-        {
-            this.Model = model;
-        }
-        public string FullMessage { get; }
-    }
+    //[DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
+    //public class ValidationMessage<T> : ValidationMessage
+    //  where T : class
+    //{
+    //    // then higher weight than higher importance of the message
+    //    public ValidationMessage(T model, string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
+    //        : base(propertyName, severity, weight, message)
+    //    {
+    //        this.Model = model;
+    //    }
+    //    public string FullMessage { get; }
+    //}
     public enum SeverityWeight { VeryLow, Low, Normal, High, VeryHigh }
-    public abstract class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
+    [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
+    public class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
     {
         private static int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;
         private static int _lenSeverityWeight = Enum.GetNames(typeof(SeverityWeight)).Length;
         // than higher weight than higher importance of the message
-        public ValidationMessage(string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
+        public ValidationMessage(object model, string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
         {
             // weight has keep sub levels between main severity levels
             //if (weight > (1 << MultiplierShift))
             //    throw new ArgumentException("parameter 'weight' expected to be less than " + (1 << MultiplierShift));
+            this.Model = model;
             this.PropertyName = propertyName;
             this.Severity = severity;
             this.SeverityWeight = weight;

@@ -43,7 +43,37 @@ namespace vPlugin.Sample
 
         public List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes)
         {
-            throw new NotImplementedException();
+            List<PreRenameData> res = new List<PreRenameData>();
+            string nname, cname;
+            PreRenameData prd = null;
+            var dic = annotatedConfig.DicNodes;
+            foreach (var t in lstGuidsRenamedNodes)
+            {
+                var node = dic[t];
+                var typeName = node.GetType().Name;
+                switch (typeName)
+                {
+                    case "ICatalog":
+                        var nc = node as ICatalog;
+
+                        if (nc.IsRenamed())
+                        {
+                            cname = (nc.PrevVersion() as ICatalog).Name;
+                            nname = "MyNamespace";
+                            prd = new PreRenameData(nname, cname);
+                            foreach (var tt in nc.GroupProperties.ListProperties)
+                            {
+                                if (tt.IsRenamed())
+                                {
+                                    var m = new RenamePropertyData((tt.PrevVersion() as IProperty).Name, tt.Name);
+                                    prd.ListRenamedProperties.Add(m);
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            return res;
         }
     }
 }

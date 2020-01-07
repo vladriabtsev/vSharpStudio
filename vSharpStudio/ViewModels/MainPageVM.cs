@@ -799,15 +799,34 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        private async void UpdateCurrentVersion(CancellationToken cancellationToken = default)
+        private void UpdateCurrentVersion(CancellationToken cancellationToken = default)
         {
-            if (this.pconfig_history == null)
+            this._Config.ValidateSubTreeFromNode(this._Config);
+            if (this._Config.CountErrors > 0)
             {
-                var ex = new NotSupportedException();
-                _logger.LogCritical(ex, "".CallerInfo());
-                throw ex;
+                MessageBox.Show("There are errors in configuration. Fix errors and try again.", "Error");
+                return;
             }
-            //this.PluginSettingsToModel();
+            var t = Task.Run(() => { var t = this.UpdateCurrentVersionAsync(cancellationToken); t.Wait(); });
+            t.Wait();
+        }
+        //async Task MyMethodAsync()
+        //{
+        //    // Code here runs in the original context.
+        //    await Task.FromResult(1);
+        //    // Code here runs in the original context.
+        //    await Task.FromResult(1).ConfigureAwait(continueOnCapturedContext: false);
+        //    // Code here runs in the original context.
+        //    var random = new Random();
+        //    int delay = random.Next(2); // Delay is either 0 or 1
+        //    await Task.Delay(delay).ConfigureAwait(continueOnCapturedContext: false);
+        //    // Code here might or might not run in the original context.
+        //    // The same is true when you await any Task
+        //    // that might complete very quickly.
+        //}
+        // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
+        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken)
+        {
             try
             {
                 //TODO roll back if Exception
@@ -842,53 +861,53 @@ namespace vSharpStudio.ViewModels
                 {
                     //try
                     //{
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    {
+                        //TODO implement backup
+                        //ts.RelativeAppSolutionPath
+                        //TODO implement renamer
+                        // Open the solution within the workspace.
+                        Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
+                        foreach (var tp in ts.ListAppProjects)
                         {
-                            //TODO implement backup
-                            //ts.RelativeAppSolutionPath
-                            //TODO implement renamer
-                            // Open the solution within the workspace.
-                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync("");
-                            foreach (var tp in ts.ListAppProjects)
+                            bool isProjectFound = false;
+                            foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                             {
-                                bool isProjectFound = false;
-                                foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
+                                // Look up the snapshot for the original project in the latest forked solution.
+                                Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
+                                if (project.FilePath == tp.GetCombinedPath(tp.RelativeAppProjectPath))
                                 {
-                                    // Look up the snapshot for the original project in the latest forked solution.
-                                    Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
-                                    if (project.FilePath == tp.RelativeAppProjectPath)
+                                    isProjectFound = true;
+                                    foreach (var tg in tp.ListAppProjectGenerators)
                                     {
-                                        isProjectFound = true;
-                                        foreach (var tg in tp.ListAppProjectGenerators)
+                                        var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                        List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                        foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
                                         {
-                                            var generator = this._Config.DicGenerators[tg.Guid];
-                                            List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
-                                            foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
+                                            // Look up the snapshot for the original document in the latest forked solution.
+                                            Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
+                                            //tg.RelativePathToGeneratedFile
+                                            if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
                                             {
-                                                // Look up the snapshot for the original document in the latest forked solution.
-                                                Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
-                                                //tg.RelativePathToGeneratedFile
-                                                if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                                                if (Path.GetExtension(document.FilePath) == "cs")
                                                 {
-                                                    if (Path.GetExtension(document.FilePath) == "cs")
-                                                    {
-                                                        await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
-                                                    }
-                                                    else if (Path.GetExtension(document.FilePath) == "vb")
-                                                    {
-                                                        CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
-                                                    }
-                                                    else
-                                                        throw new NotSupportedException();
+                                                    await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
                                                 }
+                                                else if (Path.GetExtension(document.FilePath) == "vb")
+                                                {
+                                                    CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
+                                                }
+                                                else
+                                                    throw new NotSupportedException();
                                             }
                                         }
                                     }
                                 }
-                                if (!isProjectFound)
-                                    throw new Exception("Project not found");
                             }
+                            if (!isProjectFound)
+                                throw new Exception("Project not found");
                         }
+                    }
                     //}
                     //catch (Exception ex2)
                     //{
@@ -897,9 +916,8 @@ namespace vSharpStudio.ViewModels
                 }
                 this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
             }
-            catch (Exception ex)
+            finally
             {
-                throw ex;
                 //TODO roll back if Exception
             }
         }
@@ -940,9 +958,9 @@ namespace vSharpStudio.ViewModels
             this.pconfig_history.CurrentConfig.Version++;
             Utils.TryCall(
                 () =>
-            {
-                File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-            }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
+                {
+                    File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
         }
 
         #endregion Main

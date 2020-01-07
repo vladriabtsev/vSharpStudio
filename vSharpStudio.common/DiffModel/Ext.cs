@@ -72,6 +72,11 @@ namespace vSharpStudio.common
 
             return true;
         }
+        public static object PrevVersion(this IObjectAnnotatable obj)
+        {
+            var ann = obj.FindAnnotation(DiffEnumHistoryAnnotation.PrevVersion.ToString());
+            return ann?.Value;
+        }
 
         public static bool IsCanLooseData(this IConstant obj)
         {
