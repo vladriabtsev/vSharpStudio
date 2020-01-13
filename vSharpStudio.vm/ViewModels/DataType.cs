@@ -624,8 +624,8 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnDataTypeEnumChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrTypeName);
-            this.NotifyPropertyChanged(p => p.ProtoType);
+            this.NotifyPropertyChanged(nameof(this.ClrTypeName));
+            this.NotifyPropertyChanged(nameof(this.ProtoType));
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.ANY:
@@ -733,20 +733,20 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnLengthChanged()
         {
             this._MaxNumericalValue = 0;
-            this.NotifyPropertyChanged(p => p.ClrTypeName);
-            this.NotifyPropertyChanged(p => p.ProtoType);
-            this.NotifyPropertyChanged(p => p.MaxValue);
-            this.NotifyPropertyChanged(p => p.MinValue);
-            this.ValidateProperty(p => p.Accuracy);
+            this.NotifyPropertyChanged(nameof(this.ClrTypeName));
+            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            this.NotifyPropertyChanged(nameof(this.MaxValue));
+            this.NotifyPropertyChanged(nameof(this.MinValue));
+            this.ValidateProperty(nameof(this.Accuracy));
         }
 
         partial void OnAccuracyChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrTypeName);
-            this.NotifyPropertyChanged(p => p.ProtoType);
-            this.ValidateProperty(p => p.Length);
-            this.NotifyPropertyChanged(p => p.MaxValue);
-            this.NotifyPropertyChanged(p => p.MinValue);
+            this.NotifyPropertyChanged(nameof(this.ClrTypeName));
+            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            this.ValidateProperty(nameof(this.Length));
+            this.NotifyPropertyChanged(nameof(this.MaxValue));
+            this.NotifyPropertyChanged(nameof(this.MinValue));
             if (this.Accuracy == 0)
             {
                 this.VisibilityIsPositive = Visibility.Visible;
@@ -759,10 +759,10 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnIsPositiveChanged()
         {
-            this.NotifyPropertyChanged(p => p.ClrTypeName);
-            this.NotifyPropertyChanged(p => p.ProtoType);
-            this.NotifyPropertyChanged(p => p.MaxValue);
-            this.NotifyPropertyChanged(p => p.MinValue);
+            this.NotifyPropertyChanged(nameof(this.ClrTypeName));
+            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            this.NotifyPropertyChanged(nameof(this.MaxValue));
+            this.NotifyPropertyChanged(nameof(this.MinValue));
         }
 
         [BrowsableAttribute(false)]

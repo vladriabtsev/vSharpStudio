@@ -433,7 +433,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| value | [string](#string) |  | TODO struct for different types, at least INTEGER |
+| value | [string](#string) |  |  |
 
 
 

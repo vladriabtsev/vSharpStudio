@@ -13,7 +13,7 @@ namespace GenFromProto
     {
         FileDescriptor root;
         string nameSpace;
-        string defaultBaseClass = "ConfigObjectBase";
+        string defaultBaseClass = "ConfigObjectVmBase";
         string protoNameSpace;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();

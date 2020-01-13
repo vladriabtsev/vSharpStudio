@@ -1560,7 +1560,7 @@
             },
             {
               "name": "value",
-              "description": "TODO struct for different types, at least INTEGER",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",

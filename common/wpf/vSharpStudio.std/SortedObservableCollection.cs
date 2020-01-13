@@ -130,9 +130,9 @@ namespace ViewModelBase
         {
             if (sortingWeight > 0)
             {
-                if (sortingWeight > ViewModelBindable.MaxSortingWeight)
-                    throw new ArgumentException("sortingWeight is too big. Expected less then " + ViewModelBindable.MaxSortingWeight);
-                item.SortingWeight = sortingWeight << (64 - ViewModelBindable.MaxSortingWeightShift);
+                if (sortingWeight > VmBindable.MaxSortingWeight)
+                    throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
+                item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
                 item.SortingValue = item.SortingValue + item.SortingWeight;
             }
             lock (_lock)

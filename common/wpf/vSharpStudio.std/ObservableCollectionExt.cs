@@ -20,7 +20,7 @@ namespace ViewModelBase
 
     public ObservableCollectionExt()
     {
-      this.Dispatcher = ViewModelBindable.AppDispatcher;
+      this.Dispatcher = VmBindable.AppDispatcher;
       _timer = new Timer(new TimerCallback(TimerCallback), null, Timeout.Infinite, Timeout.Infinite);
       base.PropertyChanged += ObservableCollectionExt_PropertyChanged;
       base.CollectionChanged += ObservableCollectionExt_CollectionChanged;

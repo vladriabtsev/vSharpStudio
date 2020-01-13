@@ -5,7 +5,8 @@ using System.Text;
 
 namespace ViewModelBase
 {
-    public class VmEditable : VmBindable, IEditableObjectExt
+    public class VmEditable<T> : VmBindable, IEditableObjectExt
+        where T : VmEditable<T>
     {
         public VmEditable()
         {
@@ -23,11 +24,11 @@ namespace ViewModelBase
         //    this.Restore(_dtoBackup);
         //	IsChanged = false;
         //}
-        public virtual void Restore(VmEditable from) { throw new NotImplementedException("Please override Restore method"); }
-        public virtual VmEditable Backup() { throw new NotImplementedException("Please override Backup method"); }
+        public virtual void Restore(T from) { throw new NotImplementedException("Please override Restore method"); }
+        public virtual T Backup() { throw new NotImplementedException("Please override Backup method"); }
 
         #region IEditableObject
-        private VmEditable _dtoBackupTmp;
+        private T _dtoBackupTmp;
         [BrowsableAttribute(false)]
         public bool IsReadonly
         {

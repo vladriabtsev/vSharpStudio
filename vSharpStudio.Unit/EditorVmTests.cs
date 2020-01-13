@@ -25,7 +25,7 @@ namespace vSharpStudio.Unit
         private static Microsoft.Extensions.Logging.ILogger _logger;
         public EditorVmTests()
         {
-            ViewModelBindable.isUnitTests = true;
+            VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
                 _logger = Logger.CreateLogger<PluginTests>();
@@ -63,7 +63,7 @@ namespace vSharpStudio.Unit
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
 
         [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
-        public class TestSortable : ConfigObjectBase<TestSortable, TestValidator>
+        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>
         {
             public TestSortable()
                 : base(null, TestValidator.Validator) { }
@@ -241,7 +241,7 @@ namespace vSharpStudio.Unit
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
             var cfg = new Config();
-            ViewModelBindable.isNotValidateForUnitTests = true;
+            VmBindable.isNotValidateForUnitTests = true;
 
             var cnst = new Constant(cfg.Model.GroupConstants);
             cfg.Model.GroupConstants.Add(cnst);
@@ -632,7 +632,7 @@ namespace vSharpStudio.Unit
         public void Rules002_Enumeration()
         {
             var cfg = this.createTree();
-            cfg.SolutionPath = @"..\..\..\..\";
+            //cfg.SolutionPath = @"..\..\..\..\";
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
@@ -712,7 +712,7 @@ namespace vSharpStudio.Unit
         public void Rules003_Constant()
         {
             var cfg = this.createTree();
-            cfg.SolutionPath = @"..\..\..\..\";
+            //cfg.SolutionPath = @"..\..\..\..\";
 
             cfg.ValidateSubTreeFromNode(cfg);
             Assert.IsTrue(cfg.CountErrors == 0);

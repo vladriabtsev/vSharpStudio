@@ -9,8 +9,8 @@ using System.Threading;
 
 namespace ViewModelBase
 {
-    public class VmValidatableWithSeverity<T, TValidator> : VmEditable, INotifyDataErrorInfo, IValidatableWithSeverity//, IComparable
-        where TValidator : AbstractValidator<VmValidatableWithSeverity<T, TValidator>>
+    public class VmValidatableWithSeverity<T, TValidator> : VmEditable<T>, INotifyDataErrorInfo, IValidatableWithSeverity//, IComparable
+        where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
         public VmValidatableWithSeverity(TValidator validator)
@@ -130,18 +130,18 @@ namespace ViewModelBase
         {
             var res = this._validator.Validate(this);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(() => this.HasErrors);
-            NotifyPropertyChanged(() => this.HasWarnings);
-            NotifyPropertyChanged(() => this.HasInfos);
+            NotifyPropertyChanged(nameof(this.HasErrors));
+            NotifyPropertyChanged(nameof(this.HasWarnings));
+            NotifyPropertyChanged(nameof(this.HasInfos));
             return isValid;
         }
         public async void ValidateAsync()
         {
             var res = await this._validator.ValidateAsync(this);
             ValidationChange(res);
-            NotifyPropertyChanged(() => this.HasErrors);
-            NotifyPropertyChanged(() => this.HasWarnings);
-            NotifyPropertyChanged(() => this.HasInfos);
+            NotifyPropertyChanged(nameof(this.HasErrors));
+            NotifyPropertyChanged(nameof(this.HasWarnings));
+            NotifyPropertyChanged(nameof(this.HasInfos));
         }
         protected void ValidateProperty<T>
             (Expression<Func<T>> property)
@@ -151,6 +151,10 @@ namespace ViewModelBase
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+#if DEBUG
+            if (isNotValidateForUnitTests)
+                return true;
+#endif
             var res = this._validator.Validate(this);
             bool found = false;
             foreach (var t in res.Errors)
@@ -216,9 +220,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(() => this.HasErrors);
-            NotifyPropertyChanged(() => this.HasWarnings);
-            NotifyPropertyChanged(() => this.HasInfos);
+            NotifyPropertyChanged(nameof(this.HasErrors));
+            NotifyPropertyChanged(nameof(this.HasWarnings));
+            NotifyPropertyChanged(nameof(this.HasInfos));
         }
         protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
@@ -230,9 +234,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(() => this.HasErrors);
-            NotifyPropertyChanged(() => this.HasWarnings);
-            NotifyPropertyChanged(() => this.HasInfos);
+            NotifyPropertyChanged(nameof(this.HasErrors));
+            NotifyPropertyChanged(nameof(this.HasWarnings));
+            NotifyPropertyChanged(nameof(this.HasInfos));
         }
         protected void ClearAllErrors()
         {

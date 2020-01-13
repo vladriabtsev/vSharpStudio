@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace ViewModelBase
 {
-    public class vCommand : ViewModelBindable, ICommand
+    public class vCommand : VmBindable, ICommand
     {
         public static vCommand Create(Action<object> execute, Predicate<object> canExecute)
         {
@@ -14,6 +14,18 @@ namespace ViewModelBase
                 (o) =>
                 {
                     execute(o);
+                },
+                (o) =>
+                {
+                    return canExecute(o);
+                });
+        }
+        public static vCommand CreateAsync(Func<object, Task> execute, Predicate<object> canExecute)
+        {
+            return new vCommand(
+                (o) =>
+                {
+                    return execute(o);
                 },
                 (o) =>
                 {
@@ -37,6 +49,7 @@ namespace ViewModelBase
 
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
+        private readonly Func<object, Task> _executeAsync;
         public vCommand(Action<object> execute)
            : this(execute, null)
         {
@@ -49,6 +62,15 @@ namespace ViewModelBase
                 throw new ArgumentNullException("execute");
             }
             _execute = execute;
+            _canExecute = canExecute;
+        }
+        public vCommand(Func<object, Task> executeAsync, Predicate<object> canExecute)
+        {
+            if (executeAsync == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
+            _executeAsync = executeAsync;
             _canExecute = canExecute;
         }
         public bool CanExecute(object parameter)
@@ -74,6 +96,20 @@ namespace ViewModelBase
             try
             {
                 _execute(parameter);
+            }
+            finally
+            {
+                _isexecuted = false;
+                CanExecuteChangedInternal.Raise(this);
+            }
+        }
+        async public Task ExecuteAsync(object parameter)
+        {
+            _isexecuted = true;
+            CanExecuteChangedInternal.Raise(this);
+            try
+            {
+                await _executeAsync(parameter);
             }
             finally
             {

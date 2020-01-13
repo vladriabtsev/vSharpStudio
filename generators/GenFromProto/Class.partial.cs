@@ -36,29 +36,36 @@ namespace GenFromProto
             {
             }
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
-            //TODO implement generation standard base class name from simple name for: ViewModelBindable, ViewModelEditable, ViewModelValidatable, ViewModelValidatableWithSeverity
             _logger.LogInformation("Base class from doc '{Name}'".CallerInfo(), this.Doc.BaseClass);
             if (this.Doc.BaseClass == "")
             {
-                this.Doc.BaseClass = " : "+ defaultBaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //this.Doc.BaseClass = " : "+ defaultBaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //    message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
+                this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
-            else if (this.Doc.BaseClass == "ViewModelBindable")
+            else if (this.Doc.BaseClass == "VmBindable" || this.Doc.BaseClass == "ViewModelBindable")
             {
-                this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
+                //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
+                this.Doc.BaseClass = " : VmBindable";
             }
-            else if (this.Doc.BaseClass == "ViewModelEditable")
+            else if (this.Doc.BaseClass == "VmEditable" || this.Doc.BaseClass == "ViewModelEditable")
             {
-                this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
+                //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
+                this.Doc.BaseClass = " : VmEditable<" + message.Name.ToNameCs() + ">";
             }
-            else if (this.Doc.BaseClass == "ViewModelValidatable")
+            else if (this.Doc.BaseClass == "VmValidatable" || this.Doc.BaseClass == "ViewModelValidatable")
             {
-                this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //    message.Name.ToNameCs() + "Validator>";
+                this.Doc.BaseClass = " : VmValidatable<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "ViewModelValidatableWithSeverity")
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverity" || this.Doc.BaseClass == "ViewModelValidatableWithSeverity")
             {
-                this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
+                //    message.Name.ToNameCs() + "Validator>";
+                this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " + message.Name.ToNameCs() + "." +
                     message.Name.ToNameCs() + "Validator>";
             }
             else

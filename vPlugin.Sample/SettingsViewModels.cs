@@ -1,4 +1,4 @@
-// Auto generated on UTC 01/04/2020 15:34:19
+// Auto generated on UTC 01/13/2020 01:42:27
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -23,7 +23,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
-    public partial class GeneratorDbSchemaSettings : ViewModelValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettings.GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 6
+    public partial class GeneratorDbSchemaSettings : VmValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettings.GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 6
     {
         public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -170,7 +170,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GeneratorDbAccessSettings : ViewModelValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettings.GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 6
+    public partial class GeneratorDbAccessSettings : VmValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettings.GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 6
     {
         public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -344,7 +344,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GeneratorDbAccessNodePropertySettings : ViewModelValidatableWithSeverity<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettings.GeneratorDbAccessNodePropertySettingsValidator>, IGeneratorDbAccessNodePropertySettings // Class.tt Line: 6
+    public partial class GeneratorDbAccessNodePropertySettings : VmValidatableWithSeverity<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettings.GeneratorDbAccessNodePropertySettingsValidator>, IGeneratorDbAccessNodePropertySettings // Class.tt Line: 6
     {
         public partial class GeneratorDbAccessNodePropertySettingsValidator : ValidatorBase<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -434,7 +434,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GeneratorDbAccessNodeCatalogFormSettings : ViewModelValidatableWithSeverity<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettings.GeneratorDbAccessNodeCatalogFormSettingsValidator>, IGeneratorDbAccessNodeCatalogFormSettings // Class.tt Line: 6
+    public partial class GeneratorDbAccessNodeCatalogFormSettings : VmValidatableWithSeverity<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettings.GeneratorDbAccessNodeCatalogFormSettingsValidator>, IGeneratorDbAccessNodeCatalogFormSettings // Class.tt Line: 6
     {
         public partial class GeneratorDbAccessNodeCatalogFormSettingsValidator : ValidatorBase<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettingsValidator> { } // Class.tt Line: 8
         #region CTOR

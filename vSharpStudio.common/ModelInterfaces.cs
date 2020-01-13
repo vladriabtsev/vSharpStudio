@@ -483,10 +483,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        
-        ///////////////////////////////////////////////////
-        /// TODO struct for different types, at least INTEGER
-        ///////////////////////////////////////////////////
         string Value { get; } // ModelInterfaces.tt Line: 47
     }
     

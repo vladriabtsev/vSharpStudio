@@ -37,40 +37,33 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 }).WithMessage(string.Format(Config.ValidationMessages.WARNING_ENUM_VALUE_DANGEROUS_CHANGE, this.prevValue)).WithSeverity(Severity.Warning);
             }
-
             public static bool IsStartNotWithDigit(string val)
             {
                 if (string.IsNullOrWhiteSpace(val))
                 {
                     return true;
                 }
-
                 char b = val[0];
                 return !char.IsDigit(b);
             }
-
             public static bool IsNotContainsSpace(string val)
             {
                 if (string.IsNullOrWhiteSpace(val))
                 {
                     return true;
                 }
-
                 return !val.Contains(" ");
             }
-
             private bool IsUniqueName(EnumerationPair val)
             {
                 if (val.Parent == null)
                 {
                     return true;
                 }
-
                 if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
                 {
                     return true;
                 }
-
                 Enumeration p = (Enumeration)val.Parent;
                 foreach (var t in p.ListEnumerationPairs)
                 {
@@ -81,50 +74,24 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return true;
             }
-
             private bool IsValueNotEmpty(EnumerationPair val)
             {
                 if (val.Parent == null)
                 {
                     return true;
                 }
-
                 if (string.IsNullOrWhiteSpace(val.Value))
                 {
                     return false;
                 }
-                // Enumeration p = (Enumeration)val.Parent;
-                // switch (p.DataTypeEnum)
-                // {
-                //    case common.EnumEnumerationType.BYTE_VALUE:
-                //        if (string.IsNullOrWhiteSpace(val.Value))
-                //            return false;
-                //        break;
-                //    case common.EnumEnumerationType.INTEGER_VALUE:
-                //        if (string.IsNullOrWhiteSpace(val.Value))
-                //            return false;
-                //        break;
-                //    case common.EnumEnumerationType.SHORT_VALUE:
-                //        if (string.IsNullOrWhiteSpace(val.Value))
-                //            return false;
-                //        break;
-                //    case common.EnumEnumerationType.STRING_VALUE:
-                //        if (string.IsNullOrWhiteSpace(val.Value))
-                //            return false;
-                //        break;
-                //    default:
-                //        throw new ArgumentException();
-                // }
                 return true;
             }
-
             private bool IsUniqueValue(EnumerationPair val)
             {
                 if (val.Parent == null)
                 {
                     return true;
                 }
-
                 Enumeration p = (Enumeration)val.Parent;
                 foreach (var t in p.ListEnumerationPairs)
                 {
@@ -132,7 +99,6 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         continue;
                     }
-
                     if ((val.Guid != t.Guid) && (val.Value == t.Value))
                     {
                         return false;
@@ -140,19 +106,16 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return true;
             }
-
             private bool IsValueConvertable(EnumerationPair val)
             {
                 if (string.IsNullOrWhiteSpace(val.Value))
                 {
                     return true;
                 }
-
                 if (val.Parent == null)
                 {
                     return true;
                 }
-
                 Enumeration p = (Enumeration)val.Parent;
                 switch (p.DataTypeEnum)
                 {
@@ -162,7 +125,6 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             return false;
                         }
-
                         break;
                     case common.EnumEnumerationType.INTEGER_VALUE:
                         int i = 0;
@@ -170,7 +132,6 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             return false;
                         }
-
                         break;
                     case common.EnumEnumerationType.SHORT_VALUE:
                         Int16 t = 0;
@@ -178,7 +139,6 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             return false;
                         }
-
                         break;
                     case common.EnumEnumerationType.STRING_VALUE:
                         break;

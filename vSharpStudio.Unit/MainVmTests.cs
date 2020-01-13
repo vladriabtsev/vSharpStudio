@@ -26,7 +26,7 @@ namespace vSharpStudio.Unit
         private static Microsoft.Extensions.Logging.ILogger _logger;
         public MainVmTests()
         {
-            ViewModelBindable.isUnitTests = true;
+            VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
                 _logger = Logger.CreateLogger<PluginTests>();

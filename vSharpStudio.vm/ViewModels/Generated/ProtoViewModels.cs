@@ -1,4 +1,4 @@
-// Auto generated on UTC 01/04/2020 15:34:18
+// Auto generated on UTC 01/13/2020 01:42:26
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -23,7 +23,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
     }
-    public partial class UserSettings : ViewModelValidatableWithSeverity<UserSettings, UserSettings.UserSettingsValidator>, IUserSettings // Class.tt Line: 6
+    public partial class UserSettings : VmValidatableWithSeverity<UserSettings, UserSettings.UserSettingsValidator>, IUserSettings // Class.tt Line: 6
     {
         public partial class UserSettingsValidator : ValidatorBase<UserSettings, UserSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class UserSettingsOpenedConfig : ViewModelValidatableWithSeverity<UserSettingsOpenedConfig, UserSettingsOpenedConfig.UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // Class.tt Line: 6
+    public partial class UserSettingsOpenedConfig : VmValidatableWithSeverity<UserSettingsOpenedConfig, UserSettingsOpenedConfig.UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // Class.tt Line: 6
     {
         public partial class UserSettingsOpenedConfigValidator : ValidatorBase<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -277,7 +277,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListPlugins : ConfigObjectSubBase<GroupListPlugins, GroupListPlugins.GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 6
+    public partial class GroupListPlugins : ConfigObjectVmBase<GroupListPlugins, GroupListPlugins.GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 6
     {
         public partial class GroupListPluginsValidator : ValidatorBase<GroupListPlugins, GroupListPluginsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -462,7 +462,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Plugin : ConfigObjectSubBase<Plugin, Plugin.PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 6
+    public partial class Plugin : ConfigObjectVmBase<Plugin, Plugin.PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 6
     {
         public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -700,7 +700,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class PluginGenerator : ConfigObjectSubBase<PluginGenerator, PluginGenerator.PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 6
+    public partial class PluginGenerator : ConfigObjectVmBase<PluginGenerator, PluginGenerator.PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 6
     {
         public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -900,7 +900,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class PluginGeneratorSettings : ConfigObjectSubBase<PluginGeneratorSettings, PluginGeneratorSettings.PluginGeneratorSettingsValidator>, IComparable<PluginGeneratorSettings>, IConfigAcceptVisitor, IPluginGeneratorSettings // Class.tt Line: 6
+    public partial class PluginGeneratorSettings : ConfigObjectVmBase<PluginGeneratorSettings, PluginGeneratorSettings.PluginGeneratorSettingsValidator>, IComparable<PluginGeneratorSettings>, IConfigAcceptVisitor, IPluginGeneratorSettings // Class.tt Line: 6
     {
         public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -1113,7 +1113,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class SettingsConfig : ConfigObjectSubBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IConfigAcceptVisitor, ISettingsConfig // Class.tt Line: 6
+    public partial class SettingsConfig : ConfigObjectVmBase<SettingsConfig, SettingsConfig.SettingsConfigValidator>, IComparable<SettingsConfig>, IConfigAcceptVisitor, ISettingsConfig // Class.tt Line: 6
     {
         public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -1300,7 +1300,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// General DB settings
     ///////////////////////////////////////////////////
-    public partial class DbSettings : ViewModelValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>, IDbSettings // Class.tt Line: 6
+    public partial class DbSettings : VmValidatableWithSeverity<DbSettings, DbSettings.DbSettingsValidator>, IDbSettings // Class.tt Line: 6
     {
         public partial class DbSettingsValidator : ValidatorBase<DbSettings, DbSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -1605,7 +1605,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class ConfigShortHistory : ConfigObjectSubBase<ConfigShortHistory, ConfigShortHistory.ConfigShortHistoryValidator>, IComparable<ConfigShortHistory>, IConfigAcceptVisitor, IConfigShortHistory // Class.tt Line: 6
+    public partial class ConfigShortHistory : ConfigObjectVmBase<ConfigShortHistory, ConfigShortHistory.ConfigShortHistoryValidator>, IComparable<ConfigShortHistory>, IConfigAcceptVisitor, IConfigShortHistory // Class.tt Line: 6
     {
         public partial class ConfigShortHistoryValidator : ValidatorBase<ConfigShortHistory, ConfigShortHistoryValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -1788,7 +1788,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListBaseConfigLinks : ConfigObjectSubBase<GroupListBaseConfigLinks, GroupListBaseConfigLinks.GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 6
+    public partial class GroupListBaseConfigLinks : ConfigObjectVmBase<GroupListBaseConfigLinks, GroupListBaseConfigLinks.GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 6
     {
         public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -2008,7 +2008,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class BaseConfigLink : ConfigObjectSubBase<BaseConfigLink, BaseConfigLink.BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 6
+    public partial class BaseConfigLink : ConfigObjectVmBase<BaseConfigLink, BaseConfigLink.BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 6
     {
         public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -2197,7 +2197,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// Configuration config
     ///////////////////////////////////////////////////
-    public partial class Config : ConfigObjectSubBase<Config, Config.ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // Class.tt Line: 6
+    public partial class Config : ConfigObjectVmBase<Config, Config.ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // Class.tt Line: 6
     {
         public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -2557,7 +2557,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class AppDbSettings : ViewModelValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>, IAppDbSettings // Class.tt Line: 6
+    public partial class AppDbSettings : VmValidatableWithSeverity<AppDbSettings, AppDbSettings.AppDbSettingsValidator>, IAppDbSettings // Class.tt Line: 6
     {
         public partial class AppDbSettingsValidator : ValidatorBase<AppDbSettings, AppDbSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -2826,7 +2826,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListAppSolutions : ConfigObjectSubBase<GroupListAppSolutions, GroupListAppSolutions.GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 6
+    public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutions.GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 6
     {
         public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -3106,7 +3106,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     /// string plugins_global_settins = 3;
     /// }
     ///////////////////////////////////////////////////
-    public partial class AppSolution : ConfigObjectSubBase<AppSolution, AppSolution.AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 6
+    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolution.AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 6
     {
         public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -3378,7 +3378,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class AppProject : ConfigObjectSubBase<AppProject, AppProject.AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 6
+    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProject.AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 6
     {
         public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -3648,7 +3648,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class AppProjectGenerator : ConfigObjectSubBase<AppProjectGenerator, AppProjectGenerator.AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 6
+    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGenerator.AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 6
     {
         public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -3993,7 +3993,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GeneratorSettings : ConfigObjectSubBase<GeneratorSettings, GeneratorSettings.GeneratorSettingsValidator>, IComparable<GeneratorSettings>, IConfigAcceptVisitor, IGeneratorSettings // Class.tt Line: 6
+    public partial class GeneratorSettings : ConfigObjectVmBase<GeneratorSettings, GeneratorSettings.GeneratorSettingsValidator>, IComparable<GeneratorSettings>, IConfigAcceptVisitor, IGeneratorSettings // Class.tt Line: 6
     {
         public partial class GeneratorSettingsValidator : ValidatorBase<GeneratorSettings, GeneratorSettingsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -4164,7 +4164,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
-    public partial class ConfigModel : ConfigObjectSubBase<ConfigModel, ConfigModel.ConfigModelValidator>, IComparable<ConfigModel>, IConfigAcceptVisitor, IConfigModel // Class.tt Line: 6
+    public partial class ConfigModel : ConfigObjectVmBase<ConfigModel, ConfigModel.ConfigModelValidator>, IComparable<ConfigModel>, IConfigAcceptVisitor, IConfigModel // Class.tt Line: 6
     {
         public partial class ConfigModelValidator : ValidatorBase<ConfigModel, ConfigModelValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -4528,7 +4528,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class DataType : ViewModelValidatableWithSeverity<DataType, DataType.DataTypeValidator>, IDataType // Class.tt Line: 6
+    public partial class DataType : VmValidatableWithSeverity<DataType, DataType.DataTypeValidator>, IDataType // Class.tt Line: 6
     {
         public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -4835,7 +4835,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// Common parameters section
     ///////////////////////////////////////////////////
-    public partial class GroupListCommon : ConfigObjectSubBase<GroupListCommon, GroupListCommon.GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // Class.tt Line: 6
+    public partial class GroupListCommon : ConfigObjectVmBase<GroupListCommon, GroupListCommon.GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // Class.tt Line: 6
     {
         public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -5034,7 +5034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// User's role
     ///////////////////////////////////////////////////
-    public partial class Role : ConfigObjectSubBase<Role, Role.RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 6
+    public partial class Role : ConfigObjectVmBase<Role, Role.RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 6
     {
         public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -5159,7 +5159,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListRoles : ConfigObjectSubBase<GroupListRoles, GroupListRoles.GroupListRolesValidator>, IComparable<GroupListRoles>, IConfigAcceptVisitor, IGroupListRoles // Class.tt Line: 6
+    public partial class GroupListRoles : ConfigObjectVmBase<GroupListRoles, GroupListRoles.GroupListRolesValidator>, IComparable<GroupListRoles>, IConfigAcceptVisitor, IGroupListRoles // Class.tt Line: 6
     {
         public partial class GroupListRolesValidator : ValidatorBase<GroupListRoles, GroupListRolesValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -5388,7 +5388,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// main view forms hierarchy parent
     ///////////////////////////////////////////////////
-    public partial class MainViewForm : ConfigObjectSubBase<MainViewForm, MainViewForm.MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 6
+    public partial class MainViewForm : ConfigObjectVmBase<MainViewForm, MainViewForm.MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 6
     {
         public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -5552,7 +5552,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// main view forms hierarchy node with children
     ///////////////////////////////////////////////////
-    public partial class GroupListMainViewForms : ConfigObjectSubBase<GroupListMainViewForms, GroupListMainViewForms.GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // Class.tt Line: 6
+    public partial class GroupListMainViewForms : ConfigObjectVmBase<GroupListMainViewForms, GroupListMainViewForms.GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // Class.tt Line: 6
     {
         public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -5777,7 +5777,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListPropertiesTabs : ConfigObjectSubBase<GroupListPropertiesTabs, GroupListPropertiesTabs.GroupListPropertiesTabsValidator>, IComparable<GroupListPropertiesTabs>, IConfigAcceptVisitor, IGroupListPropertiesTabs // Class.tt Line: 6
+    public partial class GroupListPropertiesTabs : ConfigObjectVmBase<GroupListPropertiesTabs, GroupListPropertiesTabs.GroupListPropertiesTabsValidator>, IComparable<GroupListPropertiesTabs>, IConfigAcceptVisitor, IGroupListPropertiesTabs // Class.tt Line: 6
     {
         public partial class GroupListPropertiesTabsValidator : ValidatorBase<GroupListPropertiesTabs, GroupListPropertiesTabsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -6082,7 +6082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class PropertiesTab : ConfigObjectSubBase<PropertiesTab, PropertiesTab.PropertiesTabValidator>, IComparable<PropertiesTab>, IConfigAcceptVisitor, IPropertiesTab // Class.tt Line: 6
+    public partial class PropertiesTab : ConfigObjectVmBase<PropertiesTab, PropertiesTab.PropertiesTabValidator>, IComparable<PropertiesTab>, IConfigAcceptVisitor, IPropertiesTab // Class.tt Line: 6
     {
         public partial class PropertiesTabValidator : ValidatorBase<PropertiesTab, PropertiesTabValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -6388,7 +6388,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListProperties : ConfigObjectSubBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 6
+    public partial class GroupListProperties : ConfigObjectVmBase<GroupListProperties, GroupListProperties.GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 6
     {
         public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -6725,7 +6725,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Property : ConfigObjectSubBase<Property, Property.PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 6
+    public partial class Property : ConfigObjectVmBase<Property, Property.PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 6
     {
         public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -6997,7 +6997,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListConstants : ConfigObjectSubBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants // Class.tt Line: 6
+    public partial class GroupListConstants : ConfigObjectVmBase<GroupListConstants, GroupListConstants.GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants // Class.tt Line: 6
     {
         public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -7306,7 +7306,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// Constant application wise value
     ///////////////////////////////////////////////////
-    public partial class Constant : ConfigObjectSubBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 6
+    public partial class Constant : ConfigObjectVmBase<Constant, Constant.ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 6
     {
         public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -7545,7 +7545,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListEnumerations : ConfigObjectSubBase<GroupListEnumerations, GroupListEnumerations.GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // Class.tt Line: 6
+    public partial class GroupListEnumerations : ConfigObjectVmBase<GroupListEnumerations, GroupListEnumerations.GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // Class.tt Line: 6
     {
         public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -7850,7 +7850,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Enumeration : ConfigObjectSubBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IConfigAcceptVisitor, IEnumeration // Class.tt Line: 6
+    public partial class Enumeration : ConfigObjectVmBase<Enumeration, Enumeration.EnumerationValidator>, IComparable<Enumeration>, IConfigAcceptVisitor, IEnumeration // Class.tt Line: 6
     {
         public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -8201,7 +8201,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class EnumerationPair : ConfigObjectSubBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IConfigAcceptVisitor, IEnumerationPair // Class.tt Line: 6
+    public partial class EnumerationPair : ConfigObjectVmBase<EnumerationPair, EnumerationPair.EnumerationPairValidator>, IComparable<EnumerationPair>, IConfigAcceptVisitor, IEnumerationPair // Class.tt Line: 6
     {
         public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -8328,10 +8328,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanged();
         string IEnumerationPair.Description { get { return this._Description; } }
         
-        
-        ///////////////////////////////////////////////////
-        /// TODO struct for different types, at least INTEGER
-        ///////////////////////////////////////////////////
         public string Value // Property.tt Line: 132
         { 
             get 
@@ -8357,7 +8353,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Catalog : ConfigObjectSubBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 6
+    public partial class Catalog : ConfigObjectVmBase<Catalog, Catalog.CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 6
     {
         public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -8701,7 +8697,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListCatalogs : ConfigObjectSubBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs // Class.tt Line: 6
+    public partial class GroupListCatalogs : ConfigObjectVmBase<GroupListCatalogs, GroupListCatalogs.GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs // Class.tt Line: 6
     {
         public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -9006,7 +9002,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupDocuments : ConfigObjectSubBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 6
+    public partial class GroupDocuments : ConfigObjectVmBase<GroupDocuments, GroupDocuments.GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 6
     {
         public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -9280,7 +9276,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Document : ConfigObjectSubBase<Document, Document.DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument // Class.tt Line: 6
+    public partial class Document : ConfigObjectVmBase<Document, Document.DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument // Class.tt Line: 6
     {
         public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -9624,7 +9620,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListDocuments : ConfigObjectSubBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments // Class.tt Line: 6
+    public partial class GroupListDocuments : ConfigObjectVmBase<GroupListDocuments, GroupListDocuments.GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments // Class.tt Line: 6
     {
         public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -9929,7 +9925,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListJournals : ConfigObjectSubBase<GroupListJournals, GroupListJournals.GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // Class.tt Line: 6
+    public partial class GroupListJournals : ConfigObjectVmBase<GroupListJournals, GroupListJournals.GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // Class.tt Line: 6
     {
         public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -10238,7 +10234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Journal : ConfigObjectSubBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IConfigAcceptVisitor, IJournal // Class.tt Line: 6
+    public partial class Journal : ConfigObjectVmBase<Journal, Journal.JournalValidator>, IComparable<Journal>, IConfigAcceptVisitor, IJournal // Class.tt Line: 6
     {
         public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -10526,7 +10522,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListForms : ConfigObjectSubBase<GroupListForms, GroupListForms.GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // Class.tt Line: 6
+    public partial class GroupListForms : ConfigObjectVmBase<GroupListForms, GroupListForms.GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // Class.tt Line: 6
     {
         public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -10835,7 +10831,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Form : ConfigObjectSubBase<Form, Form.FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 6
+    public partial class Form : ConfigObjectVmBase<Form, Form.FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 6
     {
         public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -11044,7 +11040,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class GroupListReports : ConfigObjectSubBase<GroupListReports, GroupListReports.GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // Class.tt Line: 6
+    public partial class GroupListReports : ConfigObjectVmBase<GroupListReports, GroupListReports.GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // Class.tt Line: 6
     {
         public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -11353,7 +11349,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class Report : ConfigObjectSubBase<Report, Report.ReportValidator>, IComparable<Report>, IConfigAcceptVisitor, IReport // Class.tt Line: 6
+    public partial class Report : ConfigObjectVmBase<Report, Report.ReportValidator>, IComparable<Report>, IConfigAcceptVisitor, IReport // Class.tt Line: 6
     {
         public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { } // Class.tt Line: 8
         #region CTOR
@@ -11562,7 +11558,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
-    public partial class ModelRow : ViewModelBindable<ModelRow>, IModelRow // Class.tt Line: 6
+    public partial class ModelRow : VmBindable, IModelRow // Class.tt Line: 6
     {
         public partial class ModelRowValidator : ValidatorBase<ModelRow, ModelRowValidator> { } // Class.tt Line: 8
         #region CTOR

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>{211753FC-8C4D-4F05-AB4B-130FABECF30E}</ProjectGuid>
+    <AssemblyName>GuiLabs.Undo</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Guilabs.Undo.nuspec" />
+  </ItemGroup>
+</Project>

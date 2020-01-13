@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
+using GuiLabs.Undo;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
@@ -24,7 +25,7 @@ using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
 {
-    public class MainPageVM : ViewModelValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
+    public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         private static ILogger _logger;
 
@@ -789,27 +790,52 @@ namespace vSharpStudio.ViewModels
         private const string _saveBaseToolTip = "Ctrl-S - save config";
         private string _SaveToolTip = _saveBaseToolTip;
 
+        public ProgressVM ProgressVM
+        {
+            get
+            {
+                if (_ProgressVM == null)
+                    _ProgressVM = new ProgressVM();
+                return _ProgressVM;
+            }
+        }
+        private ProgressVM _ProgressVM;
+        private CancellationTokenSource cancellationTokenSource;
         public vCommand CommandConfigCurrentUpdate
         {
             get
             {
-                return this._CommandConfigCurrentUpdate ?? (this._CommandConfigCurrentUpdate = vCommand.Create(
-                (o) => { this.UpdateCurrentVersion(); },
-                (o) => { return this.Config != null; }));
+                if (this._CommandConfigCurrentUpdate == null)
+                {
+                    this._CommandConfigCurrentUpdate = vCommand.CreateAsync(
+                        async (o) =>
+                        {
+                            this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
+                            TestTransformation tst = o as TestTransformation;
+                            try
+                            {
+                                this.cancellationTokenSource = new CancellationTokenSource();
+                                CancellationToken cancellationToken = this.cancellationTokenSource.Token;
+                                await this.UpdateCurrentVersionAsync((p) => { this.ProgressVM.From(p); }, cancellationToken, o);
+                                this.cancellationTokenSource = null;
+                            }
+                            catch (CancellationException ex)
+                            {
+                            }
+                            catch (Exception ex)
+                            {
+                                this.ProgressVM.Exception = ex;
+                                if (tst == null)
+                                    MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                            }
+                            this.ProgressVM.End();
+                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null; }
+                    );
+                }
+                return this._CommandConfigCurrentUpdate;
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        private void UpdateCurrentVersion(CancellationToken cancellationToken = default)
-        {
-            this._Config.ValidateSubTreeFromNode(this._Config);
-            if (this._Config.CountErrors > 0)
-            {
-                MessageBox.Show("There are errors in configuration. Fix errors and try again.", "Error");
-                return;
-            }
-            var t = Task.Run(() => { var t = this.UpdateCurrentVersionAsync(cancellationToken); t.Wait(); });
-            t.Wait();
-        }
         //async Task MyMethodAsync()
         //{
         //    // Code here runs in the original context.
@@ -825,96 +851,185 @@ namespace vSharpStudio.ViewModels
         //    // that might complete very quickly.
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken)
+        private async Task UpdateCurrentVersionAsync(Action<ProgressVM> onProgress, CancellationToken cancellationToken, object parm = null)
         {
+            TestTransformation tst = parm as TestTransformation;
+            ProgressVM progress = new ProgressVM();
+            progress.Progress = 0;
+            GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
             try
             {
-                //TODO roll back if Exception
-
-                this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-                var proto = Config.ConvertToProto(this._Config);
-                this.pconfig_history.CurrentConfig = proto;
-                //this.Config.OldStableConfig;
-                //this.Config.PrevStableConfig;
-                this.Save();
-                //Utils.TryCall(
-                //    () =>
-                //    {
-                //        File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-                //    }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
-
-                var mvr = new ModelVisitorForRenamer();
-                mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
-                //var lstVS = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances();
-                //var en = lstVS.GetEnumerator();
-                //en.MoveNext();
-                //Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(en.Current);
-                //Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-                //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\3.1.100\");
-                var properties = new Dictionary<string, string>
+                using (Transaction.Create(am))
                 {
-                // Use the latest language version to force the full set of available analyzers to run on the project.
-                { "LangVersion", "latest" },};
-                //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create(properties))
-                //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
-                using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
-                {
-                    //try
-                    //{
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    {
-                        //TODO implement backup
-                        //ts.RelativeAppSolutionPath
-                        //TODO implement renamer
-                        // Open the solution within the workspace.
-                        Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
-                        foreach (var tp in ts.ListAppProjects)
+                    // I. Model validation (no need for UNDO)
+                    #region
+                    progress.SubName = "Model validation";
+                    this._Config.ValidateSubTreeFromNode(this._Config);
+                    if (this._Config.CountErrors > 0)
+                        throw new Exception("There are errors in configuration. Fix errors and try again.");
+                    if (tst != null && tst.IsThrowExceptionOnConfigValidated)
+                        throw new Exception(nameof(tst.IsThrowExceptionOnConfigValidated));
+                    progress.Progress = 5;
+                    progress.SubProgress = 100;
+                    onProgress(progress);
+                    #endregion
+
+                    // II. Build all solutions. Exception if not compilible (no need for UNDO)
+                    #region
+                    progress.SubName = "Check current code compilation";
+                    onProgress(progress);
+
+                    var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
+                    var build = lstBuilds[0];
+                    Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(build);
+                    //Microsoft.Build.Locator.VisualStudioInstanceQueryOptions.Default = new Microsoft.Build.Locator.VisualStudioInstanceQueryOptions() { DiscoveryType = Microsoft.Build.Locator.DiscoveryType.DotNetSdk };
+                    //Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+                    var properties = new Dictionary<string, string>
                         {
-                            bool isProjectFound = false;
-                            foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
+                            // Use the latest language version to force the full set of available analyzers to run on the project.
+                            { "LangVersion", "latest" },
+                        };
+                    using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create(properties))
+                    //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
+                    //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
+                    {
+                        int i = 0;
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                        {
+                            if (cancellationToken.IsCancellationRequested)
+                                throw new CancellationException();
+                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
+                            if (workspace.Diagnostics.Count > 0)
                             {
-                                // Look up the snapshot for the original project in the latest forked solution.
-                                Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
-                                if (project.FilePath == tp.GetCombinedPath(tp.RelativeAppProjectPath))
+                                var en = workspace.Diagnostics.GetEnumerator();
+                                en.MoveNext();
+                                if (en.Current.Kind == Microsoft.CodeAnalysis.WorkspaceDiagnosticKind.Failure)
+                                    throw new Exception(en.Current.Message);
+                            }
+                            foreach (var project in solution.Projects)
+                            {
+                                var compilation = await project.GetCompilationAsync();
+                                var diag = compilation.GetDiagnostics();
+                                var lst = from p in diag where p.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error select p;
+                                if (lst.Count() > 0)
+                                    throw new Exception("Compilation errors are found.\nSolution: " + ts.RelativeAppSolutionPath + "\nProject: " + project.FilePath);
+                            }
+                            i++;
+                            progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
+                            onProgress(progress);
+                        }
+                    }
+                    if (tst != null && tst.IsThrowExceptionOnBuildValidated)
+                        throw new Exception();
+                    #endregion
+
+                    // III. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
+                    #region
+                    var mvr = new ModelVisitorForRenamer();
+                    mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                    using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
+                    {
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                        {
+                            if (cancellationToken.IsCancellationRequested)
+                                throw new CancellationException();
+                            // Open the solution within the workspace.
+                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
+                            foreach (var tp in ts.ListAppProjects)
+                            {
+                                bool isProjectFound = false;
+                                foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                                 {
-                                    isProjectFound = true;
-                                    foreach (var tg in tp.ListAppProjectGenerators)
+                                    if (cancellationToken.IsCancellationRequested)
+                                        throw new CancellationException();
+                                    // Look up the snapshot for the original project in the latest forked solution.
+                                    Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
+                                    if (project.FilePath == tp.GetCombinedPath(tp.RelativeAppProjectPath))
                                     {
-                                        var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                        List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
-                                        foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
+                                        isProjectFound = true;
+                                        foreach (var tg in tp.ListAppProjectGenerators)
                                         {
-                                            // Look up the snapshot for the original document in the latest forked solution.
-                                            Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
-                                            //tg.RelativePathToGeneratedFile
-                                            if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                                            var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                            List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                            foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
                                             {
-                                                if (Path.GetExtension(document.FilePath) == "cs")
+                                                // Look up the snapshot for the original document in the latest forked solution.
+                                                Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
+                                                //tg.RelativePathToGeneratedFile
+                                                if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
                                                 {
-                                                    await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
+                                                    if (Path.GetExtension(document.FilePath) == "cs")
+                                                    {
+                                                        await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
+                                                    }
+                                                    else if (Path.GetExtension(document.FilePath) == "vb")
+                                                    {
+                                                        CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
+                                                    }
+                                                    else
+                                                        throw new NotSupportedException();
                                                 }
-                                                else if (Path.GetExtension(document.FilePath) == "vb")
-                                                {
-                                                    CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
-                                                }
-                                                else
-                                                    throw new NotSupportedException();
                                             }
                                         }
                                     }
                                 }
+                                if (!isProjectFound)
+                                    throw new Exception("Project not found");
                             }
-                            if (!isProjectFound)
-                                throw new Exception("Project not found");
+                        }
+                        if (tst != null && tst.IsThrowExceptionOnRenamed)
+                            throw new Exception();
+                    }
+                    #endregion
+
+                    // IV. Apply new DB schema (no need for UNDO ???)
+                    #region
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    {
+                        if (cancellationToken.IsCancellationRequested)
+                            throw new CancellationException();
+                        foreach (var tp in ts.ListAppProjects)
+                        {
+                            // generate db
                         }
                     }
-                    //}
-                    //catch (Exception ex2)
-                    //{
-                    //    throw;
-                    //}
+                    if (tst != null && tst.IsThrowExceptionOnDbMigrated)
+                        throw new Exception();
+                    #endregion
+
+                    // V. Generate code (no need for UNDO)
+                    #region
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    {
+                        if (cancellationToken.IsCancellationRequested)
+                            throw new CancellationException();
+                        foreach (var tp in ts.ListAppProjects)
+                        {
+                            // generate
+                        }
+                    }
+                    if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
+                        throw new Exception();
+                    #endregion
+
+                    // VI. Update history CurrentConfig (need UNDO)
+                    #region
+                    var update_history = new CallMethodAction(
+                      () =>
+                      {
+                          this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                          var proto = Config.ConvertToProto(this._Config);
+                          this.pconfig_history.CurrentConfig = proto;
+                          this.Save();
+                          if (tst != null && tst.IsThrowExceptionOnConfigUpdated)
+                              throw new Exception();
+                      },
+                      () =>
+                      {
+                      });
+                    am.Execute(update_history);
+                    #endregion
                 }
-                this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
             }
             finally
             {

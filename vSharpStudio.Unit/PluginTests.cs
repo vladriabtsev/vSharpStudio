@@ -9,6 +9,7 @@ using System.IO;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using vSharpStudio.vm.ViewModels;
+using System.Threading.Tasks;
 
 namespace vSharpStudio.Unit
 {
@@ -35,13 +36,13 @@ namespace vSharpStudio.Unit
             var cat = vm.Config.Model.GroupCatalogs[0];
             cat.GroupProperties.NodeAddNewSubNode();
             var prop = cat.GroupProperties[0];
-            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Property"));
-            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test;Property"));
-            Assert.IsTrue(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Property"));
+            Assert.IsTrue(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Property"));
+            Assert.IsTrue(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test;Property"));
+            Assert.IsTrue(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Property"));
 
-            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog"));
-            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Test"));
-            Assert.IsFalse(ConfigObjectSubBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test.*.Property"));
+            Assert.IsFalse(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog"));
+            Assert.IsFalse(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Test"));
+            Assert.IsFalse(ConfigObjectVmBase<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test.*.Property"));
         }
         [TestMethod]
         public void Plugin003CanLoadPlugin()
@@ -212,9 +213,11 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
-        public void Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem()
+        [DataRow(@"OldProject\")]
+        //[DataRow(@"SdkProject\")]
+        public async Task Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem(string prType)
         {
-            var slnFolder = @"..\..\..\..\TestApps\";
+            var slnFolder = @"..\..\..\..\TestApps\" + prType;
             var slnPath = slnFolder + "Solution.sln";
             var cfgPath = slnFolder + "test1.vcfg";
             var prjFolder = slnFolder + @"ConsoleApp1\";
@@ -262,18 +265,47 @@ namespace vSharpStudio.Unit
             if (File.Exists(genFilePath))
                 File.Delete(genFilePath);
 
-            // Can recognize not valid Config
+            // Can recognize not valid Config, SolutionPath is empty
             #region not valid Config
+            // valid
             vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
-            // Introduce error
-
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            // not valid
+            sln.RelativeAppSolutionPath = null;
+            TestTransformation tt = new TestTransformation();
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.Config.CountErrors > 0);
-            Assert.IsTrue(File.Exists(genFilePath));
             #endregion not valid Config
 
+            #region valid Config
+            sln.RelativeAppSolutionPath = slnPath;
+            tt = new TestTransformation();
+            tt.IsThrowExceptionOnConfigValidated = true;
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
+            Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnConfigValidated));
+            Assert.IsTrue(vm.Config.CountErrors == 0);
+            #endregion valid Config
+
             // Can recognize not compilible code before rename
+            #region not compilable code
+            tt = new TestTransformation();
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
+            #endregion not compilable code
+
+            #region compilable code
+            tt = new TestTransformation();
+            tt.IsThrowExceptionOnBuildValidated = true;
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
+            Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
+            #endregion compilable code
+
+
+
+            Assert.IsTrue(File.Exists(genFilePath));
 
             // Accept not compilible code if there are no renames
 

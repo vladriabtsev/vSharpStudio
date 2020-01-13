@@ -24,7 +24,7 @@ echo **** plugin_sample json
 SET gen=%2
 rem echo *** %gen%
 echo **** model vsharpstudio
-%gen% model vsharpstudio %1vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs vSharpStudio.vm.ViewModels %1doc\ ConfigObjectSubBase
+%gen% model vsharpstudio %1vSharpStudio.vm\ViewModels\Generated\ProtoViewModels.cs vSharpStudio.vm.ViewModels %1doc\ ConfigObjectVmBase
 echo **** interface vsharpstudio
 %gen% interface vsharpstudio %1vSharpStudio.common\ModelInterfaces.cs vSharpStudio.common %1doc\
 

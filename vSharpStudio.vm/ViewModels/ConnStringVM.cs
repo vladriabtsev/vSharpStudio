@@ -8,7 +8,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConnStringVM : ViewModelValidatableWithSeverity<ConnStringVM, ConnStringVMValidator>
+    public class ConnStringVM : VmValidatableWithSeverity<ConnStringVM, ConnStringVMValidator>
     {
         private ILogger logger;
 

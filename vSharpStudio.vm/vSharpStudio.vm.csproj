@@ -18,6 +18,7 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ViewModels\ConfigObjectSubBase%27.cs" />
     <Compile Remove="ViewModels\ObjectSubModelsEditor.xaml.cs" />
   </ItemGroup>
   <ItemGroup>

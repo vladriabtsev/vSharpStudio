@@ -5,6 +5,12 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ViewModelBindable.cs" />
+    <Compile Remove="ViewModelEditable.cs" />
+    <Compile Remove="ViewModelValidatable.cs" />
+    <Compile Remove="ViewModelValidatableWithSeverity.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.6.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />

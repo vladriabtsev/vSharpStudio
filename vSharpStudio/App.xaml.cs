@@ -53,11 +53,11 @@ namespace vSharpStudio
 
             MainWindow wnd = new MainWindow();
             wnd.Show();
-            if (e.Args.Length == 1)
-            {
-                this.logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);
-                MainPage.MainPageVM.Config.SolutionPath = e.Args[0];
-            }
+            //if (e.Args.Length == 1)
+            //{
+            //    this.logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);
+            //    MainPage.MainPageVM.Config.SolutionPath = e.Args[0];
+            //}
         }
     }
 }

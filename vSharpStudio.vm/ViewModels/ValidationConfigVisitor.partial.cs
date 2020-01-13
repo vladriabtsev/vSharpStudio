@@ -79,12 +79,12 @@ namespace vSharpStudio.vm.ViewModels
                 weight++;
                 nnode = nnode.Parent;
             }
-            if (weight > ViewModelBindable.MaxSortingWeight)
+            if (weight > VmBindable.MaxSortingWeight)
             {
                 throw new Exception();
             }
 
-            this.Result.Add(t, ViewModelBindable.MaxSortingWeight - weight);
+            this.Result.Add(t, VmBindable.MaxSortingWeight - weight);
         }
 
         private void ValidateSubAndCollectErrors(ITreeConfigNode p, IValidatableWithSeverity sub)

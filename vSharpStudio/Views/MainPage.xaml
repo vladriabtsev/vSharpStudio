@@ -8,7 +8,7 @@
              xmlns:common="clr-namespace:vSharpStudio.common;assembly=vSharpStudio.common"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
-             d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=false}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <vm:ConverterDicToListPlugins x:Key="ConverterDicToListPlugins"/>
@@ -18,105 +18,144 @@
         <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding CommandConfigSaveAs}"/>
         <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>
     </UserControl.InputBindings>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <!--Menu-->
-        <Grid Grid.Row="0">
-            <ToolBarPanel>
-                <ToolBar>
-                    <Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
-                        <ContentControl Template="{StaticResource iconSave}" />
-                    </Button>
-                    <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
+    <xctk:BusyIndicator IsBusy="False" DisplayAfter="0">
+        <xctk:BusyIndicator.BusyContentTemplate>
+            <DataTemplate>
+                <StackPanel Margin="4">
+                    <TextBlock Text="{Binding ProgressVM.Name}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <ProgressBar Value="{Binding ProgressVM.Progress}" Height="15" Visibility="{Binding ProgressVM.ProgressVisibility}"/>
+                    <StackPanel Margin="4">
+                        <TextBlock Text="{Binding ProgressVM.SubName}" Visibility="{Binding ProgressVM.SubNameVisibility}"/>
+                        <ProgressBar Value="{Binding ProgressVM.SubProgress}" Height="15" Visibility="{Binding ProgressVM.SubProgressVisibility}"/>
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Pause" HorizontalAlignment="Right" Margin="0 0 2 0"/>
+                        <Button Grid.Column="1" Content="Cancel" 
+                                Visibility="{Binding ProgressVM.CancelVisibility}"
+                                HorizontalAlignment="Left" Margin="2 0 0 0"/>
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>
+        <!--<xctk:BusyIndicator.OverlayStyle>
+            <Style TargetType="Rectangle">
+                <Setter Property="Fill" Value="#ffffeeee"/>
+            </Style>
+        </xctk:BusyIndicator.OverlayStyle>-->
+        <xctk:BusyIndicator.ProgressBarStyle>
+            <Style TargetType="ProgressBar">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+        </xctk:BusyIndicator.ProgressBarStyle>
+        <ContentControl>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--Menu-->
+                <Grid Grid.Row="0">
+                    <ToolBarPanel>
+                        <ToolBar>
+                            <Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
+                                <ContentControl Template="{StaticResource iconSave}" />
+                            </Button>
+                            <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
                         <ContentControl Template="{StaticResource iconSaveAll}" />
                     </Button>-->
-                    <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
-                        <ContentControl Template="{StaticResource iconSaveAs}" />
-                    </Button>
-                    <Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
-                        <ContentControl Template="{StaticResource iconConnectionBuilder}" />
-                    </Button>
-                    <TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
-                        <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
-                    </TextBlock>
-                    <xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
+                            <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
+                                <ContentControl Template="{StaticResource iconSaveAs}" />
+                            </Button>
+                            <Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
+                                <ContentControl Template="{StaticResource iconConnectionBuilder}" />
+                            </Button>
+                            <TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
+                                <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
+                            </TextBlock>
+                            <xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
                                             SelectedItem="{Binding SelectedDbDesignPlugin}" 
                                             DisplayMemberPath="Plugin.NameUi" 
                                             Margin="3,0" MinWidth="70">
-                        <xctk:WatermarkComboBox.WatermarkTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="Db plugin" Foreground="Gray" />
-                            </DataTemplate>
-                        </xctk:WatermarkComboBox.WatermarkTemplate>
-                    </xctk:WatermarkComboBox>
-                    <xctk:WatermarkComboBox MinWidth="120">
-                        <xctk:WatermarkComboBox.WatermarkTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="Connection string" Foreground="Gray" />
-                            </DataTemplate>
-                        </xctk:WatermarkComboBox.WatermarkTemplate>
-                    </xctk:WatermarkComboBox>
-                </ToolBar>
-            </ToolBarPanel>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" MinWidth="20" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5*" MinWidth="20" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="3*" MinWidth="20" />
-            </Grid.ColumnDefinitions>
-            <!--Config Tree-->
-            <Grid Grid.Column="0">
-                <local:ConfigTree />
-            </Grid>
-            <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" >
-                <GridSplitter.Background>
-                    <RadialGradientBrush>
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </RadialGradientBrush>
-                </GridSplitter.Background>
-            </GridSplitter>
-            <!--Editors-->
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="62*" MinHeight="20" />
-                    <RowDefinition Height="117*"/>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="30*" MinHeight="20" />
-                </Grid.RowDefinitions>
-                <!--<local:Editors Grid.Row="0" Height="{Binding RowDefinitions[0].Height.Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>-->
-                <local:Editors Grid.Row="0" Grid.RowSpan="2"/>
-                <GridSplitter Grid.Row="2" ResizeDirection="Rows" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.5" >
-                    <GridSplitter.Background>
-                        <RadialGradientBrush>
-                            <GradientStop Color="Black" Offset="0.003"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </RadialGradientBrush>
-                    </GridSplitter.Background>
-                </GridSplitter>
-                <!--List All Validations-->
-                <Grid Grid.Row="3">
-                    <local:ValidationListForSelectedNode />
+                                <xctk:WatermarkComboBox.WatermarkTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Db plugin" Foreground="Gray" />
+                                    </DataTemplate>
+                                </xctk:WatermarkComboBox.WatermarkTemplate>
+                            </xctk:WatermarkComboBox>
+                            <xctk:WatermarkComboBox MinWidth="120">
+                                <xctk:WatermarkComboBox.WatermarkTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Connection string" Foreground="Gray" />
+                                    </DataTemplate>
+                                </xctk:WatermarkComboBox.WatermarkTemplate>
+                            </xctk:WatermarkComboBox>
+                            <Button Command="{Binding CommandConfigCurrentUpdate}">
+                                <ContentControl Template="{StaticResource iconRun}" />
+                            </Button>
+                        </ToolBar>
+                    </ToolBarPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" MinWidth="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5*" MinWidth="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="3*" MinWidth="20" />
+                    </Grid.ColumnDefinitions>
+                    <!--Config Tree-->
+                    <Grid Grid.Column="0">
+                        <local:ConfigTree />
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" >
+                        <GridSplitter.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </RadialGradientBrush>
+                        </GridSplitter.Background>
+                    </GridSplitter>
+                    <!--Editors-->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="62*" MinHeight="20" />
+                            <RowDefinition Height="117*"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="30*" MinHeight="20" />
+                        </Grid.RowDefinitions>
+                        <!--<local:Editors Grid.Row="0" Height="{Binding RowDefinitions[0].Height.Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>-->
+                        <local:Editors Grid.Row="0" Grid.RowSpan="2"/>
+                        <GridSplitter Grid.Row="2" ResizeDirection="Rows" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="0.5" >
+                            <GridSplitter.Background>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="Black" Offset="0.003"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </RadialGradientBrush>
+                            </GridSplitter.Background>
+                        </GridSplitter>
+                        <!--List All Validations-->
+                        <Grid Grid.Row="3">
+                            <local:ValidationListForSelectedNode />
+                        </Grid>
+                    </Grid>
+                    <GridSplitter Grid.Column="3" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" >
+                        <GridSplitter.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </RadialGradientBrush>
+                        </GridSplitter.Background>
+                    </GridSplitter>
+                    <!--List Properties-->
+                    <Grid Grid.Column="4">
+                        <local:PropertiesList />
+                    </Grid>
                 </Grid>
             </Grid>
-            <GridSplitter Grid.Column="3" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" >
-                <GridSplitter.Background>
-                    <RadialGradientBrush>
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </RadialGradientBrush>
-                </GridSplitter.Background>
-            </GridSplitter>
-            <!--List Properties-->
-            <Grid Grid.Column="4">
-                <local:PropertiesList />
-            </Grid>
-        </Grid>
-    </Grid>
+        </ContentControl>
+    </xctk:BusyIndicator>
 </UserControl>

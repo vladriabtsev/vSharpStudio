@@ -221,21 +221,20 @@ namespace vSharpStudio.vm.ViewModels
 
         [BrowsableAttribute(false)]
         public string CurrentCfgFolderPath { get; set; }
-        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        public string SolutionPath
-        {
-            get
-            {
-                return this._SolutionPath;
-            }
-            set
-            {
-                this._SolutionPath = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        private string _SolutionPath;
+        //[Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
+        //public string SolutionPath
+        //{
+        //    get
+        //    {
+        //        return this._SolutionPath;
+        //    }
+        //    set
+        //    {
+        //        this._SolutionPath = value;
+        //        this.NotifyPropertyChanged();
+        //    }
+        //}
+        //private string _SolutionPath;
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode

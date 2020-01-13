@@ -32,12 +32,36 @@ using System.Windows.Threading;
 
 namespace ViewModelBase
 {
+    public class DispatcherDummy : IDispatcher
+    {
+        public void BeginInvoke(Action action)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckAccess()
+        {
+            return true;
+        }
+    }
 
     /// <summary>
     /// Implementation of <see cref="INotifyPropertyChanged"/> to simplify models.
     /// </summary>
     public class VmBindable : INotifyPropertyChanged
     {
+        public VmBindable()
+        {
+            if (VmBindable._AppDispatcher == null && isUnitTests)
+                VmBindable.AppDispatcher = new DispatcherDummy();
+        }
+#if DEBUG
+        public static bool isUnitTests;
+        public static bool isNotValidateForUnitTests;
+#endif
+        public static ushort MaxSortingWeightShift = 4;
+        public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
+        public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
         public bool IsNotNotifying { get; set; }
 
         #region Dispatcher Methods
@@ -45,26 +69,38 @@ namespace ViewModelBase
         /// <summary>
         /// Gets access to the dispatcher for this view or application.
         /// </summary>
-        public IDispatcher Dispatcher
+        //public IDispatcher Dispatcher
+        //{
+        //    get
+        //    {
+        //        //if (this.View != null)
+        //        //    return this.View.Dispatcher;
+
+        //        //var coreWindow1 = CoreWindow.GetForCurrentThread();
+        //        //if (coreWindow1 != null)
+        //        //    return coreWindow1.Dispatcher;
+
+        //        //var coreWindow2 = CoreApplication.MainView.CoreWindow;
+        //        //if (coreWindow2 != null)
+        //        //    return coreWindow2.Dispatcher;
+        //        if (_Dispatcher == null)
+        //            throw new InvalidOperationException("Dispatcher is not initialized!");
+        //        return _Dispatcher;
+        //    }
+        //}
+        //private IDispatcher _Dispatcher;
+        protected IDispatcher Dispatcher { get { return VmBindable.AppDispatcher; } }
+        public static IDispatcher AppDispatcher
         {
-            get
+            get { return VmBindable._AppDispatcher; }
+            set
             {
-                //if (this.View != null)
-                //    return this.View.Dispatcher;
-
-                //var coreWindow1 = CoreWindow.GetForCurrentThread();
-                //if (coreWindow1 != null)
-                //    return coreWindow1.Dispatcher;
-
-                //var coreWindow2 = CoreApplication.MainView.CoreWindow;
-                //if (coreWindow2 != null)
-                //    return coreWindow2.Dispatcher;
-                if (_Dispatcher == null)
-                    throw new InvalidOperationException("Dispatcher is not initialized!");
-                return _Dispatcher;
+                if (VmBindable._AppDispatcher != null)
+                    throw new InvalidOperationException("'VmBindable.AppDispatcher' is already initialized");
+                VmBindable._AppDispatcher = value;
             }
         }
-        private IDispatcher _Dispatcher;
+        private static IDispatcher _AppDispatcher = null;
 
         /// <summary>
         /// Runs a function on the currently executing platform's UI thread.

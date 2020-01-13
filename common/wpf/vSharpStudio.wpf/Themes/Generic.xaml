@@ -6,5 +6,6 @@
         <!--<ResourceDictionary Source="/vSharpStudio.wpf;component/themes/vTreeListView.xaml" />-->
         <!--<ResourceDictionary Source="/vSharpStudio.wpf;component/themes/TreeListView.xaml" />-->
         <ResourceDictionary Source="/vSharpStudio.wpf;component/themes/TreeList.xaml" />
+        <ResourceDictionary Source="/vSharpStudio.wpf;component/themes/vButtonAsync.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

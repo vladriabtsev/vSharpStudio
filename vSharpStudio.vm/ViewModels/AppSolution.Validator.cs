@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
                     .Must((o, path) =>
                     {
                         if (string.IsNullOrEmpty(path))
-                            return true;
+                            return false;
                         return File.Exists(o.GetCombinedPath(path));
                     })
                     .WithMessage("Solution file was not found");

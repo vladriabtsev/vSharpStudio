@@ -8,8 +8,9 @@ using FluentValidation;
 
 namespace ViewModelBase
 {
-    public class VmValidatable<TValidator> : VmEditable, INotifyDataErrorInfo, IValidatable
-      where TValidator : AbstractValidator<VmValidatable<TValidator>>
+    public class VmValidatable<T, TValidator> : VmEditable<T>, INotifyDataErrorInfo, IValidatable
+        where TValidator : AbstractValidator<T>
+        where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
         public VmValidatable(TValidator validator)
         {
@@ -37,17 +38,21 @@ namespace ViewModelBase
         {
             var res = this._validator.Validate(this);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
         public async void ValidateAsync()
         {
             var res = await this._validator.ValidateAsync(this);
             ValidationChange(res);
-            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(nameof(this.HasErrors));
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+#if DEBUG
+            if (isNotValidateForUnitTests)
+                return true;
+#endif
             var res = this._validator.Validate(this);
             if (!res.IsValid)
             {
@@ -106,7 +111,7 @@ namespace ViewModelBase
             if (!_errors.ContainsKey(propertyName))
                 _errors.Add(propertyName, new List<string> { errorMessage });
             RaiseErrorsChanged(propertyName);
-            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(nameof(this.HasErrors));
         }
         public void SetOneError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
@@ -119,7 +124,7 @@ namespace ViewModelBase
                 _errors.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(nameof(this.HasErrors));
         }
         protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
@@ -127,7 +132,7 @@ namespace ViewModelBase
                 _errors.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(() => this.HasErrors);
+            NotifyPropertyChanged(nameof(this.HasErrors));
         }
         protected void ClearAllErrors()
         {

@@ -4,47 +4,47 @@ using System.Text;
 
 namespace ViewModelBase
 {
-  public class DataGridViewModelBase<T> : ViewModelBindable<T>
-    where T : ViewModelBindable<T>
-  {
-    //    public ObservableCollectionExt<E> RowListLoaded { get; set; }
-
-    public ObservableCollectionExt<T> Collection
+    public class DataGridViewModelBase<T> : VmBindable
+      where T : VmBindable
     {
-      get { return _collection; }
-      set
-      {
-        SetValue<ObservableCollectionExt<T>>(ref _collection, value, () =>
+        //    public ObservableCollectionExt<E> RowListLoaded { get; set; }
+
+        public ObservableCollectionExt<T> Collection
         {
-          if (_collection != null && _collection.Count > 0)
-          {
-            this.Selected = _collection[0];
-          }
-        });
-      }
-    }
-    private ObservableCollectionExt<T> _collection = new ObservableCollectionExt<T>();
+            get { return _collection; }
+            set
+            {
+                if (SetProperty<ObservableCollectionExt<T>>(ref _collection, value))
+                {
+                    if (_collection != null && _collection.Count > 0)
+                    {
+                        this.Selected = _collection[0];
+                    }
+                }
+            }
+        }
+        private ObservableCollectionExt<T> _collection = new ObservableCollectionExt<T>();
 
-    public T Selected
-    {
-      get { return _selected; }
-      set { SetValue<T>(ref _selected, value, () => { this.SelectedRowChanged(); }); }
-    }
-    private T _selected;
-    protected virtual void SelectedRowChanged() { }
+        public T Selected
+        {
+            get { return _selected; }
+            set { if (SetProperty<T>(ref _selected, value)) { this.SelectedRowChanged(); } }
+        }
+        private T _selected;
+        protected virtual void SelectedRowChanged() { }
 
-    public bool IsBusy
-    {
-      get { return _isBusy; }
-      set { SetValue<bool>(ref _isBusy, value, () => { this.IsNotBusy = !this.IsBusy; this.IsBusyChanged(); }); }
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { if (SetProperty<bool>(ref _isBusy, value)) { this.IsNotBusy = !this.IsBusy; this.IsBusyChanged(); } }
+        }
+        private bool _isBusy;
+        public bool IsNotBusy
+        {
+            get { return _isNotBusy; }
+            set { if (SetProperty<bool>(ref _isNotBusy, value)) { this.IsBusyChanged(); } }
+        }
+        private bool _isNotBusy = true;
+        protected virtual void IsBusyChanged() { }
     }
-    private bool _isBusy;
-    public bool IsNotBusy
-    {
-      get { return _isNotBusy; }
-      set { SetValue<bool>(ref _isNotBusy, value, () => { this.IsBusyChanged(); }); }
-    }
-    private bool _isNotBusy = true;
-    protected virtual void IsBusyChanged() { }
-  }
 }

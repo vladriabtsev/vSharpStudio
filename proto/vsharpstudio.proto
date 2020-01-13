@@ -699,7 +699,6 @@ message proto_enumeration_pair {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // TODO struct for different types, at least INTEGER
     string value = 6;
 }
 /** 

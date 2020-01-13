@@ -107,7 +107,6 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.Add(node);
-            // TODO can be more economical?
             if (this.LastGenPosition == 0)
             {
                 this.LastGenPosition = 1;

@@ -119,7 +119,7 @@ namespace GenFromProto
             if (from.Name.EndsWith("_nullable_enum"))
                 return false;
             var doc = JsonDoc.Files[from.File.Name].Messages[from.Name];
-            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectBase<") || doc.BaseClass.StartsWith(" : ConfigObjectSubBase<"))
+            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectVmBase<") || doc.BaseClass.StartsWith(" : ConfigObjectCommonBase<"))
                 return true;
             return false;
         }
@@ -133,7 +133,7 @@ namespace GenFromProto
                     return false;
             }
             var doc = JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
-            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectBase<") || doc.BaseClass.StartsWith(" : ConfigObjectSubBase<"))
+            if (string.IsNullOrWhiteSpace(doc.BaseClass) || doc.BaseClass.StartsWith(" : ConfigObjectVmBase<") || doc.BaseClass.StartsWith(" : ConfigObjectCommonBase<"))
                 return true;
             return false;
         }

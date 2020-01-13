@@ -6,6 +6,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+//<Grid>
+//  <TextBox Text = "{Binding Url}" />
+//  < Button Command="{Binding CountUrlBytesCommand}" Content="Go" />
+//  <Grid Visibility = "{Binding CountUrlBytesCommand.Execution,
+//    Converter={StaticResource NullToVisibilityConverter}}">
+//    <!--Busy indicator-->
+//    <Label Visibility = "{Binding CountUrlBytesCommand.Execution.IsNotCompleted,
+//      Converter={StaticResource BooleanToVisibilityConverter}}"
+//      Content="Loading..." />
+//    <!--Results-->
+//    <Label Content = "{Binding CountUrlBytesCommand.Execution.Result}"
+//      Visibility="{Binding CountUrlBytesCommand.Execution.IsSuccessfullyCompleted,
+//      Converter={StaticResource BooleanToVisibilityConverter}}" />
+//    <!--Error details-->
+//    <Label Content = "{Binding CountUrlBytesCommand.Execution.ErrorMessage}"
+//      Visibility="{Binding CountUrlBytesCommand.Execution.IsFaulted,
+//      Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="Red" />
+//  </Grid>
+//</Grid>
+
 // https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/march/async-programming-patterns-for-asynchronous-mvvm-applications-data-binding
 // https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/april/async-programming-patterns-for-asynchronous-mvvm-applications-commands
 // https://github.com/StephenCleary
@@ -38,15 +58,17 @@ namespace ViewModelBase
     {
         private readonly Func<CancellationToken, Task<TResult>> _command;
         private readonly CancelAsyncCommand _cancelCommand;
+        private readonly Predicate<object> _canExecute;
         // Raises PropertyChanged
-        public AsyncCommand(Func<CancellationToken, Task<TResult>> command)
+        public AsyncCommand(Func<CancellationToken, Task<TResult>> command, Predicate<object> canExecute)
         {
             _command = command;
+            _canExecute = canExecute;
             _cancelCommand = new CancelAsyncCommand();
         }
         public override bool CanExecute(object parameter)
         {
-            return Execution == null || Execution.IsCompleted;
+            return (Execution == null || Execution.IsCompleted) && _canExecute(parameter);
         }
         public override async Task ExecuteAsync(object parameter)
         {
@@ -123,26 +145,26 @@ namespace ViewModelBase
             var propertyChanged = PropertyChanged;
             if (propertyChanged == null)
                 return;
-            propertyChanged(this, new PropertyChangedEventArgs("Status"));
-            propertyChanged(this, new PropertyChangedEventArgs("IsCompleted"));
-            propertyChanged(this, new PropertyChangedEventArgs("IsNotCompleted"));
+            propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Status)));
+            propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsCompleted)));
+            propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsNotCompleted)));
             if (task.IsCanceled)
             {
-                propertyChanged(this, new PropertyChangedEventArgs("IsCanceled"));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsCanceled)));
             }
             else if (task.IsFaulted)
             {
-                propertyChanged(this, new PropertyChangedEventArgs("IsFaulted"));
-                propertyChanged(this, new PropertyChangedEventArgs("Exception"));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsFaulted)));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Exception)));
                 propertyChanged(this,
-                  new PropertyChangedEventArgs("InnerException"));
-                propertyChanged(this, new PropertyChangedEventArgs("ErrorMessage"));
+                  new PropertyChangedEventArgs(nameof(this.InnerException)));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.ErrorMessage)));
             }
             else
             {
                 propertyChanged(this,
-                  new PropertyChangedEventArgs("IsSuccessfullyCompleted"));
-                propertyChanged(this, new PropertyChangedEventArgs("Result"));
+                  new PropertyChangedEventArgs(nameof(this.IsSuccessfullyCompleted)));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Result)));
             }
         }
         public Task<TResult> TaskCompletion { get; private set; }
