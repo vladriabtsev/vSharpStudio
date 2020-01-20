@@ -7,16 +7,26 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using System.Threading;
 using System.Threading.Tasks;
-using vSharpStudio.common.DiffModel;
+using Proto.Renamer;
+using Microsoft.Extensions.Logging;
 
-namespace vSharpStudio.ViewModels
+namespace Renamer
 {
     public class CodeAnalysisCSharp
     {
-        public async static Task Rename(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task Rename(ILogger _logger, Solution solution, Document document, proto_request request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("List renames:".FilePos());
+            foreach (var tr in request.ListRenames)
+            {
+                _logger.LogInformation("   Class: {0}".FilePos(), tr.ClassNameBeforeRename);
+                foreach (var tp in tr.ListRenamedProperties)
+                {
+                    _logger.LogInformation("      Property: {0} -> {1}".FilePos(), tp.PropName, tp.PropNameNew);
+                }
+            }
 #if DEBUG
-            foreach (var tr in lstRenames)
+            foreach (var tr in request.ListRenames)
             {
                 if (string.IsNullOrWhiteSpace(tr.Namespace))
                     throw new NotSupportedException("Namespace is empty");
@@ -62,7 +72,7 @@ namespace vSharpStudio.ViewModels
                         if (!(tt is PropertyDeclarationSyntax))
                             continue;
                         var p = (PropertyDeclarationSyntax)tt;
-                        foreach (var tr in lstRenames)
+                        foreach (var tr in request.ListRenames)
                         {
                             //if (tr.Namespace == ns.Externs)
                             //{
@@ -72,30 +82,33 @@ namespace vSharpStudio.ViewModels
                                 {
                                     if (tp.PropName == p.Identifier.Text)
                                     {
+                                        _logger.LogInformation("Rename Property: {0} -> {1} Class: {2}".FilePos(), tp.PropName, tp.PropNameNew, tr.ClassNameBeforeRename);
                                         var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                         var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
-                                        await Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
+                                        await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
                                     }
                                 }
                             }
                             //}
                         }
                     }
-                    foreach (var tr in lstRenames)
-                    {
-                        if (!string.IsNullOrWhiteSpace(tr.ClassNameBeforeRename))
-                        {
-                            //if (tr.Namespace == ns.Externs)
-                            //{
-                            if (tr.ClassNameBeforeRename == c.Identifier.Text)
-                            {
-                                var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
-                                var classSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
-                                await Renamer.RenameSymbolAsync(solution, classSymbolOpt, tr.ClassNameBeforeRename, solution.Options, cancellationToken);
-                            }
-                            //}
-                        }
-                    }
+                    // TODO implement rename classes !!!
+
+                    //foreach (var tr in request.ListRenames)
+                    //{
+                    //    if (!string.IsNullOrWhiteSpace(tr.ClassNameBeforeRename))
+                    //    {
+                    //        //if (tr.Namespace == ns.Externs)
+                    //        //{
+                    //        if (tr.ClassNameBeforeRename == c.Identifier.Text)
+                    //        {
+                    //            var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+                    //            var classSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
+                    //            await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, classSymbolOpt, tr.ClassNameBeforeRename, solution.Options, cancellationToken);
+                    //        }
+                    //        //}
+                    //    }
+                    //}
                 }
             }
         }

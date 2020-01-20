@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package proto_renamer; // 
+option csharp_namespace = "Proto.Renamer";
+
+message proto_request {
+    int32 request_id = 1;
+    bool is_cancel = 2;
+    bool is_compile = 3;
+    bool is_rename = 4;
+    bool is_exit = 5;
+    string solution_path = 6;
+    string project_path = 7;
+    repeated proto_rename_data list_renames = 8;
+}
+message proto_rename_data {
+    string namespace = 1;
+    string class_name_before_rename = 2;
+    repeated proto_rename_property_data list_renamed_properties = 3;
+}
+message proto_rename_property_data {
+    string prop_name = 1;
+    string prop_name_new = 2;
+}
+message proto_response {
+    int32 response_id = 1;
+    bool is_cancelled = 2;
+    bool is_success = 3;
+    bool is_failure = 4;
+    proto_exception exception = 5;
+}
+message proto_exception {
+    string exception_type_name = 1;
+    string message = 2;
+    string stack_trace = 3;
+}

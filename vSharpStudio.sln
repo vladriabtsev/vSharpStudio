@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D
 		proto\nullable.proto = proto\nullable.proto
 		proto\plugin_sample.proto = proto\plugin_sample.proto
 		proto\proto_doc.proto = proto\proto_doc.proto
+		proto\renamer_communication.proto = proto\renamer_communication.proto
 		proto\vsharpstudio.proto = proto\vsharpstudio.proto
 	EndProjectSection
 EndProject
@@ -73,6 +74,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ext", "ext", "{2308E25C-68C9-4F24-A3BC-3678253E77A0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UndoFramework", "ext\UndoFramework\UndoFramework.csproj", "{211753FC-8C4D-4F05-AB4B-130FABECF30E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renamer", "Renamer\Renamer.csproj", "{F3DF4908-3C94-4003-8ABF-3C845E83BB92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EC5B8D66-BBC5-4183-8381-1D6B6181734E} = {EC5B8D66-BBC5-4183-8381-1D6B6181734E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renamer.Tests", "Renamer.Tests\Renamer.Tests.csproj", "{C4F44A79-23C2-4EFC-B07E-4A2036E85320}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -207,6 +215,18 @@ Global
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,13 +6,13 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using System.Threading;
 using System.Threading.Tasks;
-using vSharpStudio.common.DiffModel;
+using Proto.Renamer;
 
-namespace vSharpStudio.ViewModels
+namespace Renamer
 {
     public class CodeAnalysisVisualBasic
     {
-        public async static void Rename(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static void Rename(Solution solution, Document document, proto_request request, CancellationToken cancellationToken)
         {
             var root = (CompilationUnitSyntax)document.GetSyntaxRootAsync().Result;
             var diag = root.GetDiagnostics().ToList();

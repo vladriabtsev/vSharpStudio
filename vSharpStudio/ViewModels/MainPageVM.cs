@@ -867,6 +867,7 @@ namespace vSharpStudio.ViewModels
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     if (this._Config.CountErrors > 0)
                         throw new Exception("There are errors in configuration. Fix errors and try again.");
+                    // unit test
                     if (tst != null && tst.IsThrowExceptionOnConfigValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnConfigValidated));
                     progress.Progress = 5;
@@ -874,113 +875,79 @@ namespace vSharpStudio.ViewModels
                     onProgress(progress);
                     #endregion
 
-                    // II. Build all solutions. Exception if not compilible (no need for UNDO)
-                    #region
-                    progress.SubName = "Check current code compilation";
-                    onProgress(progress);
-
-                    var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
-                    var build = lstBuilds[0];
-                    Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(build);
-                    //Microsoft.Build.Locator.VisualStudioInstanceQueryOptions.Default = new Microsoft.Build.Locator.VisualStudioInstanceQueryOptions() { DiscoveryType = Microsoft.Build.Locator.DiscoveryType.DotNetSdk };
-                    //Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-                    var properties = new Dictionary<string, string>
-                        {
-                            // Use the latest language version to force the full set of available analyzers to run on the project.
-                            { "LangVersion", "latest" },
-                        };
-                    using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create(properties))
-                    //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
-                    //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
+                    using (var cr = new RenamerApp())
                     {
+                        // II. Build all solutions. Exception if not compilible (no need for UNDO)
+                        #region
+                        progress.SubName = "Check current code compilation";
+                        onProgress(progress);
+
                         int i = 0;
                         foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
                             if (cancellationToken.IsCancellationRequested)
                                 throw new CancellationException();
-                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
-                            if (workspace.Diagnostics.Count > 0)
-                            {
-                                var en = workspace.Diagnostics.GetEnumerator();
-                                en.MoveNext();
-                                if (en.Current.Kind == Microsoft.CodeAnalysis.WorkspaceDiagnosticKind.Failure)
-                                    throw new Exception(en.Current.Message);
-                            }
-                            foreach (var project in solution.Projects)
-                            {
-                                var compilation = await project.GetCompilationAsync();
-                                var diag = compilation.GetDiagnostics();
-                                var lst = from p in diag where p.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error select p;
-                                if (lst.Count() > 0)
-                                    throw new Exception("Compilation errors are found.\nSolution: " + ts.RelativeAppSolutionPath + "\nProject: " + project.FilePath);
-                            }
                             i++;
+
+                            await cr.Compile(ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+
                             progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
                             onProgress(progress);
                         }
-                    }
-                    if (tst != null && tst.IsThrowExceptionOnBuildValidated)
-                        throw new Exception();
-                    #endregion
+                        // unit test
+                        if (tst != null && tst.IsThrowExceptionOnBuildValidated)
+                            throw new Exception();
+                        #endregion
 
-                    // III. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                    #region
-                    var mvr = new ModelVisitorForRenamer();
-                    mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
-                    using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
-                    {
+                        // III. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
+                        #region
+                        var mvr = new ModelVisitorForRenamer();
+                        mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+
                         foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
-                            if (cancellationToken.IsCancellationRequested)
-                                throw new CancellationException();
-                            // Open the solution within the workspace.
-                            Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath));
                             foreach (var tp in ts.ListAppProjects)
                             {
-                                bool isProjectFound = false;
-                                foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
+                                foreach (var tg in tp.ListAppProjectGenerators)
                                 {
                                     if (cancellationToken.IsCancellationRequested)
                                         throw new CancellationException();
-                                    // Look up the snapshot for the original project in the latest forked solution.
-                                    Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
-                                    if (project.FilePath == tp.GetCombinedPath(tp.RelativeAppProjectPath))
+                                    var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                    List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                    var request = new Proto.Renamer.proto_request() { 
+                                         SolutionPath= ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                         ProjectPath = ts.GetCombinedPath(tp.RelativeAppProjectPath),
+                                    };
+                                    foreach(var t in lstRenames)
                                     {
-                                        isProjectFound = true;
-                                        foreach (var tg in tp.ListAppProjectGenerators)
+                                        var rd = new Proto.Renamer.proto_rename_data()
                                         {
-                                            var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                            List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
-                                            foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
+                                            Namespace = t.Namespace,
+                                            ClassNameBeforeRename = t.ClassNameBeforeRename,
+                                        };
+                                        foreach(var tt in t.ListRenamedProperties)
+                                        {
+                                            var rpd = new Proto.Renamer.proto_rename_property_data()
                                             {
-                                                // Look up the snapshot for the original document in the latest forked solution.
-                                                Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
-                                                //tg.RelativePathToGeneratedFile
-                                                if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
-                                                {
-                                                    if (Path.GetExtension(document.FilePath) == "cs")
-                                                    {
-                                                        await CodeAnalysisCSharp.Rename(solution, document, lstRenames, cancellationToken);
-                                                    }
-                                                    else if (Path.GetExtension(document.FilePath) == "vb")
-                                                    {
-                                                        CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
-                                                    }
-                                                    else
-                                                        throw new NotSupportedException();
-                                                }
-                                            }
+                                                PropName = tt.PropName,
+                                                PropNameNew = tt.PropNameNew,
+                                            };
+                                            rd.ListRenamedProperties.Add(rpd);
                                         }
+                                        request.ListRenames.Add(rd);
                                     }
+                                    //await cr.Rename(ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                    //   tp.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
+                                    await cr.Rename(request, cancellationToken);
                                 }
-                                if (!isProjectFound)
-                                    throw new Exception("Project not found");
                             }
                         }
+
+                        // unit test
                         if (tst != null && tst.IsThrowExceptionOnRenamed)
                             throw new Exception();
+                        #endregion
                     }
-                    #endregion
 
                     // IV. Apply new DB schema (no need for UNDO ???)
                     #region
@@ -993,6 +960,7 @@ namespace vSharpStudio.ViewModels
                             // generate db
                         }
                     }
+                    // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
                         throw new Exception();
                     #endregion
@@ -1008,6 +976,7 @@ namespace vSharpStudio.ViewModels
                             // generate
                         }
                     }
+                    // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();
                     #endregion
@@ -1021,6 +990,7 @@ namespace vSharpStudio.ViewModels
                           var proto = Config.ConvertToProto(this._Config);
                           this.pconfig_history.CurrentConfig = proto;
                           this.Save();
+                          // unit test
                           if (tst != null && tst.IsThrowExceptionOnConfigUpdated)
                               throw new Exception();
                       },
