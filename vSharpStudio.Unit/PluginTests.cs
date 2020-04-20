@@ -247,6 +247,8 @@ namespace vSharpStudio.Unit
             gen.GenFileName = genFile;
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            string fpath = prj.GetCombinedPath(gen.RelativePathToGenFolder + gen.GenFileName);
+            File.WriteAllText(fpath, "namespace Test {}");
 
             sln.Validate();
             prj.Validate();
@@ -288,30 +290,44 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.CountErrors == 0);
             #endregion valid Config
 
-            // Can recognize not compilible code before rename
-            #region not compilable code
+            #region compilable code
             tt = new TestTransformation();
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
-            Assert.IsTrue(vm.ProgressVM.Exception != null);
-            #endregion not compilable code
+            Assert.IsTrue(vm.ProgressVM.Exception == null);
+            #endregion compilable code
 
-            #region compilable code
+            // Can recognize exception before rename
+            #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
-            #endregion compilable code
+            #endregion not compilable code
 
+            // Exclude compilation process if there are no renames
+            #region not compilable code
+            tt = new TestTransformation();
+            File.WriteAllText(fpath, "wrong c# code"); 
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception == null);
+            #endregion not compilable code
 
+            // Include compilation process if there are renames
+            #region not compilable code
+            tt = new TestTransformation();
+            tt.IsThrowExceptionOnBuildValidated = true;
+            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
+            Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
+            #endregion not compilable code
 
-            Assert.IsTrue(File.Exists(genFilePath));
-
-            // Accept not compilible code if there are no renames
 
             // Can rename
 
-            // Can roll back if rename is fauld
+            // Can roll back if rename is fault
+
+            Assert.IsTrue(File.Exists(genFilePath));
 
             // Can generate code
             #region generate valid code

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using Serilog;
 using System.Runtime.CompilerServices;
+using Grpc.Core;
+using Proto.Renamer;
 
 namespace Renamer
 {
@@ -24,6 +26,8 @@ namespace Renamer
         // https://github.com/jlevy/the-art-of-command-line
 
 
+        [Option(Description = "Port number for communication. Default: 7171")]
+        public int Port { get; set; }
         [Option(Description = "Folder for log files")]
         public string FolderLog { get; set; }
         [Option(Description = "Log level: Trace, Debug, Information, Warning, Error, Critical. Default: Error")]
@@ -35,6 +39,8 @@ namespace Renamer
         private ILoggerProvider loggerProvider = null;
         public void OnExecute()
         {
+            if (Port==0)
+                Port = 7171;
             if (string.IsNullOrEmpty(this.FolderLog))
                 this.FolderLog = Directory.GetCurrentDirectory();
             Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
@@ -75,11 +81,41 @@ namespace Renamer
             loggerProvider = new Serilog.Extensions.Logging.SerilogLoggerProvider(Serilog.Log.Logger);
 
             Microsoft.Extensions.Logging.ILogger _logger = loggerProvider.CreateLogger(this.GetType().Name);
+            Server server = null;
+            try
+            {
+                _logger.LogTrace("Renamer started with parameters. FolderLog={0}, LevelLog={1}, MmfName={2}".FilePos(),
+                    FolderLog, LevelLog, MmfName);
+#if GRPC
+                //var features = RouteGuideUtil.ParseFeatures(RouteGuideUtil.DefaultFeaturesFile);
+                server = new Server
+                {
+                    //Services = { RenamerService.BindService(new RenamerServiceImpl(features)) },
+                    Services = { RenamerService.BindService(new RenamerServiceImpl()) },
+                    Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+                };
+                server.Start();
+                _logger.LogTrace(("RouteGuide server listening on port " + Port).FilePos());
 
-            _logger.LogTrace("Renamer started with parameters. FolderLog={0}, LevelLog={1}, MmfName={2}".FilePos(),
-                FolderLog, LevelLog, MmfName);
-            var cr = new RenamerApp(loggerProvider);
-            cr.WaitAndExecuteCommands();
+                while (!RenamerServiceImpl.IsStopServer)
+                {
+                    Task.Delay(1000);
+                }
+
+#else
+                var cr = new RenamerApp(loggerProvider);
+                _logger.LogTrace("cr.WaitAndExecuteCommands()".FilePos());
+                cr.WaitAndExecuteCommands();
+#endif
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "".FilePos());
+            }
+#if GRPC
+            server?.ShutdownAsync().Wait();
+#endif
+            _logger.LogTrace("D O N E".FilePos());
         }
     }
 }

@@ -221,7 +221,11 @@
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return path;
+#if NET48
+            return vSharpStudio.common.Utils.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+#else
             return Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+#endif
         }
         public string GetCombinedPath(string relative_path)
         {
@@ -457,7 +461,7 @@
 
         private bool _IsExpanded;
 
-        #region Commands
+#region Commands
 
         public bool NodeCanAddNew()
         {
@@ -612,9 +616,9 @@
             throw new NotImplementedException();
         }
 
-        #endregion Commands
+#endregion Commands
 
-        #region IMutableAnnotatable
+#region IMutableAnnotatable
 
         public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
         {
@@ -644,7 +648,7 @@
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be added. </param>
         /// <returns> The added annotation. </returns>
-        protected virtual Annotation AddAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual Annotation AddAnnotation(string name, Annotation annotation)
         {
             if (this.FindAnnotation(name) != null)
             {
@@ -672,7 +676,7 @@
         /// <param name="name"> The key of the annotation to be added. </param>
         /// <param name="annotation"> The annotation to be set. </param>
         /// <returns> The annotation that was set. </returns>
-        protected virtual Annotation SetAnnotation([NotNull] string name, [NotNull] Annotation annotation)
+        protected virtual Annotation SetAnnotation(string name, Annotation annotation)
         {
             var oldAnnotation = this.FindAnnotation(name);
 
@@ -692,7 +696,7 @@
         /// <param name="oldAnnotation"> The old annotation. </param>
         /// <returns> The annotation that was set. </returns>
         protected virtual Annotation OnAnnotationSet(
-            [NotNull] string name, Annotation annotation, Annotation oldAnnotation)
+            string name, Annotation annotation, Annotation oldAnnotation)
             => annotation;
 
         /// <summary>
@@ -765,7 +769,7 @@
         /// <param name="name"> The key of the annotation. </param>
         /// <param name="value"> The value to be stored in the annotation. </param>
         /// <returns> The newly created annotation. </returns>
-        protected virtual Annotation CreateAnnotation([NotNull] string name, object value)
+        protected virtual Annotation CreateAnnotation(string name, object value)
             => new Annotation(name, value);
 
         /// <summary>
@@ -789,7 +793,7 @@
                 ? this._annotations.Values.Where(a => a.Value != null)
                 : Enumerable.Empty<Annotation>();
 
-        #endregion IMutableAnnotatable
+#endregion IMutableAnnotatable
 
         public virtual bool HasChildren(object parent)
         {

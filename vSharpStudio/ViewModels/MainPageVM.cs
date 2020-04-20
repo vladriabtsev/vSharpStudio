@@ -13,11 +13,14 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
 using GuiLabs.Undo;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.std;
 using vSharpStudio.Views;
 using vSharpStudio.vm.ViewModels;
@@ -875,10 +878,39 @@ namespace vSharpStudio.ViewModels
                     onProgress(progress);
                     #endregion
 
-                    using (var cr = new RenamerApp())
+                    // II. Rename analysis
+                    #region
+                    var mvr = new ModelVisitorForRenamer();
+                    mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+
+                    bool isNeedRenames = false;
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
-                        // II. Build all solutions. Exception if not compilible (no need for UNDO)
-                        #region
+                        foreach (var tp in ts.ListAppProjects)
+                        {
+                            foreach (var tg in tp.ListAppProjectGenerators)
+                            {
+                                if (cancellationToken.IsCancellationRequested)
+                                    throw new CancellationException();
+                                var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                if (lstRenames.Count == 0)
+                                    continue;
+                                isNeedRenames = true;
+                                break;
+                            }
+                            if (isNeedRenames)
+                                break;
+                        }
+                        if (isNeedRenames)
+                            break;
+                    }
+                    #endregion
+
+                    // III. Build all solutions. Exception if not compilible (no need for UNDO)
+                    #region
+                    if (isNeedRenames)
+                    {
                         progress.SubName = "Check current code compilation";
                         onProgress(progress);
 
@@ -889,67 +921,42 @@ namespace vSharpStudio.ViewModels
                                 throw new CancellationException();
                             i++;
 
-                            await cr.Compile(ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+                            Renamer.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 
                             progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
                             onProgress(progress);
                         }
-                        // unit test
-                        if (tst != null && tst.IsThrowExceptionOnBuildValidated)
-                            throw new Exception();
-                        #endregion
+                    }
+                    // unit test
+                    if (tst != null && tst.IsThrowExceptionOnBuildValidated)
+                        throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
+                    #endregion
 
-                        // III. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                        #region
-                        var mvr = new ModelVisitorForRenamer();
-                        mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
-
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
+                    #region
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    {
+                        foreach (var tp in ts.ListAppProjects)
                         {
-                            foreach (var tp in ts.ListAppProjects)
+                            foreach (var tg in tp.ListAppProjectGenerators)
                             {
-                                foreach (var tg in tp.ListAppProjectGenerators)
-                                {
-                                    if (cancellationToken.IsCancellationRequested)
-                                        throw new CancellationException();
-                                    var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                    List<common.DiffModel.PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
-                                    var request = new Proto.Renamer.proto_request() { 
-                                         SolutionPath= ts.GetCombinedPath(ts.RelativeAppSolutionPath),
-                                         ProjectPath = ts.GetCombinedPath(tp.RelativeAppProjectPath),
-                                    };
-                                    foreach(var t in lstRenames)
-                                    {
-                                        var rd = new Proto.Renamer.proto_rename_data()
-                                        {
-                                            Namespace = t.Namespace,
-                                            ClassNameBeforeRename = t.ClassNameBeforeRename,
-                                        };
-                                        foreach(var tt in t.ListRenamedProperties)
-                                        {
-                                            var rpd = new Proto.Renamer.proto_rename_property_data()
-                                            {
-                                                PropName = tt.PropName,
-                                                PropNameNew = tt.PropNameNew,
-                                            };
-                                            rd.ListRenamedProperties.Add(rpd);
-                                        }
-                                        request.ListRenames.Add(rd);
-                                    }
-                                    //await cr.Rename(ts.GetCombinedPath(ts.RelativeAppSolutionPath),
-                                    //   tp.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
-                                    await cr.Rename(request, cancellationToken);
-                                }
+                                if (cancellationToken.IsCancellationRequested)
+                                    throw new CancellationException();
+                                var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                if (lstRenames.Count == 0)
+                                    continue;
+                                Renamer.Rename(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                    ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
                             }
                         }
-
-                        // unit test
-                        if (tst != null && tst.IsThrowExceptionOnRenamed)
-                            throw new Exception();
-                        #endregion
                     }
+                    // unit test
+                    if (tst != null && tst.IsThrowExceptionOnRenamed)
+                        throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
+                    #endregion
 
-                    // IV. Apply new DB schema (no need for UNDO ???)
+                    // V. Apply new DB schema (no need for UNDO ???)
                     #region
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -962,10 +969,10 @@ namespace vSharpStudio.ViewModels
                     }
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
-                        throw new Exception();
+                        throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));
                     #endregion
 
-                    // V. Generate code (no need for UNDO)
+                    // VI. Generate code (no need for UNDO)
                     #region
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -981,7 +988,7 @@ namespace vSharpStudio.ViewModels
                         throw new Exception();
                     #endregion
 
-                    // VI. Update history CurrentConfig (need UNDO)
+                    // VII. Update history CurrentConfig (need UNDO)
                     #region
                     var update_history = new CallMethodAction(
                       () =>
@@ -1001,12 +1008,121 @@ namespace vSharpStudio.ViewModels
                     #endregion
                 }
             }
+            //catch(Exception ex)
+            //{
+
+            //}
             finally
             {
                 //TODO roll back if Exception
             }
         }
-
+        //        public async static Task Rename(ILogger _logger, Solution solution, Microsoft.CodeAnalysis.Document document, proto_request request, CancellationToken cancellationToken)
+        //        {
+        //            _logger.LogInformation("List renames:".FilePos());
+        //            foreach (var tr in request.ListRenames)
+        //            {
+        //                _logger.LogInformation("   Class: {0}".FilePos(), tr.ClassName);
+        //                foreach (var tp in tr.ListRenamedProperties)
+        //                {
+        //                    _logger.LogInformation("      Property: {0} -> {1}".FilePos(), tp.PropName, tp.PropNameNew);
+        //                }
+        //            }
+        //#if DEBUG
+        //            foreach (var tr in request.ListRenames)
+        //            {
+        //                if (string.IsNullOrWhiteSpace(tr.Namespace))
+        //                    throw new NotSupportedException("Namespace is empty");
+        //                if (string.IsNullOrWhiteSpace(tr.ClassName))
+        //                    throw new NotSupportedException("ClassName is empty");
+        //                foreach (var tp in tr.ListRenamedProperties)
+        //                {
+        //                    if (string.IsNullOrWhiteSpace(tp.PropName))
+        //                        throw new NotSupportedException("PropName is empty");
+        //                    if (string.IsNullOrWhiteSpace(tp.PropNameNew))
+        //                        throw new NotSupportedException("PropNameNew is empty");
+        //                    if (tp.PropName == tp.PropNameNew)
+        //                        throw new NotSupportedException("PropNameNew is equal PropName");
+        //                }
+        //            }
+        //#endif
+        //            var root = (CompilationUnitSyntax)document.GetSyntaxRootAsync().Result;
+        //            var diag = root.GetDiagnostics().ToList();
+        //            if (diag.Count > 0)
+        //            {
+        //                StringBuilder sb = new StringBuilder();
+        //                foreach (var t in diag)
+        //                {
+        //                    if (t.WarningLevel == 0 && !t.IsWarningAsError)
+        //                        sb.AppendLine(t.ToString());
+        //                }
+        //                if (sb.Length > 0)
+        //                    throw new Exception(sb.ToString());
+        //            }
+        //            //var editor = new SyntaxEditor(root, EmptyWorkspace);
+        //            foreach (var nmsp in root.Members)
+        //            {
+        //                if (!(nmsp is NamespaceDeclarationSyntax))
+        //                    continue;
+        //                NamespaceDeclarationSyntax ns = (NamespaceDeclarationSyntax)nmsp;
+        //                foreach (var t in ((NamespaceDeclarationSyntax)nmsp).Members)
+        //                {
+        //                    if (!(t is ClassDeclarationSyntax))
+        //                        continue;
+        //                    var c = (ClassDeclarationSyntax)t;
+        //                    foreach (var tt in c.Members)
+        //                    {
+        //                        if (!(tt is PropertyDeclarationSyntax))
+        //                            continue;
+        //                        var p = (PropertyDeclarationSyntax)tt;
+        //                        foreach (var tr in request.ListRenames)
+        //                        {
+        //                            //if (tr.Namespace == ns.Externs)
+        //                            //{
+        //                            if (tr.ClassName == c.Identifier.Text)
+        //                            {
+        //                                //type.GetMembers().OfType<IPropertySymbol>()
+        //                                // rename properties
+        //                                foreach (var tp in tr.ListRenamedProperties)
+        //                                {
+        //                                    if (tp.PropName == p.Identifier.Text)
+        //                                    {
+        //                                        _logger.LogInformation("Rename Property: {0} -> {1} Class: {2}".FilePos(), tp.PropName, tp.PropNameNew, tr.ClassName);
+        //                                        var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+        //                                        var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
+        //                                        await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
+        //                                    }
+        //                                }
+        //                                // rename classes
+        //                                if (tr.ClassName != tr.ClassNameNew)
+        //                                {
+        //                                    _logger.LogInformation("Rename Class: {0} -> {1}".FilePos(), tr.ClassName, tr.ClassNameNew);
+        //                                    var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+        //                                    var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
+        //                                    await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tr.ClassNameNew, solution.Options, cancellationToken);
+        //                                }
+        //                            }
+        //                            //}
+        //                        }
+        //                    }
+        //                    //foreach (var tr in request.ListRenames)
+        //                    //{
+        //                    //    if (!string.IsNullOrWhiteSpace(tr.ClassNameBeforeRename))
+        //                    //    {
+        //                    //        //if (tr.Namespace == ns.Externs)
+        //                    //        //{
+        //                    //        if (tr.ClassNameBeforeRename == c.Identifier.Text)
+        //                    //        {
+        //                    //            var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+        //                    //            var classSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
+        //                    //            await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, classSymbolOpt, tr.ClassNameBeforeRename, solution.Options, cancellationToken);
+        //                    //        }
+        //                    //        //}
+        //                    //    }
+        //                    //}
+        //                }
+        //            }
+        //        }
         public vCommand CommandConfigCreateStableVersion
         {
             get

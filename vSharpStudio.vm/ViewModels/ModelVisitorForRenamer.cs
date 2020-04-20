@@ -17,8 +17,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (obj is IGuid && obj.IsRenamed())
                 {
-                    IGuid curr = (IGuid)obj;
-                    ListGuidsRenamedObjects.Add(curr.Guid);
+                    IGuid curr2 = (IGuid)obj;
+                    ListGuidsRenamedObjects.Add(curr2.Guid);
                 }
             });
             return this.DiffAnnotatedConfig;

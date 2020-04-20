@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto_renamer; // 
 option csharp_namespace = "Proto.Renamer";
-
+/*
 message proto_request {
     int32 request_id = 1;
     bool is_cancel = 2;
@@ -15,8 +15,9 @@ message proto_request {
 }
 message proto_rename_data {
     string namespace = 1;
-    string class_name_before_rename = 2;
-    repeated proto_rename_property_data list_renamed_properties = 3;
+    string class_name = 2;
+    string class_name_new = 3;
+    repeated proto_rename_property_data list_renamed_properties = 4;
 }
 message proto_rename_property_data {
     string prop_name = 1;
@@ -34,3 +35,17 @@ message proto_exception {
     string message = 2;
     string stack_trace = 3;
 }
+message CompileRequest {
+    bool is_cancel = 2;
+    bool is_exit = 5;
+    string solution_path = 6;
+}
+message ResultResponce {
+    bool is_cancelled = 2;
+    bool is_success = 3;
+    bool is_failure = 4;
+    proto_exception exception = 5;
+}
+service RenamerService {
+    rpc CompileSolution(CompileRequest) returns(ResultResponce) {}
+}*/

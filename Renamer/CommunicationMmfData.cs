@@ -59,7 +59,7 @@ namespace Renamer
         bool isProcessFinished = false;
         public RenamerApp()
         {
-            this.mmf = MemoryMappedFile.CreateNew(MMF_NAME, REQUEST_MAX_SIZE + RESPONSE_MAX_SIZE);
+            this.mmf = MemoryMappedFile.CreateNew(MMF_NAME, REQUEST_MAX_SIZE + RESPONSE_MAX_SIZE, MemoryMappedFileAccess.ReadWrite);
             //bool mutexCreated;
             //this.mutex = new Mutex(true, MUTEX_NAME, out mutexCreated);
             this.mutex = new Mutex(false, MUTEX_NAME);
@@ -70,7 +70,8 @@ namespace Renamer
                 StartInfo =
                 {
 #if DEBUG
-                    FileName = Directory.GetCurrentDirectory()+@"\..\Renamer\Renamer.exe", Arguments = "-l Trace",
+                    FileName = Directory.GetCurrentDirectory()+@"\..\Renamer\Renamer.exe",
+                    Arguments = "-l Trace -f "+Directory.GetCurrentDirectory()+@"\..\",
 #else
                     FileName = Directory.GetCurrentDirectory()+@"\..\Renamer\Renamer.exe", Arguments = "",
 #endif
@@ -264,6 +265,7 @@ namespace Renamer
             this.requestId++;
             var rqst = new proto_request() { RequestId = this.requestId, IsExit = true };
             this.WriteRequest(rqst).Wait();
+            Task.Delay(DELAY_RECHECK * 2).Wait();
             mmf.Dispose();
             //if (process != null && !isProcessFinished)
             //    process.Kill();
@@ -273,10 +275,10 @@ namespace Renamer
         ILogger _logger;
         public RenamerApp(ILoggerProvider loggerProvider)
         {
-            ILogger _logger = loggerProvider.CreateLogger(this.GetType().Name);
+            _logger = loggerProvider.CreateLogger(this.GetType().Name);
             this.cancellationTokenSource = new CancellationTokenSource();
             CancellationToken = this.cancellationTokenSource.Token;
-            this.mmf = MemoryMappedFile.OpenExisting(MMF_NAME);
+            this.mmf = MemoryMappedFile.OpenExisting(MMF_NAME, MemoryMappedFileRights.ReadWrite);
             mutex = Mutex.OpenExisting(MUTEX_NAME);
         }
         private proto_request ReadRequest()
@@ -315,10 +317,16 @@ namespace Renamer
         public void WaitAndExecuteCommands()
         {
             _logger.LogTrace("WaitAndExecuteCommands".FilePos());
+            if (this.mmf == null)
+                return;
+            int iwait = 0;
+            Task work = null;
             while (true)
             {
                 try
                 {
+                    if (iwait > 30)
+                        throw new Exception("No new work requests after waiting 30 periods");
                     var rqwst = this.ReadRequest();
                     if (rqwst.RequestId > 0 && rqwst.RequestId != this.requestId)
                     {
@@ -327,12 +335,38 @@ namespace Renamer
                         if (rqwst.IsCompile)
                         {
                             _logger.LogTrace("Compile request. Id={0}".FilePos(), rqwst.RequestId);
-                            Task.Run(() => { Compile(rqwst); });
+                            if (work != null && !work.IsCompleted)
+                                throw new Exception("New request received, but previous work was not finished");
+                            work = Task.Run(() =>
+                            {
+                                Compile(rqwst);
+                                var res = new proto_response()
+                                {
+                                    ResponseId = this.requestId,
+                                    IsSuccess = true,
+                                };
+                                _logger.LogTrace("Success compilation. Id={0}".FilePos(), rqwst.RequestId);
+                                this.WriteResponse(res);
+                            });
+                            iwait = 0;
                         }
                         else if (rqwst.IsRename)
                         {
                             _logger.LogTrace("Rename request. Id={0}".FilePos(), rqwst.RequestId);
-                            Task.Run(() => { Rename(rqwst); });
+                            if (work != null && !work.IsCompleted)
+                                throw new Exception("New request received, but previous work was not finished");
+                            work = Task.Run(() =>
+                            {
+                                Rename(rqwst);
+                                var res = new proto_response()
+                                {
+                                    ResponseId = this.requestId,
+                                    IsSuccess = true,
+                                };
+                                _logger.LogTrace("Success rename. Id={0}".FilePos(), rqwst.RequestId);
+                                this.WriteResponse(res);
+                            });
+                            iwait = 0;
                         }
                         else if (rqwst.IsExit)
                         {
@@ -343,44 +377,54 @@ namespace Renamer
                         {
                             throw new Exception();
                         }
-                        var res = new proto_response()
-                        {
-                            ResponseId = this.requestId,
-                            IsSuccess = true,
-                        };
-                        _logger.LogTrace("Success responce. Id={0}".FilePos(), rqwst.RequestId);
-                        this.WriteResponse(res);
                     }
                     if (rqwst.IsCancel)
                     {
                         _logger.LogTrace("Cancel request. Id={0}".FilePos(), rqwst.RequestId);
                         this.cancellationTokenSource.Cancel();
                         Task.Delay(5000).Wait();
-                        _logger.LogTrace("E X I T".FilePos());
+                        _logger.LogTrace("E X I T I N G".FilePos());
                         return;
                     }
                 }
                 catch (Exception ex)
                 {
-                    var res = new proto_response()
-                    {
-                        ResponseId = this.requestId,
-                        IsFailure = true,
-                        Exception = new proto_exception()
-                        {
-                            ExceptionTypeName = ex.GetType().Name,
-                            Message = ex.Message,
-                            StackTrace = ex.StackTrace
-                        }
-                    };
-                    _logger.LogCritical(ex, "Error. Id={0}".FilePos(), this.requestId);
-                    this.WriteResponse(res);
+                    ExceptionResponce(ex);
+                    _logger.LogTrace("E X I T I N G".FilePos());
                     return;
                 }
 
                 Task.Delay(DELAY_RECHECK).Wait();
+                if (work != null && work.IsCompleted)
+                {
+                    iwait++;
+                    if (work.IsFaulted)
+                    {
+                        ExceptionResponce(work.Exception);
+                        return;
+                    }
+                }
             }
         }
+
+        private void ExceptionResponce(Exception ex)
+        {
+            var res = new proto_response()
+            {
+                ResponseId = this.requestId,
+                IsFailure = true,
+                Exception = new proto_exception()
+                {
+                    ExceptionTypeName = ex.GetType().Name,
+                    Message = ex.Message,
+                }
+            };
+            if (ex.StackTrace != null)
+                res.Exception.StackTrace = ex.StackTrace;
+            _logger.LogCritical(ex, "Error. Id={0}".FilePos(), this.requestId);
+            this.WriteResponse(res);
+        }
+
         //public void CompileAndRename(string mmfName)
         //{
         //    var request = new Request();
@@ -457,18 +501,18 @@ namespace Renamer
                 }
             }
         }
-        public void Rename(proto_request executeRequest)
+        public void Rename(proto_request request)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
                 // Open the solution within the workspace.
-                Microsoft.CodeAnalysis.Solution solution = workspace.OpenSolutionAsync(executeRequest.SolutionPath).Result;
+                Microsoft.CodeAnalysis.Solution solution = workspace.OpenSolutionAsync(request.SolutionPath).Result;
                 bool isProjectFound = false;
                 foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                 {
                     // Look up the snapshot for the original project in the latest forked solution.
                     Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
-                    if (project.FilePath == executeRequest.ProjectPath)
+                    if (project.FilePath == request.ProjectPath)
                     {
                         isProjectFound = true;
                         foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
@@ -476,15 +520,18 @@ namespace Renamer
                             // Look up the snapshot for the original document in the latest forked solution.
                             Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
                             //tg.RelativePathToGeneratedFile
+
+                            // only in 'main' declaration files
+                            //TODO implement based on knowledge of generated file ???
                             if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
                             {
                                 if (Path.GetExtension(document.FilePath) == "cs")
                                 {
-                                    CodeAnalysisCSharp.Rename(_logger, solution, document, executeRequest, this.CancellationToken).Wait();
+                                    CodeAnalysisCSharp.Rename(_logger, solution, document, request, this.CancellationToken).Wait();
                                 }
                                 else if (Path.GetExtension(document.FilePath) == "vb")
                                 {
-                                    CodeAnalysisVisualBasic.Rename(solution, document, executeRequest, this.CancellationToken); //.Wait();
+                                    CodeAnalysisVisualBasic.Rename(solution, document, request, this.CancellationToken); //.Wait();
                                 }
                                 else
                                     throw new NotSupportedException();
@@ -497,5 +544,5 @@ namespace Renamer
             }
         }
 #endif
-                }
+    }
 }

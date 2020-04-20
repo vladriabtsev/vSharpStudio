@@ -6,14 +6,16 @@ namespace vSharpStudio.common.DiffModel
 {
     public class PreRenameData
     {
-        public PreRenameData(string nmsp, string classNameBeforeRename)
+        public PreRenameData(string nmsp, string classNameBeforeRename, string classNameNew)
         {
             this.Namespace = nmsp;
-            this.ClassNameBeforeRename = classNameBeforeRename;
+            this.ClassName = classNameBeforeRename;
+            this.ClassNameNew = classNameNew;
             this.ListRenamedProperties = new List<RenamePropertyData>();
         }
         public string Namespace { get; private set; }
-        public string ClassNameBeforeRename { get; private set; }
+        public string ClassName { get; private set; }
+        public string ClassNameNew { get; private set; }
         public List<RenamePropertyData> ListRenamedProperties { get; private set; }
     }
     public class RenamePropertyData

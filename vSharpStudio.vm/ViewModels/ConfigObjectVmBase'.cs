@@ -90,13 +90,41 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+#if NET48
+        public static string[] Split(string text, string separator)
+        {
+            List<string> lst = new List<string>();
+            int ibeg = 0;
+            while(true)
+            {
+                int i = text.IndexOf(separator, ibeg);
+                if (i > 0)
+                {
+                    lst.Add(text.Substring(ibeg, i - ibeg));
+                    ibeg = i + separator.Length;
+                    continue;
+                }
+                lst.Add(text.Substring(ibeg));
+                break;
+            }
+            string[] res = new string[lst.Count];
+            int ii = 0;
+            foreach(var t in lst)
+                res[ii++] = t;
+            return res;
+        }
+#endif
         public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
         {
-            var subPatterns = searchPattern.Split(";");
+            var subPatterns = searchPattern.Split(';');
             bool is_found = true;
             foreach (var t in subPatterns)
             {
+#if NET48
+                var sp = Split(t, ".*.");
+#else
                 var sp = t.Split(".*.");
+#endif
                 is_found = true;
                 int indx = 0;
                 foreach (var s in sp)

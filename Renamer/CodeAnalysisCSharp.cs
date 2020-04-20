@@ -19,7 +19,7 @@ namespace Renamer
             _logger.LogInformation("List renames:".FilePos());
             foreach (var tr in request.ListRenames)
             {
-                _logger.LogInformation("   Class: {0}".FilePos(), tr.ClassNameBeforeRename);
+                _logger.LogInformation("   Class: {0}".FilePos(), tr.ClassName);
                 foreach (var tp in tr.ListRenamedProperties)
                 {
                     _logger.LogInformation("      Property: {0} -> {1}".FilePos(), tp.PropName, tp.PropNameNew);
@@ -30,7 +30,7 @@ namespace Renamer
             {
                 if (string.IsNullOrWhiteSpace(tr.Namespace))
                     throw new NotSupportedException("Namespace is empty");
-                if (string.IsNullOrWhiteSpace(tr.ClassNameBeforeRename))
+                if (string.IsNullOrWhiteSpace(tr.ClassName))
                     throw new NotSupportedException("ClassName is empty");
                 foreach (var tp in tr.ListRenamedProperties)
                 {
@@ -76,24 +76,32 @@ namespace Renamer
                         {
                             //if (tr.Namespace == ns.Externs)
                             //{
-                            if (tr.ClassNameBeforeRename == c.Identifier.Text)
+                            if (tr.ClassName == c.Identifier.Text)
                             {
+                                //type.GetMembers().OfType<IPropertySymbol>()
+                                // rename properties
                                 foreach (var tp in tr.ListRenamedProperties)
                                 {
                                     if (tp.PropName == p.Identifier.Text)
                                     {
-                                        _logger.LogInformation("Rename Property: {0} -> {1} Class: {2}".FilePos(), tp.PropName, tp.PropNameNew, tr.ClassNameBeforeRename);
+                                        _logger.LogInformation("Rename Property: {0} -> {1} Class: {2}".FilePos(), tp.PropName, tp.PropNameNew, tr.ClassName);
                                         var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                         var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
                                         await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
                                     }
                                 }
+                                // rename classes
+                                if (tr.ClassName != tr.ClassNameNew)
+                                {
+                                    _logger.LogInformation("Rename Class: {0} -> {1}".FilePos(), tr.ClassName, tr.ClassNameNew);
+                                    var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+                                    var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
+                                    await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tr.ClassNameNew, solution.Options, cancellationToken);
+                                }
                             }
                             //}
                         }
                     }
-                    // TODO implement rename classes !!!
-
                     //foreach (var tr in request.ListRenames)
                     //{
                     //    if (!string.IsNullOrWhiteSpace(tr.ClassNameBeforeRename))

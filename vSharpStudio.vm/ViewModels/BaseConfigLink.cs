@@ -21,7 +21,11 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(cfg.CurrentCfgFolderPath))
                 return;
             string path = Path.GetFullPath(this._RelativeConfigFilePath);
+#if NET48
+            this._RelativeConfigFilePath = vSharpStudio.common.Utils.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+#else
             this._RelativeConfigFilePath = Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+#endif
 
         }
     }

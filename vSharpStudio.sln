@@ -80,8 +80,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renamer", "Renamer\Renamer.
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E} = {EC5B8D66-BBC5-4183-8381-1D6B6181734E}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renamer.Tests", "Renamer.Tests\Renamer.Tests.csproj", "{C4F44A79-23C2-4EFC-B07E-4A2036E85320}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -221,12 +219,6 @@ Global
 		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3DF4908-3C94-4003-8ABF-3C845E83BB92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4F44A79-23C2-4EFC-B07E-4A2036E85320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

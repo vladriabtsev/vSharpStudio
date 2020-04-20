@@ -60,7 +60,7 @@ namespace vPlugin.Sample
                         {
                             cname = (nc.PrevVersion() as ICatalog).Name;
                             nname = "MyNamespace";
-                            prd = new PreRenameData(nname, cname);
+                            prd = new PreRenameData(nname, cname, nc.Name);
                             foreach (var tt in nc.GroupProperties.ListProperties)
                             {
                                 if (tt.IsRenamed())
