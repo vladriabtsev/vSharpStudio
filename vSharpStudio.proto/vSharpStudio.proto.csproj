@@ -22,9 +22,6 @@
     <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
       <Link>proto\proto_doc.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\proto\renamer_communication.proto">
-      <Link>renamer_communication.proto</Link>
-    </Protobuf>
     <Protobuf Include="..\proto\vsharpstudio.proto">
       <Link>vsharpstudio.proto</Link>
     </Protobuf>
