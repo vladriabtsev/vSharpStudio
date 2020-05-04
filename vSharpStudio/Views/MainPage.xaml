@@ -8,6 +8,7 @@
              xmlns:common="clr-namespace:vSharpStudio.common;assembly=vSharpStudio.common"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+             xmlns:vwpf="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf"  
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=false}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -61,6 +62,58 @@
                 <Grid Grid.Row="0">
                     <ToolBarPanel>
                         <ToolBar>
+                            <Button Command="{Binding CommandNewConfig}" ToolTip="Empty Config">
+                                <ContentControl Template="{StaticResource iconNewFile}" />
+                            </Button>
+                            <xctk:DropDownButton ToolTip="Recent Config files" Margin="4,0,4,0" Height="20" 
+                                                 Padding="0,0,0,0" UseLayoutRounding="False">
+                                <!--Command="{Binding CommandOpenConfig}"-->
+                                <!--<ContentControl Template="{StaticResource iconOpenfileDialog}" />-->
+                                <xctk:DropDownButton.Content>
+                                    <Button Command="{Binding CommandOpenConfig}" ToolTip="Open Config file">
+                                        <ContentControl Template="{StaticResource iconOpenfileDialog}" />
+                                    </Button>
+                                </xctk:DropDownButton.Content>
+                                <xctk:DropDownButton.DropDownContent>
+                                    <Grid MinHeight="70" MaxHeight="300" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <!--<DataGrid ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
+                                                  AutoGenerateColumns="False" MinWidth="100" 
+                                                  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+                                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Last Opened" Binding="{Binding OpenedLastTimeOn}" />
+                                                <DataGridTextColumn Header="Path"  Binding="{Binding ConfigPath}" Width="*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>-->
+                                        <ListBox ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
+                                                 SelectedItem="{Binding UserSettings.SelectedConfigHistory}"
+                                                 Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+                                                 MinWidth="100" SelectionMode="Single">
+                                        </ListBox>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Button Command="{Binding UserSettings.CommandOpenRecentConfig}" 
+                                                Content="Open" HorizontalAlignment="Left" Width="40" Margin="2,2,0,2" />
+                                            <Button Command="{Binding UserSettings.CommandDeleteRecentConfig}" 
+                                                Content="Del" HorizontalAlignment="Left" Width="40" Margin="10,2,0,2" />
+                                        </StackPanel>
+                                    </Grid>
+                                </xctk:DropDownButton.DropDownContent>
+                            </xctk:DropDownButton>
+                            <!--<xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
+                                            SelectedItem="{Binding SelectedDbDesignPlugin}" 
+                                            DisplayMemberPath="Plugin.NameUi"
+                                            ToolTip="Recent Config files"
+                                            Margin="3,0" MinWidth="70">
+                                <xctk:WatermarkComboBox.WatermarkTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Db plugin" Foreground="Gray" />
+                                    </DataTemplate>
+                                </xctk:WatermarkComboBox.WatermarkTemplate>
+                            </xctk:WatermarkComboBox>-->
                             <Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
                                 <ContentControl Template="{StaticResource iconSave}" />
                             </Button>

@@ -1261,6 +1261,50 @@
             </Rectangle>
         </Viewbox>
     </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\NewFile-->
+    <ControlTemplate x:Key="iconNewFile">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M15,5.52L15,13C15,13.97,14.299,15,13,15L7,15C6.031,15,5,14.299,5,13L5,9 3,9 3,8.121 2.379,8.742 0.257,6.621 0.878,6 0,6 0,3 0.878,3 0.257,2.379 2.379,0.257 3,0.877999999999999 3,0 6,0 6,0.877999999999999 6.621,0.257 8.742,2.379 8.121,3 9,3 12.069,3z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M14,6.1362L14,13.0002C14,13.0002,13.965,14.0002,12.965,14.0002L6.965,14.0002C6.965,14.0002,6,14.0002,6,13.0002L6,8.1442 6.598,8.7422 7,8.3402 7,13.0002 13,13.0002 13,9.0002 13,8.0002 13,7.0002 11,7.0002 11,5.0002 9,5.0002 9,4.0002 11.625,4.0002z" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M13,7L13,13 7,13 7,8.363 8.742,6.621 8.121,6 9,6 9,5 11,5 11,7z" />
+                                    <GeometryDrawing Brush="#FFC27D1A" Geometry="F1M5,5L4,5 4,4 5,4z M8,4L5.707,4 7.328,2.379 6.621,1.671 5,3.292 5,1 4,1 4,3.292 2.379,1.671 1.671,2.379 3.292,4 1,4 1,5 3.292,5 1.671,6.621 2.379,7.328 4,5.707 4,8 5,8 5,5.707 6.621,7.328 7.328,6.621 5.707,5 8,5z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\OpenfileDialog-->
+    <ControlTemplate x:Key="iconOpenfileDialog">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M16,1L0,1 0,15 1.059,15C1.689,15.617,2.55,16,3.5,16L5,16 5,15 16,15z" />
+                                    <GeometryDrawing Brush="#FF414141" Geometry="F1M15,2L1,2 1,10.059C1.286,9.766,1.627,9.529,2,9.352L2,7 2,5 14,5 14,13 7.862,13 7,14 15,14z" />
+                                    <GeometryDrawing Brush="#FF00529C" Geometry="F1M8.5,10.5156L6,12.9996 4,12.9996 6.013,10.9996 3.5,10.9996C2.673,10.9996 2,11.6726 2,12.4996 2,13.3276 2.673,13.9996 3.5,13.9996L4,13.9996 4,14.9996 3.5,14.9996C2.119,14.9996 1,13.8806 1,12.4996 1,11.1196 2.119,9.9996 3.5,9.9996L5.988,9.9996 4,7.9996 6,7.9996z" />
+                                    <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M14,5L2,5 2,7 7,7 10,10.52 7.862,13 14,13z M3.5,9C2.961,9,2.456,9.133,2,9.352L2,7 3.709,9z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\Paste-->
     <ControlTemplate x:Key="iconPaste">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">

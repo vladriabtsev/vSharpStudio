@@ -123,10 +123,18 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             vm.Config.Name = "test1";
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+
             vm = new MainPageVM(true);
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
+            vm.Config.Name = "test2";
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
+
+            vm = new MainPageVM(true);
+            // Load from previous save
+            Assert.AreEqual(2, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.AreEqual("test2", vm.Config.Name);
         }
         [TestMethod]
         public void Main010_DiffList()

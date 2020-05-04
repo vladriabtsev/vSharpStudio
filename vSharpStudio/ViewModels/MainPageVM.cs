@@ -55,7 +55,16 @@ namespace vSharpStudio.ViewModels
             {
                 this.UserSettings = new UserSettings();
             }
-
+            this.UserSettings.OnOpenRecentConfig = p =>
+            {
+                if (this.Config.IsChanged)
+                {
+                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    if (res != System.Windows.MessageBoxResult.OK)
+                        return;
+                }
+                this.Config = this.LoadConfig(p.ConfigPath, string.Empty, true);
+            };
             this.onImportsSatisfied = onImportsSatisfied;
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
@@ -188,6 +197,7 @@ namespace vSharpStudio.ViewModels
 
             // string json = File.ReadAllText(CFG_PATH);
             // this.Model = new Config(json);
+            this.CurrentCfgFilePath = file_path;
             Config.IsLoading = false;
             return cfg;
         }
@@ -546,6 +556,56 @@ namespace vSharpStudio.ViewModels
 
         #region Main
 
+        public vCommand CommandNewConfig
+        {
+            get
+            {
+                return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
+                    (o) => { this.NewConfig(); },
+                    (o) => { return true; }));
+            }
+        }
+        private vCommand _CommandNewConfig;
+
+        internal void NewConfig()
+        {
+            if (this.Config.IsChanged)
+            {
+                var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res != System.Windows.MessageBoxResult.OK)
+                    return;
+            }
+            this.CurrentCfgFilePath = null;
+            this.Config = new Config();
+        }
+        public vCommand CommandOpenConfig
+        {
+            get
+            {
+                return this._CommandOpenConfig ?? (this._CommandOpenConfig = vCommand.Create(
+                    (o) => { this.OpenConfig(); },
+                    (o) => { return true; }));
+            }
+        }
+        private vCommand _CommandOpenConfig;
+        internal void OpenConfig()
+        {
+            if (this.Config.IsChanged)
+            {
+                var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res != System.Windows.MessageBoxResult.OK)
+                    return;
+            }
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = ""; // Default file name
+            dlg.DefaultExt = ".vcfg"; // Default file extension
+            dlg.Filter = "Any file (.*)|*.*"; // Filter files by extension
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                this.Config = this.LoadConfig(dlg.FileName, string.Empty, true);
+            }
+        }
         public vCommand CommandConfigSave
         {
             get
@@ -677,11 +737,13 @@ namespace vSharpStudio.ViewModels
 
         internal void SaveAs(string filePath = null)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
 
             // openFileDialog.InitialDirectory = @"c:\temp\";
             // openFileDialog.Multiselect = true;
+            openFileDialog.CheckFileExists = false;
+            openFileDialog.CheckPathExists = true;
             if (!string.IsNullOrEmpty(this._FilePathSaveAs))
             {
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
