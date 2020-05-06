@@ -569,399 +569,400 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".Add(item); \r\n    item.Parent = this;\r\n}\r\npublic void AddRange(IEnumerable<");
+            this.Write(".Add(item); \r\n    item.Parent = this;\r\n    this.IsChanged = true;\r\n}\r\npublic void" +
+                    " AddRange(IEnumerable<");
             
-            #line 90 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 91 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("> items) \r\n{ \r\n    this.");
             
-            #line 92 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 93 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".AddRange(items); \r\n    foreach (var t in items)\r\n        t.Parent = this;\r\n}\r\npu" +
-                    "blic int Count() \r\n{ \r\n    return this.");
+            this.Write(".AddRange(items); \r\n    foreach (var t in items)\r\n        t.Parent = this;\r\n    t" +
+                    "his.IsChanged = true;\r\n}\r\npublic int Count() \r\n{ \r\n    return this.");
             
-            #line 98 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 100 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".Count; \r\n}\r\npublic void Remove(");
             
-            #line 100 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 102 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" item) \r\n{\r\n    this.");
             
-            #line 102 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 104 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(".Remove(item); \r\n    item.Parent = null;\r\n}\r\n");
+            this.Write(".Remove(item); \r\n    item.Parent = null;\r\n    this.IsChanged = true;\r\n}\r\n");
             
-            #line 105 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 108 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 106 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 109 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
  } else if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {
             
             #line default
             #line hidden
             this.Write("public ");
             
-            #line 107 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 110 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 107 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 110 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 107 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 110 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n{ \r\n    get \r\n    { \r\n        return this._");
             
-            #line 111 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 114 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("; \r\n    }\r\n    set\r\n    {\r\n        if (this._");
-            
-            #line 115 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" != value)\r\n        {\r\n            this.On");
-            
-            #line 117 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Changing(this._");
-            
-            #line 117 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            this._");
             
             #line 118 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write(" = value;\r\n            this.On");
-            
-            #line 119 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Changed();\r\n            this.NotifyPropertyChanged();\r\n");
-            
-            #line 121 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-   if (this.DocMes.IsValidatableBase) { 
-            
-            #line default
-            #line hidden
-            this.Write("            this.ValidateProperty();\r\n");
-            
-            #line 123 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-   } 
-            
-            #line default
-            #line hidden
-            this.Write("        }\r\n    }\r\n}\r\nprivate ");
-            
-            #line 127 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" _");
-            
-            #line 127 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\npartial void On");
-            
-            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Changing(");
-            
-            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" from, ");
-            
-            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" to); // ");
-            
-            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\npartial void On");
-            
-            #line 129 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("Changed();\r\n");
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (!field.IsNullable()) { 
-            
-            #line default
-            #line hidden
-            this.Write("I");
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" I");
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get { return this._");
-            
-            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("; } }\r\n");
-            
-            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            this.Write("public ");
-            
-            #line 132 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 132 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" // ");
-            
-            #line 132 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n{ \r\n    get \r\n    { \r\n        return this._");
-            
-            #line 136 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write("; \r\n    }\r\n    set\r\n    {\r\n        if (this._");
-            
-            #line 140 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
             this.Write(" != value)\r\n        {\r\n            this.On");
             
-            #line 142 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 120 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Changing(this._");
             
-            #line 142 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 120 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(", value);\r\n            this._");
             
-            #line 143 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 121 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = value;\r\n            this.On");
             
-            #line 144 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 122 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Changed();\r\n            this.NotifyPropertyChanged();\r\n");
             
-            #line 146 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 124 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
    if (this.DocMes.IsValidatableBase) { 
             
             #line default
             #line hidden
             this.Write("            this.ValidateProperty();\r\n");
             
-            #line 148 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 126 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
    } 
             
             #line default
             #line hidden
             this.Write("        }\r\n    }\r\n}\r\nprivate ");
             
-            #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" _");
             
-            #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 130 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            
-            #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (field.ToTypeCs() == "string") { 
-            
-            #line default
-            #line hidden
-            this.Write(" = string.Empty");
-            
-            #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- } 
             
             #line default
             #line hidden
             this.Write(";\r\npartial void On");
             
-            #line 153 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Changing(");
             
-            #line 153 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" from, ");
             
-            #line 153 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" to); // ");
             
-            #line 153 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\npartial void On");
             
-            #line 154 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 132 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Changed();\r\n");
             
-            #line 155 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ if (!field.IsNullable()) { 
+            
+            #line default
+            #line hidden
+            this.Write("I");
+            
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" I");
             
-            #line 155 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 155 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" { get { return this._");
             
-            #line 155 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("; } }\r\n");
             
+            #line 134 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("public ");
+            
+            #line 135 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 135 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" // ");
+            
+            #line 135 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{ \r\n    get \r\n    { \r\n        return this._");
+            
+            #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("; \r\n    }\r\n    set\r\n    {\r\n        if (this._");
+            
+            #line 143 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" != value)\r\n        {\r\n            this.On");
+            
+            #line 145 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Changing(this._");
+            
+            #line 145 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(", value);\r\n            this._");
+            
+            #line 146 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = value;\r\n            this.On");
+            
+            #line 147 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Changed();\r\n            this.NotifyPropertyChanged();\r\n");
+            
+            #line 149 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+   if (this.DocMes.IsValidatableBase) { 
+            
+            #line default
+            #line hidden
+            this.Write("            this.ValidateProperty();\r\n            this.IsChanged = true;\r\n");
+            
+            #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+   } 
+            
+            #line default
+            #line hidden
+            this.Write("        }\r\n    }\r\n}\r\nprivate ");
+            
             #line 156 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" _");
+            
+            #line 156 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            
+            #line 156 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ if (field.ToTypeCs() == "string") { 
+            
+            #line default
+            #line hidden
+            this.Write(" = string.Empty");
+            
+            #line 156 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write(";\r\npartial void On");
+            
+            #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Changing(");
+            
+            #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" from, ");
+            
+            #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" to); // ");
+            
+            #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\npartial void On");
+            
+            #line 158 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("Changed();\r\n");
+            
+            #line 159 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" I");
+            
+            #line 159 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 159 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" { get { return this._");
+            
+            #line 159 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("; } }\r\n");
+            
+            #line 160 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
  } 
             
             #line default

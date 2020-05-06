@@ -37,10 +37,37 @@ namespace vSharpStudio.ViewModels
         {
             _logger = Logger.CreateLogger<MainPageVM>();
         }
-
+        bool isLoadConfig;
+        string configFile;
         public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
             : this()
         {
+            this.onImportsSatisfied = onImportsSatisfied;
+            this.isLoadConfig = isLoadConfig;
+            this.configFile = configFile;
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                // Catalog c = new Catalog();
+                // this.Model = new ConfigRoot();
+                // this.Model.Catalogs.ListCatalogs.Add(c);
+                return;
+            }
+
+
+        }
+        public void OnFormLoaded()
+        {
+            this.IsBusy = true;
+            //if (App.ServiceCollection == null)
+            //{
+            //    ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
+            //    App.ServiceCollection = new ServiceCollection();
+            //    App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
+            //}
+            //var Services = App.ServiceCollection.BuildServiceProvider();
+            //this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
+            //this.Logger.LogInformation("Application is starting.");
+            _logger.LogDebug("*** Application is starting. ***".CallerInfo());
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
                 var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
@@ -57,7 +84,7 @@ namespace vSharpStudio.ViewModels
             }
             this.UserSettings.OnOpenRecentConfig = p =>
             {
-                if (this.Config.IsChanged)
+                if (this.Config.IsSubTreeChanged)
                 {
                     var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
@@ -65,26 +92,6 @@ namespace vSharpStudio.ViewModels
                 }
                 this.Config = this.LoadConfig(p.ConfigPath, string.Empty, true);
             };
-            this.onImportsSatisfied = onImportsSatisfied;
-            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
-            {
-                // Catalog c = new Catalog();
-                // this.Model = new ConfigRoot();
-                // this.Model.Catalogs.ListCatalogs.Add(c);
-                return;
-            }
-
-            //if (App.ServiceCollection == null)
-            //{
-            //    ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            //    App.ServiceCollection = new ServiceCollection();
-            //    App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
-            //}
-            //var Services = App.ServiceCollection.BuildServiceProvider();
-            //this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
-            //this.Logger.LogInformation("Application is starting.");
-            _logger.LogDebug("*** Application is starting. ***".CallerInfo());
-
             if (isLoadConfig)
             {
                 if (configFile != null)
@@ -156,8 +163,8 @@ namespace vSharpStudio.ViewModels
             //    }
             // };
             // this.Model.OnProviderSelectionChanged(null);
+            this.IsBusy = false;
         }
-
         private Config LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             Config.IsLoading = true;
@@ -569,7 +576,7 @@ namespace vSharpStudio.ViewModels
 
         internal void NewConfig()
         {
-            if (this.Config.IsChanged)
+            if (this.Config.IsSubTreeChanged)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -590,7 +597,7 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandOpenConfig;
         internal void OpenConfig()
         {
-            if (this.Config.IsChanged)
+            if (this.Config.IsSubTreeChanged)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -612,7 +619,7 @@ namespace vSharpStudio.ViewModels
             {
                 return this._CommandConfigSave ?? (this._CommandConfigSave = vCommand.Create(
                     (o) => { this.Save(); },
-                    (o) => { return this.Config != null && CurrentCfgFilePath != null; }));
+                    (o) => { return this.Config != null && this.CurrentCfgFilePath != null; }));
             }
         }
 
@@ -713,6 +720,7 @@ namespace vSharpStudio.ViewModels
                 //else
                 //    throw new Exception();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                ResetAfterSave();
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             this.ConnectionStringSettingsSave();
 
@@ -762,6 +770,7 @@ namespace vSharpStudio.ViewModels
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                         UpdateUserSettingsSaveConfigs();
                         File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                        ResetAfterSave();
                     }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
 
                 // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
@@ -770,6 +779,18 @@ namespace vSharpStudio.ViewModels
                 // CompareSaved(json);
 #endif
             }
+            this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
+        }
+
+        private void ResetAfterSave()
+        {
+            foreach (var t in this.Config.DicNodes)
+            {
+                t.Value.IsSubTreeChanged = false;
+                t.Value.IsChanged = false;
+            }
+            this.Config.IsSubTreeChanged = false;
+            this.Config.IsChanged = false;
         }
 
         private void UpdateUserSettingsSaveConfigs()
@@ -894,7 +915,7 @@ namespace vSharpStudio.ViewModels
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
                             this.ProgressVM.End();
-                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null; }
+                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.CurrentCfgFilePath != null; }
                     );
                 }
                 return this._CommandConfigCurrentUpdate;

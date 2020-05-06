@@ -10,14 +10,14 @@ namespace ViewModelBase
     {
         public VmEditable()
         {
-            this.PropertyChanged += VmEditable_PropertyChanged;
+            //this.PropertyChanged += VmEditable_PropertyChanged;
             //this._dtoBackup = this.Backup();
         }
 
-        private void VmEditable_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            this.IsChanged = true;
-        }
+        //private void VmEditable_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    this.IsChanged = true;
+        //}
 
         //public virtual void ResetAllChanges()
         //{

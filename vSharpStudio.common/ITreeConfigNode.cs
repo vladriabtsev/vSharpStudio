@@ -15,6 +15,8 @@ namespace vSharpStudio.common
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         // ITreeConfigNode Parent { get; set; }
+        bool IsSubTreeChanged { get; set; }
+        bool IsChanged { get; set; }
         void Sort(Type type);
         bool NodeCanMoveUp();
         void NodeMoveUp();

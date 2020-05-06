@@ -18,7 +18,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
     <LangVersion>latest</LangVersion>
-    <PlatformTarget>x86</PlatformTarget>
     <DefineConstants>VSHARPSTUDIO</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

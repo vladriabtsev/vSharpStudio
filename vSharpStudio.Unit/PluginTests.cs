@@ -32,6 +32,7 @@ namespace vSharpStudio.Unit
         public void Plugin001SearchInPath()
         {
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
             var cat = vm.Config.Model.GroupCatalogs[0];
             cat.GroupProperties.NodeAddNewSubNode();
@@ -49,6 +50,7 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             vm.Compose();
             Assert.IsTrue(vm.Config.GroupPlugins.ListPlugins.Count > 0);
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -65,6 +67,7 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             vm.Compose();
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -90,6 +93,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             var vm2 = new MainPageVM(true);
+            vm2.OnFormLoaded();
             vm2.Compose();
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
@@ -112,6 +116,7 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             vm.Compose();
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -168,6 +173,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.DicAppGenerators.Count);
 
             var vm2 = new MainPageVM(true);
+            vm2.OnFormLoaded();
             vm2.Compose();
 
             Assert.AreEqual(1, vm2.Config.DicAppGenerators.Count);
@@ -226,6 +232,7 @@ namespace vSharpStudio.Unit
             var genFile = "test_file.cs";
 
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             vm.Config.Name = "test1";
             var c1 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();
             var c2 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();

@@ -38,17 +38,28 @@ namespace vSharpStudio.Views
             }
 #if DEBUG
             this._model = new MainPageVM(true);
+#else
+            this._model = new MainPageVM();
+#endif
+            MainPage.MainPageVM = this._model;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+#if DEBUG
+            this._model.OnFormLoaded();
             this._model.Compose();
             this.DataContext = this._model;
 #else
             _model = new MainPageVM();
             Task task = Task.Run(() =>
             {
-                _model.Compose();
-                this.DataContext = _model;
+                this._model.OnFormLoaded();
+                this._model.Compose();
+                this.DataContext = this._model;
             });
 #endif
-            MainPage.MainPageVM = this._model;
+
         }
     }
 }

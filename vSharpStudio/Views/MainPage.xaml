@@ -10,16 +10,16 @@
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
              xmlns:vwpf="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf"  
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=false}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <vm:ConverterDicToListPlugins x:Key="ConverterDicToListPlugins"/>
     </UserControl.Resources>
     <UserControl.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding CommandConfigSave}"/>
         <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding CommandConfigSaveAs}"/>
-        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>
+        <!--<KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>-->
     </UserControl.InputBindings>
-    <xctk:BusyIndicator IsBusy="False" DisplayAfter="0">
+    <xctk:BusyIndicator IsBusy="{Binding IsBusy}" DisplayAfter="0">
         <xctk:BusyIndicator.BusyContentTemplate>
             <DataTemplate>
                 <StackPanel Margin="4">
@@ -123,9 +123,9 @@
                             <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
                                 <ContentControl Template="{StaticResource iconSaveAs}" />
                             </Button>
-                            <Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
+                            <!--<Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
                                 <ContentControl Template="{StaticResource iconConnectionBuilder}" />
-                            </Button>
+                            </Button>-->
                             <TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
                             </TextBlock>
@@ -146,7 +146,7 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>
-                            <Button Command="{Binding CommandConfigCurrentUpdate}">
+                            <Button Command="{Binding CommandConfigCurrentUpdate, IsAsync=True, Mode=OneWay}">
                                 <ContentControl Template="{StaticResource iconRun}" />
                             </Button>
                         </ToolBar>

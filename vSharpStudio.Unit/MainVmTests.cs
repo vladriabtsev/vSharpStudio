@@ -49,6 +49,7 @@ namespace vSharpStudio.Unit
         {
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.pconfig_history == null);
         }
 
@@ -58,6 +59,7 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.pconfig_history == null);
 
             // create object and save
@@ -72,6 +74,7 @@ namespace vSharpStudio.Unit
 
             // reload
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -85,6 +88,7 @@ namespace vSharpStudio.Unit
             // create stable version
             vm.CommandConfigCreateStableVersion.Execute(null);
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -101,6 +105,7 @@ namespace vSharpStudio.Unit
             // create next stable version
             vm.CommandConfigCreateStableVersion.Execute(null);
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -120,11 +125,13 @@ namespace vSharpStudio.Unit
         {
             this.remove_config();
             var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             vm.Config.Name = "test1";
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
 
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
@@ -132,9 +139,52 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
 
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             // Load from previous save
             Assert.AreEqual(2, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test2", vm.Config.Name);
+        }
+        [TestMethod]
+        public void Main004IsChangedAndIsTreeChanged()
+        {
+            this.remove_config();
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Config.Name = "test1";
+            Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.IsTrue(vm.Config.IsChanged == true);
+            Assert.IsTrue(vm.Config.IsSubTreeChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == false);
+
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+            Assert.IsTrue(vm.Config.IsChanged == false);
+            Assert.IsTrue(vm.Config.IsSubTreeChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == false);
+
+            vm.Config.Model.GroupConstants.NodeAddNewSubNode();
+            Assert.IsTrue(vm.Config.IsChanged == false);
+            Assert.IsTrue(vm.Config.IsSubTreeChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged == true);
+            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsSubTreeChanged == false);
+
+            vm.CommandConfigSave.Execute(null);
+            Assert.IsTrue(vm.Config.IsChanged == false);
+            Assert.IsTrue(vm.Config.IsSubTreeChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsSubTreeChanged == false);
+
+            vm = new MainPageVM(true);
+            vm.OnFormLoaded();
+            Assert.IsTrue(vm.Config.IsChanged == false);
+            Assert.IsTrue(vm.Config.IsSubTreeChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == false);
         }
         [TestMethod]
         public void Main010_DiffList()
@@ -142,6 +192,7 @@ namespace vSharpStudio.Unit
             // new config, not saved yet
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             vm.Config.Name = "main";
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
@@ -159,6 +210,7 @@ namespace vSharpStudio.Unit
             // no stable version (prev is null)
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
             mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
@@ -192,6 +244,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c2.IsRenamed());
 
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
             mod.RunThroughConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
@@ -207,6 +260,7 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
 
             // create object and save
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
@@ -261,6 +315,7 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
 
             // create object and save
@@ -341,10 +396,12 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
+            vmb.OnFormLoaded();
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             //if (!Directory.Exists(path))
@@ -362,6 +419,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
@@ -377,12 +435,14 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             vm.Config.Name = "main";
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
+            vmb.OnFormLoaded();
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             if (!Directory.Exists(pathExt))
@@ -400,6 +460,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
+            vm.OnFormLoaded();
             //TODO diff test implementation
             // var diffc = vm.GetDiffListConfigs();
             // Assert.IsTrue(diffc.Config.Name == "main");

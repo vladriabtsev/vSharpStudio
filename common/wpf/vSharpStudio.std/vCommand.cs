@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+// https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/april/async-programming-patterns-for-asynchronous-mvvm-applications-commands
+// https://github.com/brminnick/AsyncAwaitBestPractices
+// https://johnthiriet.com/mvvm-going-async-with-async-command/
 namespace ViewModelBase
 {
     public class vCommand : VmBindable, ICommand
@@ -89,13 +92,20 @@ namespace ViewModelBase
             //          this.Visibility = Visibility.Collapsed;
             return false;
         }
-        public void Execute(object parameter)
+        async public void Execute(object parameter)
         {
             _isexecuted = true;
             CanExecuteChangedInternal.Raise(this);
             try
             {
-                _execute(parameter);
+                if (_execute != null)
+                {
+                    _execute(parameter);
+                }
+                else
+                {
+                    await _executeAsync(parameter);
+                }
             }
             finally
             {

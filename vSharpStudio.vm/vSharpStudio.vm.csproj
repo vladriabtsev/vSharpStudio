@@ -18,12 +18,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|AnyCPU'">
-    <DefineConstants>TRACE;NET48</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
-    <DefineConstants>NET48</DefineConstants>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ViewModels\ConfigObjectSubBase%27.cs" />
     <Compile Remove="ViewModels\ObjectSubModelsEditor.xaml.cs" />

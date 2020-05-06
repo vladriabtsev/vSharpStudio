@@ -28,6 +28,28 @@
                 _logger = Logger.CreateLogger<T>();
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
+            this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
+        }
+
+        private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsChanged")
+            {
+                IsTreeChangedRecalc();
+            }
+        }
+
+        protected void IsTreeChangedRecalc()
+        {
+            var p = this.Parent;
+            if (this.IsChanged)
+            {
+                while (p != null && !p.IsSubTreeChanged)
+                {
+                    p.IsSubTreeChanged = true;
+                    p = p.Parent;
+                }
+            }
         }
 
         protected virtual void OnInitFromDto()
@@ -284,6 +306,7 @@
                         }
                         // SetSelected(this);
                     }
+                    this.IsChanged = true;
                 }
             }
         }
@@ -411,6 +434,7 @@
             {
                 this._Parent = value;
                 this.OnParentChanged();
+                IsTreeChangedRecalc();
             }
         }
 
@@ -461,7 +485,7 @@
 
         private bool _IsExpanded;
 
-#region Commands
+        #region Commands
 
         public bool NodeCanAddNew()
         {
@@ -616,9 +640,9 @@
             throw new NotImplementedException();
         }
 
-#endregion Commands
+        #endregion Commands
 
-#region IMutableAnnotatable
+        #region IMutableAnnotatable
 
         public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
         {
@@ -793,7 +817,7 @@
                 ? this._annotations.Values.Where(a => a.Value != null)
                 : Enumerable.Empty<Annotation>();
 
-#endregion IMutableAnnotatable
+        #endregion IMutableAnnotatable
 
         public virtual bool HasChildren(object parent)
         {
@@ -809,5 +833,10 @@
         public bool IsIncludableInModels { get; protected set; }
 
         public List<IModelRow> ListInModels { get; protected set; }
+
+        [BrowsableAttribute(false)]
+        public bool IsSubTreeChanged { get { return this._IsSubTreeChanged; } set { SetProperty(ref _IsSubTreeChanged, value); } }
+        private bool _IsSubTreeChanged;
+
     }
 }

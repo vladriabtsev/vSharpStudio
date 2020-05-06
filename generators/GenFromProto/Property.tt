@@ -86,12 +86,14 @@ public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.File
 { 
     this.<#= field.Name.ToNameCs() #>.Add(item); 
     item.Parent = this;
+    this.IsChanged = true;
 }
 public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
 { 
     this.<#= field.Name.ToNameCs() #>.AddRange(items); 
     foreach (var t in items)
         t.Parent = this;
+    this.IsChanged = true;
 }
 public int Count() 
 { 
@@ -101,6 +103,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
 {
     this.<#= field.Name.ToNameCs() #>.Remove(item); 
     item.Parent = null;
+    this.IsChanged = true;
 }
 <#   } #>
 <# } else if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
@@ -145,6 +148,7 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
             this.NotifyPropertyChanged();
 <#   if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
+            this.IsChanged = true;
 <#   } #>
         }
     }

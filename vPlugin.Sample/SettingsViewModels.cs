@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/04/2020 13:17:48
+// Auto generated on UTC 05/06/2020 23:26:42
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -85,21 +85,21 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             return vm;
         }
         // Conversion from 'GeneratorDbSchemaSettings' to 'proto_generator_db_schema_settings'
-        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 226
+        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 228
         {
-            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 228
-            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 265
-            m.IsSchemaParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 242
+            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 230
+            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 267
+            m.IsSchemaParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 244
             m.IsSchemaParam2.HasValue = vm.IsSchemaParam2.HasValue;
             if (vm.IsSchemaParam2.HasValue)
                 m.IsSchemaParam2.Value = vm.IsSchemaParam2.Value;
-            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 265
+            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 267
             return m;
         }
         #endregion Procedures
         #region Properties
         
-        public bool IsSchemaParam1 // Property.tt Line: 132
+        public bool IsSchemaParam1 // Property.tt Line: 135
         { 
             get 
             { 
@@ -114,15 +114,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsSchemaParam1Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool _IsSchemaParam1;
-        partial void OnIsSchemaParam1Changing(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsSchemaParam1Changing(bool from, bool to); // Property.tt Line: 157
         partial void OnIsSchemaParam1Changed();
         bool IGeneratorDbSchemaSettings.IsSchemaParam1 { get { return this._IsSchemaParam1; } }
         
-        public bool? IsSchemaParam2 // Property.tt Line: 132
+        public bool? IsSchemaParam2 // Property.tt Line: 135
         { 
             get 
             { 
@@ -137,15 +138,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsSchemaParam2Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool? _IsSchemaParam2;
-        partial void OnIsSchemaParam2Changing(bool? from, bool? to); // Property.tt Line: 153
+        partial void OnIsSchemaParam2Changing(bool? from, bool? to); // Property.tt Line: 157
         partial void OnIsSchemaParam2Changed();
         bool? IGeneratorDbSchemaSettings.IsSchemaParam2 { get { return this._IsSchemaParam2; } }
         
-        public string SchemaParam3 // Property.tt Line: 132
+        public string SchemaParam3 // Property.tt Line: 135
         { 
             get 
             { 
@@ -160,11 +162,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnSchemaParam3Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private string _SchemaParam3 = string.Empty;
-        partial void OnSchemaParam3Changing(string from, string to); // Property.tt Line: 153
+        partial void OnSchemaParam3Changing(string from, string to); // Property.tt Line: 157
         partial void OnSchemaParam3Changed();
         string IGeneratorDbSchemaSettings.SchemaParam3 { get { return this._SchemaParam3; } }
     
@@ -235,22 +238,22 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             return vm;
         }
         // Conversion from 'GeneratorDbAccessSettings' to 'proto_generator_db_access_settings'
-        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 226
+        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 228
         {
-            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 228
-            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 265
-            m.IsAccessParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 242
+            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 230
+            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 267
+            m.IsAccessParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 244
             m.IsAccessParam2.HasValue = vm.IsAccessParam2.HasValue;
             if (vm.IsAccessParam2.HasValue)
                 m.IsAccessParam2.Value = vm.IsAccessParam2.Value;
-            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 265
-            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 265
+            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 267
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 267
             return m;
         }
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // Property.tt Line: 132
+        public bool IsAccessParam1 // Property.tt Line: 135
         { 
             get 
             { 
@@ -265,15 +268,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsAccessParam1Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsAccessParam1Changing(bool from, bool to); // Property.tt Line: 157
         partial void OnIsAccessParam1Changed();
         bool IGeneratorDbAccessSettings.IsAccessParam1 { get { return this._IsAccessParam1; } }
         
-        public bool? IsAccessParam2 // Property.tt Line: 132
+        public bool? IsAccessParam2 // Property.tt Line: 135
         { 
             get 
             { 
@@ -288,15 +292,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsAccessParam2Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(bool? from, bool? to); // Property.tt Line: 153
+        partial void OnIsAccessParam2Changing(bool? from, bool? to); // Property.tt Line: 157
         partial void OnIsAccessParam2Changed();
         bool? IGeneratorDbAccessSettings.IsAccessParam2 { get { return this._IsAccessParam2; } }
         
-        public string AccessParam3 // Property.tt Line: 132
+        public string AccessParam3 // Property.tt Line: 135
         { 
             get 
             { 
@@ -311,15 +316,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnAccessParam3Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(string from, string to); // Property.tt Line: 153
+        partial void OnAccessParam3Changing(string from, string to); // Property.tt Line: 157
         partial void OnAccessParam3Changed();
         string IGeneratorDbAccessSettings.AccessParam3 { get { return this._AccessParam3; } }
         
-        public bool IsGenerateNotValidCode // Property.tt Line: 132
+        public bool IsGenerateNotValidCode // Property.tt Line: 135
         { 
             get 
             { 
@@ -334,11 +340,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsGenerateNotValidCodeChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsGenerateNotValidCodeChanging(bool from, bool to); // Property.tt Line: 157
         partial void OnIsGenerateNotValidCodeChanged();
         bool IGeneratorDbAccessSettings.IsGenerateNotValidCode { get { return this._IsGenerateNotValidCode; } }
     
@@ -400,16 +407,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodePropertySettings' to 'proto_generator_db_access_node_property_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_property_settings ConvertToProto(GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 226
+        public static Proto.Plugin.proto_generator_db_access_node_property_settings ConvertToProto(GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 228
         {
-            Proto.Plugin.proto_generator_db_access_node_property_settings m = new Proto.Plugin.proto_generator_db_access_node_property_settings(); // Clone.tt Line: 228
-            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 265
+            Proto.Plugin.proto_generator_db_access_node_property_settings m = new Proto.Plugin.proto_generator_db_access_node_property_settings(); // Clone.tt Line: 230
+            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 267
             return m;
         }
         #endregion Procedures
         #region Properties
         
-        public bool IsPropertyParam1 // Property.tt Line: 132
+        public bool IsPropertyParam1 // Property.tt Line: 135
         { 
             get 
             { 
@@ -424,11 +431,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsPropertyParam1Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool _IsPropertyParam1;
-        partial void OnIsPropertyParam1Changing(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsPropertyParam1Changing(bool from, bool to); // Property.tt Line: 157
         partial void OnIsPropertyParam1Changed();
         bool IGeneratorDbAccessNodePropertySettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } }
     
@@ -490,16 +498,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodeCatalogFormSettings' to 'proto_generator_db_access_node_catalog_form_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_catalog_form_settings ConvertToProto(GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 226
+        public static Proto.Plugin.proto_generator_db_access_node_catalog_form_settings ConvertToProto(GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 228
         {
-            Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 228
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 265
+            Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 230
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 267
             return m;
         }
         #endregion Procedures
         #region Properties
         
-        public bool IsCatalogFormParam1 // Property.tt Line: 132
+        public bool IsCatalogFormParam1 // Property.tt Line: 135
         { 
             get 
             { 
@@ -514,11 +522,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                     this.OnIsCatalogFormParam1Changed();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
         private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(bool from, bool to); // Property.tt Line: 153
+        partial void OnIsCatalogFormParam1Changing(bool from, bool to); // Property.tt Line: 157
         partial void OnIsCatalogFormParam1Changed();
         bool IGeneratorDbAccessNodeCatalogFormSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } }
     

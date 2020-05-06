@@ -64,6 +64,10 @@ namespace ViewModelBase
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
         public bool IsNotNotifying { get; set; }
 
+        [BrowsableAttribute(false)]
+        public bool IsBusy { get { return _IsBusy; } set { SetProperty(ref _IsBusy, value); } }
+        private bool _IsBusy = false;
+
         #region Dispatcher Methods
 
         /// <summary>
