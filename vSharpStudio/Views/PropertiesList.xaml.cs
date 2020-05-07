@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 
@@ -60,6 +61,11 @@ namespace vSharpStudio.Views
                 default:
                     break;
             }
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            (this.DataContext as MainPageVM).propertyGrid = this.propertyGrid;
         }
     }
 }

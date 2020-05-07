@@ -9,7 +9,7 @@
     xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
     xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:MainPageVM}}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=false, Type={x:Type vm:MainPageVM}}"
     d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Converters:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>

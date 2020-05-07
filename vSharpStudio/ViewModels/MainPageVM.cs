@@ -31,7 +31,7 @@ namespace vSharpStudio.ViewModels
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         private static ILogger _logger;
-
+        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid propertyGrid;
         public MainPageVM()
             : base(MainPageVMValidator.Validator)
         {
@@ -537,6 +537,7 @@ namespace vSharpStudio.ViewModels
                 };
                 this._Config.OnSelectedNodeChanged = () =>
                 {
+                    this.propertyGrid.SelectedObject = this.Config.SelectedNode;
                     this.CommandAddNew.RaiseCanExecuteChanged();
                     this.CommandAddNewChild.RaiseCanExecuteChanged();
                     this.CommandAddClone.RaiseCanExecuteChanged();
@@ -551,7 +552,6 @@ namespace vSharpStudio.ViewModels
                 };
             }
         }
-
         private Config _Config;
 
         //public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()

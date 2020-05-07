@@ -10,9 +10,10 @@
              xmlns:vmtype="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=False}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
     <Grid>
-        <xctk:PropertyGrid SelectedObject="{Binding Config.SelectedNode}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
+        <!--SelectedObject="{Binding Config.SelectedNode}"-->
+        <xctk:PropertyGrid Name="propertyGrid" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
             <xctk:PropertyGrid.EditorDefinitions>
                 <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
                     <xctk:EditorTemplateDefinition.EditingTemplate>
