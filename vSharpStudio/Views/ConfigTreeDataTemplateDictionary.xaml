@@ -7,7 +7,7 @@
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
     <Converters:ConverterCountToWidth x:Key="ConverterCountToWidth"/>
 
-    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListBaseConfigLinks}" ItemsSource="{Binding ListBaseConfigs}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:GroupListBaseConfigLinks}" ItemsSource="{Binding ListBaseConfigLinks}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

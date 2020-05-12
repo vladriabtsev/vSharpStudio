@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/07/2020 13:40:46
+// Auto generated on UTC 05/11/2020 20:51:55
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = UserSettingsOpenedConfig.ConvertToVM(t, new UserSettingsOpenedConfig()); // Clone.tt Line: 189
                 vm.ListOpenConfigHistory.Add(tvm);
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'UserSettings' to 'proto_user_settings'
@@ -213,7 +213,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsNotNotifying = true;
             vm.OpenedLastTimeOn = m.OpenedLastTimeOn; // Clone.tt Line: 214
             vm.ConfigPath = m.ConfigPath; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'UserSettingsOpenedConfig' to 'proto_user_settings_opened_config'
@@ -390,7 +390,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListPlugins' to 'proto_group_list_plugins'
@@ -592,7 +592,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Plugin' to 'proto_plugin'
@@ -831,7 +831,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'PluginGenerator' to 'proto_plugin_generator'
@@ -994,7 +994,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'PluginGeneratorSettings' to 'proto_plugin_generator_settings'
@@ -1210,7 +1210,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'SettingsConfig' to 'proto_settings_config'
@@ -1398,7 +1398,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsDbFromConnectionString = m.IsDbFromConnectionString; // Clone.tt Line: 214
             vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 214
             vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'DbSettings' to 'db_settings'
@@ -1721,7 +1721,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'ConfigShortHistory' to 'proto_config_short_history'
@@ -1943,7 +1943,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListBaseConfigLinks' to 'proto_group_list_base_config_links'
@@ -2131,7 +2131,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'BaseConfigLink' to 'proto_base_config_link'
@@ -2362,7 +2362,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Config' to 'proto_config'
@@ -2677,7 +2677,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.PluginGenName = m.PluginGenName; // Clone.tt Line: 214
             vm.ConnGuid = m.ConnGuid; // Clone.tt Line: 214
             vm.ConnName = m.ConnName; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'AppDbSettings' to 'proto_app_db_settings'
@@ -3011,7 +3011,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListAppSolutions' to 'proto_group_list_app_solutions'
@@ -3300,7 +3300,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'AppSolution' to 'proto_app_solution'
@@ -3576,7 +3576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'AppProject' to 'proto_app_project'
@@ -3811,7 +3811,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'AppProjectGenerator' to 'proto_app_project_generator'
@@ -4142,7 +4142,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GeneratorSettings' to 'proto_generator_settings'
@@ -4375,7 +4375,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'ConfigModel' to 'proto_config_model'
@@ -4701,7 +4701,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListObjectGuids.Add(t);
             }
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'DataType' to 'proto_data_type'
@@ -5022,7 +5022,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListCommon' to 'proto_group_list_common'
@@ -5208,7 +5208,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Role' to 'proto_role'
@@ -5385,7 +5385,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListRoles' to 'proto_group_list_roles'
@@ -5579,7 +5579,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'MainViewForm' to 'proto_main_view_form'
@@ -5787,7 +5787,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListMainViewForms' to 'proto_group_list_main_view_forms'
@@ -6068,7 +6068,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListPropertiesTabs' to 'proto_group_list_properties_tabs'
@@ -6348,7 +6348,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'PropertiesTab' to 'proto_properties_tab'
@@ -6692,7 +6692,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListProperties' to 'proto_group_list_properties'
@@ -6994,7 +6994,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Property' to 'proto_property'
@@ -7309,7 +7309,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListConstants' to 'proto_group_list_constants'
@@ -7582,7 +7582,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Constant' to 'proto_constant'
@@ -7866,7 +7866,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListEnumerations' to 'proto_group_list_enumerations'
@@ -8183,7 +8183,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Enumeration' to 'proto_enumeration'
@@ -8437,7 +8437,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'EnumerationPair' to 'proto_enumeration_pair'
@@ -8671,7 +8671,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Catalog' to 'proto_catalog'
@@ -9036,7 +9036,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListCatalogs' to 'proto_group_list_catalogs'
@@ -9313,7 +9313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupDocuments' to 'proto_group_documents'
@@ -9606,7 +9606,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Document' to 'proto_document'
@@ -9971,7 +9971,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListDocuments' to 'proto_group_list_documents'
@@ -10282,7 +10282,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListJournals' to 'proto_group_list_journals'
@@ -10597,7 +10597,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Journal' to 'proto_journal'
@@ -10888,7 +10888,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListForms' to 'proto_group_list_forms'
@@ -11153,7 +11153,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Form' to 'proto_form'
@@ -11415,7 +11415,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GroupListReports' to 'proto_group_list_reports'
@@ -11680,7 +11680,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'Report' to 'proto_report'
@@ -11812,7 +11812,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Name = m.Name; // Clone.tt Line: 214
             vm.Guid = m.Guid; // Clone.tt Line: 214
             vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'ModelRow' to 'proto_model_row'

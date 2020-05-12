@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/07/2020 13:40:48
+// Auto generated on UTC 05/11/2020 20:51:57
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -81,7 +81,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 214
             vm.IsSchemaParam2 = m.IsSchemaParam2.HasValue ? (bool?)m.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 214
             vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GeneratorDbSchemaSettings' to 'proto_generator_db_schema_settings'
@@ -234,7 +234,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             vm.IsAccessParam2 = m.IsAccessParam2.HasValue ? (bool?)m.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 214
             vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 214
             vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessSettings' to 'proto_generator_db_access_settings'
@@ -403,7 +403,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
             vm.IsNotNotifying = true;
             vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodePropertySettings' to 'proto_generator_db_access_node_property_settings'
@@ -494,7 +494,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
             vm.IsNotNotifying = true;
             vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 214
-            vm.IsNotNotifying = true;
+            vm.IsNotNotifying = false;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodeCatalogFormSettings' to 'proto_generator_db_access_node_catalog_form_settings'

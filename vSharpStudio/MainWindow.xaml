@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:vSharpStudio"
         xmlns:Views="clr-namespace:vSharpStudio.Views" x:Class="vSharpStudio.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding CurrentCfgFilePath}" Height="450" Width="800" >
     <Grid>
 
-        <Views:MainPage/>
+        <Views:MainPage />
 
     </Grid>
 </Window>

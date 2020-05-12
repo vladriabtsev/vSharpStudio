@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "BaseConfig";
         partial void OnRelativeConfigFilePathChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (string.IsNullOrWhiteSpace(this._RelativeConfigFilePath))
                 throw new Exception();
             var cfg = this.GetConfig();

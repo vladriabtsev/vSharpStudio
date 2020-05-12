@@ -8,8 +8,8 @@
     xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
     xmlns:local="clr-namespace:vSharpStudio.Views"
     mc:Ignorable="d" 
-    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:MainPageVM}}"
-    d:DesignHeight="250" d:DesignWidth="400">
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type={x:Type vm:MainPageVM}}"
+    d:DesignHeight="250" d:DesignWidth="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
     </UserControl.Resources>
@@ -21,7 +21,7 @@
         <TextBlock Grid.Row="0" Text="List All Validations"/>
         <DataGrid Grid.Row="1" x:Name="dataGrid" IsSynchronizedWithCurrentItem="True" 
                   ItemsSource="{Binding Config.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
-            <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
+                <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

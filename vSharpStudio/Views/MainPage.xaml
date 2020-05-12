@@ -20,7 +20,7 @@
         <!--<KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>-->
     </UserControl.InputBindings>
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}" DisplayAfter="0">
-        <xctk:BusyIndicator.BusyContentTemplate>
+        <!--<xctk:BusyIndicator.BusyContentTemplate>
             <DataTemplate>
                 <StackPanel Margin="4">
                     <TextBlock Text="{Binding ProgressVM.Name}" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -41,7 +41,7 @@
                     </Grid>
                 </StackPanel>
             </DataTemplate>
-        </xctk:BusyIndicator.BusyContentTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>-->
         <!--<xctk:BusyIndicator.OverlayStyle>
             <Style TargetType="Rectangle">
                 <Setter Property="Fill" Value="#ffffeeee"/>

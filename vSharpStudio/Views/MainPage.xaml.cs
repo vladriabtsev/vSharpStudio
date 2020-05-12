@@ -46,10 +46,20 @@ namespace vSharpStudio.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                return;
+            }
 #if DEBUG
             this._model.OnFormLoaded();
             this._model.Compose();
             this.DataContext = this._model;
+            FrameworkElement p = this.Parent as FrameworkElement;
+            while (!(p is MainWindow))
+            {
+                p = p.Parent as FrameworkElement;
+            }
+            p.DataContext = this._model;
 #else
             _model = new MainPageVM();
             Task task = Task.Run(() =>

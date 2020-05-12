@@ -32,6 +32,7 @@ namespace vSharpStudio.ViewModels
     {
         private static ILogger _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid propertyGrid;
+        public ValidationListForSelectedNode validationListForSelectedNode;
         public MainPageVM()
             : base(MainPageVMValidator.Validator)
         {
@@ -45,6 +46,7 @@ namespace vSharpStudio.ViewModels
             this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
             this.configFile = configFile;
+            this.Config = new Config();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 // Catalog c = new Catalog();
@@ -90,30 +92,28 @@ namespace vSharpStudio.ViewModels
                     if (res != System.Windows.MessageBoxResult.OK)
                         return;
                 }
-                this.Config = this.LoadConfig(p.ConfigPath, string.Empty, true);
+                this.LoadConfig(this.Config, p.ConfigPath, string.Empty, true);
             };
             if (isLoadConfig)
             {
                 if (configFile != null)
                 {
                     _logger.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
-                    this.Config = this.LoadConfig(configFile, string.Empty, true);
+                    this.LoadConfig(this.Config, configFile, string.Empty, true);
                 }
                 else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
                 {
                     _logger.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CurrentCfgFilePath);
-                    this.Config = this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
+                    this.LoadConfig(this.Config, this.CurrentCfgFilePath, string.Empty, true);
                 }
                 else
                 {
-                    _logger.LogDebug("Creating empty Configuration".CallerInfo());
-                    this.Config = new Config();
+                    _logger.LogDebug("Using empty Configuration".CallerInfo());
                 }
             }
             else
             {
-                _logger.LogDebug("Creating empty Configuration".CallerInfo());
-                this.Config = new Config();
+                _logger.LogDebug("Using empty Configuration".CallerInfo());
             }
 
             // this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
@@ -165,7 +165,7 @@ namespace vSharpStudio.ViewModels
             // this.Model.OnProviderSelectionChanged(null);
             this.IsBusy = false;
         }
-        private Config LoadConfig(string file_path, string indent, bool isRoot = false)
+        private void LoadConfig(Config config, string file_path, string indent, bool isRoot = false)
         {
             Config.IsLoading = true;
             if (!File.Exists(file_path))
@@ -177,28 +177,29 @@ namespace vSharpStudio.ViewModels
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             _logger.LogDebug("ConvertToVM Main Config".CallerInfo());
-            var cfg = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
-            cfg.CurrentCfgFolderPath = Path.GetDirectoryName(this.CurrentCfgFilePath);
-            cfg.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            Config.ConvertToVM(this.pconfig_history.CurrentConfig, config);
+            config.CurrentCfgFolderPath = Path.GetDirectoryName(this.CurrentCfgFilePath);
+            config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             if (isRoot)
             {
                 if (this.pconfig_history.PrevStableConfig != null)
                 {
                     _logger.LogDebug("ConvertToVM Prev Config".CallerInfo());
-                    cfg.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
+                    config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
                 }
 
                 if (this.pconfig_history.OldStableConfig != null)
                 {
                     _logger.LogDebug("ConvertToVM Old Config".CallerInfo());
-                    cfg.OldStableConfig = Config.ConvertToVM(this.pconfig_history.OldStableConfig, new Config());
+                    config.OldStableConfig = Config.ConvertToVM(this.pconfig_history.OldStableConfig, new Config());
                 }
             }
             string ind2 = indent + "   ";
-            foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks.ToList())
+            foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
                 _logger.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
-                t.Config = this.LoadConfig(Path.Combine(cfg.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
+                //t.Config = new Config();
+                this.LoadConfig(t.Config, Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                 t.Name = t.Config.Name;
             }
 
@@ -206,7 +207,6 @@ namespace vSharpStudio.ViewModels
             // this.Model = new Config(json);
             this.CurrentCfgFilePath = file_path;
             Config.IsLoading = false;
-            return cfg;
         }
 
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
@@ -537,7 +537,9 @@ namespace vSharpStudio.ViewModels
                 };
                 this._Config.OnSelectedNodeChanged = () =>
                 {
-                    this.propertyGrid.SelectedObject = this.Config.SelectedNode;
+                    //this.validationListForSelectedNode.DataContext = this;
+                    //this.validationListForSelectedNode.dataGrid.ItemsSource = this.Config.SelectedNode.ValidationCollection;
+                    //this.propertyGrid.SelectedObject = this.Config.SelectedNode;
                     this.CommandAddNew.RaiseCanExecuteChanged();
                     this.CommandAddNewChild.RaiseCanExecuteChanged();
                     this.CommandAddClone.RaiseCanExecuteChanged();
@@ -610,7 +612,7 @@ namespace vSharpStudio.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                this.Config = this.LoadConfig(dlg.FileName, string.Empty, true);
+                this.LoadConfig(this.Config, dlg.FileName, string.Empty, true);
             }
         }
         public vCommand CommandConfigSave

@@ -52,6 +52,10 @@ namespace vSharpStudio
             //#endregion DI services
 
             MainWindow wnd = new MainWindow();
+#if DEBUG
+            // https://docs.microsoft.com/en-us/dotnet/desktop-wpf/data/data-binding-overview#debugging-mechanism
+            //PresentationTraceSources.SetTraceLevel(wnd, PresentationTraceLevel.High);
+#endif
             wnd.Show();
             //if (e.Args.Length == 1)
             //{

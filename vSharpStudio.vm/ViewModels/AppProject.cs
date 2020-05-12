@@ -30,6 +30,22 @@ namespace vSharpStudio.vm.ViewModels
             //    cfg.DicAppGenerators.Remove(item.Guid);
             //    _logger.LogTrace("{DicAppGenerators}", cfg.DicAppGenerators);
             //};
+
+            //this.RefillChildren();
+        }
+        protected override void OnInitFromDto()
+        {
+            //_logger.Trace();
+            //base.OnInitFromDto();
+            //this.RefillChildren();
+        }
+        void RefillChildren()
+        {
+            //this.Children.Clear();
+            //this.Children.Add(this.GroupConfigLinks, 0);
+            //this.Children.Add(this.Model, 1);
+            //this.Children.Add(this.GroupPlugins, 9);
+            //this.Children.Add(this.GroupAppSolutions, 10);
         }
 
         public AppProject(ITreeConfigNode parent, string name, string relativeToSolutionProjectPath)

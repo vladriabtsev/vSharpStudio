@@ -145,7 +145,26 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("test2", vm.Config.Name);
         }
         [TestMethod]
-        public void Main004IsChangedAndIsTreeChanged()
+        public void Main004CanSaveConfigAndReload()
+        {
+            this.remove_config();
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
+            vm.Config.Name = "test1";
+            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+
+            vm = new MainPageVM(true);
+            vm.OnFormLoaded();
+            // Load from previous save
+            Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.AreEqual("test1", vm.Config.Name);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstants.Count());
+            Assert.AreEqual("c1", vm.Config.Model.GroupConstants[0].Name);
+        }
+        [TestMethod]
+        public void Main005IsChangedAndIsTreeChanged()
         {
             this.remove_config();
             var vm = new MainPageVM(false);

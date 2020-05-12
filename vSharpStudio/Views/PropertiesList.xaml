@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:vSharpStudio.Views"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              mc:Ignorable="d" 
              xmlns:vmtype="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
@@ -13,7 +14,7 @@
              d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
     <Grid>
         <!--SelectedObject="{Binding Config.SelectedNode}"-->
-        <xctk:PropertyGrid Name="propertyGrid" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
+        <xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode, diag:PresentationTraceSources.TraceLevel=High}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
             <xctk:PropertyGrid.EditorDefinitions>
                 <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
                     <xctk:EditorTemplateDefinition.EditingTemplate>

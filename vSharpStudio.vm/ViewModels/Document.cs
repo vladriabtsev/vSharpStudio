@@ -23,12 +23,22 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupProperties.Parent = this;
-            this.Children.Add(this.GroupProperties, 6);
             this.GroupPropertiesTabs.Parent = this;
-            this.Children.Add(this.GroupPropertiesTabs, 7);
             this.GroupForms.Parent = this;
-            this.Children.Add(this.GroupForms, 8);
             this.GroupReports.Parent = this;
+            this.RefillChildren();
+        }
+        protected override void OnInitFromDto()
+        {
+            base.OnInitFromDto();
+            this.RefillChildren();
+        }
+        void RefillChildren()
+        {
+            this.Children.Clear();
+            this.Children.Add(this.GroupProperties, 6);
+            this.Children.Add(this.GroupPropertiesTabs, 7);
+            this.Children.Add(this.GroupForms, 8);
             this.Children.Add(this.GroupReports, 9);
         }
 

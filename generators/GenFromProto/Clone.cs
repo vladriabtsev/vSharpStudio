@@ -1606,7 +1606,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.IsNotNotifying = true;\r\n    return vm;\r\n}\r\n// Conversion from \'");
+            this.Write("    vm.IsNotNotifying = false;\r\n    return vm;\r\n}\r\n// Conversion from \'");
             
             #line 227 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

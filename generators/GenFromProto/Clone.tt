@@ -221,7 +221,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.IsSubTreeChanged = false;
     vm.IsChanged = false;
 <# } #>
-    vm.IsNotNotifying = true;
+    vm.IsNotNotifying = false;
     return vm;
 }
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'

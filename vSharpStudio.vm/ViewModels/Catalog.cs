@@ -30,10 +30,20 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupProperties.Parent = this;
-            this.Children.Add(this.GroupProperties, 3);
             this.GroupForms.Parent = this;
-            this.Children.Add(this.GroupForms, 4);
             this.GroupReports.Parent = this;
+            this.RefillChildren();
+        }
+        protected override void OnInitFromDto()
+        {
+            base.OnInitFromDto();
+            this.RefillChildren();
+        }
+        void RefillChildren()
+        {
+            this.Children.Clear();
+            this.Children.Add(this.GroupProperties, 3);
+            this.Children.Add(this.GroupForms, 4);
             this.Children.Add(this.GroupReports, 5);
             this.AddAllAppGenSettingsVmsToNewNode();
         }

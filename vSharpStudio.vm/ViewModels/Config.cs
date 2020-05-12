@@ -47,6 +47,16 @@ namespace vSharpStudio.vm.ViewModels
 
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        //public ConfigNodesCollection<ITreeConfigNode> Children
+        //{
+        //    get { return this._Children; }
+        //    set
+        //    {
+        //        this._Children = value;
+        //        this.NotifyPropertyChanged();
+        //    }
+        //}
+        //private ConfigNodesCollection<ITreeConfigNode> _Children;
 
         protected IMigration _migration = null;
         public string ConnectionString = null;
@@ -72,24 +82,29 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupConfigLinks.Parent = this;
-            this.Children.Add(this.GroupConfigLinks, 0);
             this.Model.Parent = this;
-            this.Children.Add(this.Model, 1);
             if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
             {
                 this.DbSettings.DbSchema = "v";
             }
             this.GroupPlugins.Parent = this;
-            this.Children.Add(this.GroupPlugins, 9);
             this.GroupAppSolutions.Parent = this;
-            this.Children.Add(this.GroupAppSolutions, 10);
+            this.RefillChildren();
         }
 
         protected override void OnInitFromDto()
         {
             _logger.Trace();
             base.OnInitFromDto();
-            this.RecreateSubNodes();
+            this.RefillChildren();
+        }
+        void RefillChildren()
+        {
+            this.Children.Clear();
+            this.Children.Add(this.GroupConfigLinks, 0);
+            this.Children.Add(this.Model, 1);
+            this.Children.Add(this.GroupPlugins, 9);
+            this.Children.Add(this.GroupAppSolutions, 10);
         }
 
         public Config()
@@ -213,9 +228,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        void RecreateSubNodes()
-        {
-        }
 
         #endregion ITreeNode
 

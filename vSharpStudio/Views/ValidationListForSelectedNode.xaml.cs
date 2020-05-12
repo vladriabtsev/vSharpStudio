@@ -28,5 +28,10 @@ namespace vSharpStudio.Views
             this.InitializeComponent();
             this.vm = (MainPageVM)this.DataContext;
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as MainPageVM).validationListForSelectedNode = this;
+        }
     }
 }

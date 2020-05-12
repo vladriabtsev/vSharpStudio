@@ -42,23 +42,28 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "ConfigModel";
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
-            this.Children.Add(this.GroupCommon, 6);
             this.GroupConstants.Parent = this;
-            this.Children.Add(this.GroupConstants, 7);
             this.GroupEnumerations.Parent = this;
-            this.Children.Add(this.GroupEnumerations, 8);
             this.GroupCatalogs.Parent = this;
-            this.Children.Add(this.GroupCatalogs, 9);
             this.GroupDocuments.Parent = this;
-            this.Children.Add(this.GroupDocuments, 10);
             this.GroupJournals.Parent = this;
-            this.Children.Add(this.GroupJournals, 11);
+            this.RefillChildren();
         }
 
         protected override void OnInitFromDto()
         {
             this.Name = "ConfigModel";
-            this.RecreateSubNodes();
+            this.RefillChildren();
+        }
+        void RefillChildren()
+        {
+            this.Children.Clear();
+            this.Children.Add(this.GroupCommon, 6);
+            this.Children.Add(this.GroupConstants, 7);
+            this.Children.Add(this.GroupEnumerations, 8);
+            this.Children.Add(this.GroupCatalogs, 9);
+            this.Children.Add(this.GroupDocuments, 10);
+            this.Children.Add(this.GroupJournals, 11);
         }
 
         #region Validation
@@ -160,24 +165,21 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITreeNode
 
-        void RecreateSubNodes()
-        {
-        }
 
-        partial void OnGroupConstantsChanged()
-        {
-            this.RecreateSubNodes();
-        }
+        //partial void OnGroupConstantsChanged()
+        //{
+        //    this.RefillChildren();
+        //}
 
-        partial void OnGroupCatalogsChanged()
-        {
-            this.RecreateSubNodes();
-        }
+        //partial void OnGroupCatalogsChanged()
+        //{
+        //    this.RefillChildren();
+        //}
 
-        partial void OnGroupEnumerationsChanged()
-        {
-            this.RecreateSubNodes();
-        }
+        //partial void OnGroupEnumerationsChanged()
+        //{
+        //    this.RefillChildren();
+        //}
 
         #endregion ITreeNode
 
