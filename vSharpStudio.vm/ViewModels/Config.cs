@@ -346,7 +346,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
 #if DEBUG
                         if (string.IsNullOrWhiteSpace(ttt.Guid))
-                            throw new Exception("PluginGeneratorGuid is empty");
+                            throw new Exception("PluginGenerator Guid is empty");
 #endif
                         if (!this.DicAppGenerators.ContainsKey(ttt.Guid))
                         {

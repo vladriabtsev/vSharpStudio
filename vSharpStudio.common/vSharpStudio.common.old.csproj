@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2552CE51-8BD6-4930-9B20-BB5812C8162C}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>vSharpStudio.common.old</RootNamespace>
+    <AssemblyName>vSharpStudio.common.old</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <BaseIntermediateOutputPath>bin\objold\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\old\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\old\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigObjectCommonBase%27.cs" />
+    <Compile Include="Defaults.cs" />
+    <Compile Include="DiffModelVisitorBase.cs" />
+    <Compile Include="DiffModel\DiffLists%27.cs" />
+    <Compile Include="DiffModel\Ext.cs" />
+    <Compile Include="DiffModel\ICatalog.partial.cs" />
+    <Compile Include="DiffModel\IConfig.partial.cs" />
+    <Compile Include="DiffModel\IConfigModel.partial.cs" />
+    <Compile Include="DiffModel\IConstant.partial.cs" />
+    <Compile Include="DiffModel\IDataType.cs" />
+    <Compile Include="DiffModel\IDocument.partial.cs" />
+    <Compile Include="DiffModel\IEnumeration.partial.cs" />
+    <Compile Include="DiffModel\IEnumerationPair.partial.cs" />
+    <Compile Include="DiffModel\IForm.partial.cs" />
+    <Compile Include="DiffModel\IGroupListCatalogs.partial.cs" />
+    <Compile Include="DiffModel\IGroupListConstants.partial.cs" />
+    <Compile Include="DiffModel\IGroupListDocuments.partial.cs" />
+    <Compile Include="DiffModel\IGroupListEnumerations.partial.cs" />
+    <Compile Include="DiffModel\IGroupListForms.partial.cs" />
+    <Compile Include="DiffModel\IGroupListJournals.partial.cs" />
+    <Compile Include="DiffModel\IGroupListProperties.partial.cs" />
+    <Compile Include="DiffModel\IGroupListPropertiesTabs.partial.cs" />
+    <Compile Include="DiffModel\IGroupListReports.partial.cs" />
+    <Compile Include="DiffModel\IGuid.cs" />
+    <Compile Include="DiffModel\IJournal.partial.cs" />
+    <Compile Include="DiffModel\IName.cs" />
+    <Compile Include="DiffModel\IPropertiesTab.partial.cs" />
+    <Compile Include="DiffModel\IProperty.partial.cs" />
+    <Compile Include="DiffModel\IReport.partial.cs" />
+    <Compile Include="DiffModel\PreRenameData.cs" />
+    <Compile Include="IDataTypeObject.cs" />
+    <Compile Include="INodes.cs" />
+    <Compile Include="IObjectAnnotable.cs" />
+    <Compile Include="IParent.cs" />
+    <Compile Include="ITreeConfigNode.cs" />
+    <Compile Include="IvPlugin.cs" />
+    <Compile Include="IvPluginDbConnStringGenerator.cs" />
+    <Compile Include="IvPluginDbGenerator.cs" />
+    <Compile Include="IvPluginGenerator.cs" />
+    <Compile Include="IvPluginGeneratorSettingsVM.cs" />
+    <Compile Include="IvPluginGroup.cs" />
+    <Compile Include="IvPluginNodeSettings.cs" />
+    <Compile Include="LogExt.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="ModelGenerator\Helper.cs" />
+    <Compile Include="ModelInterfaces.cs" />
+    <Compile Include="ModelVisitorBase.cs" />
+    <Compile Include="NodeParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="vPluginTypeEnum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj">
+      <Project>{a02bb4d5-5ea9-4a90-8d0a-c1af3d919c30}</Project>
+      <Name>vSharpStudio.std</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
+      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
+      <Name>Xceed.Wpf.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+    <!--<PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />-->
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+    <PackageReference Include="System.Interactive.Async" Version="4.1.1" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

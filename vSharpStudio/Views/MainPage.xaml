@@ -175,10 +175,10 @@
                     <!--Editors-->
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="62*" MinHeight="20" />
-                            <RowDefinition Height="117*"/>
+                            <RowDefinition Height="3*" MinHeight="20" />
+                            <!--<RowDefinition Height="117*"/>-->
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="30*" MinHeight="20" />
+                            <RowDefinition Height="*" MinHeight="30" />
                         </Grid.RowDefinitions>
                         <!--<local:Editors Grid.Row="0" Height="{Binding RowDefinitions[0].Height.Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>-->
                         <local:Editors Grid.Row="0" Grid.RowSpan="2"/>

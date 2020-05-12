@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common2.csproj" />
+    <ProjectReference Include="..\vSharpStudio\vSharpStudio.csproj" />
   </ItemGroup>
 
 </Project>

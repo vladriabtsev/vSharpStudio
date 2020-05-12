@@ -13,53 +13,60 @@ namespace vSharpStudio.vm.ViewModels
             public PluginGeneratorValidator()
             {
                 this.RuleFor(x => x.Generator).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_GENERATOR_WAS_NOT_FOUND);
-                this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_NOT_UNIQUE);
-                this.RuleFor(x => x.Guid).Must((x, guid) => {
-                    if (x.Parent == null)
+                this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
+                this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
+                {
+                    PluginGenerator pg = (PluginGenerator)cntx.InstanceToValidate;
+                    if (pg.Parent == null)
                     {
-                        return true;
+                        return;
                     }
 
-                    GroupListPlugins lst = (GroupListPlugins)x.Parent.Parent;
+                    GroupListPlugins lst = (GroupListPlugins)pg.Parent.Parent;
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("Not unique Generator Guid. Plugin/Generator: ");
                     int count = 0;
+                    string sep = "";
                     foreach (var tt in lst.ListPlugins)
                     {
                         foreach (var t in tt.ListGenerators)
                         {
                             if (t.Guid == guid)
                             {
+                                sb.Append(sep);
+                                sb.Append(tt.Name);
+                                sb.Append("/");
+                                sb.Append(t.Name);
+                                sep = ", ";
                                 count++;
                             }
                         }
                     }
                     if (count > 1)
                     {
-                        return false;
+                        sb.Append(". Remove extra plugings");
+                        cntx.AddFailure(sb.ToString());
                     }
-
-                    return true;
-                }).WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
-                string message = "wrong validation rule";
-                this.RuleFor(x => x).Must((o, name) => {
-                    if (o.Generator == null)
+                });
+                this.RuleFor(x => x).Custom((name, cntx) =>
+                {
+                    PluginGenerator pg = (PluginGenerator)cntx.InstanceToValidate;
+                    if (pg.Generator == null)
                     {
-                        return true;
+                        return;
                     }
-
-                    switch (o.Generator.PluginGeneratorType)
+                    switch (pg.Generator.PluginGeneratorType)
                     {
                         case common.vPluginLayerTypeEnum.DbDesign:
-                            if (!(o.Generator is IvPluginDbGenerator))
+                            if (!(pg.Generator is IvPluginDbGenerator))
                             {
-                                message = "Interface 'IDbMigrator' is not implemented";
-                                return false;
+                                cntx.AddFailure("Interface 'IDbMigrator' is not implemented. Remove or fix Plugin: " + pg.Name);
                             }
                             break;
                         default:
                             break;
                     }
-                    return true;
-                }).WithMessage(message);
+                });
             }
         }
     }

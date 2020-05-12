@@ -21,7 +21,7 @@
         <TextBlock Grid.Row="0" Text="List All Validations"/>
         <DataGrid Grid.Row="1" x:Name="dataGrid" IsSynchronizedWithCurrentItem="True" 
                   ItemsSource="{Binding Config.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
-                <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
+            <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -29,7 +29,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
+                <!--<DataGridTextColumn Binding="{Binding Message, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*" />-->
+                <DataGridTemplateColumn Header="Message" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Message}">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"
