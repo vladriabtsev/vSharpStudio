@@ -96,12 +96,14 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             }
         }
-        public AppProjectGenerator AddGenerator(string name, string relativeToSolutionProjectPath)
+        public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath =null)
         {
-            AppProjectGenerator node = new AppProjectGenerator(this)
-            {
-
-            };
+            AppProjectGenerator node = new AppProjectGenerator(this);
+            if (generationPath != null)
+                node.RelativePathToGenFolder = generationPath;
+            node.PluginGuid = pluginGuid;
+            node.PluginGeneratorGuid = generatorGuid;
+            node.GenFileName = outFile;
             this.ListAppProjectGenerators.Add(node);
             return node;
         }

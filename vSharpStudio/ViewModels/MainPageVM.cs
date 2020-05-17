@@ -724,7 +724,7 @@ namespace vSharpStudio.ViewModels
                 () =>
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 UpdateUserSettingsSaveConfigs();
                 //if (this.UserSettings.ListOpenConfigHistory.Count > 0)
                 //    this.UserSettings.ListOpenConfigHistory[0].OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
@@ -734,11 +734,10 @@ namespace vSharpStudio.ViewModels
                 ResetAfterSave();
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             this.ConnectionStringSettingsSave();
-
-            // var json = JsonFormatter.Default.Format(proto);
-            // File.WriteAllText(CFG_PATH, json);
 #if DEBUG
-            // CompareSaved(json);
+            var json = JsonFormatter.Default.Format(this.pconfig_history);
+            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+            CompareSaved(json);
 #endif
         }
 
@@ -841,16 +840,14 @@ namespace vSharpStudio.ViewModels
 
         private void CompareSaved(string json)
         {
-            return;
-
-            // KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
-            // var model = new Config(json);
-            // KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
-            // if (!result.AreEqual)
-            // {
-            //    Console.WriteLine(result.DifferencesString);
-            //    throw new Exception();
-            // }
+            KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
+            var model = new Config(json);
+            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
+            if (!result.AreEqual)
+            {
+                Console.WriteLine(result.DifferencesString);
+                throw new Exception();
+            }
         }
 
         public string FilePathSaveAs
