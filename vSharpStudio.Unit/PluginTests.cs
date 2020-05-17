@@ -245,16 +245,20 @@ namespace vSharpStudio.Unit
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = slnPath;
+            Assert.AreEqual("Solution.sln", sln.RelativeAppSolutionPath);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = prjPath;
+            Assert.AreEqual(@"ConsoleApp1\ConsoleApp1.csproj", prj.RelativeAppProjectPath);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = genFolder;
-            gen.GenFileName = genFile;
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
-            string fpath = prj.GetCombinedPath(gen.RelativePathToGenFolder + gen.GenFileName);
+            gen.RelativePathToGenFolder = genFolder;
+            Assert.AreEqual(@"Generated\", gen.RelativePathToGenFolder);
+            gen.GenFileName = genFile;
+
+            string fpath = prj.GetCombinedPath(gen.GetGenerationFilePath());
             File.WriteAllText(fpath, "namespace Test {}");
 
             sln.Validate();

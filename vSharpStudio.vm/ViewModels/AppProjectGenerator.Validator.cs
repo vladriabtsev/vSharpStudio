@@ -26,12 +26,51 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (string.IsNullOrEmpty(path))
                             return true;
-                        return Directory.Exists(o.GetCombinedPath(path));
+                        return Directory.Exists(o.GetGenerationFolderPath());
                     })
                     .WithMessage("Output generation folder was not found");
                 this.RuleFor(x => x.GenFileName)
                     .NotEmpty()
                     .WithMessage("Output file name is empty");
+                this.RuleFor(x => x.GenFileName)
+                    .Custom((file, cntx) =>
+                    {
+                        if (!string.IsNullOrEmpty(file))
+                        {
+                            var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                            var path = pg.GetGenerationFilePath();
+                            var gs = (GroupListAppSolutions)pg.Parent.Parent.Parent;
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("Files override each other . Generators: ");
+                            int count = 0;
+                            string sep = "";
+                            foreach (var t in gs.ListAppSolutions)
+                            {
+                                foreach (var tt in t.ListAppProjects)
+                                {
+                                    foreach (var ttt in tt.ListAppProjectGenerators)
+                                    {
+                                        if (pg != ttt && ttt.GetGenerationFilePath() == path)
+                                        {
+                                            sb.Append(sep);
+                                            sb.Append(t.Name);
+                                            sb.Append(@"\");
+                                            sb.Append(tt.Name);
+                                            sb.Append(@"\");
+                                            sb.Append(ttt.Name);
+                                            sep = ", ";
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (count > 1)
+                            {
+                                sb.Append(". Change generation file path");
+                                cntx.AddFailure(sb.ToString());
+                            }
+                        }
+                    });
                 this.RuleFor(x => x.PluginGuid)
                     .NotEmpty()
                     .WithMessage("Plugin is not selected");
@@ -64,6 +103,12 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         public static readonly string DefaultName = "Generator";
+
+        partial void OnInit()
+        {
+            this._RelativePathToGenFolder = @"Generated\";
+        }
+
         [ExpandableObjectAttribute()]
         public object Settings
         {
@@ -160,12 +205,50 @@ namespace vSharpStudio.vm.ViewModels
                 throw;
             }
         }
+        public string GetGenerationFilePath()
+        {
+            var path = this.GetGenerationFolderPath();
+            path = Path.Combine(path, this.GenFileName);
+            return path;
+        }
+        public string GetGenerationFolderPath()
+        {
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                return "";
+            AppProject prj = this.Parent as AppProject;
+            var path = prj.GetProjectFolderPath();
+            path = Path.Combine(path, this.RelativePathToGenFolder);
+            return path;
+        }
+        partial void OnRelativePathToGenFolderChanging(ref string to)
+        {
+            if (this.IsNotNotifying || to == null)
+                return;
+            to = Path.GetFullPath(to);
+        }
         partial void OnRelativePathToGenFolderChanged()
         {
             if (this.IsNotNotifying)
                 return;
-            if (!string.IsNullOrWhiteSpace(this._RelativePathToGenFolder))
-                this._RelativePathToGenFolder = this.GetRelativeToConfigDiskPath(this._RelativePathToGenFolder);
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                throw new Exception("Config is not saved yet");
+            var sln = this.Parent.Parent as AppSolution;
+            if (sln.RelativeAppSolutionPath == null)
+                throw new Exception("Solution path is not selected yet");
+            var prj = this.Parent as AppProject;
+            if (prj.RelativeAppProjectPath == null)
+                throw new Exception("Project path is not selected yet");
+            if (this._RelativePathToGenFolder != null)
+            {
+                var path = prj.GetProjectFolderPath();
+#if NET48
+                this._RelativePathToGenFolder = vSharpStudio.common.Utils..GetRelativePath(path, this._RelativePathToGenFolder);
+#else
+                this._RelativePathToGenFolder = Path.GetRelativePath(path, this._RelativePathToGenFolder);
+#endif
+            }
         }
         #region Tree operations
         public override bool NodeCanUp()

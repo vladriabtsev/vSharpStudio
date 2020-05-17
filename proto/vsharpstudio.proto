@@ -369,8 +369,8 @@ message proto_app_project_generator {
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Output Folder")]
     // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-    // @attr [Description("Relative path from configuration file folder to folder for generated file")]
-    // Relative path from configuration file folder to folder for generated file
+    // @attr [Description("Get is returning relative folder path to project file")]
+    // Relative folder path to project file
     string relative_path_to_gen_folder = 10;
     // @attr [DisplayName("Output File")]
     // @attr [PropertyOrderAttribute(9)]

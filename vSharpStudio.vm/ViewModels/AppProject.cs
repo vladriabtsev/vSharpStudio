@@ -55,14 +55,19 @@ namespace vSharpStudio.vm.ViewModels
             (parent as AppSolution).ListAppProjects.Add(this);
             this.RelativeAppProjectPath = projectPath;
         }
-        public string GetProjectPath(string relative_path)
+        public string GetProjectPath()
         {
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
-                return relative_path;
+                return "";
             AppSolution sln = this.Parent as AppSolution;
-            var path = Path.Combine(cfg.CurrentCfgFolderPath, sln.RelativeAppSolutionPath);
-            path = Path.Combine(path, this.RelativeAppProjectPath);
+            var path = Path.Combine(sln.GetSolutionFolderPath(), this.RelativeAppProjectPath);
+            return path;
+        }
+        public string GetProjectFolderPath()
+        {
+            var path = this.GetProjectPath();
+            path = path.Substring(0, path.LastIndexOf(@"\") + 1);
             return path;
         }
         partial void OnRelativeAppProjectPathChanging(ref string to)
@@ -78,14 +83,16 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
-            if ((this.Parent as AppSolution).RelativeAppSolutionPath == null)
+            var sln = this.Parent as AppSolution;
+            if (sln.RelativeAppSolutionPath == null)
                 throw new Exception("Solution path is not selected yet");
             if (this._RelativeAppProjectPath != null)
             {
+                var path = sln.GetSolutionFolderPath();
 #if NET48
-                this._RelativeAppProjectPath = vSharpStudio.common.Utils..GetRelativePath(cfg.CurrentCfgFolderPath + (this.Parent as AppSolution).RelativeAppSolutionPath, this._RelativeAppProjectPath);
+                this._RelativeAppProjectPath = vSharpStudio.common.Utils..GetRelativePath(path, this._RelativeAppProjectPath);
 #else
-                this._RelativeAppProjectPath = Path.GetRelativePath(cfg.CurrentCfgFolderPath + (this.Parent as AppSolution).RelativeAppSolutionPath, this._RelativeAppProjectPath);
+                this._RelativeAppProjectPath = Path.GetRelativePath(path, this._RelativeAppProjectPath);
 #endif
             }
         }

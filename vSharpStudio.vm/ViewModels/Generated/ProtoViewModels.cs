@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/17/2020 14:49:40
+// Auto generated on UTC 05/17/2020 19:34:18
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3981,12 +3981,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         
         ///////////////////////////////////////////////////
-        /// Relative path from configuration file folder to folder for generated file
+        /// Relative folder path to project file
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(8)]
         [DisplayName("Output Folder")]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        [Description("Relative path from configuration file folder to folder for generated file")]
+        [Description("Get is returning relative folder path to project file")]
         public string RelativePathToGenFolder // Property.tt Line: 135
         { 
             get 

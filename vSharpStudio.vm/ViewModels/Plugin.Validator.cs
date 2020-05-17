@@ -16,11 +16,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
                 {
                     Plugin pg = (Plugin)cntx.InstanceToValidate;
-                    //if (pg.Parent == null)
-                    //{
-                    //    return;
-                    //}
-
                     GroupListPlugins lst = (GroupListPlugins)pg.Parent;
                     StringBuilder sb = new StringBuilder();
                     sb.Append("Not unique Plugin Guid. Plugins: ");

@@ -262,7 +262,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 47
         
         ///////////////////////////////////////////////////
-        /// Relative path from configuration file folder to folder for generated file
+        /// Relative folder path to project file
         ///////////////////////////////////////////////////
         string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 47
         

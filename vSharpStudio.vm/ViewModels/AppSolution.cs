@@ -76,6 +76,20 @@ namespace vSharpStudio.vm.ViewModels
                 this._RelativeAppSolutionPath[1] == ':')
                 this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
         }
+        public string GetSolutionPath()
+        {
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                return "";
+            var path = Path.Combine(cfg.CurrentCfgFolderPath, this.RelativeAppSolutionPath);
+            return path;
+        }
+        public string GetSolutionFolderPath()
+        {
+            var path = this.GetSolutionPath();
+            path = path.Substring(0, path.LastIndexOf(@"\") + 1);
+            return path;
+        }
         //partial void OnRelativeAppSolutionPathChanged()
         //{
         //    if (this.IsNotNotifying)

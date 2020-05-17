@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (string.IsNullOrEmpty(path))
                             return true;
-                        return File.Exists(o.GetProjectPath(path));
+                        return File.Exists(o.GetProjectPath());
                     })
                     .WithMessage("Project file was not found");
                 this.RuleFor(x => x.ListAppProjectGenerators)
