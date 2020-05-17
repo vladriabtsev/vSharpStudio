@@ -286,8 +286,8 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
-    // @attr [Description("Relative path from configuration file folder to .net solution")]
-    // Relative path from configuration file folder to .net solution
+    // @attr [Description("Get is returning relative path to configuration file path")]
+    // App solution relative path to configuration file path
     string relative_app_solution_path = 7;
 
     // @attr [PropertyOrderAttribute(8)]
@@ -329,8 +329,8 @@ message proto_app_project {
 
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
-    // @attr [Description("Relative path from configuration file folder to .net project")]
-    // Relative path from configuration file folder to .net project
+    // @attr [Description("Get is returning relative path to solution file in the .net project")]
+    // App project relative path to .net solution file path
     string relative_app_project_path = 7;
 
     // @attr [PropertyOrderAttribute(8)]

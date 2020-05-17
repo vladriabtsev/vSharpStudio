@@ -601,7 +601,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private SortedObservableCollection<ITreeConfigNode> _ListObjects;
 
-        partial void OnDataTypeEnumChanging(EnumDataType from, EnumDataType to)
+        partial void OnDataTypeEnumChanging(ref EnumDataType to)
         {
             switch (this.DataTypeEnum)
             {

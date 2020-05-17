@@ -95,14 +95,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(this._");
-            
-            #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            _");
+            this.Write("Changing(value);\r\n            _");
             
             #line 20 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -152,13 +145,6 @@ namespace GenFromProto
             #line default
             #line hidden
             this.Write("Changing(ObservableCollection<");
-            
-            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write("> from, ObservableCollection<");
             
             #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -269,14 +255,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(this._");
-            
-            #line 44 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            this._");
+            this.Write("Changing(ref value);\r\n            this._");
             
             #line 45 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -325,14 +304,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(");
-            
-            #line 55 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" from, ");
+            this.Write("Changing(ref ");
             
             #line 55 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -402,14 +374,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(this._");
-            
-            #line 68 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            this._");
+            this.Write("Changing(value);\r\n            this._");
             
             #line 69 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -459,13 +424,6 @@ namespace GenFromProto
             #line default
             #line hidden
             this.Write("Changing(SortedObservableCollection<");
-            
-            #line 79 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write("> from, SortedObservableCollection<");
             
             #line 79 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -661,14 +619,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(this._");
-            
-            #line 120 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            this._");
+            this.Write("Changing(ref value);\r\n            this._");
             
             #line 121 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -717,14 +668,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(");
-            
-            #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" from, ");
+            this.Write("Changing(ref ");
             
             #line 131 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -835,14 +779,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(this._");
-            
-            #line 145 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(", value);\r\n            this._");
+            this.Write("Changing(ref value);\r\n            this._");
             
             #line 146 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -904,14 +841,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("Changing(");
-            
-            #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" from, ");
+            this.Write("Changing(ref ");
             
             #line 157 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));

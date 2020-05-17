@@ -432,8 +432,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = pathExt + "kuku.vcfg" };
-            vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
+            var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
@@ -473,7 +472,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
 
             // create object and save
-            var bcfg = new BaseConfigLink(vm.Config.GroupConfigLinks) { RelativeConfigFilePath = pathExt + "kuku.vcfg" };
+            var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
             vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);

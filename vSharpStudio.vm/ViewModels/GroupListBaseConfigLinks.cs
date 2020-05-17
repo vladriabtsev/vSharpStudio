@@ -46,6 +46,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NodeAddNewSubNode(node);
         }
+        public BaseConfigLink AddBaseConfig(string name, string baseConfigPath)
+        {
+            BaseConfigLink node = new BaseConfigLink(this)
+            {
+                RelativeConfigFilePath = this.GetRelativeToConfigDiskPath(baseConfigPath)
+            };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
 
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {

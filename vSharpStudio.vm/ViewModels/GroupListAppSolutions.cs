@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -41,7 +42,17 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NodeAddNewSubNode(node);
         }
-
+        public AppSolution AddAppSolution(string name, string appSolutionPath)
+        {
+            appSolutionPath = Path.GetFullPath(appSolutionPath);
+            AppSolution node = new AppSolution(this, name)
+            {
+                //RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(appSolutionPath)
+                RelativeAppSolutionPath = appSolutionPath
+            };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             AppSolution node = null;

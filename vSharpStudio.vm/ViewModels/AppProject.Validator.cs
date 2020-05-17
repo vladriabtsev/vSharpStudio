@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (string.IsNullOrEmpty(path))
                             return true;
-                        return File.Exists(o.GetCombinedPath(path));
+                        return File.Exists(o.GetProjectPath(path));
                     })
                     .WithMessage("Project file was not found");
                 this.RuleFor(x => x.ListAppProjectGenerators)
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         return lst != null && lst.Count > 0;
                     })
-                    .WithMessage("Generators are not created yet").WithSeverity(Severity.Warning);
+                    .WithMessage("Generators are not added yet").WithSeverity(Severity.Warning);
             }
 
             private bool IsUnique(AppProject val)

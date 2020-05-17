@@ -242,7 +242,7 @@
         {
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
-                return path;
+                throw new Exception("Config is not saved yet");
 #if NET48
             return vSharpStudio.common.Utils.GetRelativePath(cfg.CurrentCfgFolderPath, path);
 #else

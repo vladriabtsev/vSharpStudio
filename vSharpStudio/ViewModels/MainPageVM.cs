@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Configuration;
+using System.DirectoryServices;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,14 @@ namespace vSharpStudio.ViewModels
 {
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
+        public static MainPageVM Create(string pluginsFolderPath)
+        {
+            MainPageVM vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose(pluginsFolderPath);
+            return vm;
+        }
+
         private static ILogger _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid propertyGrid;
         public ValidationListForSelectedNode validationListForSelectedNode;
@@ -490,13 +499,13 @@ namespace vSharpStudio.ViewModels
             }
         }
 
-        public void Compose()
+        public void Compose(string pluginsFolderPath = null)
         {
             _logger.LogDebug("Loading plugins".CallerInfo());
             try
             {
                 AggregateCatalog catalog = new AggregateCatalog();
-                this.AgregateCatalogs(Directory.GetCurrentDirectory() + "\\Plugins", "vPlugin*.dll", catalog);
+                this.AgregateCatalogs((pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins", "vPlugin*.dll", catalog);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
             }
@@ -1006,7 +1015,7 @@ namespace vSharpStudio.ViewModels
                                 throw new CancellationException();
                             i++;
 
-                            Renamer.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+                            CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 
                             progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
                             onProgress(progress);
@@ -1031,7 +1040,7 @@ namespace vSharpStudio.ViewModels
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
                                 if (lstRenames.Count == 0)
                                     continue;
-                                Renamer.Rename(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                CompileUtils.Rename(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
                                     ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
                             }
                         }

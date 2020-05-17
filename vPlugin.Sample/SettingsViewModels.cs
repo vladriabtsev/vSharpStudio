@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/12/2020 17:29:34
+// Auto generated on UTC 05/17/2020 14:49:41
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -109,7 +109,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsSchemaParam1 != value)
                 {
-                    this.OnIsSchemaParam1Changing(this._IsSchemaParam1, value);
+                    this.OnIsSchemaParam1Changing(ref value);
                     this._IsSchemaParam1 = value;
                     this.OnIsSchemaParam1Changed();
                     this.NotifyPropertyChanged();
@@ -119,7 +119,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsSchemaParam1;
-        partial void OnIsSchemaParam1Changing(bool from, bool to); // Property.tt Line: 157
+        partial void OnIsSchemaParam1Changing(ref bool to); // Property.tt Line: 157
         partial void OnIsSchemaParam1Changed();
         bool IGeneratorDbSchemaSettings.IsSchemaParam1 { get { return this._IsSchemaParam1; } }
         
@@ -133,7 +133,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsSchemaParam2 != value)
                 {
-                    this.OnIsSchemaParam2Changing(this._IsSchemaParam2, value);
+                    this.OnIsSchemaParam2Changing(ref value);
                     this._IsSchemaParam2 = value;
                     this.OnIsSchemaParam2Changed();
                     this.NotifyPropertyChanged();
@@ -143,7 +143,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsSchemaParam2;
-        partial void OnIsSchemaParam2Changing(bool? from, bool? to); // Property.tt Line: 157
+        partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 157
         partial void OnIsSchemaParam2Changed();
         bool? IGeneratorDbSchemaSettings.IsSchemaParam2 { get { return this._IsSchemaParam2; } }
         
@@ -157,7 +157,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._SchemaParam3 != value)
                 {
-                    this.OnSchemaParam3Changing(this._SchemaParam3, value);
+                    this.OnSchemaParam3Changing(ref value);
                     this._SchemaParam3 = value;
                     this.OnSchemaParam3Changed();
                     this.NotifyPropertyChanged();
@@ -167,7 +167,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _SchemaParam3 = string.Empty;
-        partial void OnSchemaParam3Changing(string from, string to); // Property.tt Line: 157
+        partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 157
         partial void OnSchemaParam3Changed();
         string IGeneratorDbSchemaSettings.SchemaParam3 { get { return this._SchemaParam3; } }
     
@@ -263,7 +263,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsAccessParam1 != value)
                 {
-                    this.OnIsAccessParam1Changing(this._IsAccessParam1, value);
+                    this.OnIsAccessParam1Changing(ref value);
                     this._IsAccessParam1 = value;
                     this.OnIsAccessParam1Changed();
                     this.NotifyPropertyChanged();
@@ -273,7 +273,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(bool from, bool to); // Property.tt Line: 157
+        partial void OnIsAccessParam1Changing(ref bool to); // Property.tt Line: 157
         partial void OnIsAccessParam1Changed();
         bool IGeneratorDbAccessSettings.IsAccessParam1 { get { return this._IsAccessParam1; } }
         
@@ -287,7 +287,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsAccessParam2 != value)
                 {
-                    this.OnIsAccessParam2Changing(this._IsAccessParam2, value);
+                    this.OnIsAccessParam2Changing(ref value);
                     this._IsAccessParam2 = value;
                     this.OnIsAccessParam2Changed();
                     this.NotifyPropertyChanged();
@@ -297,7 +297,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(bool? from, bool? to); // Property.tt Line: 157
+        partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 157
         partial void OnIsAccessParam2Changed();
         bool? IGeneratorDbAccessSettings.IsAccessParam2 { get { return this._IsAccessParam2; } }
         
@@ -311,7 +311,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._AccessParam3 != value)
                 {
-                    this.OnAccessParam3Changing(this._AccessParam3, value);
+                    this.OnAccessParam3Changing(ref value);
                     this._AccessParam3 = value;
                     this.OnAccessParam3Changed();
                     this.NotifyPropertyChanged();
@@ -321,7 +321,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(string from, string to); // Property.tt Line: 157
+        partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 157
         partial void OnAccessParam3Changed();
         string IGeneratorDbAccessSettings.AccessParam3 { get { return this._AccessParam3; } }
         
@@ -335,7 +335,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsGenerateNotValidCode != value)
                 {
-                    this.OnIsGenerateNotValidCodeChanging(this._IsGenerateNotValidCode, value);
+                    this.OnIsGenerateNotValidCodeChanging(ref value);
                     this._IsGenerateNotValidCode = value;
                     this.OnIsGenerateNotValidCodeChanged();
                     this.NotifyPropertyChanged();
@@ -345,7 +345,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(bool from, bool to); // Property.tt Line: 157
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 157
         partial void OnIsGenerateNotValidCodeChanged();
         bool IGeneratorDbAccessSettings.IsGenerateNotValidCode { get { return this._IsGenerateNotValidCode; } }
     
@@ -426,7 +426,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsPropertyParam1 != value)
                 {
-                    this.OnIsPropertyParam1Changing(this._IsPropertyParam1, value);
+                    this.OnIsPropertyParam1Changing(ref value);
                     this._IsPropertyParam1 = value;
                     this.OnIsPropertyParam1Changed();
                     this.NotifyPropertyChanged();
@@ -436,7 +436,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsPropertyParam1;
-        partial void OnIsPropertyParam1Changing(bool from, bool to); // Property.tt Line: 157
+        partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 157
         partial void OnIsPropertyParam1Changed();
         bool IGeneratorDbAccessNodePropertySettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } }
     
@@ -517,7 +517,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 if (this._IsCatalogFormParam1 != value)
                 {
-                    this.OnIsCatalogFormParam1Changing(this._IsCatalogFormParam1, value);
+                    this.OnIsCatalogFormParam1Changing(ref value);
                     this._IsCatalogFormParam1 = value;
                     this.OnIsCatalogFormParam1Changed();
                     this.NotifyPropertyChanged();
@@ -527,7 +527,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(bool from, bool to); // Property.tt Line: 157
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 157
         partial void OnIsCatalogFormParam1Changed();
         bool IGeneratorDbAccessNodeCatalogFormSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } }
     

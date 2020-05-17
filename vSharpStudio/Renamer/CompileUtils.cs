@@ -11,7 +11,7 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.ViewModels
 {
-    public class Renamer
+    public class CompileUtils
     {
         public static void Compile(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
         {

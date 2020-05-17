@@ -8,6 +8,7 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -47,20 +48,55 @@ namespace vSharpStudio.vm.ViewModels
             //this.Children.Add(this.GroupPlugins, 9);
             //this.Children.Add(this.GroupAppSolutions, 10);
         }
-
-        public AppProject(ITreeConfigNode parent, string name, string relativeToSolutionProjectPath)
+        public AppProject(ITreeConfigNode parent, string name, string projectPath)
             : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
-            this.RelativeAppProjectPath = relativeToSolutionProjectPath;
+            (parent as AppSolution).ListAppProjects.Add(this);
+            this.RelativeAppProjectPath = projectPath;
         }
-
+        public string GetProjectPath(string relative_path)
+        {
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                return relative_path;
+            AppSolution sln = this.Parent as AppSolution;
+            var path = Path.Combine(cfg.CurrentCfgFolderPath, sln.RelativeAppSolutionPath);
+            path = Path.Combine(path, this.RelativeAppProjectPath);
+            return path;
+        }
+        partial void OnRelativeAppProjectPathChanging(ref string to)
+        {
+            if (this.IsNotNotifying || to == null)
+                return;
+            to = Path.GetFullPath(to);
+        }
         partial void OnRelativeAppProjectPathChanged()
         {
             if (this.IsNotNotifying)
                 return;
-            if (!string.IsNullOrWhiteSpace(this._RelativeAppProjectPath))
-                this._RelativeAppProjectPath = this.GetRelativeToConfigDiskPath(this._RelativeAppProjectPath);
+            var cfg = this.GetConfig();
+            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+                throw new Exception("Config is not saved yet");
+            if ((this.Parent as AppSolution).RelativeAppSolutionPath == null)
+                throw new Exception("Solution path is not selected yet");
+            if (this._RelativeAppProjectPath != null)
+            {
+#if NET48
+                this._RelativeAppProjectPath = vSharpStudio.common.Utils..GetRelativePath(cfg.CurrentCfgFolderPath + (this.Parent as AppSolution).RelativeAppSolutionPath, this._RelativeAppProjectPath);
+#else
+                this._RelativeAppProjectPath = Path.GetRelativePath(cfg.CurrentCfgFolderPath + (this.Parent as AppSolution).RelativeAppSolutionPath, this._RelativeAppProjectPath);
+#endif
+            }
+        }
+        public AppProjectGenerator AddGenerator(string name, string relativeToSolutionProjectPath)
+        {
+            AppProjectGenerator node = new AppProjectGenerator(this)
+            {
+
+            };
+            this.ListAppProjectGenerators.Add(node);
+            return node;
         }
 
         #region Tree operations

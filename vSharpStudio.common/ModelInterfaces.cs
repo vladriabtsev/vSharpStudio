@@ -232,7 +232,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         
         ///////////////////////////////////////////////////
         /// List NET projects
-        /// Relative path from configuration file folder to .net solution
+        /// App solution relative path to configuration file path
         ///////////////////////////////////////////////////
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
@@ -245,7 +245,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string Description { get; } // ModelInterfaces.tt Line: 47
         
         ///////////////////////////////////////////////////
-        /// Relative path from configuration file folder to .net project
+        /// App project relative path to .net solution file path
         ///////////////////////////////////////////////////
         string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51

@@ -57,13 +57,36 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListAppProjects.Add(t);
             }
         }
-
+        partial void OnRelativeAppSolutionPathChanging(ref string to)
+        {
+            //#if DEBUG
+            //            if (to == null || to.Length < 2 || to[1] != ':')
+            //                throw new Exception("Full path is expected");
+            //#endif
+            if (this.IsNotNotifying || to == null)
+                return;
+            to = Path.GetFullPath(to);
+        }
         partial void OnRelativeAppSolutionPathChanged()
         {
             if (this.IsNotNotifying)
                 return;
-            if (!string.IsNullOrWhiteSpace(this._RelativeAppSolutionPath))
+            if (this._RelativeAppSolutionPath != null &&
+                this._RelativeAppSolutionPath.Length > 1 &&
+                this._RelativeAppSolutionPath[1] == ':')
                 this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
+        }
+        //partial void OnRelativeAppSolutionPathChanged()
+        //{
+        //    if (this.IsNotNotifying)
+        //        return;
+        //    if (!string.IsNullOrWhiteSpace(this._RelativeAppSolutionPath))
+        //        this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
+        //}
+        public AppProject AddProject(string name, string projectPath)
+        {
+            AppProject node = new AppProject(this, name, projectPath);
+            return node;
         }
 
         #region Tree operations
