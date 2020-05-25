@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/17/2020 20:32:01
+// Auto generated on UTC 05/25/2020 00:22:08
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -351,6 +351,97 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     
         #endregion Properties
     }
+    public partial class GeneratorDbAccessNodeSettings : VmValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettings.GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 6
+    {
+        public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 8
+        #region CTOR
+        public GeneratorDbAccessNodeSettings() 
+            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 38
+        {
+            this.OnInitBegin();
+            this.OnInit();
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static GeneratorDbAccessNodeSettings Clone(GeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            GeneratorDbAccessNodeSettings vm = new GeneratorDbAccessNodeSettings();
+            vm.IsNotNotifying = true;
+            vm.IsParam1 = from.IsParam1; // Clone.tt Line: 63
+            vm.IsNotNotifying = false;
+            return vm;
+        }
+        public static void Update(GeneratorDbAccessNodeSettings to, GeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 74
+        {
+            to.IsParam1 = from.IsParam1; // Clone.tt Line: 136
+        }
+        // Clone.tt Line: 142
+        #region IEditable
+        public override GeneratorDbAccessNodeSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return GeneratorDbAccessNodeSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GeneratorDbAccessNodeSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GeneratorDbAccessNodeSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_generator_db_access_node_settings' to 'GeneratorDbAccessNodeSettings'
+        public static GeneratorDbAccessNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_settings m, GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 165
+        {
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 214
+            vm.IsNotNotifying = false;
+            return vm;
+        }
+        // Conversion from 'GeneratorDbAccessNodeSettings' to 'proto_generator_db_access_node_settings'
+        public static Proto.Plugin.proto_generator_db_access_node_settings ConvertToProto(GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 228
+        {
+            Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 230
+            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 267
+            return m;
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public bool IsParam1 // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._IsParam1; 
+            }
+            set
+            {
+                if (this._IsParam1 != value)
+                {
+                    this.OnIsParam1Changing(ref value);
+                    this._IsParam1 = value;
+                    this.OnIsParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsParam1;
+        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 157
+        partial void OnIsParam1Changed();
+        bool IGeneratorDbAccessNodeSettings.IsParam1 { get { return this._IsParam1; } }
+    
+        #endregion Properties
+    }
     public partial class GeneratorDbAccessNodePropertySettings : VmValidatableWithSeverity<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettings.GeneratorDbAccessNodePropertySettingsValidator>, IGeneratorDbAccessNodePropertySettings // Class.tt Line: 6
     {
         public partial class GeneratorDbAccessNodePropertySettingsValidator : ValidatorBase<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettingsValidator> { } // Class.tt Line: 8
@@ -538,6 +629,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         void Visit(Proto.Plugin.proto_generator_db_schema_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_settings p);
+        void Visit(Proto.Plugin.proto_generator_db_access_node_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_node_property_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_node_catalog_form_settings p);
     }
@@ -559,6 +651,14 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
@@ -605,6 +705,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(GeneratorDbAccessSettings p) { }
         protected virtual void OnVisitEnd(GeneratorDbAccessSettings p) { }
+        public void Visit(GeneratorDbAccessNodeSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GeneratorDbAccessNodeSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GeneratorDbAccessNodeSettings p) { }
+        protected virtual void OnVisitEnd(GeneratorDbAccessNodeSettings p) { }
         public void Visit(GeneratorDbAccessNodePropertySettings p)
         {
             this.OnVisit(p);

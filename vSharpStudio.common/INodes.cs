@@ -8,20 +8,24 @@ namespace vSharpStudio.common
     public interface ICanGoLeft
     {
     }
-
     public interface ICanGoRight
     {
     }
-
-    public interface ICanAddNode
+    public interface IOnAdded
+    {
+        void OnAdded();
+    }
+    public interface ICanAddNode //: IOnAdded, IOnRemoved
     {
     }
-
-    public interface ICanRemoveNode
+    public interface IOnRemoved
+    {
+        void OnRemoved();
+    }
+    public interface ICanRemoveNode //: IOnRemoved
     {
         void RemoveNode();
     }
-
     public interface ICanAddSubNode
     {
     }

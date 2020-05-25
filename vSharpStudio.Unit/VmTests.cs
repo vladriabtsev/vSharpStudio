@@ -31,6 +31,7 @@ namespace vSharpStudio.Unit
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
                 _logger = Logger.CreateLogger<PluginTests>();
         }
+
         #region Editable
 
         [TestMethod]
@@ -245,5 +246,26 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
         }
         #endregion Property unique position for Protobuf
+
+        //#region OnAdded in parent
+        //[TestMethod]
+        //public void OnAdded001_NotifyObjectWasAddedToParentCollection()
+        //{
+        //    var cfg = new Config();
+        //    cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+        //    cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 2);
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 2);
+        //    cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 3);
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+        //    cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeRemove();
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 3);
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+        //    cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 4);
+        //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
+        //}
+        //#endregion OnAdded in parent
     }
 }

@@ -15,11 +15,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
     public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListProperties;
@@ -40,12 +35,10 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.IsEditable = false;
-            this.AddAllAppGenSettingsVmsToNewNode();
-            this.ListProperties.CollectionChanged += ListProperties_CollectionChanged;
-        }
-        private void ListProperties_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.OnAddRemoveNode(e);
+            this.ListProperties.OnAddedAction = (t) =>
+            {
+                t.AddAllAppGenSettingsVmsToNode();
+            };
         }
 
         protected override void OnParentChanged()
@@ -73,6 +66,22 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [PropertyOrderAttribute(int.MaxValue)]
+        public object GeneratorNodeSettings
+        {
+            get
+            {
+                if (!(this is INodeGenSettings))
+                    return null;
+                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                return res;
+            }
+        }
         public Property AddProperty(string name)
         {
             var node = new Property(this) { Name = name };

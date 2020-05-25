@@ -101,8 +101,8 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
+        //[BrowsableAttribute(false)]
+        //public ITreeConfigNode Parent { get; set; }
 
         // public override IEnumerable<object> GetChildren(object parent) { return this.Children; }
         // public override bool HasChildren(object parent) { return this.Children.Count > 0; }

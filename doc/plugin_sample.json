@@ -85,6 +85,27 @@
           ]
         },
         {
+          "name": "proto_generator_db_access_node_settings",
+          "longName": "proto_generator_db_access_node_settings",
+          "fullName": "proto_plugin_sample.proto_generator_db_access_node_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_generator_db_access_settings",
           "longName": "proto_generator_db_access_settings",
           "fullName": "proto_plugin_sample.proto_generator_db_access_settings",

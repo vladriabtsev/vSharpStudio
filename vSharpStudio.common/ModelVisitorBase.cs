@@ -14,21 +14,30 @@ namespace vSharpStudio.common
         protected virtual void Visit(IEnumerable<IDocument> lst) { }
         protected virtual void Visit(IConfig c) { }
         protected virtual void Visit(IConfigModel m) { }
+        protected virtual void Visit(IGroupListConstants cn) { }
         protected virtual void Visit(IConstant cn) { }
+        protected virtual void Visit(IGroupListEnumerations cn) { }
         protected virtual void Visit(IEnumeration en) { }
         protected virtual void Visit(IEnumerationPair p) { }
+        protected virtual void Visit(IGroupListCatalogs cn) { }
         protected virtual void Visit(ICatalog ct) { }
+        protected virtual void Visit(IGroupListDocuments cn) { }
         protected virtual void Visit(IDocument d) { }
+        protected virtual void Visit(IGroupListProperties cn) { }
         protected virtual void Visit(IGroupListProperties parent, IEnumerable<IProperty> lst) { }
         protected virtual void Visit(IProperty p) { }
+        protected virtual void Visit(IGroupListPropertiesTabs cn) { }
         protected virtual void Visit(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst) { }
         protected virtual void Visit(IPropertiesTab t) { }
+        protected virtual void Visit(IGroupListForms cn) { }
         protected virtual void Visit(IGroupListForms parent, IEnumerable<IForm> diff_lst) { }
         protected virtual void Visit(IForm p) { }
+        protected virtual void Visit(IGroupListReports cn) { }
         protected virtual void Visit(IGroupListReports parent, IEnumerable<IReport> diff_lst) { }
         protected virtual void Visit(IReport p) { }
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
         {
+            this.Visit(parent);
             this.Visit(parent, lst);
             foreach (var t in lst)
             {
@@ -42,6 +51,7 @@ namespace vSharpStudio.common
 
         private void VisitPropertiesTabs(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst)
         {
+            this.Visit(parent);
             this.Visit(parent, lst);
             foreach (var t in lst)
             {
@@ -59,6 +69,7 @@ namespace vSharpStudio.common
 
         private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst)
         {
+            this.Visit(parent);
             this.Visit(parent, lst);
             foreach (var t in lst)
             {
@@ -72,6 +83,7 @@ namespace vSharpStudio.common
 
         private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst)
         {
+            this.Visit(parent);
             this.Visit(parent, lst);
             foreach (var t in lst)
             {
@@ -114,6 +126,7 @@ namespace vSharpStudio.common
             this.Visit(this.currCfg.Model);
 
             #region Constants
+            this.Visit(currCfg.Model.GroupConstants);
             this.Visit(currCfg.Model.GroupConstants.ListConstants);
             foreach (var tt in currCfg.Model.GroupConstants.ListConstants)
             {
@@ -124,6 +137,7 @@ namespace vSharpStudio.common
             #endregion Constants
 
             #region Enumerations
+            this.Visit(currCfg.Model.GroupEnumerations);
             this.Visit(currCfg.Model.GroupEnumerations.ListEnumerations);
             foreach (var tt in currCfg.Model.GroupEnumerations.ListEnumerations)
             {
@@ -145,6 +159,7 @@ namespace vSharpStudio.common
             #endregion Enumerations
 
             #region Catalogs
+            this.Visit(currCfg.Model.GroupCatalogs);
             this.Visit(currCfg.Model.GroupCatalogs.ListCatalogs);
             foreach (var tt in currCfg.Model.GroupCatalogs.ListCatalogs)
             {
@@ -164,6 +179,8 @@ namespace vSharpStudio.common
 
             #region Documents
             var sharedProps = currCfg.Model.GroupDocuments.GroupSharedProperties.ListProperties;
+            this.Visit(currCfg.Model.GroupDocuments.GroupSharedProperties);
+            this.Visit(currCfg.Model.GroupDocuments.GroupListDocuments);
             this.Visit(currCfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
             foreach (var tt in currCfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
             {

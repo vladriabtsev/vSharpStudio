@@ -247,10 +247,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_generator_settings"><span class="badge">M</span>proto_generator_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_group_documents"><span class="badge">M</span>proto_group_documents</a>
                 </li>
               
@@ -332,6 +328,14 @@
               
                 <li>
                   <a href="#proto_config.proto_plugin_generator"><span class="badge">M</span>proto_plugin_generator</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_generator_main_settings"><span class="badge">M</span>proto_plugin_generator_main_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_generator_node_settings"><span class="badge">M</span>proto_plugin_generator_node_settings</a>
                 </li>
               
                 <li>
@@ -522,7 +526,7 @@ it will override previous settings
         
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
-        <p>@base ViewModelValidatableWithSeverity</p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -598,7 +602,7 @@ it will override previous settings
         
       
         <h3 id="proto_config.proto_app_project">proto_app_project</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -670,7 +674,7 @@ App project relative path to .net solution file path </p></td>
         
       
         <h3 id="proto_config.proto_app_project_generator">proto_app_project_generator</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -714,7 +718,7 @@ App project relative path to .net solution file path </p></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Plugin&#34;)]
 @attr [Description(&#34;Plugins with generators&#34;)]
-@attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))] </p></td>
+@attr [Editor(typeof(EditorPluginSelection), typeof(ITypeEditor))] </p></td>
                 </tr>
               
                 <tr>
@@ -733,7 +737,7 @@ App project relative path to .net solution file path </p></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Generator&#34;)]
 @attr [Description(&#34;Plugin generator&#34;)]
-@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))] </p></td>
+@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(ITypeEditor))] </p></td>
                 </tr>
               
                 <tr>
@@ -770,9 +774,21 @@ Generator output file name </p></td>
                   <td>generator_settings</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)]
-
-@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>main_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>node_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -783,7 +799,7 @@ Generator output file name </p></td>
         
       
         <h3 id="proto_config.proto_app_solution">proto_app_solution</h3>
-        <p>message proto_plugins_group {</p><p>// @attr [PropertyOrderAttribute(1)]</p><p>// @attr [DisplayName("Group")]</p><p>// @attr [Description("Group compatible plugins of one vendor")]</p><p>// @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]</p><p>string plugins_group_guid = 1;</p><p>// @attr [PropertyOrderAttribute(2)]</p><p>// @attr [DisplayName("Info")]</p><p>// @attr [Description("Plugin short information")]</p><p>// @attr [ReadOnly(true)]</p><p>string plugins_group_info = 2;</p><p>// @attr [PropertyOrderAttribute(3)]</p><p>// @attr [DisplayName("Settings")]</p><p>// @attr [Description("Global settings for plugin generators")]</p><p>// @attr [ExpandableObjectAttribute()]</p><p>string plugins_global_settins = 3;</p><p>}</p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -909,6 +925,13 @@ App solution relative path to configuration file path </p></td>
 @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -991,10 +1014,10 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1203,6 +1226,20 @@ App solution relative path to configuration file path </p></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_main_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1211,7 +1248,7 @@ App solution relative path to configuration file path </p></td>
         
       
         <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -1302,10 +1339,10 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1468,10 +1505,10 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1554,10 +1591,10 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1674,51 +1711,12 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>repeated proto_group_properties list_properties = 6;
 repeated proto_document list_forms = 7;
-@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_generator_settings">proto_generator_settings</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>app_generator_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Guid is plugin guid
-AppGeneratorGuid is Guid for file generator </p></td>
-                </tr>
-              
-                <tr>
-                  <td>node_settings_vm_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1789,10 +1787,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1803,7 +1801,7 @@ AppGeneratorGuid is Guid for file generator </p></td>
         
       
         <h3 id="proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -1909,6 +1907,13 @@ AppGeneratorGuid is Guid for file generator </p></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1970,10 +1975,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2043,6 +2048,13 @@ AppGeneratorGuid is Guid for file generator </p></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2104,10 +2116,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2171,10 +2183,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2238,10 +2250,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2306,10 +2318,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2374,10 +2386,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2440,6 +2452,13 @@ AppGeneratorGuid is Guid for file generator </p></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2448,7 +2467,7 @@ AppGeneratorGuid is Guid for file generator </p></td>
         
       
         <h3 id="proto_config.proto_group_list_plugins">proto_group_list_plugins</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -2540,10 +2559,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2607,10 +2626,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2675,10 +2694,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2737,6 +2756,13 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 <tr>
                   <td>list_roles</td>
                   <td><a href="#proto_config.proto_role">proto_role</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -2803,10 +2829,10 @@ AppGeneratorGuid is Guid for file generator </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2869,6 +2895,13 @@ AppGeneratorGuid is Guid for file generator </p></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2922,7 +2955,7 @@ AppGeneratorGuid is Guid for file generator </p></td>
         
       
         <h3 id="proto_config.proto_plugin">proto_plugin</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -2988,7 +3021,7 @@ string group_info = 9; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_generator">proto_plugin_generator</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -3039,8 +3072,79 @@ string group_info = 9; </p></td>
 
         
       
+        <h3 id="proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</h3>
+        <p>@base ConfigObjectVmBase</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_project_generator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid is plugin guid
+AppGeneratorGuid is Guid for file generator </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
+        <p>@base ConfigObjectVmBase</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_project_generator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid of solution-project-generator node </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of solution-project-generator node
+string name = 2; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>node_settings_vm_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
-        <p></p>
+        <p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -3181,10 +3285,10 @@ string group_info = 9; </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3259,10 +3363,10 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3319,12 +3423,12 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>list_generators_settings</td>
-                  <td><a href="#proto_config.proto_generator_settings">proto_generator_settings</a></td>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>repeated proto_group_properties list_properties = 6;
 repeated proto_document list_documents = 7;
-@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))] </p></td>
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3380,6 +3484,13 @@ repeated proto_document list_documents = 7;
                   <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3388,7 +3499,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_settings_config">proto_settings_config</h3>
-        <p></p>
+        <p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">

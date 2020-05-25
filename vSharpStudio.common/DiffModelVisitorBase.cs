@@ -9,14 +9,18 @@ namespace vSharpStudio.common
         protected virtual void Visit(List<IConfig> diff_lst) { }
         protected virtual void Visit(IConfig c) { }
         protected virtual void Visit(IConfigModel m) { }
+        protected virtual void Visit(IGroupListConstants cn) { }
         protected virtual void Visit(List<IConstant> diff_lst) { }
         protected virtual void Visit(IConstant cn) { }
+        protected virtual void Visit(IGroupListEnumerations cn) { }
         protected virtual void Visit(List<IEnumeration> diff_lst) { }
         protected virtual void Visit(IEnumeration en) { }
         protected virtual void Visit(IEnumeration parent, List<IEnumerationPair> diff_lst) { }
         protected virtual void Visit(IEnumerationPair p) { }
+        protected virtual void Visit(IGroupListCatalogs cn) { }
         protected virtual void Visit(List<ICatalog> diff_lst) { }
         protected virtual void Visit(ICatalog ct) { }
+        protected virtual void Visit(IGroupListDocuments cn) { }
         protected virtual void Visit(List<IDocument> diff_lst) { }
         protected virtual void Visit(IDocument d) { }
         protected virtual void Visit(IGroupListProperties parent, List<IProperty> diff_lst) { }

@@ -37,6 +37,48 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(sb.ToString());
                     }
                 });
+                //this.RuleFor(x => x.Guid)
+                //    .Custom((file, cntx) =>
+                //    {
+                //        if (!string.IsNullOrEmpty(file))
+                //        {
+                //            var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                //            var path = pg.GetGenerationFilePath();
+                //            var gs = (GroupListAppSolutions)pg.Parent.Parent.Parent;
+                //            StringBuilder sb = new StringBuilder();
+                //            sb.Append("Files override each other . Generators: ");
+                //            int count = 0;
+                //            string sep = "";
+                //            foreach (var t in gs.ListAppSolutions)
+                //            {
+                //                foreach (var tt in t.ListAppProjects)
+                //                {
+                //                    foreach (var ttt in tt.ListAppProjectGenerators)
+                //                    {
+                //                        if (pg != ttt && ttt.GetGenerationFilePath() == path)
+                //                        {
+                //                            sb.Append(sep);
+                //                            sb.Append(t.Name);
+                //                            sb.Append(@"\");
+                //                            sb.Append(tt.Name);
+                //                            sb.Append(@"\");
+                //                            sb.Append(ttt.Name);
+                //                            sep = ", ";
+                //                            count++;
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //            if (count > 1)
+                //            {
+                //                sb.Append(". Change generation file path");
+                //                cntx.AddFailure(sb.ToString());
+                //            }
+                //        }
+                //    });
+                // unique guid for generator
+
+                // unique guid for generator node settings
             }
         }
     }

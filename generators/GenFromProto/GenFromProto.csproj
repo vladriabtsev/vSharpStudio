@@ -1,178 +1,179 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProjectGuid>{EEAF63A0-C59F-468B-AA1B-58865E84E44E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyTitle>GenFromProto</AssemblyTitle>
-    <Product>GenFromProto</Product>
-    <Copyright>Copyright ©  2019</Copyright>
-    <AssemblyTitle>GenFromProto</AssemblyTitle>
-    <Product>GenFromProto</Product>
-    <Copyright>Copyright ©  2019</Copyright>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <PropertyGroup>
+        <ProjectGuid>{EEAF63A0-C59F-468B-AA1B-58865E84E44E}</ProjectGuid>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <AssemblyTitle>GenFromProto</AssemblyTitle>
+        <Product>GenFromProto</Product>
+        <Copyright>Copyright ©  2019</Copyright>
+        <AssemblyTitle>GenFromProto</AssemblyTitle>
+        <Product>GenFromProto</Product>
+        <Copyright>Copyright ©  2019</Copyright>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <!--<PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
     <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
-    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
-    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
-</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.11.4" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.4" />
-    <PackageReference Include="Serilog" Version="2.9.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
-    <PackageReference Include="System.CodeDom" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Class.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Class.tt</DependentUpon>
-    </Compile>
-    <Compile Update="NodeVisitor.cs">
-      <DependentUpon>NodeVisitor.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="ModelInterfaces.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelInterfaces.tt</DependentUpon>
-    </Compile>
-    <Compile Update="ValidationVisitor.cs">
-      <DependentUpon>ValidationVisitor.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="IVisitorProto.cs">
-      <DependentUpon>IVisitorProto.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="AcceptValidator.cs">
-      <DependentUpon>AcceptValidator.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Update="Clone.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Clone.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Comparison.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Comparison.tt</DependentUpon>
-    </Compile>
-    <Compile Update="NameSpace.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NameSpace.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Property.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Property.tt</DependentUpon>
-    </Compile>
-    <Compile Update="IVisitorConfigNode.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IVisitorConfigNode.tt</DependentUpon>
-    </Compile>
-    <Compile Update="AcceptNodeVisitor.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AcceptNodeVisitor.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gen_doc.bat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="proto.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Class.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Class.cs</LastGenOutput>
-    </Content>
-    <Content Include="Clone.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Clone.cs</LastGenOutput>
-    </Content>
-    <Content Include="Comparison.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Comparison.cs</LastGenOutput>
-    </Content>
-    <Content Include="NodeVisitor.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>NodeVisitor.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelInterfaces.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ModelInterfaces.cs</LastGenOutput>
-    </Content>
-    <Content Include="ValidationVisitor.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ValidationVisitor.cs</LastGenOutput>
-    </Content>
-    <Content Include="NameSpace.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>NameSpace.cs</LastGenOutput>
-    </Content>
-    <Content Include="Property.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Property.cs</LastGenOutput>
-    </Content>
-    <Content Include="IVisitorProto.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>IVisitorProto.cs</LastGenOutput>
-    </Content>
-    <Content Include="IVisitorConfigNode.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>IVisitorConfigNode.cs</LastGenOutput>
-    </Content>
-    <Content Include="AcceptValidator.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>AcceptValidator.cs</LastGenOutput>
-    </Content>
-    <Content Include="AcceptNodeVisitor.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>AcceptNodeVisitor.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="GenFromProto.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\vSharpStudio.common\LogExt.cs" Link="LogExt.cs" />
-    <Compile Include="..\..\vSharpStudio.common\Logger.cs" Link="Logger.cs" />
-    <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-  <!-- Add support for Layer validation 
+    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>-->
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+    </PropertyGroup>
+    <PropertyGroup>
+        <PostBuildEvent>
+            $(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
+        </PostBuildEvent>
+    </PropertyGroup>
+    <PropertyGroup>
+        <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.11.4" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.4" />
+        <PackageReference Include="Serilog" Version="2.9.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+        <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+        <PackageReference Include="System.CodeDom" Version="4.7.0" />
+        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Class.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Class.tt</DependentUpon>
+        </Compile>
+        <Compile Update="NodeVisitor.cs">
+            <DependentUpon>NodeVisitor.tt</DependentUpon>
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+        </Compile>
+        <Compile Update="ModelInterfaces.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>ModelInterfaces.tt</DependentUpon>
+        </Compile>
+        <Compile Update="ValidationVisitor.cs">
+            <DependentUpon>ValidationVisitor.tt</DependentUpon>
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+        </Compile>
+        <Compile Update="IVisitorProto.cs">
+            <DependentUpon>IVisitorProto.tt</DependentUpon>
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+        </Compile>
+        <Compile Update="AcceptValidator.cs">
+            <DependentUpon>AcceptValidator.tt</DependentUpon>
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+        </Compile>
+        <Compile Update="Clone.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Clone.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Comparison.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Comparison.tt</DependentUpon>
+        </Compile>
+        <Compile Update="NameSpace.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>NameSpace.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Property.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Property.tt</DependentUpon>
+        </Compile>
+        <Compile Update="IVisitorConfigNode.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>IVisitorConfigNode.tt</DependentUpon>
+        </Compile>
+        <Compile Update="AcceptNodeVisitor.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>AcceptNodeVisitor.tt</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="gen_doc.bat">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="proto.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Class.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>Class.cs</LastGenOutput>
+        </Content>
+        <Content Include="Clone.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>Clone.cs</LastGenOutput>
+        </Content>
+        <Content Include="Comparison.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>Comparison.cs</LastGenOutput>
+        </Content>
+        <Content Include="NodeVisitor.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>NodeVisitor.cs</LastGenOutput>
+        </Content>
+        <Content Include="ModelInterfaces.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>ModelInterfaces.cs</LastGenOutput>
+        </Content>
+        <Content Include="ValidationVisitor.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>ValidationVisitor.cs</LastGenOutput>
+        </Content>
+        <Content Include="NameSpace.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>NameSpace.cs</LastGenOutput>
+        </Content>
+        <Content Include="Property.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>Property.cs</LastGenOutput>
+        </Content>
+        <Content Include="IVisitorProto.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>IVisitorProto.cs</LastGenOutput>
+        </Content>
+        <Content Include="IVisitorConfigNode.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>IVisitorConfigNode.cs</LastGenOutput>
+        </Content>
+        <Content Include="AcceptValidator.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>AcceptValidator.cs</LastGenOutput>
+        </Content>
+        <Content Include="AcceptNodeVisitor.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+            <LastGenOutput>AcceptNodeVisitor.cs</LastGenOutput>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="GenFromProto.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\..\vSharpStudio.common\LogExt.cs" Link="LogExt.cs" />
+        <Compile Include="..\..\vSharpStudio.common\Logger.cs" Link="Logger.cs" />
+        <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+    <!-- Add support for Layer validation 
   <ItemGroup>
     <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.10.0" />
     Include the layer model as an additional file that will be passed to the analyzer

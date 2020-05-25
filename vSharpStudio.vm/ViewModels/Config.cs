@@ -25,7 +25,8 @@ namespace vSharpStudio.vm.ViewModels
         public static bool IsLoading;
 
         public DictionaryExt<string, ITreeConfigNode> DicNodes { get; set; }
-        public DictionaryExt<string, IvPluginGenerator> DicAppGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+        // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
+        public DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
             (ki, v) =>
             {
             }, (kr, v) =>
@@ -336,27 +337,31 @@ namespace vSharpStudio.vm.ViewModels
         {
             //_logger.LogTrace("".StackInfo());
             _logger.Trace();
-            this.DicAppGenerators.Clear();
-            _logger.LogTrace("{DicAppGenerators}", this.DicAppGenerators);
+            this.DicActiveAppProjectGenerators.Clear();
+            _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
                 foreach (var tt in t.ListAppProjects)
                 {
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
-#if DEBUG
-                        if (string.IsNullOrWhiteSpace(ttt.Guid))
-                            throw new Exception("PluginGenerator Guid is empty");
-#endif
-                        if (!this.DicAppGenerators.ContainsKey(ttt.Guid))
+                        if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
                         {
-                            AppProjectGenerator g = (AppProjectGenerator)this.DicNodes[ttt.Guid];
-                            this.DicAppGenerators[ttt.Guid] = this.DicGenerators[g.PluginGeneratorGuid];
+                            foreach (var tp in this.GroupPlugins.ListPlugins)
+                            {
+                                foreach (var ttp in tp.ListGenerators)
+                                {
+                                    if (ttp.Generator.Guid == ttt.PluginGeneratorGuid)
+                                    {
+                                        this.DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-            _logger.LogTrace("{DicAppGenerators}", this.DicAppGenerators);
+            _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
         }
     }
 }

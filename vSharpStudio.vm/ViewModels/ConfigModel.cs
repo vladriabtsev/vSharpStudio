@@ -17,10 +17,12 @@ using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+//using System.Linq.Expressions;
+//using System.Linq.Dynamic.Core;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenSettings
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -292,22 +294,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Objects
 
-        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        public string SolutionPath
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [PropertyOrderAttribute(int.MaxValue)]
+        public object GeneratorNodeSettings
         {
             get
             {
-                return this._SolutionPath;
-            }
-
-            set
-            {
-                this._SolutionPath = value;
-                this.NotifyPropertyChanged();
+                if (!(this is INodeGenSettings))
+                    return null;
+                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                return res;
             }
         }
-
-        private string _SolutionPath;
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
@@ -351,10 +352,67 @@ namespace vSharpStudio.vm.ViewModels
         // private string _SelectedDbProvider;
 
         #endregion Connection string editor
-        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
-        [ExpandableObjectAttribute()]
-        public object TestSettings { get { return _TestSettings; } }
-        private Test1 _TestSettings = new Test1();
+        //[BrowsableAttribute(false)]
+        //public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
+        //[ExpandableObjectAttribute()]
+        //public object TestSettings { get { return _TestSettings; } }
+        //private Test1 _TestSettings = new Test1();
+        ////[ExpandableObjectAttribute()]
+        //public List<object> DicPlugins { get { return _DicPlugins; } }
+        //private List<object> _DicPlugins = new List<object>() { new Test1(), new Test2() };
+        //[ExpandableObjectAttribute()]
+        //public DynamicClass TestSettings2 { get { return _TestSettings2; } }
+        //private DynamicClass _TestSettings2 = new DynamicClass(new List<Test1>()
+        //{
+        //    new Test1()
+        //});
+        //[ExpandableObjectAttribute()]
+        //public dynamic TestSettings3
+        //{
+        //    get
+        //    {
+        //        if (_TestSettings3 == null)
+        //        {
+        //            _TestSettings3 = new System.Dynamic.ExpandoObject();
+        //            _TestSettings3.EmployeeID = 42;
+        //            _TestSettings3.Designation = "unknown";
+        //            _TestSettings3.EmployeeName = "curt";
+        //        }
+        //        return _TestSettings3;
+        //    }
+        //}
+        //private dynamic _TestSettings3;
+        //      [ExpandableObjectAttribute()]
+        //      public object TestSettings4
+        //      {
+        //          get
+        //          {
+        //              if (_TestSettings4 == null)
+        //              {
+        //                  var list = new Dictionary<string, string> {
+        //  {
+        //    "EmployeeID",
+        //    "int"
+        //  }, {
+        //    "EmployeeName",
+        //    "String"
+        //  }, {
+        //    "Birthday",
+        //    "DateTime"
+        //  }
+        //};
+        //                  IEnumerable<DynamicProperty> props = list.Select(property => new DynamicProperty(property.Key, Type.GetType(property.Value))).ToList();
+
+        //                  Type t = DynamicExpression.CreateClass(props);
+        //                  object obj = Activator.CreateInstance(t);
+        //                  t.GetProperty("EmployeeID").SetValue(obj, 34, null);
+        //                  t.GetProperty("EmployeeName").SetValue(obj, "Albert", null);
+        //                  t.GetProperty("Birthday").SetValue(obj, new DateTime(1976, 3, 14), null);
+        //              }
+        //              return _TestSettings4;
+        //          }
+        //      }
+        //      private object _TestSettings4;
     }
     public class Test1
     {
@@ -372,5 +430,44 @@ namespace vSharpStudio.vm.ViewModels
     {
         public string Prop21 { get; set; }
         public int Prop22 { get; set; }
+    }
+    // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
+    public class DynamicClass : System.Dynamic.DynamicObject
+    {
+        private Dictionary<string, KeyValuePair<Type, object>> _fields;
+
+        public DynamicClass(List<Test1> fields)
+        {
+            _fields = new Dictionary<string, KeyValuePair<Type, object>>();
+            fields.ForEach(x => _fields.Add(x.GetType().Name,
+                new KeyValuePair<Type, object>(typeof(object), x)));
+        }
+        public DynamicClass(List<PluginGeneratorMainSettings> fields)
+        {
+            _fields = new Dictionary<string, KeyValuePair<Type, object>>();
+            fields.ForEach(x => _fields.Add(x.Name,
+                new KeyValuePair<Type, object>(typeof(object), x.SettingsVm)));
+        }
+
+        public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
+        {
+            if (_fields.ContainsKey(binder.Name))
+            {
+                var type = _fields[binder.Name].Key;
+                if (value.GetType() == type)
+                {
+                    _fields[binder.Name] = new KeyValuePair<Type, object>(type, value);
+                    return true;
+                }
+                else throw new Exception("Value " + value + " is not of type " + type.Name);
+            }
+            return false;
+        }
+
+        public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
+        {
+            result = _fields[binder.Name].Value;
+            return true;
+        }
     }
 }

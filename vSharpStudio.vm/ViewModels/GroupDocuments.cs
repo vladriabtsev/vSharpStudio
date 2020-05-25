@@ -13,11 +13,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq}")]
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings
     {
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.Children;
@@ -38,7 +33,21 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
-            this.AddAllAppGenSettingsVmsToNewNode();
+        }
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [PropertyOrderAttribute(int.MaxValue)]
+        public object GeneratorNodeSettings
+        {
+            get
+            {
+                if (!(this is INodeGenSettings))
+                    return null;
+                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                return res;
+            }
         }
     }
 }

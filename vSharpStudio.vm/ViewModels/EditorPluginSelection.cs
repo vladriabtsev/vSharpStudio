@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";
-            var _binding_lst = new Binding("IListPlugins"); // bind to the Value property of the PropertyItem
+            var _binding_lst = new Binding("ListPlugins"); // bind to the Value property of the PropertyItem
             _binding_lst.Source = cnfg.GroupPlugins;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;

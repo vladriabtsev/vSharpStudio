@@ -13,8 +13,8 @@
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
     <Grid>
-        <!--SelectedObject="{Binding Config.SelectedNode}"-->
-        <xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode, diag:PresentationTraceSources.TraceLevel=High}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
+        <!--<xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode, diag:PresentationTraceSources.TraceLevel=High}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">-->
+        <xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">
             <xctk:PropertyGrid.EditorDefinitions>
                 <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
                     <xctk:EditorTemplateDefinition.EditingTemplate>

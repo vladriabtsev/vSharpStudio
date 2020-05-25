@@ -213,6 +213,7 @@
         {
             this._Guid = System.Guid.NewGuid().ToString();
         }
+        [ReadOnly(true)]
         public string ModelPath
         {
             get

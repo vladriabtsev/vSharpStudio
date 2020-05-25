@@ -532,18 +532,18 @@ namespace vSharpStudio.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath);
-                this._Config.OnSelectedNodeChanging = (from, to) =>
-                {
-                    if (to is INodeGenSettings)
-                    {
-                        var t = to as INodeGenSettings;
-                        t.CreatePropertyGridNodeGenSettings(t);
-                    }
-                    else
-                    {
-                        //TODO remove property without node settings from PropertyGrid
-                    }
-                };
+                //this._Config.OnSelectedNodeChanging = (from, to) =>
+                //{
+                //    if (to is INodeGenSettings)
+                //    {
+                //        var t = to as INodeGenSettings;
+                //        t.CreatePropertyGridNodeGenSettings(t);
+                //    }
+                //    else
+                //    {
+                //        //TODO remove property without node settings from PropertyGrid
+                //    }
+                //};
                 this._Config.OnSelectedNodeChanged = () =>
                 {
                     //this.validationListForSelectedNode.DataContext = this;
@@ -649,8 +649,10 @@ namespace vSharpStudio.ViewModels
                             () =>
                             {
 #endif
-                        if (ttt.Settings != null && ttt.Settings is IvPluginGeneratorSettingsVM)
-                            ttt.GeneratorSettings = (ttt.Settings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.NodesSettings != null && ttt.NodesSettings is IvPluginGeneratorSettingsVM)
+                            ttt.GeneratorSettings = (ttt.NodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.MainSettings != null)
+                            ttt.GeneratorSettings = (ttt.MainSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
 #if RELEASE
                             }, "Can't get PROTO settings from Plugin");
 #endif
@@ -735,9 +737,9 @@ namespace vSharpStudio.ViewModels
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             this.ConnectionStringSettingsSave();
 #if DEBUG
-            var json = JsonFormatter.Default.Format(this.pconfig_history);
-            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-            CompareSaved(json);
+            //var json = JsonFormatter.Default.Format(this.pconfig_history);
+            //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+            //CompareSaved(json);
 #endif
         }
 
@@ -840,9 +842,14 @@ namespace vSharpStudio.ViewModels
 
         private void CompareSaved(string json)
         {
+            var model = new Config();
+            var pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseJson(json);
+            Config.ConvertToVM(pconfig_history.CurrentConfig, model);
+            // https://github.com/GregFinzer/Compare-Net-Objects
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
-            var model = new Config(json);
-            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config as Config, model as Config);
+            compareLogic.Config.IgnoreProperty<Config>(x => x.DicNodes);
+            compareLogic.Config.IgnoreProperty<Config>(x => x.DicGenerators);
+            KellermanSoftware.CompareNetObjects.ComparisonResult result = compareLogic.Compare(this.Config, model);
             if (!result.AreEqual)
             {
                 Console.WriteLine(result.DifferencesString);

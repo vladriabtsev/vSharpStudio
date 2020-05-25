@@ -16,33 +16,15 @@ namespace vSharpStudio.vm.ViewModels
         {
 
             // this.Config.GroupPlugins.ListPlugins
-            ITreeConfigNode instance = (ITreeConfigNode)propertyItem.Instance;
+            AppProjectGenerator instance = (AppProjectGenerator)propertyItem.Instance;
 
-            //var type = propertyItem.Instance.GetType();
-            //var descr = type.GetProperty("PluginGuid", BindingFlags.Public | BindingFlags.Static);
-            //string guid = (string)descr.GetValue(propertyItem.Instance, null);
-
-            //IConfig cnfg = instance.GetConfig();
-            //var en = cnfg.IGroupPlugins.IListPlugins.GetEnumerator();
-            //IPlugin plg = null;
-            //while (en.MoveNext())
-            //{
-            //    if (en.Current.Guid == guid)
-            //    {
-            //        plg = en.Current;
-            //        break;
-            //    }
-            //}
-
-            //if (plg==null)
-            //propertyItem.Value = plg.Guid;
-            if (EditorPluginSelection.ListGenerators.Count == 1)
-                propertyItem.Value = EditorPluginSelection.ListGenerators[0].Guid;
+            if (instance.ListGenerators.Count == 1)
+                propertyItem.Value = instance.ListGenerators[0].Guid;
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";
             var _binding_lst = new Binding(); // bind to the Value property of the PropertyItem
-            _binding_lst.Source = EditorPluginSelection.ListGenerators;
+            _binding_lst.Source = instance.ListGenerators;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;

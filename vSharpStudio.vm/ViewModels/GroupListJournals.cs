@@ -13,11 +13,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListJournals.Count,nq}")]
     public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListJournals;
@@ -30,12 +25,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Journals";
             this.IsEditable = false;
-            this.AddAllAppGenSettingsVmsToNewNode();
-            this.ListJournals.CollectionChanged += ListJournals_CollectionChanged;
-        }
-        private void ListJournals_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.OnAddRemoveNode(e);
+            this.ListJournals.OnAddedAction = (t) =>
+            {
+                t.AddAllAppGenSettingsVmsToNode();
+            };
         }
 
         #region Tree operations
@@ -66,5 +59,21 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [PropertyOrderAttribute(int.MaxValue)]
+        public object GeneratorNodeSettings
+        {
+            get
+            {
+                if (!(this is INodeGenSettings))
+                    return null;
+                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                return res;
+            }
+        }
     }
 }

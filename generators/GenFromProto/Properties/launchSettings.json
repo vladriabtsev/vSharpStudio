@@ -1,7 +1,8 @@
 {
   "profiles": {
     "GenFromProto": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "model vsharpstudio ..\\..\\..\\..\\..\\vSharpStudio.vm\\ViewModels\\Generated\\ProtoViewModels.cs vSharpStudio.vm.ViewModels ..\\..\\..\\..\\..\\doc\\ ConfigObjectVmBase"
     }
   }
 }

@@ -270,7 +270,7 @@
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
-          "description": "@base ViewModelValidatableWithSeverity",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -351,7 +351,7 @@
           "name": "proto_app_project",
           "longName": "proto_app_project",
           "fullName": "proto_config.proto_app_project",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -432,7 +432,7 @@
           "name": "proto_app_project_generator",
           "longName": "proto_app_project_generator",
           "fullName": "proto_config.proto_app_project_generator",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -479,7 +479,7 @@
             },
             {
               "name": "plugin_guid",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Plugin\")]\n@attr [Description(\"Plugins with generators\")]\n@attr [Editor(typeof(EditorPluginSelection), typeof(EditorPluginSelection))]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Plugin\")]\n@attr [Description(\"Plugins with generators\")]\n@attr [Editor(typeof(EditorPluginSelection), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -499,7 +499,7 @@
             },
             {
               "name": "plugin_generator_guid",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Generator\")]\n@attr [Description(\"Plugin generator\")]\n@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(EditorPluginGeneratorSelection))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Generator\")]\n@attr [Description(\"Plugin generator\")]\n@attr [Editor(typeof(EditorPluginGeneratorSelection), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -539,11 +539,31 @@
             },
             {
               "name": "generator_settings",
-              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [ReadOnly(true)]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "main_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_plugin_generator_main_settings",
+              "longType": "proto_plugin_generator_main_settings",
+              "fullType": "proto_config.proto_plugin_generator_main_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "node_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -553,7 +573,7 @@
           "name": "proto_app_solution",
           "longName": "proto_app_solution",
           "fullName": "proto_config.proto_app_solution",
-          "description": "message proto_plugins_group {\n// @attr [PropertyOrderAttribute(1)]\n// @attr [DisplayName(\"Group\")]\n// @attr [Description(\"Group compatible plugins of one vendor\")]\n// @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]\nstring plugins_group_guid = 1;\n// @attr [PropertyOrderAttribute(2)]\n// @attr [DisplayName(\"Info\")]\n// @attr [Description(\"Plugin short information\")]\n// @attr [ReadOnly(true)]\nstring plugins_group_info = 2;\n// @attr [PropertyOrderAttribute(3)]\n// @attr [DisplayName(\"Settings\")]\n// @attr [Description(\"Global settings for plugin generators\")]\n// @attr [ExpandableObjectAttribute()]\nstring plugins_global_settins = 3;\n}",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -698,6 +718,16 @@
               "fullType": "string",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -801,12 +831,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1071,6 +1101,26 @@
               "fullType": "proto_config.proto_group_list_journals",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_main_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_main_settings",
+              "longType": "proto_plugin_generator_main_settings",
+              "fullType": "proto_config.proto_plugin_generator_main_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -1078,7 +1128,7 @@
           "name": "proto_config_short_history",
           "longName": "proto_config_short_history",
           "fullName": "proto_config.proto_config_short_history",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1185,12 +1235,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1387,12 +1437,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1488,12 +1538,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1630,53 +1680,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;\n@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_generator_settings",
-          "longName": "proto_generator_settings",
-          "fullName": "proto_config.proto_generator_settings",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "app_generator_guid",
-              "description": "Guid is plugin guid\nAppGeneratorGuid is Guid for file generator",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "node_settings_vm_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1762,12 +1771,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1777,7 +1786,7 @@
           "name": "proto_group_list_app_solutions",
           "longName": "proto_group_list_app_solutions",
           "fullName": "proto_config.proto_group_list_app_solutions",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1902,6 +1911,16 @@
               "fullType": "proto_config.proto_base_config_link",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -1975,12 +1994,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2064,6 +2083,16 @@
               "fullType": "proto_config.proto_group_list_main_view_forms",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -2137,12 +2166,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2218,12 +2247,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2299,12 +2328,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2380,12 +2409,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2461,12 +2490,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2540,6 +2569,16 @@
               "fullType": "proto_config.proto_main_view_form",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -2547,7 +2586,7 @@
           "name": "proto_group_list_plugins",
           "longName": "proto_group_list_plugins",
           "fullName": "proto_config.proto_group_list_plugins",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2654,12 +2693,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2735,12 +2774,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2816,12 +2855,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2893,6 +2932,16 @@
               "type": "proto_role",
               "longType": "proto_role",
               "fullType": "proto_config.proto_role",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2968,12 +3017,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3047,6 +3096,16 @@
               "fullType": "proto_config.proto_group_list_main_view_forms",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -3105,7 +3164,7 @@
           "name": "proto_plugin",
           "longName": "proto_plugin",
           "fullName": "proto_config.proto_plugin",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3176,7 +3235,7 @@
           "name": "proto_plugin_generator",
           "longName": "proto_plugin_generator",
           "fullName": "proto_config.proto_plugin_generator",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3234,10 +3293,82 @@
           ]
         },
         {
+          "name": "proto_plugin_generator_main_settings",
+          "longName": "proto_plugin_generator_main_settings",
+          "fullName": "proto_config.proto_plugin_generator_main_settings",
+          "description": "@base ConfigObjectVmBase",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_project_generator_guid",
+              "description": "Guid is plugin guid\nAppGeneratorGuid is Guid for file generator",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_generator_node_settings",
+          "longName": "proto_plugin_generator_node_settings",
+          "fullName": "proto_config.proto_plugin_generator_node_settings",
+          "description": "@base ConfigObjectVmBase",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_project_generator_guid",
+              "description": "Guid of solution-project-generator node",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "Name of solution-project-generator node\nstring name = 2;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "node_settings_vm_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_plugin_generator_settings",
           "longName": "proto_plugin_generator_settings",
           "fullName": "proto_config.proto_plugin_generator_settings",
-          "description": "",
+          "description": "@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3404,12 +3535,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3495,12 +3626,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3566,12 +3697,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_generators_settings",
-              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;\n@attr [Editor(typeof(EditorGenNodeSettings), typeof(ITypeEditor))]",
+              "name": "list_node_generators_settings",
+              "description": "repeated proto_group_properties list_properties = 6;\nrepeated proto_document list_documents = 7;\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
-              "type": "proto_generator_settings",
-              "longType": "proto_generator_settings",
-              "fullType": "proto_config.proto_generator_settings",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3635,6 +3766,16 @@
               "fullType": "string",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -3642,7 +3783,7 @@
           "name": "proto_settings_config",
           "longName": "proto_settings_config",
           "fullName": "proto_config.proto_settings_config",
-          "description": "",
+          "description": "@base ViewModelValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

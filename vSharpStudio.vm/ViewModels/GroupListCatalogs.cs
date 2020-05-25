@@ -14,11 +14,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
     public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        public object GenSettings { get; set; }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListCatalogs;
@@ -37,15 +32,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.NameUi = "Sub Catalogs";
             }
-            this.AddAllAppGenSettingsVmsToNewNode();
-            this.ListCatalogs.CollectionChanged += ListCatalogs_CollectionChanged;
+            this.ListCatalogs.OnAddedAction = (t) =>
+            {
+                t.AddAllAppGenSettingsVmsToNode();
+            };
         }
-
-        private void ListCatalogs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.OnAddRemoveNode(e);
-        }
-
         protected override void OnInitFromDto()
         {
             if (this.Parent is Catalog)
@@ -55,6 +46,22 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+
+        [DisplayName("Generators")]
+        [Description("Expandable Attached Node Settings for App Project Generators")]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [PropertyOrderAttribute(int.MaxValue)]
+        public object GeneratorNodeSettings
+        {
+            get
+            {
+                if (!(this is INodeGenSettings))
+                    return null;
+                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                return res;
+            }
+        }
         public Catalog AddCatalog()
         {
             var node = new Catalog(this);

@@ -99,12 +99,13 @@ namespace vSharpStudio.vm.ViewModels
         public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath =null)
         {
             AppProjectGenerator node = new AppProjectGenerator(this);
+            this.ListAppProjectGenerators.Add(node);
             if (generationPath != null)
                 node.RelativePathToGenFolder = generationPath;
+            node.Name = name;
             node.PluginGuid = pluginGuid;
             node.PluginGeneratorGuid = generatorGuid;
             node.GenFileName = outFile;
-            this.ListAppProjectGenerators.Add(node);
             return node;
         }
 
@@ -216,5 +217,6 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
     }
 }

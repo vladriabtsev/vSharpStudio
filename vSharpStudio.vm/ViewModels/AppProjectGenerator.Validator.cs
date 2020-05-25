@@ -5,6 +5,8 @@ using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using ViewModelBase;
+using System.ComponentModel;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -22,13 +24,14 @@ namespace vSharpStudio.vm.ViewModels
                     .NotEmpty()
                     .WithMessage("Output generation folder is not selected");
                 this.RuleFor(x => x.RelativePathToGenFolder)
-                    .Must((o, path) =>
+                    .Custom((path, cntx) =>
                     {
-                        if (string.IsNullOrEmpty(path))
-                            return true;
-                        return Directory.Exists(o.GetGenerationFolderPath());
-                    })
-                    .WithMessage("Output generation folder was not found");
+                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        if (!string.IsNullOrEmpty(path) && !Directory.Exists(pg.GetGenerationFolderPath()))
+                        {
+                            cntx.AddFailure("Output generation folder was not found:" + pg.GetGenerationFolderPath());
+                        }
+                    });
                 this.RuleFor(x => x.GenFileName)
                     .NotEmpty()
                     .WithMessage("Output file name is empty");
@@ -107,26 +110,55 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this._RelativePathToGenFolder = @"Generated\";
+            this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
         }
-
+        protected override void OnInitFromDto()
+        {
+            base.OnInitFromDto();
+            UpdateListGenerators();
+        }
+        public SortedObservableCollection<PluginGenerator> ListGenerators { get; private set; }
+        [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]
-        public object Settings
+        [ReadOnly(true)]
+        [DisplayName("General")]
+        [Description("General generator settings")]
+        public object GeneralSettings
         {
             get
             {
-                return this._Settings;
+                return this._GeneralSettings;
             }
             set
             {
-                if (this._Settings != value)
+                if (this._GeneralSettings != value)
                 {
-                    this._Settings = value;
+                    this._GeneralSettings = value;
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private object _Settings;
+        private object _GeneralSettings;
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Nodes")]
+        [Description("Nodes default generators settings")]
+        public object NodesSettings
+        {
+            get { return this._NodesSettings; }
+            set
+            {
+                if (this._NodesSettings != value)
+                {
+                    this._NodesSettings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private object _NodesSettings;
         public void CreateGenSettings()
         {
             try
@@ -138,7 +170,8 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 Config cnfg = (Config)this.GetConfig();
                 PluginGenerator gen = (PluginGenerator)cnfg.DicNodes[this.PluginGeneratorGuid];
-                this.Settings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                this.GeneralSettings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                //this.NodesSettings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
             }
             catch (Exception ex)
             {
@@ -150,12 +183,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsNotNotifying)
                 return;
             this.PluginGeneratorGuid = "";
-            Config cnfg = (Config)this.GetConfig();
-            Plugin plg = (Plugin)cnfg.DicNodes[this.PluginGuid];
-            EditorPluginSelection.ListGenerators.Clear();
-            EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
-            this.DescriptionPlugin = plg.Description;
-
+            UpdateListGenerators();
             if (!Config.IsLoading)
             {
                 var nv = new ModelVisitorNodeGenSettings();
@@ -165,45 +193,68 @@ namespace vSharpStudio.vm.ViewModels
                 });
             }
         }
+
+        private void UpdateListGenerators()
+        {
+            Config cnfg = (Config)this.GetConfig();
+            Plugin plg = (Plugin)cnfg.DicNodes[this.PluginGuid];
+            this.ListGenerators.Clear();
+            this.ListGenerators.AddRange(plg.ListGenerators);
+            //EditorPluginSelection.ListGenerators.Clear();
+            //EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
+            this.DescriptionPlugin = plg.Description;
+        }
+        partial void OnPluginGeneratorGuidChanging(ref string to)
+        {
+            if (this.IsNotNotifying)
+                return;
+            Config cfg = (Config)this.GetConfig();
+            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+            var nv = new ModelVisitorNodeGenSettings();
+            nv.NodeGenSettingsApplyAction(cfg, (p) =>
+            {
+                p.RemoveNodeAppGenSettings(this.Guid);
+            });
+            this.GeneratorSettings = string.Empty;
+            this.DescriptionGenerator = string.Empty;
+        }
         partial void OnPluginGeneratorGuidChanged()
         {
             if (this.IsNotNotifying)
                 return;
-            if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
-            {
-                this.GeneratorSettings = string.Empty;
-                return;
-            }
+            var nv = new ModelVisitorNodeGenSettings();
             Config cfg = (Config)this.GetConfig();
-            PluginGenerator gen = (PluginGenerator)cfg.DicNodes[this.PluginGeneratorGuid];
-            try
+            if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
+                return;
+            if (!cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
             {
-                this.Settings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
-                this.DescriptionGenerator = gen.Description;
-                if (!Config.IsLoading)
+                foreach (var t in cfg.GroupPlugins.ListPlugins)
                 {
-                    //DicAppGenerators[this.Guid] = cnfg.DicGenerators[this.PluginGeneratorGuid];
-                    var nv = new ModelVisitorNodeGenSettings();
-                    nv.NodeGenSettingsApplyAction(cfg, (p) =>
+                    foreach (var tt in t.ListGenerators)
                     {
-                        p.RemoveNodeAppGenSettings(this.Guid);
-                    });
-                    if (!cfg.DicAppGenerators.ContainsKey(this.Guid))
-                    {
-                        AppProjectGenerator g = (AppProjectGenerator)cfg.DicNodes[this.Guid];
-                        cfg.DicAppGenerators[this.Guid] = cfg.DicGenerators[g.PluginGeneratorGuid];
+                        if (tt.Generator.Guid == this.PluginGeneratorGuid)
+                        {
+                            cfg.DicActiveAppProjectGenerators[this.Guid] = tt.Generator;
+                        }
                     }
-                    //this.RefillDicGenerators();
-                    nv.NodeGenSettingsApplyAction(cfg, (p) =>
-                    {
-                        p.AddNodeAppGenSettings(this.Guid);
-                    });
                 }
             }
-            catch (Exception ex)
+            var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+            this.GeneralSettings = gen?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+            var lst = gen?.GetListNodeGenerationSettings();
+            var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
+            //foreach (var t in lst)
+            //{
+            //    var p = new PluginGeneratorNodeSettings(this, t);
+            //    lstNodesSettings.Add(p);
+            //}
+            this.NodesSettings = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
+            this.DescriptionGenerator = gen.Description;
+            nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
-                throw;
-            }
+                p.AddNodeAppGenSettings(this.Guid);
+            });
         }
         public string GetGenerationFilePath()
         {
@@ -319,7 +370,7 @@ namespace vSharpStudio.vm.ViewModels
             });
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-            cfg.DicAppGenerators.Remove(this.Guid);
+            cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
             //this.RefillDicGenerators();
             //    this.RemoveNodeAppGenSettings(item.Guid);
             //    var cfg = (Config)this.GetConfig();

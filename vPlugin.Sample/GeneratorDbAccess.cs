@@ -38,6 +38,7 @@ namespace vPlugin.Sample
             List<IvPluginNodeSettings> res = new List<IvPluginNodeSettings>();
             res.Add(new GeneratorDbAccessNodePropertySettings());
             res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
+            res.Add(new GeneratorDbAccessNodeSettings());
             return res;
         }
 

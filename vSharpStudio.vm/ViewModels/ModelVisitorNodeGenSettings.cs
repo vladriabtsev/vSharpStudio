@@ -5,25 +5,35 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ModelVisitorNodeGenSettings : DiffModelVisitorBase
+    public class ModelVisitorNodeGenSettings : ModelVisitorBase
     {
         Action<INodeGenSettings> _act = null;
         public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
             _act = act;
-            this.RunThroughConfig(curr, null, null, null);
+            this.RunThroughConfig(curr, null);
         }
         //protected override void Visit(IConfig c)
         //{
         //    if (c is INodeGenSettings)
         //        _act(c as INodeGenSettings);
         //}
-        //protected override void Visit(IConfigModel m)
-        //{
-        //    if (m is INodeGenSettings)
-        //        _act(m as INodeGenSettings);
-        //}
+        protected override void Visit(IConfigModel m)
+        {
+            if (m is INodeGenSettings)
+                _act(m as INodeGenSettings);
+        }
+        protected override void Visit(IGroupListConstants cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
+        }
         protected override void Visit(IConstant cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
+        }
+        protected override void Visit(IGroupListEnumerations cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
@@ -38,10 +48,20 @@ namespace vSharpStudio.vm.ViewModels
             if (p is INodeGenSettings)
                 _act(p as INodeGenSettings);
         }
+        protected override void Visit(IGroupListCatalogs cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
+        }
         protected override void Visit(ICatalog ct)
         {
             if (ct is INodeGenSettings)
                 _act(ct as INodeGenSettings);
+        }
+        protected override void Visit(IGroupListDocuments cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
         }
         protected override void Visit(IDocument d)
         {
