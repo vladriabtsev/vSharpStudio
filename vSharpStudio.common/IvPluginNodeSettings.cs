@@ -10,6 +10,7 @@ namespace vSharpStudio.common
     public interface IvPluginNodeSettings : INotifyPropertyChanged
     {
         string Guid { get; }
+        string Name { get; }
         /// <summary>
         /// Node selection path.
         /// Can contains list path templates separated by semicolon: "temp1;temp2"
@@ -29,5 +30,6 @@ namespace vSharpStudio.common
         /// Get JSON representation from a settings VM
         /// </summary>
         string SettingsAsJson { get; }
+        string SettingsAsJsonDefault { get; }
     }
 }

@@ -18,12 +18,45 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-
-        public ITreeConfigNode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public string GenerateCode()
+        public string GenerateCode(IConfigModel model)
         {
-            throw new NotImplementedException();
+            string s = "";
+            if (this.IsAccessParam1)
+            {
+                s = "kuku";
+            }
+            var visitor = new MyModelVisitor(this);
+            visitor.RunThroughConfig(model);
+            return visitor.Result;
         }
+    }
+    internal static class Utils
+    {
+        internal static IGeneratorDbAccessNodeSettings NodeAllSettings(this IGetNodeSetting node)
+        {
+            var res = node.GetSettings(GeneratorDbAccessNodeSettings.GuidStatic);
+            return (IGeneratorDbAccessNodeSettings)res;
+        }
+    }
+    public class MyModelVisitor : ModelVisitorBase
+    {
+
+        GeneratorDbAccessSettings pluginSettings;
+        public MyModelVisitor(GeneratorDbAccessSettings pluginSettings)
+        {
+            this.pluginSettings = pluginSettings;
+        }
+        StringBuilder sb = new StringBuilder();
+        protected override void Visit(ICatalog ct)
+        {
+            base.Visit(ct);
+
+            if (ct.NodeAllSettings().IsParam1)
+                sb.AppendLine("Node IsParam1==true");
+            if (this.pluginSettings.IsAccessParam1)
+                sb.AppendLine("IsAccessParam1==true");
+            sb.AppendLine("generated code");
+        }
+        public string Result { get { return sb.ToString(); } }
     }
 }

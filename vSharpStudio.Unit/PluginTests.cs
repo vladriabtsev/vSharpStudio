@@ -86,7 +86,7 @@ namespace vSharpStudio.Unit
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
 
-            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.NodesSettings;
+            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
@@ -104,8 +104,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(gen.GenFileName, gen2.GenFileName);
             Assert.AreEqual(gen.PluginGuid, gen2.PluginGuid);
             Assert.AreEqual(gen.PluginGeneratorGuid, gen2.PluginGeneratorGuid);
-            Assert.IsNotNull(gen2.NodesSettings);
-            var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.NodesSettings;
+            vm2.Config.SelectedNode = gen2;
+            Assert.IsNotNull(gen2.DynamicNodesSettings);
+            var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
@@ -297,7 +298,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, prj.ValidationCollection.Count);
             Assert.AreEqual(0, gen.ValidationCollection.Count);
 
-            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.NodesSettings;
+            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";

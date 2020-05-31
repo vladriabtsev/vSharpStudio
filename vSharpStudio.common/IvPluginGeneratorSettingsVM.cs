@@ -17,6 +17,6 @@ namespace vSharpStudio.common
         /// Generate code for current settings (if applicable for generator)
         /// </summary>
         /// <returns>Generated code</returns>
-        string GenerateCode();
+        string GenerateCode(IConfigModel model);
     }
 }

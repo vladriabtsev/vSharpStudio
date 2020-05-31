@@ -72,7 +72,6 @@ message proto_plugin_generator {
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
-    // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_settings list_settings = 5;
 }
 // @base ConfigObjectVmBase
@@ -98,7 +97,6 @@ message proto_plugin_generator_settings {
     // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
     // @attr [Description("File path to store connection string settings in private place.")]
     string file_path = 9;
-
 }
 // @base ViewModelValidatableWithSeverity
 message proto_settings_config {
@@ -221,7 +219,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
-// @base ConfigObjectVmBase
+ // @base ConfigObjectVmBase
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -248,6 +246,7 @@ message proto_app_db_settings {
     // @attr [ReadOnly(true)]
     string conn_name = 7;
 }
+
 // @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [ReadOnly(true)]
@@ -258,10 +257,12 @@ message proto_group_list_app_solutions {
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     string description = 5;
+
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Default DB")]
     proto_app_db_settings default_db = 6;
+
     // List NET solutions
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
@@ -307,7 +308,7 @@ message proto_app_solution {
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, all solutions settings are used")]
     proto_app_db_settings default_db = 8;
-    
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project list_app_projects = 10;
 
@@ -355,19 +356,20 @@ message proto_app_project {
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project_generator list_app_project_generators = 10;
 }
+// Stored in each node in ConfigModel branch
 // @base ConfigObjectVmBase
 message proto_plugin_generator_node_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
     // Name of solution-project-generator node
     //string name = 2;
-    string settings = 2;
-    string node_settings_vm_guid = 3;
+    string node_settings_vm_guid = 2;
+    string settings = 3;
 }
+// Stored in AppProjectGenerator node
 // @base ConfigObjectVmBase
 message proto_plugin_generator_main_settings {
-    // Guid is plugin guid
-    // AppGeneratorGuid is Guid for file generator
+    // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
     string settings = 2; 
 }
@@ -411,8 +413,7 @@ message proto_app_project_generator {
     string generator_settings = 15;
     // @attr [BrowsableAttribute(false)]
     proto_plugin_generator_main_settings main_settings = 16;
-    // @attr [BrowsableAttribute(false)]
-    proto_plugin_generator_node_settings node_settings = 17;
+    //proto_plugin_generator_node_settings node_settings = 17;
 }
 /** 
  * @exclude

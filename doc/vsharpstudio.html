@@ -781,14 +781,9 @@ Generator output file name </p></td>
                   <td>main_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>node_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+proto_plugin_generator_node_settings node_settings = 17; </p></td>
                 </tr>
               
             </tbody>
@@ -3062,38 +3057,6 @@ string group_info = 9; </p></td>
                   <td>list_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</h3>
-        <p>@base ConfigObjectVmBase</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>app_project_generator_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Guid is plugin guid
-AppGeneratorGuid is Guid for file generator </p></td>
-                </tr>
-              
-                <tr>
-                  <td>settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3104,8 +3067,8 @@ AppGeneratorGuid is Guid for file generator </p></td>
 
         
       
-        <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
-        <p>@base ConfigObjectVmBase</p>
+        <h3 id="proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</h3>
+        <p>Stored in AppProjectGenerator node</p><p>@base ConfigObjectVmBase</p>
 
         
           <table class="field-table">
@@ -3125,12 +3088,43 @@ AppGeneratorGuid is Guid for file generator </p></td>
                   <td>settings</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
+        <p>Stored in each node in ConfigModel branch</p><p>@base ConfigObjectVmBase</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_project_generator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid of solution-project-generator node </p></td>
+                </tr>
+              
+                <tr>
+                  <td>node_settings_vm_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p>Name of solution-project-generator node
 string name = 2; </p></td>
                 </tr>
               
                 <tr>
-                  <td>node_settings_vm_guid</td>
+                  <td>settings</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>

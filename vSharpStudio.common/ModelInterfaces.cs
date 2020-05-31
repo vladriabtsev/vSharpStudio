@@ -236,6 +236,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         IEnumerable<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     
+    ///////////////////////////////////////////////////
+    /// Stored in each node in ConfigModel branch
+    ///////////////////////////////////////////////////
+    
     public partial interface IPluginGeneratorNodeSettings : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         
@@ -248,16 +252,19 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// Name of solution-project-generator node
         /// string name = 2;
         ///////////////////////////////////////////////////
-        string Settings { get; } // ModelInterfaces.tt Line: 47
         string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 47
+        string Settings { get; } // ModelInterfaces.tt Line: 47
     }
+    
+    ///////////////////////////////////////////////////
+    /// Stored in AppProjectGenerator node
+    ///////////////////////////////////////////////////
     
     public partial interface IPluginGeneratorMainSettings : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         
         ///////////////////////////////////////////////////
-        /// Guid is plugin guid
-        /// AppGeneratorGuid is Guid for file generator
+        /// Guid of solution-project-generator node
         ///////////////////////////////////////////////////
         string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
         string Settings { get; } // ModelInterfaces.tt Line: 47
@@ -282,8 +289,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string GenFileName { get; } // ModelInterfaces.tt Line: 47
         string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// 
+        /// proto_plugin_generator_node_settings node_settings = 17;
+        ///////////////////////////////////////////////////
         IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
-        IPluginGeneratorNodeSettings NodeSettings { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////

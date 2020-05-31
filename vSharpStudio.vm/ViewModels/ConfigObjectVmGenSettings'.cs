@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigObjectVmGenSettings<T, TValidator> : ConfigObjectVmBase<T, TValidator>
+    public class ConfigObjectVmGenSettings<T, TValidator> : ConfigObjectVmBase<T, TValidator>, IGetNodeSetting
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectVmGenSettings<T, TValidator>//, IComparable<T>, ISortingValue 
     {
@@ -50,15 +50,9 @@ namespace vSharpStudio.vm.ViewModels
         // 4. When saving Config: convert all model nodes generators settings to string representations
 
         // 2. When model node is added: init all generators settings VMs on this node
-        //protected override void OnNodeAdded(ITreeConfigNode node)
-        //{
-        //    base.OnNodeAdded(node);
-        //    AddAllAppGenSettingsVmsToNode();
-        //}
         public void AddAllAppGenSettingsVmsToNode()
         {
-            var ngs = this as INodeGenSettings;
-            if (ngs == null)
+            if (!(this is INodeGenSettings))
                 return;
             var cfg = (Config)this.GetConfig();
             if (cfg == null || cfg.GroupAppSolutions == null)
@@ -72,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (cfg.DicActiveAppProjectGenerators.ContainsKey(ttt.Guid))
                         {
-                            ngs.AddNodeAppGenSettings(ttt.Guid);
+                            this.AddNodeAppGenSettings(ttt.Guid);
                         }
                     }
                 }
@@ -81,7 +75,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Node App Generator Settings
 
-        //App project generator Guid,
         private void SearchPathAndAdd(AppProjectGenerator appgen, INodeGenSettings ngs, IvPluginGenerator gen)
         {
             var lst = gen.GetListNodeGenerationSettings();
@@ -107,37 +100,14 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                     ngs.ListNodeGeneratorsSettings.Add(gs);
                     gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
+                    dicGenNodeSettings[gs.NodeSettingsVmGuid] = gs.SettingsVm;
                 }
             }
         }
-#if NET48
-                public static string[] Split(string text, string separator)
-                {
-                    List<string> lst = new List<string>();
-                    int ibeg = 0;
-                    while(true)
-                    {
-                        int i = text.IndexOf(separator, ibeg);
-                        if (i > 0)
-                        {
-                            lst.Add(text.Substring(ibeg, i - ibeg));
-                            ibeg = i + separator.Length;
-                            continue;
-                        }
-                        lst.Add(text.Substring(ibeg));
-                        break;
-                    }
-                    string[] res = new string[lst.Count];
-                    int ii = 0;
-                    foreach(var t in lst)
-                        res[ii++] = t;
-                    return res;
-                }
-#endif
         public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
         {
             var subPatterns = searchPattern.Split(';');
-            if (subPatterns.Count()==1)
+            if (subPatterns.Count() == 1)
             {
                 if (string.IsNullOrWhiteSpace(subPatterns[0]) || subPatterns[0] == "*")
                     return true;
@@ -178,36 +148,63 @@ namespace vSharpStudio.vm.ViewModels
             _logger.Trace();
             var ngs = (INodeGenSettings)this;
             var cfg = (Config)this.GetConfig();
-            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            foreach (var t in cfg.DicActiveAppProjectGenerators)
             {
-                if (cfg.DicActiveAppProjectGenerators.ContainsKey(t.AppProjectGeneratorGuid))
+                foreach (var tt in t.Value.GetListNodeGenerationSettings())
                 {
-                    var gen = cfg.DicActiveAppProjectGenerators[t.AppProjectGeneratorGuid];
-                    var appgen = (AppProjectGenerator)(cfg.DicNodes[t.AppProjectGeneratorGuid]);
                     bool is_found = false;
-                    foreach (var tt in gen.GetListNodeGenerationSettings())
+                    foreach (var ttt in ngs.ListNodeGeneratorsSettings)
                     {
-                        if (tt.Guid == t.NodeSettingsVmGuid)
+                        if (ttt.Guid == ttt.NodeSettingsVmGuid)
                         {
-                            t.SettingsVm = tt.GetAppGenerationNodeSettingsVm(t.Settings);
+                            ttt.SettingsVm = tt.GetAppGenerationNodeSettingsVm(ttt.Settings);
+                            dicGenNodeSettings[ttt.NodeSettingsVmGuid] = ttt.SettingsVm;
                             is_found = true;
                             break;
                         }
                     }
                     if (!is_found)
-                        throw new Exception();
+                    {
+                        var p = new PluginGeneratorNodeSettings(this);
+                        p.SettingsVm = tt.GetAppGenerationNodeSettingsVm(tt.SettingsAsJsonDefault);
+                        p.NodeSettingsVmGuid = tt.Guid;
+                        dicGenNodeSettings[p.NodeSettingsVmGuid] = p.SettingsVm;
+                        ngs.ListNodeGeneratorsSettings.Add(p);
+                    }
                 }
-                else
-                    throw new Exception();
             }
+            //foreach (var t in ngs.ListNodeGeneratorsSettings)
+            //{
+            //    if (cfg.DicActiveAppProjectGenerators.ContainsKey(t.AppProjectGeneratorGuid))
+            //    {
+            //        var gen = cfg.DicActiveAppProjectGenerators[t.AppProjectGeneratorGuid];
+            //        var appgen = (AppProjectGenerator)(cfg.DicNodes[t.AppProjectGeneratorGuid]);
+            //        bool is_found = false;
+            //        foreach (var tt in gen.GetListNodeGenerationSettings())
+            //        {
+            //            if (tt.Guid == t.NodeSettingsVmGuid)
+            //            {
+            //                t.SettingsVm = tt.GetAppGenerationNodeSettingsVm(t.Settings);
+            //                is_found = true;
+            //                break;
+            //            }
+            //        }
+            //        if (!is_found)
+            //            throw new Exception();
+            //    }
+            //    else
+            //        throw new Exception();
+            //}
         }
         public void SaveNodeAppGenSettings()
         {
             _logger.Trace();
             var ngs = (INodeGenSettings)this;
-            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            foreach (var t in ngs.ListNodeGeneratorsSettings.ToList())
             {
                 t.Settings = t.SettingsVm.SettingsAsJson;
+                if (t.Settings == t.SettingsVm.SettingsAsJsonDefault)
+                    ngs.ListNodeGeneratorsSettings.Remove(t);
             }
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
@@ -219,6 +216,7 @@ namespace vSharpStudio.vm.ViewModels
                 var t = ngs.ListNodeGeneratorsSettings[i];
                 if (t.AppProjectGeneratorGuid == appGenGuid)
                 {
+                    dicGenNodeSettings.Remove(t.NodeSettingsVmGuid);
                     ngs.ListNodeGeneratorsSettings.RemoveAt(i);
                     break;
                 }
@@ -248,68 +246,56 @@ namespace vSharpStudio.vm.ViewModels
             var gen = cfg.DicActiveAppProjectGenerators[appGenGuid];
             SearchPathAndAdd(appgen, ngs, gen);
         }
-        //public void CreatePropertyGridNodeGenSettings(INodeGenSettings p)
-        //{
-        //    // create a dynamic assembly and module 
-        //    AssemblyBuilder assemblyBldr = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("tmpAssembly"), AssemblyBuilderAccess.Run);
-        //    //AssemblyBuilder assemblyBldr = Thread.GetDomain().DefineDynamicAssembly(new AssemblyName("tmpAssembly"), AssemblyBuilderAccess.Run);
-        //    ModuleBuilder moduleBldr = assemblyBldr.DefineDynamicModule("tmpModule");
-        //    // create a new type builder
-        //    TypeBuilder typeBldr = moduleBldr.DefineType("GenSettings", TypeAttributes.Public | TypeAttributes.Class, null);
-
-        //    var cfg = (Config)this.GetConfig();
-        //    foreach (var t in p.ListGeneratorsSettings)
-        //    {
-        //        var propType = typeof(object);
-        //        var appGen = cfg.DicNodes[t.AppGeneratorGuid];
-        //        // Generate a private field for the property
-        //        FieldBuilder fldBldr = typeBldr.DefineField("_" + t.Name, propType, FieldAttributes.Private);
-        //        // Generate a public property
-        //        PropertyBuilder prptyBldr = typeBldr.DefineProperty(t.Name, PropertyAttributes.None, propType, new Type[] { propType });
-
-        //        // The property set and property get methods need the following attributes:
-        //        MethodAttributes GetSetAttr = MethodAttributes.Public | MethodAttributes.HideBySig;
-        //        // Define the "get" accessor method for newly created private field.
-        //        MethodBuilder currGetPropMthdBldr = typeBldr.DefineMethod("get_value", GetSetAttr, propType, null);
-
-        //        // Intermediate Language stuff... as per MS
-        //        ILGenerator currGetIL = currGetPropMthdBldr.GetILGenerator();
-        //        currGetIL.Emit(OpCodes.Ldarg_0);
-        //        currGetIL.Emit(OpCodes.Ldfld, fldBldr);
-        //        currGetIL.Emit(OpCodes.Ret);
-
-        //        // Define the "set" accessor method for the newly created private field.
-        //        MethodBuilder currSetPropMthdBldr = typeBldr.DefineMethod("set_value", GetSetAttr, null, new Type[] { propType });
-
-        //        // More Intermediate Language stuff...
-        //        ILGenerator currSetIL = currSetPropMthdBldr.GetILGenerator();
-        //        currSetIL.Emit(OpCodes.Ldarg_0);
-        //        currSetIL.Emit(OpCodes.Ldarg_1);
-        //        currSetIL.Emit(OpCodes.Stfld, fldBldr);
-        //        currSetIL.Emit(OpCodes.Ret);
-
-        //        // Assign the two methods created above to the PropertyBuilder's Set and Get
-        //        prptyBldr.SetGetMethod(currGetPropMthdBldr);
-        //        prptyBldr.SetSetMethod(currSetPropMthdBldr);
-
-        //        ConstructorInfo cons = typeof(ExpandableObjectAttribute).GetConstructor(new Type[] { });
-        //        CustomAttributeBuilder attribute = new CustomAttributeBuilder(cons, new object[] { }, new FieldInfo[] { }, new object[] { });
-        //        prptyBldr.SetCustomAttribute(attribute);
-
-        //        cons = typeof(DescriptionAttribute).GetConstructor(new Type[] { typeof(string) });
-        //        attribute = new CustomAttributeBuilder(cons, new object[] { t.Description }, new FieldInfo[] { }, new object[] { });
-        //        prptyBldr.SetCustomAttribute(attribute);
-        //    }
-        //    var dynamicType = typeBldr.CreateType();
-        //    var instance = Activator.CreateInstance(dynamicType);
-        //    foreach (var t in p.ListGeneratorsSettings)
-        //    {
-        //        PropertyInfo prop = dynamicType.GetProperty(t.Name);
-        //        prop.SetValue(instance, t.SettingsVm, null);
-        //    }
-        //    p.GenSettings = instance;
-        //}
 
         #endregion Node App Generator Settings
+
+        protected Dictionary<string, IvPluginNodeSettings> dicGenNodeSettings = new Dictionary<string, IvPluginNodeSettings>();
+        /// <summary>
+        /// Getting VM of generator settings for node
+        /// </summary>
+        /// <param name="guid">Guid of VM of generator node settings</param>
+        /// <returns></returns>
+        public IvPluginNodeSettings GetSettings(string guid)
+        {
+            //if (!dicGenNodeSettings.ContainsKey(guid))
+            //{
+            //    var tt = this as INodeGenSettings;
+            //    foreach (var t in tt.ListNodeGeneratorsSettings)
+            //    {
+            //        if (!dicGenNodeSettings.ContainsKey(t.NodeSettingsVmGuid))
+            //            dicGenNodeSettings[t.NodeSettingsVmGuid] = t.SettingsVm;
+            //    }
+            //}
+            if (!dicGenNodeSettings.ContainsKey(guid))
+                throw new Exception();
+            return dicGenNodeSettings[guid];
+        }
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Settings")]
+        [Description("Generators node settings")]
+        // Dynamic class object of for node generators representation:
+        // Expandable node generator name
+        //    Expandable generator parameters object
+        public object DynamicNodesSettings
+        {
+            get
+            {
+                //Config cfg = (Config)this.GetConfig();
+                //var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+                //var lst = gen?.GetListNodeGenerationSettings();
+                //var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
+                //foreach (var t in lst)
+                //{
+                //    var p = new PluginGeneratorNodeSettings(this, this.Guid, t);
+                //    lstNodesSettings.Add(p);
+                //}
+                //var res = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
+                var nd = new NodeSettings();
+                var res = nd.Run(this);
+                return res;
+            }
+        }
     }
 }

@@ -351,7 +351,7 @@ namespace vSharpStudio.vm.ViewModels
                             {
                                 foreach (var ttp in tp.ListGenerators)
                                 {
-                                    if (ttp.Generator.Guid == ttt.PluginGeneratorGuid)
+                                    if (ttp.Generator?.Guid == ttt.PluginGeneratorGuid)
                                     {
                                         this.DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
                                     }

@@ -10,8 +10,12 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodeCatalogFormSettings : IvPluginNodeSettings
     {
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string Guid { get { return "91014E62-2F0E-451A-AB64-E642FD5577BD"; } }
+        [BrowsableAttribute(false)]
+        [ReadOnly(true)]
+        public string Name { get { return "CatalogsForms"; } }
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
@@ -21,6 +25,20 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
+        [BrowsableAttribute(false)]
+        public string SettingsAsJsonDefault
+        {
+            get
+            {
+                if (settingsAsJsonDefault == null)
+                {
+                    var proto = GeneratorDbAccessNodeCatalogFormSettings.ConvertToProto(new GeneratorDbAccessNodeCatalogFormSettings());
+                    settingsAsJsonDefault = JsonFormatter.Default.Format(proto);
+                }
+                return settingsAsJsonDefault;
+            }
+        }
+        private static string settingsAsJsonDefault = null;
         public IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
@@ -29,6 +47,7 @@ namespace vPlugin.Sample
             return GeneratorDbAccessNodeCatalogFormSettings.ConvertToVM(proto, new GeneratorDbAccessNodeCatalogFormSettings());
         }
         public static string SearchPath = "Catalog.*.Form";
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string SearchPathInModel { get { return SearchPath; } }
     }

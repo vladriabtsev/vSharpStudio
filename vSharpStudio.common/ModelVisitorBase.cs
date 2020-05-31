@@ -96,6 +96,7 @@ namespace vSharpStudio.common
         }
 
         protected IConfig currCfg = null;
+        protected IConfigModel currModel = null;
         protected IEnumeration currEnum = null;
         protected IForm currForm = null;
         protected IReport currRep = null;
@@ -107,28 +108,17 @@ namespace vSharpStudio.common
 
         protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
 
-        /// <summary>
-        /// Visit and annotate config nodes.
-        /// Create extended config model with deleted nodes.
-        /// </summary>
-        /// <param name="curr">Current config or clone</param>
-        /// <param name="prev">Previous version of config</param>
-        /// <param name="old">Oldest version of config</param>
-        /// <param name="act"></param>
-        /// <returns></returns>
-        protected void RunThroughConfig(IConfig curr, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
+        public void RunThroughConfig(IConfigModel model, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
         {
             this._act = act;
-            this.currCfg = curr;
+            this.currModel = model;
 
-            this.Visit(this.currCfg);
-
-            this.Visit(this.currCfg.Model);
+            this.Visit(this.currModel);
 
             #region Constants
-            this.Visit(currCfg.Model.GroupConstants);
-            this.Visit(currCfg.Model.GroupConstants.ListConstants);
-            foreach (var tt in currCfg.Model.GroupConstants.ListConstants)
+            this.Visit(currModel.GroupConstants);
+            this.Visit(currModel.GroupConstants.ListConstants);
+            foreach (var tt in currModel.GroupConstants.ListConstants)
             {
                 this.Visit(tt);
                 if (_act != null)
@@ -137,9 +127,9 @@ namespace vSharpStudio.common
             #endregion Constants
 
             #region Enumerations
-            this.Visit(currCfg.Model.GroupEnumerations);
-            this.Visit(currCfg.Model.GroupEnumerations.ListEnumerations);
-            foreach (var tt in currCfg.Model.GroupEnumerations.ListEnumerations)
+            this.Visit(currModel.GroupEnumerations);
+            this.Visit(currModel.GroupEnumerations.ListEnumerations);
+            foreach (var tt in currModel.GroupEnumerations.ListEnumerations)
             {
                 this.Visit(tt);
                 this.currEnum = tt;
@@ -159,9 +149,9 @@ namespace vSharpStudio.common
             #endregion Enumerations
 
             #region Catalogs
-            this.Visit(currCfg.Model.GroupCatalogs);
-            this.Visit(currCfg.Model.GroupCatalogs.ListCatalogs);
-            foreach (var tt in currCfg.Model.GroupCatalogs.ListCatalogs)
+            this.Visit(currModel.GroupCatalogs);
+            this.Visit(currModel.GroupCatalogs.ListCatalogs);
+            foreach (var tt in currModel.GroupCatalogs.ListCatalogs)
             {
                 this.Visit(tt);
                 this.currCat = tt;
@@ -178,11 +168,11 @@ namespace vSharpStudio.common
             #endregion Catalogs
 
             #region Documents
-            var sharedProps = currCfg.Model.GroupDocuments.GroupSharedProperties.ListProperties;
-            this.Visit(currCfg.Model.GroupDocuments.GroupSharedProperties);
-            this.Visit(currCfg.Model.GroupDocuments.GroupListDocuments);
-            this.Visit(currCfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
-            foreach (var tt in currCfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            var sharedProps = currModel.GroupDocuments.GroupSharedProperties.ListProperties;
+            this.Visit(currModel.GroupDocuments.GroupSharedProperties);
+            this.Visit(currModel.GroupDocuments.GroupListDocuments);
+            this.Visit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
+            foreach (var tt in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 this.Visit(tt);
                 this.currDoc = tt;
@@ -190,7 +180,7 @@ namespace vSharpStudio.common
                     _act(this, tt);
                 if (tt.IsDeleted())
                     continue;
-                this.VisitProperties(currCfg.Model.GroupDocuments.GroupSharedProperties, sharedProps);
+                this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, sharedProps);
                 this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
                 this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
                 this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
@@ -198,6 +188,26 @@ namespace vSharpStudio.common
                 this.currDoc = null;
             }
             #endregion Documents
+
+            this.currCfg = null;
+        }
+        /// <summary>
+        /// Visit and annotate config nodes.
+        /// Create extended config model with deleted nodes.
+        /// </summary>
+        /// <param name="curr">Current config or clone</param>
+        /// <param name="prev">Previous version of config</param>
+        /// <param name="old">Oldest version of config</param>
+        /// <param name="act"></param>
+        /// <returns></returns>
+        protected void RunThroughConfig(IConfig curr, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
+        {
+            this._act = act;
+            this.currCfg = curr;
+
+            this.Visit(this.currCfg);
+
+            this.RunThroughConfig(this.currCfg.Model, act);
 
             this.currCfg = null;
         }

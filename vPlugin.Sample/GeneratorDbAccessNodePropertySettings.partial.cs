@@ -10,8 +10,12 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodePropertySettings : IvPluginNodeSettings
     {
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string Guid { get { return "AAF6D5CD-7199-4D93-BC29-EA662E296B20"; } }
+        [BrowsableAttribute(false)]
+        [ReadOnly(true)]
+        public string Name { get { return "Properties"; } }
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
@@ -21,6 +25,20 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
+        [BrowsableAttribute(false)]
+        public string SettingsAsJsonDefault
+        {
+            get
+            {
+                if (settingsAsJsonDefault==null)
+                {
+                    var proto = GeneratorDbAccessNodePropertySettings.ConvertToProto(new GeneratorDbAccessNodePropertySettings());
+                    settingsAsJsonDefault = JsonFormatter.Default.Format(proto);
+                }
+                return settingsAsJsonDefault;
+            }
+        }
+        private static string settingsAsJsonDefault = null;
         public IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
@@ -29,6 +47,7 @@ namespace vPlugin.Sample
             return GeneratorDbAccessNodePropertySettings.ConvertToVM(proto, new GeneratorDbAccessNodePropertySettings());
         }
         public static string SearchPath = "Property";
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string SearchPathInModel { get { return SearchPath; } }
     }

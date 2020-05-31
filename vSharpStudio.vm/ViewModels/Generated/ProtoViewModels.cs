@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/25/2020 00:22:07
+// Auto generated on UTC 05/31/2020 14:25:22
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -888,7 +888,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanged();
         string IPluginGenerator.Description { get { return this._Description; } }
         
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorSettings> ListSettings // Property.tt Line: 58
         { 
             get 
@@ -3938,6 +3937,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     
         #endregion Properties
     }
+    
+    ///////////////////////////////////////////////////
+    /// Stored in each node in ConfigModel branch
+    ///////////////////////////////////////////////////
     public partial class PluginGeneratorNodeSettings : ConfigObjectVmBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettings.PluginGeneratorNodeSettingsValidator>, IComparable<PluginGeneratorNodeSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeSettings // Class.tt Line: 6
     {
         public partial class PluginGeneratorNodeSettingsValidator : ValidatorBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator> { } // Class.tt Line: 8
@@ -3962,8 +3965,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             PluginGeneratorNodeSettings vm = new PluginGeneratorNodeSettings(parent);
             vm.IsNotNotifying = true;
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 63
-            vm.Settings = from.Settings; // Clone.tt Line: 63
             vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 63
+            vm.Settings = from.Settings; // Clone.tt Line: 63
             if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -3972,8 +3975,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public static void Update(PluginGeneratorNodeSettings to, PluginGeneratorNodeSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 136
-            to.Settings = from.Settings; // Clone.tt Line: 136
             to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 136
+            to.Settings = from.Settings; // Clone.tt Line: 136
         }
         // Clone.tt Line: 142
         #region IEditable
@@ -4001,8 +4004,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             vm.IsNotNotifying = true;
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 214
-            vm.Settings = m.Settings; // Clone.tt Line: 214
             vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 214
+            vm.Settings = m.Settings; // Clone.tt Line: 214
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
@@ -4014,8 +4017,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Proto.Config.proto_plugin_generator_node_settings m = new Proto.Config.proto_plugin_generator_node_settings(); // Clone.tt Line: 230
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 267
-            m.Settings = vm.Settings; // Clone.tt Line: 267
             m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 267
+            m.Settings = vm.Settings; // Clone.tt Line: 267
             return m;
         }
         
@@ -4064,30 +4067,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Name of solution-project-generator node
         /// string name = 2;
         ///////////////////////////////////////////////////
-        public string Settings // Property.tt Line: 135
-        { 
-            get 
-            { 
-                return this._Settings; 
-            }
-            set
-            {
-                if (this._Settings != value)
-                {
-                    this.OnSettingsChanging(ref value);
-                    this._Settings = value;
-                    this.OnSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 157
-        partial void OnSettingsChanged();
-        string IPluginGeneratorNodeSettings.Settings { get { return this._Settings; } }
-        
         public string NodeSettingsVmGuid // Property.tt Line: 135
         { 
             get 
@@ -4111,9 +4090,37 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNodeSettingsVmGuidChanging(ref string to); // Property.tt Line: 157
         partial void OnNodeSettingsVmGuidChanged();
         string IPluginGeneratorNodeSettings.NodeSettingsVmGuid { get { return this._NodeSettingsVmGuid; } }
+        
+        public string Settings // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._Settings; 
+            }
+            set
+            {
+                if (this._Settings != value)
+                {
+                    this.OnSettingsChanging(ref value);
+                    this._Settings = value;
+                    this.OnSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Settings = string.Empty;
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 157
+        partial void OnSettingsChanged();
+        string IPluginGeneratorNodeSettings.Settings { get { return this._Settings; } }
     
         #endregion Properties
     }
+    
+    ///////////////////////////////////////////////////
+    /// Stored in AppProjectGenerator node
+    ///////////////////////////////////////////////////
     public partial class PluginGeneratorMainSettings : ConfigObjectVmBase<PluginGeneratorMainSettings, PluginGeneratorMainSettings.PluginGeneratorMainSettingsValidator>, IComparable<PluginGeneratorMainSettings>, IConfigAcceptVisitor, IPluginGeneratorMainSettings // Class.tt Line: 6
     {
         public partial class PluginGeneratorMainSettingsValidator : ValidatorBase<PluginGeneratorMainSettings, PluginGeneratorMainSettingsValidator> { } // Class.tt Line: 8
@@ -4205,8 +4212,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         
         ///////////////////////////////////////////////////
-        /// Guid is plugin guid
-        /// AppGeneratorGuid is Guid for file generator
+        /// Guid of solution-project-generator node
         ///////////////////////////////////////////////////
         public string AppProjectGeneratorGuid // Property.tt Line: 135
         { 
@@ -4267,7 +4273,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.OnInitBegin();
             this.MainSettings = new PluginGeneratorMainSettings(this); // Class.tt Line: 28
-            this.NodeSettings = new PluginGeneratorNodeSettings(this); // Class.tt Line: 28
             this.OnInit();
         }
         partial void OnInitBegin();
@@ -4296,8 +4301,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 63
             if (isDeep) // Clone.tt Line: 60
                 vm.MainSettings = PluginGeneratorMainSettings.Clone(vm, from.MainSettings, isDeep);
-            if (isDeep) // Clone.tt Line: 60
-                vm.NodeSettings = PluginGeneratorNodeSettings.Clone(vm, from.NodeSettings, isDeep);
             if (isNewGuid) // Clone.tt Line: 68
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -4318,8 +4321,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 136
             if (isDeep) // Clone.tt Line: 133
                 PluginGeneratorMainSettings.Update(to.MainSettings, from.MainSettings, isDeep);
-            if (isDeep) // Clone.tt Line: 133
-                PluginGeneratorNodeSettings.Update(to.NodeSettings, from.NodeSettings, isDeep);
         }
         // Clone.tt Line: 142
         #region IEditable
@@ -4360,9 +4361,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (vm.MainSettings == null) // Clone.tt Line: 206
                 vm.MainSettings = new PluginGeneratorMainSettings(vm); // Clone.tt Line: 208
             PluginGeneratorMainSettings.ConvertToVM(m.MainSettings, vm.MainSettings); // Clone.tt Line: 212
-            if (vm.NodeSettings == null) // Clone.tt Line: 206
-                vm.NodeSettings = new PluginGeneratorNodeSettings(vm); // Clone.tt Line: 208
-            PluginGeneratorNodeSettings.ConvertToVM(m.NodeSettings, vm.NodeSettings); // Clone.tt Line: 212
             vm.OnInitFromDto(); // Clone.tt Line: 220
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
@@ -4385,7 +4383,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GenFileName = vm.GenFileName; // Clone.tt Line: 267
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 267
             m.MainSettings = PluginGeneratorMainSettings.ConvertToProto(vm.MainSettings); // Clone.tt Line: 261
-            m.NodeSettings = PluginGeneratorNodeSettings.ConvertToProto(vm.NodeSettings); // Clone.tt Line: 261
             return m;
         }
         
@@ -4397,8 +4394,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             visitor.Visit(this);
             this.MainSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 29
-        
-            this.NodeSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 29
         
             visitor.VisitEnd(this);
         }
@@ -4628,6 +4623,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGeneratorSettingsChanged();
         string IAppProjectGenerator.GeneratorSettings { get { return this._GeneratorSettings; } }
         
+        
+        ///////////////////////////////////////////////////
+        /// 
+        /// proto_plugin_generator_node_settings node_settings = 17;
+        ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
         public PluginGeneratorMainSettings MainSettings // Property.tt Line: 110
         { 
@@ -4651,30 +4651,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnMainSettingsChanging(ref PluginGeneratorMainSettings to); // Property.tt Line: 131
         partial void OnMainSettingsChanged();
         IPluginGeneratorMainSettings IAppProjectGenerator.MainSettings { get { return this._MainSettings; } }
-        
-        [BrowsableAttribute(false)]
-        public PluginGeneratorNodeSettings NodeSettings // Property.tt Line: 110
-        { 
-            get 
-            { 
-                return this._NodeSettings; 
-            }
-            set
-            {
-                if (this._NodeSettings != value)
-                {
-                    this.OnNodeSettingsChanging(ref value);
-                    this._NodeSettings = value;
-                    this.OnNodeSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private PluginGeneratorNodeSettings _NodeSettings;
-        partial void OnNodeSettingsChanging(ref PluginGeneratorNodeSettings to); // Property.tt Line: 131
-        partial void OnNodeSettingsChanged();
-        IPluginGeneratorNodeSettings IAppProjectGenerator.NodeSettings { get { return this._NodeSettings; } }
     
         #endregion Properties
     }

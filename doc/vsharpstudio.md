@@ -173,8 +173,9 @@ General DB settings
 | relative_path_to_gen_folder | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output Folder&#34;)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;Get is returning relative folder path to project file&#34;)] Relative folder path to project file |
 | gen_file_name | [string](#string) |  | @attr [DisplayName(&#34;Output File&#34;)] @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Generator output file name&#34;)] Generator output file name |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
-| node_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) |  | @attr [BrowsableAttribute(false)] |
+| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)]
+
+proto_plugin_generator_node_settings node_settings = 17; |
 
 
 
@@ -874,7 +875,7 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | name | [string](#string) |  | @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated | @attr [BrowsableAttribute(false)] |
+| list_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated |  |
 
 
 
@@ -884,12 +885,13 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 <a name="proto_config.proto_plugin_generator_main_settings"></a>
 
 ### proto_plugin_generator_main_settings
+Stored in AppProjectGenerator node
 @base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| app_project_generator_guid | [string](#string) |  | Guid is plugin guid AppGeneratorGuid is Guid for file generator |
+| app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | settings | [string](#string) |  |  |
 
 
@@ -900,14 +902,15 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 <a name="proto_config.proto_plugin_generator_node_settings"></a>
 
 ### proto_plugin_generator_node_settings
+Stored in each node in ConfigModel branch
 @base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
-| settings | [string](#string) |  | Name of solution-project-generator node string name = 2; |
-| node_settings_vm_guid | [string](#string) |  |  |
+| node_settings_vm_guid | [string](#string) |  | Name of solution-project-generator node string name = 2; |
+| settings | [string](#string) |  |  |
 
 
 

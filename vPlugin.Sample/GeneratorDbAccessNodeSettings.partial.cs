@@ -10,8 +10,12 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodeSettings : IvPluginNodeSettings
     {
+        public static string GuidStatic = "2511D2D7-020E-4481-BB38-08D4B1ECF083";
+        [BrowsableAttribute(false)]
+        public string Guid { get { return GeneratorDbAccessNodeSettings.GuidStatic; } }
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
-        public string Guid { get { return "2511D2D7-020E-4481-BB38-08D4B1ECF083"; } }
+        public string Name { get { return "All"; } }
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
@@ -21,6 +25,20 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
+        [BrowsableAttribute(false)]
+        public string SettingsAsJsonDefault
+        {
+            get
+            {
+                if (settingsAsJsonDefault == null)
+                {
+                    var proto = GeneratorDbAccessNodeSettings.ConvertToProto(new GeneratorDbAccessNodeSettings());
+                    settingsAsJsonDefault = JsonFormatter.Default.Format(proto);
+                }
+                return settingsAsJsonDefault;
+            }
+        }
+        private static string settingsAsJsonDefault = null;
         public IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
@@ -29,6 +47,7 @@ namespace vPlugin.Sample
             return GeneratorDbAccessNodeSettings.ConvertToVM(proto, new GeneratorDbAccessNodeSettings());
         }
         public static string SearchPath = "";
+        [BrowsableAttribute(false)]
         [ReadOnly(true)]
         public string SearchPathInModel { get { return SearchPath; } }
     }

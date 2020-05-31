@@ -10,12 +10,13 @@ namespace vSharpStudio.vm.ViewModels
     {
         public IvPluginNodeSettings SettingsVm { get; set; }
 
-        //public PluginGeneratorNodeSettings(ITreeConfigNode parent, IvPluginNodeSettings t) : this(parent)
-        //{
-        //    this.Name=p.n
-        //        this.NodeSettingsVmGuid
-        //        this.AppProjectGeneratorGuid
-        //        this.SettingsVm= t.GetAppGenerationNodeSettingsVm(this.Settings);
-        //}
+        public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginNodeSettings t) : this(parent)
+        {
+            this.Name = t.Name;
+            this.NodeSettingsVmGuid = t.Guid;
+            this.AppProjectGeneratorGuid = appProjectGeneratorGuid;
+            this.SettingsVm = t.GetAppGenerationNodeSettingsVm(this.Settings);
+            //this.SettingsVm = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+        }
     }
 }

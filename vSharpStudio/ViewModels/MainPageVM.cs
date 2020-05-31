@@ -649,10 +649,10 @@ namespace vSharpStudio.ViewModels
                             () =>
                             {
 #endif
-                        if (ttt.NodesSettings != null && ttt.NodesSettings is IvPluginGeneratorSettingsVM)
-                            ttt.GeneratorSettings = (ttt.NodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
-                        if (ttt.MainSettings != null)
-                            ttt.GeneratorSettings = (ttt.MainSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
+                            ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.DynamicMainSettings != null)
+                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
 #if RELEASE
                             }, "Can't get PROTO settings from Plugin");
 #endif

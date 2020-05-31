@@ -8,10 +8,7 @@ namespace vPlugin.Sample
     public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettingsVM
     {
         public string SettingsAsJson => throw new NotImplementedException();
-
-        public ITreeConfigNode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public string GenerateCode()
+        public string GenerateCode(IConfigModel model)
         {
             throw new NotImplementedException();
         }

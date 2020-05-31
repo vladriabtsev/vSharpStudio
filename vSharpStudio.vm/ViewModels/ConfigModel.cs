@@ -305,8 +305,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!(this is INodeGenSettings))
                     return null;
-                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
-                return res;
+                //var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
+                //return res;
+                return null;
             }
         }
 
