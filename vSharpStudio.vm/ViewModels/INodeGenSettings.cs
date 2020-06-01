@@ -6,7 +6,6 @@ namespace vSharpStudio.vm.ViewModels
 {
     public interface INodeGenSettings
     {
-        object GeneratorNodeSettings { get; }
         ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; }
         //ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings { get; }
         //void AddAllAppGenSettingsVmsToNewNode();

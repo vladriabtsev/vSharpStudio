@@ -47,21 +47,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
 
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [PropertyOrderAttribute(int.MaxValue)]
-        public object GeneratorNodeSettings
-        {
-            get
-            {
-                if (!(this is INodeGenSettings))
-                    return null;
-                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
-                return res;
-            }
-        }
         public Catalog AddCatalog()
         {
             var node = new Catalog(this);

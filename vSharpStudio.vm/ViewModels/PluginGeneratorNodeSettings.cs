@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("NodeSettings:{Name,nq}")]
     public partial class PluginGeneratorNodeSettings
     {
         public IvPluginNodeSettings SettingsVm { get; set; }

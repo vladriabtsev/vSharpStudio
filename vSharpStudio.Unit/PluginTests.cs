@@ -90,6 +90,15 @@ namespace vSharpStudio.Unit
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
+
+            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
+            //Assert.AreEqual(1, vm.Config.Model.GroupJournals.ListNodeGeneratorsSettings.Count);
+
             vm.CommandConfigSave.Execute(null);
 
             var vm2 = new MainPageVM(true);

@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override void OnInitFromDto()
         {
             this.Name = "ConfigModel";
-            this.RefillChildren();
+            //this.RefillChildren();
         }
         void RefillChildren()
         {
@@ -293,23 +293,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         #endregion Objects
-
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [PropertyOrderAttribute(int.MaxValue)]
-        public object GeneratorNodeSettings
-        {
-            get
-            {
-                if (!(this is INodeGenSettings))
-                    return null;
-                //var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
-                //return res;
-                return null;
-            }
-        }
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode

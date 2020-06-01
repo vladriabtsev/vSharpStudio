@@ -75,11 +75,13 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Node App Generator Settings
 
-        private void SearchPathAndAdd(AppProjectGenerator appgen, INodeGenSettings ngs, IvPluginGenerator gen)
+        private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
         {
             var lst = gen.GetListNodeGenerationSettings();
             foreach (var t in lst)
             {
+                if (dicGenNodeSettings.ContainsKey(t.Guid))
+                    continue;
                 string modelPath = this.ModelPath;
                 var searchPattern = t.SearchPathInModel;
                 var is_found = SearchInModelPathByPattern(modelPath, searchPattern);
@@ -87,10 +89,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (is_found)
                 {
                     PluginGeneratorNodeSettings gs = new PluginGeneratorNodeSettings(this);
-                    gs.Name = appgen.Name;
+                    gs.Name = appProjectGenerator.Name;
                     gs.NodeSettingsVmGuid = t.Guid;
-                    gs.AppProjectGeneratorGuid = appgen.Guid;
-                    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appgen.Name);
+                    gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
+                    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
 #if DEBUG
                     foreach (var ttt in ngs.ListNodeGeneratorsSettings)
                     {
@@ -143,6 +145,30 @@ namespace vSharpStudio.vm.ViewModels
             }
             return is_found;
         }
+        public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
+        {
+            _logger.Trace();
+            //var cnfg = this.GetConfig();
+            var ngs = (INodeGenSettings)this;
+#if DEBUG
+            if (ngs == null)
+                throw new Exception();
+            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            {
+                if (t.AppProjectGeneratorGuid == appProjectGeneratorGuid)
+                    throw new Exception();
+            }
+#endif
+            var cfg = (Config)this.GetConfig();
+            //var gen = cfg.DicActiveAppProjectGenerators[appGenGuid];
+            //var set = new PluginGeneratorMainSettings(this);
+            //set.AppGeneratorGuid = appGenGuid;
+            //set.SettingsVm = gen.GetAppGenerationSettingsVmFromJson("");
+            //ngs.ListNodeGeneratorsSettings.Add(set);
+            var appgen = (AppProjectGenerator)cfg.DicNodes[appProjectGeneratorGuid];
+            var gen = cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
+            SearchPathAndAdd(appgen, ngs, gen);
+        }
         public void RestoreNodeAppGenSettingsVm()
         {
             _logger.Trace();
@@ -150,52 +176,41 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = (Config)this.GetConfig();
             foreach (var t in cfg.DicActiveAppProjectGenerators)
             {
-                foreach (var tt in t.Value.GetListNodeGenerationSettings())
-                {
-                    bool is_found = false;
-                    foreach (var ttt in ngs.ListNodeGeneratorsSettings)
-                    {
-                        if (ttt.Guid == ttt.NodeSettingsVmGuid)
-                        {
-                            ttt.SettingsVm = tt.GetAppGenerationNodeSettingsVm(ttt.Settings);
-                            dicGenNodeSettings[ttt.NodeSettingsVmGuid] = ttt.SettingsVm;
-                            is_found = true;
-                            break;
-                        }
-                    }
-                    if (!is_found)
-                    {
-                        var p = new PluginGeneratorNodeSettings(this);
-                        p.SettingsVm = tt.GetAppGenerationNodeSettingsVm(tt.SettingsAsJsonDefault);
-                        p.NodeSettingsVmGuid = tt.Guid;
-                        dicGenNodeSettings[p.NodeSettingsVmGuid] = p.SettingsVm;
-                        ngs.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
+                this.AddNodeAppGenSettings(t.Key);
+                //AddAppProjectGenerator(ngs, t.Value);
             }
-            //foreach (var t in ngs.ListNodeGeneratorsSettings)
-            //{
-            //    if (cfg.DicActiveAppProjectGenerators.ContainsKey(t.AppProjectGeneratorGuid))
-            //    {
-            //        var gen = cfg.DicActiveAppProjectGenerators[t.AppProjectGeneratorGuid];
-            //        var appgen = (AppProjectGenerator)(cfg.DicNodes[t.AppProjectGeneratorGuid]);
-            //        bool is_found = false;
-            //        foreach (var tt in gen.GetListNodeGenerationSettings())
-            //        {
-            //            if (tt.Guid == t.NodeSettingsVmGuid)
-            //            {
-            //                t.SettingsVm = tt.GetAppGenerationNodeSettingsVm(t.Settings);
-            //                is_found = true;
-            //                break;
-            //            }
-            //        }
-            //        if (!is_found)
-            //            throw new Exception();
-            //    }
-            //    else
-            //        throw new Exception();
-            //}
         }
+
+        //private void AddAppProjectGenerator(INodeGenSettings ngs, KeyValuePair<string, IvPluginGenerator> t)
+        //private void AddAppProjectGenerator(INodeGenSettings ngs, IvPluginGenerator t)
+        //{
+        //    foreach (var tt in t.GetListNodeGenerationSettings())
+        //    {
+        //        bool is_found = false;
+        //        foreach (var ttt in ngs.ListNodeGeneratorsSettings)
+        //        {
+        //            if (tt.Guid == ttt.NodeSettingsVmGuid)
+        //            {
+        //                ttt.SettingsVm = tt.GetAppGenerationNodeSettingsVm(ttt.Settings);
+        //                dicGenNodeSettings[ttt.NodeSettingsVmGuid] = ttt.SettingsVm;
+        //                is_found = true;
+        //                break;
+        //            }
+        //        }
+        //        if (!is_found)
+        //        {
+        //            //var appgen = (AppProjectGenerator)cfg.DicNodes[appProjectGeneratorGuid];
+        //            //var gen = cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
+        //            //SearchPathAndAdd(appgen, ngs, gen);
+        //            var p = new PluginGeneratorNodeSettings(this);
+        //            p.SettingsVm = tt.GetAppGenerationNodeSettingsVm(tt.SettingsAsJsonDefault);
+        //            p.NodeSettingsVmGuid = tt.Guid;
+        //            dicGenNodeSettings[p.NodeSettingsVmGuid] = p.SettingsVm;
+        //            ngs.ListNodeGeneratorsSettings.Add(p);
+        //        }
+        //    }
+        //}
+
         public void SaveNodeAppGenSettings()
         {
             _logger.Trace();
@@ -222,30 +237,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        public void AddNodeAppGenSettings(string appGenGuid)
-        {
-            _logger.Trace();
-            //var cnfg = this.GetConfig();
-            var ngs = (INodeGenSettings)this;
-#if DEBUG
-            if (ngs == null)
-                throw new Exception();
-            foreach (var t in ngs.ListNodeGeneratorsSettings)
-            {
-                if (t.AppProjectGeneratorGuid == appGenGuid)
-                    throw new Exception();
-            }
-#endif
-            var cfg = (Config)this.GetConfig();
-            //var gen = cfg.DicActiveAppProjectGenerators[appGenGuid];
-            //var set = new PluginGeneratorMainSettings(this);
-            //set.AppGeneratorGuid = appGenGuid;
-            //set.SettingsVm = gen.GetAppGenerationSettingsVmFromJson("");
-            //ngs.ListNodeGeneratorsSettings.Add(set);
-            var appgen = (AppProjectGenerator)cfg.DicNodes[appGenGuid];
-            var gen = cfg.DicActiveAppProjectGenerators[appGenGuid];
-            SearchPathAndAdd(appgen, ngs, gen);
-        }
 
         #endregion Node App Generator Settings
 
@@ -257,15 +248,6 @@ namespace vSharpStudio.vm.ViewModels
         /// <returns></returns>
         public IvPluginNodeSettings GetSettings(string guid)
         {
-            //if (!dicGenNodeSettings.ContainsKey(guid))
-            //{
-            //    var tt = this as INodeGenSettings;
-            //    foreach (var t in tt.ListNodeGeneratorsSettings)
-            //    {
-            //        if (!dicGenNodeSettings.ContainsKey(t.NodeSettingsVmGuid))
-            //            dicGenNodeSettings[t.NodeSettingsVmGuid] = t.SettingsVm;
-            //    }
-            //}
             if (!dicGenNodeSettings.ContainsKey(guid))
                 throw new Exception();
             return dicGenNodeSettings[guid];
@@ -282,16 +264,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                //Config cfg = (Config)this.GetConfig();
-                //var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-                //var lst = gen?.GetListNodeGenerationSettings();
-                //var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
-                //foreach (var t in lst)
-                //{
-                //    var p = new PluginGeneratorNodeSettings(this, this.Guid, t);
-                //    lstNodesSettings.Add(p);
-                //}
-                //var res = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
                 var nd = new NodeSettings();
                 var res = nd.Run(this);
                 return res;

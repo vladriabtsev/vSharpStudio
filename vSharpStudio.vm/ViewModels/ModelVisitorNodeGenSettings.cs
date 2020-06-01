@@ -23,6 +23,11 @@ namespace vSharpStudio.vm.ViewModels
             if (m is INodeGenSettings)
                 _act(m as INodeGenSettings);
         }
+        protected override void Visit(IGroupListCommon m)
+        {
+            if (m is INodeGenSettings)
+                _act(m as INodeGenSettings);
+        }
         protected override void Visit(IGroupListConstants cn)
         {
             if (cn is INodeGenSettings)
@@ -57,6 +62,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (ct is INodeGenSettings)
                 _act(ct as INodeGenSettings);
+        }
+        protected override void Visit(IGroupDocuments cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
         }
         protected override void Visit(IGroupListDocuments cn)
         {

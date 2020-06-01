@@ -14,6 +14,7 @@ namespace vSharpStudio.common
         protected virtual void Visit(IEnumerable<IDocument> lst) { }
         protected virtual void Visit(IConfig c) { }
         protected virtual void Visit(IConfigModel m) { }
+        protected virtual void Visit(IGroupListCommon cn) { }
         protected virtual void Visit(IGroupListConstants cn) { }
         protected virtual void Visit(IConstant cn) { }
         protected virtual void Visit(IGroupListEnumerations cn) { }
@@ -21,6 +22,7 @@ namespace vSharpStudio.common
         protected virtual void Visit(IEnumerationPair p) { }
         protected virtual void Visit(IGroupListCatalogs cn) { }
         protected virtual void Visit(ICatalog ct) { }
+        protected virtual void Visit(IGroupDocuments cn) { }
         protected virtual void Visit(IGroupListDocuments cn) { }
         protected virtual void Visit(IDocument d) { }
         protected virtual void Visit(IGroupListProperties cn) { }
@@ -32,6 +34,9 @@ namespace vSharpStudio.common
         protected virtual void Visit(IGroupListForms cn) { }
         protected virtual void Visit(IGroupListForms parent, IEnumerable<IForm> diff_lst) { }
         protected virtual void Visit(IForm p) { }
+        protected virtual void Visit(IGroupListJournals cn) { }
+        protected virtual void Visit(IGroupListJournals parent, IEnumerable<IJournal> diff_lst) { }
+        protected virtual void Visit(IJournal cn) { }
         protected virtual void Visit(IGroupListReports cn) { }
         protected virtual void Visit(IGroupListReports parent, IEnumerable<IReport> diff_lst) { }
         protected virtual void Visit(IReport p) { }
@@ -115,6 +120,17 @@ namespace vSharpStudio.common
 
             this.Visit(this.currModel);
 
+            #region Common
+            this.Visit(currModel.GroupCommon);
+            //this.Visit(currModel.GroupCommon.li.ListConstants);
+            //foreach (var tt in currModel.GroupConstants.ListConstants)
+            //{
+            //    this.Visit(tt);
+            //    if (_act != null)
+            //        _act(this, tt);
+            //}
+            #endregion Common
+
             #region Constants
             this.Visit(currModel.GroupConstants);
             this.Visit(currModel.GroupConstants.ListConstants);
@@ -169,6 +185,7 @@ namespace vSharpStudio.common
 
             #region Documents
             var sharedProps = currModel.GroupDocuments.GroupSharedProperties.ListProperties;
+            this.Visit(currModel.GroupDocuments);
             this.Visit(currModel.GroupDocuments.GroupSharedProperties);
             this.Visit(currModel.GroupDocuments.GroupListDocuments);
             this.Visit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
@@ -188,6 +205,24 @@ namespace vSharpStudio.common
                 this.currDoc = null;
             }
             #endregion Documents
+
+            #region Journals
+            this.Visit(currModel.GroupJournals);
+            foreach (var tt in currModel.GroupJournals.ListJournals)
+            {
+                this.Visit(tt);
+                if (_act != null)
+                    _act(this, tt);
+                if (tt.IsDeleted())
+                    continue;
+                //this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, sharedProps);
+                //this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
+                //this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
+                //this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
+                //this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
+                //this.currDoc = null;
+            }
+            #endregion Journals
 
             this.currCfg = null;
         }

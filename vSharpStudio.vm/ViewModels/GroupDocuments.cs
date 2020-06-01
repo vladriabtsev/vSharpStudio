@@ -34,20 +34,5 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
         }
-        [DisplayName("Generators")]
-        [Description("Expandable Attached Node Settings for App Project Generators")]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [PropertyOrderAttribute(int.MaxValue)]
-        public object GeneratorNodeSettings
-        {
-            get
-            {
-                if (!(this is INodeGenSettings))
-                    return null;
-                var res = SettingsTypeBuilder.CreateNewObject(this.ListNodeGeneratorsSettings);
-                return res;
-            }
-        }
     }
 }
