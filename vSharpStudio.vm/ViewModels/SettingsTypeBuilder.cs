@@ -18,6 +18,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public object Run(ITreeConfigNode node)
         {
+            var nds = (IGetNodeSetting)node;
             tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
             Config cfg = (Config)node.GetConfig();
@@ -62,20 +63,30 @@ namespace vSharpStudio.vm.ViewModels
                                 var dic_gs = new Dictionary<string, object>();
                                 foreach (var tttt in ttt.ListGenerators)
                                 {
+                                    bool isFound = false;
+                                    var lst = tttt.Generator.GetListNodeGenerationSettings();
+                                    foreach (var ts in lst)
+                                    {
+                                        if (nds.ContainsSettings(ts.Guid))
+                                            isFound = true;
+                                    }
+                                    if (!isFound)
+                                        continue;
                                     SettingsTypeBuilder.CreateProperty(tb, tttt.Name, typeof(Object));
 
                                     stackBuilders.Push(tb);
                                     tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
-                                    var lst = tttt.Generator.GetListNodeGenerationSettings();
                                     foreach (var ts in lst)
                                     {
-                                        SettingsTypeBuilder.CreateProperty(tb, ts.Name, typeof(Object));
+                                        if (nds.ContainsSettings(ts.Guid))
+                                            SettingsTypeBuilder.CreateProperty(tb, ts.Name, typeof(Object));
                                     }
                                     Type nsType = tb.CreateType();
                                     obj = Activator.CreateInstance(nsType);
                                     foreach (var ts in lst)
                                     {
-                                        nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, obj, new object[] { ((IGetNodeSetting)node).GetSettings(ts.Guid) });
+                                        if (nds.ContainsSettings(ts.Guid))
+                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, obj, new object[] { ((IGetNodeSetting)node).GetSettings(ts.Guid) });
                                     }
                                     tb = stackBuilders.Pop();
                                     dic_gs[tttt.Name] = obj;

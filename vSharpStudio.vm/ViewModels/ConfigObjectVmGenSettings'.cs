@@ -88,19 +88,24 @@ namespace vSharpStudio.vm.ViewModels
 
                 if (is_found)
                 {
-                    PluginGeneratorNodeSettings gs = new PluginGeneratorNodeSettings(this);
-                    gs.Name = appProjectGenerator.Name;
-                    gs.NodeSettingsVmGuid = t.Guid;
-                    gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
-                    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
-#if DEBUG
+                    PluginGeneratorNodeSettings gs = null;
                     foreach (var ttt in ngs.ListNodeGeneratorsSettings)
                     {
-                        if (ttt.NodeSettingsVmGuid == gs.NodeSettingsVmGuid)
-                            throw new Exception();
+                        if (ttt.NodeSettingsVmGuid == t.Guid)
+                        {
+                            gs = ttt;
+                            break;
+                        }
                     }
-#endif
-                    ngs.ListNodeGeneratorsSettings.Add(gs);
+                    if (gs == null)
+                    {
+                        gs = new PluginGeneratorNodeSettings(this);
+                        gs.Name = appProjectGenerator.Name;
+                        gs.NodeSettingsVmGuid = t.Guid;
+                        gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
+                        _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
+                        ngs.ListNodeGeneratorsSettings.Add(gs);
+                    }
                     gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
                     dicGenNodeSettings[gs.NodeSettingsVmGuid] = gs.SettingsVm;
                 }
@@ -150,15 +155,15 @@ namespace vSharpStudio.vm.ViewModels
             _logger.Trace();
             //var cnfg = this.GetConfig();
             var ngs = (INodeGenSettings)this;
-#if DEBUG
-            if (ngs == null)
-                throw new Exception();
-            foreach (var t in ngs.ListNodeGeneratorsSettings)
-            {
-                if (t.AppProjectGeneratorGuid == appProjectGeneratorGuid)
-                    throw new Exception();
-            }
-#endif
+            //#if DEBUG
+            //            if (ngs == null)
+            //                throw new Exception();
+            //            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            //            {
+            //                if (t.AppProjectGeneratorGuid == appProjectGeneratorGuid)
+            //                    throw new Exception();
+            //            }
+            //#endif
             var cfg = (Config)this.GetConfig();
             //var gen = cfg.DicActiveAppProjectGenerators[appGenGuid];
             //var set = new PluginGeneratorMainSettings(this);
@@ -252,6 +257,11 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception();
             return dicGenNodeSettings[guid];
         }
+        public bool ContainsSettings(string guid)
+        {
+            return dicGenNodeSettings.ContainsKey(guid);
+        }
+
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]

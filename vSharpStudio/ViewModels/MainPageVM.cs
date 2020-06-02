@@ -649,8 +649,8 @@ namespace vSharpStudio.ViewModels
                             () =>
                             {
 #endif
-                        if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
-                            ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
+                        //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
                         if (ttt.DynamicMainSettings != null)
                             ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
 #if RELEASE

@@ -27,8 +27,8 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
-        [DisplayName("General")]
-        [Description("General generator settings")]
+        [DisplayName("Settings")]
+        [Description("General generator settings. Config model nodes can contain additional settings if generator supports node settings")]
         // Generator parameters object
         public object DynamicMainSettings
         {
@@ -47,31 +47,31 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object _DynamicMainSettings;
-        [PropertyOrderAttribute(11)]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [DisplayName("Nodes")]
-        [Description("Nodes default generators settings")]
-        // Dynamic class object of for node generators representation:
-        // Expandable node generator name
-        //    Expandable generator parameters object
-        public object DynamicNodesSettings
-        {
-            get
-            {
-                //Config cfg = (Config)this.GetConfig();
-                //var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-                //var lst = gen?.GetListNodeGenerationSettings();
-                var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
-                //foreach (var t in lst)
-                //{
-                //    var p = new PluginGeneratorNodeSettings(this, this.Guid, t);
-                //    lstNodesSettings.Add(p);
-                //}
-                var res = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
-                return res;
-            }
-        }
+        //[PropertyOrderAttribute(11)]
+        //[ExpandableObjectAttribute()]
+        //[ReadOnly(true)]
+        //[DisplayName("Nodes")]
+        //[Description("Nodes default generators settings")]
+        //// Dynamic class object of for node generators representation:
+        //// Expandable node generator name
+        ////    Expandable generator parameters object
+        //public object DynamicNodesSettings
+        //{
+        //    get
+        //    {
+        //        //Config cfg = (Config)this.GetConfig();
+        //        //var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+        //        //var lst = gen?.GetListNodeGenerationSettings();
+        //        var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
+        //        //foreach (var t in lst)
+        //        //{
+        //        //    var p = new PluginGeneratorNodeSettings(this, this.Guid, t);
+        //        //    lstNodesSettings.Add(p);
+        //        //}
+        //        var res = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
+        //        return res;
+        //    }
+        //}
         public void CreateGenSettings()
         {
             try
@@ -105,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
                     p.RemoveNodeAppGenSettings(this.Guid);
                 });
             }
-            this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
+            //this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
         }
 
         private void UpdateListGenerators()
@@ -161,7 +161,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.AddNodeAppGenSettings(this.Guid);
             });
-            this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
+            //this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
         }
         public string GetGenerationFilePath()
         {
