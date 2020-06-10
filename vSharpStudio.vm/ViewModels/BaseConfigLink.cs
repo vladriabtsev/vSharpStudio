@@ -31,5 +31,9 @@ namespace vSharpStudio.vm.ViewModels
         //#endif
 
         //        }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+        }
     }
 }

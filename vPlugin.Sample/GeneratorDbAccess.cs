@@ -17,9 +17,10 @@ namespace vPlugin.Sample
         public string NameUi => "Db Access Layer";
         public string DefaultSettingsName => throw new NotImplementedException();
         public string Description => "Description Db Access Layer";
+        public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
         private GeneratorDbAccessSettings gen_settings = null;
-        public IvPluginGeneratorSettingsVM GetAppGenerationSettingsVmFromJson(string settings)
+        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
         {
             if (gen_settings != null)
                 return gen_settings;
@@ -33,9 +34,9 @@ namespace vPlugin.Sample
             return gen_settings;
         }
 
-        public List<IvPluginNodeSettings> GetListNodeGenerationSettings()
+        public List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings()
         {
-            List<IvPluginNodeSettings> res = new List<IvPluginNodeSettings>();
+            List<IvPluginGeneratorNodeSettings> res = new List<IvPluginGeneratorNodeSettings>();
             res.Add(new GeneratorDbAccessNodePropertySettings());
             res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
             res.Add(new GeneratorDbAccessNodeSettings());

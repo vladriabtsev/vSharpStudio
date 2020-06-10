@@ -3,7 +3,6 @@ syntax = "proto3";
 package proto_plugin_sample;
 option csharp_namespace = "Proto.Plugin";
 
-
 // @base ViewModelValidatableWithSeverity
 message proto_generator_db_schema_settings {
     bool is_schema_param1 = 1;
@@ -21,6 +20,7 @@ message proto_generator_db_access_settings {
 // @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_node_settings {
     bool is_param1 = 1;
+    bool_nullable is_included = 2;
 }
 // @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_node_property_settings {

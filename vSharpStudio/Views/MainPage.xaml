@@ -139,7 +139,8 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>
-                            <xctk:WatermarkComboBox MinWidth="120">
+                            <xctk:WatermarkComboBox ItemsSource="{Binding SelectedDbDesignPlugin}"
+                                MinWidth="120">
                                 <xctk:WatermarkComboBox.WatermarkTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="Connection string" Foreground="Gray" />

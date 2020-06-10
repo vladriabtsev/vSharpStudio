@@ -16,5 +16,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+        }
     }
 }

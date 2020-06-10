@@ -19,7 +19,7 @@ namespace vSharpStudio.common
         // Provider name as from connection string
         string ProviderName { get; }
 
-        IvPluginGeneratorSettingsVM GetConnectionStringMvvm(string provider, string connectionString);
+        IvPluginGeneratorSettings GetConnectionStringMvvm(string provider, string connectionString);
 
         int GetMigrationVersion();
         // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);

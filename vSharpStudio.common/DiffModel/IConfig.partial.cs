@@ -15,6 +15,7 @@ namespace vSharpStudio.common
         IConfig OldStableConfig { get; }
 
         DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
+        DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
 
         //List<IConfig> SetAnnotations(IConfig prev, IConfig old);
         List<IConfig> GetListConfigs();

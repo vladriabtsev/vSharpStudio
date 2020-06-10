@@ -12,7 +12,7 @@ namespace vSharpStudio.common
     /// <summary>
     /// Interface for DbDesign type of plugins
     /// </summary>
-    public interface IvPluginDbConnStringGenerator : IvPluginGenerator, IvPluginGeneratorSettingsVM
+    public interface IvPluginDbConnStringGenerator : IvPluginGenerator, IvPluginGeneratorSettings
     {
         string ProviderName { get; }
     }

@@ -24,16 +24,21 @@ namespace vSharpStudio.vm.ViewModels
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
 
-        public DictionaryExt<string, ITreeConfigNode> DicNodes { get; set; }
+        public DictionaryExt<string, ITreeConfigNode> DicNodes { get; private set; }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
-        public DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
-            (ki, v) =>
+        private DictionaryExt<string, IvPluginGenerator> dicActiveAppProjectGenerators = null;
+        public DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators
+        {
+            get
             {
-            }, (kr, v) =>
-            {
-            }, () =>
-            {
-            });
+                if (dicActiveAppProjectGenerators == null)
+                {
+                    dicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+                        (ki, v) => { }, (kr, v) => { }, () => { });
+                }
+                return dicActiveAppProjectGenerators;
+            }
+        }
 
         public override IEnumerable<object> GetChildren(object parent)
         {

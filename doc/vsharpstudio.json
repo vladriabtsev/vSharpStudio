@@ -417,6 +417,16 @@
               "defaultValue": ""
             },
             {
+              "name": "namespace",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"Namespace\")]\n@attr [Description(\"Project namespace name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_app_project_generators",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",

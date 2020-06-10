@@ -41,6 +41,14 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupForms, 8);
             this.Children.Add(this.GroupReports, 9);
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            this.GroupForms.AddAllAppGenSettingsVmsToNode();
+            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+        }
 
         #region Tree operations
         public override bool NodeCanUp()

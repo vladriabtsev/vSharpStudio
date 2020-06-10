@@ -8,7 +8,7 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbAccessNodeCatalogFormSettings : IvPluginNodeSettings
+    public partial class GeneratorDbAccessNodeCatalogFormSettings : IvPluginGeneratorNodeSettings
     {
         [BrowsableAttribute(false)]
         [ReadOnly(true)]
@@ -39,7 +39,7 @@ namespace vPlugin.Sample
             }
         }
         private static string settingsAsJsonDefault = null;
-        public IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings)
+        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
                 return new GeneratorDbAccessNodeCatalogFormSettings();

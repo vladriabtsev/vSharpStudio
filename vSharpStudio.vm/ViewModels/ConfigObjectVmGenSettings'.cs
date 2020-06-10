@@ -80,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
             var lst = gen.GetListNodeGenerationSettings();
             foreach (var t in lst)
             {
-                if (dicGenNodeSettings.ContainsKey(t.Guid))
+                if (DicGenNodeSettings.ContainsKey(t.Guid))
                     continue;
                 string modelPath = this.ModelPath;
                 var searchPattern = t.SearchPathInModel;
@@ -107,7 +107,7 @@ namespace vSharpStudio.vm.ViewModels
                         ngs.ListNodeGeneratorsSettings.Add(gs);
                     }
                     gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
-                    dicGenNodeSettings[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+                    DicGenNodeSettings[gs.NodeSettingsVmGuid] = gs.SettingsVm;
                 }
             }
         }
@@ -236,7 +236,7 @@ namespace vSharpStudio.vm.ViewModels
                 var t = ngs.ListNodeGeneratorsSettings[i];
                 if (t.AppProjectGeneratorGuid == appGenGuid)
                 {
-                    dicGenNodeSettings.Remove(t.NodeSettingsVmGuid);
+                    DicGenNodeSettings.Remove(t.NodeSettingsVmGuid);
                     ngs.ListNodeGeneratorsSettings.RemoveAt(i);
                     break;
                 }
@@ -245,21 +245,54 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Node App Generator Settings
 
-        protected Dictionary<string, IvPluginNodeSettings> dicGenNodeSettings = new Dictionary<string, IvPluginNodeSettings>();
+        public DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get { return dicGenNodeSettings; } }
+        private DictionaryExt<string, IvPluginGeneratorNodeSettings> dicGenNodeSettings =
+            new DictionaryExt<string, IvPluginGeneratorNodeSettings>(20, false, true,
+                        (ki, v) => { }, (kr, v) => { }, () => { });
         /// <summary>
         /// Getting VM of generator settings for node
         /// </summary>
         /// <param name="guid">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public IvPluginNodeSettings GetSettings(string guid)
+        public bool IsIncluded(string guid)
         {
-            if (!dicGenNodeSettings.ContainsKey(guid))
+            if (!DicGenNodeSettings.ContainsKey(guid))
                 throw new Exception();
-            return dicGenNodeSettings[guid];
+
+            ITreeConfigNode p = this;
+            while (p != null)
+            {
+                var ngs = p as INodeGenSettings;
+                if (ngs != null)
+                {
+                    //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
+                    //    return true;
+                    var settings = (IvPluginGeneratorNodeIncludable)ngs.DicGenNodeSettings[guid];
+                    if (settings.IsIncluded.HasValue)
+                    {
+                        return settings.IsIncluded ?? false;
+                    }
+                }
+                //if (p.Parent == null)
+                //    return true;
+                p = p.Parent;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Getting VM of generator settings for node
+        /// </summary>
+        /// <param name="guid">Guid of VM of generator node settings</param>
+        /// <returns></returns>
+        public IvPluginGeneratorNodeSettings GetSettings(string guid)
+        {
+            if (!DicGenNodeSettings.ContainsKey(guid))
+                throw new Exception();
+            return DicGenNodeSettings[guid];
         }
         public bool ContainsSettings(string guid)
         {
-            return dicGenNodeSettings.ContainsKey(guid);
+            return DicGenNodeSettings.ContainsKey(guid);
         }
 
         [PropertyOrderAttribute(11)]

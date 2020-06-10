@@ -123,8 +123,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsNotNotifying)
                 return;
             Config cfg = (Config)this.GetConfig();
-            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+            //if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+            //    cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
@@ -269,12 +269,13 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeRemove()
         {
+            this.PluginGeneratorGuid = "";
             var cfg = (Config)this.GetConfig();
-            var nv = new ModelVisitorNodeGenSettings();
-            nv.NodeGenSettingsApplyAction(cfg, (p) =>
-            {
-                p.RemoveNodeAppGenSettings(this.Guid);
-            });
+            //var nv = new ModelVisitorNodeGenSettings();
+            //nv.NodeGenSettingsApplyAction(cfg, (p) =>
+            //{
+            //    p.RemoveNodeAppGenSettings(this.Guid);
+            //});
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
             cfg.DicActiveAppProjectGenerators.Remove(this.Guid);

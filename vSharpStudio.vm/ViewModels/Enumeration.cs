@@ -20,9 +20,14 @@ namespace vSharpStudio.vm.ViewModels
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
             this.ListEnumerationPairs.OnAddedAction = (t) => {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+        }
+
         public static string GetTypeDesc(Enumeration p)
         {
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);

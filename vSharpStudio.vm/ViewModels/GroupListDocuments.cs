@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
             this.ListDocuments.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
 

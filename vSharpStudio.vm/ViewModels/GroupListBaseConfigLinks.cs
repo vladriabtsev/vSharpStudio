@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
             // Children.Add(this.GroupListDocuments, 8);
             this.ListBaseConfigLinks.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
 

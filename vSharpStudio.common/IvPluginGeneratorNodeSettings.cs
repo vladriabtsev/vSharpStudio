@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginNodeSettings : INotifyPropertyChanged
+    public interface IvPluginGeneratorNodeSettings : INotifyPropertyChanged
     {
         string Guid { get; }
         string Name { get; }
@@ -25,7 +25,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings);
+        IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings);
         /// <summary>
         /// Get JSON representation from a settings VM
         /// </summary>

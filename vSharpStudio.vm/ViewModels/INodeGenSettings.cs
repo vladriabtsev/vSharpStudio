@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -15,5 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         void AddNodeAppGenSettings(string appGenGuid);
         //void CreatePropertyGridNodeGenSettings(INodeGenSettings p);
         //string GeneratorSettings { get; }
+        DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
     }
 }

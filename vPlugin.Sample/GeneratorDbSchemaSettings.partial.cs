@@ -5,10 +5,10 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettingsVM
+    public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings
     {
         public string SettingsAsJson => throw new NotImplementedException();
-        public string GenerateCode(IConfigModel model)
+        public string GenerateCode(IConfig model)
         {
             throw new NotImplementedException();
         }

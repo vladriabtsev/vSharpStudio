@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
             this.ListProperties.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
 
@@ -84,6 +84,20 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
             var node = new Property(this) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyString(string name, uint length)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyNumerical(string name, uint length, uint accuracy)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
+            var node = new Property(this) { Name = name, DataType = dt };
             this.NodeAddNewSubNode(node);
             return node;
         }

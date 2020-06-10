@@ -81,6 +81,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_param1 | [bool](#bool) |  |  |
+| is_included | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
 
 
 

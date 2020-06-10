@@ -20,6 +20,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+        }
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
         {

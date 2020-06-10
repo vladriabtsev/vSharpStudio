@@ -44,6 +44,11 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion IConfigObject
 
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+        }
+
         #region Tree operations
         public override bool NodeCanUp()
         {

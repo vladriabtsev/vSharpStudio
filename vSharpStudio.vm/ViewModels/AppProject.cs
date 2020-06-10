@@ -96,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             }
         }
-        public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath =null)
+        public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath = null)
         {
             AppProjectGenerator node = new AppProjectGenerator(this);
             this.ListAppProjectGenerators.Add(node);

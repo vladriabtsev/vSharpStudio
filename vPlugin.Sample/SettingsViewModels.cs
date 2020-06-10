@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/31/2020 14:25:24
+// Auto generated on UTC 06/10/2020 08:20:34
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -370,12 +370,14 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             GeneratorDbAccessNodeSettings vm = new GeneratorDbAccessNodeSettings();
             vm.IsNotNotifying = true;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 63
+            vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 56
             vm.IsNotNotifying = false;
             return vm;
         }
         public static void Update(GeneratorDbAccessNodeSettings to, GeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 74
         {
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 136
+            to.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 131
         }
         // Clone.tt Line: 142
         #region IEditable
@@ -403,6 +405,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
             vm.IsNotNotifying = true;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 214
+            vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 214
             vm.IsNotNotifying = false;
             return vm;
         }
@@ -411,6 +414,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 230
             m.IsParam1 = vm.IsParam1; // Clone.tt Line: 267
+            m.IsIncluded = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 244
+            m.IsIncluded.HasValue = vm.IsIncluded.HasValue;
+            if (vm.IsIncluded.HasValue)
+                m.IsIncluded.Value = vm.IsIncluded.Value;
             return m;
         }
         #endregion Procedures
@@ -439,6 +446,30 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 157
         partial void OnIsParam1Changed();
         bool IGeneratorDbAccessNodeSettings.IsParam1 { get { return this._IsParam1; } }
+        
+        public bool? IsIncluded // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._IsIncluded; 
+            }
+            set
+            {
+                if (this._IsIncluded != value)
+                {
+                    this.OnIsIncludedChanging(ref value);
+                    this._IsIncluded = value;
+                    this.OnIsIncludedChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool? _IsIncluded;
+        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 157
+        partial void OnIsIncludedChanged();
+        bool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } }
     
         #endregion Properties
     }

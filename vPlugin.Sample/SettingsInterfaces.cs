@@ -24,6 +24,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IGeneratorDbAccessNodeSettings // ModelInterfaces.tt Line: 29
     {
         bool IsParam1 { get; } // ModelInterfaces.tt Line: 47
+        bool? IsIncluded { get; } // ModelInterfaces.tt Line: 47
     }
     
     public partial interface IGeneratorDbAccessNodePropertySettings // ModelInterfaces.tt Line: 29

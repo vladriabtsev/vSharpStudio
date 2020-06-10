@@ -21,9 +21,23 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
+            this.GroupProperties.ListProperties.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
             this.Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
+            this.GroupPropertiesTabs.ListPropertiesTabs.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
             this.Children.Add(this.GroupPropertiesTabs, 9);
+        }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

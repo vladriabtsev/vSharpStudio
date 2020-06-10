@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGeneratorSettingsVM : INotifyPropertyChanged
+    public interface IvPluginGeneratorSettings : INotifyPropertyChanged
     {
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
@@ -17,6 +17,6 @@ namespace vSharpStudio.common
         /// Generate code for current settings (if applicable for generator)
         /// </summary>
         /// <returns>Generated code</returns>
-        string GenerateCode(IConfigModel model);
+        string GenerateCode(IConfig cfg);
     }
 }

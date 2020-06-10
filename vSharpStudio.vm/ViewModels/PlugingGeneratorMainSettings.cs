@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class PluginGeneratorMainSettings
     {
-        public IvPluginGeneratorSettingsVM SettingsVm { get; set; }
+        public IvPluginGeneratorSettings SettingsVm { get; set; }
         //[ReadOnly(true)]
         //public new string Name
         //{

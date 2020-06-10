@@ -501,11 +501,12 @@ namespace vSharpStudio.ViewModels
 
         public void Compose(string pluginsFolderPath = null)
         {
-            _logger.LogDebug("Loading plugins".CallerInfo());
             try
             {
+                string folder = (pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins";
+                _logger.LogDebug("Loading plugins from folder: {folder}".CallerInfo(), folder);
                 AggregateCatalog catalog = new AggregateCatalog();
-                this.AgregateCatalogs((pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins", "vPlugin*.dll", catalog);
+                this.AgregateCatalogs(folder, "vPlugin*.dll", catalog);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
             }
@@ -652,7 +653,7 @@ namespace vSharpStudio.ViewModels
                         //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
                         //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
                         if (ttt.DynamicMainSettings != null)
-                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettings).SettingsAsJson;
 #if RELEASE
                             }, "Can't get PROTO settings from Plugin");
 #endif
@@ -937,6 +938,66 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
+        public void GenerateCode(CancellationToken cancellationToken)
+        {
+            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    throw new CancellationException();
+                foreach (var tp in ts.ListAppProjects)
+                {
+                    foreach (var tpg in tp.ListAppProjectGenerators)
+                    {
+                        foreach (var tg in tpg.ListGenerators)
+                        {
+                            if (tg.Guid != tpg.PluginGeneratorGuid)
+                                continue;
+                            if (tg.Generator != null)
+                            {
+                                switch (tg.Generator.PluginGeneratorType)
+                                {
+                                    case vPluginLayerTypeEnum.DbDesign:
+                                        break;
+                                    case vPluginLayerTypeEnum.DbConnection:
+                                        break;
+                                    default:
+                                        StringBuilder sb = new StringBuilder();
+                                        sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                        sb.Append("\\");
+                                        var folder = Path.GetDirectoryName(ts.RelativeAppSolutionPath);
+                                        if (folder?.Length > 0)
+                                        {
+                                            sb.Append(folder);
+                                            sb.Append("\\");
+                                        }
+                                        folder = Path.GetDirectoryName(tp.RelativeAppProjectPath);
+                                        if (folder?.Length > 0)
+                                        {
+                                            sb.Append(folder);
+                                            sb.Append("\\");
+                                        }
+                                        if (!string.IsNullOrWhiteSpace(tpg.RelativePathToGenFolder))
+                                        {
+                                            sb.Append(tpg.RelativePathToGenFolder);
+                                            if (tpg.RelativePathToGenFolder[tpg.RelativePathToGenFolder.Length - 1] != '\\')
+                                                sb.Append("\\");
+                                        }
+                                        sb.Append(tpg.GenFileName);
+                                        string outFile = sb.ToString();
+                                        string code = tg.Generator.GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
+                                        // tg.GetRelativeToConfigDiskPath()
+                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                        byte[] bytes = Encoding.UTF8.GetBytes(code);
+                                        File.WriteAllBytes(outFile, bytes);
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         //async Task MyMethodAsync()
         //{
         //    // Code here runs in the original context.
@@ -1072,15 +1133,7 @@ namespace vSharpStudio.ViewModels
 
                     // VI. Generate code (no need for UNDO)
                     #region
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    {
-                        if (cancellationToken.IsCancellationRequested)
-                            throw new CancellationException();
-                        foreach (var tp in ts.ListAppProjects)
-                        {
-                            // generate
-                        }
-                    }
+                    this.GenerateCode(cancellationToken);
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();

@@ -19,6 +19,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = plugin.Name;
             this.Description = plugin.Description;
             this.Generator = plugin;
+            this.Generator.Parent = this;
             this.IsEditable = false;
         }
 
@@ -33,6 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         public void SetGenerator(IvPluginGenerator generator)
         {
             this.Generator = generator;
+            this.Generator.Parent = this;
         }
 
         #region Tree operations

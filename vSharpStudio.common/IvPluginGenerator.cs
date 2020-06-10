@@ -23,6 +23,7 @@ namespace vSharpStudio.common
         /// </summary>
         string DefaultSettingsName { get; }
         string Description { get; }
+        ITreeConfigNode Parent { get; set; }
         vPluginLayerTypeEnum PluginGeneratorType { get; }
         // MVVM settings model (if settings == null then empty model will be created)
         /// <summary>
@@ -32,8 +33,8 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings, json format"></param>
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
-        IvPluginGeneratorSettingsVM GetAppGenerationSettingsVmFromJson(string settings);
-        List<IvPluginNodeSettings> GetListNodeGenerationSettings();
+        IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings);
+        List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings();
         List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes);
     }
 }

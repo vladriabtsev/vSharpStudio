@@ -8,7 +8,7 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbAccessNodeSettings : IvPluginNodeSettings
+    public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
         public static string GuidStatic = "2511D2D7-020E-4481-BB38-08D4B1ECF083";
         [BrowsableAttribute(false)]
@@ -39,7 +39,7 @@ namespace vPlugin.Sample
             }
         }
         private static string settingsAsJsonDefault = null;
-        public IvPluginNodeSettings GetAppGenerationNodeSettingsVm(string settings)
+        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
                 return new GeneratorDbAccessNodeSettings();

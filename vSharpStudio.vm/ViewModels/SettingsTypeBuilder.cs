@@ -63,6 +63,8 @@ namespace vSharpStudio.vm.ViewModels
                                 var dic_gs = new Dictionary<string, object>();
                                 foreach (var tttt in ttt.ListGenerators)
                                 {
+                                    if (tttt.Generator == null)
+                                        continue;
                                     bool isFound = false;
                                     var lst = tttt.Generator.GetListNodeGenerationSettings();
                                     foreach (var ts in lst)

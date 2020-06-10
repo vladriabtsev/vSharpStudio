@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.ListCatalogs.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
         protected override void OnInitFromDto()

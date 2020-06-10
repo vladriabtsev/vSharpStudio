@@ -7,7 +7,7 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbAccessSettings : IvPluginGeneratorSettingsVM
+    public partial class GeneratorDbAccessSettings : IvPluginGeneratorSettings
     {
         [BrowsableAttribute(false)]
         public string SettingsAsJson
@@ -18,7 +18,7 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-        public string GenerateCode(IConfigModel model)
+        public string GenerateCode(IConfig model)
         {
             string s = "";
             if (this.IsAccessParam1)
@@ -26,7 +26,7 @@ namespace vPlugin.Sample
                 s = "kuku";
             }
             var visitor = new MyModelVisitor(this);
-            visitor.RunThroughConfig(model);
+            visitor.RunThroughConfig(model.Model);
             return visitor.Result;
         }
     }

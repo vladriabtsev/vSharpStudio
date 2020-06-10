@@ -18,6 +18,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+            //this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            //this.GroupForms.AddAllAppGenSettingsVmsToNode();
+            //this.GroupReports.AddAllAppGenSettingsVmsToNode();
+        }
 
         #region Tree operations
         public override bool NodeCanUp()

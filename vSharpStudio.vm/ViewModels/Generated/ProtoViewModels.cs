@@ -1,4 +1,4 @@
-// Auto generated on UTC 05/31/2020 14:25:22
+// Auto generated on UTC 06/10/2020 08:20:33
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3696,6 +3696,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 63
             if (isDeep) // Clone.tt Line: 60
                 vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
+            vm.Namespace = from.Namespace; // Clone.tt Line: 63
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 49
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 50
                 vm.ListAppProjectGenerators.Add(AppProjectGenerator.Clone(vm, (AppProjectGenerator)t, isDeep));
@@ -3713,6 +3714,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 136
             if (isDeep) // Clone.tt Line: 133
                 AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
+            to.Namespace = from.Namespace; // Clone.tt Line: 136
             if (isDeep) // Clone.tt Line: 81
             {
                 foreach (var t in to.ListAppProjectGenerators.ToList())
@@ -3783,6 +3785,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (vm.DefaultDb == null) // Clone.tt Line: 206
                 vm.DefaultDb = new AppDbSettings(vm); // Clone.tt Line: 208
             AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 212
+            vm.Namespace = m.Namespace; // Clone.tt Line: 214
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 193
             foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 194
             {
@@ -3805,6 +3808,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 267
             m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 267
             m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 261
+            m.Namespace = vm.Namespace; // Clone.tt Line: 267
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 233
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 237
             return m;
@@ -3910,6 +3914,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDefaultDbChanging(ref AppDbSettings to); // Property.tt Line: 131
         partial void OnDefaultDbChanged();
         IAppDbSettings IAppProject.DefaultDb { get { return this._DefaultDb; } }
+        
+        [PropertyOrderAttribute(9)]
+        [DisplayName("Namespace")]
+        [Description("Project namespace name")]
+        public string Namespace // Property.tt Line: 135
+        { 
+            get 
+            { 
+                return this._Namespace; 
+            }
+            set
+            {
+                if (this._Namespace != value)
+                {
+                    this.OnNamespaceChanging(ref value);
+                    this._Namespace = value;
+                    this.OnNamespaceChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Namespace = string.Empty;
+        partial void OnNamespaceChanging(ref string to); // Property.tt Line: 157
+        partial void OnNamespaceChanged();
+        string IAppProject.Namespace { get { return this._Namespace; } }
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<AppProjectGenerator> ListAppProjectGenerators // Property.tt Line: 58

@@ -21,12 +21,13 @@ namespace vPlugin.Sample
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();
         public string Description => "Description Abstract Db Schema";
+        public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbDesign;
         public void EnsureDbDeletedAndCreated(string connectionString)
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettingsVM GetConnectionStringMvvm(string provider, string connectionString)
+        public IvPluginGeneratorSettings GetConnectionStringMvvm(string provider, string connectionString)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +40,7 @@ namespace vPlugin.Sample
             throw new NotImplementedException();
         }
         private GeneratorDbSchemaSettings gen_settings = null;
-        public IvPluginGeneratorSettingsVM GetAppGenerationSettingsVmFromJson(string settings)
+        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
         {
             if (gen_settings != null)
                 return gen_settings;
@@ -52,15 +53,15 @@ namespace vPlugin.Sample
             }
             return gen_settings;
         }
-        public List<IvPluginNodeSettings> GetListNodeGenerationSettings()
+        public List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings()
         {
-            List<IvPluginNodeSettings> res = new List<IvPluginNodeSettings>();
+            List<IvPluginGeneratorNodeSettings> res = new List<IvPluginGeneratorNodeSettings>();
             res.Add(new GeneratorDbAccessNodePropertySettings());
             res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
             return res;
         }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
-        public IvPluginGeneratorSettingsVM GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
+        public IvPluginGeneratorSettings GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {
             return null;        }
         public int GetMigrationVersion()

@@ -41,6 +41,13 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupForms, 4);
             this.Children.Add(this.GroupReports, 5);
         }
+        public void OnAdded()
+        {
+            this.AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupForms.AddAllAppGenSettingsVmsToNode();
+            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+        }
 
         public Catalog(ITreeConfigNode parent, string name)
             : this(parent)
@@ -142,6 +149,7 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
     }

@@ -102,6 +102,16 @@
               "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "is_included",
+              "description": "",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_plugin_sample.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },

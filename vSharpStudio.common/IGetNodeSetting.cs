@@ -6,7 +6,8 @@ namespace vSharpStudio.common
 {
     public interface IGetNodeSetting
     {
-        IvPluginNodeSettings GetSettings(string guid);
+        IvPluginGeneratorNodeSettings GetSettings(string guid);
+        bool IsIncluded(string guid);
         bool ContainsSettings(string guid);
     }
 }

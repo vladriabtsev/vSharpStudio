@@ -233,6 +233,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 47
         IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
+        string Namespace { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     

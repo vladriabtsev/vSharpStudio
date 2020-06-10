@@ -202,6 +202,12 @@ namespace vSharpStudio.Unit
             main.IsAccessParam2 = false;
             var nd = (vPlugin.Sample.GeneratorDbAccessNodeSettings)stt.SettingsVm;
             nd.IsParam1 = true;
+
+
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
+            nd.IsIncluded = false;
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
+
             //foreach (var t in genDbAccess.GetListNodeGenerationSettings())
             //{
             //    if (t.SearchPathInModel == "Property")
@@ -236,6 +242,8 @@ namespace vSharpStudio.Unit
             stt = vm.Config.Model.ListNodeGeneratorsSettings[0];
             nd = (vPlugin.Sample.GeneratorDbAccessNodeSettings)stt.SettingsVm;
             Assert.AreEqual(true, nd.IsParam1);
+
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
 
             //// if new app progect generator is added, new setting are attached to all appropriate nodes
             //var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -298,6 +306,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("Solution.sln", sln.RelativeAppSolutionPath);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.Namespace = "Testnamespace";
             prj.RelativeAppProjectPath = prjPath;
             Assert.AreEqual(@"ConsoleApp1\ConsoleApp1.csproj", prj.RelativeAppProjectPath);
 

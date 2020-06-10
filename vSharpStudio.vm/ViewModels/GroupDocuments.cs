@@ -33,6 +33,14 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
+            this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
+            this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
         }
     }
 }

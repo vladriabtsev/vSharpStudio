@@ -11,7 +11,7 @@ namespace vSharpStudio.vm.ViewModels
         public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
             _act = act;
-            this.RunThroughConfig(curr, null);
+            this.RunThroughConfig(curr.Model, null);
         }
         //protected override void Visit(IConfig c)
         //{
@@ -78,7 +78,17 @@ namespace vSharpStudio.vm.ViewModels
             if (d is INodeGenSettings)
                 _act(d as INodeGenSettings);
         }
+        protected override void Visit(IGroupListPropertiesTabs t)
+        {
+            if (t is INodeGenSettings)
+                _act(t as INodeGenSettings);
+        }
         protected override void Visit(IPropertiesTab t)
+        {
+            if (t is INodeGenSettings)
+                _act(t as INodeGenSettings);
+        }
+        protected override void Visit(IGroupListProperties t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);

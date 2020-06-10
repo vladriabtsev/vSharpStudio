@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGeneratorSettings:{Name,nq}")]
     public partial class PluginGeneratorSettings : ICanGoLeft, ICanAddNode, ICanRemoveNode
     {
-        public PluginGeneratorSettings(ITreeConfigNode parent, IvPluginGeneratorSettingsVM settingsVM)
+        public PluginGeneratorSettings(ITreeConfigNode parent, IvPluginGeneratorSettings settingsVM)
             : this(parent)
         {
             this.VM = settingsVM;
@@ -30,9 +30,9 @@ namespace vSharpStudio.vm.ViewModels
 
         [ExpandableObjectAttribute()]
         [DisplayName("Settings")]
-        public IvPluginGeneratorSettingsVM VM { get; private set; }
+        public IvPluginGeneratorSettings VM { get; private set; }
 
-        public void SetVM(IvPluginGeneratorSettingsVM vm)
+        public void SetVM(IvPluginGeneratorSettings vm)
         {
             this.VM = vm;
         }

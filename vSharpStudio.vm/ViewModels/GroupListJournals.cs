@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
             this.ListJournals.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.OnAdded();
             };
         }
 

@@ -353,6 +353,11 @@ message proto_app_project {
     // @attr [Description("Database connection. If empty, solution settings are used")]
     proto_app_db_settings default_db = 8;
 
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [DisplayName("Namespace")]
+    // @attr [Description("Project namespace name")]
+    string namespace = 9;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project_generator list_app_project_generators = 10;
 }
