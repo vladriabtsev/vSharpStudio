@@ -120,12 +120,19 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
             }
             bool is_found = true;
+            bool is_negative = false;
             foreach (var t in subPatterns)
             {
+                string tt = t;
+                if (t[0]=='!')
+                {
+                    is_negative = true;
+                    tt = t.Substring(1);
+                }
 #if NET48
                         var sp = Split(t, ".*.");
 #else
-                var sp = t.Split(".*.");
+                var sp = tt.Split(".*.");
 #endif
                 is_found = true;
                 int indx = 0;
@@ -148,6 +155,8 @@ namespace vSharpStudio.vm.ViewModels
                 if (is_found)
                     break;
             }
+            if (is_negative)
+                return !is_found;
             return is_found;
         }
         public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
