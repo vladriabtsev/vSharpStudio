@@ -505,7 +505,7 @@
     <HierarchicalDataTemplate DataType="{x:Type dat:AppProjectGenerator}">
         <StackPanel Orientation="Horizontal">
             <Grid>
-                <ContentControl Template="{StaticResource iconGenerateFile}" />
+                <ContentControl Template="{Binding IconName, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 <Viewbox Height="8" Width="8" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>

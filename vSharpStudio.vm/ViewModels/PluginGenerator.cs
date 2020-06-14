@@ -38,6 +38,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PluginGeneratorSettings pgs = null;

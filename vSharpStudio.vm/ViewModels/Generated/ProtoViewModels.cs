@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/11/2020 23:44:10
+// Auto generated on UTC 06/14/2020 23:12:46
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -3583,7 +3583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(6)]
         [DisplayName("Path")]
         [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
-        [Description("Get is returning relative path to configuration file path")]
+        [Description(".NET solution file path relative to configuration file path")]
         public string RelativeAppSolutionPath // Property.tt Line: 135
         { 
             get 
@@ -3863,7 +3863,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
-        [Description("Get is returning relative path to solution file in the .net project")]
+        [Description(".NET project file path relative to solution file path")]
         public string RelativeAppProjectPath // Property.tt Line: 135
         { 
             get 

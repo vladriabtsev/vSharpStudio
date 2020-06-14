@@ -36,6 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public void AddAppSolution(AppSolution node)
         {
             this.NodeAddNewSubNode(node);

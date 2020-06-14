@@ -104,6 +104,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())

@@ -301,7 +301,8 @@ namespace vSharpStudio.vm.ViewModels
         // private string _SelectedDbProvider;
 
         #endregion Connection string editor
-        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
+        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPluginLists { get; set; }
+        public Dictionary<string, IvPlugin> DicPlugins { get; set; }
         public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
 
         public IConfig PrevCurrentConfig { get; set; }

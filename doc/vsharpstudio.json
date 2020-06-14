@@ -398,7 +398,7 @@
             },
             {
               "name": "relative_app_project_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]\n@attr [Description(\"Get is returning relative path to solution file in the .net project\")]\nApp project relative path to .net solution file path",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]\n@attr [Description(\".NET project file path relative to solution file path\")]\nApp project relative path to .net solution file path",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -459,7 +459,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [Description(\"Connection string name for DB connection generator\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -620,7 +620,7 @@
             },
             {
               "name": "relative_app_solution_path",
-              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]\n@attr [Description(\"Get is returning relative path to configuration file path\")]\nApp solution relative path to configuration file path",
+              "description": "List NET projects\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]\n@attr [Description(\".NET solution file path relative to configuration file path\")]\nApp solution relative path to configuration file path",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-
+        public bool CanAddSubNode() { return true; }
         public Catalog AddCatalog()
         {
             var node = new Catalog(this);

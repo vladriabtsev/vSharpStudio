@@ -33,11 +33,11 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public void AddReport(Report node)
         {
             this.NodeAddNewSubNode(node);
         }
-
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Report node = null;

@@ -34,13 +34,13 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public PropertiesTab AddPropertiesTab(string name)
         {
             var node = new PropertiesTab(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             PropertiesTab node = null;

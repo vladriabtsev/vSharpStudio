@@ -33,6 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public Document AddDocument(string name)
         {
             var node = new Document(this) { Name = name };

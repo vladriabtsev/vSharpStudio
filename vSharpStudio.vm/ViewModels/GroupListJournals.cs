@@ -32,6 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public void AddJournal(Journal node)
         {
             this.NodeAddNewSubNode(node);

@@ -273,12 +273,12 @@ namespace vSharpStudio.ViewModels
                 {
                     this.onImportsSatisfied(this, this._plugins);
                 }
-
                 List<PluginRow> lstGens = new List<PluginRow>();
-
+                this.Config.DicPlugins = new Dictionary<string, IvPlugin>();
                 // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
                 foreach (var t in this._plugins)
                 {
+                    this.Config.DicPlugins[t.Value.Guid] = t.Value;
                     Plugin p = null;
                     bool is_found = false;
 
@@ -374,13 +374,12 @@ namespace vSharpStudio.ViewModels
                     }
                     dic[gt] = lst;
                 }
-                if (this.DicPlugins != null)
+                if (this.Config.DicPluginLists != null)
                 {
-                    this.DicPlugins.Clear();
+                    this.Config.DicPluginLists.Clear();
                 }
 
-                this.DicPlugins = dic;
-                this.Config.DicPlugins = dic;
+                this.Config.DicPluginLists = dic;
 
                 // Generators
                 this.Config.DicGenerators = new Dictionary<string, IvPluginGenerator>();
@@ -414,23 +413,6 @@ namespace vSharpStudio.ViewModels
                 throw;
             }
         }
-
-        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins
-        {
-            get
-            {
-                return this._DicPlugins;
-            }
-
-            set
-            {
-                this._DicPlugins = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> _DicPlugins;
-
         public List<IvPluginDbGenerator> ListDbDesignPlugins
         {
             get
@@ -938,7 +920,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        public void GenerateCode(CancellationToken cancellationToken)
+        public void GenerateCode(CancellationToken cancellationToken, bool isDeleteDb = false)
         {
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
@@ -946,6 +928,8 @@ namespace vSharpStudio.ViewModels
                     throw new CancellationException();
                 foreach (var tp in ts.ListAppProjects)
                 {
+                    // app settings path, 
+                    var dicAppSettings = new Dictionary<string, StringBuilder>();
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
                         foreach (var tg in tpg.ListGenerators)
@@ -957,33 +941,41 @@ namespace vSharpStudio.ViewModels
                                 switch (tg.Generator.PluginGeneratorType)
                                 {
                                     case vPluginLayerTypeEnum.DbDesign:
+                                        IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
+                                        //genDb.GetConnectionStringMvvm()
+                                        //genDb.EnsureDbDeletedAndCreated(connStr);
+                                        //genDb.UpdateToModel(connStr, this.Config);
                                         break;
                                     case vPluginLayerTypeEnum.DbConnection:
+                                        string outFileConn = GetOuputFilePath(ts, tp, tpg);
+                                        var genConn = (IvPluginDbConnStringGenerator)tg.Generator;
+                                        StringBuilder sb = null;
+                                        bool first = false;
+                                        if (!dicAppSettings.ContainsKey(outFileConn))
+                                        {
+                                            first = true;
+                                            sb = new StringBuilder();
+                                            dicAppSettings[outFileConn] = sb;
+                                            sb.AppendLine("{");
+                                            sb.AppendLine("\t\"db_conns\": {");
+                                        }
+                                        else
+                                            sb = dicAppSettings[outFileConn];
+                                        if (!first)
+                                            sb.AppendLine(",");
+                                        sb.Append("\t\t\"");
+                                        sb.Append(genConn.Name);
+                                        sb.AppendLine("\": {");
+                                        sb.Append("\t\t\t\"provider\": ");
+                                        sb.Append(genConn.ProviderName);
+                                        sb.AppendLine("\",");
+                                        sb.Append("\t\t\t\"connection_string\": ");
+                                        //sb.Append(genConn.GenerateCode(tpg.GeneratorSettings));
+                                        sb.AppendLine("\",");
+                                        sb.Append("\t\t}");
                                         break;
                                     default:
-                                        StringBuilder sb = new StringBuilder();
-                                        sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                        sb.Append("\\");
-                                        var folder = Path.GetDirectoryName(ts.RelativeAppSolutionPath);
-                                        if (folder?.Length > 0)
-                                        {
-                                            sb.Append(folder);
-                                            sb.Append("\\");
-                                        }
-                                        folder = Path.GetDirectoryName(tp.RelativeAppProjectPath);
-                                        if (folder?.Length > 0)
-                                        {
-                                            sb.Append(folder);
-                                            sb.Append("\\");
-                                        }
-                                        if (!string.IsNullOrWhiteSpace(tpg.RelativePathToGenFolder))
-                                        {
-                                            sb.Append(tpg.RelativePathToGenFolder);
-                                            if (tpg.RelativePathToGenFolder[tpg.RelativePathToGenFolder.Length - 1] != '\\')
-                                                sb.Append("\\");
-                                        }
-                                        sb.Append(tpg.GenFileName);
-                                        string outFile = sb.ToString();
+                                        string outFile = GetOuputFilePath(ts, tp, tpg);
                                         string code = tg.Generator.GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         // tg.GetRelativeToConfigDiskPath()
                                         //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
@@ -994,8 +986,44 @@ namespace vSharpStudio.ViewModels
                             }
                         }
                     }
+                    foreach (var t in dicAppSettings)
+                    {
+                        var sb = t.Value;
+                        sb.AppendLine("");
+                        sb.AppendLine("\t}");
+                        sb.AppendLine("}");
+                        byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
+                        File.WriteAllBytes(t.Key, bytes);
+                    }
                 }
             }
+        }
+
+        private string GetOuputFilePath(AppSolution ts, AppProject tp, AppProjectGenerator tpg)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
+            sb.Append("\\");
+            var folder = Path.GetDirectoryName(ts.RelativeAppSolutionPath);
+            if (folder?.Length > 0)
+            {
+                sb.Append(folder);
+                sb.Append("\\");
+            }
+            folder = Path.GetDirectoryName(tp.RelativeAppProjectPath);
+            if (folder?.Length > 0)
+            {
+                sb.Append(folder);
+                sb.Append("\\");
+            }
+            if (!string.IsNullOrWhiteSpace(tpg.RelativePathToGenFolder))
+            {
+                sb.Append(tpg.RelativePathToGenFolder);
+                if (tpg.RelativePathToGenFolder[tpg.RelativePathToGenFolder.Length - 1] != '\\')
+                    sb.Append("\\");
+            }
+            sb.Append(tpg.GenFileName);
+            return sb.ToString();
         }
 
         //async Task MyMethodAsync()

@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public void AddBaseConfig(BaseConfigLink node)
         {
             this.NodeAddNewSubNode(node);

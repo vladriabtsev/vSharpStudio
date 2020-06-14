@@ -507,7 +507,7 @@
         {
             if (this is ICanAddSubNode)
             {
-                return true;
+                return (this as ICanAddSubNode).CanAddSubNode();
             }
 
             return false;

@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())
@@ -52,7 +53,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeUp()
         {
             var prev = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetPrev(this);
@@ -63,13 +63,11 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(prev);
         }
-
         public override void NodeMoveUp()
         {
             (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveUp(this);
             this.SetSelected(this);
         }
-
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
@@ -81,7 +79,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeDown()
         {
             var next = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetNext(this);
@@ -92,19 +89,16 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(next);
         }
-
         public override void NodeMoveDown()
         {
             (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveDown(this);
             this.SetSelected(this);
         }
-
         public override void NodeRemove()
         {
             (this.Parent as GroupListPropertiesTabs).Remove(this);
             this.Parent = null;
         }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = PropertiesTab.Clone(this.Parent, this, true, true);
@@ -113,7 +107,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new PropertiesTab(this.Parent);

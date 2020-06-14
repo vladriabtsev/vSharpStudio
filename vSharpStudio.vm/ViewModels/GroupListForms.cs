@@ -33,6 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public void AddForm(Form node)
         {
             this.NodeAddNewSubNode(node);

@@ -299,7 +299,7 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
-    // @attr [Description("Get is returning relative path to configuration file path")]
+    // @attr [Description(".NET solution file path relative to configuration file path")]
     // App solution relative path to configuration file path
     string relative_app_solution_path = 7;
 
@@ -343,7 +343,7 @@ message proto_app_project {
 
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
-    // @attr [Description("Get is returning relative path to solution file in the .net project")]
+    // @attr [Description(".NET project file path relative to solution file path")]
     // App project relative path to .net solution file path
     string relative_app_project_path = 7;
 
@@ -381,6 +381,7 @@ message proto_plugin_generator_main_settings {
 // @base ConfigObjectVmBase
 message proto_app_project_generator {
     string guid = 1;
+    // @attr [Description("Connection string name for DB connection generator")]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(3)]

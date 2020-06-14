@@ -28,9 +28,9 @@ namespace vSharpStudio.vm.ViewModels
                     }
 
                     Config cfg = (Config)p;
-                    if (cfg.DicPlugins.ContainsKey(vPluginLayerTypeEnum.DbConnection))
+                    if (cfg.DicPluginLists.ContainsKey(vPluginLayerTypeEnum.DbConnection))
                     {
-                        var lst = cfg.DicPlugins[vPluginLayerTypeEnum.DbConnection];
+                        var lst = cfg.DicPluginLists[vPluginLayerTypeEnum.DbConnection];
                         foreach (var t in lst)
                         {
                             if (AppDbSettings.ListPlugins.Contains(t.Plugin))

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Packaging;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -9,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator
+    public partial class AppProjectGenerator //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
 
@@ -22,6 +23,21 @@ namespace vSharpStudio.vm.ViewModels
         {
             base.OnInitFromDto();
             UpdateListGenerators();
+        }
+        public string IconName
+        {
+            get {
+                var cfg = this.GetConfig();
+                var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+                if (gen is IvPluginDbConnStringGenerator)
+                {
+                    return "iconAddBehavior";
+                }
+                else
+                {
+                    return "iconGenerateFile";
+                }
+            }
         }
         public SortedObservableCollection<PluginGenerator> ListGenerators { get; private set; }
         [PropertyOrderAttribute(10)]
@@ -91,6 +107,8 @@ namespace vSharpStudio.vm.ViewModels
                 throw;
             }
         }
+        private string prevRelativePathToGenFolder = string.Empty;
+        private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanged()
         {
             if (this.IsNotNotifying)
@@ -106,6 +124,12 @@ namespace vSharpStudio.vm.ViewModels
                 });
             }
             //this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
+            if (!string.IsNullOrWhiteSpace(this.GenFileName))
+                prevGenFileName = this.GenFileName;
+            this.GenFileName = string.Empty;
+            if (!string.IsNullOrWhiteSpace(this.RelativePathToGenFolder))
+                prevRelativePathToGenFolder = this.RelativePathToGenFolder;
+            this.RelativePathToGenFolder = string.Empty;
         }
 
         private void UpdateListGenerators()
@@ -133,6 +157,12 @@ namespace vSharpStudio.vm.ViewModels
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
         }
+        partial void OnPluginGuidChanging(ref string to)
+        {
+            Config cfg = (Config)this.GetConfig();
+            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+        }
         partial void OnPluginGeneratorGuidChanged()
         {
             if (this.IsNotNotifying)
@@ -154,14 +184,24 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-            this.DynamicMainSettings = gen?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
-            this.DescriptionGenerator = gen.Description;
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
                 p.AddNodeAppGenSettings(this.Guid);
             });
-            //this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
+            var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+            this.DynamicMainSettings = gen?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+            this.DescriptionGenerator = gen.Description;
+            if (gen is IvPluginDbConnStringGenerator)
+            {
+                this._GenFileName = "app-settings.json";
+                this._RelativePathToGenFolder = string.Empty;
+            }
+            else
+            {
+                this._GenFileName = prevGenFileName;
+                this._RelativePathToGenFolder = prevRelativePathToGenFolder;
+            }
+            this.NotifyPropertyChanged(this.IconName);
         }
         public string GetGenerationFilePath()
         {
@@ -176,12 +216,13 @@ namespace vSharpStudio.vm.ViewModels
                 return "";
             AppProject prj = this.Parent as AppProject;
             var path = prj.GetProjectFolderPath();
-            path = Path.Combine(path, this.RelativePathToGenFolder);
+            if (string.IsNullOrWhiteSpace(this.RelativePathToGenFolder))
+                path = Path.Combine(path, this.RelativePathToGenFolder);
             return path;
         }
         partial void OnRelativePathToGenFolderChanging(ref string to)
         {
-            if (this.IsNotNotifying || to == null)
+            if (this.IsNotNotifying || string.IsNullOrWhiteSpace(to))
                 return;
             to = Path.GetFullPath(to);
         }
@@ -198,7 +239,7 @@ namespace vSharpStudio.vm.ViewModels
             var prj = this.Parent as AppProject;
             if (prj.RelativeAppProjectPath == null)
                 throw new Exception("Project path is not selected yet");
-            if (this._RelativePathToGenFolder != null)
+            if (!string.IsNullOrWhiteSpace(this._RelativePathToGenFolder))
             {
                 var path = prj.GetProjectFolderPath();
 #if NET48
@@ -209,6 +250,25 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         #region Tree operations
+        //public bool CanAddSubNode()
+        //{
+        //    if (this.PluginGeneratorGuid == null)
+        //        return false;
+        //    Config cfg = (Config)this.GetConfig();
+        //    var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+        //    if (gen.PluginGeneratorType == vPluginLayerTypeEnum.DbDesign)
+        //    {
+        //        var plugin = cfg.DicPlugins[this.PluginGuid];
+        //        foreach (var t in plugin.ListGenerators)
+        //        {
+        //            if (t.PluginGeneratorType == vPluginLayerTypeEnum.DbConnection)
+        //                return true;
+        //        }
+        //        //var pluginLst = cfg.DicPluginLists[vPluginLayerTypeEnum.DbDesign];
+        //        //(gen as IvPluginDbGenerator).
+        //    }
+        //    return false;
+        //}
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())

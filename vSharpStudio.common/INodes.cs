@@ -28,5 +28,6 @@ namespace vSharpStudio.common
     }
     public interface ICanAddSubNode
     {
+        bool CanAddSubNode();
     }
 }

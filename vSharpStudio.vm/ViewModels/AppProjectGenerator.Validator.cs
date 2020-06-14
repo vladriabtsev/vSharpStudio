@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
                 this.RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
                 this.RuleFor(x => x.Name).Must(Enumeration.EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
                 this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-                this.RuleFor(x => x.RelativePathToGenFolder)
-                    .NotEmpty()
-                    .WithMessage("Output generation folder is not selected");
+                //this.RuleFor(x => x.RelativePathToGenFolder)
+                //    .NotEmpty()
+                //    .WithMessage("Output generation folder is not selected");
                 this.RuleFor(x => x.RelativePathToGenFolder)
                     .Custom((path, cntx) =>
                     {

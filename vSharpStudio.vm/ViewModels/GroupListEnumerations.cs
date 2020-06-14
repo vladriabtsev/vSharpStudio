@@ -33,6 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public Enumeration AddEnumeration(string name)
         {
             Enumeration node = new Enumeration(this) { Name = name };

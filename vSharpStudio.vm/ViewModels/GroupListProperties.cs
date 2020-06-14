@@ -66,21 +66,19 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-
+        public bool CanAddSubNode() { return true; }
         public Property AddProperty(string name)
         {
             var node = new Property(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
         }
-
         public Property AddProperty(string name, DataType type)
         {
             var node = new Property(this) { Name = name, DataType = type };
             this.NodeAddNewSubNode(node);
             return node;
         }
-
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
             var node = new Property(this) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
@@ -101,7 +99,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Property node = null;

@@ -105,11 +105,13 @@ namespace vSharpStudio.vm.ViewModels
             node.Name = name;
             node.PluginGuid = pluginGuid;
             node.PluginGeneratorGuid = generatorGuid;
-            node.GenFileName = outFile;
+            if (!string.IsNullOrWhiteSpace(outFile))
+                node.GenFileName = outFile;
             return node;
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())

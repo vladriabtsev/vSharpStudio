@@ -23,6 +23,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())
@@ -34,7 +35,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeUp()
         {
             var prev = (Journal)(this.Parent as GroupListJournals).ListJournals.GetPrev(this);
@@ -45,13 +45,11 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(prev);
         }
-
         public override void NodeMoveUp()
         {
             (this.Parent as GroupListJournals).ListJournals.MoveUp(this);
             this.SetSelected(this);
         }
-
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
@@ -63,7 +61,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeDown()
         {
             var next = (Journal)(this.Parent as GroupListJournals).ListJournals.GetNext(this);
@@ -74,19 +71,16 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(next);
         }
-
         public override void NodeMoveDown()
         {
             (this.Parent as GroupListJournals).ListJournals.MoveDown(this);
             this.SetSelected(this);
         }
-
         public override void NodeRemove()
         {
             (this.Parent as GroupListJournals).Remove(this);
             this.Parent = null;
         }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Journal.Clone(this.Parent, this, true, true);
@@ -95,7 +89,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Journal(this.Parent);
