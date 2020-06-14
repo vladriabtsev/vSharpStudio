@@ -139,22 +139,22 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CompareNETObjects" Version="4.66.0" />
-    <PackageReference Include="Microsoft.Build" Version="16.5.0" />
-    <PackageReference Include="Microsoft.Build.Framework" Version="16.5.0" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="16.5.0" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.5.0" />
+    <PackageReference Include="Microsoft.Build" Version="16.6.0" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="16.6.0" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="16.6.0" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.6.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
     <PackageReference Include="System.Runtime.Handles" Version="4.3.0" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.5.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.6.0" />
     <!--<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />-->
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="3.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="3.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.5.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.6.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
   </ItemGroup>
 </Project>
