@@ -37,17 +37,17 @@ namespace vSharpStudio.Unit
             var cat = vm.Config.Model.GroupCatalogs[0];
             cat.GroupProperties.NodeAddNewSubNode();
             var prop = cat.GroupProperties[0];
-            Assert.IsTrue(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Property"));
-            Assert.IsTrue(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test;Property"));
-            Assert.IsTrue(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Property"));
-            Assert.IsTrue(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(cat.GroupProperties.ModelPath, "!Property"));
-            Assert.IsTrue(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Test.*.Property"));
+            Assert.IsTrue(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Property"));
+            Assert.IsTrue(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test;Property"));
+            Assert.IsTrue(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Property"));
+            Assert.IsTrue(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(cat.GroupProperties.ModelPath, "!Property"));
+            Assert.IsTrue(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Test.*.Property"));
 
-            Assert.IsFalse(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog"));
-            Assert.IsFalse(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Test"));
-            Assert.IsFalse(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test.*.Property"));
-            Assert.IsFalse(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Property"));
-            Assert.IsFalse(ConfigObjectVmGenSettings<Property, Property.PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Catalog.*.Property"));
+            Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog"));
+            Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Catalog.*.Test"));
+            Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "Test.*.Property"));
+            Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Property"));
+            Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Catalog.*.Property"));
         }
         [TestMethod]
         public void Plugin003CanLoadPlugin()

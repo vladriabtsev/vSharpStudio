@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Text;
 using System.Windows;
@@ -69,6 +70,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static string GetTypeDesc(DataType p)
         {
+            Contract.Requires(p != null);
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             string objName = "Not found";
             ITreeConfigNode config = p.Parent;
@@ -275,73 +277,78 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                switch (this.ClrTypeName)
-                {
-                    case "DateTime":
-                        return typeof(DateTime);
-                    case "DateTime?":
-                        return typeof(DateTime?);
-                    case "bool":
-                        return typeof(bool);
-                    case "bool?":
-                        return typeof(bool?);
-                    case "string":
-                        return typeof(string);
-                    case "byte":
-                        return typeof(byte);
-                    case "byte?":
-                        return typeof(byte?);
-                    case "ushort":
-                        return typeof(ushort);
-                    case "ushort?":
-                        return typeof(ushort?);
-                    case "uint":
-                        return typeof(uint);
-                    case "uint?":
-                        return typeof(uint?);
-                    case "ulong":
-                        return typeof(ulong);
-                    case "ulong?":
-                        return typeof(ulong?);
-                    case "BigInteger":
-                        return typeof(BigInteger);
-                    case "BigInteger?":
-                        return typeof(BigInteger?);
-                    case "sbyte":
-                        return typeof(sbyte);
-                    case "sbyte?":
-                        return typeof(sbyte?);
-                    case "short":
-                        return typeof(short);
-                    case "short?":
-                        return typeof(short?);
-                    case "int":
-                        return typeof(int);
-                    case "int?":
-                        return typeof(int?);
-                    case "long":
-                        return typeof(long);
-                    case "long?":
-                        return typeof(long?);
-                    case "BigDecimal":
-                        return typeof(BigDecimal);
-                    case "BigDecimal?":
-                        return typeof(BigDecimal?);
-                    case "float":
-                        return typeof(float);
-                    case "float?":
-                        return typeof(float?);
-                    case "double":
-                        return typeof(double);
-                    case "double?":
-                        return typeof(double?);
-                    case "decimal":
-                        return typeof(decimal);
-                    case "decimal?":
-                        return typeof(decimal?);
-                    default:
-                        throw new Exception("Not supported operation");
-                }
+                return GetClrType();
+            }
+        }
+
+        private Type GetClrType()
+        {
+            switch (this.ClrTypeName)
+            {
+                case "DateTime":
+                    return typeof(DateTime);
+                case "DateTime?":
+                    return typeof(DateTime?);
+                case "bool":
+                    return typeof(bool);
+                case "bool?":
+                    return typeof(bool?);
+                case "string":
+                    return typeof(string);
+                case "byte":
+                    return typeof(byte);
+                case "byte?":
+                    return typeof(byte?);
+                case "ushort":
+                    return typeof(ushort);
+                case "ushort?":
+                    return typeof(ushort?);
+                case "uint":
+                    return typeof(uint);
+                case "uint?":
+                    return typeof(uint?);
+                case "ulong":
+                    return typeof(ulong);
+                case "ulong?":
+                    return typeof(ulong?);
+                case "BigInteger":
+                    return typeof(BigInteger);
+                case "BigInteger?":
+                    return typeof(BigInteger?);
+                case "sbyte":
+                    return typeof(sbyte);
+                case "sbyte?":
+                    return typeof(sbyte?);
+                case "short":
+                    return typeof(short);
+                case "short?":
+                    return typeof(short?);
+                case "int":
+                    return typeof(int);
+                case "int?":
+                    return typeof(int?);
+                case "long":
+                    return typeof(long);
+                case "long?":
+                    return typeof(long?);
+                case "BigDecimal":
+                    return typeof(BigDecimal);
+                case "BigDecimal?":
+                    return typeof(BigDecimal?);
+                case "float":
+                    return typeof(float);
+                case "float?":
+                    return typeof(float?);
+                case "double":
+                    return typeof(double);
+                case "double?":
+                    return typeof(double?);
+                case "decimal":
+                    return typeof(decimal);
+                case "decimal?":
+                    return typeof(decimal?);
+                default:
+                    throw new Exception("Not supported operation");
             }
         }
 
@@ -350,127 +357,132 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                string sn = string.Empty;
-                if (this.IsNullable)
-                {
-                    sn = "?";
-                }
-                // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
-                switch (this.DataTypeEnum)
-                {
-                    case EnumDataType.CATALOG:
-                        return "Catalog";
-                    case EnumDataType.CATALOGS:
-                        return "Catalog";
-                    case EnumDataType.DOCUMENT:
-                        return "Document";
-                    case EnumDataType.DOCUMENTS:
-                        return "Documents";
-                    case EnumDataType.ENUMERATION:
-                        return "Enumeration";
-                    case EnumDataType.DATE:
-                    case EnumDataType.DATETIME:
-                    case EnumDataType.TIME:
-                        return "DateTime" + sn;
-                    case EnumDataType.BOOL:
-                        return "bool" + sn;
-                    case EnumDataType.STRING:
-                        return "string";
-                    case EnumDataType.NUMERICAL:
-                        if (this.Accuracy == 0)
+                return GetClrTypeName();
+            }
+        }
+
+        private string GetClrTypeName()
+        {
+            string sn = string.Empty;
+            if (this.IsNullable)
+            {
+                sn = "?";
+            }
+            // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
+            switch (this.DataTypeEnum)
+            {
+                case EnumDataType.CATALOG:
+                    return "Catalog";
+                case EnumDataType.CATALOGS:
+                    return "Catalog";
+                case EnumDataType.DOCUMENT:
+                    return "Document";
+                case EnumDataType.DOCUMENTS:
+                    return "Documents";
+                case EnumDataType.ENUMERATION:
+                    return "Enumeration";
+                case EnumDataType.DATE:
+                case EnumDataType.DATETIME:
+                case EnumDataType.TIME:
+                    return "DateTime" + sn;
+                case EnumDataType.BOOL:
+                    return "bool" + sn;
+                case EnumDataType.STRING:
+                    return "string";
+                case EnumDataType.NUMERICAL:
+                    if (this.Accuracy == 0)
+                    {
+                        if (this.IsPositive)
                         {
-                            if (this.IsPositive)
+                            if (this.MaxNumericalValue <= byte.MaxValue)
                             {
-                                if (this.MaxNumericalValue <= byte.MaxValue)
-                                {
-                                    return "byte" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= ushort.MaxValue)
-                                {
-                                    return "ushort" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= uint.MaxValue)
-                                {
-                                    return "uint" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
-                                {
-                                    return "ulong" + sn;
-                                }
-
-                                if (this.Length <= 28)
-                                {
-                                    return "decimal" + sn;
-                                }
-
-                                throw new Exception("Not supported operation");
-                                // return "BigInteger" + sn;
-                            }
-                            else
-                            {
-                                if (this.MaxNumericalValue <= sbyte.MaxValue)
-                                {
-                                    return "sbyte" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= short.MaxValue)
-                                {
-                                    return "short" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= int.MaxValue)
-                                {
-                                    return "int" + sn;
-                                }
-
-                                if (this.MaxNumericalValue <= long.MaxValue)
-                                {
-                                    return "long" + sn;
-                                }
-
-                                if (this.Length <= 28)
-                                {
-                                    return "decimal" + sn;
-                                }
-
-                                throw new Exception("Not supported operation");
-                                // return "BigInteger" + sn;
-                            }
-                        }
-                        else
-                        {
-                            // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
-                            // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
-                            // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
-                            if (this.Length == 0)
-                            {
-                                return "BigDecimal";
+                                return "byte" + sn;
                             }
 
-                            if (this.Length <= 6)
+                            if (this.MaxNumericalValue <= ushort.MaxValue)
                             {
-                                return "float" + sn;
+                                return "ushort" + sn;
                             }
 
-                            if (this.Length <= 15)
+                            if (this.MaxNumericalValue <= uint.MaxValue)
                             {
-                                return "double" + sn;
+                                return "uint" + sn;
                             }
 
-                            if (this.Length < 29)
+                            if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
+                            {
+                                return "ulong" + sn;
+                            }
+
+                            if (this.Length <= 28)
                             {
                                 return "decimal" + sn;
                             }
 
                             throw new Exception("Not supported operation");
-                            // return "BigDecimal";
+                            // return "BigInteger" + sn;
                         }
-                    default:
+                        else
+                        {
+                            if (this.MaxNumericalValue <= sbyte.MaxValue)
+                            {
+                                return "sbyte" + sn;
+                            }
+
+                            if (this.MaxNumericalValue <= short.MaxValue)
+                            {
+                                return "short" + sn;
+                            }
+
+                            if (this.MaxNumericalValue <= int.MaxValue)
+                            {
+                                return "int" + sn;
+                            }
+
+                            if (this.MaxNumericalValue <= long.MaxValue)
+                            {
+                                return "long" + sn;
+                            }
+
+                            if (this.Length <= 28)
+                            {
+                                return "decimal" + sn;
+                            }
+
+                            throw new Exception("Not supported operation");
+                            // return "BigInteger" + sn;
+                        }
+                    }
+                    else
+                    {
+                        // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                        // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                        // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                        if (this.Length == 0)
+                        {
+                            return "BigDecimal";
+                        }
+
+                        if (this.Length <= 6)
+                        {
+                            return "float" + sn;
+                        }
+
+                        if (this.Length <= 15)
+                        {
+                            return "double" + sn;
+                        }
+
+                        if (this.Length < 29)
+                        {
+                            return "decimal" + sn;
+                        }
+
                         throw new Exception("Not supported operation");
-                }
+                        // return "BigDecimal";
+                    }
+                default:
+                    throw new Exception("Not supported operation");
             }
         }
 
@@ -479,75 +491,80 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                // https://developers.google.com/protocol-buffers/docs/proto3#scalar
-                switch (this.DataTypeEnum)
-                {
-                    case EnumDataType.CATALOG:
-                        return "catalog";
-                    case EnumDataType.CATALOGS:
-                        return "catalogs";
-                    case EnumDataType.DOCUMENT:
-                        return "document";
-                    case EnumDataType.DOCUMENTS:
-                        return "documents";
-                    case EnumDataType.ENUMERATION:
-                        return "enumeration";
-                    case EnumDataType.BOOL:
-                        return "bool";
-                    case EnumDataType.STRING:
-                        return "string";
-                    case EnumDataType.NUMERICAL:
-                        if (this.Accuracy == 0)
+                return GetProtoType();
+            }
+        }
+
+        private string GetProtoType()
+        {
+            // https://developers.google.com/protocol-buffers/docs/proto3#scalar
+            switch (this.DataTypeEnum)
+            {
+                case EnumDataType.CATALOG:
+                    return "catalog";
+                case EnumDataType.CATALOGS:
+                    return "catalogs";
+                case EnumDataType.DOCUMENT:
+                    return "document";
+                case EnumDataType.DOCUMENTS:
+                    return "documents";
+                case EnumDataType.ENUMERATION:
+                    return "enumeration";
+                case EnumDataType.BOOL:
+                    return "bool";
+                case EnumDataType.STRING:
+                    return "string";
+                case EnumDataType.NUMERICAL:
+                    if (this.Accuracy == 0)
+                    {
+                        if (this.IsPositive)
                         {
-                            if (this.IsPositive)
+                            if (this.MaxNumericalValue <= uint.MaxValue)
                             {
-                                if (this.MaxNumericalValue <= uint.MaxValue)
-                                {
-                                    return "uint32";
-                                }
-
-                                if (this.MaxNumericalValue <= long.MaxValue) // long, not ulong
-                                {
-                                    return "uint64";
-                                }
-
-                                return "bytes"; // need conversions
-                            }
-                            else
-                            {
-                                if (this.MaxNumericalValue <= int.MaxValue)
-                                {
-                                    return "int32";
-                                }
-
-                                if (this.MaxNumericalValue <= long.MaxValue)
-                                {
-                                    return "int64";
-                                }
-
-                                return "bytes"; // need conversions
-                            }
-                        }
-                        else
-                        {
-                            // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
-                            // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
-                            // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
-                            if (this.Length <= 6)
-                            {
-                                return "float";
+                                return "uint32";
                             }
 
-                            if (this.Length <= 15)
+                            if (this.MaxNumericalValue <= long.MaxValue) // long, not ulong
                             {
-                                return "double";
+                                return "uint64";
                             }
 
                             return "bytes"; // need conversions
                         }
-                    default:
-                        throw new Exception("Not supported operation");
-                }
+                        else
+                        {
+                            if (this.MaxNumericalValue <= int.MaxValue)
+                            {
+                                return "int32";
+                            }
+
+                            if (this.MaxNumericalValue <= long.MaxValue)
+                            {
+                                return "int64";
+                            }
+
+                            return "bytes"; // need conversions
+                        }
+                    }
+                    else
+                    {
+                        // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                        // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                        // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                        if (this.Length <= 6)
+                        {
+                            return "float";
+                        }
+
+                        if (this.Length <= 15)
+                        {
+                            return "double";
+                        }
+
+                        return "bytes"; // need conversions
+                    }
+                default:
+                    throw new Exception("Not supported operation");
             }
         }
 
@@ -588,8 +605,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return this._ListObjects;
             }
-
-            set
+            private set
             {
                 if (this._ListObjects != value)
                 {

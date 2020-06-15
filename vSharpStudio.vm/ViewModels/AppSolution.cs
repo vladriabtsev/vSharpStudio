@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 using FluentValidation;
@@ -51,6 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         public AppSolution(ITreeConfigNode parent, string name, List<AppProject> listProjects)
             : this(parent)
         {
+            Contract.Requires(listProjects != null);
             (this as ITreeConfigNode).Name = name;
             foreach (var t in listProjects)
             {

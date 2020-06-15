@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Text;
 using vSharpStudio.common;
 
@@ -7,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class ModelVisitorForRenamer : DiffModelVisitorBase
     {
-        public List<string> ListGuidsRenamedObjects { get; set; }
+        public List<string> ListGuidsRenamedObjects { get; private set; }
         public Config DiffAnnotatedConfig { get; set; }
         public Config RunThroughConfig(Config curr, IConfig prev, IConfig old)
         {
@@ -25,6 +26,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(IEnumeration parent, List<IEnumerationPair> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
+            Contract.Requires(parent != null);
             List<EnumerationPair> lst = new List<EnumerationPair>();
             foreach (var t in diff_lst)
                 lst.Add((EnumerationPair)t);
@@ -34,6 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(List<IEnumeration> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
             List<Enumeration> lst = new List<Enumeration>();
             foreach (var t in diff_lst)
                 lst.Add((Enumeration)t);
@@ -42,6 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(List<IConstant> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
             List<Constant> lst = new List<Constant>();
             foreach (var t in diff_lst)
                 lst.Add((Constant)t);
@@ -50,6 +55,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(IGroupListProperties parent, List<IProperty> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
+            Contract.Requires(parent != null);
             List<Property> lst = new List<Property>();
             foreach (var t in diff_lst)
                 lst.Add((Property)t);
@@ -59,6 +66,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(IGroupListPropertiesTabs parent, List<IPropertiesTab> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
+            Contract.Requires(parent != null);
             List<PropertiesTab> lst = new List<PropertiesTab>();
             foreach (var t in diff_lst)
                 lst.Add((PropertiesTab)t);
@@ -68,6 +77,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(List<ICatalog> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
             List<Catalog> lst = new List<Catalog>();
             foreach (var t in diff_lst)
                 lst.Add((Catalog)t);
@@ -76,6 +86,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(List<IDocument> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
             List<Document> lst = new List<Document>();
             foreach (var t in diff_lst)
                 lst.Add((Document)t);
@@ -84,6 +95,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(IGroupListForms parent, List<IForm> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
+            Contract.Requires(parent != null);
             List<Form> lst = new List<Form>();
             foreach (var t in diff_lst)
                 lst.Add((Form)t);
@@ -93,6 +106,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void Visit(IGroupListReports parent, List<IReport> diff_lst)
         {
+            Contract.Requires(diff_lst != null);
+            Contract.Requires(parent != null);
             List<Report> lst = new List<Report>();
             foreach (var t in diff_lst)
                 lst.Add((Report)t);

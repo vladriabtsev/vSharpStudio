@@ -61,7 +61,7 @@ public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() 
     { 
         return this._<#= field.Name.ToNameCs() #>; 
     }
-    set
+    private set
     {
         if (this._<#= field.Name.ToNameCs() #> != value)
         {
@@ -84,12 +84,14 @@ IEnumerable<I<#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
 { 
+    Contract.Requires(item != null);
     this.<#= field.Name.ToNameCs() #>.Add(item); 
     item.Parent = this;
     this.IsChanged = true;
 }
 public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
 { 
+    Contract.Requires(items != null);
     this.<#= field.Name.ToNameCs() #>.AddRange(items); 
     foreach (var t in items)
         t.Parent = this;
@@ -101,6 +103,7 @@ public int Count()
 }
 public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) 
 {
+    Contract.Requires(item != null);
     this.<#= field.Name.ToNameCs() #>.Remove(item); 
     item.Parent = null;
     this.IsChanged = true;

@@ -7,14 +7,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class DbSettings
+    public partial class DbSettingsValidator
     {
-        public partial class DbSettingsValidator
+        public DbSettingsValidator()
         {
-            public DbSettingsValidator()
-            {
-                this.RuleFor(x => x.KeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
-            }
+            this.RuleFor(x => x.KeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
         }
     }
 }

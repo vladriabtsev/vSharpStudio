@@ -3,9 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=Helper.FilePos() #>
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
-    public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=Helper.FilePos() #>
     #region CTOR
 <# if (this.Doc.IsDefaultBase) { #>
     public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 

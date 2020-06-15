@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Windows.Documents;
@@ -199,6 +200,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static object CreateNodesSettingObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
+            Contract.Requires(lst != null);
             var myType = CompileNodesSettingResultType(lst);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
@@ -207,6 +209,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static Type CompileNodesSettingResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
+            Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();
             ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
 
@@ -222,6 +225,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorMainSettings> lst)
         {
+            Contract.Requires(lst != null);
             var myType = CompileResultType(lst);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
@@ -230,6 +234,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorMainSettings> lst)
         {
+            Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();
             ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
 
@@ -244,6 +249,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorNodeSettings> lst)
         {
+            Contract.Requires(lst != null);
             var myType = CompileResultType(lst);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
@@ -252,6 +258,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorNodeSettings> lst)
         {
+            Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();
             ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
 

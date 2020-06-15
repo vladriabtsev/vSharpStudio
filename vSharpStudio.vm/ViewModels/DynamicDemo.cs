@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 
 #endregion using
@@ -60,7 +61,8 @@ namespace vSharpStudio.vm.ViewModels
 		//operation until runtime when the dynamic type is available.
 		public void SetExtendedProperties<T>(dynamic dest, T src, Dictionary<string, Type> extendedPropsDict)
 		{
-			foreach (var word in extendedPropsDict)
+            Contract.Requires(extendedPropsDict != null);
+            foreach (var word in extendedPropsDict)
 			{
 				var src_pi = src.GetType().GetProperty(word.Key);
 				var dest_pi = dest.GetType().GetProperty(word.Key) as PropertyInfo;

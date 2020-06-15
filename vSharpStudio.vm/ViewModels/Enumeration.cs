@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -30,6 +31,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static string GetTypeDesc(Enumeration p)
         {
+            Contract.Requires(p != null);
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             // switch (p.DataTypeEnum)
             // {

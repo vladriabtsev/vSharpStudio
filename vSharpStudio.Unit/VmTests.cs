@@ -118,7 +118,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
-            Config.ConfigValidator.Reset();
+            ConfigValidator.Reset();
             var cfg = new Config();
             Assert.IsTrue(cfg.ValidationCollection != null);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
@@ -127,8 +127,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Validation002_ValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
-            Config.ConfigValidator.Reset();
-            Catalog.CatalogValidator.Reset();
+            ConfigValidator.Reset();
+            CatalogValidator.Reset();
             var cfg = new Config();
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -140,10 +140,10 @@ namespace vSharpStudio.Unit
             string mes22 = "test warning2 message";
             string mes3 = "test info message";
 
-            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes22).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryHigh);
-            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.VeryLow);
-            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes3).WithSeverity(Severity.Info).WithState(x => SeverityWeight.VeryHigh);
-            Catalog.CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryLow);
+            CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes22).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryHigh);
+            CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.VeryLow);
+            CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes3).WithSeverity(Severity.Info).WithState(x => SeverityWeight.VeryHigh);
+            CatalogValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryLow);
 
             cfg.Validate();
 
@@ -187,7 +187,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Validation007_Propagation()
         {
-            Config.ConfigValidator.Reset();
+            ConfigValidator.Reset();
             var cfg = new Config();
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -195,7 +195,7 @@ namespace vSharpStudio.Unit
             string mes2 = "test error message2";
 
             cfg.Model.GroupConstants.NodeAddNewSubNode();
-            Constant.ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
+            ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
             cfg.ValidateSubTreeFromNode(cfg.Model.GroupConstants);
             Assert.IsTrue(cfg.Model.GroupConstants[0].ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.Model.GroupConstants[0].CountErrors == 1);
@@ -207,7 +207,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountWarnings == 0);
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
-            Enumeration.EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
+            EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
             cfg.ValidateSubTreeFromNode(cfg.Model.GroupEnumerations);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);

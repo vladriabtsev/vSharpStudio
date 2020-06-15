@@ -7,6 +7,7 @@
 
 public void Accept<#= root.Package.ToNameCs() #>NodeVisitor(<#= root.Package.ToNameCs() #>Visitor visitor) // <#=Helper.FilePos() #>
 {
+    Contract.Requires(visitor != null);
     if (visitor.Token.IsCancellationRequested)
     {
         return;

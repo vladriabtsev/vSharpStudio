@@ -8,23 +8,20 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfigLink
+    public partial class BaseConfigLinkValidator
     {
-        public partial class BaseConfigLinkValidator
+        public BaseConfigLinkValidator()
         {
-            public BaseConfigLinkValidator()
-            {
-                this.RuleFor(x => x.RelativeConfigFilePath).NotEmpty();
-                this.RuleFor(x => x.RelativeConfigFilePath).Must((o, file) =>
+            this.RuleFor(x => x.RelativeConfigFilePath).NotEmpty();
+            this.RuleFor(x => x.RelativeConfigFilePath).Must((o, file) =>
+                {
+                    if (string.IsNullOrWhiteSpace(file))
                     {
-                        if (string.IsNullOrWhiteSpace(file))
-                        {
-                            return true;
-                        }
-                        return File.Exists(file);
-                    })
-                .WithMessage(Config.ValidationMessages.FILE_IS_NOT_EXISTS);
-            }
+                        return true;
+                    }
+                    return File.Exists(file);
+                })
+            .WithMessage(Config.ValidationMessages.FILE_IS_NOT_EXISTS);
         }
     }
 }

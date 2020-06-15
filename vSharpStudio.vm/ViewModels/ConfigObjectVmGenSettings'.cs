@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -113,6 +114,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
         {
+            Contract.Requires(searchPattern != null);
             var subPatterns = searchPattern.Split(';');
             if (subPatterns.Count() == 1)
             {

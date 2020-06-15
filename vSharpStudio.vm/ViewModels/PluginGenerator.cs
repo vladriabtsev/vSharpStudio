@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -15,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
         {
+            Contract.Requires(plugin != null);
             this.Guid = plugin.Guid.ToString();
             this.Name = plugin.Name;
             this.Description = plugin.Description;
@@ -33,6 +35,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void SetGenerator(IvPluginGenerator generator)
         {
+            Contract.Requires(generator != null);
             this.Generator = generator;
             this.Generator.Parent = this;
         }

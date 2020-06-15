@@ -26,6 +26,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
 <# } #>
 public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase()) { #>ITreeConfigNode parent, <# } #><#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
 {
+    Contract.Requires(from != null);
 <# if (message.IsDefaultBase()) { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent);
 <# } else { #>
@@ -73,6 +74,8 @@ if (this.Doc.IsDefaultBase) {
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true) // <#=Helper.FilePos() #>
 {
+    Contract.Requires(to != null);
+    Contract.Requires(from != null);
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
             continue;
@@ -164,6 +167,7 @@ partial void OnRestoreObjectStarting(ref bool isDeep);
 // Conversion from '<#= message.Name #>' to '<#= message.Name.ToNameCs() #>'
 public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace #>.<#= message.Name #> m, <#= message.Name.ToNameCs() #> vm) // <#=Helper.FilePos() #>
 {
+    Contract.Requires(vm != null);
     if (m == null)
     {
         return vm;
@@ -227,6 +231,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'
 public static <#= this.protoNameSpace #>.<#= message.Name #> ConvertToProto(<#= message.Name.ToNameCs() #> vm) // <#=Helper.FilePos() #>
 {
+    Contract.Requires(vm != null);
     <#= this.protoNameSpace #>.<#= message.Name #> m = new <#= this.protoNameSpace #>.<#= message.Name #>(); // <#=Helper.FilePos() #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsRepeated) { #>

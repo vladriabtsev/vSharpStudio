@@ -9,6 +9,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using System.Diagnostics.Contracts;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -51,8 +52,11 @@ namespace vSharpStudio.vm.ViewModels
         public AppProject(ITreeConfigNode parent, string name, string projectPath)
             : this(parent)
         {
+            Contract.Requires(parent != null);
             (this as ITreeConfigNode).Name = name;
+#pragma warning disable CA1062 // Validate arguments of public methods
             (parent as AppSolution).ListAppProjects.Add(this);
+#pragma warning restore CA1062 // Validate arguments of public methods
             this.RelativeAppProjectPath = projectPath;
         }
         public string GetProjectPath()

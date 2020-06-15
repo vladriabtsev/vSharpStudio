@@ -64,8 +64,8 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //private ConfigNodesCollection<ITreeConfigNode> _Children;
 
-        protected IMigration _migration = null;
-        public string ConnectionString = null;
+        protected IMigration _migration { get; set; }
+        public string ConnectionString { get; set; }
 
         partial void OnInitBegin()
         {
@@ -190,42 +190,42 @@ namespace vSharpStudio.vm.ViewModels
 
         #region IMigration
 
-        bool IMigration.IsDatabaseServiceOn()
+        public bool IsDatabaseServiceOn()
         {
             return this._migration.IsDatabaseServiceOn();
         }
 
-        Task<bool> IMigration.IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
+        public Task<bool> IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
             return this._migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
 
-        bool IMigration.IsDatabaseExists()
+        public bool IsDatabaseExists()
         {
             return this._migration.IsDatabaseExists();
         }
 
-        Task<bool> IMigration.IsDatabaseExistsAsync(CancellationToken cancellationToken)
+        public Task<bool> IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
             return this._migration.IsDatabaseExistsAsync(cancellationToken);
         }
 
-        void IMigration.CreateDatabase()
+        public void CreateDatabase()
         {
             this._migration.CreateDatabase();
         }
 
-        Task IMigration.CreateDatabaseAsync(CancellationToken cancellationToken)
+        public Task CreateDatabaseAsync(CancellationToken cancellationToken)
         {
             return this._migration.CreateDatabaseAsync(cancellationToken);
         }
 
-        void IMigration.DropDatabase()
+        public void DropDatabase()
         {
             this._migration.DropDatabase();
         }
 
-        Task IMigration.DropDatabaseAsync(CancellationToken cancellationToken)
+        public Task DropDatabaseAsync(CancellationToken cancellationToken)
         {
             return this._migration.DropDatabaseAsync(cancellationToken);
         }
@@ -281,8 +281,8 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         private ITreeConfigNode _SelectedNode;
-        public Action OnSelectedNodeChanged;
-        public Action<ITreeConfigNode, ITreeConfigNode> OnSelectedNodeChanging;
+        public Action OnSelectedNodeChanged { get; set; }
+        public Action<ITreeConfigNode, ITreeConfigNode> OnSelectedNodeChanging { get; set; }
 
         #region Connection string editor
 

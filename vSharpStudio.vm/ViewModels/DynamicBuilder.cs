@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
+using System.Diagnostics.Contracts;
 
 // https://www.codeproject.com/articles/110065/quickly-generate-and-use-dynamic-class
 namespace vSharpStudio.vm.ViewModels
@@ -32,7 +33,8 @@ namespace vSharpStudio.vm.ViewModels
 		
 		public static Type ExtendTheType<T>(Dictionary<string, Type> dict) where T : class
 		{
-			if (dict.Count == 0)
+            Contract.Requires(dict != null);
+            if (dict.Count == 0)
 			{
 				return typeof(T);
 			}
@@ -89,7 +91,8 @@ namespace vSharpStudio.vm.ViewModels
 
 		public static Type CreateMyNewType(string newTypeName, Dictionary<string, Type> dict, Type baseClassType)
 		{
-			bool noNewProperties = true;
+            Contract.Requires(dict != null);
+            bool noNewProperties = true;
             // create a dynamic assembly and module 
             AssemblyBuilder assemblyBldr = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("tmpAssembly"), AssemblyBuilderAccess.Run);
             //AssemblyBuilder assemblyBldr = Thread.GetDomain().DefineDynamicAssembly(new AssemblyName("tmpAssembly"), AssemblyBuilderAccess.Run);

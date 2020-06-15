@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Text;
 using vSharpStudio.common;
 
@@ -14,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginGeneratorNodeSettings t) : this(parent)
         {
+            Contract.Requires(t != null);
             this.Name = t.Name;
             this.NodeSettingsVmGuid = t.Guid;
             this.AppProjectGeneratorGuid = appProjectGeneratorGuid;

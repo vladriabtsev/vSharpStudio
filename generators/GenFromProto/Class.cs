@@ -28,18 +28,6 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.Comments));
-            
-            #line default
-            #line hidden
-            
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.Attributes));
-            
-            #line default
-            #line hidden
             this.Write("public partial class ");
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
@@ -47,55 +35,68 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.BaseClass));
-            
-            #line default
-            #line hidden
-            this.Write(", I");
-            
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" // ");
-            
-            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n{\r\n    public partial class ");
-            
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
             this.Write("Validator : ValidatorBase<");
             
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Validator> { } // ");
             
-            #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
-            this.Write("\r\n    #region CTOR\r\n");
+            this.Write("\r\n");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.Comments));
+            
+            #line default
+            #line hidden
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.Attributes));
+            
+            #line default
+            #line hidden
+            this.Write("public partial class ");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.BaseClass));
+            
+            #line default
+            #line hidden
+            this.Write(", I");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" // ");
+            
+            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    #region CTOR\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsDefaultBase) { 

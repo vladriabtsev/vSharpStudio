@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -37,8 +38,8 @@ namespace vSharpStudio.vm.ViewModels
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
-        protected IMigration _migration = null;
-        public string ConnectionString = null;
+        protected IMigration _migration { get; set; }
+        public string ConnectionString { get; set; }
 
         partial void OnInit()
         {
@@ -123,42 +124,42 @@ namespace vSharpStudio.vm.ViewModels
 
         #region IMigration
 
-        bool IMigration.IsDatabaseServiceOn()
+        public bool IsDatabaseServiceOn()
         {
             return this._migration.IsDatabaseServiceOn();
         }
 
-        Task<bool> IMigration.IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
+        public Task<bool> IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
             return this._migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
 
-        bool IMigration.IsDatabaseExists()
+        public bool IsDatabaseExists()
         {
             return this._migration.IsDatabaseExists();
         }
 
-        Task<bool> IMigration.IsDatabaseExistsAsync(CancellationToken cancellationToken)
+        public Task<bool> IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
             return this._migration.IsDatabaseExistsAsync(cancellationToken);
         }
 
-        void IMigration.CreateDatabase()
+        public void CreateDatabase()
         {
             this._migration.CreateDatabase();
         }
 
-        Task IMigration.CreateDatabaseAsync(CancellationToken cancellationToken)
+        public Task CreateDatabaseAsync(CancellationToken cancellationToken)
         {
             return this._migration.CreateDatabaseAsync(cancellationToken);
         }
 
-        void IMigration.DropDatabase()
+        public void DropDatabase()
         {
             this._migration.DropDatabase();
         }
 
-        Task IMigration.DropDatabaseAsync(CancellationToken cancellationToken)
+        public Task DropDatabaseAsync(CancellationToken cancellationToken)
         {
             return this._migration.DropDatabaseAsync(cancellationToken);
         }
@@ -317,7 +318,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         private ITreeConfigNode _SelectedNode;
-        public Action OnSelectedNodeChanged;
+        public Action OnSelectedNodeChanged { get; set; }
 
         #region Connection string editor
 
@@ -422,12 +423,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public DynamicClass(List<Test1> fields)
         {
+            Contract.Requires(fields != null);
             _fields = new Dictionary<string, KeyValuePair<Type, object>>();
             fields.ForEach(x => _fields.Add(x.GetType().Name,
                 new KeyValuePair<Type, object>(typeof(object), x)));
         }
         public DynamicClass(List<PluginGeneratorMainSettings> fields)
         {
+            Contract.Requires(fields != null);
             _fields = new Dictionary<string, KeyValuePair<Type, object>>();
             fields.ForEach(x => _fields.Add(x.Name,
                 new KeyValuePair<Type, object>(typeof(object), x.SettingsVm)));
@@ -435,6 +438,8 @@ namespace vSharpStudio.vm.ViewModels
 
         public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
         {
+            Contract.Requires(binder != null);
+            Contract.Requires(value != null);
             if (_fields.ContainsKey(binder.Name))
             {
                 var type = _fields[binder.Name].Key;
@@ -450,6 +455,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
         {
+            Contract.Requires(binder != null);
             result = _fields[binder.Name].Value;
             return true;
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public new void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
+            Contract.Requires(collection != null);
             if (this.cfg == null)
             {
                 this.GetConfig(this.parent);

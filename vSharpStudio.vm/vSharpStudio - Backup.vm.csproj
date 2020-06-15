@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
+    <Product>vSharpStudio.vm</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
+    <Product>vSharpStudio.vm</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\ConfigObjectSubBase%27.cs" />
+    <Compile Remove="ViewModels\ObjectSubModelsEditor.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ViewModels\ObjectSubModelsEditor.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
+    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
+    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+    <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
+  </ItemGroup>
+</Project>
