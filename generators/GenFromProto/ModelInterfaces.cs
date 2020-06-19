@@ -271,7 +271,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" { get; } // ");
+            this.Write(" { get; ");
+            
+            #line 47 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Setter));
+            
+            #line default
+            #line hidden
+            this.Write("} // ");
             
             #line 47 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));

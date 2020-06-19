@@ -16,6 +16,8 @@ namespace GenFromProto
         string protoNameSpace;
         List<MessageDescriptor> messages = new List<MessageDescriptor>();
         Dictionary<string, List<MessageDescriptor>> dicParents;
+        string Setter = "";
+
         public ModelInterfaces(FileDescriptor root, List<MessageDescriptor> messages,
             Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS)
@@ -25,6 +27,8 @@ namespace GenFromProto
             this.protoNameSpace = protoNS;
             this.messages = messages;
             this.dicParents = dicParents;
+            if (!Program.RunOptions.IsReadonly)
+                Setter = "set; ";
         }
     }
 }

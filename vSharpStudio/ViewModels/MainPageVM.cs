@@ -29,6 +29,8 @@ using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
 {
+    // TODO Version
+    // https://github.com/GitTools/GitVersion
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static MainPageVM Create(string pluginsFolderPath)

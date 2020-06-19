@@ -44,7 +44,7 @@ IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#
 IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} // <#=Helper.FilePos() #>
 <#       } else if (field.IsAny() || field.IsNullable()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>

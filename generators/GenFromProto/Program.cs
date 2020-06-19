@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using CommandLine;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 
@@ -13,87 +15,109 @@ namespace GenFromProto
 {
     partial class Program
     {
+        // https://github.com/j-maly/CommandLineParser
+        // https://github.com/fclp/fluent-command-line-parser
+        // https://github.com/natemcmaster/CommandLineUtils
+        // https://github.com/commandlineparser/commandline !!!!
+        public class Options
+        {
+            [Option('m', "model", SetName = "model", Required = false, HelpText = "Model generation")]
+            public bool IsModel { get; set; }
+            [Option('i', "interface", SetName = "model", Required = false, HelpText = "Model interface generation")]
+            public bool IsInterface { get; set; }
+            [Option('r', "readonly", Required = false, HelpText = "Readonly model interface")]
+            public bool IsReadonly { get; set; }
+            [Option('o', "output", Required = true, HelpText = "Output file path for generated code")]
+            public string OutputFile { get; set; }
+            [Option('p', "proto", Required = true, HelpText = "Proto file name")]
+            public string ProtoFileName { get; set; }
+            [Option('n', "namespace", Required = true, HelpText = "Namespace for generated code")]
+            public string Namespace { get; set; }
+            [Option('b', "baseclass", Required = false, HelpText = "Default base class for models (can be overriden by specifying base class in proto file)")]
+            public string BaseclassDefault { get; set; }
+            [Option('d', "docfolder", Required = true, HelpText = "Json doc folder")]
+            public string JsonDocFolder { get; set; }
+        }
+        public static Options RunOptions { get; private set; }
+
         static void Main(string[] args)
         {
+            //    Console.WriteLine($"Hello {subject}!");
             LoggerInit.Init();
             var _logger = Logger.CreateLogger<Program>();
-            try
-            {
-                _logger.LogInformation("***  App Starting {@Args}".CallerInfo(), args.Aggregate((s1, s2)=> {
-                    return s1 + " " + s2;
-                }));
-                int ii = 0;
-                if (args.Count() > 6)
-                    ii = 1;
-                if (args.Count() < 5)
-                    Debugger.Launch();
-                string gen = args[0 + ii]; // args[0] model/interface
-                string protofilename = args[1 + ii]; // args[1] proto file name (without extention)
-                string destfile = args[2 + ii]; // args[2] destination file
-                string destNS = args[3 + ii]; // args[3] destination namespace
-                string json_doc_folder = args[4 + ii]; // args[4] 
-                string default_base_class = args.Length == 5 + ii + 1 ? args[5 + ii] : null; // args[5] 
 
-                var ncs = protofilename.ToNameCs();
-                string reflectionClass = ncs + "Reflection";
-                //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
-                var types = typeof(Proto.Doc.ProtoDocReflection).Assembly.GetTypes();
-                Type reflection = null;
-                foreach (var t in types)
+            Parser.Default.ParseArguments<Options>(args)
+            .WithParsed<Options>(o =>
+            {
+
+                try
                 {
-                    if (t.Name == reflectionClass)
+                    RunOptions = o;
+                    _logger.LogInformation("***  App Starting IsModel={1}".CallerInfo(), o.IsModel);
+                    //_logger.LogInformation("***  App Starting {@Args}".CallerInfo(), args.Aggregate((s1, s2) =>
+                    //{
+                    //    return s1 + " " + s2;
+                    //}));
+                    var ncs = o.ProtoFileName.ToNameCs();
+                    string reflectionClass = ncs + "Reflection";
+                    //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
+                    var types = typeof(Proto.Doc.ProtoDocReflection).Assembly.GetTypes();
+                    Type reflection = null;
+                    foreach (var t in types)
                     {
-                        reflection = t;
-                        break;
+                        if (t.Name == reflectionClass)
+                        {
+                            reflection = t;
+                            break;
+                        }
+                    }
+                    var protoNS = reflection.FullName.Substring(0, reflection.FullName.LastIndexOf('.'));
+                    //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(reflectionClass);
+                    var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
+                    object value = descr.GetValue(null, null);
+                    FileDescriptor typedValue = (FileDescriptor)value;
+
+                    Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
+                    List<MessageDescriptor> messages = CollectMessages(typedValue, dicParents);
+
+                    //string path = "../../../../doc/" + protofilename + ".json";
+                    string path = o.JsonDocFolder + o.ProtoFileName + ".json";
+                    ProtoDoc.CreateDoc(path);
+
+                    string res = null;
+                    if (o.IsModel)
+                    {
+                        NameSpace ns = new NameSpace(typedValue, messages, dicParents, o.Namespace, protoNS, o.BaseclassDefault);
+                        res = ns.TransformText();
+                    }
+                    else if (o.IsInterface)
+                    {
+                        ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, o.Namespace, protoNS);
+                        res = ns.TransformText();
+                    }
+                    else
+                        throw new ArgumentException("Expected 'model' or 'interface'");
+
+                    string filedest = o.OutputFile;
+                    if (!File.Exists(filedest))
+                    {
+                        File.CreateText(filedest);
+                    }
+                    using (var fs = File.Open(filedest, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
+                    {
+                        var bytes = Encoding.UTF8.GetBytes(res);
+                        fs.Write(bytes, 0, bytes.Count());
                     }
                 }
-                var protoNS = reflection.FullName.Substring(0, reflection.FullName.LastIndexOf('.'));
-                //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(reflectionClass);
-                var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
-                object value = descr.GetValue(null, null);
-                FileDescriptor typedValue = (FileDescriptor)value;
-
-                Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
-                List<MessageDescriptor> messages = CollectMessages(typedValue, dicParents);
-
-                //string path = "../../../../doc/" + protofilename + ".json";
-                string path = json_doc_folder + protofilename + ".json";
-                ProtoDoc.CreateDoc(path);
-
-                string res = null;
-                if (gen == "model")
+                catch (Exception ex)
                 {
-                    NameSpace ns = new NameSpace(typedValue, messages, dicParents, destNS, protoNS, default_base_class);
-                    res = ns.TransformText();
+                    throw;
                 }
-                else
-                if (gen == "interface")
+                finally
                 {
-                    ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, destNS, protoNS);
-                    res = ns.TransformText();
+                    //System.Diagnostics.Trace.WriteLine("##### GenFromProto current dir: " + Directory.GetCurrentDirectory());
                 }
-                else
-                    throw new ArgumentException("Expected 'model' or 'interface' instead of '" + gen + "'");
-
-                string filedest = destfile;
-                if (!File.Exists(filedest))
-                {
-                    File.CreateText(filedest);
-                }
-                using (var fs = File.Open(filedest, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
-                {
-                    var bytes = Encoding.UTF8.GetBytes(res);
-                    fs.Write(bytes, 0, bytes.Count());
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                //System.Diagnostics.Trace.WriteLine("##### GenFromProto current dir: " + Directory.GetCurrentDirectory());
-            }
+            });
         }
     }
     public static partial class Utils
@@ -120,9 +144,9 @@ namespace GenFromProto
                 return false;
             var doc = JsonDoc.Files[from.File.Name].Messages[from.Name];
             //Trace.TraceInformation("#############  Doc base class: " + doc.BaseClass);
-            if (string.IsNullOrWhiteSpace(doc.BaseClass) 
-                || doc.BaseClass.Contains("ConfigObjectVmBase") 
-                || doc.BaseClass.Contains("ConfigObjectCommonBase") 
+            if (string.IsNullOrWhiteSpace(doc.BaseClass)
+                || doc.BaseClass.Contains("ConfigObjectVmBase")
+                || doc.BaseClass.Contains("ConfigObjectCommonBase")
                 || doc.BaseClass.Contains("ConfigObjectVmGenSettings")
                 )
                 return true;
