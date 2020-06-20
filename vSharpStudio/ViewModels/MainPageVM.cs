@@ -940,6 +940,7 @@ namespace vSharpStudio.ViewModels
                                 continue;
                             if (tg.Generator != null)
                             {
+                                string code = null;
                                 switch (tg.Generator.PluginGeneratorType)
                                 {
                                     case vPluginLayerTypeEnum.DbDesign:
@@ -951,8 +952,8 @@ namespace vSharpStudio.ViewModels
                                     case vPluginLayerTypeEnum.DbConnection:
                                         string outFileConn = GetOuputFilePath(ts, tp, tpg);
                                         var genConn = (IvPluginDbConnStringGenerator)tg.Generator;
-                                        StringBuilder sb = null;
                                         bool first = false;
+                                        StringBuilder sb = null;
                                         if (!dicAppSettings.ContainsKey(outFileConn))
                                         {
                                             first = true;
@@ -968,23 +969,24 @@ namespace vSharpStudio.ViewModels
                                         sb.Append("\t\t\"");
                                         sb.Append(genConn.Name);
                                         sb.AppendLine("\": {");
-                                        sb.Append("\t\t\t\"provider\": ");
+                                        sb.Append("\t\t\t\"provider\": \"");
                                         sb.Append(genConn.ProviderName);
                                         sb.AppendLine("\",");
-                                        sb.Append("\t\t\t\"connection_string\": ");
-                                        //sb.Append(genConn.GenerateCode(tpg.GeneratorSettings));
+                                        sb.Append("\t\t\t\"connection_string\": \"");
+                                        sb.Append(genConn.GenerateCode(null));
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
+                                        code = sb.ToString();
                                         break;
                                     default:
-                                        string outFile = GetOuputFilePath(ts, tp, tpg);
-                                        string code = tg.Generator.GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
-                                        // tg.GetRelativeToConfigDiskPath()
-                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                        byte[] bytes = Encoding.UTF8.GetBytes(code);
-                                        File.WriteAllBytes(outFile, bytes);
+                                        code = tg.Generator.GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
+                                string outFile = GetOuputFilePath(ts, tp, tpg);
+                                // tg.GetRelativeToConfigDiskPath()
+                                //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                byte[] bytes = Encoding.UTF8.GetBytes(code);
+                                File.WriteAllBytes(outFile, bytes);
                             }
                         }
                     }

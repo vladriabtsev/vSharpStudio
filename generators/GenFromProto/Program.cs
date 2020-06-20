@@ -19,6 +19,7 @@ namespace GenFromProto
         // https://github.com/fclp/fluent-command-line-parser
         // https://github.com/natemcmaster/CommandLineUtils
         // https://github.com/commandlineparser/commandline !!!!
+        // https://github.com/commandlineparser/commandline/wiki/Immutable-Options-Type
         public class Options
         {
             [Option('m', "model", SetName = "model", Required = false, HelpText = "Model generation")]

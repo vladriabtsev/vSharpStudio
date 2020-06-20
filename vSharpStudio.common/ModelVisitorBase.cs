@@ -242,7 +242,7 @@ namespace vSharpStudio.common
 
             this.Visit(this.currCfg);
 
-            this.RunThroughConfig(this.currCfg, act);
+            this.RunThroughConfig(this.currCfg.Model, act);
 
             this.currCfg = null;
         }

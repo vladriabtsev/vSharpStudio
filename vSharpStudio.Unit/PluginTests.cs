@@ -90,6 +90,12 @@ namespace vSharpStudio.Unit
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
 
+            var ptst = new vPlugin.Sample.GeneratorDbAccessSettings();
+            Assert.IsFalse(ptst.IsAccessParam2.HasValue);
+            Assert.IsNull(ptst.AccessParam4);
+            Assert.IsFalse(ptst.IsAccessParam1);
+            Assert.AreEqual(string.Empty, ptst.AccessParam3);
+
             var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;

@@ -823,7 +823,7 @@ namespace GenFromProto
             #line hidden
             
             #line 159 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (field.ToTypeCs() == "string") { 
+ if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { 
             
             #line default
             #line hidden
@@ -865,7 +865,7 @@ namespace GenFromProto
             this.Write("Changed();\r\n");
             
             #line 162 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (!Program.RunOptions.IsReadonly) { 
+ if (Program.RunOptions.IsReadonly) { 
             
             #line default
             #line hidden
@@ -896,14 +896,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("; } set { this.");
-            
-            #line 163 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" = value; } }\r\n");
+            this.Write("; } } \r\n");
             
             #line 164 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
  } else { 
@@ -937,7 +930,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("; } }\r\n");
+            this.Write("; } set { this.");
+            
+            #line 165 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = value; } }\r\n");
             
             #line 166 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
  } 

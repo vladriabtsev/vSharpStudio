@@ -10,6 +10,7 @@
     - [proto_generator_db_access_node_settings](#proto_plugin_sample.proto_generator_db_access_node_settings)
     - [proto_generator_db_access_settings](#proto_plugin_sample.proto_generator_db_access_settings)
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
+    - [string_nullable](#proto_plugin_sample.string_nullable)
   
   
   
@@ -99,6 +100,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | is_access_param1 | [bool](#bool) |  |  |
 | is_access_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
 | access_param3 | [string](#string) |  |  |
+| access_param4 | [string_nullable](#proto_plugin_sample.string_nullable) |  |  |
 | is_generate_not_valid_code | [bool](#bool) |  |  |
 
 
@@ -117,6 +119,22 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | is_schema_param1 | [bool](#bool) |  |  |
 | is_schema_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
 | schema_param3 | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="proto_plugin_sample.string_nullable"></a>
+
+### string_nullable
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| has_value | [bool](#bool) |  |  |
+| value | [string](#string) |  |  |
 
 
 

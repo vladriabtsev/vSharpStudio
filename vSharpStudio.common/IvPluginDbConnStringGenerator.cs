@@ -15,7 +15,7 @@ namespace vSharpStudio.common
     public interface IvPluginDbConnStringGenerator : IvPluginGenerator, IvPluginGeneratorSettings
     {
         string ProviderName { get; }
-        //string ConnectionString { get; set; }
+        string ConnectionString { get; set; }
         IvPluginDbGenerator DbGenerator { get; }
     }
 }

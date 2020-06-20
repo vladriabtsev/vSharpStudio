@@ -155,6 +155,16 @@
               "defaultValue": ""
             },
             {
+              "name": "access_param4",
+              "description": "",
+              "label": "",
+              "type": "string_nullable",
+              "longType": "string_nullable",
+              "fullType": "proto_plugin_sample.string_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_generate_not_valid_code",
               "description": "",
               "label": "",
@@ -197,6 +207,37 @@
             },
             {
               "name": "schema_param3",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "string_nullable",
+          "longName": "string_nullable",
+          "fullName": "proto_plugin_sample.string_nullable",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "has_value",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
               "description": "",
               "label": "",
               "type": "string",

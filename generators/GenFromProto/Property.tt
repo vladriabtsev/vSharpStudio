@@ -156,12 +156,12 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
         }
     }
 }
-private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string") { #> = string.Empty<# } #>;
+private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { #> = string.Empty<# } #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(ref <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-<# if (!Program.RunOptions.IsReadonly) { #>
-<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } set { this.<#= field.Name.ToNameCs() #> = value; } }
+<# if (Program.RunOptions.IsReadonly) { #>
+<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } } 
 <# } else { #>
-<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } set { this.<#= field.Name.ToNameCs() #> = value; } }
 <# } #>
 <# } #>

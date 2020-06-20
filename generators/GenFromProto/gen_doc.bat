@@ -29,8 +29,8 @@ echo **** interface vsharpstudio
 %gen% -r -i -p vsharpstudio -o %1vSharpStudio.common\ModelInterfaces.cs -n vSharpStudio.common -d %1doc\
 
 echo **** model plugin_sample
-%gen% -r -m -p plugin_sample -o %1vPlugin.Sample\SettingsViewModels.cs -n vPlugin.Sample -d %1doc\ 
+%gen% -m -p plugin_sample -o %1vPlugin.Sample\SettingsViewModels.cs -n vPlugin.Sample -d %1doc\ 
 echo **** interface plugin_sample
-%gen% -r -i -p plugin_sample -o %1vPlugin.Sample\SettingsInterfaces.cs -n vPlugin.Sample -d %1doc\
+%gen% -i -p plugin_sample -o %1vPlugin.Sample\SettingsInterfaces.cs -n vPlugin.Sample -d %1doc\
 
 
