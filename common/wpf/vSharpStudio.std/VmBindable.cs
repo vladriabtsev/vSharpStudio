@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -346,5 +347,210 @@ namespace ViewModelBase
         }
 
         #endregion
+
+        public void CopyDiffToObject(object destination, string[] exclProps = null, Type interfaceSourceType = null)
+        {
+            PropertyInfo[] pdlst;
+            pdlst = destination.GetType().GetProperties();
+            Dictionary<string, PropertyInfo> ddic = new Dictionary<string, PropertyInfo>();
+            foreach (PropertyInfo p in pdlst)
+                ddic[p.Name] = p;
+
+            PropertyInfo[] plst;
+            if (interfaceSourceType == null)
+            {
+                plst = this.GetType().GetProperties();
+            }
+            else
+            {
+                plst = interfaceSourceType.GetProperties();
+            }
+            foreach (PropertyInfo p in plst)
+            {
+                if (exclProps != null)
+                {
+                    bool is_found = false;
+                    foreach (var t in exclProps)
+                    {
+                        if (t == p.Name)
+                        {
+                            is_found = true;
+                            break;
+                        }
+                    }
+                    if (is_found)
+                        continue;
+                }
+                if (!ddic.ContainsKey(p.Name))
+                    throw new Exception("Destination object doesn't have property with name: " + p.Name);
+                var dp = ddic[p.Name];
+                object to = dp.GetValue(destination, null);
+                var toType = dp.PropertyType;
+                object from = p.GetValue(this, null);
+                var fromType = p.PropertyType;
+                switch (fromType.Name)
+                {
+                    case "String":
+                        if ((string)from != (string)to)
+                            dp.SetValue(destination, from);
+                        break;
+                    case "Int32":
+                        if ((int)from != (int)to)
+                            dp.SetValue(destination, from);
+                        break;
+                    case "Boolean":
+                        if ((bool)from != (bool)to)
+                            dp.SetValue(destination, from);
+                        break;
+                    case "Nullable`1":
+                        if (fromType.UnderlyingSystemType.GenericTypeArguments.Count() == 1)
+                        {
+                            var type = fromType.UnderlyingSystemType.GenericTypeArguments[0];
+                            if (from == null && to == null)
+                                break;
+                            switch (fromType.Name)
+                            {
+                                case "Int32":
+                                    if ((int?)from != (int?)to)
+                                        dp.SetValue(destination, from);
+                                    break;
+                                case "Boolean":
+                                    if ((bool?)from != (bool?)to)
+                                        dp.SetValue(destination, from);
+                                    break;
+                                default:
+                                    throw new Exception("Not suported type: " + fromType.Name);
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Not suported type: " + fromType.Name);
+                        }
+                        break;
+                    default:
+                        if (fromType.BaseType?.Name == "Enum")
+                        {
+                            if (toType.BaseType?.Name != "Enum")
+                                throw new Exception("Destination object property with name '" + p.Name + "' is not Enum");
+                            if ((int)from != (int)to)
+                            {
+                                foreach (var t in Enum.GetValues(toType))
+                                {
+                                    if ((int)from == (int)to)
+                                    {
+                                        dp.SetValue(destination, t);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Not suported type: " + fromType.Name);
+                        }
+                        break;
+                }
+            }
+        }
+        // Copy all properties except entity Id
+        //public virtual void Clone(RowSelectAbstract from)
+        //{
+        //    Type et = this.GetType();
+        //    bool found = false;
+        //    Type etFrom = from.GetType();
+        //    while (etFrom != null)
+        //    {
+        //        if (et.Name != etFrom.Name || et.Namespace != etFrom.Namespace)
+        //        {
+        //            etFrom = etFrom.BaseType;
+        //        }
+        //        else
+        //        {
+        //            found = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!found)
+        //    {
+        //        etFrom = from.GetType();
+        //        while (et != null)
+        //        {
+        //            if (et.Name != etFrom.Name || et.Namespace != etFrom.Namespace)
+        //            {
+        //                et = et.BaseType;
+        //            }
+        //            else
+        //            {
+        //                found = true;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    if (!found)
+        //    {
+        //        throw new Exception("Types for copying have to be same or from class has to be subclass of this class ");
+        //    }
+        //    this.CopyMemberProperties(from, et);
+        //}
+        //private void CopyMemberProperties(RowSelectAbstract from, Type et)
+        //{
+        //    PropertyInfo[] plst = et.GetProperties();
+        //    foreach (PropertyInfo p in plst)
+        //    {
+        //        if (p.Name == "Id" || p.Name == "IdInt")
+        //            continue;
+        //        try
+        //        {
+        //            object memfrom = p.GetValue(from, null);
+        //            if (memfrom is IMember)
+        //            {
+        //                object memthis = p.GetValue(this, null);
+        //                if (!(memthis is MemberTimeStamp))
+        //                    ((IMember)memthis).Clone((IMember)memfrom);
+        //            }
+        //        }
+        //        catch (Exception)
+        //        { }
+        //    }
+        //}
+        //public virtual void Clone(RowSelectAbstract from, Type mutualBase)
+        //{
+        //    bool found = false;
+        //    Type etFrom = from.GetType();
+        //    while (etFrom != null)
+        //    {
+        //        if (mutualBase.Name != etFrom.Name || mutualBase.Namespace != etFrom.Namespace)
+        //        {
+        //            etFrom = etFrom.BaseType;
+        //        }
+        //        else
+        //        {
+        //            found = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!found)
+        //    {
+        //        throw new Exception("From type " + from.GetType().Name + " doesn't have base class of type " + mutualBase.Name);
+        //    }
+        //    found = false;
+        //    Type et = this.GetType();
+        //    while (et != null)
+        //    {
+        //        if (et.Name != mutualBase.Name || et.Namespace != mutualBase.Namespace)
+        //        {
+        //            et = et.BaseType;
+        //        }
+        //        else
+        //        {
+        //            found = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!found)
+        //    {
+        //        throw new Exception("To type " + et.GetType().Name + " doesn't have base class of type " + mutualBase.Name);
+        //    }
+        //    this.CopyMemberProperties(from, mutualBase);
+        //}
     }
 }

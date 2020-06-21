@@ -195,6 +195,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this._GenFileName = "app-settings.json";
                 this._RelativePathToGenFolder = string.Empty;
+                (gen as IvPluginDbConnStringGenerator).ConnectionString = "";
             }
             else
             {
