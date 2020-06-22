@@ -967,7 +967,7 @@ namespace vSharpStudio.ViewModels
                                         if (!first)
                                             sb.AppendLine(",");
                                         sb.Append("\t\t\"");
-                                        sb.Append(genConn.Name);
+                                        sb.Append(tpg.Name);
                                         sb.AppendLine("\": {");
                                         sb.Append("\t\t\t\"provider\": \"");
                                         sb.Append(genConn.ProviderName);

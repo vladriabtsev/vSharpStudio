@@ -13,23 +13,33 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppProjectGenerator //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
-
+        private IvPluginGenerator gen = null;
+        private Config cfg;
         partial void OnInit()
         {
             this._RelativePathToGenFolder = @"Generated\";
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
+            cfg = (Config)this.GetConfig();
         }
         protected override void OnInitFromDto()
         {
             base.OnInitFromDto();
             UpdateListGenerators();
+            cfg = (Config)this.GetConfig();
+            HideProperties(gen);
         }
+        [Browsable(false)]
         public string IconName
         {
-            get {
-                var cfg = this.GetConfig();
-                var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-                if (gen is IvPluginDbConnStringGenerator)
+            get
+            {
+                if (gen == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                    gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+                if (gen == null)
+                {
+                    return null;
+                }
+                else if (gen is IvPluginDbConnStringGenerator)
                 {
                     return "iconAddBehavior";
                 }
@@ -134,8 +144,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void UpdateListGenerators()
         {
-            Config cnfg = (Config)this.GetConfig();
-            Plugin plg = (Plugin)cnfg.DicNodes[this.PluginGuid];
+            Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
             this.ListGenerators.Clear();
             this.ListGenerators.AddRange(plg.ListGenerators);
             //EditorPluginSelection.ListGenerators.Clear();
@@ -146,7 +155,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotNotifying)
                 return;
-            Config cfg = (Config)this.GetConfig();
             //if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
             //    cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
             var nv = new ModelVisitorNodeGenSettings();
@@ -156,10 +164,10 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
+            this.gen = null;
         }
         partial void OnPluginGuidChanging(ref string to)
         {
-            Config cfg = (Config)this.GetConfig();
             if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
         }
@@ -168,7 +176,6 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsNotNotifying)
                 return;
             var nv = new ModelVisitorNodeGenSettings();
-            Config cfg = (Config)this.GetConfig();
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
             if (!cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
@@ -188,7 +195,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.AddNodeAppGenSettings(this.Guid);
             });
-            var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+            gen = cfg.DicActiveAppProjectGenerators[this.Guid];
             this.DynamicMainSettings = gen?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
             this.DescriptionGenerator = gen.Description;
             if (gen is IvPluginDbConnStringGenerator)
@@ -197,13 +204,42 @@ namespace vSharpStudio.vm.ViewModels
                 this._RelativePathToGenFolder = string.Empty;
                 (gen as IvPluginDbConnStringGenerator).ConnectionString = "";
             }
+            //else if (gen is IvPluginDbConnStringGenerator)
+            //{
+            //}
             else
             {
                 this._GenFileName = prevGenFileName;
                 this._RelativePathToGenFolder = prevRelativePathToGenFolder;
             }
+            HideProperties(gen);
             this.NotifyPropertyChanged(this.IconName);
         }
+
+        private void HideProperties(IvPluginGenerator gen)
+        {
+            if (gen == null)
+            {
+                this.AutoGenerateProperties = true;
+            }
+            else if (gen is IvPluginDbConnStringGenerator)
+            {
+                this.AutoGenerateProperties = false;
+                this.SetPropertyDefinitions(new string[] {
+                    this.GetPropertyName(() => this.RelativePathToGenFolder),
+                    this.GetPropertyName(() => this.GenFileName),
+                    this.GetPropertyName(() => this.ListGenerators),
+                    this.GetPropertyName(() => this.ListInModels),
+                });
+            }
+            //else if (gen is IvPluginDbConnStringGenerator)
+            //{
+            //}
+            else
+            {
+            }
+        }
+
         public string GetGenerationFilePath()
         {
             var path = this.GetGenerationFolderPath();
@@ -212,7 +248,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetGenerationFolderPath()
         {
-            var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             AppProject prj = this.Parent as AppProject;
@@ -231,7 +266,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotNotifying)
                 return;
-            var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
             var sln = this.Parent.Parent as AppSolution;
@@ -331,7 +365,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void NodeRemove()
         {
             this.PluginGeneratorGuid = "";
-            var cfg = (Config)this.GetConfig();
             //var nv = new ModelVisitorNodeGenSettings();
             //nv.NodeGenSettingsApplyAction(cfg, (p) =>
             //{
