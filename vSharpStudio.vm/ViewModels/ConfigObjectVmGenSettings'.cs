@@ -78,6 +78,8 @@ namespace vSharpStudio.vm.ViewModels
 
         private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
         {
+            if (gen is IvPluginDbConnStringGenerator)
+                return;
             var lst = gen.GetListNodeGenerationSettings();
             foreach (var t in lst)
             {

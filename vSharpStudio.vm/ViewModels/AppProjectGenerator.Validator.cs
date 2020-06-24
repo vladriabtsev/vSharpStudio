@@ -48,6 +48,8 @@ namespace vSharpStudio.vm.ViewModels
                             {
                                 foreach (var ttt in tt.ListAppProjectGenerators)
                                 {
+                                    if (ttt.IsConnectString() ?? false)
+                                        continue;
                                     if (pg != ttt && ttt.GetGenerationFilePath() == path)
                                     {
                                         sb.Append(sep);

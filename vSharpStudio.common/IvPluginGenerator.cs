@@ -9,6 +9,9 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGenerator
     {
+        /// <summary>
+        /// Unique identifier
+        /// </summary>
         string Guid { get; }
         /// <summary>
         /// Short Plugin code generator name (without spaces)
@@ -19,12 +22,18 @@ namespace vSharpStudio.common
         /// </summary>
         string NameUi { get; }
         /// <summary>
-        /// Default setings name
+        /// Description of generator
         /// </summary>
-        string DefaultSettingsName { get; }
         string Description { get; }
-        ITreeConfigNode Parent { get; set; }
+        /// <summary>
+        /// Type of generator
+        /// </summary>
         vPluginLayerTypeEnum PluginGeneratorType { get; }
+        /// <summary>
+        /// List model nodes settings
+        /// </summary>
+        /// <returns></returns>
+        List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings();
         // MVVM settings model (if settings == null then empty model will be created)
         /// <summary>
         /// MVVM model for editing settings.
@@ -34,7 +43,10 @@ namespace vSharpStudio.common
         /// <param name="settings, json format"></param>
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
         IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings);
-        List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings();
-        List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes);
+        /// <summary>
+        /// Default setings name
+        /// </summary>
+        string DefaultSettingsName { get; }
+        ITreeConfigNode Parent { get; set; }
     }
 }

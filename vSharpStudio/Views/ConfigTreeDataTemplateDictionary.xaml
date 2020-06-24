@@ -421,7 +421,8 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGenerator}" ItemsSource="{Binding ListSettings}">
+    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGenerator}" >
+        <!--ItemsSource="{Binding ListSettings}"-->
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
@@ -437,7 +438,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type dat:PluginGeneratorSettings}">
+    <!--<HierarchicalDataTemplate DataType="{x:Type dat:PluginGeneratorSettings}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{StaticResource iconAddBehavior}" />
@@ -452,7 +453,7 @@
                 <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
             </StackPanel>
         </StackPanel>
-    </HierarchicalDataTemplate>
+    </HierarchicalDataTemplate>-->
     
     <HierarchicalDataTemplate DataType="{x:Type dat:GroupListAppSolutions}" ItemsSource="{Binding ListAppSolutions}">
         <StackPanel Orientation="Horizontal">

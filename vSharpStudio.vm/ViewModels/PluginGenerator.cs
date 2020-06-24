@@ -11,7 +11,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
-    public partial class PluginGenerator : ICanGoLeft, ICanGoRight, ICanAddSubNode
+    public partial class PluginGenerator : ICanGoLeft, ICanGoRight //, ICanAddSubNode
     {
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
@@ -41,26 +41,26 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public bool CanAddSubNode() { return true; }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
-        {
-            PluginGeneratorSettings pgs = null;
-            // switch (this.Generator.PluginGeneratorType)
-            // {
-            //    case vPluginLayerTypeEnum.DbDesign:
-            var settings = this.Generator.GetAppGenerationSettingsVmFromJson(null);
-            pgs = new PluginGeneratorSettings(this, settings);
-            pgs.SetGuid(this.Generator.Guid.ToString());
-            this.GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
-            pgs.Parent = this;
-            this.ListSettings.Add(pgs);
-            this.SetSelected(pgs);
-            // break;
-            //    default:
-            //        throw new NotImplementedException();
-            // }
-            return pgs;
-        }
+        //public bool CanAddSubNode() { return false; }
+        //public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        //{
+        //    PluginGeneratorSettings pgs = null;
+        //    // switch (this.Generator.PluginGeneratorType)
+        //    // {
+        //    //    case vPluginLayerTypeEnum.DbDesign:
+        //    var settings = this.Generator.GetAppGenerationSettingsVmFromJson(null);
+        //    pgs = new PluginGeneratorSettings(this, settings);
+        //    pgs.SetGuid(this.Generator.Guid.ToString());
+        //    this.GetUniqueName(this.Generator.DefaultSettingsName, pgs, this.ListSettings);
+        //    pgs.Parent = this;
+        //    this.ListSettings.Add(pgs);
+        //    this.SetSelected(pgs);
+        //    // break;
+        //    //    default:
+        //    //        throw new NotImplementedException();
+        //    // }
+        //    return pgs;
+        //}
 
         public override bool NodeCanRemove()
         {

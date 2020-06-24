@@ -44,7 +44,6 @@
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings)
     - [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings)
-    - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
@@ -174,7 +173,9 @@ General DB settings
 | relative_path_to_gen_folder | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output Folder&#34;)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;Get is returning relative folder path to project file&#34;)] Relative folder path to project file |
 | gen_file_name | [string](#string) |  | @attr [DisplayName(&#34;Output File&#34;)] @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Generator output file name&#34;)] Generator output file name |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)]
+| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
+| is_private_conn_str | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.&#34;)] |
+| conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)]
 
 proto_plugin_generator_node_settings node_settings = 17; |
 
@@ -875,8 +876,9 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_settings | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) | repeated |  |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_generator_settings list_settings = 5; |
 
 
 
@@ -912,27 +914,6 @@ Stored in each node in ConfigModel branch
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | node_settings_vm_guid | [string](#string) |  | Name of solution-project-generator node string name = 2; |
 | settings | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="proto_config.proto_plugin_generator_settings"></a>
-
-### proto_plugin_generator_settings
-@base ConfigObjectVmBase
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | This Guid is taken from Plugin Generator @attr [BrowsableAttribute(false)] |
-| name | [string](#string) |  | This Name is taken from Plugin Generator @attr [PropertyOrderAttribute(1)] |
-| description | [string](#string) |  | This Description is taken from Plugin Generator @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| is_private | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] |
-| file_path | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 

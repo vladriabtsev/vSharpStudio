@@ -559,11 +559,31 @@
             },
             {
               "name": "main_settings",
-              "description": "@attr [BrowsableAttribute(false)]\n\nproto_plugin_generator_node_settings node_settings = 17;",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_plugin_generator_main_settings",
               "longType": "proto_plugin_generator_main_settings",
               "fullType": "proto_config.proto_plugin_generator_main_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_private_conn_str",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "conn_str",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Db connection string. Directly editable or generated based on settings\")]\n\nproto_plugin_generator_node_settings node_settings = 17;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3272,21 +3292,11 @@
             },
             {
               "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_plugin_generator_settings list_settings = 5;",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_settings",
-              "description": "",
-              "label": "repeated",
-              "type": "proto_plugin_generator_settings",
-              "longType": "proto_plugin_generator_settings",
-              "fullType": "proto_config.proto_plugin_generator_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3355,87 +3365,6 @@
             {
               "name": "settings",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_plugin_generator_settings",
-          "longName": "proto_plugin_generator_settings",
-          "fullName": "proto_config.proto_plugin_generator_settings",
-          "description": "@base ConfigObjectVmBase",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "This Guid is taken from Plugin Generator\n@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "This Name is taken from Plugin Generator\n@attr [PropertyOrderAttribute(1)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "This Description is taken from Plugin Generator\n@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "generator_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_private",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "file_path",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -72,8 +72,10 @@ message proto_plugin_generator {
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
-    repeated proto_plugin_generator_settings list_settings = 5;
+    //repeated proto_plugin_generator_settings list_settings = 5;
 }
+
+/*
 // @base ConfigObjectVmBase
 message proto_plugin_generator_settings {
     // This Guid is taken from Plugin Generator
@@ -98,6 +100,8 @@ message proto_plugin_generator_settings {
     // @attr [Description("File path to store connection string settings in private place.")]
     string file_path = 9;
 }
+*/
+
 // @base ViewModelValidatableWithSeverity
 message proto_settings_config {
     string guid = 1;
@@ -419,6 +423,12 @@ message proto_app_project_generator {
     string generator_settings = 15;
     // @attr [BrowsableAttribute(false)]
     proto_plugin_generator_main_settings main_settings = 16;
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.")]
+    bool is_private_conn_str = 17;
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [Description("Db connection string. Directly editable or generated based on settings")]
+    string conn_str = 18;
     //proto_plugin_generator_node_settings node_settings = 17;
 }
 /** 

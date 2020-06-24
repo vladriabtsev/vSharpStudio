@@ -339,10 +339,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_properties_tab"><span class="badge">M</span>proto_properties_tab</a>
                 </li>
               
@@ -790,7 +786,23 @@ Generator output file name </p></td>
                   <td>main_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)]
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_private_conn_str</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(9)]
+@attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conn_str</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)]
 
 proto_plugin_generator_node_settings node_settings = 17; </p></td>
                 </tr>
@@ -3059,14 +3071,9 @@ string group_info = 9; </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_generator_settings list_settings = 5; </p></td>
                 </tr>
               
             </tbody>
@@ -3137,79 +3144,6 @@ string name = 2; </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
-        <p>@base ConfigObjectVmBase</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>This Guid is taken from Plugin Generator
-@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>This Name is taken from Plugin Generator
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>This Description is taken from Plugin Generator
-@attr [PropertyOrderAttribute(2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>generator_settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_private</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>file_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-@attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
                 </tr>
               
             </tbody>

@@ -76,21 +76,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IPluginGenerator : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         string Description { get; } // ModelInterfaces.tt Line: 47
-        ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
-        IEnumerable<IPluginGeneratorSettings> ListSettings { get; } // ModelInterfaces.tt Line: 44
-    }
-    
-    public partial interface IPluginGeneratorSettings : IGuid, IName // ModelInterfaces.tt Line: 29
-    {
         
         ///////////////////////////////////////////////////
-        /// This Description is taken from Plugin Generator
+        /// 
+        /// repeated proto_plugin_generator_settings list_settings = 5;
         ///////////////////////////////////////////////////
-        string Description { get; } // ModelInterfaces.tt Line: 47
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
-        string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
-        bool IsPrivate { get; } // ModelInterfaces.tt Line: 47
-        string FilePath { get; } // ModelInterfaces.tt Line: 47
     }
     
     public partial interface ISettingsConfig // ModelInterfaces.tt Line: 29
@@ -290,12 +281,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string GenFileName { get; } // ModelInterfaces.tt Line: 47
         string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
+        IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
+        bool IsPrivateConnStr { get; } // ModelInterfaces.tt Line: 47
         
         ///////////////////////////////////////////////////
         /// 
         /// proto_plugin_generator_node_settings node_settings = 17;
         ///////////////////////////////////////////////////
-        IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
+        string ConnStr { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////

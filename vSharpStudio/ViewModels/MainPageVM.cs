@@ -336,31 +336,32 @@ namespace vSharpStudio.ViewModels
                             PluginGenerator = pg
                         });
                     }
-                    foreach (var ttt in p.ListGenerators)
-                    {
-                        foreach (var tttt in ttt.ListSettings)
-                        {
-                            if (ttt.Generator != null)
-                            {
-                                if (tttt.IsPrivate)
-                                {
-                                    Utils.TryCall(
-                                        () =>
-                                        {
-                                            tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
-                                        }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
-                                }
-                                else
-                                {
-                                    Utils.TryCall(
-                                        () =>
-                                    {
-                                        tttt.SetVM(ttt.Generator.GetAppGenerationSettingsVmFromJson(tttt.GeneratorSettings));
-                                    }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
-                                }
-                            }
-                        }
-                    }
+                    // IsPrivateConnStr
+                    //foreach (var ttt in p.ListGenerators)
+                    //{
+                    //    foreach (var tttt in ttt.ListSettings)
+                    //    {
+                    //        if (ttt.Generator != null)
+                    //        {
+                    //            if (tttt.IsPrivate)
+                    //            {
+                    //                Utils.TryCall(
+                    //                    () =>
+                    //                    {
+                    //                        tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
+                    //                    }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
+                    //            }
+                    //            else
+                    //            {
+                    //                Utils.TryCall(
+                    //                    () =>
+                    //                {
+                    //                    tttt.SetVM(ttt.Generator.GetAppGenerationSettingsVmFromJson(tttt.GeneratorSettings));
+                    //                }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
+                    //            }
+                    //        }
+                    //    }
+                    //}
                 }
                 var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
                 foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
@@ -390,6 +391,7 @@ namespace vSharpStudio.ViewModels
                     this.Config.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
                 }
 
+                this.Config.RefillDicGenerators();
                 // Create Settings VM for all project generators
                 foreach (var t in this.Config.GroupAppSolutions.ListAppSolutions)
                 {
@@ -401,7 +403,6 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                 }
-                this.Config.RefillDicGenerators();
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(this.Config, (p) =>
@@ -944,12 +945,16 @@ namespace vSharpStudio.ViewModels
                                 switch (tg.Generator.PluginGeneratorType)
                                 {
                                     case vPluginLayerTypeEnum.DbDesign:
+                                        if (!(tg.Generator is IvPluginDbGenerator))
+                                            throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
                                         IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
                                         //genDb.GetConnectionStringMvvm()
                                         //genDb.EnsureDbDeletedAndCreated(connStr);
                                         //genDb.UpdateToModel(connStr, this.Config);
                                         break;
                                     case vPluginLayerTypeEnum.DbConnection:
+                                        if (!(tg.Generator is IvPluginDbConnStringGenerator))
+                                            throw new Exception("Generator type vPluginLayerTypeEnum.DbConnection has to have interface: " + typeof(IvPluginDbConnStringGenerator).Name);
                                         string outFileConn = GetOuputFilePath(ts, tp, tpg);
                                         var genConn = (IvPluginDbConnStringGenerator)tg.Generator;
                                         bool first = false;
@@ -979,7 +984,9 @@ namespace vSharpStudio.ViewModels
                                         code = sb.ToString();
                                         break;
                                     default:
-                                        code = tg.Generator.GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
+                                        if (!(tg.Generator is IvPluginGenerator))
+                                            throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
+                                        code = (tg.Generator as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
                                 string outFile = GetOuputFilePath(ts, tp, tpg);
@@ -1083,7 +1090,10 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (cancellationToken.IsCancellationRequested)
                                     throw new CancellationException();
-                                var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                if (!(gg is IvPluginCodeGenerator))
+                                    continue;
+                                var generator = (IvPluginCodeGenerator)gg;
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
                                 if (lstRenames.Count == 0)
                                     continue;
@@ -1133,7 +1143,10 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (cancellationToken.IsCancellationRequested)
                                     throw new CancellationException();
-                                var generator = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                if (!(gg is IvPluginCodeGenerator))
+                                    continue;
+                                var generator = (IvPluginCodeGenerator)gg;
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
                                 if (lstRenames.Count == 0)
                                     continue;

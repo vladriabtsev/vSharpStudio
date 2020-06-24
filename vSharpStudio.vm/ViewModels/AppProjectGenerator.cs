@@ -13,8 +13,32 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppProjectGenerator //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
-        private IvPluginGenerator gen = null;
         private Config cfg;
+        private IvPluginGenerator gen
+        {
+            get { return _gen; }
+            set
+            {
+                _gen = value;
+                if (this.IsConnectString() ?? false)
+                {
+                    (_gen as IvPluginDbConnStringGenerator).OnConnectionStringChanged =
+                        (connStr) =>
+                        {
+                            this._ConnStr = connStr;
+                            this.NotifyPropertyChanged(() => this.ConnStr);
+                        };
+                }
+            }
+        }
+        private IvPluginGenerator _gen = null;
+        partial void OnConnStrChanged()
+        {
+            if (this.IsConnectString() ?? false)
+            {
+                (_gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
+            }
+        }
         partial void OnInit()
         {
             this._RelativePathToGenFolder = @"Generated\";
@@ -26,7 +50,12 @@ namespace vSharpStudio.vm.ViewModels
             base.OnInitFromDto();
             UpdateListGenerators();
             cfg = (Config)this.GetConfig();
-            HideProperties(gen);
+        }
+        public bool? IsConnectString()
+        {
+            if (gen == null)
+                return null;
+            return gen is IvPluginDbConnStringGenerator;
         }
         [Browsable(false)]
         public string IconName
@@ -107,16 +136,32 @@ namespace vSharpStudio.vm.ViewModels
                     this.GeneratorSettings = string.Empty;
                     return;
                 }
-                Config cfg = (Config)this.GetConfig();
-                PluginGenerator gen = (PluginGenerator)cfg.DicNodes[this.PluginGeneratorGuid];
-                this.DynamicMainSettings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                if (gen == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                    gen = cfg.DicActiveAppProjectGenerators[this.Guid];
+                ChangeSettingsObject();
                 //this.NodesSettings = gen?.Generator?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                HideProperties(gen);
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
+
+        private void ChangeSettingsObject()
+        {
+            if (gen is IvPluginDbConnStringGenerator)
+            {
+                if (gen != null)
+                    this.DynamicMainSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.GeneratorSettings);
+            }
+            else
+            {
+                if (gen != null)
+                    this.DynamicMainSettings = gen.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+            }
+        }
+
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanged()
@@ -196,13 +241,13 @@ namespace vSharpStudio.vm.ViewModels
                 p.AddNodeAppGenSettings(this.Guid);
             });
             gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-            this.DynamicMainSettings = gen?.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+            ChangeSettingsObject();
             this.DescriptionGenerator = gen.Description;
             if (gen is IvPluginDbConnStringGenerator)
             {
                 this._GenFileName = "app-settings.json";
                 this._RelativePathToGenFolder = string.Empty;
-                (gen as IvPluginDbConnStringGenerator).ConnectionString = "";
+                //(gen as IvPluginDbConnStringGenerator).ConnectionString = "";
             }
             //else if (gen is IvPluginDbConnStringGenerator)
             //{
@@ -237,6 +282,11 @@ namespace vSharpStudio.vm.ViewModels
             //}
             else
             {
+                this.AutoGenerateProperties = false;
+                this.SetPropertyDefinitions(new string[] {
+                    this.GetPropertyName(() => this.ConnStr),
+                    this.GetPropertyName(() => this.IsPrivateConnStr),
+                });
             }
         }
 
