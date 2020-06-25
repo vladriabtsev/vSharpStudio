@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/24/2020 22:14:48
+// Auto generated on UTC 06/25/2020 19:10:07
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4144,7 +4144,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 64
             if (isDeep) // Clone.tt Line: 61
                 vm.MainSettings = PluginGeneratorMainSettings.Clone(vm, from.MainSettings, isDeep);
-            vm.IsPrivateConnStr = from.IsPrivateConnStr; // Clone.tt Line: 64
             vm.ConnStr = from.ConnStr; // Clone.tt Line: 64
             if (isNewGuid) // Clone.tt Line: 69
                 vm.SetNewGuid();
@@ -4168,7 +4167,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 139
             if (isDeep) // Clone.tt Line: 136
                 PluginGeneratorMainSettings.Update(to.MainSettings, from.MainSettings, isDeep);
-            to.IsPrivateConnStr = from.IsPrivateConnStr; // Clone.tt Line: 139
             to.ConnStr = from.ConnStr; // Clone.tt Line: 139
         }
         // Clone.tt Line: 145
@@ -4211,7 +4209,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.MainSettings == null) // Clone.tt Line: 210
                 vm.MainSettings = new PluginGeneratorMainSettings(vm); // Clone.tt Line: 212
             PluginGeneratorMainSettings.ConvertToVM(m.MainSettings, vm.MainSettings); // Clone.tt Line: 216
-            vm.IsPrivateConnStr = m.IsPrivateConnStr; // Clone.tt Line: 218
             vm.ConnStr = m.ConnStr; // Clone.tt Line: 218
             vm.OnInitFromDto(); // Clone.tt Line: 224
             vm.IsSubTreeChanged = false;
@@ -4236,7 +4233,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GenFileName = vm.GenFileName; // Clone.tt Line: 272
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 272
             m.MainSettings = PluginGeneratorMainSettings.ConvertToProto(vm.MainSettings); // Clone.tt Line: 266
-            m.IsPrivateConnStr = vm.IsPrivateConnStr; // Clone.tt Line: 272
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 272
             return m;
         }
@@ -4504,37 +4500,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IPluginGeneratorMainSettings IAppProjectGenerator.MainSettings { get { return this._MainSettings; } }
         
         [PropertyOrderAttribute(9)]
-        [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.")]
-        public bool IsPrivateConnStr // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._IsPrivateConnStr; 
-            }
-            set
-            {
-                if (this._IsPrivateConnStr != value)
-                {
-                    this.OnIsPrivateConnStrChanging(ref value);
-                    this._IsPrivateConnStr = value;
-                    this.OnIsPrivateConnStrChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsPrivateConnStr;
-        partial void OnIsPrivateConnStrChanging(ref bool to); // Property.tt Line: 160
-        partial void OnIsPrivateConnStrChanged();
-        bool IAppProjectGenerator.IsPrivateConnStr { get { return this._IsPrivateConnStr; } } 
-        
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// proto_plugin_generator_node_settings node_settings = 17;
-        ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(10)]
         [Description("Db connection string. Directly editable or generated based on settings")]
         public string ConnStr // Property.tt Line: 138
         { 

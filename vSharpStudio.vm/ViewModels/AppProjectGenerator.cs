@@ -153,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
             if (gen is IvPluginDbConnStringGenerator)
             {
                 if (gen != null)
-                    this.DynamicMainSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.GeneratorSettings);
+                    this.DynamicMainSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
             }
             else
             {
@@ -285,7 +285,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.AutoGenerateProperties = false;
                 this.SetPropertyDefinitions(new string[] {
                     this.GetPropertyName(() => this.ConnStr),
-                    this.GetPropertyName(() => this.IsPrivateConnStr),
+                    //this.GetPropertyName(() => this.IsPrivateConnStr),
                 });
             }
         }

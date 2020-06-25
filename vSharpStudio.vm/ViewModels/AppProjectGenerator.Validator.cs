@@ -15,9 +15,18 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            //this.RuleFor(x => x.RelativePathToGenFolder)
-            //    .NotEmpty()
-            //    .WithMessage("Output generation folder is not selected");
+            //this.RuleFor(x => x.FilePathPrivateConnStr).Must((o, file) => { return o.IsPrivateConnStr && string.IsNullOrWhiteSpace(o.FilePathPrivateConnStr); })
+            //    .WithMessage("File path is not selected");
+            //this.RuleFor(x => x.FilePathPrivateConnStr)
+            //    .Custom((file, cntx) =>
+            //    {
+            //        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+            //        var dir = Path.GetDirectoryName(Path.GetFullPath(file));
+            //        if (!string.IsNullOrEmpty(file) && !Directory.Exists(dir))
+            //        {
+            //            cntx.AddFailure("Folder doesn't exists: " + dir);
+            //        }
+            //    });
             this.RuleFor(x => x.RelativePathToGenFolder)
                 .Custom((path, cntx) =>
                 {

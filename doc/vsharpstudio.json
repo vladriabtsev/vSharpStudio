@@ -568,18 +568,8 @@
               "defaultValue": ""
             },
             {
-              "name": "is_private_conn_str",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "conn_str",
-              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Db connection string. Directly editable or generated based on settings\")]\n\nproto_plugin_generator_node_settings node_settings = 17;",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Db connection string. Directly editable or generated based on settings\")]",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -174,10 +174,7 @@ General DB settings
 | gen_file_name | [string](#string) |  | @attr [DisplayName(&#34;Output File&#34;)] @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Generator output file name&#34;)] Generator output file name |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
-| is_private_conn_str | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.&#34;)] |
-| conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)]
-
-proto_plugin_generator_node_settings node_settings = 17; |
+| conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
 
 
 

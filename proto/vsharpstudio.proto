@@ -424,11 +424,18 @@ message proto_app_project_generator {
     // @attr [BrowsableAttribute(false)]
     proto_plugin_generator_main_settings main_settings = 16;
     // @attr [PropertyOrderAttribute(9)]
-    // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.")]
-    bool is_private_conn_str = 17;
-    // @attr [PropertyOrderAttribute(10)]
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
     string conn_str = 18;
+
+
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in user file settings.")]
+    //bool is_private_conn_str = 17;
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Private file")]
+    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
+    // @attr [Description("File path to store connection string settings in private place.")]
+    //string file_path_private_conn_str = 19;
     //proto_plugin_generator_node_settings node_settings = 17;
 }
 /** 

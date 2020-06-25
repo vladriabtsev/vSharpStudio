@@ -282,12 +282,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string GenFileName { get; } // ModelInterfaces.tt Line: 47
         string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
         IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
-        bool IsPrivateConnStr { get; } // ModelInterfaces.tt Line: 47
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// proto_plugin_generator_node_settings node_settings = 17;
-        ///////////////////////////////////////////////////
         string ConnStr { get; } // ModelInterfaces.tt Line: 47
     }
     

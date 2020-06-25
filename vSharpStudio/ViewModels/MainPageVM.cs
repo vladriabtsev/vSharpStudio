@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
@@ -336,7 +337,6 @@ namespace vSharpStudio.ViewModels
                             PluginGenerator = pg
                         });
                     }
-                    // IsPrivateConnStr
                     //foreach (var ttt in p.ListGenerators)
                     //{
                     //    foreach (var tttt in ttt.ListSettings)
@@ -399,7 +399,18 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            ttt.CreateGenSettings();
+                            //if (ttt.IsPrivateConnStr && (ttt.IsConnectString() ?? false))
+                            //{
+                            //    Utils.TryCall(
+                            //        () =>
+                            //        {
+                            //            ttt.ConnStr = File.ReadAllText(ttt.FilePathPrivateConnStr);
+                            //        }, "Private connection string was not loaded. Solution: '" + t.Name + 
+                            //        "' Project: '" + tt.Name + "' Generator: '" + ttt.Name + "' File path: '" + 
+                            //        Path.GetFullPath(ttt.FilePathPrivateConnStr) + "'");
+                            //}
+                            //else
+                                ttt.CreateGenSettings();
                         }
                     }
                 }
@@ -706,6 +717,7 @@ namespace vSharpStudio.ViewModels
 
         internal void Save()
         {
+            //TODO save and clean private ConnStr
             this.PluginSettingsToModel();
             this.SavePrepare();
             Utils.TryCall(
@@ -721,6 +733,7 @@ namespace vSharpStudio.ViewModels
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
                 ResetAfterSave();
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
+            //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
 #if DEBUG
             //var json = JsonFormatter.Default.Format(this.pconfig_history);
