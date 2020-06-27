@@ -192,7 +192,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
         
         ///////////////////////////////////////////////////
         /// List NET solutions
@@ -210,7 +209,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// App solution relative path to configuration file path
         ///////////////////////////////////////////////////
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
         IEnumerable<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -223,7 +221,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// App project relative path to .net solution file path
         ///////////////////////////////////////////////////
         string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 47
-        IAppDbSettings DefaultDb { get; } // ModelInterfaces.tt Line: 51
         string Namespace { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }

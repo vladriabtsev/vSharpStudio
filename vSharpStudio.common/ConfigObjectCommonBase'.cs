@@ -85,7 +85,7 @@
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string IconStatus
         {
             get
@@ -117,7 +117,7 @@
             }
         }
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string IconFolder
         {
             get
@@ -189,7 +189,11 @@
 
         #endregion Sort
 
+#if DEBUG
         [ReadOnly(true)]
+#else
+        [Browsable(false)]
+#endif
         public string Guid
         {
             get
@@ -201,7 +205,6 @@
                 }
                 return this._Guid;
             }
-
             protected set
             {
                 this._Guid = value;
@@ -215,7 +218,11 @@
         {
             this._Guid = System.Guid.NewGuid().ToString();
         }
+#if DEBUG
         [ReadOnly(true)]
+#else
+        [Browsable(false)]
+#endif
         public string ModelPath
         {
             get
@@ -228,6 +235,10 @@
             }
         }
         private string _ModelPath = null;
+#if DEBUG
+#else
+        [Browsable(false)]
+#endif
         public string FullName
         {
             get
@@ -488,7 +499,7 @@
 
         private bool _IsExpanded;
 
-        #region Commands
+#region Commands
 
         public bool NodeCanAddNew()
         {
@@ -643,9 +654,9 @@
             throw new NotImplementedException();
         }
 
-        #endregion Commands
+#endregion Commands
 
-        #region IMutableAnnotatable
+#region IMutableAnnotatable
 
         public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
         {
@@ -820,7 +831,7 @@
                 ? this._annotations.Values.Where(a => a.Value != null)
                 : Enumerable.Empty<Annotation>();
 
-        #endregion IMutableAnnotatable
+#endregion IMutableAnnotatable
 
         public virtual bool HasChildren(object parent)
         {

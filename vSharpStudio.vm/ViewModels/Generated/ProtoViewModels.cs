@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/25/2020 19:10:07
+// Auto generated on UTC 06/26/2020 22:22:22
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -2901,7 +2901,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             : base(parent, GroupListAppSolutionsValidator.Validator) // Class.tt Line: 12
         {
             this.OnInitBegin();
-            this.DefaultDb = new AppDbSettings(this); // Class.tt Line: 28
             this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 22
             this.OnInit();
         }
@@ -2926,8 +2925,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = from.Name; // Clone.tt Line: 64
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
-            if (isDeep) // Clone.tt Line: 61
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
             vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 50
             foreach (var t in from.ListAppSolutions) // Clone.tt Line: 51
                 vm.ListAppSolutions.Add(AppSolution.Clone(vm, (AppSolution)t, isDeep));
@@ -2944,8 +2941,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Name = from.Name; // Clone.tt Line: 139
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
-            if (isDeep) // Clone.tt Line: 136
-                AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
             if (isDeep) // Clone.tt Line: 84
             {
                 foreach (var t in to.ListAppSolutions.ToList())
@@ -3013,9 +3008,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = m.Name; // Clone.tt Line: 218
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
-            if (vm.DefaultDb == null) // Clone.tt Line: 210
-                vm.DefaultDb = new AppDbSettings(vm); // Clone.tt Line: 212
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 216
             vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 197
             foreach (var t in m.ListAppSolutions) // Clone.tt Line: 198
             {
@@ -3037,7 +3029,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Name = vm.Name; // Clone.tt Line: 272
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 266
             foreach (var t in vm.ListAppSolutions) // Clone.tt Line: 238
                 m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // Clone.tt Line: 242
             return m;
@@ -3051,8 +3042,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.DefaultDb.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             foreach (var t in this.ListAppSolutions)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -3086,32 +3075,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 160
         partial void OnDescriptionChanged();
         string IGroupListAppSolutions.Description { get { return this._Description; } } 
-        
-        [PropertyOrderAttribute(3)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Default DB")]
-        public AppDbSettings DefaultDb // Property.tt Line: 113
-        { 
-            get 
-            { 
-                return this._DefaultDb; 
-            }
-            set
-            {
-                if (this._DefaultDb != value)
-                {
-                    this.OnDefaultDbChanging(ref value);
-                    this._DefaultDb = value;
-                    this.OnDefaultDbChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(ref AppDbSettings to); // Property.tt Line: 134
-        partial void OnDefaultDbChanged();
-        IAppDbSettings IGroupListAppSolutions.DefaultDb { get { return this._DefaultDb; } }
         
         
         ///////////////////////////////////////////////////
@@ -3178,7 +3141,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             : base(parent, AppSolutionValidator.Validator) // Class.tt Line: 12
         {
             this.OnInitBegin();
-            this.DefaultDb = new AppDbSettings(this); // Class.tt Line: 28
             this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 22
             this.OnInit();
         }
@@ -3204,8 +3166,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
             vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 64
-            if (isDeep) // Clone.tt Line: 61
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 50
             foreach (var t in from.ListAppProjects) // Clone.tt Line: 51
                 vm.ListAppProjects.Add(AppProject.Clone(vm, (AppProject)t, isDeep));
@@ -3223,8 +3183,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
             to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 139
-            if (isDeep) // Clone.tt Line: 136
-                AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
             if (isDeep) // Clone.tt Line: 84
             {
                 foreach (var t in to.ListAppProjects.ToList())
@@ -3293,9 +3251,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
             vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 218
-            if (vm.DefaultDb == null) // Clone.tt Line: 210
-                vm.DefaultDb = new AppDbSettings(vm); // Clone.tt Line: 212
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 216
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 197
             foreach (var t in m.ListAppProjects) // Clone.tt Line: 198
             {
@@ -3318,7 +3273,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
             m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 272
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 266
             foreach (var t in vm.ListAppProjects) // Clone.tt Line: 238
                 m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // Clone.tt Line: 242
             return m;
@@ -3332,8 +3286,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.DefaultDb.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             foreach (var t in this.ListAppProjects)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -3401,33 +3353,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativeAppSolutionPathChanged();
         string IAppSolution.RelativeAppSolutionPath { get { return this._RelativeAppSolutionPath; } } 
         
-        [PropertyOrderAttribute(8)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Default DB")]
-        [Description("Database connection. If empty, all solutions settings are used")]
-        public AppDbSettings DefaultDb // Property.tt Line: 113
-        { 
-            get 
-            { 
-                return this._DefaultDb; 
-            }
-            set
-            {
-                if (this._DefaultDb != value)
-                {
-                    this.OnDefaultDbChanging(ref value);
-                    this._DefaultDb = value;
-                    this.OnDefaultDbChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(ref AppDbSettings to); // Property.tt Line: 134
-        partial void OnDefaultDbChanged();
-        IAppDbSettings IAppSolution.DefaultDb { get { return this._DefaultDb; } }
-        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 58
         { 
@@ -3462,7 +3387,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             : base(parent, AppProjectValidator.Validator) // Class.tt Line: 12
         {
             this.OnInitBegin();
-            this.DefaultDb = new AppDbSettings(this); // Class.tt Line: 28
             this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 22
             this.OnInit();
         }
@@ -3488,8 +3412,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 64
-            if (isDeep) // Clone.tt Line: 61
-                vm.DefaultDb = AppDbSettings.Clone(vm, from.DefaultDb, isDeep);
             vm.Namespace = from.Namespace; // Clone.tt Line: 64
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 50
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 51
@@ -3508,8 +3430,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
             to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 139
-            if (isDeep) // Clone.tt Line: 136
-                AppDbSettings.Update(to.DefaultDb, from.DefaultDb, isDeep);
             to.Namespace = from.Namespace; // Clone.tt Line: 139
             if (isDeep) // Clone.tt Line: 84
             {
@@ -3579,9 +3499,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
             vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 218
-            if (vm.DefaultDb == null) // Clone.tt Line: 210
-                vm.DefaultDb = new AppDbSettings(vm); // Clone.tt Line: 212
-            AppDbSettings.ConvertToVM(m.DefaultDb, vm.DefaultDb); // Clone.tt Line: 216
             vm.Namespace = m.Namespace; // Clone.tt Line: 218
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 197
             foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 198
@@ -3605,7 +3522,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
             m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 272
-            m.DefaultDb = AppDbSettings.ConvertToProto(vm.DefaultDb); // Clone.tt Line: 266
             m.Namespace = vm.Namespace; // Clone.tt Line: 272
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 238
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 242
@@ -3620,8 +3536,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.DefaultDb.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             foreach (var t in this.ListAppProjectGenerators)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -3686,33 +3600,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativeAppProjectPathChanging(ref string to); // Property.tt Line: 160
         partial void OnRelativeAppProjectPathChanged();
         string IAppProject.RelativeAppProjectPath { get { return this._RelativeAppProjectPath; } } 
-        
-        [PropertyOrderAttribute(8)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Default DB")]
-        [Description("Database connection. If empty, solution settings are used")]
-        public AppDbSettings DefaultDb // Property.tt Line: 113
-        { 
-            get 
-            { 
-                return this._DefaultDb; 
-            }
-            set
-            {
-                if (this._DefaultDb != value)
-                {
-                    this.OnDefaultDbChanging(ref value);
-                    this._DefaultDb = value;
-                    this.OnDefaultDbChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private AppDbSettings _DefaultDb;
-        partial void OnDefaultDbChanging(ref AppDbSettings to); // Property.tt Line: 134
-        partial void OnDefaultDbChanged();
-        IAppDbSettings IAppProject.DefaultDb { get { return this._DefaultDb; } }
         
         [PropertyOrderAttribute(9)]
         [DisplayName("Namespace")]

@@ -995,6 +995,9 @@ namespace vSharpStudio.ViewModels
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
                                         code = sb.ToString();
+                                        if (genConn.DbGenerator.PluginGeneratorType != vPluginLayerTypeEnum.DbDesign)
+                                            throw new Exception("Expecting property DbGenerator has to be type vPluginLayerTypeEnum.DbDesign. Connection String generator type: " + genConn.GetType().Name);
+                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, this.Config);
                                         break;
                                     default:
                                         if (!(tg.Generator is IvPluginGenerator))

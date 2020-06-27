@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
-            this.DefaultDb.Parent = this;
+            //this.DefaultDb.Parent = this;
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif

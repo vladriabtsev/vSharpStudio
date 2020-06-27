@@ -407,16 +407,6 @@
               "defaultValue": ""
             },
             {
-              "name": "default_db",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]\n@attr [Description(\"Database connection. If empty, solution settings are used\")]",
-              "label": "",
-              "type": "proto_app_db_settings",
-              "longType": "proto_app_db_settings",
-              "fullType": "proto_config.proto_app_db_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "namespace",
               "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"Namespace\")]\n@attr [Description(\"Project namespace name\")]",
               "label": "",
@@ -635,16 +625,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "default_db",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]\n@attr [Description(\"Database connection. If empty, all solutions settings are used\")]",
-              "label": "",
-              "type": "proto_app_db_settings",
-              "longType": "proto_app_db_settings",
-              "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1838,16 +1818,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "default_db",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]",
-              "label": "",
-              "type": "proto_app_db_settings",
-              "longType": "proto_app_db_settings",
-              "fullType": "proto_config.proto_app_db_settings",
               "ismap": false,
               "defaultValue": ""
             },

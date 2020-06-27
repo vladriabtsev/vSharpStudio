@@ -34,13 +34,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.Children.Count > 0;
         }
-
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
-
         protected IMigration _migration { get; set; }
-        public string ConnectionString { get; set; }
-
         partial void OnInit()
         {
             this.Name = "ConfigModel";
@@ -318,6 +314,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         private ITreeConfigNode _SelectedNode;
+        [BrowsableAttribute(false)]
         public Action OnSelectedNodeChanged { get; set; }
 
         #region Connection string editor
@@ -399,65 +396,65 @@ namespace vSharpStudio.vm.ViewModels
         //      }
         //      private object _TestSettings4;
     }
-    public class Test1
-    {
-        public Test1()
-        {
-            this.Prop1 = new Test2();
-            this.Prop2 = new Test2();
-        }
-        [ExpandableObjectAttribute()]
-        public object Prop1 { get; set; }
-        [ExpandableObjectAttribute()]
-        public object Prop2 { get; set; }
-    }
-    public class Test2
-    {
-        public string Prop21 { get; set; }
-        public int Prop22 { get; set; }
-    }
+    //public class Test1
+    //{
+    //    public Test1()
+    //    {
+    //        this.Prop1 = new Test2();
+    //        this.Prop2 = new Test2();
+    //    }
+    //    [ExpandableObjectAttribute()]
+    //    public object Prop1 { get; set; }
+    //    [ExpandableObjectAttribute()]
+    //    public object Prop2 { get; set; }
+    //}
+    //public class Test2
+    //{
+    //    public string Prop21 { get; set; }
+    //    public int Prop22 { get; set; }
+    //}
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
-    public class DynamicClass : System.Dynamic.DynamicObject
-    {
-        private Dictionary<string, KeyValuePair<Type, object>> _fields;
+    //public class DynamicClass : System.Dynamic.DynamicObject
+    //{
+    //    private Dictionary<string, KeyValuePair<Type, object>> _fields;
 
-        public DynamicClass(List<Test1> fields)
-        {
-            Contract.Requires(fields != null);
-            _fields = new Dictionary<string, KeyValuePair<Type, object>>();
-            fields.ForEach(x => _fields.Add(x.GetType().Name,
-                new KeyValuePair<Type, object>(typeof(object), x)));
-        }
-        public DynamicClass(List<PluginGeneratorMainSettings> fields)
-        {
-            Contract.Requires(fields != null);
-            _fields = new Dictionary<string, KeyValuePair<Type, object>>();
-            fields.ForEach(x => _fields.Add(x.Name,
-                new KeyValuePair<Type, object>(typeof(object), x.SettingsVm)));
-        }
+    //    //public DynamicClass(List<Test1> fields)
+    //    //{
+    //    //    Contract.Requires(fields != null);
+    //    //    _fields = new Dictionary<string, KeyValuePair<Type, object>>();
+    //    //    fields.ForEach(x => _fields.Add(x.GetType().Name,
+    //    //        new KeyValuePair<Type, object>(typeof(object), x)));
+    //    //}
+    //    public DynamicClass(List<PluginGeneratorMainSettings> fields)
+    //    {
+    //        Contract.Requires(fields != null);
+    //        _fields = new Dictionary<string, KeyValuePair<Type, object>>();
+    //        fields.ForEach(x => _fields.Add(x.Name,
+    //            new KeyValuePair<Type, object>(typeof(object), x.SettingsVm)));
+    //    }
 
-        public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
-        {
-            Contract.Requires(binder != null);
-            Contract.Requires(value != null);
-            if (_fields.ContainsKey(binder.Name))
-            {
-                var type = _fields[binder.Name].Key;
-                if (value.GetType() == type)
-                {
-                    _fields[binder.Name] = new KeyValuePair<Type, object>(type, value);
-                    return true;
-                }
-                else throw new Exception("Value " + value + " is not of type " + type.Name);
-            }
-            return false;
-        }
+    //    public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
+    //    {
+    //        Contract.Requires(binder != null);
+    //        Contract.Requires(value != null);
+    //        if (_fields.ContainsKey(binder.Name))
+    //        {
+    //            var type = _fields[binder.Name].Key;
+    //            if (value.GetType() == type)
+    //            {
+    //                _fields[binder.Name] = new KeyValuePair<Type, object>(type, value);
+    //                return true;
+    //            }
+    //            else throw new Exception("Value " + value + " is not of type " + type.Name);
+    //        }
+    //        return false;
+    //    }
 
-        public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
-        {
-            Contract.Requires(binder != null);
-            result = _fields[binder.Name].Value;
-            return true;
-        }
-    }
+    //    public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
+    //    {
+    //        Contract.Requires(binder != null);
+    //        result = _fields[binder.Name].Value;
+    //        return true;
+    //    }
+    //}
 }

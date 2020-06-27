@@ -262,14 +262,14 @@ message proto_group_list_app_solutions {
     // @attr [PropertyOrderAttribute(2)]
     string description = 5;
 
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Default DB")]
-    proto_app_db_settings default_db = 6;
-
     // List NET solutions
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
+
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Default DB")]
+    //proto_app_db_settings default_db = 6;
 }
 /*
 message proto_plugins_group {
@@ -307,14 +307,14 @@ message proto_app_solution {
     // App solution relative path to configuration file path
     string relative_app_solution_path = 7;
 
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_app_project list_app_projects = 10;
+
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, all solutions settings are used")]
-    proto_app_db_settings default_db = 8;
-
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_app_project list_app_projects = 10;
+    //proto_app_db_settings default_db = 8;
 
     /*
     // @attr [PropertyOrderAttribute(11)]
@@ -351,12 +351,6 @@ message proto_app_project {
     // App project relative path to .net solution file path
     string relative_app_project_path = 7;
 
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Default DB")]
-    // @attr [Description("Database connection. If empty, solution settings are used")]
-    proto_app_db_settings default_db = 8;
-
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Namespace")]
     // @attr [Description("Project namespace name")]
@@ -364,6 +358,12 @@ message proto_app_project {
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project_generator list_app_project_generators = 10;
+
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Default DB")]
+    // @attr [Description("Database connection. If empty, solution settings are used")]
+    //proto_app_db_settings default_db = 8;
 }
 // Stored in each node in ConfigModel branch
 // @base ConfigObjectVmBase

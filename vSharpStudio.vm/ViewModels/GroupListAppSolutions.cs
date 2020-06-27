@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Apps";
             this.IsEditable = false;
-            this.DefaultDb.Parent = this;
+            //this.DefaultDb.Parent = this;
             //this.ListAppSolutions.OnAddedAction = (t) =>
             //{
             //    t.AddAllAppGenSettingsVmsToNode();

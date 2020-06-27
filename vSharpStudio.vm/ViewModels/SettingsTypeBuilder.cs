@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -13,15 +14,11 @@ namespace vSharpStudio.vm.ViewModels
 {
     internal class NodeSettings
     {
-        Stack<TypeBuilder> stackBuilders = new Stack<TypeBuilder>();
-        TypeBuilder tb;
-        object? obj;
-
         public object Run(ITreeConfigNode node)
         {
             var nds = (IGetNodeSetting)node;
-            tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
-            ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
+            TypeBuilder tbSol = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
+            ConstructorBuilder constructor = tbSol.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
             Config cfg = (Config)node.GetConfig();
             var dic_sols = new Dictionary<string, object>();
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
@@ -31,9 +28,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     solName = t.Name;
                 }
-                SettingsTypeBuilder.CreateProperty(tb, t.Name, typeof(Object));
-                stackBuilders.Push(tb);
-                tb = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
+                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object));
+                TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
                 {
@@ -42,9 +38,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         prjName = t.Name;
                     }
-                    SettingsTypeBuilder.CreateProperty(tb, tt.Name, typeof(Object));
-                    stackBuilders.Push(tb);
-                    tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
+                    TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
                     var dic_apgs = new Dictionary<string, object>();
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
@@ -52,22 +46,19 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
                             {
-                                SettingsTypeBuilder.CreateProperty(tb, ttt.Name, typeof(Object));
-
-                                stackBuilders.Push(tb);
-                                tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
-                                                                           //int len = 5;
-                                                                           //CreateProperty(tb,
-                                                                           //    solName.Substring(0, Math.Min(len, solName.Length)) +
-                                                                           //    prjName.Substring(0, Math.Min(len, prjName.Length)) +
-                                                                           //    ttt.Name, typeof(Object));
+                                TypeBuilder tbGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
                                 var dic_gs = new Dictionary<string, object>();
                                 foreach (var tttt in ttt.ListGenerators)
                                 {
                                     if (tttt.Generator == null)
                                         continue;
+                                    IvPluginGenerator gen = tttt.Generator;
+                                    if (gen is IvPluginDbConnStringGenerator)
+                                    {
+                                        gen = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                                    }
                                     bool isFound = false;
-                                    var lst = tttt.Generator.GetListNodeGenerationSettings();
+                                    var lst = gen.GetListNodeGenerationSettings();
                                     foreach (var ts in lst)
                                     {
                                         if (nds.ContainsSettings(ts.Guid))
@@ -75,63 +66,72 @@ namespace vSharpStudio.vm.ViewModels
                                     }
                                     if (!isFound)
                                         continue;
-                                    SettingsTypeBuilder.CreateProperty(tb, tttt.Name, typeof(Object));
-
-                                    stackBuilders.Push(tb);
-                                    tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
+                                    SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object));
+                                    TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
                                     foreach (var ts in lst)
                                     {
                                         if (nds.ContainsSettings(ts.Guid))
-                                            SettingsTypeBuilder.CreateProperty(tb, ts.Name, typeof(Object));
+                                            SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
                                     }
-                                    Type nsType = tb.CreateType();
-                                    obj = Activator.CreateInstance(nsType);
+                                    SettingsTypeBuilder.CreateToString(tbSet, "Generator");
+                                    Type nsType = tbSet.CreateType();
+                                    object objSet = Activator.CreateInstance(nsType);
                                     foreach (var ts in lst)
                                     {
                                         if (nds.ContainsSettings(ts.Guid))
-                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, obj, new object[] { ((IGetNodeSetting)node).GetSettings(ts.Guid) });
+                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ts.Guid) });
                                     }
-                                    tb = stackBuilders.Pop();
-                                    dic_gs[tttt.Name] = obj;
-
-                                    SettingsTypeBuilder.CreateProperty(tb, tttt.Name, typeof(Object));
+                                    dic_gs[gen.Name] = objSet;
                                 }
-                                Type settingsType = tb.CreateType();
-                                obj = Activator.CreateInstance(settingsType);
+                                SettingsTypeBuilder.CreateToString(tbGen, "Plugin");
+                                Type settingsType = tbGen.CreateType();
+                                object objGen = Activator.CreateInstance(settingsType);
                                 foreach (var dt in dic_gs)
                                 {
-                                    settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, obj, new object[] { dt.Value });
+                                    settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objGen, new object[] { dt.Value });
                                 }
-                                tb = stackBuilders.Pop();
-                                dic_apgs[ttt.Name] = obj;
+                                if (dic_gs.Count > 0)
+                                {
+                                    dic_apgs[ttt.Name] = objGen;
+                                    SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object));
+                                }
                             }
                         }
                     }
-                    Type apgsType = tb.CreateType();
-                    obj = Activator.CreateInstance(apgsType);
+                    SettingsTypeBuilder.CreateToString(tbAppGen, "Project");
+                    Type apgsType = tbAppGen.CreateType();
+                    object objAppGen = Activator.CreateInstance(apgsType);
                     foreach (var dt in dic_apgs)
                     {
-                        apgsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, obj, new object[] { dt.Value });
+                        apgsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objAppGen, new object[] { dt.Value });
                     }
-                    tb = stackBuilders.Pop();
-                    dic_prjs[tt.Name] = obj;
+                    if (dic_apgs.Count > 0)
+                    {
+                        dic_prjs[tt.Name] = objAppGen;
+                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, typeof(Object));
+                    }
                 }
-                Type prjsType = tb.CreateType();
-                obj = Activator.CreateInstance(prjsType);
+                SettingsTypeBuilder.CreateToString(tbPrj, "Solution");
+                Type prjsType = tbPrj.CreateType();
+                object objPrj = Activator.CreateInstance(prjsType);
                 foreach (var dt in dic_prjs)
                 {
-                    prjsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, obj, new object[] { dt.Value });
+                    prjsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objPrj, new object[] { dt.Value });
                 }
-                tb = stackBuilders.Pop();
-                dic_sols[t.Name] = obj;
+                //if (dic_prjs.Count > 0)
+                dic_sols[t.Name] = objPrj;
             }
-            Type solsType = tb.CreateType();
-            obj = Activator.CreateInstance(solsType);
+            SettingsTypeBuilder.CreateToString(tbSol, "Solutions");
+            Type solsType = tbSol.CreateType();
+            object objSol = Activator.CreateInstance(solsType);
             foreach (var dt in dic_sols)
             {
-                solsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, obj, new object[] { dt.Value });
+                if (dic_sols.Count == 1) // remove solution level node in settings
+                    return dt.Value;
+                solsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSol, new object[] { dt.Value });
             }
-            return obj;
+
+            return objSol;
         }
     }
     //internal class NodeSettings : AppVisitorBase
@@ -287,7 +287,17 @@ namespace vSharpStudio.vm.ViewModels
                     null);
             return tb;
         }
-
+        // https://en.wikipedia.org/wiki/Common_Intermediate_Language
+        internal static void CreateToString(TypeBuilder tb, string description)
+        {
+            MethodBuilder mthdBldr = tb.DefineMethod("ToString",
+                MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.NewSlot | MethodAttributes.Virtual | MethodAttributes.Final,
+                typeof(string), Type.EmptyTypes);
+            ILGenerator getIl = mthdBldr.GetILGenerator();
+            getIl.Emit(OpCodes.Ldstr, description);
+            getIl.Emit(OpCodes.Ret);
+            tb.DefineMethodOverride(mthdBldr, typeof(object).GetMethod("ToString"));
+        }
         internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType)
         {
             FieldBuilder fieldBuilder = tb.DefineField("_" + propertyName, propertyType, FieldAttributes.Private);
@@ -327,9 +337,12 @@ namespace vSharpStudio.vm.ViewModels
             // Create a Constructorinfo object for attribute 'MyAttribute1'.
             //ConstructorInfo myConstructorInfo = attr.GetConstructor(               new Type[1] { typeof(string) });
             ConstructorInfo constructorInfo = attr.GetConstructor(new Type[0]);
-            // Create the CustomAttribute instance of attribute of type 'MyAttribute1'.
             CustomAttributeBuilder attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[0]);
-            // Set the CustomAttribute 'MyAttribute1' to the Field.
+            propertyBuilder.SetCustomAttribute(attributeBuilder);
+
+            attr = typeof(ReadOnlyAttribute);
+            constructorInfo = attr.GetConstructor(new Type[1] { typeof(bool) });
+            attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { true });
             propertyBuilder.SetCustomAttribute(attributeBuilder);
         }
     }

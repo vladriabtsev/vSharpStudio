@@ -67,7 +67,14 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (cfg.DicActiveAppProjectGenerators.ContainsKey(ttt.Guid))
                         {
-                            this.AddNodeAppGenSettings(ttt.Guid);
+                            var guid = ttt.Guid;
+                            var gen = cfg.DicActiveAppProjectGenerators[ttt.Guid];
+                            if (gen is IvPluginDbConnStringGenerator)
+                            {
+                                guid = (gen as IvPluginDbConnStringGenerator).DbGenerator.Guid;
+                            }
+                            else
+                                this.AddNodeAppGenSettings(guid);
                         }
                     }
                 }
@@ -128,7 +135,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in subPatterns)
             {
                 string tt = t;
-                if (t[0]=='!')
+                if (t[0] == '!')
                 {
                     is_negative = true;
                     tt = t.Substring(1);
@@ -258,6 +265,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Node App Generator Settings
 
+        [BrowsableAttribute(false)]
         public DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get { return dicGenNodeSettings; } }
         private DictionaryExt<string, IvPluginGeneratorNodeSettings> dicGenNodeSettings =
             new DictionaryExt<string, IvPluginGeneratorNodeSettings>(20, false, true,

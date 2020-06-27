@@ -82,9 +82,30 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
+        [DisplayName("Settings ConnStr")]
+        [Description("DB connection string generator settings")]
+        public object DynamicMainConnStrSettings
+        {
+            get
+            {
+                return this._DynamicMainConnStrSettings;
+            }
+            set
+            {
+                if (this._DynamicMainConnStrSettings != value)
+                {
+                    this._DynamicMainConnStrSettings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private object _DynamicMainConnStrSettings;
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
         [DisplayName("Settings")]
         [Description("General generator settings. Config model nodes can contain additional settings if generator supports node settings")]
-        // Generator parameters object
         public object DynamicMainSettings
         {
             get
@@ -147,13 +168,15 @@ namespace vSharpStudio.vm.ViewModels
                 throw;
             }
         }
-
         private void ChangeSettingsObject()
         {
             if (gen is IvPluginDbConnStringGenerator)
             {
                 if (gen != null)
-                    this.DynamicMainSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
+                    this.DynamicMainConnStrSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
+                var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                if (genDb != null)
+                    this.DynamicMainSettings = (genDb as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
             }
             else
             {
@@ -161,7 +184,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.DynamicMainSettings = gen.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
             }
         }
-
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanged()
@@ -186,7 +208,6 @@ namespace vSharpStudio.vm.ViewModels
                 prevRelativePathToGenFolder = this.RelativePathToGenFolder;
             this.RelativePathToGenFolder = string.Empty;
         }
-
         private void UpdateListGenerators()
         {
             Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
@@ -200,8 +221,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotNotifying)
                 return;
-            //if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-            //    cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
@@ -218,6 +239,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
+            IvPluginDbGenerator genDb;
+            //IvPluginGenerator gen = null;
             if (this.IsNotNotifying)
                 return;
             var nv = new ModelVisitorNodeGenSettings();
@@ -231,7 +254,14 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (tt.Generator.Guid == this.PluginGeneratorGuid)
                         {
-                            cfg.DicActiveAppProjectGenerators[this.Guid] = tt.Generator;
+                            gen = tt.Generator;
+                            if (gen is IvPluginDbConnStringGenerator)
+                            {
+                                genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                                cfg.DicActiveAppProjectGenerators[this.Guid] = genDb;
+                            }
+                            else
+                                cfg.DicActiveAppProjectGenerators[this.Guid] = gen;
                         }
                     }
                 }
@@ -240,7 +270,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.AddNodeAppGenSettings(this.Guid);
             });
-            gen = cfg.DicActiveAppProjectGenerators[this.Guid];
             ChangeSettingsObject();
             this.DescriptionGenerator = gen.Description;
             if (gen is IvPluginDbConnStringGenerator)
@@ -260,7 +289,6 @@ namespace vSharpStudio.vm.ViewModels
             HideProperties(gen);
             this.NotifyPropertyChanged(this.IconName);
         }
-
         private void HideProperties(IvPluginGenerator gen)
         {
             if (gen == null)
@@ -275,6 +303,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.GetPropertyName(() => this.GenFileName),
                     this.GetPropertyName(() => this.ListGenerators),
                     this.GetPropertyName(() => this.ListInModels),
+                    //this.GetPropertyName(() => this.DynamicMainSettings),
                 });
             }
             //else if (gen is IvPluginDbConnStringGenerator)
@@ -284,12 +313,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.AutoGenerateProperties = false;
                 this.SetPropertyDefinitions(new string[] {
+                    this.GetPropertyName(() => this.DynamicMainConnStrSettings),
                     this.GetPropertyName(() => this.ConnStr),
                     //this.GetPropertyName(() => this.IsPrivateConnStr),
                 });
             }
         }
-
         public string GetGenerationFilePath()
         {
             var path = this.GetGenerationFolderPath();
@@ -422,7 +451,7 @@ namespace vSharpStudio.vm.ViewModels
             //});
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-            cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+            //cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
             //this.RefillDicGenerators();
             //    this.RemoveNodeAppGenSettings(item.Guid);
             //    var cfg = (Config)this.GetConfig();
