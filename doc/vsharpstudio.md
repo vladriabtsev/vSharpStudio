@@ -5,7 +5,6 @@
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
     - [bool_nullable](#proto_config.bool_nullable)
-    - [db_settings](#proto_config.db_settings)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_project_generator](#proto_config.proto_app_project_generator)
@@ -53,10 +52,8 @@
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
     - [string_nullable](#proto_config.string_nullable)
   
-    - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
-    - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
   
   
   
@@ -82,29 +79,6 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | ----- | ---- | ----- | ----------- |
 | has_value | [bool](#bool) |  |  |
 | value | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="proto_config.db_settings"></a>
-
-### db_settings
-General DB settings
-@base ViewModelValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| db_schema | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;DB schema name for all object in this configuration&#34;)] |
-| id_generator | [db_id_generator_method](#proto_config.db_id_generator_method) |  | @attr [PropertyOrderAttribute(2)] @attr [Description(&#34;Primary key generation method&#34;)] |
-| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;Primary key field type&#34;)] |
-| key_name | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Description(&#34;Primary key field name&#34;)] |
-| timestamp | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;Record data version/timestamp field name&#34;)] |
-| is_db_from_connection_string | [bool](#bool) |  | if yes: Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name. if no: 1. Find DB type from 2. Create connection string from db_server, db_database_name, db_user |
-| connection_string_name | [string](#string) |  |  |
-| path_to_project_with_connection_string | [string](#string) |  | path to project with config file containing connection string. Usefull for UNIT tests. it will override previous settings @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;File path to store connection string settings in private place.&#34;)] |
 
 
 
@@ -260,7 +234,6 @@ Configuration config
 | name_ui | [string](#string) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
-| db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] |
 | group_config_links | [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links) |  | @attr [BrowsableAttribute(false)] |
 | model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
@@ -352,6 +325,7 @@ Constant application wise value
 | object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] |
 | list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(4)] |
+| enumeration_type | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  |  |
 | is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
 
 
@@ -1068,18 +1042,6 @@ User&#39;s role
  
 
 
-<a name="proto_config.db_id_generator_method"></a>
-
-### db_id_generator_method
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| Identity | 0 |  |
-| HiLo | 1 |  |
-
-
-
 <a name="proto_config.enum_enumeration_type"></a>
 
 ### enum_enumeration_type
@@ -1113,18 +1075,6 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | DOCUMENT | 11 |  |
 | DOCUMENTS | 12 |  |
 | ANY | 15 |  |
-
-
-
-<a name="proto_config.proto_enum_primary_key_type"></a>
-
-### proto_enum_primary_key_type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| INT | 0 |  |
-| LONG | 1 |  |
 
 
  

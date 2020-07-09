@@ -10,24 +10,6 @@
       "hasServices": false,
       "enums": [
         {
-          "name": "db_id_generator_method",
-          "longName": "db_id_generator_method",
-          "fullName": "proto_config.db_id_generator_method",
-          "description": "",
-          "values": [
-            {
-              "name": "Identity",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "HiLo",
-              "number": "1",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
@@ -122,24 +104,6 @@
               "description": ""
             }
           ]
-        },
-        {
-          "name": "proto_enum_primary_key_type",
-          "longName": "proto_enum_primary_key_type",
-          "fullName": "proto_config.proto_enum_primary_key_type",
-          "description": "",
-          "values": [
-            {
-              "name": "INT",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "LONG",
-              "number": "1",
-              "description": ""
-            }
-          ]
         }
       ],
       "extensions": [],
@@ -170,97 +134,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "db_settings",
-          "longName": "db_settings",
-          "fullName": "proto_config.db_settings",
-          "description": "General DB settings\n@base ViewModelValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db_schema",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"DB schema name for all object in this configuration\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "id_generator",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Primary key generation method\")]",
-              "label": "",
-              "type": "db_id_generator_method",
-              "longType": "db_id_generator_method",
-              "fullType": "proto_config.db_id_generator_method",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "p_key_type",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"Primary key field type\")]",
-              "label": "",
-              "type": "proto_enum_primary_key_type",
-              "longType": "proto_enum_primary_key_type",
-              "fullType": "proto_config.proto_enum_primary_key_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "key_name",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Description(\"Primary key field name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "timestamp",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"Record data version/timestamp field name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_db_from_connection_string",
-              "description": "if yes: \n   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.\nif no:\n   1. Find DB type from \n   2. Create connection string from db_server, db_database_name, db_user",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "connection_string_name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "path_to_project_with_connection_string",
-              "description": "path to project with config file containing connection string. Usefull for UNIT tests.\nit will override previous settings\n@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"File path to store connection string settings in private place.\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -912,16 +785,6 @@
               "defaultValue": ""
             },
             {
-              "name": "db_settings",
-              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "db_settings",
-              "longType": "db_settings",
-              "fullType": "proto_config.db_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "group_config_links",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1312,6 +1175,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "enumeration_type",
+              "description": "",
+              "label": "",
+              "type": "enum_enumeration_type",
+              "longType": "enum_enumeration_type",
+              "fullType": "proto_config.enum_enumeration_type",
               "ismap": false,
               "defaultValue": ""
             },

@@ -85,9 +85,16 @@ namespace vSharpStudio.vm.ViewModels
 
         private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
         {
+            List<IvPluginGeneratorNodeSettings> lst = null;
             if (gen is IvPluginDbConnStringGenerator)
-                return;
-            var lst = gen.GetListNodeGenerationSettings();
+            {
+                var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                lst = genDb.GetListNodeGenerationSettings();
+            }
+            else
+            {
+                lst = gen.GetListNodeGenerationSettings();
+            }
             foreach (var t in lst)
             {
                 if (DicGenNodeSettings.ContainsKey(t.Guid))
@@ -284,7 +291,7 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (ngs != null)
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guid))
                 {
                     //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
                     //    return true;

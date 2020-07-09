@@ -39,13 +39,16 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
             cfg.Name = "test1";
-            cfg.DbSettings.DbSchema = "schema1";
+            cfg.GroupAppSolutions.Name = "kuku1";
+            //cfg.DbSettings.DbSchema = "schema1";
             cfg.BeginEdit();
             cfg.Name = "test2";
-            cfg.DbSettings.DbSchema = "schema2";
+            cfg.GroupAppSolutions.Name = "kuku2";
+            //cfg.DbSettings.DbSchema = "schema2";
             cfg.CancelEdit();
             Assert.IsTrue(cfg.Name == "test1");
-            Assert.IsTrue(cfg.DbSettings.DbSchema == "schema1");
+            Assert.IsTrue(cfg.GroupAppSolutions.Name == "kuku1");
+            //Assert.IsTrue(cfg.DbSettings.DbSchema == "schema1");
         }
 
         // [TestMethod]

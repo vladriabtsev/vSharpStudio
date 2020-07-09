@@ -81,18 +81,12 @@ namespace vSharpStudio.vm.ViewModels
                 this.Name = "Config";
             }
 
-            this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
-            this.DbSettings.KeyName = "Id";
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupConfigLinks.Parent = this;
             this.Model.Parent = this;
-            if (string.IsNullOrWhiteSpace(this.DbSettings.DbSchema))
-            {
-                this.DbSettings.DbSchema = "v";
-            }
             this.GroupPlugins.Parent = this;
             this.GroupAppSolutions.Parent = this;
             this.RefillChildren();

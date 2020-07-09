@@ -1,4 +1,4 @@
-// Auto generated on UTC 06/26/2020 22:22:22
+// Auto generated on UTC 07/09/2020 01:02:34
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -1114,328 +1114,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     
         #endregion Properties
     }
-    public partial class DbSettingsValidator : ValidatorBase<DbSettings, DbSettingsValidator> { } // Class.tt Line: 6
-    
-    ///////////////////////////////////////////////////
-    /// General DB settings
-    ///////////////////////////////////////////////////
-    public partial class DbSettings : VmValidatableWithSeverity<DbSettings, DbSettingsValidator>, IDbSettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public DbSettings() 
-            : base(DbSettingsValidator.Validator) // Class.tt Line: 38
-        {
-            this.OnInitBegin();
-            this.OnInit();
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static DbSettings Clone(DbSettings from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            DbSettings vm = new DbSettings();
-            vm.IsNotNotifying = true;
-            vm.DbSchema = from.DbSchema; // Clone.tt Line: 64
-            vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 64
-            vm.PKeyType = from.PKeyType; // Clone.tt Line: 64
-            vm.KeyName = from.KeyName; // Clone.tt Line: 64
-            vm.Timestamp = from.Timestamp; // Clone.tt Line: 64
-            vm.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 64
-            vm.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 64
-            vm.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 64
-            vm.IsNotNotifying = false;
-            return vm;
-        }
-        public static void Update(DbSettings to, DbSettings from, bool isDeep = true) // Clone.tt Line: 75
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.DbSchema = from.DbSchema; // Clone.tt Line: 139
-            to.IdGenerator = from.IdGenerator; // Clone.tt Line: 139
-            to.PKeyType = from.PKeyType; // Clone.tt Line: 139
-            to.KeyName = from.KeyName; // Clone.tt Line: 139
-            to.Timestamp = from.Timestamp; // Clone.tt Line: 139
-            to.IsDbFromConnectionString = from.IsDbFromConnectionString; // Clone.tt Line: 139
-            to.ConnectionStringName = from.ConnectionStringName; // Clone.tt Line: 139
-            to.PathToProjectWithConnectionString = from.PathToProjectWithConnectionString; // Clone.tt Line: 139
-        }
-        // Clone.tt Line: 145
-        #region IEditable
-        public override DbSettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return DbSettings.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(DbSettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            DbSettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'db_settings' to 'DbSettings'
-        public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm) // Clone.tt Line: 168
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotNotifying = true;
-            vm.DbSchema = m.DbSchema; // Clone.tt Line: 218
-            vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 218
-            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 218
-            vm.KeyName = m.KeyName; // Clone.tt Line: 218
-            vm.Timestamp = m.Timestamp; // Clone.tt Line: 218
-            vm.IsDbFromConnectionString = m.IsDbFromConnectionString; // Clone.tt Line: 218
-            vm.ConnectionStringName = m.ConnectionStringName; // Clone.tt Line: 218
-            vm.PathToProjectWithConnectionString = m.PathToProjectWithConnectionString; // Clone.tt Line: 218
-            vm.IsNotNotifying = false;
-            return vm;
-        }
-        // Conversion from 'DbSettings' to 'db_settings'
-        public static Proto.Config.db_settings ConvertToProto(DbSettings vm) // Clone.tt Line: 232
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 235
-            m.DbSchema = vm.DbSchema; // Clone.tt Line: 272
-            m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 270
-            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 270
-            m.KeyName = vm.KeyName; // Clone.tt Line: 272
-            m.Timestamp = vm.Timestamp; // Clone.tt Line: 272
-            m.IsDbFromConnectionString = vm.IsDbFromConnectionString; // Clone.tt Line: 272
-            m.ConnectionStringName = vm.ConnectionStringName; // Clone.tt Line: 272
-            m.PathToProjectWithConnectionString = vm.PathToProjectWithConnectionString; // Clone.tt Line: 272
-            return m;
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [PropertyOrderAttribute(1)]
-        [Description("DB schema name for all object in this configuration")]
-        public string DbSchema // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._DbSchema; 
-            }
-            set
-            {
-                if (this._DbSchema != value)
-                {
-                    this.OnDbSchemaChanging(ref value);
-                    this._DbSchema = value;
-                    this.OnDbSchemaChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _DbSchema = string.Empty;
-        partial void OnDbSchemaChanging(ref string to); // Property.tt Line: 160
-        partial void OnDbSchemaChanged();
-        string IDbSettings.DbSchema { get { return this._DbSchema; } } 
-        
-        [PropertyOrderAttribute(2)]
-        [Description("Primary key generation method")]
-        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._IdGenerator; 
-            }
-            set
-            {
-                if (this._IdGenerator != value)
-                {
-                    this.OnIdGeneratorChanging(ref value);
-                    this._IdGenerator = value;
-                    this.OnIdGeneratorChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private DbIdGeneratorMethod _IdGenerator;
-        partial void OnIdGeneratorChanging(ref DbIdGeneratorMethod to); // Property.tt Line: 160
-        partial void OnIdGeneratorChanged();
-        DbIdGeneratorMethod IDbSettings.IdGenerator { get { return this._IdGenerator; } } 
-        
-        [PropertyOrderAttribute(3)]
-        [Description("Primary key field type")]
-        public EnumPrimaryKeyType PKeyType // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._PKeyType; 
-            }
-            set
-            {
-                if (this._PKeyType != value)
-                {
-                    this.OnPKeyTypeChanging(ref value);
-                    this._PKeyType = value;
-                    this.OnPKeyTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumPrimaryKeyType _PKeyType;
-        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 160
-        partial void OnPKeyTypeChanged();
-        EnumPrimaryKeyType IDbSettings.PKeyType { get { return this._PKeyType; } } 
-        
-        [PropertyOrderAttribute(4)]
-        [Description("Primary key field name")]
-        public string KeyName // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._KeyName; 
-            }
-            set
-            {
-                if (this._KeyName != value)
-                {
-                    this.OnKeyNameChanging(ref value);
-                    this._KeyName = value;
-                    this.OnKeyNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _KeyName = string.Empty;
-        partial void OnKeyNameChanging(ref string to); // Property.tt Line: 160
-        partial void OnKeyNameChanged();
-        string IDbSettings.KeyName { get { return this._KeyName; } } 
-        
-        [PropertyOrderAttribute(5)]
-        [Description("Record data version/timestamp field name")]
-        public string Timestamp // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._Timestamp; 
-            }
-            set
-            {
-                if (this._Timestamp != value)
-                {
-                    this.OnTimestampChanging(ref value);
-                    this._Timestamp = value;
-                    this.OnTimestampChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Timestamp = string.Empty;
-        partial void OnTimestampChanging(ref string to); // Property.tt Line: 160
-        partial void OnTimestampChanged();
-        string IDbSettings.Timestamp { get { return this._Timestamp; } } 
-        
-        
-        ///////////////////////////////////////////////////
-        /// if yes: 
-        ///    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-        /// if no:
-        ///    1. Find DB type from 
-        ///    2. Create connection string from db_server, db_database_name, db_user
-        ///////////////////////////////////////////////////
-        public bool IsDbFromConnectionString // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._IsDbFromConnectionString; 
-            }
-            set
-            {
-                if (this._IsDbFromConnectionString != value)
-                {
-                    this.OnIsDbFromConnectionStringChanging(ref value);
-                    this._IsDbFromConnectionString = value;
-                    this.OnIsDbFromConnectionStringChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsDbFromConnectionString;
-        partial void OnIsDbFromConnectionStringChanging(ref bool to); // Property.tt Line: 160
-        partial void OnIsDbFromConnectionStringChanged();
-        bool IDbSettings.IsDbFromConnectionString { get { return this._IsDbFromConnectionString; } } 
-        
-        public string ConnectionStringName // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._ConnectionStringName; 
-            }
-            set
-            {
-                if (this._ConnectionStringName != value)
-                {
-                    this.OnConnectionStringNameChanging(ref value);
-                    this._ConnectionStringName = value;
-                    this.OnConnectionStringNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _ConnectionStringName = string.Empty;
-        partial void OnConnectionStringNameChanging(ref string to); // Property.tt Line: 160
-        partial void OnConnectionStringNameChanged();
-        string IDbSettings.ConnectionStringName { get { return this._ConnectionStringName; } } 
-        
-        
-        ///////////////////////////////////////////////////
-        /// path to project with config file containing connection string. Usefull for UNIT tests.
-        /// it will override previous settings
-        ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(4)]
-        [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        [Description("File path to store connection string settings in private place.")]
-        public string PathToProjectWithConnectionString // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._PathToProjectWithConnectionString; 
-            }
-            set
-            {
-                if (this._PathToProjectWithConnectionString != value)
-                {
-                    this.OnPathToProjectWithConnectionStringChanging(ref value);
-                    this._PathToProjectWithConnectionString = value;
-                    this.OnPathToProjectWithConnectionStringChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PathToProjectWithConnectionString = string.Empty;
-        partial void OnPathToProjectWithConnectionStringChanging(ref string to); // Property.tt Line: 160
-        partial void OnPathToProjectWithConnectionStringChanged();
-        string IDbSettings.PathToProjectWithConnectionString { get { return this._PathToProjectWithConnectionString; } } 
-    
-        #endregion Properties
-    }
     public partial class ConfigShortHistoryValidator : ValidatorBase<ConfigShortHistory, ConfigShortHistoryValidator> { } // Class.tt Line: 6
     public partial class ConfigShortHistory : ConfigObjectVmBase<ConfigShortHistory, ConfigShortHistoryValidator>, IComparable<ConfigShortHistory>, IConfigAcceptVisitor, IConfigShortHistory // Class.tt Line: 7
     {
@@ -2228,7 +1906,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             : base(parent, ConfigValidator.Validator) // Class.tt Line: 12
         {
             this.OnInitBegin();
-            this.DbSettings = new DbSettings(); // Class.tt Line: 26
             this.GroupConfigLinks = new GroupListBaseConfigLinks(this); // Class.tt Line: 28
             this.Model = new ConfigModel(this); // Class.tt Line: 28
             this.GroupPlugins = new GroupListPlugins(this); // Class.tt Line: 28
@@ -2257,8 +1934,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 64
             vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 64
             if (isDeep) // Clone.tt Line: 61
-                vm.DbSettings = DbSettings.Clone(from.DbSettings, isDeep);
-            if (isDeep) // Clone.tt Line: 61
                 vm.GroupConfigLinks = GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 61
                 vm.Model = ConfigModel.Clone(vm, from.Model, isDeep);
@@ -2282,8 +1957,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.NameUi = from.NameUi; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
             to.LastUpdated = from.LastUpdated; // Clone.tt Line: 139
-            if (isDeep) // Clone.tt Line: 136
-                DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
             if (isDeep) // Clone.tt Line: 136
                 GroupListBaseConfigLinks.Update(to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 136
@@ -2326,9 +1999,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.NameUi = m.NameUi; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
             vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 218
-            if (vm.DbSettings == null) // Clone.tt Line: 210
-                vm.DbSettings = new DbSettings(); // Clone.tt Line: 214
-            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings); // Clone.tt Line: 216
             if (vm.GroupConfigLinks == null) // Clone.tt Line: 210
                 vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 212
             GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks); // Clone.tt Line: 216
@@ -2359,7 +2029,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.NameUi = vm.NameUi; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
             m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 272
-            m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 266
             m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 266
             m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 266
             m.GroupPlugins = GroupListPlugins.ConvertToProto(vm.GroupPlugins); // Clone.tt Line: 266
@@ -2463,35 +2132,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 160
         partial void OnLastUpdatedChanged();
         Google.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } } 
-        
-        
-        ///////////////////////////////////////////////////
-        /// GENERAL DB SETTINGS
-        ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(11)]
-        [ExpandableObjectAttribute()]
-        public DbSettings DbSettings // Property.tt Line: 113
-        { 
-            get 
-            { 
-                return this._DbSettings; 
-            }
-            set
-            {
-                if (this._DbSettings != value)
-                {
-                    this.OnDbSettingsChanging(ref value);
-                    this._DbSettings = value;
-                    this.OnDbSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private DbSettings _DbSettings;
-        partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 134
-        partial void OnDbSettingsChanged();
-        IDbSettings IConfig.DbSettings { get { return this._DbSettings; } }
         
         [BrowsableAttribute(false)]
         public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 113
@@ -4979,6 +4619,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 64
             foreach (var t in from.ListObjectGuids) // Clone.tt Line: 43
                 vm.ListObjectGuids.Add(t);
+            vm.EnumerationType = from.EnumerationType; // Clone.tt Line: 64
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 64
             vm.IsNotNotifying = false;
             return vm;
@@ -4998,6 +4639,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 {
                     to.ListObjectGuids.Add(tt);
                 }
+            to.EnumerationType = from.EnumerationType; // Clone.tt Line: 139
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 139
         }
         // Clone.tt Line: 145
@@ -5037,6 +4679,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             {
                 vm.ListObjectGuids.Add(t);
             }
+            vm.EnumerationType = (EnumEnumerationType)m.EnumerationType; // Clone.tt Line: 218
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 218
             vm.IsNotNotifying = false;
             return vm;
@@ -5054,6 +4697,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 272
             foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 238
                 m.ListObjectGuids.Add(t); // Clone.tt Line: 240
+            m.EnumerationType = (Proto.Config.enum_enumeration_type)vm.EnumerationType; // Clone.tt Line: 270
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 272
             return m;
         }
@@ -5236,6 +4880,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListObjectGuidsChanging(ObservableCollection<string> to); // Property.tt Line: 30
         partial void OnListObjectGuidsChanged();
         IEnumerable<string> IDataType.ListObjectGuids { get { return this._ListObjectGuids; } }
+        
+        public EnumEnumerationType EnumerationType // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._EnumerationType; 
+            }
+            set
+            {
+                if (this._EnumerationType != value)
+                {
+                    this.OnEnumerationTypeChanging(ref value);
+                    this._EnumerationType = value;
+                    this.OnEnumerationTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumEnumerationType _EnumerationType;
+        partial void OnEnumerationTypeChanging(ref EnumEnumerationType to); // Property.tt Line: 160
+        partial void OnEnumerationTypeChanged();
+        EnumEnumerationType IDataType.EnumerationType { get { return this._EnumerationType; } } 
         
         [PropertyOrderAttribute(8)]
         [DisplayName("FK Index")]
@@ -12850,7 +12518,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_plugin p);
         void Visit(Proto.Config.proto_plugin_generator p);
         void Visit(Proto.Config.proto_settings_config p);
-        void Visit(Proto.Config.db_settings p);
         void Visit(Proto.Config.proto_config_short_history p);
         void Visit(Proto.Config.proto_group_list_base_config_links p);
         void Visit(Proto.Config.proto_base_config_link p);
@@ -12958,16 +12625,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(DbSettings p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
         protected override void OnVisit(ConfigShortHistory p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
@@ -13002,7 +12659,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 48
         {
@@ -13428,16 +13084,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(SettingsConfig p) { }
         protected virtual void OnVisitEnd(SettingsConfig p) { }
-        public void Visit(DbSettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(DbSettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(DbSettings p) { }
-        protected virtual void OnVisitEnd(DbSettings p) { }
         public void Visit(ConfigShortHistory p)
         {
             this.OnVisit(p);

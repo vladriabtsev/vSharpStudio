@@ -77,5 +77,15 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
+
+        public void EnsureDbDeleted(string connectionString)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnsureDbCreated(string connectionString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

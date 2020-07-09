@@ -5,16 +5,6 @@ using ViewModelBase;
 
 namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
 {
-    public enum DbIdGeneratorMethod // ModelInterfaces.tt Line: 15
-    {
-        Identity = 0,
-        HiLo = 1,
-    }
-    public enum EnumPrimaryKeyType // ModelInterfaces.tt Line: 15
-    {
-        INT = 0,
-        LONG = 1,
-    }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
         STRING = 0,
@@ -102,35 +92,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 47
     }
     
-    ///////////////////////////////////////////////////
-    /// General DB settings
-    ///////////////////////////////////////////////////
-    
-    public partial interface IDbSettings // ModelInterfaces.tt Line: 29
-    {
-        string DbSchema { get; } // ModelInterfaces.tt Line: 47
-        DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 47
-        EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 47
-        string KeyName { get; } // ModelInterfaces.tt Line: 47
-        string Timestamp { get; } // ModelInterfaces.tt Line: 47
-        
-        ///////////////////////////////////////////////////
-        /// if yes: 
-        ///    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-        /// if no:
-        ///    1. Find DB type from 
-        ///    2. Create connection string from db_server, db_database_name, db_user
-        ///////////////////////////////////////////////////
-        bool IsDbFromConnectionString { get; } // ModelInterfaces.tt Line: 47
-        string ConnectionStringName { get; } // ModelInterfaces.tt Line: 47
-        
-        ///////////////////////////////////////////////////
-        /// path to project with config file containing connection string. Usefull for UNIT tests.
-        /// it will override previous settings
-        ///////////////////////////////////////////////////
-        string PathToProjectWithConnectionString { get; } // ModelInterfaces.tt Line: 47
-    }
-    
     public partial interface IConfigShortHistory : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 51
@@ -166,11 +127,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
         Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 47
-        
-        ///////////////////////////////////////////////////
-        /// GENERAL DB SETTINGS
-        ///////////////////////////////////////////////////
-        IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 51
         IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 51
         IConfigModel Model { get; } // ModelInterfaces.tt Line: 51
         IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 51
@@ -311,6 +267,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string ObjectGuid { get; } // ModelInterfaces.tt Line: 47
         bool IsNullable { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
+        EnumEnumerationType EnumerationType { get; } // ModelInterfaces.tt Line: 47
         bool IsIndexFk { get; } // ModelInterfaces.tt Line: 47
     }
     

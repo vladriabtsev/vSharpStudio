@@ -14,7 +14,7 @@ namespace vSharpStudio.common
     /// </summary>
     public interface IvPluginDbGenerator : IvPluginGenerator
     {
-        ILoggerFactory LoggerFactory { get; set; }
+        //ILoggerFactory LoggerFactory { get; set; }
 
         // Provider name as from connection string
         string ProviderName { get; }
@@ -51,6 +51,8 @@ namespace vSharpStudio.common
         // void Restore(string filePath);
         // void Export(string filePath);
         // void Import(string filePath);
+        void EnsureDbDeleted(string connectionString);
+        void EnsureDbCreated(string connectionString);
         void EnsureDbDeletedAndCreated(string connectionString);
     }
 }

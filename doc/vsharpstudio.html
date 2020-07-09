@@ -183,10 +183,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.db_settings"><span class="badge">M</span>db_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_app_db_settings"><span class="badge">M</span>proto_app_db_settings</a>
                 </li>
               
@@ -372,19 +368,11 @@
               
               
                 <li>
-                  <a href="#proto_config.db_id_generator_method"><span class="badge">E</span>db_id_generator_method</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_enum_primary_key_type"><span class="badge">E</span>proto_enum_primary_key_type</a>
                 </li>
               
               
@@ -426,92 +414,6 @@
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.db_settings">db_settings</h3>
-        <p>General DB settings</p><p>@base ViewModelValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>db_schema</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [Description(&#34;DB schema name for all object in this configuration&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>id_generator</td>
-                  <td><a href="#proto_config.db_id_generator_method">db_id_generator_method</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [Description(&#34;Primary key generation method&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>p_key_type</td>
-                  <td><a href="#proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [Description(&#34;Primary key field type&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>key_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [Description(&#34;Primary key field name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>timestamp</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)]
-@attr [Description(&#34;Record data version/timestamp field name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_db_from_connection_string</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>if yes: 
-   Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-if no:
-   1. Find DB type from 
-   2. Create connection string from db_server, db_database_name, db_user </p></td>
-                </tr>
-              
-                <tr>
-                  <td>connection_string_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>path_to_project_with_connection_string</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>path to project with config file containing connection string. Usefull for UNIT tests.
-it will override previous settings
-@attr [PropertyOrderAttribute(4)]
-@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-@attr [Description(&#34;File path to store connection string settings in private place.&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -1074,15 +976,6 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>db_settings</td>
-                  <td><a href="#proto_config.db_settings">db_settings</a></td>
-                  <td></td>
-                  <td><p>GENERAL DB SETTINGS
-@attr [PropertyOrderAttribute(11)]
-@attr [ExpandableObjectAttribute()] </p></td>
-                </tr>
-              
-                <tr>
                   <td>group_config_links</td>
                   <td><a href="#proto_config.proto_group_list_base_config_links">proto_group_list_base_config_links</a></td>
                   <td></td>
@@ -1398,6 +1291,13 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enumeration_type</td>
+                  <td><a href="#proto_config.enum_enumeration_type">enum_enumeration_type</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -3543,29 +3443,6 @@ repeated proto_document list_documents = 7;
       
 
       
-        <h3 id="proto_config.db_id_generator_method">db_id_generator_method</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Identity</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>HiLo</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="proto_config.enum_enumeration_type">enum_enumeration_type</h3>
         <p>Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss</p>
         <table class="enum-table">
@@ -3678,29 +3555,6 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>ANY</td>
                 <td>15</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>INT</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>LONG</td>
-                <td>1</td>
                 <td><p></p></td>
               </tr>
             

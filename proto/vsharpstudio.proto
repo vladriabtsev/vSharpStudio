@@ -115,11 +115,14 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
+/*
 enum db_id_generator_method
 {
     Identity = 0;
     HiLo = 1;
 }
+*/
+/*
 // General DB settings
 // @base ViewModelValidatableWithSeverity
 message db_settings {
@@ -152,6 +155,7 @@ message db_settings {
     // @attr [Description("File path to store connection string settings in private place.")]
     string path_to_project_with_connection_string = 19;
 }
+*/
 /** 
  * @exclude
  * ####################################### C O N F I G ##########################################
@@ -186,10 +190,12 @@ message proto_base_config_link {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+/*
 enum proto_enum_primary_key_type {
     INT = 0;
     LONG = 1;
 }
+*/
 // Configuration config
 message proto_config {
     // Unique Guid for configuration (for comparison)
@@ -208,7 +214,7 @@ message proto_config {
     // GENERAL DB SETTINGS
     // @attr [PropertyOrderAttribute(11)]
     // @attr [ExpandableObjectAttribute()]
-    db_settings db_settings = 14;
+    //db_settings db_settings = 14;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_base_config_links group_config_links = 101;
@@ -512,6 +518,7 @@ message proto_data_type {
     bool is_nullable = 6;
     // @attr [PropertyOrderAttribute(4)]
     repeated string list_object_guids = 7;
+    enum_enumeration_type enumeration_type = 8;
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("FK Index")]
     // @attr [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]

@@ -363,6 +363,15 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             }
         }
+        public IvPluginDbConnStringGenerator GetDbConnStringGenerator()
+        {
+            return gen as IvPluginDbConnStringGenerator;
+        }
+        public IvPluginDbGenerator GetDbGenerator()
+        {
+            return (gen as IvPluginDbConnStringGenerator)?.DbGenerator;
+        }
+
         #region Tree operations
         //public bool CanAddSubNode()
         //{

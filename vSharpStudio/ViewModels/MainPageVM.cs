@@ -410,7 +410,7 @@ namespace vSharpStudio.ViewModels
                             //        Path.GetFullPath(ttt.FilePathPrivateConnStr) + "'");
                             //}
                             //else
-                                ttt.CreateGenSettings();
+                            ttt.CreateGenSettings();
                         }
                     }
                 }
@@ -916,7 +916,7 @@ namespace vSharpStudio.ViewModels
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
-                                await this.UpdateCurrentVersionAsync((p) => { this.ProgressVM.From(p); }, cancellationToken, o);
+                                await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
                                 this.cancellationTokenSource = null;
                             }
                             catch (CancellationException ex)
@@ -936,7 +936,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        public void GenerateCode(CancellationToken cancellationToken, bool isDeleteDb = false)
+        public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isDeleteDb = false)
         {
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
@@ -997,7 +997,16 @@ namespace vSharpStudio.ViewModels
                                         code = sb.ToString();
                                         if (genConn.DbGenerator.PluginGeneratorType != vPluginLayerTypeEnum.DbDesign)
                                             throw new Exception("Expecting property DbGenerator has to be type vPluginLayerTypeEnum.DbDesign. Connection String generator type: " + genConn.GetType().Name);
-                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, this.Config);
+                                        if (isDeleteDb)
+                                        {
+                                            genConn.DbGenerator.EnsureDbDeleted(tpg.ConnStr);
+                                        }
+                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, () =>
+                                        {
+                                            return true;
+                                        }, (ex)=> { 
+
+                                        });
                                         break;
                                     default:
                                         if (!(tg.Generator is IvPluginGenerator))
@@ -1068,7 +1077,7 @@ namespace vSharpStudio.ViewModels
         //    // that might complete very quickly.
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-        private async Task UpdateCurrentVersionAsync(Action<ProgressVM> onProgress, CancellationToken cancellationToken, object parm = null)
+        public async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null)
         {
             TestTransformation tst = parm as TestTransformation;
             ProgressVM progress = new ProgressVM();
@@ -1094,9 +1103,8 @@ namespace vSharpStudio.ViewModels
 
                     // II. Rename analysis
                     #region
-                    var mvr = new ModelVisitorForRenamer();
-                    mvr.RunThroughConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
-
+                    var mvr = new ModelVisitorForAnnotation();
+                    mvr.GetDiffAnnotatedConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
                     bool isNeedRenames = false;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -1194,7 +1202,7 @@ namespace vSharpStudio.ViewModels
 
                     // VI. Generate code (no need for UNDO)
                     #region
-                    this.GenerateCode(cancellationToken);
+                    this.GenerateCode(cancellationToken, mvr.DiffAnnotatedConfig);
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();

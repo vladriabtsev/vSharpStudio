@@ -6,11 +6,11 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ModelVisitorForRenamer : DiffModelVisitorBase
+    public class ModelVisitorForAnnotation : DiffModelVisitorBase
     {
         public List<string> ListGuidsRenamedObjects { get; private set; }
         public Config DiffAnnotatedConfig { get; set; }
-        public Config RunThroughConfig(Config curr, IConfig prev, IConfig old)
+        public Config GetDiffAnnotatedConfig(Config curr, IConfig prev, IConfig old)
         {
             this.DiffAnnotatedConfig = Config.Clone(null, curr);
             this.ListGuidsRenamedObjects = new List<string>();
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
             List<EnumerationPair> lst = new List<EnumerationPair>();
             foreach (var t in diff_lst)
                 lst.Add((EnumerationPair)t);
-            var grp = (Enumeration)DiffAnnotatedConfig.DicNodes[parent.Guid];
+            var grp = (Enumeration)parent;
             grp.ListEnumerationPairs.Clear();
             grp.ListEnumerationPairs.AddRange(lst);
         }
@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             List<Property> lst = new List<Property>();
             foreach (var t in diff_lst)
                 lst.Add((Property)t);
-            var grp = (GroupListProperties)DiffAnnotatedConfig.DicNodes[parent.Guid];
+            var grp = (GroupListProperties)parent;
             grp.ListProperties.Clear();
             grp.ListProperties.AddRange(lst);
         }
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             List<PropertiesTab> lst = new List<PropertiesTab>();
             foreach (var t in diff_lst)
                 lst.Add((PropertiesTab)t);
-            var grp = (GroupListPropertiesTabs)DiffAnnotatedConfig.DicNodes[parent.Guid];
+            var grp = (GroupListPropertiesTabs)parent;
             grp.ListPropertiesTabs.Clear();
             grp.ListPropertiesTabs.AddRange(lst);
         }
@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
             List<Form> lst = new List<Form>();
             foreach (var t in diff_lst)
                 lst.Add((Form)t);
-            var grp = (GroupListForms)DiffAnnotatedConfig.DicNodes[parent.Guid];
+            var grp = (GroupListForms)parent;
             grp.ListForms.Clear();
             grp.ListForms.AddRange(lst);
         }
@@ -111,7 +111,7 @@ namespace vSharpStudio.vm.ViewModels
             List<Report> lst = new List<Report>();
             foreach (var t in diff_lst)
                 lst.Add((Report)t);
-            var grp = (GroupListReports)DiffAnnotatedConfig.DicNodes[parent.Guid];
+            var grp = (GroupListReports)parent;
             grp.ListReports.Clear();
             grp.ListReports.AddRange(lst);
         }

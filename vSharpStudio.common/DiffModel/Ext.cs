@@ -20,18 +20,18 @@ namespace vSharpStudio.common
             dic[param] = obj;
             return dic;
         }
-        public static Type ToType(this EnumPrimaryKeyType obj)
-        {
-            switch (obj)
-            {
-                case EnumPrimaryKeyType.INT:
-                    return typeof(int);
-                case EnumPrimaryKeyType.LONG:
-                    return typeof(long);
-                default:
-                    throw new NotSupportedException();
-            }
-        }
+        //public static Type ToType(this EnumPrimaryKeyType obj)
+        //{
+        //    switch (obj)
+        //    {
+        //        case EnumPrimaryKeyType.INT:
+        //            return typeof(int);
+        //        case EnumPrimaryKeyType.LONG:
+        //            return typeof(long);
+        //        default:
+        //            throw new NotSupportedException();
+        //    }
+        //}
 
         #region Annotation
         public static bool IsNew(this IObjectAnnotatable obj)
