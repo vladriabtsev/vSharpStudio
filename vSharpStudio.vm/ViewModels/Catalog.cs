@@ -154,5 +154,7 @@ namespace vSharpStudio.vm.ViewModels
 
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
+        [Description("Generated name for DB. Based on parameters of config model")]
+        public string NameForDb { get { return this.GetNameForDb(); } }
     }
 }

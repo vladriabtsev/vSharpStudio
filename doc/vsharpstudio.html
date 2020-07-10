@@ -1011,7 +1011,7 @@ App solution relative path to configuration file path </p></td>
         
       
         <h3 id="proto_config.proto_config_model">proto_config_model</h3>
-        <p>Configuration model</p>
+        <p>Configuration model</p><p>@attr [CategoryOrder("Db Names Generation", 5)]</p>
 
         
           <table class="field-table">
@@ -1024,14 +1024,15 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Unique Guid for configuration (for comparison) </p></td>
+                  <td><p>Unique Guid for configuration (for comparison)
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>version</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [PropertyOrderAttribute(2)]
 @attr [ReadOnly(true)] </p></td>
                 </tr>
               
@@ -1039,28 +1040,54 @@ App solution relative path to configuration file path </p></td>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_max_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [Category(&#34;Db Names Generation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_composit_names</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(9)]
+@attr [Description(&#34;Use parent-child composit names.&#34;)]
+@attr [Category(&#34;Db Names Generation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_group_prefix</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)]
+@attr [Category(&#34;Db Names Generation&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1659,6 +1686,15 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>prefix_for_db_tables</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Db prefix&#34;)]
+@attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>group_shared_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
                   <td></td>
@@ -1842,6 +1878,15 @@ repeated proto_document list_forms = 7;
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix_for_db_tables</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Db prefix&#34;)]
+@attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>

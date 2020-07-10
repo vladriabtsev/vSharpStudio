@@ -47,6 +47,12 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupDocuments.Parent = this;
             this.GroupJournals.Parent = this;
             this.RefillChildren();
+            // TODO validate, Id generator table, use in db names
+            this.NameMaxLength = 100;
+            // TODO validate
+            this.IsCompositNames = true;
+            // TODO validate
+            this.IsUseGroupPrefix = true;
         }
 
         protected override void OnInitFromDto()

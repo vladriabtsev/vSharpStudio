@@ -27,6 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = Defaults.CatalogsGroupName;
+            this.PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
             if (this.Parent is Catalog)
             {

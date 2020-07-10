@@ -196,6 +196,7 @@ enum proto_enum_primary_key_type {
     LONG = 1;
 }
 */
+
 // Configuration config
 message proto_config {
     // Unique Guid for configuration (for comparison)
@@ -449,17 +450,33 @@ message proto_app_project_generator {
  * ####################################### M O D E L ##########################################
  */
 // Configuration model
+// @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_config_model {
     // Unique Guid for configuration (for comparison)
+    // @attr [ReadOnly(true)]
     string guid = 1;
-    // @attr [PropertyOrderAttribute(4)]
+    // @attr [PropertyOrderAttribute(2)]
     // @attr [ReadOnly(true)]
     int32 version = 2;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 3;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 5;
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [PropertyOrderAttribute(3)]
     string description = 6;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [Category("Db Names Generation")]
+    uint32 name_max_length = 8;
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [Description("Use parent-child composit names.")]
+    // @attr [Category("Db Names Generation")]
+    bool is_composit_names = 9;
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
+    // @attr [Category("Db Names Generation")]
+    bool is_use_group_prefix = 10;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
@@ -805,6 +822,10 @@ message proto_group_list_catalogs {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
+    string prefix_for_db_tables = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 7;
     // @attr [BrowsableAttribute(false)]
@@ -823,10 +844,14 @@ message proto_group_documents {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
+    string prefix_for_db_tables = 6;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties group_shared_properties = 6;
+    proto_group_list_properties group_shared_properties = 7;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_documents group_list_documents = 7;
+    proto_group_list_documents group_list_documents = 8;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -860,7 +885,7 @@ message proto_group_list_documents {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_document list_documents = 6;
+    repeated proto_document list_documents = 7;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

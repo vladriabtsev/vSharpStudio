@@ -248,16 +248,20 @@ Configuration config
 
 ### proto_config_model
 Configuration model
+@attr [CategoryOrder(&#34;Db Names Generation&#34;, 5)]
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
-| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  |  |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
+| guid | [string](#string) |  | Unique Guid for configuration (for comparison) @attr [ReadOnly(true)] |
+| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [Category(&#34;Db Names Generation&#34;)] |
+| is_composit_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Use parent-child composit names.&#34;)] @attr [Category(&#34;Db Names Generation&#34;)] |
+| is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Db Names Generation&#34;)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -433,6 +437,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
@@ -494,6 +499,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 

@@ -325,6 +325,64 @@
             }
         }
 
+        protected string GetNameForDb()
+        {
+
+            List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
+            ITreeConfigNode p = this.Parent;
+            while (p != null)
+            {
+                lst.Insert(0, p);
+                p = p.Parent;
+            }
+            var sb = new StringBuilder();
+            sb.Append("");
+            string prefix = "";
+            foreach (var t in lst)
+            {
+                if (t is IPropertiesTab)
+                    sb.Append(t.Name);
+                else if (t is ICatalog)
+                {
+                    sb.Append(t.Name);
+                }
+                else if (t is IGroupListCatalogs)
+                {
+                    prefix = (t as IGroupListCatalogs).PrefixForDbTables;
+                }
+                else if (t is IDocument)
+                {
+                    sb.Append(t.Name);
+                }
+                else if (t is IGroupDocuments)
+                {
+                    prefix = (t as IGroupDocuments).PrefixForDbTables;
+                }
+            }
+            string composit = sb.ToString();
+            sb = new StringBuilder();
+            var cfg = this.GetConfig();
+            if (cfg.Model.IsUseGroupPrefix)
+                sb.Append(prefix);
+            if (cfg.Model.IsCompositNames)
+                sb.Append(composit);
+            sb.Append(this.Name);
+            return sb.ToString();
+        }
+
+        public bool CheckIsCompositeNameUnique()
+        {
+            var cfg = this.GetConfig();
+
+            //foreach (var t in cfg.gr.ListCatalogs)
+            //{
+            //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+            //    {
+            //        return false;
+            //    }
+            //}
+            return true;
+        }
         protected void SetSelected(ITreeConfigNode node)
         {
             if (this.Parent != null)
@@ -499,7 +557,7 @@
 
         private bool _IsExpanded;
 
-#region Commands
+        #region Commands
 
         public bool NodeCanAddNew()
         {
@@ -654,9 +712,9 @@
             throw new NotImplementedException();
         }
 
-#endregion Commands
+        #endregion Commands
 
-#region IMutableAnnotatable
+        #region IMutableAnnotatable
 
         public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
         {
@@ -831,7 +889,7 @@
                 ? this._annotations.Values.Where(a => a.Value != null)
                 : Enumerable.Empty<Annotation>();
 
-#endregion IMutableAnnotatable
+        #endregion IMutableAnnotatable
 
         public virtual bool HasChildren(object parent)
         {
@@ -887,7 +945,7 @@
                                 is_skip = true;
                             break;
                         case "CategoryAttribute":
-                            pd.Category=(tt as CategoryAttribute).Category;
+                            pd.Category = (tt as CategoryAttribute).Category;
                             break;
                         case "DescriptionAttribute":
                             pd.Description = (tt as DescriptionAttribute).Description;

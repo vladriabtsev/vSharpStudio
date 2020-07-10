@@ -27,6 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.Name = Defaults.DocumentsGroupName;
+            this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupSharedProperties.Parent = this;

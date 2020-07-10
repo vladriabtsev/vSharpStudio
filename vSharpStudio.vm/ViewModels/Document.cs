@@ -134,5 +134,7 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        [Description("Generated name for DB. Based on parameters of config model")]
+        public string NameForDb { get { return this.GetNameForDb(); } }
     }
 }

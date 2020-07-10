@@ -248,6 +248,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
+        uint NameMaxLength { get; } // ModelInterfaces.tt Line: 47
+        bool IsCompositNames { get; } // ModelInterfaces.tt Line: 47
+        bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 47
         IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 51
         IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 51
         IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 51
@@ -460,6 +463,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
+        string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
         IEnumerable<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
@@ -469,6 +473,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
+        string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 47
         IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 51
         IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 51
         IEnumerable<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44

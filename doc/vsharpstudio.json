@@ -830,14 +830,14 @@
           "name": "proto_config_model",
           "longName": "proto_config_model",
           "fullName": "proto_config.proto_config_model",
-          "description": "Configuration model",
+          "description": "Configuration model\n@attr [CategoryOrder(\"Db Names Generation\", 5)]",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
             {
               "name": "guid",
-              "description": "Unique Guid for configuration (for comparison)",
+              "description": "Unique Guid for configuration (for comparison)\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -847,7 +847,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ReadOnly(true)]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -857,7 +857,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -867,7 +867,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -877,7 +877,7 @@
             },
             {
               "name": "name_ui",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -887,11 +887,41 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_max_length",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Db Names Generation\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_composit_names",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composit names.\")]\n@attr [Category(\"Db Names Generation\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_group_prefix",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Db Names Generation\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1614,6 +1644,16 @@
               "defaultValue": ""
             },
             {
+              "name": "prefix_for_db_tables",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for document db table names. Used if set to use in config model\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_shared_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1829,6 +1869,16 @@
             {
               "name": "description",
               "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prefix_for_db_tables",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for catalog db table names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",

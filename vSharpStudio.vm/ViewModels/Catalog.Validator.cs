@@ -29,19 +29,25 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return true;
             }
-
             if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
             {
                 return true;
             }
-
-            GroupListCatalogs p = (GroupListCatalogs)val.Parent;
-            foreach (var t in p.ListCatalogs)
+            var cfg = val.GetConfig();
+            if (cfg.Model.IsCompositNames)
             {
-                if ((val.Guid != t.Guid) && (val.Name == t.Name))
+                GroupListCatalogs p = (GroupListCatalogs)val.Parent;
+                foreach (var t in p.ListCatalogs)
                 {
-                    return false;
+                    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+                    {
+                        return false;
+                    }
                 }
+            }
+            else
+            {
+                return val.CheckIsCompositeNameUnique();
             }
             return true;
         }

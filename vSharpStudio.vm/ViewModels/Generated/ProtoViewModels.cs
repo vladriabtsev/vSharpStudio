@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/09/2020 01:02:34
+// Auto generated on UTC 07/10/2020 22:11:33
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4059,6 +4059,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
+    [CategoryOrder("Db Names Generation", 5)]
     public partial class ConfigModel : ConfigObjectVmGenSettings<ConfigModel, ConfigModelValidator>, IComparable<ConfigModel>, IConfigAcceptVisitor, IConfigModel // Class.tt Line: 7
     {
         #region CTOR
@@ -4103,6 +4104,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.NameUi = from.NameUi; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
+            vm.NameMaxLength = from.NameMaxLength; // Clone.tt Line: 64
+            vm.IsCompositNames = from.IsCompositNames; // Clone.tt Line: 64
+            vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 64
             if (isDeep) // Clone.tt Line: 61
                 vm.GroupCommon = GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 61
@@ -4136,6 +4140,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.NameUi = from.NameUi; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
+            to.NameMaxLength = from.NameMaxLength; // Clone.tt Line: 139
+            to.IsCompositNames = from.IsCompositNames; // Clone.tt Line: 139
+            to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 139
             if (isDeep) // Clone.tt Line: 136
                 GroupListCommon.Update(to.GroupCommon, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 136
@@ -4253,6 +4260,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.NameUi = m.NameUi; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
+            vm.NameMaxLength = m.NameMaxLength; // Clone.tt Line: 218
+            vm.IsCompositNames = m.IsCompositNames; // Clone.tt Line: 218
+            vm.IsUseGroupPrefix = m.IsUseGroupPrefix; // Clone.tt Line: 218
             if (vm.GroupCommon == null) // Clone.tt Line: 210
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 212
             GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon); // Clone.tt Line: 216
@@ -4300,6 +4310,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.NameUi = vm.NameUi; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
+            m.NameMaxLength = vm.NameMaxLength; // Clone.tt Line: 272
+            m.IsCompositNames = vm.IsCompositNames; // Clone.tt Line: 272
+            m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 272
             m.GroupCommon = GroupListCommon.ConvertToProto(vm.GroupCommon); // Clone.tt Line: 266
             m.GroupConstants = GroupListConstants.ConvertToProto(vm.GroupConstants); // Clone.tt Line: 266
             m.GroupEnumerations = GroupListEnumerations.ConvertToProto(vm.GroupEnumerations); // Clone.tt Line: 266
@@ -4346,7 +4359,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Procedures
         #region Properties
         
-        [PropertyOrderAttribute(4)]
+        [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
         public int Version // Property.tt Line: 138
         { 
@@ -4372,7 +4385,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnVersionChanged();
         int IConfigModel.Version { get { return this._Version; } } 
         
-        [PropertyOrderAttribute(5)]
+        [PropertyOrderAttribute(3)]
         public string Description // Property.tt Line: 138
         { 
             get 
@@ -4396,6 +4409,86 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 160
         partial void OnDescriptionChanged();
         string IConfigModel.Description { get { return this._Description; } } 
+        
+        [PropertyOrderAttribute(8)]
+        [Category("Db Names Generation")]
+        public uint NameMaxLength // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._NameMaxLength; 
+            }
+            set
+            {
+                if (this._NameMaxLength != value)
+                {
+                    this.OnNameMaxLengthChanging(ref value);
+                    this._NameMaxLength = value;
+                    this.OnNameMaxLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _NameMaxLength;
+        partial void OnNameMaxLengthChanging(ref uint to); // Property.tt Line: 160
+        partial void OnNameMaxLengthChanged();
+        uint IConfigModel.NameMaxLength { get { return this._NameMaxLength; } } 
+        
+        [PropertyOrderAttribute(9)]
+        [Description("Use parent-child composit names.")]
+        [Category("Db Names Generation")]
+        public bool IsCompositNames // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsCompositNames; 
+            }
+            set
+            {
+                if (this._IsCompositNames != value)
+                {
+                    this.OnIsCompositNamesChanging(ref value);
+                    this._IsCompositNames = value;
+                    this.OnIsCompositNamesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsCompositNames;
+        partial void OnIsCompositNamesChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsCompositNamesChanged();
+        bool IConfigModel.IsCompositNames { get { return this._IsCompositNames; } } 
+        
+        [PropertyOrderAttribute(10)]
+        [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
+        [Category("Db Names Generation")]
+        public bool IsUseGroupPrefix // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsUseGroupPrefix; 
+            }
+            set
+            {
+                if (this._IsUseGroupPrefix != value)
+                {
+                    this.OnIsUseGroupPrefixChanging(ref value);
+                    this._IsUseGroupPrefix = value;
+                    this.OnIsUseGroupPrefixChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseGroupPrefix;
+        partial void OnIsUseGroupPrefixChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsUseGroupPrefixChanged();
+        bool IConfigModel.IsUseGroupPrefix { get { return this._IsUseGroupPrefix; } } 
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 113
@@ -9412,6 +9505,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.NameUi = from.NameUi; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
+            vm.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 64
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 50
             foreach (var t in from.ListCatalogs) // Clone.tt Line: 51
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
@@ -9432,6 +9526,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.NameUi = from.NameUi; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
+            to.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 139
             if (isDeep) // Clone.tt Line: 84
             {
                 foreach (var t in to.ListCatalogs.ToList())
@@ -9536,6 +9631,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.NameUi = m.NameUi; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
+            vm.PrefixForDbTables = m.PrefixForDbTables; // Clone.tt Line: 218
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 197
             foreach (var t in m.ListCatalogs) // Clone.tt Line: 198
             {
@@ -9564,6 +9660,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.NameUi = vm.NameUi; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
+            m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 272
             foreach (var t in vm.ListCatalogs) // Clone.tt Line: 238
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 242
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 238
@@ -9616,6 +9713,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 160
         partial void OnDescriptionChanged();
         string IGroupListCatalogs.Description { get { return this._Description; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Db prefix")]
+        [Description("Prefix for catalog db table names. Used if set to use in config model")]
+        public string PrefixForDbTables // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._PrefixForDbTables; 
+            }
+            set
+            {
+                if (this._PrefixForDbTables != value)
+                {
+                    this.OnPrefixForDbTablesChanging(ref value);
+                    this._PrefixForDbTables = value;
+                    this.OnPrefixForDbTablesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PrefixForDbTables = string.Empty;
+        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 160
+        partial void OnPrefixForDbTablesChanged();
+        string IGroupListCatalogs.PrefixForDbTables { get { return this._PrefixForDbTables; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<Catalog> ListCatalogs // Property.tt Line: 58
@@ -9729,6 +9853,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 64
             vm.NameUi = from.NameUi; // Clone.tt Line: 64
             vm.Description = from.Description; // Clone.tt Line: 64
+            vm.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 64
             if (isDeep) // Clone.tt Line: 61
                 vm.GroupSharedProperties = GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 61
@@ -9750,6 +9875,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 139
             to.NameUi = from.NameUi; // Clone.tt Line: 139
             to.Description = from.Description; // Clone.tt Line: 139
+            to.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 139
             if (isDeep) // Clone.tt Line: 136
                 GroupListProperties.Update(to.GroupSharedProperties, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 136
@@ -9822,6 +9948,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 218
             vm.NameUi = m.NameUi; // Clone.tt Line: 218
             vm.Description = m.Description; // Clone.tt Line: 218
+            vm.PrefixForDbTables = m.PrefixForDbTables; // Clone.tt Line: 218
             if (vm.GroupSharedProperties == null) // Clone.tt Line: 210
                 vm.GroupSharedProperties = new GroupListProperties(vm); // Clone.tt Line: 212
             GroupListProperties.ConvertToVM(m.GroupSharedProperties, vm.GroupSharedProperties); // Clone.tt Line: 216
@@ -9850,6 +9977,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 272
             m.NameUi = vm.NameUi; // Clone.tt Line: 272
             m.Description = vm.Description; // Clone.tt Line: 272
+            m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 272
             m.GroupSharedProperties = GroupListProperties.ConvertToProto(vm.GroupSharedProperties); // Clone.tt Line: 266
             m.GroupListDocuments = GroupListDocuments.ConvertToProto(vm.GroupListDocuments); // Clone.tt Line: 266
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 238
@@ -9902,6 +10030,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 160
         partial void OnDescriptionChanged();
         string IGroupDocuments.Description { get { return this._Description; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Db prefix")]
+        [Description("Prefix for document db table names. Used if set to use in config model")]
+        public string PrefixForDbTables // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._PrefixForDbTables; 
+            }
+            set
+            {
+                if (this._PrefixForDbTables != value)
+                {
+                    this.OnPrefixForDbTablesChanging(ref value);
+                    this._PrefixForDbTables = value;
+                    this.OnPrefixForDbTablesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PrefixForDbTables = string.Empty;
+        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 160
+        partial void OnPrefixForDbTablesChanged();
+        string IGroupDocuments.PrefixForDbTables { get { return this._PrefixForDbTables; } } 
         
         [BrowsableAttribute(false)]
         public GroupListProperties GroupSharedProperties // Property.tt Line: 113
