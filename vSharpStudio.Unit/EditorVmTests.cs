@@ -853,6 +853,35 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForDbTables + cfg.Model.GroupDocuments.GroupListDocuments[0].Name + cfg.Model.GroupDocuments.GroupListDocuments[0].GroupPropertiesTabs[0].Name,
                 cfg.Model.GroupDocuments.GroupListDocuments[0].GroupPropertiesTabs[0].NameForDb);
         }
+        [TestMethod]
+        public void DbName003_UniqueDbNamesValidation()
+        {
+            var cfg = new Config();
+
+            cfg.Model.IsCompositNames = false;
+            cfg.Model.IsUseGroupPrefix = false;
+            //cfg.Model.GroupCatalogs.PrefixForDbTables = "Cat";
+            //cfg.Model.GroupCatalogs.AddCatalog("Test1");
+            //Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+            //cfg.Model.IsUseGroupPrefix = true;
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+            //cfg.Model.IsCompositNames = true;
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+
+            //cfg.Model.IsCompositNames = false;
+            //cfg.Model.IsUseGroupPrefix = false;
+            //cfg.Model.GroupCatalogs[0].GroupPropertiesTabs.AddPropertiesTab("Tab1");
+            //Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+            //Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name, cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].NameForDb);
+            //cfg.Model.IsUseGroupPrefix = true;
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name,
+            //    cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].NameForDb);
+            //cfg.Model.IsCompositNames = true;
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].NameForDb);
+            //Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name,
+            //    cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].NameForDb);
+        }
 
         #endregion Db table names
     }

@@ -33,6 +33,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <# } #>
     vm.IsNotNotifying = true;
+    vm.IsValidate = false;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
@@ -70,6 +71,7 @@ if (this.Doc.IsDefaultBase) {
         vm.SetNewGuid();
 <# } #>
     vm.IsNotNotifying = false;
+    vm.IsValidate = true;
     return vm;
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.ToNameCs() #> from, bool isDeep = true) // <#=Helper.FilePos() #>
@@ -173,6 +175,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
         return vm;
     }
     vm.IsNotNotifying = true;
+    vm.IsValidate = false;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
             continue;
@@ -226,6 +229,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.IsChanged = false;
 <# } #>
     vm.IsNotNotifying = false;
+    vm.IsValidate = true;
     return vm;
 }
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'

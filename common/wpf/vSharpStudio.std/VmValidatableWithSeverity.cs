@@ -15,6 +15,7 @@ namespace ViewModelBase
     {
         public VmValidatableWithSeverity(TValidator validator)
         {
+            this.IsValidate = true;
             this._validator = validator;
             this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
             this.ValidationCollection.SortDirection = SortDirection.Descending;
@@ -128,6 +129,8 @@ namespace ViewModelBase
         }
         public bool Validate()
         {
+            if (!this.IsValidate)
+                return true;
             var res = this._validator.Validate(this);
             var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
@@ -137,6 +140,8 @@ namespace ViewModelBase
         }
         public async void ValidateAsync()
         {
+            if (!this.IsValidate)
+                return;
             var res = await this._validator.ValidateAsync(this);
             ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
@@ -151,10 +156,14 @@ namespace ViewModelBase
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+            if (!this.IsValidate)
+                return true;
 #if DEBUG
             if (isNotValidateForUnitTests)
                 return true;
 #endif
+            //if (!this.IsValidate)
+            //    return true;
             var res = this._validator.Validate(this);
             bool found = false;
             foreach (var t in res.Errors)

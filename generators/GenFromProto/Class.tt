@@ -11,6 +11,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>
     {
+        this.IsValidate = false;
         this.OnInitBegin();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
         if (t.IsCsSimple())
@@ -32,11 +33,13 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#		} #>
 <# } #>
         this.OnInit();
+        this.IsValidate = true;
     }
 <# } else { #>
     public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 
         : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=Helper.FilePos() #>
     {
+        this.IsValidate = false;
         this.OnInitBegin();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
         if (t.IsCsSimple() && !t.IsRepeated)
@@ -59,6 +62,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#		} #>
 <# } #>
         this.OnInit();
+        this.IsValidate = true;
     }
 <# } #>
     partial void OnInitBegin();

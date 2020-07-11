@@ -65,6 +65,8 @@ namespace ViewModelBase
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
         [BrowsableAttribute(false)]
         public bool IsNotNotifying { get; set; }
+        [BrowsableAttribute(false)]
+        public bool IsValidate { get; set; }
 
         [BrowsableAttribute(false)]
         public bool IsBusy { get { return _IsBusy; } set { SetProperty(ref _IsBusy, value); } }

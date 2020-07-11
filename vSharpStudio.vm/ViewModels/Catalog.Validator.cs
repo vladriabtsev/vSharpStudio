@@ -34,20 +34,13 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }
             var cfg = val.GetConfig();
-            if (cfg.Model.IsCompositNames)
+            GroupListCatalogs p = (GroupListCatalogs)val.Parent;
+            foreach (var t in p.ListCatalogs)
             {
-                GroupListCatalogs p = (GroupListCatalogs)val.Parent;
-                foreach (var t in p.ListCatalogs)
+                if ((val.Guid != t.Guid) && (val.Name == t.Name))
                 {
-                    if ((val.Guid != t.Guid) && (val.Name == t.Name))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-            }
-            else
-            {
-                return val.CheckIsCompositeNameUnique();
             }
             return true;
         }
