@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 var recom = " Conside change object name or enable group prefixes.";
                 var m = (ConfigModel)cntx.InstanceToValidate;
-                CheckObjectsWithDbTables(cntx, recom, m);
+                CheckObjectsWithDbTables(cntx, recom, m, false);
             });
             this.RuleFor(x => x.IsCompositNames).Custom((val, cntx) =>
             {
@@ -26,11 +26,11 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 var recom = " Conside change object name or enable usage composite names.";
                 var m = (ConfigModel)cntx.InstanceToValidate;
-                CheckObjectsWithDbTables(cntx, recom, m);
+                CheckObjectsWithDbTables(cntx, recom, m, true);
             });
         }
 
-        private static void CheckObjectsWithDbTables(FluentValidation.Validators.CustomContext cntx, string recom, ConfigModel m)
+        private static void CheckObjectsWithDbTables(FluentValidation.Validators.CustomContext cntx, string recom, ConfigModel m, bool isCheckTabs)
         {
             var dic = new Dictionary<string, ITreeConfigNode>();
             foreach (var t in m.GroupCatalogs.ListCatalogs)
@@ -48,7 +48,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     dic[t.NameForDb] = t;
                 }
-                CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
+                if (isCheckTabs)
+                    CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
             }
             foreach (var t in m.GroupDocuments.GroupListDocuments.ListDocuments)
             {
@@ -65,7 +66,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     dic[t.NameForDb] = t;
                 }
-                CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
+                if (isCheckTabs)
+                    CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
             }
         }
 
@@ -99,7 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             GetObjectTypeDesc(sb, prev);
             sb.Append(prev.Name);
             sb.Append("' and for ");
-            GetObjectTypeDesc(sb, prev);
+            GetObjectTypeDesc(sb, t);
             sb.Append(t.Name);
             return sb;
         }

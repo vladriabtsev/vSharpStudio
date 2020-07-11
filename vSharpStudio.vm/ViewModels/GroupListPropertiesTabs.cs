@@ -64,5 +64,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
+        public PropertiesTab AddTab(string name)
+        {
+            var node = new PropertiesTab(this) { Name = name };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
     }
 }
