@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface ICatalog : IObjectAnnotatable
     {
+        string NameForDb { get; }
     }
 }

@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IPropertiesTab : IObjectAnnotatable
     {
+        string NameForDb { get; }
     }
 }
