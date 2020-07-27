@@ -20,7 +20,7 @@ namespace ViewModelBase
             this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
             this.ValidationCollection.SortDirection = SortDirection.Descending;
         }
-        protected readonly IValidator _validator;
+        protected readonly TValidator _validator;
         protected virtual void OnCountErrorsChanged() { }
         protected virtual void OnCountWarningsChanged() { }
         protected virtual void OnCountInfosChanged() { }
@@ -131,7 +131,7 @@ namespace ViewModelBase
         {
             if (!this.IsValidate)
                 return true;
-            var res = this._validator.Validate(this);
+            var res = this._validator.Validate((T)this);
             var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
             NotifyPropertyChanged(nameof(this.HasWarnings));
@@ -142,7 +142,7 @@ namespace ViewModelBase
         {
             if (!this.IsValidate)
                 return;
-            var res = await this._validator.ValidateAsync(this);
+            var res = await this._validator.ValidateAsync((T)this);
             ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
             NotifyPropertyChanged(nameof(this.HasWarnings));
@@ -164,7 +164,7 @@ namespace ViewModelBase
 #endif
             //if (!this.IsValidate)
             //    return true;
-            var res = this._validator.Validate(this);
+            var res = this._validator.Validate((T)this);
             bool found = false;
             foreach (var t in res.Errors)
             {

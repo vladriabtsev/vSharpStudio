@@ -10,13 +10,13 @@ namespace ViewModelBase
 {
     public class VmValidatable<T, TValidator> : VmEditable<T>, INotifyDataErrorInfo, IValidatable
         where TValidator : AbstractValidator<T>
-        where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
+        where T : VmValidatable<T, TValidator>//, IComparable<T>
     {
         public VmValidatable(TValidator validator)
         {
             this._validator = validator;
         }
-        protected readonly IValidator _validator;
+        protected readonly TValidator _validator;
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
             ClearAllErrors();
@@ -36,14 +36,14 @@ namespace ViewModelBase
         }
         public bool Validate()
         {
-            var res = this._validator.Validate(this);
+            var res = this._validator.Validate((T)this);
             var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
         public async void ValidateAsync()
         {
-            var res = await this._validator.ValidateAsync(this);
+            var res = await this._validator.ValidateAsync((T)this);
             ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
         }
@@ -53,7 +53,7 @@ namespace ViewModelBase
             if (isNotValidateForUnitTests)
                 return true;
 #endif
-            var res = this._validator.Validate(this);
+            var res = this._validator.Validate((T)this);
             if (!res.IsValid)
             {
                 bool found = false;
