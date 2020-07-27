@@ -26,6 +26,7 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupProperties.Parent = this;
+            this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
             this.RefillChildren();
@@ -39,13 +40,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Children.Clear();
             this.Children.Add(this.GroupProperties, 3);
-            this.Children.Add(this.GroupForms, 4);
-            this.Children.Add(this.GroupReports, 5);
+            this.Children.Add(this.GroupPropertiesTabs, 4);
+            this.Children.Add(this.GroupForms, 5);
+            this.Children.Add(this.GroupReports, 6);
         }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
             this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
             this.GroupForms.AddAllAppGenSettingsVmsToNode();
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
@@ -65,6 +68,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GroupProperties.ListProperties.Add(t);
             }
+        }
+        public PropertiesTab AddPropertiesTab(string name)
+        {
+            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
+            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            return node;
         }
 
         #region Tree operations

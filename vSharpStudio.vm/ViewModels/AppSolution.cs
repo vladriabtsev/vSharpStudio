@@ -9,6 +9,7 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -104,6 +105,28 @@ namespace vSharpStudio.vm.ViewModels
             AppProject node = new AppProject(this, name, projectPath);
             return node;
         }
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Settings")]
+        [Description("Solution group generators settings. Group generators are working together")]
+        public object DynamicMainSettings
+        {
+            get
+            {
+                return this._DynamicMainSettings;
+            }
+            set
+            {
+                if (this._DynamicMainSettings != value)
+                {
+                    this._DynamicMainSettings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private object _DynamicMainSettings;
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

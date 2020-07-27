@@ -335,6 +335,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_plugin_group_generators_default_settings"><span class="badge">M</span>proto_plugin_group_generators_default_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_group_generators_settings"><span class="badge">M</span>proto_plugin_group_generators_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_properties_tab"><span class="badge">M</span>proto_properties_tab</a>
                 </li>
               
@@ -749,6 +757,13 @@ App solution relative path to configuration file path </p></td>
                 <tr>
                   <td>list_app_projects</td>
                   <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_group_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1766,6 +1781,13 @@ repeated proto_document list_forms = 7;
                   <td>repeated</td>
                   <td><p>List NET solutions
 @attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_group_generators_defult_settings</td>
+                  <td><a href="#proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3043,6 +3065,68 @@ repeated proto_plugin_generator_settings list_settings = 5; </p></td>
                   <td></td>
                   <td><p>Name of solution-project-generator node
 string name = 2; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</h3>
+        <p>Stored in App node. All nullable setting has to have value</p><p>@base ConfigObjectVmBase</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_group_generators_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid of group generators </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</h3>
+        <p>Stored in AppSolution node. All null setting will use parent value</p><p>@base ConfigObjectVmBase</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_group_generators_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid of group generators </p></td>
                 </tr>
               
                 <tr>

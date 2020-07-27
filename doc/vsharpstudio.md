@@ -43,6 +43,8 @@
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings)
     - [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings)
+    - [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings)
+    - [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
@@ -168,6 +170,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] App solution relative path to configuration file path |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
+| list_group_generators_settings | [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -460,6 +463,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
+| list_group_generators_defult_settings | [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -887,6 +891,40 @@ Stored in each node in ConfigModel branch
 | ----- | ---- | ----- | ----------- |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | node_settings_vm_guid | [string](#string) |  | Name of solution-project-generator node string name = 2; |
+| settings | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_group_generators_default_settings"></a>
+
+### proto_plugin_group_generators_default_settings
+Stored in App node. All nullable setting has to have value
+@base ConfigObjectVmBase
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| app_group_generators_guid | [string](#string) |  | Guid of group generators |
+| settings | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_group_generators_settings"></a>
+
+### proto_plugin_group_generators_settings
+Stored in AppSolution node. All null setting will use parent value
+@base ConfigObjectVmBase
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| app_group_generators_guid | [string](#string) |  | Guid of group generators |
 | settings | [string](#string) |  |  |
 
 

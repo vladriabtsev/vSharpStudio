@@ -7,6 +7,7 @@ namespace vSharpStudio.common
     public interface IGetNodeSetting
     {
         IvPluginGeneratorNodeSettings GetSettings(string guid);
+        void GetSettings(string guid, Func<ITreeConfigNode, IvPluginGeneratorNodeSettings, bool> toParents);
         bool IsIncluded(string guid);
         bool ContainsSettings(string guid);
     }

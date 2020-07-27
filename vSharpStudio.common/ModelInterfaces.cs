@@ -144,6 +144,20 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string ConnName { get; } // ModelInterfaces.tt Line: 47
     }
     
+    ///////////////////////////////////////////////////
+    /// Stored in App node. All nullable setting has to have value
+    ///////////////////////////////////////////////////
+    
+    public partial interface IPluginGroupGeneratorsDefaultSettings : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        
+        ///////////////////////////////////////////////////
+        /// Guid of group generators
+        ///////////////////////////////////////////////////
+        string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 47
+        string Settings { get; } // ModelInterfaces.tt Line: 47
+    }
+    
     public partial interface IGroupListAppSolutions : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
@@ -153,6 +167,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         /// List NET solutions
         ///////////////////////////////////////////////////
         IEnumerable<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    ///////////////////////////////////////////////////
+    /// Stored in AppSolution node. All null setting will use parent value
+    ///////////////////////////////////////////////////
+    
+    public partial interface IPluginGroupGeneratorsSettings : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        
+        ///////////////////////////////////////////////////
+        /// Guid of group generators
+        ///////////////////////////////////////////////////
+        string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 47
+        string Settings { get; } // ModelInterfaces.tt Line: 47
     }
     
     public partial interface IAppSolution : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -166,6 +195,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
+        IEnumerable<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IAppProject : IGuid, IName // ModelInterfaces.tt Line: 29

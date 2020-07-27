@@ -257,7 +257,13 @@ message proto_app_db_settings {
     // @attr [ReadOnly(true)]
     string conn_name = 7;
 }
-
+// Stored in App node. All nullable setting has to have value
+// @base ConfigObjectVmBase
+message proto_plugin_group_generators_default_settings {
+    // Guid of group generators
+    string app_group_generators_guid = 1;
+    string settings = 2; 
+}
 // @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [ReadOnly(true)]
@@ -272,6 +278,9 @@ message proto_group_list_app_solutions {
     // List NET solutions
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_solution list_app_solutions = 9;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_group_generators_default_settings list_group_generators_defult_settings = 16;
 
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ExpandableObjectAttribute()]
@@ -297,6 +306,13 @@ message proto_plugins_group {
     string plugins_global_settins = 3;
 }
 */
+// Stored in AppSolution node. All null setting will use parent value
+// @base ConfigObjectVmBase
+message proto_plugin_group_generators_settings {
+    // Guid of group generators
+    string app_group_generators_guid = 1;
+    string settings = 2; 
+}
 // @base ConfigObjectVmBase
 message proto_app_solution {
     string guid = 1;
@@ -316,6 +332,9 @@ message proto_app_solution {
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project list_app_projects = 10;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_group_generators_settings list_group_generators_settings = 16;
 
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]

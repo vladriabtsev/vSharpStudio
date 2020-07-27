@@ -14,6 +14,12 @@ namespace vSharpStudio.common
     public partial interface IConstant : IGetNodeSetting
     {
     }
+    public partial interface IProperty : IGetNodeSetting
+    {
+    }
+    public partial interface IPropertiesTab : IGetNodeSetting
+    {
+    }
     public partial interface ICatalog : IGetNodeSetting
     {
     }

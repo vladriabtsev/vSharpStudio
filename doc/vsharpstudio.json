@@ -510,6 +510,16 @@
               "fullType": "proto_config.proto_app_project",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_group_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_group_generators_settings",
+              "longType": "proto_plugin_group_generators_settings",
+              "fullType": "proto_config.proto_plugin_group_generators_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -1741,6 +1751,16 @@
               "type": "proto_app_solution",
               "longType": "proto_app_solution",
               "fullType": "proto_config.proto_app_solution",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_group_generators_defult_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_group_generators_default_settings",
+              "longType": "proto_plugin_group_generators_default_settings",
+              "fullType": "proto_config.proto_plugin_group_generators_default_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3238,6 +3258,68 @@
             {
               "name": "node_settings_vm_guid",
               "description": "Name of solution-project-generator node\nstring name = 2;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_group_generators_default_settings",
+          "longName": "proto_plugin_group_generators_default_settings",
+          "fullName": "proto_config.proto_plugin_group_generators_default_settings",
+          "description": "Stored in App node. All nullable setting has to have value\n@base ConfigObjectVmBase",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_group_generators_guid",
+              "description": "Guid of group generators",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_group_generators_settings",
+          "longName": "proto_plugin_group_generators_settings",
+          "fullName": "proto_config.proto_plugin_group_generators_settings",
+          "description": "Stored in AppSolution node. All null setting will use parent value\n@base ConfigObjectVmBase",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_group_generators_guid",
+              "description": "Guid of group generators",
               "label": "",
               "type": "string",
               "longType": "string",

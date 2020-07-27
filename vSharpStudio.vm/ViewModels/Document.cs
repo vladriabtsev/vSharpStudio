@@ -13,6 +13,8 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Document";
 
         [BrowsableAttribute(false)]
+        public IGroupListDocuments IParent { get { return (IGroupListDocuments)this.Parent; } }
+        [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         partial void OnInit()
@@ -48,6 +50,12 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
             this.GroupForms.AddAllAppGenSettingsVmsToNode();
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
+        }
+        public PropertiesTab AddPropertiesTab(string name)
+        {
+            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
+            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            return node;
         }
 
         #region Tree operations

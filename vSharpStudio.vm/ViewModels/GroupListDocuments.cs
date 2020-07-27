@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq}")]
     public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
     {
+        [BrowsableAttribute(false)]
+        new public IGroupDocuments IParent { get { return (IGroupDocuments)this.Parent; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListDocuments;
@@ -31,16 +33,14 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
         }
-
-        #region Tree operations
-        public bool CanAddSubNode() { return true; }
         public Document AddDocument(string name)
         {
             var node = new Document(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
         }
-
+        #region Tree operations
+        public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Document node = null;

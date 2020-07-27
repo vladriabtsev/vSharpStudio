@@ -318,6 +318,28 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception();
             return DicGenNodeSettings[guid];
         }
+        /// <summary>
+        /// Getting VM of generator settings for node with capability analyze tree
+        /// </summary>
+        /// <param name="guid">Guid of VM of generator node settings</param>
+        /// <returns></returns>
+        public void GetSettings(string guid, Func<ITreeConfigNode, IvPluginGeneratorNodeSettings, bool> toParents)
+        {
+            if (!DicGenNodeSettings.ContainsKey(guid))
+                throw new Exception();
+            ITreeConfigNode p = this;
+            while (p != null)
+            {
+                var ngs = p as INodeGenSettings;
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guid))
+                {
+                    var res = DicGenNodeSettings[guid];
+                    if (!toParents(p, res))
+                        break;
+                }
+                p = p.Parent;
+            }
+        }
         public bool ContainsSettings(string guid)
         {
             return DicGenNodeSettings.ContainsKey(guid);
