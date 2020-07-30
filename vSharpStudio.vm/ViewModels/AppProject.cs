@@ -174,6 +174,30 @@ namespace vSharpStudio.vm.ViewModels
             this.Parent = null;
             var nv = new ModelVisitorNodeGenSettings();
             var cfg = (Config)this.GetConfig();
+            // removing plugins group settings
+            var sln = (AppSolution)this.Parent;
+            foreach(var ttt in this.ListAppProjectGenerators)
+            {
+                var plg = cfg.DicPlugins[ttt.PluginGuid];
+                if (!string.IsNullOrWhiteSpace(ttt.PluginGuid) && (plg.PluginGroupSolutionSettings != null)
+                    && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
+                {
+                    bool is_only = true;
+                    foreach (var t in sln.ListAppProjects)
+                    {
+                        if (t.Guid == this.Guid)
+                            continue;
+                        foreach (var tt in t.ListAppProjectGenerators)
+                        {
+                            if (tt.PluginGuid == ttt.PluginGuid)
+                                is_only = false;
+                        }
+                    }
+                    if (is_only)
+                        sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
+                }
+            }
+
             foreach (var t in this.ListAppProjectGenerators)
             {
                 nv.NodeGenSettingsApplyAction(cfg, (p) =>

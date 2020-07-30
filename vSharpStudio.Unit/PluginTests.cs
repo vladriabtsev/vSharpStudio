@@ -287,6 +287,86 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
+        public void Plugin006WorkWithPluginsGroupSettings()
+        {
+            // Settings workflow:
+            // 1. When Config is loaded: init group plugin settings on all solution nodes
+            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
+            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
+            // 4. When saving Config: convert all solutions groups settings to string representations
+            _logger.LogTrace("Start test".CallerInfo());
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose();
+            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\Solution.sln";
+            Assert.IsNull(sln.DynamicMainSettings);
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\ConsoleApp1\ConsoleApp1.csproj";
+
+            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen.GenFileName = "test_file.cs";
+            gen.PluginGuid = pluginNode.Guid;
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.Name = "AppGenName";
+            gen.NameUi = "App Gen Name";
+
+            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
+            var plgn = vm.Config.DicPlugins[pluginNode.Guid];
+            Assert.IsNotNull(plgn);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
+            Assert.IsNotNull(sln.DynamicMainSettings);
+
+            var set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[plgn.PluginGroupSolutionSettings.Guid];
+            set.IsGroupParam1 = true;
+
+            vm.CommandConfigSave.Execute(null);
+
+            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
+            gen.PluginGuid = null;
+            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
+            Assert.IsNull(sln.DynamicMainSettings);
+
+            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
+            gen.PluginGuid = pluginNode.Guid;
+            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
+            plgn = vm.Config.DicPlugins[pluginNode.Guid];
+            Assert.IsNotNull(plgn);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
+            Assert.IsNotNull(sln.DynamicMainSettings);
+
+            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
+            gen.NodeRemove();
+            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
+            Assert.IsNull(sln.DynamicMainSettings);
+
+
+            // 1. When Config is loaded: init group plugin settings on all solution nodes
+            var vm2 = new MainPageVM(true);
+            vm2.OnFormLoaded();
+            vm2.Compose();
+
+            Assert.IsTrue(vm2.Config.DicPlugins.ContainsKey(pluginNode.Guid));
+            plgn = vm2.Config.DicPlugins[pluginNode.Guid];
+            Assert.IsNotNull(plgn);
+            sln = vm2.Config.GroupAppSolutions[0];
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
+            Assert.IsNotNull(sln.DynamicMainSettings);
+
+            // 4. When saving Config: convert all solutions groups settings to string representations
+            set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[plgn.PluginGroupSolutionSettings.Guid];
+            Assert.IsTrue(set.IsGroupParam1);
+            _logger.LogTrace("End test".CallerInfo());
+        }
+        [TestMethod]
         [DataRow(@"OldProject\")]
         //[DataRow(@"SdkProject\")]
         public async Task Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem(string prType)
@@ -388,7 +468,7 @@ namespace vSharpStudio.Unit
             // Exclude compilation process if there are no renames
             #region not compilable code
             tt = new TestTransformation();
-            File.WriteAllText(fpath, "wrong c# code"); 
+            File.WriteAllText(fpath, "wrong c# code");
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception == null);
             #endregion not compilable code

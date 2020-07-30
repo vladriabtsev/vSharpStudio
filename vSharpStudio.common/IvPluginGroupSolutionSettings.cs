@@ -12,21 +12,21 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace vSharpStudio.common
 {
-    /// <summary>
-    /// Main plugin interface for all plugin types of vSharpStudio
-    /// </summary>
-    [InheritedExport(typeof(IvPlugin))] // metadata was not exported
-    public interface IvPlugin //: IvPluginGroup
+    public interface IvPluginGroupSolutionSettings
     {
         string Guid { get; }
-        string Version { get; }
         string Name { get; }
-        string NameUI { get; }
+        string Version { get; }
         string Description { get; }
-        string Author { get; }
-        string Url { get; }
-        string Licence { get; }
-        IvPluginGroupSolutionSettings PluginGroupSolutionSettings { get; }
-        List<IvPluginGenerator> ListGenerators { get; }
+        /// <summary>
+        /// Get s Settings VM from JSON string
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVm(string settings);
+        /// <summary>
+        /// Get protobuf model of settings from MVVM model (json format)
+        /// </summary>
+        string SettingsAsJson { get; }
     }
 }

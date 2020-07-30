@@ -39,7 +39,6 @@ namespace vSharpStudio.vm.ViewModels
                 return dicActiveAppProjectGenerators;
             }
         }
-
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.Children;

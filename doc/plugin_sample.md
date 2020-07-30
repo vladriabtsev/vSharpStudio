@@ -10,6 +10,7 @@
     - [proto_generator_db_access_node_settings](#proto_plugin_sample.proto_generator_db_access_node_settings)
     - [proto_generator_db_access_settings](#proto_plugin_sample.proto_generator_db_access_settings)
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
+    - [proto_plugins_group_settings](#proto_plugin_sample.proto_plugins_group_settings)
     - [string_nullable](#proto_plugin_sample.string_nullable)
   
   
@@ -119,6 +120,21 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | is_schema_param1 | [bool](#bool) |  |  |
 | is_schema_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
 | schema_param3 | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="proto_plugin_sample.proto_plugins_group_settings"></a>
+
+### proto_plugins_group_settings
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_group_param1 | [bool](#bool) |  |  |
 
 
 

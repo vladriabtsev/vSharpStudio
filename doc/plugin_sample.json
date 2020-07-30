@@ -218,6 +218,27 @@
           ]
         },
         {
+          "name": "proto_plugins_group_settings",
+          "longName": "proto_plugins_group_settings",
+          "fullName": "proto_plugin_sample.proto_plugins_group_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_group_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "string_nullable",
           "longName": "string_nullable",
           "fullName": "proto_plugin_sample.string_nullable",

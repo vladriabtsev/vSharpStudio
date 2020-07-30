@@ -19,6 +19,7 @@ namespace vPlugin.Sample
             this.Version = "0.1";
             this.Url = "https://www.vladnet.ca";
             this.Licence = string.Empty;
+            this.PluginGroupSolutionSettings = new PluginsGroupSettings();
             this.ListGenerators = new List<IvPluginGenerator>();
             this.ListGenerators.Add(new GeneratorDbSchema());
             this.ListGenerators.Add(new GeneratorDbAccess());
@@ -31,12 +32,7 @@ namespace vPlugin.Sample
         public string Version { get; protected set; }
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
+        public IvPluginGroupSolutionSettings PluginGroupSolutionSettings { get; protected set; }
         public List<IvPluginGenerator> ListGenerators { get; protected set; }
-
-        //public string GroupGuid => throw new NotImplementedException();
-
-        //public string GroupVersion => throw new NotImplementedException();
-
-        //public string GroupInfo => throw new NotImplementedException();
     }
 }

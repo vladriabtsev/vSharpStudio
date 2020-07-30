@@ -1,4 +1,4 @@
-// Auto generated on UTC 07/27/2020 20:18:47
+// Auto generated on UTC 07/30/2020 00:51:25
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -23,6 +23,108 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public interface IPluginSampleAcceptVisitor // NameSpace.tt Line: 29
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
+    }
+    public partial class PluginsGroupSettingsValidator : ValidatorBase<PluginsGroupSettings, PluginsGroupSettingsValidator> { } // Class.tt Line: 6
+    public partial class PluginsGroupSettings : VmValidatableWithSeverity<PluginsGroupSettings, PluginsGroupSettingsValidator>, IPluginsGroupSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public PluginsGroupSettings() 
+            : base(PluginsGroupSettingsValidator.Validator) // Class.tt Line: 40
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static PluginsGroupSettings Clone(PluginsGroupSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            PluginsGroupSettings vm = new PluginsGroupSettings();
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 65
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(PluginsGroupSettings to, PluginsGroupSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override PluginsGroupSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return PluginsGroupSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(PluginsGroupSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            PluginsGroupSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_plugins_group_settings' to 'PluginsGroupSettings'
+        public static PluginsGroupSettings ConvertToVM(Proto.Plugin.proto_plugins_group_settings m, PluginsGroupSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.IsGroupParam1 = m.IsGroupParam1; // Clone.tt Line: 221
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'PluginsGroupSettings' to 'proto_plugins_group_settings'
+        public static Proto.Plugin.proto_plugins_group_settings ConvertToProto(PluginsGroupSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Plugin.proto_plugins_group_settings m = new Proto.Plugin.proto_plugins_group_settings(); // Clone.tt Line: 239
+            m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 276
+            return m;
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public bool IsGroupParam1 // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsGroupParam1; 
+            }
+            set
+            {
+                if (this._IsGroupParam1 != value)
+                {
+                    this.OnIsGroupParam1Changing(ref value);
+                    this._IsGroupParam1 = value;
+                    this.OnIsGroupParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGroupParam1;
+        partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsGroupParam1Changed();
+        bool IPluginsGroupSettings.IsGroupParam1 { get { return this._IsGroupParam1; } set { this.IsGroupParam1 = value; } }
+    
+        #endregion Properties
     }
     public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 6
     public partial class GeneratorDbSchemaSettings : VmValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 7
@@ -744,6 +846,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     
     public interface IVisitorProto // IVisitorProto.tt Line: 7
     {
+        void Visit(Proto.Plugin.proto_plugins_group_settings p);
         void Visit(Proto.Plugin.proto_generator_db_schema_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_node_settings p);
@@ -755,6 +858,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         partial void OnVisit(IValidatableWithSeverity p);
         partial void OnVisitEnd(IValidatableWithSeverity p);
+        protected override void OnVisit(PluginsGroupSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(PluginsGroupSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
@@ -812,6 +925,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
     
+        public void Visit(PluginsGroupSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(PluginsGroupSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(PluginsGroupSettings p) { }
+        protected virtual void OnVisitEnd(PluginsGroupSettings p) { }
         public void Visit(GeneratorDbSchemaSettings p)
         {
             this.OnVisit(p);

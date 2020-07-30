@@ -6,6 +6,11 @@ using ViewModelBase;
 namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
 {
     
+    public partial interface IPluginsGroupSettings // ModelInterfaces.tt Line: 29
+    {
+        bool IsGroupParam1 { get; set; } // ModelInterfaces.tt Line: 47
+    }
+    
     public partial interface IGeneratorDbSchemaSettings // ModelInterfaces.tt Line: 29
     {
         bool IsSchemaParam1 { get; set; } // ModelInterfaces.tt Line: 47

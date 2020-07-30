@@ -4,12 +4,15 @@ package proto_plugin_sample;
 option csharp_namespace = "Proto.Plugin";
 
 // @base ViewModelValidatableWithSeverity
+message proto_plugins_group_settings {
+    bool is_group_param1 = 1;
+}
+// @base ViewModelValidatableWithSeverity
 message proto_generator_db_schema_settings {
     bool is_schema_param1 = 1;
     bool_nullable is_schema_param2 = 2;
     string schema_param3 = 3;
 }
-
 // @base ViewModelValidatableWithSeverity
 message proto_generator_db_access_settings {
     bool is_access_param1 = 1;

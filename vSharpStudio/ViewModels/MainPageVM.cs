@@ -395,6 +395,19 @@ namespace vSharpStudio.ViewModels
                 // Create Settings VM for all project generators
                 foreach (var t in this.Config.GroupAppSolutions.ListAppSolutions)
                 {
+                    // group plugins settings
+                    foreach (var tt in t.ListGroupGeneratorsSettings)
+                    {
+                        foreach (var ttt in this.Config.DicPlugins)
+                        {
+                            if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
+                            {
+                                t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
+                                break;
+                            }
+                        }
+                    }
+
                     foreach (var tt in t.ListAppProjects)
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
@@ -637,6 +650,16 @@ namespace vSharpStudio.ViewModels
         {
             foreach (var t in this._Config.GroupAppSolutions.ListAppSolutions)
             {
+                // group plugins settings
+                t.ListGroupGeneratorsSettings.Clear();
+                foreach (var tt in t.DicPluginsGroupSettings)
+                {
+                    var ps = new PluginGroupGeneratorsSettings(t);
+                    ps.AppGroupGeneratorsGuid = tt.Key;
+                    ps.NameUi = tt.Value.Name;
+                    ps.Settings = tt.Value.SettingsAsJson;
+                    t.ListGroupGeneratorsSettings.Add(ps);
+                }
                 foreach (var tt in t.ListAppProjects)
                 {
                     foreach (var ttt in tt.ListAppProjectGenerators)
@@ -646,6 +669,7 @@ namespace vSharpStudio.ViewModels
                             () =>
                             {
 #endif
+
                         //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
                         //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
                         if (ttt.DynamicMainSettings != null)
@@ -1004,7 +1028,8 @@ namespace vSharpStudio.ViewModels
                                         genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, () =>
                                         {
                                             return true;
-                                        }, (ex)=> { 
+                                        }, (ex) =>
+                                        {
 
                                         });
                                         break;

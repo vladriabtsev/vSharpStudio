@@ -114,19 +114,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return this._DynamicMainSettings;
-            }
-            set
-            {
-                if (this._DynamicMainSettings != value)
-                {
-                    this._DynamicMainSettings = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                var nd = new GroupSettings();
+                var res = nd.Run(this);
+                return res;
             }
         }
-        private object _DynamicMainSettings;
+        // GroupGeneratorsSettings guid, settings
+        private DictionaryExt<string, IvPluginGroupSolutionSettings> dicSolutionGroupGeneratorsSettings = null;
+        public DictionaryExt<string, IvPluginGroupSolutionSettings> DicPluginsGroupSettings
+        {
+            get
+            {
+                if (dicSolutionGroupGeneratorsSettings == null)
+                {
+                    dicSolutionGroupGeneratorsSettings = new DictionaryExt<string, IvPluginGroupSolutionSettings>(5, false, true,
+                        (ki, v) => { }, (kr, v) => { }, () => { });
+                }
+                return dicSolutionGroupGeneratorsSettings;
+            }
+        }
+
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

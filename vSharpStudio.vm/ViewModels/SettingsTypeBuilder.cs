@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     solName = t.Name;
                 }
-                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object));
+                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object), t.NameUi, t.Description);
                 TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
                                     }
                                     if (!isFound)
                                         continue;
-                                    SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object));
+                                    SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object), gen.NameUi, gen.Description);
                                     TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
                                     foreach (var ts in lst)
                                     {
@@ -93,7 +93,7 @@ namespace vSharpStudio.vm.ViewModels
                                 if (dic_gs.Count > 0)
                                 {
                                     dic_apgs[ttt.Name] = objGen;
-                                    SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object));
+                                    SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object), ttt.NameUi, ttt.Description);
                                 }
                             }
                         }
@@ -108,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (dic_apgs.Count > 0)
                     {
                         dic_prjs[tt.Name] = objAppGen;
-                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, typeof(Object));
+                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, typeof(Object), tt.NameUi, tt.Description);
                     }
                 }
                 SettingsTypeBuilder.CreateToString(tbPrj, "Solution");
@@ -132,6 +132,31 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             return objSol;
+        }
+    }
+    internal class GroupSettings
+    {
+        public object Run(AppSolution node)
+        {
+            TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
+            ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
+            Config cfg = (Config)node.GetConfig();
+            var dic_groups = new Dictionary<string, object>();
+            foreach (var t in node.DicPluginsGroupSettings)
+            {
+                string groupName = t.Value.Name;
+                SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
+                dic_groups[groupName] = t.Value;
+            }
+            if (dic_groups.Count == 0)
+                return null;
+            Type settingsType = tbSettings.CreateType();
+            object objSettings = Activator.CreateInstance(settingsType);
+            foreach (var dt in dic_groups)
+            {
+                settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSettings, new object[] { dt.Value });
+            }
+            return objSettings;
         }
     }
     //internal class NodeSettings : AppVisitorBase
@@ -215,7 +240,7 @@ namespace vSharpStudio.vm.ViewModels
 
             // NOTE: assuming your list contains Field objects with fields FieldName(string) and FieldType(Type)
             foreach (var field in lst)
-                CreateProperty(tb, field.Name, typeof(Object));
+                CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
             Type objectType = tb.CreateType();
             return objectType;
@@ -240,7 +265,7 @@ namespace vSharpStudio.vm.ViewModels
 
             // NOTE: assuming your list contains Field objects with fields FieldName(string) and FieldType(Type)
             foreach (var field in lst)
-                CreateProperty(tb, field.Name, typeof(Object));
+                CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
             Type objectType = tb.CreateType();
             return objectType;
@@ -264,7 +289,7 @@ namespace vSharpStudio.vm.ViewModels
 
             // NOTE: assuming your list contains Field objects with fields FieldName(string) and FieldType(Type)
             foreach (var field in lst)
-                CreateProperty(tb, field.Name, typeof(Object));
+                CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
             Type objectType = tb.CreateType();
             return objectType;
@@ -298,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels
             getIl.Emit(OpCodes.Ret);
             tb.DefineMethodOverride(mthdBldr, typeof(object).GetMethod("ToString"));
         }
-        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType)
+        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string propertyNameUI = null, string propertyDescription = null)
         {
             FieldBuilder fieldBuilder = tb.DefineField("_" + propertyName, propertyType, FieldAttributes.Private);
 
@@ -344,6 +369,21 @@ namespace vSharpStudio.vm.ViewModels
             constructorInfo = attr.GetConstructor(new Type[1] { typeof(bool) });
             attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { true });
             propertyBuilder.SetCustomAttribute(attributeBuilder);
+
+            if (!string.IsNullOrWhiteSpace(propertyNameUI))
+            {
+                attr = typeof(DisplayNameAttribute);
+                constructorInfo = attr.GetConstructor(new Type[1] { typeof(string) });
+                attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { propertyNameUI });
+                propertyBuilder.SetCustomAttribute(attributeBuilder);
+            }
+            if (!string.IsNullOrWhiteSpace(propertyDescription))
+            {
+                attr = typeof(DescriptionAttribute);
+                constructorInfo = attr.GetConstructor(new Type[1] { typeof(string) });
+                attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { propertyDescription });
+                propertyBuilder.SetCustomAttribute(attributeBuilder);
+            }
         }
     }
 }
