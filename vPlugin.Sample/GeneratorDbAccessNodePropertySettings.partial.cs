@@ -39,10 +39,17 @@ namespace vPlugin.Sample
             }
         }
         private static string settingsAsJsonDefault = null;
-        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings)
+        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings, bool isRootModelNode = false)
         {
             if (string.IsNullOrWhiteSpace(settings))
-                return new GeneratorDbAccessNodePropertySettings();
+            {
+                var res = new GeneratorDbAccessNodePropertySettings();
+                if (isRootModelNode)
+                {
+                    res.IsPropertyParam1 = true;
+                }
+                return res;
+            }
             proto_generator_db_access_node_property_settings proto = proto_generator_db_access_node_property_settings.Parser.ParseJson(settings);
             return GeneratorDbAccessNodePropertySettings.ConvertToVM(proto, new GeneratorDbAccessNodePropertySettings());
         }

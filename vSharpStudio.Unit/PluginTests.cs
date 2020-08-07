@@ -205,18 +205,17 @@ namespace vSharpStudio.Unit
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();
             Assert.AreEqual(2, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
-            var stt = vm.Config.Model.ListNodeGeneratorsSettings[0];
-            Assert.AreEqual(gen.Guid, stt.AppProjectGeneratorGuid);
+
             var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
-            var nd = (vPlugin.Sample.GeneratorDbAccessNodeSettings)stt.SettingsVm;
-            nd.IsParam1 = true;
 
+            var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds.IsParam1 = true;
 
-            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
-            nd.IsIncluded = false;
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic));
+            nds.IsIncluded = false;
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic));
 
             //foreach (var t in genDbAccess.GetListNodeGenerationSettings())
             //{
@@ -249,11 +248,10 @@ namespace vSharpStudio.Unit
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
-            stt = vm.Config.Model.ListNodeGeneratorsSettings[0];
-            nd = (vPlugin.Sample.GeneratorDbAccessNodeSettings)stt.SettingsVm;
-            Assert.AreEqual(true, nd.IsParam1);
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            Assert.AreEqual(true, nds.IsParam1);
 
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(nd.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
             //// if new app progect generator is added, new setting are attached to all appropriate nodes
             //var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];

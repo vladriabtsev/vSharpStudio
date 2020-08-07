@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator //: ICanAddSubNode
+    public partial class AppProjectGenerator: ICanRemoveNode //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -414,6 +414,14 @@ namespace vSharpStudio.vm.ViewModels
             return (gen as IvPluginDbConnStringGenerator)?.DbGenerator;
         }
 
+        public void RemoveNode()
+        {
+            this.PluginGeneratorGuid = "";
+            (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
+            this.Parent = null;
+            //this.NodeRemove();
+        }
+
         #region Tree operations
         //public bool CanAddSubNode()
         //{
@@ -433,6 +441,12 @@ namespace vSharpStudio.vm.ViewModels
         //        //(gen as IvPluginDbGenerator).
         //    }
         //    return false;
+        //}
+        //public override void NodeRemove()
+        //{
+        //    this.PluginGeneratorGuid = "";
+        //    (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
+        //    this.Parent = null;
         //}
         public override bool NodeCanUp()
         {

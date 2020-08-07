@@ -39,7 +39,7 @@ namespace vPlugin.Sample
             }
         }
         private static string settingsAsJsonDefault = null;
-        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings)
+        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings, bool isRootModelNode = false)
         {
             if (string.IsNullOrWhiteSpace(settings))
                 return new GeneratorDbAccessNodeCatalogFormSettings();

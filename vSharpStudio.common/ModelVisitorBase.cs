@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Serilog.Events;
 
 namespace vSharpStudio.common
 {
@@ -110,6 +111,14 @@ namespace vSharpStudio.common
         protected vSharpStudio.common.IProperty currProp = null;
         protected Stack<IPropertiesTab> currPropTabStack = new Stack<IPropertiesTab>();
         private Action<ModelVisitorBase, IObjectAnnotatable> _act = null;
+        // 0 - previous, 1 - previous of previous
+        protected IPropertiesTab GetPropertiesTabFromStack(int level)
+        {
+            if (this.currPropTabStack.Count < level)
+                throw new Exception();
+            //return this.currPropTabStack.ToArray()[level];
+            return this.currPropTabStack.ToArray()[this.currPropTabStack.Count - level - 1];
+        }
 
         protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
 

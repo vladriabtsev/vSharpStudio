@@ -30,14 +30,14 @@ namespace vPlugin.Sample
             return visitor.Result;
         }
     }
-    internal static class Utils
-    {
-        internal static IGeneratorDbAccessNodeSettings NodeAllSettings(this IGetNodeSetting node)
-        {
-            var res = node.GetSettings(GeneratorDbAccessNodeSettings.GuidStatic);
-            return (IGeneratorDbAccessNodeSettings)res;
-        }
-    }
+    //internal static class Utils
+    //{
+    //    internal static IGeneratorDbAccessNodeSettings NodeAllSettings(this IGetNodeSetting node)
+    //    {
+    //        var res = node.GetSettings(GeneratorDbAccessNodeSettings.GuidStatic);
+    //        return (IGeneratorDbAccessNodeSettings)res;
+    //    }
+    //}
     public class MyModelVisitor : ModelVisitorBase
     {
 
@@ -51,11 +51,11 @@ namespace vPlugin.Sample
         {
             base.Visit(ct);
 
-            if (ct.NodeAllSettings().IsParam1)
-                sb.AppendLine("Node IsParam1==true");
-            if (this.pluginSettings.IsAccessParam1)
-                sb.AppendLine("IsAccessParam1==true");
-            sb.AppendLine("generated code");
+            //if (ct.NodeAllSettings().IsParam1)
+            //    sb.AppendLine("Node IsParam1==true");
+            //if (this.pluginSettings.IsAccessParam1)
+            //    sb.AppendLine("IsAccessParam1==true");
+            //sb.AppendLine("generated code");
         }
         public string Result { get { return sb.ToString(); } }
     }

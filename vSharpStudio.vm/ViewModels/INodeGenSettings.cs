@@ -17,6 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         void AddNodeAppGenSettings(string appGenGuid);
         //void CreatePropertyGridNodeGenSettings(INodeGenSettings p);
         //string GeneratorSettings { get; }
-        DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
+        DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeSettings { get; }
     }
 }

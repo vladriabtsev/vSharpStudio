@@ -1209,17 +1209,17 @@ namespace vSharpStudio.ViewModels
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
                     #endregion
 
-                    // V. Apply new DB schema (no need for UNDO ???)
+                    // V. Apply new DB schema (no need for UNDO ???) Move into VI step
                     #region
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    {
-                        if (cancellationToken.IsCancellationRequested)
-                            throw new CancellationException();
-                        foreach (var tp in ts.ListAppProjects)
-                        {
-                            // generate db
-                        }
-                    }
+                    //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    //{
+                    //    if (cancellationToken.IsCancellationRequested)
+                    //        throw new CancellationException();
+                    //    foreach (var tp in ts.ListAppProjects)
+                    //    {
+                    //        // generate db
+                    //    }
+                    //}
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));

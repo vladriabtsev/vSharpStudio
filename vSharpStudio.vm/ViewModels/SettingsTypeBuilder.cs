@@ -23,21 +23,21 @@ namespace vSharpStudio.vm.ViewModels
             var dic_sols = new Dictionary<string, object>();
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
-                string solName = "";
-                if (cfg.GroupAppSolutions.ListAppSolutions.Count > 1)
-                {
-                    solName = t.Name;
-                }
+                //string solName = "";
+                //if (cfg.GroupAppSolutions.ListAppSolutions.Count > 1)
+                //{
+                //    solName = t.Name;
+                //}
                 SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object), t.NameUi, t.Description);
                 TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
                 {
-                    string prjName = "";
-                    if (t.ListAppProjects.Count > 1)
-                    {
-                        prjName = t.Name;
-                    }
+                    //string prjName = "";
+                    //if (t.ListAppProjects.Count > 1)
+                    //{
+                    //    prjName = t.Name;
+                    //}
                     TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
                     var dic_apgs = new Dictionary<string, object>();
                     foreach (var ttt in tt.ListAppProjectGenerators)
@@ -61,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
                                     var lst = gen.GetListNodeGenerationSettings();
                                     foreach (var ts in lst)
                                     {
-                                        if (nds.ContainsSettings(ts.Guid))
+                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
                                             isFound = true;
                                     }
                                     if (!isFound)
@@ -70,7 +70,7 @@ namespace vSharpStudio.vm.ViewModels
                                     TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
                                     foreach (var ts in lst)
                                     {
-                                        if (nds.ContainsSettings(ts.Guid))
+                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
                                             SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
                                     }
                                     SettingsTypeBuilder.CreateToString(tbSet, "Generator");
@@ -78,8 +78,8 @@ namespace vSharpStudio.vm.ViewModels
                                     object objSet = Activator.CreateInstance(nsType);
                                     foreach (var ts in lst)
                                     {
-                                        if (nds.ContainsSettings(ts.Guid))
-                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ts.Guid) });
+                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
+                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ttt.Guid, ts.Guid) });
                                     }
                                     dic_gs[gen.Name] = objSet;
                                 }

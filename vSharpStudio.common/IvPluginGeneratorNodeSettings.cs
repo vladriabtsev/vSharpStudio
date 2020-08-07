@@ -25,7 +25,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings);
+        IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings, bool isRootModelNode = false);
         /// <summary>
         /// Get JSON representation from a settings VM
         /// </summary>

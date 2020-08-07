@@ -10,7 +10,7 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
-        public static string GuidStatic = "2511D2D7-020E-4481-BB38-08D4B1ECF083";
+        public static readonly string GuidStatic = "2511D2D7-020E-4481-BB38-08D4B1ECF083";
         [BrowsableAttribute(false)]
         public string Guid { get { return GeneratorDbAccessNodeSettings.GuidStatic; } }
         [BrowsableAttribute(false)]
@@ -39,7 +39,7 @@ namespace vPlugin.Sample
             }
         }
         private static string settingsAsJsonDefault = null;
-        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings)
+        public IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings, bool isRootModelNode = false)
         {
             if (string.IsNullOrWhiteSpace(settings))
                 return new GeneratorDbAccessNodeSettings();
