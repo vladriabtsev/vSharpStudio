@@ -12,9 +12,11 @@ namespace vSharpStudio.vm.ViewModels
     public class EditorSolutionPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox textBox;
+        AppSolution sln;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Contract.Requires(propertyItem != null);
+            sln = (AppSolution)propertyItem.Instance;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);
@@ -54,6 +56,8 @@ namespace vSharpStudio.vm.ViewModels
             if (result == true)
             {
                 textBox.Text = dlg.FileName;
+                //TODO remove explicit assignment (binding stooped working)
+                sln.RelativeAppSolutionPath = dlg.FileName;
             }
         }
     }

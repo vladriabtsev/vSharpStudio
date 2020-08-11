@@ -126,7 +126,7 @@
                             <!--<Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
                                 <ContentControl Template="{StaticResource iconConnectionBuilder}" />
                             </Button>-->
-                            <TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
+                            <!--<TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
                             </TextBlock>
                             <xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
@@ -146,7 +146,7 @@
                                         <TextBlock Text="Connection string" Foreground="Gray" />
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
-                            </xctk:WatermarkComboBox>
+                            </xctk:WatermarkComboBox>-->
                             <Button Command="{Binding CommandConfigCurrentUpdate, IsAsync=True, Mode=OneWay}">
                                 <ContentControl Template="{StaticResource iconRun}" />
                             </Button>

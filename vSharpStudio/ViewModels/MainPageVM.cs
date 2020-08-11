@@ -30,8 +30,10 @@ using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
 {
-    // TODO Version
+    //TODO 2020-08-07 Version. Faild to get working
     // https://github.com/GitTools/GitVersion
+    //TODO 2020-08-07 init Plugin tree node after clicking on emptyConfig
+    //TODO 2020-08-07 Model node setting contains generator not selected in AppProjectGenerator
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static MainPageVM Create(string pluginsFolderPath)
@@ -67,7 +69,24 @@ namespace vSharpStudio.ViewModels
                 return;
             }
 
+            #region Git Version
+            //var assemblyName = assembly.GetName().Name;
+            //var gitVersionInformationType = assembly.GetType("GitVersionInformation");
+            //var fields = gitVersionInformationType.GetFields();
 
+            //foreach (var field in fields)
+            //{
+            //    Trace.WriteLine(string.Format("{0}: {1}", field.Name, field.GetValue(null)));
+            //}
+
+            //// The GitVersionInformation class generated from a F# project exposes properties
+            //var properties = gitVersionInformationType.GetProperties();
+
+            //foreach (var property in properties)
+            //{
+            //    Trace.WriteLine(string.Format("{0}: {1}", property.Name, property.GetGetMethod(true).Invoke(null, null)));
+            //}
+            #endregion Git Version
         }
         public void OnFormLoaded()
         {
@@ -233,11 +252,18 @@ namespace vSharpStudio.ViewModels
             private set
             {
                 var path = value;
-                if (!Path.GetFileName(path).ToLower().EndsWith(".vcfg"))
-                    path = Path.Combine(path, DEFAULT_CFG_FILE_NAME);
-                this._CurrentCfgFilePath = Path.GetFullPath(path);
-                if (this.Config != null)
-                    this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
+                if (string.IsNullOrWhiteSpace(path))
+                {
+                    this._CurrentCfgFilePath = path;
+                }
+                else
+                {
+                    if (!Path.GetFileName(path).ToLower().EndsWith(".vcfg"))
+                        path = Path.Combine(path, DEFAULT_CFG_FILE_NAME);
+                    this._CurrentCfgFilePath = Path.GetFullPath(path);
+                    if (this.Config != null)
+                        this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
+                }
                 this.NotifyPropertyChanged();
             }
         }
@@ -542,18 +568,6 @@ namespace vSharpStudio.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath);
-                //this._Config.OnSelectedNodeChanging = (from, to) =>
-                //{
-                //    if (to is INodeGenSettings)
-                //    {
-                //        var t = to as INodeGenSettings;
-                //        t.CreatePropertyGridNodeGenSettings(t);
-                //    }
-                //    else
-                //    {
-                //        //TODO remove property without node settings from PropertyGrid
-                //    }
-                //};
                 this._Config.OnSelectedNodeChanged = () =>
                 {
                     //this.validationListForSelectedNode.DataContext = this;

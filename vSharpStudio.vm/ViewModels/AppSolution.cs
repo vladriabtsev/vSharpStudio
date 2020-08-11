@@ -9,12 +9,13 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{listProjects.Count,nq}")]
-    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
+    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode
     {
         public static readonly string DefaultName = "Solution";
 
@@ -195,22 +196,20 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
-            (this.Parent as GroupListAppSolutions).Remove(this);
-            this.Parent = null;
-            var nv = new ModelVisitorNodeGenSettings();
+            if (ask)
+            {
+                var res = MessageBox.Show("You are deleting generators for Solution. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res != System.Windows.MessageBoxResult.OK)
+                    return;
+            }
             foreach (var t in this.ListAppProjects)
             {
-                foreach (var tt in t.ListAppProjectGenerators)
-                {
-                    nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
-                    {
-                        p.RemoveNodeAppGenSettings(tt.PluginGeneratorGuid);
-                    });
-                }
+                t.NodeRemove(false);
             }
-            //this.RefillDicGenerators();
+            (this.Parent as GroupListAppSolutions).ListAppSolutions.Remove(this);
+            this.Parent = null;
         }
 
         public override ITreeConfigNode NodeAddClone()

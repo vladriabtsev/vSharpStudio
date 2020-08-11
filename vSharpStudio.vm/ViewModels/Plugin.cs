@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.VPlugin == null || this.ListGenerators.Count == 0 || string.IsNullOrWhiteSpace(this.Guid);
         }
 
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
             (this.Parent as GroupListPlugins).ListPlugins.Remove(this);
         }

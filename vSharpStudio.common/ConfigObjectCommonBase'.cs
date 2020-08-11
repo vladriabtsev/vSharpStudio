@@ -644,7 +644,7 @@
             return false;
         }
 
-        public virtual void NodeRemove()
+        public virtual void NodeRemove(bool ask = true)
         {
             throw new NotImplementedException();
         }

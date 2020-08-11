@@ -6,11 +6,12 @@ using System.IO.Packaging;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator: ICanRemoveNode //: ICanAddSubNode
+    public partial class AppProjectGenerator : ICanRemoveNode //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -414,14 +415,6 @@ namespace vSharpStudio.vm.ViewModels
             return (gen as IvPluginDbConnStringGenerator)?.DbGenerator;
         }
 
-        public void RemoveNode()
-        {
-            this.PluginGeneratorGuid = "";
-            (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
-            this.Parent = null;
-            //this.NodeRemove();
-        }
-
         #region Tree operations
         //public bool CanAddSubNode()
         //{
@@ -506,23 +499,57 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
+            if (ask)
+            {
+                var res = MessageBox.Show("You are deleting generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res != System.Windows.MessageBoxResult.OK)
+                    return;
+            }
             this.PluginGeneratorGuid = "";
             this.PluginGuid = "";
-            //var nv = new ModelVisitorNodeGenSettings();
-            //nv.NodeGenSettingsApplyAction(cfg, (p) =>
-            //{
-            //    p.RemoveNodeAppGenSettings(this.Guid);
-            //});
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-            //cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
-            //this.RefillDicGenerators();
-            //    this.RemoveNodeAppGenSettings(item.Guid);
-            //    var cfg = (Config)this.GetConfig();
-            //    cfg.DicAppGenerators.Remove(item.Guid);
-            //    _logger.LogTrace("{DicAppGenerators}", cfg.DicAppGenerators);
+
+
+            //(this.Parent as AppSolution).ListAppProjects.Remove(this);
+            //this.Parent = null;
+            //var nv = new ModelVisitorNodeGenSettings();
+            //var cfg = (Config)this.GetConfig();
+            //// removing plugins group settings
+            //var sln = (AppSolution)this.Parent;
+            //foreach (var ttt in this.ListAppProjectGenerators)
+            //{
+            //    var plg = cfg.DicPlugins[ttt.PluginGuid];
+            //    if (!string.IsNullOrWhiteSpace(ttt.PluginGuid) && (plg.PluginGroupSolutionSettings != null)
+            //        && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
+            //    {
+            //        bool is_only = true;
+            //        foreach (var t in sln.ListAppProjects)
+            //        {
+            //            if (t.Guid == this.Guid)
+            //                continue;
+            //            foreach (var tt in t.ListAppProjectGenerators)
+            //            {
+            //                if (tt.PluginGuid == ttt.PluginGuid)
+            //                    is_only = false;
+            //            }
+            //        }
+            //        if (is_only)
+            //            sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
+            //    }
+            //}
+
+            //foreach (var t in this.ListAppProjectGenerators)
+            //{
+            //    nv.NodeGenSettingsApplyAction(cfg, (p) =>
+            //    {
+            //        p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
+            //    });
+            //}
+            ////this.RefillDicGenerators();
+
         }
 
         public override ITreeConfigNode NodeAddClone()

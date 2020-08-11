@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListJournals).ListJournals.MoveDown(this);
             this.SetSelected(this);
         }
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
             (this.Parent as GroupListJournals).Remove(this);
             this.Parent = null;

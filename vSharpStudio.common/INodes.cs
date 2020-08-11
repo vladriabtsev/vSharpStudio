@@ -24,7 +24,6 @@ namespace vSharpStudio.common
     }
     public interface ICanRemoveNode //: IOnRemoved
     {
-        void RemoveNode();
     }
     public interface ICanAddSubNode
     {

@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.Generator == null || string.IsNullOrWhiteSpace(this.Guid);
         }
 
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
             (this.Parent as Plugin).ListGenerators.Remove(this);
         }

@@ -171,7 +171,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
-            gen.NodeRemove();
+            gen.NodeRemove(false);
             Assert.AreEqual(1, vm.Config.GroupAppSolutions[0].ListAppProjects.Count);
             Assert.AreEqual(0, vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count);
             Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
@@ -273,7 +273,7 @@ namespace vSharpStudio.Unit
             //Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
             //// if app progect generator is removed, attached seetings are removed from appropriate nodes as well
-            //gen2.NodeRemove();
+            //gen2.NodeRemove(false);
             //Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
             //Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(1, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
@@ -341,7 +341,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(sln.DynamicMainSettings);
 
             // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
-            gen.NodeRemove();
+            gen.NodeRemove(false);
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
             Assert.IsNull(sln.DynamicMainSettings);

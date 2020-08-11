@@ -94,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveDown(this);
             this.SetSelected(this);
         }
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
             (this.Parent as GroupListPropertiesTabs).Remove(this);
             this.Parent = null;

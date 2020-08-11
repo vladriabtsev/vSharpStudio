@@ -131,7 +131,7 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
             (this.Parent as GroupListEnumerations).Remove(this);
             this.Parent = null;

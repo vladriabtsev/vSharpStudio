@@ -12,9 +12,11 @@ namespace vSharpStudio.vm.ViewModels
     public class EditorProjectPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox textBox;
+        AppProject prj;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Contract.Requires(propertyItem != null);
+            prj = (AppProject)propertyItem.Instance;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);
@@ -48,12 +50,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = ""; // Default file name
-            dlg.DefaultExt = ".csprj"; // Default file extension
-            dlg.Filter = "Progect file (.csprj)|*.csprj"; // Filter files by extension
+            dlg.DefaultExt = ".csproj"; // Default file extension
+            dlg.Filter = "Progect file (.csprj)|*.csproj"; // Filter files by extension
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
                 textBox.Text = dlg.FileName;
+                //TODO remove explicit assignment (binding stooped working)
+                prj.RelativeAppProjectPath = dlg.FileName;
             }
         }
     }

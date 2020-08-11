@@ -10,12 +10,13 @@ using vSharpStudio.common;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Diagnostics.Contracts;
+using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
     [DebuggerDisplay("AppProject:{Name,nq}")]
-    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode
+    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode
     {
         public static readonly string DefaultName = "Project";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
@@ -168,44 +169,20 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as AppSolution).ListAppProjects.MoveDown(this);
             this.SetSelected(this);
         }
-        public override void NodeRemove()
+        public override void NodeRemove(bool ask = true)
         {
-            (this.Parent as AppSolution).ListAppProjects.Remove(this);
-            this.Parent = null;
-            var nv = new ModelVisitorNodeGenSettings();
-            var cfg = (Config)this.GetConfig();
-            // removing plugins group settings
-            var sln = (AppSolution)this.Parent;
-            foreach(var ttt in this.ListAppProjectGenerators)
+            if (ask)
             {
-                var plg = cfg.DicPlugins[ttt.PluginGuid];
-                if (!string.IsNullOrWhiteSpace(ttt.PluginGuid) && (plg.PluginGroupSolutionSettings != null)
-                    && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
-                {
-                    bool is_only = true;
-                    foreach (var t in sln.ListAppProjects)
-                    {
-                        if (t.Guid == this.Guid)
-                            continue;
-                        foreach (var tt in t.ListAppProjectGenerators)
-                        {
-                            if (tt.PluginGuid == ttt.PluginGuid)
-                                is_only = false;
-                        }
-                    }
-                    if (is_only)
-                        sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
-                }
+                var res = MessageBox.Show("You are deleting generators for Project. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res != System.Windows.MessageBoxResult.OK)
+                    return;
             }
-
             foreach (var t in this.ListAppProjectGenerators)
             {
-                nv.NodeGenSettingsApplyAction(cfg, (p) =>
-                {
-                    p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
-                });
+                t.NodeRemove(false);
             }
-            //this.RefillDicGenerators();
+            (this.Parent as AppSolution).ListAppProjects.Remove(this);
+            this.Parent = null;
         }
         public override ITreeConfigNode NodeAddClone()
         {
