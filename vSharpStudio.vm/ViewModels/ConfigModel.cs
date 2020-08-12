@@ -23,7 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenSettings
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft
     {
         public override IEnumerable<object> GetChildren(object parent)
         {

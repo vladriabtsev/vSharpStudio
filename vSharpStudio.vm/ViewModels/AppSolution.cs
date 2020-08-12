@@ -109,13 +109,13 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
-        [DisplayName("Settings")]
+        [DisplayName("Groups Settings")]
         [Description("Solution group generators settings. Group generators are working together")]
         public object DynamicMainSettings
         {
             get
             {
-                var nd = new GroupSettings();
+                var nd = new NodeSettings();
                 var res = nd.Run(this);
                 return res;
             }
@@ -134,7 +134,6 @@ namespace vSharpStudio.vm.ViewModels
                 return dicSolutionGroupGeneratorsSettings;
             }
         }
-
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             if (result == true)
             {
                 textBox.Text = dlg.FileName;
-                //TODO remove explicit assignment (binding stooped working)
+                //TODO remove explicit assignment (binding stopped working)
                 sln.RelativeAppSolutionPath = dlg.FileName;
             }
         }

@@ -42,6 +42,7 @@
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings)
+    - [proto_plugin_generator_node_default_settings](#proto_config.proto_plugin_generator_node_default_settings)
     - [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings)
     - [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings)
     - [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings)
@@ -132,7 +133,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_config.proto_app_project_generator"></a>
 
 ### proto_app_project_generator
-@base ConfigObjectVmBase
+Application project generator
 
 
 | Field | Type | Label | Description |
@@ -150,6 +151,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -271,8 +273,6 @@ Configuration model
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [BrowsableAttribute(false)] |
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [BrowsableAttribute(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [BrowsableAttribute(false)] |
-| list_main_generators_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) | repeated | @attr [BrowsableAttribute(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -873,6 +873,22 @@ Stored in AppProjectGenerator node
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
+| settings | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_generator_node_default_settings"></a>
+
+### proto_plugin_generator_node_default_settings
+@base ConfigObjectVmBase
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| node_settings_vm_guid | [string](#string) |  | Guid of solution-project-generator node |
 | settings | [string](#string) |  |  |
 
 

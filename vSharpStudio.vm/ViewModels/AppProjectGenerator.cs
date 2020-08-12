@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator : ICanRemoveNode //: ICanAddSubNode
+    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings //: ICanAddSubNode
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -124,6 +124,29 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object _DynamicMainSettings;
+
+        [PropertyOrderAttribute(12)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Settings")]
+        [Description("Default nodes settings for generators")]
+        public object DynamicNodeDefaultSettings
+        {
+            get
+            {
+                var nd = new NodeSettings();
+                var res = nd.Run(this);
+                return res;
+            }
+        }
+        //[BrowsableAttribute(false)]
+        //// AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
+        //public DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeDefaultSettings { get { return dicGenNodeDefaultSettings; } }
+        //private DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> dicGenNodeDefaultSettings =
+        //    new DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>>(20, false, true,
+        //                (ki, v) => { }, (kr, v) => { }, () => { });
+
+
         //[PropertyOrderAttribute(11)]
         //[ExpandableObjectAttribute()]
         //[ReadOnly(true)]
@@ -245,6 +268,7 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
+            this.DicGenNodeSettings.Remove(this.gen.Guid);
             this.gen = null;
         }
         partial void OnPluginGuidChanging(ref string to)
@@ -289,22 +313,69 @@ namespace vSharpStudio.vm.ViewModels
             var nv = new ModelVisitorNodeGenSettings();
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
+            INodeGenSettings ngs = (INodeGenSettings)this;
+            DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
+            if (!this.DicGenNodeSettings.ContainsKey(this.Guid))
+            {
+                dic = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                this.DicGenNodeSettings[this.Guid] = dic;
+            }
+            else
+            {
+                dic = this.DicGenNodeSettings[this.Guid];
+            }
+
             if (!cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
             {
-                foreach (var t in cfg.GroupPlugins.ListPlugins)
+                foreach (var ttt in cfg.GroupPlugins.ListPlugins)
                 {
-                    foreach (var tt in t.ListGenerators)
+                    foreach (var tt in ttt.ListGenerators)
                     {
                         if (tt.Generator.Guid == this.PluginGeneratorGuid)
                         {
                             gen = tt.Generator;
+                            List<IvPluginGeneratorNodeSettings> lst = null;
                             if (gen is IvPluginDbConnStringGenerator)
                             {
                                 genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
                                 cfg.DicActiveAppProjectGenerators[this.Guid] = genDb;
+                                lst = genDb.GetListNodeGenerationSettings();
                             }
                             else
+                            {
                                 cfg.DicActiveAppProjectGenerators[this.Guid] = gen;
+                                lst = gen.GetListNodeGenerationSettings();
+                            }
+                            foreach(var t in lst)
+                            {
+                                if (DicGenNodeSettings.ContainsKey(t.Guid))
+                                    continue;
+                                PluginGeneratorNodeSettings gs = null;
+                                foreach (var ts in ngs.ListNodeGeneratorsSettings)
+                                {
+                                    if (ts.NodeSettingsVmGuid == t.Guid)
+                                    {
+                                        gs = ts;
+                                        break;
+                                    }
+                                }
+                                if (gs == null)
+                                {
+                                    gs = new PluginGeneratorNodeSettings(this);
+                                    gs.Name = this.Name;
+                                    gs.NodeSettingsVmGuid = t.Guid;
+                                    gs.AppProjectGeneratorGuid = this.Guid;
+                                    ngs.ListNodeGeneratorsSettings.Add(gs);
+                                }
+                                gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings, false);
+                                if (!this.DicGenNodeSettings.ContainsKey(this.Guid))
+                                {
+                                    this.DicGenNodeSettings[this.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                                }
+                                var dicS = this.DicGenNodeSettings[this.Guid];
+                                dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+
+                            }
                         }
                     }
                 }

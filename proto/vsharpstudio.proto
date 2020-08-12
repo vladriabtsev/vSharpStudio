@@ -408,7 +408,7 @@ message proto_plugin_generator_main_settings {
     string app_project_generator_guid = 1;
     string settings = 2; 
 }
-// @base ConfigObjectVmBase
+// Application project generator
 message proto_app_project_generator {
     string guid = 1;
     // @attr [Description("Connection string name for DB connection generator")]
@@ -463,6 +463,18 @@ message proto_app_project_generator {
     // @attr [Description("File path to store connection string settings in private place.")]
     //string file_path_private_conn_str = 19;
     //proto_plugin_generator_node_settings node_settings = 17;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 17;
+
+    // @attr [BrowsableAttribute(false)]
+    //repeated proto_plugin_generator_node_default_settings list_generators_node_default_settings = 17;
+}
+// @base ConfigObjectVmBase
+message proto_plugin_generator_node_default_settings {
+    // Guid of solution-project-generator node
+    string node_settings_vm_guid = 1;
+    string settings = 2; 
 }
 /** 
  * @exclude
@@ -509,10 +521,9 @@ message proto_config_model {
     proto_group_documents group_documents = 104;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_journals group_journals = 105;
+
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator_main_settings list_main_generators_settings = 16;
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+    //repeated proto_plugin_generator_main_settings list_main_generators_settings = 16;
 }
 /** 
  * @exclude

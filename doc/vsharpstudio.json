@@ -305,7 +305,7 @@
           "name": "proto_app_project_generator",
           "longName": "proto_app_project_generator",
           "fullName": "proto_config.proto_app_project_generator",
-          "description": "@base ConfigObjectVmBase",
+          "description": "Application project generator",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -437,6 +437,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -992,26 +1002,6 @@
               "type": "proto_group_list_journals",
               "longType": "proto_group_list_journals",
               "fullType": "proto_config.proto_group_list_journals",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_main_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_main_settings",
-              "longType": "proto_plugin_generator_main_settings",
-              "fullType": "proto_config.proto_plugin_generator_main_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3216,6 +3206,37 @@
           "fields": [
             {
               "name": "app_project_generator_guid",
+              "description": "Guid of solution-project-generator node",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_generator_node_default_settings",
+          "longName": "proto_plugin_generator_node_default_settings",
+          "fullName": "proto_config.proto_plugin_generator_node_default_settings",
+          "description": "@base ConfigObjectVmBase",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "node_settings_vm_guid",
               "description": "Guid of solution-project-generator node",
               "label": "",
               "type": "string",

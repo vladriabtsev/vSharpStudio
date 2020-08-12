@@ -16,95 +16,21 @@ namespace vSharpStudio.vm.ViewModels
     {
         public object Run(ITreeConfigNode node)
         {
-            var nds = (IGetNodeSetting)node;
             TypeBuilder tbSol = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSol.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
             Config cfg = (Config)node.GetConfig();
             var dic_sols = new Dictionary<string, object>();
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
-                //string solName = "";
-                //if (cfg.GroupAppSolutions.ListAppSolutions.Count > 1)
-                //{
-                //    solName = t.Name;
-                //}
                 SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object), t.NameUi, t.Description);
                 TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
                 {
-                    //string prjName = "";
-                    //if (t.ListAppProjects.Count > 1)
-                    //{
-                    //    prjName = t.Name;
-                    //}
-                    TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
-                    var dic_apgs = new Dictionary<string, object>();
-                    foreach (var ttt in tt.ListAppProjectGenerators)
-                    {
-                        if (!string.IsNullOrWhiteSpace(ttt.PluginGuid))
-                        {
-                            if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
-                            {
-                                TypeBuilder tbGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
-                                var dic_gs = new Dictionary<string, object>();
-                                foreach (var tttt in ttt.ListGenerators)
-                                {
-                                    if (tttt.Generator == null)
-                                        continue;
-                                    IvPluginGenerator gen = tttt.Generator;
-                                    if (gen is IvPluginDbConnStringGenerator)
-                                    {
-                                        gen = (gen as IvPluginDbConnStringGenerator).DbGenerator;
-                                    }
-                                    bool isFound = false;
-                                    var lst = gen.GetListNodeGenerationSettings();
-                                    foreach (var ts in lst)
-                                    {
-                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                                            isFound = true;
-                                    }
-                                    if (!isFound)
-                                        continue;
-                                    SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object), gen.NameUi, gen.Description);
-                                    TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
-                                    foreach (var ts in lst)
-                                    {
-                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                                            SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
-                                    }
-                                    SettingsTypeBuilder.CreateToString(tbSet, "Generator");
-                                    Type nsType = tbSet.CreateType();
-                                    object objSet = Activator.CreateInstance(nsType);
-                                    foreach (var ts in lst)
-                                    {
-                                        if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                                            nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ttt.Guid, ts.Guid) });
-                                    }
-                                    dic_gs[gen.Name] = objSet;
-                                }
-                                SettingsTypeBuilder.CreateToString(tbGen, "Plugin");
-                                Type settingsType = tbGen.CreateType();
-                                object objGen = Activator.CreateInstance(settingsType);
-                                foreach (var dt in dic_gs)
-                                {
-                                    settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objGen, new object[] { dt.Value });
-                                }
-                                if (dic_gs.Count > 0)
-                                {
-                                    dic_apgs[ttt.Name] = objGen;
-                                    SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object), ttt.NameUi, ttt.Description);
-                                }
-                            }
-                        }
-                    }
-                    SettingsTypeBuilder.CreateToString(tbAppGen, "Project");
-                    Type apgsType = tbAppGen.CreateType();
-                    object objAppGen = Activator.CreateInstance(apgsType);
-                    foreach (var dt in dic_apgs)
-                    {
-                        apgsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objAppGen, new object[] { dt.Value });
-                    }
+                    Dictionary<string, object> dic_apgs = new Dictionary<string, object>();
+
+                    var objAppGen = CreateSettingsForProject(node, tt, dic_apgs);
+
                     if (dic_apgs.Count > 0)
                     {
                         dic_prjs[tt.Name] = objAppGen;
@@ -133,9 +59,79 @@ namespace vSharpStudio.vm.ViewModels
 
             return objSol;
         }
-    }
-    internal class GroupSettings
-    {
+
+        private static object CreateSettingsForProject(ITreeConfigNode node, AppProject tt, Dictionary<string, object> dic_apgs)
+        {
+            var nds = (IGetNodeSetting)node;
+            TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
+            foreach (var ttt in tt.ListAppProjectGenerators)
+            {
+                if (!string.IsNullOrWhiteSpace(ttt.PluginGuid))
+                {
+                    if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
+                    {
+                        TypeBuilder tbGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
+                        var dic_gs = new Dictionary<string, object>();
+                        foreach (var tttt in ttt.ListGenerators)
+                        {
+                            if (tttt.Generator == null)
+                                continue;
+                            IvPluginGenerator gen = tttt.Generator;
+                            if (gen is IvPluginDbConnStringGenerator)
+                            {
+                                gen = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                            }
+                            bool isFound = false;
+                            var lst = gen.GetListNodeGenerationSettings();
+                            foreach (var ts in lst)
+                            {
+                                if (nds.ContainsSettings(ttt.Guid, ts.Guid))
+                                    isFound = true;
+                            }
+                            if (!isFound)
+                                continue;
+                            SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object), gen.NameUi, gen.Description);
+                            TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
+                            foreach (var ts in lst)
+                            {
+                                if (nds.ContainsSettings(ttt.Guid, ts.Guid))
+                                    SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
+                            }
+                            SettingsTypeBuilder.CreateToString(tbSet, "Generator");
+                            Type nsType = tbSet.CreateType();
+                            object objSet = Activator.CreateInstance(nsType);
+                            foreach (var ts in lst)
+                            {
+                                if (nds.ContainsSettings(ttt.Guid, ts.Guid))
+                                    nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ttt.Guid, ts.Guid) });
+                            }
+                            dic_gs[gen.Name] = objSet;
+                        }
+                        SettingsTypeBuilder.CreateToString(tbGen, "Plugin");
+                        Type settingsType = tbGen.CreateType();
+                        object objGen = Activator.CreateInstance(settingsType);
+                        foreach (var dt in dic_gs)
+                        {
+                            settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objGen, new object[] { dt.Value });
+                        }
+                        if (dic_gs.Count > 0)
+                        {
+                            dic_apgs[ttt.Name] = objGen;
+                            SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object), ttt.NameUi, ttt.Description);
+                        }
+                    }
+                }
+            }
+            SettingsTypeBuilder.CreateToString(tbAppGen, "Project");
+            Type apgsType = tbAppGen.CreateType();
+            var objAppGen = Activator.CreateInstance(apgsType);
+            foreach (var dt in dic_apgs)
+            {
+                apgsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objAppGen, new object[] { dt.Value });
+            }
+            return objAppGen;
+        }
+
         public object Run(AppSolution node)
         {
             TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
@@ -158,64 +154,87 @@ namespace vSharpStudio.vm.ViewModels
             }
             return objSettings;
         }
+        public object Run(AppProjectGenerator node)
+        {
+            var nds = (IGetNodeSetting)node;
+            Config cfg = (Config)node.GetConfig();
+
+            TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
+            var dic_apgs = new Dictionary<string, object>();
+
+            TypeBuilder tbGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
+            var dic_gs = new Dictionary<string, object>();
+            foreach (var tt in node.ListGenerators)
+            {
+                if (string.IsNullOrWhiteSpace(node.PluginGuid) || string.IsNullOrWhiteSpace(node.PluginGeneratorGuid))
+                    continue;
+                if (tt.Generator == null)
+                    continue;
+                IvPluginGenerator gen = tt.Generator;
+                if (gen is IvPluginDbConnStringGenerator)
+                {
+                    gen = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                }
+                bool isFound = false;
+                var lst = gen.GetListNodeGenerationSettings();
+                foreach (var ts in lst)
+                {
+                    if (nds.ContainsSettings(node.Guid, ts.Guid))
+                        isFound = true;
+                }
+                if (!isFound)
+                    continue;
+                SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object), gen.NameUi, gen.Description);
+                TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
+                foreach (var ts in lst)
+                {
+                    if (nds.ContainsSettings(node.Guid, ts.Guid))
+                        SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
+                }
+                SettingsTypeBuilder.CreateToString(tbSet, "Generator");
+                Type nsType = tbSet.CreateType();
+                object objSet = Activator.CreateInstance(nsType);
+                foreach (var ts in lst)
+                {
+                    if (nds.ContainsSettings(node.Guid, ts.Guid))
+                        nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(node.Guid, ts.Guid) });
+                }
+                dic_gs[gen.Name] = objSet;
+            }
+            SettingsTypeBuilder.CreateToString(tbGen, "Plugin");
+            Type settingsType = tbGen.CreateType();
+            object objGen = Activator.CreateInstance(settingsType);
+            foreach (var dt in dic_gs)
+            {
+                settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objGen, new object[] { dt.Value });
+            }
+            if (dic_gs.Count > 0)
+            {
+                dic_apgs[node.Name] = objGen;
+                SettingsTypeBuilder.CreateProperty(tbAppGen, node.Name, typeof(Object), node.NameUi, node.Description);
+            }
+
+
+
+
+
+            foreach (var t in node.DicGenNodeSettings)
+            {
+                string groupName = t.Value.Name;
+                SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
+                dic_groups[groupName] = t.Value;
+            }
+            if (dic_groups.Count == 0)
+                return null;
+            Type settingsType = tbSettings.CreateType();
+            object objSettings = Activator.CreateInstance(settingsType);
+            foreach (var dt in dic_groups)
+            {
+                settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSettings, new object[] { dt.Value });
+            }
+            return objSettings;
+        }
     }
-    //internal class NodeSettings : AppVisitorBase
-    //{
-    //    Dictionary<Object, Dictionary<string, object>> dic = new Dictionary<object, Dictionary<string, object>>();
-    //    Dictionary<string, object> dicFields;
-    //    Stack<TypeBuilder> stackBuilders = new Stack<TypeBuilder>();
-    //    TypeBuilder tb;
-    //    object? obj;
-    //    public object Create(ITreeConfigNode node)
-    //    {
-    //        tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
-    //        ConstructorBuilder constructor = tb.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
-    //        base.Run(node);
-    //        Type objectType = tb.CreateType();
-    //        var myObject = Activator.CreateInstance(objectType);
-    //        dicFields = new Dictionary<string, object>();
-    //        dic[myObject] = dicFields;
-    //        //foreach (var field in lst)
-    //        //    myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
-    //        return myObject;
-    //    }
-    //    protected override void OnBeginCreateProperty(string name, AppSolution p)
-    //    {
-    //        //if (!string.IsNullOrWhiteSpace(name))
-    //        //{
-    //        SettingsTypeBuilder.CreateProperty(tb, p.Name, typeof(Object));
-    //        stackBuilders.Push(tb);
-    //        tb = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
-    //        //}
-    //    }
-    //    protected override void OnSetProperty(string name, AppSolution p)
-    //    {
-    //        Type objectType = tb.CreateType(); // create projects
-    //        obj = Activator.CreateInstance(objectType);
-    //        objectType.InvokeMember(p.Name, BindingFlags.SetProperty, null, obj, new object[] { field });
-    //        tb = stackBuilders.Pop();
-    //    }
-    //    protected override void OnBeginCreateProperty(string name, AppProject p)
-    //    {
-    //        SettingsTypeBuilder.CreateProperty(tb, p.Name, typeof(Object));
-    //        stackBuilders.Push(tb);
-    //        tb = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
-    //    }
-    //    protected override void OnSetProperty(string name, AppProject p)
-    //    {
-    //        Type objectType = tb.CreateType();
-    //        val = Activator.CreateInstance(objectType);
-    //        //objectType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
-    //        tb = stackBuilders.Pop();
-    //    }
-    //    protected override void OnBeginCreateProperty(string name, AppProjectGenerator p)
-    //    {
-    //        SettingsTypeBuilder.CreateProperty(tb, p.Name, typeof(Object));
-    //    }
-    //    protected override void OnSetProperty(string name, AppProjectGenerator p)
-    //    {
-    //    }
-    //}
     public static class SettingsTypeBuilder
     {
         public class Field

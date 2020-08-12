@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Diagnostics.Contracts;
 using Xceed.Wpf.Toolkit;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {

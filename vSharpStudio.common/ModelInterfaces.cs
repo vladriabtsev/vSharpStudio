@@ -245,6 +245,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string Settings { get; } // ModelInterfaces.tt Line: 47
     }
     
+    ///////////////////////////////////////////////////
+    /// Application project generator
+    ///////////////////////////////////////////////////
+    
     public partial interface IAppProjectGenerator : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
@@ -266,6 +270,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
         IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
         string ConnStr { get; } // ModelInterfaces.tt Line: 47
+        IEnumerable<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IPluginGeneratorNodeDefaultSettings : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        
+        ///////////////////////////////////////////////////
+        /// Guid of solution-project-generator node
+        ///////////////////////////////////////////////////
+        string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 47
+        string Settings { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////
@@ -287,8 +302,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 51
         IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 51
         IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 51
-        IEnumerable<IPluginGeneratorMainSettings> ListMainGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
-        IEnumerable<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 29

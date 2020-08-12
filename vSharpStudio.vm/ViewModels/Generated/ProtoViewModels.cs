@@ -1,4 +1,4 @@
-// Auto generated on UTC 08/11/2020 13:17:38
+// Auto generated on UTC 08/12/2020 13:47:44
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4208,7 +4208,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 6
-    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
+    
+    ///////////////////////////////////////////////////
+    /// Application project generator
+    ///////////////////////////////////////////////////
+    public partial class AppProjectGenerator : ConfigObjectVmGenSettings<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
     {
         #region CTOR
         public AppProjectGenerator(ITreeConfigNode parent) 
@@ -4217,6 +4221,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnInitBegin();
             this.MainSettings = new PluginGeneratorMainSettings(this); // Class.tt Line: 29
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
             this.OnInit();
             this.IsValidate = true;
         }
@@ -4227,7 +4232,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            // throw new Exception();
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
         }
         public static AppProjectGenerator Clone(ITreeConfigNode parent, AppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -4249,6 +4257,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.MainSettings = PluginGeneratorMainSettings.Clone(vm, from.MainSettings, isDeep);
             vm.ConnStr = from.ConnStr; // Clone.tt Line: 65
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -4273,6 +4284,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 PluginGeneratorMainSettings.Update(to.MainSettings, from.MainSettings, isDeep);
             to.ConnStr = from.ConnStr; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t == tt)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t == tt)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -4316,6 +4363,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.MainSettings = new PluginGeneratorMainSettings(vm); // Clone.tt Line: 215
             PluginGeneratorMainSettings.ConvertToVM(m.MainSettings, vm.MainSettings); // Clone.tt Line: 219
             vm.ConnStr = m.ConnStr; // Clone.tt Line: 221
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
@@ -4341,6 +4394,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 276
             m.MainSettings = PluginGeneratorMainSettings.ConvertToProto(vm.MainSettings); // Clone.tt Line: 270
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 276
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -4354,6 +4409,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             visitor.Visit(this);
             this.MainSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -4631,6 +4690,185 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnConnStrChanging(ref string to); // Property.tt Line: 160
         partial void OnConnStrChanged();
         string IAppProjectGenerator.ConnStr { get { return this._ConnStr; } } 
+        
+        [BrowsableAttribute(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
+        { 
+            get 
+            { 
+                return this._ListNodeGeneratorsSettings; 
+            }
+            private set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    this._ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IEnumerable<IPluginGeneratorNodeSettings> IAppProjectGenerator.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
+    
+        #endregion Properties
+    }
+    public partial class PluginGeneratorNodeDefaultSettingsValidator : ValidatorBase<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator> { } // Class.tt Line: 6
+    public partial class PluginGeneratorNodeDefaultSettings : ConfigObjectVmBase<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator>, IComparable<PluginGeneratorNodeDefaultSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeDefaultSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public PluginGeneratorNodeDefaultSettings(ITreeConfigNode parent) 
+            : base(parent, PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 12
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            // throw new Exception();
+        }
+        public static PluginGeneratorNodeDefaultSettings Clone(ITreeConfigNode parent, PluginGeneratorNodeDefaultSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            PluginGeneratorNodeDefaultSettings vm = new PluginGeneratorNodeDefaultSettings(parent);
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 65
+            vm.Settings = from.Settings; // Clone.tt Line: 65
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(PluginGeneratorNodeDefaultSettings to, PluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 141
+            to.Settings = from.Settings; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override PluginGeneratorNodeDefaultSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return PluginGeneratorNodeDefaultSettings.Clone(this.Parent, this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(PluginGeneratorNodeDefaultSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            PluginGeneratorNodeDefaultSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_plugin_generator_node_default_settings' to 'PluginGeneratorNodeDefaultSettings'
+        public static PluginGeneratorNodeDefaultSettings ConvertToVM(Proto.Config.proto_plugin_generator_node_default_settings m, PluginGeneratorNodeDefaultSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 221
+            vm.Settings = m.Settings; // Clone.tt Line: 221
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsSubTreeChanged = false;
+            vm.IsChanged = false;
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'PluginGeneratorNodeDefaultSettings' to 'proto_plugin_generator_node_default_settings'
+        public static Proto.Config.proto_plugin_generator_node_default_settings ConvertToProto(PluginGeneratorNodeDefaultSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_plugin_generator_node_default_settings m = new Proto.Config.proto_plugin_generator_node_default_settings(); // Clone.tt Line: 239
+            m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
+            m.Settings = vm.Settings; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        
+        ///////////////////////////////////////////////////
+        /// Guid of solution-project-generator node
+        ///////////////////////////////////////////////////
+        public string NodeSettingsVmGuid // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._NodeSettingsVmGuid; 
+            }
+            set
+            {
+                if (this._NodeSettingsVmGuid != value)
+                {
+                    this.OnNodeSettingsVmGuidChanging(ref value);
+                    this._NodeSettingsVmGuid = value;
+                    this.OnNodeSettingsVmGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _NodeSettingsVmGuid = string.Empty;
+        partial void OnNodeSettingsVmGuidChanging(ref string to); // Property.tt Line: 160
+        partial void OnNodeSettingsVmGuidChanged();
+        string IPluginGeneratorNodeDefaultSettings.NodeSettingsVmGuid { get { return this._NodeSettingsVmGuid; } } 
+        
+        public string Settings // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._Settings; 
+            }
+            set
+            {
+                if (this._Settings != value)
+                {
+                    this.OnSettingsChanging(ref value);
+                    this._Settings = value;
+                    this.OnSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Settings = string.Empty;
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 160
+        partial void OnSettingsChanged();
+        string IPluginGeneratorNodeDefaultSettings.Settings { get { return this._Settings; } } 
     
         #endregion Properties
     }
@@ -4654,8 +4892,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 29
             this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 29
             this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 29
-            this.ListMainGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorMainSettings>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
             this.OnInit();
             this.IsValidate = true;
         }
@@ -4666,14 +4902,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            if (type == typeof(PluginGeneratorMainSettings)) // Clone.tt Line: 15
-            {
-                this.ListMainGeneratorsSettings.Sort();
-            }
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
+            // throw new Exception();
         }
         public static ConfigModel Clone(ITreeConfigNode parent, ConfigModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -4702,12 +4931,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupDocuments = GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupJournals = GroupListJournals.Clone(vm, from.GroupJournals, isDeep);
-            vm.ListMainGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorMainSettings>(vm); // Clone.tt Line: 51
-            foreach (var t in from.ListMainGeneratorsSettings) // Clone.tt Line: 52
-                vm.ListMainGeneratorsSettings.Add(PluginGeneratorMainSettings.Clone(vm, (PluginGeneratorMainSettings)t, isDeep));
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -4739,78 +4962,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 GroupListJournals.Update(to.GroupJournals, from.GroupJournals, isDeep);
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListMainGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListMainGeneratorsSettings)
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            PluginGeneratorMainSettings.Update((PluginGeneratorMainSettings)t, (PluginGeneratorMainSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListMainGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListMainGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListMainGeneratorsSettings.ToList())
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorMainSettings(to); // Clone.tt Line: 117
-                        PluginGeneratorMainSettings.Update(p, (PluginGeneratorMainSettings)tt, isDeep);
-                        to.ListMainGeneratorsSettings.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t == tt)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -4866,18 +5017,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupJournals == null) // Clone.tt Line: 213
                 vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 215
             GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 219
-            vm.ListMainGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorMainSettings>(vm); // Clone.tt Line: 200
-            foreach (var t in m.ListMainGeneratorsSettings) // Clone.tt Line: 201
-            {
-                var tvm = PluginGeneratorMainSettings.ConvertToVM(t, new PluginGeneratorMainSettings(vm)); // Clone.tt Line: 204
-                vm.ListMainGeneratorsSettings.Add(tvm);
-            }
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsSubTreeChanged = false;
             vm.IsChanged = false;
@@ -4905,10 +5044,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupCatalogs = GroupListCatalogs.ConvertToProto(vm.GroupCatalogs); // Clone.tt Line: 270
             m.GroupDocuments = GroupDocuments.ConvertToProto(vm.GroupDocuments); // Clone.tt Line: 270
             m.GroupJournals = GroupListJournals.ConvertToProto(vm.GroupJournals); // Clone.tt Line: 270
-            foreach (var t in vm.ListMainGeneratorsSettings) // Clone.tt Line: 242
-                m.ListMainGeneratorsSettings.Add(PluginGeneratorMainSettings.ConvertToProto((PluginGeneratorMainSettings)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -4932,14 +5067,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
             this.GroupJournals.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            foreach (var t in this.ListMainGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -5219,54 +5346,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupJournalsChanging(ref GroupListJournals to); // Property.tt Line: 134
         partial void OnGroupJournalsChanged();
         IGroupListJournals IConfigModel.GroupJournals { get { return this._GroupJournals; } }
-        
-        [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PluginGeneratorMainSettings> ListMainGeneratorsSettings // Property.tt Line: 58
-        { 
-            get 
-            { 
-                return this._ListMainGeneratorsSettings; 
-            }
-            private set
-            {
-                if (this._ListMainGeneratorsSettings != value)
-                {
-                    this.OnListMainGeneratorsSettingsChanging(value);
-                    this._ListMainGeneratorsSettings = value;
-                    this.OnListMainGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorMainSettings> _ListMainGeneratorsSettings;
-        partial void OnListMainGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorMainSettings> to); // Property.tt Line: 79
-        partial void OnListMainGeneratorsSettingsChanged();
-        IEnumerable<IPluginGeneratorMainSettings> IConfigModel.ListMainGeneratorsSettings { get { return this._ListMainGeneratorsSettings; } }
-        
-        [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
-        { 
-            get 
-            { 
-                return this._ListNodeGeneratorsSettings; 
-            }
-            private set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    this._ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
-        partial void OnListNodeGeneratorsSettingsChanged();
-        IEnumerable<IPluginGeneratorNodeSettings> IConfigModel.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
     
         #endregion Properties
     }
@@ -13434,6 +13513,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_plugin_generator_node_settings p);
         void Visit(Proto.Config.proto_plugin_generator_main_settings p);
         void Visit(Proto.Config.proto_app_project_generator p);
+        void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
         void Visit(Proto.Config.proto_config_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
@@ -13656,6 +13736,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(AppProjectGenerator p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(PluginGeneratorNodeDefaultSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -14139,6 +14229,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(AppProjectGenerator p) { }
         protected virtual void OnVisitEnd(AppProjectGenerator p) { }
+        public void Visit(PluginGeneratorNodeDefaultSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(PluginGeneratorNodeDefaultSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(PluginGeneratorNodeDefaultSettings p) { }
+        protected virtual void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) { }
         public void Visit(ConfigModel p)
         {
             this.OnVisit(p);
@@ -14456,6 +14556,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(PluginGeneratorMainSettings p);
         void Visit(AppProjectGenerator p);
         void VisitEnd(AppProjectGenerator p);
+        void Visit(PluginGeneratorNodeDefaultSettings p);
+        void VisitEnd(PluginGeneratorNodeDefaultSettings p);
         void Visit(ConfigModel p);
         void VisitEnd(ConfigModel p);
         void Visit(GroupListCommon p);

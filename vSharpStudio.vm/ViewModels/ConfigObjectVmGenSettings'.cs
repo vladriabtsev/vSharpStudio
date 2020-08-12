@@ -102,11 +102,8 @@ namespace vSharpStudio.vm.ViewModels
                     continue;
                 string modelPath = this.ModelPath;
                 var searchPattern = t.SearchPathInModel;
-                bool is_found = false;
-                if (this is ConfigModel)
-                    is_found = true;
-                else
-                    is_found = SearchInModelPathByPattern(modelPath, searchPattern);
+
+                bool is_found = SearchInModelPathByPattern(modelPath, searchPattern);
 
                 if (is_found)
                 {

@@ -1039,7 +1039,7 @@ namespace vSharpStudio.ViewModels
                                         {
                                             genConn.DbGenerator.EnsureDbDeleted(tpg.ConnStr);
                                         }
-                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, () =>
+                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, () =>
                                         {
                                             return true;
                                         }, (ex) =>
