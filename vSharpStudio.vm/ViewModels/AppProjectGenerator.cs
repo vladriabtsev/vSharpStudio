@@ -128,17 +128,25 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(12)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
-        [DisplayName("Settings")]
-        [Description("Default nodes settings for generators")]
+        [DisplayName("Defaults")]
+        [Description("Default nodes settings for generator")]
         public object DynamicNodeDefaultSettings
         {
             get
             {
-                var nd = new NodeSettings();
-                var res = nd.Run(this);
-                return res;
+                return this._DynamicNodeDefaultSettings;
+            }
+            set
+            {
+                if (this._DynamicNodeDefaultSettings != value)
+                {
+                    this._DynamicNodeDefaultSettings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
             }
         }
+        private object _DynamicNodeDefaultSettings;
         //[BrowsableAttribute(false)]
         //// AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
         //public DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeDefaultSettings { get { return dicGenNodeDefaultSettings; } }
@@ -194,22 +202,46 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void ChangeSettingsObject()
         {
-            if (gen is IvPluginDbConnStringGenerator)
+            if (gen == null)
             {
-                if (gen != null)
-                    this.DynamicMainConnStrSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
-                var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
-                if (genDb != null)
-                    this.DynamicMainSettings = (genDb as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                this.DynamicMainSettings = null;
+                this.DynamicMainConnStrSettings = null;
+                this.DynamicNodeDefaultSettings = null;
             }
             else
             {
-                if (gen != null)
+                if (gen is IvPluginDbConnStringGenerator)
+                {
+                    this.DynamicMainConnStrSettings = (gen as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
+                    var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                    if (genDb != null)
+                    {
+                        this.DynamicMainSettings = (genDb as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                        var nd = new NodeSettings();
+                        var res = nd.Run(this);
+                        this.DynamicNodeDefaultSettings = res;
+                        nd.Run(this.cfg.Model);
+                    }
+                }
+                else
+                {
                     this.DynamicMainSettings = gen.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                    var nd = new NodeSettings();
+                    var res = nd.Run(this);
+                    this.DynamicNodeDefaultSettings = res;
+                    nd.Run(this.cfg.Model);
+                }
             }
         }
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
+
+        partial void OnPluginGuidChanging(ref string to)
+        {
+            cfg.DicActiveAppProjectGenerators.TryRemove(this.Guid);
+            RemovePluginsGroupSettings();
+            cfg.Model.DicGenNodeSettings.TryRemove(this.Guid);
+        }
         partial void OnPluginGuidChanged()
         {
             if (this.IsNotNotifying)
@@ -243,18 +275,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private void UpdateListGenerators()
-        {
-            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
-            {
-                Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
-                this.ListGenerators.Clear();
-                this.ListGenerators.AddRange(plg.ListGenerators);
-                //EditorPluginSelection.ListGenerators.Clear();
-                //EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
-                this.DescriptionPlugin = plg.Description;
-            }
-        }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {
             if (this.IsNotNotifying)
@@ -268,42 +288,10 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
-            this.DicGenNodeSettings.Remove(this.gen.Guid);
+            this.DicGenNodeSettings.TryRemove(this.Guid);
             this.gen = null;
+            cfg.Model.DicGenNodeSettings.TryRemove(this.Guid);
         }
-        partial void OnPluginGuidChanging(ref string to)
-        {
-            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
-            RemovePluginsGroupSettings();
-        }
-
-        private void RemovePluginsGroupSettings()
-        {
-            var sln = (AppSolution)this.Parent.Parent;
-            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
-            {
-                var plg = cfg.DicPlugins[this.PluginGuid];
-                if ((plg.PluginGroupSolutionSettings != null)
-                && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
-                {
-                    bool is_only = true;
-                    foreach (var t in sln.ListAppProjects)
-                    {
-                        foreach (var tt in t.ListAppProjectGenerators)
-                        {
-                            if (tt.Guid == this.Guid)
-                                continue;
-                            if (tt.PluginGuid == this.PluginGuid)
-                                is_only = false;
-                        }
-                    }
-                    if (is_only)
-                        sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
-                }
-            }
-        }
-
         partial void OnPluginGeneratorGuidChanged()
         {
             IvPluginDbGenerator genDb;
@@ -346,7 +334,7 @@ namespace vSharpStudio.vm.ViewModels
                                 cfg.DicActiveAppProjectGenerators[this.Guid] = gen;
                                 lst = gen.GetListNodeGenerationSettings();
                             }
-                            foreach(var t in lst)
+                            foreach (var t in lst)
                             {
                                 if (DicGenNodeSettings.ContainsKey(t.Guid))
                                     continue;
@@ -374,7 +362,8 @@ namespace vSharpStudio.vm.ViewModels
                                 }
                                 var dicS = this.DicGenNodeSettings[this.Guid];
                                 dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-
+                                // Set link for default settings for ConfigModel
+                                cfg.Model.TrySetSettings(this.Guid, gs.NodeSettingsVmGuid, gs.SettingsVm);
                             }
                         }
                     }
@@ -403,6 +392,44 @@ namespace vSharpStudio.vm.ViewModels
             HideProperties(gen);
             this.NotifyPropertyChanged(this.IconName);
         }
+
+        private void UpdateListGenerators()
+        {
+            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
+            {
+                Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
+                this.ListGenerators.Clear();
+                this.ListGenerators.AddRange(plg.ListGenerators);
+                //EditorPluginSelection.ListGenerators.Clear();
+                //EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
+                this.DescriptionPlugin = plg.Description;
+            }
+        }
+        private void RemovePluginsGroupSettings()
+        {
+            var sln = (AppSolution)this.Parent.Parent;
+            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
+            {
+                var plg = cfg.DicPlugins[this.PluginGuid];
+                if ((plg.PluginGroupSolutionSettings != null)
+                && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
+                {
+                    bool is_only = true;
+                    foreach (var t in sln.ListAppProjects)
+                    {
+                        foreach (var tt in t.ListAppProjectGenerators)
+                        {
+                            if (tt.Guid == this.Guid)
+                                continue;
+                            if (tt.PluginGuid == this.PluginGuid)
+                                is_only = false;
+                        }
+                    }
+                    if (is_only)
+                        sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
+                }
+            }
+        }
         private void HideProperties(IvPluginGenerator gen)
         {
             if (gen == null)
@@ -417,7 +444,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.GetPropertyName(() => this.GenFileName),
                     this.GetPropertyName(() => this.ListGenerators),
                     this.GetPropertyName(() => this.ListInModels),
-                    //this.GetPropertyName(() => this.DynamicMainSettings),
+                    this.GetPropertyName(() => this.DynamicNodesSettings),
+                    this.GetPropertyName(() => this.NameUi),
                 });
             }
             //else if (gen is IvPluginDbConnStringGenerator)
@@ -429,6 +457,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.SetPropertyDefinitions(new string[] {
                     this.GetPropertyName(() => this.DynamicMainConnStrSettings),
                     this.GetPropertyName(() => this.ConnStr),
+                    this.GetPropertyName(() => this.DynamicNodesSettings),
+                    this.GetPropertyName(() => this.NameUi),
                     //this.GetPropertyName(() => this.IsPrivateConnStr),
                 });
             }

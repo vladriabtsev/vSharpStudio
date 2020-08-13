@@ -317,9 +317,6 @@ namespace vSharpStudio.ViewModels
                         if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                         {
                             tt.SetVPlugin(t.Value);
-                            //tt.GroupGuid = t.Value.GroupGuid;
-                            //tt.GroupVersion = t.Value.GroupVersion;
-                            //tt.GroupInfo = t.Value.GroupInfo;
                             tt.Name = t.Value.Name;
                             tt.Description = t.Value.Description;
                             tt.Version = t.Value.Version;
@@ -438,17 +435,59 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            //if (ttt.IsPrivateConnStr && (ttt.IsConnectString() ?? false))
-                            //{
-                            //    Utils.TryCall(
-                            //        () =>
-                            //        {
-                            //            ttt.ConnStr = File.ReadAllText(ttt.FilePathPrivateConnStr);
-                            //        }, "Private connection string was not loaded. Solution: '" + t.Name + 
-                            //        "' Project: '" + tt.Name + "' Generator: '" + ttt.Name + "' File path: '" + 
-                            //        Path.GetFullPath(ttt.FilePathPrivateConnStr) + "'");
-                            //}
-                            //else
+                            var nds = (INodeGenSettings)ttt;
+                            foreach (var tttt in ttt.ListGenerators)
+                            {
+                                if (tttt.Generator == null)
+                                    continue;
+                                if (tttt.Guid != ttt.PluginGeneratorGuid)
+                                    continue;
+                                IvPluginGenerator gen = tttt.Generator;
+                                List<IvPluginGeneratorNodeSettings> lst = null;
+                                if (gen is IvPluginDbConnStringGenerator)
+                                {
+                                    var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
+                                    lst = genDb.GetListNodeGenerationSettings();
+                                }
+                                else
+                                {
+                                    lst = gen.GetListNodeGenerationSettings();
+                                }
+                                foreach (var ts in lst)
+                                {
+                                    if (ttt.ContainsSettings(ttt.Guid, ts.Guid))
+                                    {
+                                        throw new Exception();
+                                        //continue;
+                                    }
+                                    PluginGeneratorNodeSettings gs = null;
+                                    foreach (var tds in nds.ListNodeGeneratorsSettings)
+                                    {
+                                        if (tds.NodeSettingsVmGuid == ts.Guid)
+                                        {
+                                            gs = tds;
+                                            break;
+                                        }
+                                    }
+                                    if (gs == null)
+                                    {
+                                        gs = new PluginGeneratorNodeSettings(ttt);
+                                        gs.Name = ttt.Name;
+                                        gs.NodeSettingsVmGuid = ts.Guid;
+                                        gs.AppProjectGeneratorGuid = ttt.Guid;
+                                        nds.ListNodeGeneratorsSettings.Add(gs);
+                                    }
+                                    gs.SettingsVm = ts.GetAppGenerationNodeSettingsVm(gs.Settings, true);
+                                    if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
+                                    {
+                                        ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                                    }
+                                    var dicS = ttt.DicGenNodeSettings[ttt.Guid];
+                                    dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+                                    // Set link for default settings for ConfigModel
+                                    this.Config.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
+                                }
+                            }
                             ttt.CreateGenSettings();
                         }
                     }

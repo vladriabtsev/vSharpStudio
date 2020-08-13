@@ -64,5 +64,12 @@ namespace ViewModelBase
                 OnClear();
             base.Clear();
         }
+        public bool TryRemove(TKey key)
+        {
+            var res = this.ContainsKey(key);
+            if (res)
+                this.Remove(key);
+            return res;
+        }
     }
 }

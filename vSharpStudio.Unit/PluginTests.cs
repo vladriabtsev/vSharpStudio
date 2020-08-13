@@ -210,8 +210,13 @@ namespace vSharpStudio.Unit
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
 
+            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
             var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+
+            // on model we have link to AppProjectGenerator settings
+            Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
             nds.IsParam1 = true;
+            Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
 
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic));
             nds.IsIncluded = false;

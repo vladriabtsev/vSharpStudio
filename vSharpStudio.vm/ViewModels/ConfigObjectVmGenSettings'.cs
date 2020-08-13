@@ -330,16 +330,31 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                if (ngs != null)
                 {
-                    //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
-                    //    return true;
-                    var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
-                    if (settings.IsIncluded.HasValue)
+                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                     {
-                        return settings.IsIncluded ?? false;
+                        //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
+                        //    return true;
+                        var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                        if (settings.IsIncluded.HasValue)
+                        {
+                            return settings.IsIncluded ?? false;
+                        }
                     }
                 }
+                else if (p is ConfigModel)
+                {
+                    var m = p as ConfigModel;
+                    var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                    if (!settings.IsIncluded.HasValue)
+                    {
+                        return true;
+                    }
+                    return settings.IsIncluded ?? false;
+                }
+                else
+                    throw new Exception();
                 //if (p.Parent == null)
                 //    return true;
                 p = p.Parent;
@@ -409,6 +424,22 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
+        public bool TrySetSettings(string guidAppPrjGen, string guidSettings, IvPluginGeneratorNodeSettings setting)
+        {
+            bool res = false;
+            DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
+            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+            {
+                DicGenNodeSettings[guidAppPrjGen] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+            }
+            dic = DicGenNodeSettings[guidAppPrjGen];
+            if (!dic.ContainsKey(guidSettings))
+            {
+                dic[guidSettings] = setting;
+                res = true;
+            }
+            return res;
+        }
 
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
@@ -423,7 +454,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 var nd = new NodeSettings();
-                var res = nd.Run(this);
+                var res = nd.Run(this, true);
                 return res;
             }
         }

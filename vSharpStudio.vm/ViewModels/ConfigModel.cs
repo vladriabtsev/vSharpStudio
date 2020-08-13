@@ -53,12 +53,20 @@ namespace vSharpStudio.vm.ViewModels
             this.IsCompositNames = true;
             // TODO validate
             this.IsUseGroupPrefix = true;
+            this.AutoGenerateProperties = false;
+            this.SetPropertyDefinitions(new string[] {
+                    this.GetPropertyName(() => this.DynamicNodesSettings),
+                });
         }
 
         protected override void OnInitFromDto()
         {
             this.Name = "ConfigModel";
             //this.RefillChildren();
+            this.AutoGenerateProperties = false;
+            this.SetPropertyDefinitions(new string[] {
+                    this.GetPropertyName(() => this.DynamicNodesSettings),
+                });
         }
         void RefillChildren()
         {
@@ -296,6 +304,29 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         #endregion Objects
+
+        [PropertyOrderAttribute(12)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Defaults")]
+        [Description("Default nodes settings for generator")]
+        public object DynamicNodeDefaultSettings
+        {
+            get
+            {
+                return this._DynamicNodeDefaultSettings;
+            }
+            set
+            {
+                if (this._DynamicNodeDefaultSettings != value)
+                {
+                    this._DynamicNodeDefaultSettings = value;
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private object _DynamicNodeDefaultSettings;
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
