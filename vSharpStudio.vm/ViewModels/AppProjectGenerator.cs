@@ -147,39 +147,12 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object _DynamicNodeDefaultSettings;
-        //[BrowsableAttribute(false)]
-        //// AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
-        //public DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeDefaultSettings { get { return dicGenNodeDefaultSettings; } }
-        //private DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> dicGenNodeDefaultSettings =
-        //    new DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>>(20, false, true,
-        //                (ki, v) => { }, (kr, v) => { }, () => { });
 
+        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings(string guidNodeSettings)
+        {
+            return this.GetSettings(this.Guid, guidNodeSettings);
+        }
 
-        //[PropertyOrderAttribute(11)]
-        //[ExpandableObjectAttribute()]
-        //[ReadOnly(true)]
-        //[DisplayName("Nodes")]
-        //[Description("Nodes default generators settings")]
-        //// Dynamic class object of for node generators representation:
-        //// Expandable node generator name
-        ////    Expandable generator parameters object
-        //public object DynamicNodesSettings
-        //{
-        //    get
-        //    {
-        //        //Config cfg = (Config)this.GetConfig();
-        //        //var gen = cfg.DicActiveAppProjectGenerators[this.Guid];
-        //        //var lst = gen?.GetListNodeGenerationSettings();
-        //        var lstNodesSettings = new SortedObservableCollection<PluginGeneratorNodeSettings>();
-        //        //foreach (var t in lst)
-        //        //{
-        //        //    var p = new PluginGeneratorNodeSettings(this, this.Guid, t);
-        //        //    lstNodesSettings.Add(p);
-        //        //}
-        //        var res = SettingsTypeBuilder.CreateNodesSettingObject(lstNodesSettings);
-        //        return res;
-        //    }
-        //}
         public void CreateGenSettings()
         {
             try

@@ -346,12 +346,16 @@ namespace vSharpStudio.vm.ViewModels
                 else if (p is ConfigModel)
                 {
                     var m = p as ConfigModel;
-                    var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
-                    if (!settings.IsIncluded.HasValue)
+                    if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && m.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                     {
-                        return true;
+                        var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                        if (!settings.IsIncluded.HasValue)
+                        {
+                            return true;
+                        }
+                        return settings.IsIncluded ?? false;
                     }
-                    return settings.IsIncluded ?? false;
+                    return true;
                 }
                 else
                     throw new Exception();
@@ -392,6 +396,26 @@ namespace vSharpStudio.vm.ViewModels
                 p = p.Parent;
             }
             return default(T);
+        }
+        public TValue GetSettingsValue<T, TValue>(string guidAppPrjGen, string guidSettings, Action<ITreeConfigNode, T, Result<TValue>> found)
+        {
+            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                throw new Exception();
+            ITreeConfigNode p = this;
+            Result<TValue> res = new Result<TValue>();
+            while (p != null)
+            {
+                var ngs = p as INodeGenSettings;
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                {
+                    var st = (T)ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
+                    found(p, st, res);
+                    if (!res.IsContinue)
+                        return res.Value;
+                }
+                p = p.Parent;
+            }
+            return default(TValue);
         }
         /// <summary>
         /// Getting VM of generator settings for node with capability analyze tree
