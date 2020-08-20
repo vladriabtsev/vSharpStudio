@@ -916,8 +916,8 @@
               "defaultValue": ""
             },
             {
-              "name": "name_max_length",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Db Names Generation\")]",
+              "name": "composite_name_max_length",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -927,7 +927,7 @@
             },
             {
               "name": "is_composite_names",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composit names.\")]\n@attr [Category(\"Db Names Generation\")]",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -937,7 +937,7 @@
             },
             {
               "name": "is_use_group_prefix",
-              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Db Names Generation\")]",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

@@ -1,4 +1,4 @@
-// Auto generated on UTC 08/20/2020 13:08:14
+// Auto generated on UTC 08/20/2020 13:16:37
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -4916,7 +4916,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
-            vm.NameMaxLength = from.NameMaxLength; // Clone.tt Line: 65
+            vm.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 65
             vm.IsCompositeNames = from.IsCompositeNames; // Clone.tt Line: 65
             vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
@@ -4947,7 +4947,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
-            to.NameMaxLength = from.NameMaxLength; // Clone.tt Line: 141
+            to.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 141
             to.IsCompositeNames = from.IsCompositeNames; // Clone.tt Line: 141
             to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -4996,7 +4996,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            vm.NameMaxLength = m.NameMaxLength; // Clone.tt Line: 221
+            vm.CompositeNameMaxLength = m.CompositeNameMaxLength; // Clone.tt Line: 221
             vm.IsCompositeNames = m.IsCompositeNames; // Clone.tt Line: 221
             vm.IsUseGroupPrefix = m.IsUseGroupPrefix; // Clone.tt Line: 221
             if (vm.GroupCommon == null) // Clone.tt Line: 213
@@ -5035,7 +5035,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            m.NameMaxLength = vm.NameMaxLength; // Clone.tt Line: 276
+            m.CompositeNameMaxLength = vm.CompositeNameMaxLength; // Clone.tt Line: 276
             m.IsCompositeNames = vm.IsCompositeNames; // Clone.tt Line: 276
             m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 276
             m.GroupCommon = GroupListCommon.ConvertToProto(vm.GroupCommon); // Clone.tt Line: 270
@@ -5124,34 +5124,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         string IConfigModel.Description { get { return this._Description; } } 
         
         [PropertyOrderAttribute(8)]
-        [Category("Db Names Generation")]
-        public uint NameMaxLength // Property.tt Line: 138
+        [Category("Composite Names Generation")]
+        public uint CompositeNameMaxLength // Property.tt Line: 138
         { 
             get 
             { 
-                return this._NameMaxLength; 
+                return this._CompositeNameMaxLength; 
             }
             set
             {
-                if (this._NameMaxLength != value)
+                if (this._CompositeNameMaxLength != value)
                 {
-                    this.OnNameMaxLengthChanging(ref value);
-                    this._NameMaxLength = value;
-                    this.OnNameMaxLengthChanged();
+                    this.OnCompositeNameMaxLengthChanging(ref value);
+                    this._CompositeNameMaxLength = value;
+                    this.OnCompositeNameMaxLengthChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private uint _NameMaxLength;
-        partial void OnNameMaxLengthChanging(ref uint to); // Property.tt Line: 160
-        partial void OnNameMaxLengthChanged();
-        uint IConfigModel.NameMaxLength { get { return this._NameMaxLength; } } 
+        private uint _CompositeNameMaxLength;
+        partial void OnCompositeNameMaxLengthChanging(ref uint to); // Property.tt Line: 160
+        partial void OnCompositeNameMaxLengthChanged();
+        uint IConfigModel.CompositeNameMaxLength { get { return this._CompositeNameMaxLength; } } 
         
         [PropertyOrderAttribute(9)]
-        [Description("Use parent-child composit names.")]
-        [Category("Db Names Generation")]
+        [Description("Use parent-child composite names.")]
+        [Category("Composite Names Generation")]
         public bool IsCompositeNames // Property.tt Line: 138
         { 
             get 
@@ -5178,7 +5178,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(10)]
         [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
-        [Category("Db Names Generation")]
+        [Category("Composite Names Generation")]
         public bool IsUseGroupPrefix // Property.tt Line: 138
         { 
             get 

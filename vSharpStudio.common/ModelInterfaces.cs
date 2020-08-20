@@ -293,7 +293,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ulong SortingValue { get; } // ModelInterfaces.tt Line: 47
         string NameUi { get; } // ModelInterfaces.tt Line: 47
         string Description { get; } // ModelInterfaces.tt Line: 47
-        uint NameMaxLength { get; } // ModelInterfaces.tt Line: 47
+        uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 47
         bool IsCompositeNames { get; } // ModelInterfaces.tt Line: 47
         bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 47
         IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 51

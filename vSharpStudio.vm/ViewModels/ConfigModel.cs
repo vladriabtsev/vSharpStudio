@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupJournals.Parent = this;
             this.RefillChildren();
             // TODO validate, Id generator table, use in db names
-            this.NameMaxLength = 100;
+            this.CompositeNameMaxLength = 100;
             // TODO validate
             this.IsCompositeNames = true;
             // TODO validate
