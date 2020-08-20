@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IPropertiesTab : IObjectAnnotatable, INameForDb
+    public partial interface IPropertiesTab : IObjectAnnotatable, ICompositeName
     {
     }
 }

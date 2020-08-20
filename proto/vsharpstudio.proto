@@ -503,7 +503,7 @@ message proto_config_model {
     // @attr [PropertyOrderAttribute(9)]
     // @attr [Description("Use parent-child composit names.")]
     // @attr [Category("Db Names Generation")]
-    bool is_composit_names = 9;
+    bool is_composite_names = 9;
     // @attr [PropertyOrderAttribute(10)]
     // @attr [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
     // @attr [Category("Db Names Generation")]

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : IObjectAnnotatable, INameForDb
+    public partial interface ICatalog : IObjectAnnotatable, ICompositeName
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public interface INameForDb
+    public interface ICompositeName
     {
         /// <summary>
         /// 1. Model.IsCompositNames=false and Model.isUseGroupPrefix=false
@@ -23,6 +23,6 @@ namespace vSharpStudio.common
         ///     Cons: Db table name can be very long lenth
         ///     
         /// </summary>
-        string NameForDb { get; }
+        string CompositeName { get; }
     }
 }

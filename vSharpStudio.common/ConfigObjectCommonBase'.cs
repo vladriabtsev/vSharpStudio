@@ -324,8 +324,7 @@
                 }
             }
         }
-
-        protected string GetNameForDb()
+        protected string GetCompositeName()
         {
 
             List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
@@ -364,11 +363,12 @@
             var cfg = this.GetConfig();
             if (cfg.Model.IsUseGroupPrefix)
                 sb.Append(prefix);
-            if (cfg.Model.IsCompositNames)
+            if (cfg.Model.IsCompositeNames)
                 sb.Append(composit);
             sb.Append(this.Name);
             return sb.ToString();
         }
+
 
         public bool CheckIsCompositeNameUnique()
         {

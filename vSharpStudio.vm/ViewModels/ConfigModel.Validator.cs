@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
                 var m = (ConfigModel)cntx.InstanceToValidate;
                 CheckObjectsWithDbTables(cntx, recom, m, false);
             });
-            this.RuleFor(x => x.IsCompositNames).Custom((val, cntx) =>
+            this.RuleFor(x => x.IsCompositeNames).Custom((val, cntx) =>
             {
                 if (val)
                     return;
@@ -35,36 +35,36 @@ namespace vSharpStudio.vm.ViewModels
             var dic = new Dictionary<string, ITreeConfigNode>();
             foreach (var t in m.GroupCatalogs.ListCatalogs)
             {
-                if (string.IsNullOrWhiteSpace(t.NameForDb))
+                if (string.IsNullOrWhiteSpace(t.CompositeName))
                     continue;
-                if (dic.ContainsKey(t.NameForDb))
+                if (dic.ContainsKey(t.CompositeName))
                 {
-                    var sb = GenMessage(dic, t, t.NameForDb);
+                    var sb = GenMessage(dic, t, t.CompositeName);
                     sb.Append("'.");
                     sb.Append(recom);
                     cntx.AddFailure(sb.ToString());
                 }
                 else
                 {
-                    dic[t.NameForDb] = t;
+                    dic[t.CompositeName] = t;
                 }
                 if (isCheckTabs)
                     CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
             }
             foreach (var t in m.GroupDocuments.GroupListDocuments.ListDocuments)
             {
-                if (string.IsNullOrWhiteSpace(t.NameForDb))
+                if (string.IsNullOrWhiteSpace(t.CompositeName))
                     continue;
-                if (dic.ContainsKey(t.NameForDb))
+                if (dic.ContainsKey(t.CompositeName))
                 {
-                    var sb = GenMessage(dic, t, t.NameForDb);
+                    var sb = GenMessage(dic, t, t.CompositeName);
                     sb.Append("'.");
                     sb.Append(recom);
                     cntx.AddFailure(sb.ToString());
                 }
                 else
                 {
-                    dic[t.NameForDb] = t;
+                    dic[t.CompositeName] = t;
                 }
                 if (isCheckTabs)
                     CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
@@ -75,18 +75,18 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in tabs.ListPropertiesTabs)
             {
-                if (string.IsNullOrWhiteSpace(t.NameForDb))
+                if (string.IsNullOrWhiteSpace(t.CompositeName))
                     continue;
-                if (dic.ContainsKey(t.NameForDb))
+                if (dic.ContainsKey(t.CompositeName))
                 {
-                    var sb = GenMessage(dic, t, t.NameForDb);
+                    var sb = GenMessage(dic, t, t.CompositeName);
                     sb.Append("'.");
                     sb.Append(recom);
                     cntx.AddFailure(sb.ToString());
                 }
                 else
                 {
-                    dic[t.NameForDb] = t;
+                    dic[t.CompositeName] = t;
                 }
                 CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
             }

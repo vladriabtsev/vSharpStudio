@@ -926,7 +926,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_composit_names",
+              "name": "is_composite_names",
               "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composit names.\")]\n@attr [Category(\"Db Names Generation\")]",
               "label": "",
               "type": "bool",

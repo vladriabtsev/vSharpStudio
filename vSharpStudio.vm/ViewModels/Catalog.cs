@@ -163,7 +163,17 @@ namespace vSharpStudio.vm.ViewModels
 
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
-        [Description("Generated name for DB. Based on parameters of config model")]
-        public string NameForDb { get { return this.GetNameForDb(); } }
+
+        [PropertyOrder(1)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return GetCompositeName();
+            }
+        }
     }
 }

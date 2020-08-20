@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : IObjectAnnotatable, INameForDb
+    public partial interface IDocument : IObjectAnnotatable, ICompositeName
     {
         IGroupListDocuments IParent { get; }
     }
