@@ -16,12 +16,16 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGuidsRenamedObjects = new List<string>();
             base.RunThroughConfig(curr, prev, old, (visitor, obj) =>
             {
-                if (obj is IGuid && obj.IsRenamed())
+                if (obj is IGuid)
                 {
                     IGuid curr2 = (IGuid)obj;
-                    ListGuidsRenamedObjects.Add(curr2.Guid);
+                    if (obj.IsRenamed())
+                        ListGuidsRenamedObjects.Add(curr2.Guid);
                 }
             });
+            foreach (var t in curr.Model.DicGenNodeSettings)
+                this.DiffAnnotatedConfig.Model.DicGenNodeSettings[t.Key] = t.Value;
+
             return this.DiffAnnotatedConfig;
         }
         protected override void Visit(IEnumeration parent, List<IEnumerationPair> diff_lst)

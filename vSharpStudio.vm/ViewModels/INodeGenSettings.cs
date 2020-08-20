@@ -6,7 +6,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public interface INodeGenSettings
+    public interface INodeGenSettings : INodeGenDicSettings
     {
         ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; }
         //ConfigNodesCollection<GeneratorSettings> ListGeneratorsSettings { get; }
@@ -17,6 +17,9 @@ namespace vSharpStudio.vm.ViewModels
         void AddNodeAppGenSettings(string appGenGuid);
         //void CreatePropertyGridNodeGenSettings(INodeGenSettings p);
         //string GeneratorSettings { get; }
+    }
+    public interface INodeGenDicSettings
+    {
         DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeSettings { get; }
     }
 }

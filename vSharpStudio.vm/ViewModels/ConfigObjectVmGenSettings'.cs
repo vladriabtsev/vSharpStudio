@@ -386,7 +386,7 @@ namespace vSharpStudio.vm.ViewModels
             ITreeConfigNode p = this;
             while (p != null)
             {
-                var ngs = p as INodeGenSettings;
+                var ngs = p as INodeGenDicSettings;
                 if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                 {
                     var res = (T)ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
@@ -405,7 +405,7 @@ namespace vSharpStudio.vm.ViewModels
             Result<TValue> res = new Result<TValue>();
             while (p != null)
             {
-                var ngs = p as INodeGenSettings;
+                var ngs = p as INodeGenDicSettings;
                 if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                 {
                     var st = (T)ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
@@ -429,7 +429,7 @@ namespace vSharpStudio.vm.ViewModels
             ITreeConfigNode p = this;
             while (p != null)
             {
-                var ngs = p as INodeGenSettings;
+                var ngs = p as INodeGenDicSettings;
                 if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                 {
                     var res = ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
@@ -452,11 +452,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             bool res = false;
             DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
-            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+            if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             {
-                DicGenNodeSettings[guidAppPrjGen] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                this.DicGenNodeSettings[guidAppPrjGen] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
             }
-            dic = DicGenNodeSettings[guidAppPrjGen];
+            dic = this.DicGenNodeSettings[guidAppPrjGen];
             if (!dic.ContainsKey(guidSettings))
             {
                 dic[guidSettings] = setting;
