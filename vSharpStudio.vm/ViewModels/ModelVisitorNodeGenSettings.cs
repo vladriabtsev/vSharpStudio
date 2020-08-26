@@ -25,87 +25,87 @@ namespace vSharpStudio.vm.ViewModels
         //    if (m is INodeGenSettings)
         //        _act(m as INodeGenSettings);
         //}
-        protected override void Visit(IGroupListCommon m)
+        protected override void BeginVisit(IGroupListCommon m)
         {
             if (m is INodeGenSettings)
                 _act(m as INodeGenSettings);
         }
-        protected override void Visit(IGroupListConstants cn)
+        protected override void BeginVisit(IGroupListConstants cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(IConstant cn)
+        protected override void BeginVisit(IConstant cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(IGroupListEnumerations cn)
+        protected override void BeginVisit(IGroupListEnumerations cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(IEnumeration en)
+        protected override void BeginVisit(IEnumeration en)
         {
             if (en is INodeGenSettings)
                 _act(en as INodeGenSettings);
         }
-        protected override void Visit(IEnumerationPair p)
+        protected override void BeginVisit(IEnumerationPair p)
         {
             if (p is INodeGenSettings)
                 _act(p as INodeGenSettings);
         }
-        protected override void Visit(IGroupListCatalogs cn)
+        protected override void BeginVisit(IGroupListCatalogs cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(ICatalog ct)
+        protected override void BeginVisit(ICatalog ct)
         {
             if (ct is INodeGenSettings)
                 _act(ct as INodeGenSettings);
         }
-        protected override void Visit(IGroupDocuments cn)
+        protected override void BeginVisit(IGroupDocuments cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(IGroupListDocuments cn)
+        protected override void BeginVisit(IGroupListDocuments cn)
         {
             if (cn is INodeGenSettings)
                 _act(cn as INodeGenSettings);
         }
-        protected override void Visit(IDocument d)
+        protected override void BeginVisit(IDocument d)
         {
             if (d is INodeGenSettings)
                 _act(d as INodeGenSettings);
         }
-        protected override void Visit(IGroupListPropertiesTabs t)
+        protected override void BeginVisit(IGroupListPropertiesTabs t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);
         }
-        protected override void Visit(IPropertiesTab t)
+        protected override void BeginVisit(IPropertiesTab t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);
         }
-        protected override void Visit(IGroupListProperties t)
+        protected override void BeginVisit(IGroupListProperties t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);
         }
-        protected override void Visit(IProperty p)
+        protected override void BeginVisit(IProperty p)
         {
             if (p is INodeGenSettings)
                 _act(p as INodeGenSettings);
         }
-        protected override void Visit(IReport p)
+        protected override void BeginVisit(IReport p)
         {
             if (p is INodeGenSettings)
                 _act(p as INodeGenSettings);
         }
-        protected override void Visit(IForm p)
+        protected override void BeginVisit(IForm p)
         {
             if (p is INodeGenSettings)
                 _act(p as INodeGenSettings);

@@ -47,9 +47,9 @@ namespace vPlugin.Sample
             this.pluginSettings = pluginSettings;
         }
         StringBuilder sb = new StringBuilder();
-        protected override void Visit(ICatalog ct)
+        protected override void BeginVisit(ICatalog ct)
         {
-            base.Visit(ct);
+            base.BeginVisit(ct);
 
             //if (ct.NodeAllSettings().IsParam1)
             //    sb.AppendLine("Node IsParam1==true");

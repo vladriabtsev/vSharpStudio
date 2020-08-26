@@ -77,9 +77,14 @@
                 // New, Renamed
                 foreach (var t in current)
                 {
+                    var tcomp = t as ICompositeName;
                     if (!this.dic_prev.ContainsKey(t.Guid))
                     {
                         t[DiffEnumHistoryAnnotation.New.ToString()] = DiffEnumHistoryAnnotation.New;
+                    }
+                    else if (tcomp != null && tcomp.CompositeName != (this.dic_prev[t.Guid] as ICompositeName).CompositeName)
+                    {
+                        t[DiffEnumHistoryAnnotation.Renamed.ToString()] = DiffEnumHistoryAnnotation.Renamed;
                     }
                     else if (t.Name != this.dic_prev[t.Guid].Name)
                     {
