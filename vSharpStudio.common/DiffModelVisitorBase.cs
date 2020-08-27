@@ -8,6 +8,8 @@ namespace vSharpStudio.common
     {
         protected virtual void Visit(List<IConfig> diff_lst) { }
         protected virtual void Visit(IConfig c) { }
+        protected virtual void Visit(List<IBaseConfigLink> diff_lst) { }
+        protected virtual void Visit(IBaseConfigLink c) { }
         protected virtual void Visit(IConfigModel m) { }
         protected virtual void Visit(IGroupListConstants cn) { }
         protected virtual void Visit(List<IConstant> diff_lst) { }
@@ -136,6 +138,50 @@ namespace vSharpStudio.common
 
                 this.Visit(this.currCfg);
                 this.Visit(this.currCfg.Model);
+
+                #region ConfigLinks
+                var tl = new DiffLists<IBaseConfigLink>(
+                    currCfg.GroupConfigLinks.ListBaseConfigLinks,
+                    prevCfg?.GroupConfigLinks.ListBaseConfigLinks,
+                    oldCfg?.GroupConfigLinks.ListBaseConfigLinks).ListAll;
+                this.Visit(tl);
+                foreach (var tt in tl)
+                {
+                    this.Visit(tt);
+                    if (_act != null)
+                        _act(this, tt);
+                }
+                #endregion ConfigLinks
+
+                #region AppSolution
+                //var tsol = new DiffLists<IAppSolution>(
+                //    currCfg.GroupAppSolutions.ListAppSolutions,
+                //    prevCfg?.GroupAppSolutions.ListAppSolutions,
+                //    oldCfg?.GroupAppSolutions.ListAppSolutions).ListAll;
+                //this.Visit(tsol);
+                //foreach (var tt in tsol)
+                //{
+                //    this.Visit(tt);
+                //    if (_act != null)
+                //        _act(this, tt);
+                //    var tprj = new DiffLists<IAppProject>(
+                //        currCfg.GroupAppSolutions.ListAppSolutions,
+                //        prevCfg?.GroupAppSolutions.ListAppSolutions,
+                //        oldCfg?.GroupAppSolutions.ListAppSolutions).ListAll;
+                //    foreach (var ttt in tt.ListAppProjects)
+                //    {
+                //        this.Visit(ttt);
+                //        if (_act != null)
+                //            _act(this, ttt);
+                //        foreach (var tttt in ttt.ListAppProjectGenerators)
+                //        {
+                //            this.Visit(tttt);
+                //            if (_act != null)
+                //                _act(this, tttt);
+                //        }
+                //    }
+                //}
+                #endregion AppSolution
 
                 #region Constants
                 //this.Visit(t.IModel.IGroupConstants, prev.IModel.IGroupConstants);
