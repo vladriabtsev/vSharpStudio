@@ -87,5 +87,10 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
+
+        public List<ValidationPluginMessage> ValidateDbModel(string connectionString)
+        {
+            return new List<ValidationPluginMessage>();
+        }
     }
 }

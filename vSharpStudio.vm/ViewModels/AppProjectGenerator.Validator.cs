@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
+using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -86,6 +87,48 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.PluginGeneratorGuid)
                 .NotEmpty()
                 .WithMessage("Generator is not selected");
+            this.RuleFor(x => x.ConnStr)
+                .Custom((connStr, cntx) =>
+                {
+                    if (!string.IsNullOrEmpty(connStr))
+                    {
+                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        if (string.IsNullOrWhiteSpace(pg.PluginGeneratorGuid))
+                            return;
+                        foreach (var tg in pg.ListGenerators)
+                        {
+                            if (tg.Guid != pg.PluginGeneratorGuid)
+                                continue;
+                            if (tg.Generator != null)
+                            {
+                                if (tg.Generator.PluginGeneratorType != vPluginLayerTypeEnum.DbDesign)
+                                    return;
+                                IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
+
+                                var lst = genDb.ValidateDbModel(connStr);
+                                foreach (var t in lst)
+                                {
+                                    var r = new ValidationFailure(cntx.PropertyName, t.Message);
+                                    switch (t.Level)
+                                    {
+                                        case ValidationPluginMessage.EnumValidationMessage.Error:
+                                            r.Severity = Severity.Error;
+                                            break;
+                                        case ValidationPluginMessage.EnumValidationMessage.Warning:
+                                            r.Severity = Severity.Warning;
+                                            break;
+                                        case ValidationPluginMessage.EnumValidationMessage.Info:
+                                            r.Severity = Severity.Info;
+                                            break;
+                                        default:
+                                            throw new Exception();
+                                    }
+                                    cntx.AddFailure(r);
+                                }
+                            }
+                        }
+                    }
+                });
         }
 
         private bool IsUnique(AppProjectGenerator val)
