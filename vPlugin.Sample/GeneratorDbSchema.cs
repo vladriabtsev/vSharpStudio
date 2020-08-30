@@ -88,7 +88,7 @@ namespace vPlugin.Sample
             throw new NotImplementedException();
         }
 
-        public List<ValidationPluginMessage> ValidateDbModel(string connectionString)
+        public List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig)
         {
             return new List<ValidationPluginMessage>();
         }

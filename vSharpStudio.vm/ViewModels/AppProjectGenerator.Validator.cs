@@ -95,6 +95,10 @@ namespace vSharpStudio.vm.ViewModels
                         var pg = (AppProjectGenerator)cntx.InstanceToValidate;
                         if (string.IsNullOrWhiteSpace(pg.PluginGeneratorGuid))
                             return;
+                        var cfg = (Config)pg.GetConfig();
+                        var mvr = new ModelVisitorForAnnotation();
+                        mvr.GetDiffAnnotatedConfig(cfg, cfg.PrevCurrentConfig, cfg.OldStableConfig);
+
                         foreach (var tg in pg.ListGenerators)
                         {
                             if (tg.Guid != pg.PluginGeneratorGuid)
@@ -105,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
                                     return;
                                 IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
 
-                                var lst = genDb.ValidateDbModel(connStr);
+                                var lst = genDb.ValidateDbModel(connStr, mvr.DiffAnnotatedConfig);
                                 foreach (var t in lst)
                                 {
                                     var r = new ValidationFailure(cntx.PropertyName, t.Message);

@@ -1155,7 +1155,7 @@ namespace vSharpStudio.ViewModels
         //    // that might complete very quickly.
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-        public async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null)
+        public async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
         {
             TestTransformation tst = parm as TestTransformation;
             ProgressVM progress = new ProgressVM();
@@ -1171,6 +1171,13 @@ namespace vSharpStudio.ViewModels
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     if (this._Config.CountErrors > 0)
                         throw new Exception("There are errors in configuration. Fix errors and try again.");
+                    if (this._Config.CountWarnings > 0)
+                    {
+                        var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                        if (res != System.Windows.MessageBoxResult.OK)
+                            return;
+                    }
+
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnConfigValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnConfigValidated));

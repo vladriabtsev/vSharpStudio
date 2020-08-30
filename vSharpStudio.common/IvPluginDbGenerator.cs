@@ -25,7 +25,7 @@ namespace vSharpStudio.common
         // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
         // void UpdateToModel(IModel model);
 
-        List<ValidationPluginMessage> ValidateDbModel(string connectionString);
+        List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig);
 
         /// <summary>
         /// Generate DatabaseModel of a current DB
