@@ -68,7 +68,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public object UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null)
+        public object UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null)
         {
             throw new NotImplementedException();
         }
@@ -88,7 +88,7 @@ namespace vPlugin.Sample
             throw new NotImplementedException();
         }
 
-        public List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig)
+        public List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig, string guidAppPrjGen)
         {
             return new List<ValidationPluginMessage>();
         }

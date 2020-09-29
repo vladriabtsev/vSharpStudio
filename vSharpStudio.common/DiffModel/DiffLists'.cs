@@ -15,6 +15,8 @@
         CanLooseData,
         PrevVersion,
         OldVersion,
+        RenamedOrTypeChanged,
+        TypeChanged,
     }
 
     public class DiffLists<T>

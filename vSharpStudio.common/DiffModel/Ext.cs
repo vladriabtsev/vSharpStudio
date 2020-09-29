@@ -97,10 +97,27 @@ namespace vSharpStudio.common
 
             return true;
         }
-
         public static bool IsCanLooseData(this IProperty obj)
         {
             if (obj.FindAnnotation(DiffEnumHistoryAnnotation.CanLooseData.ToString()) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public static bool IsRenamedOrTypeChanged(this IProperty obj)
+        {
+            if (obj.FindAnnotation(DiffEnumHistoryAnnotation.RenamedOrTypeChanged.ToString()) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public static bool IsTypeChanged(this IProperty obj)
+        {
+            if (obj.FindAnnotation(DiffEnumHistoryAnnotation.TypeChanged.ToString()) == null)
             {
                 return false;
             }

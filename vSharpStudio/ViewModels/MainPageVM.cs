@@ -1078,7 +1078,7 @@ namespace vSharpStudio.ViewModels
                                         {
                                             genConn.DbGenerator.EnsureDbDeleted(tpg.ConnStr);
                                         }
-                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, () =>
+                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, () =>
                                         {
                                             return true;
                                         }, (ex) =>

@@ -7,11 +7,10 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue
+    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid
     {
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
-        string Guid { get; }
         string Name { get; set; }
         string ModelPath { get; }
         bool IsSelected { get; set; }

@@ -7,6 +7,14 @@ using Microsoft.Extensions.Logging;
 
 namespace vSharpStudio.common
 {
+    [Flags]
+    public enum EnumDbUpdateLevels {
+        OnlyModel      = 0b_0000_0000, // 0
+        TryKeepIndexes = 0b_0000_0001, // 1
+        TryKeepTables  = 0b_0000_0010, // 2
+
+        TryKeepAll = TryKeepIndexes | TryKeepTables
+    }
     // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
     // https://docs.microsoft.com/en-us/dotnet/framework/mef/
     /// <summary>
@@ -25,7 +33,7 @@ namespace vSharpStudio.common
         // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
         // void UpdateToModel(IModel model);
 
-        List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig);
+        List<ValidationPluginMessage> ValidateDbModel(string connectionString, IConfig diffConfig, string guidAppPrjGen);
 
         /// <summary>
         /// Generate DatabaseModel of a current DB
@@ -47,7 +55,7 @@ namespace vSharpStudio.common
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
-        object UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
+        object UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);

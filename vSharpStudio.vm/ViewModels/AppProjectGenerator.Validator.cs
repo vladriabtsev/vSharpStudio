@@ -109,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
                                     return;
                                 IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
 
-                                var lst = genDb.ValidateDbModel(connStr, mvr.DiffAnnotatedConfig);
+                                var lst = genDb.ValidateDbModel(connStr, mvr.DiffAnnotatedConfig, pg.Guid);
                                 foreach (var t in lst)
                                 {
                                     var r = new ValidationFailure(cntx.PropertyName, t.Message);
