@@ -16,6 +16,7 @@ namespace vSharpStudio.common
 
         DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
         DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
+        DictionaryExt<string, ITreeConfigNode> DicDeletedNodesInCurrentSession { get; }
 
         //List<IConfig> SetAnnotations(IConfig prev, IConfig old);
         List<IConfig> GetListConfigs();

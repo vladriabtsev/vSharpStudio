@@ -118,7 +118,7 @@
         }
 
         [Browsable(false)]
-        public string IconFolder
+        public string IconName
         {
             get
             {
@@ -550,7 +550,7 @@
                 {
                     this._IsExpanded = value;
                     this.NotifyPropertyChanged();
-                    this.NotifyPropertyChanged(nameof(this.IconFolder));
+                    this.NotifyPropertyChanged(nameof(this.IconName));
                 }
             }
         }
@@ -645,6 +645,10 @@
         }
 
         public virtual void NodeRemove(bool ask = true)
+        {
+            throw new NotImplementedException();
+        }
+        public virtual void MarkForDeletion()
         {
             throw new NotImplementedException();
         }

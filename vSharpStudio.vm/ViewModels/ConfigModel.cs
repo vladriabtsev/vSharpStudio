@@ -23,7 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, INewAndDeleteion
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -37,6 +37,9 @@ namespace vSharpStudio.vm.ViewModels
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
+        [Browsable(false)]
+        new public string IconName { get { return "icon3DScene"; } }
+        //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnInit()
         {
             this.Name = "ConfigModel";

@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListListCommon.Count,nq}")]
-    public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings
+    public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings, INewAndDeleteion
     {
         public override IEnumerable<object> GetChildren(object parent)
         {
@@ -37,5 +37,17 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+        }
+        partial void OnIsNewChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
+        }
     }
 }

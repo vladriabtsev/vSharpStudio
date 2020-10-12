@@ -10,23 +10,34 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq} sub:{ListSubPropertiesGroups.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
+    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Tab";
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        [Browsable(false)]
+        new public string IconName { get { return "iconFolder"; } }
+        //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
+            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
             this.GroupProperties.ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
             this.Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
+            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
             this.GroupPropertiesTabs.ListPropertiesTabs.OnAddedAction = (t) =>
             {
                 t.OnAdded();
@@ -98,6 +109,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListPropertiesTabs).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListPropertiesTabs);
+                bool isMarked = false;
+                foreach (var t in p.ListPropertiesTabs)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListPropertiesTabs);
+                bool isNew = false;
+                foreach (var t in p.ListPropertiesTabs)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
         public override ITreeConfigNode NodeAddClone()
         {

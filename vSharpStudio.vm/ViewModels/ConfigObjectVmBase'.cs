@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
+using System.Windows;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
@@ -20,6 +21,23 @@ namespace vSharpStudio.vm.ViewModels
             : base(parent, validator)
         {
         }
+        //public object NodeIcon
+        //{
+        //    get
+        //    {
+        //        if (this.nodeIcon == null)
+        //        {
+        //            if (Application.Current.Resources.MergedDictionaries[0].Contains(this.GetNodeIconName()))
+        //            {
+        //                this.nodeIcon = Application.Current.Resources.MergedDictionaries[0][this.GetNodeIconName()];
+        //            }
+        //        }
+        //        return this.nodeIcon;
+        //    }
+        //}
+        //private object nodeIcon;
+        //protected virtual string GetNodeIconName() { throw new Exception(); }
+
         //protected virtual void OnNodeAdded(ITreeConfigNode node) { }
         //protected void OnAddRemoveNode(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         //{

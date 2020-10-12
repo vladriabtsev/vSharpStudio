@@ -13,6 +13,24 @@ namespace vSharpStudio.vm.ViewModels
         public Config GetDiffAnnotatedConfig(Config curr, IConfig prev, IConfig old)
         {
             this.DiffAnnotatedConfig = Config.Clone(null, curr);
+            foreach(var t in curr.DicActiveAppProjectGenerators)
+            {
+                this.DiffAnnotatedConfig.DicActiveAppProjectGenerators[t.Key] = t.Value;
+            }
+            foreach (var t in curr.DicGenNodeSettings)
+            {
+                this.DiffAnnotatedConfig.DicGenNodeSettings[t.Key] = t.Value;
+            }
+            foreach (var t in curr.DicNodes)
+            {
+                this.DiffAnnotatedConfig.DicNodes[t.Key] = t.Value;
+            }
+            this.DiffAnnotatedConfig.DicGenerators = curr.DicGenerators;
+            this.DiffAnnotatedConfig.DicPluginLists = curr.DicPluginLists;
+            this.DiffAnnotatedConfig.DicPlugins = curr.DicPlugins;
+            this.DiffAnnotatedConfig.AddAllAppGenSettingsVmsToNode();
+
+
             this.ListGuidsRenamedObjects = new List<string>();
             base.RunThroughConfig(curr, prev, old, (visitor, obj) =>
             {

@@ -406,6 +406,58 @@ namespace vSharpStudio.Unit
             cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
             Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 3); // deleted is removed
         }
+        [TestMethod]
+        public void Main015_Delete_Enumerations()
+        {
+            // empty config
+            this.remove_config();
+            var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
+
+            // create object and save
+            var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            var p1 = c1.AddEnumerationPair("e1", "123");
+            var p2 = c1.AddEnumerationPair("e2", "124");
+            var p3 = c1.AddEnumerationPair("e3", "125");
+            var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
+            var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+
+            vm.CommandConfigSave.Execute(null);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.ContainsKey(c3.Guid));
+
+            vm.CommandConfigSave.Execute(null);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
+
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+
+            c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
+            vm.CommandConfigCreateStableVersion.Execute(null);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+
+            c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c2);
+            c1.ListEnumerationPairs.Remove(p1);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 3);
+
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+
+            var mod = new ModelVisitorForAnnotation();
+            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig);
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c2.Guid));
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(p1.Guid));
+        }
         //[TestMethod]
         //public void Main013_Diff_WorkWithAppGeneratorSettings()
         //{

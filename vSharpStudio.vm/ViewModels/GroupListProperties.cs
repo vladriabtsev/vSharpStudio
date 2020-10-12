@@ -13,8 +13,9 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
+    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
+        public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListProperties;
@@ -35,9 +36,18 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.IsEditable = false;
+            this.ListProperties.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
             this.ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+            };
+            this.ListProperties.OnRemovedAction = (t) =>
+            {
+                var cfg = this.GetConfig();
+                cfg.DicDeletedNodesInCurrentSession[t.Guid] = t;
             };
         }
 
@@ -126,6 +136,18 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+        }
+        partial void OnIsNewChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
         }
         #endregion Tree operations
     }

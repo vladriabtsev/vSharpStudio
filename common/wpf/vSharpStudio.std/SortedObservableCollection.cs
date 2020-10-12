@@ -147,6 +147,8 @@ namespace ViewModelBase
         {
             lock (_lock)
             {
+                if (OnRemovingAction != null)
+                    OnRemovingAction(item);
                 var res = base.Remove(item);
                 if (OnRemovedAction != null)
                     OnRemovedAction(item);
@@ -160,6 +162,8 @@ namespace ViewModelBase
             {
                 foreach (T itm in collection)
                 {
+                    if (OnAddingAction != null)
+                        OnAddingAction(itm);
                     this.Add(itm, sortingWeight);
                     if (OnAddedAction != null)
                         OnAddedAction(itm);
@@ -169,6 +173,8 @@ namespace ViewModelBase
         }
         public Action<T> OnRemovedAction { get; set; }
         public Action<T> OnAddedAction;
+        public Action<T> OnRemovingAction { get; set; }
+        public Action<T> OnAddingAction;
         public Action<int, int> OnSortMovedAction;
         #region Sort
         /// <summary>

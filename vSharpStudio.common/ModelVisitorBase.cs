@@ -9,8 +9,9 @@ namespace vSharpStudio.common
 {
     public abstract class ModelVisitorBase
     {
-        public static string DB_CONFIG_MODEL_TABLE = "_config_model";
-        public static string DB_CONFIG_MODEL_TABLE_FK = "_config_model_fk";
+        public static string DB_CONFIG_MODEL_TABLE = "_config_model_tables";
+        public static string DB_CONFIG_MODEL_FIELD = "_config_model_table_fields";
+        public static string DB_CONFIG_MODEL_TABLE_FK = "_config_model_table_fks";
         protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
         protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
         protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }
@@ -178,7 +179,7 @@ namespace vSharpStudio.common
             public ModelNode()
             {
                 this.DicReferenceToNodes = new Dictionary<string, ReferenceToNode>();
-                this.DicReferecedFromNodes = new Dictionary<string, IGuid>();
+                this.DicReferecedFromNodes = new Dictionary<string, ReferenceFromNode>();
             }
             /// <summary>
             /// Model object
@@ -191,7 +192,7 @@ namespace vSharpStudio.common
             /// <summary>
             /// References from other model objects to this model object
             /// </summary>
-            public Dictionary<string, IGuid> DicReferecedFromNodes { get; set; }
+            public Dictionary<string, ReferenceFromNode> DicReferecedFromNodes { get; set; }
         }
         /// <summary>
         /// Reference to another model object
@@ -208,6 +209,21 @@ namespace vSharpStudio.common
             /// </summary>
             public Dictionary<string, IGuid> DicReferencedByField { get; set; }
         }
+        /// <summary>
+        /// Referenced from another model object
+        /// </summary>
+        public class ReferenceFromNode
+        {
+            public ReferenceFromNode() { this.DicReferenceFromField = new Dictionary<string, IGuid>(); }
+            /// <summary>
+            /// Model object
+            /// </summary>
+            public IGuid ReferenceFromObject { get; set; }
+            /// <summary>
+            /// Model object field which is referencing 
+            /// </summary>
+            public Dictionary<string, IGuid> DicReferenceFromField { get; set; }
+        }
         protected Dictionary<string, ModelNode> DicNodesWithReferences = new Dictionary<string, ModelNode>();
         //private List<IGuid> GrapfToSequenceForDb()
         private void ScanForDicNodesWithReferences()
@@ -215,7 +231,7 @@ namespace vSharpStudio.common
             foreach (var t in currModel.GroupConstants.ListConstants)
             {
                 var md = new ModelNode() { NodeObject = t };
-                DicNodesWithReferences[t.Guid] = md;
+                this.DicNodesWithReferences[t.Guid] = md;
                 if (!string.IsNullOrWhiteSpace(t.DataType.ObjectGuid))
                 {
                     AddReferenceToNode(md, t, t.DataType);
@@ -224,23 +240,24 @@ namespace vSharpStudio.common
             foreach (var t in currModel.GroupCatalogs.ListCatalogs)
             {
                 var md = new ModelNode() { NodeObject = t };
-                DicNodesWithReferences[t.Guid] = md;
+                this.DicNodesWithReferences[t.Guid] = md;
                 ScanPropertiesTabs(md, t.GroupPropertiesTabs);
             }
             foreach (var t in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 var md = new ModelNode() { NodeObject = t };
-                DicNodesWithReferences[t.Guid] = md;
+                this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
                 ScanPropertiesTabs(md, t.GroupPropertiesTabs);
             }
 
-            foreach (var t in DicNodesWithReferences)
+            foreach (var t in this.DicNodesWithReferences)
             {
                 foreach (var tt in t.Value.DicReferenceToNodes)
                 {
-                    tt.Value.ReferencedObject = DicNodesWithReferences[tt.Key].NodeObject;
-                    DicNodesWithReferences[tt.Key].DicReferecedFromNodes[t.Key] = t.Value.NodeObject;
+                    tt.Value.ReferencedObject = this.DicNodesWithReferences[tt.Key].NodeObject;
+                    var md = new ModelNode() { NodeObject = t.Value.NodeObject };
+ //                   this.DicNodesWithReferences[tt.Key].DicReferecedFromNodes[t.Key] = md;
                 }
             }
             //var res = new List<IGuid>();

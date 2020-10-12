@@ -1,4 +1,4 @@
-// Auto generated on UTC 09/30/2020 14:49:41
+// Auto generated on UTC 10/12/2020 01:46:46
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -29,7 +29,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public PluginsGroupSettings() 
-            : base(PluginsGroupSettingsValidator.Validator) // Class.tt Line: 40
+            : base(PluginsGroupSettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -131,7 +131,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public GeneratorDbSchemaSettings() 
-            : base(GeneratorDbSchemaSettingsValidator.Validator) // Class.tt Line: 40
+            : base(GeneratorDbSchemaSettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -292,7 +292,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public GeneratorDbAccessSettings() 
-            : base(GeneratorDbAccessSettingsValidator.Validator) // Class.tt Line: 40
+            : base(GeneratorDbAccessSettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -511,7 +511,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public GeneratorDbAccessNodeSettings() 
-            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 40
+            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -644,7 +644,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public GeneratorDbAccessNodePropertySettings() 
-            : base(GeneratorDbAccessNodePropertySettingsValidator.Validator) // Class.tt Line: 40
+            : base(GeneratorDbAccessNodePropertySettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -746,7 +746,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         #region CTOR
         public GeneratorDbAccessNodeCatalogFormSettings() 
-            : base(GeneratorDbAccessNodeCatalogFormSettingsValidator.Validator) // Class.tt Line: 40
+            : base(GeneratorDbAccessNodeCatalogFormSettingsValidator.Validator) // Class.tt Line: 44
         {
             this.IsValidate = false;
             this.OnInitBegin();

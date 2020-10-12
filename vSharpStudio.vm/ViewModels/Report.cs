@@ -11,9 +11,12 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Report:{Name,nq}")]
-    public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings
+    public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Report";
+        [Browsable(false)]
+        new public string IconName { get { return "iconReport"; } }
+        //protected override string GetNodeIconName() { return "iconReport"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
@@ -82,6 +85,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListReports).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListReports);
+                bool isMarked = false;
+                foreach (var t in p.ListReports)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListReports);
+                bool isNew = false;
+                foreach (var t in p.ListReports)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

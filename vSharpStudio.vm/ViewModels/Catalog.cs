@@ -13,11 +13,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Catalog";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
-
+        [Browsable(false)]
+        new public string IconName { get { return "iconCatalogProperty"; } }
+        //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
@@ -139,6 +141,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListCatalogs).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListCatalogs);
+                bool isMarked = false;
+                foreach (var t in p.ListCatalogs)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListCatalogs);
+                bool isNew = false;
+                foreach (var t in p.ListCatalogs)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

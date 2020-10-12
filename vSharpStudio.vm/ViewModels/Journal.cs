@@ -7,9 +7,12 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
+    public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Journal";
+        [Browsable(false)]
+        new public string IconName { get { return "iconCatalogProperty"; } }
+        //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
@@ -81,6 +84,53 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListJournals).Remove(this);
             this.Parent = null;
         }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListJournals);
+                bool isMarked = false;
+                foreach (var t in p.ListJournals)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListJournals);
+                bool isNew = false;
+                foreach (var t in p.ListJournals)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
+        }
+
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Journal.Clone(this.Parent, this, true, true);

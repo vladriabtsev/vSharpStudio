@@ -13,8 +13,9 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListAppSolutions.Count,nq}")]
-    public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft
+    public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INewAndDeleteion
     {
+        public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListAppSolutions;
@@ -30,9 +31,11 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = "Apps";
             this.IsEditable = false;
             //this.DefaultDb.Parent = this;
+            this.ListAppSolutions.OnAddingAction = (t) => {
+                t.IsNew = true;
+            };
             //this.ListAppSolutions.OnAddedAction = (t) =>
             //{
-            //    t.AddAllAppGenSettingsVmsToNode();
             //};
         }
 
@@ -96,6 +99,18 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+        }
+        partial void OnIsNewChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
         }
         #endregion Tree operations
     }

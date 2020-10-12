@@ -11,7 +11,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
-    public partial class PluginGenerator : ICanGoLeft, ICanGoRight //, ICanAddSubNode
+    public partial class PluginGenerator : ICanGoLeft, ICanGoRight, INewAndDeleteion
     {
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
@@ -25,6 +25,9 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
         }
 
+        [Browsable(false)]
+        new public string IconName { get { return "iconFolder"; } }
+        //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnInit()
         {
             this.IsEditable = false;
@@ -70,6 +73,52 @@ namespace vSharpStudio.vm.ViewModels
         public override void NodeRemove(bool ask = true)
         {
             (this.Parent as Plugin).ListGenerators.Remove(this);
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as Plugin);
+                bool isMarked = false;
+                foreach (var t in p.ListGenerators)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as Plugin);
+                bool isNew = false;
+                foreach (var t in p.ListGenerators)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
         #endregion Tree operations
 

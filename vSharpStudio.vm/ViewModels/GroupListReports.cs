@@ -12,8 +12,9 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListReports.Count,nq}")]
-    public partial class GroupListReports : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings
+    public partial class GroupListReports : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
+        public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListReports;
@@ -26,6 +27,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Name = "Reports";
             this.IsEditable = false;
+            this.ListReports.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
             this.ListReports.OnAddedAction = (t) =>
             {
                 t.AddAllAppGenSettingsVmsToNode();
@@ -58,6 +63,18 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+        }
+        partial void OnIsNewChanged()
+        {
+            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
         }
         #endregion Tree operations
 

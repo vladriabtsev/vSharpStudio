@@ -32,6 +32,7 @@ namespace vSharpStudio.common
         ITreeConfigNode NodeAddClone();
         bool NodeCanRemove();
         void NodeRemove(bool ask = true);
+        void MarkForDeletion();
         bool NodeCanLeft();
         void NodeLeft();
         bool NodeCanRight();

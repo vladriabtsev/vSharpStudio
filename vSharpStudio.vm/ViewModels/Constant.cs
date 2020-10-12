@@ -11,9 +11,12 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Constant";
+        [Browsable(false)]
+        new public string IconName { get { return "iconConstant"; } }
+        //protected override string GetNodeIconName() { return "iconConstant"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
@@ -112,6 +115,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListConstants).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListConstants);
+                bool isMarked = false;
+                foreach (var t in p.ListConstants)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListConstants);
+                bool isNew = false;
+                foreach (var t in p.ListConstants)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

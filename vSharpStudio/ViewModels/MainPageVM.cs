@@ -687,6 +687,7 @@ namespace vSharpStudio.ViewModels
                 this.LoadConfig(this.Config, dlg.FileName, string.Empty, true);
             }
         }
+        //TODO saving is not appropriate operation because loosing information about deleted objects (DB has to be updated)
         public vCommand CommandConfigSave
         {
             get
@@ -1288,6 +1289,8 @@ namespace vSharpStudio.ViewModels
                     // VI. Generate code (no need for UNDO)
                     #region
                     this.GenerateCode(cancellationToken, mvr.DiffAnnotatedConfig);
+                    this.Save();
+                    this.Config.DicDeletedNodesInCurrentSession.Clear();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();

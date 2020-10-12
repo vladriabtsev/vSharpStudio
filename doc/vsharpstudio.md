@@ -122,6 +122,8 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET project file path relative to solution file path&#34;)] App project relative path to .net solution file path |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | namespace | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Namespace&#34;)] @attr [Description(&#34;Project namespace name&#34;)] |
 | list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -148,6 +150,8 @@ Application project generator
 | description_generator | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Description&#34;)] @attr [ReadOnly(true)] |
 | relative_path_to_gen_folder | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Output Folder&#34;)] @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))] @attr [Description(&#34;Get is returning relative folder path to project file&#34;)] Relative folder path to project file |
 | gen_file_name | [string](#string) |  | @attr [DisplayName(&#34;Output File&#34;)] @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Generator output file name&#34;)] Generator output file name |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
@@ -171,6 +175,8 @@ Application project generator
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] App solution relative path to configuration file path |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
 | list_group_generators_settings | [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -193,6 +199,8 @@ Application project generator
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | config | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
 | relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -213,6 +221,8 @@ Application project generator
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
@@ -267,6 +277,8 @@ Configuration model
 | composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | is_composite_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Use parent-child composite names.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -310,6 +322,8 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -353,6 +367,8 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
@@ -380,6 +396,8 @@ Constant application wise value
 | data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | Enumeration element type @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Type&#34;)] |
 | data_type_length | [int32](#int32) |  | Length of string if &#39;STRING&#39; is selected as enumeration element type @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Length&#34;)] |
 | list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)] @attr [NewItemTypes(typeof(EnumerationPair))] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -401,6 +419,8 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | value | [string](#string) |  |  |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 
 
 
@@ -420,6 +440,8 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; @attr [BrowsableAttribute(false)] |
 
 
@@ -443,6 +465,8 @@ Constant application wise value
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -463,6 +487,8 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_group_generators_defult_settings | [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -483,6 +509,8 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  |  |
 | list_base_config_links | [proto_base_config_link](#proto_config.proto_base_config_link) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -505,6 +533,8 @@ Constant application wise value
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -527,6 +557,8 @@ Common parameters section
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_roles | [proto_group_list_roles](#proto_config.proto_group_list_roles) |  | @attr [BrowsableAttribute(false)] |
 | group_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -548,6 +580,8 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_constants | [proto_constant](#proto_config.proto_constant) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -569,6 +603,8 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -590,6 +626,8 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -611,6 +649,8 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_forms | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -632,6 +672,8 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -653,6 +695,8 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_main_view_forms | [proto_main_view_form](#proto_config.proto_main_view_form) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -670,6 +714,8 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_plugins | [proto_plugin](#proto_config.proto_plugin) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -691,6 +737,8 @@ main view forms hierarchy node with children
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -712,6 +760,8 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_properties_tabs | [proto_properties_tab](#proto_config.proto_properties_tab) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -733,6 +783,8 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -754,6 +806,8 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -775,6 +829,8 @@ main view forms hierarchy node with children
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -796,6 +852,8 @@ main view forms hierarchy parent
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | group_list_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -834,9 +892,9 @@ main view forms hierarchy parent
 | name | [string](#string) |  | @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)]
-
-attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_version = 8; attr [ReadOnly(true)] string group_info = 9; |
+| list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -854,7 +912,9 @@ attr [ReadOnly(true)] string group_guid = 7; attr [ReadOnly(true)] string group_
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)]
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)]
 
 repeated proto_plugin_generator_settings list_settings = 5; |
 
@@ -964,6 +1024,8 @@ Stored in AppSolution node. All null setting will use parent value
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | is_index_fk | [bool](#bool) |  | Create Index for foreign key navigation property @attr [PropertyOrderAttribute(4)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -985,6 +1047,8 @@ Stored in AppSolution node. All null setting will use parent value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Type&#34;)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1006,6 +1070,8 @@ Stored in AppSolution node. All null setting will use parent value
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; @attr [BrowsableAttribute(false)] |
 
 
@@ -1026,6 +1092,8 @@ User&#39;s role
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

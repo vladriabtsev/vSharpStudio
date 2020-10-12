@@ -13,16 +13,20 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
+        [Browsable(false)]
+        new public string IconName { get { return "iconProperty"; } }
+        //protected override string GetNodeIconName() { return "iconProperty"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+             this.AddAllAppGenSettingsVmsToNode();
         }
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
@@ -111,6 +115,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListProperties).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListProperties);
+                bool isMarked = false;
+                foreach (var t in p.ListProperties)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListProperties);
+                bool isNew = false;
+                foreach (var t in p.ListProperties)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

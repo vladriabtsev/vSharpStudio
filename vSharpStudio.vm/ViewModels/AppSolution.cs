@@ -15,15 +15,26 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{listProjects.Count,nq}")]
-    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode
+    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, INewAndDeleteion
     {
         public static readonly string DefaultName = "Solution";
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
+        public override IEnumerable<object> GetChildren(object parent)
+        {
+            return this.ListAppProjects;
+        }
+
+        public override bool HasChildren(object parent)
+        {
+            return this.ListAppProjects.Count > 0;
+        }
+        [Browsable(false)]
+        new public string IconName { get { return "iconApplicationGroup"; } }
+        //protected override string GetNodeIconName() { return "iconApplicationGroup"; }
 
         partial void OnInit()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             //this.DefaultDb.Parent = this;
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
@@ -209,6 +220,52 @@ namespace vSharpStudio.vm.ViewModels
             }
             (this.Parent as GroupListAppSolutions).ListAppSolutions.Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListAppSolutions);
+                bool isMarked = false;
+                foreach (var t in p.ListAppSolutions)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListAppSolutions);
+                bool isNew = false;
+                foreach (var t in p.ListAppSolutions)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

@@ -11,8 +11,9 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq}")]
-    public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings
+    public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion
     {
+        public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
             return this.ListBaseConfigLinks;
@@ -34,6 +35,9 @@ namespace vSharpStudio.vm.ViewModels
             // Children.Add(this.GroupSharedProperties, 7);
             // this.GroupListDocuments.Parent = this;
             // Children.Add(this.GroupListDocuments, 8);
+            this.ListBaseConfigLinks.OnAddingAction = (t) => {
+                t.IsNew = true;
+            };
             this.ListBaseConfigLinks.OnAddedAction = (t) =>
             {
                 t.OnAdded();

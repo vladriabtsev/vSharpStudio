@@ -12,14 +12,20 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings
+    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Enumeration";
+        [Browsable(false)]
+        new public string IconName { get { return "iconEnumerator"; } }
+        //protected override string GetNodeIconName() { return "iconEnumerator"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
+            this.ListEnumerationPairs.OnAddingAction = (t) => {
+                t.IsNew = true;
+            };
             this.ListEnumerationPairs.OnAddedAction = (t) => {
                 t.OnAdded();
             };
@@ -135,6 +141,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListEnumerations).Remove(this);
             this.Parent = null;
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListEnumerations);
+                bool isMarked = false;
+                foreach (var t in p.ListEnumerations)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as GroupListEnumerations);
+                bool isNew = false;
+                foreach (var t in p.ListEnumerations)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

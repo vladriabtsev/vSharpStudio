@@ -5,6 +5,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
+    public interface INewAndDeleteion
+    {
+        bool IsNew { get; set; }
+        bool IsMarkedForDeletion { get; set; }
+    }
     public interface ICanGoLeft
     {
     }

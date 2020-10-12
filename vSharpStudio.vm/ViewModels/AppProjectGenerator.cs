@@ -11,10 +11,11 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings //: ICanAddSubNode
+    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings, INewAndDeleteion
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
+        //protected override string GetNodeIconName() { return "iconFolder"; }
         private IvPluginGenerator gen
         {
             get { return _gen; }
@@ -59,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             return gen is IvPluginDbConnStringGenerator;
         }
         [Browsable(false)]
-        public string IconName
+        new public string IconName
         {
             get
             {
@@ -585,45 +586,52 @@ namespace vSharpStudio.vm.ViewModels
             this.PluginGuid = "";
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-
-
-            //(this.Parent as AppSolution).ListAppProjects.Remove(this);
-            //this.Parent = null;
-            //var nv = new ModelVisitorNodeGenSettings();
-            //var cfg = (Config)this.GetConfig();
-            //// removing plugins group settings
-            //var sln = (AppSolution)this.Parent;
-            //foreach (var ttt in this.ListAppProjectGenerators)
-            //{
-            //    var plg = cfg.DicPlugins[ttt.PluginGuid];
-            //    if (!string.IsNullOrWhiteSpace(ttt.PluginGuid) && (plg.PluginGroupSolutionSettings != null)
-            //        && sln.DicPluginsGroupSettings.ContainsKey(plg.PluginGroupSolutionSettings.Guid))
-            //    {
-            //        bool is_only = true;
-            //        foreach (var t in sln.ListAppProjects)
-            //        {
-            //            if (t.Guid == this.Guid)
-            //                continue;
-            //            foreach (var tt in t.ListAppProjectGenerators)
-            //            {
-            //                if (tt.PluginGuid == ttt.PluginGuid)
-            //                    is_only = false;
-            //            }
-            //        }
-            //        if (is_only)
-            //            sln.DicPluginsGroupSettings.Remove(plg.PluginGroupSolutionSettings.Guid);
-            //    }
-            //}
-
-            //foreach (var t in this.ListAppProjectGenerators)
-            //{
-            //    nv.NodeGenSettingsApplyAction(cfg, (p) =>
-            //    {
-            //        p.RemoveNodeAppGenSettings(t.PluginGeneratorGuid);
-            //    });
-            //}
-            ////this.RefillDicGenerators();
-
+        }
+        public override void MarkForDeletion()
+        {
+            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+        }
+        partial void OnIsMarkedForDeletionChanged()
+        {
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as AppProject);
+                bool isMarked = false;
+                foreach (var t in p.ListAppProjectGenerators)
+                {
+                    if (t.IsMarkedForDeletion)
+                    {
+                        isMarked = true;
+                        break;
+                    }
+                }
+                p.IsMarkedForDeletion = isMarked;
+            }
+        }
+        partial void OnIsNewChanged()
+        {
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as AppProject);
+                bool isNew = false;
+                foreach (var t in p.ListAppProjectGenerators)
+                {
+                    if (t.IsNew)
+                    {
+                        isNew = true;
+                        break;
+                    }
+                }
+                p.IsNew = isNew;
+            }
         }
 
         public override ITreeConfigNode NodeAddClone()

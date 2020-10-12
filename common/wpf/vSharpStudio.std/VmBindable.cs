@@ -400,6 +400,10 @@ namespace ViewModelBase
                         if ((int)from != (int)to)
                             dp.SetValue(destination, from);
                         break;
+                    case "UInt32":
+                        if ((uint)from != (uint)to)
+                            dp.SetValue(destination, from);
+                        break;
                     case "Boolean":
                         if ((bool)from != (bool)to)
                             dp.SetValue(destination, from);
