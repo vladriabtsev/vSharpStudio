@@ -197,6 +197,78 @@ namespace vSharpStudio.vm.ViewModels
         //    this.RefillChildren();
         //}
 
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            if (this.GroupCatalogs.IsMarkedForDeletion || this.GroupCatalogs.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupCommon.IsMarkedForDeletion || this.GroupCommon.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupConstants.IsMarkedForDeletion || this.GroupConstants.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupDocuments.IsMarkedForDeletion || this.GroupDocuments.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupEnumerations.IsMarkedForDeletion || this.GroupEnumerations.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupJournals.IsMarkedForDeletion || this.GroupJournals.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            if (this.GroupCatalogs.IsHasNew || this.GroupCatalogs.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupCommon.IsHasNew || this.GroupCommon.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupConstants.IsHasNew || this.GroupConstants.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupDocuments.IsHasNew || this.GroupDocuments.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupEnumerations.IsHasNew || this.GroupEnumerations.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupJournals.IsHasNew || this.GroupJournals.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            this.IsHasNew = false;
+            return false;
+        }
         #endregion ITreeNode
 
         #region Objects

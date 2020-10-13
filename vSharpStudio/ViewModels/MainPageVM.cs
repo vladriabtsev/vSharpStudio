@@ -990,6 +990,7 @@ namespace vSharpStudio.ViewModels
                         {
                             this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
                             TestTransformation tst = o as TestTransformation;
+                            bool isException = false;
                             try
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
@@ -999,12 +1000,19 @@ namespace vSharpStudio.ViewModels
                             }
                             catch (CancellationException ex)
                             {
+                                isException = true;
                             }
                             catch (Exception ex)
                             {
+                                isException = true;
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                            }
+                            if (!isException)
+                            {
+                                this.Config.RemoveMarkedForDeletionIfNewObjects();
+                                this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
                         }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.CurrentCfgFilePath != null; }
@@ -1290,7 +1298,6 @@ namespace vSharpStudio.ViewModels
                     #region
                     this.GenerateCode(cancellationToken, mvr.DiffAnnotatedConfig);
                     this.Save();
-                    this.Config.DicDeletedNodesInCurrentSession.Clear();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();
@@ -1451,6 +1458,8 @@ namespace vSharpStudio.ViewModels
             }
 
             this.PluginSettingsToModel();
+            this.Config.RemoveMarkedForDeletionAndNewFlags();
+            this.CommandConfigSave.Execute(null);
 
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code

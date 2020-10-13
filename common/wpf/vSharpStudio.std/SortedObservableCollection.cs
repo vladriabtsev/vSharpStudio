@@ -137,6 +137,8 @@ namespace ViewModelBase
             }
             lock (_lock)
             {
+                if (OnAddingAction != null)
+                    OnAddingAction(item);
                 base.Add(item);
                 if (OnAddedAction != null)
                     OnAddedAction(item);

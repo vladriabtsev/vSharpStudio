@@ -587,6 +587,8 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
         }
+        public bool IsHasNew { get { return false; } set { } }
+        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
@@ -599,17 +601,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                var p = (this.Parent as AppProject);
-                bool isMarked = false;
-                foreach (var t in p.ListAppProjectGenerators)
-                {
-                    if (t.IsMarkedForDeletion)
-                    {
-                        isMarked = true;
-                        break;
-                    }
-                }
-                p.IsMarkedForDeletion = isMarked;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
             }
         }
         partial void OnIsNewChanged()
@@ -620,18 +613,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                var p = (this.Parent as AppProject);
-                bool isNew = false;
-                foreach (var t in p.ListAppProjectGenerators)
-                {
-                    if (t.IsNew)
-                    {
-                        isNew = true;
-                        break;
-                    }
-                }
-                p.IsNew = isNew;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
             }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

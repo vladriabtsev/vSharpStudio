@@ -150,43 +150,99 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsMarkedForDeletion)
             {
-                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
             }
             else
             {
-                var p = (this.Parent as GroupListCatalogs);
-                bool isMarked = false;
-                foreach (var t in p.ListCatalogs)
-                {
-                    if (t.IsMarkedForDeletion)
-                    {
-                        isMarked = true;
-                        break;
-                    }
-                }
-                p.IsMarkedForDeletion = isMarked;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
             }
         }
         partial void OnIsNewChanged()
         {
             if (this.IsNew)
             {
-                (this.Parent as INewAndDeleteion).IsNew = true;
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
             }
             else
             {
-                var p = (this.Parent as GroupListCatalogs);
-                bool isNew = false;
-                foreach (var t in p.ListCatalogs)
-                {
-                    if (t.IsNew)
-                    {
-                        isNew = true;
-                        break;
-                    }
-                }
-                p.IsNew = isNew;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
             }
+        }
+        partial void OnIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
+        }
+        partial void OnIsHasNewChanged()
+        {
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            if (this.GroupForms.IsMarkedForDeletion || this.GroupForms.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupProperties.IsMarkedForDeletion || this.GroupProperties.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupPropertiesTabs.IsMarkedForDeletion || this.GroupPropertiesTabs.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupReports.IsMarkedForDeletion || this.GroupReports.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            if (this.GroupForms.IsHasNew || this.GroupForms.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupProperties.IsMarkedForDeletion || this.GroupProperties.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupPropertiesTabs.IsMarkedForDeletion || this.GroupPropertiesTabs.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupReports.IsMarkedForDeletion || this.GroupReports.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            this.IsHasNew = false;
+            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

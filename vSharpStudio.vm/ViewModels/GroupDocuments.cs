@@ -37,14 +37,16 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
-            this.GroupSharedProperties.ListProperties.OnAddingAction = (t) => {
+            this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
             this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
-            this.GroupListDocuments.ListDocuments.OnAddingAction = (t) => {
+            this.GroupListDocuments.ListDocuments.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
             this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
@@ -52,30 +54,61 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
         }
-        //public override void MarkForDeletion()
-        //{
-        //    this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        //}
-        //partial void OnIsMarkedForDeletionChanged()
-        //{
-        //    if (this.IsMarkedForDeletion)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as GroupListForms);
-        //        bool isMarked = false;
-        //        foreach (var t in p.ListForms)
-        //        {
-        //            if (t.IsMarkedForDeletion)
-        //            {
-        //                isMarked = true;
-        //                break;
-        //            }
-        //        }
-        //        p.IsMarkedForDeletion = isMarked;
-        //    }
-        //}
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        partial void OnIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
+        }
+        partial void OnIsHasNewChanged()
+        {
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            if (this.GroupSharedProperties.IsMarkedForDeletion || this.GroupSharedProperties.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupListDocuments.IsMarkedForDeletion || this.GroupListDocuments.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            if (this.GroupSharedProperties.IsHasNew || this.GroupSharedProperties.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupListDocuments.IsHasNew || this.GroupListDocuments.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            this.IsHasNew = false;
+            return false;
+        }
     }
 }

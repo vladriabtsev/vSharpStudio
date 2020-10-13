@@ -37,17 +37,63 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
-        public override void MarkForDeletion()
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        partial void OnIsHasMarkedForDeletionChanged()
         {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
         }
-        partial void OnIsMarkedForDeletionChanged()
+        partial void OnIsHasNewChanged()
         {
-            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
         }
-        partial void OnIsNewChanged()
+
+        public bool GetIsHasMarkedForDeletion()
         {
-            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
+            if (this.GroupRoles.IsHasMarkedForDeletion || this.GroupRoles.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            if (this.GroupViewForms.IsHasMarkedForDeletion || this.GroupViewForms.GetIsHasMarkedForDeletion())
+            {
+                this.IsHasMarkedForDeletion = true;
+                return true;
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+
+        public bool GetIsHasNew()
+        {
+            if (this.GroupRoles.IsHasNew || this.GroupRoles.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            if (this.GroupViewForms.IsHasNew || this.GroupViewForms.GetIsHasNew())
+            {
+                this.IsHasNew = true;
+                return true;
+            }
+            this.IsHasNew = false;
+            return false;
         }
     }
 }

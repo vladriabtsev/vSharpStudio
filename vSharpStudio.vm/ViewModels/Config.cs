@@ -24,7 +24,6 @@ namespace vSharpStudio.vm.ViewModels
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
 
-        public DictionaryExt<string, ITreeConfigNode> DicDeletedNodesInCurrentSession { get; set; }
         public DictionaryExt<string, ITreeConfigNode> DicNodes { get; private set; }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
         private DictionaryExt<string, IvPluginGenerator> dicActiveAppProjectGenerators = null;
@@ -71,7 +70,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             _logger.Trace();
             this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true);
-            this.DicDeletedNodesInCurrentSession = new DictionaryExt<string, ITreeConfigNode>();
         }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
@@ -360,6 +358,17 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var viz = new ModelVisitorRemoveMarkedIfNewObjects();
+            viz.RunThroughConfig(this.Model);
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            this.RemoveMarkedForDeletionIfNewObjects();
+            var viz = new ModelVisitorRemoveMarkedAndNewFlags();
+            viz.RunThroughConfig(this.Model);
         }
     }
 }

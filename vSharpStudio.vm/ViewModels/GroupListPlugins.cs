@@ -37,17 +37,17 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //};
         }
-        public override void MarkForDeletion()
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        public bool IsHasNew { get { return false; } set { } }
+        public bool IsHasMarkedForDeletion { get { return false; } set { } }
+        public bool GetIsHasMarkedForDeletion()
         {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+            return false;
         }
-        partial void OnIsMarkedForDeletionChanged()
+        public bool GetIsHasNew()
         {
-            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
-        }
-        partial void OnIsNewChanged()
-        {
-            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
+            return false;
         }
     }
 }

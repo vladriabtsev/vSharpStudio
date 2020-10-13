@@ -92,43 +92,75 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsMarkedForDeletion)
             {
-                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
             }
             else
             {
-                var p = (this.Parent as GroupListJournals);
-                bool isMarked = false;
-                foreach (var t in p.ListJournals)
-                {
-                    if (t.IsMarkedForDeletion)
-                    {
-                        isMarked = true;
-                        break;
-                    }
-                }
-                p.IsMarkedForDeletion = isMarked;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
             }
         }
         partial void OnIsNewChanged()
         {
             if (this.IsNew)
             {
-                (this.Parent as INewAndDeleteion).IsNew = true;
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
             }
             else
             {
-                var p = (this.Parent as GroupListJournals);
-                bool isNew = false;
-                foreach (var t in p.ListJournals)
-                {
-                    if (t.IsNew)
-                    {
-                        isNew = true;
-                        break;
-                    }
-                }
-                p.IsNew = isNew;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
             }
+        }
+        partial void OnIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
+        }
+        partial void OnIsHasNewChanged()
+        {
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            foreach (var t in this.ListDocuments)
+            {
+                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
+                {
+                    this.IsHasMarkedForDeletion = true;
+                    return true;
+                }
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            foreach (var t in this.ListDocuments)
+            {
+                if (t.IsHasNew || t.GetIsHasNew())
+                {
+                    this.IsHasNew = true;
+                    return true;
+                }
+            }
+            this.IsHasNew = false;
+            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

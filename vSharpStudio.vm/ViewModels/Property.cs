@@ -116,6 +116,8 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListProperties).Remove(this);
             this.Parent = null;
         }
+        public bool IsHasNew { get { return false; } set { } }
+        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
@@ -124,43 +126,33 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsMarkedForDeletion)
             {
-                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
             }
             else
             {
-                var p = (this.Parent as GroupListProperties);
-                bool isMarked = false;
-                foreach (var t in p.ListProperties)
-                {
-                    if (t.IsMarkedForDeletion)
-                    {
-                        isMarked = true;
-                        break;
-                    }
-                }
-                p.IsMarkedForDeletion = isMarked;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
             }
         }
         partial void OnIsNewChanged()
         {
             if (this.IsNew)
             {
-                (this.Parent as INewAndDeleteion).IsNew = true;
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
             }
             else
             {
-                var p = (this.Parent as GroupListProperties);
-                bool isNew = false;
-                foreach (var t in p.ListProperties)
-                {
-                    if (t.IsNew)
-                    {
-                        isNew = true;
-                        break;
-                    }
-                }
-                p.IsNew = isNew;
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
             }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

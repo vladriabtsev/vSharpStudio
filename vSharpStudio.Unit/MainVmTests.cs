@@ -407,13 +407,19 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 3); // deleted is removed
         }
         [TestMethod]
-        public void Main015_Delete_Enumerations()
+        public void Main015_Delete_New_Enumerations()
         {
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             // create object and save
             var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
@@ -422,36 +428,66 @@ namespace vSharpStudio.Unit
             var p3 = c1.AddEnumerationPair("e3", "125");
             var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
             var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             vm.CommandConfigSave.Execute(null);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+            // expect IsHasMarkedForDeletion and IsHasNew will not changed
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.ContainsKey(c3.Guid));
+            c3.IsMarkedForDeletion = true;
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             vm.CommandConfigSave.Execute(null);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
+            // expect IsHasMarkedForDeletion and IsHasNew will not changed
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             vm.CommandConfigCurrentUpdate.Execute(null);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+            // expect new objects (IsNew) with IsMarkedForDeletion and  will be deleted in DB and model
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
-            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 1);
+            c3.IsMarkedForDeletion = true;
+            c2.IsMarkedForDeletion = true;
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+            // expect IsHasMarkedForDeletion and IsHasNew will be false
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+            Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
             vm.CommandConfigCurrentUpdate.Execute(null);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
             vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
             vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c2);
             c1.ListEnumerationPairs.Remove(p1);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 3);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
             vm.CommandConfigCurrentUpdate.Execute(null);
-            Assert.IsTrue(vm.Config.DicDeletedNodesInCurrentSession.Count() == 0);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
             var mod = new ModelVisitorForAnnotation();
             var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig);

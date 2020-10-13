@@ -291,7 +291,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -316,6 +316,26 @@
               "type": "proto_app_project_generator",
               "longType": "proto_app_project_generator",
               "fullType": "proto_config.proto_app_project_generator",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]\n\n@attr [PropertyOrderAttribute(8)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Default DB\")]\n@attr [Description(\"Database connection. If empty, solution settings are used\")]\nproto_app_db_settings default_db = 8;",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -442,7 +462,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -563,7 +583,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -578,6 +598,26 @@
               "type": "proto_app_project",
               "longType": "proto_app_project",
               "fullType": "proto_config.proto_app_project",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -674,7 +714,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -766,6 +806,26 @@
             {
               "name": "is_marked_for_deletion",
               "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(true)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(true)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1046,7 +1106,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1056,7 +1116,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1450,6 +1510,26 @@
               "defaultValue": ""
             },
             {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1603,6 +1683,26 @@
             {
               "name": "is_marked_for_deletion",
               "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1784,6 +1884,26 @@
             },
             {
               "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1894,7 +2014,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1904,7 +2024,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1985,7 +2105,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -1995,7 +2115,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2076,7 +2196,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2086,7 +2206,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2187,7 +2307,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2197,7 +2317,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2298,7 +2418,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2308,7 +2428,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2399,7 +2519,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2409,7 +2529,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2500,7 +2620,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2510,7 +2630,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2601,7 +2721,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2611,7 +2731,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2702,7 +2822,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2712,7 +2832,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2803,7 +2923,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2813,7 +2933,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2904,7 +3024,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2914,7 +3034,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -2961,26 +3081,6 @@
               "type": "proto_plugin",
               "longType": "proto_plugin",
               "fullType": "proto_config.proto_plugin",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3066,7 +3166,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3076,7 +3176,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3178,6 +3278,26 @@
             },
             {
               "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3268,7 +3388,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3278,7 +3398,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3369,7 +3489,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_new",
+              "name": "is_has_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3379,7 +3499,7 @@
               "defaultValue": ""
             },
             {
-              "name": "is_marked_for_deletion",
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3490,6 +3610,26 @@
               "defaultValue": ""
             },
             {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -3582,6 +3722,26 @@
             },
             {
               "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -3721,26 +3881,6 @@
               "fullType": "proto_config.proto_plugin_generator",
               "ismap": false,
               "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
             }
           ]
         },
@@ -3785,31 +3925,11 @@
             },
             {
               "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_plugin_generator_settings list_settings = 5;",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_plugin_generator_settings list_settings = 5;",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -4090,6 +4210,26 @@
               "defaultValue": ""
             },
             {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -4283,6 +4423,26 @@
             },
             {
               "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
@@ -4374,6 +4534,26 @@
             },
             {
               "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",

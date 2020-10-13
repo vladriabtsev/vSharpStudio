@@ -12,32 +12,35 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListConstants.Count,nq}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion
+    public partial class GroupListMainViewForms : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion
     {
-        public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
+        //public ConfigNodesCollection<Form> Children { get { return this.ListConstants; } }
         public override IEnumerable<object> GetChildren(object parent)
         {
-            return this.ListConstants;
+            //return this.ListConstants;
+            return null;
         }
         public override bool HasChildren(object parent)
         {
-            return this.ListConstants.Count > 0;
+            //return this.ListConstants.Count > 0;
+            return false;
         }
         partial void OnInit()
         {
             this.Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
-            this.ListConstants.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
-            this.ListConstants.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
+            //this.ListConstants.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListConstants.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
             //this.ListConstants.OnRemovedAction = (t) =>
             //{
             //    var cfg = this.GetConfig();
+            //    cfg.DicDeletedNodesInCurrentSession[t.Guid] = t;
             //};
         }
 
@@ -52,22 +55,22 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Constant node = null;
-            if (node_impl == null)
-            {
-                node = new Constant(this);
-            }
-            else
-            {
-                node = (Constant)node_impl;
-            }
+            //if (node_impl == null)
+            //{
+            //    node = new Constant(this);
+            //}
+            //else
+            //{
+            //    node = (Constant)node_impl;
+            //}
 
-            this.Add(node);
-            if (node_impl == null)
-            {
-                this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
-            }
+            //this.Add(node);
+            //if (node_impl == null)
+            //{
+            //    this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
+            //}
 
-            this.SetSelected(node);
+            //this.SetSelected(node);
             return node;
         }
         public bool IsNew { get { return false; } set { } }
@@ -99,29 +102,29 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool GetIsHasMarkedForDeletion()
         {
-            foreach (var t in this.ListConstants)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
+            //foreach (var t in this.ListConstants)
+            //{
+            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
+            //    {
+            //        this.IsHasMarkedForDeletion = true;
+            //        return true;
+            //    }
+            //}
+            //this.IsHasMarkedForDeletion = false;
             return false;
         }
 
         public bool GetIsHasNew()
         {
-            foreach (var t in this.ListConstants)
-            {
-                if (t.IsHasNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
+            //foreach (var t in this.ListConstants)
+            //{
+            //    if (t.IsHasNew || t.GetIsHasNew())
+            //    {
+            //        this.IsHasNew = true;
+            //        return true;
+            //    }
+            //}
+            //this.IsHasNew = false;
             return false;
         }
         #endregion Tree operations

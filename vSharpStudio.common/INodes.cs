@@ -9,6 +9,10 @@ namespace vSharpStudio.common
     {
         bool IsNew { get; set; }
         bool IsMarkedForDeletion { get; set; }
+        bool IsHasNew { get; set; }
+        bool IsHasMarkedForDeletion { get; set; }
+        bool GetIsHasMarkedForDeletion();
+        bool GetIsHasNew();
     }
     public interface ICanGoLeft
     {

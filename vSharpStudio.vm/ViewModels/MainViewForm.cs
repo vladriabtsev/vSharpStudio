@@ -10,46 +10,23 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion
+    [DebuggerDisplay("MainViewForm:{Name,nq}")]
+    public partial class MainViewForm : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IObjectAnnotatable
     {
-        public static readonly string DefaultName = "Constant";
+        public static readonly string DefaultName = "MainViewForm";
         [Browsable(false)]
-        new public string IconName { get { return "iconConstant"; } }
-        //protected override string GetNodeIconName() { return "iconConstant"; }
+        new public string IconName { get { return "iconWindowsForm"; } }
+        //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
         }
-
-        public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
-            : this(parent)
-        {
-            this.Name = name;
-            this.DataType = new DataType(type, guidOfType);
-        }
-
-        public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
-            : this(parent)
-        {
-            this.Name = name;
-            this.DataType = new DataType(type, length, accuracy);
-        }
-
-        public IDataType IDataType { get { return this._DataType; } }
-        #region IConfigObject
-        // public void Create()
-        // {
-        //    GroupListConstants vm = (GroupListConstants)this.Parent;
-        //    int icurr = vm.Children.IndexOf(this);
-        //    vm.Children.Add(new Constant() { Parent = this.Parent });
-        // }
-
-        #endregion IConfigObject
-
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
+            //this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            //this.GroupForms.AddAllAppGenSettingsVmsToNode();
+            //this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations
@@ -57,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListConstants).ListConstants.CanUp(this))
+                if ((this.Parent as GroupListForms).ListForms.CanUp(this))
                 {
                     return true;
                 }
@@ -67,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Constant)(this.Parent as GroupListConstants).ListConstants.GetPrev(this);
+            var prev = (Form)(this.Parent as GroupListForms).ListForms.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -78,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListConstants).ListConstants.MoveUp(this);
+            (this.Parent as GroupListForms).ListForms.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -86,7 +63,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListConstants).ListConstants.CanDown(this))
+                if ((this.Parent as GroupListForms).ListForms.CanDown(this))
                 {
                     return true;
                 }
@@ -96,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Constant)(this.Parent as GroupListConstants).ListConstants.GetNext(this);
+            var next = (Form)(this.Parent as GroupListForms).ListForms.GetNext(this);
             if (next == null)
             {
                 return;
@@ -107,18 +84,15 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListConstants).ListConstants.MoveDown(this);
+            (this.Parent as GroupListForms).ListForms.MoveDown(this);
             this.SetSelected(this);
         }
 
         public override void NodeRemove(bool ask = true)
         {
-            (this.Parent as GroupListConstants).Remove(this);
+            (this.Parent as GroupListMainViewForms).Remove(this);
             this.Parent = null;
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
-
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
@@ -181,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
             //        return true;
             //    }
             //}
-            this.IsHasMarkedForDeletion = false;
+            //this.IsHasMarkedForDeletion = false;
             return false;
         }
         public bool GetIsHasNew()
@@ -194,14 +168,15 @@ namespace vSharpStudio.vm.ViewModels
             //        return true;
             //    }
             //}
-            this.IsHasNew = false;
+            //this.IsHasNew = false;
             return false;
         }
+
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Constant.Clone(this.Parent, this, true, true);
+            var node = MainViewForm.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListConstants).Add(node);
+            (this.Parent as GroupListMainViewForms).Add(node);
             this.Name = this.Name + "2";
             this.SetSelected(node);
             return node;
@@ -209,12 +184,13 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Constant(this.Parent);
-            (this.Parent as GroupListConstants).Add(node);
-            this.GetUniqueName(Constant.DefaultName, node, (this.Parent as GroupListConstants).ListConstants);
+            var node = new MainViewForm(this.Parent);
+            (this.Parent as GroupListMainViewForms).Add(node);
+            this.GetUniqueName(MainViewForm.DefaultName, node, (this.Parent as GroupListMainViewForms).ListMainViewForms);
             this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
+
     }
 }

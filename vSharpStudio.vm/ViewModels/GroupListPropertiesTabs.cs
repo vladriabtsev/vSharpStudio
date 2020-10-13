@@ -36,11 +36,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            this.ListPropertiesTabs.OnRemovedAction = (t) =>
-            {
-                var cfg = this.GetConfig();
-                cfg.DicDeletedNodesInCurrentSession[t.Guid] = t;
-            };
+            //this.ListPropertiesTabs.OnRemovedAction = (t) =>
+            //{
+            //    var cfg = this.GetConfig();
+            //};
         }
 
         #region Tree operations
@@ -78,11 +77,77 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
-            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
+            if (this.IsMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
         }
         partial void OnIsNewChanged()
         {
-            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
+            if (this.IsNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
+        partial void OnIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
+        }
+        partial void OnIsHasNewChanged()
+        {
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            foreach (var t in this.ListPropertiesTabs)
+            {
+                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
+                {
+                    this.IsHasMarkedForDeletion = true;
+                    return true;
+                }
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            foreach (var t in this.ListPropertiesTabs)
+            {
+                if (t.IsHasNew || t.GetIsHasNew())
+                {
+                    this.IsHasNew = true;
+                    return true;
+                }
+            }
+            this.IsHasNew = false;
+            return false;
         }
         #endregion Tree operations
 

@@ -57,51 +57,17 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as GroupListPlugins).ListPlugins.Remove(this);
         }
-        public override void MarkForDeletion()
+        public bool IsHasNew { get { return false; } set { } }
+        public bool IsHasMarkedForDeletion { get { return false; } set { } }
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        public bool GetIsHasMarkedForDeletion()
         {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+            return false;
         }
-        partial void OnIsMarkedForDeletionChanged()
+        public bool GetIsHasNew()
         {
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as GroupListPlugins);
-                bool isMarked = false;
-                foreach (var t in p.ListPlugins)
-                {
-                    if (t.IsMarkedForDeletion)
-                    {
-                        isMarked = true;
-                        break;
-                    }
-                }
-                p.IsMarkedForDeletion = isMarked;
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as GroupListPlugins);
-                bool isNew = false;
-                foreach (var t in p.ListPlugins)
-                {
-                    if (t.IsNew)
-                    {
-                        isNew = true;
-                        break;
-                    }
-                }
-                p.IsNew = isNew;
-            }
+            return false;
         }
     }
 }

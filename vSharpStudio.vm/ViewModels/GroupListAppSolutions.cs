@@ -100,17 +100,33 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public override void MarkForDeletion()
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        public bool GetIsHasMarkedForDeletion()
         {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
+            foreach (var t in this.ListAppSolutions)
+            {
+                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
+                {
+                    this.IsHasMarkedForDeletion = true;
+                    return true;
+                }
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
         }
-        partial void OnIsMarkedForDeletionChanged()
+        public bool GetIsHasNew()
         {
-            (this.Parent as INewAndDeleteion).IsMarkedForDeletion = this.IsMarkedForDeletion;
-        }
-        partial void OnIsNewChanged()
-        {
-            (this.Parent as INewAndDeleteion).IsNew = this.IsNew;
+            foreach (var t in this.ListAppSolutions)
+            {
+                if (t.IsHasNew || t.GetIsHasNew())
+                {
+                    this.IsHasNew = true;
+                    return true;
+                }
+            }
+            this.IsHasNew = false;
+            return false;
         }
         #endregion Tree operations
     }

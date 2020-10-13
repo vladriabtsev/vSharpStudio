@@ -81,6 +81,34 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
+        public bool IsNew { get { return false; } set { } }
+        public bool IsMarkedForDeletion { get { return false; } set { } }
+        public bool GetIsHasMarkedForDeletion()
+        {
+            foreach (var t in this.ListBaseConfigLinks)
+            {
+                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
+                {
+                    this.IsHasMarkedForDeletion = true;
+                    return true;
+                }
+            }
+            this.IsHasMarkedForDeletion = false;
+            return false;
+        }
+        public bool GetIsHasNew()
+        {
+            foreach (var t in this.ListBaseConfigLinks)
+            {
+                if (t.IsHasNew || t.GetIsHasNew())
+                {
+                    this.IsHasNew = true;
+                    return true;
+                }
+            }
+            this.IsHasNew = false;
+            return false;
+        }
         #endregion Tree operations
 
     }

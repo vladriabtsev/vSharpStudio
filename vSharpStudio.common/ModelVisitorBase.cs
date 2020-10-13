@@ -22,6 +22,18 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<ICatalog> lst) { }
         protected virtual void BeginVisit(IEnumerable<IDocument> lst) { }
         protected virtual void EndVisit(IEnumerable<IDocument> lst) { }
+        protected virtual void BeginVisit(IGroupListRoles cn) { }
+        protected virtual void EndVisit(IGroupListRoles cn) { }
+        protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
+        protected virtual void EndVisit(IEnumerable<IRole> lst) { }
+        protected virtual void BeginVisit(IRole p) { }
+        protected virtual void EndVisit(IRole p) { }
+        protected virtual void BeginVisit(IGroupListMainViewForms cn) { }
+        protected virtual void EndVisit(IGroupListMainViewForms cn) { }
+        protected virtual void BeginVisit(IEnumerable<IMainViewForm> lst) { }
+        protected virtual void EndVisit(IEnumerable<IMainViewForm> lst) { }
+        protected virtual void BeginVisit(IMainViewForm p) { }
+        protected virtual void EndVisit(IMainViewForm p) { }
         protected virtual void BeginVisit(IConfig c) { }
         protected virtual void EndVisit(IConfig c) { }
         protected virtual void BeginVisit(IConfigModel m) { }
@@ -62,20 +74,20 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IPropertiesTab t) { }
         protected virtual void BeginVisit(IGroupListForms cn) { }
         protected virtual void EndVisit(IGroupListForms cn) { }
-        protected virtual void BeginVisit(IGroupListForms parent, IEnumerable<IForm> diff_lst) { }
-        protected virtual void EndVisit(IGroupListForms parent, IEnumerable<IForm> diff_lst) { }
+        protected virtual void BeginVisit(IGroupListForms parent, IEnumerable<IForm> lst) { }
+        protected virtual void EndVisit(IGroupListForms parent, IEnumerable<IForm> lst) { }
         protected virtual void BeginVisit(IForm p) { }
         protected virtual void EndVisit(IForm p) { }
         protected virtual void BeginVisit(IGroupListJournals cn) { }
         protected virtual void EndVisit(IGroupListJournals cn) { }
-        protected virtual void BeginVisit(IGroupListJournals parent, IEnumerable<IJournal> diff_lst) { }
-        protected virtual void EndVisit(IGroupListJournals parent, IEnumerable<IJournal> diff_lst) { }
+        protected virtual void BeginVisit(IGroupListJournals parent, IEnumerable<IJournal> lst) { }
+        protected virtual void EndVisit(IGroupListJournals parent, IEnumerable<IJournal> lst) { }
         protected virtual void BeginVisit(IJournal cn) { }
         protected virtual void EndVisit(IJournal cn) { }
         protected virtual void BeginVisit(IGroupListReports cn) { }
         protected virtual void EndVisit(IGroupListReports cn) { }
-        protected virtual void BeginVisit(IGroupListReports parent, IEnumerable<IReport> diff_lst) { }
-        protected virtual void EndVisit(IGroupListReports parent, IEnumerable<IReport> diff_lst) { }
+        protected virtual void BeginVisit(IGroupListReports parent, IEnumerable<IReport> lst) { }
+        protected virtual void EndVisit(IGroupListReports parent, IEnumerable<IReport> lst) { }
         protected virtual void BeginVisit(IReport p) { }
         protected virtual void EndVisit(IReport p) { }
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
@@ -330,13 +342,24 @@ namespace vSharpStudio.common
 
             #region Common
             this.BeginVisit(currModel.GroupCommon);
-            //this.Visit(currModel.GroupCommon.li.ListConstants);
-            //foreach (var tt in currModel.GroupConstants.ListConstants)
-            //{
-            //    this.Visit(tt);
-            //    if (_act != null)
-            //        _act(this, tt);
-            //}
+            this.BeginVisit(currModel.GroupCommon.GroupRoles);
+            foreach (var tt in currModel.GroupCommon.GroupRoles.ListRoles)
+            {
+                this.BeginVisit(tt);
+                if (_act != null)
+                    _act(this, tt);
+                this.EndVisit(tt);
+            }
+            this.EndVisit(currModel.GroupCommon.GroupRoles);
+            this.BeginVisit(currModel.GroupCommon.GroupViewForms);
+            foreach (var tt in currModel.GroupCommon.GroupViewForms.ListMainViewForms)
+            {
+                this.BeginVisit(tt);
+                if (_act != null)
+                    _act(this, tt);
+                this.EndVisit(tt);
+            }
+            this.EndVisit(currModel.GroupCommon.GroupViewForms);
             this.EndVisit(currModel.GroupCommon);
             #endregion Common
 
