@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -36,10 +37,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            //this.ListPropertiesTabs.OnRemovedAction = (t) =>
-            //{
-            //    var cfg = this.GetConfig();
-            //};
+            this.ListPropertiesTabs.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListPropertiesTabs.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
         }
 
         #region Tree operations
@@ -77,6 +82,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -89,6 +96,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -101,6 +110,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -113,6 +124,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -140,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListPropertiesTabs)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -156,6 +169,32 @@ namespace vSharpStudio.vm.ViewModels
             var node = new PropertiesTab(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListPropertiesTabs.ToList();
+            foreach (var t in tlst)
+            {
+                t.GroupProperties.RemoveMarkedForDeletionIfNewObjects();
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListPropertiesTabs.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListPropertiesTabs)
+            {
+                t.GroupProperties.RemoveMarkedForDeletionAndNewFlags();
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
     }
 }

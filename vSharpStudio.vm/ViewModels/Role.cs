@@ -162,7 +162,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             //foreach (var t in this.ListDocuments)
             //{
-            //    if (t.IsHasNew || t.GetIsHasNew())
+            //    if (t.IsNew || t.GetIsHasNew())
             //    {
             //        this.IsHasNew = true;
             //        return true;
@@ -189,6 +189,30 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Role.DefaultName, node, (this.Parent as GroupListRoles).ListRoles);
             this.SetSelected(node);
             return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            //var tlst = this.ListRoles.ToList();
+            //foreach (var t in tlst)
+            //{
+            //    if (t.IsMarkedForDeletion && t.IsNew)
+            //    {
+            //        this.ListRoles.Remove(t);
+            //        continue;
+            //    }
+            //    t.RemoveMarkedForDeletionIfNewObjects();
+            //}
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            //foreach (var t in this.ListRoles)
+            //{
+            //    t.RemoveMarkedForDeletionAndNewFlags();
+            //    t.IsNew = false;
+            //    t.IsMarkedForDeletion = false;
+            //}
+            //Debug.Assert(!this.IsHasMarkedForDeletion);
+            //Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

@@ -10,7 +10,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# if (this.Doc.IsDefaultBase) { #>
     public <#= message.Name.ToNameCs() #>() : this((ITreeConfigNode)null)
     {
-        this.OnInit();
     }
     public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>

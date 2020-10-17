@@ -37,27 +37,45 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
-            this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
-            this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
-            this.GroupListDocuments.ListDocuments.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
-            this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
+            //this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.GroupListDocuments.ListDocuments.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.GroupListDocuments.ListDocuments.OnRemovedAction = (t) => {
+            //    this.GetIsHasMarkedForDeletion();
+            //    this.GetIsHasNew();
+            //};
+            //this.GroupSharedProperties.ListProperties.OnRemovedAction = (t) => {
+            //    this.GetIsHasMarkedForDeletion();
+            //    this.GetIsHasNew();
+            //};
+            //this.GroupListDocuments.ListDocuments.OnClearedAction = () => {
+            //    this.GetIsHasMarkedForDeletion();
+            //    this.GetIsHasNew();
+            //};
+            //this.GroupSharedProperties.ListProperties.OnClearedAction = () => {
+            //    this.GetIsHasMarkedForDeletion();
+            //    this.GetIsHasNew();
+            //};
         }
         public bool IsNew { get { return false; } set { } }
         public bool IsMarkedForDeletion { get { return false; } set { } }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -70,6 +88,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -109,6 +129,56 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
+        }
+        public Document AddDocument(string name)
+        {
+            var node = new Document(this.GroupListDocuments) { Name = name };
+            this.GroupListDocuments.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddSharedProperty(string name)
+        {
+            var node = new Property(this.GroupSharedProperties) { Name = name };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddSharedProperty(string name, DataType type)
+        {
+            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = type };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddSharedProperty(string name, EnumDataType type, uint length, uint accuracy)
+        {
+            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddSharedPropertyString(string name, uint length)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
+            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = dt };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddSharedPropertyNumerical(string name, uint length, uint accuracy)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
+            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = dt };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            this.GroupSharedProperties.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupListDocuments.RemoveMarkedForDeletionIfNewObjects();
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            this.GroupSharedProperties.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupListDocuments.RemoveMarkedForDeletionAndNewFlags();
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
     }
 }

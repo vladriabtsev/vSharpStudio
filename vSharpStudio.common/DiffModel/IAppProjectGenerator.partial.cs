@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppProjectGenerator
+    public partial interface IAppProjectGenerator : IObjectAnnotatable
     {
         IvPluginDbConnStringGenerator GetDbConnStringGenerator();
     }

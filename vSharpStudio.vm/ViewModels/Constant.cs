@@ -125,6 +125,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -137,6 +139,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -149,6 +153,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         //partial void OnIsHasMarkedForDeletionChanged()
         //{
+        //    if (this.IsNotNotifying)
+        //        return;
         //    if (this.IsHasMarkedForDeletion)
         //    {
         //        (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -161,6 +167,8 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //partial void OnIsHasNewChanged()
         //{
+        //    if (this.IsNotNotifying)
+        //        return;
         //    if (this.IsHasNew)
         //    {
         //        (this.Parent as INewAndDeleteion).IsHasNew = true;

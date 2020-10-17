@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
 using vSharpStudio.common;
@@ -32,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
             this.ListGuidsRenamedObjects = new List<string>();
-            base.RunThroughConfig(curr, prev, old, (visitor, obj) =>
+            base.RunThroughConfig(this.DiffAnnotatedConfig, prev, old, (visitor, obj) =>
             {
                 if (obj is IGuid)
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -34,9 +35,14 @@ namespace vSharpStudio.vm.ViewModels
             this.ListAppSolutions.OnAddingAction = (t) => {
                 t.IsNew = true;
             };
-            //this.ListAppSolutions.OnAddedAction = (t) =>
-            //{
-            //};
+            this.ListAppSolutions.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListAppSolutions.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
         }
 
         [PropertyOrderAttribute(11)]
@@ -119,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListAppSolutions)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -127,6 +133,31 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
+        }
+
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListAppSolutions.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListAppSolutions.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListAppSolutions)
+            {
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
     }

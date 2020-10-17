@@ -41,6 +41,8 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsMarkedForDeletion { get { return false; } set { } }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -53,6 +55,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -94,6 +98,18 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            this.GroupRoles.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupViewForms.RemoveMarkedForDeletionIfNewObjects();
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            this.GroupRoles.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupViewForms.RemoveMarkedForDeletionAndNewFlags();
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
     }
 }

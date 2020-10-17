@@ -269,7 +269,7 @@ namespace vSharpStudio.common
                 {
                     tt.Value.ReferencedObject = this.DicNodesWithReferences[tt.Key].NodeObject;
                     var md = new ModelNode() { NodeObject = t.Value.NodeObject };
- //                   this.DicNodesWithReferences[tt.Key].DicReferecedFromNodes[t.Key] = md;
+                    //                   this.DicNodesWithReferences[tt.Key].DicReferecedFromNodes[t.Key] = md;
                 }
             }
             //var res = new List<IGuid>();
@@ -339,6 +339,7 @@ namespace vSharpStudio.common
             this.BeginVisit(this.currModel);
 
             //TODO change visiting to visit object with references to other objects after visiting referenced objects
+
 
             #region Common
             this.BeginVisit(currModel.GroupCommon);
@@ -483,22 +484,131 @@ namespace vSharpStudio.common
         /// Create extended config model with deleted nodes.
         /// </summary>
         /// <param name="curr">Current config or clone</param>
-        /// <param name="prev">Previous version of config</param>
-        /// <param name="old">Oldest version of config</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        protected void RunThroughConfig(IConfig curr, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
+        public void RunThroughConfig(IConfig curr, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
         {
             this._act = act;
             this.currCfg = curr;
 
             this.BeginVisit(this.currCfg);
 
+            #region Apps
+            this.BeginVisit(this.currCfg.GroupAppSolutions);
+            this.BeginVisit(this.currCfg.GroupAppSolutions.ListAppSolutions);
+            foreach (var t in this.currCfg.GroupAppSolutions.ListAppSolutions)
+            {
+                this.BeginVisit(t);
+                if (_act != null)
+                    _act(this, t);
+                this.BeginVisit(t.ListAppProjects);
+                foreach (var tt in t.ListAppProjects)
+                {
+                    this.BeginVisit(tt);
+                    if (_act != null)
+                        _act(this, tt);
+                    this.BeginVisit(tt.ListAppProjectGenerators);
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        this.BeginVisit(ttt);
+                        if (_act != null)
+                            _act(this, ttt);
+                        this.EndVisit(ttt);
+                    }
+                    this.EndVisit(tt);
+                }
+                this.EndVisit(t);
+            }
+            this.EndVisit(this.currCfg.GroupAppSolutions);
+            #endregion Apps
+
+            #region GroupConfigLinks
+            this.BeginVisit(this.currCfg.GroupConfigLinks);
+            this.BeginVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);
+            foreach (var t in this.currCfg.GroupConfigLinks.ListBaseConfigLinks)
+            {
+                this.BeginVisit(t);
+                if (_act != null)
+                    _act(this, t);
+                this.EndVisit(t);
+            }
+            this.EndVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);
+            this.EndVisit(this.currCfg.GroupConfigLinks);
+            #endregion GroupConfigLinks
+
             this.RunThroughConfig(this.currCfg.Model, act);
 
             this.EndVisit(this.currCfg);
 
             this.currCfg = null;
+        }
+
+        protected virtual void EndVisit(IGroupListBaseConfigLinks groupConfigLinks)
+        {
+        }
+
+        protected virtual void EndVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks)
+        {
+        }
+
+        protected virtual void EndVisit(IBaseConfigLink t)
+        {
+        }
+
+        protected virtual void BeginVisit(IBaseConfigLink t)
+        {
+        }
+
+        protected virtual void BeginVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks)
+        {
+        }
+
+        protected virtual void BeginVisit(IGroupListBaseConfigLinks groupConfigLinks)
+        {
+        }
+
+        protected virtual void EndVisit(IAppProjectGenerator ttt)
+        {
+        }
+
+        protected virtual void BeginVisit(IAppProjectGenerator ttt)
+        {
+        }
+
+        protected virtual void BeginVisit(IEnumerable<IAppProjectGenerator> listAppProjectGenerators)
+        {
+        }
+
+        protected virtual void EndVisit(IAppProject tt)
+        {
+        }
+
+        protected virtual void BeginVisit(IAppProject tt)
+        {
+        }
+
+        protected virtual void BeginVisit(IEnumerable<IAppProject> listAppProjects)
+        {
+        }
+
+        protected virtual void EndVisit(IAppSolution t)
+        {
+        }
+
+        protected virtual void BeginVisit(IAppSolution t)
+        {
+        }
+
+        protected virtual void BeginVisit(IEnumerable<IAppSolution> listAppSolutions)
+        {
+        }
+
+        protected virtual void EndVisit(IGroupListAppSolutions groupAppSolutions)
+        {
+        }
+
+        protected virtual void BeginVisit(IGroupListAppSolutions groupAppSolutions)
+        {
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -37,10 +38,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            //this.ListDocuments.OnRemovedAction = (t) =>
-            //{
-            //    var cfg = this.GetConfig();
-            //};
+            this.ListDocuments.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListDocuments.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
         }
         public Document AddDocument(string name)
         {
@@ -75,6 +80,8 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsMarkedForDeletion { get { return false; } set { } }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -87,6 +94,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -116,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListDocuments)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -126,6 +135,29 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         #endregion Tree operations
-
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListDocuments.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListDocuments.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListDocuments)
+            {
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
+        }
     }
 }

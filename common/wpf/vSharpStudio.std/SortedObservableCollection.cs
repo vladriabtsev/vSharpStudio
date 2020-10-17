@@ -122,6 +122,14 @@ namespace ViewModelBase
 
         #endregion IMove
 
+        public new void Clear()
+        {
+            if (OnClearingAction != null)
+                OnClearingAction();
+            base.Clear();
+            if (OnClearedAction != null)
+                OnClearedAction();
+        }
         public new void Add(T item)
         {
             this.Add(item, 0);
@@ -158,6 +166,19 @@ namespace ViewModelBase
                 return res;
             }
         }
+        public new void RemoveAt(int indx)
+        {
+            lock (_lock)
+            {
+                var item = this[indx];
+                if (OnRemovingAction != null)
+                    OnRemovingAction(item);
+                base.RemoveAt(indx);
+                if (OnRemovedAction != null)
+                    OnRemovedAction(item);
+                InternalSort();
+            }
+        }
         public void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
             lock (_lock)
@@ -173,6 +194,8 @@ namespace ViewModelBase
                 InternalSort();
             }
         }
+        public Action OnClearingAction;
+        public Action OnClearedAction;
         public Action<T> OnRemovedAction { get; set; }
         public Action<T> OnAddedAction;
         public Action<T> OnRemovingAction { get; set; }

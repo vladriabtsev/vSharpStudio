@@ -116,6 +116,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -128,6 +130,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -140,6 +144,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -152,6 +158,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -207,6 +215,50 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
             this.SetSelected(node);
             return node;
+        }
+        public Property AddProperty(string name)
+        {
+            var node = new Property(this.GroupProperties) { Name = name };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddProperty(string name, DataType type)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, DataType = type };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyString(string name, uint length)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
+            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyNumerical(string name, uint length, uint accuracy)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
+            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            this.GroupProperties.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupPropertiesTabs.RemoveMarkedForDeletionIfNewObjects();
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            this.GroupProperties.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupPropertiesTabs.RemoveMarkedForDeletionAndNewFlags();
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

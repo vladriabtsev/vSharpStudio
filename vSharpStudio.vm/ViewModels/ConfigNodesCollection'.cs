@@ -74,7 +74,17 @@ namespace vSharpStudio.vm.ViewModels
         public new bool Remove(T item)
         {
             this.cfg.DicNodes.Remove(item.Guid);
-            return base.Remove(item);
+            int indx = -1;
+            foreach(var t in this)
+            {
+                indx++;
+                if (t.Guid==item.Guid)
+                {
+                    base.RemoveAt(indx);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

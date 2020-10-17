@@ -23,12 +23,12 @@ namespace ViewModelBase
                     return canExecute(o);
                 });
         }
-        public static vCommand CreateAsync(Func<object, Task> execute, Predicate<object> canExecute)
+        public static vCommand CreateAsync(Func<object, Task> executeAsync, Predicate<object> canExecute)
         {
             return new vCommand(
                 (o) =>
                 {
-                    return execute(o);
+                    return executeAsync(o);
                 },
                 (o) =>
                 {

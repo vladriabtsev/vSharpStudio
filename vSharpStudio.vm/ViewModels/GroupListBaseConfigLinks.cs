@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -41,6 +42,14 @@ namespace vSharpStudio.vm.ViewModels
             this.ListBaseConfigLinks.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+            };
+            this.ListBaseConfigLinks.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListBaseConfigLinks.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
             };
         }
 
@@ -100,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListBaseConfigLinks)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -108,6 +117,30 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListBaseConfigLinks.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListBaseConfigLinks.Remove(t);
+                    continue;
+                }
+                //t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListBaseConfigLinks)
+            {
+                //t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

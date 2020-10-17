@@ -361,14 +361,20 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RemoveMarkedForDeletionIfNewObjects()
         {
-            var viz = new ModelVisitorRemoveMarkedIfNewObjects();
-            viz.RunThroughConfig(this.Model);
+            //var viz = new ModelVisitorRemoveMarkedIfNewObjects();
+            //viz.RunThroughConfig(this);
+            this.GroupAppSolutions.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupConfigLinks.RemoveMarkedForDeletionIfNewObjects();
+            this.Model.RemoveMarkedForDeletionIfNewObjects();
         }
         public void RemoveMarkedForDeletionAndNewFlags()
         {
             this.RemoveMarkedForDeletionIfNewObjects();
-            var viz = new ModelVisitorRemoveMarkedAndNewFlags();
-            viz.RunThroughConfig(this.Model);
+            //var viz = new ModelVisitorRemoveMarkedAndNewFlags();
+            //viz.RunThroughConfig(this.Model);
+            this.GroupAppSolutions.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupConfigLinks.RemoveMarkedForDeletionAndNewFlags();
+            this.Model.RemoveMarkedForDeletionAndNewFlags();
         }
     }
 }

@@ -32,6 +32,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -44,6 +46,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;

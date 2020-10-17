@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -34,6 +35,14 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRoles.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+            };
+            this.ListRoles.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListRoles.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
             };
         }
 
@@ -69,6 +78,8 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsMarkedForDeletion { get { return false; } set { } }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -81,6 +92,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -110,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListRoles)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -120,6 +133,29 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         #endregion Tree operations
-
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListRoles.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListRoles.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListRoles)
+            {
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
+        }
     }
 }

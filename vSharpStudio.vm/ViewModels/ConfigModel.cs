@@ -507,6 +507,26 @@ namespace vSharpStudio.vm.ViewModels
         //          }
         //      }
         //      private object _TestSettings4;
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            this.GroupCatalogs.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupCommon.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupConstants.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupDocuments.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupEnumerations.RemoveMarkedForDeletionIfNewObjects();
+            this.GroupJournals.RemoveMarkedForDeletionIfNewObjects();
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            this.GroupCatalogs.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupCommon.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupConstants.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupDocuments.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupEnumerations.RemoveMarkedForDeletionAndNewFlags();
+            this.GroupJournals.RemoveMarkedForDeletionAndNewFlags();
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
+        }
     }
     //public class Test1
     //{

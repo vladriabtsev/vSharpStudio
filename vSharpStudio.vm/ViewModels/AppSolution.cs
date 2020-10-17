@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -227,6 +228,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -239,6 +242,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -251,6 +256,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -263,6 +270,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -290,7 +299,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListAppProjects)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -342,5 +351,29 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListAppProjects.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListAppProjects.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListAppProjects)
+            {
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
+        }
     }
 }

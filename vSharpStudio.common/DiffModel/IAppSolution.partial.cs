@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppSolution
+    public partial interface IAppSolution : IObjectAnnotatable
     {
     }
 }

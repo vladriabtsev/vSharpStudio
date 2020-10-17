@@ -218,12 +218,13 @@ namespace vSharpStudio.Unit
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
 
             var mod = new ModelVisitorForAnnotation();
-            var cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.AreEqual(c1, (Constant)cfg.DicNodes[c1.Guid]);
-            Assert.IsTrue(c1.IsNew());
-            Assert.IsFalse(c1.IsDeleted());
-            Assert.IsFalse(c1.IsDeprecated());
-            Assert.IsFalse(c1.IsRenamed());
+            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            var c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.AreNotEqual(c1, (Constant)cfgDiff.DicNodes[c1.Guid]);
+            Assert.IsTrue(c1Diff.IsNew());
+            Assert.IsFalse(c1Diff.IsDeleted());
+            Assert.IsFalse(c1Diff.IsDeprecated());
+            Assert.IsFalse(c1Diff.IsRenamed());
 
             // current changes are saved
             // no stable version (prev is null)
@@ -232,45 +233,50 @@ namespace vSharpStudio.Unit
             vm.OnFormLoaded();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
-            mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(c1.IsNew());
-            Assert.IsFalse(c1.IsDeleted());
-            Assert.IsFalse(c1.IsDeprecated());
-            Assert.IsFalse(c1.IsRenamed());
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c1Diff.IsNew());
+            Assert.IsFalse(c1Diff.IsDeleted());
+            Assert.IsFalse(c1Diff.IsDeprecated());
+            Assert.IsFalse(c1Diff.IsRenamed());
 
             // first stable version (prev not null, but oldest is null)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsFalse(c1.IsNew());
-            Assert.IsFalse(c1.IsDeleted());
-            Assert.IsFalse(c1.IsDeprecated());
-            Assert.IsFalse(c1.IsRenamed());
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsFalse(c1Diff.IsNew());
+            Assert.IsFalse(c1Diff.IsDeleted());
+            Assert.IsFalse(c1Diff.IsDeprecated());
+            Assert.IsFalse(c1Diff.IsRenamed());
 
             ((Constant)vm.Config.DicNodes[c1.Guid]).Name = "c11";
             vm.Config.Model.GroupConstants.ListConstants.Remove((Constant)vm.Config.DicNodes[c2.Guid]);
 
             Assert.AreEqual(2, vm.Config.Model.GroupConstants.Count());
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.AreEqual(3, cfg.Model.GroupConstants.Count());
-            Assert.IsFalse(c1.IsNew());
-            Assert.IsFalse(c1.IsDeleted());
-            Assert.IsFalse(c1.IsDeprecated());
-            Assert.IsTrue(c1.IsRenamed());
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(3, cfgDiff.Model.GroupConstants.Count());
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsFalse(c1Diff.IsNew());
+            Assert.IsFalse(c1Diff.IsDeleted());
+            Assert.IsFalse(c1Diff.IsDeprecated());
+            Assert.IsTrue(c1Diff.IsRenamed());
 
-            Assert.IsFalse(c2.IsNew());
-            Assert.IsFalse(c2.IsDeleted());
-            Assert.IsFalse(c2.IsDeprecated());
-            Assert.IsFalse(c2.IsRenamed());
+            var c2Diff = (Constant)cfgDiff.DicNodes[c2.Guid];
+            Assert.IsFalse(c2Diff.IsNew());
+            Assert.IsFalse(c2Diff.IsDeleted());
+            Assert.IsTrue(c2Diff.IsDeprecated());
+            Assert.IsFalse(c2Diff.IsRenamed());
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
             mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsFalse(c1.IsNew());
-            Assert.IsFalse(c1.IsDeleted());
-            Assert.IsFalse(c1.IsDeprecated());
-            Assert.IsFalse(c1.IsRenamed());
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsFalse(c1Diff.IsNew());
+            Assert.IsFalse(c1Diff.IsDeleted());
+            Assert.IsFalse(c1Diff.IsDeprecated());
+            Assert.IsTrue(c1Diff.IsRenamed());
         }
         [TestMethod]
         public void Main011_Diff_Constants()
@@ -289,11 +295,14 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
 
             var mod = new ModelVisitorForAnnotation();
-            var cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 3);
-            Assert.IsTrue(c1.IsNew());
-            Assert.IsTrue(c2.IsNew());
-            Assert.IsTrue(c3.IsNew());
+            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.IsTrue(cfgDiff.Model.GroupConstants.ListConstants.Count() == 3);
+            var c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c1Diff.IsNew());
+            var c2Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c2Diff.IsNew());
+            var c3Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c3Diff.IsNew());
 
             // create stable version (first prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
@@ -302,29 +311,34 @@ namespace vSharpStudio.Unit
             var c4 = vm.Config.Model.GroupConstants.AddConstant("c4");
             vm.Config.Model.GroupConstants.Remove(c2);
 
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.AreEqual(4, cfg.Model.GroupConstants.ListConstants.Count());
-            Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(c1.IsRenamed());
-            var cc2 = (from p in cfg.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(4, cfgDiff.Model.GroupConstants.ListConstants.Count());
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(!c1Diff.IsNew());
+            Assert.IsTrue(c1Diff.IsRenamed());
+            var cc2 = (from p in cfgDiff.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
-            Assert.IsTrue(!c3.IsNew());
-            Assert.IsTrue(c3.IsCanLooseData());
-            Assert.IsTrue(c4.IsNew());
+            c3Diff = (Constant)cfgDiff.DicNodes[c3.Guid];
+            Assert.IsTrue(!c3Diff.IsNew());
+            Assert.IsTrue(c3Diff.IsCanLooseData());
+            var c4Diff = (Constant)cfgDiff.DicNodes[c4.Guid];
+            Assert.IsTrue(c4Diff.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.AreEqual(4, cfg.Model.GroupConstants.ListConstants.Count());
-            Assert.IsTrue(!c1.IsRenamed());
-            cc2 = (from p in cfg.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(4, cfgDiff.Model.GroupConstants.ListConstants.Count());
+            c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(!c1Diff.IsRenamed());
+            cc2 = (from p in cfgDiff.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(!c4.IsNew());
+            c4Diff = (Constant)cfgDiff.DicNodes[c4.Guid];
+            Assert.IsTrue(!c4Diff.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.AreEqual(3, cfg.Model.GroupConstants.ListConstants.Count()); // deleted is removed
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.AreEqual(3, cfgDiff.Model.GroupConstants.ListConstants.Count()); // deleted is removed
         }
         [TestMethod]
         public void Main012_Diff_Enumerations()
@@ -347,29 +361,40 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
 
             var mod = new ModelVisitorForAnnotation();
-            var cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
 
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 3);
-            Assert.IsTrue(c1.IsNew());
-            Assert.IsTrue(p1.IsNew());
-            Assert.IsTrue(p2.IsNew());
-            Assert.IsTrue(p3.IsNew());
-            Assert.IsTrue(c2.IsNew());
-            Assert.IsTrue(c3.IsNew());
+            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3);
+            var c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c1Diff.IsNew());
+            var p1Diff = (EnumerationPair)cfgDiff.DicNodes[p1.Guid];
+            Assert.IsTrue(p1Diff.IsNew());
+            var p2Diff = (EnumerationPair)cfgDiff.DicNodes[p2.Guid];
+            Assert.IsTrue(p2Diff.IsNew());
+            var p3Diff = (EnumerationPair)cfgDiff.DicNodes[p3.Guid];
+            Assert.IsTrue(p3Diff.IsNew());
+            var c2Diff = (Enumeration)cfgDiff.DicNodes[c2.Guid];
+            Assert.IsTrue(c2Diff.IsNew());
+            var c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
+            Assert.IsTrue(c3Diff.IsNew());
 
             vm.CommandConfigSave.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 3);
-            Assert.IsTrue(c1.IsNew());
-            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p1).IsNew());
-            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p2).IsNew());
-            Assert.IsTrue(vm.Config.GetDiffEnumerationPair(p3).IsNew());
-            Assert.IsTrue(c2.IsNew());
-            Assert.IsTrue(c3.IsNew());
-
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c2.Guid));
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c1.Guid));
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c2.Guid));
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c3.Guid));
+            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3);
+            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsTrue(c1Diff.IsNew());
+            p1Diff = (EnumerationPair)cfgDiff.DicNodes[p1.Guid];
+            Assert.IsTrue(p1Diff.IsNew());
+            p2Diff = (EnumerationPair)cfgDiff.DicNodes[p2.Guid];
+            Assert.IsTrue(p2Diff.IsNew());
+            p3Diff = (EnumerationPair)cfgDiff.DicNodes[p3.Guid];
+            Assert.IsTrue(p3Diff.IsNew());
+            c2Diff = (Enumeration)cfgDiff.DicNodes[c2.Guid];
+            Assert.IsTrue(c2Diff.IsNew());
+            c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
+            Assert.IsTrue(c3Diff.IsNew());
 
             // create stable version (first prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
@@ -378,40 +403,309 @@ namespace vSharpStudio.Unit
             var c4 = vm.Config.Model.GroupEnumerations.AddEnumeration("c4", EnumEnumerationType.INTEGER_VALUE);
             vm.Config.Model.GroupEnumerations.Remove(c2);
 
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 4);
-            Assert.IsTrue(!c1.IsNew());
-            Assert.IsTrue(c1.IsRenamed());
-            var cc2 = (from p in cfg.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c1.Guid));
+            Assert.IsFalse(!cfgDiff.DicNodes.ContainsKey(c2.Guid));
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c3.Guid));
+            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c4.Guid));
+            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 4);
+            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsFalse(c1Diff.IsNew());
+            Assert.IsTrue(c1Diff.IsRenamed());
+            var cc2 = (from p in cfgDiff.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
             Assert.IsTrue(cc2.IsDeprecated());
-            Assert.IsTrue(!c3.IsNew());
-            Assert.IsTrue(c4.IsNew());
-
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
-            Assert.IsTrue(!vm.Config.DicNodes.ContainsKey(c2.Guid));
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c4.Guid));
+            c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
+            Assert.IsFalse(c3Diff.IsNew());
+            var c4Diff = (Enumeration)cfgDiff.DicNodes[c4.Guid];
+            Assert.IsTrue(c4Diff.IsNew());
 
             // create next stable version (first oldest version, second prev version)
             vm.CommandConfigCreateStableVersion.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 4);
-            Assert.IsTrue(!c1.IsRenamed());
-            cc2 = (from p in cfg.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 4);
+            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
+            Assert.IsFalse(c1Diff.IsRenamed());
+            cc2 = (from p in cfgDiff.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
             Assert.IsTrue(!cc2.IsDeprecated());
             Assert.IsTrue(cc2.IsDeleted());
-            Assert.IsTrue(!c4.IsNew());
+            c4Diff = (Enumeration)cfgDiff.DicNodes[c4.Guid];
+            Assert.IsFalse(c4Diff.IsNew());
 
             vm.CommandConfigCreateStableVersion.Execute(null);
-            cfg = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ListEnumerations.Count() == 3); // deleted is removed
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3); // deleted is removed
+        }
+        [TestMethod]
+        public void Main014_HasMarkedAndNewPropagation()
+        {
+            // initial
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            #region constant
+            var cn1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            #region new
+            vm.Config.Model.GroupConstants.ListConstants.Remove(cn1);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            cn1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            cn1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            cn1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
+
+            #region deletion
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            cn1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            cn1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            #endregion deletion
+            vm.Config.Model.GroupConstants.ListConstants.Clear();
+            #endregion constant
+
+            #region enumeration
+            var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            #region new
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c1);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            c1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            var p1 = c1.AddEnumerationPair("e1", "123");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            p1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            p1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            c1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
+
+            #region deletion
+            c1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            c1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            p1 = c1.AddEnumerationPair("e1", "123");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            p1.IsMarkedForDeletion = true;
+            Assert.IsTrue(c1.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+
+            p1.IsMarkedForDeletion = false;
+            Assert.IsFalse(c1.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Clear();
+            #endregion enumeration
+
+            #region catalog
+            var c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            #region new
+            vm.Config.Model.GroupCatalogs.ListCatalogs.Remove(c2);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            c2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            var p2 = c2.AddProperty("p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            var pt2 = c2.AddPropertiesTab("kuku2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            pt2.IsNew = false;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            pt2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            var pt2p2 = pt2.AddProperty("pt2p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            pt2.IsNew = false;
+            pt2p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            pt2p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            c2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
+
+            #region deletion
+            c2.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            c2.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2 = c2.AddPropertiesTab("kuku");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2.IsMarkedForDeletion = true;
+            Assert.IsTrue(c2.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2.IsMarkedForDeletion = false;
+            Assert.IsFalse(c2.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupCatalogs.ListCatalogs.Clear();
+            #endregion catalog
+
+            #region document
+            var d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            #region new
+            vm.Config.Model.GroupDocuments.GroupListDocuments.Remove(d1);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            d1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            var dp1 = d1.AddProperty("dp1");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            dp1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            //dp1.IsNew = true;
+            //Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            pt2 = d1.AddPropertiesTab("kuku2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            pt2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            vm.Config.Model.RemoveMarkedForDeletionAndNewFlags();
+            pt2p2 = pt2.AddProperty("pt2p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            pt2p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+
+            pt2p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+
+            d1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
+
+            #region deletion
+            d1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+
+            d1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2 = d1.AddPropertiesTab("kuku");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2.IsMarkedForDeletion = true;
+            Assert.IsTrue(d1.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+
+            pt2.IsMarkedForDeletion = false;
+            Assert.IsFalse(d1.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupDocuments.GroupListDocuments.ListDocuments.Clear();
+            #endregion document
         }
         [TestMethod]
         public void Main015_Delete_New_Enumerations()
         {
             // empty config
             this.remove_config();
-            var vm = new MainPageVM(true);
+            var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
@@ -444,6 +738,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
+            // mark for deletion
             c3.IsMarkedForDeletion = true;
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
@@ -455,23 +750,32 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
+            Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
+            Debug.Assert(vm.Config == vm.Config.Model.Parent);
             vm.CommandConfigCurrentUpdate.Execute(null);
+            Debug.Assert(vm.Config == vm.Config.Model.Parent);
+            Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect new objects (IsNew) with IsMarkedForDeletion and  will be deleted in DB and model
-            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
+            // mark for deletion
             c3.IsMarkedForDeletion = true;
             c2.IsMarkedForDeletion = true;
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
+            Debug.Assert(vm.Config == vm.Config.Model.Parent);
             vm.CommandConfigCreateStableVersion.Execute(null);
+            Debug.Assert(vm.Config == vm.Config.Model.Parent);
+            Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasNew);
-            Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
@@ -479,20 +783,6 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCurrentUpdate.Execute(null);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c3);
-            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c2);
-            c1.ListEnumerationPairs.Remove(p1);
-            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-            Assert.IsTrue(vm.Config.Model.IsHasNew);
-
-            vm.CommandConfigCurrentUpdate.Execute(null);
-            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-            Assert.IsTrue(vm.Config.Model.IsHasNew);
-
-            var mod = new ModelVisitorForAnnotation();
-            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig);
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c2.Guid));
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(p1.Guid));
         }
         //[TestMethod]
         //public void Main013_Diff_WorkWithAppGeneratorSettings()

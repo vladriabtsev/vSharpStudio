@@ -1,9 +1,11 @@
-﻿using System;
+﻿#define Async
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Configuration;
+using System.Diagnostics;
 using System.DirectoryServices;
 using System.IO;
 using System.Linq;
@@ -985,8 +987,13 @@ namespace vSharpStudio.ViewModels
             {
                 if (this._CommandConfigCurrentUpdate == null)
                 {
+#if Async
                     this._CommandConfigCurrentUpdate = vCommand.CreateAsync(
                         async (o) =>
+#else
+                    this._CommandConfigCurrentUpdate = vCommand.Create(
+                        (o) =>
+#endif
                         {
                             this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
                             TestTransformation tst = o as TestTransformation;
@@ -995,7 +1002,11 @@ namespace vSharpStudio.ViewModels
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
+#if Async
                                 await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+#else
+                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+#endif
                                 this.cancellationTokenSource = null;
                             }
                             catch (CancellationException ex)
@@ -1026,14 +1037,20 @@ namespace vSharpStudio.ViewModels
         {
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
+                if (ts.IsMarkedForDeletion)
+                    continue;
                 if (cancellationToken.IsCancellationRequested)
                     throw new CancellationException();
                 foreach (var tp in ts.ListAppProjects)
                 {
+                    if (tp.IsMarkedForDeletion)
+                        continue;
                     // app settings path, 
                     var dicAppSettings = new Dictionary<string, StringBuilder>();
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
+                        if (tpg.IsMarkedForDeletion)
+                            continue;
                         foreach (var tg in tpg.ListGenerators)
                         {
                             if (tg.Guid != tpg.PluginGeneratorGuid)
@@ -1164,7 +1181,11 @@ namespace vSharpStudio.ViewModels
         //    // that might complete very quickly.
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
+#if Async
         public async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
+#else
+        public void UpdateCurrentVersion(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
+#endif
         {
             TestTransformation tst = parm as TestTransformation;
             ProgressVM progress = new ProgressVM();
@@ -1175,7 +1196,7 @@ namespace vSharpStudio.ViewModels
                 using (Transaction.Create(am))
                 {
                     // I. Model validation (no need for UNDO)
-                    #region
+#region
                     progress.SubName = "Model validation";
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     if (this._Config.CountErrors > 0)
@@ -1193,12 +1214,12 @@ namespace vSharpStudio.ViewModels
                     progress.Progress = 5;
                     progress.SubProgress = 100;
                     onProgress(progress);
-                    #endregion
+#endregion
 
                     // II. Rename analysis
-                    #region
+#region
                     var mvr = new ModelVisitorForAnnotation();
-                    mvr.GetDiffAnnotatedConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
+                    var diffConfig = mvr.GetDiffAnnotatedConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
                     bool isNeedRenames = false;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -1224,10 +1245,10 @@ namespace vSharpStudio.ViewModels
                         if (isNeedRenames)
                             break;
                     }
-                    #endregion
+#endregion
 
                     // III. Build all solutions. Exception if not compilible (no need for UNDO)
-                    #region
+#region
                     if (isNeedRenames)
                     {
                         progress.SubName = "Check current code compilation";
@@ -1249,10 +1270,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnBuildValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
-                    #endregion
+#endregion
 
                     // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                    #region
+#region
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
                         foreach (var tp in ts.ListAppProjects)
@@ -1276,10 +1297,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnRenamed)
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
-                    #endregion
+#endregion
 
                     // V. Apply new DB schema (no need for UNDO ???) Move into VI step
-                    #region
+#region
                     //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     //{
                     //    if (cancellationToken.IsCancellationRequested)
@@ -1292,11 +1313,11 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));
-                    #endregion
+#endregion
 
                     // VI. Generate code (no need for UNDO)
-                    #region
-                    this.GenerateCode(cancellationToken, mvr.DiffAnnotatedConfig);
+#region
+                    this.GenerateCode(cancellationToken, diffConfig);
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1305,6 +1326,9 @@ namespace vSharpStudio.ViewModels
 
                     // VII. Update history CurrentConfig (need UNDO)
                     #region
+#if Async
+#else
+#endif
                     var update_history = new CallMethodAction(
                       () =>
                       {
@@ -1319,8 +1343,11 @@ namespace vSharpStudio.ViewModels
                       () =>
                       {
                       });
+#if Async
+#else
+#endif
                     am.Execute(update_history);
-                    #endregion
+#endregion
                 }
             }
             //catch(Exception ex)
@@ -1463,7 +1490,7 @@ namespace vSharpStudio.ViewModels
 
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code
-            this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
             this.pconfig_history.CurrentConfig = proto;
             if (this.pconfig_history.PrevStableConfig != null)
@@ -1481,9 +1508,9 @@ namespace vSharpStudio.ViewModels
                 }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
         }
 
-        #endregion Main
+#endregion Main
 
-        #region ConfigTree
+#region ConfigTree
 
         public vCommand CommandAddNew
         {
@@ -1605,7 +1632,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandSelectionUp;
 
-        #endregion ConfigTree
+#endregion ConfigTree
 
         public vCommand CommandFromErrorToSelection
         {
@@ -1626,7 +1653,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandFromErrorToSelection;
 
-        #region ConnectionString
+#region ConnectionString
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
@@ -1803,6 +1830,6 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
         // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
-        #endregion
+#endregion
     }
 }

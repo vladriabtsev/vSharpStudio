@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -28,6 +29,14 @@ namespace vSharpStudio.vm.ViewModels
             };
             this.ListEnumerationPairs.OnAddedAction = (t) => {
                 t.OnAdded();
+            };
+            this.ListEnumerationPairs.OnRemovedAction = (t) => {
+                (this.Parent as INewAndDeleteion).GetIsHasMarkedForDeletion();
+                (this.Parent as INewAndDeleteion).GetIsHasNew();
+            };
+            this.ListEnumerationPairs.OnClearedAction = () => {
+                (this.Parent as INewAndDeleteion).GetIsHasMarkedForDeletion();
+                (this.Parent as INewAndDeleteion).GetIsHasNew();
             };
         }
         public void OnAdded()
@@ -148,6 +157,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -160,6 +171,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -170,30 +183,34 @@ namespace vSharpStudio.vm.ViewModels
                 p.GetIsHasNew();
             }
         }
-        //partial void OnIsHasMarkedForDeletionChanged()
-        //{
-        //    if (this.IsHasMarkedForDeletion)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasMarkedForDeletion();
-        //    }
-        //}
-        //partial void OnIsHasNewChanged()
-        //{
-        //    if (this.IsHasNew)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasNew = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasNew();
-        //    }
-        //}
+        partial void OnIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this.IsHasMarkedForDeletion)
+            {
+                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasMarkedForDeletion();
+            }
+        }
+        partial void OnIsHasNewChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this.IsHasNew)
+            {
+                (this.Parent as INewAndDeleteion).IsHasNew = true;
+            }
+            else
+            {
+                var p = (this.Parent as INewAndDeleteion);
+                p.GetIsHasNew();
+            }
+        }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListEnumerationPairs)
@@ -211,7 +228,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListEnumerationPairs)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -238,6 +255,30 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Enumeration.DefaultName, node, (this.Parent as GroupListEnumerations).ListEnumerations);
             this.SetSelected(node);
             return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListEnumerationPairs.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListEnumerationPairs.Remove(t);
+                    continue;
+                }
+                //t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListEnumerationPairs)
+            {
+                //t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

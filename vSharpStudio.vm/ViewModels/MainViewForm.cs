@@ -99,6 +99,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -111,6 +113,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -162,7 +166,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             //foreach (var t in this.ListDocuments)
             //{
-            //    if (t.IsHasNew || t.GetIsHasNew())
+            //    if (t.IsNew || t.IsHasNew || t.GetIsHasNew())
             //    {
             //        this.IsHasNew = true;
             //        return true;
@@ -189,6 +193,30 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(MainViewForm.DefaultName, node, (this.Parent as GroupListMainViewForms).ListMainViewForms);
             this.SetSelected(node);
             return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            //var tlst = this.ListMainViewForms.ToList();
+            //foreach (var t in tlst)
+            //{
+            //    if (t.IsMarkedForDeletion && t.IsNew)
+            //    {
+            //        this.ListMainViewForms.Remove(t);
+            //        continue;
+            //    }
+            //    t.RemoveMarkedForDeletionIfNewObjects();
+            //}
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            //foreach (var t in this.ListMainViewForms)
+            //{
+            //    t.RemoveMarkedForDeletionAndNewFlags();
+            //    t.IsNew = false;
+            //    t.IsMarkedForDeletion = false;
+            //}
+            //Debug.Assert(!this.IsHasMarkedForDeletion);
+            //Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

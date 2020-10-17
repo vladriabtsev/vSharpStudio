@@ -90,6 +90,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -102,6 +104,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -114,6 +118,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -126,6 +132,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -153,7 +161,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListDocuments)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -178,6 +186,30 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Journal.DefaultName, node, (this.Parent as GroupListJournals).ListJournals);
             this.SetSelected(node);
             return node;
+        }
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            //var tlst = this.ListDocuments.ToList();
+            //foreach (var t in tlst)
+            //{
+            //    if (t.IsMarkedForDeletion && t.IsNew)
+            //    {
+            //        this.ListJournals.Remove(t);
+            //        continue;
+            //    }
+            //    t.RemoveMarkedForDeletionIfNewObjects();
+            //}
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            //foreach (var t in this.ListJournals)
+            //{
+            //    t.RemoveMarkedForDeletionAndNewFlags();
+            //    t.IsNew = false;
+            //    t.IsMarkedForDeletion = false;
+            //}
+            //Debug.Assert(!this.IsHasMarkedForDeletion);
+            //Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
 

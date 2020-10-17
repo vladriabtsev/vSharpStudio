@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -35,10 +36,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            //this.ListEnumerations.OnRemovedAction = (t) =>
-            //{
-            //    var cfg = this.GetConfig();
-            //};
+            this.ListEnumerations.OnRemovedAction = (t) => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
+            this.ListEnumerations.OnClearedAction = () => {
+                this.GetIsHasMarkedForDeletion();
+                this.GetIsHasNew();
+            };
         }
 
         #region Tree operations
@@ -82,6 +87,8 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsMarkedForDeletion { get { return false; } set { } }
         partial void OnIsHasMarkedForDeletionChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasMarkedForDeletion)
             {
                 (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
@@ -94,6 +101,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsHasNewChanged()
         {
+            if (this.IsNotNotifying)
+                return;
             if (this.IsHasNew)
             {
                 (this.Parent as INewAndDeleteion).IsHasNew = true;
@@ -123,7 +132,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.ListEnumerations)
             {
-                if (t.IsHasNew || t.GetIsHasNew())
+                if (t.IsNew || t.GetIsHasNew())
                 {
                     this.IsHasNew = true;
                     return true;
@@ -134,5 +143,29 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion Tree operations
+        public void RemoveMarkedForDeletionIfNewObjects()
+        {
+            var tlst = this.ListEnumerations.ToList();
+            foreach (var t in tlst)
+            {
+                if (t.IsMarkedForDeletion && t.IsNew)
+                {
+                    this.ListEnumerations.Remove(t);
+                    continue;
+                }
+                t.RemoveMarkedForDeletionIfNewObjects();
+            }
+        }
+        public void RemoveMarkedForDeletionAndNewFlags()
+        {
+            foreach (var t in this.ListEnumerations)
+            {
+                t.RemoveMarkedForDeletionAndNewFlags();
+                t.IsNew = false;
+                t.IsMarkedForDeletion = false;
+            }
+            Debug.Assert(!this.IsHasMarkedForDeletion);
+            Debug.Assert(!this.IsHasNew);
+        }
     }
 }

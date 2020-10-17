@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppProject
+    public partial interface IAppProject : IObjectAnnotatable
     {
         ITreeConfigNode Parent { get; }
     }
