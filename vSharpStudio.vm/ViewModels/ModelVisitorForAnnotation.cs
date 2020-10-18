@@ -4,32 +4,41 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
 using vSharpStudio.common;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public class ModelVisitorForAnnotation : DiffModelVisitorBase
     {
+        public static Action<Config> InitConfig;
         public List<string> ListGuidsRenamedObjects { get; private set; }
         public Config DiffAnnotatedConfig { get; set; }
         public Config GetDiffAnnotatedConfig(Config curr, IConfig prev, IConfig old)
         {
             this.DiffAnnotatedConfig = Config.Clone(null, curr);
-            foreach(var t in curr.DicActiveAppProjectGenerators)
+            ModelVisitorForAnnotation.InitConfig(this.DiffAnnotatedConfig);
+            var nv = new ModelVisitorNodeGenSettings();
+            nv.NodeGenSettingsApplyAction(this.DiffAnnotatedConfig, (p) =>
             {
-                this.DiffAnnotatedConfig.DicActiveAppProjectGenerators[t.Key] = t.Value;
-            }
-            foreach (var t in curr.DicGenNodeSettings)
-            {
-                this.DiffAnnotatedConfig.DicGenNodeSettings[t.Key] = t.Value;
-            }
-            foreach (var t in curr.DicNodes)
-            {
-                this.DiffAnnotatedConfig.DicNodes[t.Key] = t.Value;
-            }
-            this.DiffAnnotatedConfig.DicGenerators = curr.DicGenerators;
-            this.DiffAnnotatedConfig.DicPluginLists = curr.DicPluginLists;
-            this.DiffAnnotatedConfig.DicPlugins = curr.DicPlugins;
-            this.DiffAnnotatedConfig.AddAllAppGenSettingsVmsToNode();
+                p.RestoreNodeAppGenSettingsVm();
+            });
+
+            //foreach (var t in curr.DicActiveAppProjectGenerators)
+            //{
+            //    this.DiffAnnotatedConfig.DicActiveAppProjectGenerators[t.Key] = t.Value;
+            //}
+            //foreach (var t in curr.DicGenNodeSettings)
+            //{
+            //    this.DiffAnnotatedConfig.DicGenNodeSettings[t.Key] = t.Value;
+            //}
+            //foreach (var t in curr.DicNodes)
+            //{
+            //    this.DiffAnnotatedConfig.DicNodes[t.Key] = t.Value;
+            //}
+            //this.DiffAnnotatedConfig.DicGenerators = curr.DicGenerators;
+            //this.DiffAnnotatedConfig.DicPluginLists = curr.DicPluginLists;
+            //this.DiffAnnotatedConfig.DicPlugins = curr.DicPlugins;
+            //this.DiffAnnotatedConfig.AddAllAppGenSettingsVmsToNode();
 
 
             this.ListGuidsRenamedObjects = new List<string>();

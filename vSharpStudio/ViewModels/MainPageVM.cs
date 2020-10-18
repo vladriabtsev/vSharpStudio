@@ -53,13 +53,15 @@ namespace vSharpStudio.ViewModels
             : base(MainPageVMValidator.Validator)
         {
             _logger = Logger.CreateLogger<MainPageVM>();
+            ModelVisitorForAnnotation.InitConfig = this.InitConfig;
         }
         bool isLoadConfig;
         string configFile;
-        public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
+        //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
+        public MainPageVM(bool isLoadConfig, string configFile = null)
             : this()
         {
-            this.onImportsSatisfied = onImportsSatisfied;
+            //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
             this.configFile = configFile;
             this.Config = new Config();
@@ -293,28 +295,34 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
         private IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
-        private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
+        //private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
 
         public void OnImportsSatisfied()
         {
+            _logger.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
+            //if (this.onImportsSatisfied != null)
+            //{
+            //    this.onImportsSatisfied(this, this._plugins);
+            //}
+            InitConfig(this.Config);
+            if (this.onPluginsLoaded != null)
+                this.onPluginsLoaded();
+        }
+        public void InitConfig(Config cfg)
+        {
             try
             {
-                _logger.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
-                if (this.onImportsSatisfied != null)
-                {
-                    this.onImportsSatisfied(this, this._plugins);
-                }
                 List<PluginRow> lstGens = new List<PluginRow>();
-                this.Config.DicPlugins = new Dictionary<string, IvPlugin>();
+                cfg.DicPlugins = new Dictionary<string, IvPlugin>();
                 // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
                 foreach (var t in this._plugins)
                 {
-                    this.Config.DicPlugins[t.Value.Guid] = t.Value;
+                    cfg.DicPlugins[t.Value.Guid] = t.Value;
                     Plugin p = null;
                     bool is_found = false;
 
                     // attaching plugin
-                    foreach (var tt in this.Config.GroupPlugins.ListPlugins)
+                    foreach (var tt in cfg.GroupPlugins.ListPlugins)
                     {
                         if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                         {
@@ -329,8 +337,8 @@ namespace vSharpStudio.ViewModels
                     }
                     if (!is_found)
                     {
-                        p = new Plugin(this.Config.GroupPlugins, t.Value);
-                        this.Config.GroupPlugins.ListPlugins.Add(p);
+                        p = new Plugin(cfg.GroupPlugins, t.Value);
+                        cfg.GroupPlugins.ListPlugins.Add(p);
                     }
 
                     // attaching plugin generators
@@ -402,28 +410,28 @@ namespace vSharpStudio.ViewModels
                     }
                     dic[gt] = lst;
                 }
-                if (this.Config.DicPluginLists != null)
+                if (cfg.DicPluginLists != null)
                 {
-                    this.Config.DicPluginLists.Clear();
+                    cfg.DicPluginLists.Clear();
                 }
 
-                this.Config.DicPluginLists = dic;
+                cfg.DicPluginLists = dic;
 
                 // Generators
-                this.Config.DicGenerators = new Dictionary<string, IvPluginGenerator>();
+                cfg.DicGenerators = new Dictionary<string, IvPluginGenerator>();
                 foreach (var t in lstGens)
                 {
-                    this.Config.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
+                    cfg.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
                 }
 
-                this.Config.RefillDicGenerators();
+                cfg.RefillDicGenerators();
                 // Create Settings VM for all project generators
-                foreach (var t in this.Config.GroupAppSolutions.ListAppSolutions)
+                foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
                     // group plugins settings
                     foreach (var tt in t.ListGroupGeneratorsSettings)
                     {
-                        foreach (var ttt in this.Config.DicPlugins)
+                        foreach (var ttt in cfg.DicPlugins)
                         {
                             if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
                             {
@@ -487,7 +495,7 @@ namespace vSharpStudio.ViewModels
                                     var dicS = ttt.DicGenNodeSettings[ttt.Guid];
                                     dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
                                     // Set link for default settings for ConfigModel
-                                    this.Config.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
+                                    cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
                                 }
                             }
                             ttt.CreateGenSettings();
@@ -496,7 +504,7 @@ namespace vSharpStudio.ViewModels
                 }
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new ModelVisitorNodeGenSettings();
-                nv.NodeGenSettingsApplyAction(this.Config, (p) =>
+                nv.NodeGenSettingsApplyAction(cfg, (p) =>
                 {
                     p.RestoreNodeAppGenSettingsVm();
                 });
@@ -575,8 +583,10 @@ namespace vSharpStudio.ViewModels
             }
         }
 
+        private Action onPluginsLoaded = null;
         public void Compose(string pluginsFolderPath = null)
         {
+            this.onPluginsLoaded = onPluginsLoaded;
             try
             {
                 string folder = (pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins";
@@ -1196,7 +1206,7 @@ namespace vSharpStudio.ViewModels
                 using (Transaction.Create(am))
                 {
                     // I. Model validation (no need for UNDO)
-#region
+                    #region
                     progress.SubName = "Model validation";
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     if (this._Config.CountErrors > 0)
@@ -1214,10 +1224,10 @@ namespace vSharpStudio.ViewModels
                     progress.Progress = 5;
                     progress.SubProgress = 100;
                     onProgress(progress);
-#endregion
+                    #endregion
 
                     // II. Rename analysis
-#region
+                    #region
                     var mvr = new ModelVisitorForAnnotation();
                     var diffConfig = mvr.GetDiffAnnotatedConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
                     bool isNeedRenames = false;
@@ -1245,10 +1255,10 @@ namespace vSharpStudio.ViewModels
                         if (isNeedRenames)
                             break;
                     }
-#endregion
+                    #endregion
 
                     // III. Build all solutions. Exception if not compilible (no need for UNDO)
-#region
+                    #region
                     if (isNeedRenames)
                     {
                         progress.SubName = "Check current code compilation";
@@ -1270,10 +1280,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnBuildValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
-#endregion
+                    #endregion
 
                     // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-#region
+                    #region
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
                         foreach (var tp in ts.ListAppProjects)
@@ -1297,10 +1307,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnRenamed)
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
-#endregion
+                    #endregion
 
                     // V. Apply new DB schema (no need for UNDO ???) Move into VI step
-#region
+                    #region
                     //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     //{
                     //    if (cancellationToken.IsCancellationRequested)
@@ -1313,10 +1323,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));
-#endregion
+                    #endregion
 
                     // VI. Generate code (no need for UNDO)
-#region
+                    #region
                     this.GenerateCode(cancellationToken, diffConfig);
                     this.Save();
                     // unit test
@@ -1347,7 +1357,7 @@ namespace vSharpStudio.ViewModels
 #else
 #endif
                     am.Execute(update_history);
-#endregion
+                    #endregion
                 }
             }
             //catch(Exception ex)
@@ -1508,9 +1518,9 @@ namespace vSharpStudio.ViewModels
                 }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
         }
 
-#endregion Main
+        #endregion Main
 
-#region ConfigTree
+        #region ConfigTree
 
         public vCommand CommandAddNew
         {
@@ -1632,7 +1642,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandSelectionUp;
 
-#endregion ConfigTree
+        #endregion ConfigTree
 
         public vCommand CommandFromErrorToSelection
         {
@@ -1653,7 +1663,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandFromErrorToSelection;
 
-#region ConnectionString
+        #region ConnectionString
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
@@ -1830,6 +1840,6 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
         // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
-#endregion
+        #endregion
     }
 }

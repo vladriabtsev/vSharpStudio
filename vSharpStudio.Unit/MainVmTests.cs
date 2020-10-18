@@ -11,6 +11,7 @@ using vSharpStudio.common;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace vSharpStudio.Unit
 {
@@ -206,12 +207,39 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeChanged == false);
         }
         [TestMethod]
+        public void Main009_Diff()
+        {
+            // new config, not saved yet
+            this.remove_config();
+            var vm = new MainPageVM(true);
+            vm.OnFormLoaded();
+            vm.Compose();
+            vm.Config.Name = "main";
+            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
+            var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
+
+            var mod = new ModelVisitorForAnnotation();
+            var cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+
+            var c1Diff = (from p in cfgDiff.Model.GroupConstants.ListConstants where p.Name == "c1" select p).Single();
+            Assert.AreEqual(c1Diff, cfgDiff.DicNodes[c1.Guid]);
+
+            //var c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
+            //Assert.AreNotEqual(c1, (Constant)cfgDiff.DicNodes[c1.Guid]);
+            //Assert.IsTrue(c1Diff.IsNew());
+            //Assert.IsFalse(c1Diff.IsDeleted());
+            //Assert.IsFalse(c1Diff.IsDeprecated());
+            //Assert.IsFalse(c1Diff.IsRenamed());
+        }
+        [TestMethod]
         public void Main010_DiffList()
         {
             // new config, not saved yet
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             vm.Config.Name = "main";
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
@@ -225,14 +253,15 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c1Diff.IsDeleted());
             Assert.IsFalse(c1Diff.IsDeprecated());
             Assert.IsFalse(c1Diff.IsRenamed());
-
             // current changes are saved
             // no stable version (prev is null)
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
+            mod = new ModelVisitorForAnnotation();
             cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
             c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
             Assert.IsTrue(c1Diff.IsNew());
@@ -267,11 +296,14 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(c2Diff.IsDeprecated());
             Assert.IsFalse(c2Diff.IsRenamed());
 
+            vm.CommandConfigSave.Execute(null);
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             c1 = (Constant)(vm.Config.DicNodes[c1.Guid]);
             c2 = (Constant)(vm.Config.DicNodes[c2.Guid]);
-            mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
+            mod = new ModelVisitorForAnnotation();
+            cfgDiff = mod.GetDiffAnnotatedConfig(vm.Config, vm.Config.PrevStableConfig, vm.Config.OldStableConfig); // Recalculate annotation
             c1Diff = (Constant)cfgDiff.DicNodes[c1.Guid];
             Assert.IsFalse(c1Diff.IsNew());
             Assert.IsFalse(c1Diff.IsDeleted());
@@ -285,7 +317,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
-
+            vm.Compose();
             // create object and save
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
@@ -347,6 +379,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
 
             // create object and save
@@ -441,6 +474,7 @@ namespace vSharpStudio.Unit
             // initial
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose();
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
@@ -707,6 +741,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose();
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
@@ -755,7 +790,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCurrentUpdate.Execute(null);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
-            // expect new objects (IsNew) with IsMarkedForDeletion and  will be deleted in DB and model
+            // expect new objects (IsNew) with IsMarkedForDeletion will be deleted in DB and model
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
@@ -1097,11 +1132,13 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
+            vm.Compose();
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             //if (!Directory.Exists(path))
@@ -1119,6 +1156,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
@@ -1135,6 +1173,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             vm.Config.Name = "main";
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
@@ -1142,6 +1181,7 @@ namespace vSharpStudio.Unit
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
+            vm.Compose();
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             if (!Directory.Exists(pathExt))
@@ -1160,6 +1200,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose();
             //TODO diff test implementation
             // var diffc = vm.GetDiffListConfigs();
             // Assert.IsTrue(diffc.Config.Name == "main");

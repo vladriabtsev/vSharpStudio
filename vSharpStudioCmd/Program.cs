@@ -22,7 +22,7 @@ namespace vSharpStudioCmd
                 {
                     foreach (var t in o.InputFiles)
                     {
-                        var vm = new MainPageVM(true, null, t);
+                        var vm = new MainPageVM(true, t);
                         vm.OnFormLoaded();
                         vm.CommandConfigCurrentUpdate.Execute(null);
                     }
