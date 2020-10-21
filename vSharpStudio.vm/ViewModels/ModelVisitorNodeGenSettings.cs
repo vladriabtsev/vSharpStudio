@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
         public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
             Contract.Requires(curr != null);
+            this.currCfg = curr;
             _act = act;
             this.RunThroughConfig(curr.Model, null);
         }

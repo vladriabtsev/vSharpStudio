@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.ViewModels;
 
@@ -15,13 +16,18 @@ namespace vSharpStudio.vm.ViewModels
         public Config DiffAnnotatedConfig { get; set; }
         public Config GetDiffAnnotatedConfig(Config curr, IConfig prev, IConfig old)
         {
-            this.DiffAnnotatedConfig = Config.Clone(null, curr);
+            VmBindable.IsValidateAll = false;
+            curr.PluginSettingsToModel();
+            var proto = Config.ConvertToProto(curr);
+            this.DiffAnnotatedConfig = new Config(proto);
             ModelVisitorForAnnotation.InitConfig(this.DiffAnnotatedConfig);
+            int dicNodesCount = this.DiffAnnotatedConfig.DicNodes.Count;
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(this.DiffAnnotatedConfig, (p) =>
             {
                 p.RestoreNodeAppGenSettingsVm();
             });
+            VmBindable.IsValidateAll = true;
 
             //foreach (var t in curr.DicActiveAppProjectGenerators)
             //{
@@ -51,6 +57,7 @@ namespace vSharpStudio.vm.ViewModels
                         ListGuidsRenamedObjects.Add(curr2.Guid);
                 }
             });
+            Debug.Assert(dicNodesCount <= this.DiffAnnotatedConfig.DicNodes.Count);
             foreach (var t in curr.Model.DicGenNodeSettings)
                 this.DiffAnnotatedConfig.Model.DicGenNodeSettings[t.Key] = t.Value;
 

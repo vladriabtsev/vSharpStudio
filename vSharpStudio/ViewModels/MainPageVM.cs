@@ -314,13 +314,11 @@ namespace vSharpStudio.ViewModels
             {
                 List<PluginRow> lstGens = new List<PluginRow>();
                 cfg.DicPlugins = new Dictionary<string, IvPlugin>();
-                // List<IvPluginDbGenerator> lstDbs = new List<IvPluginDbGenerator>();
                 foreach (var t in this._plugins)
                 {
                     cfg.DicPlugins[t.Value.Guid] = t.Value;
                     Plugin p = null;
                     bool is_found = false;
-
                     // attaching plugin
                     foreach (var tt in cfg.GroupPlugins.ListPlugins)
                     {
@@ -340,7 +338,6 @@ namespace vSharpStudio.ViewModels
                         p = new Plugin(cfg.GroupPlugins, t.Value);
                         cfg.GroupPlugins.ListPlugins.Add(p);
                     }
-
                     // attaching plugin generators
                     foreach (var tt in t.Value.ListGenerators)
                     {
@@ -414,16 +411,13 @@ namespace vSharpStudio.ViewModels
                 {
                     cfg.DicPluginLists.Clear();
                 }
-
                 cfg.DicPluginLists = dic;
-
                 // Generators
                 cfg.DicGenerators = new Dictionary<string, IvPluginGenerator>();
                 foreach (var t in lstGens)
                 {
                     cfg.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
                 }
-
                 cfg.RefillDicGenerators();
                 // Create Settings VM for all project generators
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
@@ -440,7 +434,6 @@ namespace vSharpStudio.ViewModels
                             }
                         }
                     }
-
                     foreach (var tt in t.ListAppProjects)
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
@@ -712,80 +705,6 @@ namespace vSharpStudio.ViewModels
 
         private vCommand _CommandConfigSave;
 
-        private void PluginSettingsToModel()
-        {
-            foreach (var t in this._Config.GroupAppSolutions.ListAppSolutions)
-            {
-                // group plugins settings
-                t.ListGroupGeneratorsSettings.Clear();
-                foreach (var tt in t.DicPluginsGroupSettings)
-                {
-                    var ps = new PluginGroupGeneratorsSettings(t);
-                    ps.AppGroupGeneratorsGuid = tt.Key;
-                    ps.NameUi = tt.Value.Name;
-                    ps.Settings = tt.Value.SettingsAsJson;
-                    t.ListGroupGeneratorsSettings.Add(ps);
-                }
-                foreach (var tt in t.ListAppProjects)
-                {
-                    foreach (var ttt in tt.ListAppProjectGenerators)
-                    {
-#if RELEASE
-                        Utils.TryCall(
-                            () =>
-                            {
-#endif
-
-                        //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
-                        //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
-                        if (ttt.DynamicMainSettings != null)
-                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettings).SettingsAsJson;
-#if RELEASE
-                            }, "Can't get PROTO settings from Plugin");
-#endif
-                        //if (ttt.IsPrivate)
-                        //{
-                        //    Utils.TryCall(
-                        //        () =>
-                        //        {
-                        //            File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
-                        //        }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-                        //    ttt.GeneratorSettings = string.Empty;
-                        //}
-                    }
-                }
-            }
-            // Save Node Settings VM for all nodes, which are supporting INodeGenSettings
-            var nv = new ModelVisitorNodeGenSettings();
-            nv.NodeGenSettingsApplyAction(this.Config, (p) =>
-            {
-                p.SaveNodeAppGenSettings();
-            });
-            //foreach (var t in this._Config.GroupPlugins.ListPlugins)
-            //{
-            //    foreach (var tt in t.ListGenerators)
-            //    {
-            //        foreach (var ttt in tt.ListSettings)
-            //        {
-            //            Utils.TryCall(
-            //                () =>
-            //            {
-            //                ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
-            //            }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
-            //            if (ttt.IsPrivate)
-            //            {
-            //                Utils.TryCall(
-            //                    () =>
-            //                {
-            //                    File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
-            //                }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-            //                ttt.GeneratorSettings = string.Empty;
-            //            }
-            //        }
-            //    }
-            //}
-        }
-
         internal void SavePrepare()
         {
             this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
@@ -808,7 +727,7 @@ namespace vSharpStudio.ViewModels
         internal void Save()
         {
             //TODO save and clean private ConnStr
-            this.PluginSettingsToModel();
+            this.Config.PluginSettingsToModel();
             this.SavePrepare();
             Utils.TryCall(
                 () =>
@@ -861,7 +780,7 @@ namespace vSharpStudio.ViewModels
             if (filePath != null || openFileDialog.ShowDialog() == true)
             {
                 this.FilePathSaveAs = filePath == null ? openFileDialog.FileName : Path.GetFullPath(filePath);
-                this.PluginSettingsToModel();
+                this.Config.PluginSettingsToModel();
                 this.SavePrepare();
                 Utils.TryCall(
                     () =>
@@ -1032,7 +951,7 @@ namespace vSharpStudio.ViewModels
                             }
                             if (!isException)
                             {
-                                this.Config.RemoveMarkedForDeletionIfNewObjects();
+                                this.Config.RemoveMarkedForDeletionNewObjects();
                                 this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
@@ -1494,8 +1413,8 @@ namespace vSharpStudio.ViewModels
                 throw ex;
             }
 
-            this.PluginSettingsToModel();
-            this.Config.RemoveMarkedForDeletionAndNewFlags();
+            this.Config.PluginSettingsToModel();
+            this.Config.RemoveFlagsMarkedForDeletionAndNew();
             this.CommandConfigSave.Execute(null);
 
             // todo check if model has DB connected changes. Return if not.

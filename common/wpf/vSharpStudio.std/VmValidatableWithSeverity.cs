@@ -156,6 +156,8 @@ namespace ViewModelBase
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {
+            if (!VmBindable.IsValidateAll)
+                return true;
             if (!this.IsValidate)
                 return true;
 #if DEBUG

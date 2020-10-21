@@ -163,6 +163,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("test1", vm.Config.Name);
             Assert.AreEqual(1, vm.Config.Model.GroupConstants.Count());
             Assert.AreEqual("c1", vm.Config.Model.GroupConstants[0].Name);
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
         }
         [TestMethod]
         public void Main005IsChangedAndIsTreeChanged()

@@ -69,7 +69,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInitBegin()
         {
             _logger.Trace();
-            this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true);
+            this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
+                (ki, v) => { }, (kr, v) => { }, () => { });
         }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
@@ -107,7 +108,12 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupPlugins, 9);
             this.Children.Add(this.GroupAppSolutions, 10);
         }
-
+        public Config(Proto.Config.proto_config pconfig)
+            : this((ITreeConfigNode)null)
+        {
+            this.OnInitBegin();
+            Config.ConvertToVM(pconfig, this);
+        }
         public Config(string configJson)
             : this((ITreeConfigNode)null)
         {
@@ -359,7 +365,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
         }
-        public void RemoveMarkedForDeletionIfNewObjects()
+        public void RemoveMarkedForDeletionNewObjects()
         {
             //var viz = new ModelVisitorRemoveMarkedIfNewObjects();
             //viz.RunThroughConfig(this);
@@ -367,14 +373,87 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupConfigLinks.RemoveMarkedForDeletionIfNewObjects();
             this.Model.RemoveMarkedForDeletionIfNewObjects();
         }
-        public void RemoveMarkedForDeletionAndNewFlags()
+        public void RemoveFlagsMarkedForDeletionAndNew()
         {
-            this.RemoveMarkedForDeletionIfNewObjects();
+            this.RemoveMarkedForDeletionNewObjects();
             //var viz = new ModelVisitorRemoveMarkedAndNewFlags();
             //viz.RunThroughConfig(this.Model);
             this.GroupAppSolutions.RemoveMarkedForDeletionAndNewFlags();
             this.GroupConfigLinks.RemoveMarkedForDeletionAndNewFlags();
             this.Model.RemoveMarkedForDeletionAndNewFlags();
+        }
+        public void PluginSettingsToModel()
+        {
+            foreach (var t in this.GroupAppSolutions.ListAppSolutions)
+            {
+                // group plugins settings
+                t.ListGroupGeneratorsSettings.Clear();
+                foreach (var tt in t.DicPluginsGroupSettings)
+                {
+                    var ps = new PluginGroupGeneratorsSettings(t);
+                    ps.AppGroupGeneratorsGuid = tt.Key;
+                    ps.NameUi = tt.Value.Name;
+                    ps.Settings = tt.Value.SettingsAsJson;
+                    t.ListGroupGeneratorsSettings.Add(ps);
+                }
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+#if RELEASE
+                        Utils.TryCall(
+                            () =>
+                            {
+#endif
+
+                        //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
+                        //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
+                        if (ttt.DynamicMainSettings != null)
+                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettings).SettingsAsJson;
+#if RELEASE
+                            }, "Can't get PROTO settings from Plugin");
+#endif
+                        //if (ttt.IsPrivate)
+                        //{
+                        //    Utils.TryCall(
+                        //        () =>
+                        //        {
+                        //            File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
+                        //        }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
+                        //    ttt.GeneratorSettings = string.Empty;
+                        //}
+                    }
+                }
+            }
+            // Save Node Settings VM for all nodes, which are supporting INodeGenSettings
+            var nv = new ModelVisitorNodeGenSettings();
+            nv.NodeGenSettingsApplyAction(this, (p) =>
+            {
+                p.SaveNodeAppGenSettings();
+            });
+            //foreach (var t in this._Config.GroupPlugins.ListPlugins)
+            //{
+            //    foreach (var tt in t.ListGenerators)
+            //    {
+            //        foreach (var ttt in tt.ListSettings)
+            //        {
+            //            Utils.TryCall(
+            //                () =>
+            //            {
+            //                ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
+            //            }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
+            //            if (ttt.IsPrivate)
+            //            {
+            //                Utils.TryCall(
+            //                    () =>
+            //                {
+            //                    File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
+            //                }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
+            //                ttt.GeneratorSettings = string.Empty;
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }

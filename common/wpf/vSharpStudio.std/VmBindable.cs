@@ -67,6 +67,7 @@ namespace ViewModelBase
         public bool IsNotNotifying { get; set; }
         [BrowsableAttribute(false)]
         public bool IsValidate { get; set; }
+        public static bool IsValidateAll = true;
 
         [BrowsableAttribute(false)]
         public bool IsBusy { get { return _IsBusy; } set { SetProperty(ref _IsBusy, value); } }
