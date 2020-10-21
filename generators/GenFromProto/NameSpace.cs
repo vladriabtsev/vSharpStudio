@@ -29,15 +29,7 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("// Auto generated on UTC ");
-            
-            #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DateTime.Now.ToUniversalTime()));
-            
-            #line default
-            #line hidden
-            this.Write(@"
-using System;
+            this.Write(@"using System;
 using System.Linq;
 using ViewModelBase;
 using FluentValidation;
@@ -54,14 +46,14 @@ using Google.Protobuf;
 
 namespace ");
             
-            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 22 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
@@ -74,35 +66,35 @@ namespace ");
 
     public interface I");
             
-            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("AcceptVisitor // ");
             
-            #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        void Accept");
             
-            #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("NodeVisitor(");
             
-            #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor visitor);\r\n    }\r\n");
             
-            #line 33 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 32 "C:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("    ");
 	foreach (var t in root.MessageTypes)

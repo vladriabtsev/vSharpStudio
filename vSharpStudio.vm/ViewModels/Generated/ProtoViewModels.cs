@@ -1,4 +1,3 @@
-// Auto generated on UTC 10/21/2020 02:14:28
 using System;
 using System.Linq;
 using ViewModelBase;
@@ -14,13 +13,13 @@ using System.Diagnostics.Contracts;
 using vSharpStudio.common;
 using Google.Protobuf;
 
-namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
+namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IConfigAcceptVisitor // NameSpace.tt Line: 29
+    public interface IConfigAcceptVisitor // NameSpace.tt Line: 28
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
     }

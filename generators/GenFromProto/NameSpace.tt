@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Google.Protobuf.Reflection" #>
-// Auto generated on UTC <#= DateTime.Now.ToUniversalTime() #>
 using System;
 using System.Linq;
 using ViewModelBase;
