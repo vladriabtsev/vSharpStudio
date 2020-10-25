@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IRole : IObjectAnnotatable
+    public partial interface IRole : ITreeConfigNode
     {
     }
 }

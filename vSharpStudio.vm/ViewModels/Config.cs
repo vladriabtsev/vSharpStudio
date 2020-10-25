@@ -24,6 +24,21 @@ namespace vSharpStudio.vm.ViewModels
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
 
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            return new List<ITreeConfigNode>();
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
         public DictionaryExt<string, ITreeConfigNode> DicNodes { get; private set; }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
         private DictionaryExt<string, IvPluginGenerator> dicActiveAppProjectGenerators = null;
@@ -39,17 +54,6 @@ namespace vSharpStudio.vm.ViewModels
                 return dicActiveAppProjectGenerators;
             }
         }
-        public override IEnumerable<object> GetChildren(object parent)
-        {
-            return this.Children;
-        }
-
-        // public bool HasChildren(object parent) { return this.Children.Count > 0; }
-        public override bool HasChildren(object parent)
-        {
-            return this.Children.Count > 0;
-        }
-
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //public ConfigNodesCollection<ITreeConfigNode> Children
@@ -364,23 +368,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
-        }
-        public void RemoveMarkedForDeletionNewObjects()
-        {
-            //var viz = new ModelVisitorRemoveMarkedIfNewObjects();
-            //viz.RunThroughConfig(this);
-            this.GroupAppSolutions.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupConfigLinks.RemoveMarkedForDeletionIfNewObjects();
-            this.Model.RemoveMarkedForDeletionIfNewObjects();
-        }
-        public void RemoveFlagsMarkedForDeletionAndNew()
-        {
-            this.RemoveMarkedForDeletionNewObjects();
-            //var viz = new ModelVisitorRemoveMarkedAndNewFlags();
-            //viz.RunThroughConfig(this.Model);
-            this.GroupAppSolutions.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupConfigLinks.RemoveMarkedForDeletionAndNewFlags();
-            this.Model.RemoveMarkedForDeletionAndNewFlags();
         }
         public void PluginSettingsToModel()
         {

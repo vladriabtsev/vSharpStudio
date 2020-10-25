@@ -1600,7 +1600,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("\r\n    vm.IsSubTreeChanged = false;\r\n    vm.IsChanged = false;\r\n");
+            this.Write("\r\n    vm.IsSubTreeHasChanges = false;\r\n    vm.IsChanged = false;\r\n");
             
             #line 230 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
  } 

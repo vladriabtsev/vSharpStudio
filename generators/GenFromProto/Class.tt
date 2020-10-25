@@ -103,6 +103,33 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 		this.Write(p.TransformText());
 	}
 	this.PopIndent(); #>
-
+<# if (this.Doc.IsDefaultBase) { #>
+    [BrowsableAttribute(false)]
+    override public bool IsChanged 
+    { 
+        get 
+        { 
+            return this._IsChanged; 
+        }
+        set
+        {
+            if (this._IsChanged != value)
+            {
+                this.OnIsChangedChanging(ref value);
+                this._IsChanged = value;
+                this.OnIsChangedChanged();
+                this.NotifyPropertyChanged();
+            }
+        }
+    }
+    partial void OnIsChangedChanging(ref bool v);
+    partial void OnIsChangedChanged();
+    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+    partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+    partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+    partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+    partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
+<# } #>
     #endregion Properties
 }

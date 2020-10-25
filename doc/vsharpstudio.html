@@ -436,7 +436,7 @@
         
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
-        <p>@base ConfigObjectVmBase</p>
+        <p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -512,7 +512,7 @@
         
       
         <h3 id="proto_config.proto_app_project">proto_app_project</h3>
-        <p>@base ConfigObjectVmBase</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -567,11 +567,32 @@ App project relative path to .net solution file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -588,26 +609,6 @@ App project relative path to .net solution file path </p></td>
                   <td><a href="#proto_config.proto_app_project_generator">proto_app_project_generator</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)]
-
-@attr [PropertyOrderAttribute(8)]
-@attr [ExpandableObjectAttribute()]
-@attr [DisplayName(&#34;Default DB&#34;)]
-@attr [Description(&#34;Database connection. If empty, solution settings are used&#34;)]
-proto_app_db_settings default_db = 8; </p></td>
                 </tr>
               
             </tbody>
@@ -722,11 +723,32 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -823,6 +845,13 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -831,23 +860,23 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_app_projects</td>
-                  <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_has_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_app_projects</td>
+                  <td><a href="#proto_config.proto_app_project">proto_app_project</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -926,11 +955,32 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1020,6 +1070,13 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1122,6 +1179,41 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1240,6 +1332,13 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1247,7 +1346,21 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -1303,7 +1416,7 @@ App solution relative path to configuration file path </p></td>
         
       
         <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
-        <p>@base ConfigObjectVmBase</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -1327,10 +1440,38 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>old_stable_config</td>
-                  <td><a href="#proto_config.proto_config">proto_config</a></td>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1401,11 +1542,32 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1583,6 +1745,13 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>group_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
                   <td></td>
@@ -1726,6 +1895,13 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -1800,11 +1976,32 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1884,6 +2081,13 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -1975,6 +2179,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1982,7 +2193,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2049,6 +2275,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2056,7 +2289,21 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2122,6 +2369,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2129,7 +2383,21 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2212,6 +2480,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2219,7 +2494,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2300,6 +2590,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2307,7 +2604,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2381,6 +2693,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2388,7 +2707,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2462,6 +2796,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2469,7 +2810,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2543,6 +2899,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2550,7 +2913,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2625,6 +3003,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2632,7 +3017,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2707,6 +3107,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2714,7 +3121,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2788,6 +3210,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2795,7 +3224,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2836,6 +3280,42 @@ repeated proto_document list_forms = 7;
                   <td>list_plugins</td>
                   <td><a href="#proto_config.proto_plugin">proto_plugin</a></td>
                   <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -2908,6 +3388,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2915,7 +3402,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2996,6 +3498,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3004,14 +3513,14 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
-                  <td>is_has_new</td>
+                  <td>is_has_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_has_marked_for_deletion</td>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -3086,6 +3595,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3093,7 +3609,22 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -3167,6 +3698,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3174,7 +3712,21 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -3278,6 +3830,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -3352,6 +3911,13 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3360,14 +3926,14 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
-                  <td>is_has_new</td>
+                  <td>is_has_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_has_marked_for_deletion</td>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -3484,6 +4050,41 @@ repeated proto_document list_forms = 7;
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3526,9 +4127,43 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)]
-
-repeated proto_plugin_generator_settings list_settings = 5; </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3539,7 +4174,7 @@ repeated proto_plugin_generator_settings list_settings = 5; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</h3>
-        <p>Stored in AppProjectGenerator node</p><p>@base ConfigObjectVmBase</p>
+        <p>Stored in AppProjectGenerator node</p>
 
         
           <table class="field-table">
@@ -3570,7 +4205,7 @@ repeated proto_plugin_generator_settings list_settings = 5; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_generator_node_default_settings">proto_plugin_generator_node_default_settings</h3>
-        <p>@base ConfigObjectVmBase</p>
+        <p>@base ViewModelValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -3601,7 +4236,7 @@ repeated proto_plugin_generator_settings list_settings = 5; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
-        <p>Stored in each node in ConfigModel branch</p><p>@base ConfigObjectVmBase</p>
+        <p>Stored in each node in ConfigModel branch</p>
 
         
           <table class="field-table">
@@ -3640,7 +4275,7 @@ string name = 2; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</h3>
-        <p>Stored in App node. All nullable setting has to have value</p><p>@base ConfigObjectVmBase</p>
+        <p>Stored in App node. All nullable setting has to have value</p>
 
         
           <table class="field-table">
@@ -3661,6 +4296,42 @@ string name = 2; </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3671,7 +4342,7 @@ string name = 2; </p></td>
         
       
         <h3 id="proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</h3>
-        <p>Stored in AppSolution node. All null setting will use parent value</p><p>@base ConfigObjectVmBase</p>
+        <p>Stored in AppSolution node. All null setting will use parent value</p>
 
         
           <table class="field-table">
@@ -3692,6 +4363,42 @@ string name = 2; </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3799,6 +4506,13 @@ string name = 2; </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -3875,11 +4589,32 @@ string name = 2; </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3981,6 +4716,13 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -4066,6 +4808,13 @@ repeated proto_document list_documents = 7;
               
                 <tr>
                   <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>

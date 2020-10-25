@@ -13,18 +13,25 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
     {
-        public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
-            return this.ListCatalogs;
+            return this.Children;
         }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as ConfigModel;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
 
-        public override bool HasChildren(object parent)
-        {
-            return this.ListCatalogs.Count > 0;
-        }
+        public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
         partial void OnInit()
         {
@@ -97,36 +104,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
-        partial void OnIsHasMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsHasNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListCatalogs)
@@ -154,29 +131,5 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         #endregion Tree operations
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            var tlst = this.ListCatalogs.ToList();
-            foreach (var t in tlst)
-            {
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListCatalogs.Remove(t);
-                    continue;
-                }
-                t.RemoveMarkedForDeletionIfNewObjects();
-            }
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            foreach (var t in this.ListCatalogs)
-            {
-                t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
-        }
     }
 }

@@ -25,15 +25,22 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, INewAndDeleteion
     {
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
             return this.Children;
         }
-
-        public override bool HasChildren(object parent)
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as Config;
+            return p.Children;
+        }
+        public override bool HasChildren()
         {
             return this.Children.Count > 0;
         }
+        #endregion ITree
+
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
@@ -197,8 +204,6 @@ namespace vSharpStudio.vm.ViewModels
         //    this.RefillChildren();
         //}
 
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
         public bool GetIsHasMarkedForDeletion()
         {
             if (this.GroupCatalogs.IsMarkedForDeletion || this.GroupCatalogs.GetIsHasMarkedForDeletion())
@@ -268,6 +273,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
+        }
+        public IEnumerable<ITreeConfigNode> GetParentList()
+        {
+            var p = this.Parent as Config;
+            return p.Children;
         }
         #endregion ITreeNode
 
@@ -507,26 +517,6 @@ namespace vSharpStudio.vm.ViewModels
         //          }
         //      }
         //      private object _TestSettings4;
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            this.GroupCatalogs.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupCommon.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupConstants.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupDocuments.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupEnumerations.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupJournals.RemoveMarkedForDeletionIfNewObjects();
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            this.GroupCatalogs.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupCommon.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupConstants.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupDocuments.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupEnumerations.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupJournals.RemoveMarkedForDeletionAndNewFlags();
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
-        }
     }
     //public class Test1
     //{

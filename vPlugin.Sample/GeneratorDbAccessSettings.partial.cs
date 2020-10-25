@@ -26,7 +26,7 @@ namespace vPlugin.Sample
                 s = "kuku";
             }
             var visitor = new MyModelVisitor(this);
-            visitor.RunThroughConfig(model.Model);
+            visitor.Run(model.Model);
             return visitor.Result;
         }
     }

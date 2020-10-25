@@ -16,20 +16,27 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{listProjects.Count,nq}")]
-    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, INewAndDeleteion
+    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Solution";
 
-        public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
             return this.ListAppProjects;
         }
-
-        public override bool HasChildren(object parent)
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListAppSolutions;
+            return p.ListAppSolutions;
+        }
+        public override bool HasChildren()
         {
             return this.ListAppProjects.Count > 0;
         }
+        #endregion ITree
+
+        public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
         [Browsable(false)]
         new public string IconName { get { return "iconApplicationGroup"; } }
         //protected override string GetNodeIconName() { return "iconApplicationGroup"; }
@@ -226,62 +233,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
-        partial void OnIsHasMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsHasNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListAppProjects)
@@ -351,29 +302,10 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-        public void RemoveMarkedForDeletionIfNewObjects()
+        public void Remove()
         {
-            var tlst = this.ListAppProjects.ToList();
-            foreach (var t in tlst)
-            {
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListAppProjects.Remove(t);
-                    continue;
-                }
-                t.RemoveMarkedForDeletionIfNewObjects();
-            }
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            foreach (var t in this.ListAppProjects)
-            {
-                t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
+            var p = this.Parent as GroupListAppSolutions;
+            p.ListAppSolutions.Remove(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
             Contract.Requires(curr != null);
             this.currCfg = curr;
             _act = act;
-            this.RunThroughConfig(curr.Model, null);
+            this.Run(curr.Model, null);
         }
         //protected override void Visit(IConfig c)
         //{

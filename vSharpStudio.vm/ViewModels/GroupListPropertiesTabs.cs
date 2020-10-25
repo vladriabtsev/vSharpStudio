@@ -14,17 +14,39 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPropertiesTabs.Count,nq}")]
-    public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
+    public partial class GroupListPropertiesTabs : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
     {
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            if (this.Parent is Catalog)
+            {
+                var p = this.Parent as Catalog;
+                return p.Children;
+            }
+            else if (this.Parent is Document)
+            {
+                var p = this.Parent as Document;
+                return p.Children;
+            }
+            else if (this.Parent is PropertiesTab)
+            {
+                var p = this.Parent as PropertiesTab;
+                return p.Children;
+            }
+            throw new NotImplementedException();
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
         public ConfigNodesCollection<PropertiesTab> Children { get { return this.ListPropertiesTabs; } }
-        public override IEnumerable<object> GetChildren(object parent)
-        {
-            return this.ListPropertiesTabs;
-        }
-        public override bool HasChildren(object parent)
-        {
-            return this.ListPropertiesTabs.Count > 0;
-        }
         partial void OnInit()
         {
             this.Name = "Tabs";
@@ -80,62 +102,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
-        partial void OnIsHasMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsHasNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListPropertiesTabs)
@@ -169,32 +135,6 @@ namespace vSharpStudio.vm.ViewModels
             var node = new PropertiesTab(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
-        }
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            var tlst = this.ListPropertiesTabs.ToList();
-            foreach (var t in tlst)
-            {
-                t.GroupProperties.RemoveMarkedForDeletionIfNewObjects();
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListPropertiesTabs.Remove(t);
-                    continue;
-                }
-                t.RemoveMarkedForDeletionIfNewObjects();
-            }
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            foreach (var t in this.ListPropertiesTabs)
-            {
-                t.GroupProperties.RemoveMarkedForDeletionAndNewFlags();
-                t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
         }
     }
 }

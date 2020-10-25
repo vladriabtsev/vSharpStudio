@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Form:{Name,nq}")]
-    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion
+    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Form";
         [Browsable(false)]
@@ -97,34 +97,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
         //partial void OnIsHasMarkedForDeletionChanged()
         //{
         //    if (this.IsHasMarkedForDeletion)
@@ -194,31 +166,16 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public void RemoveMarkedForDeletionIfNewObjects()
+        public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            //var tlst = this.ListForms.ToList();
-            //foreach (var t in tlst)
-            //{
-            //    if (t.IsMarkedForDeletion && t.IsNew)
-            //    {
-            //        this.ListForms.Remove(t);
-            //        continue;
-            //    }
-            //    t.RemoveMarkedForDeletionIfNewObjects();
-            //}
+            var p = this.Parent as GroupListForms;
+            return p.ListForms;
         }
-        public void RemoveMarkedForDeletionAndNewFlags()
+        public void Remove()
         {
-            //foreach (var t in this.ListForms)
-            //{
-            //    t.RemoveMarkedForDeletionAndNewFlags();
-            //    t.IsNew = false;
-            //    t.IsMarkedForDeletion = false;
-            //}
-            //Debug.Assert(!this.IsHasMarkedForDeletion);
-            //Debug.Assert(!this.IsHasNew);
+            var p = this.Parent as GroupListForms;
+            p.ListForms.Remove(this);
         }
         #endregion Tree operations
-
     }
 }

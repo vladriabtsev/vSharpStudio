@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, INewAndDeleteion
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode
     {
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
@@ -116,35 +116,9 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListProperties).Remove(this);
             this.Parent = null;
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
         }
         public bool GetIsHasMarkedForDeletion()
         {
@@ -186,7 +160,16 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
+        public IEnumerable<ITreeConfigNode> GetParentList()
+        {
+            var p = this.Parent as GroupListProperties;
+            return p.ListProperties;
+        }
+        public void Remove()
+        {
+            var p = this.Parent as GroupListProperties;
+            p.ListProperties.Remove(this);
+        }
         #endregion Tree operations
-
     }
 }

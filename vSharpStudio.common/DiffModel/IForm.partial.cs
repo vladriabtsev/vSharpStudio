@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IForm : IObjectAnnotatable
+    public partial interface IForm : ITreeConfigNode
     {
     }
 }

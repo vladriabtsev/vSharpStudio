@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : IObjectAnnotatable, ICompositeName
+    public partial interface ICatalog : ICompositeName, ITreeConfigNode
     {
     }
 }

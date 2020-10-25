@@ -21,6 +21,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ConfigObjectBase%27.cs" />
+    <Compile Remove="DiffModelVisitorBase.cs" />
+    <Compile Remove="DiffModel\DiffLists%27.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />

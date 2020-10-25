@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IEnumeration : IObjectAnnotatable
+    public partial interface IEnumeration : ITreeConfigNode
     {
-        List<IEnumerationPair> ListAnnotated { get; }
     }
 }

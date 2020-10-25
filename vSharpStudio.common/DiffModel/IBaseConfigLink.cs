@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IBaseConfigLink : IObjectAnnotatable
+    public partial interface IBaseConfigLink : ITreeConfigNode
     {
     }
 }

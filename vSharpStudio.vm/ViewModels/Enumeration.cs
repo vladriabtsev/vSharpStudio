@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
+    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Enumeration";
         [Browsable(false)]
@@ -155,62 +155,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
-        partial void OnIsHasMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsHasNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListEnumerationPairs)
@@ -256,44 +200,16 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public void RemoveMarkedForDeletionIfNewObjects()
+        public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            var tlst = this.ListEnumerationPairs.ToList();
-            foreach (var t in tlst)
-            {
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListEnumerationPairs.Remove(t);
-                    continue;
-                }
-                //t.RemoveMarkedForDeletionIfNewObjects();
-            }
+            var p = this.Parent as GroupListEnumerations;
+            return p.ListEnumerations;
         }
-        public void RemoveMarkedForDeletionAndNewFlags()
+        public void Remove()
         {
-            foreach (var t in this.ListEnumerationPairs)
-            {
-                //t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
+            var p = this.Parent as GroupListEnumerations;
+            p.ListEnumerations.Remove(this);
         }
         #endregion Tree operations
-
-        [BrowsableAttribute(false)]
-        public List<IEnumerationPair> ListAnnotated
-        {
-            get
-            {
-                var cfg = this.GetConfig();
-                var diff = new DiffLists<IEnumerationPair>(
-                    (cfg.DicNodes[this.Guid] as Enumeration).ListEnumerationPairs,
-                    (cfg.PrevStableConfig?.DicNodes[this.Guid] as Enumeration)?.ListEnumerationPairs,
-                    (cfg.OldStableConfig?.DicNodes[this.Guid] as Enumeration)?.ListEnumerationPairs);
-                return diff.ListAll;
-            }
-        }
     }
 }

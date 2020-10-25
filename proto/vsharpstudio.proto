@@ -40,6 +40,17 @@ message proto_group_list_plugins {
     uint64 sorting_value = 3;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin list_plugins = 4;
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 }
 // @base ConfigObjectVmBase
 message proto_plugin {
@@ -55,6 +66,17 @@ message proto_plugin {
     uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator list_generators = 6;
+
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
 
     // attr [ReadOnly(true)]
     //string group_guid = 7;
@@ -73,6 +95,18 @@ message proto_plugin_generator {
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
+
    //repeated proto_plugin_generator_settings list_settings = 5;
 }
 
@@ -161,11 +195,19 @@ message db_settings {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
-// @base ConfigObjectVmBase
 message proto_config_short_history {
     proto_config current_config = 1;
     proto_config prev_stable_config = 2;
-    proto_config old_stable_config = 3;
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
 }
 message proto_group_list_base_config_links {
     string guid = 1;
@@ -175,9 +217,15 @@ message proto_group_list_base_config_links {
     // @attr [BrowsableAttribute(false)]
     repeated proto_base_config_link list_base_config_links = 9;
     // @attr [BrowsableAttribute(false)]
+    bool is_new = 10;
+    // @attr [BrowsableAttribute(false)]
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -194,9 +242,15 @@ message proto_base_config_link {
     string relative_config_file_path = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 12;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 12;
+    bool is_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -222,6 +276,17 @@ message proto_config {
     // @attr [PropertyOrderAttribute(6)]
     google.protobuf.Timestamp last_updated = 7;
 
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
+
     // GENERAL DB SETTINGS
     // @attr [PropertyOrderAttribute(11)]
     // @attr [ExpandableObjectAttribute()]
@@ -240,7 +305,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
- // @base ConfigObjectVmBase
+// @base ViewModelValidatableWithSeverity
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -268,11 +333,21 @@ message proto_app_db_settings {
     string conn_name = 7;
 }
 // Stored in App node. All nullable setting has to have value
-// @base ConfigObjectVmBase
 message proto_plugin_group_generators_default_settings {
     // Guid of group generators
     string app_group_generators_guid = 1;
     string settings = 2; 
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 }
 // @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
@@ -290,9 +365,15 @@ message proto_group_list_app_solutions {
     repeated proto_app_solution list_app_solutions = 9;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
+    bool is_has_new = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_group_generators_default_settings list_group_generators_defult_settings = 16;
@@ -322,11 +403,21 @@ message proto_plugins_group {
 }
 */
 // Stored in AppSolution node. All null setting will use parent value
-// @base ConfigObjectVmBase
 message proto_plugin_group_generators_settings {
     // Guid of group generators
     string app_group_generators_guid = 1;
     string settings = 2; 
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 }
 // @base ConfigObjectVmBase
 message proto_app_solution {
@@ -346,17 +437,19 @@ message proto_app_solution {
     string relative_app_solution_path = 7;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 8;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 9;
-
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_app_project list_app_projects = 10;
+    bool is_new = 10;
     // @attr [BrowsableAttribute(false)]
     bool is_has_new = 11;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 12;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_app_project list_app_projects = 15;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_group_generators_settings list_group_generators_settings = 16;
@@ -387,7 +480,6 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
-// @base ConfigObjectVmBase
 message proto_app_project {
     string guid = 1;
     string name = 2;
@@ -403,31 +495,34 @@ message proto_app_project {
     string relative_app_project_path = 6;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 7;
+    bool is_new = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 11;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 8;
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
+
 
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Namespace")]
     // @attr [Description("Project namespace name")]
-    string namespace = 9;
+    string namespace = 15;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_app_project_generator list_app_project_generators = 10;
+    repeated proto_app_project_generator list_app_project_generators = 16;
 
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, solution settings are used")]
     //proto_app_db_settings default_db = 8;
+
 }
 // Stored in each node in ConfigModel branch
-// @base ConfigObjectVmBase
 message proto_plugin_generator_node_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
@@ -437,7 +532,6 @@ message proto_plugin_generator_node_settings {
     string settings = 3;
 }
 // Stored in AppProjectGenerator node
-// @base ConfigObjectVmBase
 message proto_plugin_generator_main_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
@@ -482,16 +576,24 @@ message proto_app_project_generator {
     string gen_file_name = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 13;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 13;
+    bool is_marked_for_deletion = 14;
     // @attr [BrowsableAttribute(false)]
-    string generator_settings = 15;
+    bool is_has_marked_for_deletion = 15;
     // @attr [BrowsableAttribute(false)]
-    proto_plugin_generator_main_settings main_settings = 16;
+    bool is_has_changed = 16;
+
+
+    // @attr [BrowsableAttribute(false)]
+    string generator_settings = 17;
+    // @attr [BrowsableAttribute(false)]
+    proto_plugin_generator_main_settings main_settings = 18;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
-    string conn_str = 18;
+    string conn_str = 19;
 
 
     // @attr [PropertyOrderAttribute(10)]
@@ -505,12 +607,12 @@ message proto_app_project_generator {
     //proto_plugin_generator_node_settings node_settings = 17;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 17;
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 20;
 
     // @attr [BrowsableAttribute(false)]
     //repeated proto_plugin_generator_node_default_settings list_generators_node_default_settings = 17;
 }
-// @base ConfigObjectVmBase
+// @base ViewModelValidatableWithSeverity
 message proto_plugin_generator_node_default_settings {
     // Guid of solution-project-generator node
     string node_settings_vm_guid = 1;
@@ -550,9 +652,16 @@ message proto_config_model {
     bool is_use_group_prefix = 10;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
+    bool is_has_new = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
+
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
@@ -636,9 +745,16 @@ message proto_group_list_common {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_main_view_forms group_view_forms = 8;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -662,6 +778,9 @@ message proto_role {
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
     // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
+
+    // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_roles {
@@ -676,9 +795,16 @@ message proto_group_list_roles {
     // @attr [BrowsableAttribute(false)]
     repeated proto_role list_roles = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -695,14 +821,17 @@ message proto_main_view_form {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_main_view_forms group_list_view_forms = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
+    bool is_new = 10;
     // @attr [BrowsableAttribute(false)]
     bool is_has_new = 11;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 12;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 12;
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -719,9 +848,16 @@ message proto_group_list_main_view_forms {
     // @attr [BrowsableAttribute(false)]
     repeated proto_main_view_form list_main_view_forms = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -742,13 +878,15 @@ message proto_group_list_properties_tabs {
     repeated proto_properties_tab list_properties_tabs = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -777,6 +915,8 @@ message proto_properties_tab {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -796,9 +936,16 @@ message proto_group_list_properties {
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -817,9 +964,15 @@ message proto_property {
     proto_data_type data_type = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
+    bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // Protobuf field position
     // Reserved positions: 1 - primary key
@@ -844,9 +997,16 @@ message proto_group_list_constants {
     // @attr [BrowsableAttribute(false)]
     repeated proto_constant list_constants = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -865,10 +1025,17 @@ message proto_constant {
     // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 9;
+    bool is_new = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 11;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
+
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -889,9 +1056,16 @@ message proto_group_list_enumerations {
     // @attr [BrowsableAttribute(false)]
     repeated proto_enumeration list_enumerations = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -931,6 +1105,8 @@ message proto_enumeration {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -946,10 +1122,17 @@ message proto_enumeration_pair {
     string description = 5;
     string value = 6;
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 9;
+    bool is_new = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 11;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_marked_for_deletion = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 14;
+
 }
 /** 
  * @exclude
@@ -973,6 +1156,8 @@ message proto_catalog {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(true)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
@@ -1001,9 +1186,16 @@ message proto_group_list_catalogs {
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1029,9 +1221,16 @@ message proto_group_documents {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_documents group_list_documents = 8;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1053,6 +1252,8 @@ message proto_document {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 14;
@@ -1077,9 +1278,16 @@ message proto_group_list_documents {
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1100,9 +1308,16 @@ message proto_group_list_journals {
     // @attr [BrowsableAttribute(false)]
     repeated proto_journal list_journals = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1127,6 +1342,8 @@ message proto_journal {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1148,9 +1365,16 @@ message proto_group_list_forms {
     // @attr [BrowsableAttribute(false)]
     repeated proto_form list_forms = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1172,6 +1396,8 @@ message proto_form {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
     // @attr [BrowsableAttribute(false)]
@@ -1194,9 +1420,16 @@ message proto_group_list_reports {
     // @attr [BrowsableAttribute(false)]
     repeated proto_report list_reports = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_new = 10;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1218,6 +1451,8 @@ message proto_report {
     bool is_has_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_has_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
     // @attr [BrowsableAttribute(false)]

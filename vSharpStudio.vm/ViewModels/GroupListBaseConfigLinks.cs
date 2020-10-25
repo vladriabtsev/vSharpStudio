@@ -12,18 +12,25 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq}")]
-    public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion
+    public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
     {
-        public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
-            return this.ListBaseConfigLinks;
+            return this.Children;
         }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as Config;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
 
-        public override bool HasChildren(object parent)
-        {
-            return this.ListBaseConfigLinks.Count > 0;
-        }
+        public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
 
         // [BrowsableAttribute(false)]
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
@@ -90,8 +97,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListBaseConfigLinks)
@@ -118,31 +123,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsHasNew = false;
             return false;
         }
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            var tlst = this.ListBaseConfigLinks.ToList();
-            foreach (var t in tlst)
-            {
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListBaseConfigLinks.Remove(t);
-                    continue;
-                }
-                //t.RemoveMarkedForDeletionIfNewObjects();
-            }
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            foreach (var t in this.ListBaseConfigLinks)
-            {
-                //t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
-        }
         #endregion Tree operations
-
     }
 }

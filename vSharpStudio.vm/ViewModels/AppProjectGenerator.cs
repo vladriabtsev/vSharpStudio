@@ -587,35 +587,9 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
         }
         public bool GetIsHasMarkedForDeletion()
         {

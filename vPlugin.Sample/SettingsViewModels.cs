@@ -122,7 +122,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 160
         partial void OnIsGroupParam1Changed();
         bool IPluginsGroupSettings.IsGroupParam1 { get { return this._IsGroupParam1; } set { this.IsGroupParam1 = value; } }
-    
         #endregion Properties
     }
     public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 6
@@ -283,7 +282,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 160
         partial void OnSchemaParam3Changed();
         string IGeneratorDbSchemaSettings.SchemaParam3 { get { return this._SchemaParam3; } set { this.SchemaParam3 = value; } }
-    
         #endregion Properties
     }
     public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 6
@@ -502,7 +500,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsGenerateNotValidCodeChanged();
         bool IGeneratorDbAccessSettings.IsGenerateNotValidCode { get { return this._IsGenerateNotValidCode; } set { this.IsGenerateNotValidCode = value; } }
-    
         #endregion Properties
     }
     public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 6
@@ -635,7 +632,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 160
         partial void OnIsIncludedChanged();
         bool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } set { this.IsIncluded = value; } }
-    
         #endregion Properties
     }
     public partial class GeneratorDbAccessNodePropertySettingsValidator : ValidatorBase<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettingsValidator> { } // Class.tt Line: 6
@@ -737,7 +733,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 160
         partial void OnIsPropertyParam1Changed();
         bool IGeneratorDbAccessNodePropertySettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } set { this.IsPropertyParam1 = value; } }
-    
         #endregion Properties
     }
     public partial class GeneratorDbAccessNodeCatalogFormSettingsValidator : ValidatorBase<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettingsValidator> { } // Class.tt Line: 6
@@ -839,7 +834,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 160
         partial void OnIsCatalogFormParam1Changed();
         bool IGeneratorDbAccessNodeCatalogFormSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } set { this.IsCatalogFormParam1 = value; } }
-    
         #endregion Properties
     }
     

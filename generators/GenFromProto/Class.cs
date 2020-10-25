@@ -560,7 +560,46 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    #endregion Properties\r\n}\r\n");
+            
+            #line 106 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (this.Doc.IsDefaultBase) { 
+            
+            #line default
+            #line hidden
+            this.Write(@"    [BrowsableAttribute(false)]
+    override public bool IsChanged 
+    { 
+        get 
+        { 
+            return this._IsChanged; 
+        }
+        set
+        {
+            if (this._IsChanged != value)
+            {
+                this.OnIsChangedChanging(ref value);
+                this._IsChanged = value;
+                this.OnIsChangedChanged();
+                this.NotifyPropertyChanged();
+            }
+        }
+    }
+    partial void OnIsChangedChanging(ref bool v);
+    partial void OnIsChangedChanged();
+    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+    partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+    partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+    partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+    partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
+");
+            
+            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    #endregion Properties\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

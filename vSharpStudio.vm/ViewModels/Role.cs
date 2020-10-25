@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Role:{Name,nq}")]
-    public partial class Role : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IObjectAnnotatable
+    public partial class Role : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode
     {
         public static readonly string DefaultName = "Role";
         [Browsable(false)]
@@ -97,54 +97,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
-        //partial void OnIsHasMarkedForDeletionChanged()
-        //{
-        //    if (this.IsHasMarkedForDeletion)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasMarkedForDeletion();
-        //    }
-        //}
-        //partial void OnIsHasNewChanged()
-        //{
-        //    if (this.IsHasNew)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasNew = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasNew();
-        //    }
-        //}
         public bool GetIsHasMarkedForDeletion()
         {
             //foreach (var t in this.ListDocuments)
@@ -190,31 +142,16 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public void RemoveMarkedForDeletionIfNewObjects()
+        public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            //var tlst = this.ListRoles.ToList();
-            //foreach (var t in tlst)
-            //{
-            //    if (t.IsMarkedForDeletion && t.IsNew)
-            //    {
-            //        this.ListRoles.Remove(t);
-            //        continue;
-            //    }
-            //    t.RemoveMarkedForDeletionIfNewObjects();
-            //}
+            var p = this.Parent as GroupListRoles;
+            return p.ListRoles;
         }
-        public void RemoveMarkedForDeletionAndNewFlags()
+        public void Remove()
         {
-            //foreach (var t in this.ListRoles)
-            //{
-            //    t.RemoveMarkedForDeletionAndNewFlags();
-            //    t.IsNew = false;
-            //    t.IsMarkedForDeletion = false;
-            //}
-            //Debug.Assert(!this.IsHasMarkedForDeletion);
-            //Debug.Assert(!this.IsHasNew);
+            var p = this.Parent as GroupListRoles;
+            p.ListRoles.Remove(this);
         }
         #endregion Tree operations
-
     }
 }

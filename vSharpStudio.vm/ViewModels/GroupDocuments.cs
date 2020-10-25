@@ -11,16 +11,24 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
     {
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
             return this.Children;
         }
-        public override bool HasChildren(object parent)
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as ConfigModel;
+            return p.Children;
+        }
+        public override bool HasChildren()
         {
             return this.Children.Count > 0;
         }
+        #endregion ITree
+
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
@@ -69,36 +77,6 @@ namespace vSharpStudio.vm.ViewModels
             //    this.GetIsHasMarkedForDeletion();
             //    this.GetIsHasNew();
             //};
-        }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
-        partial void OnIsHasMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsHasNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsHasNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
         }
         public bool GetIsHasMarkedForDeletion()
         {
@@ -167,18 +145,6 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this.GroupSharedProperties) { Name = name, DataType = dt };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
-        }
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            this.GroupSharedProperties.RemoveMarkedForDeletionIfNewObjects();
-            this.GroupListDocuments.RemoveMarkedForDeletionIfNewObjects();
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            this.GroupSharedProperties.RemoveMarkedForDeletionAndNewFlags();
-            this.GroupListDocuments.RemoveMarkedForDeletionAndNewFlags();
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
         }
     }
 }

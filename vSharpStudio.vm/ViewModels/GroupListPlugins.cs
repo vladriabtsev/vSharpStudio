@@ -12,18 +12,25 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
-    public partial class GroupListPlugins : ITreeModel, ICanGoRight, INewAndDeleteion
+    public partial class GroupListPlugins : ITreeModel, ICanGoRight, INewAndDeleteion, IEditableNodeGroup
     {
-        public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
-            return this.ListPlugins;
+            return this.Children;
         }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as Config;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
 
-        public override bool HasChildren(object parent)
-        {
-            return this.ListPlugins.Count > 0;
-        }
+        public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
 
         partial void OnInit()
         {
@@ -37,10 +44,6 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //};
         }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public bool GetIsHasMarkedForDeletion()
         {
             return false;

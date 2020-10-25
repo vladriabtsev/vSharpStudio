@@ -53,7 +53,6 @@ namespace vSharpStudio.ViewModels
             : base(MainPageVMValidator.Validator)
         {
             _logger = Logger.CreateLogger<MainPageVM>();
-            ModelVisitorForAnnotation.InitConfig = this.InitConfig;
         }
         bool isLoadConfig;
         string configFile;
@@ -121,7 +120,7 @@ namespace vSharpStudio.ViewModels
             }
             this.UserSettings.OnOpenRecentConfig = p =>
             {
-                if (this.Config.IsSubTreeChanged)
+                if (this.Config.IsSubTreeHasChanges)
                 {
                     var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
@@ -221,12 +220,6 @@ namespace vSharpStudio.ViewModels
                 {
                     _logger.LogDebug("ConvertToVM Prev Config".CallerInfo());
                     config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
-                }
-
-                if (this.pconfig_history.OldStableConfig != null)
-                {
-                    _logger.LogDebug("ConvertToVM Old Config".CallerInfo());
-                    config.OldStableConfig = Config.ConvertToVM(this.pconfig_history.OldStableConfig, new Config());
                 }
             }
             string ind2 = indent + "   ";
@@ -655,7 +648,7 @@ namespace vSharpStudio.ViewModels
 
         internal void NewConfig()
         {
-            if (this.Config.IsSubTreeChanged)
+            if (this.Config.IsSubTreeHasChanges)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -676,7 +669,7 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandOpenConfig;
         internal void OpenConfig()
         {
-            if (this.Config.IsSubTreeChanged)
+            if (this.Config.IsSubTreeHasChanges)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -806,10 +799,10 @@ namespace vSharpStudio.ViewModels
         {
             foreach (var t in this.Config.DicNodes)
             {
-                t.Value.IsSubTreeChanged = false;
+                t.Value.IsSubTreeHasChanges = false;
                 t.Value.IsChanged = false;
             }
-            this.Config.IsSubTreeChanged = false;
+            this.Config.IsSubTreeHasChanges = false;
             this.Config.IsChanged = false;
         }
 
@@ -951,7 +944,6 @@ namespace vSharpStudio.ViewModels
                             }
                             if (!isException)
                             {
-                                this.Config.RemoveMarkedForDeletionNewObjects();
                                 this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
@@ -1120,6 +1112,15 @@ namespace vSharpStudio.ViewModels
             ProgressVM progress = new ProgressVM();
             progress.Progress = 0;
             GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
+            var dicRenamed = new Dictionary<string, string>();
+            var mvr = new ModelVisitorNodeReferencesBase();
+            mvr.Run(this.Config, (m, n) =>
+            {
+                if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed())
+                {
+                    dicRenamed[n.Guid] = null;
+                }
+            });
             try
             {
                 using (Transaction.Create(am))
@@ -1147,8 +1148,6 @@ namespace vSharpStudio.ViewModels
 
                     // II. Rename analysis
                     #region
-                    var mvr = new ModelVisitorForAnnotation();
-                    var diffConfig = mvr.GetDiffAnnotatedConfig(this.Config, this.Config.PrevCurrentConfig, this.Config.OldStableConfig);
                     bool isNeedRenames = false;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -1162,7 +1161,7 @@ namespace vSharpStudio.ViewModels
                                 if (!(gg is IvPluginCodeGenerator))
                                     continue;
                                 var generator = (IvPluginCodeGenerator)gg;
-                                List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
                                 if (lstRenames.Count == 0)
                                     continue;
                                 isNeedRenames = true;
@@ -1215,7 +1214,7 @@ namespace vSharpStudio.ViewModels
                                 if (!(gg is IvPluginCodeGenerator))
                                     continue;
                                 var generator = (IvPluginCodeGenerator)gg;
-                                List<PreRenameData> lstRenames = generator.GetListPreRename(mvr.DiffAnnotatedConfig, mvr.ListGuidsRenamedObjects);
+                                List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
                                 if (lstRenames.Count == 0)
                                     continue;
                                 CompileUtils.Rename(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
@@ -1246,7 +1245,9 @@ namespace vSharpStudio.ViewModels
 
                     // VI. Generate code (no need for UNDO)
                     #region
-                    this.GenerateCode(cancellationToken, diffConfig);
+                    this.GenerateCode(cancellationToken, this.Config);
+                    var vis = new ModelVisitorRemoveMarkedIfNewObjects();
+                    vis.Run(this.Config);
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1412,24 +1413,83 @@ namespace vSharpStudio.ViewModels
                 _logger.LogCritical(ex, "".CallerInfo());
                 throw ex;
             }
+            if (this.Config.IsSubTreeHasChanges)
+            {
+                string mes = "Can't create stable version when Config has changes";
+                var ex = new NotSupportedException(mes);
+                _logger.LogCritical(ex, mes.CallerInfo());
+                throw ex;
+            }
 
             this.Config.PluginSettingsToModel();
-            this.Config.RemoveFlagsMarkedForDeletionAndNew();
+            //this.Config.RemoveFlagsMarkedForDeletionAndNew();
+            #region Remove New which are Marked for Deletion
+            var lst = new List<string>();
+            // delete from current model
+            var vis = new ModelVisitorBase();
+            vis.Run(this.Config, (v, n) =>
+            {
+                if (n is IEditableNode)
+                {
+                    var p = n as IEditableNode;
+                    if (p.IsMarkedForDeletion && p.IsNew)
+                    {
+                        lst.Add(n.Guid);
+                    }
+                }
+            });
+            foreach (var tguid in lst)
+            {
+                var n = this.Config.DicNodes[tguid];
+                var p = n as IEditableNode;
+                p.Remove();
+            }
+            #endregion Remove New which are Marked for Deletion
+
             this.CommandConfigSave.Execute(null);
 
+            if (this.Config.PrevStableConfig != null)
+            {
+                #region Remove Deprecated
+                lst = new List<string>();
+                // delete from current model
+                vis.Run(this.Config, (v, n) =>
+                {
+                    if (n is IEditableNode)
+                    {
+                        var p = n as IEditableNode;
+                        if (p.IsMarkedForDeletion)
+                        {
+                            if (n.IsDeleted())
+                            {
+                                lst.Add(n.Guid);
+                            }
+                        }
+                    }
+                });
+                foreach (var tguid in lst)
+                {
+                    var n = this.Config.DicNodes[tguid];
+                    var p = n as IEditableNode;
+                    p.Remove();
+                }
+                #endregion Remove Deprecated
+            }
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code
             this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
             this.pconfig_history.CurrentConfig = proto;
-            if (this.pconfig_history.PrevStableConfig != null)
-            {
-                this.pconfig_history.OldStableConfig = this.pconfig_history.PrevStableConfig.Clone();
-                this.Config.OldStableConfig = this.Config.PrevStableConfig;
-            }
             this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
             this.Config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             this.pconfig_history.CurrentConfig.Version++;
+            vis.Run(this.Config, (v, n) =>
+            {
+                if (n is IEditableNode)
+                {
+                    (n as IEditableNode).IsNew = false;
+                }
+            });
             Utils.TryCall(
                 () =>
                 {

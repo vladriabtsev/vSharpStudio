@@ -9,6 +9,6 @@ namespace vSharpStudio.common
 {
     public interface IvPluginCodeGenerator : IvPluginGenerator
     {
-        List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes);
+        List<PreRenameData> GetListPreRename(IConfig config, Dictionary<string, string> dicRenamedNodes);
     }
 }

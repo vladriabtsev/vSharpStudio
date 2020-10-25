@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : INewAndDeleteion
+    public partial class EnumerationPair : INewAndDeleteion, IEditableNode
     {
         public static readonly string DefaultName = "Element";
 
@@ -24,64 +24,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
-        }
-        //partial void OnIsHasMarkedForDeletionChanged()
-        //{
-        //    if (this.IsHasMarkedForDeletion)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasMarkedForDeletion();
-        //    }
-        //}
-        //partial void OnIsHasNewChanged()
-        //{
-        //    if (this.IsHasNew)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasNew = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasNew();
-        //    }
-        //}
         public bool GetIsHasMarkedForDeletion()
         {
             //foreach (var t in this.ListDocuments)
@@ -107,6 +53,16 @@ namespace vSharpStudio.vm.ViewModels
             //}
             this.IsHasNew = false;
             return false;
+        }
+        public IEnumerable<ITreeConfigNode> GetParentList()
+        {
+            var p = this.Parent as Enumeration;
+            return p.ListEnumerationPairs;
+        }
+        public void Remove()
+        {
+            var p = this.Parent as Enumeration;
+            p.ListEnumerationPairs.Remove(this);
         }
     }
 }

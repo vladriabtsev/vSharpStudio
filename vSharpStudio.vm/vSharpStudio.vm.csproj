@@ -24,6 +24,7 @@
     <Compile Remove="ViewModels\ConfigObjectSubBase%27.cs" />
     <Compile Remove="ViewModels\DbSettings.cs" />
     <Compile Remove="ViewModels\DbSettings.Validator.cs" />
+    <Compile Remove="ViewModels\ModelVisitorForAnnotation.cs" />
     <Compile Remove="ViewModels\ObjectSubModelsEditor.xaml.cs" />
     <Compile Remove="ViewModels\PluginGeneratorSettings.cs" />
     <Compile Remove="ViewModels\PluginGeneratorSettings.Validator.cs" />

@@ -14,18 +14,25 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListAppSolutions.Count,nq}")]
-    public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INewAndDeleteion
+    public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INewAndDeleteion, IEditableNodeGroup
     {
-        public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
-        public override IEnumerable<object> GetChildren(object parent)
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
-            return this.ListAppSolutions;
+            return this.Children;
         }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as Config;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
 
-        public override bool HasChildren(object parent)
-        {
-            return this.ListAppSolutions.Count > 0;
-        }
+        public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
 
         partial void OnInit()
         {
@@ -106,8 +113,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
         public bool GetIsHasMarkedForDeletion()
         {
             foreach (var t in this.ListAppSolutions)
@@ -133,31 +138,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsHasNew = false;
             return false;
-        }
-
-        public void RemoveMarkedForDeletionIfNewObjects()
-        {
-            var tlst = this.ListAppSolutions.ToList();
-            foreach (var t in tlst)
-            {
-                if (t.IsMarkedForDeletion && t.IsNew)
-                {
-                    this.ListAppSolutions.Remove(t);
-                    continue;
-                }
-                t.RemoveMarkedForDeletionIfNewObjects();
-            }
-        }
-        public void RemoveMarkedForDeletionAndNewFlags()
-        {
-            foreach (var t in this.ListAppSolutions)
-            {
-                t.RemoveMarkedForDeletionAndNewFlags();
-                t.IsNew = false;
-                t.IsMarkedForDeletion = false;
-            }
-            Debug.Assert(!this.IsHasMarkedForDeletion);
-            Debug.Assert(!this.IsHasNew);
         }
         #endregion Tree operations
     }

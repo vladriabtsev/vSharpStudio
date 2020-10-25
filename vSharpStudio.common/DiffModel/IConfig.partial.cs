@@ -7,13 +7,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConfig : IObjectAnnotatable
+    public partial interface IConfig
     {
         ITreeConfigNode SelectedNode { get; set; }
         IConfig PrevStableConfig { get; }
-
         IConfig OldStableConfig { get; }
-
         DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
         DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
 

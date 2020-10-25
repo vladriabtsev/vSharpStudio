@@ -13,8 +13,10 @@ namespace vSharpStudio.common
 
     public interface ITree : IParent
     {
-        IEnumerable<object> GetChildren(object parent);
-
-        bool HasChildren(object parent);
+        IEnumerable<ITreeConfigNode> GetListChildren();
+        IEnumerable<ITreeConfigNode> GetListSiblings();
+        bool HasChildren();
+        //IEnumerable<object> GetChildren(object node);
+        //bool HasChildren(object node);
     }
 }

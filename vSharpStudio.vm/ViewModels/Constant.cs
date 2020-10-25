@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode
     {
         public static readonly string DefaultName = "Constant";
         [Browsable(false)]
@@ -116,40 +116,10 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListConstants).Remove(this);
             this.Parent = null;
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
 
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        partial void OnIsMarkedForDeletionChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsMarkedForDeletion)
-            {
-                (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasMarkedForDeletion();
-            }
-        }
-        partial void OnIsNewChanged()
-        {
-            if (this.IsNotNotifying)
-                return;
-            if (this.IsNew)
-            {
-                (this.Parent as INewAndDeleteion).IsHasNew = true;
-            }
-            else
-            {
-                var p = (this.Parent as INewAndDeleteion);
-                p.GetIsHasNew();
-            }
         }
         //partial void OnIsHasMarkedForDeletionChanged()
         //{
@@ -222,6 +192,16 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Constant.DefaultName, node, (this.Parent as GroupListConstants).ListConstants);
             this.SetSelected(node);
             return node;
+        }
+        public IEnumerable<ITreeConfigNode> GetParentList()
+        {
+            var p = this.Parent as GroupListConstants;
+            return p.ListConstants;
+        }
+        public void Remove()
+        {
+            var p = this.Parent as GroupListConstants;
+            p.ListConstants.Remove(this);
         }
         #endregion Tree operations
     }

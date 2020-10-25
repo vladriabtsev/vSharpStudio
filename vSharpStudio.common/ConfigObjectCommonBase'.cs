@@ -18,10 +18,14 @@
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverity<T, TValidator>, IComparable<T>, IEquatable<T>, ISortingValue, ITreeConfigNode, IObjectAnnotatable
+    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverity<T, TValidator>, IComparable<T>, IEquatable<T>, ISortingValue, ITreeConfigNode
         where TValidator : AbstractValidator<T>
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
+        //public abstract bool IsNew { get; set; }
+        //public abstract bool IsHasNew { get; set; }
+        //public abstract bool IsMarkedForDeletion { get; set; }
+        //public abstract bool IsHasMarkedForDeletion { get; set; }
         protected static ILogger _logger;
         public ConfigObjectCommonBase(ITreeConfigNode parent, TValidator validator)
             : base(validator)
@@ -46,9 +50,9 @@
             var p = this.Parent;
             if (this.IsChanged)
             {
-                while (p != null && !p.IsSubTreeChanged)
+                while (p != null && !p.IsSubTreeHasChanges)
                 {
-                    p.IsSubTreeChanged = true;
+                    p.IsSubTreeHasChanges = true;
                     p = p.Parent;
                 }
             }
@@ -718,201 +722,20 @@
 
         #endregion Commands
 
-        #region IMutableAnnotatable
-
-        public Annotation FindAnnotation(IAppProjectGenerator projectGenerator)
-        {
-            return this.FindAnnotation(projectGenerator.Guid);
-        }
-        private readonly SortedDictionary<string, Annotation> _annotations =
-            new SortedDictionary<string, Annotation>();
-
-        /// <summary>
-        ///     Adds an annotation to this object. Throws if an annotation with the specified name already exists.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to be added. </param>
-        /// <param name="value"> The value to be stored in the annotation. </param>
-        /// <returns> The newly added annotation. </returns>
-        public virtual Annotation AddAnnotation(string name, object value)
-        {
-            // Check.NotEmpty(name, nameof(name));
-
-            var annotation = this.CreateAnnotation(name, value);
-
-            return this.AddAnnotation(name, annotation);
-        }
-
-        /// <summary>
-        ///     Adds an annotation to this object. Throws if an annotation with the specified name already exists.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to be added. </param>
-        /// <param name="annotation"> The annotation to be added. </param>
-        /// <returns> The added annotation. </returns>
-        protected virtual Annotation AddAnnotation(string name, Annotation annotation)
-        {
-            if (this.FindAnnotation(name) != null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            this.SetAnnotation(name, annotation);
-
-            return annotation;
-        }
-
-        /// <summary>
-        ///     Sets the annotation stored under the given key. Overwrites the existing annotation if an
-        ///     annotation with the specified name already exists.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to be added. </param>
-        /// <param name="value"> The value to be stored in the annotation. </param>
-        public virtual void SetAnnotation(string name, object value)
-            => this.SetAnnotation(name, this.CreateAnnotation(name, value));
-
-        /// <summary>
-        ///     Sets the annotation stored under the given key. Overwrites the existing annotation if an
-        ///     annotation with the specified name already exists.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to be added. </param>
-        /// <param name="annotation"> The annotation to be set. </param>
-        /// <returns> The annotation that was set. </returns>
-        protected virtual Annotation SetAnnotation(string name, Annotation annotation)
-        {
-            var oldAnnotation = this.FindAnnotation(name);
-
-            this._annotations[name] = annotation;
-
-            return oldAnnotation != null
-                   && Equals(oldAnnotation.Value, annotation.Value)
-                ? annotation
-                : this.OnAnnotationSet(name, annotation, oldAnnotation);
-        }
-
-        /// <summary>
-        ///     Runs the corresponding conventions when an annotation was set or removed.
-        /// </summary>
-        /// <param name="name"> The key of the set annotation. </param>
-        /// <param name="annotation"> The annotation set. </param>
-        /// <param name="oldAnnotation"> The old annotation. </param>
-        /// <returns> The annotation that was set. </returns>
-        protected virtual Annotation OnAnnotationSet(
-            string name, Annotation annotation, Annotation oldAnnotation)
-            => annotation;
-
-        /// <summary>
-        ///     Gets the annotation with the given name, returning null if it does not exist.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to find. </param>
-        /// <returns>
-        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
-        /// </returns>
-        protected virtual Annotation FindAnnotation(string name)
-        {
-            // Check.NotEmpty(name, nameof(name));
-
-            return this._annotations.TryGetValue(name, out var annotation)
-                ? annotation
-                : null;
-        }
-
-        /// <summary>
-        ///     Removes the given annotation from this object.
-        /// </summary>
-        /// <param name="name"> The annotation to remove. </param>
-        /// <returns> The annotation that was removed. </returns>
-        public virtual Annotation RemoveAnnotation(string name)
-        {
-            // Check.NotNull(name, nameof(name));
-
-            var annotation = this.FindAnnotation(name);
-            if (annotation == null)
-            {
-                return null;
-            }
-
-            this._annotations.Remove(name);
-
-            this.OnAnnotationSet(name, null, annotation);
-
-            return annotation;
-        }
-
-        /// <summary>
-        ///     Gets the value annotation with the given name, returning null if it does not exist.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to find. </param>
-        /// <returns>
-        ///     The value of the existing annotation if an annotation with the specified name already exists.
-        ///     Otherwise, null.
-        /// </returns>
-        public virtual object this[string name]
-        {
-            get => this.FindAnnotation(name)?.Value;
-            set
-            {
-                // Check.NotEmpty(name, nameof(name));
-
-                if (value == null)
-                {
-                    this.RemoveAnnotation(name);
-                }
-                else
-                {
-                    this.SetAnnotation(name, this.CreateAnnotation(name, value));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Creates a new annotation.
-        /// </summary>
-        /// <param name="name"> The key of the annotation. </param>
-        /// <param name="value"> The value to be stored in the annotation. </param>
-        /// <returns> The newly created annotation. </returns>
-        protected virtual Annotation CreateAnnotation(string name, object value)
-            => new Annotation(name, value);
-
-        /// <summary>
-        ///     Gets all annotations on the current object.
-        /// </summary>
-        IEnumerable<Annotation> IObjectAnnotatable.GetAnnotations() => this.GetAnnotations();
-
-        /// <summary>
-        ///     Gets the annotation with the given name, returning null if it does not exist.
-        /// </summary>
-        /// <param name="name"> The key of the annotation to find. </param>
-        /// <returns>
-        ///     The existing annotation if an annotation with the specified name already exists. Otherwise, null.
-        /// </returns>
-        Annotation IObjectAnnotatable.FindAnnotation(string name) => this.FindAnnotation(name);
-        /// <summary>
-        ///     Gets all annotations on the current object.
-        /// </summary>
-        public virtual IEnumerable<Annotation> GetAnnotations() =>
-            this._annotations != null
-                ? this._annotations.Values.Where(a => a.Value != null)
-                : Enumerable.Empty<Annotation>();
-
-        #endregion IMutableAnnotatable
-
-        public virtual bool HasChildren(object parent)
-        {
-            return false;
-        }
-
-        public virtual IEnumerable<object> GetChildren(object parent)
-        {
-            throw new NotImplementedException();
-        }
-
         [BrowsableAttribute(false)]
         public bool IsIncludableInModels { get; protected set; }
 
         public List<IModelRow> ListInModels { get; protected set; }
 
         [BrowsableAttribute(false)]
-        public bool IsSubTreeChanged { get { return this._IsSubTreeChanged; } set { SetProperty(ref _IsSubTreeChanged, value); } }
-        private bool _IsSubTreeChanged;
+        public bool IsSubTreeHasChanges { get { return this._IsSubTreeHasChanges; } set { SetProperty(ref _IsSubTreeHasChanges, value); } }
+        private bool _IsSubTreeHasChanges;
+        [BrowsableAttribute(false)]
+        public bool IsSubTreeHasNew { get { return this._IsSubTreeHasNew; } set { SetProperty(ref _IsSubTreeHasNew, value); } }
+        private bool _IsSubTreeHasNew;
+        [BrowsableAttribute(false)]
+        public bool IsSubTreeHasMarkedForDeletion { get { return this._IsSubTreeHasMarkedForDeletion; } set { SetProperty(ref _IsSubTreeHasMarkedForDeletion, value); } }
+        private bool _IsSubTreeHasMarkedForDeletion;
 
         [BrowsableAttribute(false)]
         public bool AutoGenerateProperties { get { return this._AutoGenerateProperties; } set { SetProperty(ref _AutoGenerateProperties, value); } }
@@ -975,5 +798,252 @@
             }
             this.PropertyDefinitions = res;
         }
+        public ITreeConfigNode PrevVersion()
+        {
+            var cfg = this.GetConfig();
+            if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.Guid))
+                return null;
+            return cfg.PrevStableConfig.DicNodes[this.Guid];
+        }
+        public bool IsRenamed()
+        {
+            if (this is IEditableNode)
+            {
+                var p = this.PrevVersion();
+                if (p != null && p.Name != this.Name)
+                    return true;
+            }
+            return false;
+        }
+        virtual public bool IsNew()
+        {
+            if (this is IEditableNode)
+            {
+                if ((this as IEditableNode).IsNew)
+                    return true;
+            }
+            return false;
+        }
+        public bool IsDeleted()
+        {
+            if (this is IEditableNode)
+            {
+                var p = (IEditableNode)this.PrevVersion();
+                if (p != null && p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+                    return true;
+            }
+            return false;
+        }
+        public bool IsDeprecated()
+        {
+            if (this is IEditableNode)
+            {
+                var p = (IEditableNode)this.PrevVersion();
+                if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+                    return true;
+            }
+            return false;
+        }
+        public bool IsCanLooseData()
+        {
+            if (this is IEditableNode)
+            {
+                throw new NotImplementedException();
+                var p = (IEditableNode)this.PrevVersion();
+                if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+                    return true;
+            }
+            return false;
+        }
+        protected void OnNodeIsNewChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNode)
+            {
+                var pp = (IEditableNodeGroup)this.Parent;
+                var p = (IEditableNode)this;
+                if (p.IsNew)
+                {
+                    pp.IsHasNew = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNode)t;
+                        if (pt.IsNew)
+                        {
+                            pp.IsHasNew = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasNew = false;
+                }
+            }
+        }
+        protected void OnNodeIsHasNewChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNodeGroup)
+            {
+                var p = (IEditableNodeGroup)this;
+                var pp = (IEditableNodeGroup)this.Parent;
+                if (p.IsHasNew)
+                {
+                    pp.IsHasNew = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNodeGroup)t;
+                        if (pt.IsHasNew)
+                        {
+                            pp.IsHasNew = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasNew = false;
+                }
+            }
+        }
+        protected void OnNodeIsChangedChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNode)
+            {
+                var pp = (IEditableNodeGroup)this.Parent;
+                var p = (IEditableNode)this;
+                if (p.IsChanged)
+                {
+                    pp.IsHasChanged = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNode)t;
+                        if (pt.IsChanged)
+                        {
+                            pp.IsHasChanged = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasChanged = false;
+                }
+            }
+        }
+        protected void OnNodeIsHasChangedChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNodeGroup)
+            {
+                var p = (IEditableNodeGroup)this;
+                var pp = (IEditableNodeGroup)this.Parent;
+                if (p.IsHasChanged)
+                {
+                    pp.IsHasChanged = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNodeGroup)t;
+                        if (pt.IsHasChanged)
+                        {
+                            pp.IsHasChanged = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasChanged = false;
+                }
+            }
+        }
+        protected void OnNodeIsMarkedForDeletionChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNode)
+            {
+                var pp = (IEditableNodeGroup)this.Parent;
+                var p = (IEditableNode)this;
+                if (p.IsMarkedForDeletion)
+                {
+                    pp.IsHasMarkedForDeletion = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNode)t;
+                        if (pt.IsMarkedForDeletion)
+                        {
+                            pp.IsHasMarkedForDeletion = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasMarkedForDeletion = false;
+                }
+            }
+        }
+        protected void OnNodeIsHasMarkedForDeletionChanged()
+        {
+            if (this.IsNotNotifying)
+                return;
+            if (this is IEditableNodeGroup)
+            {
+                var p = (IEditableNodeGroup)this;
+                var pp = (IEditableNodeGroup)this.Parent;
+                if (p.IsHasMarkedForDeletion)
+                {
+                    pp.IsHasMarkedForDeletion = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNodeGroup)t;
+                        if (pt.IsHasMarkedForDeletion)
+                        {
+                            pp.IsHasMarkedForDeletion = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasMarkedForDeletion = false;
+                }
+            }
+        }
+
+        #region ITree
+        public virtual IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            throw new NotImplementedException();
+        }
+        public virtual IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            throw new NotImplementedException();
+        }
+        public virtual bool HasChildren()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion ITree
+
+        #region ITreeModel
+        public IEnumerable<object> GetChildren(object parent)
+        {
+            var p = (ITreeConfigNode)parent;
+            return p.GetListChildren();
+        }
+        public bool HasChildren(object parent)
+        {
+            var p = (ITreeConfigNode)parent;
+            return p.HasChildren(); ;
+        }
+        #endregion ITreeModel
     }
 }

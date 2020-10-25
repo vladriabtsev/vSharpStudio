@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigObjectVmBase<T, TValidator> : ConfigObjectCommonBase<T, TValidator>
+    public partial class ConfigObjectVmBase<T, TValidator> : ConfigObjectCommonBase<T, TValidator>
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectVmBase<T, TValidator>//, IComparable<T>, ISortingValue 
     {

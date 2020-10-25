@@ -74,10 +74,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             (this.Parent as Plugin).ListGenerators.Remove(this);
         }
-        public bool IsHasNew { get { return false; } set { } }
-        public bool IsHasMarkedForDeletion { get { return false; } set { } }
-        public bool IsNew { get { return false; } set { } }
-        public bool IsMarkedForDeletion { get { return false; } set { } }
         public bool GetIsHasMarkedForDeletion()
         {
             return false;
@@ -87,6 +83,5 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         #endregion Tree operations
-
     }
 }

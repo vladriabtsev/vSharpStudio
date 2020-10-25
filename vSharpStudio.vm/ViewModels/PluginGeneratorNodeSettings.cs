@@ -24,5 +24,10 @@ namespace vSharpStudio.vm.ViewModels
         //    //var cfg = this.GetConfig();
         //    //cfg.Model.DicGenNodeSettings[this.NodeSettingsVmGuid] = this.SettingsVm;
         //}
+        partial void OnIsNewChanged();
+        partial void OnIsHasNewChanged();
+        partial void OnIsHasChangedChanged();
+        partial void OnIsMarkedForDeletionChanged();
+        partial void OnIsHasMarkedForDeletionChanged();
     }
 }

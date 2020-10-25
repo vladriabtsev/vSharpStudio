@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace vSharpStudio.common
 {
-    public abstract class ModelVisitorBase
+    public class ModelVisitorBase
     {
         public static string DB_CONFIG_MODEL_TABLE = "_config_model_tables";
         public static string DB_CONFIG_MODEL_FIELD = "_config_model_table_fields";
@@ -91,6 +91,24 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListReports parent, IEnumerable<IReport> lst) { }
         protected virtual void BeginVisit(IReport p) { }
         protected virtual void EndVisit(IReport p) { }
+        protected virtual void EndVisit(IGroupListBaseConfigLinks groupConfigLinks) { }
+        protected virtual void EndVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks) { }
+        protected virtual void EndVisit(IBaseConfigLink t) { }
+        protected virtual void BeginVisit(IBaseConfigLink t) { }
+        protected virtual void BeginVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks) { }
+        protected virtual void BeginVisit(IGroupListBaseConfigLinks groupConfigLinks) { }
+        protected virtual void EndVisit(IAppProjectGenerator ttt) { }
+        protected virtual void BeginVisit(IAppProjectGenerator ttt) { }
+        protected virtual void BeginVisit(IEnumerable<IAppProjectGenerator> listAppProjectGenerators) { }
+        protected virtual void EndVisit(IAppProject tt) { }
+        protected virtual void BeginVisit(IAppProject tt) { }
+        protected virtual void BeginVisit(IEnumerable<IAppProject> listAppProjects) { }
+        protected virtual void EndVisit(IAppSolution t) { }
+        protected virtual void BeginVisit(IAppSolution t) { }
+        protected virtual void BeginVisit(IEnumerable<IAppSolution> listAppSolutions) { }
+        protected virtual void EndVisit(IGroupListAppSolutions groupAppSolutions) { }
+        protected virtual void BeginVisit(IGroupListAppSolutions groupAppSolutions) { }
+
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
         {
             this.BeginVisit(parent);
@@ -172,7 +190,7 @@ namespace vSharpStudio.common
         protected IDocument currDoc = null;
         protected vSharpStudio.common.IProperty currProp = null;
         protected Stack<IPropertiesTab> currPropTabStack = new Stack<IPropertiesTab>();
-        private Action<ModelVisitorBase, IObjectAnnotatable> _act = null;
+        protected Action<ModelVisitorBase, ITreeConfigNode> _act = null;
         // 0 - previous, 1 - previous of previous
         protected IPropertiesTab GetPropertiesTabFromStack(int level)
         {
@@ -184,158 +202,10 @@ namespace vSharpStudio.common
 
         protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
 
-        /// <summary>
-        /// Model object references
-        /// </summary>
-        public class ModelNode
-        {
-            public ModelNode()
-            {
-                this.DicReferenceToNodes = new Dictionary<string, ReferenceTo>();
-                this.DicReferecedFromNodes = new Dictionary<string, ReferenceFrom>();
-            }
-            /// <summary>
-            /// Model object
-            /// </summary>
-            public IGuid NodeObject { get; set; }
-            /// <summary>
-            /// References from this model objects to others
-            /// </summary>
-            public Dictionary<string, ReferenceTo> DicReferenceToNodes { get; set; }
-            /// <summary>
-            /// References from other model objects to this model object
-            /// </summary>
-            public Dictionary<string, ReferenceFrom> DicReferecedFromNodes { get; set; }
-        }
-        /// <summary>
-        /// Reference to another model object
-        /// </summary>
-        public class ReferenceTo
-        {
-            public ReferenceTo() { this.DicByFields = new Dictionary<string, IGuid>(); }
-            /// <summary>
-            /// Model object
-            /// </summary>
-            public IGuid ToObject { get; set; }
-            /// <summary>
-            /// Model object field which is referencing 
-            /// </summary>
-            public Dictionary<string, IGuid> DicByFields { get; set; }
-        }
-        /// <summary>
-        /// Referenced from another model object
-        /// </summary>
-        public class ReferenceFrom
-        {
-            public ReferenceFrom() { this.DicFromFields = new Dictionary<string, IGuid>(); }
-            /// <summary>
-            /// Model object
-            /// </summary>
-            public IGuid FromObject { get; set; }
-            /// <summary>
-            /// Model object field which is referencing 
-            /// </summary>
-            public Dictionary<string, IGuid> DicFromFields { get; set; }
-        }
-        protected Dictionary<string, ModelNode> DicNodesWithReferences = new Dictionary<string, ModelNode>();
-        //private List<IGuid> GrapfToSequenceForDb()
-        private void ScanForDicNodesWithReferences()
-        {
-            foreach (var t in currModel.GroupEnumerations.ListEnumerations)
-            {
-                var md = new ModelNode() { NodeObject = t };
-                this.DicNodesWithReferences[t.Guid] = md;
-            }
-            foreach (var t in currModel.GroupConstants.ListConstants)
-            {
-                var md = new ModelNode() { NodeObject = t };
-                this.DicNodesWithReferences[t.Guid] = md;
-                if (!string.IsNullOrWhiteSpace(t.DataType.ObjectGuid))
-                {
-                    AddReferenceToNode(md, t, t.DataType);
-                }
-            }
-            foreach (var t in currModel.GroupCatalogs.ListCatalogs)
-            {
-                var md = new ModelNode() { NodeObject = t };
-                this.DicNodesWithReferences[t.Guid] = md;
-                ScanProperties(md, t.GroupProperties.ListProperties);
-                ScanPropertiesTabs(md, t.GroupPropertiesTabs);
-            }
-            foreach (var t in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
-            {
-                var md = new ModelNode() { NodeObject = t };
-                this.DicNodesWithReferences[t.Guid] = md;
-                ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
-                ScanPropertiesTabs(md, t.GroupPropertiesTabs);
-            }
-
-            foreach (var t in this.DicNodesWithReferences)
-            {
-                var md = t.Value;
-                foreach (var tt in t.Value.DicReferenceToNodes)
-                {
-                    var toObject = this.DicNodesWithReferences[tt.Value.ToObject.Guid];
-                    foreach (var ttt in tt.Value.DicByFields)
-                    {
-                        AddReferenceFromNode(toObject, ttt.Value, t.Value.NodeObject);
-                    }
-                }
-            }
-        }
-        private void ScanPropertiesTabs(ModelNode md, IGroupListPropertiesTabs t)
-        {
-            foreach (var tt in t.ListPropertiesTabs)
-            {
-                ScanProperties(md, tt.GroupProperties.ListProperties);
-                ScanPropertiesTabs(md, tt.GroupPropertiesTabs);
-            }
-        }
-        private void ScanProperties(ModelNode md, IEnumerable<IProperty> lst)
-        {
-            foreach (var t in lst)
-            {
-                if (!string.IsNullOrWhiteSpace(t.DataType.ObjectGuid))
-                {
-                    AddReferenceToNode(md, t, t.DataType);
-                }
-            }
-        }
-        private void AddReferenceToNode(ModelNode md, IConstant constant, IDataType d)
-        {
-            if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
-            {
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo();
-            }
-            var tn = md.DicReferenceToNodes[d.ObjectGuid];
-            tn.DicByFields[constant.Guid] = constant;
-            tn.ToObject = this.currCfg.DicNodes[d.ObjectGuid];
-        }
-        private void AddReferenceToNode(ModelNode md, IProperty property, IDataType d)
-        {
-            if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
-            {
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo();
-            }
-            var tn = md.DicReferenceToNodes[d.ObjectGuid];
-            tn.DicByFields[property.Guid] = property;
-            tn.ToObject = this.currCfg.DicNodes[d.ObjectGuid];
-        }
-        private static void AddReferenceFromNode(ModelNode md, IGuid property, IGuid from)
-        {
-            if (!md.DicReferecedFromNodes.ContainsKey(from.Guid))
-            {
-                md.DicReferecedFromNodes[from.Guid] = new ReferenceFrom();
-            }
-            var tn = md.DicReferecedFromNodes[from.Guid];
-            tn.DicFromFields[property.Guid] = property;
-            tn.FromObject = from;
-        }
-        public void RunThroughConfig(IConfigModel model, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
+        public void Run(IConfigModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
             this._act = act;
             this.currModel = model;
-            this.ScanForDicNodesWithReferences();
 
             this.BeginVisit(this.currModel);
 
@@ -487,7 +357,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public void RunThroughConfig(IConfig curr, Action<ModelVisitorBase, IObjectAnnotatable> act = null)
+        public void Run(IConfig curr, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
             this._act = act;
             this.currCfg = curr;
@@ -537,79 +407,11 @@ namespace vSharpStudio.common
             this.EndVisit(this.currCfg.GroupConfigLinks);
             #endregion GroupConfigLinks
 
-            this.RunThroughConfig(this.currCfg.Model, act);
+            this.Run(this.currCfg.Model, act);
 
             this.EndVisit(this.currCfg);
 
             this.currCfg = null;
-        }
-
-        protected virtual void EndVisit(IGroupListBaseConfigLinks groupConfigLinks)
-        {
-        }
-
-        protected virtual void EndVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks)
-        {
-        }
-
-        protected virtual void EndVisit(IBaseConfigLink t)
-        {
-        }
-
-        protected virtual void BeginVisit(IBaseConfigLink t)
-        {
-        }
-
-        protected virtual void BeginVisit(IEnumerable<IBaseConfigLink> listBaseConfigLinks)
-        {
-        }
-
-        protected virtual void BeginVisit(IGroupListBaseConfigLinks groupConfigLinks)
-        {
-        }
-
-        protected virtual void EndVisit(IAppProjectGenerator ttt)
-        {
-        }
-
-        protected virtual void BeginVisit(IAppProjectGenerator ttt)
-        {
-        }
-
-        protected virtual void BeginVisit(IEnumerable<IAppProjectGenerator> listAppProjectGenerators)
-        {
-        }
-
-        protected virtual void EndVisit(IAppProject tt)
-        {
-        }
-
-        protected virtual void BeginVisit(IAppProject tt)
-        {
-        }
-
-        protected virtual void BeginVisit(IEnumerable<IAppProject> listAppProjects)
-        {
-        }
-
-        protected virtual void EndVisit(IAppSolution t)
-        {
-        }
-
-        protected virtual void BeginVisit(IAppSolution t)
-        {
-        }
-
-        protected virtual void BeginVisit(IEnumerable<IAppSolution> listAppSolutions)
-        {
-        }
-
-        protected virtual void EndVisit(IGroupListAppSolutions groupAppSolutions)
-        {
-        }
-
-        protected virtual void BeginVisit(IGroupListAppSolutions groupAppSolutions)
-        {
         }
     }
 }

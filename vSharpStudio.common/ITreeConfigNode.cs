@@ -7,17 +7,22 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid
+    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName
     {
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
-        string Name { get; set; }
         string ModelPath { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         // ITreeConfigNode Parent { get; set; }
-        bool IsSubTreeChanged { get; set; }
+        bool IsSubTreeHasChanges { get; set; }
         bool IsChanged { get; set; }
+        bool IsNew();
+        bool IsDeleted();
+        bool IsDeprecated();
+        bool IsRenamed();
+        bool IsCanLooseData();
+        ITreeConfigNode PrevVersion();
         void Sort(Type type);
         bool NodeCanMoveUp();
         void NodeMoveUp();

@@ -250,8 +250,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
-            var mod = new ModelVisitorForAnnotation();
-            var cfgDiff = mod.GetDiffAnnotatedConfig(vm2.Config, vm2.Config.PrevStableConfig, vm2.Config.OldStableConfig); // Recalculate annotation
+            var cfgDiff = vm2.Config;
             Assert.AreEqual(1, cfgDiff.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, cfgDiff.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, cfgDiff.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
