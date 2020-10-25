@@ -33,14 +33,12 @@ namespace vSharpStudio.common
         bool IsNew { get; set; }
         bool IsMarkedForDeletion { get; set; }
         void Remove();
-        //IEnumerable<ITreeConfigNode> GetParentList();
     }
     public interface IEditableNodeGroup
     {
         bool IsHasChanged { get; set; }
         bool IsHasNew { get; set; }
         bool IsHasMarkedForDeletion { get; set; }
-        //IEnumerable<ITreeConfigNode> GetParentList();
     }
     public interface IOnRemoved
     {

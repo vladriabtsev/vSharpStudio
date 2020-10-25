@@ -13,6 +13,23 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Element";
 
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return new List<ITreeConfigNode>();
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as Enumeration;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return false;
+        }
+        #endregion ITree
+
+
         [Browsable(false)]
         new public string IconName { get { return "iconEnumItem"; } }
         //protected override string GetNodeIconName() { return "iconEnumItem"; }
@@ -53,11 +70,6 @@ namespace vSharpStudio.vm.ViewModels
             //}
             this.IsHasNew = false;
             return false;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as Enumeration;
-            return p.ListEnumerationPairs;
         }
         public void Remove()
         {

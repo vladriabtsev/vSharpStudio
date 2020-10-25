@@ -34,29 +34,16 @@
                 _logger = Logger.CreateLogger<T>();
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
-            this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
+            //this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
         }
 
-        private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsChanged")
-            {
-                IsTreeChangedRecalc();
-            }
-        }
-
-        protected void IsTreeChangedRecalc()
-        {
-            var p = this.Parent;
-            if (this.IsChanged)
-            {
-                while (p != null && !p.IsSubTreeHasChanges)
-                {
-                    p.IsSubTreeHasChanges = true;
-                    p = p.Parent;
-                }
-            }
-        }
+        //private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "IsChanged")
+        //    {
+        //        IsTreeChangedRecalc();
+        //    }
+        //}
 
         protected virtual void OnInitFromDto()
         {
@@ -395,7 +382,7 @@
             }
         }
 
-        private string _Name = string.Empty;
+        protected string _Name = string.Empty;
 
         [PropertyOrder(1)]
         [DisplayName("UI Name")]
@@ -510,7 +497,12 @@
             {
                 this._Parent = value;
                 this.OnParentChanged();
-                IsTreeChangedRecalc();
+                if (this._Parent != null)
+                {
+                    OnNodeIsNewChanged();
+                    OnNodeIsChangedChanged();
+                    OnNodeIsMarkedForDeletionChanged();
+                }
             }
         }
 
@@ -727,15 +719,15 @@
 
         public List<IModelRow> ListInModels { get; protected set; }
 
-        [BrowsableAttribute(false)]
-        public bool IsSubTreeHasChanges { get { return this._IsSubTreeHasChanges; } set { SetProperty(ref _IsSubTreeHasChanges, value); } }
-        private bool _IsSubTreeHasChanges;
-        [BrowsableAttribute(false)]
-        public bool IsSubTreeHasNew { get { return this._IsSubTreeHasNew; } set { SetProperty(ref _IsSubTreeHasNew, value); } }
-        private bool _IsSubTreeHasNew;
-        [BrowsableAttribute(false)]
-        public bool IsSubTreeHasMarkedForDeletion { get { return this._IsSubTreeHasMarkedForDeletion; } set { SetProperty(ref _IsSubTreeHasMarkedForDeletion, value); } }
-        private bool _IsSubTreeHasMarkedForDeletion;
+        //[BrowsableAttribute(false)]
+        //public bool IsSubTreeHasChanges { get { return this._IsSubTreeHasChanges; } set { SetProperty(ref _IsSubTreeHasChanges, value); } }
+        //private bool _IsSubTreeHasChanges;
+        //[BrowsableAttribute(false)]
+        //public bool IsSubTreeHasNew { get { return this._IsSubTreeHasNew; } set { SetProperty(ref _IsSubTreeHasNew, value); } }
+        //private bool _IsSubTreeHasNew;
+        //[BrowsableAttribute(false)]
+        //public bool IsSubTreeHasMarkedForDeletion { get { return this._IsSubTreeHasMarkedForDeletion; } set { SetProperty(ref _IsSubTreeHasMarkedForDeletion, value); } }
+        //private bool _IsSubTreeHasMarkedForDeletion;
 
         [BrowsableAttribute(false)]
         public bool AutoGenerateProperties { get { return this._AutoGenerateProperties; } set { SetProperty(ref _AutoGenerateProperties, value); } }
@@ -859,6 +851,8 @@
         {
             if (this.IsNotNotifying)
                 return;
+            if (this is IConfig)
+                return;
             if (this is IEditableNode)
             {
                 var pp = (IEditableNodeGroup)this.Parent;
@@ -885,6 +879,8 @@
         protected void OnNodeIsHasNewChanged()
         {
             if (this.IsNotNotifying)
+                return;
+            if (this is IConfig)
                 return;
             if (this is IEditableNodeGroup)
             {
@@ -913,6 +909,8 @@
         {
             if (this.IsNotNotifying)
                 return;
+            if (this is IConfig)
+                return;
             if (this is IEditableNode)
             {
                 var pp = (IEditableNodeGroup)this.Parent;
@@ -939,6 +937,8 @@
         protected void OnNodeIsHasChangedChanged()
         {
             if (this.IsNotNotifying)
+                return;
+            if (this is IConfig)
                 return;
             if (this is IEditableNodeGroup)
             {
@@ -967,6 +967,8 @@
         {
             if (this.IsNotNotifying)
                 return;
+            if (this is IConfig)
+                return;
             if (this is IEditableNode)
             {
                 var pp = (IEditableNodeGroup)this.Parent;
@@ -993,6 +995,8 @@
         protected void OnNodeIsHasMarkedForDeletionChanged()
         {
             if (this.IsNotNotifying)
+                return;
+            if (this is IConfig)
                 return;
             if (this is IEditableNodeGroup)
             {

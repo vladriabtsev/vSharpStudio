@@ -1033,6 +1033,7 @@ Stored in AppProjectGenerator node
 | ----- | ---- | ----- | ----------- |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | settings | [string](#string) |  |  |
+| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1066,6 +1067,7 @@ Stored in each node in ConfigModel branch
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | node_settings_vm_guid | [string](#string) |  | Name of solution-project-generator node string name = 2; |
 | settings | [string](#string) |  |  |
+| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 

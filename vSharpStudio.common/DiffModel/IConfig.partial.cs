@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConfig
+    public partial interface IConfig : ITreeConfigNode
     {
         ITreeConfigNode SelectedNode { get; set; }
         IConfig PrevStableConfig { get; }

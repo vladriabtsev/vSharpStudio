@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
-            this.Name = "Plugins";
+            this._Name = "Plugins";
             this.IsEditable = false;
             this.ListPlugins.OnAddingAction = (t) =>
             {

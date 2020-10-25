@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
-            this.Name = "Apps";
+            this._Name = "Apps";
             this.IsEditable = false;
             //this.DefaultDb.Parent = this;
             this.ListAppSolutions.OnAddingAction = (t) => {

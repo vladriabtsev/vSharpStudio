@@ -19,7 +19,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Config : ITreeModel, IMigration, ICanGoLeft
+    public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
         // to use xxxIsChanging(x from, x to)
         public static bool IsLoading;
@@ -84,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
             _logger.Trace();
             if (string.IsNullOrWhiteSpace(this.Name))
             {
-                this.Name = "Config";
+                this._Name = "Config";
             }
 
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);

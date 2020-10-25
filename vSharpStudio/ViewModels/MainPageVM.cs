@@ -120,7 +120,7 @@ namespace vSharpStudio.ViewModels
             }
             this.UserSettings.OnOpenRecentConfig = p =>
             {
-                if (this.Config.IsSubTreeHasChanges)
+                if (this.Config.IsHasChanged)
                 {
                     var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
@@ -648,7 +648,7 @@ namespace vSharpStudio.ViewModels
 
         internal void NewConfig()
         {
-            if (this.Config.IsSubTreeHasChanges)
+            if (this.Config.IsHasChanged)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -669,7 +669,7 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandOpenConfig;
         internal void OpenConfig()
         {
-            if (this.Config.IsSubTreeHasChanges)
+            if (this.Config.IsHasChanged)
             {
                 var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res != System.Windows.MessageBoxResult.OK)
@@ -732,8 +732,8 @@ namespace vSharpStudio.ViewModels
                 //    this.UserSettings.ListOpenConfigHistory[0].OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
                 //else
                 //    throw new Exception();
+                ResetIsChangedBeforeSave();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
-                ResetAfterSave();
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
@@ -782,8 +782,8 @@ namespace vSharpStudio.ViewModels
                         Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                         UpdateUserSettingsSaveConfigs();
+                        ResetIsChangedBeforeSave();
                         File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
-                        ResetAfterSave();
                     }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
 
                 // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
@@ -795,15 +795,15 @@ namespace vSharpStudio.ViewModels
             this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
         }
 
-        private void ResetAfterSave()
+        private void ResetIsChangedBeforeSave()
         {
-            foreach (var t in this.Config.DicNodes)
+            var vis = new ModelVisitorBase();
+            vis.Run(this.Config, (v, n) =>
             {
-                t.Value.IsSubTreeHasChanges = false;
-                t.Value.IsChanged = false;
-            }
-            this.Config.IsSubTreeHasChanges = false;
-            this.Config.IsChanged = false;
+                n.IsChanged = false;
+            });
+            Debug.Assert(!this.Config.IsHasChanged);
+            Debug.Assert(!this.Config.IsChanged);
         }
 
         private void UpdateUserSettingsSaveConfigs()
@@ -1413,7 +1413,7 @@ namespace vSharpStudio.ViewModels
                 _logger.LogCritical(ex, "".CallerInfo());
                 throw ex;
             }
-            if (this.Config.IsSubTreeHasChanges)
+            if (this.Config.IsHasChanged)
             {
                 string mes = "Can't create stable version when Config has changes";
                 var ex = new NotSupportedException(mes);
@@ -1487,7 +1487,9 @@ namespace vSharpStudio.ViewModels
             {
                 if (n is IEditableNode)
                 {
-                    (n as IEditableNode).IsNew = false;
+                    var p = n as IEditableNode;
+                    p.IsNew = false;
+                    p.IsChanged = false;
                 }
             });
             Utils.TryCall(

@@ -15,7 +15,7 @@ namespace vSharpStudio.common
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }
         // ITreeConfigNode Parent { get; set; }
-        bool IsSubTreeHasChanges { get; set; }
+        //bool IsHasChanged { get; set; }
         bool IsChanged { get; set; }
         bool IsNew();
         bool IsDeleted();

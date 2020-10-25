@@ -14,23 +14,24 @@ namespace vSharpStudio.vm.ViewModels
     public partial class BaseConfigLink : INodeGenSettings, INewAndDeleteion, IEditableNode
     {
         public static readonly string DefaultName = "BaseConfig";
-        //        partial void OnRelativeConfigFilePathChanged()
-        //        {
-        //            if (this.IsNotNotifying)
-        //                return;
-        //            if (string.IsNullOrWhiteSpace(this._RelativeConfigFilePath))
-        //                throw new Exception();
-        //            var cfg = this.GetConfig();
-        //            if (string.IsNullOrWhiteSpace(cfg.CurrentCfgFolderPath))
-        //                return;
-        //            string path = Path.GetFullPath(this._RelativeConfigFilePath);
-        //#if NET48
-        //            this._RelativeConfigFilePath = vSharpStudio.common.Utils.GetRelativePath(cfg.CurrentCfgFolderPath, path);
-        //#else
-        //            this._RelativeConfigFilePath = Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
-        //#endif
 
-        //        }
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return new List<ITreeConfigNode>();
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListBaseConfigLinks;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return false;
+        }
+        #endregion ITree
+
+
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }

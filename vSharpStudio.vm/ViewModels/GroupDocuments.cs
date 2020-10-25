@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnInit()
         {
-            this.Name = Defaults.DocumentsGroupName;
+            this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);

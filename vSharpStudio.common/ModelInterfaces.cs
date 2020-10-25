@@ -273,6 +273,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 47
         string Settings { get; } // ModelInterfaces.tt Line: 47
+        bool IsHasChanged { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////
@@ -287,6 +288,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         ///////////////////////////////////////////////////
         string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 47
         string Settings { get; } // ModelInterfaces.tt Line: 47
+        bool IsHasChanged { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////

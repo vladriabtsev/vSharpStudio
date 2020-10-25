@@ -160,8 +160,9 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant001GuidInit()
         {
-            var cfg = new Constant((ITreeConfigNode)null);
-            Assert.IsTrue(cfg.Guid.Length > 0);
+            var cfg = new Config();
+            var c = cfg.Model.GroupConstants.NodeAddNewSubNode();
+            Assert.IsTrue(c.Guid.Length > 0);
         }
 
         [TestMethod]
@@ -189,8 +190,9 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum001GuidInit()
         {
-            var cfg = new Enumeration((ITreeConfigNode)null);
-            Assert.IsTrue(cfg.Guid.Length > 0);
+            var cfg = new Config();
+            var en = cfg.Model.GroupEnumerations.NodeAddNewSubNode();
+            Assert.IsTrue(en.Guid.Length > 0);
         }
 
         [TestMethod]
@@ -805,7 +807,7 @@ namespace vSharpStudio.Unit
             cfg.Model.GroupCatalogs.AddCatalog("Test1");
             Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
             cfg.Model.IsUseGroupPrefix = true;
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables+cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
             cfg.Model.IsCompositeNames = true;
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
 
@@ -816,11 +818,11 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name, cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].CompositeName);
             cfg.Model.IsUseGroupPrefix = true;
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name, 
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name,
                 cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].CompositeName);
             cfg.Model.IsCompositeNames = true;
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name, 
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForDbTables + cfg.Model.GroupCatalogs[0].Name + cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].Name,
                 cfg.Model.GroupCatalogs[0].GroupPropertiesTabs[0].CompositeName);
 
         }
@@ -874,7 +876,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             cfg.Model.IsUseGroupPrefix = false;
-            cfg.Model.GroupDocuments.GroupListDocuments[0].Name="Test2";
+            cfg.Model.GroupDocuments.GroupListDocuments[0].Name = "Test2";
             cfg.Model.Validate();
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 

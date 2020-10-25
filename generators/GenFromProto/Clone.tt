@@ -225,8 +225,8 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
      #>
 <# if (this.Doc.IsDefaultBase) { #>
     vm.OnInitFromDto(); // <#=Helper.FilePos() #>
-    vm.IsSubTreeHasChanges = false;
     vm.IsChanged = false;
+    vm.IsHasChanged = false;
 <# } #>
     vm.IsNotNotifying = false;
     vm.IsValidate = true;

@@ -35,7 +35,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
-            this.Name = "Common";
+            this._Name = "Common";
             this.IsEditable = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 

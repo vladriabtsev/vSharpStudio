@@ -435,8 +435,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -641,8 +641,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -826,8 +824,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -1058,8 +1056,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -1191,8 +1187,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -1368,8 +1364,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -1757,8 +1751,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -1956,8 +1950,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -2188,8 +2180,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -2426,8 +2418,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -2643,8 +2633,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -2880,8 +2870,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -3082,8 +3070,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupAppSolutions = new GroupListAppSolutions(vm); // Clone.tt Line: 215
             GroupListAppSolutions.ConvertToVM(m.GroupAppSolutions, vm.GroupAppSolutions); // Clone.tt Line: 219
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -3324,8 +3312,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -3837,8 +3823,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -4039,8 +4025,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -4271,8 +4255,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListGroupGeneratorsDefultSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -4514,8 +4498,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -4669,8 +4651,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -4871,8 +4853,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -5106,8 +5086,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -5329,8 +5309,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -5565,8 +5543,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListAppProjectGenerators.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -5781,8 +5759,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -5906,6 +5882,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
             vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
+            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -5919,6 +5896,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 141
             to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
+            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -5950,9 +5928,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
             vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
+            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -5965,6 +5944,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
             m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
+            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -6061,6 +6041,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 160
         partial void OnSettingsChanged();
         string IPluginGeneratorNodeSettings.Settings { get { return this._Settings; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsHasChanged // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsHasChanged; 
+            }
+            set
+            {
+                if (this._IsHasChanged != value)
+                {
+                    this.OnIsHasChangedChanging(ref value);
+                    this._IsHasChanged = value;
+                    this.OnIsHasChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        private bool _IsHasChanged;
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsHasChangedChanged();
+        bool IPluginGeneratorNodeSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -6125,6 +6128,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = false;
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
+            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -6137,6 +6141,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(from != null);
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
+            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -6167,9 +6172,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = false;
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
+            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6181,6 +6187,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Proto.Config.proto_plugin_generator_main_settings m = new Proto.Config.proto_plugin_generator_main_settings(); // Clone.tt Line: 239
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
+            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -6248,6 +6255,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 160
         partial void OnSettingsChanged();
         string IPluginGeneratorMainSettings.Settings { get { return this._Settings; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsHasChanged // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsHasChanged; 
+            }
+            set
+            {
+                if (this._IsHasChanged != value)
+                {
+                    this.OnIsHasChangedChanging(ref value);
+                    this._IsHasChanged = value;
+                    this.OnIsHasChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        private bool _IsHasChanged;
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsHasChangedChanged();
+        bool IPluginGeneratorMainSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -6457,8 +6487,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6824,8 +6854,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -7257,8 +7285,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 215
             GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 219
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -7562,8 +7590,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -8259,8 +8285,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -8497,8 +8523,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -8710,8 +8734,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -8894,8 +8918,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -9153,8 +9175,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -9393,8 +9415,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -9614,8 +9634,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -9825,8 +9845,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -10088,8 +10106,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -10329,8 +10347,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -10588,8 +10604,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -10829,8 +10845,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -11057,8 +11071,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -11325,8 +11339,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -11587,8 +11599,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -11858,8 +11870,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -12078,8 +12088,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -12290,8 +12300,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -12579,8 +12587,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -12820,8 +12828,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -13041,8 +13047,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -13252,8 +13258,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -13511,8 +13515,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -13752,8 +13756,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -14017,8 +14019,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -14294,8 +14296,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -14457,8 +14457,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -14660,8 +14660,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -14877,8 +14875,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -15073,8 +15071,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -15431,8 +15427,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -15700,8 +15696,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -15928,8 +15922,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -16194,8 +16188,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -16435,8 +16427,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -16631,8 +16623,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -16986,8 +16976,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -17227,8 +17217,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -17486,8 +17474,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -17731,8 +17719,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -17990,8 +17976,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -18208,8 +18194,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -18467,8 +18451,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -18712,8 +18696,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -18921,8 +18903,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -19105,8 +19087,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -19369,8 +19349,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -19614,8 +19594,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
@@ -19823,8 +19801,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
             vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsSubTreeHasChanges = false;
             vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -20007,8 +19985,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
                     this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }

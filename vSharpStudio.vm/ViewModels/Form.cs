@@ -14,11 +14,31 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Form";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListForms;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnInit()
         {
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
         }
         public void OnAdded()
@@ -165,11 +185,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Form.DefaultName, node, (this.Parent as GroupListForms).ListForms);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListForms;
-            return p.ListForms;
         }
         public void Remove()
         {

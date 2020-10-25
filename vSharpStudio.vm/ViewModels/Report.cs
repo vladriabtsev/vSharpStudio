@@ -14,11 +14,31 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Report";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListReports;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+
         [Browsable(false)]
         new public string IconName { get { return "iconReport"; } }
         //protected override string GetNodeIconName() { return "iconReport"; }
         partial void OnInit()
         {
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
         }
 
@@ -134,11 +154,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Report.DefaultName, node, (this.Parent as GroupListReports).ListReports);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListReports;
-            return p.ListReports;
         }
         public void Remove()
         {

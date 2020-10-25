@@ -16,6 +16,25 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Enumeration";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListEnumerations;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
+        public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
+
         [Browsable(false)]
         new public string IconName { get { return "iconEnumerator"; } }
         //protected override string GetNodeIconName() { return "iconEnumerator"; }
@@ -199,11 +218,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Enumeration.DefaultName, node, (this.Parent as GroupListEnumerations).ListEnumerations);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListEnumerations;
-            return p.ListEnumerations;
         }
         public void Remove()
         {

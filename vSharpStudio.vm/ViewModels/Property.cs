@@ -15,6 +15,22 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode
     {
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return new List<ITreeConfigNode>();
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListProperties;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return false;
+        }
+        #endregion ITree
+
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
         [Browsable(false)]
@@ -159,11 +175,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Property.DefaultName, node, (this.Parent as GroupListProperties).ListProperties);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListProperties;
-            return p.ListProperties;
         }
         public void Remove()
         {

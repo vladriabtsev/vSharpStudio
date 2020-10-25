@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListDocuments
+    public partial interface IGroupListDocuments : ITreeConfigNode
     {
         IGroupDocuments IParent { get; }
     }

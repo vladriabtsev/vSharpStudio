@@ -149,7 +149,7 @@ public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos
             this._<#= field.Name.ToNameCs() #> = value;
             this.On<#= field.Name.ToNameCs() #>Changed();
             this.NotifyPropertyChanged();
-<#   if (this.DocMes.IsValidatableBase) { #>
+<#   if (this.DocMes.IsValidatableBase && field.Name.ToNameCs()!="IsHasChanged") { #>
             this.ValidateProperty();
             this.IsChanged = true;
 <#   } #>

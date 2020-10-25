@@ -26,7 +26,6 @@ namespace vSharpStudio.vm.ViewModels
         //}
         partial void OnIsNewChanged();
         partial void OnIsHasNewChanged();
-        partial void OnIsHasChangedChanged();
         partial void OnIsMarkedForDeletionChanged();
         partial void OnIsHasMarkedForDeletionChanged();
     }

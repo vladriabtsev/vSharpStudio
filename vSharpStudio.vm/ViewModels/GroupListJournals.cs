@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
         partial void OnInit()
         {
-            this.Name = "Journals";
+            this._Name = "Journals";
             this.IsEditable = false;
             this.ListJournals.OnAddingAction = (t) =>
             {

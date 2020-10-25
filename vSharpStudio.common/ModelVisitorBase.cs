@@ -112,6 +112,8 @@ namespace vSharpStudio.common
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
         {
             this.BeginVisit(parent);
+            if (_act != null)
+                _act(this, parent);
             this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
@@ -129,6 +131,8 @@ namespace vSharpStudio.common
         private void VisitPropertiesTabs(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst)
         {
             this.BeginVisit(parent);
+            if (_act != null)
+                _act(this, parent);
             this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
@@ -150,6 +154,8 @@ namespace vSharpStudio.common
         private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst)
         {
             this.BeginVisit(parent);
+            if (_act != null)
+                _act(this, parent);
             this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
@@ -167,6 +173,8 @@ namespace vSharpStudio.common
         private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst)
         {
             this.BeginVisit(parent);
+            if (_act != null)
+                _act(this, parent);
             this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
@@ -213,8 +221,12 @@ namespace vSharpStudio.common
 
 
             #region Common
-            this.BeginVisit(currModel.GroupCommon);
+            this.BeginVisit(this.currModel.GroupCommon);
+            if (_act != null)
+                _act(this, this.currModel.GroupCommon);
             this.BeginVisit(currModel.GroupCommon.GroupRoles);
+            if (_act != null)
+                _act(this, this.currModel.GroupCommon.GroupRoles);
             foreach (var tt in currModel.GroupCommon.GroupRoles.ListRoles)
             {
                 this.BeginVisit(tt);
@@ -224,6 +236,8 @@ namespace vSharpStudio.common
             }
             this.EndVisit(currModel.GroupCommon.GroupRoles);
             this.BeginVisit(currModel.GroupCommon.GroupViewForms);
+            if (_act != null)
+                _act(this, this.currModel.GroupCommon.GroupViewForms);
             foreach (var tt in currModel.GroupCommon.GroupViewForms.ListMainViewForms)
             {
                 this.BeginVisit(tt);
@@ -237,6 +251,8 @@ namespace vSharpStudio.common
 
             #region Constants
             this.BeginVisit(currModel.GroupConstants);
+            if (_act != null)
+                _act(this, this.currModel.GroupConstants);
             this.BeginVisit(currModel.GroupConstants.ListConstants);
             foreach (var tt in currModel.GroupConstants.ListConstants)
             {
@@ -251,6 +267,8 @@ namespace vSharpStudio.common
 
             #region Enumerations
             this.BeginVisit(currModel.GroupEnumerations);
+            if (_act != null)
+                _act(this, this.currModel.GroupEnumerations);
             this.BeginVisit(currModel.GroupEnumerations.ListEnumerations);
             foreach (var tt in currModel.GroupEnumerations.ListEnumerations)
             {
@@ -278,6 +296,8 @@ namespace vSharpStudio.common
 
             #region Catalogs
             this.BeginVisit(currModel.GroupCatalogs);
+            if (_act != null)
+                _act(this, this.currModel.GroupCatalogs);
             this.BeginVisit(currModel.GroupCatalogs.ListCatalogs);
             foreach (var tt in currModel.GroupCatalogs.ListCatalogs)
             {
@@ -301,8 +321,14 @@ namespace vSharpStudio.common
             #region Documents
             var sharedProps = currModel.GroupDocuments.GroupSharedProperties.ListProperties;
             this.BeginVisit(currModel.GroupDocuments);
+            if (_act != null)
+                _act(this, this.currModel.GroupDocuments);
             this.BeginVisit(currModel.GroupDocuments.GroupSharedProperties);
+            if (_act != null)
+                _act(this, this.currModel.GroupDocuments.GroupSharedProperties);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
+            if (_act != null)
+                _act(this, this.currModel.GroupDocuments.GroupListDocuments);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
             foreach (var tt in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
@@ -328,6 +354,8 @@ namespace vSharpStudio.common
 
             #region Journals
             this.BeginVisit(currModel.GroupJournals);
+            if (_act != null)
+                _act(this, this.currModel.GroupJournals);
             foreach (var tt in currModel.GroupJournals.ListJournals)
             {
                 this.BeginVisit(tt);
@@ -361,11 +389,15 @@ namespace vSharpStudio.common
         {
             this._act = act;
             this.currCfg = curr;
+            if (_act != null)
+                _act(this, this.currCfg);
 
             this.BeginVisit(this.currCfg);
 
             #region Apps
             this.BeginVisit(this.currCfg.GroupAppSolutions);
+            if (_act != null)
+                _act(this, this.currCfg.GroupAppSolutions);
             this.BeginVisit(this.currCfg.GroupAppSolutions.ListAppSolutions);
             foreach (var t in this.currCfg.GroupAppSolutions.ListAppSolutions)
             {
@@ -395,6 +427,8 @@ namespace vSharpStudio.common
 
             #region GroupConfigLinks
             this.BeginVisit(this.currCfg.GroupConfigLinks);
+            if (_act != null)
+                _act(this, this.currCfg.GroupConfigLinks);
             this.BeginVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);
             foreach (var t in this.currCfg.GroupConfigLinks.ListBaseConfigLinks)
             {

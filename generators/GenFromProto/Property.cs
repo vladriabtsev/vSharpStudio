@@ -796,7 +796,7 @@ namespace GenFromProto
             this.Write("Changed();\r\n            this.NotifyPropertyChanged();\r\n");
             
             #line 152 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-   if (this.DocMes.IsValidatableBase) { 
+   if (this.DocMes.IsValidatableBase && field.Name.ToNameCs()!="IsHasChanged") { 
             
             #line default
             #line hidden

@@ -530,12 +530,18 @@ message proto_plugin_generator_node_settings {
     //string name = 2;
     string node_settings_vm_guid = 2;
     string settings = 3;
+
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 }
 // Stored in AppProjectGenerator node
 message proto_plugin_generator_main_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
     string settings = 2; 
+
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 13;
 }
 // Application project generator
 message proto_app_project_generator {

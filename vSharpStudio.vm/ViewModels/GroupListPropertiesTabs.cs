@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<PropertiesTab> Children { get { return this.ListPropertiesTabs; } }
         partial void OnInit()
         {
-            this.Name = "Tabs";
+            this._Name = "Tabs";
             this.IsEditable = false;
             this.ListPropertiesTabs.OnAddingAction = (t) =>
             {

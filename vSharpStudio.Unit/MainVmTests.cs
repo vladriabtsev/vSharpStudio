@@ -169,39 +169,39 @@ namespace vSharpStudio.Unit
             vm.OnFormLoaded();
             vm.Config.Name = "test1";
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
-            Assert.IsTrue(vm.Config.IsChanged == true);
-            Assert.IsTrue(vm.Config.IsSubTreeHasChanges == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeHasChanges == false);
+            Assert.IsTrue(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
 
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
-            Assert.IsTrue(vm.Config.IsChanged == false);
-            Assert.IsTrue(vm.Config.IsSubTreeHasChanges == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeHasChanges == false);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
 
             vm.Config.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.IsTrue(vm.Config.IsChanged == false);
-            Assert.IsTrue(vm.Config.IsSubTreeHasChanges == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeHasChanges == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged == true);
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsSubTreeHasChanges == false);
+            Assert.IsTrue(vm.Config.IsChanged);
+            Assert.IsTrue(vm.Config.IsHasChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsHasChanged);
 
             vm.CommandConfigSave.Execute(null);
-            Assert.IsTrue(vm.Config.IsChanged == false);
-            Assert.IsTrue(vm.Config.IsSubTreeHasChanges == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeHasChanges == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsSubTreeHasChanges == false);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsHasChanged);
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            Assert.IsTrue(vm.Config.IsChanged == false);
-            Assert.IsTrue(vm.Config.IsSubTreeHasChanges == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged == false);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsSubTreeHasChanges == false);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
         }
         [TestMethod]
         public void Main009_Diff()
@@ -313,7 +313,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
 
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(c1.IsNew());
             Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
@@ -321,7 +321,7 @@ namespace vSharpStudio.Unit
 
             // c1-new -> new
             vm.CommandConfigCurrentUpdate.Execute(null);
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
@@ -329,7 +329,7 @@ namespace vSharpStudio.Unit
             // c1-new -> not new, not del  
             vm.CommandConfigCreateStableVersion.Execute(null);
             // prev c1 not new, not del
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
@@ -343,7 +343,7 @@ namespace vSharpStudio.Unit
             c3.DataType.Length = 101;
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsTrue(c1.IsDeprecated());
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 3);
+            Assert.AreEqual(3, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsTrue(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
 
@@ -352,7 +352,7 @@ namespace vSharpStudio.Unit
             // c3- new -> new
             vm.CommandConfigCurrentUpdate.Execute(null);
             // prev c1 not new, not del
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 2);
+            Assert.AreEqual(2, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsDeprecated());
@@ -365,7 +365,7 @@ namespace vSharpStudio.Unit
             // c3- new -> not new
             vm.CommandConfigCreateStableVersion.Execute(null);
             // prev c1 not new, del
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 2);
+            Assert.AreEqual(2, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.AreEqual(c3, cfg.Model.GroupConstants.ListConstants[1]);
@@ -378,48 +378,12 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> removed
             // c3- new -> new
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.IsTrue(cfg.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.AreEqual(c3, cfg.Model.GroupConstants.ListConstants[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsFalse(c3.IsNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
-
-
-
-
-            //// create stable version (first prev version)
-            //vm.CommandConfigCreateStableVersion.Execute(null);
-            //c1.Name = "c1r";
-            //c3.DataType.Length = 100;
-            //var c4 = vm.Config.Model.GroupConstants.AddConstant("c4");
-            //vm.Config.Model.GroupConstants.Remove(c2);
-
-            //Assert.AreEqual(4, cfg.Model.GroupConstants.ListConstants.Count());
-            //c1Diff = (Constant)cfg.DicNodes[c1.Guid];
-            //Assert.IsTrue(!c1Diff.IsNew());
-            //Assert.IsTrue(c1Diff.IsRenamed());
-            //var cc2 = (from p in cfg.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
-            //Assert.IsTrue(cc2.IsDeprecated());
-            //c3Diff = (Constant)cfg.DicNodes[c3.Guid];
-            //Assert.IsTrue(!c3Diff.IsNew());
-            //Assert.IsTrue(c3Diff.IsCanLooseData());
-            //var c4Diff = (Constant)cfg.DicNodes[c4.Guid];
-            //Assert.IsTrue(c4Diff.IsNew());
-
-            //// create next stable version (first oldest version, second prev version)
-            //vm.CommandConfigCreateStableVersion.Execute(null);
-            //Assert.AreEqual(4, cfg.Model.GroupConstants.ListConstants.Count());
-            //c1Diff = (Constant)cfg.DicNodes[c1.Guid];
-            //Assert.IsTrue(!c1Diff.IsRenamed());
-            //cc2 = (from p in cfg.Model.GroupConstants.ListConstants where p.Name == "c2" select p).Single();
-            //Assert.IsTrue(!cc2.IsDeprecated());
-            //Assert.IsTrue(cc2.IsDeleted());
-            //c4Diff = (Constant)cfg.DicNodes[c4.Guid];
-            //Assert.IsTrue(!c4Diff.IsNew());
-
-            //vm.CommandConfigCreateStableVersion.Execute(null);
-            //Assert.AreEqual(3, cfg.Model.GroupConstants.ListConstants.Count()); // deleted is removed
         }
         [TestMethod]
         public void Main012_Diff_Enumerations()
@@ -427,90 +391,89 @@ namespace vSharpStudio.Unit
             // empty config
             this.remove_config();
             var vm = new MainPageVM(true);
+            var cfg = vm.Config;
             vm.OnFormLoaded();
             vm.Compose();
-            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
             // create object and save
-            var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
-            var p1 = c1.AddEnumerationPair("e1", "123");
-            var p2 = c1.AddEnumerationPair("e2", "124");
-            var p3 = c1.AddEnumerationPair("e3", "125");
-            var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c2.Guid));
-            var c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c3.Guid));
+            var c1 = cfg.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(c1.IsNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
-            var cfgDiff = vm.Config;
+            vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsTrue(c1.IsNew);
+            Assert.IsTrue(c1.IsNew());
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
-            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3);
-            var c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
-            Assert.IsTrue(c1Diff.IsNew());
-            var p1Diff = (EnumerationPair)cfgDiff.DicNodes[p1.Guid];
-            Assert.IsTrue(p1Diff.IsNew());
-            var p2Diff = (EnumerationPair)cfgDiff.DicNodes[p2.Guid];
-            Assert.IsTrue(p2Diff.IsNew());
-            var p3Diff = (EnumerationPair)cfgDiff.DicNodes[p3.Guid];
-            Assert.IsTrue(p3Diff.IsNew());
-            var c2Diff = (Enumeration)cfgDiff.DicNodes[c2.Guid];
-            Assert.IsTrue(c2Diff.IsNew());
-            var c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
-            Assert.IsTrue(c3Diff.IsNew());
+            // c1-new -> new
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsTrue(c1.IsNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
-            vm.CommandConfigSave.Execute(null);
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c1.Guid));
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c2.Guid));
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c3.Guid));
-            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3);
-            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
-            Assert.IsTrue(c1Diff.IsNew());
-            p1Diff = (EnumerationPair)cfgDiff.DicNodes[p1.Guid];
-            Assert.IsTrue(p1Diff.IsNew());
-            p2Diff = (EnumerationPair)cfgDiff.DicNodes[p2.Guid];
-            Assert.IsTrue(p2Diff.IsNew());
-            p3Diff = (EnumerationPair)cfgDiff.DicNodes[p3.Guid];
-            Assert.IsTrue(p3Diff.IsNew());
-            c2Diff = (Enumeration)cfgDiff.DicNodes[c2.Guid];
-            Assert.IsTrue(c2Diff.IsNew());
-            c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
-            Assert.IsTrue(c3Diff.IsNew());
-
-            // create stable version (first prev version)
+            // c1-new -> not new, not del  
             vm.CommandConfigCreateStableVersion.Execute(null);
-            c1.Name = "c1r";
-            c3.DataTypeEnum = EnumEnumerationType.BYTE_VALUE;
-            var c4 = vm.Config.Model.GroupEnumerations.AddEnumeration("c4", EnumEnumerationType.INTEGER_VALUE);
-            vm.Config.Model.GroupEnumerations.Remove(c2);
+            // prev c1 not new, not del
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsFalse(c1.IsNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c1.Guid));
-            Assert.IsFalse(!cfgDiff.DicNodes.ContainsKey(c2.Guid));
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c3.Guid));
-            Assert.IsTrue(cfgDiff.DicNodes.ContainsKey(c4.Guid));
-            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 4);
-            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
-            Assert.IsFalse(c1Diff.IsNew());
-            Assert.IsTrue(c1Diff.IsRenamed());
-            var cc2 = (from p in cfgDiff.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
-            Assert.IsTrue(cc2.IsDeprecated());
-            c3Diff = (Enumeration)cfgDiff.DicNodes[c3.Guid];
-            Assert.IsFalse(c3Diff.IsNew());
-            var c4Diff = (Enumeration)cfgDiff.DicNodes[c4.Guid];
-            Assert.IsTrue(c4Diff.IsNew());
+            Assert.IsFalse(c1.IsDeprecated());
+            c1.IsMarkedForDeletion = true; // deprecate
+            Assert.IsTrue(c1.IsDeprecated());
+            var c2 = cfg.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.BYTE_VALUE);
+            c2.IsMarkedForDeletion = true; // delete
+            var c3 = cfg.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(c1.IsMarkedForDeletion);
+            Assert.IsTrue(c1.IsDeprecated());
+            Assert.AreEqual(3, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
-            // create next stable version (first oldest version, second prev version)
+            // c1- not new, del -> not new, del 
+            // c2- new, del -> removed
+            // c3- new -> new
+            vm.CommandConfigCurrentUpdate.Execute(null);
+            // prev c1 not new, not del
+            Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsTrue(c1.IsMarkedForDeletion);
+            Assert.IsFalse(c1.IsNew);
+            Assert.IsTrue(c1.IsDeprecated());
+            Assert.IsFalse(c3.IsMarkedForDeletion);
+            Assert.IsTrue(c3.IsNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
+
+            // c1- not new, del -> not new, del => previous not new, del
+            // c3- new -> not new
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 4);
-            c1Diff = (Enumeration)cfgDiff.DicNodes[c1.Guid];
-            Assert.IsFalse(c1Diff.IsRenamed());
-            cc2 = (from p in cfgDiff.Model.GroupEnumerations.ListEnumerations where p.Name == "c2" select p).Single();
-            Assert.IsTrue(!cc2.IsDeprecated());
-            Assert.IsTrue(cc2.IsDeleted());
-            c4Diff = (Enumeration)cfgDiff.DicNodes[c4.Guid];
-            Assert.IsFalse(c4Diff.IsNew());
+            // prev c1 not new, del
+            Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.IsFalse(c1.IsNew);
+            Assert.IsTrue(c1.IsMarkedForDeletion);
+            Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[1]);
+            Assert.IsFalse(c3.IsMarkedForDeletion);
+            Assert.IsFalse(c3.IsNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
+            Assert.IsTrue(c1.IsDeleted());
 
+            // c1- not new, del -> removed
+            // c3- new -> new
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.IsTrue(cfgDiff.Model.GroupEnumerations.ListEnumerations.Count() == 3); // deleted is removed
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[0]);
+            Assert.IsFalse(c3.IsMarkedForDeletion);
+            Assert.IsFalse(c3.IsNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
         }
         [TestMethod]
         public void Main014_HasMarkedAndNewPropagation()
@@ -858,6 +821,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
+
+            vm.CommandConfigSave.Execute(null);
             vm.CommandConfigCreateStableVersion.Execute(null);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);

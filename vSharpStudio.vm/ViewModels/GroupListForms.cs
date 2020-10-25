@@ -43,7 +43,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
         partial void OnInit()
         {
-            this.Name = "Forms";
+            this._Name = "Forms";
             this.IsEditable = false;
             this.ListForms.OnAddingAction = (t) =>
             {

@@ -4863,6 +4863,16 @@
               "fullType": "string",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "is_has_changed",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -4933,6 +4943,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_changed",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
         partial void OnInit()
         {
-            this.Name = "Roles";
+            this._Name = "Roles";
             this.IsEditable = false;
             this.ListRoles.OnAddingAction = (t) =>
             {

@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
         partial void OnInit()
         {
-            this.Name = "Reports";
+            this._Name = "Reports";
             this.IsEditable = false;
             this.ListReports.OnAddingAction = (t) =>
             {

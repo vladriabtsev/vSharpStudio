@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
-            this.Name = "Documents";
+            this._Name = "Documents";
             this.IsEditable = false;
             this.ListDocuments.OnAddingAction = (t) =>
             {

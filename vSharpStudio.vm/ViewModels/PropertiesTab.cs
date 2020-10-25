@@ -13,6 +13,23 @@ namespace vSharpStudio.vm.ViewModels
     public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Tab";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListPropertiesTabs;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]

@@ -10,11 +10,31 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Journal";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListJournals;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+
         [Browsable(false)]
         new public string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnInit()
         {
+            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
         }
         public void OnAdded()
@@ -130,11 +150,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Journal.DefaultName, node, (this.Parent as GroupListJournals).ListJournals);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListJournals;
-            return p.ListJournals;
         }
         public void Remove()
         {

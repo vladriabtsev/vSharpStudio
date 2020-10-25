@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
         partial void OnInit()
         {
-            this.Name = Defaults.ConstantsGroupName;
+            this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
             //this.ListConstants.OnAddingAction = (t) =>
             //{

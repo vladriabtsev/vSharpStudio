@@ -13,6 +13,22 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode
     {
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return new List<ITreeConfigNode>();
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListConstants;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return false;
+        }
+        #endregion ITree
+
         public static readonly string DefaultName = "Constant";
         [Browsable(false)]
         new public string IconName { get { return "iconConstant"; } }
@@ -192,11 +208,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Constant.DefaultName, node, (this.Parent as GroupListConstants).ListConstants);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListConstants;
-            return p.ListConstants;
         }
         public void Remove()
         {

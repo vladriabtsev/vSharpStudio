@@ -16,6 +16,23 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Catalog";
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as GroupListCatalogs;
+            return p.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        #endregion ITree
+
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconCatalogProperty"; } }
@@ -246,11 +263,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GetUniqueName(Catalog.DefaultName, node, (this.Parent as GroupListCatalogs).ListCatalogs);
             this.SetSelected(node);
             return node;
-        }
-        public IEnumerable<ITreeConfigNode> GetParentList()
-        {
-            var p = this.Parent as GroupListCatalogs;
-            return p.ListCatalogs;
         }
         public void Remove()
         {
