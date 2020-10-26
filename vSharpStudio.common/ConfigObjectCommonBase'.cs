@@ -790,6 +790,13 @@
             }
             this.PropertyDefinitions = res;
         }
+        public ITreeConfigNode PrevCurrentVersion()
+        {
+            var cfg = this.GetConfig();
+            if (cfg.PrevCurrentConfig == null || !cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Guid))
+                return null;
+            return cfg.PrevCurrentConfig.DicNodes[this.Guid];
+        }
         public ITreeConfigNode PrevVersion()
         {
             var cfg = this.GetConfig();

@@ -10,8 +10,8 @@ namespace vSharpStudio.common
     public partial interface IConfig : ITreeConfigNode
     {
         ITreeConfigNode SelectedNode { get; set; }
+        IConfig PrevCurrentConfig { get; }
         IConfig PrevStableConfig { get; }
-        IConfig OldStableConfig { get; }
         DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
         DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
 

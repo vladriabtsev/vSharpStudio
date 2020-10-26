@@ -307,7 +307,6 @@ namespace vSharpStudio.vm.ViewModels
 
         public IConfig PrevCurrentConfig { get; set; }
         public IConfig PrevStableConfig { get; set; }
-        public IConfig OldStableConfig { get; set; }
 
         //public List<IConfig> SetAnnotations(IConfig prev, IConfig old)
         //{

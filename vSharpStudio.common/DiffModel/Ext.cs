@@ -68,23 +68,6 @@ namespace vSharpStudio.common
         #endregion IConfig
 
         #region IEnumeration
-        public static IEnumerationPair GetDiffEnumerationPair(this IConfig obj, IEnumerationPair m)
-        {
-            if (obj.DicNodes.ContainsKey(m.Guid))
-            {
-                return (IEnumerationPair)obj.DicNodes[m.Guid];
-            }
-            else if (obj.PrevStableConfig != null && obj.PrevStableConfig.DicNodes.ContainsKey(m.Guid)) // renamed
-            {
-                return (IEnumerationPair)obj.PrevStableConfig.DicNodes[m.Guid];
-            }
-            else if (obj.OldStableConfig != null && obj.OldStableConfig.DicNodes.ContainsKey(m.Guid)) // deleted
-            {
-                return (IEnumerationPair)obj.OldStableConfig.DicNodes[m.Guid];
-            }
-
-            throw new ArgumentException();
-        }
 
         public static IEnumerable<IEnumerationPair> GetEnumerationPairs(this IEnumeration obj)
         {
