@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -45,28 +47,33 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_LENGTH_GREATER_THAN_ZERO);
 
-            this.RuleFor(p => p.DataTypeLength).Must((p, y) =>
+            this.RuleFor(x => x.DataTypeLength).Custom((path, cntx) =>
             {
-                this.prev = p.GetPrevious();
-                if (this.prev != null && p.DataTypeEnum == common.EnumEnumerationType.STRING_VALUE && p.DataTypeEnum == this.prev.DataTypeEnum)
+                var pg = (Enumeration)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
-                    if (p.DataTypeLength < this.prev.DataTypeLength)
+                    if (pg.DataTypeLength < prev.DataTypeLength)
                     {
-                        return false;
+                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'");
+                        vf.Severity = Severity.Warning;
+                        cntx.AddFailure(vf);
                     }
                 }
-                return true;
-            }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_LENGTH_DANGEROUS_CHANGE, this.prev?.DataTypeLength)).WithSeverity(Severity.Warning);
-            this.RuleFor(p => p.DataTypeEnum).Must((p, y) =>
-            {
-                this.prev = p.GetPrevious();
-                if (this.prev != null && p.DataTypeEnum < this.prev.DataTypeEnum)
-                {
-                    return false;
-                }
+            });
 
-                return true;
-            }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_TYPE_DANGEROUS_CHANGE, this.prev?.DataTypeEnum)).WithSeverity(Severity.Warning);
+            this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
+            {
+                var pg = (Enumeration)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
+                {
+                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum), 
+                        $"Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'");
+                    vf.Severity = Severity.Warning;
+                    cntx.AddFailure(vf);
+                }
+            });
         }
 
         public static bool IsStartNotWithDigit(string val)

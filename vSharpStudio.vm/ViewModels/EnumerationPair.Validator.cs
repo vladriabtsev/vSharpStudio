@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
@@ -21,19 +22,18 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Value).Must((o, name) => { return this.IsUniqueValue(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_HAS_TO_BE_UNIQUE);
             this.RuleFor(x => x.Value).Must((o, name) => { return this.IsValueConvertable(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_NOT_CONVERTABLE);
 
-            this.RuleFor(p => p.Value).Must((p, y) =>
+            this.RuleFor(x => x.Value).Custom((path, cntx) =>
             {
-                var prev = p.GetPrevious();
-                if (prev != null)
+                var pg = (EnumerationPair)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.Value != prev.Value)
                 {
-                    this.prevValue = prev.Value;
-                    if (p.Value != prev.Value)
-                    {
-                        return false;
-                    }
+                    var vf = new ValidationFailure(nameof(pg.Value),
+                        $"Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
+                    vf.Severity = Severity.Warning;
+                    cntx.AddFailure(vf);
                 }
-                return true;
-            }).WithMessage(string.Format(Config.ValidationMessages.WARNING_ENUM_VALUE_DANGEROUS_CHANGE, this.prevValue)).WithSeverity(Severity.Warning);
+            });
         }
         public static bool IsStartNotWithDigit(string val)
         {

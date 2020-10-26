@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
 
@@ -10,8 +11,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DataTypeValidator
     {
-        IDataType prev = null;
-
+        //IDataType prev = null;
         public DataTypeValidator()
         {
             #region Length
@@ -233,33 +233,51 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             #endregion ObjectGuid
 
-            this.RuleFor(p => p.Length).Must((p, y) =>
+            #region Loose data
+            this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             {
-                this.prev = p.GetPrevious();
-                if (this.prev != null && p.DataTypeEnum != this.prev.DataTypeEnum)
+                var pg = (DataType)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    return false;
+                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum), 
+                        $"Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'");
+                    vf.Severity = Severity.Warning;
+                    cntx.AddFailure(vf);
                 }
-
-                return true;
-            }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_TYPE_DANGEROUS_CHANGE, this.prev?.DataTypeEnum)).WithSeverity(Severity.Warning);
-            this.RuleFor(p => p.Length).Must((p, y) =>
+            });
+            this.RuleFor(x => x.Length).Custom((path, cntx) =>
             {
-                this.prev = p.GetPrevious();
-                if (this.prev != null)
+                var pg = (DataType)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
-                    if (p.DataTypeEnum != this.prev.DataTypeEnum)
+                    if (pg.Length < prev.Length)
                     {
-                        return true;
-                    }
-
-                    if (p.Length < this.prev.Length)
-                    {
-                        return false;
+                        var vf = new ValidationFailure(nameof(pg.Length), $"Length was reduced from '{prev.Length}' to '{pg.Length}'");
+                        vf.Severity = Severity.Warning;
+                        cntx.AddFailure(vf);
                     }
                 }
-                return true;
-            }).WithMessage(string.Format(Config.ValidationMessages.WARNING_DATA_LENGTH_DANGEROUS_CHANGE, this.prev?.Length)).WithSeverity(Severity.Warning);
+            });
+            this.RuleFor(x => x.Accuracy).Custom((path, cntx) =>
+            {
+                var pg = (DataType)cntx.InstanceToValidate;
+                var prev = pg.GetPrevious();
+                if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
+                {
+                    if (pg.DataTypeEnum == EnumDataType.NUMERICAL)
+                    {
+                        if (pg.Accuracy < prev.Accuracy)
+                        {
+                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'");
+                            vf.Severity = Severity.Warning;
+                            cntx.AddFailure(vf);
+                        }
+                    }
+                }
+            });
+            #endregion Loose data
         }
 
         private bool ParsableToBigInteger(string val)
