@@ -141,52 +141,6 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
 
-        // public BigInteger MinValue
-        // {
-        //    set
-        //    {
-        //        if (_MinValue != value)
-        //        {
-        //            _MinValue = value;
-        //            NotifyPropertyChanged();
-        //            ValidateProperty();
-        //            this.MinValueString = _MinValue.ToString();
-        //        }
-        //    }
-        //    get
-        //    {
-        //        if (_MinValue == null)
-        //        {
-        //            if (BigInteger.TryParse(this.MinValueString, out var v))
-        //                _MinValue = v;
-        //        }
-        //        return _MinValue;
-        //    }
-        // }
-        // private BigInteger _MinValue;
-        // public BigInteger MaxValue
-        // {
-        //    set
-        //    {
-        //        if (_MaxValue != value)
-        //        {
-        //            _MaxValue = value;
-        //            NotifyPropertyChanged();
-        //            ValidateProperty();
-        //            this.MaxValueString = _MaxValue.ToString();
-        //        }
-        //    }
-        //    get
-        //    {
-        //        if (_MaxValue == null)
-        //        {
-        //            if (BigInteger.TryParse(this.MaxValueString, out var v))
-        //                _MaxValue = v;
-        //        }
-        //        return _MaxValue;
-        //    }
-        // }
-        // private BigInteger _MaxValue;
         [PropertyOrderAttribute(13)]
         public string MaxValue
         {
