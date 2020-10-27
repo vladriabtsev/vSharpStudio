@@ -8,10 +8,11 @@ using Microsoft.Extensions.Logging;
 namespace vSharpStudio.common
 {
     [Flags]
-    public enum EnumDbUpdateLevels {
-        OnlyModel      = 0b_0000_0000, // 0
+    public enum EnumDbUpdateLevels
+    {
+        OnlyModel = 0b_0000_0000, // 0
         TryKeepIndexes = 0b_0000_0001, // 1
-        TryKeepTables  = 0b_0000_0010, // 2
+        TryKeepTables = 0b_0000_0010, // 2
 
         TryKeepAll = TryKeepIndexes | TryKeepTables
     }
@@ -23,7 +24,7 @@ namespace vSharpStudio.common
     public interface IvPluginDbGenerator : IvPluginGenerator
     {
         //ILoggerFactory LoggerFactory { get; set; }
-
+        bool IsStableDbConnection { get; set; }
         // Provider name as from connection string
         string ProviderName { get; }
 

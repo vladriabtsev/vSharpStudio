@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
+        new public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
         partial void OnInit()
         {
@@ -51,12 +51,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.ListCatalogs.OnRemovedAction = (t) => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListCatalogs.OnClearedAction = () => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
         protected override void OnInitFromDto()
@@ -103,32 +101,6 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListCatalogs)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListCatalogs)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
         #endregion Tree operations
     }

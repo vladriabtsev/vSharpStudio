@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -136,60 +136,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        //partial void OnIsHasMarkedForDeletionChanged()
-        //{
-        //    if (this.IsNotNotifying)
-        //        return;
-        //    if (this.IsHasMarkedForDeletion)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasMarkedForDeletion = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasMarkedForDeletion();
-        //    }
-        //}
-        //partial void OnIsHasNewChanged()
-        //{
-        //    if (this.IsNotNotifying)
-        //        return;
-        //    if (this.IsHasNew)
-        //    {
-        //        (this.Parent as INewAndDeleteion).IsHasNew = true;
-        //    }
-        //    else
-        //    {
-        //        var p = (this.Parent as INewAndDeleteion);
-        //        p.GetIsHasNew();
-        //    }
-        //}
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsHasNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasNew = false;
-            return false;
         }
         public override ITreeConfigNode NodeAddClone()
         {

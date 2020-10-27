@@ -11,9 +11,9 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Plugin:{Name,nq}")]
-    public partial class Plugin : ICanGoLeft, ICanGoRight, INewAndDeleteion
+    public partial class Plugin : ICanGoLeft, ICanGoRight
     {
-        public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
+        new public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)
         {
@@ -56,14 +56,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void NodeRemove(bool ask = true)
         {
             (this.Parent as GroupListPlugins).ListPlugins.Remove(this);
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            return false;
         }
     }
 }

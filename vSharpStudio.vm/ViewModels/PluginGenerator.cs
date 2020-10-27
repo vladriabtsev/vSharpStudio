@@ -11,7 +11,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("PluginGenerator:{Name,nq}")]
-    public partial class PluginGenerator : ICanGoLeft, ICanGoRight, INewAndDeleteion
+    public partial class PluginGenerator : ICanGoLeft, ICanGoRight
     {
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
@@ -73,14 +73,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void NodeRemove(bool ask = true)
         {
             (this.Parent as Plugin).ListGenerators.Remove(this);
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            return false;
         }
         #endregion Tree operations
     }

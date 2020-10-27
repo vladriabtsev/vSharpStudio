@@ -58,16 +58,16 @@ namespace vPlugin.Sample
                     case "ICatalog":
                         var nc = node as ICatalog;
 
-                        if (nc.IsRenamed())
+                        if (nc.IsRenamed(false))
                         {
-                            cname = (nc.PrevVersion() as ICatalog).Name;
+                            cname = (nc.PrevStableVersion() as ICatalog).Name;
                             nname = "MyNamespace";
                             prd = new PreRenameData(nname, cname, nc.Name);
                             foreach (var tt in nc.GroupProperties.ListProperties)
                             {
-                                if (tt.IsRenamed())
+                                if (tt.IsRenamed(false))
                                 {
-                                    var m = new RenamePropertyData((tt.PrevVersion() as IProperty).Name, tt.Name);
+                                    var m = new RenamePropertyData((tt.PrevStableVersion() as IProperty).Name, tt.Name);
                                     prd.ListRenamedProperties.Add(m);
                                 }
                             }

@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : INewAndDeleteion, IEditableNode
+    public partial class EnumerationPair : IEditableNode
     {
         public static readonly string DefaultName = "Element";
 
@@ -44,32 +44,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsHasNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasNew = false;
-            return false;
         }
         public void Remove()
         {

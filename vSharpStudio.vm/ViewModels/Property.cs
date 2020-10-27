@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
         [Browsable(false)]
         new public string IconName { get { return "iconProperty"; } }
@@ -135,14 +135,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

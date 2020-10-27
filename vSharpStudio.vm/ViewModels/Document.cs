@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Document";
 
@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IGroupListDocuments IParent { get { return (IGroupListDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
@@ -137,56 +137,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            if (this.GroupForms.IsMarkedForDeletion || this.GroupForms.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupProperties.IsMarkedForDeletion || this.GroupProperties.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupPropertiesTabs.IsMarkedForDeletion || this.GroupPropertiesTabs.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupReports.IsMarkedForDeletion || this.GroupReports.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            if (this.GroupForms.IsHasNew || this.GroupForms.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupProperties.IsHasNew || this.GroupProperties.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupPropertiesTabs.IsHasNew || this.GroupPropertiesTabs.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupReports.IsHasNew || this.GroupReports.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            this.IsHasNew = false;
-            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Form:{Name,nq}")]
-    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Form";
 
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
@@ -141,32 +141,6 @@ namespace vSharpStudio.vm.ViewModels
         //        p.GetIsHasNew();
         //    }
         //}
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            //this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsNew || t.IsHasNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            //this.IsHasNew = false;
-            return false;
-        }
 
         public override ITreeConfigNode NodeAddClone()
         {

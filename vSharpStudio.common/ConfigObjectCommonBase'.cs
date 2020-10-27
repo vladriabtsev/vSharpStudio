@@ -797,20 +797,29 @@
                 return null;
             return cfg.PrevCurrentConfig.DicNodes[this.Guid];
         }
-        public ITreeConfigNode PrevVersion()
+        public ITreeConfigNode PrevStableVersion()
         {
             var cfg = this.GetConfig();
             if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.Guid))
                 return null;
             return cfg.PrevStableConfig.DicNodes[this.Guid];
         }
-        public bool IsRenamed()
+        public bool IsRenamed(bool isStable)
         {
             if (this is IEditableNode)
             {
-                var p = this.PrevVersion();
-                if (p != null && p.Name != this.Name)
-                    return true;
+                if (isStable)
+                {
+                    var p = this.PrevStableVersion();
+                    if (p != null && p.Name != this.Name)
+                        return true;
+                }
+                else
+                {
+                    var p = this.PrevCurrentVersion();
+                    if (p != null && p.Name != this.Name)
+                        return true;
+                }
             }
             return false;
         }
@@ -827,7 +836,7 @@
         {
             if (this is IEditableNode)
             {
-                var p = (IEditableNode)this.PrevVersion();
+                var p = (IEditableNode)this.PrevStableVersion();
                 if (p != null && p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
                     return true;
             }
@@ -837,22 +846,42 @@
         {
             if (this is IEditableNode)
             {
-                var p = (IEditableNode)this.PrevVersion();
+                var p = (IEditableNode)this.PrevStableVersion();
                 if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
                     return true;
             }
             return false;
         }
-        public bool IsCanLooseData()
+        //public bool IsCanLooseData(bool isStable)
+        //{
+        //    if (this is IEditableNode)
+        //    {
+        //        throw new NotImplementedException();
+        //        var p = (IEditableNode)this.PrevStableVersion();
+        //        if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+        //            return true;
+        //    }
+        //    return false;
+        //}
+        protected void OnRemoveChild()
         {
-            if (this is IEditableNode)
+            if (this.IsNotNotifying)
+                return;
+            bool isHasNew = false, isHasMarked = false, isHasChanged = false;
+            foreach (var t in this.Children)
             {
-                throw new NotImplementedException();
-                var p = (IEditableNode)this.PrevVersion();
-                if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
-                    return true;
+                var p = (IEditableNode)this;
+                if (p.IsChanged)
+                    isHasChanged = true;
+                if (p.IsMarkedForDeletion)
+                    isHasMarked = true;
+                if (p.IsNew)
+                    isHasNew = true;
             }
-            return false;
+            var pp = (IEditableNodeGroup)this;
+            pp.IsHasChanged = isHasChanged;
+            pp.IsHasMarkedForDeletion = isHasMarked;
+            pp.IsHasNew = isHasNew;
         }
         protected void OnNodeIsNewChanged()
         {
@@ -1043,7 +1072,7 @@
             throw new NotImplementedException();
         }
         #endregion ITree
-
+        public IEnumerable<ITreeConfigNode> Children { get; }
         #region ITreeModel
         public IEnumerable<object> GetChildren(object parent)
         {

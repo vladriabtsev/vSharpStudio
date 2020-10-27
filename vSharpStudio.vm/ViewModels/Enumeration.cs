@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Enumeration";
 
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
+        new public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
 
         [Browsable(false)]
         new public string IconName { get { return "iconEnumerator"; } }
@@ -50,12 +50,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.ListEnumerationPairs.OnRemovedAction = (t) => {
-                (this.Parent as INewAndDeleteion).GetIsHasMarkedForDeletion();
-                (this.Parent as INewAndDeleteion).GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListEnumerationPairs.OnClearedAction = () => {
-                (this.Parent as INewAndDeleteion).GetIsHasMarkedForDeletion();
-                (this.Parent as INewAndDeleteion).GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
         public void OnAdded()
@@ -173,32 +171,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListEnumerationPairs)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListEnumerationPairs)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
     [DebuggerDisplay("AppProject:{Name,nq}")]
-    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Project";
 
@@ -38,7 +38,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
+        new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
 
         [Browsable(false)]
         new public string IconName { get { return "iconApplication"; } }
@@ -210,32 +210,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListAppProjectGenerators)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListAppProjectGenerators)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
         public override ITreeConfigNode NodeAddClone()
         {

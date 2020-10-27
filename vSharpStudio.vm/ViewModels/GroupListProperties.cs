@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
-    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
+        new public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         partial void OnInit()
         {
             if (this.Parent is GroupDocuments)
@@ -68,12 +68,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.ListProperties.OnRemovedAction = (t) => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListProperties.OnClearedAction = () => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
 
@@ -162,33 +160,6 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListProperties)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListProperties)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
         #endregion Tree operations
     }

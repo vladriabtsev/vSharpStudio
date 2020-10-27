@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListForms.Count,nq}")]
-    public partial class GroupListForms : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListForms : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
+        new public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
         partial void OnInit()
         {
             this._Name = "Forms";
@@ -54,12 +54,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.ListForms.OnRemovedAction = (t) => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListForms.OnClearedAction = () => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
 
@@ -90,33 +88,6 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListForms)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListForms)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
         #endregion Tree operations
     }

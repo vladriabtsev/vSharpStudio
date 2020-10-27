@@ -25,11 +25,21 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Value).Custom((path, cntx) =>
             {
                 var pg = (EnumerationPair)cntx.InstanceToValidate;
-                var prev = pg.GetPrevious();
+                var prev = (EnumerationPair)pg.PrevCurrentVersion();
+                var ver = "CURRENT";
                 if (prev != null && pg.Value != prev.Value)
                 {
                     var vf = new ValidationFailure(nameof(pg.Value),
-                        $"Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
+                    vf.Severity = Severity.Warning;
+                    cntx.AddFailure(vf);
+                }
+                prev = (EnumerationPair)pg.PrevStableVersion();
+                ver = "STABLE";
+                if (prev != null && pg.Value != prev.Value)
+                {
+                    var vf = new ValidationFailure(nameof(pg.Value),
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
                     vf.Severity = Severity.Warning;
                     cntx.AddFailure(vf);
                 }

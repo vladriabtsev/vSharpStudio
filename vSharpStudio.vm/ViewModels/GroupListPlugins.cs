@@ -12,7 +12,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
-    public partial class GroupListPlugins : ITreeModel, ICanGoRight, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
+        new public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
 
         partial void OnInit()
         {

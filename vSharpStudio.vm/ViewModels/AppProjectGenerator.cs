@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings, INewAndDeleteion
+    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -590,14 +590,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            return false;
         }
 
         public override ITreeConfigNode NodeAddClone()

@@ -9,6 +9,7 @@ namespace vSharpStudio.common
 {
     public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName
     {
+        IEnumerable<ITreeConfigNode> Children { get; }
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
         string ModelPath { get; }
@@ -17,12 +18,15 @@ namespace vSharpStudio.common
         // ITreeConfigNode Parent { get; set; }
         //bool IsHasChanged { get; set; }
         bool IsChanged { get; set; }
+        //bool IsNotNotifying { get; set; }
+        //bool IsValidate { get; set; }
         bool IsNew();
         bool IsDeleted();
         bool IsDeprecated();
-        bool IsRenamed();
-        bool IsCanLooseData();
-        ITreeConfigNode PrevVersion();
+        bool IsRenamed(bool isStable);
+        //bool IsCanLooseData(bool isStable);
+        ITreeConfigNode PrevStableVersion();
+        ITreeConfigNode PrevCurrentVersion();
         void Sort(Type type);
         bool NodeCanMoveUp();
         void NodeMoveUp();

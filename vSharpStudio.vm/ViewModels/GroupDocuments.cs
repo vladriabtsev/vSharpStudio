@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
@@ -77,36 +77,6 @@ namespace vSharpStudio.vm.ViewModels
             //    this.GetIsHasMarkedForDeletion();
             //    this.GetIsHasNew();
             //};
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            if (this.GroupSharedProperties.IsMarkedForDeletion || this.GroupSharedProperties.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupListDocuments.IsMarkedForDeletion || this.GroupListDocuments.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            if (this.GroupSharedProperties.IsHasNew || this.GroupSharedProperties.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupListDocuments.IsHasNew || this.GroupListDocuments.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            this.IsHasNew = false;
-            return false;
         }
         public Document AddDocument(string name)
         {

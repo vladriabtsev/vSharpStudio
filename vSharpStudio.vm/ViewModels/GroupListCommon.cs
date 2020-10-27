@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListListCommon.Count,nq}")]
-    public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         partial void OnInit()
         {
@@ -41,38 +41,6 @@ namespace vSharpStudio.vm.ViewModels
 
             // this.GroupPlugins.Parent = this;
             // this.Children.Add(this.GroupPlugins, 0);
-        }
-
-        public bool GetIsHasMarkedForDeletion()
-        {
-            if (this.GroupRoles.IsHasMarkedForDeletion || this.GroupRoles.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupViewForms.IsHasMarkedForDeletion || this.GroupViewForms.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-
-        public bool GetIsHasNew()
-        {
-            if (this.GroupRoles.IsHasNew || this.GroupRoles.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupViewForms.IsHasNew || this.GroupViewForms.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            this.IsHasNew = false;
-            return false;
         }
     }
 }

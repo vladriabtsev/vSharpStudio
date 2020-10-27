@@ -846,14 +846,22 @@ namespace vSharpStudio.vm.ViewModels
 
         private Config cfg = null;
 
-        public IDataType GetPrevious()
+        public IDataType PrevStableVersion()
         {
             IDataType res = null;
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject).IDataType;
             }
-
+            return res;
+        }
+        public IDataType PrevCurrentVersion()
+        {
+            IDataType res = null;
+            if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
+            {
+                res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject).IDataType;
+            }
             return res;
         }
     }

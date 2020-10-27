@@ -23,7 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         // public static readonly string DefaultName = "Config";
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
@@ -204,76 +204,6 @@ namespace vSharpStudio.vm.ViewModels
         //    this.RefillChildren();
         //}
 
-        public bool GetIsHasMarkedForDeletion()
-        {
-            if (this.GroupCatalogs.IsMarkedForDeletion || this.GroupCatalogs.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupCommon.IsMarkedForDeletion || this.GroupCommon.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupConstants.IsMarkedForDeletion || this.GroupConstants.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupDocuments.IsMarkedForDeletion || this.GroupDocuments.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupEnumerations.IsMarkedForDeletion || this.GroupEnumerations.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupJournals.IsMarkedForDeletion || this.GroupJournals.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            if (this.GroupCatalogs.IsHasNew || this.GroupCatalogs.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupCommon.IsHasNew || this.GroupCommon.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupConstants.IsHasNew || this.GroupConstants.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupDocuments.IsHasNew || this.GroupDocuments.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupEnumerations.IsHasNew || this.GroupEnumerations.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupJournals.IsHasNew || this.GroupJournals.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            this.IsHasNew = false;
-            return false;
-        }
         #endregion ITreeNode
 
         #region Objects

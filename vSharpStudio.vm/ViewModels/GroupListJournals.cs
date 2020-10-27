@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListJournals.Count,nq}")]
-    public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListJournals : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
+        new public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
         partial void OnInit()
         {
             this._Name = "Journals";
@@ -44,12 +44,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.ListJournals.OnRemovedAction = (t) => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListJournals.OnClearedAction = () => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
 
@@ -80,33 +78,6 @@ namespace vSharpStudio.vm.ViewModels
 
             this.SetSelected(node);
             return node;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            foreach (var t in this.ListJournals)
-            {
-                if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-                {
-                    this.IsHasMarkedForDeletion = true;
-                    return true;
-                }
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-
-        public bool GetIsHasNew()
-        {
-            foreach (var t in this.ListJournals)
-            {
-                if (t.IsNew || t.GetIsHasNew())
-                {
-                    this.IsHasNew = true;
-                    return true;
-                }
-            }
-            this.IsHasNew = false;
-            return false;
         }
         #endregion Tree operations
     }

@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         // public static readonly string DefaultName = "Config";
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //public ConfigNodesCollection<ITreeConfigNode> Children
         //{
         //    get { return this._Children; }
@@ -440,6 +440,41 @@ namespace vSharpStudio.vm.ViewModels
             //        }
             //    }
             //}
+        }
+        public string IsHasChangedPath
+        {
+            get
+            {
+                var sb = new StringBuilder();
+                if (this.IsHasChanged)
+                {
+                    sb.AppendLine("Config");
+                    IsHasChangedPath2(sb, this.Children);
+                }
+                return sb.ToString();
+            }
+        }
+
+        private void IsHasChangedPath2(StringBuilder sb, IEnumerable<ITreeConfigNode> children)
+        {
+            foreach (var t in children)
+            {
+                var p = t as IEditableNodeGroup;
+                if (p != null)
+                {
+                    if (p.IsHasChanged)
+                    {
+                        sb.Append(t.GetType().Name);
+                        sb.Append(" IsHasChanged=");
+                        sb.Append(p.IsHasChanged);
+                        sb.Append(" IsChanged=");
+                        sb.Append((t as IEditableNode).IsChanged);
+                        sb.AppendLine();
+                        IsHasChangedPath2(sb, t.Children);
+                        break;
+                    }
+                }
+            }
         }
     }
 }

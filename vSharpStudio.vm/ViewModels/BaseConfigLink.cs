@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfigLink : INodeGenSettings, INewAndDeleteion, IEditableNode
+    public partial class BaseConfigLink : INodeGenSettings, IEditableNode
     {
         public static readonly string DefaultName = "BaseConfig";
 
@@ -31,7 +31,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
@@ -45,32 +44,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsHasNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasNew = false;
-            return false;
         }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {

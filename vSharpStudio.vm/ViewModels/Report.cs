@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Report:{Name,nq}")]
-    public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Report";
 
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconReport"; } }
@@ -110,33 +110,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListDocuments)
-            //{
-            //    if (t.IsNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            this.IsHasNew = false;
-            return false;
-        }
-
 
         public override ITreeConfigNode NodeAddClone()
         {

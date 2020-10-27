@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq} sub:{ListSubPropertiesGroups.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, INewAndDeleteion, IEditableNode, IEditableNodeGroup
+    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Tab";
 
@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
@@ -130,36 +130,6 @@ namespace vSharpStudio.vm.ViewModels
         public override void MarkForDeletion()
         {
             this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            if (this.GroupProperties.IsMarkedForDeletion || this.GroupProperties.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            if (this.GroupPropertiesTabs.IsMarkedForDeletion || this.GroupPropertiesTabs.GetIsHasMarkedForDeletion())
-            {
-                this.IsHasMarkedForDeletion = true;
-                return true;
-            }
-            this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-        public bool GetIsHasNew()
-        {
-            if (this.GroupProperties.IsMarkedForDeletion || this.GroupProperties.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            if (this.GroupPropertiesTabs.IsMarkedForDeletion || this.GroupPropertiesTabs.GetIsHasNew())
-            {
-                this.IsHasNew = true;
-                return true;
-            }
-            this.IsHasNew = false;
-            return false;
         }
         public override ITreeConfigNode NodeAddClone()
         {

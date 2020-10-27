@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListConstants.Count,nq}")]
-    public partial class GroupListMainViewForms : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, INewAndDeleteion, IEditableNodeGroup
+    public partial class GroupListMainViewForms : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -31,31 +31,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
+        new public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
         partial void OnInit()
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
-            //this.ListConstants.OnAddingAction = (t) =>
-            //{
-            //    t.IsNew = true;
-            //};
-            //this.ListConstants.OnAddedAction = (t) =>
-            //{
-            //    t.OnAdded();
-            //};
-            //this.ListConstants.OnRemovedAction = (t) =>
-            //{
-            //    var cfg = this.GetConfig();
-            //    cfg.DicDeletedNodesInCurrentSession[t.Guid] = t;
-            //};
             this.ListMainViewForms.OnRemovedAction = (t) => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
             this.ListMainViewForms.OnClearedAction = () => {
-                this.GetIsHasMarkedForDeletion();
-                this.GetIsHasNew();
+                this.OnRemoveChild();
             };
         }
 
@@ -87,33 +72,6 @@ namespace vSharpStudio.vm.ViewModels
 
             //this.SetSelected(node);
             return node;
-        }
-        public bool GetIsHasMarkedForDeletion()
-        {
-            //foreach (var t in this.ListConstants)
-            //{
-            //    if (t.IsMarkedForDeletion || t.GetIsHasMarkedForDeletion())
-            //    {
-            //        this.IsHasMarkedForDeletion = true;
-            //        return true;
-            //    }
-            //}
-            //this.IsHasMarkedForDeletion = false;
-            return false;
-        }
-
-        public bool GetIsHasNew()
-        {
-            //foreach (var t in this.ListConstants)
-            //{
-            //    if (t.IsNew || t.IsHasNew || t.GetIsHasNew())
-            //    {
-            //        this.IsHasNew = true;
-            //        return true;
-            //    }
-            //}
-            //this.IsHasNew = false;
-            return false;
         }
         #endregion Tree operations
     }

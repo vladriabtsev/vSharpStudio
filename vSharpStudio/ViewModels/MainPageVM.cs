@@ -789,6 +789,10 @@ namespace vSharpStudio.ViewModels
             {
                 n.IsChanged = false;
             });
+            if (this.Config.IsHasChanged)
+            {
+                var sss = this.Config.IsHasChangedPath;
+            }
             Debug.Assert(!this.Config.IsHasChanged);
             Debug.Assert(!this.Config.IsChanged);
         }
@@ -928,6 +932,8 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                                else
+                                    throw;
                             }
                             if (!isException)
                             {
@@ -1103,7 +1109,7 @@ namespace vSharpStudio.ViewModels
             var mvr = new ModelVisitorNodeReferencesBase();
             mvr.Run(this.Config, (m, n) =>
             {
-                if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed())
+                if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))
                 {
                     dicRenamed[n.Guid] = null;
                 }
@@ -1214,7 +1220,7 @@ namespace vSharpStudio.ViewModels
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
                     #endregion
 
-                    // V. Apply new DB schema (no need for UNDO ???) Move into VI step
+                    // V. Apply new DB schema to currentDB (no need for UNDO ???) Move into VI step
                     #region
                     //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     //{
@@ -1266,6 +1272,9 @@ namespace vSharpStudio.ViewModels
 #endif
                     am.Execute(update_history);
                     #endregion
+
+                    // VIII. Generate Update SQL for previous stable DB
+                    //TODO Generate Update SQL for previous stable DB
                 }
             }
             //catch(Exception ex)
