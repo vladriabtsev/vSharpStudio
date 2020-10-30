@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
+        public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
 
         partial void OnInit()
         {

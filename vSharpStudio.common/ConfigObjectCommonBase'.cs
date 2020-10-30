@@ -868,9 +868,10 @@
             if (this.IsNotNotifying)
                 return;
             bool isHasNew = false, isHasMarked = false, isHasChanged = false;
-            foreach (var t in this.Children)
+            var pp = (IEditableNodeGroup)this;
+            foreach (var t in this.GetListChildren())
             {
-                var p = (IEditableNode)this;
+                var p = (IEditableNode)t;
                 if (p.IsChanged)
                     isHasChanged = true;
                 if (p.IsMarkedForDeletion)
@@ -878,7 +879,6 @@
                 if (p.IsNew)
                     isHasNew = true;
             }
-            var pp = (IEditableNodeGroup)this;
             pp.IsHasChanged = isHasChanged;
             pp.IsHasMarkedForDeletion = isHasMarked;
             pp.IsHasNew = isHasNew;
@@ -1072,7 +1072,6 @@
             throw new NotImplementedException();
         }
         #endregion ITree
-        public IEnumerable<ITreeConfigNode> Children { get; }
         #region ITreeModel
         public IEnumerable<object> GetChildren(object parent)
         {

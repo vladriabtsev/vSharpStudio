@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
+        public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
         [Browsable(false)]
         new public string IconName { get { return "iconApplicationGroup"; } }
         //protected override string GetNodeIconName() { return "iconApplicationGroup"; }

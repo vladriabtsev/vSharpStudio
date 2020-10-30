@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
+        public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
 
         partial void OnInit()
         {

@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
+        public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
         partial void OnInit()
         {
             this._Name = "Journals";

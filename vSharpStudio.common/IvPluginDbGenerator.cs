@@ -56,7 +56,7 @@ namespace vSharpStudio.common
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         /// <param name="onError"></param>
-        object UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
+        string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);

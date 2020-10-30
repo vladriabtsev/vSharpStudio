@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
+        public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
         partial void OnInit()
         {
             this._Name = "Forms";

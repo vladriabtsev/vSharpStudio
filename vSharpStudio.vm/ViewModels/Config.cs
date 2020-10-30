@@ -449,7 +449,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.IsHasChanged)
                 {
                     sb.AppendLine("Config");
-                    IsHasChangedPath2(sb, this.Children);
+                    IsHasChangedPath2(sb, this.GetListChildren());
                 }
                 return sb.ToString();
             }
@@ -470,7 +470,7 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(" IsChanged=");
                         sb.Append((t as IEditableNode).IsChanged);
                         sb.AppendLine();
-                        IsHasChangedPath2(sb, t.Children);
+                        IsHasChangedPath2(sb, t.GetListChildren());
                         break;
                     }
                 }

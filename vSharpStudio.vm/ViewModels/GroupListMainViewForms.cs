@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
+        public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
         partial void OnInit()
         {
             this._Name = Defaults.ConstantsGroupName;

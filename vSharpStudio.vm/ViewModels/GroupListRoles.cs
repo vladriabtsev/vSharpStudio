@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.Children.Count > 0;
         }
         #endregion ITree
-        new public ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
+        public ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
         partial void OnInit()
         {
             this._Name = "Roles";

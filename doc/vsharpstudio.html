@@ -762,7 +762,8 @@ Generator output file name </p></td>
                   <td>main_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(29)]
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -774,10 +775,39 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_generate_sql_sqript_to_update_prev_stable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [DisplayName(&#34;Sql script&#34;)]
+@attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conn_str_to_prev_stable</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Stable DB&#34;)]
+@attr [Description(&#34;Db connection string to previous stable version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gen_script_file_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;SQL script&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [Description(&#34;SQL script output file name&#34;)]
+Generator output file name </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(30)]
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>

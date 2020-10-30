@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }

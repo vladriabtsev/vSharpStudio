@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<PropertiesTab> Children { get { return this.ListPropertiesTabs; } }
+        public ConfigNodesCollection<PropertiesTab> Children { get { return this.ListPropertiesTabs; } }
         partial void OnInit()
         {
             this._Name = "Tabs";

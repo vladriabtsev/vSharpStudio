@@ -159,9 +159,12 @@ Application project generator
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [BrowsableAttribute(false)] |
+| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [PropertyOrderAttribute(29)] @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+| is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Sql script&#34;)] @attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] |
+| conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
+| gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL script&#34;)] @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [PropertyOrderAttribute(30)] @attr [BrowsableAttribute(false)] |
 
 
 

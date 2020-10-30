@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }

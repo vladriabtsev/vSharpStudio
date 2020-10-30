@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
+        public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
         partial void OnInit()
         {
             this._Name = "Reports";

@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Enumeration> Children { get { return this.ListEnumerations; } }
+        public ConfigNodesCollection<Enumeration> Children { get { return this.ListEnumerations; } }
 
         partial void OnInit()
         {

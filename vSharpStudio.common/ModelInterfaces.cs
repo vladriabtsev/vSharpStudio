@@ -321,6 +321,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         string GeneratorSettings { get; } // ModelInterfaces.tt Line: 47
         IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 51
         string ConnStr { get; } // ModelInterfaces.tt Line: 47
+        bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 47
+        string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// Generator output file name
+        ///////////////////////////////////////////////////
+        string GenScriptFileName { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

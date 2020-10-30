@@ -522,7 +522,7 @@
             },
             {
               "name": "main_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_plugin_generator_main_settings",
               "longType": "proto_plugin_generator_main_settings",
@@ -541,8 +541,38 @@
               "defaultValue": ""
             },
             {
+              "name": "is_generate_sql_sqript_to_update_prev_stable",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Sql script\")]\n@attr [Description(\"Generate Sql script to update previous stable version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "conn_str_to_prev_stable",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Stable DB\")]\n@attr [Description(\"Db connection string to previous stable version\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gen_script_file_name",
+              "description": "@attr [DisplayName(\"SQL script\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"SQL script output file name\")]\nGenerator output file name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",

@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
+        public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
         partial void OnInit()
         {

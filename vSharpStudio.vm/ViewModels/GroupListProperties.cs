@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
+        public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         partial void OnInit()
         {
             if (this.Parent is GroupDocuments)

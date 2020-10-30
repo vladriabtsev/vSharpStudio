@@ -366,7 +366,10 @@ namespace vSharpStudio.vm.ViewModels
             HideProperties(gen);
             this.NotifyPropertyChanged(this.IconName);
         }
-
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged()
+        {
+            HideProperties(gen);
+        }
         private void UpdateListGenerators()
         {
             if (!string.IsNullOrWhiteSpace(this.PluginGuid))
@@ -408,19 +411,34 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (gen == null)
             {
-                this.AutoGenerateProperties = true;
+                this.AutoGenerateProperties = false;
             }
             else if (gen is IvPluginDbConnStringGenerator)
             {
                 this.AutoGenerateProperties = false;
-                this.SetPropertyDefinitions(new string[] {
-                    this.GetPropertyName(() => this.RelativePathToGenFolder),
-                    this.GetPropertyName(() => this.GenFileName),
-                    this.GetPropertyName(() => this.ListGenerators),
-                    this.GetPropertyName(() => this.ListInModels),
-                    this.GetPropertyName(() => this.DynamicNodesSettings),
-                    this.GetPropertyName(() => this.NameUi),
-                });
+                if (this.IsGenerateSqlSqriptToUpdatePrevStable)
+                {
+                    this.SetPropertyDefinitions(new string[] {
+                        this.GetPropertyName(() => this.GenFileName),
+                        this.GetPropertyName(() => this.ListGenerators),
+                        this.GetPropertyName(() => this.ListInModels),
+                        this.GetPropertyName(() => this.DynamicNodesSettings),
+                        this.GetPropertyName(() => this.NameUi),
+                    });
+                }
+                else
+                {
+                    this.SetPropertyDefinitions(new string[] {
+                        this.GetPropertyName(() => this.GenScriptFileName),
+                        this.GetPropertyName(() => this.ConnStrToPrevStable),
+                        this.GetPropertyName(() => this.RelativePathToGenFolder),
+                        this.GetPropertyName(() => this.GenFileName),
+                        this.GetPropertyName(() => this.ListGenerators),
+                        this.GetPropertyName(() => this.ListInModels),
+                        this.GetPropertyName(() => this.DynamicNodesSettings),
+                        this.GetPropertyName(() => this.NameUi),
+                    });
+                }
             }
             //else if (gen is IvPluginDbConnStringGenerator)
             //{

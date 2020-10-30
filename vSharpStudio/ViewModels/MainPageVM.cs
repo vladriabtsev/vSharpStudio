@@ -947,7 +947,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
-        public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isDeleteDb = false)
+        public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
         {
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
@@ -977,15 +977,12 @@ namespace vSharpStudio.ViewModels
                                     case vPluginLayerTypeEnum.DbDesign:
                                         if (!(tg.Generator is IvPluginDbGenerator))
                                             throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                        IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
-                                        //genDb.GetConnectionStringMvvm()
-                                        //genDb.EnsureDbDeletedAndCreated(connStr);
-                                        //genDb.UpdateToModel(connStr, this.Config);
+                                        //IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
                                         break;
                                     case vPluginLayerTypeEnum.DbConnection:
                                         if (!(tg.Generator is IvPluginDbConnStringGenerator))
                                             throw new Exception("Generator type vPluginLayerTypeEnum.DbConnection has to have interface: " + typeof(IvPluginDbConnStringGenerator).Name);
-                                        string outFileConn = GetOuputFilePath(ts, tp, tpg);
+                                        string outFileConn = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);
                                         var genConn = (IvPluginDbConnStringGenerator)tg.Generator;
                                         bool first = false;
                                         StringBuilder sb = null;
@@ -1018,21 +1015,47 @@ namespace vSharpStudio.ViewModels
                                         {
                                             genConn.DbGenerator.EnsureDbDeleted(tpg.ConnStr);
                                         }
-                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, () =>
+                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false, () =>
                                         {
                                             return true;
                                         }, (ex) =>
                                         {
-
+                                            throw ex;
                                         });
+                                        if (isCurrentUpdate) 
+                                        {
+                                            if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                            {
+                                                //TODO generate Stable DB update SQL script
+                                                var sql = genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true, () =>
+                                                {
+                                                    return true;
+                                                }, (ex) =>
+                                                {
+                                                    throw ex;
+                                                });
+                                                string outSqlFile = GetOuputFilePath(ts, tp, tpg, tpg.GenScriptFileName);
+                                                // tg.GetRelativeToConfigDiskPath()
+                                                //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                                byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
+                                                File.WriteAllBytes(outSqlFile, sqlBytes);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //TODO create copy of DEV DB into Stable DB. Same name with version suffix
+                                            //genConn.DbGenerator
+                                        }
                                         break;
                                     default:
+                                        if (!isCurrentUpdate)
+                                            continue;
                                         if (!(tg.Generator is IvPluginGenerator))
                                             throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
                                         code = (tg.Generator as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
-                                string outFile = GetOuputFilePath(ts, tp, tpg);
+                                string outFile = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);
                                 // tg.GetRelativeToConfigDiskPath()
                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                                 byte[] bytes = Encoding.UTF8.GetBytes(code);
@@ -1040,20 +1063,23 @@ namespace vSharpStudio.ViewModels
                             }
                         }
                     }
-                    foreach (var t in dicAppSettings)
+                    if (isCurrentUpdate)
                     {
-                        var sb = t.Value;
-                        sb.AppendLine("");
-                        sb.AppendLine("\t}");
-                        sb.AppendLine("}");
-                        byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
-                        File.WriteAllBytes(t.Key, bytes);
+                        foreach (var t in dicAppSettings)
+                        {
+                            var sb = t.Value;
+                            sb.AppendLine("");
+                            sb.AppendLine("\t}");
+                            sb.AppendLine("}");
+                            byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
+                            File.WriteAllBytes(t.Key, bytes);
+                        }
                     }
                 }
             }
         }
 
-        private string GetOuputFilePath(AppSolution ts, AppProject tp, AppProjectGenerator tpg)
+        private string GetOuputFilePath(AppSolution ts, AppProject tp, AppProjectGenerator tpg, string fileName)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
@@ -1076,7 +1102,7 @@ namespace vSharpStudio.ViewModels
                 if (tpg.RelativePathToGenFolder[tpg.RelativePathToGenFolder.Length - 1] != '\\')
                     sb.Append("\\");
             }
-            sb.Append(tpg.GenFileName);
+            sb.Append(fileName);
             return sb.ToString();
         }
 
@@ -1238,7 +1264,7 @@ namespace vSharpStudio.ViewModels
 
                     // VI. Generate code (no need for UNDO)
                     #region
-                    this.GenerateCode(cancellationToken, this.Config);
+                    this.GenerateCode(cancellationToken, this.Config, true);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config);
                     this.Save();
@@ -1276,6 +1302,28 @@ namespace vSharpStudio.ViewModels
                     // VIII. Generate Update SQL for previous stable DB
                     //TODO Generate Update SQL for previous stable DB
                 }
+                #region Remove New which are Marked for Deletion
+                var lst = new List<string>();
+                // delete from current model
+                var vis1 = new ModelVisitorBase();
+                vis1.Run(this.Config, (v, n) =>
+                {
+                    if (n is IEditableNode)
+                    {
+                        var p = n as IEditableNode;
+                        if (p.IsMarkedForDeletion && p.IsNew)
+                        {
+                            lst.Add(n.Guid);
+                        }
+                    }
+                });
+                foreach (var tguid in lst)
+                {
+                    var n = this.Config.DicNodes[tguid];
+                    var p = n as IEditableNode;
+                    p.Remove();
+                }
+                #endregion Remove New which are Marked for Deletion
             }
             //catch(Exception ex)
             //{
@@ -1314,35 +1362,14 @@ namespace vSharpStudio.ViewModels
 
             this.Config.PluginSettingsToModel();
             //this.Config.RemoveFlagsMarkedForDeletionAndNew();
-            #region Remove New which are Marked for Deletion
-            var lst = new List<string>();
-            // delete from current model
-            var vis = new ModelVisitorBase();
-            vis.Run(this.Config, (v, n) =>
-            {
-                if (n is IEditableNode)
-                {
-                    var p = n as IEditableNode;
-                    if (p.IsMarkedForDeletion && p.IsNew)
-                    {
-                        lst.Add(n.Guid);
-                    }
-                }
-            });
-            foreach (var tguid in lst)
-            {
-                var n = this.Config.DicNodes[tguid];
-                var p = n as IEditableNode;
-                p.Remove();
-            }
-            #endregion Remove New which are Marked for Deletion
 
             this.CommandConfigSave.Execute(null);
 
+            var vis = new ModelVisitorBase();
             if (this.Config.PrevStableConfig != null)
             {
-                #region Remove Deprecated
-                lst = new List<string>();
+                #region Remove Deleted (was Deprecated)
+                var lst = new List<string>();
                 // delete from current model
                 vis.Run(this.Config, (v, n) =>
                 {

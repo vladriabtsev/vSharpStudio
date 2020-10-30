@@ -6364,6 +6364,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.MainSettings = PluginGeneratorMainSettings.Clone(vm, from.MainSettings, isDeep);
             vm.ConnStr = from.ConnStr; // Clone.tt Line: 65
+            vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
+            vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
+            vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -6396,6 +6399,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 PluginGeneratorMainSettings.Update(to.MainSettings, from.MainSettings, isDeep);
             to.ConnStr = from.ConnStr; // Clone.tt Line: 141
+            to.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 141
+            to.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 141
+            to.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -6480,6 +6486,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.MainSettings = new PluginGeneratorMainSettings(vm); // Clone.tt Line: 215
             PluginGeneratorMainSettings.ConvertToVM(m.MainSettings, vm.MainSettings); // Clone.tt Line: 219
             vm.ConnStr = m.ConnStr; // Clone.tt Line: 221
+            vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
+            vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
+            vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -6516,6 +6525,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 276
             m.MainSettings = PluginGeneratorMainSettings.ConvertToProto(vm.MainSettings); // Clone.tt Line: 270
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 276
+            m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 276
+            m.ConnStrToPrevStable = vm.ConnStrToPrevStable; // Clone.tt Line: 276
+            m.GenScriptFileName = vm.GenScriptFileName; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -6887,6 +6899,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGeneratorSettingsChanged();
         string IAppProjectGenerator.GeneratorSettings { get { return this._GeneratorSettings; } } 
         
+        [PropertyOrderAttribute(29)]
         [BrowsableAttribute(false)]
         public PluginGeneratorMainSettings MainSettings // Property.tt Line: 113
         { 
@@ -6937,6 +6950,92 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnConnStrChanged();
         string IAppProjectGenerator.ConnStr { get { return this._ConnStr; } } 
         
+        [PropertyOrderAttribute(10)]
+        [DisplayName("Sql script")]
+        [Description("Generate Sql script to update previous stable version")]
+        public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsGenerateSqlSqriptToUpdatePrevStable; 
+            }
+            set
+            {
+                if (this._IsGenerateSqlSqriptToUpdatePrevStable != value)
+                {
+                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref value);
+                    this._IsGenerateSqlSqriptToUpdatePrevStable = value;
+                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGenerateSqlSqriptToUpdatePrevStable;
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
+        bool IAppProjectGenerator.IsGenerateSqlSqriptToUpdatePrevStable { get { return this._IsGenerateSqlSqriptToUpdatePrevStable; } } 
+        
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Stable DB")]
+        [Description("Db connection string to previous stable version")]
+        public string ConnStrToPrevStable // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._ConnStrToPrevStable; 
+            }
+            set
+            {
+                if (this._ConnStrToPrevStable != value)
+                {
+                    this.OnConnStrToPrevStableChanging(ref value);
+                    this._ConnStrToPrevStable = value;
+                    this.OnConnStrToPrevStableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ConnStrToPrevStable = string.Empty;
+        partial void OnConnStrToPrevStableChanging(ref string to); // Property.tt Line: 160
+        partial void OnConnStrToPrevStableChanged();
+        string IAppProjectGenerator.ConnStrToPrevStable { get { return this._ConnStrToPrevStable; } } 
+        
+        
+        ///////////////////////////////////////////////////
+        /// Generator output file name
+        ///////////////////////////////////////////////////
+        [DisplayName("SQL script")]
+        [PropertyOrderAttribute(12)]
+        [Description("SQL script output file name")]
+        public string GenScriptFileName // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._GenScriptFileName; 
+            }
+            set
+            {
+                if (this._GenScriptFileName != value)
+                {
+                    this.OnGenScriptFileNameChanging(ref value);
+                    this._GenScriptFileName = value;
+                    this.OnGenScriptFileNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _GenScriptFileName = string.Empty;
+        partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 160
+        partial void OnGenScriptFileNameChanged();
+        string IAppProjectGenerator.GenScriptFileName { get { return this._GenScriptFileName; } } 
+        
+        [PropertyOrderAttribute(30)]
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
         { 

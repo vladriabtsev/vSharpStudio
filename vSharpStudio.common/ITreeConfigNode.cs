@@ -9,7 +9,6 @@ namespace vSharpStudio.common
 {
     public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName
     {
-        IEnumerable<ITreeConfigNode> Children { get; }
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
         string ModelPath { get; }

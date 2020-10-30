@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
+        public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
 
         // [BrowsableAttribute(false)]
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
