@@ -48,14 +48,5 @@ namespace vSharpStudio.vm.ViewModels
         //    vm.Children.Add(new Constant() { Parent = this.Parent });
         // }
         #endregion IConfigObject
-        public override bool NodeCanRemove()
-        {
-            return this.VPlugin == null || this.ListGenerators.Count == 0 || string.IsNullOrWhiteSpace(this.Guid);
-        }
-
-        public override void NodeRemove(bool ask = true)
-        {
-            (this.Parent as GroupListPlugins).ListPlugins.Remove(this);
-        }
     }
 }

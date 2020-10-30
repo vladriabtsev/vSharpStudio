@@ -100,17 +100,6 @@ namespace vSharpStudio.vm.ViewModels
             (this.Parent as GroupListReports).ListReports.MoveDown(this);
             this.SetSelected(this);
         }
-
-        public override void NodeRemove(bool ask = true)
-        {
-            (this.Parent as GroupListReports).Remove(this);
-            this.Parent = null;
-        }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Report.Clone(this.Parent, this, true, true);

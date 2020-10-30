@@ -1487,8 +1487,8 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandDelete ?? (this._CommandDelete = vCommand.Create(
-                (o) => { this.Config.SelectedNode.NodeRemove(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRemove(); }));
+                (o) => { this.Config.SelectedNode.NodeMarkForDeletion(); },
+                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); }));
             }
         }
 

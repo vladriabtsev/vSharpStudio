@@ -11,6 +11,7 @@
     <Converters:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>
     <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
     <vm:ConverterNodeIconResource x:Key="ConverterNodeIconResource"/>
+    <vm:ConverterIsDeletedToDecoration x:Key="ConverterIsDeletedToDecoration"/>
 
     <HierarchicalDataTemplate DataType="{x:Type std:VmBindable}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
@@ -23,11 +24,11 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding Name}" TextDecorations="Strikethrough" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" TextDecorations="{Binding IsMarkedForDeletion, Converter={StaticResource ConverterIsDeletedToDecoration}, Mode=OneWay}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                <!--<Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsMarkedForDeletion, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
+                <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsHasMarkedForDeletion, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconCancel}" />
-                </Viewbox>-->
+                </Viewbox>
                 <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconStatusNew}" />
                 </Viewbox>

@@ -592,7 +592,7 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove(bool ask = true)
+        public void NodeRemove(bool ask = true)
         {
             if (ask)
             {
@@ -604,10 +604,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PluginGuid = "";
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
-        }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
         }
 
         public override ITreeConfigNode NodeAddClone()

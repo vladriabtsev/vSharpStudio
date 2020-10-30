@@ -214,26 +214,21 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove(bool ask = true)
-        {
-            if (ask)
-            {
-                var res = MessageBox.Show("You are deleting generators for Solution. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                if (res != System.Windows.MessageBoxResult.OK)
-                    return;
-            }
-            foreach (var t in this.ListAppProjects)
-            {
-                t.NodeRemove(false);
-            }
-            (this.Parent as GroupListAppSolutions).ListAppSolutions.Remove(this);
-            this.Parent = null;
-        }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-
+        //public override void NodeRemove(bool ask = true)
+        //{
+        //    if (ask)
+        //    {
+        //        var res = MessageBox.Show("You are deleting generators for Solution. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+        //        if (res != System.Windows.MessageBoxResult.OK)
+        //            return;
+        //    }
+        //    foreach (var t in this.ListAppProjects)
+        //    {
+        //        t.NodeRemove(false);
+        //    }
+        //    (this.Parent as GroupListAppSolutions).ListAppSolutions.Remove(this);
+        //    this.Parent = null;
+        //}
         public override ITreeConfigNode NodeAddClone()
         {
             var node = AppSolution.Clone(this.Parent, this, true, true);

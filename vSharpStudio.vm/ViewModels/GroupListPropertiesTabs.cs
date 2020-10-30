@@ -96,10 +96,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
         #endregion Tree operations
 
         public PropertiesTab AddTab(string name)

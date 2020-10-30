@@ -38,9 +38,8 @@ namespace vSharpStudio.common
         // Clone selected. Name is same + suffix 'New'
         bool NodeCanAddClone();
         ITreeConfigNode NodeAddClone();
-        bool NodeCanRemove();
-        void NodeRemove(bool ask = true);
-        void MarkForDeletion();
+        bool NodeCanMarkForDeletion();
+        void NodeMarkForDeletion();
         bool NodeCanLeft();
         void NodeLeft();
         bool NodeCanRight();

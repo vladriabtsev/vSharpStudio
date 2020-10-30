@@ -41,10 +41,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
         public void Remove()
         {
             var p = this.Parent as Enumeration;

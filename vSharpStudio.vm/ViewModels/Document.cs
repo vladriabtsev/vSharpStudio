@@ -129,16 +129,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(this);
         }
 
-        public override void NodeRemove(bool ask = true)
-        {
-            (this.Parent as GroupListDocuments).Remove(this);
-            this.Parent = null;
-        }
-        public override void MarkForDeletion()
-        {
-            this.IsMarkedForDeletion = !this.IsMarkedForDeletion;
-        }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Document.Clone(this.Parent, this, true, true);

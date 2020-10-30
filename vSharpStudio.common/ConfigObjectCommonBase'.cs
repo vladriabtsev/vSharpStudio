@@ -630,23 +630,19 @@
             throw new NotImplementedException();
         }
 
-        public virtual bool NodeCanRemove()
+        public bool NodeCanMarkForDeletion()
         {
-            if (this is ICanRemoveNode)
-            {
+            if (this is IEditableNode)
                 return true;
-            }
-
             return false;
         }
-
-        public virtual void NodeRemove(bool ask = true)
+        public void NodeMarkForDeletion()
         {
-            throw new NotImplementedException();
-        }
-        public virtual void MarkForDeletion()
-        {
-            throw new NotImplementedException();
+            if (this is IEditableNode)
+            {
+                var p = (IEditableNode)this;
+                p.IsMarkedForDeletion = !p.IsMarkedForDeletion;
+            }
         }
 
         public bool NodeCanLeft()
