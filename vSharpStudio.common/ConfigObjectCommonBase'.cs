@@ -34,16 +34,23 @@
                 _logger = Logger.CreateLogger<T>();
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
-            //this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
+            this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
         }
 
-        //private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "IsChanged")
-        //    {
-        //        IsTreeChangedRecalc();
-        //    }
-        //}
+        private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "IsNew":
+                case "IsMarkedForDeletion":
+                    this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+                    break;
+            }
+            //if (e.PropertyName == "IsChanged")
+            //{
+            //    IsTreeChangedRecalc();
+            //}
+        }
 
         protected virtual void OnInitFromDto()
         {
@@ -242,7 +249,30 @@
                 return this.GetConfig().Name + "." + this.Name;
             }
         }
-
+        public System.Windows.TextDecorationCollection NodeNameDecorations
+        {
+            get
+            {
+                if (this is IEditableNode)
+                {
+                    var p = this as IEditableNode;
+                    if (p.IsNew || p.IsMarkedForDeletion)
+                    {
+                        var myCollection = new System.Windows.TextDecorationCollection();
+                        if (p.IsMarkedForDeletion)
+                        {
+                            myCollection.Add(System.Windows.TextDecorations.Strikethrough);
+                        }
+                        if (p.IsNew)
+                        {
+                            myCollection.Add(System.Windows.TextDecorations.Underline);
+                        }
+                        return myCollection;
+                    }
+                }
+                return null;
+            }
+        }
         public string GetRelativeToConfigDiskPath(string path)
         {
             var cfg = this.GetConfig();

@@ -24,13 +24,13 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding Name}" TextDecorations="{Binding IsMarkedForDeletion, Converter={StaticResource ConverterIsDeletedToDecoration}, Mode=OneWay}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
+                    <ContentControl Template="{StaticResource iconStatusNew}" />
+                </Viewbox>
                 <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsHasMarkedForDeletion, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconCancel}" />
-                </Viewbox>
-                <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconStatusNew}" />
                 </Viewbox>
             </StackPanel>
             <StackPanel VerticalAlignment="Center">
