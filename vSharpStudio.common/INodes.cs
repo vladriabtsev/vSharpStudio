@@ -6,6 +6,10 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
+    public interface IDbTable: IGuid, ICompositeName
+    {
+        IGroupListProperties IGroupProperties { get; }
+    }
     public interface ICanGoLeft
     {
     }

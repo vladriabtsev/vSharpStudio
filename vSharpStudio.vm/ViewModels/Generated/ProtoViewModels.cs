@@ -7894,13 +7894,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 65
             vm.Length = from.Length; // Clone.tt Line: 65
             vm.Accuracy = from.Accuracy; // Clone.tt Line: 65
-            vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
             vm.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 65
-            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             foreach (var t in from.ListObjectGuids) // Clone.tt Line: 44
                 vm.ListObjectGuids.Add(t);
             vm.EnumerationType = from.EnumerationType; // Clone.tt Line: 65
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
+            vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -7912,9 +7912,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
             to.Accuracy = from.Accuracy; // Clone.tt Line: 141
-            to.IsPositive = from.IsPositive; // Clone.tt Line: 141
             to.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 141
-            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
                 to.ListObjectGuids.Clear(); // Clone.tt Line: 127
                 foreach (var tt in from.ListObjectGuids)
                 {
@@ -7922,6 +7920,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             to.EnumerationType = from.EnumerationType; // Clone.tt Line: 141
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
+            to.IsPositive = from.IsPositive; // Clone.tt Line: 141
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -7953,9 +7953,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 221
             vm.Length = m.Length; // Clone.tt Line: 221
             vm.Accuracy = m.Accuracy; // Clone.tt Line: 221
-            vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
             vm.ObjectGuid = m.ObjectGuid; // Clone.tt Line: 221
-            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.ListObjectGuids = new ObservableCollection<string>(); // Clone.tt Line: 184
             foreach (var t in m.ListObjectGuids) // Clone.tt Line: 185
             {
@@ -7963,6 +7961,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             vm.EnumerationType = (EnumEnumerationType)m.EnumerationType; // Clone.tt Line: 221
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
+            vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -7975,13 +7975,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 274
             m.Length = vm.Length; // Clone.tt Line: 276
             m.Accuracy = vm.Accuracy; // Clone.tt Line: 276
-            m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.ObjectGuid = vm.ObjectGuid; // Clone.tt Line: 276
-            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 242
                 m.ListObjectGuids.Add(t); // Clone.tt Line: 244
             m.EnumerationType = (Proto.Config.enum_enumeration_type)vm.EnumerationType; // Clone.tt Line: 274
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
+            m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             return m;
         }
         #endregion Procedures
@@ -8013,7 +8013,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDataTypeEnumChanged();
         EnumDataType IDataType.DataTypeEnum { get { return this._DataTypeEnum; } } 
         
-        [PropertyOrderAttribute(5)]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Length")]
+        [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
         public uint Length // Property.tt Line: 138
         { 
             get 
@@ -8038,7 +8040,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnLengthChanged();
         uint IDataType.Length { get { return this._Length; } } 
         
-        [PropertyOrderAttribute(7)]
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Accuracy")]
+        [Description("Number of decimal places for numeric data)")]
         public uint Accuracy // Property.tt Line: 138
         { 
             get 
@@ -8063,33 +8067,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnAccuracyChanged();
         uint IDataType.Accuracy { get { return this._Accuracy; } } 
         
-        [PropertyOrderAttribute(6)]
-        [DisplayName("Is positive")]
-        public bool IsPositive // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._IsPositive; 
-            }
-            set
-            {
-                if (this._IsPositive != value)
-                {
-                    this.OnIsPositiveChanging(ref value);
-                    this._IsPositive = value;
-                    this.OnIsPositiveChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsPositive;
-        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 160
-        partial void OnIsPositiveChanged();
-        bool IDataType.IsPositive { get { return this._IsPositive; } } 
-        
-        [PropertyOrderAttribute(3)]
+        [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string ObjectGuid // Property.tt Line: 138
         { 
@@ -8115,32 +8093,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnObjectGuidChanged();
         string IDataType.ObjectGuid { get { return this._ObjectGuid; } } 
         
-        [PropertyOrderAttribute(2)]
-        public bool IsNullable // Property.tt Line: 138
-        { 
-            get 
-            { 
-                return this._IsNullable; 
-            }
-            set
-            {
-                if (this._IsNullable != value)
-                {
-                    this.OnIsNullableChanging(ref value);
-                    this._IsNullable = value;
-                    this.OnIsNullableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 160
-        partial void OnIsNullableChanged();
-        bool IDataType.IsNullable { get { return this._IsNullable; } } 
-        
-        [PropertyOrderAttribute(4)]
+        [PropertyOrderAttribute(5)]
         public ObservableCollection<string> ListObjectGuids // Property.tt Line: 9
         { 
             get 
@@ -8188,7 +8141,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnEnumerationTypeChanged();
         EnumEnumerationType IDataType.EnumerationType { get { return this._EnumerationType; } } 
         
-        [PropertyOrderAttribute(8)]
+        [PropertyOrderAttribute(9)]
         [DisplayName("FK Index")]
         [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
         public bool IsIndexFk // Property.tt Line: 138
@@ -8214,6 +8167,64 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsIndexFkChanged();
         bool IDataType.IsIndexFk { get { return this._IsIndexFk; } } 
+        
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Positive")]
+        [Description("Expected always >= 0")]
+        public bool IsPositive // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsPositive; 
+            }
+            set
+            {
+                if (this._IsPositive != value)
+                {
+                    this.OnIsPositiveChanging(ref value);
+                    this._IsPositive = value;
+                    this.OnIsPositiveChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsPositive;
+        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsPositiveChanged();
+        bool IDataType.IsPositive { get { return this._IsPositive; } } 
+        
+        
+        ///////////////////////////////////////////////////
+        /// bool is_nullable = 12;
+        ///////////////////////////////////////////////////
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        public bool IsNullable // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsNullable; 
+            }
+            set
+            {
+                if (this._IsNullable != value)
+                {
+                    this.OnIsNullableChanging(ref value);
+                    this._IsNullable = value;
+                    this.OnIsNullableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNullable;
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsNullableChanged();
+        bool IDataType.IsNullable { get { return this._IsNullable; } } 
         #endregion Properties
     }
     public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 6

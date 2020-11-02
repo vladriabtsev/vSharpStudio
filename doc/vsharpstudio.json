@@ -46,62 +46,72 @@
             {
               "name": "STRING",
               "number": "0",
-              "description": ""
+              "description": "@attr [DisplayName(\"String\")]\n@attr [Description(\"String type. If length is zero, unlimited string length\")]"
             },
             {
               "name": "NUMERICAL",
               "number": "1",
-              "description": ""
+              "description": "@attr [DisplayName(\"Numeric\")]\n@attr [Description(\"Numerical data type. Type depend on length and accuracy\")]"
             },
             {
               "name": "BOOL",
               "number": "2",
-              "description": ""
+              "description": "@attr [DisplayName(\"Boolean\")]\n@attr [Description(\"Boolean type\")]"
             },
             {
               "name": "TIME",
               "number": "3",
-              "description": ""
+              "description": "@attr [DisplayName(\"Time\")]\n@attr [Description(\"Time without time zone\")]"
+            },
+            {
+              "name": "TIMEZ",
+              "number": "4",
+              "description": "@attr [DisplayName(\"Time Z\")]\n@attr [Description(\"Time with time zone\")]"
             },
             {
               "name": "DATE",
-              "number": "4",
-              "description": ""
+              "number": "5",
+              "description": "@attr [DisplayName(\"Date\")]\n@attr [Description(\"Date without time zone\")]"
             },
             {
               "name": "DATETIME",
-              "number": "5",
-              "description": ""
+              "number": "6",
+              "description": "@attr [DisplayName(\"DateTime\")]\n@attr [Description(\"Date and time without time zone\")]"
+            },
+            {
+              "name": "DATETIMEZ",
+              "number": "7",
+              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone\")]"
             },
             {
               "name": "ENUMERATION",
-              "number": "8",
-              "description": "CONSTANT = 7;"
+              "number": "10",
+              "description": "@attr [DisplayName(\"Enumeration\")]\n@attr [Description(\"Enumeration type\")]"
             },
             {
               "name": "CATALOG",
-              "number": "9",
-              "description": ""
+              "number": "11",
+              "description": "@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog type\")]"
             },
             {
               "name": "CATALOGS",
-              "number": "10",
-              "description": ""
+              "number": "12",
+              "description": "@attr [DisplayName(\"Catalogs\")]\n@attr [Description(\"List of catalogs\")]"
             },
             {
               "name": "DOCUMENT",
-              "number": "11",
-              "description": ""
+              "number": "13",
+              "description": "@attr [DisplayName(\"Document\")]\n@attr [Description(\"Document type\")]"
             },
             {
               "name": "DOCUMENTS",
-              "number": "12",
-              "description": ""
+              "number": "14",
+              "description": "@attr [DisplayName(\"Documents\")]\n@attr [Description(\"List of documents\")]"
             },
             {
               "name": "ANY",
               "number": "15",
-              "description": ""
+              "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
             }
           ]
         }
@@ -1620,7 +1630,7 @@
             },
             {
               "name": "length",
-              "description": "@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Maximum length of data (characters in string, or decimal digits for numeric data)\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1630,7 +1640,7 @@
             },
             {
               "name": "accuracy",
-              "description": "@attr [PropertyOrderAttribute(7)]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Accuracy\")]\n@attr [Description(\"Number of decimal places for numeric data)\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1639,18 +1649,8 @@
               "defaultValue": ""
             },
             {
-              "name": "is_positive",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Is positive\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1659,18 +1659,8 @@
               "defaultValue": ""
             },
             {
-              "name": "is_nullable",
-              "description": "@attr [PropertyOrderAttribute(2)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "list_object_guids",
-              "description": "@attr [PropertyOrderAttribute(4)]",
+              "description": "@attr [PropertyOrderAttribute(5)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1690,7 +1680,27 @@
             },
             {
               "name": "is_index_fk",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"FK Index\")]\n@attr [Description(\"Create Index if this property is using foreign key (for Catalog or Document type)\")]",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"FK Index\")]\n@attr [Description(\"Create Index if this property is using foreign key (for Catalog or Document type)\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_positive",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Positive\")]\n@attr [Description(\"Expected always \u003e= 0\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_nullable",
+              "description": "bool is_nullable = 12;\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

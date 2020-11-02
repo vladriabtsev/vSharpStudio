@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{ListProperties.Count,nq} sub:{ListSubPropertiesGroups.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
+    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
     {
         public static readonly string DefaultName = "Tab";
 
@@ -193,5 +193,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
     }
 }

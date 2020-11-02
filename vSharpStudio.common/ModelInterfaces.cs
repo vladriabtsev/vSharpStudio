@@ -11,13 +11,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         NUMERICAL = 1,
         BOOL = 2,
         TIME = 3,
-        DATE = 4,
-        DATETIME = 5,
-        ENUMERATION = 8,
-        CATALOG = 9,
-        CATALOGS = 10,
-        DOCUMENT = 11,
-        DOCUMENTS = 12,
+        TIMEZ = 4,
+        DATE = 5,
+        DATETIME = 6,
+        DATETIMEZ = 7,
+        ENUMERATION = 10,
+        CATALOG = 11,
+        CATALOGS = 12,
+        DOCUMENT = 13,
+        DOCUMENTS = 14,
         ANY = 15,
     }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
@@ -372,12 +374,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 47
         uint Length { get; } // ModelInterfaces.tt Line: 47
         uint Accuracy { get; } // ModelInterfaces.tt Line: 47
-        bool IsPositive { get; } // ModelInterfaces.tt Line: 47
         string ObjectGuid { get; } // ModelInterfaces.tt Line: 47
-        bool IsNullable { get; } // ModelInterfaces.tt Line: 47
         IEnumerable<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
         EnumEnumerationType EnumerationType { get; } // ModelInterfaces.tt Line: 47
         bool IsIndexFk { get; } // ModelInterfaces.tt Line: 47
+        bool IsPositive { get; } // ModelInterfaces.tt Line: 47
+        
+        ///////////////////////////////////////////////////
+        /// bool is_nullable = 12;
+        ///////////////////////////////////////////////////
+        bool IsNullable { get; } // ModelInterfaces.tt Line: 47
     }
     
     ///////////////////////////////////////////////////

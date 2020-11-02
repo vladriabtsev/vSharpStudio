@@ -1636,44 +1636,33 @@ App solution relative path to configuration file path </p></td>
                   <td>length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Length&#34;)]
+@attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>accuracy</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_positive</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Is positive&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Accuracy&#34;)]
+@attr [Description(&#34;Number of decimal places for numeric data)&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
+                  <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_nullable</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
                 </tr>
               
                 <tr>
                   <td>list_object_guids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [PropertyOrderAttribute(4)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -1687,9 +1676,28 @@ App solution relative path to configuration file path </p></td>
                   <td>is_index_fk</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
+                  <td><p>@attr [PropertyOrderAttribute(9)]
 @attr [DisplayName(&#34;FK Index&#34;)]
 @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_positive</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Positive&#34;)]
+@attr [Description(&#34;Expected always &gt;= 0&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_nullable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>bool is_nullable = 12;
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Can be NULL&#34;)]
+@attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -5071,73 +5079,99 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>STRING</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [DisplayName(&#34;String&#34;)]
+@attr [Description(&#34;String type. If length is zero, unlimited string length&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>NUMERICAL</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [DisplayName(&#34;Numeric&#34;)]
+@attr [Description(&#34;Numerical data type. Type depend on length and accuracy&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>BOOL</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [DisplayName(&#34;Boolean&#34;)]
+@attr [Description(&#34;Boolean type&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>TIME</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [DisplayName(&#34;Time&#34;)]
+@attr [Description(&#34;Time without time zone&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>TIMEZ</td>
+                <td>4</td>
+                <td><p>@attr [DisplayName(&#34;Time Z&#34;)]
+@attr [Description(&#34;Time with time zone&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATE</td>
-                <td>4</td>
-                <td><p></p></td>
+                <td>5</td>
+                <td><p>@attr [DisplayName(&#34;Date&#34;)]
+@attr [Description(&#34;Date without time zone&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATETIME</td>
-                <td>5</td>
-                <td><p></p></td>
+                <td>6</td>
+                <td><p>@attr [DisplayName(&#34;DateTime&#34;)]
+@attr [Description(&#34;Date and time without time zone&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DATETIMEZ</td>
+                <td>7</td>
+                <td><p>@attr [DisplayName(&#34;DateTime Z&#34;)]
+@attr [Description(&#34;Date and time with time zone&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ENUMERATION</td>
-                <td>8</td>
-                <td><p>CONSTANT = 7;</p></td>
+                <td>10</td>
+                <td><p>@attr [DisplayName(&#34;Enumeration&#34;)]
+@attr [Description(&#34;Enumeration type&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CATALOG</td>
-                <td>9</td>
-                <td><p></p></td>
+                <td>11</td>
+                <td><p>@attr [DisplayName(&#34;Catalog&#34;)]
+@attr [Description(&#34;Catalog type&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CATALOGS</td>
-                <td>10</td>
-                <td><p></p></td>
+                <td>12</td>
+                <td><p>@attr [DisplayName(&#34;Catalogs&#34;)]
+@attr [Description(&#34;List of catalogs&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENT</td>
-                <td>11</td>
-                <td><p></p></td>
+                <td>13</td>
+                <td><p>@attr [DisplayName(&#34;Document&#34;)]
+@attr [Description(&#34;Document type&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENTS</td>
-                <td>12</td>
-                <td><p></p></td>
+                <td>14</td>
+                <td><p>@attr [DisplayName(&#34;Documents&#34;)]
+@attr [Description(&#34;List of documents&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ANY</td>
                 <td>15</td>
-                <td><p></p></td>
+                <td><p>@attr [DisplayName(&#34;Any type&#34;)]
+@attr [Description(&#34;Any data type&#34;)]</p></td>
               </tr>
             
           </tbody>

@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
     {
         public static readonly string DefaultName = "Catalog";
 
@@ -224,5 +224,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
     }
 }

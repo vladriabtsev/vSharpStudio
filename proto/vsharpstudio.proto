@@ -691,20 +691,51 @@ message proto_config_model {
  * ####################################### D A T A  T Y P E ##########################################
  */
 enum proto_enum_data_type {
+    // @attr [DisplayName("String")]
+    // @attr [Description("String type. If length is zero, unlimited string length")]
     STRING = 0;
+    // @attr [DisplayName("Numeric")]
+    // @attr [Description("Numerical data type. Type depend on length and accuracy")]
     NUMERICAL = 1;
+    // @attr [DisplayName("Boolean")]
+    // @attr [Description("Boolean type")]
     BOOL = 2;
+    // @attr [DisplayName("Time")]
+    // @attr [Description("Time without time zone")]
     TIME = 3;
-    DATE = 4;
-    DATETIME = 5;
+    // @attr [DisplayName("Time Z")]
+    // @attr [Description("Time with time zone")]
+    TIMEZ = 4;
+    // @attr [DisplayName("Date")]
+    // @attr [Description("Date without time zone")]
+    DATE = 5;
+    // @attr [DisplayName("DateTime")]
+    // @attr [Description("Date and time without time zone")]
+    DATETIME = 6;
+    // @attr [DisplayName("DateTime Z")]
+    // @attr [Description("Date and time with time zone")]
+    DATETIMEZ = 7;
 
     //CONSTANT = 7;
-    ENUMERATION = 8;
-    CATALOG = 9;
-    CATALOGS = 10;
-    DOCUMENT = 11;
-    DOCUMENTS = 12;
 
+    // @attr [DisplayName("Enumeration")]
+    // @attr [Description("Enumeration type")]
+    ENUMERATION = 10;
+    // @attr [DisplayName("Catalog")]
+    // @attr [Description("Catalog type")]
+    CATALOG = 11;
+    // @attr [DisplayName("Catalogs")]
+    // @attr [Description("List of catalogs")]
+    CATALOGS = 12;
+    // @attr [DisplayName("Document")]
+    // @attr [Description("Document type")]
+    DOCUMENT = 13;
+    // @attr [DisplayName("Documents")]
+    // @attr [Description("List of documents")]
+    DOCUMENTS = 14;
+
+    // @attr [DisplayName("Any type")]
+    // @attr [Description("Any data type")]
     ANY = 15;
 }
 // @base ViewModelValidatableWithSeverity
@@ -712,25 +743,33 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Length")]
+    // @attr [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
     uint32 length = 2; 
-    // @attr [PropertyOrderAttribute(7)]
-    uint32 accuracy = 3; 
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Is positive")]
-    bool is_positive = 4; 
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Accuracy")]
+    // @attr [Description("Number of decimal places for numeric data)")]
+    uint32 accuracy = 3; 
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 5;
-    // @attr [PropertyOrderAttribute(2)]
-    bool is_nullable = 6;
-    // @attr [PropertyOrderAttribute(4)]
+    // @attr [PropertyOrderAttribute(5)]
     repeated string list_object_guids = 7;
     enum_enumeration_type enumeration_type = 8;
-    // @attr [PropertyOrderAttribute(8)]
+    // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("FK Index")]
     // @attr [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
     bool is_index_fk = 9;
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Positive")]
+    // @attr [Description("Expected always >= 0")]
+    bool is_positive = 11; 
+    //bool is_nullable = 12;
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Can be NULL")]
+    // @attr [Description("If unchecked always expected data")]
+    bool is_nullable = 12;
 }
 /** 
  * @exclude

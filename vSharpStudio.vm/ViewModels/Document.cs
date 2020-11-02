@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
     {
         public static readonly string DefaultName = "Document";
 
@@ -202,5 +202,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
     }
 }

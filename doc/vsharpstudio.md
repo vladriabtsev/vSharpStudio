@@ -373,14 +373,14 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
-| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] |
-| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(7)] |
-| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Is positive&#34;)] |
-| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] |
-| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(4)] |
+| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
+| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places for numeric data)&#34;)] |
+| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(5)] |
 | enumeration_type | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  |  |
-| is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
+| is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
+| is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected always &gt;= 0&#34;)] |
+| is_nullable | [bool](#bool) |  | bool is_nullable = 12; @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 
 
 
@@ -1314,18 +1314,20 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| STRING | 0 |  |
-| NUMERICAL | 1 |  |
-| BOOL | 2 |  |
-| TIME | 3 |  |
-| DATE | 4 |  |
-| DATETIME | 5 |  |
-| ENUMERATION | 8 | CONSTANT = 7; |
-| CATALOG | 9 |  |
-| CATALOGS | 10 |  |
-| DOCUMENT | 11 |  |
-| DOCUMENTS | 12 |  |
-| ANY | 15 |  |
+| STRING | 0 | @attr [DisplayName(&#34;String&#34;)] @attr [Description(&#34;String type. If length is zero, unlimited string length&#34;)] |
+| NUMERICAL | 1 | @attr [DisplayName(&#34;Numeric&#34;)] @attr [Description(&#34;Numerical data type. Type depend on length and accuracy&#34;)] |
+| BOOL | 2 | @attr [DisplayName(&#34;Boolean&#34;)] @attr [Description(&#34;Boolean type&#34;)] |
+| TIME | 3 | @attr [DisplayName(&#34;Time&#34;)] @attr [Description(&#34;Time without time zone&#34;)] |
+| TIMEZ | 4 | @attr [DisplayName(&#34;Time Z&#34;)] @attr [Description(&#34;Time with time zone&#34;)] |
+| DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
+| DATETIME | 6 | @attr [DisplayName(&#34;DateTime&#34;)] @attr [Description(&#34;Date and time without time zone&#34;)] |
+| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z&#34;)] @attr [Description(&#34;Date and time with time zone&#34;)] |
+| ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
+| CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
+| CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
+| DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
+| DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
+| ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
 
 
  

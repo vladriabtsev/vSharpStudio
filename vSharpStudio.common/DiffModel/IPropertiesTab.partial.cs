@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IPropertiesTab : ICompositeName, ITreeConfigNode
+    public partial interface IPropertiesTab : ICompositeName, ITreeConfigNode, IDbTable
     {
     }
 }

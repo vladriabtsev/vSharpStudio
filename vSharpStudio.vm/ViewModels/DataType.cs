@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-            this.IsNullable = true;
+            this.IsNullable = false;
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
         }
@@ -83,8 +83,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumDataType.ANY:
                     throw new NotImplementedException();
-                case EnumDataType.BOOL:
-                    throw new NotImplementedException();
                 case EnumDataType.CATALOG:
                     if (config is Config)
                     {
@@ -133,6 +131,8 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.STRING:
                     res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
+                    break;
+                case EnumDataType.BOOL:
                     break;
                 default:
                     res += " - Not supported";
@@ -336,9 +336,15 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ENUMERATION:
                     return "Enumeration";
                 case EnumDataType.DATE:
+                    return "Date" + sn;
                 case EnumDataType.DATETIME:
-                case EnumDataType.TIME:
                     return "DateTime" + sn;
+                case EnumDataType.TIME:
+                    return "Time" + sn;
+                case EnumDataType.DATETIMEZ:
+                    return "DateTimeZ" + sn;
+                case EnumDataType.TIMEZ:
+                    return "TimeZ" + sn;
                 case EnumDataType.BOOL:
                     return "bool" + sn;
                 case EnumDataType.STRING:
@@ -603,6 +609,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIME:
                 case EnumDataType.DATE:
                 case EnumDataType.TIME:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.TIMEZ:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                     this.VisibilityAccuracy = Visibility.Collapsed;

@@ -1,4 +1,7 @@
-﻿rem %1 - solution directory
+﻿
+SET solpath=%1
+echo **** solution directory %solpath%
+rem %1 - solution directory
 rem https://www.tutorialspoint.com/batch_script/batch_script_variables.htm
 
 SET protoc=%1protoc\bin\protoc.exe
