@@ -148,6 +148,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 47
         bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 47
         bool IsHasChanged { get; } // ModelInterfaces.tt Line: 47
+        bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 47
         IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 51
         IConfigModel Model { get; } // ModelInterfaces.tt Line: 51
         IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 51

@@ -286,6 +286,8 @@ message proto_config {
     bool is_has_marked_for_deletion = 14;
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 15;
+    // @attr [BrowsableAttribute(false)]
+    bool is_need_current_update = 16;
 
     // GENERAL DB SETTINGS
     // @attr [PropertyOrderAttribute(11)]

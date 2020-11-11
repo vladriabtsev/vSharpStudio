@@ -2979,6 +2979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
+            vm.IsNeedCurrentUpdate = from.IsNeedCurrentUpdate; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupConfigLinks = GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -3009,6 +3010,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
+            to.IsNeedCurrentUpdate = from.IsNeedCurrentUpdate; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 GroupListBaseConfigLinks.Update(to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -3057,6 +3059,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
+            vm.IsNeedCurrentUpdate = m.IsNeedCurrentUpdate; // Clone.tt Line: 221
             if (vm.GroupConfigLinks == null) // Clone.tt Line: 213
                 vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 215
             GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, vm.GroupConfigLinks); // Clone.tt Line: 219
@@ -3093,6 +3096,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
+            m.IsNeedCurrentUpdate = vm.IsNeedCurrentUpdate; // Clone.tt Line: 276
             m.GroupConfigLinks = GroupListBaseConfigLinks.ConvertToProto(vm.GroupConfigLinks); // Clone.tt Line: 270
             m.Model = ConfigModel.ConvertToProto(vm.Model); // Clone.tt Line: 270
             m.GroupPlugins = GroupListPlugins.ConvertToProto(vm.GroupPlugins); // Clone.tt Line: 270
@@ -3319,6 +3323,31 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
         bool IConfig.IsHasChanged { get { return this._IsHasChanged; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsNeedCurrentUpdate // Property.tt Line: 138
+        { 
+            get 
+            { 
+                return this._IsNeedCurrentUpdate; 
+            }
+            set
+            {
+                if (this._IsNeedCurrentUpdate != value)
+                {
+                    this.OnIsNeedCurrentUpdateChanging(ref value);
+                    this._IsNeedCurrentUpdate = value;
+                    this.OnIsNeedCurrentUpdateChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNeedCurrentUpdate;
+        partial void OnIsNeedCurrentUpdateChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsNeedCurrentUpdateChanged();
+        bool IConfig.IsNeedCurrentUpdate { get { return this._IsNeedCurrentUpdate; } } 
         
         [BrowsableAttribute(false)]
         public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 113

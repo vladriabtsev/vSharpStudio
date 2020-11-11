@@ -1145,6 +1145,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_need_current_update",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "group_config_links",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",

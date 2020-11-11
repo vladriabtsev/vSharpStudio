@@ -823,12 +823,13 @@ namespace vSharpStudio.Unit
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
 
             vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(null);
+
             vm.CommandConfigCreateStableVersion.Execute(null);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-            Assert.IsFalse(vm.Config.Model.IsHasNew);
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);

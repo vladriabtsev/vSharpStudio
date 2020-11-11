@@ -712,6 +712,8 @@ namespace vSharpStudio.ViewModels
             Utils.TryCall(
                 () =>
             {
+                if (this.Config.IsHasChanged)
+                    this.Config.IsNeedCurrentUpdate = true;
                 Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 UpdateUserSettingsSaveConfigs();
@@ -765,6 +767,8 @@ namespace vSharpStudio.ViewModels
                 Utils.TryCall(
                     () =>
                     {
+                        if (this.Config.IsHasChanged)
+                            this.Config.IsNeedCurrentUpdate = true;
                         this.CurrentCfgFilePath = this.FilePathSaveAs;
                         Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
@@ -932,8 +936,6 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
-                                else
-                                    throw;
                             }
                             if (!isException)
                             {
@@ -1022,7 +1024,7 @@ namespace vSharpStudio.ViewModels
                                         {
                                             throw ex;
                                         });
-                                        if (isCurrentUpdate) 
+                                        if (isCurrentUpdate)
                                         {
                                             if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
                                             {
@@ -1267,6 +1269,7 @@ namespace vSharpStudio.ViewModels
                     this.GenerateCode(cancellationToken, this.Config, true);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config);
+                    this.Config.IsNeedCurrentUpdate = false;
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1355,6 +1358,13 @@ namespace vSharpStudio.ViewModels
             if (this.Config.IsHasChanged)
             {
                 string mes = "Can't create stable version when Config has changes";
+                var ex = new NotSupportedException(mes);
+                _logger.LogCritical(ex, mes.CallerInfo());
+                throw ex;
+            }
+            if (this.Config.IsNeedCurrentUpdate)
+            {
+                string mes = "Can't create stable version without CURRENT UPDATE";
                 var ex = new NotSupportedException(mes);
                 _logger.LogCritical(ex, mes.CallerInfo());
                 throw ex;

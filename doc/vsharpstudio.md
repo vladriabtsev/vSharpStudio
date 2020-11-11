@@ -272,6 +272,7 @@ Configuration config
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_need_current_update | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | group_config_links | [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links) |  | @attr [BrowsableAttribute(false)] |
 | model | [proto_config_model](#proto_config.proto_config_model) |  | @attr [BrowsableAttribute(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [BrowsableAttribute(false)] |
