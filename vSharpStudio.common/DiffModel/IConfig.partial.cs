@@ -18,5 +18,6 @@ namespace vSharpStudio.common
         //List<IConfig> SetAnnotations(IConfig prev, IConfig old);
         List<IConfig> GetListConfigs();
         string CurrentCfgFolderPath { get; }
+        void SetIsNeedCurrentUpdate(bool val);
     }
 }

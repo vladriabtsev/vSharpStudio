@@ -1001,7 +1001,12 @@
             if (this.IsNotNotifying)
                 return;
             if (this is IConfig)
+            {
+                var cfgn = this as IConfig;
+                if (cfgn.IsHasChanged && !cfgn.IsNeedCurrentUpdate)
+                    cfgn.SetIsNeedCurrentUpdate(true);
                 return;
+            }
             if (this is IEditableNodeGroup)
             {
                 var p = (IEditableNodeGroup)this;

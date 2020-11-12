@@ -476,5 +476,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+        public void SetIsNeedCurrentUpdate(bool val)
+        {
+            if (this._IsNeedCurrentUpdate != val)
+                this._IsNeedCurrentUpdate = val;
+        }
     }
 }

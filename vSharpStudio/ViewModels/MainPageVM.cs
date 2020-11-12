@@ -712,8 +712,6 @@ namespace vSharpStudio.ViewModels
             Utils.TryCall(
                 () =>
             {
-                if (this.Config.IsHasChanged)
-                    this.Config.IsNeedCurrentUpdate = true;
                 Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 UpdateUserSettingsSaveConfigs();
@@ -767,8 +765,6 @@ namespace vSharpStudio.ViewModels
                 Utils.TryCall(
                     () =>
                     {
-                        if (this.Config.IsHasChanged)
-                            this.Config.IsNeedCurrentUpdate = true;
                         this.CurrentCfgFilePath = this.FilePathSaveAs;
                         Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
@@ -1267,9 +1263,9 @@ namespace vSharpStudio.ViewModels
                     // VI. Generate code (no need for UNDO)
                     #region
                     this.GenerateCode(cancellationToken, this.Config, true);
+                    this.Config.SetIsNeedCurrentUpdate(false);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config);
-                    this.Config.IsNeedCurrentUpdate = false;
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1421,6 +1417,7 @@ namespace vSharpStudio.ViewModels
                     p.IsChanged = false;
                 }
             });
+            this.Config.SetIsNeedCurrentUpdate(false);
             Utils.TryCall(
                 () =>
                 {
