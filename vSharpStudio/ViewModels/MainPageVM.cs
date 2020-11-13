@@ -1003,7 +1003,8 @@ namespace vSharpStudio.ViewModels
                                         sb.Append(genConn.ProviderName);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t\t\"connection_string\": \"");
-                                        sb.Append(genConn.GenerateCode(null));
+                                        var cnstr = genConn.GenerateCode(null);
+                                        sb.Append(cnstr);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
                                         code = sb.ToString();

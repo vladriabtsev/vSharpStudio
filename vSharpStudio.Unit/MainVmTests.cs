@@ -85,6 +85,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
             Assert.IsTrue(vm.pconfig_history.PrevStableConfig == null);
 
+            vm.CommandConfigCurrentUpdate.Execute(null);
             // create stable version
             vm.CommandConfigCreateStableVersion.Execute(null);
             vm = new MainPageVM(true);
