@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IGroupListDocuments IParent { get { return (IGroupListDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
-        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }

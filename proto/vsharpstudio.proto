@@ -378,7 +378,7 @@ message proto_group_list_app_solutions {
     bool is_has_changed = 15;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_group_generators_default_settings list_group_generators_defult_settings = 16;
+    repeated proto_plugin_group_generators_default_settings list_group_generators_defult_settings = 17;
 
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ExpandableObjectAttribute()]
@@ -421,7 +421,6 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
-// @base ConfigObjectVmBase
 message proto_app_solution {
     string guid = 1;
     string name = 2;
@@ -439,22 +438,21 @@ message proto_app_solution {
     string relative_app_solution_path = 7;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 10;
+    bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 12;
+    bool is_has_new = 12;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 13;
+    bool is_marked_for_deletion = 13;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_changed = 14;
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_app_project list_app_projects = 15;
+    repeated proto_app_project list_app_projects = 17;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_group_generators_settings list_group_generators_settings = 16;
+    repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
 
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
@@ -497,22 +495,20 @@ message proto_app_project {
     string relative_app_project_path = 6;
 
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 10;
+    bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 12;
+    bool is_has_new = 12;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 13;
+    bool is_marked_for_deletion = 13;
     // @attr [BrowsableAttribute(false)]
-    bool is_has_changed = 14;
-
+    bool is_has_marked_for_deletion = 14;
+    // @attr [BrowsableAttribute(false)]
+    bool is_has_changed = 15;
 
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Namespace")]
     // @attr [Description("Project namespace name")]
-    string namespace = 15;
+    string namespace = 17;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project_generator list_app_project_generators = 16;

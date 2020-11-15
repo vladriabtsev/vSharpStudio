@@ -58,6 +58,15 @@ namespace vSharpStudio.vm.ViewModels
             //};
 
             //this.RefillChildren();
+            this.ListAppProjectGenerators.OnAddingAction = (t) => {
+                t.IsNew = true;
+            };
+            this.ListAppProjectGenerators.OnRemovedAction = (t) => {
+                this.OnRemoveChild();
+            };
+            this.ListAppProjectGenerators.OnClearedAction = () => {
+                this.OnRemoveChild();
+            };
         }
         protected override void OnInitFromDto()
         {

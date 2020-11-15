@@ -124,7 +124,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET project file path relative to solution file path&#34;)] App project relative path to .net solution file path |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | namespace | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Namespace&#34;)] @attr [Description(&#34;Project namespace name&#34;)] |
@@ -174,7 +174,7 @@ Application project generator
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
-@base ConfigObjectVmBase
+
 
 
 | Field | Type | Label | Description |
@@ -186,7 +186,7 @@ Application project generator
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] App solution relative path to configuration file path |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |

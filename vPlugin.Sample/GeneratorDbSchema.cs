@@ -40,19 +40,15 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        private GeneratorDbSchemaSettings gen_settings = null;
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
         {
-            if (gen_settings != null)
-                return gen_settings;
-            if (string.IsNullOrWhiteSpace(settings))
-                gen_settings = new GeneratorDbSchemaSettings();
-            else
+            var vm = new GeneratorDbSchemaSettings();
+            if (!string.IsNullOrWhiteSpace(settings))
             {
                 proto_generator_db_schema_settings proto = proto_generator_db_schema_settings.Parser.ParseJson(settings);
-                gen_settings = GeneratorDbSchemaSettings.ConvertToVM(proto, null);
+                vm = GeneratorDbSchemaSettings.ConvertToVM(proto, vm);
             }
-            return gen_settings;
+            return vm;
         }
         public List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings()
         {
@@ -64,7 +60,8 @@ namespace vPlugin.Sample
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
         public IvPluginGeneratorSettings GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {
-            return null;        }
+            return null;
+        }
         public int GetMigrationVersion()
         {
             throw new NotImplementedException();

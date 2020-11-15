@@ -19,19 +19,15 @@ namespace vPlugin.Sample
         public string Description => "Description Db Access Layer";
         public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
-        private GeneratorDbAccessSettings gen_settings = null;
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
         {
-            if (gen_settings != null)
-                return gen_settings;
-            if (string.IsNullOrWhiteSpace(settings))
-                gen_settings = new GeneratorDbAccessSettings();
-            else
+            var vm = new GeneratorDbAccessSettings();
+            if (!string.IsNullOrWhiteSpace(settings))
             {
                 proto_generator_db_access_settings proto = proto_generator_db_access_settings.Parser.ParseJson(settings);
-                gen_settings = GeneratorDbAccessSettings.ConvertToVM(proto, new GeneratorDbAccessSettings());
+                vm = GeneratorDbAccessSettings.ConvertToVM(proto, vm);
             }
-            return gen_settings;
+            return vm;
         }
 
         public List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings()

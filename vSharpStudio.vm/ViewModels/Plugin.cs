@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Plugin:{Name,nq}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
-        new public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
+        public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)
         {

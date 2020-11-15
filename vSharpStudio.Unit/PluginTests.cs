@@ -76,16 +76,16 @@ namespace vSharpStudio.Unit
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
-            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\test1.vcfg");
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\Solution.sln";
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -152,14 +152,14 @@ namespace vSharpStudio.Unit
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\Solution.sln";
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
             //Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -178,7 +178,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -311,14 +311,14 @@ namespace vSharpStudio.Unit
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\Solution.sln";
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
             Assert.IsNull(sln.DynamicMainSettings);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -372,6 +372,92 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all solutions groups settings to string representations
             set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[plgn.PluginGroupSolutionSettings.Guid];
             Assert.IsTrue(set.IsGroupParam1);
+            _logger.LogTrace("End test".CallerInfo());
+        }
+        [TestMethod]
+        public void Plugin007WorkWithNodeGeneratorSettingsTwoProjects()
+        {
+            // GeneratorDbAccessNodeCatalogFormSettings "Catalog.*.Form"
+            // GeneratorDbAccessNodePropertySettings    "Property"
+
+            // Settings workflow:
+            // 1. When Config is loaded: init all generators settings VMs on all model nodes
+            // 2. When model node is added: init all generators settings VMs on this node
+            // 3. When new generator is selected: old generator has to be removed from all model nodes, 
+            //     and new generator settings has to be added for all model nodes
+            // 4. When saving Config: convert all model nodes generators settings to string representations
+            _logger.LogTrace("Start test".CallerInfo());
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose();
+            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
+            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.GenFileName = "test_file.cs";
+            gen.PluginGuid = pluginNode.Guid;
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.Name = "AppGenName";
+            gen.NameUi = "App Gen Name";
+            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
+            var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            main.IsAccessParam1 = true;
+            main.IsAccessParam2 = false;
+
+            var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen2.GenFileName = "test_file2.cs";
+            gen2.PluginGuid = pluginNode.Guid;
+            gen2.PluginGeneratorGuid = genDbAccess.Guid;
+            gen2.Name = "AppGenName2";
+            gen2.NameUi = "App Gen Name2";
+            Assert.AreEqual(2, vm.Config.DicActiveAppProjectGenerators.Count);
+            var main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            main2.IsAccessParam1 = false;
+            main2.IsAccessParam2 = true;
+
+            // main setting for generator are different for dofferent generators
+            Assert.AreNotEqual(main.IsAccessParam1, main2.IsAccessParam1);
+            Assert.AreNotEqual(main.IsAccessParam2, main2.IsAccessParam2);
+
+            // node setting for generator are different for dofferent generators
+            var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds.IsParam1 = true;
+            var nds2 = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen2.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds2.IsParam1 = false;
+            Assert.AreNotEqual(nds.IsParam1, nds2.IsParam1);
+
+            vm.CommandConfigSave.Execute(null);
+
+            // 1. When Config is loaded: init all generators settings VMs on all model nodes
+            var vm2 = new MainPageVM(true);
+            vm2.OnFormLoaded();
+            vm2.Compose();
+
+            sln = vm2.Config.GroupAppSolutions.ListAppSolutions[0];
+            prj = sln.ListAppProjects[0];
+            gen = prj.ListAppProjectGenerators[0];
+            gen2 = prj.ListAppProjectGenerators[1];
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+
+            // main setting for generator are different for dofferent generators
+            Assert.AreNotEqual(main.IsAccessParam1, main2.IsAccessParam1);
+            Assert.AreNotEqual(main.IsAccessParam2, main2.IsAccessParam2);
+
+            // node setting for generator are different for dofferent generators
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds2 = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen2.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            Assert.AreNotEqual(nds.IsParam1, nds2.IsParam1);
+
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]

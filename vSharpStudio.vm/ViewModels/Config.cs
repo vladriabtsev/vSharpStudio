@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         // public static readonly string DefaultName = "Config";
-        new public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //public ConfigNodesCollection<ITreeConfigNode> Children
         //{
         //    get { return this._Children; }

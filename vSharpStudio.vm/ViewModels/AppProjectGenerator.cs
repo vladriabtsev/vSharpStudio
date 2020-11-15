@@ -11,11 +11,27 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings
+    public partial class AppProjectGenerator : ICanRemoveNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //protected override string GetNodeIconName() { return "iconFolder"; }
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            var p = this.Parent as AppProject;
+            return p.ListAppProjectGenerators;
+        }
+        public override bool HasChildren()
+        {
+            return false;
+        }
+        #endregion ITree
         private IvPluginGenerator gen
         {
             get { return _gen; }
@@ -130,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Defaults")]
-        [Description("Default nodes settings for generator")]
+        [Description("Model node settings for generator")]
         public object DynamicNodeDefaultSettings
         {
             get
@@ -626,5 +642,10 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #endregion Tree operations
+        public void Remove()
+        {
+            var p = this.Parent as AppProject;
+            p.ListAppProjectGenerators.Remove(this);
+        }
     }
 }

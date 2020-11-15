@@ -48,6 +48,15 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             //    this.RefillChildren();
+            this.ListAppProjects.OnAddingAction = (t) => {
+                t.IsNew = true;
+            };
+            this.ListAppProjects.OnRemovedAction = (t) => {
+                this.OnRemoveChild();
+            };
+            this.ListAppProjects.OnClearedAction = () => {
+                this.OnRemoveChild();
+            };
         }
         //protected override void OnInitFromDto()
         //{

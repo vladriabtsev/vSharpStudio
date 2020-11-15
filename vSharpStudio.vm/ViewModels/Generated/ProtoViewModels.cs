@@ -4918,7 +4918,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Properties
     }
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
-    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
+    public partial class AppSolution : ConfigObjectVmGenSettings<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
     {
         #region CTOR
         public AppSolution() : this((ITreeConfigNode)null)
@@ -5272,8 +5272,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasNewChanged();
         bool IAppSolution.IsHasNew { get { return this._IsHasNew; } } 
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
         { 
             get 
@@ -5722,8 +5721,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasNewChanged();
         bool IAppProject.IsHasNew { get { return this._IsHasNew; } } 
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
         { 
             get 
