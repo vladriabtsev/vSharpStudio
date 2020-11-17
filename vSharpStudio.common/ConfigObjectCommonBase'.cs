@@ -849,7 +849,7 @@
             }
             return false;
         }
-        virtual public bool IsNew()
+        virtual public bool IsNewNode()
         {
             if (this is IEditableNode)
             {

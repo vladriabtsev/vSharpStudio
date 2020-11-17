@@ -33,6 +33,11 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
         if (MessageDoc.IsDefaultBase) {
           if (field.Name=="guid") continue;
           if (field.Name=="name") continue;
+          if (field.Name=="is_new") continue;
+          if (field.Name=="is_has_new") continue;
+          if (field.Name=="is_marked_for_deletion") continue;
+          if (field.Name=="is_has_marked_for_deletion") continue;
+          if (field.Name=="is_has_changed") continue;
          } 
          this.PushIndent("    "); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
@@ -44,7 +49,9 @@ IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#
 IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
+<# if (field.Name != "sorting_value") { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} // <#=Helper.FilePos() #>
+<# } #>
 <#       } else if (field.IsAny() || field.IsNullable()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>

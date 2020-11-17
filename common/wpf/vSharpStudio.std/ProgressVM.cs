@@ -36,19 +36,6 @@ namespace ViewModelBase
             }
         }
         public Visibility _PauseVisibility;
-        public bool IsBusy
-        {
-            get { return _IsBusy; }
-            set
-            {
-                if (_IsBusy != value)
-                {
-                    _IsBusy = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsBusy;
         public string Name
         {
             get { return _Name; }

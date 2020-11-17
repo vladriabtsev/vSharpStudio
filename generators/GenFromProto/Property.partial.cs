@@ -26,5 +26,19 @@ namespace GenFromProto
             //if (field.Name == "guid") // || field.Name == "name" || field.Name == "name_ui" || field.Name == "sorting_value")
             //    isSpecial = true;
         }
+        private bool IsNotSpecial(string fieldName)
+        {
+            if (fieldName == "is_new")
+                return false;
+            if (fieldName == "is_has_new")
+                return false;
+            if (fieldName == "is_marked_for_deletion")
+                return false;
+            if (fieldName == "is_has_marked_for_deletion")
+                return false;
+            if (fieldName == "is_has_changed")
+                return false;
+            return true;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace vSharpStudio.common
         bool IsChanged { get; set; }
         //bool IsNotNotifying { get; set; }
         //bool IsValidate { get; set; }
-        bool IsNew();
+        bool IsNewNode();
         bool IsDeleted();
         bool IsDeprecated();
         bool IsRenamed(bool isStable);

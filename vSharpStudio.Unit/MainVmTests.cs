@@ -316,7 +316,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
-            Assert.IsTrue(c1.IsNew());
+            Assert.IsTrue(c1.IsNewNode());
             Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
 
@@ -407,7 +407,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsTrue(c1.IsNew);
-            Assert.IsTrue(c1.IsNew());
+            Assert.IsTrue(c1.IsNewNode());
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 

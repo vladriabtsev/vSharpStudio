@@ -548,7 +548,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListPlugins.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -573,7 +572,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListPlugins.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -599,7 +597,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListPlugins.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -624,7 +621,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListPlugins.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -647,7 +643,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListPlugins.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -964,7 +959,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IPlugin.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -989,7 +983,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IPlugin.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -1014,7 +1007,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IPlugin.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -1039,7 +1031,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IPlugin.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -1062,7 +1053,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPlugin.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -1271,7 +1261,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IPluginGenerator.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -1296,7 +1285,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IPluginGenerator.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -1322,7 +1310,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IPluginGenerator.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -1347,7 +1334,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IPluginGenerator.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -1370,7 +1356,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPluginGenerator.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -1858,7 +1843,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IConfigShortHistory.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -1883,7 +1867,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IConfigShortHistory.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -1908,7 +1891,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IConfigShortHistory.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -1933,7 +1915,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IConfigShortHistory.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -1956,7 +1937,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IConfigShortHistory.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -2326,7 +2306,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListBaseConfigLinks.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -2351,7 +2330,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListBaseConfigLinks.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -2376,7 +2354,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListBaseConfigLinks.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -2401,7 +2378,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListBaseConfigLinks.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -2424,7 +2400,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListBaseConfigLinks.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -2777,7 +2752,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IBaseConfigLink.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -2802,7 +2776,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IBaseConfigLink.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -2828,7 +2801,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IBaseConfigLink.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -2853,7 +2825,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IBaseConfigLink.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -2876,7 +2847,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IBaseConfigLink.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -3224,7 +3194,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IConfig.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -3249,7 +3218,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IConfig.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -3274,7 +3242,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IConfig.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -3299,7 +3266,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IConfig.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -3322,7 +3288,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IConfig.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public bool IsNeedCurrentUpdate // Property.tt Line: 138
@@ -3961,7 +3926,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IPluginGroupGeneratorsDefaultSettings.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -3986,7 +3950,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IPluginGroupGeneratorsDefaultSettings.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -4012,7 +3975,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IPluginGroupGeneratorsDefaultSettings.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -4037,7 +3999,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IPluginGroupGeneratorsDefaultSettings.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -4060,7 +4021,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPluginGroupGeneratorsDefaultSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -4435,7 +4395,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListAppSolutions.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -4460,7 +4419,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListAppSolutions.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -4485,7 +4443,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListAppSolutions.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -4510,7 +4467,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListAppSolutions.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -4533,7 +4489,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListAppSolutions.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings // Property.tt Line: 58
@@ -4789,7 +4744,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IPluginGroupGeneratorsSettings.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -4814,7 +4768,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IPluginGroupGeneratorsSettings.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -4840,7 +4793,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IPluginGroupGeneratorsSettings.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -4865,7 +4817,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IPluginGroupGeneratorsSettings.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -4888,7 +4839,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPluginGroupGeneratorsSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -5245,7 +5195,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IAppSolution.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -5270,7 +5219,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IAppSolution.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -5295,7 +5243,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IAppSolution.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -5320,7 +5267,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IAppSolution.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -5343,7 +5289,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IAppSolution.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 58
@@ -5694,7 +5639,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IAppProject.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -5719,7 +5663,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IAppProject.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -5744,7 +5687,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IAppProject.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -5769,7 +5711,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IAppProject.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -5792,7 +5733,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IAppProject.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [PropertyOrderAttribute(9)]
         [DisplayName("Namespace")]
@@ -6090,7 +6030,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPluginGeneratorNodeSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -6304,7 +6243,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPluginGeneratorMainSettings.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -6800,7 +6738,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IAppProjectGenerator.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -6825,7 +6762,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IAppProjectGenerator.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -6851,7 +6787,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IAppProjectGenerator.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -6876,7 +6811,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IAppProjectGenerator.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -6899,7 +6833,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IAppProjectGenerator.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public string GeneratorSettings // Property.tt Line: 138
@@ -7624,7 +7557,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IConfigModel.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -7649,7 +7581,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IConfigModel.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -7674,7 +7605,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IConfigModel.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -7699,7 +7629,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IConfigModel.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -7722,7 +7651,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IConfigModel.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 113
@@ -8567,7 +8495,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListCommon.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -8592,7 +8519,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListCommon.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -8618,7 +8544,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListCommon.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -8643,7 +8568,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListCommon.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -8666,7 +8590,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListCommon.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -8962,7 +8885,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IRole.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -8988,7 +8910,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IRole.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -9013,7 +8934,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IRole.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -9038,7 +8958,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IRole.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -9061,7 +8980,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IRole.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -9460,7 +9378,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListRoles.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -9485,7 +9402,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListRoles.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 138
@@ -9510,7 +9426,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListRoles.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -9535,7 +9450,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListRoles.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -9558,7 +9472,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListRoles.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -9889,7 +9802,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IMainViewForm.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -9914,7 +9826,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IMainViewForm.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -9940,7 +9851,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IMainViewForm.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -9965,7 +9875,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IMainViewForm.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -9988,7 +9897,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IMainViewForm.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -10391,7 +10299,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListMainViewForms.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -10416,7 +10323,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListMainViewForms.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -10442,7 +10348,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListMainViewForms.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -10467,7 +10372,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListMainViewForms.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -10490,7 +10394,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListMainViewForms.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -10889,7 +10792,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListPropertiesTabs.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -10914,7 +10816,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListPropertiesTabs.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -10940,7 +10841,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListPropertiesTabs.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -10965,7 +10865,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListPropertiesTabs.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -10988,7 +10887,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListPropertiesTabs.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -11383,7 +11281,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IPropertiesTab.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -11409,7 +11306,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IPropertiesTab.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -11434,7 +11330,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IPropertiesTab.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -11459,7 +11354,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IPropertiesTab.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -11482,7 +11376,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IPropertiesTab.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -11914,7 +11807,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListProperties.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -11939,7 +11831,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListProperties.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -11965,7 +11856,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListProperties.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -11990,7 +11880,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListProperties.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -12013,7 +11902,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListProperties.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -12344,7 +12232,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IProperty.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -12369,7 +12256,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IProperty.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -12395,7 +12281,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IProperty.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -12420,7 +12305,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IProperty.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -12443,7 +12327,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IProperty.IsHasChanged { get { return this._IsHasChanged; } } 
         
         
         ///////////////////////////////////////////////////
@@ -12872,7 +12755,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListConstants.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -12897,7 +12779,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListConstants.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -12923,7 +12804,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListConstants.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -12948,7 +12828,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListConstants.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -12971,7 +12850,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListConstants.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -13302,7 +13180,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IConstant.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -13327,7 +13204,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IConstant.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -13353,7 +13229,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IConstant.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -13378,7 +13253,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IConstant.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -13401,7 +13275,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IConstant.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -13800,7 +13673,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListEnumerations.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -13825,7 +13697,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListEnumerations.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -13851,7 +13722,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListEnumerations.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -13876,7 +13746,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListEnumerations.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -13899,7 +13768,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListEnumerations.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -14340,7 +14208,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IEnumeration.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -14366,7 +14233,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IEnumeration.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -14391,7 +14257,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IEnumeration.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -14416,7 +14281,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IEnumeration.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -14439,7 +14303,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IEnumeration.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -14704,7 +14567,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IEnumerationPair.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -14729,7 +14591,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IEnumerationPair.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -14755,7 +14616,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IEnumerationPair.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -14780,7 +14640,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IEnumerationPair.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -14803,7 +14662,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IEnumerationPair.IsHasChanged { get { return this._IsHasChanged; } } 
         [BrowsableAttribute(false)]
         override public bool IsChanged 
         { 
@@ -15115,7 +14973,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool ICatalog.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -15141,7 +14998,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool ICatalog.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(true)]
         public bool IsHasNew // Property.tt Line: 138
@@ -15166,7 +15022,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool ICatalog.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(true)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -15191,7 +15046,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool ICatalog.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -15214,7 +15068,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool ICatalog.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 113
@@ -15740,7 +15593,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListCatalogs.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -15765,7 +15617,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListCatalogs.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -15791,7 +15642,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListCatalogs.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -15816,7 +15666,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListCatalogs.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -15839,7 +15688,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListCatalogs.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -16232,7 +16080,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupDocuments.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -16257,7 +16104,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupDocuments.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -16283,7 +16129,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupDocuments.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -16308,7 +16153,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupDocuments.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -16331,7 +16175,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupDocuments.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -16667,7 +16510,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IDocument.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -16693,7 +16535,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IDocument.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -16718,7 +16559,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IDocument.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -16743,7 +16583,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IDocument.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -16766,7 +16605,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IDocument.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 113
@@ -17261,7 +17099,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListDocuments.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -17286,7 +17123,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListDocuments.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -17312,7 +17148,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListDocuments.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -17337,7 +17172,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListDocuments.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -17360,7 +17194,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListDocuments.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -17763,7 +17596,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListJournals.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -17788,7 +17620,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListJournals.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -17814,7 +17645,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListJournals.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -17839,7 +17669,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListJournals.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -17862,7 +17691,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListJournals.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -18238,7 +18066,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IJournal.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -18264,7 +18091,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IJournal.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -18289,7 +18115,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IJournal.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -18314,7 +18139,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IJournal.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -18337,7 +18161,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IJournal.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -18740,7 +18563,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListForms.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -18765,7 +18587,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListForms.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -18791,7 +18612,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListForms.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -18816,7 +18636,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListForms.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -18839,7 +18658,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListForms.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -19131,7 +18949,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IForm.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -19157,7 +18974,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IForm.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -19182,7 +18998,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IForm.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -19207,7 +19022,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IForm.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -19230,7 +19044,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IForm.IsHasChanged { get { return this._IsHasChanged; } } 
         
         
         ///////////////////////////////////////////////////
@@ -19638,7 +19451,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IGroupListReports.IsNew { get { return this._IsNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -19663,7 +19475,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IGroupListReports.IsHasNew { get { return this._IsHasNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -19689,7 +19500,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IGroupListReports.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -19714,7 +19524,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IGroupListReports.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -19737,7 +19546,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IGroupListReports.IsHasChanged { get { return this._IsHasChanged; } } 
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
@@ -20029,7 +19837,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsNew;
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsNewChanged();
-        bool IReport.IsNew { get { return this._IsNew; } } 
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
@@ -20055,7 +19862,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsMarkedForDeletionChanged();
-        bool IReport.IsMarkedForDeletion { get { return this._IsMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 138
@@ -20080,7 +19886,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasNew;
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasNewChanged();
-        bool IReport.IsHasNew { get { return this._IsHasNew; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 138
@@ -20105,7 +19910,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasMarkedForDeletion;
         partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasMarkedForDeletionChanged();
-        bool IReport.IsHasMarkedForDeletion { get { return this._IsHasMarkedForDeletion; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 138
@@ -20128,7 +19932,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 160
         partial void OnIsHasChangedChanged();
-        bool IReport.IsHasChanged { get { return this._IsHasChanged; } } 
         
         
         ///////////////////////////////////////////////////

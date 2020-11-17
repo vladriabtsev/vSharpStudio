@@ -913,6 +913,7 @@ namespace vSharpStudio.ViewModels
                             bool isException = false;
                             try
                             {
+                                //this.Config.PluginSettingsToModel();
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 #if Async
@@ -1121,9 +1122,9 @@ namespace vSharpStudio.ViewModels
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
 #if Async
-        public async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
+        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
 #else
-        public void UpdateCurrentVersion(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
+        private void UpdateCurrentVersion(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
 #endif
         {
             TestTransformation tst = parm as TestTransformation;

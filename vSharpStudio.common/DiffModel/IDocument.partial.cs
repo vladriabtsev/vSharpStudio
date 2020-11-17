@@ -9,5 +9,6 @@ namespace vSharpStudio.common
     public partial interface IDocument : ICompositeName, ITreeConfigNode, IDbTable
     {
         IGroupListDocuments IParent { get; }
+        bool IsMarkedForDeletion { get; }
     }
 }

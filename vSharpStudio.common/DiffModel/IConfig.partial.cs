@@ -9,6 +9,7 @@ namespace vSharpStudio.common
 {
     public partial interface IConfig : ITreeConfigNode
     {
+        bool IsHasChanged { get; }
         ITreeConfigNode SelectedNode { get; set; }
         IConfig PrevCurrentConfig { get; }
         IConfig PrevStableConfig { get; }
