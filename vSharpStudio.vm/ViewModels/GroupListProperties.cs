@@ -38,6 +38,11 @@ namespace vSharpStudio.vm.ViewModels
                 var p = this.Parent as PropertiesTab;
                 return p.Children;
             }
+            else if (this.Parent is GroupDocuments)
+            {
+                var p = this.Parent as GroupDocuments;
+                return p.Children;
+            }
             throw new NotImplementedException();
         }
         public override bool HasChildren()
