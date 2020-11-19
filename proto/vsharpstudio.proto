@@ -1080,7 +1080,6 @@ message proto_constant {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 14;
 
-
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

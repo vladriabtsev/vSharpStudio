@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IConstant : ITreeConfigNode
     {
+        bool IsMarkedForDeletion { get; }
     }
 }
