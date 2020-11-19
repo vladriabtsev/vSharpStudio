@@ -19,7 +19,7 @@
     <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Dapper" Version="2.0.78" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
@@ -47,6 +47,6 @@
     <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="**********" Importance="high" />-->
     <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
+    <!--<Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />-->
   </Target>
 </Project>

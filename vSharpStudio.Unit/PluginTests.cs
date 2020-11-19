@@ -49,13 +49,14 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Property"));
             Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Catalog.*.Property"));
         }
+        private string pluginsFolderPath = "";
         [TestMethod]
         public void Plugin003CanLoadPlugin()
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.GroupPlugins.ListPlugins.Count > 0);
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             Assert.IsNotNull(pluginNode);
@@ -72,7 +73,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -113,7 +114,7 @@ namespace vSharpStudio.Unit
 
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
-            vm2.Compose();
+            vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects.Count());
@@ -146,7 +147,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -239,7 +240,7 @@ namespace vSharpStudio.Unit
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
-            vm2.Compose();
+            vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
@@ -305,7 +306,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -360,7 +361,7 @@ namespace vSharpStudio.Unit
             // 1. When Config is loaded: init group plugin settings on all solution nodes
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
-            vm2.Compose();
+            vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             Assert.IsTrue(vm2.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
@@ -389,7 +390,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -440,7 +441,7 @@ namespace vSharpStudio.Unit
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
-            vm2.Compose();
+            vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             sln = vm2.Config.GroupAppSolutions.ListAppSolutions[0];
             prj = sln.ListAppProjects[0];
@@ -480,7 +481,7 @@ namespace vSharpStudio.Unit
             var c2 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();
             vm.CommandConfigSaveAs.Execute(cfgPath);
 
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;

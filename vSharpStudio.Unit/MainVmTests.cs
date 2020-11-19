@@ -211,7 +211,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.Config.Name = "main";
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
             var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
@@ -303,7 +303,7 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(true);
             var cfg = vm.Config;
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
 
@@ -394,7 +394,7 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(true);
             var cfg = vm.Config;
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
@@ -482,7 +482,7 @@ namespace vSharpStudio.Unit
             // initial
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
@@ -759,7 +759,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
@@ -1153,13 +1153,13 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             //if (!Directory.Exists(path))
@@ -1177,7 +1177,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
@@ -1194,7 +1194,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.Config.Name = "main";
             var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
@@ -1202,7 +1202,7 @@ namespace vSharpStudio.Unit
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vmb.Config.Name = "ext";
             var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
             if (!Directory.Exists(pathExt))
@@ -1221,7 +1221,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
-            vm.Compose();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             //TODO diff test implementation
             // var diffc = vm.GetDiffListConfigs();
             // Assert.IsTrue(diffc.Config.Name == "main");

@@ -559,7 +559,6 @@ namespace vSharpStudio.ViewModels
         private Action onPluginsLoaded = null;
         public void Compose(string pluginsFolderPath = null)
         {
-            this.onPluginsLoaded = onPluginsLoaded;
             try
             {
                 string folder = (pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins";
@@ -1750,5 +1749,18 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
         // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
         #endregion
+
+        #region Utils
+        public static string GetvSharpStudioPluginsPath()
+        {
+            string path = null;
+            var currPath = Directory.GetCurrentDirectory();
+            var bin = currPath.Substring(currPath.IndexOf(@"\bin"));
+            var s = @"\vSharpStudio";
+            var vss = currPath.Substring(0, currPath.IndexOf(s));
+            path = vss + s + s + bin;
+            return path;
+        }
+        #endregion Utils
     }
 }
