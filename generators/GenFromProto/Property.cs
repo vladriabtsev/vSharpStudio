@@ -43,13 +43,13 @@ namespace GenFromProto
             #line hidden
             
             #line 7 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (field.IsRepeated) { 
+ if (this.IsCollection) { 
             
             #line default
             #line hidden
             
             #line 8 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())) { 
+   if (this.IsObservable) { 
             
             #line default
             #line hidden

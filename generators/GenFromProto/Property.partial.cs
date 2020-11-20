@@ -40,5 +40,7 @@ namespace GenFromProto
                 return false;
             return true;
         }
+        private bool IsCollection { get { return field.IsRepeated; } }
+        private bool IsObservable { get { return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase()); } }
     }
 }

@@ -150,6 +150,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         // GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSolutionSettings> dicSolutionGroupGeneratorsSettings = null;
+        [BrowsableAttribute(false)]
         public DictionaryExt<string, IvPluginGroupSolutionSettings> DicPluginsGroupSettings
         {
             get

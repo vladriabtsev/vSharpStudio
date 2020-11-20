@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
-    - [bool_nullable](#proto_config.bool_nullable)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_project_generator](#proto_config.proto_app_project_generator)
@@ -53,7 +52,6 @@
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [proto_user_settings](#proto_config.proto_user_settings)
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
-    - [string_nullable](#proto_config.string_nullable)
   
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
@@ -69,22 +67,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
-
-
-
-<a name="proto_config.bool_nullable"></a>
-
-### bool_nullable
-all simple nullable (generator check suffics &#39;_nullable&#39;)
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [bool](#bool) |  |  |
-
-
-
 
 
 
@@ -1270,22 +1252,6 @@ User&#39;s role
 | ----- | ---- | ----- | ----------- |
 | opened_last_time_on | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [BrowsableAttribute(false)] |
 | config_path | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.string_nullable"></a>
-
-### string_nullable
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [string](#string) |  |  |
 
 
 

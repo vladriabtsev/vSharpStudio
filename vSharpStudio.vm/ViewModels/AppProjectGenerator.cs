@@ -96,6 +96,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+        [BrowsableAttribute(false)]
         public SortedObservableCollection<PluginGenerator> ListGenerators { get; private set; }
         [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]

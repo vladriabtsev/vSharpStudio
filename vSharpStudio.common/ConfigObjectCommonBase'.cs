@@ -249,6 +249,7 @@
                 return this.GetConfig().Name + "." + this.Name;
             }
         }
+        [BrowsableAttribute(false)]
         public System.Windows.TextDecorationCollection NodeNameDecorations
         {
             get

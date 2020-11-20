@@ -9,6 +9,6 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGeneratorNodeIncludable
     {
-        bool? IsIncluded { get; }
+        bool? IsIncluded { get; set; }
     }
 }

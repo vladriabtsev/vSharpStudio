@@ -119,37 +119,6 @@
       "extensions": [],
       "messages": [
         {
-          "name": "bool_nullable",
-          "longName": "bool_nullable",
-          "fullName": "proto_config.bool_nullable",
-          "description": "all simple nullable (generator check suffics '_nullable')",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
@@ -5818,37 +5787,6 @@
             {
               "name": "config_path",
               "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "string_nullable",
-          "longName": "string_nullable",
-          "fullName": "proto_config.string_nullable",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",

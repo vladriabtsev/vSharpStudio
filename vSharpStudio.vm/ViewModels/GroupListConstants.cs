@@ -53,6 +53,8 @@ namespace vSharpStudio.vm.ViewModels
             };
         }
 
+        public string CompositeName { get { return this.Name; } }
+
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public Constant AddConstant(string name, DataType type = null)

@@ -76,5 +76,6 @@ namespace GenFromProto
 
             }
         }
+        private bool IsDefaultBase { get { return this.Doc.IsDefaultBase; } }
     }
 }

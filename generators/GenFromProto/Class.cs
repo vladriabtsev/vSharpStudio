@@ -99,7 +99,7 @@ namespace GenFromProto
             this.Write("\r\n{\r\n    #region CTOR\r\n");
             
             #line 10 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (this.Doc.IsDefaultBase) { 
+ if (this.IsDefaultBase) { 
             
             #line default
             #line hidden
@@ -134,16 +134,16 @@ namespace GenFromProto
             this.Write("\r\n    {\r\n        this.IsValidate = false;\r\n        this.OnInitBegin();\r\n");
             
             #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- foreach (var t in message.Fields.InDeclarationOrder())	{ 
-        if (t.IsCsSimple())
+    foreach (var t in message.Fields.InDeclarationOrder())	{ 
+         if (t.IsCsSimple())
             continue;
-        if (t.IsRepeated) {
+         if (t.IsRepeated) {
             
             #line default
             #line hidden
             
             #line 23 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
+          if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden
@@ -171,7 +171,7 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- } else { 
+          } else { 
             
             #line default
             #line hidden
@@ -199,19 +199,19 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- } 
+          } 
             
             #line default
             #line hidden
             
             #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-    } else if (t.IsMessage()) { 
+       } else if (t.IsMessage()) { 
             
             #line default
             #line hidden
             
             #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
+          if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden
@@ -239,7 +239,7 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 31 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- } else { 
+          } else { 
             
             #line default
             #line hidden
@@ -267,13 +267,13 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 33 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- } 
+          } 
             
             #line default
             #line hidden
             
             #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
-		} else if (t.IsMap) { 
+		 } else if (t.IsMap) { 
             
             #line default
             #line hidden

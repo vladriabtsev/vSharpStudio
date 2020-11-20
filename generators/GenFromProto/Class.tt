@@ -7,7 +7,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
     #region CTOR
-<# if (this.Doc.IsDefaultBase) { #>
+<# if (this.IsDefaultBase) { #>
     public <#= message.Name.ToNameCs() #>() : this((ITreeConfigNode)null)
     {
     }
@@ -16,22 +16,22 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     {
         this.IsValidate = false;
         this.OnInitBegin();
-<# foreach (var t in message.Fields.InDeclarationOrder())	{ 
-        if (t.IsCsSimple())
+<#    foreach (var t in message.Fields.InDeclarationOrder())	{ 
+         if (t.IsCsSimple())
             continue;
-        if (t.IsRepeated) {#>
-<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+         if (t.IsRepeated) {#>
+<#          if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
         this.<#= t.Name.ToNameCs() #> = new ObservableCollection<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
-<# } else { #>
+<#          } else { #>
         this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
-<# } #>
-<#    } else if (t.IsMessage()) { #>
-<# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
+<#          } #>
+<#       } else if (t.IsMessage()) { #>
+<#          if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
-<# } else { #>
+<#          } else { #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
-<# } #>
-<#		} else if (t.IsMap) { #>
+<#          } #>
+<#		 } else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>

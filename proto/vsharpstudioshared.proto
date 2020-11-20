@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+/*
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+*/
+
+//import "connections.proto";
+
+package proto_shared; // 
+option csharp_namespace = "Proto.Config";
+
+/** 
+ * @exclude
+ * ####################################### N U L L A B L E ##########################################
+ */
+// all simple nullable (generator check suffics '_nullable')
+message bool_nullable {
+    bool has_value = 1;
+    bool value = 2;
+}
+message string_nullable {
+    bool has_value = 1;
+    string value = 2;
+}
+
+// @base ViewModelValidatableWithSeverity
+message test_shared_messsage {
+    bool_nullable bool_value = 1;
+    string_nullable string_value = 2;
+}
+

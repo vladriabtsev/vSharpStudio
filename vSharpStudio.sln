@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D
 		proto\plugin_sample.proto = proto\plugin_sample.proto
 		proto\proto_doc.proto = proto\proto_doc.proto
 		proto\vsharpstudio.proto = proto\vsharpstudio.proto
+		proto\vsharpstudioshared.proto = proto\vsharpstudioshared.proto
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generators", "generators", "{09D88CCF-0FE8-4B1D-AA9A-AD9350F1B707}"

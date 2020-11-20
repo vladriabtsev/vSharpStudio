@@ -4,8 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-<#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (field.IsRepeated) { #>
-<#   if (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())) { #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (this.IsCollection) { #>
+<#   if (this.IsObservable) { #>
 public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 
