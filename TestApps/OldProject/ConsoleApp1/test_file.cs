@@ -1,1 +1,1 @@
-wrong c# code
+namespace Test {}

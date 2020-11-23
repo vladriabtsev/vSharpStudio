@@ -239,7 +239,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             this.PluginGeneratorGuid = "";
             UpdateListGenerators();
-            if (!Config.IsLoading)
+            if (cfg.IsInitialized)
             {
                 var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
@@ -389,7 +389,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void UpdateListGenerators()
         {
-            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
+            if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {
                 Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
                 this.ListGenerators.Clear();

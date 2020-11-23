@@ -2398,7 +2398,7 @@
           "name": "proto_group_list_app_solutions",
           "longName": "proto_group_list_app_solutions",
           "fullName": "proto_config.proto_group_list_app_solutions",
-          "description": "@base ConfigObjectVmBase",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -4636,7 +4636,7 @@
           "name": "proto_plugin",
           "longName": "proto_plugin",
           "fullName": "proto_config.proto_plugin",
-          "description": "@base ConfigObjectVmBase",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -4757,7 +4757,7 @@
           "name": "proto_plugin_generator",
           "longName": "proto_plugin_generator",
           "fullName": "proto_config.proto_plugin_generator",
-          "description": "@base ConfigObjectVmBase",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5774,6 +5774,16 @@
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "opened_last_time_on",
               "description": "@attr [BrowsableAttribute(false)]",

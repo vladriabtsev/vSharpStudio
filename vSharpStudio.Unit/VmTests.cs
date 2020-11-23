@@ -79,7 +79,11 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable014CanCancelSecondLevelCollection()
         {
-            var cfg = new Config();
+            var mvm = new MainPageVM(false);
+            mvm.OnFormLoaded();
+            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+
+            var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test");
             var prop = vm.GroupProperties.AddProperty("test1");
             vm.BeginEdit();
@@ -97,7 +101,11 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable021CanCancelCatalogPropertiy()
         {
-            var cfg = new Config();
+            var mvm = new MainPageVM(false);
+            mvm.OnFormLoaded();
+            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+
+            var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog();
             vm.BeginEdit();
             vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
@@ -233,7 +241,11 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Property001_Position()
         {
-            var cfg = new Config();
+            var mvm = new MainPageVM(false);
+            mvm.OnFormLoaded();
+            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+
+            var cfg = mvm.Config;
             cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 2);

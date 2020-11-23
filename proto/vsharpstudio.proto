@@ -35,10 +35,12 @@ message proto_user_settings {
 }
 // @base ViewModelValidatableWithSeverity
 message proto_user_settings_opened_config {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
     // @attr [BrowsableAttribute(false)]
-    google.protobuf.Timestamp opened_last_time_on = 1;
+    google.protobuf.Timestamp opened_last_time_on = 2;
     // @attr [BrowsableAttribute(false)]
-    string config_path = 2;
+    string config_path = 3;
 }
 /** 
  * @exclude
@@ -62,7 +64,6 @@ message proto_group_list_plugins {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
-// @base ConfigObjectVmBase
 message proto_plugin {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -95,7 +96,6 @@ message proto_plugin {
     // attr [ReadOnly(true)]
     //string group_info = 9;
 }
-// @base ConfigObjectVmBase
 message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -361,7 +361,6 @@ message proto_plugin_group_generators_default_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
-// @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [ReadOnly(true)]
     string guid = 1;

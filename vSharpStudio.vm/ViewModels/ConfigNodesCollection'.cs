@@ -27,7 +27,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p = p.Parent;
             }
-            // if (p is Config)
+            if (!(p is Config))
+                throw new Exception();
             this.cfg = (Config)p;
         }
 
@@ -42,7 +43,8 @@ namespace vSharpStudio.vm.ViewModels
             foreach (T item in collection)
             {
                 item.Parent = this.parent;
-                this.cfg.DicNodes[item.Guid] = item;
+                if (this.cfg.IsInitialized)
+                    this.cfg.DicNodes[item.Guid] = item;
             }
             base.AddRange(collection, sortingWeight);
         }
@@ -55,7 +57,8 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             item.Parent = this.parent;
-            this.cfg.DicNodes[item.Guid] = item;
+            if (this.cfg.IsInitialized)
+                this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, 0);
         }
 
@@ -67,7 +70,8 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             item.Parent = this.parent;
-            this.cfg.DicNodes[item.Guid] = item;
+            if (this.cfg.IsInitialized)
+                this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, sortingWeight);
         }
 
@@ -75,10 +79,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.cfg.DicNodes.Remove(item.Guid);
             int indx = -1;
-            foreach(var t in this)
+            foreach (var t in this)
             {
                 indx++;
-                if (t.Guid==item.Guid)
+                if (t.Guid == item.Guid)
                 {
                     base.RemoveAt(indx);
                     return true;

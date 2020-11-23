@@ -201,7 +201,6 @@ namespace vSharpStudio.ViewModels
         }
         private void LoadConfig(Config config, string file_path, string indent, bool isRoot = false)
         {
-            Config.IsLoading = true;
             if (!File.Exists(file_path))
             {
                 var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
@@ -234,7 +233,7 @@ namespace vSharpStudio.ViewModels
             // string json = File.ReadAllText(CFG_PATH);
             // this.Model = new Config(json);
             this.CurrentCfgFilePath = file_path;
-            Config.IsLoading = false;
+            Config.IsInitialized = false;
         }
 
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
@@ -274,7 +273,7 @@ namespace vSharpStudio.ViewModels
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
-        private IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
+        public IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
         //private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
 
         public void OnImportsSatisfied()
@@ -285,6 +284,10 @@ namespace vSharpStudio.ViewModels
             //    this.onImportsSatisfied(this, this._plugins);
             //}
             InitConfig(this.Config);
+            if (this.Config.PrevStableConfig != null)
+                InitConfig(this.Config.PrevStableConfig as Config);
+            if (this.Config.PrevCurrentConfig != null)
+                InitConfig(this.Config.PrevCurrentConfig as Config);
             if (this.onPluginsLoaded != null)
                 this.onPluginsLoaded();
         }
@@ -292,6 +295,15 @@ namespace vSharpStudio.ViewModels
         {
             try
             {
+                // Restore dictionary of all nodes
+                var nvb = new ModelVisitorBase();
+                nvb.Run(cfg, (p, n) =>
+                {
+                    cfg.DicNodes[n.Guid] = n;
+                });
+                cfg.IsInitialized = true;
+
+                // Restore plugins
                 List<PluginRow> lstGens = new List<PluginRow>();
                 cfg.DicPlugins = new Dictionary<string, IvPlugin>();
                 foreach (var t in this._plugins)
@@ -708,8 +720,7 @@ namespace vSharpStudio.ViewModels
             //TODO save and clean private ConnStr
             this.Config.PluginSettingsToModel();
             this.SavePrepare();
-            Utils.TryCall(
-                () =>
+            Utils.TryCall(() =>
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
@@ -1282,10 +1293,12 @@ namespace vSharpStudio.ViewModels
                       () =>
                       {
                           this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+                          this._Config.PluginSettingsToModel();
                           var proto = Config.ConvertToProto(this._Config);
                           this.pconfig_history.CurrentConfig = proto;
                           this.Save();
                           this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
+                          this.InitConfig(this.Config.PrevCurrentConfig as Config);
                           // unit test
                           if (tst != null && tst.IsThrowExceptionOnConfigUpdated)
                               throw new Exception();
@@ -1325,10 +1338,10 @@ namespace vSharpStudio.ViewModels
                 }
                 #endregion Remove New which are Marked for Deletion
             }
-            //catch(Exception ex)
-            //{
+            catch (Exception ex)
+            {
 
-            //}
+            }
             finally
             {
                 //TODO roll back if Exception
@@ -1403,11 +1416,14 @@ namespace vSharpStudio.ViewModels
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code
             this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            this._Config.PluginSettingsToModel();
             var proto = Config.ConvertToProto(this._Config);
             this.pconfig_history.CurrentConfig = proto;
             this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
             this.Config.PrevStableConfig = Config.ConvertToVM(proto, new Config());
+            this.InitConfig(this.Config.PrevStableConfig as Config);
             this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
+            this.InitConfig(this.Config.PrevCurrentConfig as Config);
             this.pconfig_history.CurrentConfig.Version++;
             vis.Run(this.Config, (v, n) =>
             {

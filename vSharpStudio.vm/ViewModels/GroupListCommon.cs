@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListListCommon.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{Children.Count,nq}")]
     public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         #region ITree

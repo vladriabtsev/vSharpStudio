@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
     {
         #region CTOR
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 43
+            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -108,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool? BoolValue // Property.tt Line: 138
+        public bool? BoolValue // Property.tt Line: 144
         { 
             get 
             { 
@@ -128,11 +128,11 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private bool? _BoolValue;
-        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 160
+        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 166
         partial void OnBoolValueChanged();
         bool? ITestSharedMesssage.BoolValue { get { return this._BoolValue; } } 
         
-        public string StringValue // Property.tt Line: 138
+        public string StringValue // Property.tt Line: 144
         { 
             get 
             { 
@@ -152,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private string _StringValue;
-        partial void OnStringValueChanging(ref string to); // Property.tt Line: 160
+        partial void OnStringValueChanging(ref string to); // Property.tt Line: 166
         partial void OnStringValueChanged();
         string ITestSharedMesssage.StringValue { get { return this._StringValue; } } 
         #endregion Properties

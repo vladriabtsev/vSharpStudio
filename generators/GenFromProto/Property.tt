@@ -29,7 +29,7 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
 private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-IEnumerable<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+IReadOnlyList<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <#   } else if (field.IsMap) { #>
 public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
@@ -78,10 +78,11 @@ public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() 
 private ConfigNodesCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
 partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#= field.Name.ToNameCs() #>Changed();
-IEnumerable<I<#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
+IReadOnlyList<I<#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <#   } #>
 <#   if (message.Name.EndsWith(field.Name)) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
+I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
 { 
     Contract.Requires(item != null);
@@ -100,6 +101,10 @@ public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items
 public int Count() 
 { 
     return this.<#= field.Name.ToNameCs() #>.Count; 
+}
+int I<#= message.Name.ToNameCs() #>.Count() 
+{ 
+    return this.Count(); 
 }
 public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) 
 {
@@ -135,6 +140,7 @@ partial void On<#= field.Name.ToNameCs() #>Changing(ref <#= field.ToTypeCs() #> 
 partial void On<#= field.Name.ToNameCs() #>Changed();
 <# if (!field.IsNullable()) { #>I<# } #><#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
 <# } else { #>
+<# if (!this.DocMes.IsBaseWithParent || field.Name != "guid") { #>
 public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 { 
     get 
@@ -165,5 +171,8 @@ partial void On<#= field.Name.ToNameCs() #>Changed();
 <# } else { #>
 <#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } set { this.<#= field.Name.ToNameCs() #> = value; } }
 <# } #>
+<# } #>
+<# } else { #>
+<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this.<#= field.Name.ToNameCs() #>; } } 
 <# } #>
 <# } #>

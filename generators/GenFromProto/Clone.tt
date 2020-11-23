@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# if (this.Doc.IsDefaultBase) { #>
+<# if (this.Doc.IsBaseWithParent) { #>
 
 public override void Sort(Type type) // <#=Helper.FilePos() #>
 {
@@ -11,7 +11,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
-<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
     if (type == typeof(<#= field.ToTypeCs() #>)) // <#=Helper.FilePos() #>
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
@@ -43,7 +43,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
-<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
@@ -90,7 +90,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             bool isfound = false;
             foreach (var tt in from.<#= field.Name.ToNameCs() #>)
             {
-                if (t == tt)
+                if (t.Guid == tt.Guid)
                 {
                     isfound = true;
                     <#= field.ToTypeCs() #>.Update((<#= field.ToTypeCs() #>)t, (<#= field.ToTypeCs() #>)tt, isDeep);
@@ -105,7 +105,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, <#= message.Name.To
             bool isfound = false;
             foreach (var t in to.<#= field.Name.ToNameCs() #>.ToList())
             {
-                if (t == tt)
+                if (t.Guid == tt.Guid)
                 {
                     isfound = true;
                     break;
@@ -186,7 +186,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
-<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
@@ -200,7 +200,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
+<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
 <#          } else { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t); // <#=Helper.FilePos() #>

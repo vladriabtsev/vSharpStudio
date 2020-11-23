@@ -23,9 +23,8 @@
         <DebugType>pdbonly</DebugType>
     </PropertyGroup>
     <PropertyGroup>
-        <PostBuildEvent>
-            $(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
-        </PostBuildEvent>
+        <PostBuildEvent>$(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
+</PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup>
         <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>

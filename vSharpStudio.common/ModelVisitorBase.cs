@@ -108,7 +108,6 @@ namespace vSharpStudio.common
         protected virtual void BeginVisit(IEnumerable<IAppSolution> listAppSolutions) { }
         protected virtual void EndVisit(IGroupListAppSolutions groupAppSolutions) { }
         protected virtual void BeginVisit(IGroupListAppSolutions groupAppSolutions) { }
-
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
         {
             this.BeginVisit(parent);
@@ -127,7 +126,6 @@ namespace vSharpStudio.common
             this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
-
         private void VisitPropertiesTabs(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst)
         {
             this.BeginVisit(parent);
@@ -150,7 +148,6 @@ namespace vSharpStudio.common
             this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
-
         private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst)
         {
             this.BeginVisit(parent);
@@ -169,7 +166,6 @@ namespace vSharpStudio.common
             this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
-
         private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst)
         {
             this.BeginVisit(parent);

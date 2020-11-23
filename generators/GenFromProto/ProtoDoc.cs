@@ -127,11 +127,25 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                 }
-                if (s.Contains("ConfigObjectVmBase")
-                    || s.Contains("ConfigObjectCommonBase")
-                    || s.Contains("ConfigObjectVmGenSettings"))
+                if (s.Contains("ConfigObjectCommonBase"))
+                {
+                    this.IsBaseWithParent = true;
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                }
+                if (s.Contains("ConfigObjectVmBase"))
+                {
+                    this.IsBaseWithParent = true;
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                }
+                if (s.Contains("ConfigObjectVmGenSettings"))
                 {
                     this.IsDefaultBase = true;
+                    this.IsBaseWithParent = true;
+                    this.IsGenSettings = true;
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
@@ -139,6 +153,9 @@ namespace GenFromProto
             }
             else
             {
+                this.IsDefaultBase = true;
+                this.IsBaseWithParent = true;
+                this.IsGenSettings = true;
                 this.IsBindableBase = true;
                 this.IsEditableBase = true;
                 this.IsValidatableBase = true;
@@ -201,6 +218,8 @@ namespace GenFromProto
 
         public Proto.Doc.message message;
         public bool IsDefaultBase = true;
+        public bool IsBaseWithParent = false;
+        public bool IsGenSettings = false;
         public bool IsBindableBase = false;
         public bool IsEditableBase = false;
         public bool IsValidatableBase = false;

@@ -28,6 +28,9 @@ public enum <#= t.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 <#= this.MessageDoc.Comments #>
 public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #> // <#=Helper.FilePos() #>
 {
+<# if (MessageDoc.IsDefaultBase) { #>
+    //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // <#=Helper.FilePos() #>
+<# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
         if (MessageDoc.IsDefaultBase) {
@@ -38,20 +41,23 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
           if (field.Name=="is_marked_for_deletion") continue;
           if (field.Name=="is_has_marked_for_deletion") continue;
           if (field.Name=="is_has_changed") continue;
+          if (field.Name=="sorting_value") continue;
          } 
-         this.PushIndent("    "); #>
+         this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
-IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } else if (field.IsCsSimple()) { #>
-IEnumerable<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <# } else { #>
-IEnumerable<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+<#   if (message.Name.EndsWith(field.Name)) { #>
+I<#= field.MessageType.Name.ToNameCs() #> this[int index] { get; }
+int Count();
+<#   } #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
-<# if (field.Name != "sorting_value") { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} // <#=Helper.FilePos() #>
-<# } #>
 <#       } else if (field.IsAny() || field.IsNullable()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
 <#       } else { #>

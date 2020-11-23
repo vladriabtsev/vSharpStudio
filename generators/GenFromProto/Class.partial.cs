@@ -61,14 +61,19 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " + 
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "ConfigObjectVmGenSettings")
+            else if (this.Doc.BaseClass == "ConfigObjectCommonBase")
             {
-                this.Doc.BaseClass = " : ConfigObjectVmGenSettings<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : ConfigObjectCommonBase<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
             else if (this.Doc.BaseClass == "ConfigObjectVmBase")
             {
-                this.Doc.BaseClass = " : ConfigObjectVmBase<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : ConfigObjectVmBase<" + message.Name.ToNameCs() + ", " +
+                    message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
+            }
+            else if (this.Doc.BaseClass == "ConfigObjectVmGenSettings")
+            {
+                this.Doc.BaseClass = " : ConfigObjectVmGenSettings<" + message.Name.ToNameCs() + ", " + 
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
             else
@@ -77,5 +82,6 @@ namespace GenFromProto
             }
         }
         private bool IsDefaultBase { get { return this.Doc.IsDefaultBase; } }
+        private bool IsBaseWithParent { get { return this.Doc.IsBaseWithParent; } }
     }
 }

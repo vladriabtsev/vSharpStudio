@@ -508,7 +508,7 @@ Constant application wise value
 <a name="proto_config.proto_group_list_app_solutions"></a>
 
 ### proto_group_list_app_solutions
-@base ConfigObjectVmBase
+
 
 
 | Field | Type | Label | Description |
@@ -964,7 +964,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin"></a>
 
 ### proto_plugin
-@base ConfigObjectVmBase
+
 
 
 | Field | Type | Label | Description |
@@ -989,7 +989,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin_generator"></a>
 
 ### proto_plugin_generator
-@base ConfigObjectVmBase
+
 
 
 | Field | Type | Label | Description |
@@ -1250,6 +1250,7 @@ User&#39;s role
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | opened_last_time_on | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [BrowsableAttribute(false)] |
 | config_path | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 

@@ -30,7 +30,7 @@ namespace GenFromProto
         {
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (this.Doc.IsDefaultBase) { 
+ if (this.Doc.IsBaseWithParent) { 
             
             #line default
             #line hidden
@@ -53,7 +53,7 @@ namespace GenFromProto
             #line hidden
             
             #line 14 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+ if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
             
             #line default
             #line hidden
@@ -282,7 +282,7 @@ namespace GenFromProto
             this.Write(".Add(t);\r\n");
             
             #line 46 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+ } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
             
             #line default
             #line hidden
@@ -698,8 +698,8 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(")\r\n            {\r\n                if (t == tt)\r\n                {\r\n              " +
-                    "      isfound = true;\r\n                    ");
+            this.Write(")\r\n            {\r\n                if (t.Guid == tt.Guid)\r\n                {\r\n    " +
+                    "                isfound = true;\r\n                    ");
             
             #line 96 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -743,9 +743,9 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(".ToList())\r\n            {\r\n                if (t == tt)\r\n                {\r\n     " +
-                    "               isfound = true;\r\n                    break;\r\n                }\r\n " +
-                    "           }\r\n            if (!isfound)\r\n            {\r\n");
+            this.Write(".ToList())\r\n            {\r\n                if (t.Guid == tt.Guid)\r\n              " +
+                    "  {\r\n                    isfound = true;\r\n                    break;\r\n          " +
+                    "      }\r\n            }\r\n            if (!isfound)\r\n            {\r\n");
             
             #line 116 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
  if (field.IsDefaultBase()) { 
@@ -1218,7 +1218,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(".Add(t);\r\n    }\r\n");
             
             #line 189 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
             
             #line default
             #line hidden
@@ -1365,7 +1365,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("\r\n    {\r\n");
             
             #line 203 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { 
+          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
             
             #line default
             #line hidden

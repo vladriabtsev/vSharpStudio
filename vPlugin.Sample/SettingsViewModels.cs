@@ -28,7 +28,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public PluginsGroupSettings() 
-            : base(PluginsGroupSettingsValidator.Validator) // Class.tt Line: 43
+            : base(PluginsGroupSettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -99,7 +99,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsGroupParam1 // Property.tt Line: 138
+        public bool IsGroupParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -119,7 +119,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsGroupParam1;
-        partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsGroupParam1Changed();
         bool IPluginsGroupSettings.IsGroupParam1 { get { return this._IsGroupParam1; } set { this.IsGroupParam1 = value; } }
         #endregion Properties
@@ -129,7 +129,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public GeneratorDbSchemaSettings() 
-            : base(GeneratorDbSchemaSettingsValidator.Validator) // Class.tt Line: 43
+            : base(GeneratorDbSchemaSettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -211,7 +211,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsSchemaParam1 // Property.tt Line: 138
+        public bool IsSchemaParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -231,11 +231,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsSchemaParam1;
-        partial void OnIsSchemaParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsSchemaParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsSchemaParam1Changed();
         bool IGeneratorDbSchemaSettings.IsSchemaParam1 { get { return this._IsSchemaParam1; } set { this.IsSchemaParam1 = value; } }
         
-        public bool? IsSchemaParam2 // Property.tt Line: 138
+        public bool? IsSchemaParam2 // Property.tt Line: 144
         { 
             get 
             { 
@@ -255,11 +255,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsSchemaParam2;
-        partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 160
+        partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 166
         partial void OnIsSchemaParam2Changed();
         bool? IGeneratorDbSchemaSettings.IsSchemaParam2 { get { return this._IsSchemaParam2; } set { this.IsSchemaParam2 = value; } }
         
-        public string SchemaParam3 // Property.tt Line: 138
+        public string SchemaParam3 // Property.tt Line: 144
         { 
             get 
             { 
@@ -279,7 +279,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _SchemaParam3 = string.Empty;
-        partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 160
+        partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 166
         partial void OnSchemaParam3Changed();
         string IGeneratorDbSchemaSettings.SchemaParam3 { get { return this._SchemaParam3; } set { this.SchemaParam3 = value; } }
         #endregion Properties
@@ -289,7 +289,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public GeneratorDbAccessSettings() 
-            : base(GeneratorDbAccessSettingsValidator.Validator) // Class.tt Line: 43
+            : base(GeneratorDbAccessSettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -381,7 +381,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // Property.tt Line: 138
+        public bool IsAccessParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -401,11 +401,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsAccessParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsAccessParam1Changed();
         bool IGeneratorDbAccessSettings.IsAccessParam1 { get { return this._IsAccessParam1; } set { this.IsAccessParam1 = value; } }
         
-        public bool? IsAccessParam2 // Property.tt Line: 138
+        public bool? IsAccessParam2 // Property.tt Line: 144
         { 
             get 
             { 
@@ -425,11 +425,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 160
+        partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 166
         partial void OnIsAccessParam2Changed();
         bool? IGeneratorDbAccessSettings.IsAccessParam2 { get { return this._IsAccessParam2; } set { this.IsAccessParam2 = value; } }
         
-        public string AccessParam3 // Property.tt Line: 138
+        public string AccessParam3 // Property.tt Line: 144
         { 
             get 
             { 
@@ -449,11 +449,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 160
+        partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 166
         partial void OnAccessParam3Changed();
         string IGeneratorDbAccessSettings.AccessParam3 { get { return this._AccessParam3; } set { this.AccessParam3 = value; } }
         
-        public string AccessParam4 // Property.tt Line: 138
+        public string AccessParam4 // Property.tt Line: 144
         { 
             get 
             { 
@@ -473,11 +473,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _AccessParam4;
-        partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 160
+        partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 166
         partial void OnAccessParam4Changed();
         string IGeneratorDbAccessSettings.AccessParam4 { get { return this._AccessParam4; } set { this.AccessParam4 = value; } }
         
-        public bool IsGenerateNotValidCode // Property.tt Line: 138
+        public bool IsGenerateNotValidCode // Property.tt Line: 144
         { 
             get 
             { 
@@ -497,7 +497,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 160
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsGenerateNotValidCodeChanged();
         bool IGeneratorDbAccessSettings.IsGenerateNotValidCode { get { return this._IsGenerateNotValidCode; } set { this.IsGenerateNotValidCode = value; } }
         #endregion Properties
@@ -507,7 +507,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public GeneratorDbAccessNodeSettings() 
-            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 43
+            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -585,7 +585,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsParam1 // Property.tt Line: 138
+        public bool IsParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -605,11 +605,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsParam1;
-        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsParam1Changed();
         bool IGeneratorDbAccessNodeSettings.IsParam1 { get { return this._IsParam1; } set { this.IsParam1 = value; } }
         
-        public bool? IsIncluded // Property.tt Line: 138
+        public bool? IsIncluded // Property.tt Line: 144
         { 
             get 
             { 
@@ -629,7 +629,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 160
+        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 166
         partial void OnIsIncludedChanged();
         bool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } set { this.IsIncluded = value; } }
         #endregion Properties
@@ -639,7 +639,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public GeneratorDbAccessNodePropertySettings() 
-            : base(GeneratorDbAccessNodePropertySettingsValidator.Validator) // Class.tt Line: 43
+            : base(GeneratorDbAccessNodePropertySettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -710,7 +710,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsPropertyParam1 // Property.tt Line: 138
+        public bool IsPropertyParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -730,7 +730,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsPropertyParam1;
-        partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsPropertyParam1Changed();
         bool IGeneratorDbAccessNodePropertySettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } set { this.IsPropertyParam1 = value; } }
         #endregion Properties
@@ -740,7 +740,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         #region CTOR
         public GeneratorDbAccessNodeCatalogFormSettings() 
-            : base(GeneratorDbAccessNodeCatalogFormSettingsValidator.Validator) // Class.tt Line: 43
+            : base(GeneratorDbAccessNodeCatalogFormSettingsValidator.Validator) // Class.tt Line: 39
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -811,7 +811,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsCatalogFormParam1 // Property.tt Line: 138
+        public bool IsCatalogFormParam1 // Property.tt Line: 144
         { 
             get 
             { 
@@ -831,7 +831,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 160
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsCatalogFormParam1Changed();
         bool IGeneratorDbAccessNodeCatalogFormSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } set { this.IsCatalogFormParam1 = value; } }
         #endregion Properties

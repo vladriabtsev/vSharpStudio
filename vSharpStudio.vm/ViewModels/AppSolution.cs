@@ -15,7 +15,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppSolution:{Name,nq} prj:{listProjects.Count,nq}")]
+    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Solution";

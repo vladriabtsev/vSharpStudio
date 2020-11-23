@@ -84,6 +84,7 @@ namespace vSharpStudio.Unit
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.Namespace = "ns";
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
@@ -131,6 +132,54 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             _logger.LogTrace("End test".CallerInfo());
+
+            vm2.Config.ValidateSubTreeFromNode(vm.Config);
+            Assert.IsTrue(vm2.Config.CountErrors == 0);
+            vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
+            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1.Count);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2.Count);
+            var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicGenerators, (vm2.Config.PrevCurrentConfig as Config).DicGenerators);
+            Assert.AreEqual(0, diffGenerators.Dic1.Count);
+            Assert.AreEqual(0, diffGenerators.Dic2.Count);
+            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1.Count);
+            Assert.AreEqual(0, diffNodes.Dic2.Count);
+            var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm2.Config.DicPlugins, (vm2.Config.PrevCurrentConfig as Config).DicPlugins);
+            Assert.AreEqual(0, diffPlugins.Dic1.Count);
+            Assert.AreEqual(0, diffPlugins.Dic2.Count);
+            var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm2.Config.DicPluginLists, (vm2.Config.PrevCurrentConfig as Config).DicPluginLists);
+            Assert.AreEqual(0, diffPluginLists.Dic1.Count);
+            Assert.AreEqual(0, diffPluginLists.Dic2.Count);
+            gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
+            Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
+            Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
+
+            vm2.Config.ValidateSubTreeFromNode(vm.Config);
+            Assert.IsTrue(vm2.Config.CountErrors == 0);
+            vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+            diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1.Count);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2.Count);
+            diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicGenerators, (vm2.Config.PrevCurrentConfig as Config).DicGenerators);
+            Assert.AreEqual(0, diffGenerators.Dic1.Count);
+            Assert.AreEqual(0, diffGenerators.Dic2.Count);
+            diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1.Count);
+            Assert.AreEqual(0, diffNodes.Dic2.Count);
+            diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm2.Config.DicPlugins, (vm2.Config.PrevCurrentConfig as Config).DicPlugins);
+            Assert.AreEqual(0, diffPlugins.Dic1.Count);
+            Assert.AreEqual(0, diffPlugins.Dic2.Count);
+            diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm2.Config.DicPluginLists, (vm2.Config.PrevCurrentConfig as Config).DicPluginLists);
+            Assert.AreEqual(0, diffPluginLists.Dic1.Count);
+            Assert.AreEqual(0, diffPluginLists.Dic2.Count);
+            gen2 = (AppProjectGenerator)vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
+            Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
+            Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
         }
         [TestMethod]
         public void Plugin005WorkWithNodeGeneratorSettings()
@@ -261,38 +310,26 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(false, main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
             Assert.AreEqual(true, nds.IsParam1);
-
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
-            //// if new app progect generator is added, new setting are attached to all appropriate nodes
-            //var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            //Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //vm2.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
-            //var gen2 = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
-            //gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
-            //gen2.GenFileName = "test_file.cs";
-            //gen2.PluginGuid = pluginNode.Guid;
-            //// Expect attached settings for Property and Catalog.Form
-            //gen2.PluginGeneratorGuid = genDbAccess.Guid;
-            //Assert.AreEqual(2, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
-            //// if app progect generator is removed, attached seetings are removed from appropriate nodes as well
-            //gen2.NodeRemove(false);
-            //Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
+            Assert.AreEqual(true, main.IsAccessParam1);
+            Assert.AreEqual(false, main.IsAccessParam2);
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevCurrentConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            Assert.AreEqual(true, nds.IsParam1);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
+
+            vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
+            Assert.AreEqual(true, main.IsAccessParam1);
+            Assert.AreEqual(false, main.IsAccessParam2);
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevStableConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            Assert.AreEqual(true, nds.IsParam1);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
+
+
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
@@ -476,6 +513,8 @@ namespace vSharpStudio.Unit
 
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+
             vm.Config.Name = "test1";
             var c1 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();
             var c2 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();

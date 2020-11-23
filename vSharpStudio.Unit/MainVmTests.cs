@@ -51,6 +51,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.pconfig_history == null);
         }
 
@@ -61,6 +62,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.pconfig_history == null);
 
             // create object and save
@@ -76,6 +78,7 @@ namespace vSharpStudio.Unit
             // reload
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -90,6 +93,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -106,6 +110,7 @@ namespace vSharpStudio.Unit
             vm.CommandConfigCreateStableVersion.Execute(null);
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -124,12 +129,14 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             vm.Config.Name = "test1";
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
@@ -138,6 +145,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
             Assert.AreEqual(2, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test2", vm.Config.Name);
@@ -148,6 +156,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             vm.Config.Name = "test1";
             var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
@@ -155,6 +164,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
@@ -168,6 +178,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.Config.Name = "test1";
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.IsTrue(vm.Config.IsChanged);
@@ -199,6 +210,7 @@ namespace vSharpStudio.Unit
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);

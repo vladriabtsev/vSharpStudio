@@ -5,9 +5,9 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    //public partial interface IConfigModel : IGetNodeSetting
-    //{
-    //}
+    public partial interface IConfigModel : IGetNodeSetting
+    {
+    }
     public partial interface IEnumeration : IGetNodeSetting
     {
     }
