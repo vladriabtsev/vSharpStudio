@@ -437,11 +437,43 @@ namespace vSharpStudio.common
             this.EndVisit(this.currCfg.GroupConfigLinks);
             #endregion GroupConfigLinks
 
+            #region Plugins
+            this.BeginVisit(this.currCfg.GroupPlugins);
+            if (_act != null)
+                _act(this, this.currCfg.GroupPlugins);
+            this.BeginVisit(this.currCfg.GroupPlugins.ListPlugins);
+            foreach (var t in this.currCfg.GroupPlugins.ListPlugins)
+            {
+                this.BeginVisit(t);
+                if (_act != null)
+                    _act(this, t);
+                foreach (var tt in t.ListGenerators)
+                {
+                    this.BeginVisit(tt);
+                    if (_act != null)
+                        _act(this, t);
+                    this.EndVisit(tt);
+                }
+                this.EndVisit(t);
+            }
+            this.EndVisit(this.currCfg.GroupPlugins.ListPlugins);
+            this.EndVisit(this.currCfg.GroupPlugins);
+            #endregion Plugins
+
             this.Run(this.currCfg.Model, act);
 
             this.EndVisit(this.currCfg);
 
             this.currCfg = null;
         }
+
+        protected virtual void EndVisit(IGroupListPlugins groupPlugins) { }
+        protected virtual void EndVisit(IReadOnlyList<IPlugin> listPlugins) { }
+        protected virtual void EndVisit(IPlugin t) { }
+        protected virtual void EndVisit(IPluginGenerator tt) { }
+        protected virtual void BeginVisit(IPlugin t) { }
+        protected virtual void BeginVisit(IPluginGenerator tt) { }
+        protected virtual void BeginVisit(IReadOnlyList<IPlugin> listPlugins) { }
+        protected virtual void BeginVisit(IGroupListPlugins groupPlugins) { }
     }
 }

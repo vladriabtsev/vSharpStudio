@@ -25,23 +25,23 @@ namespace vSharpStudio.vm.ViewModels
     { 
         public DicDiffResult()
         {
-            this.Dic1 = new Dictionary<TKey, TValue>();
-            this.Dic2 = new Dictionary<TKey, TValue>();
+            this.Dic1ButNotInDic2 = new Dictionary<TKey, TValue>();
+            this.Dic2ButNotInDic1 = new Dictionary<TKey, TValue>();
         }
-        public Dictionary<TKey, TValue> Dic1 { get; private set; }
-        public Dictionary<TKey, TValue> Dic2 { get; private set; }
+        public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
+        public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
         static public DicDiffResult<TK, TV> DicDiff<TK, TV>(Dictionary<TK, TV> dic1, Dictionary<TK, TV> dic2)
         {
             var res = new DicDiffResult<TK, TV>();
             foreach (var t in dic1)
             {
                 if (!dic2.ContainsKey(t.Key))
-                    res.Dic1[t.Key] = t.Value;
+                    res.Dic1ButNotInDic2[t.Key] = t.Value;
             }
             foreach (var t in dic2)
             {
                 if (!dic1.ContainsKey(t.Key))
-                    res.Dic2[t.Key] = t.Value;
+                    res.Dic2ButNotInDic1[t.Key] = t.Value;
             }
             return res;
         }

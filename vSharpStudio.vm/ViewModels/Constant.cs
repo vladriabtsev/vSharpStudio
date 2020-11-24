@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         #region ITree
+        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
             return new List<ITreeConfigNode>();

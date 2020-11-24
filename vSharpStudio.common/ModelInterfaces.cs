@@ -163,9 +163,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     /// Stored in AppSolution node. All null setting will use parent value
     ///////////////////////////////////////////////////
     
-    public partial interface IPluginGroupGeneratorsSettings : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IPluginGroupGeneratorsSettings // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	
     	///////////////////////////////////////////////////
     	/// Guid of group generators

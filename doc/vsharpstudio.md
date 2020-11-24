@@ -773,6 +773,7 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_plugins | [proto_plugin](#proto_config.proto_plugin) | repeated | @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -1085,10 +1086,12 @@ Stored in App node. All nullable setting has to have value
 
 ### proto_plugin_group_generators_settings
 Stored in AppSolution node. All null setting will use parent value
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
 | app_group_generators_guid | [string](#string) |  | Guid of group generators |
 | settings | [string](#string) |  |  |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |

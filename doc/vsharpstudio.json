@@ -3714,6 +3714,16 @@
           "extensions": [],
           "fields": [
             {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "sorting_value",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -5062,11 +5072,21 @@
           "name": "proto_plugin_group_generators_settings",
           "longName": "proto_plugin_group_generators_settings",
           "fullName": "proto_config.proto_plugin_group_generators_settings",
-          "description": "Stored in AppSolution node. All null setting will use parent value",
+          "description": "Stored in AppSolution node. All null setting will use parent value\n@base ConfigObjectCommonBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "app_group_generators_guid",
               "description": "Guid of group generators",

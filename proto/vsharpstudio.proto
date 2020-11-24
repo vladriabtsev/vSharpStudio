@@ -48,6 +48,8 @@ message proto_user_settings_opened_config {
  */
 // @base ConfigObjectCommonBase
 message proto_group_list_plugins {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [BrowsableAttribute(false)]
@@ -420,7 +422,9 @@ message proto_plugins_group {
 }
 */
 // Stored in AppSolution node. All null setting will use parent value
+// @base ConfigObjectCommonBase
 message proto_plugin_group_generators_settings {
+    string guid = 1;
     // Guid of group generators
     string app_group_generators_guid = 2;
     string settings = 3; 
