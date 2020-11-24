@@ -94,7 +94,7 @@
 <a name="proto_config.proto_app_project"></a>
 
 ### proto_app_project
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -156,7 +156,7 @@ Application project generator
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -182,7 +182,7 @@ Application project generator
 <a name="proto_config.proto_base_config_link"></a>
 
 ### proto_base_config_link
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -303,7 +303,7 @@ Configuration model
 <a name="proto_config.proto_config_short_history"></a>
 
 ### proto_config_short_history
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -508,7 +508,7 @@ Constant application wise value
 <a name="proto_config.proto_group_list_app_solutions"></a>
 
 ### proto_group_list_app_solutions
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -533,7 +533,7 @@ Constant application wise value
 <a name="proto_config.proto_group_list_base_config_links"></a>
 
 ### proto_group_list_base_config_links
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -768,7 +768,7 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_group_list_plugins"></a>
 
 ### proto_group_list_plugins
-@base ConfigObjectVmBase
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -964,7 +964,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin"></a>
 
 ### proto_plugin
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -989,7 +989,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin_generator"></a>
 
 ### proto_plugin_generator
-
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |

@@ -58,20 +58,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        //protected override void OnInitFromDto()
-        //{
-        //    _logger.Trace();
-        //    base.OnInitFromDto();
-        //    this.RefillChildren();
-        //}
-        //void RefillChildren()
-        //{
-        //    this.Children.Clear();
-        //    this.Children.Add(this.GroupConfigLinks, 0);
-        //    this.Children.Add(this.Model, 1);
-        //    this.Children.Add(this.GroupPlugins, 9);
-        //    this.Children.Add(this.GroupAppSolutions, 10);
-        //}
 
         public AppSolution(ITreeConfigNode parent, string name)
             : this(parent)
@@ -122,13 +108,6 @@ namespace vSharpStudio.vm.ViewModels
             path = path.Substring(0, path.LastIndexOf(@"\") + 1);
             return path;
         }
-        //partial void OnRelativeAppSolutionPathChanged()
-        //{
-        //    if (this.IsNotNotifying)
-        //        return;
-        //    if (!string.IsNullOrWhiteSpace(this._RelativeAppSolutionPath))
-        //        this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
-        //}
         public AppProject AddProject(string name, string projectPath)
         {
             AppProject node = new AppProject(this, name, projectPath);

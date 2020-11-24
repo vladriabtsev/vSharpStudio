@@ -1,20 +1,20 @@
 
-
-$c633a84c-3b70-468d-8959-9fdae1f17d23test1 îˆ¶óƒ*test1:„ÌğıüìÊ×`x€ª3
-$a9f2fbb7-7e74-44cd-adc2-e9ac1b51044bBaseConfigs²è
-$ca2c4f78-0652-4874-af31-8dc7328db340ConfigModel €€€€€€€€*ConfigModel@dHP`xª—
-$c8a09182-bba9-48ba-9e53-9e6a2eafff8b	Constants€€€€€€€€p"	Constants2K
-$11ba83e4-68b6-40b8-baee-7dffd5eb13a4	Constant1ØÔ’–­†üt"	Constant12
+—
+$e4af5513-893a-46f9-bbb9-7a88c62da6c1test1 îˆ¶óƒ*test1:íÔñıäºíU`x€ª3
+$06d848bc-20ac-4e09-8f34-60a5da2c663cBaseConfigs²è
+$ae5f7412-c5b4-4e0f-935a-0f0b08938432ConfigModel €€€€€€€€*ConfigModel@dHP`xª—
+$ae51a0fc-9f55-4db8-8c50-e020e94b3de6	Constants€€€€€€€€p"	Constants2K
+$7e351448-cad9-4208-8733-29dcb355780d	Constant1ØÔ’–­†üt"	Constant12
 PPh²M
-$24822e0e-4764-4217-ad66-b0ebff8ccbdaEnumerations€€€€€€€€€"EnumerationsºK
-$f48082d9-75e4-4d48-a1fa-4b4cd6b445f4Catalogs€€€€€€€€"Catalogs2CtlgÂ×
-$b5a46eb9-1285-4a8b-b27d-ec3ab062f885	Documents€€€€€€€€ "	Documents2Doc:@
-$f3306746-4a68-4674-99d3-700357f9a411SharedÓŠ¼Î¶¨øûq"SharedBG
-$9adfb530-65cd-4cce-be73-227145edd3ab	Documents€€€€€€€€€"	DocumentsÊE
-$b44bf732-5a07-4021-8ed2-2a8b677f759eJournals€€€€€€€€°"JournalsÒ´
-$78f84ac1-9521-4c8f-b7c9-ffbd79e20ca3Common€€€€€€€€`"Common:4
-$602a25c8-267f-4df5-9ea4-3edab8a480f7Roles"RolesB<
-$ea0f4c38-c747-49f9-8560-73e592f4f427	Constants"	ConstantsÂÚ"µ
+$c414fd40-3885-492e-b32d-567aa935886cEnumerations€€€€€€€€€"EnumerationsºK
+$d91c8787-e176-4cb3-b6af-4f8f51d647efCatalogs€€€€€€€€"Catalogs2CtlgÂ×
+$b6661472-8765-41bd-9f95-cf4324082ea4	Documents€€€€€€€€ "	Documents2Doc:@
+$22571fb7-2053-48d2-96ff-c5510fcd1167SharedÓŠ¼Î¶¨øûq"SharedBG
+$3d71f539-6352-4969-8433-3cf730787e5d	Documents€€€€€€€€€"	DocumentsÊE
+$b1437a4a-f98f-4e7c-8761-ce95e040e0a7Journals€€€€€€€€°"JournalsÒ´
+$304bfd5b-ce34-44b8-a478-b6ff8859e54aCommon€€€€€€€€`"Common:4
+$12be26b6-bd74-4dce-a763-209234cf208cRoles"RolesB<
+$3cd77767-e57b-4636-a56d-b195ac0639da	Constants"	ConstantsÂå€€€€€€€€"µ
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85CBlazor"Blazor code generation plugin(†ÛİƒéÓk2[
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation ØŞèİ›ŸæòX"½
@@ -36,4 +36,4 @@ $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ş
 $16376EA9-1FBD-4945-8160-BCCC3262128BSqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2i
 $933EE120-81C7-4A14-93FF-CB2FDDF0F1C6MicrosoftSqliteConnectionsConnection string generator ¬åõ˜Ù²÷ÈXÊ7
-$08f6bc40-f20f-4fd2-8bb0-0cab0cce0c38Apps€€€€€€€€ 
+$82767a6b-3bfc-4eff-869a-4e6908a61ab4Apps€€€€€€€€ 

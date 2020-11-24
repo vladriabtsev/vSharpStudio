@@ -163,7 +163,7 @@ namespace GenFromProto
             #line 34 "C:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
-        if (MessageDoc.IsDefaultBase) {
+        if (MessageDoc.IsDefaultBase || MessageDoc.IsBaseWithParent || MessageDoc.IsGenSettings) {
           if (field.Name=="guid") continue;
           if (field.Name=="name") continue;
           if (field.Name=="is_new") continue;

@@ -506,7 +506,7 @@ namespace GenFromProto
 	this.PushIndent("    ");
 	foreach (var t in message.Fields.InDeclarationOrder())
 	{
-        if (this.Doc.IsDefaultBase)
+        if (this.Doc.IsDefaultBase || this.Doc.IsBaseWithParent || this.Doc.IsGenSettings)
         {
             if (t.Name == "guid") continue;
             if (t.Name == "name") continue;

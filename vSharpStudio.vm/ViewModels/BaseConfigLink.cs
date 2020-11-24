@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class BaseConfigLink : INodeGenSettings, IEditableNode
+    public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
     {
         public static readonly string DefaultName = "BaseConfig";
 
@@ -39,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+         //   this.AddAllAppGenSettingsVmsToNode();
         }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {

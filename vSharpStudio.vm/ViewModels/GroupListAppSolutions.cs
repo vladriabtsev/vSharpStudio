@@ -50,28 +50,28 @@ namespace vSharpStudio.vm.ViewModels
             };
         }
 
-        [PropertyOrderAttribute(11)]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [DisplayName("Settings")]
-        [Description("Default group generators settings. Group generators are working together")]
-        public object DynamicMainSettings
-        {
-            get
-            {
-                return this._DynamicMainSettings;
-            }
-            set
-            {
-                if (this._DynamicMainSettings != value)
-                {
-                    this._DynamicMainSettings = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private object _DynamicMainSettings;
+        //[PropertyOrderAttribute(11)]
+        //[ExpandableObjectAttribute()]
+        //[ReadOnly(true)]
+        //[DisplayName("Settings")]
+        //[Description("Default group generators settings. Group generators are working together")]
+        //public object DynamicMainSettings
+        //{
+        //    get
+        //    {
+        //        return this._DynamicMainSettings;
+        //    }
+        //    set
+        //    {
+        //        if (this._DynamicMainSettings != value)
+        //        {
+        //            this._DynamicMainSettings = value;
+        //            this.NotifyPropertyChanged();
+        //            this.ValidateProperty();
+        //        }
+        //    }
+        //}
+        //private object _DynamicMainSettings;
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

@@ -46,7 +46,7 @@ message proto_user_settings_opened_config {
  * @exclude
  * ####################################### P L U G I N S ##################################
  */
-// @base ConfigObjectVmBase
+// @base ConfigObjectCommonBase
 message proto_group_list_plugins {
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
@@ -64,6 +64,7 @@ message proto_group_list_plugins {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
+// @base ConfigObjectCommonBase
 message proto_plugin {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -96,6 +97,7 @@ message proto_plugin {
     // attr [ReadOnly(true)]
     //string group_info = 9;
 }
+// @base ConfigObjectCommonBase
 message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -205,6 +207,7 @@ message db_settings {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
+// @base ConfigObjectCommonBase
 message proto_config_short_history {
     proto_config current_config = 1;
     proto_config prev_stable_config = 2;
@@ -219,6 +222,7 @@ message proto_config_short_history {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 14;
 }
+// @base ConfigObjectCommonBase
 message proto_group_list_base_config_links {
     string guid = 1;
     string name = 2;
@@ -239,6 +243,7 @@ message proto_group_list_base_config_links {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @base ConfigObjectCommonBase
 message proto_base_config_link {
     string guid = 1;
     string name = 2;
@@ -361,6 +366,7 @@ message proto_plugin_group_generators_default_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
+// @base ConfigObjectCommonBase
 message proto_group_list_app_solutions {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -416,8 +422,8 @@ message proto_plugins_group {
 // Stored in AppSolution node. All null setting will use parent value
 message proto_plugin_group_generators_settings {
     // Guid of group generators
-    string app_group_generators_guid = 1;
-    string settings = 2; 
+    string app_group_generators_guid = 2;
+    string settings = 3; 
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -430,6 +436,7 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
+// @base ConfigObjectCommonBase
 message proto_app_solution {
     string guid = 1;
     string name = 2;
@@ -489,6 +496,7 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
+// @base ConfigObjectCommonBase
 message proto_app_project {
     string guid = 1;
     string name = 2;

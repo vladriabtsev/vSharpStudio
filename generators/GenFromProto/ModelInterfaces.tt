@@ -33,7 +33,7 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
 <# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
-        if (MessageDoc.IsDefaultBase) {
+        if (MessageDoc.IsDefaultBase || MessageDoc.IsBaseWithParent || MessageDoc.IsGenSettings) {
           if (field.Name=="guid") continue;
           if (field.Name=="name") continue;
           if (field.Name=="is_new") continue;

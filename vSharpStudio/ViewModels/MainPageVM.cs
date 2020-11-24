@@ -295,12 +295,6 @@ namespace vSharpStudio.ViewModels
         {
             try
             {
-                // Restore dictionary of all nodes
-                var nvb = new ModelVisitorBase();
-                nvb.Run(cfg, (p, n) =>
-                {
-                    cfg.DicNodes[n.Guid] = n;
-                });
                 cfg.IsInitialized = true;
 
                 // Restore plugins
@@ -487,6 +481,12 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                 }
+                // Restore dictionary of all nodes
+                var nvb = new ModelVisitorBase();
+                nvb.Run(cfg, (p, n) =>
+                {
+                    cfg.DicNodes[n.Guid] = n;
+                });
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(cfg, (p) =>
