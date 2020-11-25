@@ -400,6 +400,13 @@ namespace vSharpStudio.common
                 this.BeginVisit(t);
                 if (_act != null)
                     _act(this, t);
+                foreach (var tt in t.ListGroupGeneratorsSettings)
+                {
+                    this.BeginVisit(tt);
+                    if (_act != null)
+                        _act(this, tt);
+                    this.EndVisit(tt);
+                }
                 this.BeginVisit(t.ListAppProjects);
                 foreach (var tt in t.ListAppProjects)
                 {
@@ -451,7 +458,7 @@ namespace vSharpStudio.common
                 {
                     this.BeginVisit(tt);
                     if (_act != null)
-                        _act(this, t);
+                        _act(this, tt);
                     this.EndVisit(tt);
                 }
                 this.EndVisit(t);
@@ -467,6 +474,8 @@ namespace vSharpStudio.common
             this.currCfg = null;
         }
 
+        protected virtual void EndVisit(IPluginGroupGeneratorsSettings tt) { }
+        protected virtual void BeginVisit(IPluginGroupGeneratorsSettings tt) { }
         protected virtual void EndVisit(IGroupListPlugins groupPlugins) { }
         protected virtual void EndVisit(IReadOnlyList<IPlugin> listPlugins) { }
         protected virtual void EndVisit(IPlugin t) { }

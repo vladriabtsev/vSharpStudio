@@ -8,11 +8,10 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("NodeSettings:{Name,nq}")]
+    [DebuggerDisplay("NodeSettings:{Name,nq} Path:{ModelPath,nq}")]
     public partial class PluginGeneratorNodeSettings
     {
         public IvPluginGeneratorNodeSettings SettingsVm { get; set; }
-
         //public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginGeneratorNodeSettings t) : this(parent)
         //{
         //    Contract.Requires(t != null);

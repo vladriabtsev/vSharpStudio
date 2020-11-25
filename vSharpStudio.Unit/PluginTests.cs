@@ -103,6 +103,7 @@ namespace vSharpStudio.Unit
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
 
+            Assert.AreEqual(3, gen.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
@@ -131,26 +132,45 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
-            _logger.LogTrace("End test".CallerInfo());
+            #region DicDiffResult
+            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
+            var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicGenerators, vm2.Config.DicGenerators);
+            Assert.AreEqual(0, diffGenerators.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffGenerators.Dic2ButNotInDic1.Count);
+            var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm.Config.DicPlugins, vm2.Config.DicPlugins);
+            Assert.AreEqual(0, diffPlugins.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffPlugins.Dic2ButNotInDic1.Count);
+            var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm.Config.DicPluginLists, vm2.Config.DicPluginLists);
+            Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
+            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm.Config.DicNodes, vm2.Config.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+            #endregion DicDiffResult
 
             vm2.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
             vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
-            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
+
+            #region DicDiffResult
+            diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
-            var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicGenerators, (vm2.Config.PrevCurrentConfig as Config).DicGenerators);
+            diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicGenerators, (vm2.Config.PrevCurrentConfig as Config).DicGenerators);
             Assert.AreEqual(0, diffGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffGenerators.Dic2ButNotInDic1.Count);
-            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
-            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
-            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
-            var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm2.Config.DicPlugins, (vm2.Config.PrevCurrentConfig as Config).DicPlugins);
+            diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm2.Config.DicPlugins, (vm2.Config.PrevCurrentConfig as Config).DicPlugins);
             Assert.AreEqual(0, diffPlugins.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPlugins.Dic2ButNotInDic1.Count);
-            var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm2.Config.DicPluginLists, (vm2.Config.PrevCurrentConfig as Config).DicPluginLists);
+            diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm2.Config.DicPluginLists, (vm2.Config.PrevCurrentConfig as Config).DicPluginLists);
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
+            diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+            #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
@@ -160,21 +180,24 @@ namespace vSharpStudio.Unit
             vm2.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
             vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+
+            #region DicDiffResult
             diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
             diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicGenerators, (vm2.Config.PrevCurrentConfig as Config).DicGenerators);
             Assert.AreEqual(0, diffGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffGenerators.Dic2ButNotInDic1.Count);
-            diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
-            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
-            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(vm2.Config.DicPlugins, (vm2.Config.PrevCurrentConfig as Config).DicPlugins);
             Assert.AreEqual(0, diffPlugins.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPlugins.Dic2ButNotInDic1.Count);
             diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(vm2.Config.DicPluginLists, (vm2.Config.PrevCurrentConfig as Config).DicPluginLists);
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
+            diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+            #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
@@ -643,6 +666,25 @@ namespace vSharpStudio.Unit
             #endregion generate not valid code
 
             //Assert.IsTrue(false);
+        }
+
+        public void DicDiffDebug(Config cfg, Config anotherCfg)
+        {
+            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(cfg.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
+            var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(cfg.DicGenerators, anotherCfg.DicGenerators);
+            Assert.AreEqual(0, diffGenerators.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffGenerators.Dic2ButNotInDic1.Count);
+            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(cfg.DicNodes, anotherCfg.DicNodes);
+            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+            var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(cfg.DicPlugins, anotherCfg.DicPlugins);
+            Assert.AreEqual(0, diffPlugins.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffPlugins.Dic2ButNotInDic1.Count);
+            var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(cfg.DicPluginLists, anotherCfg.DicPluginLists);
+            Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
         }
     }
 }

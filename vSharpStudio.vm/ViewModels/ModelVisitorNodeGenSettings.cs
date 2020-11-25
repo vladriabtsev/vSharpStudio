@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
             Contract.Requires(curr != null);
             this.currCfg = curr;
             _act = act;
-            this.Run(curr.Model, null);
+            this.Run(curr, null);
         }
         //protected override void Visit(IConfig c)
         //{
@@ -26,6 +26,11 @@ namespace vSharpStudio.vm.ViewModels
         //    if (m is INodeGenSettings)
         //        _act(m as INodeGenSettings);
         //}
+        protected override void BeginVisit(IAppProjectGenerator m)
+        {
+            if (m is INodeGenSettings)
+                _act(m as INodeGenSettings);
+        }
         protected override void BeginVisit(IGroupListCommon m)
         {
             if (m is INodeGenSettings)

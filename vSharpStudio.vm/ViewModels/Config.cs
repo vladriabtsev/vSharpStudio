@@ -21,31 +21,6 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class DicDiffResult<TKey, TValue>
-    { 
-        public DicDiffResult()
-        {
-            this.Dic1ButNotInDic2 = new Dictionary<TKey, TValue>();
-            this.Dic2ButNotInDic1 = new Dictionary<TKey, TValue>();
-        }
-        public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
-        public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
-        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(Dictionary<TK, TV> dic1, Dictionary<TK, TV> dic2)
-        {
-            var res = new DicDiffResult<TK, TV>();
-            foreach (var t in dic1)
-            {
-                if (!dic2.ContainsKey(t.Key))
-                    res.Dic1ButNotInDic2[t.Key] = t.Value;
-            }
-            foreach (var t in dic2)
-            {
-                if (!dic1.ContainsKey(t.Key))
-                    res.Dic2ButNotInDic1[t.Key] = t.Value;
-            }
-            return res;
-        }
-    }
     public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
         // to use xxxIsChanging(x from, x to)
@@ -400,14 +375,31 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
                 // group plugins settings
-                t.ListGroupGeneratorsSettings.Clear();
+                foreach (var tt in t.ListGroupGeneratorsSettings.ToList())
+                {
+                    if (!t.DicPluginsGroupSettings.ContainsKey(tt.AppGroupGeneratorsGuid))
+                    {
+                        t.ListGroupGeneratorsSettings.Remove(tt);
+                    }
+                }
                 foreach (var tt in t.DicPluginsGroupSettings)
                 {
-                    var ps = new PluginGroupGeneratorsSettings(t);
-                    ps.AppGroupGeneratorsGuid = tt.Key;
-                    ps.NameUi = tt.Value.Name;
+                    PluginGroupGeneratorsSettings ps = null;
+                    foreach (var ttt in t.ListGroupGeneratorsSettings)
+                    {
+                        if (tt.Key == ttt.AppGroupGeneratorsGuid)
+                        {
+                            ps = ttt;
+                        }
+                    }
+                    if (ps == null)
+                    {
+                        ps = new PluginGroupGeneratorsSettings(t);
+                        ps.AppGroupGeneratorsGuid = tt.Key;
+                        ps.NameUi = tt.Value.Name;
+                        t.ListGroupGeneratorsSettings.Add(ps);
+                    }
                     ps.Settings = tt.Value.SettingsAsJson;
-                    t.ListGroupGeneratorsSettings.Add(ps);
                 }
                 foreach (var tt in t.ListAppProjects)
                 {
@@ -508,5 +500,52 @@ namespace vSharpStudio.vm.ViewModels
             if (this._IsNeedCurrentUpdate != val)
                 this._IsNeedCurrentUpdate = val;
         }
+#if DEBUG
+        public void DicDiffDebug(Config anotherCfg)
+        {
+            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);
+            Debug.Assert(0 == diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
+            Debug.Assert(0 == diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
+            var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this.DicGenerators, anotherCfg.DicGenerators);
+            Debug.Assert(0 == diffGenerators.Dic1ButNotInDic2.Count);
+            Debug.Assert(0 == diffGenerators.Dic2ButNotInDic1.Count);
+            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(this.DicNodes, anotherCfg.DicNodes);
+            Debug.Assert(0 == diffNodes.Dic1ButNotInDic2.Count);
+            Debug.Assert(0 == diffNodes.Dic2ButNotInDic1.Count);
+            var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(this.DicPlugins, anotherCfg.DicPlugins);
+            Debug.Assert(0 == diffPlugins.Dic1ButNotInDic2.Count);
+            Debug.Assert(0 == diffPlugins.Dic2ButNotInDic1.Count);
+            var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(this.DicPluginLists, anotherCfg.DicPluginLists);
+            Debug.Assert(0 == diffPluginLists.Dic1ButNotInDic2.Count);
+            Debug.Assert(0 == diffPluginLists.Dic2ButNotInDic1.Count);
+        }
+#endif
     }
+#if DEBUG
+    public class DicDiffResult<TKey, TValue>
+    {
+        public DicDiffResult()
+        {
+            this.Dic1ButNotInDic2 = new Dictionary<TKey, TValue>();
+            this.Dic2ButNotInDic1 = new Dictionary<TKey, TValue>();
+        }
+        public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
+        public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
+        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(Dictionary<TK, TV> dic1, Dictionary<TK, TV> dic2)
+        {
+            var res = new DicDiffResult<TK, TV>();
+            foreach (var t in dic1)
+            {
+                if (!dic2.ContainsKey(t.Key))
+                    res.Dic1ButNotInDic2[t.Key] = t.Value;
+            }
+            foreach (var t in dic2)
+            {
+                if (!dic1.ContainsKey(t.Key))
+                    res.Dic2ButNotInDic1[t.Key] = t.Value;
+            }
+            return res;
+        }
+    }
+#endif
 }

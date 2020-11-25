@@ -274,15 +274,10 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
         public IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
-        //private Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null;
 
         public void OnImportsSatisfied()
         {
             _logger.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
-            //if (this.onImportsSatisfied != null)
-            //{
-            //    this.onImportsSatisfied(this, this._plugins);
-            //}
             InitConfig(this.Config);
             if (this.Config.PrevStableConfig != null)
                 InitConfig(this.Config.PrevStableConfig as Config);
@@ -415,7 +410,8 @@ namespace vSharpStudio.ViewModels
                         {
                             if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
                             {
-                                t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
+                                var setvm = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
+                                t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = setvm;
                                 break;
                             }
                         }
@@ -481,7 +477,7 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                 }
-                // Restore dictionary of all nodes
+                // Restore dictionary of all current nodes
                 var nvb = new ModelVisitorBase();
                 nvb.Run(cfg, (p, n) =>
                 {
