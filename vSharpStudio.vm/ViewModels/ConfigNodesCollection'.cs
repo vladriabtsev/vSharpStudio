@@ -14,9 +14,11 @@ namespace vSharpStudio.vm.ViewModels
     {
         private Config cfg = null;
         private ITreeConfigNode parent = null;
+        private bool isUseDicNodes = false;
 
         public ConfigNodesCollection(ITreeConfigNode parent)
         {
+            this.isUseDicNodes = !(typeof(T).Name == typeof(PluginGeneratorNodeSettings).Name);
             this.parent = parent;
         }
 
@@ -43,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (T item in collection)
             {
                 item.Parent = this.parent;
-                if (this.cfg.IsInitialized)
+                if (isUseDicNodes && this.cfg.IsInitialized)
                     this.cfg.DicNodes[item.Guid] = item;
             }
             base.AddRange(collection, sortingWeight);
@@ -57,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             item.Parent = this.parent;
-            if (this.cfg.IsInitialized)
+            if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, 0);
         }
@@ -70,14 +72,15 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             item.Parent = this.parent;
-            if (this.cfg.IsInitialized)
+            if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg.DicNodes[item.Guid] = item;
             base.Add(item, sortingWeight);
         }
 
         public new bool Remove(T item)
         {
-            this.cfg.DicNodes.Remove(item.Guid);
+            if (isUseDicNodes)
+                this.cfg.DicNodes.Remove(item.Guid);
             int indx = -1;
             foreach (var t in this)
             {

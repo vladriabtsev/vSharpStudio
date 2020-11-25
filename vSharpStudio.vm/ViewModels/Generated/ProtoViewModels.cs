@@ -28,11 +28,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public UserSettings() 
-            : base(UserSettingsValidator.Validator) // Class.tt Line: 39
+            : base(UserSettingsValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 48
+            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 52
             this.OnInit();
             this.IsValidate = true;
         }
@@ -173,7 +173,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public UserSettingsOpenedConfig() 
-            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 39
+            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -340,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 23
+            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -686,7 +686,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 23
+            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -1326,7 +1326,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public SettingsConfig() 
-            : base(SettingsConfigValidator.Validator) // Class.tt Line: 39
+            : base(SettingsConfigValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -1585,8 +1585,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.CurrentConfig = new Config(this); // Class.tt Line: 28
-            this.PrevStableConfig = new Config(this); // Class.tt Line: 28
+            this.CurrentConfig = new Config(this); // Class.tt Line: 32
+            this.PrevStableConfig = new Config(this); // Class.tt Line: 32
             this.OnInit();
             this.IsValidate = true;
         }
@@ -1883,8 +1883,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -2340,8 +2340,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.Config = new Config(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.Config = new Config(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -2760,10 +2760,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 26
-            this.Model = new ConfigModel(this); // Class.tt Line: 28
-            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 26
-            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 26
+            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 30
+            this.Model = new ConfigModel(this); // Class.tt Line: 32
+            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 30
+            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 30
             this.OnInit();
             this.IsValidate = true;
         }
@@ -3281,7 +3281,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public AppDbSettings() 
-            : base(AppDbSettingsValidator.Validator) // Class.tt Line: 39
+            : base(AppDbSettingsValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -3900,8 +3900,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 23
-            this.ListGroupGeneratorsDefultSettings = new ConfigNodesCollection<PluginGroupGeneratorsDefaultSettings>(this); // Class.tt Line: 23
+            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 26
+            this.ListGroupGeneratorsDefultSettings = new ConfigNodesCollection<PluginGroupGeneratorsDefaultSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -4661,8 +4661,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 23
-            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 23
+            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 26
+            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -5120,7 +5120,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 23
+            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -5559,6 +5559,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsNotNotifying = true;
             vm.IsValidate = false;
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.NameUi = from.NameUi; // Clone.tt Line: 65
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
+            vm.SortingWeight = from.SortingWeight; // Clone.tt Line: 65
             vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
@@ -5573,6 +5577,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.NameUi = from.NameUi; // Clone.tt Line: 141
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 141
+            to.SortingWeight = from.SortingWeight; // Clone.tt Line: 141
             to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
@@ -5605,6 +5613,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsNotNotifying = true;
             vm.IsValidate = false;
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.SortingWeight = m.SortingWeight; // Clone.tt Line: 221
             vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
@@ -5621,6 +5633,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(vm != null);
             Proto.Config.proto_plugin_generator_node_settings m = new Proto.Config.proto_plugin_generator_node_settings(); // Clone.tt Line: 239
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.SortingWeight = vm.SortingWeight; // Clone.tt Line: 276
             m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
@@ -5668,11 +5684,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnAppProjectGeneratorGuidChanged();
         string IPluginGeneratorNodeSettings.AppProjectGeneratorGuid { get { return this._AppProjectGeneratorGuid; } } 
         
+        public ulong SortingWeight // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._SortingWeight; 
+            }
+            set
+            {
+                if (this._SortingWeight != value)
+                {
+                    this.OnSortingWeightChanging(ref value);
+                    this._SortingWeight = value;
+                    this.OnSortingWeightChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private ulong _SortingWeight;
+        partial void OnSortingWeightChanging(ref ulong to); // Property.tt Line: 166
+        partial void OnSortingWeightChanged();
+        ulong IPluginGeneratorNodeSettings.SortingWeight { get { return this._SortingWeight; } } 
         
-        ///////////////////////////////////////////////////
-        /// Name of solution-project-generator node
-        /// string name = 2;
-        ///////////////////////////////////////////////////
         public string NodeSettingsVmGuid // Property.tt Line: 144
         { 
             get 
@@ -5999,8 +6034,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.MainSettings = new PluginGeneratorMainSettings(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.MainSettings = new PluginGeneratorMainSettings(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -6764,7 +6799,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public PluginGeneratorNodeDefaultSettings() 
-            : base(PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 39
+            : base(PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -6909,12 +6944,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 28
-            this.GroupConstants = new GroupListConstants(this); // Class.tt Line: 28
-            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 28
-            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 28
-            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 28
-            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 28
+            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 32
+            this.GroupConstants = new GroupListConstants(this); // Class.tt Line: 32
+            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 32
+            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 32
+            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 32
+            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 32
             this.OnInit();
             this.IsValidate = true;
         }
@@ -7540,11 +7575,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public DataType() 
-            : base(DataTypeValidator.Validator) // Class.tt Line: 39
+            : base(DataTypeValidator.Validator) // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListObjectGuids = new ObservableCollection<string>(); // Class.tt Line: 48
+            this.ListObjectGuids = new ObservableCollection<string>(); // Class.tt Line: 52
             this.OnInit();
             this.IsValidate = true;
         }
@@ -7910,9 +7945,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 28
-            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 32
+            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -8370,7 +8405,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -8756,8 +8791,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -9257,8 +9292,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -9682,8 +9717,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -10180,8 +10215,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -10678,9 +10713,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 28
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -11167,8 +11202,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -11698,8 +11733,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.DataType = new DataType(); // Class.tt Line: 30
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -12153,8 +12188,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -12655,8 +12690,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.DataType = new DataType(); // Class.tt Line: 30
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -13076,8 +13111,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -13574,8 +13609,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -14444,11 +14479,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 28
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 28
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 28
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 32
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -14970,8 +15005,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -15499,9 +15534,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 28
-            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 32
+            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -15986,11 +16021,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 28
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 28
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 28
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 28
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 32
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -16512,8 +16547,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -17010,8 +17045,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -17512,8 +17547,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -17982,8 +18017,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -18484,7 +18519,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -18875,8 +18910,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 23
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -19377,7 +19412,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 23
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -19760,7 +19795,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     public partial class ModelRow : VmBindable, IModelRow // Class.tt Line: 7
     {
         #region CTOR
-        public ModelRow() // Class.tt Line: 39
+        public ModelRow() // Class.tt Line: 43
         {
             this.IsValidate = false;
             this.OnInitBegin();

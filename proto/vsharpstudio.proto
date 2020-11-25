@@ -546,9 +546,12 @@ message proto_plugin_generator_node_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
     // Name of solution-project-generator node
-    //string name = 2;
-    string node_settings_vm_guid = 2;
-    string settings = 3;
+    string name = 2;
+    string name_ui = 3;
+    uint64 sorting_value = 4;
+    uint64 sorting_weight = 5;
+    string node_settings_vm_guid = 6;
+    string settings = 7;
 
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;

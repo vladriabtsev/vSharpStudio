@@ -39,7 +39,7 @@ namespace GenFromProto
             _logger.LogInformation("Base class from doc '{Name}'".CallerInfo(), this.Doc.BaseClass);
             if (this.Doc.BaseClass == "")
             {
-                this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
             else if (this.Doc.BaseClass == "VmBindable" || this.Doc.BaseClass == "ViewModelBindable")
@@ -53,12 +53,12 @@ namespace GenFromProto
             }
             else if (this.Doc.BaseClass == "VmValidatable" || this.Doc.BaseClass == "ViewModelValidatable")
             {
-                this.Doc.BaseClass = " : VmValidatable<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : VmValidatable<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
             else if (this.Doc.BaseClass == "VmValidatableWithSeverity" || this.Doc.BaseClass == "ViewModelValidatableWithSeverity")
             {
-                this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
             else if (this.Doc.BaseClass == "ConfigObjectCommonBase")
@@ -73,7 +73,7 @@ namespace GenFromProto
             }
             else if (this.Doc.BaseClass == "ConfigObjectVmGenSettings")
             {
-                this.Doc.BaseClass = " : ConfigObjectVmGenSettings<" + message.Name.ToNameCs() + ", " + 
+                this.Doc.BaseClass = " : ConfigObjectVmGenSettings<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
             else
@@ -83,5 +83,9 @@ namespace GenFromProto
         }
         private bool IsDefaultBase { get { return this.Doc.IsDefaultBase; } }
         private bool IsBaseWithParent { get { return this.Doc.IsBaseWithParent; } }
+        private bool IsObservable(FieldDescriptor field)
+        {
+            return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase());
+        }
     }
 }

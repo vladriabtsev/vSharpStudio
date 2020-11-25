@@ -489,6 +489,16 @@ namespace vSharpStudio.ViewModels
                 {
                     p.RestoreNodeAppGenSettingsVm();
                 });
+                foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
+                {
+                    foreach (var tt in t.ListAppProjects)
+                    {
+                        foreach (var ttt in tt.ListAppProjectGenerators)
+                        {
+                            ttt.UpdateListGenerators();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

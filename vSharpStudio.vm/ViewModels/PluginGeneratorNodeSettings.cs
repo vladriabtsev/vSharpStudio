@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("NodeSettings:{Name,nq} Path:{ModelPath,nq}")]
-    public partial class PluginGeneratorNodeSettings
+    public partial class PluginGeneratorNodeSettings : ISortingValue
     {
         public IvPluginGeneratorNodeSettings SettingsVm { get; set; }
         //public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginGeneratorNodeSettings t) : this(parent)

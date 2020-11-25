@@ -65,8 +65,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnInitFromDto()
         {
-            base.OnInitFromDto();
-            UpdateListGenerators();
+            //base.OnInitFromDto();
             cfg = (Config)this.GetConfig();
         }
         public bool? IsConnectString()
@@ -340,7 +339,7 @@ namespace vSharpStudio.vm.ViewModels
                                 }
                                 if (gs == null)
                                 {
-                                    gs = new PluginGeneratorNodeSettings(this);
+                                    gs = new PluginGeneratorNodeSettings();
                                     gs.Name = this.Name;
                                     gs.NodeSettingsVmGuid = t.Guid;
                                     gs.AppProjectGeneratorGuid = this.Guid;
@@ -387,7 +386,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             HideProperties(gen);
         }
-        private void UpdateListGenerators()
+        public void UpdateListGenerators()
         {
             if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {

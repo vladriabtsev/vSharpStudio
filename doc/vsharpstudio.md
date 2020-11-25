@@ -1052,7 +1052,11 @@ Stored in each node in ConfigModel branch
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
-| node_settings_vm_guid | [string](#string) |  | Name of solution-project-generator node string name = 2; |
+| name | [string](#string) |  | Name of solution-project-generator node |
+| name_ui | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| sorting_weight | [uint64](#uint64) |  |  |
+| node_settings_vm_guid | [string](#string) |  |  |
 | settings | [string](#string) |  |  |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 

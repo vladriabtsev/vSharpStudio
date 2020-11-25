@@ -238,7 +238,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
 
-        public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorNodeSettings> lst)
+        public static object CreateNewObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Contract.Requires(lst != null);
             var myType = CompileResultType(lst);
@@ -247,7 +247,7 @@ namespace vSharpStudio.vm.ViewModels
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorNodeSettings> lst)
+        public static Type CompileResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();
