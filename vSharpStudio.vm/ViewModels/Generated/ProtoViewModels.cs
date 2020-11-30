@@ -6961,8 +6961,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         string IAppProjectGenerator.ConnStrToPrevStable { get { return this._ConnStrToPrevStable; } } 
         
         [PropertyOrderAttribute(14)]
-        [DisplayName("Sql script")]
-        [Description("Generate Sql script to update previous stable version")]
+        [DisplayName("Migrate DB")]
+        [Description("Generate Sql script to update stable DB version to current state")]
         public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 144
         { 
             get 
@@ -6991,7 +6991,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         /// Generator output file name
         ///////////////////////////////////////////////////
-        [DisplayName("SQL script")]
+        [DisplayName("SQL file")]
         [PropertyOrderAttribute(15)]
         [Description("SQL script output file name")]
         public string GenScriptFileName // Property.tt Line: 144

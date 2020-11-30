@@ -26,7 +26,7 @@ namespace vSharpStudio.common
         //ILoggerFactory LoggerFactory { get; set; }
         bool IsStableDbConnection { get; set; }
         // Provider name as from connection string
-        string ProviderName { get; }
+        string ProviderName { get; set; }
 
         IvPluginGeneratorSettings GetConnectionStringMvvm(string providerName, string connectionString);
 

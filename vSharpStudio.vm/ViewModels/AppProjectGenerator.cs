@@ -59,13 +59,13 @@ namespace vSharpStudio.vm.ViewModels
             this._RelativePathToGenFolder = @"Generated\";
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
             cfg = (Config)this.GetConfig();
-            HideProperties(_PluginGenerator);
+            HideProperties();
         }
         protected override void OnInitFromDto()
         {
             //base.OnInitFromDto();
             cfg = (Config)this.GetConfig();
-            HideProperties(_PluginGenerator);
+            HideProperties();
         }
         public bool? IsConnectString()
         {
@@ -257,7 +257,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotNotifying)
                 return;
-            this.PluginGeneratorGuid = "";
+            this.PluginGeneratorGuid = string.Empty;
             UpdateListGenerators();
             if (cfg.IsInitialized)
             {
@@ -286,6 +286,7 @@ namespace vSharpStudio.vm.ViewModels
                     sln.DicPluginsGroupSettings[groupSettings.Guid] = groupSettings;
                 }
             }
+            HideProperties();
             sln.DynamicPluginGroupSettings = null;
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
@@ -340,7 +341,7 @@ namespace vSharpStudio.vm.ViewModels
                 p.AddNodeAppGenSettings(this.Guid);
             });
             this.DescriptionGenerator = _PluginGenerator.Description;
-            if (_PluginGenerator is IvPluginDbConnStringGenerator)
+            if (this.PluginDbGenerator != null)
             {
                 this._GenFileName = "app-settings.json";
                 this._RelativePathToGenFolder = string.Empty;
@@ -354,7 +355,7 @@ namespace vSharpStudio.vm.ViewModels
                 this._GenFileName = prevGenFileName;
                 this._RelativePathToGenFolder = prevRelativePathToGenFolder;
             }
-            HideProperties(_PluginGenerator);
+            HideProperties();
             this.NotifyPropertyChanged(() => this.IconName);
             this.NotifyPropertyChanged(() => this.DynamicModelNodeSettings);
             this.NotifyPropertyChanged(() => this.DynamicGeneratorSettings);
@@ -362,7 +363,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged()
         {
-            HideProperties(_PluginGenerator);
+            HideProperties();
         }
         public void RestoreSettings()
         {
@@ -370,6 +371,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 foreach (var tt in ttt.ListGenerators)
                 {
+                    if (tt.Generator == null)
+                        continue;
                     if (tt.Generator.Guid == this.PluginGeneratorGuid)
                     {
                         var groupSettins = ttt.VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
@@ -388,6 +391,7 @@ namespace vSharpStudio.vm.ViewModels
                             this.PluginDbGenerator = (_PluginGenerator as IvPluginDbConnStringGenerator).DbGenerator;
                             cfg.DicActiveAppProjectGenerators[this.Guid] = this.PluginDbGenerator;
                             //lst = genDb.GetListNodeGenerationSettings();
+                            this.PluginDbGenerator.ProviderName = (_PluginGenerator as IvPluginDbConnStringGenerator).ProviderName;
                         }
                         else
                         {
@@ -478,9 +482,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             return null;
         }
-        private void HideProperties(IvPluginGenerator gen)
+        private void HideProperties()
         {
-            if (gen == null)
+            if (this.PluginGenerator == null)
             {
                 this.AutoGenerateProperties = false;
                 this.SetPropertyDefinitions(new string[] {
@@ -498,16 +502,42 @@ namespace vSharpStudio.vm.ViewModels
                         this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable),
                     });
             }
-            else if (gen is IvPluginDbConnStringGenerator)
+            //else if (gen is IvPluginDbConnStringGenerator)
+            //{
+            //    this.AutoGenerateProperties = false;
+            //    if (this.IsGenerateSqlSqriptToUpdatePrevStable)
+            //    {
+            //        this.SetPropertyDefinitions(new string[] {
+            //            this.GetPropertyName(() => this.GenFileName),
+            //            this.GetPropertyName(() => this.ListGenerators),
+            //            this.GetPropertyName(() => this.ListInModels),
+            //            //this.GetPropertyName(() => this.DynamicNodesSettings),
+            //            this.GetPropertyName(() => this.NameUi),
+            //        });
+            //    }
+            //    else
+            //    {
+            //        this.SetPropertyDefinitions(new string[] {
+            //            this.GetPropertyName(() => this.GenScriptFileName),
+            //            this.GetPropertyName(() => this.ConnStrToPrevStable),
+            //            this.GetPropertyName(() => this.RelativePathToGenFolder),
+            //            this.GetPropertyName(() => this.GenFileName),
+            //            this.GetPropertyName(() => this.ListGenerators),
+            //            this.GetPropertyName(() => this.ListInModels),
+            //            //this.GetPropertyName(() => this.DynamicNodesSettings),
+            //            this.GetPropertyName(() => this.NameUi),
+            //        });
+            //    }
+            //}
+            else if (this.PluginDbGenerator != null)
             {
-                this.AutoGenerateProperties = false;
                 if (this.IsGenerateSqlSqriptToUpdatePrevStable)
                 {
                     this.SetPropertyDefinitions(new string[] {
                         this.GetPropertyName(() => this.GenFileName),
                         this.GetPropertyName(() => this.ListGenerators),
                         this.GetPropertyName(() => this.ListInModels),
-                        //this.GetPropertyName(() => this.DynamicNodesSettings),
+                        this.GetPropertyName(() => this.RelativePathToGenFolder),
                         this.GetPropertyName(() => this.NameUi),
                     });
                 }
@@ -515,25 +545,13 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this.SetPropertyDefinitions(new string[] {
                         this.GetPropertyName(() => this.GenScriptFileName),
-                        this.GetPropertyName(() => this.ConnStrToPrevStable),
-                        this.GetPropertyName(() => this.RelativePathToGenFolder),
                         this.GetPropertyName(() => this.GenFileName),
                         this.GetPropertyName(() => this.ListGenerators),
                         this.GetPropertyName(() => this.ListInModels),
-                        //this.GetPropertyName(() => this.DynamicNodesSettings),
+                        this.GetPropertyName(() => this.RelativePathToGenFolder),
                         this.GetPropertyName(() => this.NameUi),
                     });
                 }
-            }
-            else if (gen is IvPluginDbGenerator)
-            {
-                this.SetPropertyDefinitions(new string[] {
-                        this.GetPropertyName(() => this.GenFileName),
-                        this.GetPropertyName(() => this.ListGenerators),
-                        this.GetPropertyName(() => this.ListInModels),
-                        //this.GetPropertyName(() => this.DynamicNodesSettings),
-                        this.GetPropertyName(() => this.NameUi),
-                    });
             }
             else
             {
@@ -541,9 +559,11 @@ namespace vSharpStudio.vm.ViewModels
                 this.SetPropertyDefinitions(new string[] {
                     this.GetPropertyName(() => this.DynamicMainConnStrSettings),
                     this.GetPropertyName(() => this.ConnStr),
-                    //this.GetPropertyName(() => this.DynamicNodesSettings),
                     this.GetPropertyName(() => this.NameUi),
-                    //this.GetPropertyName(() => this.IsPrivateConnStr),
+                    this.GetPropertyName(() => this.ListInModels),
+                    this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable),
+                    this.GetPropertyName(() => this.GenScriptFileName),
+                    this.GetPropertyName(() => this.ConnStrToPrevStable),
                 });
             }
         }
@@ -692,8 +712,8 @@ namespace vSharpStudio.vm.ViewModels
                 if (res != System.Windows.MessageBoxResult.OK)
                     return;
             }
-            this.PluginGeneratorGuid = "";
-            this.PluginGuid = "";
+            this.PluginGeneratorGuid = string.Empty;
+            this.PluginGuid = string.Empty;
             (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
             this.Parent = null;
         }

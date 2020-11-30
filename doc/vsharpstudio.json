@@ -541,7 +541,7 @@
             },
             {
               "name": "is_generate_sql_sqript_to_update_prev_stable",
-              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Sql script\")]\n@attr [Description(\"Generate Sql script to update previous stable version\")]",
+              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Migrate DB\")]\n@attr [Description(\"Generate Sql script to update stable DB version to current state\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -551,7 +551,7 @@
             },
             {
               "name": "gen_script_file_name",
-              "description": "@attr [DisplayName(\"SQL script\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"SQL script output file name\")]\nGenerator output file name",
+              "description": "@attr [DisplayName(\"SQL file\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"SQL script output file name\")]\nGenerator output file name",
               "label": "",
               "type": "string",
               "longType": "string",

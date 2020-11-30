@@ -19,8 +19,8 @@ namespace vSharpStudio.vm.ViewModels
             // this.Config.GroupPlugins.ListPlugins
             AppProjectGenerator instance = (AppProjectGenerator)propertyItem.Instance;
 
-            if (instance.ListGenerators.Count == 1)
-                propertyItem.Value = instance.ListGenerators[0].Guid;
+            //if (instance.ListGenerators.Count == 1)
+            //    propertyItem.Value = instance.ListGenerators[0].Guid;
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";

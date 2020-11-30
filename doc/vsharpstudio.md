@@ -146,8 +146,8 @@ Application project generator
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
 | plugin_group_settings_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
-| is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Sql script&#34;)] @attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] |
-| gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL script&#34;)] @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
+| is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Migrate DB&#34;)] @attr [Description(&#34;Generate Sql script to update stable DB version to current state&#34;)] |
+| gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL file&#34;)] @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [PropertyOrderAttribute(30)] @attr [BrowsableAttribute(false)] |
 
 

@@ -16,7 +16,7 @@ namespace vPlugin.Sample
         }
         public ILoggerFactory LoggerFactory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool IsStableDbConnection { get; set; }
-        public string ProviderName => "AbstractDbProviderName";
+        public string ProviderName { get; set; }
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
         public string Name => "AbstractDbSchema";
         public string NameUi => "Abstract Db Provider Name";

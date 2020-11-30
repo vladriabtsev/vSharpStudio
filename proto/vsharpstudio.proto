@@ -601,10 +601,10 @@ message proto_app_project_generator {
     // @attr [Description("Db connection string to previous stable version")]
     string conn_str_to_prev_stable = 22;
     // @attr [PropertyOrderAttribute(14)]
-    // @attr [DisplayName("Sql script")]
-    // @attr [Description("Generate Sql script to update previous stable version")]
+    // @attr [DisplayName("Migrate DB")]
+    // @attr [Description("Generate Sql script to update stable DB version to current state")]
     bool is_generate_sql_sqript_to_update_prev_stable = 21;
-    // @attr [DisplayName("SQL script")]
+    // @attr [DisplayName("SQL file")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [Description("SQL script output file name")]
     // Generator output file name
