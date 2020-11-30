@@ -170,8 +170,8 @@ namespace vSharpStudio.vm.ViewModels
                 if (!string.IsNullOrWhiteSpace(node.PluginGeneratorGuid))
                 {
                     Dictionary<string, object> dic_gs = new Dictionary<string, object>();
-
-                    object objGen = CreateSettingsForAppProjectGenerator(node, node, dic_gs, true);
+                    var cfg = (Config)node.GetConfig();
+                    object objGen = CreateSettingsForAppProjectGenerator(cfg.Model, node, dic_gs, true);
                     return objGen;
                 }
             }
@@ -214,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
 
-        public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorMainSettings> lst)
+        public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorSettings> lst)
         {
             Contract.Requires(lst != null);
             var myType = CompileResultType(lst);
@@ -223,7 +223,7 @@ namespace vSharpStudio.vm.ViewModels
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorMainSettings> lst)
+        public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorSettings> lst)
         {
             Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();

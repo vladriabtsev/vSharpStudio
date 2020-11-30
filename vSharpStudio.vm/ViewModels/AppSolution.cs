@@ -48,13 +48,16 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             //    this.RefillChildren();
-            this.ListAppProjects.OnAddingAction = (t) => {
+            this.ListAppProjects.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
-            this.ListAppProjects.OnRemovedAction = (t) => {
+            this.ListAppProjects.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListAppProjects.OnClearedAction = () => {
+            this.ListAppProjects.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
         }
@@ -117,16 +120,25 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Groups Settings")]
-        [Description("Solution group generators settings. Group generators are working together")]
-        public object DynamicMainSettings
+        [Description("Solution groups generators settings. Group generators are working together")]
+        public object DynamicPluginGroupSettings
         {
             get
             {
-                var nd = new NodeSettings();
-                var res = nd.Run(this);
-                return res;
+                if (_DynamicPluginGroupSettings == null)
+                {
+                    var nd = new NodeSettings();
+                    _DynamicPluginGroupSettings = nd.Run(this);
+                }
+                return _DynamicPluginGroupSettings;
+            }
+            set
+            {
+                _DynamicPluginGroupSettings = value;
+                this.NotifyPropertyChanged();
             }
         }
+        private object _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSolutionSettings> dicSolutionGroupGeneratorsSettings = null;
         [BrowsableAttribute(false)]
@@ -140,6 +152,28 @@ namespace vSharpStudio.vm.ViewModels
                         (ki, v) => { }, (kr, v) => { }, () => { });
                 }
                 return dicSolutionGroupGeneratorsSettings;
+            }
+        }
+        public void SaveGroupSettings()
+        {
+            this.ListGroupGeneratorsSettings.Clear();
+            foreach (var t in this.DicPluginsGroupSettings)
+            {
+                var set = new PluginGroupGeneratorsSettings(this);
+                set.AppGroupGeneratorsGuid = t.Key;
+                set.Settings = t.Value.SettingsAsJson;
+                this.ListGroupGeneratorsSettings.Add(set);
+            }
+        }
+        public void RestoreGroupSettings()
+        {
+            var cfg = (Config)this.GetConfig();
+            this.DicPluginsGroupSettings.Clear();
+            foreach (var t in this.ListGroupGeneratorsSettings)
+            {
+                if (!cfg.DicGroupSettings.ContainsKey(t.AppGroupGeneratorsGuid))
+                    throw new Exception();
+                this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
             }
         }
 

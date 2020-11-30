@@ -120,36 +120,7 @@ message proto_plugin_generator {
     bool is_has_marked_for_deletion = 12;
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
-
-   //repeated proto_plugin_generator_settings list_settings = 5;
 }
-
-/*
-// @base ConfigObjectVmBase
-message proto_plugin_generator_settings {
-    // This Guid is taken from Plugin Generator
-    // @attr [BrowsableAttribute(false)]
-    string guid = 1;
-    // This Name is taken from Plugin Generator
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // This Description is taken from Plugin Generator
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [ReadOnly(true)]
-    string description = 3;
-    // @attr [BrowsableAttribute(false)]
-    uint64 sorting_value = 4;
-    // @attr [BrowsableAttribute(false)]
-    string generator_settings = 5;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [Description("If false, connection string settings will be stored in configuration file. If true, will be stored in separate file.")]
-    bool is_private = 6;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-    // @attr [Description("File path to store connection string settings in private place.")]
-    string file_path = 9;
-}
-*/
 
 // @base ViewModelValidatableWithSeverity
 message proto_settings_config {
@@ -424,8 +395,8 @@ message proto_plugins_group {
 // Stored in AppSolution node. All null setting will use parent value
 // @base ConfigObjectCommonBase
 message proto_plugin_group_generators_settings {
-    string guid = 1;
     // Guid of group generators
+    string guid = 1;
     string app_group_generators_guid = 2;
     string settings = 3; 
     // @attr [BrowsableAttribute(false)]
@@ -541,7 +512,7 @@ message proto_app_project {
     //proto_app_db_settings default_db = 8;
 
 }
-// Stored in each node in ConfigModel branch
+// Stored in each node in Model branch
 message proto_plugin_generator_node_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
@@ -557,7 +528,7 @@ message proto_plugin_generator_node_settings {
     bool is_has_changed = 13;
 }
 // Stored in AppProjectGenerator node
-message proto_plugin_generator_main_settings {
+message proto_plugin_generator_settings {
     // Guid of solution-project-generator node
     string app_project_generator_guid = 1;
     string settings = 2; 
@@ -566,6 +537,7 @@ message proto_plugin_generator_main_settings {
     bool is_has_changed = 13;
 }
 // Application project generator
+// @base ConfigObjectCommonBase
 message proto_app_project_generator {
     string guid = 1;
     // @attr [Description("Connection string name for DB connection generator")]
@@ -618,20 +590,22 @@ message proto_app_project_generator {
     string generator_settings = 17;
     // @attr [PropertyOrderAttribute(29)]
     // @attr [BrowsableAttribute(false)]
-    proto_plugin_generator_main_settings main_settings = 18;
+    proto_plugin_generator_settings generator_settings_vm = 18;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
     string conn_str = 19;
-    // @attr [PropertyOrderAttribute(10)]
-    // @attr [DisplayName("Sql script")]
-    // @attr [Description("Generate Sql script to update previous stable version")]
-    bool is_generate_sql_sqript_to_update_prev_stable = 21;
-    // @attr [PropertyOrderAttribute(11)]
+    // @attr [BrowsableAttribute(false)]
+    string plugin_group_settings_guid = 20;
+    // @attr [PropertyOrderAttribute(13)]
     // @attr [DisplayName("Stable DB")]
     // @attr [Description("Db connection string to previous stable version")]
     string conn_str_to_prev_stable = 22;
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Sql script")]
+    // @attr [Description("Generate Sql script to update previous stable version")]
+    bool is_generate_sql_sqript_to_update_prev_stable = 21;
     // @attr [DisplayName("SQL script")]
-    // @attr [PropertyOrderAttribute(12)]
+    // @attr [PropertyOrderAttribute(15)]
     // @attr [Description("SQL script output file name")]
     // Generator output file name
     string gen_script_file_name = 23;
@@ -706,7 +680,7 @@ message proto_config_model {
     proto_group_list_journals group_journals = 105;
 
     // @attr [BrowsableAttribute(false)]
-    //repeated proto_plugin_generator_main_settings list_main_generators_settings = 16;
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
  * @exclude

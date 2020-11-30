@@ -92,16 +92,14 @@ namespace vSharpStudio.Unit
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
 
-            var ptst = new vPlugin.Sample.GeneratorDbAccessSettings();
-            Assert.IsFalse(ptst.IsAccessParam2.HasValue);
-            Assert.IsNull(ptst.AccessParam4);
-            Assert.IsFalse(ptst.IsAccessParam1);
-            Assert.AreEqual(string.Empty, ptst.AccessParam3);
-
-            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
-            prms.AccessParam3 = "test";
+            prms.AccessParam3 = "kuku3";
+            prms.AccessParam4 = "kuku4";
+
+            var prmsGroup = (vPlugin.Sample.PluginsGroupSettings)gen.GetPluginsGroupSettings();
+            prmsGroup.IsGroupParam1 = true;
 
             Assert.AreEqual(3, gen.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
@@ -111,8 +109,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
-            Assert.IsNotNull(gen.DynamicMainSettings);
-            Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen.DynamicMainSettings.GetType().Name);
+            Assert.IsNotNull(gen.DynamicGeneratorSettings);
+            Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen.DynamicGeneratorSettings.GetType().Name);
             //Assert.IsNotNull(vm.Config.Model.DynamicNodesSettings);
             //Assert.IsNotNull(vm.Config.Model.DynamicNodeDefaultSettings);
             //Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessNodeSettings).Name, vm.Config.Model.DynamicNodesSettings.GetType().Name);
@@ -132,16 +130,19 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(gen.PluginGuid, gen2.PluginGuid);
             Assert.AreEqual(gen.PluginGeneratorGuid, gen2.PluginGeneratorGuid);
             Assert.AreEqual(2, gen2.ListGenerators.Count);
-            Assert.IsNotNull(gen2.DynamicMainSettings);
-            Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen2.DynamicMainSettings.GetType().Name);
+            Assert.IsNotNull(gen2.DynamicGeneratorSettings);
+            Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen2.DynamicGeneratorSettings.GetType().Name);
             Assert.IsNotNull(vm2.Config.Model.DynamicNodesSettings);
             Assert.IsNotNull(vm2.Config.Model.DynamicNodeDefaultSettings);
             vm2.Config.SelectedNode = gen2;
             //Assert.IsNotNull(gen2.DynamicNodesSettings);
-            var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
+            Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
+            var prmsGroup2 = (vPlugin.Sample.PluginsGroupSettings)gen2.GetPluginGroupSettings(vPlugin.Sample.PluginsGroupSettings.GuidStatic);
+            Assert.IsTrue(prmsGroup2.IsGroupParam1);
             #region DicDiffResult
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
@@ -182,10 +183,11 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
+            Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
 
             vm2.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
@@ -209,10 +211,11 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
+            Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
         }
         [TestMethod]
         public void Plugin005WorkWithNodeGeneratorSettings()
@@ -290,11 +293,11 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
 
-            var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
 
-            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.DynamicModelNodeSettings;
             var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
 
             // on model we have link to AppProjectGenerator settings
@@ -339,7 +342,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, cfgDiff.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, cfgDiff.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
 
-            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
@@ -348,7 +351,7 @@ namespace vSharpStudio.Unit
 
 
             vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
-            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevCurrentConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
@@ -356,7 +359,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
             vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
-            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicMainSettings);
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevStableConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
@@ -384,7 +387,7 @@ namespace vSharpStudio.Unit
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
-            Assert.IsNull(sln.DynamicMainSettings);
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
@@ -400,10 +403,10 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             var plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
-            Assert.IsNotNull(sln.DynamicMainSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
-            var set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[plgn.PluginGroupSolutionSettings.Guid];
+            var set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[gen.PluginGroupSettingsGuid];
             set.IsGroupParam1 = true;
 
             vm.CommandConfigSave.Execute(null);
@@ -411,22 +414,22 @@ namespace vSharpStudio.Unit
             // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
             gen.PluginGuid = null;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
-            Assert.IsNull(sln.DynamicMainSettings);
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
 
             // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
             gen.PluginGuid = pluginNode.Guid;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
-            Assert.IsNotNull(sln.DynamicMainSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
             // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
             gen.NodeRemove(false);
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
-            Assert.IsNull(sln.DynamicMainSettings);
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
 
 
             // 1. When Config is loaded: init group plugin settings on all solution nodes
@@ -438,11 +441,11 @@ namespace vSharpStudio.Unit
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
             sln = vm2.Config.GroupAppSolutions[0];
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(plgn.PluginGroupSolutionSettings.Guid));
-            Assert.IsNotNull(sln.DynamicMainSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
             // 4. When saving Config: convert all solutions groups settings to string representations
-            set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[plgn.PluginGroupSolutionSettings.Guid];
+            set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[gen.PluginGroupSettingsGuid];
             Assert.IsTrue(set.IsGroupParam1);
             _logger.LogTrace("End test".CallerInfo());
         }
@@ -480,7 +483,7 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
 
@@ -492,7 +495,7 @@ namespace vSharpStudio.Unit
             gen2.Name = "AppGenName2";
             gen2.NameUi = "App Gen Name2";
             Assert.AreEqual(2, vm.Config.DicActiveAppProjectGenerators.Count);
-            var main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            var main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
             main2.IsAccessParam1 = false;
             main2.IsAccessParam2 = true;
 
@@ -518,8 +521,8 @@ namespace vSharpStudio.Unit
             prj = sln.ListAppProjects[0];
             gen = prj.ListAppProjectGenerators[0];
             gen2 = prj.ListAppProjectGenerators[1];
-            main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
-            main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicMainSettings;
+            main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
+            main2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
 
             // main setting for generator are different for dofferent generators
             Assert.AreNotEqual(main.IsAccessParam1, main2.IsAccessParam1);
@@ -585,7 +588,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, prj.ValidationCollection.Count);
             Assert.AreEqual(0, gen.ValidationCollection.Count);
 
-            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicMainSettings;
+            var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";

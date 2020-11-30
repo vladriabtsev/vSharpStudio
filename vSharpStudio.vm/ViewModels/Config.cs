@@ -305,6 +305,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPluginLists { get; set; }
         public Dictionary<string, IvPlugin> DicPlugins { get; set; }
+        public Dictionary<string, IvPlugin> DicGroupSettings { get; set; }
         public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
 
         public IConfig PrevCurrentConfig { get; set; }
@@ -374,59 +375,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
-                // group plugins settings
-                foreach (var tt in t.ListGroupGeneratorsSettings.ToList())
-                {
-                    if (!t.DicPluginsGroupSettings.ContainsKey(tt.AppGroupGeneratorsGuid))
-                    {
-                        t.ListGroupGeneratorsSettings.Remove(tt);
-                    }
-                }
-                foreach (var tt in t.DicPluginsGroupSettings)
-                {
-                    PluginGroupGeneratorsSettings ps = null;
-                    foreach (var ttt in t.ListGroupGeneratorsSettings)
-                    {
-                        if (tt.Key == ttt.AppGroupGeneratorsGuid)
-                        {
-                            ps = ttt;
-                        }
-                    }
-                    if (ps == null)
-                    {
-                        ps = new PluginGroupGeneratorsSettings(t);
-                        ps.AppGroupGeneratorsGuid = tt.Key;
-                        ps.NameUi = tt.Value.Name;
-                        t.ListGroupGeneratorsSettings.Add(ps);
-                    }
-                    ps.Settings = tt.Value.SettingsAsJson;
-                }
+                t.SaveGroupSettings();
                 foreach (var tt in t.ListAppProjects)
                 {
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
-#if RELEASE
-                        Utils.TryCall(
-                            () =>
-                            {
-#endif
-
-                        //if (ttt.DynamicNodesSettings != null && ttt.DynamicNodesSettings is IvPluginGeneratorSettingsVM)
-                        //    ttt.GeneratorSettings = (ttt.DynamicNodesSettings as IvPluginGeneratorSettingsVM).SettingsAsJson;
-                        if (ttt.DynamicMainSettings != null)
-                            ttt.GeneratorSettings = (ttt.DynamicMainSettings as IvPluginGeneratorSettings).SettingsAsJson;
-#if RELEASE
-                            }, "Can't get PROTO settings from Plugin");
-#endif
-                        //if (ttt.IsPrivate)
-                        //{
-                        //    Utils.TryCall(
-                        //        () =>
-                        //        {
-                        //            File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
-                        //        }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-                        //    ttt.GeneratorSettings = string.Empty;
-                        //}
+                        ttt.SaveSettings();
                     }
                 }
             }
@@ -486,8 +440,11 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(t.GetType().Name);
                         sb.Append(" IsHasChanged=");
                         sb.Append(p.IsHasChanged);
-                        sb.Append(" IsChanged=");
-                        sb.Append((t as IEditableNode).IsChanged);
+                        if (t is IEditableNode)
+                        {
+                            sb.Append(" IsChanged=");
+                            sb.Append((t as IEditableNode).IsChanged);
+                        }
                         sb.AppendLine();
                         IsHasChangedPath2(sb, t.GetListChildren());
                         break;

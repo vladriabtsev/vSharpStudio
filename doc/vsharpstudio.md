@@ -40,9 +40,9 @@
     - [proto_model_row](#proto_config.proto_model_row)
     - [proto_plugin](#proto_config.proto_plugin)
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
-    - [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings)
     - [proto_plugin_generator_node_default_settings](#proto_config.proto_plugin_generator_node_default_settings)
     - [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings)
+    - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings)
     - [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings)
     - [proto_properties_tab](#proto_config.proto_properties_tab)
@@ -121,6 +121,7 @@
 
 ### proto_app_project_generator
 Application project generator
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
@@ -141,11 +142,12 @@ Application project generator
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| main_settings | [proto_plugin_generator_main_settings](#proto_config.proto_plugin_generator_main_settings) |  | @attr [PropertyOrderAttribute(29)] @attr [BrowsableAttribute(false)] |
+| generator_settings_vm | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) |  | @attr [PropertyOrderAttribute(29)] @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
-| is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Sql script&#34;)] @attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] |
-| conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
-| gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL script&#34;)] @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
+| plugin_group_settings_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
+| is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Sql script&#34;)] @attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] |
+| gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL script&#34;)] @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [PropertyOrderAttribute(30)] @attr [BrowsableAttribute(false)] |
 
 
@@ -294,6 +296,7 @@ Configuration model
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [BrowsableAttribute(false)] |
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [BrowsableAttribute(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1010,23 +1013,6 @@ main view forms hierarchy parent
 
 
 
-<a name="proto_config.proto_plugin_generator_main_settings"></a>
-
-### proto_plugin_generator_main_settings
-Stored in AppProjectGenerator node
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
-| settings | [string](#string) |  |  |
-| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_plugin_generator_node_default_settings"></a>
 
 ### proto_plugin_generator_node_default_settings
@@ -1046,7 +1032,7 @@ Stored in AppProjectGenerator node
 <a name="proto_config.proto_plugin_generator_node_settings"></a>
 
 ### proto_plugin_generator_node_settings
-Stored in each node in ConfigModel branch
+Stored in each node in Model branch
 
 
 | Field | Type | Label | Description |
@@ -1057,6 +1043,23 @@ Stored in each node in ConfigModel branch
 | sorting_value | [uint64](#uint64) |  |  |
 | sorting_weight | [uint64](#uint64) |  |  |
 | node_settings_vm_guid | [string](#string) |  |  |
+| settings | [string](#string) |  |  |
+| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_generator_settings"></a>
+
+### proto_plugin_generator_settings
+Stored in AppProjectGenerator node
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | settings | [string](#string) |  |  |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
@@ -1095,8 +1098,8 @@ Stored in AppSolution node. All null setting will use parent value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| app_group_generators_guid | [string](#string) |  | Guid of group generators |
+| guid | [string](#string) |  | Guid of group generators |
+| app_group_generators_guid | [string](#string) |  |  |
 | settings | [string](#string) |  |  |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |

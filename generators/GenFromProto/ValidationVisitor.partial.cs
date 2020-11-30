@@ -28,5 +28,10 @@ namespace GenFromProto
                 this.messages.Add(t);
             }
         }
+        private bool IsBaseWithParent(string mesName)
+        {
+            var res = JsonDoc.Files[root.Name].Messages[mesName].IsBaseWithParent;
+            return res;
+        }
     }
 }

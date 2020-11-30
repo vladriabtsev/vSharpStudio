@@ -562,12 +562,18 @@ namespace GenFromProto
             #line hidden
             
             #line 106 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (this.Doc.IsDefaultBase) { 
+ if (this.IsBaseWithParent) { 
             
             #line default
             #line hidden
-            this.Write(@"    [BrowsableAttribute(false)]
-    override public bool IsChanged 
+            this.Write("    [BrowsableAttribute(false)]\r\n    override public bool IsChanged  // ");
+            
+            #line 108 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write(@"
     { 
         get 
         { 

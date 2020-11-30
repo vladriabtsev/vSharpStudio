@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Proto.Plugin;
 using vSharpStudio.common;
 
 // https://docs.microsoft.com/en-us/ef/core/providers/
@@ -9,9 +10,9 @@ namespace vPlugin.Sample
 {
     public class SamplePlugin : IvPlugin
     {
+        public const string GuidStatic = "ED93228B-8D8E-456C-9688-37EEB1B2D835";
         public SamplePlugin()
         {
-            this.Guid = "ED93228B-8D8E-456C-9688-37EEB1B2D835";
             this.Name = "Sample";
             this.NameUI = "Sample plugin";
             this.Description = "vSharpStudio plugin with several generators";
@@ -19,12 +20,11 @@ namespace vPlugin.Sample
             this.Version = "0.1";
             this.Url = "https://www.vladnet.ca";
             this.Licence = string.Empty;
-            this.PluginGroupSolutionSettings = new PluginsGroupSettings();
             this.ListGenerators = new List<IvPluginGenerator>();
             this.ListGenerators.Add(new GeneratorDbSchema());
             this.ListGenerators.Add(new GeneratorDbAccess());
         }
-        public string Guid { get; protected set; }
+        public string Guid { get { return GuidStatic; } }
         public string Name { get; protected set; }
         public string NameUI { get; protected set; }
         public string Description { get; protected set; }
@@ -32,7 +32,16 @@ namespace vPlugin.Sample
         public string Version { get; protected set; }
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
-        public IvPluginGroupSolutionSettings PluginGroupSolutionSettings { get; protected set; }
-        public List<IvPluginGenerator> ListGenerators { get; protected set; }
+        public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings)
+        {
+            var res = new PluginsGroupSettings();
+            if (!string.IsNullOrWhiteSpace(settings))
+            {
+                var proto = proto_plugins_group_settings.Parser.ParseJson(settings);
+                res = PluginsGroupSettings.ConvertToVM(proto, res);
+            }
+            return res;
+        }
+        public List<IvPluginGenerator> ListGenerators { get; }
     }
 }

@@ -323,15 +323,15 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_plugin_generator_main_settings"><span class="badge">M</span>proto_plugin_generator_main_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_plugin_generator_node_default_settings"><span class="badge">M</span>proto_plugin_generator_node_default_settings</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_plugin_generator_node_settings"><span class="badge">M</span>proto_plugin_generator_node_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
                 </li>
               
                 <li>
@@ -579,7 +579,7 @@ App project relative path to .net solution file path </p></td>
         
       
         <h3 id="proto_config.proto_app_project_generator">proto_app_project_generator</h3>
-        <p>Application project generator</p>
+        <p>Application project generator</p><p>@base ConfigObjectCommonBase</p>
 
         
           <table class="field-table">
@@ -719,8 +719,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>main_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</a></td>
+                  <td>generator_settings_vm</td>
+                  <td><a href="#proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(29)]
 @attr [BrowsableAttribute(false)] </p></td>
@@ -735,21 +735,28 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_generate_sql_sqript_to_update_prev_stable</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>plugin_group_settings_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(10)]
-@attr [DisplayName(&#34;Sql script&#34;)]
-@attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>conn_str_to_prev_stable</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(11)]
+                  <td><p>@attr [PropertyOrderAttribute(13)]
 @attr [DisplayName(&#34;Stable DB&#34;)]
 @attr [Description(&#34;Db connection string to previous stable version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_generate_sql_sqript_to_update_prev_stable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(14)]
+@attr [DisplayName(&#34;Sql script&#34;)]
+@attr [Description(&#34;Generate Sql script to update previous stable version&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -757,7 +764,7 @@ Generator output file name </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;SQL script&#34;)]
-@attr [PropertyOrderAttribute(12)]
+@attr [PropertyOrderAttribute(15)]
 @attr [Description(&#34;SQL script output file name&#34;)]
 Generator output file name </p></td>
                 </tr>
@@ -1401,6 +1408,13 @@ App solution relative path to configuration file path </p></td>
                   <td>group_journals</td>
                   <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
                   <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -4184,44 +4198,6 @@ repeated proto_document list_forms = 7;
 
         
       
-        <h3 id="proto_config.proto_plugin_generator_main_settings">proto_plugin_generator_main_settings</h3>
-        <p>Stored in AppProjectGenerator node</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>app_project_generator_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Guid of solution-project-generator node </p></td>
-                </tr>
-              
-                <tr>
-                  <td>settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_changed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_plugin_generator_node_default_settings">proto_plugin_generator_node_default_settings</h3>
         <p>@base ViewModelValidatableWithSeverity</p>
 
@@ -4254,7 +4230,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
-        <p>Stored in each node in ConfigModel branch</p>
+        <p>Stored in each node in Model branch</p>
 
         
           <table class="field-table">
@@ -4303,6 +4279,44 @@ repeated proto_document list_forms = 7;
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
+        <p>Stored in AppProjectGenerator node</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_project_generator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Guid of solution-project-generator node </p></td>
                 </tr>
               
                 <tr>
@@ -4407,14 +4421,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Guid of group generators </p></td>
                 </tr>
               
                 <tr>
                   <td>app_group_generators_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Guid of group generators </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>

@@ -19,7 +19,7 @@ namespace vSharpStudio.common
         // appropriate generator model settings are changed
         Action<string> OnConnectionStringChanged { set; }
         // Update generator model settings from connection string
-        INotifyPropertyChanged ConnectionStringToVM(string connString);
+        IvPluginGeneratorSettings ConnectionStringToVM(string connString);
         // Provider name for connection string
         string ProviderName { get; }
         // DB schema generator for provider

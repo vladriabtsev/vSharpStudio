@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     if (gs == null)
                     {
-                        gs = new PluginGeneratorNodeSettings();
+                        gs = new PluginGeneratorNodeSettings(this);
                         gs.Name = appProjectGenerator.Name;
                         gs.NodeSettingsVmGuid = t.Guid;
                         gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;

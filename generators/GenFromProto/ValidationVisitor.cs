@@ -89,7 +89,7 @@ namespace GenFromProto
             #line hidden
             
             #line 25 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
- if (message.IsDefaultBase()) { 
+ if (this.IsBaseWithParent(message.Name)) { 
             
             #line default
             #line hidden

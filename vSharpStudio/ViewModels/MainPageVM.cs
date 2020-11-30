@@ -294,10 +294,14 @@ namespace vSharpStudio.ViewModels
 
                 // Restore plugins
                 List<PluginRow> lstGens = new List<PluginRow>();
+                cfg.DicGroupSettings = new Dictionary<string, IvPlugin>();
                 cfg.DicPlugins = new Dictionary<string, IvPlugin>();
                 foreach (var t in this._plugins)
                 {
                     cfg.DicPlugins[t.Value.Guid] = t.Value;
+                    var groupSettings = t.Value.GetPluginGroupSolutionSettingsVmFromJson(null);
+                    if (!cfg.DicGroupSettings.ContainsKey(groupSettings.Guid))
+                        cfg.DicGroupSettings[groupSettings.Guid] = t.Value;
                     Plugin p = null;
                     bool is_found = false;
                     // attaching plugin
@@ -404,18 +408,19 @@ namespace vSharpStudio.ViewModels
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
                     // group plugins settings
-                    foreach (var tt in t.ListGroupGeneratorsSettings)
-                    {
-                        foreach (var ttt in cfg.DicPlugins)
-                        {
-                            if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
-                            {
-                                var setvm = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
-                                t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = setvm;
-                                break;
-                            }
-                        }
-                    }
+                    t.RestoreGroupSettings();
+                    //foreach (var tt in t.ListGroupGeneratorsSettings)
+                    //{
+                    //    foreach (var ttt in cfg.DicPlugins)
+                    //    {
+                    //        if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
+                    //        {
+                    //            var setvm = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
+                    //            t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = setvm;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
                     foreach (var tt in t.ListAppProjects)
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
@@ -440,7 +445,7 @@ namespace vSharpStudio.ViewModels
                                 }
                                 foreach (var ts in lst)
                                 {
-                                    if (ttt.ContainsSettings(ttt.Guid, ts.Guid))
+                                    if (cfg.Model.ContainsSettings(ttt.Guid, ts.Guid))
                                     {
                                         throw new Exception();
                                         //continue;
@@ -463,17 +468,17 @@ namespace vSharpStudio.ViewModels
                                         nds.ListNodeGeneratorsSettings.Add(gs);
                                     }
                                     gs.SettingsVm = ts.GetAppGenerationNodeSettingsVm(gs.Settings, true);
-                                    if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
-                                    {
-                                        ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                                    }
-                                    var dicS = ttt.DicGenNodeSettings[ttt.Guid];
-                                    dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-                                    // Set link for default settings for ConfigModel
-                                    cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
+                                    //if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
+                                    //{
+                                    //    ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                                    //}
+                                    //var dicS = ttt.DicGenNodeSettings[ttt.Guid];
+                                    //dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+                                    //// Set link for default settings for ConfigModel
+                                    //cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
                                 }
                             }
-                            ttt.CreateGenSettings();
+                            ttt.RestoreSettings();
                         }
                     }
                 }
@@ -499,6 +504,7 @@ namespace vSharpStudio.ViewModels
                         }
                     }
                 }
+                this.VisibilityAndMessageInstructions();
             }
             catch (Exception ex)
             {
@@ -638,18 +644,16 @@ namespace vSharpStudio.ViewModels
         //}
 
         #region Main
-
         public vCommand CommandNewConfig
         {
             get
             {
                 return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
                     (o) => { this.NewConfig(); },
-                    (o) => { return true; }));
+                    (o) => { return !string.IsNullOrEmpty(Config.CurrentCfgFolderPath); }));
             }
         }
         private vCommand _CommandNewConfig;
-
         internal void NewConfig()
         {
             if (this.Config.IsHasChanged)
@@ -699,9 +703,7 @@ namespace vSharpStudio.ViewModels
                     (o) => { return this.Config != null && this.CurrentCfgFilePath != null; }));
             }
         }
-
         private vCommand _CommandConfigSave;
-
         internal void SavePrepare()
         {
             this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
@@ -745,8 +747,8 @@ namespace vSharpStudio.ViewModels
             //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
             //CompareSaved(json);
 #endif
+            this.VisibilityAndMessageInstructions();
         }
-
         public vCommand CommandConfigSaveAs
         {
             get
@@ -756,9 +758,7 @@ namespace vSharpStudio.ViewModels
                     (o) => { return this.Config != null; }));
             }
         }
-
         private vCommand _CommandConfigSaveAs;
-
         internal void SaveAs(string filePath = null)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog();
@@ -797,7 +797,6 @@ namespace vSharpStudio.ViewModels
             }
             this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
         }
-
         private void ResetIsChangedBeforeSave()
         {
             var vis = new ModelVisitorBase();
@@ -812,7 +811,6 @@ namespace vSharpStudio.ViewModels
             Debug.Assert(!this.Config.IsHasChanged);
             Debug.Assert(!this.Config.IsChanged);
         }
-
         private void UpdateUserSettingsSaveConfigs()
         {
             if (this.UserSettings.ListOpenConfigHistory.Count > 0)
@@ -847,7 +845,6 @@ namespace vSharpStudio.ViewModels
                 this.UserSettings.ListOpenConfigHistory.Add(us);
             }
         }
-
         private void CompareSaved(string json)
         {
             var model = new Config();
@@ -864,7 +861,6 @@ namespace vSharpStudio.ViewModels
                 throw new Exception();
             }
         }
-
         public string FilePathSaveAs
         {
             get
@@ -879,9 +875,7 @@ namespace vSharpStudio.ViewModels
                 this.SaveToolTip = _saveBaseToolTip + " as " + this._FilePathSaveAs;
             }
         }
-
         private string _FilePathSaveAs;
-
         public string SaveToolTip
         {
             get
@@ -895,10 +889,8 @@ namespace vSharpStudio.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
         private const string _saveBaseToolTip = "Ctrl-S - save config";
         private string _SaveToolTip = _saveBaseToolTip;
-
         public ProgressVM ProgressVM
         {
             get
@@ -1094,7 +1086,6 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-
         private string GetOuputFilePath(AppSolution ts, AppProject tp, AppProjectGenerator tpg, string fileName)
         {
             StringBuilder sb = new StringBuilder();
@@ -1451,7 +1442,39 @@ namespace vSharpStudio.ViewModels
         #endregion Main
 
         #region ConfigTree
-
+        private void VisibilityAndMessageInstructions()
+        {
+            if (string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath))
+            {
+                this.VisibilityConfig = System.Windows.Visibility.Hidden;
+                this.MessageInstructions = "Before start editing config, empty config has to be saved";
+            }
+            else
+            {
+                this.VisibilityConfig = System.Windows.Visibility.Visible;
+                this.MessageInstructions = null;
+            }
+        }
+        public string MessageInstructions
+        {
+            set
+            {
+                _MessageInstructions = value;
+                this.NotifyPropertyChanged();
+            }
+            get { return _MessageInstructions; }
+        }
+        private string _MessageInstructions;
+        public System.Windows.Visibility VisibilityConfig
+        {
+            set
+            {
+                _VisibilityConfig = value;
+                this.NotifyPropertyChanged();
+            }
+            get { return _VisibilityConfig; }
+        }
+        private System.Windows.Visibility _VisibilityConfig = System.Windows.Visibility.Hidden;
         public vCommand CommandAddNew
         {
             get
@@ -1461,9 +1484,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
             }
         }
-
         private vCommand _CommandAddNew;
-
         public vCommand CommandAddNewChild
         {
             get
@@ -1473,9 +1494,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
-
         private vCommand _CommandAddNewChild;
-
         public vCommand CommandAddClone
         {
             get
@@ -1485,9 +1504,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
             }
         }
-
         private vCommand _CommandAddClone;
-
         public vCommand CommandMoveDown
         {
             get
@@ -1497,9 +1514,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
             }
         }
-
         private vCommand _CommandMoveDown;
-
         public vCommand CommandMoveUp
         {
             get
@@ -1509,9 +1524,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
             }
         }
-
         private vCommand _CommandMoveUp;
-
         public vCommand CommandDelete
         {
             get
@@ -1521,9 +1534,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); }));
             }
         }
-
         private vCommand _CommandDelete;
-
         public vCommand CommandSelectionLeft
         {
             get
@@ -1533,9 +1544,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
             }
         }
-
         private vCommand _CommandSelectionLeft;
-
         public vCommand CommandSelectionRight
         {
             get
@@ -1545,9 +1554,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
             }
         }
-
         private vCommand _CommandSelectionRight;
-
         public vCommand CommandSelectionDown
         {
             get
@@ -1557,9 +1564,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
             }
         }
-
         private vCommand _CommandSelectionDown;
-
         public vCommand CommandSelectionUp
         {
             get
@@ -1569,9 +1574,7 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
             }
         }
-
         private vCommand _CommandSelectionUp;
-
         #endregion ConfigTree
 
         public vCommand CommandFromErrorToSelection

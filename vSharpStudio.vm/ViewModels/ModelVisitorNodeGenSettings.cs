@@ -21,16 +21,16 @@ namespace vSharpStudio.vm.ViewModels
         //    if (c is INodeGenSettings)
         //        _act(c as INodeGenSettings);
         //}
-        //protected override void Visit(IConfigModel m)
-        //{
-        //    if (m is INodeGenSettings)
-        //        _act(m as INodeGenSettings);
-        //}
-        protected override void BeginVisit(IAppProjectGenerator m)
+        protected override void BeginVisit(IConfigModel m)
         {
             if (m is INodeGenSettings)
                 _act(m as INodeGenSettings);
         }
+        //protected override void BeginVisit(IAppProjectGenerator m)
+        //{
+        //    if (m is INodeGenSettings)
+        //        _act(m as INodeGenSettings);
+        //}
         protected override void BeginVisit(IGroupListCommon m)
         {
             if (m is INodeGenSettings)

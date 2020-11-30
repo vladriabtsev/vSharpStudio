@@ -57,6 +57,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!--Menu-->
                 <Grid Grid.Row="0">
@@ -153,7 +154,7 @@
                         </ToolBar>
                     </ToolBarPanel>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Visibility="{Binding VisibilityConfig}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" MinWidth="20" />
                         <ColumnDefinition Width="Auto" />
@@ -209,6 +210,7 @@
                         <local:PropertiesList />
                     </Grid>
                 </Grid>
+                <TextBlock Grid.Row="2" Margin="3,0,0,0" Text="{Binding MessageInstructions}" FontWeight="Bold" />
             </Grid>
         </ContentControl>
     </xctk:BusyIndicator>

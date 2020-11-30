@@ -22,7 +22,7 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
      if (field.MessageType.Name.EndsWith("_nullable"))
        continue;
 #>
-<# if (message.IsDefaultBase()) { #>
+<# if (this.IsBaseWithParent(message.Name)) { #>
 <#   if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { #>
 <#     if (field.IsRepeated) { #>
         foreach (var t in p.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>

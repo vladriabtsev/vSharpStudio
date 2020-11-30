@@ -672,6 +672,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 6
@@ -1047,6 +1073,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 6
@@ -1319,6 +1371,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { } // Class.tt Line: 6
@@ -1869,6 +1947,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 6
@@ -2326,6 +2430,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListBaseConfigLinks.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 6
@@ -2742,6 +2872,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IBaseConfigLink.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 6
@@ -3249,7 +3405,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGroupAppSolutionsChanged();
         IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -3861,7 +4017,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -4348,6 +4504,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGroupGeneratorsDefultSettingsChanging(SortedObservableCollection<PluginGroupGeneratorsDefaultSettings> to); // Property.tt Line: 79
         partial void OnListGroupGeneratorsDefultSettingsChanged();
         IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> IGroupListAppSolutions.ListGroupGeneratorsDefultSettings { get { return this._ListGroupGeneratorsDefultSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGroupGeneratorsSettingsValidator : ValidatorBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator> { } // Class.tt Line: 6
@@ -4477,10 +4659,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        
-        ///////////////////////////////////////////////////
-        /// Guid of group generators
-        ///////////////////////////////////////////////////
         public string AppGroupGeneratorsGuid // Property.tt Line: 144
         { 
             get 
@@ -4647,6 +4825,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
@@ -5106,6 +5310,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGroupGeneratorsSettingsChanging(SortedObservableCollection<PluginGroupGeneratorsSettings> to); // Property.tt Line: 79
         partial void OnListGroupGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGroupGeneratorsSettings> IAppSolution.ListGroupGeneratorsSettings { get { return this._ListGroupGeneratorsSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 6
@@ -5289,10 +5519,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
-            foreach (var t in this.ListAppProjectGenerators)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -5522,12 +5748,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListAppProjectGeneratorsChanging(SortedObservableCollection<AppProjectGenerator> to); // Property.tt Line: 79
         partial void OnListAppProjectGeneratorsChanged();
         IReadOnlyList<IAppProjectGenerator> IAppProject.ListAppProjectGenerators { get { return this._ListAppProjectGenerators; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorNodeSettingsValidator : ValidatorBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator> { } // Class.tt Line: 6
     
     ///////////////////////////////////////////////////
-    /// Stored in each node in ConfigModel branch
+    /// Stored in each node in Model branch
     ///////////////////////////////////////////////////
     public partial class PluginGeneratorNodeSettings : ConfigObjectVmGenSettings<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator>, IComparable<PluginGeneratorNodeSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeSettings // Class.tt Line: 7
     {
@@ -5778,7 +6030,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -5805,19 +6057,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class PluginGeneratorMainSettingsValidator : ValidatorBase<PluginGeneratorMainSettings, PluginGeneratorMainSettingsValidator> { } // Class.tt Line: 6
+    public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { } // Class.tt Line: 6
     
     ///////////////////////////////////////////////////
     /// Stored in AppProjectGenerator node
     ///////////////////////////////////////////////////
-    public partial class PluginGeneratorMainSettings : ConfigObjectVmGenSettings<PluginGeneratorMainSettings, PluginGeneratorMainSettingsValidator>, IComparable<PluginGeneratorMainSettings>, IConfigAcceptVisitor, IPluginGeneratorMainSettings // Class.tt Line: 7
+    public partial class PluginGeneratorSettings : ConfigObjectVmGenSettings<PluginGeneratorSettings, PluginGeneratorSettingsValidator>, IComparable<PluginGeneratorSettings>, IConfigAcceptVisitor, IPluginGeneratorSettings // Class.tt Line: 7
     {
         #region CTOR
-        public PluginGeneratorMainSettings() : this(default(ITreeConfigNode))
+        public PluginGeneratorSettings() : this(default(ITreeConfigNode))
         {
         }
-        public PluginGeneratorMainSettings(ITreeConfigNode parent) 
-            : base(parent, PluginGeneratorMainSettingsValidator.Validator) // Class.tt Line: 15
+        public PluginGeneratorSettings(ITreeConfigNode parent) 
+            : base(parent, PluginGeneratorSettingsValidator.Validator) // Class.tt Line: 15
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -5833,10 +6085,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             // throw new Exception();
         }
-        public static PluginGeneratorMainSettings Clone(ITreeConfigNode parent, PluginGeneratorMainSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        public static PluginGeneratorSettings Clone(ITreeConfigNode parent, PluginGeneratorSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            PluginGeneratorMainSettings vm = new PluginGeneratorMainSettings(parent);
+            PluginGeneratorSettings vm = new PluginGeneratorSettings(parent);
             vm.IsNotNotifying = true;
             vm.IsValidate = false;
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
@@ -5848,7 +6100,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(PluginGeneratorMainSettings to, PluginGeneratorMainSettings from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(PluginGeneratorSettings to, PluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
@@ -5858,23 +6110,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override PluginGeneratorMainSettings Backup()
+        public override PluginGeneratorSettings Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return PluginGeneratorMainSettings.Clone(this.Parent, this);
+            return PluginGeneratorSettings.Clone(this.Parent, this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(PluginGeneratorMainSettings from)
+        public override void Restore(PluginGeneratorSettings from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            PluginGeneratorMainSettings.Update(this, from, isDeep);
+            PluginGeneratorSettings.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_plugin_generator_main_settings' to 'PluginGeneratorMainSettings'
-        public static PluginGeneratorMainSettings ConvertToVM(Proto.Config.proto_plugin_generator_main_settings m, PluginGeneratorMainSettings vm) // Clone.tt Line: 170
+        // Conversion from 'proto_plugin_generator_settings' to 'PluginGeneratorSettings'
+        public static PluginGeneratorSettings ConvertToVM(Proto.Config.proto_plugin_generator_settings m, PluginGeneratorSettings vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -5893,11 +6145,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'PluginGeneratorMainSettings' to 'proto_plugin_generator_main_settings'
-        public static Proto.Config.proto_plugin_generator_main_settings ConvertToProto(PluginGeneratorMainSettings vm) // Clone.tt Line: 236
+        // Conversion from 'PluginGeneratorSettings' to 'proto_plugin_generator_settings'
+        public static Proto.Config.proto_plugin_generator_settings ConvertToProto(PluginGeneratorSettings vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_plugin_generator_main_settings m = new Proto.Config.proto_plugin_generator_main_settings(); // Clone.tt Line: 239
+            Proto.Config.proto_plugin_generator_settings m = new Proto.Config.proto_plugin_generator_settings(); // Clone.tt Line: 239
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
@@ -5943,7 +6195,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private string _AppProjectGeneratorGuid = string.Empty;
         partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 166
         partial void OnAppProjectGeneratorGuidChanged();
-        string IPluginGeneratorMainSettings.AppProjectGeneratorGuid { get { return this._AppProjectGeneratorGuid; } } 
+        string IPluginGeneratorSettings.AppProjectGeneratorGuid { get { return this._AppProjectGeneratorGuid; } } 
         
         public string Settings // Property.tt Line: 144
         { 
@@ -5967,7 +6219,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 166
         partial void OnSettingsChanged();
-        string IPluginGeneratorMainSettings.Settings { get { return this._Settings; } } 
+        string IPluginGeneratorSettings.Settings { get { return this._Settings; } } 
         
         [BrowsableAttribute(false)]
         public bool IsHasChanged // Property.tt Line: 144
@@ -5991,7 +6243,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -6023,7 +6275,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     ///////////////////////////////////////////////////
     /// Application project generator
     ///////////////////////////////////////////////////
-    public partial class AppProjectGenerator : ConfigObjectVmGenSettings<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
+    public partial class AppProjectGenerator : ConfigObjectCommonBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
     {
         #region CTOR
         public AppProjectGenerator() : this(default(ITreeConfigNode))
@@ -6034,7 +6286,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.MainSettings = new PluginGeneratorMainSettings(this); // Class.tt Line: 32
+            this.GeneratorSettingsVm = new PluginGeneratorSettings(this); // Class.tt Line: 32
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
@@ -6074,16 +6326,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
-                vm.MainSettings = PluginGeneratorMainSettings.Clone(vm, from.MainSettings, isDeep);
+                vm.GeneratorSettingsVm = PluginGeneratorSettings.Clone(vm, from.GeneratorSettingsVm, isDeep);
             vm.ConnStr = from.ConnStr; // Clone.tt Line: 65
-            vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
+            vm.PluginGroupSettingsGuid = from.PluginGroupSettingsGuid; // Clone.tt Line: 65
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
+            vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 70
-                vm.SetNewGuid();
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6109,10 +6360,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
-                PluginGeneratorMainSettings.Update(to.MainSettings, from.MainSettings, isDeep);
+                PluginGeneratorSettings.Update(to.GeneratorSettingsVm, from.GeneratorSettingsVm, isDeep);
             to.ConnStr = from.ConnStr; // Clone.tt Line: 141
-            to.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 141
+            to.PluginGroupSettingsGuid = from.PluginGroupSettingsGuid; // Clone.tt Line: 141
             to.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 141
+            to.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 141
             to.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -6194,12 +6446,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 221
-            if (vm.MainSettings == null) // Clone.tt Line: 213
-                vm.MainSettings = new PluginGeneratorMainSettings(vm); // Clone.tt Line: 215
-            PluginGeneratorMainSettings.ConvertToVM(m.MainSettings, vm.MainSettings); // Clone.tt Line: 219
+            if (vm.GeneratorSettingsVm == null) // Clone.tt Line: 213
+                vm.GeneratorSettingsVm = new PluginGeneratorSettings(vm); // Clone.tt Line: 215
+            PluginGeneratorSettings.ConvertToVM(m.GeneratorSettingsVm, vm.GeneratorSettingsVm); // Clone.tt Line: 219
             vm.ConnStr = m.ConnStr; // Clone.tt Line: 221
-            vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
+            vm.PluginGroupSettingsGuid = m.PluginGroupSettingsGuid; // Clone.tt Line: 221
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
+            vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -6207,9 +6460,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6235,10 +6485,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 276
-            m.MainSettings = PluginGeneratorMainSettings.ConvertToProto(vm.MainSettings); // Clone.tt Line: 270
+            m.GeneratorSettingsVm = PluginGeneratorSettings.ConvertToProto(vm.GeneratorSettingsVm); // Clone.tt Line: 270
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 276
-            m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 276
+            m.PluginGroupSettingsGuid = vm.PluginGroupSettingsGuid; // Clone.tt Line: 276
             m.ConnStrToPrevStable = vm.ConnStrToPrevStable; // Clone.tt Line: 276
+            m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 276
             m.GenScriptFileName = vm.GenScriptFileName; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -6253,7 +6504,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
-            this.MainSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GeneratorSettingsVm.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -6608,28 +6859,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(29)]
         [BrowsableAttribute(false)]
-        public PluginGeneratorMainSettings MainSettings // Property.tt Line: 118
+        public PluginGeneratorSettings GeneratorSettingsVm // Property.tt Line: 118
         { 
             get 
             { 
-                return this._MainSettings; 
+                return this._GeneratorSettingsVm; 
             }
             set
             {
-                if (this._MainSettings != value)
+                if (this._GeneratorSettingsVm != value)
                 {
-                    this.OnMainSettingsChanging(ref value);
-                    this._MainSettings = value;
-                    this.OnMainSettingsChanged();
+                    this.OnGeneratorSettingsVmChanging(ref value);
+                    this._GeneratorSettingsVm = value;
+                    this.OnGeneratorSettingsVmChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private PluginGeneratorMainSettings _MainSettings;
-        partial void OnMainSettingsChanging(ref PluginGeneratorMainSettings to); // Property.tt Line: 139
-        partial void OnMainSettingsChanged();
-        IPluginGeneratorMainSettings IAppProjectGenerator.MainSettings { get { return this._MainSettings; } }
+        private PluginGeneratorSettings _GeneratorSettingsVm;
+        partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // Property.tt Line: 139
+        partial void OnGeneratorSettingsVmChanged();
+        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return this._GeneratorSettingsVm; } }
         
         [PropertyOrderAttribute(9)]
         [Description("Db connection string. Directly editable or generated based on settings")]
@@ -6657,34 +6908,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnConnStrChanged();
         string IAppProjectGenerator.ConnStr { get { return this._ConnStr; } } 
         
-        [PropertyOrderAttribute(10)]
-        [DisplayName("Sql script")]
-        [Description("Generate Sql script to update previous stable version")]
-        public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 144
+        [BrowsableAttribute(false)]
+        public string PluginGroupSettingsGuid // Property.tt Line: 144
         { 
             get 
             { 
-                return this._IsGenerateSqlSqriptToUpdatePrevStable; 
+                return this._PluginGroupSettingsGuid; 
             }
             set
             {
-                if (this._IsGenerateSqlSqriptToUpdatePrevStable != value)
+                if (this._PluginGroupSettingsGuid != value)
                 {
-                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref value);
-                    this._IsGenerateSqlSqriptToUpdatePrevStable = value;
-                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
+                    this.OnPluginGroupSettingsGuidChanging(ref value);
+                    this._PluginGroupSettingsGuid = value;
+                    this.OnPluginGroupSettingsGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool _IsGenerateSqlSqriptToUpdatePrevStable;
-        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 166
-        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
-        bool IAppProjectGenerator.IsGenerateSqlSqriptToUpdatePrevStable { get { return this._IsGenerateSqlSqriptToUpdatePrevStable; } } 
+        private string _PluginGroupSettingsGuid = string.Empty;
+        partial void OnPluginGroupSettingsGuidChanging(ref string to); // Property.tt Line: 166
+        partial void OnPluginGroupSettingsGuidChanged();
+        string IAppProjectGenerator.PluginGroupSettingsGuid { get { return this._PluginGroupSettingsGuid; } } 
         
-        [PropertyOrderAttribute(11)]
+        [PropertyOrderAttribute(13)]
         [DisplayName("Stable DB")]
         [Description("Db connection string to previous stable version")]
         public string ConnStrToPrevStable // Property.tt Line: 144
@@ -6711,12 +6960,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnConnStrToPrevStableChanged();
         string IAppProjectGenerator.ConnStrToPrevStable { get { return this._ConnStrToPrevStable; } } 
         
+        [PropertyOrderAttribute(14)]
+        [DisplayName("Sql script")]
+        [Description("Generate Sql script to update previous stable version")]
+        public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsGenerateSqlSqriptToUpdatePrevStable; 
+            }
+            set
+            {
+                if (this._IsGenerateSqlSqriptToUpdatePrevStable != value)
+                {
+                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref value);
+                    this._IsGenerateSqlSqriptToUpdatePrevStable = value;
+                    this.OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGenerateSqlSqriptToUpdatePrevStable;
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
+        bool IAppProjectGenerator.IsGenerateSqlSqriptToUpdatePrevStable { get { return this._IsGenerateSqlSqriptToUpdatePrevStable; } } 
+        
         
         ///////////////////////////////////////////////////
         /// Generator output file name
         ///////////////////////////////////////////////////
         [DisplayName("SQL script")]
-        [PropertyOrderAttribute(12)]
+        [PropertyOrderAttribute(15)]
         [Description("SQL script output file name")]
         public string GenScriptFileName // Property.tt Line: 144
         { 
@@ -6767,7 +7043,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IAppProjectGenerator.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -6950,6 +7226,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 32
             this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 32
             this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -6960,7 +7237,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            // throw new Exception();
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
         }
         public static ConfigModel Clone(ITreeConfigNode parent, ConfigModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -6994,6 +7274,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupDocuments = GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupJournals = GroupListJournals.Clone(vm, from.GroupJournals, isDeep);
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -7030,6 +7313,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 GroupDocuments.Update(to.GroupDocuments, from.GroupDocuments, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 GroupListJournals.Update(to.GroupJournals, from.GroupJournals, isDeep);
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -7090,6 +7409,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (vm.GroupJournals == null) // Clone.tt Line: 213
                 vm.GroupJournals = new GroupListJournals(vm); // Clone.tt Line: 215
             GroupListJournals.ConvertToVM(m.GroupJournals, vm.GroupJournals); // Clone.tt Line: 219
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
@@ -7122,6 +7447,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GroupCatalogs = GroupListCatalogs.ConvertToProto(vm.GroupCatalogs); // Clone.tt Line: 270
             m.GroupDocuments = GroupDocuments.ConvertToProto(vm.GroupDocuments); // Clone.tt Line: 270
             m.GroupJournals = GroupListJournals.ConvertToProto(vm.GroupJournals); // Clone.tt Line: 270
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -7145,6 +7472,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
             this.GroupJournals.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -7542,8 +7873,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGroupJournalsChanging(ref GroupListJournals to); // Property.tt Line: 139
         partial void OnGroupJournalsChanged();
         IGroupListJournals IConfigModel.GroupJournals { get { return this._GroupJournals; } }
+        
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
+        { 
+            get 
+            { 
+                return this._ListNodeGeneratorsSettings; 
+            }
+            private set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    this._ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> IConfigModel.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -8362,7 +8717,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCommon.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -8752,7 +9107,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRole.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -9249,7 +9604,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRoles.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -9674,7 +10029,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IMainViewForm.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -10176,7 +10531,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListMainViewForms.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -10674,7 +11029,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListPropertiesTabs.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -11163,7 +11518,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IPropertiesTab.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -11694,7 +12049,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListProperties.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -12149,7 +12504,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IProperty.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -12647,7 +13002,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListConstants.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -13072,7 +13427,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IConstant.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -13570,7 +13925,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumerations.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -14105,7 +14460,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeration.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -14440,7 +14795,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -14966,7 +15321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> ICatalog.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -15495,7 +15850,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -15982,7 +16337,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupDocuments.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -16508,7 +16863,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDocument.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -17006,7 +17361,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDocuments.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -17508,7 +17863,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListJournals.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -17978,7 +18333,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IJournal.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -18480,7 +18835,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListForms.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -18871,7 +19226,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IForm.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -19373,7 +19728,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListReports.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -19764,7 +20119,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IReport.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged 
+        override public bool IsChanged  // Class.tt Line: 108
         { 
             get 
             { 
@@ -19970,7 +20325,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_app_solution p);
         void Visit(Proto.Config.proto_app_project p);
         void Visit(Proto.Config.proto_plugin_generator_node_settings p);
-        void Visit(Proto.Config.proto_plugin_generator_main_settings p);
+        void Visit(Proto.Config.proto_plugin_generator_settings p);
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
         void Visit(Proto.Config.proto_config_model p);
@@ -20179,12 +20534,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(PluginGeneratorMainSettings p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(PluginGeneratorMainSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -20668,16 +21023,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(PluginGeneratorNodeSettings p) { }
         protected virtual void OnVisitEnd(PluginGeneratorNodeSettings p) { }
-        public void Visit(PluginGeneratorMainSettings p)
+        public void Visit(PluginGeneratorSettings p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(PluginGeneratorMainSettings p)
+        public void VisitEnd(PluginGeneratorSettings p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(PluginGeneratorMainSettings p) { }
-        protected virtual void OnVisitEnd(PluginGeneratorMainSettings p) { }
+        protected virtual void OnVisit(PluginGeneratorSettings p) { }
+        protected virtual void OnVisitEnd(PluginGeneratorSettings p) { }
         public void Visit(AppProjectGenerator p)
         {
             this.OnVisit(p);
@@ -20989,10 +21344,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void VisitEnd(PluginGroupGeneratorsDefaultSettings p);
         void Visit(PluginGeneratorNodeSettings p);
         void VisitEnd(PluginGeneratorNodeSettings p);
-        void Visit(PluginGeneratorMainSettings p);
-        void VisitEnd(PluginGeneratorMainSettings p);
-        void Visit(AppProjectGenerator p);
-        void VisitEnd(AppProjectGenerator p);
+        void Visit(PluginGeneratorSettings p);
+        void VisitEnd(PluginGeneratorSettings p);
         void Visit(ConfigModel p);
         void VisitEnd(ConfigModel p);
         void Visit(GroupListCommon p);

@@ -165,10 +165,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IPluginGroupGeneratorsSettings // ModelInterfaces.tt Line: 29
     {
-    	
-    	///////////////////////////////////////////////////
-    	/// Guid of group generators
-    	///////////////////////////////////////////////////
     	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 60
     	string Settings { get; } // ModelInterfaces.tt Line: 60
     }
@@ -199,7 +195,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     
     ///////////////////////////////////////////////////
-    /// Stored in each node in ConfigModel branch
+    /// Stored in each node in Model branch
     ///////////////////////////////////////////////////
     
     public partial interface IPluginGeneratorNodeSettings : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -220,7 +216,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     /// Stored in AppProjectGenerator node
     ///////////////////////////////////////////////////
     
-    public partial interface IPluginGeneratorMainSettings : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IPluginGeneratorSettings : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	
@@ -235,9 +231,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     /// Application project generator
     ///////////////////////////////////////////////////
     
-    public partial interface IAppProjectGenerator : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IAppProjectGenerator // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Description { get; } // ModelInterfaces.tt Line: 60
     	string PluginGuid { get; } // ModelInterfaces.tt Line: 60
     	string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 60
@@ -254,10 +249,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string GenFileName { get; } // ModelInterfaces.tt Line: 60
     	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 60
-    	IPluginGeneratorMainSettings MainSettings { get; } // ModelInterfaces.tt Line: 64
+    	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 64
     	string ConnStr { get; } // ModelInterfaces.tt Line: 60
-    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 60
+    	string PluginGroupSettingsGuid { get; } // ModelInterfaces.tt Line: 60
     	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 60
+    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 60
     	
     	///////////////////////////////////////////////////
     	/// Generator output file name
@@ -295,6 +291,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 64
     	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 64
     	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 64
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 29

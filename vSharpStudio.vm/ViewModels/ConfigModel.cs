@@ -23,7 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnInit()
         {
-            this._Name = "ConfigModel";
+            this._Name = "Model";
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupConstants.Parent = this;
             this.GroupEnumerations.Parent = this;

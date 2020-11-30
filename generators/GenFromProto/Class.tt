@@ -103,9 +103,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 		this.Write(p.TransformText());
 	}
 	this.PopIndent(); #>
-<# if (this.Doc.IsDefaultBase) { #>
+<# if (this.IsBaseWithParent) { #>
     [BrowsableAttribute(false)]
-    override public bool IsChanged 
+    override public bool IsChanged  // <#=Helper.FilePos() #>
     { 
         get 
         { 
