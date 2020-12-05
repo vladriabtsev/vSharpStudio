@@ -136,7 +136,7 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
-        public void Validation002_ValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        public void Validation002_CatalogValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
             ConfigValidator.Reset();
             CatalogValidator.Reset();
@@ -158,7 +158,7 @@ namespace vSharpStudio.Unit
 
             cfg.Validate();
 
-            cfg.ValidateSubTreeFromNode(c, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
+            cfg.ValidateSubTreeFromNode(c, _logger);
 
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(c.ValidationCollection.Count == 4);
@@ -193,8 +193,72 @@ namespace vSharpStudio.Unit
 
             cfg.ValidateSubTreeFromNode(cfg, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
             Assert.IsTrue(cfg.ValidationCollection.Count == 4);
+
+            cfg.ValidateSubTreeFromNode(cfg, _logger);
+            Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
 
+        [TestMethod]
+        public void Validation003_AppProjectGeneratorValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        {
+            ConfigValidator.Reset();
+            CatalogValidator.Reset();
+            var cfg = new Config();
+            cfg.CurrentCfgFolderPath = @".\";
+            //cfg.SolutionPath = @"..\..\..\..\";
+
+            var sol1 = cfg.GroupAppSolutions.AddAppSolution("sol1","./");
+            var prj1 = sol1.AddProject("prj1", "./");
+            var gen1 = prj1.AddGenerator("gen1", null, null, "");
+
+            string mes1 = "test error message";
+            string mes2 = "test warning message";
+            string mes22 = "test warning2 message";
+            string mes3 = "test info message";
+
+            //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes22).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryHigh);
+            //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.VeryLow);
+            //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes3).WithSeverity(Severity.Info).WithState(x => SeverityWeight.VeryHigh);
+            //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryLow);
+
+            cfg.Validate();
+
+            cfg.ValidateSubTreeFromNode(sol1, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
+
+            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+            Assert.IsTrue(sol1.ValidationCollection.Count == 6);
+            //var p = sol1.ValidationCollection[0];
+            //Assert.IsTrue(p.Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(p.Message == mes1);
+            //Assert.IsTrue(p.Model == sol1);
+            //p = sol1.ValidationCollection[1];
+            //Assert.IsTrue(p.Severity == FluentValidation.Severity.Warning);
+            //Assert.IsTrue(p.Message == mes22);
+            //Assert.IsTrue(p.Model == sol1);
+            //p = sol1.ValidationCollection[2];
+            //Assert.IsTrue(p.Severity == FluentValidation.Severity.Warning);
+            //Assert.IsTrue(p.Message == mes2);
+            //Assert.IsTrue(p.Model == sol1);
+            //p = sol1.ValidationCollection[3];
+            //Assert.IsTrue(p.Severity == FluentValidation.Severity.Info);
+            //Assert.IsTrue(p.Message == mes3);
+            //Assert.IsTrue(p.Model == sol1);
+
+            //Assert.AreEqual(1, sol1.CountErrors);
+            //Assert.AreEqual(2, sol1.CountWarnings);
+            //Assert.AreEqual(1, sol1.CountInfos);
+
+            //Assert.AreEqual(1, cfg.Model.GroupCatalogs.CountErrors);
+            //Assert.AreEqual(2, cfg.Model.GroupCatalogs.CountWarnings);
+            //Assert.AreEqual(1, cfg.Model.GroupCatalogs.CountInfos);
+
+            //Assert.AreEqual(1, cfg.CountErrors);
+            //Assert.AreEqual(2, cfg.CountWarnings);
+            //Assert.AreEqual(1, cfg.CountInfos);
+
+            //cfg.ValidateSubTreeFromNode(cfg, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 4);
+        }
         [TestMethod]
         public void Validation007_Propagation()
         {

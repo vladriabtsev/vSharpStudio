@@ -259,7 +259,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// Generator output file name
     	///////////////////////////////////////////////////
     	string GenScriptFileName { get; } // ModelInterfaces.tt Line: 60
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
     }
     
     public partial interface IPluginGeneratorNodeDefaultSettings // ModelInterfaces.tt Line: 29

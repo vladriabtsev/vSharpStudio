@@ -96,6 +96,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 276
             return m;
         }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
         #endregion Procedures
         #region Properties
         
@@ -207,6 +218,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                 m.IsSchemaParam2.Value = vm.IsSchemaParam2.Value;
             m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -377,6 +399,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             m.AccessParam4.HasValue = !string.IsNullOrEmpty(vm.AccessParam4);
             m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -582,6 +615,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
                 m.IsIncluded.Value = vm.IsIncluded.Value;
             return m;
         }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
         #endregion Procedures
         #region Properties
         
@@ -707,6 +751,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 276
             return m;
         }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
         #endregion Procedures
         #region Properties
         
@@ -807,6 +862,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 239
             m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties

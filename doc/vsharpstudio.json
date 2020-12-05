@@ -558,16 +558,6 @@
               "fullType": "string",
               "ismap": false,
               "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
-              "ismap": false,
-              "defaultValue": ""
             }
           ]
         },

@@ -56,7 +56,8 @@ namespace vSharpStudio.vm.ViewModels
                     return dt.Value;
                 solsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSol, new object[] { dt.Value });
             }
-
+            if (dic_sols.Count == 0)
+                return null;
             return objSol;
         }
         private static object CreateSettingsForProject(ITreeConfigNode node, AppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
@@ -177,10 +178,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return null;
         }
-        public void Run(ConfigModel node)
-        {
-            node.DynamicNodeDefaultSettings = this.Run((ITreeConfigNode)node, true);
-        }
+        //public void Run(ConfigModel node)
+        //{
+        //    node.DynamicNodeDefaultSettings = this.Run((ITreeConfigNode)node, true);
+        //}
     }
     public static class SettingsTypeBuilder
     {

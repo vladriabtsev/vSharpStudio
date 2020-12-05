@@ -103,18 +103,20 @@ namespace vSharpStudio.vm.ViewModels
                 this.AddMessage(p, t);
             }
         }
-
+        // only for not ITreeConfigNode
+        IValidatableWithSeverity parent;
         partial void OnVisit(IValidatableWithSeverity p)
         {
-            // if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
-            //    node = p;
-            this._level++;
-            if (!(p is ITreeConfigNode))
-            {
-                throw new ArgumentException();
-            }
-
             var pp = p as ITreeConfigNode;
+            if (pp == null)
+            {
+                pp = (ITreeConfigNode)this.parent;
+            }
+            else
+            {
+                this._level++;
+            }
+            this.parent = p;
             if (this._logger != null)
             {
                 this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
@@ -137,17 +139,15 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnVisitEnd(IValidatableWithSeverity p)
         {
-            if (!(p is ITreeConfigNode))
+            if (p is ITreeConfigNode)
             {
-                throw new ArgumentException();
+                var pp = p as ITreeConfigNode;
+                if (this._logger != null)
+                {
+                    this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                }
+                this._level--;
             }
-
-            var pp = p as ITreeConfigNode;
-            if (this._logger != null)
-            {
-                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
-            }
-            this._level--;
         }
     }
 }

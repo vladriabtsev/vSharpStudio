@@ -57,6 +57,8 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
             Assert.IsTrue(vm.Config.GroupPlugins.ListPlugins.Count > 0);
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             Assert.IsNotNull(pluginNode);
@@ -74,6 +76,8 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -101,7 +105,6 @@ namespace vSharpStudio.Unit
             var prmsGroup = (vPlugin.Sample.PluginsGroupSettings)gen.GetPluginsGroupSettings();
             prmsGroup.IsGroupParam1 = true;
 
-            Assert.AreEqual(3, gen.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
@@ -111,7 +114,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, gen.ListGenerators.Count);
             Assert.IsNotNull(gen.DynamicGeneratorSettings);
             Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen.DynamicGeneratorSettings.GetType().Name);
-            //Assert.IsNotNull(vm.Config.Model.DynamicNodesSettings);
+            Assert.IsNotNull(vm.Config.Model.DynamicNodesSettings);
             //Assert.IsNotNull(vm.Config.Model.DynamicNodeDefaultSettings);
             //Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessNodeSettings).Name, vm.Config.Model.DynamicNodesSettings.GetType().Name);
 
@@ -133,7 +136,6 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(gen2.DynamicGeneratorSettings);
             Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen2.DynamicGeneratorSettings.GetType().Name);
             Assert.IsNotNull(vm2.Config.Model.DynamicNodesSettings);
-            Assert.IsNotNull(vm2.Config.Model.DynamicNodeDefaultSettings);
             vm2.Config.SelectedNode = gen2;
             //Assert.IsNotNull(gen2.DynamicNodesSettings);
             var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
@@ -163,6 +165,7 @@ namespace vSharpStudio.Unit
 
             vm2.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
+            vm2.Config.DebugTag = "stop";
             vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
 
             #region DicDiffResult
@@ -179,7 +182,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
             diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
-            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            //Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -207,7 +210,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
             diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
-            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
+            //Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -233,6 +236,8 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -297,13 +302,13 @@ namespace vSharpStudio.Unit
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
 
-            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.DynamicModelNodeSettings;
+            //var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.DynamicModelNodeSettings;
             var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
 
             // on model we have link to AppProjectGenerator settings
-            Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
+            //Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
             nds.IsParam1 = true;
-            Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
+            //Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
 
             Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic));
             nds.IsIncluded = false;
@@ -354,7 +359,7 @@ namespace vSharpStudio.Unit
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
-            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevCurrentConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm2.Config.PrevCurrentConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
             Assert.AreEqual(true, nds.IsParam1);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
@@ -362,7 +367,7 @@ namespace vSharpStudio.Unit
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
-            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.PrevStableConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
+            nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm2.Config.PrevStableConfig.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
             Assert.AreEqual(true, nds.IsParam1);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
@@ -381,6 +386,8 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -465,6 +472,8 @@ namespace vSharpStudio.Unit
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -605,6 +614,12 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.CountErrors == 0);
             // not valid
             sln.RelativeAppSolutionPath = null;
+
+
+            vm.Config.ValidateSubTreeFromNode();
+
+
+
             TestTransformation tt = new TestTransformation();
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);

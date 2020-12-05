@@ -105,6 +105,17 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             m.StringValue.HasValue = !string.IsNullOrEmpty(vm.StringValue);
             return m;
         }
+        
+        public void AcceptSharedNodeVisitor(SharedVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
         #endregion Procedures
         #region Properties
         

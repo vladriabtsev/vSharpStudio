@@ -425,7 +425,6 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            var nds = (INodeGenSettings)ttt;
                             foreach (var tttt in ttt.ListGenerators)
                             {
                                 if (tttt.Generator == null)
@@ -443,40 +442,40 @@ namespace vSharpStudio.ViewModels
                                 {
                                     lst = gen.GetListNodeGenerationSettings();
                                 }
-                                foreach (var ts in lst)
-                                {
-                                    if (cfg.Model.ContainsSettings(ttt.Guid, ts.Guid))
-                                    {
-                                        throw new Exception();
-                                        //continue;
-                                    }
-                                    PluginGeneratorNodeSettings gs = null;
-                                    foreach (var tds in nds.ListNodeGeneratorsSettings)
-                                    {
-                                        if (tds.NodeSettingsVmGuid == ts.Guid)
-                                        {
-                                            gs = tds;
-                                            break;
-                                        }
-                                    }
-                                    if (gs == null)
-                                    {
-                                        gs = new PluginGeneratorNodeSettings(ttt);
-                                        gs.Name = ttt.Name;
-                                        gs.NodeSettingsVmGuid = ts.Guid;
-                                        gs.AppProjectGeneratorGuid = ttt.Guid;
-                                        nds.ListNodeGeneratorsSettings.Add(gs);
-                                    }
-                                    gs.SettingsVm = ts.GetAppGenerationNodeSettingsVm(gs.Settings, true);
-                                    //if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
-                                    //{
-                                    //    ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                                    //}
-                                    //var dicS = ttt.DicGenNodeSettings[ttt.Guid];
-                                    //dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-                                    //// Set link for default settings for ConfigModel
-                                    //cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
-                                }
+                                //foreach (var ts in lst)
+                                //{
+                                //    if (cfg.Model.ContainsSettings(ttt.Guid, ts.Guid))
+                                //    {
+                                //        throw new Exception();
+                                //        //continue;
+                                //    }
+                                //    PluginGeneratorNodeSettings gs = null;
+                                //    foreach (var tds in nds.ListNodeGeneratorsSettings)
+                                //    {
+                                //        if (tds.NodeSettingsVmGuid == ts.Guid)
+                                //        {
+                                //            gs = tds;
+                                //            break;
+                                //        }
+                                //    }
+                                //    if (gs == null)
+                                //    {
+                                //        gs = new PluginGeneratorNodeSettings(ttt);
+                                //        gs.Name = ttt.Name;
+                                //        gs.NodeSettingsVmGuid = ts.Guid;
+                                //        gs.AppProjectGeneratorGuid = ttt.Guid;
+                                //        nds.ListNodeGeneratorsSettings.Add(gs);
+                                //    }
+                                //    gs.SettingsVm = ts.GetAppGenerationNodeSettingsVm(gs.Settings, true);
+                                //    //if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
+                                //    //{
+                                //    //    ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+                                //    //}
+                                //    //var dicS = ttt.DicGenNodeSettings[ttt.Guid];
+                                //    //dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+                                //    //// Set link for default settings for ConfigModel
+                                //    //cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
+                                //}
                             }
                             ttt.RestoreSettings();
                         }
@@ -664,6 +663,8 @@ namespace vSharpStudio.ViewModels
             }
             this.CurrentCfgFilePath = null;
             this.Config = new Config();
+            this.InitConfig(this.Config);
+            this.VisibilityAndMessageInstructions();
         }
         public vCommand CommandOpenConfig
         {
@@ -747,7 +748,6 @@ namespace vSharpStudio.ViewModels
             //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
             //CompareSaved(json);
 #endif
-            this.VisibilityAndMessageInstructions();
         }
         public vCommand CommandConfigSaveAs
         {
@@ -787,6 +787,7 @@ namespace vSharpStudio.ViewModels
                         UpdateUserSettingsSaveConfigs();
                         ResetIsChangedBeforeSave();
                         File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                        this.VisibilityAndMessageInstructions();
                     }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
 
                 // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
@@ -925,11 +926,12 @@ namespace vSharpStudio.ViewModels
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 #if Async
-                                await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                var ex = await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
 #else
                                 this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
 #endif
                                 this.cancellationTokenSource = null;
+                                throw ex;
                             }
                             catch (CancellationException ex)
                             {
@@ -941,6 +943,8 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                                else
+                                    throw ex;
                             }
                             if (!isException)
                             {
@@ -1129,11 +1133,12 @@ namespace vSharpStudio.ViewModels
         //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
 #if Async
-        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
+        private async Task<Exception> UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
 #else
         private void UpdateCurrentVersion(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
 #endif
         {
+            Exception resEx = null;
             TestTransformation tst = parm as TestTransformation;
             ProgressVM progress = new ProgressVM();
             progress.Progress = 0;
@@ -1161,7 +1166,7 @@ namespace vSharpStudio.ViewModels
                     {
                         var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                         if (res != System.Windows.MessageBoxResult.OK)
-                            return;
+                            return resEx;
                     }
 
                     // unit test
@@ -1337,12 +1342,13 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
-
+                resEx = ex;
             }
             finally
             {
                 //TODO roll back if Exception
             }
+            return resEx;
         }
         public vCommand CommandConfigCreateStableVersion
         {

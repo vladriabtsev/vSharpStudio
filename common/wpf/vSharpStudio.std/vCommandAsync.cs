@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,13 +35,13 @@ namespace ViewModelBase
 {
     public interface IAsyncCommand : System.Windows.Input.ICommand
     {
-        Task ExecuteAsync(object parameter);
+        Task ExecuteAsync(object parameter, bool isCatchException = false);
     }
-    public abstract class AsyncCommandBase : IAsyncCommand
+    abstract public class AsyncCommandBase : IAsyncCommand
     {
-        public abstract bool CanExecute(object parameter);
-        public abstract Task ExecuteAsync(object parameter);
-        public async void Execute(object parameter)
+        abstract public bool CanExecute(object parameter);
+        abstract public Task ExecuteAsync(object parameter, bool isCatchException = false);
+        async public void Execute(object parameter)
         {
             await ExecuteAsync(parameter);
         }
@@ -54,28 +55,100 @@ namespace ViewModelBase
             CommandManager.InvalidateRequerySuggested();
         }
     }
-    public class AsyncCommand<TResult> : AsyncCommandBase, INotifyPropertyChanged
+    public class vCommandAsync : AsyncCommandBase
     {
-        private readonly Func<CancellationToken, Task<TResult>> _command;
-        private readonly CancelAsyncCommand _cancelCommand;
-        private readonly Predicate<object> _canExecute;
-        // Raises PropertyChanged
-        public AsyncCommand(Func<CancellationToken, Task<TResult>> command, Predicate<object> canExecute)
+        async static public Task ExecuteFuncAsync(Action action)
         {
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                action();
+            });
+        }
+        async static public Task ExecuteFuncAsync(CancellationToken token, ProgressVM progress, Action<CancellationToken, ProgressVM, Action> action)
+        {
+            var prgrs = new ProgressVM();
+            prgrs.From(progress);
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                action(token, prgrs, () => { progress.From(prgrs); });
+            });
+        }
+        async static public Task ExecuteFuncAsync(ProgressVM progress, Action<ProgressVM, Action> action)
+        {
+            var prgrs = new ProgressVM();
+            prgrs.From(progress);
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                action(prgrs, () => { progress.From(prgrs); });
+            });
+        }
+        static public vCommandAsync Create(ProgressVM progress, Action<CancellationToken, ProgressVM, Action> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
+        {
+            if (cts == null)
+                cts = new CancellationTokenSource();
+            var prgrs = new ProgressVM();
+            prgrs.From(progress);
+            var asyncCommand = new vCommandAsync((cmd) =>
+            {
+                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    command(cts.Token, prgrs, () => { progress.From(prgrs); });
+                });
+                return tsk;
+            }, canExecute, cts);
+            return asyncCommand;
+        }
+        static public vCommandAsync Create(Action<CancellationToken> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
+        {
+            if (cts == null)
+                cts = new CancellationTokenSource();
+            var asyncCommand = new vCommandAsync((cmd) =>
+            {
+                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    command(cts.Token);
+                });
+                return tsk;
+            }, canExecute, cts);
+            return asyncCommand;
+        }
+        protected CancellationTokenSource _cts;
+        public CancellationTokenSource CancellationTokenSource { get { return _cts; } }
+        private readonly Func<CancellationToken, Task> _command;
+        protected CancelAsyncCommand _cancelCommand;
+        protected Predicate<object> _canExecute;
+        // Raises PropertyChanged
+        protected vCommandAsync() { }
+        public vCommandAsync(Func<CancellationToken, Task> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
+        {
+            if (cts == null)
+                cts = new CancellationTokenSource();
             _command = command;
             _canExecute = canExecute;
-            _cancelCommand = new CancelAsyncCommand();
+            _cts = cts;
+            _cancelCommand = new CancelAsyncCommand(_cts);
         }
-        public override bool CanExecute(object parameter)
+        override public bool CanExecute(object parameter)
         {
             return (Execution == null || Execution.IsCompleted) && _canExecute(parameter);
         }
-        public override async Task ExecuteAsync(object parameter)
+        override async public Task ExecuteAsync(object parameter, bool isCatchException = false)
         {
             _cancelCommand.NotifyCommandStarting();
-            Execution = new NotifyTaskCompletion<TResult>(_command(_cancelCommand.Token));
+            Execution = new NotifyTaskCompletion(_command(_cancelCommand.Token));
             RaiseCanExecuteChanged();
-            await Execution.TaskCompletion;
+            if (isCatchException)
+            {
+                try
+                {
+                    await Execution.TaskCompletion;
+                }
+                catch { }
+            }
+            else
+            {
+                await Execution.TaskCompletion;
+            }
             _cancelCommand.NotifyCommandFinished();
             RaiseCanExecuteChanged();
         }
@@ -83,9 +156,13 @@ namespace ViewModelBase
         {
             get { return _cancelCommand; }
         }
-        private sealed class CancelAsyncCommand : ICommand
+        public sealed class CancelAsyncCommand : ICommand
         {
-            private CancellationTokenSource _cts = new CancellationTokenSource();
+            public CancelAsyncCommand(CancellationTokenSource cts)
+            {
+                _cts = cts;
+            }
+            private CancellationTokenSource _cts;
             private bool _commandExecuting;
             public CancellationToken Token { get { return _cts.Token; } }
             public void NotifyCommandStarting()
@@ -93,7 +170,7 @@ namespace ViewModelBase
                 _commandExecuting = true;
                 if (!_cts.IsCancellationRequested)
                     return;
-                _cts = new CancellationTokenSource();
+                //_cts = new CancellationTokenSource();
                 RaiseCanExecuteChanged();
             }
             public void NotifyCommandFinished()
@@ -120,12 +197,23 @@ namespace ViewModelBase
                 CommandManager.InvalidateRequerySuggested();
             }
         }
-        public NotifyTaskCompletion<TResult> Execution { get; private set; }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public NotifyTaskCompletion Execution { get; private set; }
+        public bool IsCanceled
+        {
+            get
+            {
+                return _cancelCommand.Token.IsCancellationRequested || 
+                    this.Execution.IsCanceled;
+            }
+        }
+        public bool IsFaulted { get { return this.Execution.IsFaulted; } }
+        public AggregateException Exception { get { return this.Execution.Exception; } }
+        public Exception InnerException { get { return this.Execution.InnerException; } }
+        public string ErrorMessage { get { return this.Execution.ErrorMessage; } }
     }
-    public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
+    public sealed class NotifyTaskCompletion : INotifyPropertyChanged
     {
-        public NotifyTaskCompletion(Task<TResult> task)
+        public NotifyTaskCompletion(Task task)
         {
             TaskCompletion = task;
             if (!task.IsCompleted)
@@ -142,7 +230,7 @@ namespace ViewModelBase
             catch
             {
             }
-            var propertyChanged = PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if (propertyChanged == null)
                 return;
             propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Status)));
@@ -156,25 +244,15 @@ namespace ViewModelBase
             {
                 propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsFaulted)));
                 propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Exception)));
-                propertyChanged(this,
-                  new PropertyChangedEventArgs(nameof(this.InnerException)));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.InnerException)));
                 propertyChanged(this, new PropertyChangedEventArgs(nameof(this.ErrorMessage)));
             }
             else
             {
-                propertyChanged(this,
-                  new PropertyChangedEventArgs(nameof(this.IsSuccessfullyCompleted)));
-                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.Result)));
+                propertyChanged(this, new PropertyChangedEventArgs(nameof(this.IsSuccessfullyCompleted)));
             }
         }
-        public Task<TResult> TaskCompletion { get; private set; }
-        public TResult Result
-        {
-            get
-            {
-                return (TaskCompletion.Status == TaskStatus.RanToCompletion) ? TaskCompletion.Result : default(TResult);
-            }
-        }
+        public Task TaskCompletion { get; private set; }
         public TaskStatus Status { get { return TaskCompletion.Status; } }
         public bool IsCompleted { get { return TaskCompletion.IsCompleted; } }
         public bool IsNotCompleted { get { return !TaskCompletion.IsCompleted; } }

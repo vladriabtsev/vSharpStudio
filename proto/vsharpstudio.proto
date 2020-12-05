@@ -609,11 +609,6 @@ message proto_app_project_generator {
     // @attr [Description("SQL script output file name")]
     // Generator output file name
     string gen_script_file_name = 23;
-
-
-    // @attr [PropertyOrderAttribute(30)]
-    // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 30;
 }
 // @base ViewModelValidatableWithSeverity
 message proto_plugin_generator_node_default_settings {

@@ -140,6 +140,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // Clone.tt Line: 246
             return m;
         }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListOpenConfigHistory)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
         #endregion Procedures
         #region Properties
         
@@ -248,6 +263,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // Clone.tt Line: 276
             m.ConfigPath = vm.ConfigPath; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -493,6 +519,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListPlugins)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -877,6 +907,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListGenerators)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -1491,6 +1525,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.VersionMigrationCurrent = vm.VersionMigrationCurrent; // Clone.tt Line: 276
             m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -2200,6 +2245,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListBaseConfigLinks)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -3083,7 +3132,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.GroupConfigLinks.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.Model.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.GroupPlugins.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.GroupAppSolutions.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             visitor.VisitEnd(this);
         }
@@ -3528,6 +3583,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.ConnGuid = vm.ConnGuid; // Clone.tt Line: 276
             m.ConnName = vm.ConnName; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -4269,6 +4335,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListAppSolutions)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             foreach (var t in this.ListGroupGeneratorsDefultSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -5082,6 +5152,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListAppProjects)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListGroupGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -5519,6 +5597,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListAppProjectGenerators)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -6287,7 +6369,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.IsValidate = false;
             this.OnInitBegin();
             this.GeneratorSettingsVm = new PluginGeneratorSettings(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -6298,10 +6379,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
+            // throw new Exception();
         }
         public static AppProjectGenerator Clone(ITreeConfigNode parent, AppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -6332,9 +6410,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6366,42 +6441,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 141
             to.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 141
             to.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -6454,12 +6493,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -6491,8 +6524,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.ConnStrToPrevStable = vm.ConnStrToPrevStable; // Clone.tt Line: 276
             m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 276
             m.GenScriptFileName = vm.GenScriptFileName; // Clone.tt Line: 276
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -6506,10 +6537,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             visitor.Visit(this);
             this.GeneratorSettingsVm.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -7017,31 +7044,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 166
         partial void OnGenScriptFileNameChanged();
         string IAppProjectGenerator.GenScriptFileName { get { return this._GenScriptFileName; } } 
-        
-        [PropertyOrderAttribute(30)]
-        [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
-        { 
-            get 
-            { 
-                return this._ListNodeGeneratorsSettings; 
-            }
-            private set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    this._ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
-        partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IAppProjectGenerator.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
         override public bool IsChanged  // Class.tt Line: 108
         { 
@@ -7146,6 +7148,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -8040,6 +8053,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
@@ -12271,6 +12295,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.DataType.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -13224,6 +13250,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.DataType.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);

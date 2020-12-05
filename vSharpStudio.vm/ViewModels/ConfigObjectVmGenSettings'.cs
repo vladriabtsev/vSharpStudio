@@ -282,20 +282,7 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (ngs != null)
-                {
-                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
-                    {
-                        //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
-                        //    return true;
-                        var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
-                        if (settings.IsIncluded.HasValue)
-                        {
-                            return settings.IsIncluded ?? false;
-                        }
-                    }
-                }
-                else if (p is ConfigModel)
+                if (p is ConfigModel)
                 {
                     var m = p as ConfigModel;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && m.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
@@ -308,6 +295,19 @@ namespace vSharpStudio.vm.ViewModels
                         return settings.IsIncluded ?? false;
                     }
                     return true;
+                }
+                else if (ngs != null)
+                {
+                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                    {
+                        //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
+                        //    return true;
+                        var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                        if (settings.IsIncluded.HasValue)
+                        {
+                            return settings.IsIncluded ?? false;
+                        }
+                    }
                 }
                 else
                     throw new Exception();

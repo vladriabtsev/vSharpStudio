@@ -281,9 +281,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
                 var groupSettings = this.plugin.GetPluginGroupSolutionSettingsVmFromJson(null);
-                if (!sln.DicPluginsGroupSettings.ContainsKey(groupSettings.Guid))
+                if (groupSettings != null)
                 {
-                    sln.DicPluginsGroupSettings[groupSettings.Guid] = groupSettings;
+                    this.PluginGroupSettingsGuid = groupSettings.Guid;
+                    if (!sln.DicPluginsGroupSettings.ContainsKey(groupSettings.Guid))
+                    {
+                        sln.DicPluginsGroupSettings[groupSettings.Guid] = groupSettings;
+                    }
                 }
             }
             HideProperties();

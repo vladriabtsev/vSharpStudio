@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
 
         protected IMigration _migration { get; set; }
         public string ConnectionString { get; set; }
-
+        public string DebugTag;
         partial void OnInitBegin()
         {
             _logger.Trace();
@@ -153,6 +153,14 @@ namespace vSharpStudio.vm.ViewModels
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
 
+        public void ValidateSubTreeFromNode(ILogger logger = null)
+        {
+            _logger.Trace();
+            foreach (var t in this.Children)
+            {
+                this.ValidateSubTreeFromNode(t);
+            }
+        }
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
             _logger.Trace();

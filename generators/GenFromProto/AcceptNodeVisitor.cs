@@ -30,7 +30,7 @@ namespace GenFromProto
         {
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
- if (this.message.IsDefaultBase()) { 
+ if (this.Doc.IsValidatableBase) { 
             
             #line default
             #line hidden
@@ -60,7 +60,7 @@ namespace GenFromProto
             
             #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.IsCsSimple() || !JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase)
+     if (field.IsCsSimple() || !this.Doc.IsValidatableBase)
        continue;
 
             
@@ -108,7 +108,7 @@ namespace GenFromProto
             this.Write(".AcceptConfigNodeVisitor(visitor);\r\n");
             
             #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
- } else if (this.message.IsDefaultBase()) { 
+ } else if (this.Doc.IsValidatableBase) { 
             
             #line default
             #line hidden
