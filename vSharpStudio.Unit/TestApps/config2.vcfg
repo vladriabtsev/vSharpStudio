@@ -1,19 +1,19 @@
 
-û
-$d8bc4965-5683-4dc4-9d88-580946af3ffftest2 ×¯Àä–¶óƒ*test1:¾Å¤şè®óJª3
-$c94b2766-5432-425a-8628-3650fa6218cbBaseConfigs²Œ
-$5daac05b-172d-484f-9f7a-34c0819e2b1eConfigModel µª”’Ğáûô *Model@dHPªF
-$a5ab4379-160f-4d1f-a3c5-dff36fed5365	Constants€€€€€€€€p"	Constants²M
-$35988a5c-3930-4b75-afe0-93303ce2da22Enumerations€€€€€€€€€"EnumerationsºK
-$fca213c0-9ae7-4b54-8719-3d45ac84ffdeCatalogs€€€€€€€€"Catalogs2CtlgÂ×
-$58ebafea-4c42-4ad2-b12a-2cee9dc58059	Documents€€€€€€€€ "	Documents2Doc:@
-$170da853-7e97-4df8-97e4-e72389b07af4SharedÓŠ¼Î¶¨øûq"SharedBG
-$fcca6129-8e4c-458c-9da9-2a8f0af1d79a	Documents€€€€€€€€€"	DocumentsÊE
-$4aaeac5d-d346-469d-8437-f5f4d7b961a5Journals€€€€€€€€°"JournalsÒ´
-$f322e554-8b37-448c-8ddd-409e5f943067Common€€€€€€€€`"Common:4
-$a3bea694-728f-4165-ae57-950998999c45Roles"RolesB<
-$279c8698-3886-4fd5-84ea-95027683ea6e	Constants"	ConstantsÂ­
-$607ffa78-e8ef-4e7f-840b-64d8cb1982e3€€€€€€€€ "º
+ü
+$de6c8f59-6ccb-407d-9ee3-0c6d931c652dtest2 ×¯Àä–¶óƒ*test1: Ü«şôâõ™ª3
+$069effe2-27ce-4c00-9804-e121e78fccdbBaseConfigs²Œ
+$a7fd6c76-aec0-4cbe-b846-c18b9c09cea7ConfigModel µª”’Ğáûô *Model@dHPªF
+$12876b49-a49a-46ec-845a-a27401f783a9	Constants€€€€€€€€p"	Constants²M
+$a8b68e6b-12f2-473f-975e-7520fc063bf7Enumerations€€€€€€€€€"EnumerationsºK
+$f4399aea-a5f0-4a58-8b4b-05d3f8221ae0Catalogs€€€€€€€€"Catalogs2CtlgÂ×
+$2b192b04-c497-4410-9adc-1559cda0730c	Documents€€€€€€€€ "	Documents2Doc:@
+$dfc19874-24d7-4020-ba5a-e17d0a9b1814SharedÓŠ¼Î¶¨øûq"SharedBG
+$3cdd9ea8-66b6-4f5e-89e4-bc792d250fd3	Documents€€€€€€€€€"	DocumentsÊE
+$019c030e-1076-4a4d-9e0c-b19bf74c4a93Journals€€€€€€€€°"JournalsÒ´
+$b3633cd0-2fee-406e-b4d8-f8f54b9c2154Common€€€€€€€€`"Common:4
+$72e3eda1-18e8-4e92-b949-f041c6eee62eRoles"RolesB<
+$94446f28-157a-44e3-b083-a10d7651c85f	Constants"	ConstantsÂ­
+$20fa8609-4b22-4e10-8e08-7cd03d457a67€€€€€€€€ "º
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation ØŞèİ›ŸæòX"Â
@@ -35,4 +35,4 @@ $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"ã
 $16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2i
 $933EE120-81C7-4A14-93FF-CB2FDDF0F1C6MicrosoftSqliteConnectionsConnection string generator ¬åõ˜Ù²÷ÈXÊ6
-$c1564994-91a3-4766-9482-c97c41004e4dApps€€€€€€€€@
+$af64e606-73bf-4ffa-a164-f8919df4da7aApps€€€€€€€€@
