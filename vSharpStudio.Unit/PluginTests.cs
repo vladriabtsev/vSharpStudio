@@ -247,6 +247,7 @@ namespace vSharpStudio.Unit
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.Namespace = "testns";
             //Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
@@ -614,13 +615,15 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.CountErrors == 0);
             // not valid
             sln.RelativeAppSolutionPath = null;
-
-
             vm.Config.ValidateSubTreeFromNode();
-
-
+            Assert.IsTrue(vm.Config.CountErrors > 0);
+            //// valid
+            //sln.RelativeAppSolutionPath = slnPath;
+            //vm.Config.ValidateSubTreeFromNode();
+            //Assert.IsTrue(vm.Config.CountErrors == 0);
 
             TestTransformation tt = new TestTransformation();
+            tt.IsThrowExceptionOnBuildValidated = true;
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.Config.CountErrors > 0);

@@ -152,14 +152,9 @@ namespace vSharpStudio.vm.ViewModels
                 this.ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
-
         public void ValidateSubTreeFromNode(ILogger logger = null)
         {
-            _logger.Trace();
-            foreach (var t in this.Children)
-            {
-                this.ValidateSubTreeFromNode(t);
-            }
+            this.ValidateSubTreeFromNode(this, logger);
         }
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
@@ -194,6 +189,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 logger.LogInformation("=== Cancelled ===");
             }
+            Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
         }
 
         #endregion Validation

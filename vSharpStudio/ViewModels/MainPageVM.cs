@@ -931,7 +931,8 @@ namespace vSharpStudio.ViewModels
                                 this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
 #endif
                                 this.cancellationTokenSource = null;
-                                throw ex;
+                                if (ex != null)
+                                    throw ex;
                             }
                             catch (CancellationException ex)
                             {
@@ -943,8 +944,6 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
                                     MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
-                                else
-                                    throw ex;
                             }
                             if (!isException)
                             {

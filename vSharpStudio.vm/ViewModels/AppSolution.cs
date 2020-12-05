@@ -102,6 +102,8 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
+            if (string.IsNullOrEmpty(this.RelativeAppSolutionPath))
+                return "";
             var path = Path.Combine(cfg.CurrentCfgFolderPath, this.RelativeAppSolutionPath);
             return path;
         }
