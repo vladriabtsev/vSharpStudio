@@ -1,16 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using Google.Protobuf;
 using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
     public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings
     {
-        public string SettingsAsJson => throw new NotImplementedException();
+        [BrowsableAttribute(false)]
+        public string SettingsAsJson
+        {
+            get
+            {
+                var proto = GeneratorDbSchemaSettings.ConvertToProto(this);
+                return JsonFormatter.Default.Format(proto);
+            }
+        }
         public string GenerateCode(IConfig model)
         {
-            throw new NotImplementedException();
+            string s = "";
+            //if (this.IsAccessParam1)
+            //{
+            //    s = "kuku";
+            //}
+            //var visitor = new MyModelVisitor(this);
+            //visitor.Run(model.Model);
+            //return visitor.Result;
+            return s;
         }
     }
 }

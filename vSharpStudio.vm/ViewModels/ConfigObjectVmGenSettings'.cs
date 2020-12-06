@@ -69,12 +69,7 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             var guid = ttt.Guid;
                             var gen = cfg.DicActiveAppProjectGenerators[ttt.Guid];
-                            if (gen is IvPluginDbConnStringGenerator)
-                            {
-                                guid = (gen as IvPluginDbConnStringGenerator).DbGenerator.Guid;
-                            }
-                            else
-                                this.AddNodeAppGenSettings(guid);
+                            this.AddNodeAppGenSettings(guid);
                         }
                     }
                 }
@@ -86,16 +81,7 @@ namespace vSharpStudio.vm.ViewModels
         private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
         {
             var cfg = (Config)this.GetConfig();
-            List<IvPluginGeneratorNodeSettings> lst = null;
-            if (gen is IvPluginDbConnStringGenerator)
-            {
-                var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
-                lst = genDb.GetListNodeGenerationSettings();
-            }
-            else
-            {
-                lst = gen.GetListNodeGenerationSettings();
-            }
+            var lst = gen.GetListNodeGenerationSettings();
             foreach (var t in lst)
             {
                 if (DicGenNodeSettings.ContainsKey(t.Guid))

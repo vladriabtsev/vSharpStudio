@@ -8,7 +8,6 @@ namespace vSharpStudio.common
 {
     public enum vPluginLayerTypeEnum
     {
-        DbConnection,
         DbDesign,
         DbAccess, 
         ServerService, 

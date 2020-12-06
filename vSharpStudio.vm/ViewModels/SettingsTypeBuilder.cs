@@ -101,10 +101,6 @@ namespace vSharpStudio.vm.ViewModels
                 if (isShortVersion && (tttt.Guid != ttt.PluginGeneratorGuid))
                     continue;
                 IvPluginGenerator gen = tttt.Generator;
-                if (gen is IvPluginDbConnStringGenerator)
-                {
-                    gen = (gen as IvPluginDbConnStringGenerator).DbGenerator;
-                }
                 bool isFound = false;
                 var lst = gen.GetListNodeGenerationSettings();
                 foreach (var ts in lst)

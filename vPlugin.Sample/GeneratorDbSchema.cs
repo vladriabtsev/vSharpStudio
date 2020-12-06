@@ -28,9 +28,10 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings GetConnectionStringMvvm(string provider, string connectionString)
+        public IvPluginGeneratorSettings GetConnectionStringMvvm(string connectionString)
         {
-            throw new NotImplementedException();
+            var res = new DbConnectionStringSettings(connectionString);
+            return res;
         }
         public object GetDbModel(string connectionString, Action<Exception> onError = null)
         {

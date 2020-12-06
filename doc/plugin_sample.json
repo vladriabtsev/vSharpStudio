@@ -43,6 +43,27 @@
           ]
         },
         {
+          "name": "proto_db_connection_string_settings",
+          "longName": "proto_db_connection_string_settings",
+          "fullName": "proto_plugin_sample.proto_db_connection_string_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "string_settings",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_generator_db_access_node_catalog_form_settings",
           "longName": "proto_generator_db_access_node_catalog_form_settings",
           "fullName": "proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings",

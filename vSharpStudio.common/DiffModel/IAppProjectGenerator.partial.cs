@@ -6,7 +6,7 @@ namespace vSharpStudio.common
 {
     public partial interface IAppProjectGenerator : ITreeConfigNode
     {
-        IvPluginDbConnStringGenerator GetDbConnStringGenerator();
+        IvPluginDbGenerator PluginDbGenerator { get; }
         IvPluginGeneratorSettings DynamicGeneratorSettings { get; }
     }
 }

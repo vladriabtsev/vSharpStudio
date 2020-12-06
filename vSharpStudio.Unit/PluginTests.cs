@@ -546,6 +546,53 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
+        public void Plugin008WorkWithConnStringSettings()
+        {
+            _logger.LogTrace("Start test".CallerInfo());
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+
+            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.Namespace = "ns";
+
+            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            Assert.AreEqual("", gen.ConnStr);
+
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.GenFileName = "test_file.cs";
+            gen.PluginGuid = pluginNode.Guid;
+            gen.PluginGeneratorGuid = genDb.Guid;
+
+            var connSettings = (vPlugin.Sample.DbConnectionStringSettings)gen.DynamicMainConnStrSettings;
+            Assert.IsNotNull(connSettings);
+            Assert.AreEqual("", gen.ConnStr);
+            connSettings.StringSettings = "test_value";
+            Assert.AreEqual("test_value", gen.ConnStr);
+            gen.ConnStr = "test_value2";
+            connSettings = (vPlugin.Sample.DbConnectionStringSettings)gen.DynamicMainConnStrSettings;
+            Assert.AreEqual("test_value2", connSettings.StringSettings);
+
+            vm.CommandConfigSave.Execute(null);
+
+            var vm2 = new MainPageVM(true);
+            vm2.OnFormLoaded();
+            vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            var gen2 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            var connSettings2 = (vPlugin.Sample.DbConnectionStringSettings)gen2.DynamicMainConnStrSettings;
+            Assert.IsNotNull(connSettings2);
+            Assert.AreEqual("test_value2", gen2.ConnStr);
+        }
+        [TestMethod]
         [DataRow(@"OldProject\")]
         //[DataRow(@"SdkProject\")]
         public async Task Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem(string prType)

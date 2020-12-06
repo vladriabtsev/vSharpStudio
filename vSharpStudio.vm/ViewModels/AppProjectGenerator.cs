@@ -39,19 +39,16 @@ namespace vSharpStudio.vm.ViewModels
         private IvPluginGenerator PluginGenerator
         {
             get { return _PluginGenerator; }
-            set
-            {
-                _PluginGenerator = value;
-            }
+            set { _PluginGenerator = value; }
         }
         private IvPluginGenerator _PluginGenerator = null;
         [BrowsableAttribute(false)]
         public IvPluginDbGenerator PluginDbGenerator { get; set; }
         partial void OnConnStrChanged()
         {
-            if (this.IsConnectString() ?? false)
+            if (this.PluginDbGenerator != null)
             {
-                (_PluginGenerator as IvPluginDbConnStringGenerator).ConnectionStringToVM(this.ConnStr);
+                this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this.ConnStr);
             }
         }
         partial void OnInit()
@@ -67,12 +64,6 @@ namespace vSharpStudio.vm.ViewModels
             cfg = (Config)this.GetConfig();
             HideProperties();
         }
-        public bool? IsConnectString()
-        {
-            if (_PluginGenerator == null)
-                return null;
-            return _PluginGenerator is IvPluginDbConnStringGenerator;
-        }
         [Browsable(false)]
         new public string IconName
         {
@@ -84,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     return null;
                 }
-                else if (_PluginGenerator is IvPluginDbConnStringGenerator)
+                else if (this.PluginDbGenerator != null)
                 {
                     return "iconAddBehavior";
                 }
@@ -110,7 +101,8 @@ namespace vSharpStudio.vm.ViewModels
                     if (_PluginGenerator is IvPluginDbGenerator)
                     {
                         var db_gen = _PluginGenerator as IvPluginDbGenerator;
-                        this._DynamicMainConnStrSettings = db_gen.GetConnectionStringMvvm(db_gen.ProviderName, this.ConnStr);
+                        this._DynamicMainConnStrSettings = db_gen.GetConnectionStringMvvm(this.ConnStr);
+                        this._DynamicMainConnStrSettings.PropertyChanged += _DynamicMainConnStrSettings_PropertyChanged;
                     }
                     else
                     {
@@ -130,6 +122,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
+
+        private void _DynamicMainConnStrSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig());
+            this.NotifyPropertyChanged(() => this.ConnStr);
+        }
+
         private IvPluginGeneratorSettings _DynamicMainConnStrSettings;
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
@@ -142,24 +141,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
-                    if (_PluginGenerator is IvPluginDbConnStringGenerator)
-                    {
-                        if (this.PluginDbGenerator == null)
-                        {
-                            this._DynamicGeneratorSettings = null;
-                        }
-                        else
-                        {
-                            this._DynamicGeneratorSettings = (this.PluginDbGenerator as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
-                        }
-                    }
-                    else
-                    {
-                        this._DynamicGeneratorSettings = _PluginGenerator.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
-                    }
+                    this._DynamicGeneratorSettings = _PluginGenerator.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
+                    this.NotifyPropertyChanged();
                     if (this._DynamicGeneratorSettings != null)
                     {
-                        this.NotifyPropertyChanged();
                         this.ValidateProperty();
                     }
                 }
@@ -201,15 +186,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object _DynamicModelNodeSettings;
-
-        public IvPluginGeneratorSettings GetGeneratorSettings()
-        {
-            if (_PluginGenerator is IvPluginDbConnStringGenerator)
-            {
-                var genConnStr = (_PluginGenerator as IvPluginDbConnStringGenerator).DbGenerator;
-            }
-            return null;
-        }
         public IvPluginGroupSolutionSettings GetPluginGroupSettings(string guidGroupSettings)
         {
             var sln = (AppSolution)(this.Parent.Parent);
@@ -389,77 +365,24 @@ namespace vSharpStudio.vm.ViewModels
                             this.PluginGroupSettingsGuid = groupSettins.Guid;
                         }
                         this.PluginGenerator = tt.Generator;
-                        //List<IvPluginGeneratorNodeSettings> lst = null;
-                        if (_PluginGenerator is IvPluginDbConnStringGenerator)
-                        {
-                            this.PluginDbGenerator = (_PluginGenerator as IvPluginDbConnStringGenerator).DbGenerator;
-                            cfg.DicActiveAppProjectGenerators[this.Guid] = this.PluginDbGenerator;
-                            //lst = genDb.GetListNodeGenerationSettings();
-                            this.PluginDbGenerator.ProviderName = (_PluginGenerator as IvPluginDbConnStringGenerator).ProviderName;
-                        }
-                        else
-                        {
-                            cfg.DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
-                            //lst = gen.GetListNodeGenerationSettings();
-                        }
-                        //foreach (var t in lst)
-                        //{
-                        //    //if (DicGenNodeSettings.ContainsKey(t.Guid))
-                        //    //    continue;
-                        //    PluginGeneratorNodeSettings gs = null;
-                        //    foreach (var ts in ngs.ListNodeGeneratorsSettings)
-                        //    {
-                        //        if (ts.NodeSettingsVmGuid == t.Guid)
-                        //        {
-                        //            gs = ts;
-                        //            break;
-                        //        }
-                        //    }
-                        //    if (gs == null)
-                        //    {
-                        //        gs = new PluginGeneratorNodeSettings(this);
-                        //        gs.Name = this.Name;
-                        //        gs.NodeSettingsVmGuid = t.Guid;
-                        //        gs.AppProjectGeneratorGuid = this.Guid;
-                        //        ngs.ListNodeGeneratorsSettings.Add(gs);
-                        //    }
-                        //    gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings, false);
-                        //    //if (!this.DicGenNodeSettings.ContainsKey(this.Guid))
-                        //    //{
-                        //    //    this.DicGenNodeSettings[this.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                        //    //}
-                        //    //var dicS = this.DicGenNodeSettings[this.Guid];
-                        //    //dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-
-                        //    // Set link for default settings for ConfigModel
-                        //    cfg.Model.TrySetSettings(this.Guid, gs.NodeSettingsVmGuid, gs.SettingsVm);
-                        //}
+                        cfg.DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
+                        this.PluginDbGenerator = this.PluginGenerator as IvPluginDbGenerator;
                     }
                 }
             }
-            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                this.PluginGenerator = cfg.DicActiveAppProjectGenerators[this.Guid];
-            else
-                this.PluginGenerator = null;
-            if (this.IsConnectString() ?? false)
-            {
-                (_PluginGenerator as IvPluginDbConnStringGenerator).OnConnectionStringChanged =
-                    (connStr) =>
-                    {
-                        this._ConnStr = connStr;
-                        this.NotifyPropertyChanged(() => this.ConnStr);
-                    };
-            }
+            //if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+            //{
+            //    this.PluginGenerator = cfg.DicActiveAppProjectGenerators[this.Guid];
+            //    this.PluginDbGenerator = this.PluginGenerator as IvPluginDbGenerator;
+            //}
+            //else
+            //{
+            //    this.PluginGenerator = null;
+            //    this.PluginDbGenerator = null;
+            //}
         }
         public void SaveSettings()
         {
-            if (_PluginGenerator is IvPluginDbConnStringGenerator)
-            {
-                if (this.DynamicMainConnStrSettings != null)
-                    this.ConnStr = this.DynamicMainConnStrSettings.SettingsAsJson;
-                else
-                    this.ConnStr = string.Empty;
-            }
             if (this.DynamicGeneratorSettings != null)
                 this.GeneratorSettings = this.DynamicGeneratorSettings.SettingsAsJson;
             else
@@ -615,15 +538,6 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             }
         }
-        public IvPluginDbConnStringGenerator GetDbConnStringGenerator()
-        {
-            return _PluginGenerator as IvPluginDbConnStringGenerator;
-        }
-        public IvPluginDbGenerator GetDbGenerator()
-        {
-            return (_PluginGenerator as IvPluginDbConnStringGenerator)?.DbGenerator;
-        }
-
         #region Tree operations
         //public bool CanAddSubNode()
         //{

@@ -23,6 +23,118 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
+    public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // Class.tt Line: 6
+    public partial class DbConnectionStringSettings : VmValidatableWithSeverity<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public DbConnectionStringSettings() 
+            : base(DbConnectionStringSettingsValidator.Validator) // Class.tt Line: 43
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static DbConnectionStringSettings Clone(DbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            DbConnectionStringSettings vm = new DbConnectionStringSettings();
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.StringSettings = from.StringSettings; // Clone.tt Line: 65
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(DbConnectionStringSettings to, DbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.StringSettings = from.StringSettings; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override DbConnectionStringSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return DbConnectionStringSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(DbConnectionStringSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            DbConnectionStringSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_db_connection_string_settings' to 'DbConnectionStringSettings'
+        public static DbConnectionStringSettings ConvertToVM(Proto.Plugin.proto_db_connection_string_settings m, DbConnectionStringSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.StringSettings = m.StringSettings; // Clone.tt Line: 221
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'DbConnectionStringSettings' to 'proto_db_connection_string_settings'
+        public static Proto.Plugin.proto_db_connection_string_settings ConvertToProto(DbConnectionStringSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Plugin.proto_db_connection_string_settings m = new Proto.Plugin.proto_db_connection_string_settings(); // Clone.tt Line: 239
+            m.StringSettings = vm.StringSettings; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public string StringSettings // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._StringSettings; 
+            }
+            set
+            {
+                if (this._StringSettings != value)
+                {
+                    this.OnStringSettingsChanging(ref value);
+                    this._StringSettings = value;
+                    this.OnStringSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _StringSettings = string.Empty;
+        partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 166
+        partial void OnStringSettingsChanged();
+        string IDbConnectionStringSettings.StringSettings { get { return this._StringSettings; } set { this.StringSettings = value; } }
+        #endregion Properties
+    }
     public partial class PluginsGroupSettingsValidator : ValidatorBase<PluginsGroupSettings, PluginsGroupSettingsValidator> { } // Class.tt Line: 6
     public partial class PluginsGroupSettings : VmValidatableWithSeverity<PluginsGroupSettings, PluginsGroupSettingsValidator>, IPluginsGroupSettings // Class.tt Line: 7
     {
@@ -905,6 +1017,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     
     public interface IVisitorProto // IVisitorProto.tt Line: 7
     {
+        void Visit(Proto.Plugin.proto_db_connection_string_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_settings p);
         void Visit(Proto.Plugin.proto_generator_db_schema_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_settings p);
@@ -917,6 +1030,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
     {
         partial void OnVisit(IValidatableWithSeverity p);
         partial void OnVisitEnd(IValidatableWithSeverity p);
+        protected override void OnVisit(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(PluginsGroupSettings p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
@@ -984,6 +1107,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
     
+        public void Visit(DbConnectionStringSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(DbConnectionStringSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(DbConnectionStringSettings p) { }
+        protected virtual void OnVisitEnd(DbConnectionStringSettings p) { }
         public void Visit(PluginsGroupSettings p)
         {
             this.OnVisit(p);

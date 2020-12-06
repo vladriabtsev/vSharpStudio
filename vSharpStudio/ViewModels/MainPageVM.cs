@@ -432,50 +432,7 @@ namespace vSharpStudio.ViewModels
                                 if (tttt.Guid != ttt.PluginGeneratorGuid)
                                     continue;
                                 IvPluginGenerator gen = tttt.Generator;
-                                List<IvPluginGeneratorNodeSettings> lst = null;
-                                if (gen is IvPluginDbConnStringGenerator)
-                                {
-                                    var genDb = (gen as IvPluginDbConnStringGenerator).DbGenerator;
-                                    lst = genDb.GetListNodeGenerationSettings();
-                                }
-                                else
-                                {
-                                    lst = gen.GetListNodeGenerationSettings();
-                                }
-                                //foreach (var ts in lst)
-                                //{
-                                //    if (cfg.Model.ContainsSettings(ttt.Guid, ts.Guid))
-                                //    {
-                                //        throw new Exception();
-                                //        //continue;
-                                //    }
-                                //    PluginGeneratorNodeSettings gs = null;
-                                //    foreach (var tds in nds.ListNodeGeneratorsSettings)
-                                //    {
-                                //        if (tds.NodeSettingsVmGuid == ts.Guid)
-                                //        {
-                                //            gs = tds;
-                                //            break;
-                                //        }
-                                //    }
-                                //    if (gs == null)
-                                //    {
-                                //        gs = new PluginGeneratorNodeSettings(ttt);
-                                //        gs.Name = ttt.Name;
-                                //        gs.NodeSettingsVmGuid = ts.Guid;
-                                //        gs.AppProjectGeneratorGuid = ttt.Guid;
-                                //        nds.ListNodeGeneratorsSettings.Add(gs);
-                                //    }
-                                //    gs.SettingsVm = ts.GetAppGenerationNodeSettingsVm(gs.Settings, true);
-                                //    //if (!ttt.DicGenNodeSettings.ContainsKey(ttt.Guid))
-                                //    //{
-                                //    //    ttt.DicGenNodeSettings[ttt.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                                //    //}
-                                //    //var dicS = ttt.DicGenNodeSettings[ttt.Guid];
-                                //    //dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-                                //    //// Set link for default settings for ConfigModel
-                                //    //cfg.Model.TrySetSettings(ttt.Guid, ts.Guid, gs.SettingsVm);
-                                //}
+                                var lst = gen.GetListNodeGenerationSettings();
                             }
                             ttt.RestoreSettings();
                         }
@@ -987,13 +944,7 @@ namespace vSharpStudio.ViewModels
                                     case vPluginLayerTypeEnum.DbDesign:
                                         if (!(tg.Generator is IvPluginDbGenerator))
                                             throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                        //IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
-                                        break;
-                                    case vPluginLayerTypeEnum.DbConnection:
-                                        if (!(tg.Generator is IvPluginDbConnStringGenerator))
-                                            throw new Exception("Generator type vPluginLayerTypeEnum.DbConnection has to have interface: " + typeof(IvPluginDbConnStringGenerator).Name);
                                         string outFileConn = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);
-                                        var genConn = (IvPluginDbConnStringGenerator)tg.Generator;
                                         bool first = false;
                                         StringBuilder sb = null;
                                         if (!dicAppSettings.ContainsKey(outFileConn))
@@ -1012,21 +963,19 @@ namespace vSharpStudio.ViewModels
                                         sb.Append(tpg.Name);
                                         sb.AppendLine("\": {");
                                         sb.Append("\t\t\t\"provider\": \"");
-                                        sb.Append(genConn.ProviderName);
+                                        sb.Append(tpg.PluginDbGenerator.ProviderName);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t\t\"connection_string\": \"");
-                                        var cnstr = genConn.GenerateCode(null);
+                                        var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
                                         sb.Append(cnstr);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
                                         code = sb.ToString();
-                                        if (genConn.DbGenerator.PluginGeneratorType != vPluginLayerTypeEnum.DbDesign)
-                                            throw new Exception("Expecting property DbGenerator has to be type vPluginLayerTypeEnum.DbDesign. Connection String generator type: " + genConn.GetType().Name);
                                         if (isDeleteDb)
                                         {
-                                            genConn.DbGenerator.EnsureDbDeleted(tpg.ConnStr);
+                                            tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
                                         }
-                                        genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false, () =>
+                                        tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false, () =>
                                         {
                                             return true;
                                         }, (ex) =>
@@ -1038,7 +987,7 @@ namespace vSharpStudio.ViewModels
                                             if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
                                             {
                                                 //TODO generate Stable DB update SQL script
-                                                var sql = genConn.DbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true, () =>
+                                                var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true, () =>
                                                 {
                                                     return true;
                                                 }, (ex) =>
