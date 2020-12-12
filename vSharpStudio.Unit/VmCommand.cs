@@ -84,7 +84,7 @@ namespace vSharpStudio.Unit
         async public Task ExecuteFuncAsync()
         {
             int i = 0;
-            await vCommandAsync.ExecuteFuncAsync(() =>
+            await vCommandAsync.ExecuteActionAsync(() =>
             {
                 i = 5;
             });
@@ -104,7 +104,7 @@ namespace vSharpStudio.Unit
         {
             await Assert.ThrowsExceptionAsync<Exception>(async () =>
             {
-                await vCommandAsync.ExecuteFuncAsync(() =>
+                await vCommandAsync.ExecuteActionAsync(() =>
                 {
                     throw new Exception("test");
                 });
@@ -126,7 +126,7 @@ namespace vSharpStudio.Unit
         {
             var localProgress = new ProgressVM();
             int i = 0;
-            await vCommandAsync.ExecuteFuncAsync(localProgress, (progress, onprogress) =>
+            await vCommandAsync.ExecuteActionAsync(localProgress, (progress, onprogress) =>
             {
                 for (; i < 10; i++)
                 {
@@ -155,7 +155,25 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(9, localProgress.Progress);
         }
         [TestMethod]
-        async public Task AsyncCommandExecuteAsync()
+        async public Task AsyncCommandIntWithProgress()
+        {
+            var localProgress = new ProgressVM();
+            int i = 0;
+            var command = vCommandAsync<int>.Create(localProgress, (token, progress, onprogress) =>
+            {
+                for (; i < 10; i++)
+                {
+                    progress.Progress = i;
+                    onprogress();
+                }
+                return i;
+            }, (o) => { return true; });
+            await command.ExecuteAsync(null);
+            Assert.AreEqual(10, i);
+            Assert.AreEqual(9, localProgress.Progress);
+        }
+        [TestMethod]
+        async public Task AsyncCommandIntExecuteAsync()
         {
             var command = vCommandAsync<int>.Create((c) =>
             {
@@ -173,7 +191,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(true, command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
-        public void AsyncCommandExecute()
+        public void AsyncCommandIntExecute()
         {
             var command = vCommandAsync<int>.Create((c) =>
             {
@@ -191,7 +209,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(true, command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
-        async public Task AsyncCommandWithException()
+        async public Task AsyncCommandIntWithException()
         {
             await Assert.ThrowsExceptionAsync<Exception>(async () =>
             {
@@ -203,7 +221,7 @@ namespace vSharpStudio.Unit
             });
         }
         [TestMethod]
-        async public Task AsyncCommandWithExceptionCatch()
+        async public Task AsyncCommandIntWithExceptionCatch()
         {
             var command = vCommandAsync<int>.Create((c) =>
             {
@@ -220,7 +238,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(false, command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
-        async public Task AsyncCommandExecuteAsyncWithCancellation()
+        async public Task AsyncCommandIntExecuteAsyncWithCancellation()
         {
             var command = vCommandAsync<int>.Create((cancellation) =>
             {

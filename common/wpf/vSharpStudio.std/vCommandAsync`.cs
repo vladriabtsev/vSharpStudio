@@ -42,6 +42,26 @@ namespace ViewModelBase
             });
             return tsk;
         }
+        async static public Task<TResult> ExecuteFuncAsync(IBusy model, Func<TResult> func)
+        {
+            model.IsBusy = true;
+            var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+            {
+                return func();
+            });
+            model.IsBusy = false;
+            return tsk;
+        }
+        async static public Task<TResult> ExecuteFuncAsync(Func<TResult> func, IBusy model)
+        {
+            model.IsBusy = true;
+            var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+            {
+                return func();
+            });
+            model.IsBusy = false;
+            return tsk;
+        }
         async static public Task<TResult> ExecuteFuncAsync(ProgressVM progress, Func<ProgressVM, Action, TResult> func)
         {
             var prgrs = new ProgressVM();
@@ -62,13 +82,39 @@ namespace ViewModelBase
             });
             return tsk;
         }
+        static public vCommandAsync<TResult> Create(Func<TResult> command, Predicate<object> canExecute)
+        {
+            var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
+            {
+                var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+                {
+                    return command();
+                });
+                return tsk;
+            }, canExecute);
+            return asyncCommand;
+        }
+        static public vCommandAsync<TResult> Create(IBusy model, Func<TResult> command, Predicate<object> canExecute)
+        {
+            var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
+            {
+                model.IsBusy = true;
+                var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+                {
+                    return command();
+                });
+                model.IsBusy = false;
+                return tsk;
+            }, canExecute);
+            return asyncCommand;
+        }
         static public vCommandAsync<TResult> Create(Func<CancellationToken, TResult> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
         {
             if (cts == null)
                 cts = new CancellationTokenSource();
-            var asyncCommand = new vCommandAsync<TResult>((cmd) =>
+            var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
             {
-                var tsk = System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+                var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
                 {
                     return command(cts.Token);
                 });
@@ -82,9 +128,9 @@ namespace ViewModelBase
                 cts = new CancellationTokenSource();
             var prgrs = new ProgressVM();
             prgrs.From(progress);
-            var asyncCommand = new vCommandAsync<TResult>((cmd) =>
+            var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
             {
-                var tsk = System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+                var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
                 {
                     return command(cts.Token, prgrs, () => { progress.From(prgrs); });
                 });

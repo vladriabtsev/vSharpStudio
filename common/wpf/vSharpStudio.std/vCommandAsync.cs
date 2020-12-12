@@ -33,6 +33,10 @@ using System.Windows.Input;
 // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
 namespace ViewModelBase
 {
+    public interface IBusy
+    {
+        bool IsBusy { get; set; }
+    }
     public interface IAsyncCommand : System.Windows.Input.ICommand
     {
         Task ExecuteAsync(object parameter, bool isCatchException = false);
@@ -54,17 +58,30 @@ namespace ViewModelBase
         {
             CommandManager.InvalidateRequerySuggested();
         }
+        public void InvalidateCanExecute()
+        {
+            this.RaiseCanExecuteChanged();
+        }
     }
     public class vCommandAsync : AsyncCommandBase
     {
-        async static public Task ExecuteFuncAsync(Action action)
+        async static public Task ExecuteActionAsync(Action action)
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 action();
             });
         }
-        async static public Task ExecuteFuncAsync(CancellationToken token, ProgressVM progress, Action<CancellationToken, ProgressVM, Action> action)
+        async static public Task ExecuteActionAsync(IBusy model, Action action)
+        {
+            model.IsBusy = true;
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                action();
+            });
+            model.IsBusy = false;
+        }
+        async static public Task ExecuteActionAsync(CancellationToken token, ProgressVM progress, Action<CancellationToken, ProgressVM, Action> action)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -73,7 +90,7 @@ namespace ViewModelBase
                 action(token, prgrs, () => { progress.From(prgrs); });
             });
         }
-        async static public Task ExecuteFuncAsync(ProgressVM progress, Action<ProgressVM, Action> action)
+        async static public Task ExecuteActionAsync(ProgressVM progress, Action<ProgressVM, Action> action)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -81,6 +98,46 @@ namespace ViewModelBase
             {
                 action(prgrs, () => { progress.From(prgrs); });
             });
+        }
+        static public vCommandAsync Create(Action command, Predicate<object> canExecute)
+        {
+            var asyncCommand = new vCommandAsync((cmd) =>
+            {
+                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    command();
+                });
+                return tsk;
+            }, canExecute);
+            return asyncCommand;
+        }
+        static public vCommandAsync Create(IBusy model, Action command, Predicate<object> canExecute)
+        {
+            var asyncCommand = new vCommandAsync((cmd) =>
+            {
+                model.IsBusy = true;
+                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    command();
+                    model.IsBusy = false;
+                });
+                return tsk;
+            }, canExecute);
+            return asyncCommand;
+        }
+        static public vCommandAsync Create(Action<CancellationToken> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
+        {
+            if (cts == null)
+                cts = new CancellationTokenSource();
+            var asyncCommand = new vCommandAsync((cmd) =>
+            {
+                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    command(cts.Token);
+                });
+                return tsk;
+            }, canExecute, cts);
+            return asyncCommand;
         }
         static public vCommandAsync Create(ProgressVM progress, Action<CancellationToken, ProgressVM, Action> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
         {
@@ -93,20 +150,6 @@ namespace ViewModelBase
                 var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     command(cts.Token, prgrs, () => { progress.From(prgrs); });
-                });
-                return tsk;
-            }, canExecute, cts);
-            return asyncCommand;
-        }
-        static public vCommandAsync Create(Action<CancellationToken> command, Predicate<object> canExecute, CancellationTokenSource cts = null)
-        {
-            if (cts == null)
-                cts = new CancellationTokenSource();
-            var asyncCommand = new vCommandAsync((cmd) =>
-            {
-                var tsk = System.Threading.Tasks.Task.Factory.StartNew(() =>
-                {
-                    command(cts.Token);
                 });
                 return tsk;
             }, canExecute, cts);

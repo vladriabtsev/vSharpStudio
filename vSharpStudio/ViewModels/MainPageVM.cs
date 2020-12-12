@@ -1110,7 +1110,7 @@ namespace vSharpStudio.ViewModels
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     if (this._Config.CountErrors > 0)
                         throw new Exception($"There are {this._Config.CountErrors} errors in configuration. Fix errors and try again.");
-                    if (this._Config.CountWarnings > 0)
+                    if (tst == null && this._Config.CountWarnings > 0)
                     {
                         var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                         if (res != System.Windows.MessageBoxResult.OK)
