@@ -1,15 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using vSharpStudio.ViewModels;
-using vSharpStudio.common;
+﻿using System.Collections.Generic;
 using System.IO;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using vSharpStudio.vm.ViewModels;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using vSharpStudio.common;
+using vSharpStudio.ViewModels;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {
@@ -354,7 +351,7 @@ namespace vSharpStudio.Unit
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid, vPlugin.Sample.GeneratorDbAccessNodeSettings.GuidStatic);
             Assert.AreEqual(true, nds.IsParam1);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
-
+            Assert.IsFalse(vm2.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
             vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
@@ -365,6 +362,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid, nds.Guid));
 
             vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+            Assert.IsFalse((vm2.Config.PrevStableConfig.Model.GroupCatalogs[0].GroupProperties as IGetNodeSetting).IsIncluded(gen.Guid, nds.Guid));
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);

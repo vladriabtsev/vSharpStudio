@@ -664,7 +664,8 @@ namespace vSharpStudio.ViewModels
         private vCommand _CommandConfigSave;
         internal void SavePrepare()
         {
-            this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            this.Config.PluginSettingsToModel();
+            this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
             if (this.pconfig_history == null)
             {
@@ -684,7 +685,6 @@ namespace vSharpStudio.ViewModels
         internal void Save()
         {
             //TODO save and clean private ConnStr
-            this.Config.PluginSettingsToModel();
             this.SavePrepare();
             Utils.TryCall(() =>
             {
@@ -733,7 +733,6 @@ namespace vSharpStudio.ViewModels
             if (filePath != null || openFileDialog.ShowDialog() == true)
             {
                 this.FilePathSaveAs = filePath == null ? openFileDialog.FileName : Path.GetFullPath(filePath);
-                this.Config.PluginSettingsToModel();
                 this.SavePrepare();
                 Utils.TryCall(
                     () =>
@@ -1242,11 +1241,8 @@ namespace vSharpStudio.ViewModels
                     var update_history = new CallMethodAction(
                       () =>
                       {
-                          this._Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-                          this._Config.PluginSettingsToModel();
-                          var proto = Config.ConvertToProto(this._Config);
-                          this.pconfig_history.CurrentConfig = proto;
                           this.Save();
+                          var proto = Config.ConvertToProto(this.Config);
                           this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
                           this.InitConfig(this.Config.PrevCurrentConfig as Config);
                           // unit test
@@ -1331,9 +1327,6 @@ namespace vSharpStudio.ViewModels
                 throw ex;
             }
 
-            this.Config.PluginSettingsToModel();
-            //this.Config.RemoveFlagsMarkedForDeletionAndNew();
-
             this.CommandConfigSave.Execute(null);
 
             var vis = new ModelVisitorBase();
@@ -1366,9 +1359,7 @@ namespace vSharpStudio.ViewModels
             }
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code
-            this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-            this._Config.PluginSettingsToModel();
-            var proto = Config.ConvertToProto(this._Config);
+            var proto = Config.ConvertToProto(this.Config);
             this.pconfig_history.CurrentConfig = proto;
             this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
             this.Config.PrevStableConfig = Config.ConvertToVM(proto, new Config());

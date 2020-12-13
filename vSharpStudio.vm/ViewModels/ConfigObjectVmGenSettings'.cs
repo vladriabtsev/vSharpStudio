@@ -225,7 +225,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.Settings = t.SettingsVm.SettingsAsJson;
                 if (t.Settings == t.SettingsVm.SettingsAsJsonDefault)
-                    ngs.ListNodeGeneratorsSettings.Remove(t);
+                    t.Settings = string.Empty;
+                //    ngs.ListNodeGeneratorsSettings.Remove(t);
             }
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
@@ -259,9 +260,9 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public bool IsIncluded(string guidAppPrjGen, string guidSettings)
+        public bool IsIncluded(string guidAppPrjGen, string guidSettings, bool isFromPrevStable = false)
         {
-            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+            if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
 
             ITreeConfigNode p = this;
@@ -274,11 +275,13 @@ namespace vSharpStudio.vm.ViewModels
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && m.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
                     {
                         var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
-                        if (!settings.IsIncluded.HasValue)
+                        if (!settings.IsIncluded.HasValue || settings.IsIncluded.Value)
                         {
                             return true;
                         }
-                        return settings.IsIncluded ?? false;
+                        if (!isFromPrevStable)
+                            return this.IsIncludedInStable(guidAppPrjGen, guidSettings);
+                        return false;
                     }
                     return true;
                 }
@@ -291,7 +294,13 @@ namespace vSharpStudio.vm.ViewModels
                         var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
                         if (settings.IsIncluded.HasValue)
                         {
-                            return settings.IsIncluded ?? false;
+                            if (settings.IsIncluded.Value)
+                            {
+                                return true;
+                            }
+                            if (!isFromPrevStable)
+                                return this.IsIncludedInStable(guidAppPrjGen, guidSettings);
+                            return false;
                         }
                     }
                 }
@@ -302,6 +311,17 @@ namespace vSharpStudio.vm.ViewModels
                 p = p.Parent;
             }
             return true;
+        }
+        private bool IsIncludedInStable(string guidAppPrjGen, string guidSettings)
+        {
+            var cfg = (Config)this.GetConfig();
+            var prev = cfg.PrevStableConfig;
+            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            {
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                return prevNode.IsIncluded(guidAppPrjGen, guidSettings, true);
+            }
+            return false;
         }
         /// <summary>
         /// Getting VM of generator settings for node
