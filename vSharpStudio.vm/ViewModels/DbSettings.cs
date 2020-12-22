@@ -17,9 +17,31 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
+            this.DbSchema = "v";
+            this.PKeyName = "Id";
+            this.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+            this.VersionFieldName = "Version";
+            this.VersionFieldGuid = System.Guid.NewGuid().ToString();
+            this.IdGenerator = DbIdGeneratorMethod.HiLo;
+            this.PKeyType = EnumPrimaryKeyType.INT;
         }
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
+        [BrowsableAttribute(false)]
+        public string PKeyTypeStr
+        {
+            get
+            {
+                switch (this.PKeyType)
+                {
+                    case EnumPrimaryKeyType.INT:
+                        return "int";
+                    case EnumPrimaryKeyType.LONG:
+                        return "long";
+                }
+                throw new NotImplementedException();
+            }
+        }
     }
 }

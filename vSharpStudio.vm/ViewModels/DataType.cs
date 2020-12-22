@@ -24,9 +24,24 @@ namespace vSharpStudio.vm.ViewModels
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
         }
-
-        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
+        public DataType(BigInteger maxNumericalValue, bool isPositive = false)
             : this()
+        {
+            BigInteger maxValue = maxNumericalValue;
+            uint length = 0;
+            maxValue = maxValue / 10;
+            while (maxValue > 0)
+            {
+                length++;
+                maxValue = maxValue / 10;
+            }
+            this.DataTypeEnum = EnumDataType.NUMERICAL;
+            this.Length = length;
+            this.Accuracy = 0;
+            this.IsPositive = isPositive;
+        }
+        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
+        : this()
         {
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
@@ -54,7 +69,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
-
         public DataType(EnumDataType type, string guidOfType)
             : this()
         {

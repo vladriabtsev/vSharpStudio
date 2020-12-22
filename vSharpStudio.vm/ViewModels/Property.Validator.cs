@@ -46,11 +46,6 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            else
-            {
-                throw new Exception();
-            }
-
             return true;
         }
     }

@@ -135,47 +135,6 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
-/*
-enum db_id_generator_method
-{
-    Identity = 0;
-    HiLo = 1;
-}
-*/
-/*
-// General DB settings
-// @base ViewModelValidatableWithSeverity
-message db_settings {
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [Description("DB schema name for all object in this configuration")]
-    string db_schema = 1;
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [Description("Primary key generation method")]
-    db_id_generator_method id_generator = 2;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [Description("Primary key field type")]
-    proto_enum_primary_key_type p_key_type = 3;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [Description("Primary key field name")]
-    string key_name = 4;
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [Description("Record data version/timestamp field name")]
-    string timestamp = 5;
-    // if yes: 
-    //    Try to find one connecion string in config file. If more than one connection string found we use use connection_string_name.
-    // if no:
-    //    1. Find DB type from 
-    //    2. Create connection string from db_server, db_database_name, db_user
-    bool is_db_from_connection_string = 11; 
-    string connection_string_name = 12;
-    // path to project with config file containing connection string. Usefull for UNIT tests.
-    // it will override previous settings
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-    // @attr [Description("File path to store connection string settings in private place.")]
-    string path_to_project_with_connection_string = 19;
-}
-*/
 /** 
  * @exclude
  * ####################################### C O N F I G ##########################################
@@ -242,13 +201,6 @@ message proto_base_config_link {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/*
-enum proto_enum_primary_key_type {
-    INT = 0;
-    LONG = 1;
-}
-*/
-
 // Configuration config
 message proto_config {
     // Unique Guid for configuration (for comparison)
@@ -276,11 +228,6 @@ message proto_config {
     bool is_has_changed = 15;
     // @attr [BrowsableAttribute(false)]
     bool is_need_current_update = 16;
-
-    // GENERAL DB SETTINGS
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [ExpandableObjectAttribute()]
-    //db_settings db_settings = 14;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_base_config_links group_config_links = 101;
@@ -620,6 +567,44 @@ message proto_plugin_generator_node_default_settings {
  * @exclude
  * ####################################### M O D E L ##########################################
  */
+enum proto_enum_primary_key_type {
+    INT = 0;
+    LONG = 1;
+}
+enum db_id_generator_method
+{
+    Identity = 0;
+    HiLo = 1;
+}
+// General DB settings
+// @base ViewModelValidatableWithSeverity
+message db_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Schema")]
+    // @attr [Description("DB schema name for all object in this configuration")]
+    string db_schema = 1;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Id method")]
+    // @attr [Description("Primary key generation method")]
+    db_id_generator_method id_generator = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Id type")]
+    // @attr [Description("Primary key field type")]
+    proto_enum_primary_key_type p_key_type = 3;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Id name")]
+    // @attr [Description("Primary key field name")]
+    string p_key_name = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Version field")]
+    // @attr [Description("Version/timestamp field name")]
+    string version_field_name = 5;
+    // @attr [BrowsableAttribute(false)]
+    string p_key_field_guid = 6;
+    // @attr [BrowsableAttribute(false)]
+    string version_field_guid = 7;
+}
+
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_config_model {
@@ -660,6 +645,12 @@ message proto_config_model {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 15;
 
+    // GENERAL DB SETTINGS
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [Description("General DB generator settings")]
+    // @attr [DisplayName("DB settings")]
+    db_settings db_settings = 21;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;

@@ -23,6 +23,8 @@ namespace vSharpStudio.vm.ViewModels
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
             var p = this.Parent as GroupListProperties;
+            if (p == null)
+                return new List<ITreeConfigNode>();
             return p.Children;
         }
         public override bool HasChildren()
@@ -42,7 +44,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-             this.AddAllAppGenSettingsVmsToNode();
+            this.AddAllAppGenSettingsVmsToNode();
+        }
+        public Property(ITreeConfigNode parent, string guid, string name, DataType dataType)
+            : this(parent)
+        {
+            this.Guid = guid;
+            this.Name = name;
+            this.DataType = dataType;
         }
         public Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)

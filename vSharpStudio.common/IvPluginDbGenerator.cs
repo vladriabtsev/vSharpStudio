@@ -27,6 +27,15 @@ namespace vSharpStudio.common
         bool IsStableDbConnection { get; set; }
         // Provider name as from connection string
         string ProviderName { get; set; }
+        string DbSchema { get; }
+        string PKeyName { get; }
+        // csharp type name, int or long or etc
+        string PKeyTypeStr { get; }
+        string PKeyStoreTypeStr { get; }
+        string VersionFieldName { get; }
+        // csharp type name, int or long or etc
+        string VersionFieldTypeStr { get; }
+        string VersionFieldStoreTypeStr { get; }
 
         IvPluginGeneratorSettings GetConnectionStringMvvm(string connectionString);
 

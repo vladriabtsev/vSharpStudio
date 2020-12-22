@@ -202,6 +202,25 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IGroupListProperties IGroupProperties { get { return this._GroupProperties; } }
+        public List<IProperty> GetIncludedProperties(string guidAppPrjGen, string guidSettings)
+        {
+            var res = new List<IProperty>();
+            var grd = (GroupDocuments)this.Parent.Parent;
+            foreach (var t in grd.GroupSharedProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen, guidSettings))
+                {
+                    res.Add(t);
+                }
+            }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen, guidSettings))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
     }
 }

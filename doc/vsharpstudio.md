@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
+    - [db_settings](#proto_config.db_settings)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_project_generator](#proto_config.proto_app_project_generator)
@@ -53,8 +54,10 @@
     - [proto_user_settings](#proto_config.proto_user_settings)
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
   
+    - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
+    - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
   
   
   
@@ -67,6 +70,28 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
+
+
+
+<a name="proto_config.db_settings"></a>
+
+### db_settings
+General DB settings
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| db_schema | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Schema&#34;)] @attr [Description(&#34;DB schema name for all object in this configuration&#34;)] |
+| id_generator | [db_id_generator_method](#proto_config.db_id_generator_method) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Id method&#34;)] @attr [Description(&#34;Primary key generation method&#34;)] |
+| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] |
+| p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] |
+| version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Version/timestamp field name&#34;)] |
+| p_key_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+
+
+
 
 
 
@@ -289,6 +314,7 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] @attr [Description(&#34;General DB generator settings&#34;)] @attr [DisplayName(&#34;DB settings&#34;)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constants | [proto_group_list_constants](#proto_config.proto_group_list_constants) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -1270,6 +1296,18 @@ User&#39;s role
  
 
 
+<a name="proto_config.db_id_generator_method"></a>
+
+### db_id_generator_method
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Identity | 0 |  |
+| HiLo | 1 |  |
+
+
+
 <a name="proto_config.enum_enumeration_type"></a>
 
 ### enum_enumeration_type
@@ -1305,6 +1343,18 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
 | DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
 | ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_primary_key_type"></a>
+
+### proto_enum_primary_key_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INT | 0 |  |
+| LONG | 1 |  |
 
 
  

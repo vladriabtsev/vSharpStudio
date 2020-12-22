@@ -179,6 +179,10 @@
             <ul>
               
                 <li>
+                  <a href="#proto_config.db_settings"><span class="badge">M</span>db_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_app_db_settings"><span class="badge">M</span>proto_app_db_settings</a>
                 </li>
               
@@ -372,11 +376,19 @@
               
               
                 <li>
+                  <a href="#proto_config.db_id_generator_method"><span class="badge">E</span>db_id_generator_method</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_primary_key_type"><span class="badge">E</span>proto_enum_primary_key_type</a>
                 </li>
               
               
@@ -395,6 +407,82 @@
       </div>
       <p></p>
 
+      
+        <h3 id="proto_config.db_settings">db_settings</h3>
+        <p>General DB settings</p><p>@base ViewModelValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>db_schema</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Schema&#34;)]
+@attr [Description(&#34;DB schema name for all object in this configuration&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id_generator</td>
+                  <td><a href="#proto_config.db_id_generator_method">db_id_generator_method</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Id method&#34;)]
+@attr [Description(&#34;Primary key generation method&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>p_key_type</td>
+                  <td><a href="#proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Id type&#34;)]
+@attr [Description(&#34;Primary key field type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>p_key_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Id name&#34;)]
+@attr [Description(&#34;Primary key field name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version_field_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [DisplayName(&#34;Version field&#34;)]
+@attr [Description(&#34;Version/timestamp field name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>p_key_field_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version_field_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
         <p>@base ViewModelValidatableWithSeverity</p>
@@ -1359,6 +1447,17 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>db_settings</td>
+                  <td><a href="#proto_config.db_settings">db_settings</a></td>
+                  <td></td>
+                  <td><p>GENERAL DB SETTINGS
+@attr [PropertyOrderAttribute(11)]
+@attr [ExpandableObjectAttribute()]
+@attr [Description(&#34;General DB generator settings&#34;)]
+@attr [DisplayName(&#34;DB settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5022,6 +5121,29 @@ repeated proto_document list_documents = 7;
       
 
       
+        <h3 id="proto_config.db_id_generator_method">db_id_generator_method</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Identity</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>HiLo</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.enum_enumeration_type">enum_enumeration_type</h3>
         <p>Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss</p>
         <table class="enum-table">
@@ -5161,6 +5283,29 @@ repeated proto_document list_documents = 7;
                 <td>15</td>
                 <td><p>@attr [DisplayName(&#34;Any type&#34;)]
 @attr [Description(&#34;Any data type&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>INT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LONG</td>
+                <td>1</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

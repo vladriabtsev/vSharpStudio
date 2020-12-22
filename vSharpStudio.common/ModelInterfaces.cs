@@ -5,6 +5,16 @@ using ViewModelBase;
 
 namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
 {
+    public enum EnumPrimaryKeyType // ModelInterfaces.tt Line: 15
+    {
+        INT = 0,
+        LONG = 1,
+    }
+    public enum DbIdGeneratorMethod // ModelInterfaces.tt Line: 15
+    {
+        Identity = 0,
+        HiLo = 1,
+    }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
         STRING = 0,
@@ -272,6 +282,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     
     ///////////////////////////////////////////////////
+    /// General DB settings
+    ///////////////////////////////////////////////////
+    
+    public partial interface IDbSettings // ModelInterfaces.tt Line: 29
+    {
+    	string DbSchema { get; } // ModelInterfaces.tt Line: 60
+    	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 60
+    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 60
+    	string PKeyName { get; } // ModelInterfaces.tt Line: 60
+    	string VersionFieldName { get; } // ModelInterfaces.tt Line: 60
+    	string PKeyFieldGuid { get; } // ModelInterfaces.tt Line: 60
+    	string VersionFieldGuid { get; } // ModelInterfaces.tt Line: 60
+    }
+    
+    ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
     
@@ -284,6 +309,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 60
     	bool IsCompositeNames { get; } // ModelInterfaces.tt Line: 60
     	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 60
+    	
+    	///////////////////////////////////////////////////
+    	/// GENERAL DB SETTINGS
+    	///////////////////////////////////////////////////
+    	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 64
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 64
     	IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 64
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 64

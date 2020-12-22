@@ -7216,6 +7216,307 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         string IPluginGeneratorNodeDefaultSettings.Settings { get { return this._Settings; } } 
         #endregion Properties
     }
+    public partial class DbSettingsValidator : ValidatorBase<DbSettings, DbSettingsValidator> { } // Class.tt Line: 6
+    
+    ///////////////////////////////////////////////////
+    /// General DB settings
+    ///////////////////////////////////////////////////
+    public partial class DbSettings : VmValidatableWithSeverity<DbSettings, DbSettingsValidator>, IDbSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public DbSettings() 
+            : base(DbSettingsValidator.Validator) // Class.tt Line: 43
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static DbSettings Clone(DbSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            DbSettings vm = new DbSettings();
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.DbSchema = from.DbSchema; // Clone.tt Line: 65
+            vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 65
+            vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
+            vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
+            vm.VersionFieldName = from.VersionFieldName; // Clone.tt Line: 65
+            vm.PKeyFieldGuid = from.PKeyFieldGuid; // Clone.tt Line: 65
+            vm.VersionFieldGuid = from.VersionFieldGuid; // Clone.tt Line: 65
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(DbSettings to, DbSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.DbSchema = from.DbSchema; // Clone.tt Line: 141
+            to.IdGenerator = from.IdGenerator; // Clone.tt Line: 141
+            to.PKeyType = from.PKeyType; // Clone.tt Line: 141
+            to.PKeyName = from.PKeyName; // Clone.tt Line: 141
+            to.VersionFieldName = from.VersionFieldName; // Clone.tt Line: 141
+            to.PKeyFieldGuid = from.PKeyFieldGuid; // Clone.tt Line: 141
+            to.VersionFieldGuid = from.VersionFieldGuid; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override DbSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return DbSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(DbSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            DbSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'db_settings' to 'DbSettings'
+        public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.DbSchema = m.DbSchema; // Clone.tt Line: 221
+            vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 221
+            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
+            vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
+            vm.VersionFieldName = m.VersionFieldName; // Clone.tt Line: 221
+            vm.PKeyFieldGuid = m.PKeyFieldGuid; // Clone.tt Line: 221
+            vm.VersionFieldGuid = m.VersionFieldGuid; // Clone.tt Line: 221
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'DbSettings' to 'db_settings'
+        public static Proto.Config.db_settings ConvertToProto(DbSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 239
+            m.DbSchema = vm.DbSchema; // Clone.tt Line: 276
+            m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 274
+            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 274
+            m.PKeyName = vm.PKeyName; // Clone.tt Line: 276
+            m.VersionFieldName = vm.VersionFieldName; // Clone.tt Line: 276
+            m.PKeyFieldGuid = vm.PKeyFieldGuid; // Clone.tt Line: 276
+            m.VersionFieldGuid = vm.VersionFieldGuid; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(1)]
+        [DisplayName("Schema")]
+        [Description("DB schema name for all object in this configuration")]
+        public string DbSchema // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._DbSchema; 
+            }
+            set
+            {
+                if (this._DbSchema != value)
+                {
+                    this.OnDbSchemaChanging(ref value);
+                    this._DbSchema = value;
+                    this.OnDbSchemaChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _DbSchema = string.Empty;
+        partial void OnDbSchemaChanging(ref string to); // Property.tt Line: 166
+        partial void OnDbSchemaChanged();
+        string IDbSettings.DbSchema { get { return this._DbSchema; } } 
+        
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Id method")]
+        [Description("Primary key generation method")]
+        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IdGenerator; 
+            }
+            set
+            {
+                if (this._IdGenerator != value)
+                {
+                    this.OnIdGeneratorChanging(ref value);
+                    this._IdGenerator = value;
+                    this.OnIdGeneratorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private DbIdGeneratorMethod _IdGenerator;
+        partial void OnIdGeneratorChanging(ref DbIdGeneratorMethod to); // Property.tt Line: 166
+        partial void OnIdGeneratorChanged();
+        DbIdGeneratorMethod IDbSettings.IdGenerator { get { return this._IdGenerator; } } 
+        
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Id type")]
+        [Description("Primary key field type")]
+        public EnumPrimaryKeyType PKeyType // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._PKeyType; 
+            }
+            set
+            {
+                if (this._PKeyType != value)
+                {
+                    this.OnPKeyTypeChanging(ref value);
+                    this._PKeyType = value;
+                    this.OnPKeyTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPrimaryKeyType _PKeyType;
+        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 166
+        partial void OnPKeyTypeChanged();
+        EnumPrimaryKeyType IDbSettings.PKeyType { get { return this._PKeyType; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Id name")]
+        [Description("Primary key field name")]
+        public string PKeyName // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._PKeyName; 
+            }
+            set
+            {
+                if (this._PKeyName != value)
+                {
+                    this.OnPKeyNameChanging(ref value);
+                    this._PKeyName = value;
+                    this.OnPKeyNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PKeyName = string.Empty;
+        partial void OnPKeyNameChanging(ref string to); // Property.tt Line: 166
+        partial void OnPKeyNameChanged();
+        string IDbSettings.PKeyName { get { return this._PKeyName; } } 
+        
+        [PropertyOrderAttribute(5)]
+        [DisplayName("Version field")]
+        [Description("Version/timestamp field name")]
+        public string VersionFieldName // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._VersionFieldName; 
+            }
+            set
+            {
+                if (this._VersionFieldName != value)
+                {
+                    this.OnVersionFieldNameChanging(ref value);
+                    this._VersionFieldName = value;
+                    this.OnVersionFieldNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _VersionFieldName = string.Empty;
+        partial void OnVersionFieldNameChanging(ref string to); // Property.tt Line: 166
+        partial void OnVersionFieldNameChanged();
+        string IDbSettings.VersionFieldName { get { return this._VersionFieldName; } } 
+        
+        [BrowsableAttribute(false)]
+        public string PKeyFieldGuid // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._PKeyFieldGuid; 
+            }
+            set
+            {
+                if (this._PKeyFieldGuid != value)
+                {
+                    this.OnPKeyFieldGuidChanging(ref value);
+                    this._PKeyFieldGuid = value;
+                    this.OnPKeyFieldGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PKeyFieldGuid = string.Empty;
+        partial void OnPKeyFieldGuidChanging(ref string to); // Property.tt Line: 166
+        partial void OnPKeyFieldGuidChanged();
+        string IDbSettings.PKeyFieldGuid { get { return this._PKeyFieldGuid; } } 
+        
+        [BrowsableAttribute(false)]
+        public string VersionFieldGuid // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._VersionFieldGuid; 
+            }
+            set
+            {
+                if (this._VersionFieldGuid != value)
+                {
+                    this.OnVersionFieldGuidChanging(ref value);
+                    this._VersionFieldGuid = value;
+                    this.OnVersionFieldGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _VersionFieldGuid = string.Empty;
+        partial void OnVersionFieldGuidChanging(ref string to); // Property.tt Line: 166
+        partial void OnVersionFieldGuidChanged();
+        string IDbSettings.VersionFieldGuid { get { return this._VersionFieldGuid; } } 
+        #endregion Properties
+    }
     public partial class ConfigModelValidator : ValidatorBase<ConfigModel, ConfigModelValidator> { } // Class.tt Line: 6
     
     ///////////////////////////////////////////////////
@@ -7233,6 +7534,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.DbSettings = new DbSettings(); // Class.tt Line: 30
             this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 32
             this.GroupConstants = new GroupListConstants(this); // Class.tt Line: 32
             this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 32
@@ -7276,6 +7578,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
+                vm.DbSettings = DbSettings.Clone(from.DbSettings, isDeep);
+            if (isDeep) // Clone.tt Line: 62
                 vm.GroupCommon = GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupConstants = GroupListConstants.Clone(vm, from.GroupConstants, isDeep);
@@ -7314,6 +7618,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                DbSettings.Update(to.DbSettings, from.DbSettings, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 GroupListCommon.Update(to.GroupCommon, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -7404,6 +7710,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
+            if (vm.DbSettings == null) // Clone.tt Line: 213
+                vm.DbSettings = new DbSettings(); // Clone.tt Line: 217
+            DbSettings.ConvertToVM(m.DbSettings, vm.DbSettings); // Clone.tt Line: 219
             if (vm.GroupCommon == null) // Clone.tt Line: 213
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 215
             GroupListCommon.ConvertToVM(m.GroupCommon, vm.GroupCommon); // Clone.tt Line: 219
@@ -7454,6 +7763,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
+            m.DbSettings = DbSettings.ConvertToProto(vm.DbSettings); // Clone.tt Line: 270
             m.GroupCommon = GroupListCommon.ConvertToProto(vm.GroupCommon); // Clone.tt Line: 270
             m.GroupConstants = GroupListConstants.ConvertToProto(vm.GroupConstants); // Clone.tt Line: 270
             m.GroupEnumerations = GroupListEnumerations.ConvertToProto(vm.GroupEnumerations); // Clone.tt Line: 270
@@ -7473,6 +7783,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.DbSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.GroupCommon.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupConstants.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -7742,6 +8054,37 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        
+        
+        ///////////////////////////////////////////////////
+        /// GENERAL DB SETTINGS
+        ///////////////////////////////////////////////////
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [Description("General DB generator settings")]
+        [DisplayName("DB settings")]
+        public DbSettings DbSettings // Property.tt Line: 118
+        { 
+            get 
+            { 
+                return this._DbSettings; 
+            }
+            set
+            {
+                if (this._DbSettings != value)
+                {
+                    this.OnDbSettingsChanging(ref value);
+                    this._DbSettings = value;
+                    this.OnDbSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private DbSettings _DbSettings;
+        partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 139
+        partial void OnDbSettingsChanged();
+        IDbSettings IConfigModel.DbSettings { get { return this._DbSettings; } }
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 118
@@ -20356,6 +20699,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_plugin_generator_settings p);
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
+        void Visit(Proto.Config.db_settings p);
         void Visit(Proto.Config.proto_config_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
@@ -20592,10 +20936,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(DbSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(ConfigModel p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(ConfigModel p) // ValidationVisitor.tt Line: 48
         {
@@ -21081,6 +21436,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(PluginGeneratorNodeDefaultSettings p) { }
         protected virtual void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) { }
+        public void Visit(DbSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(DbSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(DbSettings p) { }
+        protected virtual void OnVisitEnd(DbSettings p) { }
         public void Visit(ConfigModel p)
         {
             this.OnVisit(p);

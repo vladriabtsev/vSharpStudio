@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : ITreeConfigNode, IDbTable
+    public partial interface IDbSettings
     {
-        IGroupListDocuments IParent { get; }
-        bool IsMarkedForDeletion { get; }
+        string PKeyTypeStr { get; }
     }
 }

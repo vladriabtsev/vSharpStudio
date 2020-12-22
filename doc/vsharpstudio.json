@@ -10,6 +10,24 @@
       "hasServices": false,
       "enums": [
         {
+          "name": "db_id_generator_method",
+          "longName": "db_id_generator_method",
+          "fullName": "proto_config.db_id_generator_method",
+          "description": "",
+          "values": [
+            {
+              "name": "Identity",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "HiLo",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
@@ -114,10 +132,109 @@
               "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
             }
           ]
+        },
+        {
+          "name": "proto_enum_primary_key_type",
+          "longName": "proto_enum_primary_key_type",
+          "fullName": "proto_config.proto_enum_primary_key_type",
+          "description": "",
+          "values": [
+            {
+              "name": "INT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LONG",
+              "number": "1",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
       "messages": [
+        {
+          "name": "db_settings",
+          "longName": "db_settings",
+          "fullName": "proto_config.db_settings",
+          "description": "General DB settings\n@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "db_schema",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Schema\")]\n@attr [Description(\"DB schema name for all object in this configuration\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "id_generator",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Id method\")]\n@attr [Description(\"Primary key generation method\")]",
+              "label": "",
+              "type": "db_id_generator_method",
+              "longType": "db_id_generator_method",
+              "fullType": "proto_config.db_id_generator_method",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "p_key_type",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Id type\")]\n@attr [Description(\"Primary key field type\")]",
+              "label": "",
+              "type": "proto_enum_primary_key_type",
+              "longType": "proto_enum_primary_key_type",
+              "fullType": "proto_config.proto_enum_primary_key_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "p_key_name",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Id name\")]\n@attr [Description(\"Primary key field name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version_field_name",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Version field\")]\n@attr [Description(\"Version/timestamp field name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "p_key_field_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version_field_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
         {
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
@@ -1311,6 +1428,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "db_settings",
+              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]\n@attr [Description(\"General DB generator settings\")]\n@attr [DisplayName(\"DB settings\")]",
+              "label": "",
+              "type": "db_settings",
+              "longType": "db_settings",
+              "fullType": "proto_config.db_settings",
               "ismap": false,
               "defaultValue": ""
             },

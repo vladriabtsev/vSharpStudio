@@ -63,6 +63,14 @@ namespace vSharpStudio.vm.ViewModels
             this.IsCompositeNames = true;
             // TODO validate
             this.IsUseGroupPrefix = true;
+
+            //this.DbSettings.DbSchema = "dbo";
+            //this.DbSettings.IdGenerator = DbIdGeneratorMethod.HiLo;
+            //this.DbSettings.PKeyFieldGuid= System.Guid.NewGuid().ToString();
+            //this.DbSettings.PKeyName = "Id";
+            //this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
+            //this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
+            //this.DbSettings.VersionFieldName = "Version";
         }
 
         protected override void OnInitFromDto()
@@ -373,6 +381,70 @@ namespace vSharpStudio.vm.ViewModels
         // private string _SelectedDbProvider;
 
         #endregion Connection string editor
+
+        public IProperty GetIdProperty(IvPluginDbGenerator dbGen)
+        {
+            string fieldName = null;
+            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+            {
+                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+                    return null;
+                fieldName = this.DbSettings.PKeyName;
+            }
+            else
+            {
+                fieldName = dbGen.PKeyName;
+            }
+            var dt = (DataType)GetIdDataType();
+            if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
+                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+            var res = new Property(this, this.DbSettings.PKeyFieldGuid, fieldName, dt);
+            return res;
+        }
+        public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
+        {
+            var dt = (DataType)GetIdDataType();
+            var res = new Property(this, (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
+            return res;
+        }
+        public IDataType GetIdDataType()
+        {
+            DataType dt = default(DataType);
+            switch (this.DbSettings.PKeyType)
+            {
+                case EnumPrimaryKeyType.INT:
+                    dt = new DataType(int.MaxValue);
+                    break;
+                case EnumPrimaryKeyType.LONG:
+                    dt = new DataType(long.MaxValue);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+
+            return dt;
+        }
+
+        public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
+        {
+            string fieldName = null;
+            if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
+            {
+                if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldName))
+                    return null;
+                fieldName = this.DbSettings.VersionFieldName;
+            }
+            else
+            {
+                fieldName = dbGen.VersionFieldName;
+            }
+            var dt = new DataType(EnumDataType.STRING);
+            if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldGuid))
+                this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
+            var res = new Property(this, this.DbSettings.VersionFieldGuid, fieldName, dt);
+            return res;
+        }
+
         //[BrowsableAttribute(false)]
         //public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
         //[ExpandableObjectAttribute()]

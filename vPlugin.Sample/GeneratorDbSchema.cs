@@ -22,6 +22,9 @@ namespace vPlugin.Sample
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();
         public string Description => "Description Abstract Db Schema";
+        public string DbSchema => "";
+        public string PKeyName => "";
+        public string VersionFieldName => "";
         public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbDesign;
         public void EnsureDbDeletedAndCreated(string connectionString)
@@ -59,6 +62,15 @@ namespace vPlugin.Sample
             return res;
         }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
+
+        public string PKeyTypeStr => throw new NotImplementedException();
+
+        public string VersionFieldTypeStr => throw new NotImplementedException();
+
+        public string VersionFieldStoreTypeStr => throw new NotImplementedException();
+
+        public string PKeyStoreTypeStr => throw new NotImplementedException();
+
         public IvPluginGeneratorSettings GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {
             return null;

@@ -8,7 +8,7 @@ namespace vSharpStudio.common
     public partial interface IDbSchema
     {
         string DbSchemaStr { get; }
-        string KeyName { get; }
+        string PKeyName { get; }
         string PKeyTypeStr { get; }
         string PKeyStoreTypeStr { get; }
         string IdGeneratorStr { get; }
