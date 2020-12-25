@@ -382,31 +382,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
 
-        public IProperty GetIdProperty(IvPluginDbGenerator dbGen)
-        {
-            string fieldName = null;
-            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
-            {
-                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
-                    return null;
-                fieldName = this.DbSettings.PKeyName;
-            }
-            else
-            {
-                fieldName = dbGen.PKeyName;
-            }
-            var dt = (DataType)GetIdDataType();
-            if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
-            var res = new Property(this, this.DbSettings.PKeyFieldGuid, fieldName, dt);
-            return res;
-        }
-        public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
-        {
-            var dt = (DataType)GetIdDataType();
-            var res = new Property(this, (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
-            return res;
-        }
         public IDataType GetIdDataType()
         {
             DataType dt = default(DataType);
@@ -424,8 +399,26 @@ namespace vSharpStudio.vm.ViewModels
 
             return dt;
         }
-
-        public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
+        public string GetIdFieldName(IvPluginDbGenerator dbGen)
+        {
+            string fieldName = null;
+            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+            {
+                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+                    return null;
+                fieldName = this.DbSettings.PKeyName;
+            }
+            else
+            {
+                fieldName = dbGen.PKeyName;
+            }
+            return fieldName;
+        }
+        public string GetIdFieldGuid()
+        {
+            return this.DbSettings.PKeyFieldGuid;
+        }
+        public string GetVersionFieldName(IvPluginDbGenerator dbGen)
         {
             string fieldName = null;
             if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
@@ -438,12 +431,57 @@ namespace vSharpStudio.vm.ViewModels
             {
                 fieldName = dbGen.VersionFieldName;
             }
-            var dt = new DataType(EnumDataType.STRING);
-            if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldGuid))
-                this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
-            var res = new Property(this, this.DbSettings.VersionFieldGuid, fieldName, dt);
-            return res;
+            return fieldName;
         }
+        public string GetVersionFieldGuid()
+        {
+            return this.DbSettings.VersionFieldGuid;
+        }
+
+        //public IProperty GetIdProperty(IvPluginDbGenerator dbGen)
+        //{
+        //    string fieldName = null;
+        //    if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+        //            return null;
+        //        fieldName = this.DbSettings.PKeyName;
+        //    }
+        //    else
+        //    {
+        //        fieldName = dbGen.PKeyName;
+        //    }
+        //    var dt = (DataType)GetIdDataType();
+        //    if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
+        //        this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
+        //    return res;
+        //}
+        //public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
+        //{
+        //    var dt = (DataType)GetIdDataType();
+        //    var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
+        //    return res;
+        //}
+        //public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
+        //{
+        //    string fieldName = null;
+        //    if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldName))
+        //            return null;
+        //        fieldName = this.DbSettings.VersionFieldName;
+        //    }
+        //    else
+        //    {
+        //        fieldName = dbGen.VersionFieldName;
+        //    }
+        //    var dt = new DataType(EnumDataType.STRING);
+        //    if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldGuid))
+        //        this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
+        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.VersionFieldGuid, fieldName, dt);
+        //    return res;
+        //}
 
         //[BrowsableAttribute(false)]
         //public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
