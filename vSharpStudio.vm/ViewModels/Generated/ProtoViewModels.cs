@@ -15193,6 +15193,463 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
+    public partial class CatalogItemsGroupValidator : ValidatorBase<CatalogItemsGroup, CatalogItemsGroupValidator> { } // Class.tt Line: 6
+    public partial class CatalogItemsGroup : ConfigObjectVmGenSettings<CatalogItemsGroup, CatalogItemsGroupValidator>, IComparable<CatalogItemsGroup>, IConfigAcceptVisitor, ICatalogItemsGroup // Class.tt Line: 7
+    {
+        #region CTOR
+        public CatalogItemsGroup() : this(default(ITreeConfigNode))
+        {
+        }
+        public CatalogItemsGroup(ITreeConfigNode parent) 
+            : base(parent, CatalogItemsGroupValidator.Validator) // Class.tt Line: 15
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static CatalogItemsGroup Clone(ITreeConfigNode parent, CatalogItemsGroup from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            CatalogItemsGroup vm = new CatalogItemsGroup(parent);
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
+            vm.NameUi = from.NameUi; // Clone.tt Line: 65
+            vm.Description = from.Description; // Clone.tt Line: 65
+            vm.IsNew = from.IsNew; // Clone.tt Line: 65
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
+            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
+            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.GroupProperties = GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
+            if (isDeep) // Clone.tt Line: 62
+                vm.GroupPropertiesTabs = GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(CatalogItemsGroup to, CatalogItemsGroup from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 141
+            to.NameUi = from.NameUi; // Clone.tt Line: 141
+            to.Description = from.Description; // Clone.tt Line: 141
+            to.IsNew = from.IsNew; // Clone.tt Line: 141
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
+            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
+            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
+            if (isDeep) // Clone.tt Line: 138
+                GroupListPropertiesTabs.Update(to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override CatalogItemsGroup Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return CatalogItemsGroup.Clone(this.Parent, this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(CatalogItemsGroup from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            CatalogItemsGroup.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_catalog_items_group' to 'CatalogItemsGroup'
+        public static CatalogItemsGroup ConvertToVM(Proto.Config.proto_catalog_items_group m, CatalogItemsGroup vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.IsNew = m.IsNew; // Clone.tt Line: 221
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
+            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
+            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
+            if (vm.GroupProperties == null) // Clone.tt Line: 213
+                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
+            GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 219
+            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
+                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
+            GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, vm.GroupPropertiesTabs); // Clone.tt Line: 219
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'CatalogItemsGroup' to 'proto_catalog_items_group'
+        public static Proto.Config.proto_catalog_items_group ConvertToProto(CatalogItemsGroup vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_catalog_items_group m = new Proto.Config.proto_catalog_items_group(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            m.IsNew = vm.IsNew; // Clone.tt Line: 276
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
+            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
+            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
+            m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 270
+            m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(3)]
+        public string Description // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._Description; 
+            }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 166
+        partial void OnDescriptionChanged();
+        string ICatalogItemsGroup.Description { get { return this._Description; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsNew // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsNew; 
+            }
+            set
+            {
+                if (this._IsNew != value)
+                {
+                    this.OnIsNewChanging(ref value);
+                    this._IsNew = value;
+                    this.OnIsNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNew;
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsNewChanged();
+        
+        [BrowsableAttribute(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        public bool IsMarkedForDeletion // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsMarkedForDeletion; 
+            }
+            set
+            {
+                if (this._IsMarkedForDeletion != value)
+                {
+                    this.OnIsMarkedForDeletionChanging(ref value);
+                    this._IsMarkedForDeletion = value;
+                    this.OnIsMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion;
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public bool IsHasNew // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsHasNew; 
+            }
+            set
+            {
+                if (this._IsHasNew != value)
+                {
+                    this.OnIsHasNewChanging(ref value);
+                    this._IsHasNew = value;
+                    this.OnIsHasNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsHasNew;
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsHasNewChanged();
+        
+        [BrowsableAttribute(false)]
+        public bool IsHasMarkedForDeletion // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsHasMarkedForDeletion; 
+            }
+            set
+            {
+                if (this._IsHasMarkedForDeletion != value)
+                {
+                    this.OnIsHasMarkedForDeletionChanging(ref value);
+                    this._IsHasMarkedForDeletion = value;
+                    this.OnIsHasMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsHasMarkedForDeletion;
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsHasMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public bool IsHasChanged // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsHasChanged; 
+            }
+            set
+            {
+                if (this._IsHasChanged != value)
+                {
+                    this.OnIsHasChangedChanging(ref value);
+                    this._IsHasChanged = value;
+                    this.OnIsHasChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        private bool _IsHasChanged;
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsHasChangedChanged();
+        
+        [BrowsableAttribute(false)]
+        public GroupListProperties GroupProperties // Property.tt Line: 118
+        { 
+            get 
+            { 
+                return this._GroupProperties; 
+            }
+            set
+            {
+                if (this._GroupProperties != value)
+                {
+                    this.OnGroupPropertiesChanging(ref value);
+                    this._GroupProperties = value;
+                    this.OnGroupPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private GroupListProperties _GroupProperties;
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 139
+        partial void OnGroupPropertiesChanged();
+        IGroupListProperties ICatalogItemsGroup.GroupProperties { get { return this._GroupProperties; } }
+        
+        [BrowsableAttribute(false)]
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 118
+        { 
+            get 
+            { 
+                return this._GroupPropertiesTabs; 
+            }
+            set
+            {
+                if (this._GroupPropertiesTabs != value)
+                {
+                    this.OnGroupPropertiesTabsChanging(ref value);
+                    this._GroupPropertiesTabs = value;
+                    this.OnGroupPropertiesTabsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private GroupListPropertiesTabs _GroupPropertiesTabs;
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 139
+        partial void OnGroupPropertiesTabsChanged();
+        IGroupListPropertiesTabs ICatalogItemsGroup.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        
+        [BrowsableAttribute(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
+        { 
+            get 
+            { 
+                return this._ListNodeGeneratorsSettings; 
+            }
+            private set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    this._ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> ICatalogItemsGroup.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
+        [BrowsableAttribute(false)]
+        override public bool IsChanged  // Class.tt Line: 108
+        { 
+            get 
+            { 
+                return this._IsChanged; 
+            }
+            set
+            {
+                if (this._IsChanged != value)
+                {
+                    this.OnIsChangedChanging(ref value);
+                    this._IsChanged = value;
+                    this.OnIsChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v);
+        partial void OnIsChangedChanged();
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
+        partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
+        #endregion Properties
+    }
     public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
     public partial class Catalog : ConfigObjectVmGenSettings<Catalog, CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 7
     {
@@ -15205,6 +15662,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.GroupItems = new CatalogItemsGroup(this); // Class.tt Line: 32
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
             this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
             this.GroupForms = new GroupListForms(this); // Class.tt Line: 32
@@ -15242,6 +15700,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
+                vm.GroupItems = CatalogItemsGroup.Clone(vm, from.GroupItems, isDeep);
+            if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupPropertiesTabs = GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
@@ -15272,6 +15732,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                CatalogItemsGroup.Update(to.GroupItems, from.GroupItems, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 GroupListProperties.Update(to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -15354,6 +15816,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
+            if (vm.GroupItems == null) // Clone.tt Line: 213
+                vm.GroupItems = new CatalogItemsGroup(vm); // Clone.tt Line: 215
+            CatalogItemsGroup.ConvertToVM(m.GroupItems, vm.GroupItems); // Clone.tt Line: 219
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             GroupListProperties.ConvertToVM(m.GroupProperties, vm.GroupProperties); // Clone.tt Line: 219
@@ -15394,6 +15859,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
+            m.GroupItems = CatalogItemsGroup.ConvertToProto(vm.GroupItems); // Clone.tt Line: 270
             m.GroupProperties = GroupListProperties.ConvertToProto(vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = GroupListPropertiesTabs.ConvertToProto(vm.GroupPropertiesTabs); // Clone.tt Line: 270
             m.GroupForms = GroupListForms.ConvertToProto(vm.GroupForms); // Clone.tt Line: 270
@@ -15411,6 +15877,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.GroupItems.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -15502,7 +15970,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(true)]
+        [BrowsableAttribute(false)]
         public bool IsHasNew // Property.tt Line: 144
         { 
             get 
@@ -15526,7 +15994,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasNewChanged();
         
-        [BrowsableAttribute(true)]
+        [BrowsableAttribute(false)]
         public bool IsHasMarkedForDeletion // Property.tt Line: 144
         { 
             get 
@@ -15571,6 +16039,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        
+        [BrowsableAttribute(false)]
+        public CatalogItemsGroup GroupItems // Property.tt Line: 118
+        { 
+            get 
+            { 
+                return this._GroupItems; 
+            }
+            set
+            {
+                if (this._GroupItems != value)
+                {
+                    this.OnGroupItemsChanging(ref value);
+                    this._GroupItems = value;
+                    this.OnGroupItemsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private CatalogItemsGroup _GroupItems;
+        partial void OnGroupItemsChanging(ref CatalogItemsGroup to); // Property.tt Line: 139
+        partial void OnGroupItemsChanged();
+        ICatalogItemsGroup ICatalog.GroupItems { get { return this._GroupItems; } }
         
         [BrowsableAttribute(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 118
@@ -20716,6 +21208,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_group_list_enumerations p);
         void Visit(Proto.Config.proto_enumeration p);
         void Visit(Proto.Config.proto_enumeration_pair p);
+        void Visit(Proto.Config.proto_catalog_items_group p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_documents p);
@@ -21105,6 +21598,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(EnumerationPair p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(CatalogItemsGroup p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(CatalogItemsGroup p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -21606,6 +22109,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(EnumerationPair p) { }
         protected virtual void OnVisitEnd(EnumerationPair p) { }
+        public void Visit(CatalogItemsGroup p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(CatalogItemsGroup p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(CatalogItemsGroup p) { }
+        protected virtual void OnVisitEnd(CatalogItemsGroup p) { }
         public void Visit(Catalog p)
         {
             this.OnVisit(p);
@@ -21769,6 +22282,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void VisitEnd(Enumeration p);
         void Visit(EnumerationPair p);
         void VisitEnd(EnumerationPair p);
+        void Visit(CatalogItemsGroup p);
+        void VisitEnd(CatalogItemsGroup p);
         void Visit(Catalog p);
         void VisitEnd(Catalog p);
         void Visit(GroupListCatalogs p);

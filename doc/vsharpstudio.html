@@ -207,6 +207,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_catalog_items_group"><span class="badge">M</span>proto_catalog_items_group</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
                 </li>
               
@@ -1138,19 +1142,26 @@ App solution relative path to configuration file path </p></td>
                   <td>is_has_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(true)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>is_has_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(true)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_items</td>
+                  <td><a href="#proto_config.proto_catalog_items_group">proto_catalog_items_group</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1179,6 +1190,117 @@ App solution relative path to configuration file path </p></td>
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_catalog_items_group">proto_catalog_items_group</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_has_changed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties</td>
+                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties_tabs</td>
+                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>

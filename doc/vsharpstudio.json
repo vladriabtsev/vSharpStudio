@@ -1021,7 +1021,7 @@
             },
             {
               "name": "is_has_new",
-              "description": "@attr [BrowsableAttribute(true)]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1031,7 +1031,7 @@
             },
             {
               "name": "is_has_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(true)]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1046,6 +1046,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_items",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_catalog_items_group",
+              "longType": "proto_catalog_items_group",
+              "fullType": "proto_config.proto_catalog_items_group",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1086,6 +1096,147 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_catalog_items_group",
+          "longName": "proto_catalog_items_group",
+          "fullName": "proto_config.proto_catalog_items_group",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]\n@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_has_changed",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties_tabs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties_tabs",
+              "longType": "proto_group_list_properties_tabs",
+              "fullType": "proto_config.proto_group_list_properties_tabs",
               "ismap": false,
               "defaultValue": ""
             },

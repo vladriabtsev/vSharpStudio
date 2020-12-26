@@ -524,11 +524,22 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Value { get; } // ModelInterfaces.tt Line: 60
     }
     
+    public partial interface ICatalogItemsGroup : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
+    	string NameUi { get; } // ModelInterfaces.tt Line: 60
+    	string Description { get; } // ModelInterfaces.tt Line: 60
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 64
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 64
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
+    }
+    
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	string Description { get; } // ModelInterfaces.tt Line: 60
+    	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 64
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 64
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 64
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 64

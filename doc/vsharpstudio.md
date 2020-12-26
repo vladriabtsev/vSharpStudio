@@ -11,6 +11,7 @@
     - [proto_app_solution](#proto_config.proto_app_solution)
     - [proto_base_config_link](#proto_config.proto_base_config_link)
     - [proto_catalog](#proto_config.proto_catalog)
+    - [proto_catalog_items_group](#proto_config.proto_catalog_items_group)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_model](#proto_config.proto_config_model)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
@@ -246,13 +247,41 @@ Application project generator
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
-| is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
-| is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
+| is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| group_items | [proto_catalog_items_group](#proto_config.proto_catalog_items_group) |  | @attr [BrowsableAttribute(false)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_catalog_items_group"></a>
+
+### proto_catalog_items_group
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
+| is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
+| group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

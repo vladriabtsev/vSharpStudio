@@ -12,10 +12,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
+    [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
+    public partial class CatalogItemsGroup : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
-        public static readonly string DefaultName = "Catalog";
+        public static readonly string DefaultName = "Items Group";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListCatalogs;
+            var p = this.Parent as Catalog;
             return p.Children;
         }
         public override bool HasChildren()
@@ -35,20 +35,18 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
-        new public string IconName { get { return "iconCatalogProperty"; } }
-        //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
+        new public string IconName { get { return "iconFolder"; } }
         partial void OnInit()
         {
+            this._Name = "Groups";
+            this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.GroupItems.Parent = this;
             this.GroupProperties.Parent = this;
             this.GroupPropertiesTabs.Parent = this;
-            this.GroupForms.Parent = this;
-            this.GroupReports.Parent = this;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()
@@ -59,28 +57,23 @@ namespace vSharpStudio.vm.ViewModels
         void RefillChildren()
         {
             this.Children.Clear();
-            this.Children.Add(this.GroupItems, 2);
             this.Children.Add(this.GroupProperties, 3);
             this.Children.Add(this.GroupPropertiesTabs, 4);
-            this.Children.Add(this.GroupForms, 5);
-            this.Children.Add(this.GroupReports, 6);
         }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
             this.GroupProperties.AddAllAppGenSettingsVmsToNode();
             this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
-            this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
 
-        public Catalog(ITreeConfigNode parent, string name)
+        public CatalogItemsGroup(ITreeConfigNode parent, string name)
             : this(parent)
         {
             (this as ITreeConfigNode).Name = name;
         }
 
-        public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties)
+        public CatalogItemsGroup(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
             Contract.Requires(listProperties != null);
@@ -130,102 +123,11 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetPrev(this);
-            if (prev == null)
-            {
-                return;
-            }
-
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            (this.Parent as GroupListCatalogs).ListCatalogs.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetNext(this);
-            if (next == null)
-            {
-                return;
-            }
-
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            (this.Parent as GroupListCatalogs).ListCatalogs.MoveDown(this);
-            this.SetSelected(this);
-        }
-        public override ITreeConfigNode NodeAddClone()
-        {
-            var node = Catalog.Clone(this.Parent, this, true, true);
-            node.Parent = this.Parent;
-            (this.Parent as GroupListCatalogs).Add(node);
-            this.Name = this.Name + "2";
-            this.SetSelected(node);
-            return node;
-        }
-
-        public override ITreeConfigNode NodeAddNew()
-        {
-            var node = new Catalog(this.Parent);
-            (this.Parent as GroupListCatalogs).Add(node);
-            this.GetUniqueName(Catalog.DefaultName, node, (this.Parent as GroupListCatalogs).ListCatalogs);
-            this.SetSelected(node);
-            return node;
-        }
-        public void Remove()
-        {
-            var p = this.Parent as GroupListCatalogs;
-            p.ListCatalogs.Remove(this);
-        }
         #endregion Tree operations
 
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
-        [PropertyOrder(1)]
-        [ReadOnly(true)]
-        [DisplayName("Composite")]
-        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
-        public string CompositeName
-        {
-            get
-            {
-                return GetCompositeName();
-            }
-        }
         public List<IProperty> GetIncludedProperties(string guidAppPrjGen, string guidSettings)
         {
             var res = new List<IProperty>();
