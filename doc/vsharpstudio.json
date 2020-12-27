@@ -980,6 +980,16 @@
               "defaultValue": ""
             },
             {
+              "name": "catalog_settings",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Parameters\")]",
+              "label": "",
+              "type": "proto_catalog_settings",
+              "longType": "proto_catalog_settings",
+              "fullType": "proto_config.proto_catalog_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(true)]",
               "label": "",
@@ -1227,6 +1237,47 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_catalog_settings",
+          "longName": "proto_catalog_settings",
+          "fullName": "proto_config.proto_catalog_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "max_catalog_item_name_length",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name length\")]\n@attr [Description(\"Maximum catalog item name length. If negative, than unlimited length. If zero, than not use\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_catalog_item_description_length",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Description length\")]\n@attr [Description(\"Maximum catalog item description length. If negative, than unlimited length. If zero, than not use\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_catalog_item_tree_levels",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             }

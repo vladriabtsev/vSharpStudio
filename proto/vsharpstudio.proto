@@ -1197,6 +1197,22 @@ message proto_catalog_items_group {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @base ViewModelValidatableWithSeverity
+message proto_catalog_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Name length")]
+    // @attr [Description("Maximum catalog item name length. If negative, than unlimited length. If zero, than not use")]
+    int32 max_catalog_item_name_length = 1;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Description length")]
+    // @attr [Description("Maximum catalog item description length. If negative, than unlimited length. If zero, than not use")]
+    int32 max_catalog_item_description_length = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Levels")]
+    // @attr [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
+    int32 max_catalog_item_tree_levels = 3;
+
+}
 message proto_catalog {
     string guid = 1;
     string name = 2;
@@ -1206,6 +1222,11 @@ message proto_catalog {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Parameters")]
+    proto_catalog_settings catalog_settings = 6;
+
     // @attr [BrowsableAttribute(true)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
@@ -1228,6 +1249,7 @@ message proto_catalog {
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

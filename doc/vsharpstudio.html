@@ -211,6 +211,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_catalog_settings"><span class="badge">M</span>proto_catalog_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
                 </li>
               
@@ -1108,6 +1112,15 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>catalog_settings</td>
+                  <td><a href="#proto_config.proto_catalog_settings">proto_catalog_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Parameters&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1294,6 +1307,50 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_catalog_settings">proto_catalog_settings</h3>
+        <p>@base ViewModelValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>max_catalog_item_name_length</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Name length&#34;)]
+@attr [Description(&#34;Maximum catalog item name length. If negative, than unlimited length. If zero, than not use&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_catalog_item_description_length</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Description length&#34;)]
+@attr [Description(&#34;Maximum catalog item description length. If negative, than unlimited length. If zero, than not use&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_catalog_item_tree_levels</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Levels&#34;)]
+@attr [Description(&#34;Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping&#34;)] </p></td>
                 </tr>
               
             </tbody>

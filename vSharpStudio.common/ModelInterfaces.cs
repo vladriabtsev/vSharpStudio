@@ -532,11 +532,19 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
     }
     
+    public partial interface ICatalogSettings // ModelInterfaces.tt Line: 29
+    {
+    	int MaxCatalogItemNameLength { get; } // ModelInterfaces.tt Line: 60
+    	int MaxCatalogItemDescriptionLength { get; } // ModelInterfaces.tt Line: 60
+    	int MaxCatalogItemTreeLevels { get; } // ModelInterfaces.tt Line: 60
+    }
+    
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	string Description { get; } // ModelInterfaces.tt Line: 60
+    	ICatalogSettings CatalogSettings { get; } // ModelInterfaces.tt Line: 64
     	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 64
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 64
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 64

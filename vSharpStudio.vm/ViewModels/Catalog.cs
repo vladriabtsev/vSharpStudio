@@ -49,6 +49,9 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
+            this.CatalogSettings.MaxCatalogItemNameLength = 20;
+            this.CatalogSettings.MaxCatalogItemDescriptionLength = 100;
+            this.CatalogSettings.MaxCatalogItemTreeLevels = 0;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()

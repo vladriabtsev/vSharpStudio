@@ -15590,6 +15590,183 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
+    public partial class CatalogSettingsValidator : ValidatorBase<CatalogSettings, CatalogSettingsValidator> { } // Class.tt Line: 6
+    public partial class CatalogSettings : VmValidatableWithSeverity<CatalogSettings, CatalogSettingsValidator>, ICatalogSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public CatalogSettings() 
+            : base(CatalogSettingsValidator.Validator) // Class.tt Line: 43
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static CatalogSettings Clone(CatalogSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            CatalogSettings vm = new CatalogSettings();
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 65
+            vm.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 65
+            vm.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 65
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(CatalogSettings to, CatalogSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 141
+            to.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 141
+            to.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override CatalogSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return CatalogSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(CatalogSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            CatalogSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_catalog_settings' to 'CatalogSettings'
+        public static CatalogSettings ConvertToVM(Proto.Config.proto_catalog_settings m, CatalogSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.MaxCatalogItemNameLength = m.MaxCatalogItemNameLength; // Clone.tt Line: 221
+            vm.MaxCatalogItemDescriptionLength = m.MaxCatalogItemDescriptionLength; // Clone.tt Line: 221
+            vm.MaxCatalogItemTreeLevels = m.MaxCatalogItemTreeLevels; // Clone.tt Line: 221
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'CatalogSettings' to 'proto_catalog_settings'
+        public static Proto.Config.proto_catalog_settings ConvertToProto(CatalogSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_catalog_settings m = new Proto.Config.proto_catalog_settings(); // Clone.tt Line: 239
+            m.MaxCatalogItemNameLength = vm.MaxCatalogItemNameLength; // Clone.tt Line: 276
+            m.MaxCatalogItemDescriptionLength = vm.MaxCatalogItemDescriptionLength; // Clone.tt Line: 276
+            m.MaxCatalogItemTreeLevels = vm.MaxCatalogItemTreeLevels; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(1)]
+        [DisplayName("Name length")]
+        [Description("Maximum catalog item name length. If negative, than unlimited length. If zero, than not use")]
+        public int MaxCatalogItemNameLength // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._MaxCatalogItemNameLength; 
+            }
+            set
+            {
+                if (this._MaxCatalogItemNameLength != value)
+                {
+                    this.OnMaxCatalogItemNameLengthChanging(ref value);
+                    this._MaxCatalogItemNameLength = value;
+                    this.OnMaxCatalogItemNameLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _MaxCatalogItemNameLength;
+        partial void OnMaxCatalogItemNameLengthChanging(ref int to); // Property.tt Line: 166
+        partial void OnMaxCatalogItemNameLengthChanged();
+        int ICatalogSettings.MaxCatalogItemNameLength { get { return this._MaxCatalogItemNameLength; } } 
+        
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Description length")]
+        [Description("Maximum catalog item description length. If negative, than unlimited length. If zero, than not use")]
+        public int MaxCatalogItemDescriptionLength // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._MaxCatalogItemDescriptionLength; 
+            }
+            set
+            {
+                if (this._MaxCatalogItemDescriptionLength != value)
+                {
+                    this.OnMaxCatalogItemDescriptionLengthChanging(ref value);
+                    this._MaxCatalogItemDescriptionLength = value;
+                    this.OnMaxCatalogItemDescriptionLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _MaxCatalogItemDescriptionLength;
+        partial void OnMaxCatalogItemDescriptionLengthChanging(ref int to); // Property.tt Line: 166
+        partial void OnMaxCatalogItemDescriptionLengthChanged();
+        int ICatalogSettings.MaxCatalogItemDescriptionLength { get { return this._MaxCatalogItemDescriptionLength; } } 
+        
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Levels")]
+        [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
+        public int MaxCatalogItemTreeLevels // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._MaxCatalogItemTreeLevels; 
+            }
+            set
+            {
+                if (this._MaxCatalogItemTreeLevels != value)
+                {
+                    this.OnMaxCatalogItemTreeLevelsChanging(ref value);
+                    this._MaxCatalogItemTreeLevels = value;
+                    this.OnMaxCatalogItemTreeLevelsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _MaxCatalogItemTreeLevels;
+        partial void OnMaxCatalogItemTreeLevelsChanging(ref int to); // Property.tt Line: 166
+        partial void OnMaxCatalogItemTreeLevelsChanged();
+        int ICatalogSettings.MaxCatalogItemTreeLevels { get { return this._MaxCatalogItemTreeLevels; } } 
+        #endregion Properties
+    }
     public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
     public partial class Catalog : ConfigObjectVmGenSettings<Catalog, CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 7
     {
@@ -15602,6 +15779,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.CatalogSettings = new CatalogSettings(); // Class.tt Line: 30
             this.GroupItems = new CatalogItemsGroup(this); // Class.tt Line: 32
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
             this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
@@ -15634,6 +15812,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.CatalogSettings = CatalogSettings.Clone(from.CatalogSettings, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
@@ -15667,6 +15847,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                CatalogSettings.Update(to.CatalogSettings, from.CatalogSettings, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
@@ -15751,6 +15933,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
+            if (vm.CatalogSettings == null) // Clone.tt Line: 213
+                vm.CatalogSettings = new CatalogSettings(); // Clone.tt Line: 217
+            CatalogSettings.ConvertToVM(m.CatalogSettings, vm.CatalogSettings); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
@@ -15794,6 +15979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
+            m.CatalogSettings = CatalogSettings.ConvertToProto(vm.CatalogSettings); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
@@ -15817,6 +16003,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            this.CatalogSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.GroupItems.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -15860,6 +16048,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 166
         partial void OnDescriptionChanged();
         string ICatalog.Description { get { return this._Description; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [ExpandableObjectAttribute()]
+        [DisplayName("Parameters")]
+        public CatalogSettings CatalogSettings // Property.tt Line: 118
+        { 
+            get 
+            { 
+                return this._CatalogSettings; 
+            }
+            set
+            {
+                if (this._CatalogSettings != value)
+                {
+                    this.OnCatalogSettingsChanging(ref value);
+                    this._CatalogSettings = value;
+                    this.OnCatalogSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private CatalogSettings _CatalogSettings;
+        partial void OnCatalogSettingsChanging(ref CatalogSettings to); // Property.tt Line: 139
+        partial void OnCatalogSettingsChanged();
+        ICatalogSettings ICatalog.CatalogSettings { get { return this._CatalogSettings; } }
         
         [BrowsableAttribute(true)]
         public bool IsNew // Property.tt Line: 144
@@ -21149,6 +21363,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_enumeration p);
         void Visit(Proto.Config.proto_enumeration_pair p);
         void Visit(Proto.Config.proto_catalog_items_group p);
+        void Visit(Proto.Config.proto_catalog_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_documents p);
@@ -21552,10 +21767,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(CatalogSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(CatalogSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            ValidateSubAndCollectErrors(p, p.CatalogSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 48
         {
@@ -22059,6 +22285,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(CatalogItemsGroup p) { }
         protected virtual void OnVisitEnd(CatalogItemsGroup p) { }
+        public void Visit(CatalogSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(CatalogSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(CatalogSettings p) { }
+        protected virtual void OnVisitEnd(CatalogSettings p) { }
         public void Visit(Catalog p)
         {
             this.OnVisit(p);

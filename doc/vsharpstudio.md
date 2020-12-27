@@ -12,6 +12,7 @@
     - [proto_base_config_link](#proto_config.proto_base_config_link)
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_catalog_items_group](#proto_config.proto_catalog_items_group)
+    - [proto_catalog_settings](#proto_config.proto_catalog_settings)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_model](#proto_config.proto_config_model)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
@@ -243,6 +244,7 @@ Application project generator
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| catalog_settings | [proto_catalog_settings](#proto_config.proto_catalog_settings) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Parameters&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -281,6 +283,23 @@ Application project generator
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_catalog_settings"></a>
+
+### proto_catalog_settings
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| max_catalog_item_name_length | [int32](#int32) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If negative, than unlimited length. If zero, than not use&#34;)] |
+| max_catalog_item_description_length | [int32](#int32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Description length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If negative, than unlimited length. If zero, than not use&#34;)] |
+| max_catalog_item_tree_levels | [int32](#int32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping&#34;)] |
 
 
 
