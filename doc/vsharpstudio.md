@@ -87,9 +87,7 @@ General DB settings
 | id_generator | [db_id_generator_method](#proto_config.db_id_generator_method) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Id method&#34;)] @attr [Description(&#34;Primary key generation method&#34;)] |
 | p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] |
 | p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] |
-| version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Version/timestamp field name&#34;)] |
 | p_key_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 
 
 

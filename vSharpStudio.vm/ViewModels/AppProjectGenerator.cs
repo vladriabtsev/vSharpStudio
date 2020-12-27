@@ -294,28 +294,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
-            //IvPluginGenerator gen = null;
             if (this.IsNotNotifying)
                 return;
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
             var nv = new ModelVisitorNodeGenSettings();
-            //INodeGenSettings ngs = (INodeGenSettings)this;
-            //DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
-            //if (!this.DicGenNodeSettings.ContainsKey(this.Guid))
-            //{
-            //    dic = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-            //    this.DicGenNodeSettings[this.Guid] = dic;
-            //}
-            //else
-            //{
-            //    dic = this.DicGenNodeSettings[this.Guid];
-            //}
-
             this.RestoreSettings();
-            //if (!cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-            //{
-            //}
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
                 p.AddNodeAppGenSettings(this.Guid);
@@ -325,11 +309,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this._GenFileName = "app-settings.json";
                 this._RelativePathToGenFolder = string.Empty;
-                //(gen as IvPluginDbConnStringGenerator).ConnectionString = "";
             }
-            //else if (gen is IvPluginDbConnStringGenerator)
-            //{
-            //}
             else
             {
                 this._GenFileName = prevGenFileName;

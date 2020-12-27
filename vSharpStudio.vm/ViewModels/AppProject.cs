@@ -29,8 +29,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-                var p = this.Parent as AppSolution;
-                return p.ListAppProjects;
+            var p = this.Parent as AppSolution;
+            return p.ListAppProjects;
         }
         public override bool HasChildren()
         {
@@ -50,21 +50,20 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            //this.ListAppProjectGenerators.OnRemovedAction = (item) => {
-            //    this.RemoveNodeAppGenSettings(item.Guid);
-            //    var cfg = (Config)this.GetConfig();
-            //    cfg.DicAppGenerators.Remove(item.Guid);
-            //    _logger.LogTrace("{DicAppGenerators}", cfg.DicAppGenerators);
-            //};
-
-            //this.RefillChildren();
-            this.ListAppProjectGenerators.OnAddingAction = (t) => {
+            this.ListAppProjectGenerators.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
-            this.ListAppProjectGenerators.OnRemovedAction = (t) => {
+            this.ListAppProjectGenerators.OnRemovedAction = (t) =>
+            {
+                var cfg = (Config)this.GetConfig();
+                cfg.RemoveNodeAppGenSettings(t.Guid);
+                if (cfg.DicActiveAppProjectGenerators.ContainsKey(t.Guid))
+                    cfg.DicActiveAppProjectGenerators.Remove(t.Guid);
                 this.OnRemoveChild();
             };
-            this.ListAppProjectGenerators.OnClearedAction = () => {
+            this.ListAppProjectGenerators.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
         }

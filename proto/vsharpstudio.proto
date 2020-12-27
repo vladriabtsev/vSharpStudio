@@ -595,14 +595,16 @@ message db_settings {
     // @attr [DisplayName("Id name")]
     // @attr [Description("Primary key field name")]
     string p_key_name = 4;
+    // @attr [BrowsableAttribute(false)]
+    string p_key_field_guid = 6;
+
     // @attr [PropertyOrderAttribute(5)]
     // @attr [DisplayName("Version field")]
     // @attr [Description("Version/timestamp field name")]
-    string version_field_name = 5;
+    //string version_field_name = 5;
+
     // @attr [BrowsableAttribute(false)]
-    string p_key_field_guid = 6;
-    // @attr [BrowsableAttribute(false)]
-    string version_field_guid = 7;
+    //string version_field_guid = 7;
 }
 
 // Configuration model

@@ -11,8 +11,8 @@ namespace vSharpStudio.common
     {
         DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeSettings { get; }
         IDataType GetIdDataType();
-        string GetVersionFieldName(IvPluginDbGenerator dbGen);
-        string GetVersionFieldGuid();
+        //string GetVersionFieldName(IvPluginDbGenerator dbGen);
+        //string GetVersionFieldGuid();
         string GetIdFieldName(IvPluginDbGenerator dbGen);
         string GetIdFieldGuid();
     }

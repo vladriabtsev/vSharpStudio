@@ -32,10 +32,10 @@ namespace vSharpStudio.common
         // csharp type name, int or long or etc
         string PKeyTypeStr { get; }
         string PKeyStoreTypeStr { get; }
-        string VersionFieldName { get; }
-        // csharp type name, int or long or etc
-        string VersionFieldTypeStr { get; }
-        string VersionFieldStoreTypeStr { get; }
+        //string VersionFieldName { get; }
+        //// csharp type name, int or long or etc
+        //string VersionFieldTypeStr { get; }
+        //string VersionFieldStoreTypeStr { get; }
 
         IvPluginGeneratorSettings GetConnectionStringMvvm(string connectionString);
 

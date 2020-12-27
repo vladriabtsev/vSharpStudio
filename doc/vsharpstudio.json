@@ -204,27 +204,7 @@
               "defaultValue": ""
             },
             {
-              "name": "version_field_name",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Version field\")]\n@attr [Description(\"Version/timestamp field name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "p_key_field_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "version_field_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",

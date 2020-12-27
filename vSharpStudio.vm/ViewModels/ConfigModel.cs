@@ -418,25 +418,25 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.DbSettings.PKeyFieldGuid;
         }
-        public string GetVersionFieldName(IvPluginDbGenerator dbGen)
-        {
-            string fieldName = null;
-            if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
-            {
-                if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldName))
-                    return null;
-                fieldName = this.DbSettings.VersionFieldName;
-            }
-            else
-            {
-                fieldName = dbGen.VersionFieldName;
-            }
-            return fieldName;
-        }
-        public string GetVersionFieldGuid()
-        {
-            return this.DbSettings.VersionFieldGuid;
-        }
+        //public string GetVersionFieldName(IvPluginDbGenerator dbGen)
+        //{
+        //    string fieldName = null;
+        //    if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldName))
+        //            return null;
+        //        fieldName = this.DbSettings.VersionFieldName;
+        //    }
+        //    else
+        //    {
+        //        fieldName = dbGen.VersionFieldName;
+        //    }
+        //    return fieldName;
+        //}
+        //public string GetVersionFieldGuid()
+        //{
+        //    return this.DbSettings.VersionFieldGuid;
+        //}
 
         //public IProperty GetIdProperty(IvPluginDbGenerator dbGen)
         //{

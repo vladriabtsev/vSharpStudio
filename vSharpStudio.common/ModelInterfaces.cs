@@ -291,9 +291,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 60
     	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 60
     	string PKeyName { get; } // ModelInterfaces.tt Line: 60
-    	string VersionFieldName { get; } // ModelInterfaces.tt Line: 60
     	string PKeyFieldGuid { get; } // ModelInterfaces.tt Line: 60
-    	string VersionFieldGuid { get; } // ModelInterfaces.tt Line: 60
     }
     
     ///////////////////////////////////////////////////

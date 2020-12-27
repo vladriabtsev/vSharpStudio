@@ -7246,9 +7246,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 65
             vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
             vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
-            vm.VersionFieldName = from.VersionFieldName; // Clone.tt Line: 65
             vm.PKeyFieldGuid = from.PKeyFieldGuid; // Clone.tt Line: 65
-            vm.VersionFieldGuid = from.VersionFieldGuid; // Clone.tt Line: 65
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -7261,9 +7259,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IdGenerator = from.IdGenerator; // Clone.tt Line: 141
             to.PKeyType = from.PKeyType; // Clone.tt Line: 141
             to.PKeyName = from.PKeyName; // Clone.tt Line: 141
-            to.VersionFieldName = from.VersionFieldName; // Clone.tt Line: 141
             to.PKeyFieldGuid = from.PKeyFieldGuid; // Clone.tt Line: 141
-            to.VersionFieldGuid = from.VersionFieldGuid; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -7296,9 +7292,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 221
             vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
             vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
-            vm.VersionFieldName = m.VersionFieldName; // Clone.tt Line: 221
             vm.PKeyFieldGuid = m.PKeyFieldGuid; // Clone.tt Line: 221
-            vm.VersionFieldGuid = m.VersionFieldGuid; // Clone.tt Line: 221
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -7312,9 +7306,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 274
             m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 274
             m.PKeyName = vm.PKeyName; // Clone.tt Line: 276
-            m.VersionFieldName = vm.VersionFieldName; // Clone.tt Line: 276
             m.PKeyFieldGuid = vm.PKeyFieldGuid; // Clone.tt Line: 276
-            m.VersionFieldGuid = vm.VersionFieldGuid; // Clone.tt Line: 276
             return m;
         }
         
@@ -7439,33 +7431,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPKeyNameChanged();
         string IDbSettings.PKeyName { get { return this._PKeyName; } } 
         
-        [PropertyOrderAttribute(5)]
-        [DisplayName("Version field")]
-        [Description("Version/timestamp field name")]
-        public string VersionFieldName // Property.tt Line: 144
-        { 
-            get 
-            { 
-                return this._VersionFieldName; 
-            }
-            set
-            {
-                if (this._VersionFieldName != value)
-                {
-                    this.OnVersionFieldNameChanging(ref value);
-                    this._VersionFieldName = value;
-                    this.OnVersionFieldNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _VersionFieldName = string.Empty;
-        partial void OnVersionFieldNameChanging(ref string to); // Property.tt Line: 166
-        partial void OnVersionFieldNameChanged();
-        string IDbSettings.VersionFieldName { get { return this._VersionFieldName; } } 
-        
         [BrowsableAttribute(false)]
         public string PKeyFieldGuid // Property.tt Line: 144
         { 
@@ -7490,31 +7455,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPKeyFieldGuidChanging(ref string to); // Property.tt Line: 166
         partial void OnPKeyFieldGuidChanged();
         string IDbSettings.PKeyFieldGuid { get { return this._PKeyFieldGuid; } } 
-        
-        [BrowsableAttribute(false)]
-        public string VersionFieldGuid // Property.tt Line: 144
-        { 
-            get 
-            { 
-                return this._VersionFieldGuid; 
-            }
-            set
-            {
-                if (this._VersionFieldGuid != value)
-                {
-                    this.OnVersionFieldGuidChanging(ref value);
-                    this._VersionFieldGuid = value;
-                    this.OnVersionFieldGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _VersionFieldGuid = string.Empty;
-        partial void OnVersionFieldGuidChanging(ref string to); // Property.tt Line: 166
-        partial void OnVersionFieldGuidChanged();
-        string IDbSettings.VersionFieldGuid { get { return this._VersionFieldGuid; } } 
         #endregion Properties
     }
     public partial class ConfigModelValidator : ValidatorBase<ConfigModel, ConfigModelValidator> { } // Class.tt Line: 6
