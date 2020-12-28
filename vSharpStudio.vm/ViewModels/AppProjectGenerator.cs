@@ -360,6 +360,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.PluginGenerator = null;
             //    this.PluginDbGenerator = null;
             //}
+            HideProperties();
         }
         public void SaveSettings()
         {

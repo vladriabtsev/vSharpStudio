@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
                 var m = (ConfigModel)cntx.InstanceToValidate;
                 CheckObjectsWithDbTables(cntx, recom, m, false);
             });
-            this.RuleFor(x => x.IsCompositeNames).Custom((val, cntx) =>
+            this.RuleFor(x => x.IsUseCompositeNames).Custom((val, cntx) =>
             {
                 if (val)
                     return;

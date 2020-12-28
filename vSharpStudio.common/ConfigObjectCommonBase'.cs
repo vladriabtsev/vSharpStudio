@@ -385,7 +385,7 @@
             var cfg = this.GetConfig();
             if (cfg.Model.IsUseGroupPrefix)
                 sb.Append(prefix);
-            if (cfg.Model.IsCompositeNames)
+            if (cfg.Model.IsUseCompositeNames)
                 sb.Append(composit);
             sb.Append(this.Name);
             return sb.ToString();

@@ -305,7 +305,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	string Description { get; } // ModelInterfaces.tt Line: 60
     	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 60
-    	bool IsCompositeNames { get; } // ModelInterfaces.tt Line: 60
+    	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 60
     	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 60
     	
     	///////////////////////////////////////////////////

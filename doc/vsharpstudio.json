@@ -1535,7 +1535,7 @@
             },
             {
               "name": "composite_name_max_length",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Max length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1544,8 +1544,8 @@
               "defaultValue": ""
             },
             {
-              "name": "is_composite_names",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]",
+              "name": "is_use_composite_names",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Composite\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1555,7 +1555,7 @@
             },
             {
               "name": "is_use_group_prefix",
-              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Prefix\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

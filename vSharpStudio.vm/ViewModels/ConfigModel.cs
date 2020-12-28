@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             // TODO validate, Id generator table, use in db names
             this.CompositeNameMaxLength = 100;
             // TODO validate
-            this.IsCompositeNames = true;
+            this.IsUseCompositeNames = true;
             // TODO validate
             this.IsUseGroupPrefix = true;
 

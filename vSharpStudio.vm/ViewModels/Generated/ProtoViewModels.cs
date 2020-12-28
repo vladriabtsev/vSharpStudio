@@ -7510,7 +7510,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 65
-            vm.IsCompositeNames = from.IsCompositeNames; // Clone.tt Line: 65
+            vm.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 65
             vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
@@ -7551,7 +7551,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
             to.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 141
-            to.IsCompositeNames = from.IsCompositeNames; // Clone.tt Line: 141
+            to.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 141
             to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
@@ -7643,7 +7643,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.CompositeNameMaxLength = m.CompositeNameMaxLength; // Clone.tt Line: 221
-            vm.IsCompositeNames = m.IsCompositeNames; // Clone.tt Line: 221
+            vm.IsUseCompositeNames = m.IsUseCompositeNames; // Clone.tt Line: 221
             vm.IsUseGroupPrefix = m.IsUseGroupPrefix; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
@@ -7696,7 +7696,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.CompositeNameMaxLength = vm.CompositeNameMaxLength; // Clone.tt Line: 276
-            m.IsCompositeNames = vm.IsCompositeNames; // Clone.tt Line: 276
+            m.IsUseCompositeNames = vm.IsUseCompositeNames; // Clone.tt Line: 276
             m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
@@ -7799,6 +7799,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(8)]
         [Category("Composite Names Generation")]
+        [DisplayName("Max length")]
         public uint CompositeNameMaxLength // Property.tt Line: 144
         { 
             get 
@@ -7826,33 +7827,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(9)]
         [Description("Use parent-child composite names.")]
         [Category("Composite Names Generation")]
-        public bool IsCompositeNames // Property.tt Line: 144
+        [DisplayName("Use Composite")]
+        public bool IsUseCompositeNames // Property.tt Line: 144
         { 
             get 
             { 
-                return this._IsCompositeNames; 
+                return this._IsUseCompositeNames; 
             }
             set
             {
-                if (this._IsCompositeNames != value)
+                if (this._IsUseCompositeNames != value)
                 {
-                    this.OnIsCompositeNamesChanging(ref value);
-                    this._IsCompositeNames = value;
-                    this.OnIsCompositeNamesChanged();
+                    this.OnIsUseCompositeNamesChanging(ref value);
+                    this._IsUseCompositeNames = value;
+                    this.OnIsUseCompositeNamesChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool _IsCompositeNames;
-        partial void OnIsCompositeNamesChanging(ref bool to); // Property.tt Line: 166
-        partial void OnIsCompositeNamesChanged();
-        bool IConfigModel.IsCompositeNames { get { return this._IsCompositeNames; } } 
+        private bool _IsUseCompositeNames;
+        partial void OnIsUseCompositeNamesChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsUseCompositeNamesChanged();
+        bool IConfigModel.IsUseCompositeNames { get { return this._IsUseCompositeNames; } } 
         
         [PropertyOrderAttribute(10)]
         [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
         [Category("Composite Names Generation")]
+        [DisplayName("Use Prefix")]
         public bool IsUseGroupPrefix // Property.tt Line: 144
         { 
             get 
