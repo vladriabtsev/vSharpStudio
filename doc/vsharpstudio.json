@@ -5274,18 +5274,8 @@
               "defaultValue": ""
             },
             {
-              "name": "node_settings_vm_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "settings",
-              "description": "",
+              "description": "string node_settings_vm_guid = 6;",
               "label": "",
               "type": "string",
               "longType": "string",

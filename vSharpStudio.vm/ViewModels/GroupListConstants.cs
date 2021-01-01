@@ -37,6 +37,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListConstants.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

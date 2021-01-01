@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +22,11 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigObjectVmGenSettings(ITreeConfigNode parent, TValidator validator)
             : base(parent, validator)
         {
+            //this.HidePropertiesForXceedPropertyGrid();
+            this.DicVmExclProps = new Dictionary<string, Dictionary<string, string>>();
         }
+        [BrowsableAttribute(false)]
+        public Dictionary<string, Dictionary<string, string>> DicVmExclProps { get; private set; }
         //[BrowsableAttribute(false)]
         //public ConfigNodesCollection<PluginGeneratorMainSettings> ListGeneratorsSettings
         //{
@@ -78,142 +83,177 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Node App Generator Settings
 
-        private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
-        {
-            var cfg = (Config)this.GetConfig();
-            var lst = gen.GetListNodeGenerationSettings();
-            foreach (var t in lst)
-            {
-                if (DicGenNodeSettings.ContainsKey(t.Guid))
-                    continue;
-                string modelPath = this.ModelPath;
-                var searchPattern = t.SearchPathInModel;
 
-                bool is_found = SearchInModelPathByPattern(modelPath, searchPattern);
+        //private void SearchPathAndAdd(AppProjectGenerator appProjectGenerator, INodeGenSettings ngs, IvPluginGenerator gen)
+        //{
+        //    var cfg = (Config)this.GetConfig();
+        //    var lst = gen.GetListNodeGenerationSettings();
+        //    foreach (var t in lst)
+        //    {
+        //        if (DicGenNodeSettings.ContainsKey(t.Guid))
+        //            continue;
+        //        string modelPath = this.ModelPath;
+        //        var searchPattern = t.SearchPathInModel;
 
-                if (is_found)
-                {
-                    PluginGeneratorNodeSettings gs = null;
-                    foreach (var ttt in ngs.ListNodeGeneratorsSettings)
-                    {
-                        if (ttt.NodeSettingsVmGuid == t.Guid)
-                        {
-                            gs = ttt;
-                            break;
-                        }
-                    }
-                    if (gs == null)
-                    {
-                        gs = new PluginGeneratorNodeSettings(this);
-                        gs.Name = appProjectGenerator.Name;
-                        gs.NodeSettingsVmGuid = t.Guid;
-                        gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
-                        _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
-                        ngs.ListNodeGeneratorsSettings.Add(gs);
-                    }
-                    gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings, this is ConfigModel);
-                    if (!this.DicGenNodeSettings.ContainsKey(appProjectGenerator.Guid))
-                    {
-                        this.DicGenNodeSettings[appProjectGenerator.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                    }
-                    var dicS = this.DicGenNodeSettings[appProjectGenerator.Guid];
-                    dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
-                    //// Model default settings
-                    //gs = null;
-                    //foreach (var ttt in cfg.Model.ListNodeGeneratorsSettings)
-                    //{
-                    //    if (ttt.NodeSettingsVmGuid == t.Guid)
-                    //    {
-                    //        gs = ttt;
-                    //        break;
-                    //    }
-                    //}
-                    //if (gs == null)
-                    //{
-                    //    gs = new PluginGeneratorNodeSettings(this);
-                    //    gs.Name = appProjectGenerator.Name;
-                    //    gs.NodeSettingsVmGuid = t.Guid;
-                    //    gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
-                    //    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
-                    //    cfg.Model.ListNodeGeneratorsSettings.Add(gs);
-                    //}
-                    //gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
-                    //if (!cfg.Model.DicGenNodeSettings.ContainsKey(appProjectGenerator.Guid))
-                    //{
-                    //    cfg.Model.DicGenNodeSettings[appProjectGenerator.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-                    //}
-                    //dicS = cfg.Model.DicGenNodeSettings[appProjectGenerator.Guid];
-                    //dicS[gs.NodeSettingsVmGuid] = t.GetAppGenerationNodeSettingsVm(gs.Settings, true);
-                }
-            }
-        }
-        public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
-        {
-            Contract.Requires(searchPattern != null);
-            var subPatterns = searchPattern.Split(';');
-            if (subPatterns.Count() == 1)
-            {
-                if (string.IsNullOrWhiteSpace(subPatterns[0]) || subPatterns[0] == "*")
-                    return true;
-            }
-            bool is_found = true;
-            bool is_negative = false;
-            foreach (var t in subPatterns)
-            {
-                string tt = t;
-                if (t[0] == '!')
-                {
-                    is_negative = true;
-                    tt = t.Substring(1);
-                }
-#if NET48
-                        var sp = Split(t, ".*.");
-#else
-                var sp = tt.Split(".*.");
-#endif
-                is_found = true;
-                int indx = 0;
-                foreach (var s in sp)
-                {
-                    var sd = "." + s;
-                    if (modelPath.Contains(s))
-                    {
-                        indx = modelPath.IndexOf(sd) + sd.Length;
-                        modelPath = modelPath.Substring(indx);
-                    }
-                    else
-                    {
-                        is_found = false;
-                        break;
-                    }
-                }
-                if (modelPath.Length > 0)
-                    is_found = false;
-                if (is_found)
-                    break;
-            }
-            if (is_negative)
-                return !is_found;
-            return is_found;
-        }
+        //        bool is_found = SearchInModelPathByPattern(modelPath, searchPattern);
+
+        //        if (is_found)
+        //        {
+        //            PluginGeneratorNodeSettings gs = null;
+        //            foreach (var ttt in ngs.ListNodeGeneratorsSettings)
+        //            {
+        //                if (ttt.NodeSettingsVmGuid == t.Guid)
+        //                {
+        //                    gs = ttt;
+        //                    break;
+        //                }
+        //            }
+        //            if (gs == null)
+        //            {
+        //                gs = new PluginGeneratorNodeSettings(this);
+        //                gs.Name = appProjectGenerator.Name;
+        //                gs.NodeSettingsVmGuid = t.Guid;
+        //                gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
+        //                _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
+        //                ngs.ListNodeGeneratorsSettings.Add(gs);
+        //            }
+        //            gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings, this is ConfigModel);
+        //            if (!this.DicGenNodeSettings.ContainsKey(appProjectGenerator.Guid))
+        //            {
+        //                this.DicGenNodeSettings[appProjectGenerator.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+        //            }
+        //            var dicS = this.DicGenNodeSettings[appProjectGenerator.Guid];
+        //            dicS[gs.NodeSettingsVmGuid] = gs.SettingsVm;
+        //            //// Model default settings
+        //            //gs = null;
+        //            //foreach (var ttt in cfg.Model.ListNodeGeneratorsSettings)
+        //            //{
+        //            //    if (ttt.NodeSettingsVmGuid == t.Guid)
+        //            //    {
+        //            //        gs = ttt;
+        //            //        break;
+        //            //    }
+        //            //}
+        //            //if (gs == null)
+        //            //{
+        //            //    gs = new PluginGeneratorNodeSettings(this);
+        //            //    gs.Name = appProjectGenerator.Name;
+        //            //    gs.NodeSettingsVmGuid = t.Guid;
+        //            //    gs.AppProjectGeneratorGuid = appProjectGenerator.Guid;
+        //            //    _logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
+        //            //    cfg.Model.ListNodeGeneratorsSettings.Add(gs);
+        //            //}
+        //            //gs.SettingsVm = t.GetAppGenerationNodeSettingsVm(gs.Settings);
+        //            //if (!cfg.Model.DicGenNodeSettings.ContainsKey(appProjectGenerator.Guid))
+        //            //{
+        //            //    cfg.Model.DicGenNodeSettings[appProjectGenerator.Guid] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
+        //            //}
+        //            //dicS = cfg.Model.DicGenNodeSettings[appProjectGenerator.Guid];
+        //            //dicS[gs.NodeSettingsVmGuid] = t.GetAppGenerationNodeSettingsVm(gs.Settings, true);
+        //        }
+        //    }
+        //}
+        //        public static bool SearchInModelPathByPattern(string modelPath, string searchPattern)
+        //        {
+        //            Contract.Requires(searchPattern != null);
+        //            var subPatterns = searchPattern.Split(';');
+        //            if (subPatterns.Count() == 1)
+        //            {
+        //                if (string.IsNullOrWhiteSpace(subPatterns[0]) || subPatterns[0] == "*")
+        //                    return true;
+        //            }
+        //            bool is_found = true;
+        //            bool is_negative = false;
+        //            foreach (var t in subPatterns)
+        //            {
+        //                string tt = t;
+        //                if (t[0] == '!')
+        //                {
+        //                    is_negative = true;
+        //                    tt = t.Substring(1);
+        //                }
+        //#if NET48
+        //                        var sp = Split(t, ".*.");
+        //#else
+        //                var sp = tt.Split(".*.");
+        //#endif
+        //                is_found = true;
+        //                int indx = 0;
+        //                foreach (var s in sp)
+        //                {
+        //                    var sd = "." + s;
+        //                    if (modelPath.Contains(s))
+        //                    {
+        //                        indx = modelPath.IndexOf(sd) + sd.Length;
+        //                        modelPath = modelPath.Substring(indx);
+        //                    }
+        //                    else
+        //                    {
+        //                        is_found = false;
+        //                        break;
+        //                    }
+        //                }
+        //                if (modelPath.Length > 0)
+        //                    is_found = false;
+        //                if (is_found)
+        //                    break;
+        //            }
+        //            if (is_negative)
+        //                return !is_found;
+        //            return is_found;
+        //        }
         public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
         {
             _logger.Trace();
+            Debug.Assert(!this.DicGenNodeSettings.ContainsKey(appProjectGeneratorGuid));
             var ngs = (INodeGenSettings)this;
             var cfg = (Config)this.GetConfig();
             var appgen = (AppProjectGenerator)cfg.DicNodes[appProjectGeneratorGuid];
             var gen = cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
-            SearchPathAndAdd(appgen, ngs, gen);
+            PluginGeneratorNodeSettings gs = null;
+            foreach (var ts in ngs.ListNodeGeneratorsSettings)
+            {
+                if (ts.Guid == appProjectGeneratorGuid)
+                {
+                    gs = ts;
+                }
+            }
+            if (gs == null)
+            {
+                var t = gen.GetGenerationNodeSettingsVmFromJson(null, this);
+                this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
+                this.DicGenNodeSettings[appProjectGeneratorGuid] = t;
+                gs = new PluginGeneratorNodeSettings(this);
+                gs.Name = appgen.Name;
+                gs.AppProjectGeneratorGuid = appgen.Guid;
+                gs.SettingsVm = t;
+                //_logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
+                ngs.ListNodeGeneratorsSettings.Add(gs);
+            }
+            else
+            {
+                var t = gen.GetGenerationNodeSettingsVmFromJson(gs.Settings, this);
+                this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
+                gs.SettingsVm = t;
+                this.DicGenNodeSettings[appProjectGeneratorGuid] = t;
+            }
         }
         public void RestoreNodeAppGenSettingsVm()
         {
             _logger.Trace();
             var ngs = (INodeGenSettings)this;
             var cfg = (Config)this.GetConfig();
-            foreach (var t in cfg.DicActiveAppProjectGenerators)
+            foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
-                this.AddNodeAppGenSettings(t.Key);
+                var gen = cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
+                tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson(tt.Settings, this);
+                this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
+                ngs.DicGenNodeSettings[tt.AppProjectGeneratorGuid] = tt.SettingsVm;
             }
+            //foreach (var t in cfg.DicActiveAppProjectGenerators)
+            //{
+            //    //this.AddNodeAppGenSettings(t.Key);
+            //}
         }
         public void SaveNodeAppGenSettings()
         {
@@ -251,16 +291,16 @@ namespace vSharpStudio.vm.ViewModels
 
         [BrowsableAttribute(false)]
         // AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
-        public DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeSettings { get { return dicGenNodeSettings; } }
-        private DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> dicGenNodeSettings =
-            new DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>>(20, false, true,
+        public DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get { return dicGenNodeSettings; } }
+        private DictionaryExt<string, IvPluginGeneratorNodeSettings> dicGenNodeSettings =
+            new DictionaryExt<string, IvPluginGeneratorNodeSettings>(20, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
         /// <summary>
         /// Getting VM of generator settings for node
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public bool IsIncluded(string guidAppPrjGen, string guidSettings, bool isFromPrevStable = false)
+        public bool IsIncluded(string guidAppPrjGen, bool isFromPrevStable = false)
         {
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
@@ -272,26 +312,26 @@ namespace vSharpStudio.vm.ViewModels
                 if (p is ConfigModel)
                 {
                     var m = p as ConfigModel;
-                    if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && m.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                    if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
-                        var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                        var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen]);
                         if (!settings.IsIncluded.HasValue || settings.IsIncluded.Value)
                         {
                             return true;
                         }
                         if (!isFromPrevStable)
-                            return this.IsIncludedInStable(guidAppPrjGen, guidSettings);
+                            return this.IsIncludedInStable(guidAppPrjGen);
                         return false;
                     }
                     return true;
                 }
                 else if (ngs != null)
                 {
-                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
                         //    return true;
-                        var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings]);
+                        var settings = (IvPluginGeneratorNodeIncludable)(ngs.DicGenNodeSettings[guidAppPrjGen]);
                         if (settings.IsIncluded.HasValue)
                         {
                             if (settings.IsIncluded.Value)
@@ -299,7 +339,7 @@ namespace vSharpStudio.vm.ViewModels
                                 return true;
                             }
                             if (!isFromPrevStable)
-                                return this.IsIncludedInStable(guidAppPrjGen, guidSettings);
+                                return this.IsIncludedInStable(guidAppPrjGen);
                             return false;
                         }
                     }
@@ -312,32 +352,144 @@ namespace vSharpStudio.vm.ViewModels
             }
             return true;
         }
-        private bool IsIncludedInStable(string guidAppPrjGen, string guidSettings)
+        private bool IsIncludedInStable(string guidAppPrjGen)
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
             {
                 var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
-                return prevNode.IsIncluded(guidAppPrjGen, guidSettings, true);
+                return prevNode.IsIncluded(guidAppPrjGen, true);
             }
             return false;
+        }
+        public bool GetBoolSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func, bool isFromPrevStable = false)
+        {
+            if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                throw new Exception();
+
+            ITreeConfigNode p = this;
+            while (p != null)
+            {
+                var ngs = p as INodeGenSettings;
+                if (p is ConfigModel)
+                {
+                    var m = p as ConfigModel;
+                    if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                    {
+                        var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);
+                        if (!setting.HasValue || setting.Value)
+                        {
+                            return true;
+                        }
+                        if (!isFromPrevStable)
+                            return this.GetBoolSettingInStable(guidAppPrjGen, func);
+                        return false;
+                    }
+                    return true;
+                }
+                else if (ngs != null)
+                {
+                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                    {
+                        var setting = func(ngs.DicGenNodeSettings[guidAppPrjGen]);
+                        if (setting.HasValue)
+                        {
+                            if (setting.Value)
+                            {
+                                return true;
+                            }
+                            if (!isFromPrevStable)
+                                return this.GetBoolSettingInStable(guidAppPrjGen, func);
+                            return false;
+                        }
+                    }
+                }
+                else
+                    throw new Exception();
+                p = p.Parent;
+            }
+            return true;
+        }
+        private bool GetBoolSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func)
+        {
+            var cfg = (Config)this.GetConfig();
+            var prev = cfg.PrevStableConfig;
+            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            {
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                return prevNode.GetBoolSetting(guidAppPrjGen, func, true);
+            }
+            return false;
+        }
+        public string GetStringSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, string> func, bool isFromPrevStable = false)
+        {
+            if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                throw new Exception();
+
+            ITreeConfigNode p = this;
+            while (p != null)
+            {
+                var ngs = p as INodeGenSettings;
+                if (p is ConfigModel)
+                {
+                    var m = p as ConfigModel;
+                    if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                    {
+                        var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);
+                        if (!string.IsNullOrWhiteSpace(setting))
+                        {
+                            return setting;
+                        }
+                        if (!isFromPrevStable)
+                            return this.GetStringSettingInStable(guidAppPrjGen, func);
+                    }
+                    return "";
+                }
+                else if (ngs != null)
+                {
+                    if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+                    {
+                        var setting = func(ngs.DicGenNodeSettings[guidAppPrjGen]);
+                        if (!string.IsNullOrWhiteSpace(setting))
+                        {
+                            return setting;
+                        }
+                        if (!isFromPrevStable)
+                            return this.GetStringSettingInStable(guidAppPrjGen, func);
+                    }
+                    return "";
+                }
+                else
+                    throw new Exception();
+                p = p.Parent;
+            }
+            return "";
+        }
+        private string GetStringSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, string> func)
+        {
+            var cfg = (Config)this.GetConfig();
+            var prev = cfg.PrevStableConfig;
+            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            {
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                return prevNode.GetStringSetting(guidAppPrjGen, func, true);
+            }
+            return "";
         }
         /// <summary>
         /// Getting VM of generator settings for node
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings)
+        public IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
-            var dic = DicGenNodeSettings[guidAppPrjGen];
-            if (!dic.ContainsKey(guidSettings))
-                throw new Exception();
-            return dic[guidSettings];
+            var res = DicGenNodeSettings[guidAppPrjGen];
+            return res;
         }
-        public T GetSettings<T>(string guidAppPrjGen, string guidSettings, Func<ITreeConfigNode, T, bool> found)
+        public T GetSettings<T>(string guidAppPrjGen, Func<ITreeConfigNode, T, bool> found)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
@@ -345,9 +497,9 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenDicSettings;
-                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 {
-                    var res = (T)ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
+                    var res = (T)ngs.DicGenNodeSettings[guidAppPrjGen];
                     if (found(p, res))
                         return res;
                 }
@@ -355,7 +507,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return default(T);
         }
-        public TValue GetSettingsValue<T, TValue>(string guidAppPrjGen, string guidSettings, Action<ITreeConfigNode, T, Result<TValue>> found)
+        public TValue GetSettingsValue<T, TValue>(string guidAppPrjGen, Action<ITreeConfigNode, T, Result<TValue>> found)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
@@ -364,9 +516,9 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenDicSettings;
-                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 {
-                    var st = (T)ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
+                    var st = (T)ngs.DicGenNodeSettings[guidAppPrjGen];
                     found(p, st, res);
                     if (!res.IsContinue)
                         return res.Value;
@@ -380,7 +532,7 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public void GetSettings(string guidAppPrjGen, string guidSettings, Func<ITreeConfigNode, IvPluginGeneratorNodeSettings, bool> toParents)
+        public void GetSettings(string guidAppPrjGen, Func<ITreeConfigNode, IvPluginGeneratorNodeSettings, bool> toParents)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
@@ -388,36 +540,31 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenDicSettings;
-                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen) && ngs.DicGenNodeSettings[guidAppPrjGen].ContainsKey(guidSettings))
+                if (ngs != null && ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 {
-                    var res = ngs.DicGenNodeSettings[guidAppPrjGen][guidSettings];
+                    var res = ngs.DicGenNodeSettings[guidAppPrjGen];
                     if (!toParents(p, res))
                         break;
                 }
                 p = p.Parent;
             }
         }
-        public bool ContainsSettings(string guidAppPrjGen, string guidSettings)
+        public bool ContainsSettings(string guidAppPrjGen)
         {
             if (DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             {
-                var dic = DicGenNodeSettings[guidAppPrjGen];
-                return dic.ContainsKey(guidSettings);
+                var res = DicGenNodeSettings[guidAppPrjGen];
+                return true;
             }
             return false;
         }
-        public bool TrySetSettings(string guidAppPrjGen, string guidSettings, IvPluginGeneratorNodeSettings setting)
+        public bool TrySetSettings(string guidAppPrjGen, IvPluginGeneratorNodeSettings setting)
         {
             bool res = false;
             DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             {
-                this.DicGenNodeSettings[guidAppPrjGen] = new DictionaryExt<string, IvPluginGeneratorNodeSettings>();
-            }
-            dic = this.DicGenNodeSettings[guidAppPrjGen];
-            if (!dic.ContainsKey(guidSettings))
-            {
-                dic[guidSettings] = setting;
+                this.DicGenNodeSettings[guidAppPrjGen] = setting;
                 res = true;
             }
             return res;

@@ -36,6 +36,22 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            this.ListMainViewForms.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
+            this.ListMainViewForms.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
             this.ListMainViewForms.OnRemovedAction = (t) => {
                 this.OnRemoveChild();
             };

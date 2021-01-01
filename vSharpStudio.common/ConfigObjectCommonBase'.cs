@@ -18,7 +18,7 @@
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverity<T, TValidator>, IComparable<T>, IEquatable<T>, ISortingValue, ITreeConfigNode
+    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>, ISortingValue, ITreeConfigNode
         where TValidator : AbstractValidator<T>
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
     {
@@ -756,67 +756,6 @@
         //public bool IsSubTreeHasMarkedForDeletion { get { return this._IsSubTreeHasMarkedForDeletion; } set { SetProperty(ref _IsSubTreeHasMarkedForDeletion, value); } }
         //private bool _IsSubTreeHasMarkedForDeletion;
 
-        [BrowsableAttribute(false)]
-        public bool AutoGenerateProperties { get { return this._AutoGenerateProperties; } set { SetProperty(ref _AutoGenerateProperties, value); } }
-        private bool _AutoGenerateProperties = true;
-
-        [BrowsableAttribute(false)]
-        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get { return this._PropertyDefinitions; } set { SetProperty(ref _PropertyDefinitions, value); } }
-        private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection _PropertyDefinitions;
-        protected void SetPropertyDefinitions(string[] lstExclude)
-        {
-            var dic = new Dictionary<string, string>();
-            foreach (var t in lstExclude)
-            {
-                dic[t] = null;
-            }
-            var res = new Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection();
-
-            var descriptors = TypeDescriptor.GetProperties(this.GetType());
-            foreach (PropertyDescriptor t in descriptors)
-            {
-                if (dic.ContainsKey(t.Name))
-                    continue;
-                var pd = new Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinition();
-                pd.TargetProperties.Add(t.Name);
-
-                bool is_skip = false;
-                foreach (var tt in t.Attributes)
-                {
-                    var attrName = tt.GetType().Name;
-                    switch (attrName)
-                    {
-                        case "BrowsableAttribute":
-                            if (!(tt as BrowsableAttribute).Browsable)
-                                is_skip = true;
-                            break;
-                        case "CategoryAttribute":
-                            pd.Category = (tt as CategoryAttribute).Category;
-                            break;
-                        case "DescriptionAttribute":
-                            pd.Description = (tt as DescriptionAttribute).Description;
-                            break;
-                        case "DisplayNameAttribute":
-                            pd.DisplayName = (tt as DisplayNameAttribute).DisplayName;
-                            break;
-                        case "PropertyOrderAttribute":
-                            pd.DisplayOrder = (tt as PropertyOrderAttribute).Order;
-                            break;
-                        case "ExpandableObjectAttribute":
-                            pd.IsExpandable = true;
-                            break;
-                        default:
-                            break;
-                    }
-                    if (is_skip)
-                        continue;
-                }
-                if (is_skip)
-                    continue;
-                res.Add(pd);
-            }
-            this.PropertyDefinitions = res;
-        }
         public ITreeConfigNode PrevCurrentVersion()
         {
             var cfg = this.GetConfig();

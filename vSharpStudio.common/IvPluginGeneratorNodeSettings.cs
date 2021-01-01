@@ -9,8 +9,7 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGeneratorNodeSettings : INotifyPropertyChanged
     {
-        string Guid { get; }
-        string Name { get; }
+        //string Name { get; }
         /// <summary>
         /// Node selection path.
         /// Can contains list path templates separated by semicolon: "temp1;temp2"
@@ -19,17 +18,14 @@ namespace vSharpStudio.common
         /// Template "Group" will find any node which type name contains "Group"
         /// If template contains "." search is applicable for right side of node full type name
         /// </summary>
-        string SearchPathInModel { get; }
-        /// <summary>
-        /// Get s Settings VM from JSON string
-        /// </summary>
-        /// <param name="settings"></param>
-        /// <returns></returns>
-        IvPluginGeneratorNodeSettings GetAppGenerationNodeSettingsVm(string settings, bool isRootModelNode = false);
+        //string SearchPathInModel { get; }
+
         /// <summary>
         /// Get JSON representation from a settings VM
         /// </summary>
         string SettingsAsJson { get; }
         string SettingsAsJsonDefault { get; }
+        //string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode);
+        Dictionary<string, string> DicNodeExcludedProperties { get; }
     }
 }

@@ -38,6 +38,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Documents";
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListDocuments.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

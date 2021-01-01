@@ -5897,7 +5897,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.SortingWeight = from.SortingWeight; // Clone.tt Line: 65
-            vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isNewGuid) // Clone.tt Line: 70
@@ -5915,7 +5914,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.SortingWeight = from.SortingWeight; // Clone.tt Line: 141
-            to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
@@ -5951,7 +5949,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.SortingWeight = m.SortingWeight; // Clone.tt Line: 221
-            vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.OnInitFromDto(); // Clone.tt Line: 227
@@ -5971,7 +5968,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.SortingWeight = vm.SortingWeight; // Clone.tt Line: 276
-            m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
@@ -6042,30 +6038,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnSortingWeightChanged();
         ulong IPluginGeneratorNodeSettings.SortingWeight { get { return this._SortingWeight; } } 
         
-        public string NodeSettingsVmGuid // Property.tt Line: 144
-        { 
-            get 
-            { 
-                return this._NodeSettingsVmGuid; 
-            }
-            set
-            {
-                if (this._NodeSettingsVmGuid != value)
-                {
-                    this.OnNodeSettingsVmGuidChanging(ref value);
-                    this._NodeSettingsVmGuid = value;
-                    this.OnNodeSettingsVmGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _NodeSettingsVmGuid = string.Empty;
-        partial void OnNodeSettingsVmGuidChanging(ref string to); // Property.tt Line: 166
-        partial void OnNodeSettingsVmGuidChanged();
-        string IPluginGeneratorNodeSettings.NodeSettingsVmGuid { get { return this._NodeSettingsVmGuid; } } 
         
+        ///////////////////////////////////////////////////
+        /// string node_settings_vm_guid = 6;
+        ///////////////////////////////////////////////////
         public string Settings // Property.tt Line: 144
         { 
             get 

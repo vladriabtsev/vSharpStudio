@@ -35,6 +35,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Roles";
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListRoles.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

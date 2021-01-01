@@ -128,12 +128,12 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
-        public List<IProperty> GetIncludedProperties(string guidAppPrjGen, string guidSettings)
+        public List<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
             foreach(var t in this.GroupProperties.ListProperties)
             {
-                if (t.IsIncluded(guidAppPrjGen, guidSettings))
+                if (t.IsIncluded(guidAppPrjGen))
                 {
                     res.Add(t);
                 }

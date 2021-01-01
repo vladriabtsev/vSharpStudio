@@ -6,10 +6,9 @@
 - [plugin_sample.proto](#plugin_sample.proto)
     - [bool_nullable](#proto_plugin_sample.bool_nullable)
     - [proto_db_connection_string_settings](#proto_plugin_sample.proto_db_connection_string_settings)
-    - [proto_generator_db_access_node_catalog_form_settings](#proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings)
-    - [proto_generator_db_access_node_property_settings](#proto_plugin_sample.proto_generator_db_access_node_property_settings)
     - [proto_generator_db_access_node_settings](#proto_plugin_sample.proto_generator_db_access_node_settings)
     - [proto_generator_db_access_settings](#proto_plugin_sample.proto_generator_db_access_settings)
+    - [proto_generator_db_schema_node_settings](#proto_plugin_sample.proto_generator_db_schema_node_settings)
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
     - [proto_plugins_group_settings](#proto_plugin_sample.proto_plugins_group_settings)
     - [string_nullable](#proto_plugin_sample.string_nullable)
@@ -60,36 +59,6 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 
 
 
-<a name="proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings"></a>
-
-### proto_generator_db_access_node_catalog_form_settings
-@base ViewModelValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| is_catalog_form_param1 | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="proto_plugin_sample.proto_generator_db_access_node_property_settings"></a>
-
-### proto_generator_db_access_node_property_settings
-@base ViewModelValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| is_property_param1 | [bool](#bool) |  |  |
-
-
-
-
-
-
 <a name="proto_plugin_sample.proto_generator_db_access_node_settings"></a>
 
 ### proto_generator_db_access_node_settings
@@ -100,6 +69,8 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | ----- | ---- | ----- | ----------- |
 | is_param1 | [bool](#bool) |  |  |
 | is_included | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_property_param1 | [bool](#bool) |  |  |
+| is_catalog_form_param1 | [bool](#bool) |  |  |
 
 
 
@@ -119,6 +90,24 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | access_param3 | [string](#string) |  |  |
 | access_param4 | [string_nullable](#proto_plugin_sample.string_nullable) |  |  |
 | is_generate_not_valid_code | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="proto_plugin_sample.proto_generator_db_schema_node_settings"></a>
+
+### proto_generator_db_schema_node_settings
+@base ViewModelValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_param1 | [bool](#bool) |  |  |
+| is_included | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_constant_param1 | [bool](#bool) |  |  |
+| is_catalog_form_param1 | [bool](#bool) |  |  |
 
 
 

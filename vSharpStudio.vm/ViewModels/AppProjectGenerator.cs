@@ -169,8 +169,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_DynamicModelNodeSettings == null)
                 {
-                    var nd = new NodeSettings();
-                    this._DynamicModelNodeSettings = nd.Run(this);
+                    var cfg = (Config)this.GetConfig();
+                    this._DynamicModelNodeSettings = cfg.Model.GetSettings(this.Guid);
+                    //var nd = new NodeSettings();
+                    //this._DynamicModelNodeSettings = nd.Run(this);
                     if (this._DynamicModelNodeSettings != null)
                     {
                         this.NotifyPropertyChanged();
@@ -192,10 +194,10 @@ namespace vSharpStudio.vm.ViewModels
             var settings = sln.DicPluginsGroupSettings[guidGroupSettings];
             return settings;
         }
-        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings(string guidNodeSettings)
+        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
         {
             var cfg = this.GetConfig();
-            return cfg.Model.GetSettings(this.Guid, guidNodeSettings);
+            return cfg.Model.GetSettings(this.Guid);
         }
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
@@ -394,8 +396,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.PluginGenerator == null)
             {
-                this.AutoGenerateProperties = false;
-                this.SetPropertyDefinitions(new string[] {
+                this.HidePropertiesForXceedPropertyGrid(new string[] {
                         this.GetPropertyName(() => this.GenScriptFileName),
                         this.GetPropertyName(() => this.ConnStrToPrevStable),
                         this.GetPropertyName(() => this.ConnStr),
@@ -441,7 +442,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.IsGenerateSqlSqriptToUpdatePrevStable)
                 {
-                    this.SetPropertyDefinitions(new string[] {
+                    this.HidePropertiesForXceedPropertyGrid(new string[] {
                         this.GetPropertyName(() => this.GenFileName),
                         this.GetPropertyName(() => this.ListGenerators),
                         this.GetPropertyName(() => this.ListInModels),
@@ -451,7 +452,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                 {
-                    this.SetPropertyDefinitions(new string[] {
+                    this.HidePropertiesForXceedPropertyGrid(new string[] {
                         this.GetPropertyName(() => this.GenScriptFileName),
                         this.GetPropertyName(() => this.GenFileName),
                         this.GetPropertyName(() => this.ListGenerators),
@@ -463,8 +464,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                this.AutoGenerateProperties = false;
-                this.SetPropertyDefinitions(new string[] {
+                this.HidePropertiesForXceedPropertyGrid(new string[] {
                     this.GetPropertyName(() => this.DynamicMainConnStrSettings),
                     this.GetPropertyName(() => this.ConnStr),
                     this.GetPropertyName(() => this.NameUi),

@@ -1,39 +1,23 @@
 
-„
-$4fbf84fa-062a-4f43-9b7e-19e4ca27be74test1 îˆ¶óƒ*test1:Æ¤¢ÿ ‚ñ`x€ª3
-$487102b0-0be9-48c2-8afc-b562ac4757edBaseConfigs²
-$93e43355-7b3d-45dd-a1ef-343d3cb037caModel €€€€€€€€*Model@dHP`xª/
-v"Id2$2ebe922b-706e-4236-8f90-a0742b1df273ª—
-$35293bc8-01e2-433a-8ec0-c270eddc9e8a	Constants€€€€€€€€p"	Constants2K
-$4ea88b0a-4e0d-4426-b2eb-d0e40624dc1b	Constant1ØÔ’–­†üt"	Constant12
+¯
+$a90ce1fd-de3b-4060-b586-009aafe2a46ctest1 îˆ¶óƒ*test1:›ç¹ÿÄ†õ×`x€ª3
+$df2c51e2-5729-47a5-be58-9c6cff9bceffBaseConfigs²
+$464ee78f-0a7c-4634-bf58-c8e137a13dc8Model €€€€€€€€*Model@dHP`xª/
+v"Id2$c53e0311-64aa-4aa5-9abc-79512800a264ª—
+$52bb9e65-ff8d-4716-8ef3-b632e4e76a4d	Constants€€€€€€€€p"	Constants2K
+$69f1d136-ec16-4614-97c4-a4e67c146530	Constant1ØÔ’–­†üt"	Constant12
 PPh²M
-$61f90ed2-fcf3-436c-bf8d-8384bc7404d5Enumerations€€€€€€€€€"EnumerationsºK
-$8396ccbd-1956-4e26-8559-54d0f1a66bbbCatalogs€€€€€€€€"Catalogs2CtlgÂ×
-$23533367-1d6c-495b-b02e-0edae4f2ff5f	Documents€€€€€€€€ "	Documents2Doc:@
-$53c00e04-c048-4937-a984-5a903b0e9a20SharedÓŠ¼Î¶¨øûq"SharedBG
-$9b120afa-9eb3-4e09-b100-3867e608ab0c	Documents€€€€€€€€€"	DocumentsÊE
-$9ac9cf8b-2558-4c35-834d-04acea2eda40Journals€€€€€€€€°"JournalsÒ´
-$fa01a978-a4ec-4cef-bc8a-78460f89f42bCommon€€€€€€€€`"Common:4
-$4d9c79e3-2165-4a0f-b261-18d0441d3218Roles"RolesB<
-$4601c6b5-8a49-44b8-a8d5-7c07ab25a47e	Constants"	ConstantsÂ«
-$c8ee07de-c6e3-4b12-9c35-d88af9e7edf4€€€€€€€€"µ
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85CBlazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›ŸæòX"Ğ
-$C94175E4-E8F4-4A84-871B-6994199A2076MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ñ
-$653FAFE3-8237-4A47-8FDA-FD6AC3E350CFOracle"7vSharpStudio plugin. Database design support for Oracle(²Ì•¤ºŠÜ2\
-$839F8FF2-6688-4503-AE49-4DA0947738ECDesign#DB structure creation and migration ®çÔ¢¥Õ{X"Ù
-$3A29FC48-3892-498A-AE36-CB0C9916C6C9
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ã
-$052C7318-3D73-4605-B1AE-749FC7E10412
-Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›ŸæòX"¢
+$205115e7-5cb8-429e-aa73-17618038008fEnumerations€€€€€€€€€"EnumerationsºK
+$38a9d085-d2c6-474c-b5d1-d04c753620d9Catalogs€€€€€€€€"Catalogs2CtlgÂ×
+$c35b9904-e892-47f6-be4a-624bd9c51944	Documents€€€€€€€€ "	Documents2Doc:@
+$eb44f675-9363-442d-bbbd-964f2069d69cSharedÓŠ¼Î¶¨øûq"SharedBG
+$d344ab85-fdea-4c13-9f97-13b3bade4581	Documents€€€€€€€€€"	DocumentsÊE
+$7dd4299a-e689-4fb2-a510-0d1d945fa6baJournals€€€€€€€€°"JournalsÒ´
+$7d672585-5f9a-4d58-ab89-e73fc5ff2162Common€€€€€€€€`"Common:4
+$eefd3d34-b58a-4fa5-b289-dd43e3347ea2Roles"RolesB<
+$584fe355-2eae-4c0c-b407-1fa2ff157fe2	Constants"	ConstantsÂÖ
+$bf4ac46c-5a4a-48b5-a1d0-076edde91c86€€€€€€€€"¢
 $ED93228B-8D8E-456C-9688-37EEB1B2D835Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ñ
-$16376EA9-1FBD-4945-8160-BCCC3262128BSqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
-$574b9e92-537f-49ca-bbdb-ffcd8dff2e18Apps€€€€€€€€ 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
+$add81000-f86a-451e-8209-e39925489d27Apps€€€€€€€€ 

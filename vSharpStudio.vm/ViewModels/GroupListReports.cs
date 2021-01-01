@@ -46,6 +46,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Reports";
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListReports.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

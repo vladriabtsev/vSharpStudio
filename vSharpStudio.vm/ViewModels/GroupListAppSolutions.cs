@@ -39,6 +39,15 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "Apps";
             this.IsEditable = false;
             //this.DefaultDb.Parent = this;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
             this.ListAppSolutions.OnAddingAction = (t) => {
                 t.IsNew = true;
             };
@@ -49,7 +58,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-
         //[PropertyOrderAttribute(11)]
         //[ExpandableObjectAttribute()]
         //[ReadOnly(true)]

@@ -54,16 +54,23 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         partial void OnInit()
         {
+            this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             if (this.Parent is GroupDocuments)
             {
-                this._Name = "Shared";
+                this.Name = "Shared";
             }
             else
             {
-                this._Name = "Properties";
+                this.Name = "Properties";
             }
-
-            this.IsEditable = false;
             this.ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -81,18 +88,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         protected override void OnParentChanged()
-        {
-            if (this.Parent is GroupDocuments)
-            {
-                this.Name = "Shared";
-            }
-            else
-            {
-                this.Name = "Properties";
-            }
-        }
-
-        protected override void OnInitFromDto()
         {
             if (this.Parent is GroupDocuments)
             {

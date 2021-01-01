@@ -1113,8 +1113,7 @@ Stored in each node in Model branch
 | name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | sorting_weight | [uint64](#uint64) |  |  |
-| node_settings_vm_guid | [string](#string) |  |  |
-| settings | [string](#string) |  |  |
+| settings | [string](#string) |  | string node_settings_vm_guid = 6; |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 

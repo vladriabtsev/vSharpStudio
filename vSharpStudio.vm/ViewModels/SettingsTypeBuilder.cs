@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -69,15 +70,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
                     {
-                        Dictionary<string, object> dic_gs = new Dictionary<string, object>();
-
-                        object objGen = CreateSettingsForAppProjectGenerator(node, ttt, dic_gs, isShortVersion);
-
-                        if (dic_gs.Count > 0)
-                        {
-                            dic_apgs[ttt.Name] = objGen;
-                            SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object), ttt.NameUi, ttt.Description);
-                        }
+                        var nds = (IGetNodeSetting)node;
+                        var nsettings = nds.GetSettings(ttt.Guid);
+                        dic_apgs[ttt.Name] = nsettings;
+                        SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, nsettings.GetType(), ttt.NameUi, ttt.Description);
                     }
                 }
             }
@@ -90,6 +86,37 @@ namespace vSharpStudio.vm.ViewModels
             }
             return objAppGen;
         }
+        //private static object CreateSettingsForProject(ITreeConfigNode node, AppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
+        //{
+        //    TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
+        //    foreach (var ttt in tt.ListAppProjectGenerators)
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(ttt.PluginGuid))
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(ttt.PluginGeneratorGuid))
+        //            {
+        //                Dictionary<string, object> dic_gs = new Dictionary<string, object>();
+
+        //                object objGen = null;
+        //                objGen = CreateSettingsForAppProjectGenerator(node, ttt, dic_gs, isShortVersion);
+
+        //                if (dic_gs.Count > 0)
+        //                {
+        //                    dic_apgs[ttt.Name] = objGen;
+        //                    SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, typeof(Object), ttt.NameUi, ttt.Description);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    SettingsTypeBuilder.CreateToString(tbAppGen, "Project");
+        //    Type apgsType = tbAppGen.CreateType();
+        //    var objAppGen = Activator.CreateInstance(apgsType);
+        //    foreach (var dt in dic_apgs)
+        //    {
+        //        apgsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objAppGen, new object[] { dt.Value });
+        //    }
+        //    return objAppGen;
+        //}
         private static object CreateSettingsForAppProjectGenerator(ITreeConfigNode node, AppProjectGenerator ttt, Dictionary<string, object> dic_gs, bool isShortVersion)
         {
             var nds = (IGetNodeSetting)node;
@@ -101,35 +128,13 @@ namespace vSharpStudio.vm.ViewModels
                 if (isShortVersion && (tttt.Guid != ttt.PluginGeneratorGuid))
                     continue;
                 IvPluginGenerator gen = tttt.Generator;
-                bool isFound = false;
-                var lst = gen.GetListNodeGenerationSettings();
-                foreach (var ts in lst)
-                {
-                    if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                        isFound = true;
-                }
-                if (!isFound)
+                var nsettings = nds.GetSettings(ttt.Guid);
+                if (nsettings == null)
                     continue;
-                SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, typeof(Object), gen.NameUi, gen.Description);
-                TypeBuilder tbSet = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generator settings
-                foreach (var ts in lst)
-                {
-                    if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                        SettingsTypeBuilder.CreateProperty(tbSet, ts.Name, typeof(Object));
-                }
-                SettingsTypeBuilder.CreateToString(tbSet, "Generator");
-                Type nsType = tbSet.CreateType();
-                object objSet = Activator.CreateInstance(nsType);
-                foreach (var ts in lst)
-                {
-                    if (nds.ContainsSettings(ttt.Guid, ts.Guid))
-                        nsType.InvokeMember(ts.Name, BindingFlags.SetProperty, null, objSet, new object[] { ((IGetNodeSetting)node).GetSettings(ttt.Guid, ts.Guid) });
-                }
-                dic_gs[gen.Name] = objSet;
-                if (isShortVersion)
-                    return objSet;
+                SettingsTypeBuilder.CreateProperty(tbGen, gen.Name, nsettings.GetType(), gen.NameUi, gen.Description);
+                dic_gs[gen.Name] = nsettings;
             }
-            SettingsTypeBuilder.CreateToString(tbGen, "Plugin");
+            SettingsTypeBuilder.CreateToString(tbGen, "Generator");
             Type settingsType = tbGen.CreateType();
             var objGen = Activator.CreateInstance(settingsType);
             foreach (var dt in dic_gs)

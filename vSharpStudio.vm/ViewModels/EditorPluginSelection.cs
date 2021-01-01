@@ -28,15 +28,16 @@ namespace vSharpStudio.vm.ViewModels
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var en = cnfg.GroupPlugins.ListPlugins.GetEnumerator();
-            if (en.MoveNext())
-            {
-                var plg = en.Current;
-                if (!en.MoveNext())
-                {
-                    propertyItem.Value = plg.Guid;
-                }
-            }
+            // 
+            //var en = cnfg.GroupPlugins.ListPlugins.GetEnumerator();
+            //if (en.MoveNext())
+            //{
+            //    var plg = en.Current;
+            //    if (!en.MoveNext())
+            //    {
+            //        propertyItem.Value = plg.Guid;
+            //    }
+            //}
             var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;

@@ -418,6 +418,205 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         string IGeneratorDbSchemaSettings.SchemaParam3 { get { return this._SchemaParam3; } set { this.SchemaParam3 = value; } }
         #endregion Properties
     }
+    public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // Class.tt Line: 6
+    public partial class GeneratorDbSchemaNodeSettings : VmValidatableWithSeverity<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public GeneratorDbSchemaNodeSettings() 
+            : base(GeneratorDbSchemaNodeSettingsValidator.Validator) // Class.tt Line: 43
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static GeneratorDbSchemaNodeSettings Clone(GeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            GeneratorDbSchemaNodeSettings vm = new GeneratorDbSchemaNodeSettings();
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
+            vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 65
+            vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(GeneratorDbSchemaNodeSettings to, GeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
+            to.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 141
+            to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override GeneratorDbSchemaNodeSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return GeneratorDbSchemaNodeSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GeneratorDbSchemaNodeSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GeneratorDbSchemaNodeSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_generator_db_schema_node_settings' to 'GeneratorDbSchemaNodeSettings'
+        public static GeneratorDbSchemaNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_node_settings m, GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotNotifying = true;
+            vm.IsValidate = false;
+            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
+            vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsConstantParam1 = m.IsConstantParam1; // Clone.tt Line: 221
+            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
+            vm.IsNotNotifying = false;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'GeneratorDbSchemaNodeSettings' to 'proto_generator_db_schema_node_settings'
+        public static Proto.Plugin.proto_generator_db_schema_node_settings ConvertToProto(GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // Clone.tt Line: 239
+            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
+            m.IsIncluded = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 253
+            m.IsIncluded.HasValue = vm.IsIncluded.HasValue;
+            if (vm.IsIncluded.HasValue)
+                m.IsIncluded.Value = vm.IsIncluded.Value;
+            m.IsConstantParam1 = vm.IsConstantParam1; // Clone.tt Line: 276
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public bool IsParam1 // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsParam1; 
+            }
+            set
+            {
+                if (this._IsParam1 != value)
+                {
+                    this.OnIsParam1Changing(ref value);
+                    this._IsParam1 = value;
+                    this.OnIsParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsParam1;
+        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 166
+        partial void OnIsParam1Changed();
+        bool IGeneratorDbSchemaNodeSettings.IsParam1 { get { return this._IsParam1; } set { this.IsParam1 = value; } }
+        
+        public bool? IsIncluded // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsIncluded; 
+            }
+            set
+            {
+                if (this._IsIncluded != value)
+                {
+                    this.OnIsIncludedChanging(ref value);
+                    this._IsIncluded = value;
+                    this.OnIsIncludedChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool? _IsIncluded;
+        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 166
+        partial void OnIsIncludedChanged();
+        bool? IGeneratorDbSchemaNodeSettings.IsIncluded { get { return this._IsIncluded; } set { this.IsIncluded = value; } }
+        
+        public bool IsConstantParam1 // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsConstantParam1; 
+            }
+            set
+            {
+                if (this._IsConstantParam1 != value)
+                {
+                    this.OnIsConstantParam1Changing(ref value);
+                    this._IsConstantParam1 = value;
+                    this.OnIsConstantParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsConstantParam1;
+        partial void OnIsConstantParam1Changing(ref bool to); // Property.tt Line: 166
+        partial void OnIsConstantParam1Changed();
+        bool IGeneratorDbSchemaNodeSettings.IsConstantParam1 { get { return this._IsConstantParam1; } set { this.IsConstantParam1 = value; } }
+        
+        public bool IsCatalogFormParam1 // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsCatalogFormParam1; 
+            }
+            set
+            {
+                if (this._IsCatalogFormParam1 != value)
+                {
+                    this.OnIsCatalogFormParam1Changing(ref value);
+                    this._IsCatalogFormParam1 = value;
+                    this.OnIsCatalogFormParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsCatalogFormParam1;
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 166
+        partial void OnIsCatalogFormParam1Changed();
+        bool IGeneratorDbSchemaNodeSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } set { this.IsCatalogFormParam1 = value; } }
+        #endregion Properties
+    }
     public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 6
     public partial class GeneratorDbAccessSettings : VmValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 7
     {
@@ -671,6 +870,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             vm.IsValidate = false;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
             vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 65
+            vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -681,6 +882,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             Contract.Requires(from != null);
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
             to.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 141
+            to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -711,6 +914,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             vm.IsValidate = false;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
             vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 221
+            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -725,6 +930,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             m.IsIncluded.HasValue = vm.IsIncluded.HasValue;
             if (vm.IsIncluded.HasValue)
                 m.IsIncluded.Value = vm.IsIncluded.Value;
+            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 276
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
         }
         
@@ -788,94 +995,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 166
         partial void OnIsIncludedChanged();
         bool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } set { this.IsIncluded = value; } }
-        #endregion Properties
-    }
-    public partial class GeneratorDbAccessNodePropertySettingsValidator : ValidatorBase<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbAccessNodePropertySettings : VmValidatableWithSeverity<GeneratorDbAccessNodePropertySettings, GeneratorDbAccessNodePropertySettingsValidator>, IGeneratorDbAccessNodePropertySettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public GeneratorDbAccessNodePropertySettings() 
-            : base(GeneratorDbAccessNodePropertySettingsValidator.Validator) // Class.tt Line: 43
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static GeneratorDbAccessNodePropertySettings Clone(GeneratorDbAccessNodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            GeneratorDbAccessNodePropertySettings vm = new GeneratorDbAccessNodePropertySettings();
-            vm.IsNotNotifying = true;
-            vm.IsValidate = false;
-            vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(GeneratorDbAccessNodePropertySettings to, GeneratorDbAccessNodePropertySettings from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 141
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override GeneratorDbAccessNodePropertySettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbAccessNodePropertySettings.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GeneratorDbAccessNodePropertySettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            GeneratorDbAccessNodePropertySettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_generator_db_access_node_property_settings' to 'GeneratorDbAccessNodePropertySettings'
-        public static GeneratorDbAccessNodePropertySettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_property_settings m, GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotNotifying = true;
-            vm.IsValidate = false;
-            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'GeneratorDbAccessNodePropertySettings' to 'proto_generator_db_access_node_property_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_property_settings ConvertToProto(GeneratorDbAccessNodePropertySettings vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Plugin.proto_generator_db_access_node_property_settings m = new Proto.Plugin.proto_generator_db_access_node_property_settings(); // Clone.tt Line: 239
-            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 276
-            return m;
-        }
-        
-        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
         
         public bool IsPropertyParam1 // Property.tt Line: 144
         { 
@@ -899,95 +1018,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         private bool _IsPropertyParam1;
         partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsPropertyParam1Changed();
-        bool IGeneratorDbAccessNodePropertySettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } set { this.IsPropertyParam1 = value; } }
-        #endregion Properties
-    }
-    public partial class GeneratorDbAccessNodeCatalogFormSettingsValidator : ValidatorBase<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbAccessNodeCatalogFormSettings : VmValidatableWithSeverity<GeneratorDbAccessNodeCatalogFormSettings, GeneratorDbAccessNodeCatalogFormSettingsValidator>, IGeneratorDbAccessNodeCatalogFormSettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public GeneratorDbAccessNodeCatalogFormSettings() 
-            : base(GeneratorDbAccessNodeCatalogFormSettingsValidator.Validator) // Class.tt Line: 43
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static GeneratorDbAccessNodeCatalogFormSettings Clone(GeneratorDbAccessNodeCatalogFormSettings from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            GeneratorDbAccessNodeCatalogFormSettings vm = new GeneratorDbAccessNodeCatalogFormSettings();
-            vm.IsNotNotifying = true;
-            vm.IsValidate = false;
-            vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(GeneratorDbAccessNodeCatalogFormSettings to, GeneratorDbAccessNodeCatalogFormSettings from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 141
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override GeneratorDbAccessNodeCatalogFormSettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbAccessNodeCatalogFormSettings.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GeneratorDbAccessNodeCatalogFormSettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            GeneratorDbAccessNodeCatalogFormSettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_generator_db_access_node_catalog_form_settings' to 'GeneratorDbAccessNodeCatalogFormSettings'
-        public static GeneratorDbAccessNodeCatalogFormSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m, GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotNotifying = true;
-            vm.IsValidate = false;
-            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'GeneratorDbAccessNodeCatalogFormSettings' to 'proto_generator_db_access_node_catalog_form_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_catalog_form_settings ConvertToProto(GeneratorDbAccessNodeCatalogFormSettings vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Plugin.proto_generator_db_access_node_catalog_form_settings m = new Proto.Plugin.proto_generator_db_access_node_catalog_form_settings(); // Clone.tt Line: 239
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
-            return m;
-        }
-        
-        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
+        bool IGeneratorDbAccessNodeSettings.IsPropertyParam1 { get { return this._IsPropertyParam1; } set { this.IsPropertyParam1 = value; } }
         
         public bool IsCatalogFormParam1 // Property.tt Line: 144
         { 
@@ -1011,7 +1042,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         private bool _IsCatalogFormParam1;
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 166
         partial void OnIsCatalogFormParam1Changed();
-        bool IGeneratorDbAccessNodeCatalogFormSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } set { this.IsCatalogFormParam1 = value; } }
+        bool IGeneratorDbAccessNodeSettings.IsCatalogFormParam1 { get { return this._IsCatalogFormParam1; } set { this.IsCatalogFormParam1 = value; } }
         #endregion Properties
     }
     
@@ -1020,10 +1051,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         void Visit(Proto.Plugin.proto_db_connection_string_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_settings p);
         void Visit(Proto.Plugin.proto_generator_db_schema_settings p);
+        void Visit(Proto.Plugin.proto_generator_db_schema_node_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_settings p);
         void Visit(Proto.Plugin.proto_generator_db_access_node_settings p);
-        void Visit(Proto.Plugin.proto_generator_db_access_node_property_settings p);
-        void Visit(Proto.Plugin.proto_generator_db_access_node_catalog_form_settings p);
     }
     
     public partial class ValidationPluginSampleVisitor : PluginSampleVisitor // ValidationVisitor.tt Line: 7
@@ -1060,6 +1090,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
@@ -1076,26 +1116,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(GeneratorDbAccessNodePropertySettings p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(GeneratorDbAccessNodePropertySettings p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(GeneratorDbAccessNodeCatalogFormSettings p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(GeneratorDbAccessNodeCatalogFormSettings p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -1137,6 +1157,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(GeneratorDbSchemaSettings p) { }
         protected virtual void OnVisitEnd(GeneratorDbSchemaSettings p) { }
+        public void Visit(GeneratorDbSchemaNodeSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GeneratorDbSchemaNodeSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GeneratorDbSchemaNodeSettings p) { }
+        protected virtual void OnVisitEnd(GeneratorDbSchemaNodeSettings p) { }
         public void Visit(GeneratorDbAccessSettings p)
         {
             this.OnVisit(p);
@@ -1157,26 +1187,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(GeneratorDbAccessNodeSettings p) { }
         protected virtual void OnVisitEnd(GeneratorDbAccessNodeSettings p) { }
-        public void Visit(GeneratorDbAccessNodePropertySettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(GeneratorDbAccessNodePropertySettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(GeneratorDbAccessNodePropertySettings p) { }
-        protected virtual void OnVisitEnd(GeneratorDbAccessNodePropertySettings p) { }
-        public void Visit(GeneratorDbAccessNodeCatalogFormSettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(GeneratorDbAccessNodeCatalogFormSettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(GeneratorDbAccessNodeCatalogFormSettings p) { }
-        protected virtual void OnVisitEnd(GeneratorDbAccessNodeCatalogFormSettings p) { }
     }
     
     public interface IVisitorPluginSampleNode // IVisitorConfigNode.tt Line: 7

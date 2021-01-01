@@ -64,48 +64,6 @@
           ]
         },
         {
-          "name": "proto_generator_db_access_node_catalog_form_settings",
-          "longName": "proto_generator_db_access_node_catalog_form_settings",
-          "fullName": "proto_plugin_sample.proto_generator_db_access_node_catalog_form_settings",
-          "description": "@base ViewModelValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "is_catalog_form_param1",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_generator_db_access_node_property_settings",
-          "longName": "proto_generator_db_access_node_property_settings",
-          "fullName": "proto_plugin_sample.proto_generator_db_access_node_property_settings",
-          "description": "@base ViewModelValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "is_property_param1",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_generator_db_access_node_settings",
           "longName": "proto_generator_db_access_node_settings",
           "fullName": "proto_plugin_sample.proto_generator_db_access_node_settings",
@@ -131,6 +89,26 @@
               "type": "bool_nullable",
               "longType": "bool_nullable",
               "fullType": "proto_plugin_sample.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_property_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_catalog_form_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -187,6 +165,57 @@
             },
             {
               "name": "is_generate_not_valid_code",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_generator_db_schema_node_settings",
+          "longName": "proto_generator_db_schema_node_settings",
+          "fullName": "proto_plugin_sample.proto_generator_db_schema_node_settings",
+          "description": "@base ViewModelValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_included",
+              "description": "",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_plugin_sample.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_constant_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_catalog_form_param1",
               "description": "",
               "label": "",
               "type": "bool",

@@ -8,14 +8,14 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
+    public partial class GeneratorDbSchemaNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
-        public GeneratorDbAccessNodeSettings(ITreeConfigNode node) : base(GeneratorDbAccessNodeSettingsValidator.Validator)
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode node) : base(GeneratorDbSchemaNodeSettingsValidator.Validator)
         {
             //var lst = new List<string>();
-            //if (!(node is IProperty))
+            //if (!(node is IConstant))
             //{
-            //    lst.Add(this.GetPropertyName(() => this.IsPropertyParam1));
+            //    lst.Add(this.GetPropertyName(() => this.IsConstantParam1));
             //}
             //if (!(node.Parent is ICatalog) && !(node is IForm))
             //{
@@ -23,9 +23,9 @@ namespace vPlugin.Sample
             //}
             //this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
             this.DicNodeExcludedProperties = new Dictionary<string, string>();
-            if (!(node is IProperty))
+            if (!(node is IConstant))
             {
-                DicNodeExcludedProperties[this.GetPropertyName(() => this.IsPropertyParam1)] = null; ;
+                DicNodeExcludedProperties[this.GetPropertyName(() => this.IsConstantParam1)] = null; ;
             }
             if (!(node.Parent is ICatalog) && !(node is IForm))
             {
@@ -36,13 +36,13 @@ namespace vPlugin.Sample
         public Dictionary<string, string> DicNodeExcludedProperties { get; private set; }
         //[BrowsableAttribute(false)]
         //[ReadOnly(true)]
-        //public string Name { get { return "Access"; } }
+        //public string Name { get { return "Schema"; } }
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
             get
             {
-                var proto = GeneratorDbAccessNodeSettings.ConvertToProto(this);
+                var proto = GeneratorDbSchemaNodeSettings.ConvertToProto(this);
                 return JsonFormatter.Default.Format(proto);
             }
         }
@@ -53,7 +53,7 @@ namespace vPlugin.Sample
             {
                 if (settingsAsJsonDefault == null)
                 {
-                    var proto = GeneratorDbAccessNodeSettings.ConvertToProto(new GeneratorDbAccessNodeSettings());
+                    var proto = GeneratorDbSchemaNodeSettings.ConvertToProto(new GeneratorDbSchemaNodeSettings());
                     settingsAsJsonDefault = JsonFormatter.Default.Format(proto);
                 }
                 return settingsAsJsonDefault;

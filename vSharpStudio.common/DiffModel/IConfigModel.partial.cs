@@ -9,7 +9,7 @@ namespace vSharpStudio.common
 {
     public partial interface IConfigModel
     {
-        DictionaryExt<string, DictionaryExt<string, IvPluginGeneratorNodeSettings>> DicGenNodeSettings { get; }
+        DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         IDataType GetIdDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
         //string GetVersionFieldGuid();

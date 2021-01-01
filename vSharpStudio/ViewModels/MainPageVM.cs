@@ -425,15 +425,15 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            foreach (var tttt in ttt.ListGenerators)
-                            {
-                                if (tttt.Generator == null)
-                                    continue;
-                                if (tttt.Guid != ttt.PluginGeneratorGuid)
-                                    continue;
-                                IvPluginGenerator gen = tttt.Generator;
-                                var lst = gen.GetListNodeGenerationSettings();
-                            }
+                            //foreach (var tttt in ttt.ListGenerators)
+                            //{
+                            //    if (tttt.Generator == null)
+                            //        continue;
+                            //    if (tttt.Guid != ttt.PluginGeneratorGuid)
+                            //        continue;
+                            //    IvPluginGenerator gen = tttt.Generator;
+                            //    var lst = gen.GetListNodeGenerationSettings();
+                            //}
                             ttt.RestoreSettings();
                         }
                     }

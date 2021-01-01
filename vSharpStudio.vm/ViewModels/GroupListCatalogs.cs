@@ -38,10 +38,19 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.CatalogsGroupName;
             this.PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
-            if (this.Parent is Catalog)
-            {
-                this.NameUi = "Sub Catalogs";
-            }
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+            //if (this.Parent is Catalog)
+            //{
+            //    this.NameUi = "Sub Catalogs";
+            //}
             this.ListCatalogs.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -50,19 +59,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            this.ListCatalogs.OnRemovedAction = (t) => {
-                this.OnRemoveChild();
-            };
-            this.ListCatalogs.OnClearedAction = () => {
-                this.OnRemoveChild();
-            };
-        }
-        protected override void OnInitFromDto()
-        {
-            if (this.Parent is Catalog)
+            this.ListCatalogs.OnRemovedAction = (t) =>
             {
-                this.NameUi = "Sub Catalogs";
-            }
+                this.OnRemoveChild();
+            };
+            this.ListCatalogs.OnClearedAction = () =>
+            {
+                this.OnRemoveChild();
+            };
         }
 
         #region Tree operations

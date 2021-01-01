@@ -61,6 +61,11 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes" || this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes")
+            {
+                this.Doc.BaseClass = " : VmValidatableWithSeverityAndAttributes<" + message.Name.ToNameCs() + ", " +
+                    message.Name.ToNameCs() + "Validator>";
+            }
             else if (this.Doc.BaseClass == "ConfigObjectCommonBase")
             {
                 this.Doc.BaseClass = " : ConfigObjectCommonBase<" + message.Name.ToNameCs() + ", " +

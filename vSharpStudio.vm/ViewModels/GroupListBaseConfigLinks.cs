@@ -43,6 +43,14 @@ namespace vSharpStudio.vm.ViewModels
             // Children.Add(this.GroupSharedProperties, 7);
             // this.GroupListDocuments.Parent = this;
             // Children.Add(this.GroupListDocuments, 8);
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListBaseConfigLinks.OnAddingAction = (t) => {
                 t.IsNew = true;
             };

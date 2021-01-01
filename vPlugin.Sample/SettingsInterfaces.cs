@@ -23,6 +23,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string SchemaParam3 { get; set; } // ModelInterfaces.tt Line: 60
     }
     
+    public partial interface IGeneratorDbSchemaNodeSettings // ModelInterfaces.tt Line: 29
+    {
+    	bool IsParam1 { get; set; } // ModelInterfaces.tt Line: 60
+    	bool? IsIncluded { get; set; } // ModelInterfaces.tt Line: 60
+    	bool IsConstantParam1 { get; set; } // ModelInterfaces.tt Line: 60
+    	bool IsCatalogFormParam1 { get; set; } // ModelInterfaces.tt Line: 60
+    }
+    
     public partial interface IGeneratorDbAccessSettings // ModelInterfaces.tt Line: 29
     {
     	bool IsAccessParam1 { get; set; } // ModelInterfaces.tt Line: 60
@@ -36,15 +44,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
     	bool IsParam1 { get; set; } // ModelInterfaces.tt Line: 60
     	bool? IsIncluded { get; set; } // ModelInterfaces.tt Line: 60
-    }
-    
-    public partial interface IGeneratorDbAccessNodePropertySettings // ModelInterfaces.tt Line: 29
-    {
     	bool IsPropertyParam1 { get; set; } // ModelInterfaces.tt Line: 60
-    }
-    
-    public partial interface IGeneratorDbAccessNodeCatalogFormSettings // ModelInterfaces.tt Line: 29
-    {
     	bool IsCatalogFormParam1 { get; set; } // ModelInterfaces.tt Line: 60
     }
 }

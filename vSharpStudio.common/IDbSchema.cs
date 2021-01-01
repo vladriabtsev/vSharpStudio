@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         string PKeyTypeStr { get; }
         string PKeyStoreTypeStr { get; }
         string IdGeneratorStr { get; }
-        string VersionFieldName { get; }
+        //string VersionFieldName { get; }
         string LP { get; }
         string RP { get; }
     }

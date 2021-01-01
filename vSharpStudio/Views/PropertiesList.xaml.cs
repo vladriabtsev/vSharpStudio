@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using Xceed.Wpf.Toolkit.PropertyGrid;
@@ -30,12 +31,12 @@ namespace vSharpStudio.Views
 
         private void PropertyGrid_IsPropertyBrowsable(object sender, Xceed.Wpf.Toolkit.PropertyGrid.IsPropertyBrowsableArgs e)
         {
-           switch (e.PropertyDescriptor.Name)
+            var grd = (PropertyGrid)sender;
+            switch (e.PropertyDescriptor.Name)
             {
                 case "Description":
                 case "Guid":
                 case "NameUi":
-                    var grd = (PropertyGrid)sender;
                     if (
                         grd.SelectedObject is GroupListBaseConfigLinks ||
                         grd.SelectedObject is GroupDocuments ||
@@ -61,11 +62,43 @@ namespace vSharpStudio.Views
                 default:
                     break;
             }
+            if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem!= null && grd.SelectedPropertyItem != null)
+            {
+                //var dd = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).DescriptorDefinition;
+                var ptype = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).PropertyType;
+                var ns = grd.SelectedObject as IGetNodeSetting;
+                if (ns.DicVmExclProps.ContainsKey(ptype.Name))
+                {
+                    if (ns.DicVmExclProps[ptype.Name].ContainsKey(e.PropertyDescriptor.Name))
+                    {
+                        e.IsBrowsable = false;
+                    }
+                }
+            }
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             (this.DataContext as MainPageVM).propertyGrid = this.propertyGrid;
         }
+
+        //private void propertyGrid_SelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        //{
+        //    var grid = sender as PropertyGrid;
+        //    foreach (PropertyItem prop in grid.Properties)
+        //    {
+        //        if (prop.IsExpandable) //Only expand things marked as Expandable, otherwise it will expand everything possible, such as strings, which you probably don't want.
+        //        {
+        //            prop.IsExpanded = true; //This will expand the property.
+        //            prop.IsExpandable = false; //This will remove the ability to toggle the expanded state.
+        //        }
+        //    }
+        //}
+
+        //private void propertyGrid_Initialized(object sender, EventArgs e)
+        //{
+        //    var grid = sender as PropertyGrid;
+        //    grid.ExpandAllProperties();
+        //}
     }
 }

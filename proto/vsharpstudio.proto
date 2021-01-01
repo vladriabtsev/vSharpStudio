@@ -468,7 +468,7 @@ message proto_plugin_generator_node_settings {
     string name_ui = 3;
     uint64 sorting_value = 4;
     uint64 sorting_weight = 5;
-    string node_settings_vm_guid = 6;
+    //string node_settings_vm_guid = 6;
     string settings = 7;
 
     // @attr [BrowsableAttribute(false)]

@@ -54,12 +54,15 @@ namespace vPlugin.Sample
             }
             return vm;
         }
-        public List<IvPluginGeneratorNodeSettings> GetListNodeGenerationSettings()
+        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(string settings, ITreeConfigNode node)
         {
-            List<IvPluginGeneratorNodeSettings> res = new List<IvPluginGeneratorNodeSettings>();
-            res.Add(new GeneratorDbAccessNodePropertySettings());
-            res.Add(new GeneratorDbAccessNodeCatalogFormSettings());
-            return res;
+            var vm = new GeneratorDbSchemaNodeSettings(node);
+            if (!string.IsNullOrWhiteSpace(settings))
+            {
+                proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.ParseJson(settings);
+                vm = GeneratorDbSchemaNodeSettings.ConvertToVM(proto, vm);
+            }
+            return vm;
         }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
 

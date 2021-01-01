@@ -218,7 +218,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 60
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	ulong SortingWeight { get; } // ModelInterfaces.tt Line: 60
-    	string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 60
+    	
+    	///////////////////////////////////////////////////
+    	/// string node_settings_vm_guid = 6;
+    	///////////////////////////////////////////////////
     	string Settings { get; } // ModelInterfaces.tt Line: 60
     }
     

@@ -45,6 +45,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Forms";
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListForms.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
