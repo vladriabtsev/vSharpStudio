@@ -79,7 +79,7 @@
 
 ### db_settings
 General DB settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -98,7 +98,7 @@ General DB settings
 <a name="proto_config.proto_app_db_settings"></a>
 
 ### proto_app_db_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -292,7 +292,7 @@ Application project generator
 <a name="proto_config.proto_catalog_settings"></a>
 
 ### proto_catalog_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -424,7 +424,7 @@ Constant application wise value
 <a name="proto_config.proto_data_type"></a>
 
 ### proto_data_type
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1021,7 +1021,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_model_row"></a>
 
 ### proto_model_row
-@base ViewModelBindable
+@base VmBindable
 
 
 | Field | Type | Label | Description |
@@ -1087,7 +1087,7 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin_generator_node_default_settings"></a>
 
 ### proto_plugin_generator_node_default_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1290,7 +1290,7 @@ User&#39;s role
 <a name="proto_config.proto_settings_config"></a>
 
 ### proto_settings_config
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1310,7 +1310,7 @@ User&#39;s role
 <a name="proto_config.proto_user_settings"></a>
 
 ### proto_user_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1325,7 +1325,7 @@ User&#39;s role
 <a name="proto_config.proto_user_settings_opened_config"></a>
 
 ### proto_user_settings_opened_config
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |

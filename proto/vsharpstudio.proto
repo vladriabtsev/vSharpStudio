@@ -11,11 +11,11 @@ option csharp_namespace = "Proto.Config";
 
 /* need extend code generator
 import "vsharpstudioshared.proto";
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_test {
     proto_shared.bool_nullable test1 = 11;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_test2 {
     proto_shared.test_shared_messsage test1 = 11;
 }
@@ -28,12 +28,12 @@ message proto_test2 {
  * if repeated property name is ending message name, than c# class will implement indexer to access such property elements 
  * ####################################### U S E R   S E T T I N G S ##################################
  */
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_user_settings {
     // @attr [BrowsableAttribute(false)]
     repeated proto_user_settings_opened_config list_open_config_history = 11;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_user_settings_opened_config {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -122,7 +122,7 @@ message proto_plugin_generator {
     bool is_has_changed = 13;
 }
 
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_settings_config {
     string guid = 1;
     string name = 2;
@@ -242,7 +242,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -557,7 +557,7 @@ message proto_app_project_generator {
     // Generator output file name
     string gen_script_file_name = 23;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_plugin_generator_node_default_settings {
     // Guid of solution-project-generator node
     string node_settings_vm_guid = 1;
@@ -577,7 +577,7 @@ enum db_id_generator_method
     HiLo = 1;
 }
 // General DB settings
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Schema")]
@@ -725,7 +725,7 @@ enum proto_enum_data_type {
     // @attr [Description("Any data type")]
     ANY = 15;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
@@ -1200,7 +1200,7 @@ message proto_catalog_items_group {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_catalog_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Name length")]
@@ -1555,7 +1555,7 @@ message proto_item_name_value {
     uint64 sorting_value = 3;
 }
 */
-// @base ViewModelBindable
+// @base VmBindable
 message proto_model_row {
     string group_name = 1;
     string name = 2;

@@ -111,16 +111,14 @@ namespace GenFromProto
             {
                 this.IsDefaultBase = false;
                 string s = this.BaseClass.Substring(this.BaseClass.IndexOf(':') + 1).TrimStart();
-                if (s.Contains("ViewModelBindable") || s.Contains("VmBindable"))
+                if (s.Contains("VmBindable"))
                     this.IsBindableBase = true;
-                if (s.Contains("ViewModelEditable") || s.Contains("VmEditable"))
+                if (s.Contains("VmEditable"))
                 {
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                 }
-                if (s.Contains("ViewModelValidatable") 
-                    || s.Contains("ViewModelValidatableWithSeverity") 
-                    || s.Contains("VmValidatable") 
+                if (s.Contains("VmValidatable") || s.Contains("VmValidatableWithSeverityAndAttributes")
                     || s.Contains("VmValidatableWithSeverity"))
                 {
                     this.IsBindableBase = true;

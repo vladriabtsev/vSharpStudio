@@ -27,7 +27,7 @@ message string_nullable {
     string value = 2;
 }
 
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message test_shared_messsage {
     bool_nullable bool_value = 1;
     string_nullable string_value = 2;

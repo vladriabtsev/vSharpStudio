@@ -58,7 +58,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_shared.test_shared_messsage"></a>
 
 ### test_shared_messsage
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |

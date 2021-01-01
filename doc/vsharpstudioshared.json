@@ -77,7 +77,7 @@
           "name": "test_shared_messsage",
           "longName": "test_shared_messsage",
           "fullName": "proto_shared.test_shared_messsage",
-          "description": "@base ViewModelValidatableWithSeverity",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

@@ -3,28 +3,28 @@ syntax = "proto3";
 package proto_plugin_sample;
 option csharp_namespace = "Proto.Plugin";
 
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_db_connection_string_settings {
     string string_settings = 1;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_plugins_group_settings {
     bool is_group_param1 = 1;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_generator_db_schema_settings {
     bool is_schema_param1 = 1;
     bool_nullable is_schema_param2 = 2;
     string schema_param3 = 3;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_generator_db_schema_node_settings {
     bool is_param1 = 1;
     bool_nullable is_included = 2;
     bool is_constant_param1 = 3;
     bool is_catalog_form_param1 = 4;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_generator_db_access_settings {
     bool is_access_param1 = 1;
     bool_nullable is_access_param2 = 2;
@@ -32,7 +32,7 @@ message proto_generator_db_access_settings {
     string_nullable access_param4 = 4;
     bool is_generate_not_valid_code = 5;
 }
-// @base ViewModelValidatableWithSeverity
+// @base VmValidatableWithSeverity
 message proto_generator_db_access_node_settings {
     bool is_param1 = 1;
     bool_nullable is_included = 2;

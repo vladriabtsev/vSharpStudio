@@ -42,26 +42,26 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
-            else if (this.Doc.BaseClass == "VmBindable" || this.Doc.BaseClass == "ViewModelBindable")
+            else if (this.Doc.BaseClass == "VmBindable")
             {
                 //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
                 this.Doc.BaseClass = " : VmBindable";
             }
-            else if (this.Doc.BaseClass == "VmEditable" || this.Doc.BaseClass == "ViewModelEditable")
+            else if (this.Doc.BaseClass == "VmEditable")
             {
                 this.Doc.BaseClass = " : VmEditable<" + message.Name.ToNameCs() + ">";
             }
-            else if (this.Doc.BaseClass == "VmValidatable" || this.Doc.BaseClass == "ViewModelValidatable")
+            else if (this.Doc.BaseClass == "VmValidatable")
             {
                 this.Doc.BaseClass = " : VmValidatable<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "VmValidatableWithSeverity" || this.Doc.BaseClass == "ViewModelValidatableWithSeverity")
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverity")
             {
                 this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes" || this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes")
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes")
             {
                 this.Doc.BaseClass = " : VmValidatableWithSeverityAndAttributes<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";

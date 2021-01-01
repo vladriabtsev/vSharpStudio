@@ -47,7 +47,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_db_connection_string_settings"></a>
 
 ### proto_db_connection_string_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -62,7 +62,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_generator_db_access_node_settings"></a>
 
 ### proto_generator_db_access_node_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -80,7 +80,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_generator_db_access_settings"></a>
 
 ### proto_generator_db_access_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -99,7 +99,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_generator_db_schema_node_settings"></a>
 
 ### proto_generator_db_schema_node_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -117,7 +117,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_generator_db_schema_settings"></a>
 
 ### proto_generator_db_schema_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -134,7 +134,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 <a name="proto_plugin_sample.proto_plugins_group_settings"></a>
 
 ### proto_plugins_group_settings
-@base ViewModelValidatableWithSeverity
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
