@@ -23,7 +23,6 @@ namespace vSharpStudio.vm.ViewModels
             var dic_sols = new Dictionary<string, object>();
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
-                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(Object), t.NameUi, t.Description);
                 TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
@@ -35,11 +34,12 @@ namespace vSharpStudio.vm.ViewModels
                     if (dic_apgs.Count > 0)
                     {
                         dic_prjs[tt.Name] = objAppGen;
-                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, typeof(Object), tt.NameUi, tt.Description);
+                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, objAppGen.GetType(), tt.NameUi, tt.Description);
                     }
                 }
                 SettingsTypeBuilder.CreateToString(tbPrj, "Solution");
                 Type prjsType = tbPrj.CreateType();
+                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, prjsType, t.NameUi, t.Description);
                 object objPrj = Activator.CreateInstance(prjsType);
                 foreach (var dt in dic_prjs)
                 {

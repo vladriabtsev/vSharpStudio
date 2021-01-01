@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace vSharpStudio.Views
         public PropertiesList()
         {
             this.InitializeComponent();
+            this.dic["DynamicNodesSettings"] = null;
         }
 
         private void PropertyGrid_IsPropertyBrowsable(object sender, Xceed.Wpf.Toolkit.PropertyGrid.IsPropertyBrowsableArgs e)
@@ -62,16 +64,18 @@ namespace vSharpStudio.Views
                 default:
                     break;
             }
-            if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem!= null && grd.SelectedPropertyItem != null)
+            if (!(grd.SelectedObject is ConfigModel))
             {
-                //var dd = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).DescriptorDefinition;
-                var ptype = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).PropertyType;
-                var ns = grd.SelectedObject as IGetNodeSetting;
-                if (ns.DicVmExclProps.ContainsKey(ptype.Name))
+                if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem != null && grd.SelectedPropertyItem != null)
                 {
-                    if (ns.DicVmExclProps[ptype.Name].ContainsKey(e.PropertyDescriptor.Name))
+                    var ptype = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).PropertyType;
+                    var ns = grd.SelectedObject as IGetNodeSetting;
+                    if (ns.DicVmExclProps.ContainsKey(ptype.Name))
                     {
-                        e.IsBrowsable = false;
+                        if (ns.DicVmExclProps[ptype.Name].ContainsKey(e.PropertyDescriptor.Name))
+                        {
+                            e.IsBrowsable = false;
+                        }
                     }
                 }
             }
@@ -82,18 +86,56 @@ namespace vSharpStudio.Views
             (this.DataContext as MainPageVM).propertyGrid = this.propertyGrid;
         }
 
-        //private void propertyGrid_SelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        //{
-        //    var grid = sender as PropertyGrid;
-        //    foreach (PropertyItem prop in grid.Properties)
-        //    {
-        //        if (prop.IsExpandable) //Only expand things marked as Expandable, otherwise it will expand everything possible, such as strings, which you probably don't want.
-        //        {
-        //            prop.IsExpanded = true; //This will expand the property.
-        //            prop.IsExpandable = false; //This will remove the ability to toggle the expanded state.
-        //        }
-        //    }
-        //}
+        private void propertyGrid_SelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var grid = sender as PropertyGrid;
+            foreach (PropertyItem prop in grid.Properties)
+            {
+                if (prop.IsExpandable && !prop.IsExpanded) //Only expand things marked as Expandable, otherwise it will expand everything possible, such as strings, which you probably don't want.
+                {
+                    if (this.dic.ContainsKey(prop.PropertyName))
+                    {
+                        prop.IsExpanded = true; //This will expand the property.
+                                                //prop.IsExpandable = false; //This will remove the ability to toggle the expanded state.
+                    }
+                }
+            }
+        }
+        private Dictionary<string, string> dic = new Dictionary<string, string>();
+        private void propertyGrid_SelectedPropertyItemChanged(object sender, RoutedPropertyChangedEventArgs<PropertyItemBase> e)
+        {
+            //var prop = e.NewValue as PropertyItem;
+            //if (prop == null)
+            //    return;
+            ////Trace.WriteLine($"*** Selected: {prop.PropertyName}");
+            //if (prop.IsExpandable)
+            //{
+            //    if (prop.IsExpanded)
+            //    {
+            //        dic[prop.PropertyName] = null;
+            //    }
+            //    else
+            //    {
+            //        if (dic.ContainsKey(prop.PropertyName))
+            //            dic.Remove(prop.PropertyName);
+            //    }
+            //}
+            //prop = e.OldValue as PropertyItem;
+            //if (prop == null)
+            //    return;
+            //if (prop.IsExpandable)
+            //{
+            //    if (prop.IsExpanded)
+            //    {
+            //        dic[prop.PropertyName] = null;
+            //    }
+            //    else
+            //    {
+            //        if (dic.ContainsKey(prop.PropertyName))
+            //            dic.Remove(prop.PropertyName);
+            //    }
+            //}
+        }
 
         //private void propertyGrid_Initialized(object sender, EventArgs e)
         //{

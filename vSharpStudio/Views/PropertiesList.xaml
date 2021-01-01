@@ -15,8 +15,8 @@
     <Grid>
         <!--<xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode, diag:PresentationTraceSources.TraceLevel=High}" NameColumnWidth="120" IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable">-->
         <xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode}" NameColumnWidth="120" 
-                           IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable" 
-                           AutoGenerateProperties="{Binding Config.SelectedNode.AutoGenerateProperties}" PropertyDefinitions="{Binding Config.SelectedNode.PropertyDefinitions}">
+                           IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable" SelectedObjectChanged="propertyGrid_SelectedObjectChanged"
+                           AutoGenerateProperties="{Binding Config.SelectedNode.AutoGenerateProperties}" PropertyDefinitions="{Binding Config.SelectedNode.PropertyDefinitions}" ShowDescriptionByTooltip="True" ShowSearchBox="True" SelectedPropertyItemChanged="propertyGrid_SelectedPropertyItemChanged">
             <!--SelectedObjectChanged="propertyGrid_SelectedObjectChanged" Initialized="propertyGrid_Initialized"-->
             <xctk:PropertyGrid.EditorDefinitions>
                 <xctk:EditorTemplateDefinition TargetProperties="Name,NameUi,Description">
