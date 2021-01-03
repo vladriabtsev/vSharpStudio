@@ -138,6 +138,12 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
+        public PropertiesTab AddPropertiesTab(string name)
+        {
+            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
+            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddProperty(string name)
         {
             var node = new Property(this.GroupProperties) { Name = name };
