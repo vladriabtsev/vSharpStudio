@@ -15,5 +15,6 @@ namespace vSharpStudio.common
         //string GetVersionFieldGuid();
         string GetIdFieldName(IvPluginDbGenerator dbGen);
         string GetIdFieldGuid();
+        IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent);
     }
 }

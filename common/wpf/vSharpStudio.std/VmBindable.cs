@@ -56,8 +56,8 @@ namespace ViewModelBase
             if (VmBindable._AppDispatcher == null && isUnitTests)
                 VmBindable.AppDispatcher = new DispatcherDummy();
         }
-#if DEBUG
         public static bool isUnitTests;
+#if DEBUG
         public static bool isNotValidateForUnitTests;
 #endif
         public static ushort MaxSortingWeightShift = 4;

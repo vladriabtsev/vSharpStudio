@@ -1011,7 +1011,8 @@ namespace vSharpStudio.ViewModels
                                             continue;
                                         if (!(tg.Generator is IvPluginGenerator))
                                             throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
-                                        code = (tg.Generator as IvPluginGenerator).GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
+                                        code = (tpg.DynamicGeneratorSettings as IvPluginGeneratorSettings).GenerateCode(this.Config);
+                                        //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
                                 string outFile = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);

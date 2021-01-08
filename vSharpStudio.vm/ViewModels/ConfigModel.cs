@@ -457,12 +457,12 @@ namespace vSharpStudio.vm.ViewModels
         //    var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
         //    return res;
         //}
-        //public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
-        //{
-        //    var dt = (DataType)GetIdDataType();
-        //    var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
-        //    return res;
-        //}
+        public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
+        {
+            var dt = (DataType)GetIdDataType();
+            var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
+            return res;
+        }
         //public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
         //{
         //    string fieldName = null;
