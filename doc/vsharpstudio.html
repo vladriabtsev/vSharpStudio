@@ -1931,10 +1931,23 @@ App solution relative path to configuration file path </p></td>
                   <td>is_nullable</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>bool is_nullable = 12;
-@attr [PropertyOrderAttribute(12)]
+                  <td><p>@attr [PropertyOrderAttribute(12)]
 @attr [DisplayName(&#34;Can be NULL&#34;)]
 @attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_p_key</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_ref_parent</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2443,7 +2456,8 @@ repeated proto_document list_forms = 7;
                   <td>group_shared_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+@attr [Description(&#34;Properties for all documents&#34;)] </p></td>
                 </tr>
               
                 <tr>

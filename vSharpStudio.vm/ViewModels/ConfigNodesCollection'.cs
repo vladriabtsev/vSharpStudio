@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 item.Parent = this.parent;
                 if (isUseDicNodes && this.cfg.IsInitialized)
-                    this.cfg.DicNodes[item.Guid] = item;
+                    this.cfg._DicNodes[item.Guid] = item;
             }
             base.AddRange(collection, sortingWeight);
         }
@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
 
             item.Parent = this.parent;
             if (isUseDicNodes && this.cfg.IsInitialized)
-                this.cfg.DicNodes[item.Guid] = item;
+                this.cfg._DicNodes[item.Guid] = item;
             base.Add(item, 0);
         }
 
@@ -73,14 +73,14 @@ namespace vSharpStudio.vm.ViewModels
 
             item.Parent = this.parent;
             if (isUseDicNodes && this.cfg.IsInitialized)
-                this.cfg.DicNodes[item.Guid] = item;
+                this.cfg._DicNodes[item.Guid] = item;
             base.Add(item, sortingWeight);
         }
 
         public new bool Remove(T item)
         {
             if (isUseDicNodes)
-                this.cfg.DicNodes.Remove(item.Guid);
+                this.cfg._DicNodes.Remove(item.Guid);
             int indx = -1;
             foreach (var t in this)
             {

@@ -442,7 +442,7 @@ namespace vSharpStudio.ViewModels
                 var nvb = new ModelVisitorBase();
                 nvb.Run(cfg, (p, n) =>
                 {
-                    cfg.DicNodes[n.Guid] = n;
+                    cfg._DicNodes[n.Guid] = n;
                 });
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new ModelVisitorNodeGenSettings();

@@ -203,7 +203,7 @@ namespace vSharpStudio.vm.ViewModels
         private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanging(ref string to)
         {
-            cfg.DicActiveAppProjectGenerators.TryRemove(this.Guid);
+            cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
             if (!string.IsNullOrEmpty(this.PluginGuid))
             {
                 var sln = (AppSolution)this.Parent.Parent;
@@ -229,7 +229,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            cfg.Model.DicGenNodeSettings.TryRemove(this.Guid);
+            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
         }
         partial void OnPluginGuidChanged()
         {
@@ -278,8 +278,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotNotifying)
                 return;
-            if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                cfg.DicActiveAppProjectGenerators.Remove(this.Guid);
+            if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                cfg._DicActiveAppProjectGenerators.Remove(this.Guid);
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
@@ -289,7 +289,7 @@ namespace vSharpStudio.vm.ViewModels
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
             this._PluginGenerator = null;
-            cfg.Model.DicGenNodeSettings.TryRemove(this.Guid);
+            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
@@ -347,7 +347,7 @@ namespace vSharpStudio.vm.ViewModels
                             this.PluginGroupSettingsGuid = groupSettins.Guid;
                         }
                         this.PluginGenerator = tt.Generator;
-                        cfg.DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
+                        cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
                         this.PluginDbGenerator = this.PluginGenerator as IvPluginDbGenerator;
                     }
                 }

@@ -752,11 +752,14 @@ message proto_data_type {
     // @attr [DisplayName("Positive")]
     // @attr [Description("Expected always >= 0")]
     bool is_positive = 11; 
-    //bool is_nullable = 12;
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 12;
+    // @attr [BrowsableAttribute(false)]
+    bool is_p_key = 13;
+    // @attr [BrowsableAttribute(false)]
+    bool is_ref_parent = 14;
 }
 /** 
  * @exclude
@@ -1191,7 +1194,6 @@ message proto_catalog_items_group {
     bool is_has_marked_for_deletion = 12;
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
-
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
     // @attr [BrowsableAttribute(false)]
@@ -1269,8 +1271,9 @@ message proto_group_list_catalogs {
     // @attr [DisplayName("Db prefix")]
     // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
     string prefix_for_db_tables = 6;
+
     // @attr [BrowsableAttribute(false)]
-    repeated proto_catalog list_catalogs = 7;
+    repeated proto_catalog list_catalogs = 8;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -1303,6 +1306,7 @@ message proto_group_documents {
     // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
     string prefix_for_db_tables = 6;
     // @attr [BrowsableAttribute(false)]
+    // @attr [Description("Properties for all documents")]
     proto_group_list_properties group_shared_properties = 7;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_documents group_list_documents = 8;

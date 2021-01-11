@@ -8233,6 +8233,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
             vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
+            vm.IsPKey = from.IsPKey; // Clone.tt Line: 65
+            vm.IsRefParent = from.IsRefParent; // Clone.tt Line: 65
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -8254,6 +8256,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
             to.IsPositive = from.IsPositive; // Clone.tt Line: 141
             to.IsNullable = from.IsNullable; // Clone.tt Line: 141
+            to.IsPKey = from.IsPKey; // Clone.tt Line: 141
+            to.IsRefParent = from.IsRefParent; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -8295,6 +8299,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
             vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
             vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
+            vm.IsPKey = m.IsPKey; // Clone.tt Line: 221
+            vm.IsRefParent = m.IsRefParent; // Clone.tt Line: 221
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -8314,6 +8320,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
             m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
+            m.IsPKey = vm.IsPKey; // Clone.tt Line: 276
+            m.IsRefParent = vm.IsRefParent; // Clone.tt Line: 276
             return m;
         }
         
@@ -8538,10 +8546,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsPositiveChanged();
         bool IDataType.IsPositive { get { return this._IsPositive; } } 
         
-        
-        ///////////////////////////////////////////////////
-        /// bool is_nullable = 12;
-        ///////////////////////////////////////////////////
         [PropertyOrderAttribute(12)]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]
@@ -8568,6 +8572,56 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsNullableChanged();
         bool IDataType.IsNullable { get { return this._IsNullable; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsPKey // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsPKey; 
+            }
+            set
+            {
+                if (this._IsPKey != value)
+                {
+                    this.OnIsPKeyChanging(ref value);
+                    this._IsPKey = value;
+                    this.OnIsPKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsPKey;
+        partial void OnIsPKeyChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsPKeyChanged();
+        bool IDataType.IsPKey { get { return this._IsPKey; } } 
+        
+        [BrowsableAttribute(false)]
+        public bool IsRefParent // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsRefParent; 
+            }
+            set
+            {
+                if (this._IsRefParent != value)
+                {
+                    this.OnIsRefParentChanging(ref value);
+                    this._IsRefParent = value;
+                    this.OnIsRefParentChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsRefParent;
+        partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsRefParentChanged();
+        bool IDataType.IsRefParent { get { return this._IsRefParent; } } 
         #endregion Properties
     }
     public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 6
@@ -17143,6 +17197,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         string IGroupDocuments.PrefixForDbTables { get { return this._PrefixForDbTables; } } 
         
         [BrowsableAttribute(false)]
+        [Description("Properties for all documents")]
         public GroupListProperties GroupSharedProperties // Property.tt Line: 118
         { 
             get 

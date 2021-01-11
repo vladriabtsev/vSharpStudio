@@ -41,21 +41,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public DictionaryExt<string, ITreeConfigNode> DicNodes { get; private set; }
+        public DictionaryExt<string, ITreeConfigNode> _DicNodes;
+        public IReadOnlyDictionary<string, ITreeConfigNode> DicNodes { get { return _DicNodes; } }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
-        private DictionaryExt<string, IvPluginGenerator> dicActiveAppProjectGenerators = null;
-        public DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators
-        {
-            get
-            {
-                if (dicActiveAppProjectGenerators == null)
-                {
-                    dicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+        public DictionaryExt<string, IvPluginGenerator> _DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
-                }
-                return dicActiveAppProjectGenerators;
-            }
-        }
+        public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return _DicActiveAppProjectGenerators; } }
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //public ConfigNodesCollection<ITreeConfigNode> Children
@@ -75,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInitBegin()
         {
             _logger.Trace();
-            this.DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
+            this._DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
                 (ki, v) => { }, (kr, v) => { }, () => { });
         }
         [Browsable(false)]
@@ -324,7 +315,7 @@ namespace vSharpStudio.vm.ViewModels
         //    return diff.ListAll;
         //}
 
-        public List<IConfig> GetListConfigs()
+        public IReadOnlyList<IConfig> GetListConfigs()
         {
             var lst = new List<IConfig>();
             var dic = new Dictionary<string, IConfig>();
@@ -349,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             //_logger.LogTrace("".StackInfo());
             _logger.Trace();
-            this.DicActiveAppProjectGenerators.Clear();
+            this._DicActiveAppProjectGenerators.Clear();
             _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
@@ -365,7 +356,7 @@ namespace vSharpStudio.vm.ViewModels
                                 {
                                     if (ttp.Generator?.Guid == ttt.PluginGeneratorGuid)
                                     {
-                                        this.DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
+                                        this._DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
                                     }
                                 }
                             }
@@ -464,13 +455,13 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
         public void DicDiffDebug(Config anotherCfg)
         {
-            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);
+            var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this._DicActiveAppProjectGenerators, anotherCfg._DicActiveAppProjectGenerators);
             Debug.Assert(0 == diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Debug.Assert(0 == diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
             var diffGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this.DicGenerators, anotherCfg.DicGenerators);
             Debug.Assert(0 == diffGenerators.Dic1ButNotInDic2.Count);
             Debug.Assert(0 == diffGenerators.Dic2ButNotInDic1.Count);
-            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(this.DicNodes, anotherCfg.DicNodes);
+            var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(this._DicNodes, anotherCfg._DicNodes);
             Debug.Assert(0 == diffNodes.Dic1ButNotInDic2.Count);
             Debug.Assert(0 == diffNodes.Dic2ButNotInDic1.Count);
             var diffPlugins = DicDiffResult<string, IvPlugin>.DicDiff(this.DicPlugins, anotherCfg.DicPlugins);
@@ -492,7 +483,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
         public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
-        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(Dictionary<TK, TV> dic1, Dictionary<TK, TV> dic2)
+        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(IReadOnlyDictionary<TK, TV> dic1, IReadOnlyDictionary<TK, TV> dic2)
         {
             var res = new DicDiffResult<TK, TV>();
             foreach (var t in dic1)

@@ -13,11 +13,11 @@ namespace vSharpStudio.common
         ITreeConfigNode SelectedNode { get; set; }
         IConfig PrevCurrentConfig { get; }
         IConfig PrevStableConfig { get; }
-        DictionaryExt<string, ITreeConfigNode> DicNodes { get; }
-        DictionaryExt<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
+        IReadOnlyDictionary<string, ITreeConfigNode> DicNodes { get; }
+        IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get; }
 
         //List<IConfig> SetAnnotations(IConfig prev, IConfig old);
-        List<IConfig> GetListConfigs();
+        IReadOnlyList<IConfig> GetListConfigs();
         string CurrentCfgFolderPath { get; }
         void SetIsNeedCurrentUpdate(bool val);
     }

@@ -58,8 +58,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var cfg = (Config)this.GetConfig();
                 cfg.RemoveNodeAppGenSettings(t.Guid);
-                if (cfg.DicActiveAppProjectGenerators.ContainsKey(t.Guid))
-                    cfg.DicActiveAppProjectGenerators.Remove(t.Guid);
+                if (cfg._DicActiveAppProjectGenerators.ContainsKey(t.Guid))
+                    cfg._DicActiveAppProjectGenerators.Remove(t.Guid);
                 this.OnRemoveChild();
             };
             this.ListAppProjectGenerators.OnClearedAction = () =>

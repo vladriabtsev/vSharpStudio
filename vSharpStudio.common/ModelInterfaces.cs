@@ -334,11 +334,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumEnumerationType EnumerationType { get; } // ModelInterfaces.tt Line: 60
     	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 60
     	bool IsPositive { get; } // ModelInterfaces.tt Line: 60
-    	
-    	///////////////////////////////////////////////////
-    	/// bool is_nullable = 12;
-    	///////////////////////////////////////////////////
     	bool IsNullable { get; } // ModelInterfaces.tt Line: 60
+    	bool IsPKey { get; } // ModelInterfaces.tt Line: 60
+    	bool IsRefParent { get; } // ModelInterfaces.tt Line: 60
     }
     
     ///////////////////////////////////////////////////

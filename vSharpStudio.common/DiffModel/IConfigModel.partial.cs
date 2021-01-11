@@ -9,12 +9,18 @@ namespace vSharpStudio.common
 {
     public partial interface IConfigModel
     {
-        DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
+        IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         IDataType GetIdDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
         //string GetVersionFieldGuid();
         string GetIdFieldName(IvPluginDbGenerator dbGen);
         string GetIdFieldGuid();
-        IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent);
+        IProperty GetRefParentProperty(IvPluginDbGenerator dbGen, ICompositeName parent);
+        IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
+        IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
+        IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen);
+        IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
+        IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
+        IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
     }
 }

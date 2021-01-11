@@ -1998,7 +1998,27 @@
             },
             {
               "name": "is_nullable",
-              "description": "bool is_nullable = 12;\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_p_key",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_ref_parent",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2633,7 +2653,7 @@
             },
             {
               "name": "group_shared_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "description": "@attr [BrowsableAttribute(false)]\n@attr [Description(\"Properties for all documents\")]",
               "label": "",
               "type": "proto_group_list_properties",
               "longType": "proto_group_list_properties",

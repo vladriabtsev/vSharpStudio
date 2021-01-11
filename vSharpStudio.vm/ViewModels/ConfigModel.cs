@@ -396,7 +396,7 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new ArgumentException();
             }
-
+            dt.IsPKey = true;
             return dt;
         }
         public string GetIdFieldName(IvPluginDbGenerator dbGen)
@@ -438,30 +438,179 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        //public IProperty GetIdProperty(IvPluginDbGenerator dbGen)
-        //{
-        //    string fieldName = null;
-        //    if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
-        //    {
-        //        if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
-        //            return null;
-        //        fieldName = this.DbSettings.PKeyName;
-        //    }
-        //    else
-        //    {
-        //        fieldName = dbGen.PKeyName;
-        //    }
-        //    var dt = (DataType)GetIdDataType();
-        //    if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-        //        this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
-        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
-        //    return res;
-        //}
-        public IProperty GetRefProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
+        private IProperty GetIdProperty(IvPluginDbGenerator dbGen)
+        {
+            string fieldName = null;
+            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+            {
+                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+                    return null;
+                fieldName = this.DbSettings.PKeyName;
+            }
+            else
+            {
+                fieldName = dbGen.PKeyName;
+            }
+            var dt = (DataType)this.GetIdDataType();
+            dt.IsPKey = true;
+            if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
+                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+            var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
+            return res;
+        }
+        public IProperty GetRefParentProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
         {
             var dt = (DataType)GetIdDataType();
+            dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
             return res;
+        }
+        private List<IProperty> GetGroupProperties(IGroupListProperties g, string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            foreach (var tt in g.ListProperties)
+            {
+                if (!tt.IsIncluded(guidAppPrjGen))
+                    continue;
+                res.Add(tt);
+            }
+            return res;
+        }
+        private List<IConstant> GetGroupProperties(IGroupListConstants g, string guidAppPrjGen)
+        {
+            var res = new List<IConstant>();
+            foreach (var tt in g.ListConstants)
+            {
+                if (!tt.IsIncluded(guidAppPrjGen))
+                    continue;
+                res.Add(tt);
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            var cfg = (Config)this.Parent;
+            res.AddRange(this.GetGroupProperties(cfg.Model.GroupDocuments.GroupSharedProperties, guidAppPrjGen));
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen)
+        {
+            var cfg = (Config)this.GetConfig();
+            var apg = (AppProjectGenerator)cfg.DicNodes[guidAppPrjGen];
+            IvPluginDbGenerator dbGen = apg.PluginDbGenerator;
+            var lst = new List<IProperty>();
+            if (node is IPropertiesTab)
+            {
+                var p = node as IPropertiesTab;
+                lst.Add(this.GetIdProperty(dbGen));
+                lst.Add(this.GetRefParentProperty(dbGen, p.Parent.Parent as ICompositeName));
+                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
+            }
+            else if (node is ICatalog)
+            {
+                var p = node as ICatalog;
+                lst.Add(this.GetIdProperty(dbGen));
+                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
+            }
+            else if (node is IDocument)
+            {
+                var p = node as IDocument;
+                lst.Add(this.GetIdProperty(dbGen));
+                lst.AddRange(this.GetGroupProperties((p.Parent.Parent as IGroupDocuments).GroupSharedProperties, guidAppPrjGen));
+                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
+            }
+            //else if (node is IGroupListConstants)
+            //{
+            //    var p = node as IGroupListConstants;
+            //    lst.Add(this.GetIdProperty(dbGen));
+            //    lst.AddRange(this.GetGroupProperties(p, guidAppPrjGen));
+            //}
+            else
+                Debug.Assert(false);
+            return lst;
+        }
+        public IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen)
+        {
+            var lst = new List<IPropertiesTab>();
+            if (node is IPropertiesTab)
+            {
+                var p = node as IPropertiesTab;
+                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+                {
+                    if (tt.IsIncluded(guidAppPrjGen))
+                    {
+                        lst.Add(tt);
+                    }
+                }
+            }
+            else if (node is ICatalog)
+            {
+                var p = node as ICatalog;
+                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+                {
+                    if (tt.IsIncluded(guidAppPrjGen))
+                    {
+                        lst.Add(tt);
+                    }
+                }
+            }
+            else if (node is IDocument)
+            {
+                var p = node as IDocument;
+                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+                {
+                    if (tt.IsIncluded(guidAppPrjGen))
+                    {
+                        lst.Add(tt);
+                    }
+                }
+            }
+            else
+                Debug.Assert(false);
+            return lst;
+        }
+        public IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen)
+        {
+            var lst = new List<IConstant>();
+            var cfg = this.Parent as Config;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupConstants.ListConstants)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
+        public IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen)
+        {
+            var lst = new List<ICatalog>();
+            var cfg = this.Parent as Config;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
+        public IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen)
+        {
+            var lst = new List<IDocument>();
+            var cfg = this.Parent as Config;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
         }
         //public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
         //{

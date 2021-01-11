@@ -21,6 +21,6 @@ namespace vSharpStudio.vm.ViewModels
     }
     public interface INodeGenDicSettings
     {
-        DictionaryExt<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
+        IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
     }
 }
