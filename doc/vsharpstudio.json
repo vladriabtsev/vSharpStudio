@@ -981,7 +981,7 @@
             },
             {
               "name": "catalog_settings",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Parameters\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Parameters\")]\n@attr [Description(\"Catalog settings\")]",
               "label": "",
               "type": "proto_catalog_settings",
               "longType": "proto_catalog_settings",
@@ -1278,6 +1278,16 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "separate_properties_for_groups",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -1967,16 +1977,6 @@
               "defaultValue": ""
             },
             {
-              "name": "enumeration_type",
-              "description": "",
-              "label": "",
-              "type": "enum_enumeration_type",
-              "longType": "enum_enumeration_type",
-              "fullType": "proto_config.enum_enumeration_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_index_fk",
               "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"FK Index\")]\n@attr [Description(\"Create Index if this property is using foreign key (for Catalog or Document type)\")]",
               "label": "",
@@ -2456,6 +2456,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }

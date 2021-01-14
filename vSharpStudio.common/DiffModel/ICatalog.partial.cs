@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNode, IDbTable
+    public partial interface ICatalog : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
         bool IsMarkedForDeletion { get; }
     }

@@ -244,7 +244,7 @@ Application project generator
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| catalog_settings | [proto_catalog_settings](#proto_config.proto_catalog_settings) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Parameters&#34;)] |
+| catalog_settings | [proto_catalog_settings](#proto_config.proto_catalog_settings) |  | @attr [PropertyOrderAttribute(4)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Parameters&#34;)] @attr [Description(&#34;Catalog settings&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(true)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -300,6 +300,7 @@ Application project generator
 | max_catalog_item_name_length | [int32](#int32) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If negative, than unlimited length. If zero, than not use&#34;)] |
 | max_catalog_item_description_length | [int32](#int32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Description length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If negative, than unlimited length. If zero, than not use&#34;)] |
 | max_catalog_item_tree_levels | [int32](#int32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping&#34;)] |
+| separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
 
 
 
@@ -434,7 +435,6 @@ Constant application wise value
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places for numeric data)&#34;)] |
 | object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(5)] |
-| enumeration_type | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  |  |
 | is_index_fk | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;FK Index&#34;)] @attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected always &gt;= 0&#34;)] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
@@ -522,6 +522,7 @@ Constant application wise value
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 

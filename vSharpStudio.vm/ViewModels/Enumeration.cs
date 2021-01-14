@@ -43,16 +43,20 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
-            this.ListEnumerationPairs.OnAddingAction = (t) => {
+            this.ListEnumerationPairs.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
-            this.ListEnumerationPairs.OnAddedAction = (t) => {
+            this.ListEnumerationPairs.OnAddedAction = (t) =>
+            {
                 t.OnAdded();
             };
-            this.ListEnumerationPairs.OnRemovedAction = (t) => {
+            this.ListEnumerationPairs.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListEnumerationPairs.OnClearedAction = () => {
+            this.ListEnumerationPairs.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
         }
@@ -72,6 +76,27 @@ namespace vSharpStudio.vm.ViewModels
             //    case Proto.Config.proto_enumeration.Types.EnumEnumerationType.String:
             //        break;
             // }
+            return res;
+        }
+        public string GetClrBase()
+        {
+            string res="";
+            if (this.DataTypeEnum == EnumEnumerationType.BYTE_VALUE)
+            {
+                res = " : byte";
+            }
+            else if (this.DataTypeEnum == EnumEnumerationType.INTEGER_VALUE)
+            {
+                res = " : int";
+            }
+            else if (this.DataTypeEnum == EnumEnumerationType.SHORT_VALUE)
+            {
+                res = " : short";
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
             return res;
         }
 

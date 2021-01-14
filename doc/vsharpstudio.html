@@ -1117,7 +1117,8 @@ App solution relative path to configuration file path </p></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [ExpandableObjectAttribute()]
-@attr [DisplayName(&#34;Parameters&#34;)] </p></td>
+@attr [DisplayName(&#34;Parameters&#34;)]
+@attr [Description(&#34;Catalog settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1351,6 +1352,15 @@ App solution relative path to configuration file path </p></td>
                   <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [DisplayName(&#34;Levels&#34;)]
 @attr [Description(&#34;Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>separate_properties_for_groups</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Group properties&#34;)]
+@attr [Description(&#34;Separate set of properties for groups&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -1903,13 +1913,6 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>enumeration_type</td>
-                  <td><a href="#proto_config.enum_enumeration_type">enum_enumeration_type</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_index_fk</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2289,6 +2292,13 @@ App solution relative path to configuration file path </p></td>
                   <td>is_has_changed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               

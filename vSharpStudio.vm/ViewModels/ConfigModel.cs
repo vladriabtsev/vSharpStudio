@@ -570,6 +570,34 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(false);
             return lst;
         }
+        public IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen)
+        {
+            var lst = new List<IEnumeration>();
+            var cfg = this.Parent as Config;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupEnumerations.ListEnumerations)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
+        public IReadOnlyList<IEnumerationPair> GetListEnumerationPairs(IEnumeration node, string guidAppPrjGen)
+        {
+            var lst = new List<IEnumerationPair>();
+            var cfg = this.Parent as Config;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in node.ListEnumerationPairs)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
         public IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen)
         {
             var lst = new List<IConstant>();

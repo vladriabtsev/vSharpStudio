@@ -13,5 +13,8 @@ namespace vSharpStudio.common
 
         Type ClrType { get; }
         BigInteger MaxNumericalValue { get; }
+        EnumEnumerationType EnumerationType { get; }
+        int EnumerationStrFieldLength { get; }
+        bool IsEnumStr();
     }
 }

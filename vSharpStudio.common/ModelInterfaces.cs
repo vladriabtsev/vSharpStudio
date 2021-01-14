@@ -331,7 +331,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint Accuracy { get; } // ModelInterfaces.tt Line: 60
     	string ObjectGuid { get; } // ModelInterfaces.tt Line: 60
     	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 51
-    	EnumEnumerationType EnumerationType { get; } // ModelInterfaces.tt Line: 60
     	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 60
     	bool IsPositive { get; } // ModelInterfaces.tt Line: 60
     	bool IsNullable { get; } // ModelInterfaces.tt Line: 60
@@ -521,6 +520,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	string Description { get; } // ModelInterfaces.tt Line: 60
     	string Value { get; } // ModelInterfaces.tt Line: 60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
     }
     
     public partial interface ICatalogItemsGroup : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -538,6 +538,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	int MaxCatalogItemNameLength { get; } // ModelInterfaces.tt Line: 60
     	int MaxCatalogItemDescriptionLength { get; } // ModelInterfaces.tt Line: 60
     	int MaxCatalogItemTreeLevels { get; } // ModelInterfaces.tt Line: 60
+    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 60
     }
     
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29

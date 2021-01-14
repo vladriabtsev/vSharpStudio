@@ -743,7 +743,6 @@ message proto_data_type {
     string object_guid = 5;
     // @attr [PropertyOrderAttribute(5)]
     repeated string list_object_guids = 7;
-    enum_enumeration_type enumeration_type = 8;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("FK Index")]
     // @attr [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
@@ -1168,6 +1167,8 @@ message proto_enumeration_pair {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 14;
 
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
  * @exclude
@@ -1216,7 +1217,10 @@ message proto_catalog_settings {
     // @attr [DisplayName("Levels")]
     // @attr [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
     int32 max_catalog_item_tree_levels = 3;
-
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Group properties")]
+    // @attr [Description("Separate set of properties for groups")]
+    bool separate_properties_for_groups = 4;
 }
 message proto_catalog {
     string guid = 1;
@@ -1230,6 +1234,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Parameters")]
+    // @attr [Description("Catalog settings")]
     proto_catalog_settings catalog_settings = 6;
 
     // @attr [BrowsableAttribute(true)]

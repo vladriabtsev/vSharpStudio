@@ -133,6 +133,13 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyEnumeration(string name, Enumeration en)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid=en.Guid };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Property node = null;
@@ -146,6 +153,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.Add(node);
+            node.DataType.Parent = node;
             if (this.LastGenPosition == 0)
             {
                 this.LastGenPosition = 1;

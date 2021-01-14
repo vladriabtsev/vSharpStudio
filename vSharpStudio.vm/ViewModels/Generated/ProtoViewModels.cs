@@ -8229,7 +8229,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 65
             foreach (var t in from.ListObjectGuids) // Clone.tt Line: 44
                 vm.ListObjectGuids.Add(t);
-            vm.EnumerationType = from.EnumerationType; // Clone.tt Line: 65
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
             vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
@@ -8252,7 +8251,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 {
                     to.ListObjectGuids.Add(tt);
                 }
-            to.EnumerationType = from.EnumerationType; // Clone.tt Line: 141
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
             to.IsPositive = from.IsPositive; // Clone.tt Line: 141
             to.IsNullable = from.IsNullable; // Clone.tt Line: 141
@@ -8295,7 +8293,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 vm.ListObjectGuids.Add(t);
             }
-            vm.EnumerationType = (EnumEnumerationType)m.EnumerationType; // Clone.tt Line: 221
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
             vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
             vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
@@ -8316,7 +8313,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.ObjectGuid = vm.ObjectGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 242
                 m.ListObjectGuids.Add(t); // Clone.tt Line: 244
-            m.EnumerationType = (Proto.Config.enum_enumeration_type)vm.EnumerationType; // Clone.tt Line: 274
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
             m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
@@ -8467,30 +8463,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListObjectGuidsChanging(ObservableCollection<string> to); // Property.tt Line: 30
         partial void OnListObjectGuidsChanged();
         IReadOnlyList<string> IDataType.ListObjectGuids { get { return this._ListObjectGuids; } }
-        
-        public EnumEnumerationType EnumerationType // Property.tt Line: 144
-        { 
-            get 
-            { 
-                return this._EnumerationType; 
-            }
-            set
-            {
-                if (this._EnumerationType != value)
-                {
-                    this.OnEnumerationTypeChanging(ref value);
-                    this._EnumerationType = value;
-                    this.OnEnumerationTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumEnumerationType _EnumerationType;
-        partial void OnEnumerationTypeChanging(ref EnumEnumerationType to); // Property.tt Line: 166
-        partial void OnEnumerationTypeChanged();
-        EnumEnumerationType IDataType.EnumerationType { get { return this._EnumerationType; } } 
         
         [PropertyOrderAttribute(9)]
         [DisplayName("FK Index")]
@@ -14843,6 +14815,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
             this.OnInit();
             this.IsValidate = true;
         }
@@ -14853,7 +14826,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            // throw new Exception();
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
         }
         public static EnumerationPair Clone(ITreeConfigNode parent, EnumerationPair from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -14872,6 +14848,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
             vm.IsNotNotifying = false;
@@ -14893,6 +14872,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -14932,6 +14947,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
@@ -14955,6 +14976,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -14966,6 +14989,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
@@ -15138,6 +15165,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsHasChanged;
         partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 166
         partial void OnIsHasChangedChanged();
+        
+        [BrowsableAttribute(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 58
+        { 
+            get 
+            { 
+                return this._ListNodeGeneratorsSettings; 
+            }
+            private set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    this._ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        partial void OnListNodeGeneratorsSettingsChanging(SortedObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 79
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> IEnumerationPair.ListNodeGeneratorsSettings { get { return this._ListNodeGeneratorsSettings; } }
         [BrowsableAttribute(false)]
         override public bool IsChanged  // Class.tt Line: 108
         { 
@@ -15648,6 +15699,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 65
             vm.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 65
             vm.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 65
+            vm.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 65
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -15659,6 +15711,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 141
             to.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 141
             to.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 141
+            to.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -15690,6 +15743,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.MaxCatalogItemNameLength = m.MaxCatalogItemNameLength; // Clone.tt Line: 221
             vm.MaxCatalogItemDescriptionLength = m.MaxCatalogItemDescriptionLength; // Clone.tt Line: 221
             vm.MaxCatalogItemTreeLevels = m.MaxCatalogItemTreeLevels; // Clone.tt Line: 221
+            vm.SeparatePropertiesForGroups = m.SeparatePropertiesForGroups; // Clone.tt Line: 221
             vm.IsNotNotifying = false;
             vm.IsValidate = true;
             return vm;
@@ -15702,6 +15756,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.MaxCatalogItemNameLength = vm.MaxCatalogItemNameLength; // Clone.tt Line: 276
             m.MaxCatalogItemDescriptionLength = vm.MaxCatalogItemDescriptionLength; // Clone.tt Line: 276
             m.MaxCatalogItemTreeLevels = vm.MaxCatalogItemTreeLevels; // Clone.tt Line: 276
+            m.SeparatePropertiesForGroups = vm.SeparatePropertiesForGroups; // Clone.tt Line: 276
             return m;
         }
         
@@ -15798,6 +15853,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnMaxCatalogItemTreeLevelsChanging(ref int to); // Property.tt Line: 166
         partial void OnMaxCatalogItemTreeLevelsChanged();
         int ICatalogSettings.MaxCatalogItemTreeLevels { get { return this._MaxCatalogItemTreeLevels; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Group properties")]
+        [Description("Separate set of properties for groups")]
+        public bool SeparatePropertiesForGroups // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._SeparatePropertiesForGroups; 
+            }
+            set
+            {
+                if (this._SeparatePropertiesForGroups != value)
+                {
+                    this.OnSeparatePropertiesForGroupsChanging(ref value);
+                    this._SeparatePropertiesForGroups = value;
+                    this.OnSeparatePropertiesForGroupsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _SeparatePropertiesForGroups;
+        partial void OnSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 166
+        partial void OnSeparatePropertiesForGroupsChanged();
+        bool ICatalogSettings.SeparatePropertiesForGroups { get { return this._SeparatePropertiesForGroups; } } 
         #endregion Properties
     }
     public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
@@ -16085,6 +16167,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Parameters")]
+        [Description("Catalog settings")]
         public CatalogSettings CatalogSettings // Property.tt Line: 118
         { 
             get 

@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConfigModel
+    public partial interface IConfigModel : IGetNodeSetting
     {
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         IDataType GetIdDataType();
@@ -18,6 +18,8 @@ namespace vSharpStudio.common
         IProperty GetRefParentProperty(IvPluginDbGenerator dbGen, ICompositeName parent);
         IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
+        IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen);
+        IReadOnlyList<IEnumerationPair> GetListEnumerationPairs(IEnumeration node, string guidAppPrjGen);
         IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen);
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
         IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);

@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumerationPair : IEditableNode
+    public partial class EnumerationPair : IEditableNode, INodeGenSettings
     {
         public static readonly string DefaultName = "Element";
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IJournal : ITreeConfigNode
+    public partial interface IJournal : ITreeConfigNode, IGetNodeSetting
     {
     }
 }

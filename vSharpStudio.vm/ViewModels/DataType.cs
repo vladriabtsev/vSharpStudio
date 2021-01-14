@@ -81,7 +81,61 @@ namespace vSharpStudio.vm.ViewModels
         {
             return DataType.GetTypeDesc(this);
         }
-
+        public bool IsEnumStr()
+        {
+            if (this.DataTypeEnum != EnumDataType.ENUMERATION)
+                return false;
+            if (string.IsNullOrWhiteSpace(this.ObjectGuid))
+                return false;
+            var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+            if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
+                return true;
+            return false;
+        }
+        public EnumEnumerationType EnumerationType
+        {
+            get
+            {
+                if (this.DataTypeEnum != EnumDataType.ENUMERATION)
+                    throw new NotImplementedException();
+                if (string.IsNullOrWhiteSpace(this.ObjectGuid))
+                    throw new NotImplementedException();
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                return en.DataTypeEnum;
+            }
+        }
+        public int EnumerationStrFieldLength
+        {
+            get
+            {
+                if (this.DataTypeEnum != EnumDataType.ENUMERATION)
+                    throw new NotImplementedException();
+                if (string.IsNullOrWhiteSpace(this.ObjectGuid))
+                    throw new NotImplementedException();
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                int len = 0;
+                if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
+                {
+                    foreach (var t in en.ListEnumerationPairs)
+                    {
+                        len = Math.Max(len, t.Value.Length);
+                    }
+                }
+                return len;
+            }
+        }
+        public string EnumerationName
+        {
+            get
+            {
+                if (this.DataTypeEnum != EnumDataType.ENUMERATION)
+                    throw new NotImplementedException();
+                if (string.IsNullOrWhiteSpace(this.ObjectGuid))
+                    throw new NotImplementedException();
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                return "Enum" + en.Name;
+            }
+        }
         public static string GetTypeDesc(DataType p)
         {
             Contract.Requires(p != null);
@@ -348,7 +402,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DOCUMENTS:
                     return "Documents";
                 case EnumDataType.ENUMERATION:
-                    return "Enumeration";
+                    return this.EnumerationName;
                 case EnumDataType.DATE:
                     return "Date" + sn;
                 case EnumDataType.DATETIME:
