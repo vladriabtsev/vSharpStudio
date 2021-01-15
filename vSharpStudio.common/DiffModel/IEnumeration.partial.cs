@@ -9,5 +9,6 @@ namespace vSharpStudio.common
     public partial interface IEnumeration : ITreeConfigNode, IGetNodeSetting
     {
         string GetClrBase();
+        string DefaultValue { get; }
     }
 }

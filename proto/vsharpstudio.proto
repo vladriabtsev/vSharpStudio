@@ -1155,6 +1155,10 @@ message proto_enumeration_pair {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     string value = 6;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Is default")]
+    // @attr [Description("Used as default value for enumeration")]
+    bool is_default = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
     // @attr [BrowsableAttribute(false)]

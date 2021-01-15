@@ -76,6 +76,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.DataType.ProtoType; }
         }
         public IDataType IDataType { get { return this._DataType; } }
+        public string DefaultValue { get { return this.DataType.DefaultValue; } }
 
         #region Tree operations
         public override bool NodeCanUp()

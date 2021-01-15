@@ -68,6 +68,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
+        public string DefaultValue
+        {
+            get
+            {
+                if (this.DataType.IsNullable)
+                    return "null";
+                return this.DataType.DefaultValue;
+            }
+        }
 
         #region Tree operations
         public override bool NodeCanUp()

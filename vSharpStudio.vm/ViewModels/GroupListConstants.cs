@@ -71,6 +71,14 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Constant AddConstantEnumeration(string name, Enumeration en, bool isNullable)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
+            dt.IsNullable = isNullable;
+            var node = new Constant(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Constant node = null;
@@ -84,6 +92,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             this.Add(node);
+            node.DataType.Parent = node;
             if (node_impl == null)
             {
                 this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);

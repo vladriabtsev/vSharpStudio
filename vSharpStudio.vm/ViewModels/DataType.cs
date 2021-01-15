@@ -303,6 +303,46 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
+        public string DefaultValue
+        {
+            get
+            {
+                if (this.IsNullable)
+                    return "null";
+                switch (this.DataTypeEnum)
+                {
+                    //case EnumDataType.CATALOG:
+                    //    return "Catalog";
+                    //case EnumDataType.CATALOGS:
+                    //    return "Catalog";
+                    //case EnumDataType.DOCUMENT:
+                    //    return "Document";
+                    //case EnumDataType.DOCUMENTS:
+                    //    return "Documents";
+                    //case EnumDataType.DATE:
+                    //    return "Date" + sn;
+                    //case EnumDataType.DATETIME:
+                    //    return "DateTime" + sn;
+                    //case EnumDataType.TIME:
+                    //    return "Time" + sn;
+                    //case EnumDataType.DATETIMEZ:
+                    //    return "DateTimeZ" + sn;
+                    //case EnumDataType.TIMEZ:
+                    //    return "TimeZ" + sn;
+                    case EnumDataType.ENUMERATION:
+                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                        return en.DefaultValue;
+                    case EnumDataType.BOOL:
+                        return "false";
+                    case EnumDataType.STRING:
+                        return "null";
+                    case EnumDataType.NUMERICAL:
+                        return "0";
+                    default:
+                        return "null";
+                }
+            }
+        }
         private Type GetClrType()
         {
             switch (this.ClrTypeName)
@@ -382,13 +422,23 @@ namespace vSharpStudio.vm.ViewModels
                 return GetClrTypeName();
             }
         }
-
-        private string GetClrTypeName()
+        [BrowsableAttribute(false)]
+        public string ClrTypeNameNotNull
+        {
+            get
+            {
+                return GetClrTypeName(true);
+            }
+        }
+        private string GetClrTypeName(bool isWithoutNull = false)
         {
             string sn = string.Empty;
             if (this.IsNullable)
             {
-                sn = "?";
+                if (isWithoutNull)
+                    sn = "";
+                else
+                    sn = "?";
             }
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
             switch (this.DataTypeEnum)
@@ -402,7 +452,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DOCUMENTS:
                     return "Documents";
                 case EnumDataType.ENUMERATION:
-                    return this.EnumerationName;
+                    return this.EnumerationName + sn;
                 case EnumDataType.DATE:
                     return "Date" + sn;
                 case EnumDataType.DATETIME:

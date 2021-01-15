@@ -14843,6 +14843,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.Value = from.Value; // Clone.tt Line: 65
+            vm.IsDefault = from.IsDefault; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
@@ -14867,6 +14868,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
             to.Value = from.Value; // Clone.tt Line: 141
+            to.IsDefault = from.IsDefault; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
@@ -14942,6 +14944,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.Value = m.Value; // Clone.tt Line: 221
+            vm.IsDefault = m.IsDefault; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
@@ -14971,6 +14974,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.Value = vm.Value; // Clone.tt Line: 276
+            m.IsDefault = vm.IsDefault; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
@@ -15046,6 +15050,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnValueChanging(ref string to); // Property.tt Line: 166
         partial void OnValueChanged();
         string IEnumerationPair.Value { get { return this._Value; } } 
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Is default")]
+        [Description("Used as default value for enumeration")]
+        public bool IsDefault // Property.tt Line: 144
+        { 
+            get 
+            { 
+                return this._IsDefault; 
+            }
+            set
+            {
+                if (this._IsDefault != value)
+                {
+                    this.OnIsDefaultChanging(ref value);
+                    this._IsDefault = value;
+                    this.OnIsDefaultChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsDefault;
+        partial void OnIsDefaultChanging(ref bool to); // Property.tt Line: 166
+        partial void OnIsDefaultChanged();
+        bool IEnumerationPair.IsDefault { get { return this._IsDefault; } } 
         
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 144

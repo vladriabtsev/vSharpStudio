@@ -46,5 +46,19 @@ namespace vSharpStudio.vm.ViewModels
             var p = this.Parent as Enumeration;
             p.ListEnumerationPairs.Remove(this);
         }
+        partial void OnIsDefaultChanged()
+        {
+            if (this.IsDefault)
+            {
+                var p = (Enumeration)this.Parent;
+                foreach (var t in p.ListEnumerationPairs)
+                {
+                    if ((this.Guid != t.Guid) && t.IsDefault)
+                    {
+                        t.IsDefault = false;
+                    }
+                }
+            }
+        }
     }
 }

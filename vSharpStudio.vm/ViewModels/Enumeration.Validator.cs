@@ -18,6 +18,16 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
 
+            this.RuleFor(x => x.Name).Must((o, name) =>
+            {
+                foreach (var t in o.ListEnumerationPairs)
+                {
+                    if (t.IsDefault)
+                        return true;
+                }
+                return false;
+            }).WithMessage("One enumeration value expected be selected as default");
+
             this.RuleFor(p => p.DataTypeLength).Must((p, y) =>
             {
                 if (p.DataTypeEnum != common.EnumEnumerationType.STRING_VALUE)
@@ -81,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum), 
+                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
                         $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'");
                     vf.Severity = Severity.Warning;
                     cntx.AddFailure(vf);

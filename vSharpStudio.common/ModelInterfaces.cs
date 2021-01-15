@@ -520,6 +520,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 60
     	string Description { get; } // ModelInterfaces.tt Line: 60
     	string Value { get; } // ModelInterfaces.tt Line: 60
+    	bool IsDefault { get; } // ModelInterfaces.tt Line: 60
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 53
     }
     

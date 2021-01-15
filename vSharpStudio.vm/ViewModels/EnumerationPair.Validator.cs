@@ -22,6 +22,21 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Value).Must((o, name) => { return this.IsUniqueValue(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_HAS_TO_BE_UNIQUE);
             this.RuleFor(x => x.Value).Must((o, name) => { return this.IsValueConvertable(o); }).WithMessage(Config.ValidationMessages.ENUM_VALUE_NOT_CONVERTABLE);
 
+            this.RuleFor(x => x.Value).Must((o, name) =>
+            {
+                if (!o.IsDefault)
+                    return true;
+                var p = (Enumeration)o.Parent;
+                foreach (var t in p.ListEnumerationPairs)
+                {
+                    if ((o.Guid != t.Guid) && t.IsDefault)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }).WithMessage("Only one enumeration value can be selected as default");
+
             this.RuleFor(x => x.Value).Custom((path, cntx) =>
             {
                 var pg = (EnumerationPair)cntx.InstanceToValidate;

@@ -9,5 +9,6 @@ namespace vSharpStudio.common
     public partial interface IConstant : ITreeConfigNode, IGetNodeSetting
     {
         bool IsMarkedForDeletion { get; }
+        string DefaultValue { get; }
     }
 }

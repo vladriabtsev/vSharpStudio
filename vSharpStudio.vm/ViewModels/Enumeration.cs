@@ -64,7 +64,22 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-
+        public string DefaultValue
+        {
+            get
+            {
+                EnumerationPair tt = null;
+                foreach (var t in this.ListEnumerationPairs)
+                {
+                    if (t.IsDefault)
+                    {
+                        tt = t;
+                        break;
+                    }
+                }
+                return "Enum" + this.Name + "." + tt.Name.ToUpper();
+            }
+        }
         public static string GetTypeDesc(Enumeration p)
         {
             Contract.Requires(p != null);
@@ -80,7 +95,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetClrBase()
         {
-            string res="";
+            string res = "";
             if (this.DataTypeEnum == EnumEnumerationType.BYTE_VALUE)
             {
                 res = " : byte";
@@ -101,9 +116,9 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public EnumerationPair AddEnumerationPair(string name, string val)
+        public EnumerationPair AddEnumerationPair(string name, string val, bool isDefault = false)
         {
-            EnumerationPair node = new EnumerationPair(this) { Name = name, Value = val };
+            EnumerationPair node = new EnumerationPair(this) { Name = name, Value = val, IsDefault = isDefault };
             this.NodeAddNewSubNode(node);
             return node;
         }

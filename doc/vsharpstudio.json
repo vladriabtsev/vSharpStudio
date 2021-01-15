@@ -2410,6 +2410,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_default",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Is default\")]\n@attr [Description(\"Used as default value for enumeration\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
