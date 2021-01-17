@@ -15002,7 +15002,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        [PropertyOrderAttribute(3)]
+        [PropertyOrderAttribute(5)]
+        [Description("Description of enumeration element")]
         public string Description // Property.tt Line: 144
         { 
             get 
@@ -15027,6 +15028,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanged();
         string IEnumerationPair.Description { get { return this._Description; } } 
         
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Value")]
+        [Description("Enumeration element value")]
         public string Value // Property.tt Line: 144
         { 
             get 
@@ -15051,7 +15055,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnValueChanged();
         string IEnumerationPair.Value { get { return this._Value; } } 
         
-        [PropertyOrderAttribute(4)]
+        [PropertyOrderAttribute(3)]
         [DisplayName("Is default")]
         [Description("Used as default value for enumeration")]
         public bool IsDefault // Property.tt Line: 144

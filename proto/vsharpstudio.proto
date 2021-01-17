@@ -1105,10 +1105,10 @@ message proto_group_list_enumerations {
 }
 // Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
 enum enum_enumeration_type {
-    STRING_VALUE = 0;
-    BYTE_VALUE = 1;
-    SHORT_VALUE = 2;
-    INTEGER_VALUE = 3;
+    INTEGER_VALUE = 0;
+    SHORT_VALUE = 1;
+    BYTE_VALUE = 2;
+    STRING_VALUE = 3;
 }
 message proto_enumeration {
     string guid = 1;
@@ -1147,15 +1147,22 @@ message proto_enumeration {
 }
 message proto_enumeration_pair {
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Enumeration element name")]
     string name = 2;
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)]
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
-    // @attr [PropertyOrderAttribute(3)]
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Description("Description of enumeration element")]
     string description = 5;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Value")]
+    // @attr [Description("Enumeration element value")]
     string value = 6;
-    // @attr [PropertyOrderAttribute(4)]
+    // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Is default")]
     // @attr [Description("Used as default value for enumeration")]
     bool is_default = 7;

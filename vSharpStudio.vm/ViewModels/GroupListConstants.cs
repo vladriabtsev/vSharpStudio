@@ -79,6 +79,14 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Constant AddConstantCatalog(string name, Catalog cat)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = cat.Guid };
+            dt.IsNullable = true;
+            var node = new Constant(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Constant node = null;

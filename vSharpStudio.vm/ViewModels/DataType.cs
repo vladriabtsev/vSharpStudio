@@ -76,11 +76,13 @@ namespace vSharpStudio.vm.ViewModels
             this.ObjectGuid = guidOfType;
             this.ListObjectGuids = new ObservableCollection<string>();
         }
-
         public override string ToString()
         {
             return DataType.GetTypeDesc(this);
         }
+
+        #region Enumeration
+        [Browsable(false)]
         public bool IsEnumStr()
         {
             if (this.DataTypeEnum != EnumDataType.ENUMERATION)
@@ -92,6 +94,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             return false;
         }
+        [Browsable(false)]
         public EnumEnumerationType EnumerationType
         {
             get
@@ -104,6 +107,7 @@ namespace vSharpStudio.vm.ViewModels
                 return en.DataTypeEnum;
             }
         }
+        [Browsable(false)]
         public int EnumerationStrFieldLength
         {
             get
@@ -124,6 +128,7 @@ namespace vSharpStudio.vm.ViewModels
                 return len;
             }
         }
+        [Browsable(false)]
         public string EnumerationName
         {
             get
@@ -131,11 +136,13 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                     throw new NotImplementedException();
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
-                    throw new NotImplementedException();
+                    return "";
                 var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
                 return "Enum" + en.Name;
             }
         }
+        #endregion Enumeration
+
         public static string GetTypeDesc(DataType p)
         {
             Contract.Requires(p != null);
@@ -208,7 +215,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-
         [PropertyOrderAttribute(13)]
         public string MaxValue
         {
@@ -249,7 +255,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-
         [PropertyOrderAttribute(14)]
         public string MinValue
         {
@@ -274,7 +279,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-
         [BrowsableAttribute(false)]
         public BigInteger MaxNumericalValue
         {
@@ -291,9 +295,7 @@ namespace vSharpStudio.vm.ViewModels
                 return this._MaxNumericalValue;
             }
         }
-
         private BigInteger _MaxNumericalValue;
-
         [BrowsableAttribute(false)]
         public Type ClrType
         {
@@ -302,7 +304,7 @@ namespace vSharpStudio.vm.ViewModels
                 return GetClrType();
             }
         }
-
+        [BrowsableAttribute(false)]
         public string DefaultValue
         {
             get
@@ -413,7 +415,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-
         [PropertyOrderAttribute(11)]
         public string ClrTypeName
         {
@@ -444,7 +445,8 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
-                    return "Catalog";
+                    var en = (Catalog)this.Cfg.DicNodes[this.ObjectGuid];
+                    return en.Name;
                 case EnumDataType.CATALOGS:
                     return "Catalog";
                 case EnumDataType.DOCUMENT:
@@ -563,7 +565,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-
         [PropertyOrderAttribute(12)]
         public string ProtoType
         {
@@ -572,7 +573,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetProtoType();
             }
         }
-
         private string GetProtoType()
         {
             // https://developers.google.com/protocol-buffers/docs/proto3#scalar
@@ -645,10 +645,8 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
-
         /// <summary>
         /// Potential data lost analysis
         /// </summary>
@@ -662,39 +660,25 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Visibility
-
         [BrowsableAttribute(false)]
         public SortedObservableCollection<ITreeConfigNode> ListObjects
         {
             get
             {
-                if (this._ListObjects == null || this._ListObjects.Count == 0)
+                switch (this.DataTypeEnum)
                 {
-                    switch (this.DataTypeEnum)
-                    {
-                        case EnumDataType.CATALOG:
-                        case EnumDataType.DOCUMENT:
-                        case EnumDataType.ENUMERATION:
-                            this.UpdateListObjects();
-                            break;
-                        default:
-                            break;
-                    }
+                    case EnumDataType.ENUMERATION:
+                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
+                    case EnumDataType.CATALOG:
+                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    case EnumDataType.DOCUMENT:
+                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                    default:
+                        break;
                 }
-                return this._ListObjects;
-            }
-            private set
-            {
-                if (this._ListObjects != value)
-                {
-                    this._ListObjects = value;
-                    this.NotifyPropertyChanged();
-                }
+                return null;
             }
         }
-
-        private SortedObservableCollection<ITreeConfigNode> _ListObjects;
-
         partial void OnDataTypeEnumChanging(ref EnumDataType to)
         {
             switch (this.DataTypeEnum)
@@ -715,7 +699,6 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-
         partial void OnDataTypeEnumChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
@@ -739,7 +722,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = string.Empty;
-                    this.ListObjects = null;
+                    this.NotifyPropertyChanged(() => this.ListObjects);
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -752,9 +735,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = string.Empty;
-                    this.ListObjects = null;
                     this.ListObjectGuids.Clear();
-                    this.UpdateListObjects();
+                    this.NotifyPropertyChanged(() => this.ListObjects);
                     break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
@@ -773,8 +755,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = string.Empty;
-                    this.ListObjects = null;
                     this.ListObjectGuids.Clear();
+                    this.NotifyPropertyChanged(() => this.ListObjects);
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -785,47 +767,13 @@ namespace vSharpStudio.vm.ViewModels
                     this.Accuracy = 0;
                     this.IsPositive = false;
                     this.ObjectGuid = string.Empty;
-                    this.ListObjects = null;
                     this.ListObjectGuids.Clear();
+                    this.NotifyPropertyChanged(() => this.ListObjects);
                     break;
                 default:
                     throw new NotSupportedException();
             }
         }
-
-        private void UpdateListObjects()
-        {
-            if (this.Cfg == null)
-            {
-                return;
-            }
-            // ITreeConfigNode config = this.Parent;
-            // while (config != null && config.Parent != null)
-            //    config = config.Parent;
-            // if (config is Config)
-            // {
-            if (this.ListObjects != null)
-            {
-                this.ListObjects.Clear();
-            }
-
-            switch (this.DataTypeEnum)
-            {
-                case EnumDataType.ENUMERATION:
-                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
-                    break;
-                case EnumDataType.CATALOG:
-                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
-                    break;
-                case EnumDataType.DOCUMENT:
-                    this.ListObjects = new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
-                    break;
-                default:
-                    break;
-            }
-            // }
-        }
-
         partial void OnLengthChanged()
         {
             this._MaxNumericalValue = 0;
@@ -835,7 +783,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(nameof(this.MinValue));
             this.ValidateProperty(nameof(this.Accuracy));
         }
-
         partial void OnAccuracyChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
@@ -852,7 +799,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.VisibilityIsPositive = Visibility.Collapsed;
             }
         }
-
         partial void OnIsPositiveChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
@@ -860,7 +806,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(nameof(this.MaxValue));
             this.NotifyPropertyChanged(nameof(this.MinValue));
         }
-
         [BrowsableAttribute(false)]
         public Visibility VisibilityLength
         {
@@ -879,9 +824,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
         private Visibility _VisibilityLength = Visibility.Collapsed;
-
         [BrowsableAttribute(false)]
         public Visibility VisibilityAccuracy
         {
@@ -900,9 +843,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
         private Visibility _VisibilityAccuracy = Visibility.Collapsed;
-
         [BrowsableAttribute(false)]
         public Visibility VisibilityIsPositive
         {
@@ -921,9 +862,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
         private Visibility _VisibilityIsPositive = Visibility.Collapsed;
-
         [BrowsableAttribute(false)]
         public Visibility VisibilityObjectName
         {
@@ -942,9 +881,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
         private Visibility _VisibilityObjectName = Visibility.Collapsed;
-
         #endregion Visibility
 
         public Config Cfg
@@ -969,9 +906,7 @@ namespace vSharpStudio.vm.ViewModels
                 return this.cfg;
             }
         }
-
         private Config cfg = null;
-
         public IDataType PrevStableVersion()
         {
             IDataType res = null;

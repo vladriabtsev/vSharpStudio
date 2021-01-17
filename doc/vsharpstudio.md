@@ -512,12 +512,12 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Enumeration element name&#34;)] |
 | sorting_value | [uint64](#uint64) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| value | [string](#string) |  |  |
-| is_default | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Is default&#34;)] @attr [Description(&#34;Used as default value for enumeration&#34;)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;Description of enumeration element&#34;)] |
+| value | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Value&#34;)] @attr [Description(&#34;Enumeration element value&#34;)] |
+| is_default | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Is default&#34;)] @attr [Description(&#34;Used as default value for enumeration&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
@@ -1364,10 +1364,10 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| STRING_VALUE | 0 |  |
-| BYTE_VALUE | 1 |  |
-| SHORT_VALUE | 2 |  |
-| INTEGER_VALUE | 3 |  |
+| INTEGER_VALUE | 0 |  |
+| SHORT_VALUE | 1 |  |
+| BYTE_VALUE | 2 |  |
+| STRING_VALUE | 3 |  |
 
 
 

@@ -2227,7 +2227,9 @@ App solution relative path to configuration file path </p></td>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Enumeration element name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2241,7 +2243,7 @@ App solution relative path to configuration file path </p></td>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
@@ -2249,21 +2251,24 @@ App solution relative path to configuration file path </p></td>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [Description(&#34;Description of enumeration element&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Value&#34;)]
+@attr [Description(&#34;Enumeration element value&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>is_default</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [DisplayName(&#34;Is default&#34;)]
 @attr [Description(&#34;Used as default value for enumeration&#34;)] </p></td>
                 </tr>
@@ -5345,25 +5350,25 @@ repeated proto_document list_documents = 7;
           <tbody>
             
               <tr>
-                <td>STRING_VALUE</td>
+                <td>INTEGER_VALUE</td>
                 <td>0</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>BYTE_VALUE</td>
+                <td>SHORT_VALUE</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>SHORT_VALUE</td>
+                <td>BYTE_VALUE</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>INTEGER_VALUE</td>
+                <td>STRING_VALUE</td>
                 <td>3</td>
                 <td><p></p></td>
               </tr>

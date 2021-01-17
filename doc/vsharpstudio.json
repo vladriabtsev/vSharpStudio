@@ -34,22 +34,22 @@
           "description": "Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss",
           "values": [
             {
-              "name": "STRING_VALUE",
+              "name": "INTEGER_VALUE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "BYTE_VALUE",
+              "name": "SHORT_VALUE",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SHORT_VALUE",
+              "name": "BYTE_VALUE",
               "number": "2",
               "description": ""
             },
             {
-              "name": "INTEGER_VALUE",
+              "name": "STRING_VALUE",
               "number": "3",
               "description": ""
             }
@@ -2361,7 +2361,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Enumeration element name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2381,7 +2381,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2391,7 +2391,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"Description of enumeration element\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2401,7 +2401,7 @@
             },
             {
               "name": "value",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Value\")]\n@attr [Description(\"Enumeration element value\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2411,7 +2411,7 @@
             },
             {
               "name": "is_default",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Is default\")]\n@attr [Description(\"Used as default value for enumeration\")]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Is default\")]\n@attr [Description(\"Used as default value for enumeration\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

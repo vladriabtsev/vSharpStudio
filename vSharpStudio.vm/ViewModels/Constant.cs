@@ -68,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
+        [BrowsableAttribute(false)]
         public string DefaultValue
         {
             get

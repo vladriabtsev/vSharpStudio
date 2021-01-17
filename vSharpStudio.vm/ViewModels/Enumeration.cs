@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
-    public partial class Enumeration : ICanAddNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
+    public partial class Enumeration : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Enumeration";
 
@@ -64,6 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
+        [BrowsableAttribute(false)]
         public string DefaultValue
         {
             get
@@ -225,6 +226,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             var p = this.Parent as GroupListEnumerations;
             p.ListEnumerations.Remove(this);
+        }
+
+        public bool CanAddSubNode()
+        {
+            return true;
         }
         #endregion Tree operations
     }

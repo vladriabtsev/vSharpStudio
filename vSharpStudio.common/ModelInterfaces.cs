@@ -34,10 +34,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
     {
-        STRING_VALUE = 0,
-        BYTE_VALUE = 1,
-        SHORT_VALUE = 2,
-        INTEGER_VALUE = 3,
+        INTEGER_VALUE = 0,
+        SHORT_VALUE = 1,
+        BYTE_VALUE = 2,
+        STRING_VALUE = 3,
     }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
