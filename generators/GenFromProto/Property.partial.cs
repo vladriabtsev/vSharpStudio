@@ -15,6 +15,9 @@ namespace GenFromProto
         FieldDescriptor field;
         FieldDoc Doc;
         MessageDoc DocMes;
+        string ClassName;
+        string FieldName;
+        string FieldType;
         //bool isSpecial = false;
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {
@@ -23,8 +26,9 @@ namespace GenFromProto
             this.field = field;
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];
             this.DocMes = JsonDoc.Files[root.Name].Messages[message.Name];
-            //if (field.Name == "guid") // || field.Name == "name" || field.Name == "name_ui" || field.Name == "sorting_value")
-            //    isSpecial = true;
+            this.ClassName = message.Name.ToNameCs();
+            this.FieldName = field.Name.ToNameCs();
+            this.FieldType = field.ToTypeCs();
         }
         private bool IsNotSpecial(string fieldName)
         {
@@ -41,6 +45,29 @@ namespace GenFromProto
             return true;
         }
         private bool IsCollection { get { return field.IsRepeated; } }
-        private bool IsObservable { get { return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase()); } }
+        private bool IsObservable { get { return field.IsRepeated && (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())); } }
+        private bool IsDictionary { get { return field.IsRepeated && field.IsMap; } }
+        private string CollectionName()
+        {
+            if (field.IsRepeated && (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())))
+                return "ObservableCollection";
+            return "ConfigNodesCollection";
+        }
+        private bool IsSelfCollection { get { return message.Name.EndsWith(field.Name); } }
+        private bool IsNullable { get { return !field.IsCsSimple() && field.IsMessage() && field.IsNullable(); } }
+        private bool IsMessage { get { return !field.IsCsSimple() && field.IsMessage(); } }
+        private bool IsNotSkip
+        {
+            get
+            {
+                if (this.DocMes.IsBaseWithParent)
+                {
+                    if (field.Name == "guid" || field.Name == "name" || field.Name == "sorting_value" || field.Name == "name_ui")
+                        return false;
+                }
+                return true;
+            }
+        }
+        private bool IsSimple { get { return field.IsCsSimple(); } }
     }
 }

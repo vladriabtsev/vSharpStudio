@@ -20,6 +20,8 @@ namespace vSharpStudio.vm.ViewModels
 
             this.RuleFor(x => x.Name).Must((o, name) =>
             {
+                if (o.ListEnumerationPairs.Count < 2)
+                    return true;
                 foreach (var t in o.ListEnumerationPairs)
                 {
                     if (t.IsDefault)

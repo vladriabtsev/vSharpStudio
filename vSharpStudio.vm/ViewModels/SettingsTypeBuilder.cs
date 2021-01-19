@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
@@ -61,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
                 return null;
             return objSol;
         }
-        private static object CreateSettingsForProject(ITreeConfigNode node, AppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
+        private static object CreateSettingsForProject(ITreeConfigNode node, IAppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
         {
             TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
             foreach (var ttt in tt.ListAppProjectGenerators)
@@ -213,10 +214,7 @@ namespace vSharpStudio.vm.ViewModels
             Type objectType = tb.CreateType();
             return objectType;
         }
-
-
-
-        public static object CreateNewObject(ConfigNodesCollection<PluginGeneratorSettings> lst)
+        public static object CreateNewObject(ObservableCollection<PluginGeneratorSettings> lst)
         {
             Contract.Requires(lst != null);
             var myType = CompileResultType(lst);
@@ -225,7 +223,7 @@ namespace vSharpStudio.vm.ViewModels
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileResultType(ConfigNodesCollection<PluginGeneratorSettings> lst)
+        public static Type CompileResultType(ObservableCollection<PluginGeneratorSettings> lst)
         {
             Contract.Requires(lst != null);
             TypeBuilder tb = GetTypeBuilder();

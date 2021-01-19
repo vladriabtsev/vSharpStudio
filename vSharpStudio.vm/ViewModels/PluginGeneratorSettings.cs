@@ -11,12 +11,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("PluginGeneratorSettings:{Name,nq}")]
-    public partial class PluginGeneratorSettings : ISortingValue
+    public partial class PluginGeneratorSettings
     {
         public IvPluginGeneratorSettings SettingsVm { get; set; }
-        partial void OnIsNewChanged();
-        partial void OnIsHasNewChanged();
-        partial void OnIsMarkedForDeletionChanged();
-        partial void OnIsHasMarkedForDeletionChanged();
     }
 }

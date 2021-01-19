@@ -566,11 +566,18 @@
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -672,7 +679,7 @@ App project relative path to .net solution file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -680,6 +687,13 @@ App project relative path to .net solution file path </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Description(&#34;Connection string name for DB connection generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -870,11 +884,18 @@ Generator output file name </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -976,14 +997,15 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -1001,7 +1023,7 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>config</td>
+                  <td>config_base</td>
                   <td><a href="#proto_config.proto_config">proto_config</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -1079,14 +1101,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -1220,14 +1242,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -1384,7 +1406,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Unique Guid for configuration (for comparison) </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -1393,13 +1422,6 @@ App solution relative path to configuration file path </p></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -1521,8 +1543,7 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Unique Guid for configuration (for comparison)
-@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -1693,7 +1714,7 @@ App solution relative path to configuration file path </p></td>
         
       
         <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
-        <p>@base ConfigObjectCommonBase</p>
+        <p>@base VmValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -1701,6 +1722,21 @@ App solution relative path to configuration file path </p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
               
                 <tr>
                   <td>current_config</td>
@@ -1714,41 +1750,6 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#proto_config.proto_config">proto_config</a></td>
                   <td></td>
                   <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_has_changed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -1772,14 +1773,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -1974,14 +1975,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2098,14 +2099,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2220,7 +2221,7 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2337,14 +2338,14 @@ App solution relative path to configuration file path </p></td>
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2435,14 +2436,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2650,14 +2651,15 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -2744,14 +2746,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2856,14 +2858,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2966,14 +2968,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3069,14 +3071,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3172,14 +3174,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3275,14 +3277,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3379,14 +3381,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3483,14 +3485,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3590,6 +3592,14 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
@@ -3660,14 +3670,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3771,14 +3781,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3874,14 +3884,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -3978,14 +3988,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -4080,14 +4090,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -4184,14 +4194,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -4346,7 +4356,8 @@ repeated proto_document list_forms = 7;
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -4433,7 +4444,8 @@ repeated proto_document list_forms = 7;
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -4525,7 +4537,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</h3>
-        <p>Stored in each node in Model branch</p>
+        <p>@base ConfigObjectCommonBase</p>
 
         
           <table class="field-table">
@@ -4533,6 +4545,13 @@ repeated proto_document list_forms = 7;
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
               
                 <tr>
                   <td>app_project_generator_guid</td>
@@ -4591,7 +4610,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
-        <p>Stored in AppProjectGenerator node</p>
+        <p>@base VmValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -4599,6 +4618,27 @@ repeated proto_document list_forms = 7;
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
+                </tr>
               
                 <tr>
                   <td>app_project_generator_guid</td>
@@ -4629,7 +4669,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</h3>
-        <p>Stored in App node. All nullable setting has to have value</p>
+        <p>@base VmValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -4637,6 +4677,13 @@ repeated proto_document list_forms = 7;
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
               
                 <tr>
                   <td>app_group_generators_guid</td>
@@ -4696,7 +4743,7 @@ repeated proto_document list_forms = 7;
         
       
         <h3 id="proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</h3>
-        <p>Stored in AppSolution node. All null setting will use parent value</p><p>@base ConfigObjectCommonBase</p>
+        <p>@base ConfigObjectCommonBase</p>
 
         
           <table class="field-table">
@@ -4709,7 +4756,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Guid of group generators </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -4724,6 +4778,13 @@ repeated proto_document list_forms = 7;
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4783,14 +4844,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -4901,14 +4962,14 @@ repeated proto_document list_forms = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -5015,14 +5076,14 @@ Reserved positions: 1 - primary key
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -5113,14 +5174,14 @@ repeated proto_document list_documents = 7;
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -5206,24 +5267,19 @@ repeated proto_document list_documents = 7;
             <tbody>
               
                 <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
                 <tr>

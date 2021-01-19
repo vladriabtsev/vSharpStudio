@@ -124,8 +124,9 @@ General DB settings
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET project file path relative to solution file path&#34;)] App project relative path to .net solution file path |
@@ -151,8 +152,9 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Description(&#34;Connection string name for DB connection generator&#34;)] |
+| name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | plugin_guid | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Plugin&#34;)] @attr [Description(&#34;Plugins with generators&#34;)] @attr [Editor(typeof(EditorPluginSelection), typeof(ITypeEditor))] |
@@ -187,8 +189,9 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
 | relative_app_solution_path | [string](#string) |  | List NET projects @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] App solution relative path to configuration file path |
@@ -213,11 +216,11 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
-| config | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
+| config_base | [proto_config](#proto_config.proto_config) |  | @attr [BrowsableAttribute(false)] |
 | relative_config_file_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -239,8 +242,8 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -270,8 +273,8 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -315,9 +318,9 @@ Configuration config
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | Unique Guid for configuration (for comparison) |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | version | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  |  |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] |
@@ -347,7 +350,7 @@ Configuration model
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | Unique Guid for configuration (for comparison) @attr [ReadOnly(true)] |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | version | [int32](#int32) |  | @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
@@ -378,18 +381,15 @@ Configuration model
 <a name="proto_config.proto_config_short_history"></a>
 
 ### proto_config_short_history
-@base ConfigObjectCommonBase
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | current_config | [proto_config](#proto_config.proto_config) |  |  |
 | prev_stable_config | [proto_config](#proto_config.proto_config) |  |  |
-| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_has_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -404,8 +404,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -454,8 +454,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -483,8 +483,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -511,7 +511,7 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Enumeration element name&#34;)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;UI name&#34;)] |
@@ -538,8 +538,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -563,8 +563,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -616,8 +616,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | description | [string](#string) |  |  |
 | list_base_config_links | [proto_base_config_link](#proto_config.proto_base_config_link) | repeated | @attr [BrowsableAttribute(false)] |
@@ -641,8 +641,8 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -668,8 +668,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -695,8 +695,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -721,8 +721,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -747,8 +747,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -773,8 +773,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -799,8 +799,8 @@ Common parameters section
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -825,8 +825,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -852,6 +852,7 @@ main view forms hierarchy node with children
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_plugins | [proto_plugin](#proto_config.proto_plugin) | repeated | @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -873,8 +874,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -900,8 +901,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -926,8 +927,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -952,8 +953,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -978,8 +979,8 @@ main view forms hierarchy node with children
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1004,8 +1005,8 @@ main view forms hierarchy parent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1050,7 +1051,7 @@ main view forms hierarchy parent
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | version | [string](#string) |  | @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
@@ -1074,7 +1075,7 @@ main view forms hierarchy parent
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -1107,11 +1108,12 @@ main view forms hierarchy parent
 <a name="proto_config.proto_plugin_generator_node_settings"></a>
 
 ### proto_plugin_generator_node_settings
-Stored in each node in Model branch
+@base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | name | [string](#string) |  | Name of solution-project-generator node |
 | name_ui | [string](#string) |  |  |
@@ -1128,11 +1130,14 @@ Stored in each node in Model branch
 <a name="proto_config.proto_plugin_generator_settings"></a>
 
 ### proto_plugin_generator_settings
-Stored in AppProjectGenerator node
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
 | app_project_generator_guid | [string](#string) |  | Guid of solution-project-generator node |
 | settings | [string](#string) |  |  |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -1145,11 +1150,12 @@ Stored in AppProjectGenerator node
 <a name="proto_config.proto_plugin_group_generators_default_settings"></a>
 
 ### proto_plugin_group_generators_default_settings
-Stored in App node. All nullable setting has to have value
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | app_group_generators_guid | [string](#string) |  | Guid of group generators |
 | settings | [string](#string) |  |  |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -1166,15 +1172,16 @@ Stored in App node. All nullable setting has to have value
 <a name="proto_config.proto_plugin_group_generators_settings"></a>
 
 ### proto_plugin_group_generators_settings
-Stored in AppSolution node. All null setting will use parent value
 @base ConfigObjectCommonBase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | Guid of group generators |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [ReadOnly(true)] |
 | app_group_generators_guid | [string](#string) |  |  |
 | settings | [string](#string) |  |  |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_has_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
@@ -1194,8 +1201,8 @@ Stored in AppSolution node. All null setting will use parent value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1222,8 +1229,8 @@ Stored in AppSolution node. All null setting will use parent value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1249,8 +1256,8 @@ Stored in AppSolution node. All null setting will use parent value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1274,8 +1281,8 @@ User&#39;s role
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  |  |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -1299,9 +1306,8 @@ User&#39;s role
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
+| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | version_migration_current | [int32](#int32) |  | current migration version, increased by one on each deployment |
 | version_migration_support_from_min | [int32](#int32) |  | min version supported by current version for migration |

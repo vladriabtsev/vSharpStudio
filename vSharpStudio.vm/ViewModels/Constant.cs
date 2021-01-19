@@ -42,14 +42,14 @@ namespace vSharpStudio.vm.ViewModels
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
             this.DataType = new DataType(type, guidOfType);
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
             this.DataType = new DataType(type, length, accuracy);
         }
 
@@ -142,7 +142,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Constant.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListConstants).Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

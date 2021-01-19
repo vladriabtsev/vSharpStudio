@@ -307,7 +307,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -317,6 +317,16 @@
             },
             {
               "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
               "description": "",
               "label": "",
               "type": "string",
@@ -438,7 +448,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -449,6 +459,16 @@
             {
               "name": "name",
               "description": "@attr [Description(\"Connection string name for DB connection generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -669,7 +689,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -679,6 +699,16 @@
             },
             {
               "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
               "description": "",
               "label": "",
               "type": "string",
@@ -800,7 +830,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -810,7 +840,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -839,7 +869,7 @@
               "defaultValue": ""
             },
             {
-              "name": "config",
+              "name": "config_base",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_config",
@@ -931,7 +961,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -941,7 +971,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1112,7 +1142,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1122,7 +1152,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1304,7 +1334,17 @@
           "fields": [
             {
               "name": "guid",
-              "description": "Unique Guid for configuration (for comparison)",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1319,16 +1359,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1485,7 +1515,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "Unique Guid for configuration (for comparison)\n@attr [ReadOnly(true)]",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1709,11 +1739,31 @@
           "name": "proto_config_short_history",
           "longName": "proto_config_short_history",
           "fullName": "proto_config.proto_config_short_history",
-          "description": "@base ConfigObjectCommonBase",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "current_config",
               "description": "",
@@ -1733,56 +1783,6 @@
               "fullType": "proto_config.proto_config",
               "ismap": false,
               "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_has_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_has_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_has_changed",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
             }
           ]
         },
@@ -1797,7 +1797,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1807,7 +1807,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2039,7 +2039,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2049,7 +2049,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2200,7 +2200,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2210,7 +2210,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2351,7 +2351,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2492,7 +2492,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2502,7 +2502,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2613,7 +2613,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2623,7 +2623,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2885,7 +2885,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2895,7 +2895,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3006,7 +3006,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3016,7 +3016,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3147,7 +3147,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3157,7 +3157,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3288,7 +3288,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3298,7 +3298,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3419,7 +3419,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3429,7 +3429,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3550,7 +3550,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3560,7 +3560,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3681,7 +3681,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3691,7 +3691,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3812,7 +3812,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3822,7 +3822,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3943,7 +3943,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3953,7 +3953,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4083,6 +4083,16 @@
               "defaultValue": ""
             },
             {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "sorting_value",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -4165,7 +4175,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4175,7 +4185,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4306,7 +4316,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4316,7 +4326,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4437,7 +4447,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4447,7 +4457,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4568,7 +4578,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4578,7 +4588,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4699,7 +4709,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4709,7 +4719,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4830,7 +4840,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4840,7 +4850,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5032,7 +5042,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [ReadOnly(true)]",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5143,7 +5153,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [ReadOnly(true)]",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5258,11 +5268,21 @@
           "name": "proto_plugin_generator_node_settings",
           "longName": "proto_plugin_generator_node_settings",
           "fullName": "proto_config.proto_plugin_generator_node_settings",
-          "description": "Stored in each node in Model branch",
+          "description": "@base ConfigObjectCommonBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "app_project_generator_guid",
               "description": "Guid of solution-project-generator node",
@@ -5339,11 +5359,41 @@
           "name": "proto_plugin_generator_settings",
           "longName": "proto_plugin_generator_settings",
           "fullName": "proto_config.proto_plugin_generator_settings",
-          "description": "Stored in AppProjectGenerator node",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "app_project_generator_guid",
               "description": "Guid of solution-project-generator node",
@@ -5380,11 +5430,21 @@
           "name": "proto_plugin_group_generators_default_settings",
           "longName": "proto_plugin_group_generators_default_settings",
           "fullName": "proto_config.proto_plugin_group_generators_default_settings",
-          "description": "Stored in App node. All nullable setting has to have value",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
             {
               "name": "app_group_generators_guid",
               "description": "Guid of group generators",
@@ -5461,14 +5521,24 @@
           "name": "proto_plugin_group_generators_settings",
           "longName": "proto_plugin_group_generators_settings",
           "fullName": "proto_config.proto_plugin_group_generators_settings",
-          "description": "Stored in AppSolution node. All null setting will use parent value\n@base ConfigObjectCommonBase",
+          "description": "@base ConfigObjectCommonBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
             {
               "name": "guid",
-              "description": "Guid of group generators",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5493,6 +5563,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5559,7 +5639,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5569,7 +5649,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5710,7 +5790,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5720,7 +5800,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5851,7 +5931,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5861,7 +5941,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5972,7 +6052,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5982,7 +6062,7 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6092,18 +6172,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name",
-              "description": "",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6113,7 +6183,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",

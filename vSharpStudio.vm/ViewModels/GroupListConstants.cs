@@ -35,7 +35,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnInit()
         {
-            this._Name = Defaults.ConstantsGroupName;
+            this.Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
             Init();
         }

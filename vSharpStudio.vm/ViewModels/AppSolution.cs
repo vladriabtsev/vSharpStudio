@@ -65,14 +65,14 @@ namespace vSharpStudio.vm.ViewModels
         public AppSolution(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
         }
 
         public AppSolution(ITreeConfigNode parent, string name, List<AppProject> listProjects)
             : this(parent)
         {
             Contract.Requires(listProjects != null);
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
             foreach (var t in listProjects)
             {
                 this.ListAppProjects.Add(t);
@@ -259,7 +259,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = AppSolution.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListAppSolutions).Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

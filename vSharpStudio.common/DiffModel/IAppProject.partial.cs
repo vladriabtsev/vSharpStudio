@@ -9,6 +9,5 @@ namespace vSharpStudio.common
 {
     public partial interface IAppProject : ITreeConfigNode
     {
-        //ITreeConfigNode Parent { get; }
     }
 }

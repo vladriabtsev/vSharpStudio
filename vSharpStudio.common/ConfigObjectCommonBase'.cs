@@ -18,14 +18,10 @@
     using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>, ISortingValue, ITreeConfigNode
+    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>
         where TValidator : AbstractValidator<T>
-        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ISortingValue // , ITreeConfigNode
+        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
-        //public abstract bool IsNew { get; set; }
-        //public abstract bool IsHasNew { get; set; }
-        //public abstract bool IsMarkedForDeletion { get; set; }
-        //public abstract bool IsHasMarkedForDeletion { get; set; }
         protected static ILogger _logger;
         public ConfigObjectCommonBase(ITreeConfigNode parent, TValidator validator)
             : base(validator)
@@ -36,7 +32,6 @@
             this.ListInModels = new List<IModelRow>();
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
         }
-
         private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -46,43 +41,23 @@
                     this.NotifyPropertyChanged(() => this.NodeNameDecorations);
                     break;
             }
-            //if (e.PropertyName == "IsChanged")
-            //{
-            //    IsTreeChangedRecalc();
-            //}
         }
-
         protected virtual void OnInitFromDto()
         {
         }
-
         private static int _maxlen = 0;
-
-        //public override void Restore(T from)
-        //{
-        //    throw new NotImplementedException("Please override Restore method");
-        //}
-
-        //public override T Backup()
-        //{
-        //    throw new NotImplementedException("Please override Backup method");
-        //}
-
         protected override void OnCountErrorsChanged()
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
-
         protected override void OnCountWarningsChanged()
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
-
         protected override void OnCountInfosChanged()
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
-
         [Browsable(false)]
         public string IconStatus
         {
@@ -114,7 +89,6 @@
                 return iconName;
             }
         }
-
         [Browsable(false)]
         public string IconName
         {
@@ -129,42 +103,32 @@
                 {
                     iconName = "iconFolder";
                 }
-
                 return iconName;
             }
         }
-
         public int CompareTo(T other)
         {
-            return this.SortingValue.CompareTo(other.SortingValue);
+            return this._SortingValue.CompareTo(other._SortingValue);
         }
         public bool Equals(T other)
         {
-            return this.Guid == other.Guid;
+            return this.__Guid == (other as IGuid).Guid;
         }
 
         #region Sort
-
         [BrowsableAttribute(false)]
         public ulong SortingWeight { get; set; }
-
-        [BrowsableAttribute(false)]
-        public ulong SortingValue
+        protected ulong _SortingValue
         {
             get
             {
-                return this._SortingValue;
+                return this.__SortingValue;
             }
-
             set
             {
-                if (this._SortingValue != value)
+                if (this.__SortingValue != value)
                 {
-                    this.OnSortingValueChanging();
-                    this._SortingValue = value;
-                    this.OnSortingValueChanged();
-                    this.NotifyPropertyChanged();
-                    // ValidateProperty();
+                    this.__SortingValue = value;
                     ITreeConfigNode p = (ITreeConfigNode)this;
                     if (p.Parent != null)
                     {
@@ -173,48 +137,32 @@
                 }
             }
         }
-
-        private ulong _SortingValue;
-
+        private ulong __SortingValue;
         public virtual void Sort(Type type)
         {
             throw new NotImplementedException();
         }
-
-        partial void OnSortingValueChanging();
-
-        partial void OnSortingValueChanged();
-
         #endregion Sort
 
-#if DEBUG
-        [ReadOnly(true)]
-#else
-        [Browsable(false)]
-#endif
-        public string Guid
+        protected string _Guid
         {
             get
             {
-                if (this._Guid == null)
+                if (this.__Guid == null)
                 {
                     this.SetNewGuid();
-                    this.NotifyPropertyChanged(); // to recognize object was changed
                 }
-                return this._Guid;
+                return this.__Guid;
             }
-            protected set
+            set
             {
-                this._Guid = value;
-                this.NotifyPropertyChanged();
+                this.__Guid = value;
             }
         }
-
-        private string _Guid = null;
-
+        private string __Guid = null;
         protected void SetNewGuid()
         {
-            this._Guid = System.Guid.NewGuid().ToString();
+            this.__Guid = System.Guid.NewGuid().ToString();
         }
 #if DEBUG
         [ReadOnly(true)]
@@ -243,10 +191,9 @@
             {
                 if (this.Parent == null)
                 {
-                    return "MainConfig." + this.Name;
+                    return "MainConfig." + this._Name;
                 }
-
-                return this.GetConfig().Name + "." + this.Name;
+                return this.GetConfig().Name + "." + this._Name;
             }
         }
         [BrowsableAttribute(false)]
@@ -299,48 +246,41 @@
             {
                 return null;
             }
-
             while (p.Parent != null)
             {
                 p = p.Parent;
             }
             return (IConfig)p;
         }
-
         public T GetPrevious()
         {
             T res = null;
             if (this.GetConfig()?.PrevStableConfig != null && this.GetConfig().PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
-                res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.Guid];
+                res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.__Guid];
             }
-
             return res;
         }
 
-        [PropertyOrder(0)]
-        public string Name
+        protected string _Name
         {
             get
             {
-                return this._Name;
+                return this.__Name;
             }
-
             set
             {
-                if (this._Name != value)
+                if (this.__Name != value)
                 {
-                    this._Name = value.Trim();
-                    this.NotifyPropertyChanged();
-                    if (this.ValidateProperty())
+                    this.__Name = value.Trim();
+                    if (this.ValidateProperty("Name"))
                     {
-                        this.SortingValue = this.EncodeNameToUlong(this._Name) + this.SortingWeight;
+                        this._SortingValue = this.EncodeNameToUlong(this.__Name) + this.SortingWeight;
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                         {
                             p.Parent.Sort(this.GetType());
                         }
-                        // SetSelected(this);
                     }
                     this.IsChanged = true;
                 }
@@ -348,7 +288,6 @@
         }
         protected string GetCompositeName()
         {
-
             List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
             ITreeConfigNode p = this.Parent;
             while (p != null)
@@ -387,7 +326,7 @@
                 sb.Append(prefix);
             if (cfg.Model.IsUseCompositeNames)
                 sb.Append(composit);
-            sb.Append(this.Name);
+            sb.Append(this._Name);
             return sb.ToString();
         }
 
@@ -412,36 +351,26 @@
                 this.GetConfig().SelectedNode = node;
             }
         }
-
-        protected string _Name = string.Empty;
-
-        [PropertyOrder(1)]
-        [DisplayName("UI Name")]
-        public string NameUi
+        private string __Name = string.Empty;
+        protected string _NameUi
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(this._NameUi) && !string.IsNullOrEmpty(this._Name))
+                if (string.IsNullOrWhiteSpace(this.__NameUi) && !string.IsNullOrEmpty(this.__Name))
                 {
-                    return this._Name;
+                    return this.__Name;
                 }
-
-                return this._NameUi;
+                return this.__NameUi;
             }
-
             set
             {
-                if (this._NameUi != value)
+                if (this.__NameUi != value)
                 {
-                    this._NameUi = value.Trim();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
+                    this.__NameUi = value.Trim();
                 }
             }
         }
-
-        private string _NameUi = string.Empty;
-
+        private string __NameUi = string.Empty;
         protected ulong EncodeNameToUlong(string name)
         {
             const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
@@ -483,14 +412,12 @@
             }
             return res;
         }
-
         protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
         {
             if (!string.IsNullOrWhiteSpace(configObject.Name))
             {
                 return;
             }
-
             int i = 0;
             foreach (var tt in lst)
             {
@@ -498,7 +425,6 @@
                 {
                     continue;
                 }
-
                 if (tt.Name.StartsWith(defName))
                 {
                     string s = tt.Name.Remove(0, defName.Length);
@@ -523,7 +449,6 @@
             {
                 return this._Parent;
             }
-
             set
             {
                 this._Parent = value;
@@ -536,13 +461,10 @@
                 }
             }
         }
-
         private ITreeConfigNode _Parent;
-
         protected virtual void OnParentChanged()
         {
         }
-
         [BrowsableAttribute(false)]
         public bool IsSelected
         {
@@ -550,7 +472,6 @@
             {
                 return this._IsSelected;
             }
-
             set
             {
                 if (this._IsSelected != value)
@@ -560,9 +481,7 @@
                 }
             }
         }
-
         private bool _IsSelected;
-
         [BrowsableAttribute(false)]
         public bool IsExpanded
         {
@@ -570,7 +489,6 @@
             {
                 return this._IsExpanded;
             }
-
             set
             {
                 if (this._IsExpanded != value)
@@ -581,86 +499,69 @@
                 }
             }
         }
-
         private bool _IsExpanded;
 
         #region Commands
-
         public bool NodeCanAddNew()
         {
             if (this is ICanAddNode)
             {
                 return true;
             }
-
             return false;
         }
-
         public virtual ITreeConfigNode NodeAddNew()
         {
             throw new NotImplementedException();
         }
-
         public bool NodeCanAddNewSubNode()
         {
             if (this is ICanAddSubNode)
             {
                 return (this as ICanAddSubNode).CanAddSubNode();
             }
-
             return false;
         }
-
         public virtual ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node = null)
         {
             throw new NotImplementedException();
         }
-
         public bool NodeCanAddClone()
         {
             if (this is ICanAddNode)
             {
                 return true;
             }
-
             return false;
         }
-
         public virtual ITreeConfigNode NodeAddClone()
         {
             throw new NotImplementedException();
         }
-
         public bool NodeCanMoveDown()
         {
             if (!(this is ICanAddNode))
             {
                 return false;
             }
-
             return this.NodeCanDown();
         }
-
         public virtual void NodeMoveDown()
         {
             throw new NotImplementedException();
         }
-
         public bool NodeCanMoveUp()
         {
             if (!(this is ICanAddNode))
             {
                 return false;
             }
-
             return this.NodeCanUp();
         }
-
         public virtual void NodeMoveUp()
         {
             throw new NotImplementedException();
         }
-
         public bool NodeCanMarkForDeletion()
         {
             if (this is IEditableNode)
@@ -675,32 +576,26 @@
                 p.IsMarkedForDeletion = !p.IsMarkedForDeletion;
             }
         }
-
         public bool NodeCanLeft()
         {
             if (this is ICanGoLeft)
             {
                 return true;
             }
-
             return false;
         }
-
         public void NodeLeft()
         {
             this.SetSelected(this.Parent);
         }
-
         public bool NodeCanRight()
         {
             if (this is ICanGoRight)
             {
                 return true;
             }
-
             return false;
         }
-
         private bool IsIListNodesGen(object obj)
         {
             bool res = false;
@@ -713,62 +608,44 @@
             }
             return res;
         }
-
         public virtual void NodeRight()
         {
             throw new NotImplementedException();
         }
-
         public virtual bool NodeCanDown()
         {
             return false;
         }
-
         public virtual void NodeDown()
         {
             throw new NotImplementedException();
         }
-
         public virtual bool NodeCanUp()
         {
             return false;
         }
-
         public virtual void NodeUp()
         {
             throw new NotImplementedException();
         }
-
         #endregion Commands
 
         [BrowsableAttribute(false)]
         public bool IsIncludableInModels { get; protected set; }
-
         public List<IModelRow> ListInModels { get; protected set; }
-
-        //[BrowsableAttribute(false)]
-        //public bool IsSubTreeHasChanges { get { return this._IsSubTreeHasChanges; } set { SetProperty(ref _IsSubTreeHasChanges, value); } }
-        //private bool _IsSubTreeHasChanges;
-        //[BrowsableAttribute(false)]
-        //public bool IsSubTreeHasNew { get { return this._IsSubTreeHasNew; } set { SetProperty(ref _IsSubTreeHasNew, value); } }
-        //private bool _IsSubTreeHasNew;
-        //[BrowsableAttribute(false)]
-        //public bool IsSubTreeHasMarkedForDeletion { get { return this._IsSubTreeHasMarkedForDeletion; } set { SetProperty(ref _IsSubTreeHasMarkedForDeletion, value); } }
-        //private bool _IsSubTreeHasMarkedForDeletion;
-
         public ITreeConfigNode PrevCurrentVersion()
         {
             var cfg = this.GetConfig();
-            if (cfg.PrevCurrentConfig == null || !cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Guid))
+            if (cfg.PrevCurrentConfig == null || !cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.__Guid))
                 return null;
-            return cfg.PrevCurrentConfig.DicNodes[this.Guid];
+            return cfg.PrevCurrentConfig.DicNodes[this.__Guid];
         }
         public ITreeConfigNode PrevStableVersion()
         {
             var cfg = this.GetConfig();
-            if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.Guid))
+            if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.__Guid))
                 return null;
-            return cfg.PrevStableConfig.DicNodes[this.Guid];
+            return cfg.PrevStableConfig.DicNodes[this.__Guid];
         }
         public bool IsRenamed(bool isStable)
         {
@@ -777,13 +654,13 @@
                 if (isStable)
                 {
                     var p = this.PrevStableVersion();
-                    if (p != null && p.Name != this.Name)
+                    if (p != null && p.Name != this._Name)
                         return true;
                 }
                 else
                 {
                     var p = this.PrevCurrentVersion();
-                    if (p != null && p.Name != this.Name)
+                    if (p != null && p.Name != this._Name)
                         return true;
                 }
             }
@@ -818,17 +695,6 @@
             }
             return false;
         }
-        //public bool IsCanLooseData(bool isStable)
-        //{
-        //    if (this is IEditableNode)
-        //    {
-        //        throw new NotImplementedException();
-        //        var p = (IEditableNode)this.PrevStableVersion();
-        //        if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
-        //            return true;
-        //    }
-        //    return false;
-        //}
         protected void OnRemoveChild()
         {
             if (this.IsNotNotifying)
@@ -915,24 +781,27 @@
                 return;
             if (this is IEditableNode)
             {
-                var pp = (IEditableNodeGroup)this.Parent;
-                var p = (IEditableNode)this;
-                if (p.IsChanged)
+                if (this.Parent is IEditableNodeGroup)
                 {
-                    pp.IsHasChanged = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    var pp = (IEditableNodeGroup)this.Parent;
+                    var p = (IEditableNode)this;
+                    if (p.IsChanged)
                     {
-                        var pt = (IEditableNode)t;
-                        if (pt.IsChanged)
-                        {
-                            pp.IsHasChanged = true;
-                            return;
-                        }
+                        pp.IsHasChanged = true;
                     }
-                    pp.IsHasChanged = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNode)t;
+                            if (pt.IsChanged)
+                            {
+                                pp.IsHasChanged = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasChanged = false;
+                    }
                 }
             }
         }

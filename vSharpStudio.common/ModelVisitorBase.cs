@@ -400,13 +400,13 @@ namespace vSharpStudio.common
                 this.BeginVisit(t);
                 if (_act != null)
                     _act(this, t);
-                foreach (var tt in t.ListGroupGeneratorsSettings)
-                {
-                    this.BeginVisit(tt);
-                    if (_act != null)
-                        _act(this, tt);
-                    this.EndVisit(tt);
-                }
+                //foreach (var tt in t.ListGroupGeneratorsSettings)
+                //{
+                //    this.BeginVisit(tt);
+                //    if (_act != null)
+                //        _act(this, tt);
+                //    this.EndVisit(tt);
+                //}
                 this.BeginVisit(t.ListAppProjects);
                 foreach (var tt in t.ListAppProjects)
                 {

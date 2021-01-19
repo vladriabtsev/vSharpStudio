@@ -6,5 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IPluginGenerator : ITreeConfigNode
     {
+        IvPluginGenerator Generator { get; }
     }
 }

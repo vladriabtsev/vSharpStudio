@@ -73,10 +73,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (gs == null)
             {
-                var t = gen.GetGenerationNodeSettingsVmFromJson(null, this);
+                var t = gen.GetGenerationNodeSettingsVmFromJson(null, (ITreeConfigNode)this);
                 this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
                 this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
-                gs = new PluginGeneratorNodeSettings(this);
+                gs = new PluginGeneratorNodeSettings((ITreeConfigNode)this);
                 gs.Name = appgen.Name;
                 gs.AppProjectGeneratorGuid = appgen.Guid;
                 gs.SettingsVm = t;
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                var t = gen.GetGenerationNodeSettingsVmFromJson(gs.Settings, this);
+                var t = gen.GetGenerationNodeSettingsVmFromJson(gs.Settings, (ITreeConfigNode)this);
                 this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
                 gs.SettingsVm = t;
                 this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
@@ -99,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
                 var gen = cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
-                tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson(tt.Settings, this);
+                tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson(tt.Settings, (ITreeConfigNode)this);
                 this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
                 this._DicGenNodeSettings[tt.AppProjectGeneratorGuid] = tt.SettingsVm;
             }
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
 
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
@@ -209,9 +209,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
                 return prevNode.IsIncluded(guidAppPrjGen, true);
             }
             return false;
@@ -221,7 +221,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
 
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
@@ -268,9 +268,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
                 return prevNode.GetBoolSetting(guidAppPrjGen, func, true);
             }
             return false;
@@ -280,7 +280,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
 
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
@@ -323,9 +323,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey(this.Guid))
+            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[this.Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
                 return prevNode.GetStringSetting(guidAppPrjGen, func, true);
             }
             return "";
@@ -346,7 +346,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             while (p != null)
             {
                 var ngs = p as INodeGenDicSettings;
@@ -364,7 +364,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             Result<TValue> res = new Result<TValue>();
             while (p != null)
             {
@@ -389,7 +389,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
-            ITreeConfigNode p = this;
+            var p = (ITreeConfigNode)this;
             while (p != null)
             {
                 var ngs = p as INodeGenDicSettings;
@@ -436,7 +436,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 var nd = new NodeSettings();
-                var res = nd.Run(this, true);
+                var res = nd.Run((ITreeConfigNode)this, true);
                 return res;
             }
         }

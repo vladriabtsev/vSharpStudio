@@ -41,21 +41,21 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
-            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
+            (this.GroupProperties as GroupListProperties).ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            this.GroupProperties.ListProperties.OnAddedAction = (t) =>
+            (this.GroupProperties as GroupListProperties).ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
             this.Children.Add(this.GroupProperties, 7);
             this.GroupPropertiesTabs.Parent = this;
-            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
+            (this.GroupProperties as GroupListProperties).ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            this.GroupPropertiesTabs.ListPropertiesTabs.OnAddedAction = (t) =>
+            (this.GroupPropertiesTabs as GroupListPropertiesTabs).ListPropertiesTabs.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
@@ -64,8 +64,8 @@ namespace vSharpStudio.vm.ViewModels
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
+            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

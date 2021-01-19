@@ -104,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Report.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListReports).Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

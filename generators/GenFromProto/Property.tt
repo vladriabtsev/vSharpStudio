@@ -5,20 +5,16 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (this.IsCollection) { #>
-<#   if (this.IsObservable) { #>
-public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
+public <#=CollectionName()#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helper.FilePos() #>
 { 
-    get 
-    { 
-        return this._<#= field.Name.ToNameCs() #>; 
-    }
+    get { return this._<#=FieldName#>; }
     set
     {
-        if (this._<#= field.Name.ToNameCs() #> != value)
+        if (this._<#=FieldName#> != value)
         {
-            this.On<#= field.Name.ToNameCs() #>Changing(value);
-            _<#= field.Name.ToNameCs() #> = value;
-            this.On<#= field.Name.ToNameCs() #>Changed();
+            this.On<#=FieldName#>Changing(value);
+            _<#=FieldName#> = value;
+            this.On<#=FieldName#>Changed();
             this.NotifyPropertyChanged();
 <#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
@@ -26,153 +22,66 @@ public ObservableCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #
         }
     }
 }
-private ObservableCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
-partial void On<#= field.Name.ToNameCs() #>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
-partial void On<#= field.Name.ToNameCs() #>Changed();
-IReadOnlyList<<# if (field.IsMessage()) { #>I<# } #><#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
-<#   } else if (field.IsMap) { #>
-public Dictionary<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
-{ 
-    get 
-    { 
-        return this._<#= field.Name.ToNameCs() #>; 
-    }
-    set
-    {
-        if (this._<#= field.Name.ToNameCs() #> != value)
-        {
-            this.On<#= field.Name.ToNameCs() #>Changing(ref value);
-            this._<#= field.Name.ToNameCs() #> = value;
-            this.On<#= field.Name.ToNameCs() #>Changed();
-            this.NotifyPropertyChanged();
-<#     if (this.DocMes.IsValidatableBase) { #>
-            this.ValidateProperty();
-<#     } #>
-        }
-    }
-}
-private Dictionary<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
-partial void On<#= field.Name.ToNameCs() #>Changing(ref <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
-partial void On<#= field.Name.ToNameCs() #>Changed();
-<#   } else { #>
-public ConfigNodesCollection<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
-{ 
-    get 
-    { 
-        return this._<#= field.Name.ToNameCs() #>; 
-    }
-    private set
-    {
-        if (this._<#= field.Name.ToNameCs() #> != value)
-        {
-            this.On<#= field.Name.ToNameCs() #>Changing(value);
-            this._<#= field.Name.ToNameCs() #> = value;
-            this.On<#= field.Name.ToNameCs() #>Changed();
-            this.NotifyPropertyChanged();
-<#     if (this.DocMes.IsValidatableBase) { #>
-            this.ValidateProperty();
-<#     } #>
-        }
-    }
-}
-private ConfigNodesCollection<<#= field.ToTypeCs() #>> _<#= field.Name.ToNameCs() #>;
-partial void On<#= field.Name.ToNameCs() #>Changing(SortedObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
-partial void On<#= field.Name.ToNameCs() #>Changed();
-IReadOnlyList<I<#= field.ToTypeCs() #>> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
-<#   } #>
-<#   if (message.Name.EndsWith(field.Name)) { #>
-public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
-I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#= field.Name.ToNameCs() #>[index]; } }
+private <#=CollectionName()#><<#= field.ToTypeCs() #>> _<#=FieldName#>;
+IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>
+partial void On<#=FieldName#>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
+partial void On<#=FieldName#>Changed();
+<#   if (this.IsSelfCollection) { #>
+public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
+I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
 { 
     Contract.Requires(item != null);
-    this.<#= field.Name.ToNameCs() #>.Add(item); 
+    this.<#=FieldName#>.Add(item); 
     item.Parent = this;
     this.IsChanged = true;
 }
 public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
 { 
     Contract.Requires(items != null);
-    this.<#= field.Name.ToNameCs() #>.AddRange(items); 
+    this.<#=FieldName#>.AddRange(items); 
     foreach (var t in items)
         t.Parent = this;
     this.IsChanged = true;
 }
-public int Count() 
-{ 
-    return this.<#= field.Name.ToNameCs() #>.Count; 
-}
-int I<#= message.Name.ToNameCs() #>.Count() 
-{ 
-    return this.Count(); 
-}
+public int Count() { return this.<#=FieldName#>.Count; }
+int I<#= message.Name.ToNameCs() #>.Count() { return this.Count(); }
 public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) 
 {
     Contract.Requires(item != null);
-    this.<#= field.Name.ToNameCs() #>.Remove(item); 
+    this.<#=FieldName#>.Remove(item); 
     item.Parent = null;
     this.IsChanged = true;
 }
 <#   } #>
-<# } else if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
-public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
+<# } else { //if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
+public <#= field.ToTypeCs() #> <#=FieldName#> // <#=Helper.FilePos() #>
 { 
-    get 
-    { 
-        return this._<#= field.Name.ToNameCs() #>; 
-    }
+    get { return this._<#=FieldName#>; }
     set
     {
-        if (this._<#= field.Name.ToNameCs() #> != value)
+        if (this._<#=FieldName#> != value)
         {
-            this.On<#= field.Name.ToNameCs() #>Changing(ref value);
-            this._<#= field.Name.ToNameCs() #> = value;
-            this.On<#= field.Name.ToNameCs() #>Changed();
+            this.On<#=FieldName#>Changing(ref value);
+            this._<#=FieldName#> = value;
+            this.On<#=FieldName#>Changed();
             this.NotifyPropertyChanged();
-<#   if (this.DocMes.IsValidatableBase) { #>
-            this.ValidateProperty();
-<#   } #>
-        }
-    }
-}
-private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #>;
-partial void On<#= field.Name.ToNameCs() #>Changing(ref <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
-partial void On<#= field.Name.ToNameCs() #>Changed();
-<# if (!field.IsNullable()) { #>I<# } #><#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } }
-<# } else { #>
-<# if (!this.DocMes.IsBaseWithParent || field.Name != "guid") { #>
-public <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> // <#=Helper.FilePos() #>
-{ 
-    get 
-    { 
-        return this._<#= field.Name.ToNameCs() #>; 
-    }
-    set
-    {
-        if (this._<#= field.Name.ToNameCs() #> != value)
-        {
-            this.On<#= field.Name.ToNameCs() #>Changing(ref value);
-            this._<#= field.Name.ToNameCs() #> = value;
-            this.On<#= field.Name.ToNameCs() #>Changed();
-            this.NotifyPropertyChanged();
-<#   if (this.DocMes.IsValidatableBase && field.Name.ToNameCs()!="IsHasChanged") { #>
+<#   if (this.DocMes.IsValidatableBase && FieldName!="IsHasChanged") { #>
             this.ValidateProperty();
             this.IsChanged = true;
 <#   } #>
         }
     }
 }
-private <#= field.ToTypeCs() #> _<#= field.Name.ToNameCs() #><# if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { #> = string.Empty<# } #>;
-partial void On<#= field.Name.ToNameCs() #>Changing(ref <#= field.ToTypeCs() #> to); // <#=Helper.FilePos() #>
-partial void On<#= field.Name.ToNameCs() #>Changed();
-<# if (this.IsNotSpecial(field.Name)) { #>
-<# if (Program.RunOptions.IsReadonly) { #>
-<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } } 
-<# } else { #>
-<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this._<#= field.Name.ToNameCs() #>; } set { this.<#= field.Name.ToNameCs() #> = value; } }
+<# if (IsNotSkip) { #>
+private <#= field.ToTypeCs() #> _<#=FieldName#><# if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { #> = string.Empty<# } #>;
 <# } #>
+<# if (IsMessage) { #>
+I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>
 <# } #>
-<# } else { #>
-<#= field.ToTypeCs() #> I<#= message.Name.ToNameCs() #>.<#= field.Name.ToNameCs() #> { get { return this.<#= field.Name.ToNameCs() #>; } } 
+partial void On<#=FieldName#>Changing(ref <#=FieldType#> to); // <#=Helper.FilePos() #>
+partial void On<#=FieldName#>Changed();
+<# if (field.IsMessage()) { #>
+<# if (!this.IsNullable) { #>//I<# } #><#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return this._<#=FieldName#>; } }
 <# } #>
 <# } #>

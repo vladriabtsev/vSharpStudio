@@ -92,5 +92,22 @@ namespace GenFromProto
         {
             return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase());
         }
+        private IReadOnlyList<FieldDescriptor> GetFields()
+        {
+            var lst = new List<FieldDescriptor>();
+            foreach(var t in message.Fields.InDeclarationOrder())
+            {
+                //if (this.Doc.IsDefaultBase || this.Doc.IsBaseWithParent || this.Doc.IsGenSettings)
+                //{
+                //    //if (t.Name == "guid") continue;
+                //    if (t.Name == "name") continue;
+                //    if (t.Name == "name_ui") continue;
+                //    if (t.Name == "sorting_value") continue;
+                //}
+                lst.Add(t);
+            }
+            return lst;
+        }
+
     }
 }

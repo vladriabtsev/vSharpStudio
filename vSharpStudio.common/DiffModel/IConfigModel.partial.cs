@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConfigModel : IGetNodeSetting
+    public partial interface IConfigModel : ITreeConfigNode, IGetNodeSetting
     {
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         IDataType GetIdDataType();

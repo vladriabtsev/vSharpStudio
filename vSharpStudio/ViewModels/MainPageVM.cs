@@ -225,9 +225,8 @@ namespace vSharpStudio.ViewModels
             foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
                 _logger.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
-                //t.Config = new Config();
-                this.LoadConfig(t.Config, Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
-                t.Name = t.Config.Name;
+                this.LoadConfig(t.ConfigBase as Config, Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
+                (t as BaseConfigLink).Name = t.ConfigBase.Name;
             }
 
             // string json = File.ReadAllText(CFG_PATH);
@@ -240,7 +239,7 @@ namespace vSharpStudio.ViewModels
         public UserSettings UserSettings { get; private set; }
 
         public static readonly string USER_SETTINGS_FILE_PATH = @".\.vSharpStudio.settings";
-        public static readonly string DEFAULT_CFG_FILE_NAME = "vSharpStudio.vcfg";
+        public static readonly string DEFAULT_CFG_FILEName = "vSharpStudio.vcfg";
         public static string CurrentCfgFolderPath { get; private set; }
         public string CurrentCfgFilePath
         {
@@ -255,7 +254,7 @@ namespace vSharpStudio.ViewModels
                 else
                 {
                     if (!Path.GetFileName(path).ToLower().EndsWith(".vcfg"))
-                        path = Path.Combine(path, DEFAULT_CFG_FILE_NAME);
+                        path = Path.Combine(path, DEFAULT_CFG_FILEName);
                     this._CurrentCfgFilePath = Path.GetFullPath(path);
                     if (this.Config != null)
                         this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
@@ -309,11 +308,12 @@ namespace vSharpStudio.ViewModels
                     {
                         if (tt.Guid == t.Value.Guid) // && (string.IsNullOrWhiteSpace(tt.Version) || tt.Version == t.Value.Version))
                         {
-                            tt.SetVPlugin(t.Value);
-                            tt.Name = t.Value.Name;
-                            tt.Description = t.Value.Description;
-                            tt.Version = t.Value.Version;
-                            p = tt;
+                            var ttp = (Plugin)tt;
+                            ttp.SetVPlugin(t.Value);
+                            ttp.Name = t.Value.Name;
+                            ttp.Description = t.Value.Description;
+                            ttp.Version = t.Value.Version;
+                            p = ttp;
                             is_found = true;
                             break;
                         }
@@ -321,7 +321,7 @@ namespace vSharpStudio.ViewModels
                     if (!is_found)
                     {
                         p = new Plugin(cfg.GroupPlugins, t.Value);
-                        cfg.GroupPlugins.ListPlugins.Add(p);
+                        (cfg.GroupPlugins as GroupListPlugins).ListPlugins.Add(p);
                     }
                     // attaching plugin generators
                     foreach (var tt in t.Value.ListGenerators)
@@ -408,7 +408,7 @@ namespace vSharpStudio.ViewModels
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
                     // group plugins settings
-                    t.RestoreGroupSettings();
+                    (t as AppSolution).RestoreGroupSettings();
                     //foreach (var tt in t.ListGroupGeneratorsSettings)
                     //{
                     //    foreach (var ttt in cfg.DicPlugins)
@@ -434,7 +434,7 @@ namespace vSharpStudio.ViewModels
                             //    IvPluginGenerator gen = tttt.Generator;
                             //    var lst = gen.GetListNodeGenerationSettings();
                             //}
-                            ttt.RestoreSettings();
+                            (ttt as AppProjectGenerator).RestoreSettings();
                         }
                     }
                 }
@@ -456,7 +456,7 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            ttt.UpdateListGenerators();
+                            (ttt as AppProjectGenerator).UpdateListGenerators();
                         }
                     }
                 }
@@ -931,7 +931,7 @@ namespace vSharpStudio.ViewModels
                     {
                         if (tpg.IsMarkedForDeletion)
                             continue;
-                        foreach (var tg in tpg.ListGenerators)
+                        foreach (var tg in (tpg as AppProjectGenerator).ListGenerators)
                         {
                             if (tg.Guid != tpg.PluginGeneratorGuid)
                                 continue;
@@ -965,7 +965,7 @@ namespace vSharpStudio.ViewModels
                                         sb.Append(tpg.PluginDbGenerator.ProviderName);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t\t\"connection_string\": \"");
-                                        var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
+                                        var cnstr = (tpg as AppProjectGenerator).DynamicMainConnStrSettings.GenerateCode(this.Config);
                                         sb.Append(cnstr);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
@@ -1038,7 +1038,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        private string GetOuputFilePath(AppSolution ts, AppProject tp, AppProjectGenerator tpg, string fileName)
+        private string GetOuputFilePath(IAppSolution ts, IAppProject tp, IAppProjectGenerator tpg, string fileName)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
@@ -1715,10 +1715,10 @@ namespace vSharpStudio.ViewModels
         //    }
         // }
         // string _providerName = "";
-        // public const string PROVIDER_NAME_SQL = "System.Data.SqlClient";
-        // public const string PROVIDER_NAME_SQLITE = "Microsoft.Data.Sqlite";
-        // public const string PROVIDER_NAME_MYSQL = "MySql.Data";
-        // public const string PROVIDER_NAME_NPGSQL = "Npgsql";
+        // public const string PROVIDERName_SQL = "System.Data.SqlClient";
+        // public const string PROVIDERName_SQLITE = "Microsoft.Data.Sqlite";
+        // public const string PROVIDERName_MYSQL = "MySql.Data";
+        // public const string PROVIDERName_NPGSQL = "Npgsql";
         #endregion
 
         #region Utils

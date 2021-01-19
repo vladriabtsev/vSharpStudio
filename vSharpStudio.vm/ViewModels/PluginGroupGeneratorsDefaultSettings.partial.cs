@@ -10,8 +10,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("PlgGrpGenSets:{ModelPath,nq}")]
-    public partial class PluginGroupGeneratorsSettings
+    [DebuggerDisplay("{ModelPath,nq}")]
+    public partial class PluginGroupGeneratorsDefaultSettings
     {
     }
 }

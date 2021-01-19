@@ -229,7 +229,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
+            (cfg.Model as ConfigModel)._DicGenNodeSettings.TryRemove(this.Guid);
         }
         partial void OnPluginGuidChanged()
         {
@@ -289,7 +289,7 @@ namespace vSharpStudio.vm.ViewModels
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
             this._PluginGenerator = null;
-            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
+            (cfg.Model as ConfigModel)._DicGenNodeSettings.TryRemove(this.Guid);
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
                         continue;
                     if (tt.Generator.Guid == this.PluginGeneratorGuid)
                     {
-                        var groupSettins = ttt.VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
+                        var groupSettins = (ttt as Plugin).VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
                         if (groupSettins == null)
                         {
                             this.PluginGroupSettingsGuid = string.Empty;
@@ -622,7 +622,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = AppProjectGenerator.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as AppProject).ListAppProjectGenerators.Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

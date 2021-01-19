@@ -75,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
 
         protected override void OnInitFromDto()
         {
-            this.Name = "ConfigModel";
+            this._Name = "ConfigModel";
             //this.RefillChildren();
         }
         void RefillChildren()
@@ -271,7 +271,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
 
                 yield return t.GroupPropertiesTabs;
-                foreach (var tt in this.GetTabNodes(t.GroupPropertiesTabs))
+                foreach (var tt in this.GetTabNodes(t.GroupPropertiesTabs as GroupListPropertiesTabs))
                 {
                     yield return tt;
                 }
@@ -307,7 +307,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
 
                 yield return tt.GroupPropertiesTabs;
-                foreach (var ttt in this.GetTabNodes(tt.GroupPropertiesTabs))
+                foreach (var ttt in this.GetTabNodes(tt.GroupPropertiesTabs as GroupListPropertiesTabs))
                 {
                     yield return tt;
                 }
@@ -454,7 +454,7 @@ namespace vSharpStudio.vm.ViewModels
             var dt = (DataType)this.GetIdDataType();
             dt.IsPKey = true;
             if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+                (this.DbSettings as DbSettings).PKeyFieldGuid = System.Guid.NewGuid().ToString();
             var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
             return res;
         }

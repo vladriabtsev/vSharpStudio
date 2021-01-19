@@ -65,10 +65,10 @@ namespace vSharpStudio.vm.ViewModels
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
-            this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
+            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
+            (this.GroupForms as GroupListForms).AddAllAppGenSettingsVmsToNode();
+            (this.GroupReports as GroupListReports).AddAllAppGenSettingsVmsToNode();
         }
         #region Tree operations
         public override bool NodeCanUp()

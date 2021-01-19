@@ -1180,7 +1180,7 @@ namespace vSharpStudio.Unit
             //}
             vmb.CommandConfigSaveAs.Execute(pathExt + "kuku.vcfg");
 
-            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
+            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILEName);
 
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
@@ -1193,9 +1193,9 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Model.GroupConstants.ListConstants.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Model.GroupConstants[0].Name == "c2");
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Config.Name == "ext");
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstants.ListConstants.Count() == 1);
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstants[0].Name == "c2");
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Name == "ext");
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
         }
 
@@ -1223,7 +1223,7 @@ namespace vSharpStudio.Unit
             }
             vmb.CommandConfigSaveAs.Execute(pathExt + "kuku.vcfg");
 
-            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILE_NAME);
+            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILEName);
 
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");

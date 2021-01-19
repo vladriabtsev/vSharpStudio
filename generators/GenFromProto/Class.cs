@@ -544,15 +544,8 @@ namespace GenFromProto
             
             #line 92 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("    ");
-	foreach (var t in message.Fields.InDeclarationOrder())
+	foreach (var t in this.GetFields())
 	{
-        if (this.Doc.IsDefaultBase || this.Doc.IsBaseWithParent || this.Doc.IsGenSettings)
-        {
-            if (t.Name == "guid") continue;
-            if (t.Name == "name") continue;
-            if (t.Name == "name_ui") continue;
-            if (t.Name == "sorting_value") continue;
-        }
 		var p = new Property(root, message, t);
 		this.Write(p.TransformText());
 	}
@@ -561,24 +554,21 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 106 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 99 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.IsBaseWithParent) { 
             
             #line default
             #line hidden
-            this.Write("    [BrowsableAttribute(false)]\r\n    override public bool IsChanged  // ");
+            this.Write("    [BrowsableAttribute(false)]\r\n    override public bool IsChanged // ");
             
-            #line 108 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 101 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write(@"
     { 
-        get 
-        { 
-            return this._IsChanged; 
-        }
+        get { return this._IsChanged; }
         set
         {
             if (this._IsChanged != value)
@@ -590,7 +580,14 @@ namespace GenFromProto
             }
         }
     }
-    partial void OnIsChangedChanging(ref bool v);
+    partial void OnIsChangedChanging(ref bool v); // ");
+            
+            #line 115 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write(@"
     partial void OnIsChangedChanged();
     partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
     partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
@@ -600,7 +597,7 @@ namespace GenFromProto
     partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
 ");
             
-            #line 133 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 123 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default

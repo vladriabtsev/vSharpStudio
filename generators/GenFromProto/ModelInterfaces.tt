@@ -31,18 +31,8 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
 <# if (MessageDoc.IsDefaultBase) { #>
     //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // <#=Helper.FilePos() #>
 <# } #>
-<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+<#    foreach (var field in message.Fields.InDeclarationOrder()) {
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
-        if (MessageDoc.IsDefaultBase || MessageDoc.IsBaseWithParent || MessageDoc.IsGenSettings) {
-          if (field.Name=="guid") continue;
-          if (field.Name=="name") continue;
-          if (field.Name=="is_new") continue;
-          if (field.Name=="is_has_new") continue;
-          if (field.Name=="is_marked_for_deletion") continue;
-          if (field.Name=="is_has_marked_for_deletion") continue;
-          if (field.Name=="is_has_changed") continue;
-          if (field.Name=="sorting_value") continue;
-         } 
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>

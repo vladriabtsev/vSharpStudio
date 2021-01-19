@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using ViewModelBase;
 using System.Collections.Specialized;
+using System.Diagnostics;
 
 namespace ViewModelBase
 {
@@ -249,11 +250,14 @@ namespace ViewModelBase
         private void InternalSort(IEnumerable<T> sortedItems)
         {
             var sortedItemsList = sortedItems.ToList();
-
+            if (sortedItemsList.Count == 1)
+                return;
             foreach (var item in sortedItemsList)
             {
                 var ifrom = IndexOf(item);
+                Debug.Assert(ifrom != -1);
                 var ito = sortedItemsList.IndexOf(item);
+                Debug.Assert(ito != -1);
                 base.MoveItem(ifrom, ito);
                 if (OnSortMovedAction != null)
                     OnSortMovedAction(ifrom, ito);

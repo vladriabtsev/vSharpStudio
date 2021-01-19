@@ -39,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static TestSharedMesssage Clone(TestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 27
+        public static TestSharedMesssage Clone(ITestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
             TestSharedMesssage vm = new TestSharedMesssage();
@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(TestSharedMesssage to, TestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(TestSharedMesssage to, ITestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
@@ -119,12 +119,9 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool? BoolValue // Property.tt Line: 144
+        public bool? BoolValue // Property.tt Line: 58
         { 
-            get 
-            { 
-                return this._BoolValue; 
-            }
+            get { return this._BoolValue; }
             set
             {
                 if (this._BoolValue != value)
@@ -139,16 +136,13 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private bool? _BoolValue;
-        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 166
+        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 82
         partial void OnBoolValueChanged();
-        bool? ITestSharedMesssage.BoolValue { get { return this._BoolValue; } } 
+        //Ibool? ITestSharedMesssage.BoolValue { get { return this._BoolValue; } }
         
-        public string StringValue // Property.tt Line: 144
+        public string StringValue // Property.tt Line: 58
         { 
-            get 
-            { 
-                return this._StringValue; 
-            }
+            get { return this._StringValue; }
             set
             {
                 if (this._StringValue != value)
@@ -163,9 +157,9 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private string _StringValue;
-        partial void OnStringValueChanging(ref string to); // Property.tt Line: 166
+        partial void OnStringValueChanging(ref string to); // Property.tt Line: 82
         partial void OnStringValueChanged();
-        string ITestSharedMesssage.StringValue { get { return this._StringValue; } } 
+        //Istring ITestSharedMesssage.StringValue { get { return this._StringValue; } }
         #endregion Properties
     }
     

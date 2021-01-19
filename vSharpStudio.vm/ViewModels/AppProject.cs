@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
             : this(parent)
         {
             Contract.Requires(parent != null);
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
 #pragma warning disable CA1062 // Validate arguments of public methods
             (parent as AppSolution).ListAppProjects.Add(this);
 #pragma warning restore CA1062 // Validate arguments of public methods
@@ -220,7 +220,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = AppProject.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as AppSolution).ListAppProjects.Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

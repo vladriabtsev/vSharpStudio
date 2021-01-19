@@ -63,10 +63,51 @@ namespace vSharpStudio.Unit
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
 
         [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
-        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>
+        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>, ITreeConfigNode
         {
-            public TestSortable()
-                : base(null, TestValidator.Validator) { }
+            public TestSortable() : base(null, TestValidator.Validator) { }
+            public string Guid // Property.tt Line: 58
+            {
+                get { return this._Guid; }
+                set
+                {
+                    if (this._Guid != value)
+                    {
+                        this._Guid = value;
+                        this.NotifyPropertyChanged();
+                        this.ValidateProperty();
+                        this.IsChanged = true;
+                    }
+                }
+            }
+            public string Name
+            {
+                get { return this._Name; }
+                set
+                {
+                    if (this._Name != value)
+                    {
+                        this._Name = value;
+                        this.NotifyPropertyChanged();
+                        this.ValidateProperty();
+                        this.IsChanged = true;
+                    }
+                }
+            }
+            public ulong SortingValue
+            {
+                get { return this._SortingValue; }
+                set
+                {
+                    if (this._SortingValue != value)
+                    {
+                        this._SortingValue = value;
+                        this.NotifyPropertyChanged();
+                        this.ValidateProperty();
+                        this.IsChanged = true;
+                    }
+                }
+            }
         }
 
         [TestMethod]
@@ -89,12 +130,6 @@ namespace vSharpStudio.Unit
             TestSortable t22 = new TestSortable();
             t22.Name = "t2";
             sc.Add(t22, 2);
-
-            Assert.IsTrue(sc[0].Guid == t1.Guid);
-            Assert.IsTrue(sc[1].Guid == t2.Guid);
-            Assert.IsTrue(sc[2].Guid == t3.Guid);
-            Assert.IsTrue(sc[3].Guid == t31.Guid);
-            Assert.IsTrue(sc[4].Guid == t22.Guid);
 
             Assert.IsTrue(sc[0].Name == t1.Name);
             Assert.IsTrue(sc[1].Name == t2.Name);
@@ -244,9 +279,9 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
             VmBindable.isNotValidateForUnitTests = true;
-
+            var gc = (GroupListConstants)cfg.Model.GroupConstants;
             var cnst = new Constant(cfg.Model.GroupConstants);
-            cfg.Model.GroupConstants.Add(cnst);
+            gc.Add(cnst);
             var curr = cnst.SortingValue;
             cnst.Name = "abc1";
             Assert.IsTrue(cnst.SortingValue != curr);
@@ -314,7 +349,8 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
             var cnst = new Constant(cfg.Model.GroupConstants);
-            cfg.Model.GroupConstants.Add(cnst);
+            var gc = (GroupListConstants)cfg.Model.GroupConstants;
+            gc.Add(cnst);
             cnst.Name = "abc1";
             var curr = cnst.SortingValue;
 
@@ -330,11 +366,12 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
             var cnst = new Constant(cfg.Model.GroupConstants);
-            cfg.Model.GroupConstants.Add(cnst);
+            var gc = (GroupListConstants)cfg.Model.GroupConstants;
+            gc.Add(cnst);
             cnst.Name = "abc1";
 
             var cnst2 = new Constant(cfg.Model.GroupConstants);
-            cfg.Model.GroupConstants.Add(cnst2);
+            gc.Add(cnst2);
             cnst2.Name = "abc1";
 
             Assert.IsTrue(cnst.Guid != cnst2.Guid);
@@ -404,7 +441,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].NodeCanMoveUp() == false);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].NodeCanMoveDown() == false);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].NodeCanAddNew() == true);
-            Assert.IsTrue(cfg.Model.GroupEnumerations[0].NodeCanAddNewSubNode() == false);
+            Assert.IsTrue(cfg.Model.GroupEnumerations[0].NodeCanAddNewSubNode() == true);
 
             // #region Properties
 
@@ -593,7 +630,7 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(dt.CountWarnings == 0);
             // Assert.IsTrue(dt.HasErrors);
             // Assert.IsTrue(dt.ValidationCollection.Count == 1);
-            // Assert.IsTrue(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CONSTANT_NAME);
+            // Assert.IsTrue(dt.ValidationCollection[0].Message == Config.ValidationMessages.TYPE_EMPTY_CONSTANTName);
             // Assert.IsTrue(dt.VisibilityAccuracy == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);

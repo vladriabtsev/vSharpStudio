@@ -146,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Property.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListProperties).Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }

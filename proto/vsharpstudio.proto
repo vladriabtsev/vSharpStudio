@@ -50,6 +50,9 @@ message proto_user_settings_opened_config {
 message proto_group_list_plugins {
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [ReadOnly(true)]
+    string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [BrowsableAttribute(false)]
@@ -72,6 +75,7 @@ message proto_plugin {
     string guid = 1;
     // @attr [ReadOnly(true)]
     string version = 2;
+    // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 3;
     // @attr [ReadOnly(true)]
@@ -103,6 +107,7 @@ message proto_plugin {
 message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [ReadOnly(true)]
@@ -121,12 +126,13 @@ message proto_plugin_generator {
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
-
 // @base VmValidatableWithSeverity
 message proto_settings_config {
-    string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [ReadOnly(true)]
     string name = 2;
-    // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -139,24 +145,22 @@ message proto_settings_config {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
-// @base ConfigObjectCommonBase
+// @base VmValidatableWithSeverity
 message proto_config_short_history {
-    proto_config current_config = 1;
-    proto_config prev_stable_config = 2;
-    // @attr [BrowsableAttribute(false)]
-    bool is_new = 10;
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_new = 11;
-    // @attr [BrowsableAttribute(false)]
-    bool is_marked_for_deletion = 12;
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_marked_for_deletion = 13;
-    // @attr [BrowsableAttribute(false)]
-    bool is_has_changed = 14;
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [ReadOnly(true)]
+    string name = 2;
+    proto_config current_config = 3;
+    proto_config prev_stable_config = 4;
 }
 // @base ConfigObjectCommonBase
 message proto_group_list_base_config_links {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [ReadOnly(true)]
     string name = 2;
     uint64 sorting_value = 3;
     string description = 5;
@@ -177,13 +181,16 @@ message proto_group_list_base_config_links {
 }
 // @base ConfigObjectCommonBase
 message proto_base_config_link {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [ReadOnly(true)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    proto_config config = 6;
+    proto_config config_base = 6;
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
     string relative_config_file_path = 7;
@@ -203,12 +210,13 @@ message proto_base_config_link {
 }
 // Configuration config
 message proto_config {
-    // Unique Guid for configuration (for comparison)
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ReadOnly(true)]
-    int32 version = 2;
-    string name = 3;
+    int32 version = 3;
     uint64 sorting_value = 4;
     string name_ui = 5;
     // @attr [PropertyOrderAttribute(5)]
@@ -269,11 +277,13 @@ message proto_app_db_settings {
     // @attr [ReadOnly(true)]
     string conn_name = 7;
 }
-// Stored in App node. All nullable setting has to have value
+// @base VmValidatableWithSeverity
 message proto_plugin_group_generators_default_settings {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
     // Guid of group generators
-    string app_group_generators_guid = 1;
-    string settings = 2; 
+    string app_group_generators_guid = 2;
+    string settings = 3; 
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -339,13 +349,16 @@ message proto_plugins_group {
     string plugins_global_settins = 3;
 }
 */
-// Stored in AppSolution node. All null setting will use parent value
 // @base ConfigObjectCommonBase
 message proto_plugin_group_generators_settings {
-    // Guid of group generators
+    // @attr [ReadOnly(true)]
     string guid = 1;
-    string app_group_generators_guid = 2;
-    string settings = 3; 
+    // @attr [ReadOnly(true)]
+    string name = 2;
+    string app_group_generators_guid = 3;
+    string settings = 4; 
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -360,9 +373,12 @@ message proto_plugin_group_generators_settings {
 }
 // @base ConfigObjectCommonBase
 message proto_app_solution {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    uint64 sorting_value = 3;
+    string name_ui = 3;
+    uint64 sorting_value = 4;
 
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
@@ -420,9 +436,12 @@ message proto_app_solution {
 }
 // @base ConfigObjectCommonBase
 message proto_app_project {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    uint64 sorting_value = 3;
+    string name_ui = 3;
+    uint64 sorting_value = 4;
 
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
@@ -459,26 +478,34 @@ message proto_app_project {
     //proto_app_db_settings default_db = 8;
 
 }
-// Stored in each node in Model branch
+// @base ConfigObjectCommonBase
 message proto_plugin_generator_node_settings {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
     // Guid of solution-project-generator node
-    string app_project_generator_guid = 1;
+    string app_project_generator_guid = 2;
     // Name of solution-project-generator node
-    string name = 2;
-    string name_ui = 3;
-    uint64 sorting_value = 4;
-    uint64 sorting_weight = 5;
+    string name = 3;
+    string name_ui = 4;
+    uint64 sorting_value = 5;
+    uint64 sorting_weight = 6;
     //string node_settings_vm_guid = 6;
     string settings = 7;
 
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
 }
-// Stored in AppProjectGenerator node
+// @base VmValidatableWithSeverity
 message proto_plugin_generator_settings {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 3;
     // Guid of solution-project-generator node
-    string app_project_generator_guid = 1;
-    string settings = 2; 
+    string app_project_generator_guid = 4;
+    string settings = 5; 
 
     // @attr [BrowsableAttribute(false)]
     bool is_has_changed = 13;
@@ -486,10 +513,12 @@ message proto_plugin_generator_settings {
 // Application project generator
 // @base ConfigObjectCommonBase
 message proto_app_project_generator {
+    // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [Description("Connection string name for DB connection generator")]
     string name = 2;
-    uint64 sorting_value = 3;
+    string name_ui = 3;
+    uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -560,8 +589,8 @@ message proto_app_project_generator {
 // @base VmValidatableWithSeverity
 message proto_plugin_generator_node_default_settings {
     // Guid of solution-project-generator node
-    string node_settings_vm_guid = 1;
-    string settings = 2; 
+    string node_settings_vm_guid = 2;
+    string settings = 3; 
 }
 /** 
  * @exclude
@@ -610,7 +639,6 @@ message db_settings {
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_config_model {
-    // Unique Guid for configuration (for comparison)
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(2)]
@@ -766,7 +794,9 @@ message proto_data_type {
  */
 // Common parameters section
 message proto_group_list_common {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -795,7 +825,9 @@ message proto_group_list_common {
 }
 // User's role
 message proto_role {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -819,7 +851,9 @@ message proto_role {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_roles {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -845,7 +879,9 @@ message proto_group_list_roles {
 }
 // main view forms hierarchy parent
 message proto_main_view_form {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -872,7 +908,9 @@ message proto_main_view_form {
 }
 // main view forms hierarchy node with children
 message proto_group_list_main_view_forms {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -901,7 +939,9 @@ message proto_group_list_main_view_forms {
  * ####################################### P R O P E R T Y ##########################################
  */
 message proto_group_list_properties_tabs {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -926,7 +966,9 @@ message proto_group_list_properties_tabs {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_properties_tab {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -957,7 +999,9 @@ message proto_properties_tab {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_properties {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -985,7 +1029,9 @@ message proto_group_list_properties {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_property {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1021,7 +1067,9 @@ message proto_property {
  * ####################################### C O N S T A N T ##########################################
  */
 message proto_group_list_constants {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1049,7 +1097,9 @@ message proto_group_list_constants {
 // Constant application wise value
 //
 message proto_constant {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
@@ -1079,7 +1129,9 @@ message proto_constant {
  * ####################################### E N U M E R A T I O N ##########################################
  */
 message proto_group_list_enumerations {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1111,7 +1163,9 @@ enum enum_enumeration_type {
     STRING_VALUE = 3;
 }
 message proto_enumeration {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1146,6 +1200,7 @@ message proto_enumeration {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_enumeration_pair {
+    // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Name")]
@@ -1186,7 +1241,9 @@ message proto_enumeration_pair {
  * ####################################### C A T A L O G ##########################################
  */
 message proto_catalog_items_group {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1234,7 +1291,9 @@ message proto_catalog_settings {
     bool separate_properties_for_groups = 4;
 }
 message proto_catalog {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1275,7 +1334,9 @@ message proto_catalog {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_catalogs {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1309,7 +1370,9 @@ message proto_group_list_catalogs {
  * ####################################### D O C U M E N T ##########################################
  */
 message proto_group_documents {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1341,7 +1404,9 @@ message proto_group_documents {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_document {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1373,7 +1438,9 @@ message proto_document {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_documents {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1402,7 +1469,9 @@ message proto_group_list_documents {
  * ####################################### J O U R N A L ##########################################
  */
 message proto_group_list_journals {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1428,7 +1497,9 @@ message proto_group_list_journals {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_journal {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1459,7 +1530,9 @@ message proto_journal {
  * ####################################### F O R M S ##########################################
  */
 message proto_group_list_forms {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1485,7 +1558,9 @@ message proto_group_list_forms {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_form {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1514,7 +1589,9 @@ message proto_form {
  * ####################################### R E P O R T S ##########################################
  */
 message proto_group_list_reports {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
@@ -1540,7 +1617,9 @@ message proto_group_list_reports {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_report {
+    // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]

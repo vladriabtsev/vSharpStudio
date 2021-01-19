@@ -75,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             _logger.Trace();
-            if (string.IsNullOrWhiteSpace(this.Name))
+            if (string.IsNullOrWhiteSpace(this._Name))
             {
                 this._Name = "Config";
             }
@@ -104,6 +104,16 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.Model, 1);
             this.Children.Add(this.GroupPlugins, 9);
             this.Children.Add(this.GroupAppSolutions, 10);
+        }
+        public Config(ConfigShortHistory history)
+            : this((ITreeConfigNode)null)
+        {
+            this.OnInitBegin();
+        }
+        public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        {
+            var vm = Config.Clone((ITreeConfigNode)null, from, isDeep, isNewGuid);
+            return vm;
         }
         public Config(Proto.Config.proto_config pconfig)
             : this((ITreeConfigNode)null)
@@ -331,8 +341,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks)
                 {
-                    dic[t.Config.Guid] = t.Config;
-                    GetSubConfigs(t.Config);
+                    dic[t.ConfigBase.Guid] = t.ConfigBase;
+                    GetSubConfigs(t.ConfigBase);
                 }
             }
         }
@@ -370,12 +380,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
-                t.SaveGroupSettings();
+                (t as AppSolution).SaveGroupSettings();
                 foreach (var tt in t.ListAppProjects)
                 {
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
-                        ttt.SaveSettings();
+                        (ttt as AppProjectGenerator).SaveSettings();
                     }
                 }
             }

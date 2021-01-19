@@ -128,6 +128,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
+            this.Write("I");
             
             #line 27 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -561,6 +562,13 @@ namespace GenFromProto
             this.Write(" = ");
             
             #line 63 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 63 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
@@ -646,7 +654,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(" to, ");
+            this.Write(" to, I");
             
             #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -943,11 +951,25 @@ if (this.Doc.IsDefaultBase) {
             this.Write("\r\n        ");
             
             #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
-            this.Write(".Update(to.");
+            this.Write(".Update((");
+            
+            #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(")to.");
             
             #line 139 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1524,6 +1546,13 @@ if (this.Doc.IsDefaultBase) {
             this.Write("    ");
             
             #line 219 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 219 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
@@ -1535,7 +1564,14 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(", vm.");
+            this.Write(", (");
+            
+            #line 219 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(")vm.");
             
             #line 219 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -2073,11 +2109,25 @@ if (this.Doc.IsDefaultBase) {
             this.Write(" = ");
             
             #line 270 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 270 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
-            this.Write(".ConvertToProto(vm.");
+            this.Write(".ConvertToProto((");
+            
+            #line 270 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(")vm.");
             
             #line 270 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

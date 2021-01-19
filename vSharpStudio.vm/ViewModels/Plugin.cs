@@ -19,7 +19,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Contract.Requires(plugin != null);
             this.Guid = plugin.Guid.ToString();
-            this.Name = plugin.Name;
+            this._Name = plugin.Name;
             this.Description = plugin.Description;
             this.VPlugin = plugin;
             this.IsEditable = false;

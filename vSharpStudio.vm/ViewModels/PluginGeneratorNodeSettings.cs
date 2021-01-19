@@ -10,7 +10,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("NodeSettings:{Name,nq} Path:{ModelPath,nq}")]
-    public partial class PluginGeneratorNodeSettings : ISortingValue
+    public partial class PluginGeneratorNodeSettings : ISortingValue, ITreeConfigNode
     {
         public IvPluginGeneratorNodeSettings SettingsVm { get; set; }
         //public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginGeneratorNodeSettings t) : this(parent)

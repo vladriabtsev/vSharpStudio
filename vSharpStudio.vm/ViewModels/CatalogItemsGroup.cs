@@ -63,24 +63,24 @@ namespace vSharpStudio.vm.ViewModels
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
+            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
         }
 
         public CatalogItemsGroup(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
         }
 
         public CatalogItemsGroup(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
             Contract.Requires(listProperties != null);
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
             foreach (var t in listProperties)
             {
-                this.GroupProperties.ListProperties.Add(t);
+                (this.GroupProperties as GroupListProperties).ListProperties.Add(t);
             }
         }
         public PropertiesTab AddPropertiesTab(string name)

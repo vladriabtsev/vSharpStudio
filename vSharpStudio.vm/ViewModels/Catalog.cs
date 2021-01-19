@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, ITreeConfigNode
     {
         public static readonly string DefaultName = "Catalog";
 
@@ -49,9 +49,10 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
-            this.CatalogSettings.MaxCatalogItemNameLength = 20;
-            this.CatalogSettings.MaxCatalogItemDescriptionLength = 100;
-            this.CatalogSettings.MaxCatalogItemTreeLevels = 0;
+            var cs = this.CatalogSettings as CatalogSettings;
+            cs.MaxCatalogItemNameLength = 20;
+            cs.MaxCatalogItemDescriptionLength = 100;
+            cs.MaxCatalogItemTreeLevels = 0;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()
@@ -71,26 +72,26 @@ namespace vSharpStudio.vm.ViewModels
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
-            this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
+            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
+            (this.GroupForms as GroupListForms).AddAllAppGenSettingsVmsToNode();
+            (this.GroupReports as GroupListReports).AddAllAppGenSettingsVmsToNode();
         }
 
         public Catalog(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
         }
 
         public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
             Contract.Requires(listProperties != null);
-            (this as ITreeConfigNode).Name = name;
+            this.Name = name;
             foreach (var t in listProperties)
             {
-                this.GroupProperties.ListProperties.Add(t);
+                (this.GroupProperties as GroupListProperties).ListProperties.Add(t);
             }
         }
         public PropertiesTab AddPropertiesTab(string name)
@@ -195,7 +196,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Catalog.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             (this.Parent as GroupListCatalogs).Add(node);
-            this.Name = this.Name + "2";
+            this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
         }
